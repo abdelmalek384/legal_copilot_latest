@@ -349,6 +349,12 @@ def login(b: LoginIn, request: Request):
     ip = request.client.host if request.client else "unknown"
     identifiers = (k, "ip:" + ip)
     c = conn()
+    # Expire old unlocked entries and cap the table during login traffic so random-email
+    # probes cannot grow this table indefinitely. Active lockouts are retained.
+    c.execute("DELETE FROM login_attempts WHERE locked_until<=? AND window_start<?", (now, now - 86400))
+    c.execute("DELETE FROM login_attempts WHERE email IN ("
+              "SELECT email FROM login_attempts WHERE locked_until<=? "
+              "ORDER BY window_start DESC, rowid DESC LIMIT -1 OFFSET 10000)", (now,))
     attempts = {row["email"]: row for row in c.execute(
         "SELECT email,failures,window_start,locked_until FROM login_attempts WHERE email IN (?,?)", identifiers
     ).fetchall()}
@@ -370,7 +376,8 @@ def login(b: LoginIn, request: Request):
                 failures, window_start = 1, now
             else:
                 failures, window_start = row["failures"] + 1, row["window_start"]
-            locked_until = now + 300 if failures >= 5 else 0
+            threshold = 20 if identifier.startswith("ip:") else 5
+            locked_until = now + 300 if failures >= threshold else 0
             locked = locked or locked_until > now
             c.execute("INSERT INTO login_attempts(email,failures,window_start,locked_until) VALUES(?,?,?,?) "
                       "ON CONFLICT(email) DO UPDATE SET failures=excluded.failures,window_start=excluded.window_start,locked_until=excluded.locked_until",
