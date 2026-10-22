@@ -106,14 +106,15 @@ expired_token = expired["Authorization"].split(" ", 1)[1]
 db.execute("UPDATE auth_sessions SET expires=? WHERE token_hash=?", (int(__import__("time").time()) - 1, app.sha(expired_token)))
 db.commit()
 assert c.get("/cases", headers=expired).status_code == 401
-import manage
-from types import SimpleNamespace
 from unittest.mock import patch
+import sys, getpass
 c.post("/users", json={"name":"Reset Test","email":"reset@x.eg","password":"old-password-Long","role":"lawyer"}, headers=A)
 reset_token = {"Authorization":"Bearer "+c.post("/login",json={"email":"reset@x.eg","password":"old-password-Long"}).json()["token"]}
 assert c.get("/cases", headers=reset_token).status_code == 200
-with patch.object(manage, "read_password", return_value="new-password-Long"):
-    manage.resetpw(SimpleNamespace(email="reset@x.eg"))
+# manage.py is a CLI script; set its arguments and patch the terminal prompt before importing it.
+sys.argv = ["manage.py", "resetpw", "reset@x.eg"]
+with patch("getpass.getpass", return_value="new-password-Long"):
+    import manage
 assert c.get("/cases", headers=reset_token).status_code == 401
 assert c.post("/login",json={"email":"reset@x.eg","password":"old-password-Long"}).status_code == 401
 assert c.post("/login",json={"email":"reset@x.eg","password":"new-password-Long"}).status_code == 200
