@@ -1,6 +1,6 @@
 """Legal copilot MVP: case workspace + hybrid law search + citation-checked answers.
 Run: pip install -r requirements.txt && uvicorn app:app --reload"""
-import sqlite3, re, json, os, io, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request
+import sqlite3, re, json, os, io, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request, zipfile
 from collections import Counter
 from fastapi import Request
 from fastapi.responses import JSONResponse
@@ -315,11 +315,26 @@ def extract(name, data):
     ext = name.lower().rsplit(".", 1)[-1]
     if ext == "pdf":
         from pypdf import PdfReader
-        return "\n\n".join(p.extract_text() or "" for p in PdfReader(io.BytesIO(data)).pages)
-    if ext == "docx":
+        reader = PdfReader(io.BytesIO(data), strict=True)
+        if len(reader.pages) > 500: raise HTTPException(413, "maximum 500 PDF pages")
+        text = "\n\n".join(p.extract_text() or "" for p in reader.pages)
+    elif ext == "docx":
+        try:
+            with zipfile.ZipFile(io.BytesIO(data)) as z:
+                infos = z.infolist()
+                if len(infos) > 2000 or sum(i.file_size for i in infos) > 25_000_000:
+                    raise HTTPException(413, "document expands beyond safe limits")
+                if any(i.file_size > 10_000_000 or (i.compress_size and i.file_size / i.compress_size > 200) for i in infos):
+                    raise HTTPException(413, "document contains an unusually compressed file")
+        except zipfile.BadZipFile:
+            raise HTTPException(422, "invalid DOCX archive")
         import docx
-        return "\n\n".join(p.text for p in docx.Document(io.BytesIO(data)).paragraphs)
-    raise HTTPException(415, "PDF or DOCX only")
+        text = "\n\n".join(p.text for p in docx.Document(io.BytesIO(data)).paragraphs)
+    else:
+        raise HTTPException(415, "PDF or DOCX only")
+    if len(text) > 1_000_000:
+        raise HTTPException(413, "extracted text exceeds 1 MB")
+    return text
 
 
 @app.get("/")
