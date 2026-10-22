@@ -3,7 +3,7 @@ Run: pip install -r requirements.txt && uvicorn app:app --reload"""
 import sqlite3, re, json, os, io, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request, zipfile
 from collections import Counter
 from fastapi import Request
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, HTMLResponse
 
 DB = os.environ.get("COPILOT_DB", "copilot.db")
 MIN_SCORE = float(os.environ.get("MIN_SCORE", "0.3"))
@@ -239,6 +239,8 @@ app = FastAPI(title="Legal Copilot MVP", docs_url=None, redoc_url=None)
 
 @app.middleware("http")
 async def security_headers(request: Request, call_next):
+    nonce = secrets.token_urlsafe(18)
+    request.state.csp_nonce = nonce
     try:
         response = await call_next(request)
     except OverflowError:
@@ -247,7 +249,7 @@ async def security_headers(request: Request, call_next):
     response.headers["X-Frame-Options"] = "DENY"
     response.headers["Referrer-Policy"] = "no-referrer"
     response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
-    response.headers["Content-Security-Policy"] = "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'"
+    response.headers["Content-Security-Policy"] = "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; script-src 'self' 'nonce-" + nonce + "'; style-src 'self' 'unsafe-inline'"
     if request.url.scheme == "https":
         response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains"
     return response
@@ -338,7 +340,11 @@ def extract(name, data):
 
 
 @app.get("/")
-def home(): return FileResponse(os.path.join(os.path.dirname(__file__), "static", "index.html"))
+def home(request: Request):
+    with open(os.path.join(os.path.dirname(__file__), "static", "index.html"), encoding="utf-8") as f:
+        page = f.read()
+    page = page.replace("<script>", '<script nonce="' + request.state.csp_nonce + '">', 1)
+    return HTMLResponse(page)
 
 
 @app.post("/login")
@@ -375,7 +381,9 @@ def login(b: LoginIn, request: Request):
             else:
                 failures, window_start = row["failures"] + 1, row["window_start"]
             threshold = 20 if identifier.startswith("ip:") else 5
-            locked_until = now + 300 if failures >= threshold else 0
+            # Progressive lockout: 30 seconds initially, increasing to at most five minutes.
+            lock_seconds = min(300, 30 * (2 ** min(4, max(0, failures - threshold))))
+            locked_until = now + lock_seconds if failures >= threshold else 0
             locked = locked or locked_until > now
             c.execute("INSERT INTO login_attempts(email,failures,window_start,locked_until) VALUES(?,?,?,?) "
                       "ON CONFLICT(email) DO UPDATE SET failures=excluded.failures,window_start=excluded.window_start,locked_until=excluded.locked_until",
@@ -606,9 +614,10 @@ def rm_case(cid: int, u: dict = Depends(user)):
 
 
 @app.post("/law/import")
-def law_import(rows: list[LawRow], x_admin_token: str = Header(None)):
-    tok = os.environ.get("ADMIN_TOKEN", "")  # shared law data: admin only, never regular users
-    if not tok or not hmac.compare_digest(tok, x_admin_token or ""): raise HTTPException(403, "forbidden")
+def law_import(rows: list[LawRow], x_admin_token: str = Header(None), u: dict = Depends(user)):
+    tok = os.environ.get("ADMIN_TOKEN", "")
+    if u["role"] != "admin": raise HTTPException(403, "admin only")
+    if len(tok) < 32 or not hmac.compare_digest(tok, x_admin_token or ""): raise HTTPException(403, "forbidden")
     if len(rows) > 5000: raise HTTPException(413, "max 5000 rows per call")
     return {"imported": import_law(conn(), [r.model_dump() for r in rows])}
 
