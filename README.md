@@ -18,7 +18,7 @@ embedding model such as bge-m3 or multilingual-e5, stored in pgvector), and MIN_
 ## Setup and security
 1. `pip install -r requirements.txt`, then `python selftest.py && python api_test.py`.
 2. Create the first account: `python manage.py adduser "Name" name@firm.eg admin` (roles: admin, lawyer, junior; password min 12 characters). When typing the password in the terminal, characters do not appear on screen; this is normal. Press Enter after typing it. If you need to change a forgotten password later, run `python manage.py resetpw name@firm.eg`.
-3. Set ADMIN_TOKEN='<long random>' (header X-Admin-Token on /law/import). Optional: LLM_URL / LLM_MODEL / LLM_KEY.
+3. Set `ADMIN_TOKEN` to a randomly generated secret of at least 32 characters in the server environment (never commit it or print it in logs). `/law/import` requires both a valid signed-in admin account and the `X-Admin-Token` header. Rotate the secret immediately if exposed. Optional: `LLM_URL` / `LLM_MODEL` / `LLM_KEY`.
 4. Run `uvicorn app:app` only behind an HTTPS reverse proxy (Caddy or nginx).
 5. Backups: `python manage.py genkey` once (store the key OFF the server), then daily via cron:
    `BACKUP_KEY=... python manage.py backup /safe/path --keep 14`. Restore: `python manage.py restore FILE OUT.db`. Test a restore.
