@@ -77,6 +77,11 @@ A = {"Authorization": "Bearer " + c.post("/login", json={"email":"admin@x.eg","p
 assert c.post("/users", json={"name":"Nope","email":"nope@x.eg","password":"long-enough-password","role":"lawyer"}, headers=J).status_code == 403
 assert c.post("/users", json={"name":"New User","email":"new@x.eg","password":"short","role":"lawyer"}, headers=A).status_code == 422
 assert c.post("/users", json={"name":"New User","email":"new@x.eg","password":"long-enough-password","role":"lawyer"}, headers=A).status_code == 200
+new_user = c.post("/users", json={"name":"Disable Me","email":"disable@x.eg","password":"long-enough-password","role":"lawyer"}, headers=A)
+assert new_user.status_code == 200
+new_uid = new_user.json()["id"]
+assert c.post(f"/users/{new_uid}/disable", headers=A).status_code == 200
+assert c.post("/login", json={"email":"disable@x.eg","password":"long-enough-password"}).status_code == 401
 assert c.delete(f"/cases/{cid}", headers=J).status_code == 404 and c.delete(f"/cases/{cid}", headers=L).status_code == 200
 # Logout revokes the server-side session, not just the browser token.
 logout_headers = login("Junior")
