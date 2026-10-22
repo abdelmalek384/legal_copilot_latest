@@ -362,8 +362,9 @@ def login(b: LoginIn, request: Request):
     attempts = {row["email"]: row for row in c.execute(
         "SELECT email,failures,window_start,locked_until FROM login_attempts WHERE email IN (?,?)", identifiers
     ).fetchall()}
-    if any(row["locked_until"] > now for row in attempts.values()):
-        raise HTTPException(429, "too many attempts, try later")
+    is_locked = any(row["locked_until"] > now for row in attempts.values())
+    # Do not reject a correct password just because an attacker exhausted the failure
+    # budget for this email or shared IP; this avoids turning throttling into account lockout.
     r = c.execute("SELECT * FROM users WHERE email=?", (k,)).fetchone()
     # Equalize the expensive hash operation for unknown/disabled emails to reduce account enumeration.
     dummy_salt = bytes.fromhex("00112233445566778899aabbccddeeff")
@@ -373,6 +374,8 @@ def login(b: LoginIn, request: Request):
         hash_pw(b.password, dummy_salt)
         valid = False
     if not r or not r["active"] or not valid:
+        if is_locked:
+            raise HTTPException(429, "too many attempts, try later")
         locked = False
         for identifier in identifiers:
             row = attempts.get(identifier)
