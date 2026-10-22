@@ -229,6 +229,25 @@ from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field
 
 app = FastAPI(title="Legal Copilot MVP", docs_url=None, redoc_url=None)
+
+@app.middleware("http")
+async def security_headers(request: Request, call_next):
+    try:
+        response = await call_next(request)
+    except OverflowError:
+        response = JSONResponse(status_code=404, content={"detail": "not found"})
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["X-Frame-Options"] = "DENY"
+    response.headers["Referrer-Policy"] = "no-referrer"
+    response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
+    response.headers["Content-Security-Policy"] = "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'"
+    if request.url.scheme == "https":
+        response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains"
+    return response
+
+@app.exception_handler(OverflowError)
+async def integer_overflow_handler(request: Request, exc: OverflowError):
+    return JSONResponse(status_code=404, content={"detail": "not found"})
 ROLES = r"^(lead|associate|junior)$"
 
 
