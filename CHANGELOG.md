@@ -1,0 +1,23 @@
+# Changelog — Legal Copilot
+
+## Prepared update
+- Improved login form: trims/lowercases email, supports Enter-to-submit, displays clearer errors, and adds show/hide password.
+- Added `manage.py resetpw EMAIL` to reset a forgotten password safely through a hidden terminal prompt.
+- Clarified that terminal password input is intentionally invisible while typing.
+- Added Egyptian case metadata fields: case number, year, court, circuit, opposing party.
+- Added per-case internal notes.
+- Added legal deadlines separate from court hearing dates.
+- Added fee tracking with total/paid/remaining display and validation that paid does not exceed total.
+- Added a basic text-match conflict-screening feature with an explicit warning that it is not a definitive legal conflict determination.
+- Added a Mac local-start script and GitHub `.gitignore` exclusions for databases, virtual environments, and secrets.
+- Included the user-provided Arabic law dataset under `data/`; it is not imported automatically and remains unverified.
+
+## Verification
+- `python selftest.py` — passed.
+- `python api_test.py` — passed, including added feature endpoint checks.
+- Python compilation — passed.
+- JavaScript syntax check — passed.
+- Mac launcher shell syntax check — passed.
+
+## Important limitations
+This is still an MVP, not a production-hardened legal system. No independent security audit, two-factor authentication, password-reset email flow, encrypted application database, scanned-PDF OCR, official legal-data verification, or full conflict-of-interest workflow is included. Run locally only; do not expose it to the public internet without a security review and HTTPS deployment.
