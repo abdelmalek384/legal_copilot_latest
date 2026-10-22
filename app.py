@@ -2,6 +2,8 @@
 Run: pip install -r requirements.txt && uvicorn app:app --reload"""
 import sqlite3, re, json, os, io, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request
 from collections import Counter
+from fastapi import Request
+from fastapi.responses import JSONResponse
 
 DB = os.environ.get("COPILOT_DB", "copilot.db")
 MIN_SCORE = float(os.environ.get("MIN_SCORE", "0.3"))
