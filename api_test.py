@@ -57,9 +57,13 @@ assert c.delete(f"/cases/{cid}", headers=S).status_code == 404
 assert c.post("/conflicts", json={"q":"عميل"}, headers=S).json()["matches"] == []
 assert all(x.get("case_title") != "مذكرة" for x in c.get("/dashboard", headers=S).json()["tasks"])
 # Same-firm user creation is admin-only and password validation is enforced.
+db.execute("INSERT INTO users(name,email,pw,role,firm_id) VALUES(?,?,?,?,?)",
+           ("First Firm Admin","admin@x.eg",app.hash_pw("password-Admin"),"admin",1))
+db.commit()
+A = {"Authorization": "Bearer " + c.post("/login", json={"email":"admin@x.eg","password":"password-Admin"}).json()["token"]}
 assert c.post("/users", json={"name":"Nope","email":"nope@x.eg","password":"long-enough-password","role":"lawyer"}, headers=J).status_code == 403
-assert c.post("/users", json={"name":"New User","email":"new@x.eg","password":"short","role":"lawyer"}, headers=L).status_code == 422
-assert c.post("/users", json={"name":"New User","email":"new@x.eg","password":"long-enough-password","role":"lawyer"}, headers=L).status_code == 200
+assert c.post("/users", json={"name":"New User","email":"new@x.eg","password":"short","role":"lawyer"}, headers=A).status_code == 422
+assert c.post("/users", json={"name":"New User","email":"new@x.eg","password":"long-enough-password","role":"lawyer"}, headers=A).status_code == 200
 assert c.delete(f"/cases/{cid}", headers=J).status_code == 404 and c.delete(f"/cases/{cid}", headers=L).status_code == 200
 for _ in range(5): c.post("/login", json={"email": "lead@x.eg", "password": "bad"})
 assert c.post("/login", json={"email": "lead@x.eg", "password": "password-Lead"}).status_code == 429   # lockout
