@@ -309,6 +309,17 @@ def login(b: LoginIn):
     return {"token": tok, "id": r["id"], "name": r["name"], "role": r["role"], "firm_id": r["firm_id"]}
 
 
+@app.post("/logout")
+def logout(authorization: str = Header(None), u: dict = Depends(user)):
+    tok = (authorization or "").removeprefix("Bearer ").strip()
+    if not tok:
+        raise HTTPException(401, "unauthorized")
+    c = conn()
+    c.execute("DELETE FROM auth_sessions WHERE token_hash=? AND user_id=?", (sha(tok), u["id"]))
+    c.commit()
+    return {"ok": True}
+
+
 @app.post("/conflicts")
 def conflict_check(b: Q, u: dict = Depends(user)):
     term = norm(b.q).strip()
