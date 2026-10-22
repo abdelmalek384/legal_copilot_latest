@@ -19,7 +19,10 @@ button{cursor:pointer;background:var(--pri);color:#fff;border:0}button.g{backgro
 .mut{color:var(--mut);font-size:13px}.src{border-inline-start:4px solid var(--pri);padding:8px 12px;margin:8px 0;background:#FAFBFD;border-radius:6px}
 #toast{position:fixed;bottom:16px;inset-inline-start:16px;background:var(--tx);color:#fff;padding:10px 16px;border-radius:8px;display:none}
 .login{max-width:340px;margin:12vh auto}.login input{width:100%;margin:6px 0}.login .password-row{display:flex;gap:6px;align-items:center}.login .password-row input{flex:1;min-width:0}.login button[type=submit]{width:100%;margin-top:8px}
-@media(max-width:800px){#shell{flex-direction:column}#side{width:auto;flex-direction:row;overflow:auto}#side .me,#side h1{display:none}}
+.modal-backdrop{position:fixed;inset:0;background:#14284B99;display:flex;align-items:center;justify-content:center;padding:16px;z-index:1000}.modal{width:min(680px,100%);max-height:90vh;overflow:auto;margin:0}.modal h2{margin-top:0}.modal label{min-width:0}.modal input{width:100%;min-width:0}.modal button:disabled{opacity:.6;cursor:wait}
+.lang-switch{margin:8px 0}.lang-switch button{width:100%}
+@media(max-width:800px){#shell{flex-direction:column}#side{width:auto;flex-direction:row;overflow-x:auto;position:sticky;top:0;z-index:10}#side .me,#side h1{display:none}#main{padding:12px;min-width:0}.cols{grid-template-columns:minmax(0,1fr)}.grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))}.row{align-items:stretch}.row>input,.row>select{max-width:100%;min-width:0;flex:1}.tabs{max-width:100%}.modal-backdrop{align-items:flex-start;padding:10px}.modal{max-height:calc(100vh - 20px)}}
+@media(max-width:420px){body{font-size:14px}#main{padding:8px}.card{padding:10px}.grid{grid-template-columns:minmax(0,1fr)}button{max-width:100%}}
 </style>
 <div id="app"></div><div id="toast"></div>
 <script>
@@ -33,18 +36,18 @@ const toast=t=>{const e=$('toast');e.textContent=t;e.style.display='block';clear
 async function api(p,m='GET',b){const r=await fetch(p,{method:m,headers:{'Content-Type':'application/json',Authorization:'Bearer '+T},body:b!==undefined?JSON.stringify(b):undefined});
  if(r.status===401&&p!=='/login'){sessionStorage.clear();T='';login();throw new Error('auth')}
  const j=await r.json().catch(()=>({}));if(!r.ok){toast(err(j));throw new Error('api')}return j}
-function shell(title,...k){A.replaceChildren(h('div',{id:'shell'},h('aside',{id:'side'},h('h1',{textContent:'⚖️ المساعد القانوني'}),
+function shell(title,...k){A.replaceChildren(h('div',{id:'shell'},h('aside',{id:'side'},h('h1',{textContent:'⚖️ المساعد القانوني'}),h('div',{className:'lang-switch'},h('button',{type:'button','data-lang-switch':'1',textContent:LANG==='ar'?'English':'العربية',onclick:switchLanguage})),
  [['dash','الرئيسية',dash],['clients','العملاء',clients],['cases','القضايا',casesPage],['law','البحث القانوني',law]].map(([id,t,f])=>h('a',{className:PAGE===id?'on':'',textContent:t,onclick:()=>{PAGE=id;f()}})),
  h('div',{className:'me'},h('div',{textContent:ME.name||''}),h('a',{textContent:'تسجيل الخروج',onclick:()=>{sessionStorage.clear();location.reload()}}))),
  h('main',{id:'main'},h('h2',{textContent:title}),...k)))}
-function login(){const e=h('input',{type:'email',placeholder:'البريد الإلكتروني',autocomplete:'username',required:true}),p=h('input',{type:'password',placeholder:'كلمة المرور',autocomplete:'current-password',required:true});
+function login(){window.CASE_ID=null;const e=h('input',{type:'email',placeholder:'البريد الإلكتروني',autocomplete:'username',required:true}),p=h('input',{type:'password',placeholder:'كلمة المرور',autocomplete:'current-password',required:true});
  const go=async()=>{if(!e.value.trim()||!p.value){toast('أدخل البريد الإلكتروني وكلمة المرور');return}
  try{const r=await api('/login','POST',{email:e.value.trim().toLowerCase(),password:p.value});T=sessionStorage.t=r.token;ME={id:r.id,name:r.name,role:r.role};sessionStorage.me=JSON.stringify(ME);PAGE='dash';dash()}
  catch(_){p.focus()}};
  const show=h('button',{type:'button',className:'g',textContent:'إظهار',onclick:()=>{p.type=p.type==='password'?'text':'password';show.textContent=p.type==='password'?'إظهار':'إخفاء'}});
  const loginBtn=btn('دخول',()=>{});loginBtn.type='submit';
  const form=h('form',{onsubmit:ev=>{ev.preventDefault();go()}},e,h('div',{className:'password-row'},p,show),loginBtn);
- A.replaceChildren(h('div',{className:'card login'},h('h2',{textContent:'تسجيل الدخول'}),h('p',{className:'mut',textContent:'استخدم الحساب الذي أنشأته من سطر الأوامر.'}),form))}
+ A.replaceChildren(h('div',{className:'card login'},h('div',{style:'display:flex;justify-content:flex-end'},h('button',{type:'button',className:'g','data-lang-switch':'1',textContent:LANG==='ar'?'English':'العربية',onclick:switchLanguage})),h('h2',{textContent:'تسجيل الدخول'}),h('p',{className:'mut',textContent:'استخدم الحساب الذي أنشأته من سطر الأوامر.'}),form))}
 const duePill=t=>{if(!t.due)return null;const d=(new Date(t.due)-new Date(today))/864e5;return pill(fd(t.due),d<0?'late':d<=3?'soon':'open')};
 const prog=c=>{const t=c.done_tasks+c.open_tasks;return h('div',{className:'bar',title:c.done_tasks+'/'+t},h('i',{style:'width:'+(t?100*c.done_tasks/t:0)+'%'}))};
 const empty=t=>h('div',{className:'mut',textContent:t});
@@ -57,10 +60,23 @@ async function dash(){const [d,cs]=await Promise.all([api('/dashboard'),api('/ca
   h('div',{className:'card'},h('h3',{textContent:'الجلسات القادمة'}),d.sessions.length?d.sessions.map(s=>h('div',{className:'row'},h('div',{},h('b',{textContent:s.title}),h('div',{className:'mut',textContent:s.note||''})),pill(fd(s.date),'open'))):empty('لا توجد جلسات قريبة'))))}
 const caseRow=c=>h('div',{className:'row',style:'cursor:pointer',onclick:()=>{TAB='sum';view(c.id)}},h('div',{},h('b',{textContent:c.title}),h('div',{className:'mut',textContent:c.stage||'بدون مرحلة'})),
  h('div',{style:'display:flex;gap:10px;align-items:center'},prog(c),h('span',{className:'mut',textContent:c.done_tasks+'/'+(c.done_tasks+c.open_tasks)+' مهام'}),pill(c.status==='open'?'مفتوحة':'مغلقة',c.status==='open'?'open':'closed')));
-async function newCase(){const t=prompt('عنوان القضية');if(!t||!t.trim())return;
- const cl=prompt('اسم العميل (اختياري)')||'',no=prompt('رقم القضية (اختياري)')||'',yr=prompt('سنة القضية (اختياري)')||'';
- const court=prompt('المحكمة (اختياري)')||'',circuit=prompt('الدائرة (اختياري)')||'',opp=prompt('الخصم (اختياري)')||'';
- const r=await api('/cases','POST',{title:t.trim(),client:cl,case_number:no,case_year:yr,court,circuit,opposing_party:opp});TAB='sum';view(r.id)}
+async function newCase(){
+ const fields=[['title','عنوان القضية',true],['client','اسم العميل (اختياري)',false],['case_number','رقم القضية (اختياري)',false],['case_year','سنة القضية (اختياري)',false],['court','المحكمة (اختياري)',false],['circuit','الدائرة (اختياري)',false],['opposing_party','الخصم (اختياري)',false]];
+ const inputs={};fields.forEach(([k,label,required])=>inputs[k]=h('input',{name:k,placeholder:label,required,style:'width:100%'}));
+ const cancel=btn('إلغاء',()=>overlay.remove(),'g');
+ const save=btn('حفظ القضية',async()=>{
+   if(!inputs.title.value.trim()){toast('أدخل عنوان القضية');inputs.title.focus();return}
+   save.disabled=true;
+   try{const data={};fields.forEach(([k])=>data[k]=inputs[k].value.trim());const r=await api('/cases','POST',data);overlay.remove();TAB='sum';view(r.id)}
+   catch(_){save.disabled=false}
+ });
+ const form=h('form',{onsubmit:e=>{e.preventDefault();save.click()}},
+   h('div',{className:'grid'},fields.map(([k,label])=>h('label',{style:'display:block'},h('span',{className:'mut',textContent:label+(k==='title'?' *':'')}),inputs[k]))),
+   h('div',{className:'row'},cancel,save));
+ const overlay=h('div',{className:'modal-backdrop',onclick:e=>{if(e.target===overlay)overlay.remove()}},
+   h('section',{className:'modal card',role:'dialog','aria-modal':'true','aria-label':'قضية جديدة'},h('h2',{textContent:'قضية جديدة'}),form));
+ A.append(overlay);inputs.title.focus()
+}
 async function clients(){const cs=await api('/cases'),g={};cs.forEach(c=>(g[c.client||'بدون عميل']??=[]).push(c));
  const cq=h('input',{placeholder:'اسم عميل أو خصم لفحص التعارض المحتمل',style:'width:min(100%,420px)'}),cb=h('div');
  const run=async()=>{if(cq.value.trim().length<2){toast('أدخل حرفين على الأقل');return}const r=await api('/conflicts','POST',{q:cq.value.trim()});
@@ -81,7 +97,7 @@ function askBox(cid){const q=h('input',{placeholder:cid?'اسأل عن هذه ا
    h('div',{className:'mut',textContent:'نتائج بحثية مساعدة وليست استشارة قانونية. تحقق دائما من المصدر الرسمي.'})))};
  q.onkeydown=e=>e.key==='Enter'&&go();return h('div',{},q,' ',btn('بحث',go),out)}
 const law=()=>shell('البحث القانوني',h('div',{className:'card'},askBox(null)));
-async function view(id){const c=await api('/cases/'+id),us=await api('/users'),again=()=>view(id);
+async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=await api('/users'),again=()=>view(id);
  const lead=ME.role==='admin'||c.members.some(m=>m.role==='lead'&&m.user_id===ME.id),dn=c.tasks.filter(t=>t.status==='done').length,tot=c.tasks.length;
  const tabs=[['sum','الملخص'],['tasks','المهام'],['sess','الجلسات'],['dead','المواعيد القانونية'],['notes','الملاحظات'],['fees','الأتعاب'],['docs','المستندات'],['team','الفريق'],['ask','اسأل'],['log','السجل']];let body;
  if(TAB==='sum'){
@@ -122,5 +138,49 @@ async function view(id){const c=await api('/cases/'+id),us=await api('/users'),a
  if(TAB==='log')body=h('div',{className:'card'},c.events.map(e=>h('div',{className:'row'},h('span',{textContent:e.text}),h('span',{className:'mut',textContent:e.who+' · '+new Date(e.at.replace(' ','T')+'Z').toLocaleString('ar-EG',{dateStyle:'short',timeStyle:'short'})}))));
  shell(c.title,h('div',{},h('span',{className:'mut',textContent:'العميل: '+(c.client||'—')+' '}),pill(c.status==='open'?'مفتوحة':'مغلقة',c.status==='open'?'open':'closed')),
   h('div',{className:'tabs'},tabs.map(([k,t])=>h('a',{className:TAB===k?'on':'',textContent:t,onclick:()=>{TAB=k;again()}}))),body)}
-T?dash():login()
+
+// Bilingual UI: interface labels are translated; user-entered case/legal text is never translated.
+let LANG=sessionStorage.lang||'ar';
+const AR_EN={
+'المساعد القانوني':'Legal Copilot','الرئيسية':'Dashboard','العملاء':'Clients','القضايا':'Cases','البحث القانوني':'Legal Research',
+'تسجيل الخروج':'Log out','تسجيل الدخول':'Sign in','استخدم الحساب الذي أنشأته من سطر الأوامر.':'Use the account created from the command line.',
+'البريد الإلكتروني':'Email address','كلمة المرور':'Password','إظهار':'Show','إخفاء':'Hide','دخول':'Sign in','أدخل البريد الإلكتروني وكلمة المرور':'Enter your email and password',
+'قضية جديدة':'New case','عنوان القضية':'Case title','عنوان القضية *':'Case title *','اسم العميل (اختياري)':'Client name (optional)','رقم القضية (اختياري)':'Case number (optional)',
+'سنة القضية (اختياري)':'Case year (optional)','المحكمة (اختياري)':'Court (optional)','الدائرة (اختياري)':'Circuit (optional)','الخصم (اختياري)':'Opposing party (optional)',
+'إلغاء':'Cancel','حفظ القضية':'Save case','أدخل عنوان القضية':'Enter a case title','تم حفظ بيانات القضية':'Case details saved','مرحلة':'Stage','بدون مرحلة':'No stage',
+'مفتوحة':'Open','مغلقة':'Closed','منجزة':'Done','مهمة جديدة':'New task','غير معيّن':'Unassigned','إضافة مهمة':'Add task','أدخل اسم المهمة':'Enter a task title','لا توجد مهام':'No tasks',
+'ملاحظة (المحكمة، الدائرة، الغرض)':'Note (court, circuit, purpose)','إضافة جلسة':'Add hearing','أدخل تاريخ الجلسة':'Enter a hearing date','لا توجد جلسات':'No hearings',
+'نوع الموعد (استئناف، طعن، تقديم مستند...)':'Deadline type (appeal, challenge, filing...)','ملاحظة (اختياري)':'Note (optional)','إضافة موعد':'Add deadline',
+'أدخل نوع الموعد وتاريخه':'Enter the deadline type and date','لا توجد مواعيد قانونية مسجلة. هذه المواعيد منفصلة عن جلسات المحكمة.':'No legal deadlines recorded. These are separate from court hearings.',
+'ملاحظات القضية':'Case notes','اكتب ملاحظة داخلية للقضية...':'Write an internal case note...','لا توجد ملاحظات بعد.':'No notes yet.','حفظ الملاحظة':'Save note','اكتب الملاحظة أولا':'Write a note first',
+'وصف الأتعاب':'Fee description','المبلغ الإجمالي':'Total amount','المدفوع':'Paid','ملاحظة':'Note','إضافة أتعاب':'Add fees','أدخل الوصف والإجمالي والمدفوع':'Enter description, total and amount paid','لا توجد أتعاب مسجلة.':'No fees recorded.',
+'المستندات':'Documents','رفع وفهرسة':'Upload and index','لا توجد مستندات':'No documents','PDF أو Word بنص قابل للنسخ (حتى 15 ميجابايت). يُحفظ النص المستخرج للبحث فقط ولا تُحفظ نسخة الملف الأصلي. الملفات الممسوحة ضوئيا غير مدعومة.':'Text-based PDF or Word files only (up to 15 MB). Extracted text is indexed for search; the original file is not stored. Scanned files are not supported.',
+'الفريق':'Team','إضافة / تحديث':'Add / update','اسأل':'Ask','السجل':'Activity log','الملخص':'Overview','المهام':'Tasks','الجلسات':'Hearings','المواعيد القانونية':'Legal deadlines','الملاحظات':'Notes','الأتعاب':'Fees',
+'التقدم':'Progress','حفظ بيانات القضية':'Save case details','العميل:':'Client:','الحالة:':'Status:','إغلاق القضية':'Close case','إعادة فتح':'Reopen','حذف القضية':'Delete case',
+'حذف نهائي لكل بيانات القضية؟':'Permanently delete all case data?','تمت الفهرسة':'Indexed','البحث':'Search','اكتب سؤالا أو رقم المادة':'Ask a question or enter an article number',
+'اسأل عن هذه القضية والقوانين':'Ask about this case and the law','نتائج بحثية مساعدة وليست استشارة قانونية. تحقق دائما من المصدر الرسمي.':'Research assistance, not legal advice. Always verify against the official source.',
+'الإجابة':'Answer','لا توجد قضايا بعد. أنشئ أول قضية.':'No cases yet. Create your first case.','ابحث بعنوان القضية أو العميل':'Search by case title or client',
+'ابحث':'Search','الكل':'All','مهامي المفتوحة':'My open tasks','الجلسات القادمة':'Upcoming hearings','لا توجد مهام مفتوحة':'No open tasks','لا توجد جلسات قريبة':'No upcoming hearings',
+'قضايا نشطة':'Active cases','مهام مفتوحة في قضاياي':'Open tasks in my cases','جلسات خلال 14 يوما':'Hearings in the next 14 days','مهامي المتأخرة':'My overdue tasks',
+'إظهار':'Show','تم':'Done','نتائج الفحص الأولي:':'Preliminary conflict-check results:','فحص أولي لتعارض المصالح':'Preliminary conflict check',
+'اسم عميل أو خصم لفحص التعارض المحتمل':'Client or opposing party to check for potential conflicts','أدخل حرفين على الأقل':'Enter at least two characters',
+'لم تظهر مطابقات في القضايا التي يمكنك الوصول إليها.':'No matches found in cases you can access.','قضايا':'cases','مهام':'tasks','المصدر':'Source','لم يُتحقق من سريانه':'Not verified as in force',
+'ترجمة إنجليزية غير رسمية':'Unofficial English translation','لا توجد نتائج':'No results','نتائج':'Results','لم أجد مصدرا ذا صلة، ولن أخمن.':'No relevant source found; I will not guess.',
+'تعذر الاتصال بالنموذج.':'Could not connect to the model.','فشل التحقق من الاستشهادات، تُعرض المصادر فقط.':'Citation validation failed; showing sources only.',
+'تنبيه: مصادر غير سارية: ':'Warning: sources not in force: ','مرحبا ':'Welcome ','إضافة مستند: ':'Added document: ','فتح القضية':'Case opened'
+};
+const EN_AR=Object.fromEntries(Object.entries(AR_EN).map(([a,e])=>[e,a]));
+function tr(v){if(!v)return v;const dict=LANG==='en'?AR_EN:EN_AR;return dict[v]||v}
+function applyLanguage(root=document.body){
+ document.documentElement.lang=LANG==='ar'?'ar':'en';document.documentElement.dir=LANG==='ar'?'rtl':'ltr';
+ document.body.style.direction=LANG==='ar'?'rtl':'ltr';document.title=LANG==='ar'?'المساعد القانوني':'Legal Copilot';
+ const walk=n=>{if(n.nodeType===Node.TEXT_NODE){const v=n.nodeValue.trim();if(v&&tr(v)!==v)n.nodeValue=n.nodeValue.replace(v,tr(v))}
+ else if(n.nodeType===Node.ELEMENT_NODE){if(n.hasAttribute('placeholder'))n.setAttribute('placeholder',tr(n.getAttribute('placeholder')));if(n.hasAttribute('aria-label'))n.setAttribute('aria-label',tr(n.getAttribute('aria-label')));for(const c of [...n.childNodes])walk(c)}};
+ walk(root);
+ document.querySelectorAll('[data-lang-switch]').forEach(b=>b.textContent=LANG==='ar'?'English':'العربية');
+}
+function switchLanguage(){LANG=LANG==='ar'?'en':'ar';sessionStorage.lang=LANG;applyLanguage();if(PAGE==='dash')dash();else if(PAGE==='clients')clients();else if(PAGE==='cases')casesPage();else if(PAGE==='law')law();else if(window.CASE_ID)view(window.CASE_ID);else login();setTimeout(()=>applyLanguage(),0)}
+const languageObserver=new MutationObserver(ms=>{for(const m of ms)for(const n of m.addedNodes)if(n.nodeType===Node.ELEMENT_NODE||n.nodeType===Node.TEXT_NODE)applyLanguage(n.nodeType===Node.ELEMENT_NODE?n:n.parentElement||document.body)});
+languageObserver.observe(document.body,{childList:true,subtree:true});
+\napplyLanguage();T?dash():login()
 </script></html>
