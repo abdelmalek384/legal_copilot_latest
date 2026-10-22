@@ -77,6 +77,10 @@ A = {"Authorization": "Bearer " + c.post("/login", json={"email":"admin@x.eg","p
 assert c.post("/users", json={"name":"Nope","email":"nope@x.eg","password":"long-enough-password","role":"lawyer"}, headers=J).status_code == 403
 assert c.post("/users", json={"name":"New User","email":"new@x.eg","password":"short","role":"lawyer"}, headers=A).status_code == 422
 assert c.post("/users", json={"name":"New User","email":"new@x.eg","password":"long-enough-password","role":"lawyer"}, headers=A).status_code == 200
+hidden = c.post("/cases", json={"title":"Private Matter Zeta","client":"Hidden Client Zeta"}, headers=A)
+assert hidden.status_code == 200
+probe = c.post("/conflicts", json={"q":"Hidden Client Zeta"}, headers=L).json()
+assert probe["matches"] == [] and probe["possible_conflict"] is True and probe["admin_review_required"] is True
 new_user = c.post("/users", json={"name":"Disable Me","email":"disable@x.eg","password":"long-enough-password","role":"lawyer"}, headers=A)
 assert new_user.status_code == 200
 new_uid = new_user.json()["id"]
