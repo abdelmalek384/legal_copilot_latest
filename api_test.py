@@ -41,6 +41,25 @@ info = c.get(f"/cases/{cid}", headers=J).json()
 assert info["case_number"] == "77" and info["notes"][0]["text"] == "ملاحظة اختبار"
 assert info["deadlines"][0]["title"] == "استئناف" and info["fees"][0]["paid"] == 250
 assert c.get("/cases", headers=O).json() == [] and len(c.get("/cases", headers=J).json()) == 1
+
+# Firm isolation regression checks: a second firm's admin must not see or mutate the first firm's data.
+db.execute("INSERT INTO firms(id,name) VALUES(2,'Second Firm')")
+db.execute("INSERT INTO users(name,email,pw,role,firm_id) VALUES(?,?,?,?,?)",
+           ("Second Admin","second@x.eg",app.hash_pw("password-Second"),"admin",2))
+db.commit()
+S = {"Authorization": "Bearer " + c.post("/login", json={"email":"second@x.eg","password":"password-Second"}).json()["token"]}
+other_cid = c.post("/cases", json={"title":"Private second-firm matter","client":"Second Client"}, headers=S).json()["id"]
+assert c.get("/cases", headers=S).status_code == 200
+assert [x["id"] for x in c.get("/cases", headers=S).json()] == [other_cid]
+assert c.get(f"/cases/{cid}", headers=S).status_code == 404
+assert c.patch(f"/cases/{cid}", json={"status":"closed"}, headers=S).status_code == 404
+assert c.delete(f"/cases/{cid}", headers=S).status_code == 404
+assert c.post("/conflicts", json={"q":"عميل"}, headers=S).json()["matches"] == []
+assert all(x.get("case_title") != "مذكرة" for x in c.get("/dashboard", headers=S).json()["tasks"])
+# Same-firm user creation is admin-only and password validation is enforced.
+assert c.post("/users", json={"name":"Nope","email":"nope@x.eg","password":"long-enough-password","role":"lawyer"}, headers=J).status_code == 403
+assert c.post("/users", json={"name":"New User","email":"new@x.eg","password":"short","role":"lawyer"}, headers=L).status_code == 422
+assert c.post("/users", json={"name":"New User","email":"new@x.eg","password":"long-enough-password","role":"lawyer"}, headers=L).status_code == 200
 assert c.delete(f"/cases/{cid}", headers=J).status_code == 404 and c.delete(f"/cases/{cid}", headers=L).status_code == 200
 for _ in range(5): c.post("/login", json={"email": "lead@x.eg", "password": "bad"})
 assert c.post("/login", json={"email": "lead@x.eg", "password": "password-Lead"}).status_code == 429   # lockout
