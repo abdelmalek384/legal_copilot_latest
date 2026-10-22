@@ -1,4 +1,5 @@
 import os, io, json, tempfile
+from datetime import date, timedelta
 os.environ.update(COPILOT_DB=os.path.join(tempfile.mkdtemp(), "a.db"), ADMIN_TOKEN="adm")
 from fastapi.testclient import TestClient
 import app, docx
@@ -8,6 +9,9 @@ for n, role in (("Lead", "lawyer"), ("Junior", "junior"), ("Outsider", "lawyer")
 db.commit()
 def login(n): return {"Authorization": "Bearer " + c.post("/login", json={"email": n.lower() + "@x.eg", "password": "password-" + n}).json()["token"]}
 L, J, O = login("Lead"), login("Junior"), login("Outsider")
+assert c.get("/").headers.get("x-content-type-options") == "nosniff"
+assert c.get("/").headers.get("x-frame-options") == "DENY"
+assert c.get("/cases/999999999999999999999999999999999999", headers=L).status_code in (404, 422)
 assert c.get("/cases").status_code == 401 and c.post("/login", json={"email": "lead@x.eg", "password": "bad"}).status_code == 401
 rows = [json.loads(l) for l in open("sample_law.jsonl", encoding="utf-8")]
 assert c.post("/law/import", json=rows, headers=L).status_code == 403
@@ -18,6 +22,14 @@ assert c.post(f"/cases/{cid}/tasks", json={"title": "t", "assignee": jid}, heade
 assert c.post(f"/cases/{cid}/members", json={"user_id": jid, "role": "junior"}, headers=J).status_code == 404  # junior cannot manage team
 assert c.post(f"/cases/{cid}/members", json={"user_id": jid, "role": "junior"}, headers=L).status_code == 200
 assert c.post(f"/cases/{cid}/tasks", json={"title": "مذكرة", "assignee": jid, "due": "2099-01-01"}, headers=L).status_code == 200
+soon = (date.today() + timedelta(days=7)).isoformat()
+assert c.post(f"/cases/{cid}/deadlines", json={"title":"استئناف","due":soon,"note":""}, headers=L).status_code == 200
+dash = c.get("/dashboard", headers=J).json()
+assert any(x["title"] == "استئناف" for x in dash["deadlines"])
+deadline = next(x for x in dash["deadlines"] if x["title"] == "استئناف")
+assert c.post(f"/deadlines/{deadline['id']}/done", headers=J).status_code == 404
+assert c.post(f"/deadlines/{deadline['id']}/done", headers=L).status_code == 200
+assert all(x["id"] != deadline["id"] for x in c.get("/dashboard", headers=J).json()["deadlines"])
 assert len(c.get("/dashboard", headers=J).json()["tasks"]) == 1
 tid = c.get("/dashboard", headers=J).json()["tasks"][0]["id"]
 assert c.post(f"/tasks/{tid}/done", headers=O).status_code == 404 and c.post(f"/tasks/{tid}/done", headers=J).status_code == 200
@@ -67,12 +79,21 @@ A = {"Authorization": "Bearer " + c.post("/login", json={"email":"admin@x.eg","p
 assert c.post("/users", json={"name":"Nope","email":"nope@x.eg","password":"long-enough-password","role":"lawyer"}, headers=J).status_code == 403
 assert c.post("/users", json={"name":"New User","email":"new@x.eg","password":"short","role":"lawyer"}, headers=A).status_code == 422
 assert c.post("/users", json={"name":"New User","email":"new@x.eg","password":"long-enough-password","role":"lawyer"}, headers=A).status_code == 200
+hidden = c.post("/cases", json={"title":"Private Matter Zeta","client":"Hidden Client Zeta"}, headers=A)
+assert hidden.status_code == 200
+probe = c.post("/conflicts", json={"q":"Hidden Client Zeta"}, headers=L).json()
+assert probe["matches"] == [] and probe["possible_conflict"] is True and probe["admin_review_required"] is True
+new_user = c.post("/users", json={"name":"Disable Me","email":"disable@x.eg","password":"long-enough-password","role":"lawyer"}, headers=A)
+assert new_user.status_code == 200
+new_uid = new_user.json()["id"]
+assert c.post(f"/users/{new_uid}/disable", headers=A).status_code == 200
+assert c.post("/login", json={"email":"disable@x.eg","password":"long-enough-password"}).status_code == 401
 assert c.delete(f"/cases/{cid}", headers=J).status_code == 404 and c.delete(f"/cases/{cid}", headers=L).status_code == 200
-for _ in range(5): c.post("/login", json={"email": "lead@x.eg", "password": "bad"})
-assert c.post("/login", json={"email": "lead@x.eg", "password": "password-Lead"}).status_code == 429   # lockout
 # Logout revokes the server-side session, not just the browser token.
 logout_headers = login("Junior")
 assert c.get("/cases", headers=logout_headers).status_code == 200
 assert c.post("/logout", headers=logout_headers).status_code == 200
 assert c.get("/cases", headers=logout_headers).status_code == 401
+for _ in range(5): c.post("/login", json={"email": "lead@x.eg", "password": "bad"})
+assert c.post("/login", json={"email": "lead@x.eg", "password": "password-Lead"}).status_code == 429   # lockout persists
 print("API OK")

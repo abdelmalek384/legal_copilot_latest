@@ -1,7 +1,9 @@
 """Legal copilot MVP: case workspace + hybrid law search + citation-checked answers.
 Run: pip install -r requirements.txt && uvicorn app:app --reload"""
-import sqlite3, re, json, os, io, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request
+import sqlite3, re, json, os, io, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request, zipfile
 from collections import Counter
+from fastapi import Request
+from fastapi.responses import JSONResponse
 
 DB = os.environ.get("COPILOT_DB", "copilot.db")
 MIN_SCORE = float(os.environ.get("MIN_SCORE", "0.3"))
@@ -12,13 +14,15 @@ CREATE TABLE IF NOT EXISTS chunks(id INTEGER PRIMARY KEY, ref TEXT, article TEXT
   case_id INT, in_force INT DEFAULT 1, as_of TEXT, source TEXT, verified INT DEFAULT 0);
 CREATE VIRTUAL TABLE IF NOT EXISTS chunks_fts USING fts5(norm);
 CREATE TABLE IF NOT EXISTS firms(id INTEGER PRIMARY KEY, name TEXT NOT NULL, created_at TEXT DEFAULT (datetime('now')));
-CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY, name TEXT, email TEXT UNIQUE, pw TEXT, role TEXT DEFAULT 'lawyer', firm_id INT DEFAULT 1);
+CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY, name TEXT, email TEXT UNIQUE, pw TEXT, role TEXT DEFAULT 'lawyer', firm_id INT DEFAULT 1, active INT DEFAULT 1);
 CREATE TABLE IF NOT EXISTS auth_sessions(token_hash TEXT PRIMARY KEY, user_id INT, expires INT);
+CREATE TABLE IF NOT EXISTS login_attempts(email TEXT PRIMARY KEY, failures INT NOT NULL DEFAULT 0, window_start INT NOT NULL DEFAULT 0, locked_until INT NOT NULL DEFAULT 0);
+CREATE TABLE IF NOT EXISTS login_attempts(email TEXT PRIMARY KEY, failures INT NOT NULL DEFAULT 0, window_start INT NOT NULL DEFAULT 0, locked_until INT NOT NULL DEFAULT 0);
 CREATE TABLE IF NOT EXISTS login_attempts(email TEXT PRIMARY KEY, failures INT NOT NULL DEFAULT 0, window_start INT NOT NULL DEFAULT 0, locked_until INT NOT NULL DEFAULT 0);
 CREATE TABLE IF NOT EXISTS cases(id INTEGER PRIMARY KEY, title TEXT, client TEXT, stage TEXT DEFAULT '', status TEXT DEFAULT 'open', created_by INT, firm_id INT DEFAULT 1,
   case_number TEXT DEFAULT '', case_year TEXT DEFAULT '', court TEXT DEFAULT '', circuit TEXT DEFAULT '', opposing_party TEXT DEFAULT '');
 CREATE TABLE IF NOT EXISTS notes(id INTEGER PRIMARY KEY, case_id INT, created_by INT, text TEXT, created_at TEXT DEFAULT (datetime('now')));
-CREATE TABLE IF NOT EXISTS deadlines(id INTEGER PRIMARY KEY, case_id INT, title TEXT, due TEXT, note TEXT DEFAULT '', created_by INT);
+CREATE TABLE IF NOT EXISTS deadlines(id INTEGER PRIMARY KEY, case_id INT, title TEXT, due TEXT, note TEXT DEFAULT '', created_by INT, status TEXT DEFAULT 'open');
 CREATE TABLE IF NOT EXISTS fees(id INTEGER PRIMARY KEY, case_id INT, title TEXT, amount REAL DEFAULT 0, paid REAL DEFAULT 0, due TEXT, note TEXT DEFAULT '', created_by INT);
 CREATE TABLE IF NOT EXISTS members(case_id INT, user_id INT, role TEXT, PRIMARY KEY(case_id, user_id));
 CREATE TABLE IF NOT EXISTS tasks(id INTEGER PRIMARY KEY, case_id INT, title TEXT, assignee INT, due TEXT, status TEXT DEFAULT 'open', created_by INT);
@@ -43,10 +47,16 @@ def conn():
         c.execute("INSERT OR IGNORE INTO firms(id,name) VALUES(1,'Default Firm')")
         user_cols = {r[1] for r in c.execute("PRAGMA table_info(users)")}
         if "firm_id" not in user_cols: c.execute("ALTER TABLE users ADD COLUMN firm_id INT DEFAULT 1")
+        if "active" not in user_cols: c.execute("ALTER TABLE users ADD COLUMN active INT DEFAULT 1")
         case_cols = {r[1] for r in c.execute("PRAGMA table_info(cases)")}
         if "firm_id" not in case_cols: c.execute("ALTER TABLE cases ADD COLUMN firm_id INT DEFAULT 1")
         c.execute("UPDATE users SET firm_id=1 WHERE firm_id IS NULL")
         c.execute("UPDATE cases SET firm_id=1 WHERE firm_id IS NULL")
+        deadline_cols = {r[1] for r in c.execute("PRAGMA table_info(deadlines)")}
+        if "status" not in deadline_cols: c.execute("ALTER TABLE deadlines ADD COLUMN status TEXT DEFAULT 'open'")
+        c.execute("CREATE INDEX IF NOT EXISTS idx_cases_firm ON cases(firm_id)")
+        c.execute("CREATE INDEX IF NOT EXISTS idx_members_user_case ON members(user_id,case_id)")
+        c.execute("CREATE INDEX IF NOT EXISTS idx_deadlines_case_due ON deadlines(case_id,due,status)")
         c.commit()
         if "verified" not in [r[1] for r in c.execute("PRAGMA table_info(chunks)")]:  # upgrade older databases
             c.execute("ALTER TABLE chunks ADD COLUMN verified INT DEFAULT 0")
@@ -227,6 +237,25 @@ from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field
 
 app = FastAPI(title="Legal Copilot MVP", docs_url=None, redoc_url=None)
+
+@app.middleware("http")
+async def security_headers(request: Request, call_next):
+    try:
+        response = await call_next(request)
+    except OverflowError:
+        response = JSONResponse(status_code=404, content={"detail": "not found"})
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["X-Frame-Options"] = "DENY"
+    response.headers["Referrer-Policy"] = "no-referrer"
+    response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
+    response.headers["Content-Security-Policy"] = "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'"
+    if request.url.scheme == "https":
+        response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains"
+    return response
+
+@app.exception_handler(OverflowError)
+async def integer_overflow_handler(request: Request, exc: OverflowError):
+    return JSONResponse(status_code=404, content={"detail": "not found"})
 ROLES = r"^(lead|associate|junior)$"
 
 
@@ -269,7 +298,9 @@ def sha(t): return hashlib.sha256(t.encode()).hexdigest()
 def user(authorization: str = Header(None)):
     tok = (authorization or "").removeprefix("Bearer ").strip()
     r = conn().execute("SELECT u.* FROM auth_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=? AND s.expires>?", (sha(tok), int(time.time()))).fetchone()
-    if not r: raise HTTPException(401, "unauthorized")
+    if not r or not r["active"]:
+        if r: conn().execute("DELETE FROM auth_sessions WHERE token_hash=?", (sha(tok),)); conn().commit()
+        raise HTTPException(401, "unauthorized")
     return dict(r)
 
 
@@ -285,11 +316,26 @@ def extract(name, data):
     ext = name.lower().rsplit(".", 1)[-1]
     if ext == "pdf":
         from pypdf import PdfReader
-        return "\n\n".join(p.extract_text() or "" for p in PdfReader(io.BytesIO(data)).pages)
-    if ext == "docx":
+        reader = PdfReader(io.BytesIO(data), strict=True)
+        if len(reader.pages) > 500: raise HTTPException(413, "maximum 500 PDF pages")
+        text = "\n\n".join(p.extract_text() or "" for p in reader.pages)
+    elif ext == "docx":
+        try:
+            with zipfile.ZipFile(io.BytesIO(data)) as z:
+                infos = z.infolist()
+                if len(infos) > 2000 or sum(i.file_size for i in infos) > 25_000_000:
+                    raise HTTPException(413, "document expands beyond safe limits")
+                if any(i.file_size > 10_000_000 or (i.compress_size and i.file_size / i.compress_size > 200) for i in infos):
+                    raise HTTPException(413, "document contains an unusually compressed file")
+        except zipfile.BadZipFile:
+            raise HTTPException(422, "invalid DOCX archive")
         import docx
-        return "\n\n".join(p.text for p in docx.Document(io.BytesIO(data)).paragraphs)
-    raise HTTPException(415, "PDF or DOCX only")
+        text = "\n\n".join(p.text for p in docx.Document(io.BytesIO(data)).paragraphs)
+    else:
+        raise HTTPException(415, "PDF or DOCX only")
+    if len(text) > 1_000_000:
+        raise HTTPException(413, "extracted text exceeds 1 MB")
+    return text
 
 
 @app.get("/")
@@ -297,27 +343,41 @@ def home(): return FileResponse(os.path.join(os.path.dirname(__file__), "static"
 
 
 @app.post("/login")
-def login(b: LoginIn):
+def login(b: LoginIn, request: Request):
     k = b.email.strip().lower()
     now = int(time.time())
+    ip = request.client.host if request.client else "unknown"
+    identifiers = (k, "ip:" + ip)
     c = conn()
-    attempt = c.execute("SELECT failures,window_start,locked_until FROM login_attempts WHERE email=?", (k,)).fetchone()
-    if attempt and attempt["locked_until"] > now:
+    attempts = {row["email"]: row for row in c.execute(
+        "SELECT email,failures,window_start,locked_until FROM login_attempts WHERE email IN (?,?)", identifiers
+    ).fetchall()}
+    if any(row["locked_until"] > now for row in attempts.values()):
         raise HTTPException(429, "too many attempts, try later")
-    if not attempt or now - attempt["window_start"] >= 300:
-        failures, window_start = 0, now
-    else:
-        failures, window_start = attempt["failures"], attempt["window_start"]
     r = c.execute("SELECT * FROM users WHERE email=?", (k,)).fetchone()
-    if not r or not check_pw(b.password, r["pw"]):
-        failures += 1
-        locked_until = now + 300 if failures >= 5 else 0
-        c.execute("INSERT INTO login_attempts(email,failures,window_start,locked_until) VALUES(?,?,?,?) "
-                  "ON CONFLICT(email) DO UPDATE SET failures=excluded.failures,window_start=excluded.window_start,locked_until=excluded.locked_until",
-                  (k, failures, window_start, locked_until))
+    # Equalize the expensive hash operation for unknown/disabled emails to reduce account enumeration.
+    dummy_salt = bytes.fromhex("00112233445566778899aabbccddeeff")
+    if r:
+        valid = check_pw(b.password, r["pw"])
+    else:
+        hash_pw(b.password, dummy_salt)
+        valid = False
+    if not r or not r["active"] or not valid:
+        locked = False
+        for identifier in identifiers:
+            row = attempts.get(identifier)
+            if not row or now - row["window_start"] >= 300:
+                failures, window_start = 1, now
+            else:
+                failures, window_start = row["failures"] + 1, row["window_start"]
+            locked_until = now + 300 if failures >= 5 else 0
+            locked = locked or locked_until > now
+            c.execute("INSERT INTO login_attempts(email,failures,window_start,locked_until) VALUES(?,?,?,?) "
+                      "ON CONFLICT(email) DO UPDATE SET failures=excluded.failures,window_start=excluded.window_start,locked_until=excluded.locked_until",
+                      (identifier, failures, window_start, locked_until))
         c.commit()
-        raise HTTPException(429 if locked_until else 401, "too many attempts, try later" if locked_until else "bad credentials")
-    c.execute("DELETE FROM login_attempts WHERE email=?", (k,))
+        raise HTTPException(429 if locked else 401, "too many attempts, try later" if locked else "bad credentials")
+    c.execute("DELETE FROM login_attempts WHERE email IN (?,?)", identifiers)
     tok = secrets.token_urlsafe(32)
     c.execute("DELETE FROM auth_sessions WHERE expires<?", (now,))
     c.execute("INSERT INTO auth_sessions VALUES(?,?,?)", (sha(tok), r["id"], now + 43200)); c.commit()
@@ -341,24 +401,42 @@ def conflict_check(b: Q, u: dict = Depends(user)):
     if len(term) < 2: raise HTTPException(422, "أدخل اسما أو جزءا من اسم مكوّنا من حرفين على الأقل")
     c = conn()
     rows = c.execute(
-        "SELECT id,title,client,case_number,case_year,court,circuit,opposing_party,status FROM cases "
-        "WHERE firm_id=? AND (?='admin' OR id IN (SELECT case_id FROM members WHERE user_id=?)) ORDER BY id DESC",
-        (u["firm_id"], u["role"], u["id"])).fetchall()
-    found = []
+        "SELECT id,title,client,case_number,case_year,court,circuit,opposing_party,status,"
+        "CASE WHEN id IN (SELECT case_id FROM members WHERE user_id=?) OR ?='admin' THEN 1 ELSE 0 END AS visible "
+        "FROM cases WHERE firm_id=? ORDER BY id DESC",
+        (u["id"], u["role"], u["firm_id"])).fetchall()
+    found, hidden_match = [], False
     for r in rows:
         d = dict(r)
         fields = ("title", "client", "opposing_party", "case_number")
         matches = [k for k in fields if term in norm(d.get(k) or "")]
-        if matches:
+        if matches and not d["visible"]:
+            hidden_match = True
+        elif matches:
             d["matched_fields"] = matches
+            d.pop("visible", None)
             found.append(d)
-    return {"query": b.q, "matches": found[:100],
-            "warning": "فحص أولي بالبحث النصي فقط؛ لا يثبت وجود تعارض ولا ينفيه. راجع سجلات المكتب كاملة."}
+    return {"query": b.q, "matches": found[:100], "possible_conflict": hidden_match,
+            "admin_review_required": hidden_match,
+            "warning": "فحص أولي بالبحث النصي فقط؛ لا يثبت وجود تعارض ولا ينفيه. إذا ظهرت إشارة عامة، اطلب مراجعة مسؤول المكتب. لا تعرض هذه النتيجة تفاصيل القضايا غير المصرح لك بها."}
 
 
 @app.get("/users")
 def users(u: dict = Depends(user)):
-    return [dict(r) for r in conn().execute("SELECT id,name,role FROM users WHERE firm_id=? ORDER BY name", (u["firm_id"],))]
+    return [dict(r) for r in conn().execute("SELECT id,name,role,active FROM users WHERE firm_id=? ORDER BY name", (u["firm_id"],))]
+
+
+@app.post("/users/{uid}/disable")
+def disable_user(uid: int, u: dict = Depends(user)):
+    require_admin(u)
+    c = conn()
+    target = c.execute("SELECT id FROM users WHERE id=? AND firm_id=?", (uid, u["firm_id"])).fetchone()
+    if not target: raise HTTPException(404, "user not found")
+    if uid == u["id"]: raise HTTPException(422, "cannot disable your own account")
+    c.execute("UPDATE users SET active=0 WHERE id=?", (uid,))
+    c.execute("DELETE FROM auth_sessions WHERE user_id=?", (uid,))
+    c.commit()
+    return {"ok": True}
 
 
 @app.post("/users")
@@ -380,7 +458,11 @@ def dashboard(u: dict = Depends(user)):
     c = conn()
     t = c.execute("SELECT t.id,t.title,t.due,cs.title AS case_title FROM tasks t JOIN cases cs ON cs.id=t.case_id "
                   "WHERE t.assignee=? AND t.status='open' AND cs.status='open' AND cs.firm_id=? ORDER BY t.due IS NULL, t.due", (u["id"], u["firm_id"]))
-    return {"tasks": [dict(r) for r in t], "sessions": upcoming(c, u)}
+    d = c.execute("SELECT d.id,d.title,d.due,d.status,cs.title AS case_title FROM deadlines d JOIN cases cs ON cs.id=d.case_id "
+                  "WHERE cs.firm_id=? AND cs.status='open' AND d.status='open' AND d.due<=date('now','+30 day') "
+                  "AND (?='admin' OR d.case_id IN (SELECT case_id FROM members WHERE user_id=?)) ORDER BY d.due",
+                  (u["firm_id"], u["role"], u["id"]))
+    return {"tasks": [dict(r) for r in t], "sessions": upcoming(c, u), "deadlines": [dict(r) for r in d]}
 
 
 @app.get("/cases")
@@ -426,6 +508,17 @@ def add_member(cid: int, b: MemberIn, u: dict = Depends(user)):
     c.execute("INSERT OR REPLACE INTO members VALUES(?,?,?)", (cid, b.user_id, b.role)); log(c, cid, u["name"], "تحديث الفريق"); c.commit(); return {"ok": True}
 
 
+@app.delete("/cases/{cid}/members/{uid}")
+def remove_member(cid: int, uid: int, u: dict = Depends(user)):
+    c = conn(); need(c, u, cid, lead=True)
+    target = c.execute("SELECT id FROM users WHERE id=? AND firm_id=?", (uid, u["firm_id"])).fetchone()
+    if not target: raise HTTPException(404, "user not found")
+    c.execute("DELETE FROM members WHERE case_id=? AND user_id=?", (cid, uid))
+    c.execute("UPDATE tasks SET assignee=NULL WHERE case_id=? AND assignee=?", (cid, uid))
+    log(c, cid, u["name"], "إزالة عضو من القضية"); c.commit()
+    return {"ok": True}
+
+
 @app.post("/cases/{cid}/tasks")
 def new_task(cid: int, b: TaskIn, u: dict = Depends(user)):
     c = conn(); need(c, u, cid)
@@ -460,6 +553,18 @@ def new_deadline(cid: int, b: DeadlineIn, u: dict = Depends(user)):
     c.execute("INSERT INTO deadlines(case_id,title,due,note,created_by) VALUES(?,?,?,?,?)",
               (cid, b.title, b.due, b.note, u["id"]))
     log(c, cid, u["name"], "موعد قانوني: " + b.title); c.commit()
+    return {"ok": True}
+
+
+@app.post("/deadlines/{did}/done")
+def deadline_done(did: int, u: dict = Depends(user)):
+    c = conn()
+    row = c.execute("SELECT d.case_id FROM deadlines d JOIN cases cs ON cs.id=d.case_id WHERE d.id=? AND cs.firm_id=?",
+                    (did, u["firm_id"])).fetchone()
+    if not row: raise HTTPException(404, "deadline not found")
+    need(c, u, row["case_id"], lead=True)
+    c.execute("UPDATE deadlines SET status='done' WHERE id=?", (did,))
+    log(c, row["case_id"], u["name"], "إكمال موعد قانوني"); c.commit()
     return {"ok": True}
 
 
