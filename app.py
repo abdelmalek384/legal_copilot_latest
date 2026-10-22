@@ -3,7 +3,7 @@ Run: pip install -r requirements.txt && uvicorn app:app --reload"""
 import sqlite3, re, json, os, io, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request, zipfile
 from collections import Counter
 from fastapi import Request
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, HTMLResponse
 
 DB = os.environ.get("COPILOT_DB", "copilot.db")
 MIN_SCORE = float(os.environ.get("MIN_SCORE", "0.3"))
@@ -36,37 +36,43 @@ _TR = str.maketrans(_MAP)
 
 
 _t = threading.local()
+_init_lock = threading.Lock()
+_schema_ready = False
 
 
 def conn():
-    """One reused connection per thread (no leak, schema created once per thread)."""
+    """One connection per thread; initialize/migrate the shared SQLite schema once."""
+    global _schema_ready
     if getattr(_t, "c", None) is None:
-        c = sqlite3.connect(DB); c.row_factory = sqlite3.Row
-        c.execute("PRAGMA journal_mode=WAL"); c.executescript(SCHEMA)
-        c.execute("INSERT OR IGNORE INTO firms(id,name) VALUES(1,'Default Firm')")
-        user_cols = {r[1] for r in c.execute("PRAGMA table_info(users)")}
-        if "firm_id" not in user_cols: c.execute("ALTER TABLE users ADD COLUMN firm_id INT DEFAULT 1")
-        if "active" not in user_cols: c.execute("ALTER TABLE users ADD COLUMN active INT DEFAULT 1")
-        case_cols = {r[1] for r in c.execute("PRAGMA table_info(cases)")}
-        if "firm_id" not in case_cols: c.execute("ALTER TABLE cases ADD COLUMN firm_id INT DEFAULT 1")
-        c.execute("UPDATE users SET firm_id=1 WHERE firm_id IS NULL")
-        c.execute("UPDATE cases SET firm_id=1 WHERE firm_id IS NULL")
-        deadline_cols = {r[1] for r in c.execute("PRAGMA table_info(deadlines)")}
-        if "status" not in deadline_cols: c.execute("ALTER TABLE deadlines ADD COLUMN status TEXT DEFAULT 'open'")
-        c.execute("CREATE INDEX IF NOT EXISTS idx_cases_firm ON cases(firm_id)")
-        c.execute("CREATE INDEX IF NOT EXISTS idx_members_user_case ON members(user_id,case_id)")
-        c.execute("CREATE INDEX IF NOT EXISTS idx_deadlines_case_due ON deadlines(case_id,due,status)")
-        c.commit()
-        if "verified" not in [r[1] for r in c.execute("PRAGMA table_info(chunks)")]:  # upgrade older databases
-            c.execute("ALTER TABLE chunks ADD COLUMN verified INT DEFAULT 0")
-        # Non-destructive schema upgrades for databases created by earlier MVP versions.
-        case_cols = {r[1] for r in c.execute("PRAGMA table_info(cases)")}
-        for col in ("case_number", "case_year", "court", "circuit", "opposing_party"):
-            if col not in case_cols:
-                c.execute("ALTER TABLE cases ADD COLUMN %s TEXT DEFAULT ''" % col)
+        c = sqlite3.connect(DB, timeout=30)
+        c.row_factory = sqlite3.Row
+        with _init_lock:
+            if not _schema_ready:
+                c.execute("PRAGMA journal_mode=WAL")
+                c.executescript(SCHEMA)
+                c.execute("INSERT OR IGNORE INTO firms(id,name) VALUES(1,'Default Firm')")
+                user_cols = {r[1] for r in c.execute("PRAGMA table_info(users)")}
+                if "firm_id" not in user_cols: c.execute("ALTER TABLE users ADD COLUMN firm_id INT DEFAULT 1")
+                if "active" not in user_cols: c.execute("ALTER TABLE users ADD COLUMN active INT DEFAULT 1")
+                case_cols = {r[1] for r in c.execute("PRAGMA table_info(cases)")}
+                if "firm_id" not in case_cols: c.execute("ALTER TABLE cases ADD COLUMN firm_id INT DEFAULT 1")
+                c.execute("UPDATE users SET firm_id=1 WHERE firm_id IS NULL")
+                c.execute("UPDATE cases SET firm_id=1 WHERE firm_id IS NULL")
+                deadline_cols = {r[1] for r in c.execute("PRAGMA table_info(deadlines)")}
+                if "status" not in deadline_cols: c.execute("ALTER TABLE deadlines ADD COLUMN status TEXT DEFAULT 'open'")
+                c.execute("CREATE INDEX IF NOT EXISTS idx_cases_firm ON cases(firm_id)")
+                c.execute("CREATE INDEX IF NOT EXISTS idx_members_user_case ON members(user_id,case_id)")
+                c.execute("CREATE INDEX IF NOT EXISTS idx_deadlines_case_due ON deadlines(case_id,due,status)")
+                if "verified" not in [r[1] for r in c.execute("PRAGMA table_info(chunks)")]:
+                    c.execute("ALTER TABLE chunks ADD COLUMN verified INT DEFAULT 0")
+                case_cols = {r[1] for r in c.execute("PRAGMA table_info(cases)")}
+                for col in ("case_number", "case_year", "court", "circuit", "opposing_party"):
+                    if col not in case_cols:
+                        c.execute("ALTER TABLE cases ADD COLUMN %s TEXT DEFAULT ''" % col)
+                c.commit()
+                _schema_ready = True
         _t.c = c
     return _t.c
-
 
 def norm(t):
     return re.sub("[\u064b-\u0652\u0670\u0640]", "", unicodedata.normalize("NFKC", t or "")).translate(_TR).lower()
@@ -239,6 +245,8 @@ app = FastAPI(title="Legal Copilot MVP", docs_url=None, redoc_url=None)
 
 @app.middleware("http")
 async def security_headers(request: Request, call_next):
+    nonce = secrets.token_urlsafe(18)
+    request.state.csp_nonce = nonce
     try:
         response = await call_next(request)
     except OverflowError:
@@ -247,7 +255,7 @@ async def security_headers(request: Request, call_next):
     response.headers["X-Frame-Options"] = "DENY"
     response.headers["Referrer-Policy"] = "no-referrer"
     response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
-    response.headers["Content-Security-Policy"] = "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'"
+    response.headers["Content-Security-Policy"] = "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; script-src 'self' 'nonce-" + nonce + "'; style-src 'self' 'unsafe-inline'"
     if request.url.scheme == "https":
         response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains"
     return response
@@ -338,7 +346,11 @@ def extract(name, data):
 
 
 @app.get("/")
-def home(): return FileResponse(os.path.join(os.path.dirname(__file__), "static", "index.html"))
+def home(request: Request):
+    with open(os.path.join(os.path.dirname(__file__), "static", "index.html"), encoding="utf-8") as f:
+        page = f.read()
+    page = page.replace("<script>", '<script nonce="' + request.state.csp_nonce + '">', 1)
+    return HTMLResponse(page)
 
 
 @app.post("/login")
@@ -356,8 +368,9 @@ def login(b: LoginIn, request: Request):
     attempts = {row["email"]: row for row in c.execute(
         "SELECT email,failures,window_start,locked_until FROM login_attempts WHERE email IN (?,?)", identifiers
     ).fetchall()}
-    if any(row["locked_until"] > now for row in attempts.values()):
-        raise HTTPException(429, "too many attempts, try later")
+    is_locked = any(row["locked_until"] > now for row in attempts.values())
+    # Do not reject a correct password just because an attacker exhausted the failure
+    # budget for this email or shared IP; this avoids turning throttling into account lockout.
     r = c.execute("SELECT * FROM users WHERE email=?", (k,)).fetchone()
     # Equalize the expensive hash operation for unknown/disabled emails to reduce account enumeration.
     dummy_salt = bytes.fromhex("00112233445566778899aabbccddeeff")
@@ -367,6 +380,8 @@ def login(b: LoginIn, request: Request):
         hash_pw(b.password, dummy_salt)
         valid = False
     if not r or not r["active"] or not valid:
+        if is_locked:
+            raise HTTPException(429, "too many attempts, try later")
         locked = False
         for identifier in identifiers:
             row = attempts.get(identifier)
@@ -375,7 +390,9 @@ def login(b: LoginIn, request: Request):
             else:
                 failures, window_start = row["failures"] + 1, row["window_start"]
             threshold = 20 if identifier.startswith("ip:") else 5
-            locked_until = now + 300 if failures >= threshold else 0
+            # Progressive lockout: 30 seconds initially, increasing to at most five minutes.
+            lock_seconds = min(300, 30 * (2 ** min(4, max(0, failures - threshold))))
+            locked_until = now + lock_seconds if failures >= threshold else 0
             locked = locked or locked_until > now
             c.execute("INSERT INTO login_attempts(email,failures,window_start,locked_until) VALUES(?,?,?,?) "
                       "ON CONFLICT(email) DO UPDATE SET failures=excluded.failures,window_start=excluded.window_start,locked_until=excluded.locked_until",
@@ -606,9 +623,10 @@ def rm_case(cid: int, u: dict = Depends(user)):
 
 
 @app.post("/law/import")
-def law_import(rows: list[LawRow], x_admin_token: str = Header(None)):
-    tok = os.environ.get("ADMIN_TOKEN", "")  # shared law data: admin only, never regular users
-    if not tok or not hmac.compare_digest(tok, x_admin_token or ""): raise HTTPException(403, "forbidden")
+def law_import(rows: list[LawRow], x_admin_token: str = Header(None), u: dict = Depends(user)):
+    tok = os.environ.get("ADMIN_TOKEN", "")
+    if u["role"] != "admin": raise HTTPException(403, "admin only")
+    if len(tok) < 32 or not hmac.compare_digest(tok, x_admin_token or ""): raise HTTPException(403, "forbidden")
     if len(rows) > 5000: raise HTTPException(413, "max 5000 rows per call")
     return {"imported": import_law(conn(), [r.model_dump() for r in rows])}
 

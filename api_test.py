@@ -1,21 +1,30 @@
 import os, io, json, tempfile
 from datetime import date, timedelta
-os.environ.update(COPILOT_DB=os.path.join(tempfile.mkdtemp(), "a.db"), ADMIN_TOKEN="adm")
+os.environ.update(COPILOT_DB=os.path.join(tempfile.mkdtemp(), "a.db"), ADMIN_TOKEN="stage0-test-admin-token-please-use-a-long-random-secret")
 from fastapi.testclient import TestClient
 import app, docx
 c = TestClient(app.app); db = app.conn()
 for n, role in (("Lead", "lawyer"), ("Junior", "junior"), ("Outsider", "lawyer")):
     db.execute("INSERT INTO users(name,email,pw,role) VALUES(?,?,?,?)", (n, n.lower() + "@x.eg", app.hash_pw("password-" + n), role))
 db.commit()
+# Separate admin identity for protected law imports; ordinary case lead is not an admin.
+db.execute("INSERT INTO users(name,email,pw,role) VALUES(?,?,?,?)",
+           ("Import Admin","import-admin@x.eg",app.hash_pw("password-ImportAdmin"),"admin"))
+db.commit()
+A_IMPORT = {"Authorization": "Bearer " + c.post("/login", json={"email":"import-admin@x.eg","password":"password-ImportAdmin"}).json()["token"]}
 def login(n): return {"Authorization": "Bearer " + c.post("/login", json={"email": n.lower() + "@x.eg", "password": "password-" + n}).json()["token"]}
 L, J, O = login("Lead"), login("Junior"), login("Outsider")
 assert c.get("/").headers.get("x-content-type-options") == "nosniff"
 assert c.get("/").headers.get("x-frame-options") == "DENY"
+landing = c.get("/")
+script_policy = landing.headers.get("content-security-policy", "").split("script-src", 1)[1].split(";", 1)[0]
+assert "unsafe-inline" not in script_policy and "nonce-" in script_policy and "<script nonce=" in landing.text
 assert c.get("/cases/999999999999999999999999999999999999", headers=L).status_code in (404, 422)
 assert c.get("/cases").status_code == 401 and c.post("/login", json={"email": "lead@x.eg", "password": "bad"}).status_code == 401
 rows = [json.loads(l) for l in open("sample_law.jsonl", encoding="utf-8")]
 assert c.post("/law/import", json=rows, headers=L).status_code == 403
-assert c.post("/law/import", json=rows, headers={"X-Admin-Token": "adm"}).json()["imported"] == 3
+assert c.post("/law/import", json=rows, headers={"X-Admin-Token": "stage0-test-admin-token-please-use-a-long-random-secret"}).status_code == 401
+assert c.post("/law/import", json=rows, headers={**A_IMPORT, "X-Admin-Token": "stage0-test-admin-token-please-use-a-long-random-secret"}).json()["imported"] == 3
 cid = c.post("/cases", json={"title": "<b>x</b>", "client": "عميل"}, headers=L).json()["id"]
 jid = [u for u in c.get("/users", headers=L).json() if u["name"] == "Junior"][0]["id"]
 assert c.post(f"/cases/{cid}/tasks", json={"title": "t", "assignee": jid}, headers=L).status_code == 422   # not a member yet
@@ -89,11 +98,38 @@ new_uid = new_user.json()["id"]
 assert c.post(f"/users/{new_uid}/disable", headers=A).status_code == 200
 assert c.post("/login", json={"email":"disable@x.eg","password":"long-enough-password"}).status_code == 401
 assert c.delete(f"/cases/{cid}", headers=J).status_code == 404 and c.delete(f"/cases/{cid}", headers=L).status_code == 200
+# Authentication regression tests: malformed headers, expiry, password-reset revocation, role boundary and concurrent logins.
+for malformed in ("", "garbage", "Bearer", "Basic abc", "Bearer not-a-real-token"):
+    assert c.get("/cases", headers={"Authorization": malformed}).status_code == 401
+expired = login("Junior")
+expired_token = expired["Authorization"].split(" ", 1)[1]
+db.execute("UPDATE auth_sessions SET expires=? WHERE token_hash=?", (int(__import__("time").time()) - 1, app.sha(expired_token)))
+db.commit()
+assert c.get("/cases", headers=expired).status_code == 401
+from unittest.mock import patch
+import sys, getpass
+c.post("/users", json={"name":"Reset Test","email":"reset@x.eg","password":"old-password-Long","role":"lawyer"}, headers=A)
+reset_token = {"Authorization":"Bearer "+c.post("/login",json={"email":"reset@x.eg","password":"old-password-Long"}).json()["token"]}
+assert c.get("/cases", headers=reset_token).status_code == 200
+# manage.py is a CLI script; set its arguments and patch the terminal prompt before importing it.
+sys.argv = ["manage.py", "resetpw", "reset@x.eg"]
+with patch("getpass.getpass", return_value="new-password-Long"):
+    import manage
+assert c.get("/cases", headers=reset_token).status_code == 401
+assert c.post("/login",json={"email":"reset@x.eg","password":"old-password-Long"}).status_code == 401
+assert c.post("/login",json={"email":"reset@x.eg","password":"new-password-Long"}).status_code == 200
+assert c.post("/law/import", json=rows, headers={**L, "X-Admin-Token":"stage0-test-admin-token-please-use-a-long-random-secret"}).status_code == 403
+from concurrent.futures import ThreadPoolExecutor
+def concurrent_login(_):
+    return c.post("/login", json={"email":"reset@x.eg","password":"new-password-Long"}).status_code
+with ThreadPoolExecutor(max_workers=4) as pool:
+    concurrent_statuses = list(pool.map(concurrent_login, range(4)))
+assert concurrent_statuses == [200, 200, 200, 200], concurrent_statuses
 # Logout revokes the server-side session, not just the browser token.
 logout_headers = login("Junior")
 assert c.get("/cases", headers=logout_headers).status_code == 200
 assert c.post("/logout", headers=logout_headers).status_code == 200
 assert c.get("/cases", headers=logout_headers).status_code == 401
 for _ in range(5): c.post("/login", json={"email": "lead@x.eg", "password": "bad"})
-assert c.post("/login", json={"email": "lead@x.eg", "password": "password-Lead"}).status_code == 429   # lockout persists
+assert c.post("/login", json={"email": "lead@x.eg", "password": "password-Lead"}).status_code == 200   # correct credentials bypass throttling lock
 print("API OK")
