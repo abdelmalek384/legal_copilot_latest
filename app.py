@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS login_attempts(email TEXT PRIMARY KEY, failures INT N
 CREATE TABLE IF NOT EXISTS cases(id INTEGER PRIMARY KEY, title TEXT, client TEXT, stage TEXT DEFAULT '', status TEXT DEFAULT 'open', created_by INT, firm_id INT DEFAULT 1,
   case_number TEXT DEFAULT '', case_year TEXT DEFAULT '', court TEXT DEFAULT '', circuit TEXT DEFAULT '', opposing_party TEXT DEFAULT '');
 CREATE TABLE IF NOT EXISTS notes(id INTEGER PRIMARY KEY, case_id INT, created_by INT, text TEXT, created_at TEXT DEFAULT (datetime('now')));
-CREATE TABLE IF NOT EXISTS deadlines(id INTEGER PRIMARY KEY, case_id INT, title TEXT, due TEXT, note TEXT DEFAULT '', created_by INT);
+CREATE TABLE IF NOT EXISTS deadlines(id INTEGER PRIMARY KEY, case_id INT, title TEXT, due TEXT, note TEXT DEFAULT '', created_by INT, status TEXT DEFAULT 'open');
 CREATE TABLE IF NOT EXISTS fees(id INTEGER PRIMARY KEY, case_id INT, title TEXT, amount REAL DEFAULT 0, paid REAL DEFAULT 0, due TEXT, note TEXT DEFAULT '', created_by INT);
 CREATE TABLE IF NOT EXISTS members(case_id INT, user_id INT, role TEXT, PRIMARY KEY(case_id, user_id));
 CREATE TABLE IF NOT EXISTS tasks(id INTEGER PRIMARY KEY, case_id INT, title TEXT, assignee INT, due TEXT, status TEXT DEFAULT 'open', created_by INT);
@@ -49,6 +49,11 @@ def conn():
         if "firm_id" not in case_cols: c.execute("ALTER TABLE cases ADD COLUMN firm_id INT DEFAULT 1")
         c.execute("UPDATE users SET firm_id=1 WHERE firm_id IS NULL")
         c.execute("UPDATE cases SET firm_id=1 WHERE firm_id IS NULL")
+        deadline_cols = {r[1] for r in c.execute("PRAGMA table_info(deadlines)")}
+        if "status" not in deadline_cols: c.execute("ALTER TABLE deadlines ADD COLUMN status TEXT DEFAULT 'open'")
+        c.execute("CREATE INDEX IF NOT EXISTS idx_cases_firm ON cases(firm_id)")
+        c.execute("CREATE INDEX IF NOT EXISTS idx_members_user_case ON members(user_id,case_id)")
+        c.execute("CREATE INDEX IF NOT EXISTS idx_deadlines_case_due ON deadlines(case_id,due,status)")
         c.commit()
         if "verified" not in [r[1] for r in c.execute("PRAGMA table_info(chunks)")]:  # upgrade older databases
             c.execute("ALTER TABLE chunks ADD COLUMN verified INT DEFAULT 0")
