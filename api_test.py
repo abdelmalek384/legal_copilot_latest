@@ -70,4 +70,9 @@ assert c.post("/users", json={"name":"New User","email":"new@x.eg","password":"l
 assert c.delete(f"/cases/{cid}", headers=J).status_code == 404 and c.delete(f"/cases/{cid}", headers=L).status_code == 200
 for _ in range(5): c.post("/login", json={"email": "lead@x.eg", "password": "bad"})
 assert c.post("/login", json={"email": "lead@x.eg", "password": "password-Lead"}).status_code == 429   # lockout
+# Logout revokes the server-side session, not just the browser token.
+logout_headers = login("Junior")
+assert c.get("/cases", headers=logout_headers).status_code == 200
+assert c.post("/logout", headers=logout_headers).status_code == 200
+assert c.get("/cases", headers=logout_headers).status_code == 401
 print("API OK")

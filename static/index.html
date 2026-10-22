@@ -38,7 +38,7 @@ async function api(p,m='GET',b){const r=await fetch(p,{method:m,headers:{'Conten
  const j=await r.json().catch(()=>({}));if(!r.ok){toast(err(j));throw new Error('api')}return j}
 function shell(title,...k){A.replaceChildren(h('div',{id:'shell'},h('aside',{id:'side'},h('h1',{textContent:'⚖️ المساعد القانوني'}),h('div',{className:'lang-switch'},h('button',{type:'button','data-lang-switch':'1',textContent:LANG==='ar'?'English':'العربية',onclick:switchLanguage})),
  [['dash','الرئيسية',dash],['clients','العملاء',clients],['cases','القضايا',casesPage],['law','البحث القانوني',law],['settings','الإعدادات',settingsPage]].map(([id,t,f])=>h('a',{className:PAGE===id?'on':'',textContent:t,onclick:()=>{PAGE=id;window.CASE_ID=null;f()}})),
- h('div',{className:'me'},h('div',{textContent:ME.name||''}),h('a',{textContent:'تسجيل الخروج',onclick:()=>{sessionStorage.clear();location.reload()}}))),
+ h('div',{className:'me'},h('div',{textContent:ME.name||''}),h('a',{textContent:'تسجيل الخروج',onclick:async()=>{try{await api('/logout','POST')}catch(_){}sessionStorage.clear();T='';ME={};login()}}))),
  h('main',{id:'main'},h('h2',{textContent:title}),...k)))}
 function login(){window.CASE_ID=null;const e=h('input',{type:'email',placeholder:'البريد الإلكتروني',autocomplete:'username',required:true}),p=h('input',{type:'password',placeholder:'كلمة المرور',autocomplete:'current-password',required:true});
  const go=async()=>{if(!e.value.trim()||!p.value){toast('أدخل البريد الإلكتروني وكلمة المرور');return}
