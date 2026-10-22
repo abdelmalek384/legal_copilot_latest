@@ -513,6 +513,18 @@ def new_deadline(cid: int, b: DeadlineIn, u: dict = Depends(user)):
     return {"ok": True}
 
 
+@app.post("/deadlines/{did}/done")
+def deadline_done(did: int, u: dict = Depends(user)):
+    c = conn()
+    row = c.execute("SELECT d.case_id FROM deadlines d JOIN cases cs ON cs.id=d.case_id WHERE d.id=? AND cs.firm_id=?",
+                    (did, u["firm_id"])).fetchone()
+    if not row: raise HTTPException(404, "deadline not found")
+    need(c, u, row["case_id"], lead=True)
+    c.execute("UPDATE deadlines SET status='done' WHERE id=?", (did,))
+    log(c, row["case_id"], u["name"], "إكمال موعد قانوني"); c.commit()
+    return {"ok": True}
+
+
 @app.post("/cases/{cid}/fees")
 def new_fee(cid: int, b: FeeIn, u: dict = Depends(user)):
     c = conn(); need(c, u, cid)
