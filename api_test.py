@@ -1,4 +1,5 @@
 import os, io, json, tempfile
+from datetime import date, timedelta
 os.environ.update(COPILOT_DB=os.path.join(tempfile.mkdtemp(), "a.db"), ADMIN_TOKEN="adm")
 from fastapi.testclient import TestClient
 import app, docx
@@ -21,7 +22,8 @@ assert c.post(f"/cases/{cid}/tasks", json={"title": "t", "assignee": jid}, heade
 assert c.post(f"/cases/{cid}/members", json={"user_id": jid, "role": "junior"}, headers=J).status_code == 404  # junior cannot manage team
 assert c.post(f"/cases/{cid}/members", json={"user_id": jid, "role": "junior"}, headers=L).status_code == 200
 assert c.post(f"/cases/{cid}/tasks", json={"title": "مذكرة", "assignee": jid, "due": "2099-01-01"}, headers=L).status_code == 200
-assert c.post(f"/cases/{cid}/deadlines", json={"title":"استئناف","due":"2099-01-01","note":""}, headers=L).status_code == 200
+soon = (date.today() + timedelta(days=7)).isoformat()
+assert c.post(f"/cases/{cid}/deadlines", json={"title":"استئناف","due":soon,"note":""}, headers=L).status_code == 200
 dash = c.get("/dashboard", headers=J).json()
 assert any(x["title"] == "استئناف" for x in dash["deadlines"])
 deadline = next(x for x in dash["deadlines"] if x["title"] == "استئناف")
