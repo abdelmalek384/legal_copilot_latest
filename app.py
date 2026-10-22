@@ -44,30 +44,30 @@ def conn():
     if getattr(_t, "c", None) is None:
         with _init_lock:
             if getattr(_t, "c", None) is None:
-            c = sqlite3.connect(DB); c.row_factory = sqlite3.Row
-            c.execute("PRAGMA journal_mode=WAL"); c.executescript(SCHEMA)
-            c.execute("INSERT OR IGNORE INTO firms(id,name) VALUES(1,'Default Firm')")
-            user_cols = {r[1] for r in c.execute("PRAGMA table_info(users)")}
-            if "firm_id" not in user_cols: c.execute("ALTER TABLE users ADD COLUMN firm_id INT DEFAULT 1")
-            if "active" not in user_cols: c.execute("ALTER TABLE users ADD COLUMN active INT DEFAULT 1")
-            case_cols = {r[1] for r in c.execute("PRAGMA table_info(cases)")}
-            if "firm_id" not in case_cols: c.execute("ALTER TABLE cases ADD COLUMN firm_id INT DEFAULT 1")
-            c.execute("UPDATE users SET firm_id=1 WHERE firm_id IS NULL")
-            c.execute("UPDATE cases SET firm_id=1 WHERE firm_id IS NULL")
-            deadline_cols = {r[1] for r in c.execute("PRAGMA table_info(deadlines)")}
-            if "status" not in deadline_cols: c.execute("ALTER TABLE deadlines ADD COLUMN status TEXT DEFAULT 'open'")
-            c.execute("CREATE INDEX IF NOT EXISTS idx_cases_firm ON cases(firm_id)")
-            c.execute("CREATE INDEX IF NOT EXISTS idx_members_user_case ON members(user_id,case_id)")
-            c.execute("CREATE INDEX IF NOT EXISTS idx_deadlines_case_due ON deadlines(case_id,due,status)")
-            c.commit()
-            if "verified" not in [r[1] for r in c.execute("PRAGMA table_info(chunks)")]:  # upgrade older databases
-                c.execute("ALTER TABLE chunks ADD COLUMN verified INT DEFAULT 0")
-            # Non-destructive schema upgrades for databases created by earlier MVP versions.
-            case_cols = {r[1] for r in c.execute("PRAGMA table_info(cases)")}
-            for col in ("case_number", "case_year", "court", "circuit", "opposing_party"):
-                if col not in case_cols:
-                    c.execute("ALTER TABLE cases ADD COLUMN %s TEXT DEFAULT ''" % col)
-            _t.c = c
+                c = sqlite3.connect(DB); c.row_factory = sqlite3.Row
+                c.execute("PRAGMA journal_mode=WAL"); c.executescript(SCHEMA)
+                c.execute("INSERT OR IGNORE INTO firms(id,name) VALUES(1,'Default Firm')")
+                user_cols = {r[1] for r in c.execute("PRAGMA table_info(users)")}
+                if "firm_id" not in user_cols: c.execute("ALTER TABLE users ADD COLUMN firm_id INT DEFAULT 1")
+                if "active" not in user_cols: c.execute("ALTER TABLE users ADD COLUMN active INT DEFAULT 1")
+                case_cols = {r[1] for r in c.execute("PRAGMA table_info(cases)")}
+                if "firm_id" not in case_cols: c.execute("ALTER TABLE cases ADD COLUMN firm_id INT DEFAULT 1")
+                c.execute("UPDATE users SET firm_id=1 WHERE firm_id IS NULL")
+                c.execute("UPDATE cases SET firm_id=1 WHERE firm_id IS NULL")
+                deadline_cols = {r[1] for r in c.execute("PRAGMA table_info(deadlines)")}
+                if "status" not in deadline_cols: c.execute("ALTER TABLE deadlines ADD COLUMN status TEXT DEFAULT 'open'")
+                c.execute("CREATE INDEX IF NOT EXISTS idx_cases_firm ON cases(firm_id)")
+                c.execute("CREATE INDEX IF NOT EXISTS idx_members_user_case ON members(user_id,case_id)")
+                c.execute("CREATE INDEX IF NOT EXISTS idx_deadlines_case_due ON deadlines(case_id,due,status)")
+                c.commit()
+                if "verified" not in [r[1] for r in c.execute("PRAGMA table_info(chunks)")]:  # upgrade older databases
+                    c.execute("ALTER TABLE chunks ADD COLUMN verified INT DEFAULT 0")
+                # Non-destructive schema upgrades for databases created by earlier MVP versions.
+                case_cols = {r[1] for r in c.execute("PRAGMA table_info(cases)")}
+                for col in ("case_number", "case_year", "court", "circuit", "opposing_party"):
+                    if col not in case_cols:
+                        c.execute("ALTER TABLE cases ADD COLUMN %s TEXT DEFAULT ''" % col)
+                _t.c = c
     return _t.c
 
 def norm(t):
