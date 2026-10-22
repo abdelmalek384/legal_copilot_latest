@@ -25,8 +25,8 @@ button{cursor:pointer;background:var(--pri);color:#fff;border:0}button.g{backgro
 <script>
 const $=i=>document.getElementById(i),A=$('app');
 let T=sessionStorage.t||'',ME=JSON.parse(sessionStorage.me||'{}'),TAB='sum',PAGE='dash';
-const RL={lead:'رئيسي',associate:'محامٍ مساعد',junior:'متدرب'},today=new Date().toISOString().slice(0,10);
-const h=(t,p={},...k)=>{const e=document.createElement(t);Object.assign(e,p);e.append(...k.flat().filter(x=>x!=null&&x!==false));return e};
+const RL={lead:'رئيسي',associate:'محامٍ مساعد',junior:'متدرب'},today=(()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')})();
+const h=(t,p={},...k)=>{const e=document.createElement(t);Object.assign(e,p);e.append(...k.flat().filter(x=>x!=null&&x!==false));if((t==='input'||t==='textarea')&&p.placeholder&&!e.hasAttribute('aria-label'))e.setAttribute('aria-label',p.placeholder);return e};
 const pill=(t,k)=>h('span',{className:'pill '+k,textContent:t}),btn=(t,f,c='')=>h('button',{textContent:t,onclick:f,className:c});
 const fd=s=>s?s.slice(0,10).split('-').reverse().join('/'):'',err=j=>typeof j.detail==='string'?j.detail:'بيانات غير صحيحة';
 const toast=t=>{const e=$('toast');e.textContent=t;e.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>e.style.display='none',3500)};
@@ -96,10 +96,10 @@ async function view(id){const c=await api('/cases/'+id),us=await api('/users'),a
  if(TAB==='tasks'){const tt=h('input',{placeholder:'مهمة جديدة'}),as=h('select',{},new Option('غير معيّن',''),...c.members.map(m=>new Option(m.name,m.user_id))),due=h('input',{type:'date'});
   body=h('div',{className:'card'},c.tasks.length?c.tasks.map(t=>h('div',{className:'row'},h('div',{},h('b',{textContent:t.title}),h('div',{className:'mut',textContent:t.assignee_name||'غير معيّن'})),
    h('div',{},t.status==='done'?pill('منجزة','done'):[duePill(t)||pill('مفتوحة','open'),' ',btn('تم',async()=>{await api('/tasks/'+t.id+'/done','POST');again()},'g')]))):empty('لا توجد مهام'),
-   h('div',{className:'row'},tt,as,due,btn('إضافة مهمة',async()=>{await api('/cases/'+id+'/tasks','POST',{title:tt.value,assignee:as.value?+as.value:null,due:due.value||null});again()})))}
+   h('div',{className:'row'},tt,as,due,btn('إضافة مهمة',async()=>{if(!tt.value.trim()){toast('أدخل اسم المهمة');tt.focus();return}await api('/cases/'+id+'/tasks','POST',{title:tt.value.trim(),assignee:as.value?+as.value:null,due:due.value||null});again()})))}
  if(TAB==='sess'){const sd=h('input',{type:'date'}),sn=h('input',{placeholder:'ملاحظة (المحكمة، الدائرة، الغرض)'});
   body=h('div',{className:'card'},c.sessions.length?c.sessions.map(s=>h('div',{className:'row'},h('span',{textContent:s.note||'جلسة'}),pill(fd(s.date),s.date<today?'closed':'open'))):empty('لا توجد جلسات'),
-   h('div',{className:'row'},sd,sn,btn('إضافة جلسة',async()=>{await api('/cases/'+id+'/sessions','POST',{date:sd.value,note:sn.value});again()})))}
+   h('div',{className:'row'},sd,sn,btn('إضافة جلسة',async()=>{if(!sd.value){toast('أدخل تاريخ الجلسة');sd.focus();return}await api('/cases/'+id+'/sessions','POST',{date:sd.value,note:sn.value});again()})))}
  if(TAB==='dead'){const title=h('input',{placeholder:'نوع الموعد (استئناف، طعن، تقديم مستند...)'}),due=h('input',{type:'date'}),note=h('input',{placeholder:'ملاحظة (اختياري)',style:'width:100%'});
   body=h('div',{className:'card'},c.deadlines.length?c.deadlines.map(d=>h('div',{className:'row'},h('div',{},h('b',{textContent:d.title}),h('div',{className:'mut',textContent:d.note||''})),duePill({due:d.due})||pill(fd(d.due),'open'))):empty('لا توجد مواعيد قانونية مسجلة. هذه المواعيد منفصلة عن جلسات المحكمة.'),
    h('div',{className:'row'},title,due,btn('إضافة موعد',async()=>{if(!title.value.trim()||!due.value){toast('أدخل نوع الموعد وتاريخه');return}await api('/cases/'+id+'/deadlines','POST',{title:title.value,due:due.value,note:note.value});again()})),note)}

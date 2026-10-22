@@ -34,6 +34,8 @@ assert c.post(f"/cases/{cid}/notes", json={"text":"ملاحظة اختبار"}, 
 assert c.post(f"/cases/{cid}/deadlines", json={"title":"استئناف","due":"2099-02-01","note":"تجريبي"}, headers=J).status_code == 200
 assert c.post(f"/cases/{cid}/fees", json={"title":"أتعاب","amount":1000,"paid":250}, headers=J).status_code == 200
 assert c.post(f"/cases/{cid}/fees", json={"title":"أتعاب غير صحيحة","amount":100,"paid":101}, headers=J).status_code == 422
+assert c.post(f"/cases/{cid}/fees", json={"title":"مبلغ سالب","amount":-1,"paid":0}, headers=J).status_code == 422
+assert c.post(f"/cases/{cid}/fees", json={"title":"مدفوع سالب","amount":100,"paid":-1}, headers=J).status_code == 422
 assert c.post("/conflicts", json={"q":"خصم"}, headers=L).json()["matches"][0]["id"] == cid
 info = c.get(f"/cases/{cid}", headers=J).json()
 assert info["case_number"] == "77" and info["notes"][0]["text"] == "ملاحظة اختبار"
