@@ -37,7 +37,7 @@ async function api(p,m='GET',b){const r=await fetch(p,{method:m,headers:{'Conten
  if(r.status===401&&p!=='/login'){sessionStorage.clear();T='';login();throw new Error('auth')}
  const j=await r.json().catch(()=>({}));if(!r.ok){toast(err(j));throw new Error('api')}return j}
 function shell(title,...k){A.replaceChildren(h('div',{id:'shell'},h('aside',{id:'side'},h('h1',{textContent:'⚖️ المساعد القانوني'}),h('div',{className:'lang-switch'},h('button',{type:'button','data-lang-switch':'1',textContent:LANG==='ar'?'English':'العربية',onclick:switchLanguage})),
- [['dash','الرئيسية',dash],['clients','العملاء',clients],['cases','القضايا',casesPage],['law','البحث القانوني',law]].map(([id,t,f])=>h('a',{className:PAGE===id?'on':'',textContent:t,onclick:()=>{PAGE=id;f()}})),
+ [['dash','الرئيسية',dash],['clients','العملاء',clients],['cases','القضايا',casesPage],['law','البحث القانوني',law]].map(([id,t,f])=>h('a',{className:PAGE===id?'on':'',textContent:t,onclick:()=>{PAGE=id;window.CASE_ID=null;f()}})),
  h('div',{className:'me'},h('div',{textContent:ME.name||''}),h('a',{textContent:'تسجيل الخروج',onclick:()=>{sessionStorage.clear();location.reload()}}))),
  h('main',{id:'main'},h('h2',{textContent:title}),...k)))}
 function login(){window.CASE_ID=null;const e=h('input',{type:'email',placeholder:'البريد الإلكتروني',autocomplete:'username',required:true}),p=h('input',{type:'password',placeholder:'كلمة المرور',autocomplete:'current-password',required:true});
@@ -179,7 +179,7 @@ function applyLanguage(root=document.body){
  walk(root);
  document.querySelectorAll('[data-lang-switch]').forEach(b=>b.textContent=LANG==='ar'?'English':'العربية');
 }
-function switchLanguage(){LANG=LANG==='ar'?'en':'ar';sessionStorage.lang=LANG;applyLanguage();if(PAGE==='dash')dash();else if(PAGE==='clients')clients();else if(PAGE==='cases')casesPage();else if(PAGE==='law')law();else if(window.CASE_ID)view(window.CASE_ID);else login();setTimeout(()=>applyLanguage(),0)}
+function switchLanguage(){LANG=LANG==='ar'?'en':'ar';sessionStorage.lang=LANG;if(window.CASE_ID){view(window.CASE_ID)}else if(PAGE==='dash')dash();else if(PAGE==='clients')clients();else if(PAGE==='cases')casesPage();else if(PAGE==='law')law();else login();setTimeout(()=>applyLanguage(),0)}
 const languageObserver=new MutationObserver(ms=>{for(const m of ms)for(const n of m.addedNodes)if(n.nodeType===Node.ELEMENT_NODE||n.nodeType===Node.TEXT_NODE)applyLanguage(n.nodeType===Node.ELEMENT_NODE?n:n.parentElement||document.body)});
 languageObserver.observe(document.body,{childList:true,subtree:true});
 \napplyLanguage();T?dash():login()
