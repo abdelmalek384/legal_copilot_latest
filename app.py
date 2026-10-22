@@ -157,8 +157,8 @@ def add_session(c, u, cid, date, note=""):
 def upcoming(c, u, days=14):
     return [dict(r) for r in c.execute(
         "SELECT s.*, c.title FROM sessions s JOIN cases c ON c.id=s.case_id WHERE s.done=0 AND c.status='open' "
-        "AND s.date BETWEEN date('now') AND date('now', ?) AND (?='admin' OR s.case_id IN (SELECT case_id FROM members WHERE user_id=?)) "
-        "ORDER BY s.date", ("+%d days" % days, u["role"], u["id"]))]
+        "AND s.date BETWEEN date('now') AND date('now', ?) AND c.firm_id=? AND (?='admin' OR s.case_id IN (SELECT case_id FROM members WHERE user_id=?)) "
+        "ORDER BY s.date", ("+%d days" % days, u["firm_id"], u["role"], u["id"]))]
 
 
 def delete_case(c, u, cid):
@@ -169,13 +169,14 @@ def delete_case(c, u, cid):
 
 
 SQL = ("SELECT chunks.*, bm25(chunks_fts) AS r FROM chunks_fts JOIN chunks ON chunks.id=chunks_fts.rowid "
-       "WHERE chunks_fts MATCH ? AND (chunks.case_id IS NULL OR chunks.case_id IS ?) ORDER BY r LIMIT 40")
+       "WHERE chunks_fts MATCH ? AND (chunks.case_id IS NULL OR chunks.case_id IS ?) "
+       "AND (chunks.case_id IS NULL OR chunks.case_id IN (SELECT id FROM cases WHERE firm_id=?)) ORDER BY r LIMIT 40")
 
 
-def search(c, q, case_id=None, k=5):
+def search(c, q, case_id=None, k=5, firm_id=1):
     cand, exact, qt = {}, set(), tokens(q)
     if qt:
-        for r in c.execute(SQL, (" OR ".join('"%s"' % t for t in qt), case_id)): cand[r["id"]] = (r, -r["r"])
+        for r in c.execute(SQL, (" OR ".join('"%s"' % t for t in qt), case_id, firm_id)): cand[r["id"]] = (r, -r["r"])
     am = re.search(r"(?:ماده|الماده|article|art)\s*\.?\s*(\d+)", norm(q))
     if am:  # lawyers search by exact article number
         for r in c.execute("SELECT * FROM chunks WHERE article=? AND case_id IS NULL", (am.group(1),)):
@@ -202,8 +203,8 @@ def llm(prompt):
 LLM = llm
 
 
-def ask(c, q, case_id=None):
-    hits = search(c, q, case_id)
+def ask(c, q, case_id=None, firm_id=1):
+    hits = search(c, q, case_id, firm_id=firm_id)
     if not hits or (hits[0]["cos"] < MIN_SCORE and hits[0]["score"] < 1):
         return {"found": False, "answer": None, "sources": [], "message": "لم أجد مصدرا ذا صلة، ولن أخمن."}
     ans, msg = None, ""
@@ -477,9 +478,9 @@ def law_import(rows: list[LawRow], x_admin_token: str = Header(None)):
 
 @app.post("/search")
 def do_search(b: Q, u: dict = Depends(user)):
-    c = conn(); need(c, u, b.case_id); return search(c, b.q, b.case_id)
+    c = conn(); need(c, u, b.case_id); return search(c, b.q, b.case_id, firm_id=u["firm_id"])
 
 
 @app.post("/ask")
 def do_ask(b: Q, u: dict = Depends(user)):
-    c = conn(); need(c, u, b.case_id); return ask(c, b.q, b.case_id)
+    c = conn(); need(c, u, b.case_id); return ask(c, b.q, b.case_id, firm_id=u["firm_id"])
