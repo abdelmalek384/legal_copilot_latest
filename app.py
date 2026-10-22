@@ -11,9 +11,10 @@ SCHEMA = """
 CREATE TABLE IF NOT EXISTS chunks(id INTEGER PRIMARY KEY, ref TEXT, article TEXT, text TEXT, norm TEXT,
   case_id INT, in_force INT DEFAULT 1, as_of TEXT, source TEXT, verified INT DEFAULT 0);
 CREATE VIRTUAL TABLE IF NOT EXISTS chunks_fts USING fts5(norm);
-CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY, name TEXT, email TEXT UNIQUE, pw TEXT, role TEXT DEFAULT 'lawyer');
+CREATE TABLE IF NOT EXISTS firms(id INTEGER PRIMARY KEY, name TEXT NOT NULL, created_at TEXT DEFAULT (datetime('now')));
+CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY, name TEXT, email TEXT UNIQUE, pw TEXT, role TEXT DEFAULT 'lawyer', firm_id INT DEFAULT 1);
 CREATE TABLE IF NOT EXISTS auth_sessions(token_hash TEXT PRIMARY KEY, user_id INT, expires INT);
-CREATE TABLE IF NOT EXISTS cases(id INTEGER PRIMARY KEY, title TEXT, client TEXT, stage TEXT DEFAULT '', status TEXT DEFAULT 'open', created_by INT,
+CREATE TABLE IF NOT EXISTS cases(id INTEGER PRIMARY KEY, title TEXT, client TEXT, stage TEXT DEFAULT '', status TEXT DEFAULT 'open', created_by INT, firm_id INT DEFAULT 1,
   case_number TEXT DEFAULT '', case_year TEXT DEFAULT '', court TEXT DEFAULT '', circuit TEXT DEFAULT '', opposing_party TEXT DEFAULT '');
 CREATE TABLE IF NOT EXISTS notes(id INTEGER PRIMARY KEY, case_id INT, created_by INT, text TEXT, created_at TEXT DEFAULT (datetime('now')));
 CREATE TABLE IF NOT EXISTS deadlines(id INTEGER PRIMARY KEY, case_id INT, title TEXT, due TEXT, note TEXT DEFAULT '', created_by INT);
@@ -38,6 +39,13 @@ def conn():
     if getattr(_t, "c", None) is None:
         c = sqlite3.connect(DB); c.row_factory = sqlite3.Row
         c.execute("PRAGMA journal_mode=WAL"); c.executescript(SCHEMA)
+        c.execute("INSERT OR IGNORE INTO firms(id,name) VALUES(1,'Default Firm')")
+        user_cols = {r[1] for r in c.execute("PRAGMA table_info(users)")}
+        if "firm_id" not in user_cols: c.execute("ALTER TABLE users ADD COLUMN firm_id INT DEFAULT 1")
+        case_cols = {r[1] for r in c.execute("PRAGMA table_info(cases)")}
+        if "firm_id" not in case_cols: c.execute("ALTER TABLE cases ADD COLUMN firm_id INT DEFAULT 1")
+        c.execute("UPDATE users SET firm_id=1 WHERE firm_id IS NULL")
+        c.execute("UPDATE cases SET firm_id=1 WHERE firm_id IS NULL")
         if "verified" not in [r[1] for r in c.execute("PRAGMA table_info(chunks)")]:  # upgrade older databases
             c.execute("ALTER TABLE chunks ADD COLUMN verified INT DEFAULT 0")
         # Non-destructive schema upgrades for databases created by earlier MVP versions.
@@ -108,17 +116,21 @@ def log(c, cid, who, text):
     c.execute("INSERT INTO events(case_id,who,at,text) VALUES(?,?,datetime('now'),?)", (cid, who, text))
 
 
-def can(c, u, cid):  # admin sees every case; others only cases they are a member of
+def can(c, u, cid):
+    row = c.execute("SELECT firm_id FROM cases WHERE id=?", (cid,)).fetchone()
+    if not row or row["firm_id"] != u["firm_id"]: return False
     return u["role"] == "admin" or c.execute("SELECT 1 FROM members WHERE case_id=? AND user_id=?", (cid, u["id"])).fetchone() is not None
 
 
 def is_lead(c, u, cid):
+    row = c.execute("SELECT firm_id FROM cases WHERE id=?", (cid,)).fetchone()
+    if not row or row["firm_id"] != u["firm_id"]: return False
     return u["role"] == "admin" or c.execute("SELECT 1 FROM members WHERE case_id=? AND user_id=? AND role='lead'", (cid, u["id"])).fetchone() is not None
 
 
 def add_case(c, u, title, client="", stage="", case_number="", case_year="", court="", circuit="", opposing_party=""):
-    cid = c.execute("INSERT INTO cases(title,client,stage,created_by,case_number,case_year,court,circuit,opposing_party) VALUES(?,?,?,?,?,?,?,?,?)",
-                    (title, client, stage, u["id"], case_number, case_year, court, circuit, opposing_party)).lastrowid
+    cid = c.execute("INSERT INTO cases(title,client,stage,created_by,firm_id,case_number,case_year,court,circuit,opposing_party) VALUES(?,?,?,?,?,?,?,?,?,?)",
+                    (title, client, stage, u["id"], u["firm_id"], case_number, case_year, court, circuit, opposing_party)).lastrowid
     c.execute("INSERT INTO members VALUES(?,?,'lead')", (cid, u["id"])); log(c, cid, u["name"], "فتح القضية"); c.commit(); return cid
 
 
@@ -218,6 +230,11 @@ ROLES = r"^(lead|associate|junior)$"
 
 class Q(BaseModel): q: str = Field(min_length=1, max_length=500); case_id: int | None = None
 class LoginIn(BaseModel): email: str = Field(max_length=200); password: str = Field(max_length=200)
+class UserCreateIn(BaseModel):
+    name: str = Field(min_length=1, max_length=120)
+    email: str = Field(min_length=3, max_length=200)
+    password: str = Field(min_length=12, max_length=200)
+    role: str = Field(pattern=r"^(lawyer|junior)$")
 class CaseIn(BaseModel):
     title: str = Field(min_length=1, max_length=200); client: str = Field("", max_length=200); stage: str = Field("", max_length=200)
     case_number: str = Field("", max_length=100); case_year: str = Field("", max_length=20)
@@ -258,6 +275,10 @@ def need(c, u, cid, lead=False):
     if cid is not None and not (is_lead(c, u, cid) if lead else can(c, u, cid)): raise HTTPException(404, "case not found")
 
 
+def require_admin(u):
+    if u["role"] != "admin": raise HTTPException(403, "admin only")
+
+
 def extract(name, data):
     ext = name.lower().rsplit(".", 1)[-1]
     if ext == "pdf":
@@ -283,7 +304,7 @@ def login(b: LoginIn):
     _fails.pop(k, None); tok = secrets.token_urlsafe(32)
     c.execute("DELETE FROM auth_sessions WHERE expires<?", (int(time.time()),))
     c.execute("INSERT INTO auth_sessions VALUES(?,?,?)", (sha(tok), r["id"], int(time.time()) + 43200)); c.commit()
-    return {"token": tok, "id": r["id"], "name": r["name"], "role": r["role"]}
+    return {"token": tok, "id": r["id"], "name": r["name"], "role": r["role"], "firm_id": r["firm_id"]}
 
 
 @app.post("/conflicts")
@@ -308,7 +329,22 @@ def conflict_check(b: Q, u: dict = Depends(user)):
 
 
 @app.get("/users")
-def users(u: dict = Depends(user)): return [dict(r) for r in conn().execute("SELECT id,name,role FROM users ORDER BY name")]
+def users(u: dict = Depends(user)):
+    return [dict(r) for r in conn().execute("SELECT id,name,role FROM users WHERE firm_id=? ORDER BY name", (u["firm_id"],))]
+
+
+@app.post("/users")
+def create_user(b: UserCreateIn, u: dict = Depends(user)):
+    require_admin(u)
+    c = conn()
+    try:
+        cur = c.execute("INSERT INTO users(name,email,pw,role,firm_id) VALUES(?,?,?,?,?)",
+                         (b.name.strip(), b.email.strip().lower(), hash_pw(b.password), b.role, u["firm_id"]))
+        c.commit()
+    except sqlite3.IntegrityError:
+        c.rollback()
+        raise HTTPException(409, "email already exists")
+    return {"id": cur.lastrowid, "name": b.name.strip(), "role": b.role}
 
 
 @app.get("/dashboard")
@@ -323,8 +359,8 @@ def dashboard(u: dict = Depends(user)):
 def cases(u: dict = Depends(user)):
     q = ("SELECT cs.*, (SELECT COUNT(*) FROM tasks t WHERE t.case_id=cs.id AND t.status='open') AS open_tasks, "
          "(SELECT COUNT(*) FROM tasks t WHERE t.case_id=cs.id AND t.status='done') AS done_tasks FROM cases cs "
-         "WHERE (?='admin' OR cs.id IN (SELECT case_id FROM members WHERE user_id=?)) ORDER BY cs.client, cs.id")
-    return [dict(r) for r in conn().execute(q, (u["role"], u["id"]))]
+         "WHERE cs.firm_id=? AND (?='admin' OR cs.id IN (SELECT case_id FROM members WHERE user_id=?)) ORDER BY cs.client, cs.id")
+    return [dict(r) for r in conn().execute(q, (u["firm_id"], u["role"], u["id"]))]
 
 
 @app.post("/cases")
@@ -358,7 +394,7 @@ def patch_case(cid: int, b: CasePatch, u: dict = Depends(user)):
 @app.post("/cases/{cid}/members")
 def add_member(cid: int, b: MemberIn, u: dict = Depends(user)):
     c = conn(); need(c, u, cid, lead=True)
-    if not c.execute("SELECT 1 FROM users WHERE id=?", (b.user_id,)).fetchone(): raise HTTPException(404, "user not found")
+    if not c.execute("SELECT 1 FROM users WHERE id=? AND firm_id=?", (b.user_id, u["firm_id"])).fetchone(): raise HTTPException(404, "user not found")
     c.execute("INSERT OR REPLACE INTO members VALUES(?,?,?)", (cid, b.user_id, b.role)); log(c, cid, u["name"], "تحديث الفريق"); c.commit(); return {"ok": True}
 
 
