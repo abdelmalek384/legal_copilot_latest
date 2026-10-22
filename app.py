@@ -382,19 +382,24 @@ def conflict_check(b: Q, u: dict = Depends(user)):
     if len(term) < 2: raise HTTPException(422, "أدخل اسما أو جزءا من اسم مكوّنا من حرفين على الأقل")
     c = conn()
     rows = c.execute(
-        "SELECT id,title,client,case_number,case_year,court,circuit,opposing_party,status FROM cases "
-        "WHERE firm_id=? AND (?='admin' OR id IN (SELECT case_id FROM members WHERE user_id=?)) ORDER BY id DESC",
-        (u["firm_id"], u["role"], u["id"])).fetchall()
-    found = []
+        "SELECT id,title,client,case_number,case_year,court,circuit,opposing_party,status,"
+        "CASE WHEN id IN (SELECT case_id FROM members WHERE user_id=?) OR ?='admin' THEN 1 ELSE 0 END AS visible "
+        "FROM cases WHERE firm_id=? ORDER BY id DESC",
+        (u["id"], u["role"], u["firm_id"])).fetchall()
+    found, hidden_match = [], False
     for r in rows:
         d = dict(r)
         fields = ("title", "client", "opposing_party", "case_number")
         matches = [k for k in fields if term in norm(d.get(k) or "")]
-        if matches:
+        if matches and not d["visible"]:
+            hidden_match = True
+        elif matches:
             d["matched_fields"] = matches
+            d.pop("visible", None)
             found.append(d)
-    return {"query": b.q, "matches": found[:100],
-            "warning": "فحص أولي بالبحث النصي فقط؛ لا يثبت وجود تعارض ولا ينفيه. راجع سجلات المكتب كاملة."}
+    return {"query": b.q, "matches": found[:100], "possible_conflict": hidden_match,
+            "admin_review_required": hidden_match,
+            "warning": "فحص أولي بالبحث النصي فقط؛ لا يثبت وجود تعارض ولا ينفيه. إذا ظهرت إشارة عامة، اطلب مراجعة مسؤول المكتب. لا تعرض هذه النتيجة تفاصيل القضايا غير المصرح لك بها."}
 
 
 @app.get("/users")
@@ -421,7 +426,11 @@ def dashboard(u: dict = Depends(user)):
     c = conn()
     t = c.execute("SELECT t.id,t.title,t.due,cs.title AS case_title FROM tasks t JOIN cases cs ON cs.id=t.case_id "
                   "WHERE t.assignee=? AND t.status='open' AND cs.status='open' AND cs.firm_id=? ORDER BY t.due IS NULL, t.due", (u["id"], u["firm_id"]))
-    return {"tasks": [dict(r) for r in t], "sessions": upcoming(c, u)}
+    d = c.execute("SELECT d.id,d.title,d.due,d.status,cs.title AS case_title FROM deadlines d JOIN cases cs ON cs.id=d.case_id "
+                  "WHERE cs.firm_id=? AND cs.status='open' AND d.status='open' AND d.due<=date('now','+30 day') "
+                  "AND (?='admin' OR d.case_id IN (SELECT case_id FROM members WHERE user_id=?)) ORDER BY d.due",
+                  (u["firm_id"], u["role"], u["id"]))
+    return {"tasks": [dict(r) for r in t], "sessions": upcoming(c, u), "deadlines": [dict(r) for r in d]}
 
 
 @app.get("/cases")
