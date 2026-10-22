@@ -46,6 +46,7 @@ def conn():
         if "firm_id" not in case_cols: c.execute("ALTER TABLE cases ADD COLUMN firm_id INT DEFAULT 1")
         c.execute("UPDATE users SET firm_id=1 WHERE firm_id IS NULL")
         c.execute("UPDATE cases SET firm_id=1 WHERE firm_id IS NULL")
+        c.commit()
         if "verified" not in [r[1] for r in c.execute("PRAGMA table_info(chunks)")]:  # upgrade older databases
             c.execute("ALTER TABLE chunks ADD COLUMN verified INT DEFAULT 0")
         # Non-destructive schema upgrades for databases created by earlier MVP versions.
