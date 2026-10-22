@@ -1,0 +1,126 @@
+<!doctype html><html lang="ar" dir="rtl"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>المساعد القانوني</title>
+<style>
+:root{--navy:#14284B;--bg:#F4F6FA;--line:#E3E8F0;--tx:#1B2430;--mut:#5B6675;--pri:#1D4ED8;--pri-l:#E8F0FE;--ok:#15803D;--ok-l:#E7F6EC;--warn:#B54708;--warn-l:#FFF4E5;--bad:#B42318;--bad-l:#FDECEA}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.7 "Noto Naskh Arabic","Segoe UI",Tahoma,sans-serif}
+#shell{display:flex;min-height:100vh}#side{width:220px;background:var(--navy);padding:16px 10px;display:flex;flex-direction:column;gap:4px;flex-shrink:0}
+#side h1{font-size:17px;margin:4px 8px 14px;color:#fff}#side a{padding:9px 12px;border-radius:8px;cursor:pointer;color:#C9D4E8}#side a.on,#side a:hover{background:#243B66;color:#fff}
+#side .me{margin-top:auto;padding:10px 8px;font-size:13px;color:#C9D4E8}#main{flex:1;padding:20px;max-width:1100px}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:14px}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}.cols{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.stat b{display:block;font-size:28px}.stat span{color:var(--mut);font-size:13px}
+.pill{display:inline-block;padding:1px 10px;border-radius:99px;font-size:12px;font-weight:600}
+.open{background:var(--pri-l);color:var(--pri)}.done{background:var(--ok-l);color:var(--ok)}.soon{background:var(--warn-l);color:var(--warn)}.late{background:var(--bad-l);color:var(--bad)}.closed{background:#EEF0F3;color:var(--mut)}
+.row{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}.row:last-child{border:0}
+.bar{height:6px;background:var(--line);border-radius:9px;overflow:hidden;min-width:90px}.bar i{display:block;height:100%;background:var(--ok)}
+button,input,select{font:inherit;padding:7px 12px;border-radius:8px;border:1px solid var(--line);background:#fff}
+button{cursor:pointer;background:var(--pri);color:#fff;border:0}button.g{background:#fff;color:var(--tx);border:1px solid var(--line)}button.d{background:var(--bad)}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin:10px 0 14px;overflow:auto}.tabs a{padding:8px 14px;cursor:pointer;color:var(--mut);border-bottom:3px solid transparent;white-space:nowrap}.tabs a.on{color:var(--pri);border-color:var(--pri);font-weight:700}
+.mut{color:var(--mut);font-size:13px}.src{border-inline-start:4px solid var(--pri);padding:8px 12px;margin:8px 0;background:#FAFBFD;border-radius:6px}
+#toast{position:fixed;bottom:16px;inset-inline-start:16px;background:var(--tx);color:#fff;padding:10px 16px;border-radius:8px;display:none}
+.login{max-width:340px;margin:12vh auto}.login input{width:100%;margin:6px 0}.login .password-row{display:flex;gap:6px;align-items:center}.login .password-row input{flex:1;min-width:0}.login button[type=submit]{width:100%;margin-top:8px}
+@media(max-width:800px){#shell{flex-direction:column}#side{width:auto;flex-direction:row;overflow:auto}#side .me,#side h1{display:none}}
+</style>
+<div id="app"></div><div id="toast"></div>
+<script>
+const $=i=>document.getElementById(i),A=$('app');
+let T=sessionStorage.t||'',ME=JSON.parse(sessionStorage.me||'{}'),TAB='sum',PAGE='dash';
+const RL={lead:'رئيسي',associate:'محامٍ مساعد',junior:'متدرب'},today=new Date().toISOString().slice(0,10);
+const h=(t,p={},...k)=>{const e=document.createElement(t);Object.assign(e,p);e.append(...k.flat().filter(x=>x!=null&&x!==false));return e};
+const pill=(t,k)=>h('span',{className:'pill '+k,textContent:t}),btn=(t,f,c='')=>h('button',{textContent:t,onclick:f,className:c});
+const fd=s=>s?s.slice(0,10).split('-').reverse().join('/'):'',err=j=>typeof j.detail==='string'?j.detail:'بيانات غير صحيحة';
+const toast=t=>{const e=$('toast');e.textContent=t;e.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>e.style.display='none',3500)};
+async function api(p,m='GET',b){const r=await fetch(p,{method:m,headers:{'Content-Type':'application/json',Authorization:'Bearer '+T},body:b!==undefined?JSON.stringify(b):undefined});
+ if(r.status===401&&p!=='/login'){sessionStorage.clear();T='';login();throw new Error('auth')}
+ const j=await r.json().catch(()=>({}));if(!r.ok){toast(err(j));throw new Error('api')}return j}
+function shell(title,...k){A.replaceChildren(h('div',{id:'shell'},h('aside',{id:'side'},h('h1',{textContent:'⚖️ المساعد القانوني'}),
+ [['dash','الرئيسية',dash],['clients','العملاء',clients],['cases','القضايا',casesPage],['law','البحث القانوني',law]].map(([id,t,f])=>h('a',{className:PAGE===id?'on':'',textContent:t,onclick:()=>{PAGE=id;f()}})),
+ h('div',{className:'me'},h('div',{textContent:ME.name||''}),h('a',{textContent:'تسجيل الخروج',onclick:()=>{sessionStorage.clear();location.reload()}}))),
+ h('main',{id:'main'},h('h2',{textContent:title}),...k)))}
+function login(){const e=h('input',{type:'email',placeholder:'البريد الإلكتروني',autocomplete:'username',required:true}),p=h('input',{type:'password',placeholder:'كلمة المرور',autocomplete:'current-password',required:true});
+ const go=async()=>{if(!e.value.trim()||!p.value){toast('أدخل البريد الإلكتروني وكلمة المرور');return}
+ try{const r=await api('/login','POST',{email:e.value.trim().toLowerCase(),password:p.value});T=sessionStorage.t=r.token;ME={id:r.id,name:r.name,role:r.role};sessionStorage.me=JSON.stringify(ME);PAGE='dash';dash()}
+ catch(_){p.focus()}};
+ const show=h('button',{type:'button',className:'g',textContent:'إظهار',onclick:()=>{p.type=p.type==='password'?'text':'password';show.textContent=p.type==='password'?'إظهار':'إخفاء'}});
+ const loginBtn=btn('دخول',()=>{});loginBtn.type='submit';
+ const form=h('form',{onsubmit:ev=>{ev.preventDefault();go()}},e,h('div',{className:'password-row'},p,show),loginBtn);
+ A.replaceChildren(h('div',{className:'card login'},h('h2',{textContent:'تسجيل الدخول'}),h('p',{className:'mut',textContent:'استخدم الحساب الذي أنشأته من سطر الأوامر.'}),form))}
+const duePill=t=>{if(!t.due)return null;const d=(new Date(t.due)-new Date(today))/864e5;return pill(fd(t.due),d<0?'late':d<=3?'soon':'open')};
+const prog=c=>{const t=c.done_tasks+c.open_tasks;return h('div',{className:'bar',title:c.done_tasks+'/'+t},h('i',{style:'width:'+(t?100*c.done_tasks/t:0)+'%'}))};
+const empty=t=>h('div',{className:'mut',textContent:t});
+async function dash(){const [d,cs]=await Promise.all([api('/dashboard'),api('/cases')]);
+ const act=cs.filter(c=>c.status==='open'),late=d.tasks.filter(t=>t.due&&t.due<today).length;
+ const st=(n,l,c)=>h('div',{className:'card stat'},h('b',{textContent:n,style:c?'color:'+c:''}),h('span',{textContent:l}));
+ shell('مرحبا '+(ME.name||''),h('div',{className:'grid'},st(act.length,'قضايا نشطة'),st(act.reduce((a,c)=>a+c.open_tasks,0),'مهام مفتوحة في قضاياي'),st(d.sessions.length,'جلسات خلال 14 يوما'),st(late,'مهامي المتأخرة',late?'var(--bad)':'')),
+ h('div',{className:'cols'},
+  h('div',{className:'card'},h('h3',{textContent:'مهامي المفتوحة'}),d.tasks.length?d.tasks.map(t=>h('div',{className:'row'},h('div',{},h('b',{textContent:t.title}),h('div',{className:'mut',textContent:t.case_title})),h('div',{},duePill(t),' ',btn('تم',async()=>{await api('/tasks/'+t.id+'/done','POST');dash()},'g')))):empty('لا توجد مهام مفتوحة')),
+  h('div',{className:'card'},h('h3',{textContent:'الجلسات القادمة'}),d.sessions.length?d.sessions.map(s=>h('div',{className:'row'},h('div',{},h('b',{textContent:s.title}),h('div',{className:'mut',textContent:s.note||''})),pill(fd(s.date),'open'))):empty('لا توجد جلسات قريبة'))))}
+const caseRow=c=>h('div',{className:'row',style:'cursor:pointer',onclick:()=>{TAB='sum';view(c.id)}},h('div',{},h('b',{textContent:c.title}),h('div',{className:'mut',textContent:c.stage||'بدون مرحلة'})),
+ h('div',{style:'display:flex;gap:10px;align-items:center'},prog(c),h('span',{className:'mut',textContent:c.done_tasks+'/'+(c.done_tasks+c.open_tasks)+' مهام'}),pill(c.status==='open'?'مفتوحة':'مغلقة',c.status==='open'?'open':'closed')));
+async function newCase(){const t=prompt('عنوان القضية');if(!t||!t.trim())return;
+ const cl=prompt('اسم العميل (اختياري)')||'',no=prompt('رقم القضية (اختياري)')||'',yr=prompt('سنة القضية (اختياري)')||'';
+ const court=prompt('المحكمة (اختياري)')||'',circuit=prompt('الدائرة (اختياري)')||'',opp=prompt('الخصم (اختياري)')||'';
+ const r=await api('/cases','POST',{title:t.trim(),client:cl,case_number:no,case_year:yr,court,circuit,opposing_party:opp});TAB='sum';view(r.id)}
+async function clients(){const cs=await api('/cases'),g={};cs.forEach(c=>(g[c.client||'بدون عميل']??=[]).push(c));
+ const cq=h('input',{placeholder:'اسم عميل أو خصم لفحص التعارض المحتمل',style:'width:min(100%,420px)'}),cb=h('div');
+ const run=async()=>{if(cq.value.trim().length<2){toast('أدخل حرفين على الأقل');return}const r=await api('/conflicts','POST',{q:cq.value.trim()});
+ cb.replaceChildren(h('div',{className:'card'},h('b',{textContent:'نتائج الفحص الأولي: '+r.matches.length}),h('p',{className:'mut',textContent:r.warning}),
+  r.matches.length?r.matches.map(x=>h('div',{className:'row',style:'cursor:pointer',onclick:()=>{TAB='sum';view(x.id)}},h('div',{},h('b',{textContent:x.title}),h('div',{className:'mut',textContent:'العميل: '+(x.client||'—')+' · الخصم: '+(x.opposing_party||'—')})),pill(x.status==='open'?'مفتوحة':'مغلقة',x.status==='open'?'open':'closed'))):empty('لم تظهر مطابقات في القضايا التي يمكنك الوصول إليها.')))};
+ cq.onkeydown=e=>e.key==='Enter'&&run();
+ shell('العملاء',btn('+ قضية جديدة',newCase),h('div',{className:'card'},h('h3',{textContent:'فحص أولي لتعارض المصالح'}),h('div',{className:'row'},cq,btn('فحص',run)),cb),
+ cs.length?Object.entries(g).map(([k,v])=>h('div',{className:'card'},h('h3',{textContent:'📁 '+k}),h('div',{className:'mut',textContent:v.length+' قضايا'}),v.map(caseRow))):h('div',{className:'card'},empty('لا توجد قضايا بعد. أنشئ أول قضية.')))}
+async function casesPage(){const cs=await api('/cases'),q=h('input',{placeholder:'ابحث بعنوان القضية أو العميل'}),s=h('select',{},new Option('الكل',''),new Option('مفتوحة','open'),new Option('مغلقة','closed')),box=h('div',{className:'card'});
+ const draw=()=>{const r=cs.filter(c=>(!s.value||c.status===s.value)&&(c.title+' '+(c.client||'')).includes(q.value));box.replaceChildren(h('div',{},r.length?r.map(caseRow):empty('لا نتائج')))};
+ q.oninput=s.onchange=draw;draw();shell('القضايا',h('div',{},q,' ',s,' ',btn('+ قضية جديدة',newCase)),box)}
+function askBox(cid){const q=h('input',{placeholder:cid?'اسأل عن هذه القضية والقوانين':'اكتب سؤالا أو رقم المادة',style:'width:60%'}),out=h('div');
+ const go=async()=>{if(!q.value.trim())return;const r=await api('/ask','POST',{q:q.value,case_id:cid});
+  out.replaceChildren(h('div',{},r.answer&&h('div',{className:'card'},h('b',{textContent:'الإجابة'}),h('p',{textContent:r.answer})),
+   !r.found&&h('div',{className:'card mut',textContent:r.message}),r.found&&r.message&&h('div',{className:'card',style:'color:var(--warn)',textContent:r.message}),
+   (r.not_in_force||[]).length>0&&h('div',{className:'card',style:'color:var(--bad)',textContent:'تنبيه: مصادر غير سارية: '+r.not_in_force.join('، ')}),
+   (r.sources||[]).map((s,i)=>h('div',{className:'src'},h('b',{textContent:'['+(i+1)+'] '+s.ref}),' ',s.in_force?null:pill('غير ساري','late'),s.in_force&&!s.verified?pill('لم يُتحقق من سريانه','soon'):null,(s.source||'').includes('English translation')?pill('ترجمة إنجليزية غير رسمية','soon'):null,h('div',{textContent:s.text}),h('div',{className:'mut',textContent:(s.source||'')+(s.as_of?' · بتاريخ '+fd(s.as_of):'')}))),
+   h('div',{className:'mut',textContent:'نتائج بحثية مساعدة وليست استشارة قانونية. تحقق دائما من المصدر الرسمي.'})))};
+ q.onkeydown=e=>e.key==='Enter'&&go();return h('div',{},q,' ',btn('بحث',go),out)}
+const law=()=>shell('البحث القانوني',h('div',{className:'card'},askBox(null)));
+async function view(id){const c=await api('/cases/'+id),us=await api('/users'),again=()=>view(id);
+ const lead=ME.role==='admin'||c.members.some(m=>m.role==='lead'&&m.user_id===ME.id),dn=c.tasks.filter(t=>t.status==='done').length,tot=c.tasks.length;
+ const tabs=[['sum','الملخص'],['tasks','المهام'],['sess','الجلسات'],['dead','المواعيد القانونية'],['notes','الملاحظات'],['fees','الأتعاب'],['docs','المستندات'],['team','الفريق'],['ask','اسأل'],['log','السجل']];let body;
+ if(TAB==='sum'){
+  const fields=[['case_number','رقم القضية'],['case_year','السنة'],['court','المحكمة'],['circuit','الدائرة'],['opposing_party','الخصم'],['stage','المرحلة']];
+  const inputs={};fields.forEach(([k,label])=>inputs[k]=h('input',{value:c[k]||'',placeholder:label,style:'width:100%'}));
+  body=h('div',{className:'card'},h('div',{className:'row'},h('span',{textContent:'التقدم'}),h('div',{style:'display:flex;gap:8px;align-items:center'},prog({done_tasks:dn,open_tasks:tot-dn}),h('span',{className:'mut',textContent:dn+'/'+tot+' مهام'}))),
+   h('div',{className:'grid'},fields.map(([k,label])=>h('label',{style:'display:block'},h('span',{className:'mut',textContent:label}),inputs[k]))),
+   lead&&h('div',{className:'row'},btn('حفظ بيانات القضية',async()=>{const data={};fields.forEach(([k])=>data[k]=inputs[k].value);await api('/cases/'+id,'PATCH',data);toast('تم حفظ بيانات القضية');again()})),
+   h('div',{className:'row'},h('span',{textContent:'العميل: '+(c.client||'—')}),h('span',{textContent:'الحالة: '+(c.status==='open'?'مفتوحة':'مغلقة')})),
+   lead&&h('div',{className:'row'},btn(c.status==='open'?'إغلاق القضية':'إعادة فتح',async()=>{await api('/cases/'+id,'PATCH',{status:c.status==='open'?'closed':'open'});again()},'g'),
+    btn('حذف القضية',async()=>{if(confirm('حذف نهائي لكل بيانات القضية؟')){await api('/cases/'+id,'DELETE');PAGE='clients';clients()}},'d')))}
+ if(TAB==='tasks'){const tt=h('input',{placeholder:'مهمة جديدة'}),as=h('select',{},new Option('غير معيّن',''),...c.members.map(m=>new Option(m.name,m.user_id))),due=h('input',{type:'date'});
+  body=h('div',{className:'card'},c.tasks.length?c.tasks.map(t=>h('div',{className:'row'},h('div',{},h('b',{textContent:t.title}),h('div',{className:'mut',textContent:t.assignee_name||'غير معيّن'})),
+   h('div',{},t.status==='done'?pill('منجزة','done'):[duePill(t)||pill('مفتوحة','open'),' ',btn('تم',async()=>{await api('/tasks/'+t.id+'/done','POST');again()},'g')]))):empty('لا توجد مهام'),
+   h('div',{className:'row'},tt,as,due,btn('إضافة مهمة',async()=>{await api('/cases/'+id+'/tasks','POST',{title:tt.value,assignee:as.value?+as.value:null,due:due.value||null});again()})))}
+ if(TAB==='sess'){const sd=h('input',{type:'date'}),sn=h('input',{placeholder:'ملاحظة (المحكمة، الدائرة، الغرض)'});
+  body=h('div',{className:'card'},c.sessions.length?c.sessions.map(s=>h('div',{className:'row'},h('span',{textContent:s.note||'جلسة'}),pill(fd(s.date),s.date<today?'closed':'open'))):empty('لا توجد جلسات'),
+   h('div',{className:'row'},sd,sn,btn('إضافة جلسة',async()=>{await api('/cases/'+id+'/sessions','POST',{date:sd.value,note:sn.value});again()})))}
+ if(TAB==='dead'){const title=h('input',{placeholder:'نوع الموعد (استئناف، طعن، تقديم مستند...)'}),due=h('input',{type:'date'}),note=h('input',{placeholder:'ملاحظة (اختياري)',style:'width:100%'});
+  body=h('div',{className:'card'},c.deadlines.length?c.deadlines.map(d=>h('div',{className:'row'},h('div',{},h('b',{textContent:d.title}),h('div',{className:'mut',textContent:d.note||''})),duePill({due:d.due})||pill(fd(d.due),'open'))):empty('لا توجد مواعيد قانونية مسجلة. هذه المواعيد منفصلة عن جلسات المحكمة.'),
+   h('div',{className:'row'},title,due,btn('إضافة موعد',async()=>{if(!title.value.trim()||!due.value){toast('أدخل نوع الموعد وتاريخه');return}await api('/cases/'+id+'/deadlines','POST',{title:title.value,due:due.value,note:note.value});again()})),note)}
+ if(TAB==='notes'){const txt=h('textarea',{placeholder:'اكتب ملاحظة داخلية للقضية...',rows:4,style:'width:100%;font:inherit;border:1px solid var(--line);border-radius:8px;padding:10px'});
+  body=h('div',{className:'card'},h('h3',{textContent:'ملاحظات القضية'}),c.notes.length?c.notes.map(n=>h('div',{className:'src'},h('div',{textContent:n.text,style:'white-space:pre-wrap'}),h('div',{className:'mut',textContent:(n.author||'')+' · '+(n.created_at||'')}))):empty('لا توجد ملاحظات بعد.'),
+   txt,h('div',{className:'row'},btn('حفظ الملاحظة',async()=>{if(!txt.value.trim()){toast('اكتب الملاحظة أولا');return}await api('/cases/'+id+'/notes','POST',{text:txt.value});again()})))}
+ if(TAB==='fees'){const title=h('input',{placeholder:'وصف الأتعاب'}),amount=h('input',{type:'number',min:'0',step:'0.01',placeholder:'المبلغ الإجمالي'}),paid=h('input',{type:'number',min:'0',step:'0.01',placeholder:'المدفوع'}),due=h('input',{type:'date'}),note=h('input',{placeholder:'ملاحظة',style:'width:100%'});
+  const money=n=>new Intl.NumberFormat('ar-EG',{maximumFractionDigits:2}).format(Number(n||0))+' ج.م';
+  body=h('div',{className:'card'},c.fees.length?c.fees.map(f=>h('div',{className:'row'},h('div',{},h('b',{textContent:f.title}),h('div',{className:'mut',textContent:(f.note||'')+(f.due?' · '+fd(f.due):'')})),h('span',{textContent:'الإجمالي '+money(f.amount)+' · المدفوع '+money(f.paid)+' · المتبقي '+money(Number(f.amount)-Number(f.paid))}))):empty('لا توجد أتعاب مسجلة.'),
+   h('div',{className:'grid'},title,amount,paid,due,note),h('div',{className:'row'},btn('إضافة أتعاب',async()=>{if(!title.value.trim()||amount.value===''||paid.value===''){toast('أدخل الوصف والإجمالي والمدفوع');return}await api('/cases/'+id+'/fees','POST',{title:title.value,amount:Number(amount.value),paid:Number(paid.value),due:due.value||null,note:note.value});again()})))}
+ if(TAB==='docs'){const f=h('input',{type:'file',accept:'.pdf,.docx'});
+  body=h('div',{className:'card'},c.docs.length?c.docs.map(d=>h('div',{className:'row'},h('span',{textContent:d.name}),h('span',{className:'mut',textContent:fd(d.added)}))):empty('لا توجد مستندات'),
+   h('div',{className:'row'},f,btn('رفع وفهرسة',async()=>{if(!f.files[0])return;const x=new FormData();x.append('file',f.files[0]);
+    const r=await fetch('/cases/'+id+'/upload',{method:'POST',headers:{Authorization:'Bearer '+T},body:x}),j=await r.json().catch(()=>({}));toast(r.ok?'تمت الفهرسة':err(j));if(r.ok)again()})),
+   empty('PDF أو Word بنص قابل للنسخ (حتى 15 ميجابايت). يُحفظ النص المستخرج للبحث فقط ولا تُحفظ نسخة الملف الأصلي. الملفات الممسوحة ضوئيا غير مدعومة.'))}
+ if(TAB==='team'){const mu=h('select',{},...us.map(u=>new Option(u.name,u.id))),mr=h('select',{},...Object.entries(RL).reverse().map(([k,v])=>new Option(v,k)));
+  body=h('div',{className:'card'},c.members.map(m=>h('div',{className:'row'},h('b',{textContent:m.name}),pill(RL[m.role],m.role==='lead'?'open':'closed'))),
+   lead&&h('div',{className:'row'},mu,mr,btn('إضافة / تحديث',async()=>{await api('/cases/'+id+'/members','POST',{user_id:+mu.value,role:mr.value});again()})))}
+ if(TAB==='ask')body=h('div',{className:'card'},askBox(id));
+ if(TAB==='log')body=h('div',{className:'card'},c.events.map(e=>h('div',{className:'row'},h('span',{textContent:e.text}),h('span',{className:'mut',textContent:e.who+' · '+new Date(e.at.replace(' ','T')+'Z').toLocaleString('ar-EG',{dateStyle:'short',timeStyle:'short'})}))));
+ shell(c.title,h('div',{},h('span',{className:'mut',textContent:'العميل: '+(c.client||'—')+' '}),pill(c.status==='open'?'مفتوحة':'مغلقة',c.status==='open'?'open':'closed')),
+  h('div',{className:'tabs'},tabs.map(([k,t])=>h('a',{className:TAB===k?'on':'',textContent:t,onclick:()=>{TAB=k;again()}}))),body)}
+T?dash():login()
+</script></html>
