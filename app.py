@@ -316,8 +316,8 @@ def conflict_check(b: Q, u: dict = Depends(user)):
     c = conn()
     rows = c.execute(
         "SELECT id,title,client,case_number,case_year,court,circuit,opposing_party,status FROM cases "
-        "WHERE (?='admin' OR id IN (SELECT case_id FROM members WHERE user_id=?)) ORDER BY id DESC",
-        (u["role"], u["id"])).fetchall()
+        "WHERE firm_id=? AND (?='admin' OR id IN (SELECT case_id FROM members WHERE user_id=?)) ORDER BY id DESC",
+        (u["firm_id"], u["role"], u["id"])).fetchall()
     found = []
     for r in rows:
         d = dict(r)
@@ -353,7 +353,7 @@ def create_user(b: UserCreateIn, u: dict = Depends(user)):
 def dashboard(u: dict = Depends(user)):
     c = conn()
     t = c.execute("SELECT t.id,t.title,t.due,cs.title AS case_title FROM tasks t JOIN cases cs ON cs.id=t.case_id "
-                  "WHERE t.assignee=? AND t.status='open' AND cs.status='open' ORDER BY t.due IS NULL, t.due", (u["id"],))
+                  "WHERE t.assignee=? AND t.status='open' AND cs.status='open' AND cs.firm_id=? ORDER BY t.due IS NULL, t.due", (u["id"], u["firm_id"]))
     return {"tasks": [dict(r) for r in t], "sessions": upcoming(c, u)}
 
 
