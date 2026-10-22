@@ -54,10 +54,12 @@ const prog=c=>{const t=c.done_tasks+c.open_tasks;return h('div',{className:'bar'
 const empty=t=>h('div',{className:'mut',textContent:t});
 async function dash(){const [d,cs]=await Promise.all([api('/dashboard'),api('/cases')]);
  const act=cs.filter(c=>c.status==='open'),late=d.tasks.filter(t=>t.due&&t.due<today).length;
+ const overdueDeadlines=(d.deadlines||[]).filter(x=>x.due&&x.due<today);
  const st=(n,l,c)=>h('div',{className:'card stat'},h('b',{textContent:n,style:c?'color:'+c:''}),h('span',{textContent:l}));
- shell('مرحبا '+(ME.name||''),h('div',{className:'grid'},st(act.length,'قضايا نشطة'),st(act.reduce((a,c)=>a+c.open_tasks,0),'مهام مفتوحة في قضاياي'),st(d.sessions.length,'جلسات خلال 14 يوما'),st(late,'مهامي المتأخرة',late?'var(--bad)':'')),
+ shell('مرحبا '+(ME.name||''),h('div',{className:'grid'},st(act.length,'قضايا نشطة'),st(act.reduce((a,c)=>a+c.open_tasks,0),'مهام مفتوحة في قضاياي'),st(d.sessions.length,'جلسات خلال 14 يوما'),st(late,'مهامي المتأخرة',late?'var(--bad)':''),st(overdueDeadlines.length,'مواعيد قانونية متأخرة',overdueDeadlines.length?'var(--bad)':'')),
  h('div',{className:'cols'},
   h('div',{className:'card'},h('h3',{textContent:'مهامي المفتوحة'}),d.tasks.length?d.tasks.map(t=>h('div',{className:'row'},h('div',{},h('b',{textContent:t.title}),h('div',{className:'mut',textContent:t.case_title})),h('div',{},duePill(t),' ',btn('تم',async()=>{await api('/tasks/'+t.id+'/done','POST');dash()},'g')))):empty('لا توجد مهام مفتوحة')),
+  h('div',{className:'card'},h('h3',{textContent:'المواعيد القانونية القادمة'}),(d.deadlines||[]).length?(d.deadlines||[]).map(x=>h('div',{className:'row'},h('div',{},h('b',{textContent:x.title}),h('div',{className:'mut',textContent:x.case_title})),h('div',{},duePill(x),' ',btn('تم',async()=>{await api('/deadlines/'+x.id+'/done','POST');dash()},'g')))):empty('لا توجد مواعيد قانونية خلال 30 يوما')),
   h('div',{className:'card'},h('h3',{textContent:'الجلسات القادمة'}),d.sessions.length?d.sessions.map(s=>h('div',{className:'row'},h('div',{},h('b',{textContent:s.title}),h('div',{className:'mut',textContent:s.note||''})),pill(fd(s.date),'open'))):empty('لا توجد جلسات قريبة'))))}
 const caseRow=c=>h('div',{className:'row',style:'cursor:pointer',onclick:()=>{TAB='sum';view(c.id)}},h('div',{},h('b',{textContent:c.title}),h('div',{className:'mut',textContent:c.stage||'بدون مرحلة'})),
  h('div',{style:'display:flex;gap:10px;align-items:center'},prog(c),h('span',{className:'mut',textContent:c.done_tasks+'/'+(c.done_tasks+c.open_tasks)+' مهام'}),pill(c.status==='open'?'مفتوحة':'مغلقة',c.status==='open'?'open':'closed')));
