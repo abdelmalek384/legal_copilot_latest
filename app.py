@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS chunks(id INTEGER PRIMARY KEY, ref TEXT, article TEXT
   case_id INT, in_force INT DEFAULT 1, as_of TEXT, source TEXT, verified INT DEFAULT 0);
 CREATE VIRTUAL TABLE IF NOT EXISTS chunks_fts USING fts5(norm);
 CREATE TABLE IF NOT EXISTS firms(id INTEGER PRIMARY KEY, name TEXT NOT NULL, created_at TEXT DEFAULT (datetime('now')));
-CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY, name TEXT, email TEXT UNIQUE, pw TEXT, role TEXT DEFAULT 'lawyer', firm_id INT DEFAULT 1);
+CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY, name TEXT, email TEXT UNIQUE, pw TEXT, role TEXT DEFAULT 'lawyer', firm_id INT DEFAULT 1, active INT DEFAULT 1);
 CREATE TABLE IF NOT EXISTS auth_sessions(token_hash TEXT PRIMARY KEY, user_id INT, expires INT);
 CREATE TABLE IF NOT EXISTS login_attempts(email TEXT PRIMARY KEY, failures INT NOT NULL DEFAULT 0, window_start INT NOT NULL DEFAULT 0, locked_until INT NOT NULL DEFAULT 0);
 CREATE TABLE IF NOT EXISTS login_attempts(email TEXT PRIMARY KEY, failures INT NOT NULL DEFAULT 0, window_start INT NOT NULL DEFAULT 0, locked_until INT NOT NULL DEFAULT 0);
@@ -46,6 +46,7 @@ def conn():
         c.execute("INSERT OR IGNORE INTO firms(id,name) VALUES(1,'Default Firm')")
         user_cols = {r[1] for r in c.execute("PRAGMA table_info(users)")}
         if "firm_id" not in user_cols: c.execute("ALTER TABLE users ADD COLUMN firm_id INT DEFAULT 1")
+        if "active" not in user_cols: c.execute("ALTER TABLE users ADD COLUMN active INT DEFAULT 1")
         case_cols = {r[1] for r in c.execute("PRAGMA table_info(cases)")}
         if "firm_id" not in case_cols: c.execute("ALTER TABLE cases ADD COLUMN firm_id INT DEFAULT 1")
         c.execute("UPDATE users SET firm_id=1 WHERE firm_id IS NULL")
@@ -296,7 +297,9 @@ def sha(t): return hashlib.sha256(t.encode()).hexdigest()
 def user(authorization: str = Header(None)):
     tok = (authorization or "").removeprefix("Bearer ").strip()
     r = conn().execute("SELECT u.* FROM auth_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=? AND s.expires>?", (sha(tok), int(time.time()))).fetchone()
-    if not r: raise HTTPException(401, "unauthorized")
+    if not r or not r["active"]:
+        if r: conn().execute("DELETE FROM auth_sessions WHERE token_hash=?", (sha(tok),)); conn().commit()
+        raise HTTPException(401, "unauthorized")
     return dict(r)
 
 
@@ -404,7 +407,20 @@ def conflict_check(b: Q, u: dict = Depends(user)):
 
 @app.get("/users")
 def users(u: dict = Depends(user)):
-    return [dict(r) for r in conn().execute("SELECT id,name,role FROM users WHERE firm_id=? ORDER BY name", (u["firm_id"],))]
+    return [dict(r) for r in conn().execute("SELECT id,name,role,active FROM users WHERE firm_id=? ORDER BY name", (u["firm_id"],))]
+
+
+@app.post("/users/{uid}/disable")
+def disable_user(uid: int, u: dict = Depends(user)):
+    require_admin(u)
+    c = conn()
+    target = c.execute("SELECT id FROM users WHERE id=? AND firm_id=?", (uid, u["firm_id"])).fetchone()
+    if not target: raise HTTPException(404, "user not found")
+    if uid == u["id"]: raise HTTPException(422, "cannot disable your own account")
+    c.execute("UPDATE users SET active=0 WHERE id=?", (uid,))
+    c.execute("DELETE FROM auth_sessions WHERE user_id=?", (uid,))
+    c.commit()
+    return {"ok": True}
 
 
 @app.post("/users")
