@@ -1,12 +1,17 @@
 import os, io, json, tempfile
 from datetime import date, timedelta
-os.environ.update(COPILOT_DB=os.path.join(tempfile.mkdtemp(), "a.db"), ADMIN_TOKEN="adm")
+os.environ.update(COPILOT_DB=os.path.join(tempfile.mkdtemp(), "a.db"), ADMIN_TOKEN="stage0-test-admin-token-please-use-a-long-random-secret")
 from fastapi.testclient import TestClient
 import app, docx
 c = TestClient(app.app); db = app.conn()
 for n, role in (("Lead", "lawyer"), ("Junior", "junior"), ("Outsider", "lawyer")):
     db.execute("INSERT INTO users(name,email,pw,role) VALUES(?,?,?,?)", (n, n.lower() + "@x.eg", app.hash_pw("password-" + n), role))
 db.commit()
+# Separate admin identity for protected law imports; ordinary case lead is not an admin.
+db.execute("INSERT INTO users(name,email,pw,role) VALUES(?,?,?,?)",
+           ("Import Admin","import-admin@x.eg",app.hash_pw("password-ImportAdmin"),"admin"))
+db.commit()
+A_IMPORT = {"Authorization": "Bearer " + c.post("/login", json={"email":"import-admin@x.eg","password":"password-ImportAdmin"}).json()["token"]}
 def login(n): return {"Authorization": "Bearer " + c.post("/login", json={"email": n.lower() + "@x.eg", "password": "password-" + n}).json()["token"]}
 L, J, O = login("Lead"), login("Junior"), login("Outsider")
 assert c.get("/").headers.get("x-content-type-options") == "nosniff"
@@ -15,7 +20,8 @@ assert c.get("/cases/999999999999999999999999999999999999", headers=L).status_co
 assert c.get("/cases").status_code == 401 and c.post("/login", json={"email": "lead@x.eg", "password": "bad"}).status_code == 401
 rows = [json.loads(l) for l in open("sample_law.jsonl", encoding="utf-8")]
 assert c.post("/law/import", json=rows, headers=L).status_code == 403
-assert c.post("/law/import", json=rows, headers={"X-Admin-Token": "adm"}).json()["imported"] == 3
+assert c.post("/law/import", json=rows, headers={"X-Admin-Token": "stage0-test-admin-token-please-use-a-long-random-secret"}).status_code == 401
+assert c.post("/law/import", json=rows, headers={**A_IMPORT, "X-Admin-Token": "stage0-test-admin-token-please-use-a-long-random-secret"}).json()["imported"] == 3
 cid = c.post("/cases", json={"title": "<b>x</b>", "client": "عميل"}, headers=L).json()["id"]
 jid = [u for u in c.get("/users", headers=L).json() if u["name"] == "Junior"][0]["id"]
 assert c.post(f"/cases/{cid}/tasks", json={"title": "t", "assignee": jid}, headers=L).status_code == 422   # not a member yet
