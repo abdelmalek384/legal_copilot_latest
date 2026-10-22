@@ -11,8 +11,14 @@ db.commit()
 db.execute("INSERT INTO users(name,email,pw,role) VALUES(?,?,?,?)",
            ("Import Admin","import-admin@x.eg",app.hash_pw("password-ImportAdmin"),"admin"))
 db.commit()
-A_IMPORT = {"Authorization": "Bearer " + c.post("/login", json={"email":"import-admin@x.eg","password":"password-ImportAdmin"}).json()["token"]}
-def login(n): return {"Authorization": "Bearer " + c.post("/login", json={"email": n.lower() + "@x.eg", "password": "password-" + n}).json()["token"]}
+def login_creds(email, password):
+    response = c.post("/login", json={"email": email, "password": password})
+    assert response.status_code == 200, response.text
+    session = response.cookies["lc_session"]
+    csrf = response.cookies["lc_csrf"]
+    return {"Cookie": f"lc_session={session}; lc_csrf={csrf}", "X-CSRF-Token": csrf}
+A_IMPORT = login_creds("import-admin@x.eg", "password-ImportAdmin")
+def login(n): return login_creds(n.lower() + "@x.eg", "password-" + n)
 L, J, O = login("Lead"), login("Junior"), login("Outsider")
 assert c.get("/").headers.get("x-content-type-options") == "nosniff"
 assert c.get("/").headers.get("x-frame-options") == "DENY"
