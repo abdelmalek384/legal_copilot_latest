@@ -10,7 +10,7 @@
 - Added fee tracking with total/paid/remaining display and validation that paid does not exceed total.
 - Added a basic text-match conflict-screening feature with an explicit warning that it is not a definitive legal conflict determination.
 - Added a Mac local-start script and GitHub `.gitignore` exclusions for databases, virtual environments, and secrets.
-- Included the user-provided Arabic law dataset under `data/`; it is not imported automatically and remains unverified.
+- Documented the Arabic law data generator and Gazette verification requirement; the generated dataset is not bundled in this repository.
 
 ## Verification
 - `python selftest.py` — passed.

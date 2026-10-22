@@ -26,7 +26,7 @@ embedding model such as bge-m3 or multilingual-e5, stored in pgvector), and MIN_
 
 Permissions: admin sees all cases; a lawyer sees only cases they belong to; only a case's lead (or admin) can edit status, manage the team, or delete.
 Uploads: PDF/DOCX with real text only (max 15 MB); original files are not stored, only the extracted text. Scanned PDFs are rejected.
-Not yet done: independent security review, rate limiting beyond login lockout, 2FA, password reset, audit export, OCR, reminders, embeddings, a formal conflict-check workflow beyond the basic text-match screen.
+Not yet done: independent security review, 2FA, email-based account recovery, audit export, OCR, reminder delivery, embeddings, a formal conflict-check workflow, and dedicated per-firm databases. Admins can reset passwords manually with `python manage.py resetpw EMAIL`; there is no self-service email reset.
 
 ## Loading law data
 1. Download PDFs plus their .json metadata (see download_egypt_laws.py), then: `python tools/import_laws.py egypt_laws out` (needs pymupdf; PDFs with a broken text layer are OCR'd, which needs tesseract; the run is resumable).
@@ -43,5 +43,5 @@ Official Gazette text: compare it with the Gazette (issue 18 bis, 3 May 2025) be
 browser and use `--file saved_page.html`.
 
 
-## Included Arabic law dataset
-`data/law_rows_ar.jsonl` is supplied separately from the application database and is **not imported automatically**. It contains 311 rows associated with Labor Law No. 14 of 2025, from an unofficial republication. Rows are marked unverified. Verify the text against the Official Gazette and review the accompanying source notes before importing. To import only after review: `python manage.py importlaws data/law_rows_ar.jsonl`.
+## Arabic law dataset (not bundled)
+This repository does **not** contain `data/law_rows_ar.jsonl`. Generate an Arabic dataset with `python tools/fetch_arabic_law.py out_dir`, or obtain a separately supplied dataset and verify its provenance. The fetch script uses an unofficial republication of Labor Law No. 14 of 2025; compare every imported text with the Official Gazette (issue 18 bis, 3 May 2025) before relying on it. Imported rows should remain marked unverified until reviewed by a qualified person. Do not assume that a downloaded dataset is official or complete.
