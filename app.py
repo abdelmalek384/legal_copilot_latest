@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS firms(id INTEGER PRIMARY KEY, name TEXT NOT NULL, cre
 CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY, name TEXT, email TEXT UNIQUE, pw TEXT, role TEXT DEFAULT 'lawyer', firm_id INT DEFAULT 1);
 CREATE TABLE IF NOT EXISTS auth_sessions(token_hash TEXT PRIMARY KEY, user_id INT, expires INT);
 CREATE TABLE IF NOT EXISTS login_attempts(email TEXT PRIMARY KEY, failures INT NOT NULL DEFAULT 0, window_start INT NOT NULL DEFAULT 0, locked_until INT NOT NULL DEFAULT 0);
+CREATE TABLE IF NOT EXISTS login_attempts(email TEXT PRIMARY KEY, failures INT NOT NULL DEFAULT 0, window_start INT NOT NULL DEFAULT 0, locked_until INT NOT NULL DEFAULT 0);
 CREATE TABLE IF NOT EXISTS cases(id INTEGER PRIMARY KEY, title TEXT, client TEXT, stage TEXT DEFAULT '', status TEXT DEFAULT 'open', created_by INT, firm_id INT DEFAULT 1,
   case_number TEXT DEFAULT '', case_year TEXT DEFAULT '', court TEXT DEFAULT '', circuit TEXT DEFAULT '', opposing_party TEXT DEFAULT '');
 CREATE TABLE IF NOT EXISTS notes(id INTEGER PRIMARY KEY, case_id INT, created_by INT, text TEXT, created_at TEXT DEFAULT (datetime('now')));
@@ -323,27 +324,41 @@ def home(): return FileResponse(os.path.join(os.path.dirname(__file__), "static"
 
 
 @app.post("/login")
-def login(b: LoginIn):
+def login(b: LoginIn, request: Request):
     k = b.email.strip().lower()
     now = int(time.time())
+    ip = request.client.host if request.client else "unknown"
+    identifiers = (k, "ip:" + ip)
     c = conn()
-    attempt = c.execute("SELECT failures,window_start,locked_until FROM login_attempts WHERE email=?", (k,)).fetchone()
-    if attempt and attempt["locked_until"] > now:
+    attempts = {row["email"]: row for row in c.execute(
+        "SELECT email,failures,window_start,locked_until FROM login_attempts WHERE email IN (?,?)", identifiers
+    ).fetchall()}
+    if any(row["locked_until"] > now for row in attempts.values()):
         raise HTTPException(429, "too many attempts, try later")
-    if not attempt or now - attempt["window_start"] >= 300:
-        failures, window_start = 0, now
-    else:
-        failures, window_start = attempt["failures"], attempt["window_start"]
     r = c.execute("SELECT * FROM users WHERE email=?", (k,)).fetchone()
-    if not r or not check_pw(b.password, r["pw"]):
-        failures += 1
-        locked_until = now + 300 if failures >= 5 else 0
-        c.execute("INSERT INTO login_attempts(email,failures,window_start,locked_until) VALUES(?,?,?,?) "
-                  "ON CONFLICT(email) DO UPDATE SET failures=excluded.failures,window_start=excluded.window_start,locked_until=excluded.locked_until",
-                  (k, failures, window_start, locked_until))
+    # Equalize the expensive hash operation for unknown emails to reduce timing-based enumeration.
+    dummy_salt = bytes.fromhex("00112233445566778899aabbccddeeff")
+    if r:
+        valid = check_pw(b.password, r["pw"])
+    else:
+        hash_pw(b.password, dummy_salt)
+        valid = False
+    if not r or not valid:
+        locked = False
+        for identifier in identifiers:
+            row = attempts.get(identifier)
+            if not row or now - row["window_start"] >= 300:
+                failures, window_start = 1, now
+            else:
+                failures, window_start = row["failures"] + 1, row["window_start"]
+            locked_until = now + 300 if failures >= 5 else 0
+            locked = locked or locked_until > now
+            c.execute("INSERT INTO login_attempts(email,failures,window_start,locked_until) VALUES(?,?,?,?) "
+                      "ON CONFLICT(email) DO UPDATE SET failures=excluded.failures,window_start=excluded.window_start,locked_until=excluded.locked_until",
+                      (identifier, failures, window_start, locked_until))
         c.commit()
-        raise HTTPException(429 if locked_until else 401, "too many attempts, try later" if locked_until else "bad credentials")
-    c.execute("DELETE FROM login_attempts WHERE email=?", (k,))
+        raise HTTPException(429 if locked else 401, "too many attempts, try later" if locked else "bad credentials")
+    c.execute("DELETE FROM login_attempts WHERE email IN (?,?)", identifiers)
     tok = secrets.token_urlsafe(32)
     c.execute("DELETE FROM auth_sessions WHERE expires<?", (now,))
     c.execute("INSERT INTO auth_sessions VALUES(?,?,?)", (sha(tok), r["id"], now + 43200)); c.commit()
