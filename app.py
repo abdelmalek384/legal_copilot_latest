@@ -353,8 +353,7 @@ def login(b: LoginIn, request: Request):
     # probes cannot grow this table indefinitely. Active lockouts are retained.
     c.execute("DELETE FROM login_attempts WHERE locked_until<=? AND window_start<?", (now, now - 86400))
     c.execute("DELETE FROM login_attempts WHERE email IN ("
-              "SELECT email FROM login_attempts WHERE locked_until<=? "
-              "ORDER BY window_start DESC, rowid DESC LIMIT -1 OFFSET 10000)", (now,))
+              "SELECT email FROM login_attempts ORDER BY window_start DESC, rowid DESC LIMIT -1 OFFSET 10000)")
     attempts = {row["email"]: row for row in c.execute(
         "SELECT email,failures,window_start,locked_until FROM login_attempts WHERE email IN (?,?)", identifiers
     ).fetchall()}
