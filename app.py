@@ -18,6 +18,7 @@ CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY, name TEXT, email TEXT U
 CREATE TABLE IF NOT EXISTS auth_sessions(token_hash TEXT PRIMARY KEY, user_id INT, expires INT);
 CREATE TABLE IF NOT EXISTS login_attempts(email TEXT PRIMARY KEY, failures INT NOT NULL DEFAULT 0, window_start INT NOT NULL DEFAULT 0, locked_until INT NOT NULL DEFAULT 0);
 CREATE TABLE IF NOT EXISTS login_attempts(email TEXT PRIMARY KEY, failures INT NOT NULL DEFAULT 0, window_start INT NOT NULL DEFAULT 0, locked_until INT NOT NULL DEFAULT 0);
+CREATE TABLE IF NOT EXISTS login_attempts(email TEXT PRIMARY KEY, failures INT NOT NULL DEFAULT 0, window_start INT NOT NULL DEFAULT 0, locked_until INT NOT NULL DEFAULT 0);
 CREATE TABLE IF NOT EXISTS cases(id INTEGER PRIMARY KEY, title TEXT, client TEXT, stage TEXT DEFAULT '', status TEXT DEFAULT 'open', created_by INT, firm_id INT DEFAULT 1,
   case_number TEXT DEFAULT '', case_year TEXT DEFAULT '', court TEXT DEFAULT '', circuit TEXT DEFAULT '', opposing_party TEXT DEFAULT '');
 CREATE TABLE IF NOT EXISTS notes(id INTEGER PRIMARY KEY, case_id INT, created_by INT, text TEXT, created_at TEXT DEFAULT (datetime('now')));
