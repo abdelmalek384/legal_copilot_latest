@@ -27,22 +27,23 @@ button{cursor:pointer;background:var(--pri);color:#fff;border:0}button.g{backgro
 <div id="app"></div><div id="toast"></div>
 <script>
 const $=i=>document.getElementById(i),A=$('app');
-let T=sessionStorage.t||'',ME=JSON.parse(sessionStorage.me||'{}'),TAB='sum',PAGE='dash';
+let ME=JSON.parse(sessionStorage.me||'{}'),TAB='sum',PAGE='dash';
 const RL={lead:'رئيسي',associate:'محامٍ مساعد',junior:'متدرب'},today=(()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')})();
 const h=(t,p={},...k)=>{const e=document.createElement(t);Object.assign(e,p);e.append(...k.flat().filter(x=>x!=null&&x!==false));if((t==='input'||t==='textarea')&&p.placeholder&&!e.hasAttribute('aria-label'))e.setAttribute('aria-label',p.placeholder);return e};
 const pill=(t,k)=>h('span',{className:'pill '+k,textContent:t}),btn=(t,f,c='')=>h('button',{textContent:t,onclick:f,className:c});
 const fd=s=>s?s.slice(0,10).split('-').reverse().join('/'):'',err=j=>typeof j.detail==='string'?j.detail:'بيانات غير صحيحة';
 const toast=t=>{const e=$('toast');e.textContent=t;e.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>e.style.display='none',3500)};
-async function api(p,m='GET',b){const r=await fetch(p,{method:m,headers:{'Content-Type':'application/json',Authorization:'Bearer '+T},body:b!==undefined?JSON.stringify(b):undefined});
- if(r.status===401&&p!=='/login'){sessionStorage.clear();T='';login();throw new Error('auth')}
+function csrfToken(){return document.cookie.split('; ').find(x=>x.startsWith('lc_csrf='))?.split('=').slice(1).join('=')||''}
+async function api(p,m='GET',b){const headers={};if(b!==undefined)headers['Content-Type']='application/json';const csrf=csrfToken();if(csrf)headers['X-CSRF-Token']=decodeURIComponent(csrf);const r=await fetch(p,{method:m,credentials:'same-origin',headers,body:b!==undefined?JSON.stringify(b):undefined});
+ if(r.status===401&&p!=='/login'){sessionStorage.removeItem('me');ME={};login();throw new Error('auth')}
  const j=await r.json().catch(()=>({}));if(!r.ok){toast(err(j));throw new Error('api')}return j}
 function shell(title,...k){A.replaceChildren(h('div',{id:'shell'},h('aside',{id:'side'},h('h1',{textContent:'⚖️ المساعد القانوني'}),h('div',{className:'lang-switch'},h('button',{type:'button','data-lang-switch':'1',textContent:LANG==='ar'?'English':'العربية',onclick:switchLanguage})),
  [['dash','الرئيسية',dash],['clients','العملاء',clients],['cases','القضايا',casesPage],['law','البحث القانوني',law],['settings','الإعدادات',settingsPage]].map(([id,t,f])=>h('a',{className:PAGE===id?'on':'',textContent:t,onclick:()=>{PAGE=id;window.CASE_ID=null;f()}})),
- h('div',{className:'me'},h('div',{textContent:ME.name||''}),h('a',{textContent:'تسجيل الخروج',onclick:async()=>{try{await api('/logout','POST')}catch(_){}sessionStorage.clear();T='';ME={};login()}}))),
+ h('div',{className:'me'},h('div',{textContent:ME.name||''}),h('a',{textContent:'تسجيل الخروج',onclick:async()=>{try{await api('/logout','POST')}catch(_){}sessionStorage.removeItem('me');ME={};login()}}))),
  h('main',{id:'main'},h('h2',{textContent:title}),...k)))}
 function login(){window.CASE_ID=null;const e=h('input',{type:'email',placeholder:'البريد الإلكتروني',autocomplete:'username',required:true}),p=h('input',{type:'password',placeholder:'كلمة المرور',autocomplete:'current-password',required:true});
  const go=async()=>{if(!e.value.trim()||!p.value){toast('أدخل البريد الإلكتروني وكلمة المرور');return}
- try{const r=await api('/login','POST',{email:e.value.trim().toLowerCase(),password:p.value});T=sessionStorage.t=r.token;ME={id:r.id,name:r.name,role:r.role};sessionStorage.me=JSON.stringify(ME);PAGE='dash';dash()}
+ try{const r=await api('/login','POST',{email:e.value.trim().toLowerCase(),password:p.value});ME={id:r.id,name:r.name,role:r.role};sessionStorage.me=JSON.stringify(ME);PAGE='dash';dash()}
  catch(_){p.focus()}};
  const show=h('button',{type:'button',className:'g',textContent:'إظهار',onclick:()=>{p.type=p.type==='password'?'text':'password';show.textContent=p.type==='password'?'إظهار':'إخفاء'}});
  const loginBtn=btn('دخول',()=>{});loginBtn.type='submit';
@@ -132,7 +133,7 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
  if(TAB==='docs'){const f=h('input',{type:'file',accept:'.pdf,.docx'});
   body=h('div',{className:'card'},c.docs.length?c.docs.map(d=>h('div',{className:'row'},h('span',{textContent:d.name}),h('span',{className:'mut',textContent:fd(d.added)}))):empty('لا توجد مستندات'),
    h('div',{className:'row'},f,btn('رفع وفهرسة',async()=>{if(!f.files[0])return;const x=new FormData();x.append('file',f.files[0]);
-    const r=await fetch('/cases/'+id+'/upload',{method:'POST',headers:{Authorization:'Bearer '+T},body:x}),j=await r.json().catch(()=>({}));toast(r.ok?'تمت الفهرسة':err(j));if(r.ok)again()})),
+    const csrf=csrfToken();const headers=csrf?{'X-CSRF-Token':decodeURIComponent(csrf)}:{};const r=await fetch('/cases/'+id+'/upload',{method:'POST',credentials:'same-origin',headers,body:x}),j=await r.json().catch(()=>({}));toast(r.ok?'تمت الفهرسة':err(j));if(r.ok)again()})),
    empty('PDF أو Word بنص قابل للنسخ (حتى 15 ميجابايت). يُحفظ النص المستخرج للبحث فقط ولا تُحفظ نسخة الملف الأصلي. الملفات الممسوحة ضوئيا غير مدعومة.'))}
  if(TAB==='team'){const mu=h('select',{},...us.map(u=>new Option(u.name,u.id))),mr=h('select',{},...Object.entries(RL).reverse().map(([k,v])=>new Option(v,k)));
   body=h('div',{className:'card'},c.members.map(m=>h('div',{className:'row'},h('b',{textContent:m.name}),pill(RL[m.role],m.role==='lead'?'open':'closed'),lead&&m.user_id!==ME.id?btn('إزالة',async()=>{if(!confirm('إزالة هذا العضو من القضية؟'))return;await api('/cases/'+id+'/members/'+m.user_id,'DELETE');again()},'g'):null)),
@@ -185,5 +186,5 @@ function applyLanguage(root=document.body){
 function switchLanguage(){LANG=LANG==='ar'?'en':'ar';sessionStorage.lang=LANG;if(window.CASE_ID){view(window.CASE_ID)}else if(PAGE==='dash')dash();else if(PAGE==='clients')clients();else if(PAGE==='cases')casesPage();else if(PAGE==='law')law();else if(PAGE==='settings')settingsPage();else login();setTimeout(()=>applyLanguage(),0)}
 const languageObserver=new MutationObserver(ms=>{for(const m of ms)for(const n of m.addedNodes)if(n.nodeType===Node.ELEMENT_NODE||n.nodeType===Node.TEXT_NODE)applyLanguage(n.nodeType===Node.ELEMENT_NODE?n:n.parentElement||document.body)});
 languageObserver.observe(document.body,{childList:true,subtree:true});
-applyLanguage();T?dash():login()
+applyLanguage();api('/session').then(r=>{ME={id:r.id,name:r.name,role:r.role};sessionStorage.me=JSON.stringify(ME);dash()}).catch(()=>login())
 </script></html>
