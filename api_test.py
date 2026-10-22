@@ -95,6 +95,37 @@ new_uid = new_user.json()["id"]
 assert c.post(f"/users/{new_uid}/disable", headers=A).status_code == 200
 assert c.post("/login", json={"email":"disable@x.eg","password":"long-enough-password"}).status_code == 401
 assert c.delete(f"/cases/{cid}", headers=J).status_code == 404 and c.delete(f"/cases/{cid}", headers=L).status_code == 200
+# Authentication regression tests: malformed headers, expiry, reset revocation, role boundary, concurrent logins.
+# Malformed or non-Bearer authorization values must never authenticate.
+for malformed in ("", "garbage", "Bearer", "Basic abc", "Bearer not-a-real-token"):
+    assert c.get("/cases", headers={"Authorization": malformed}).status_code == 401
+# Expired sessions must be rejected even if their token is otherwise valid.
+expired = login("Junior")
+expired_token = expired["Authorization"].split(" ", 1)[1]
+db.execute("UPDATE auth_sessions SET expires=? WHERE token_hash=?", (int(__import__("time").time()) - 1, app.sha(expired_token)))
+db.commit()
+assert c.get("/cases", headers=expired).status_code == 401
+# Password reset must revoke all sessions for that account.
+import manage
+from types import SimpleNamespace
+from unittest.mock import patch
+reset_user = c.post("/users", json={"name":"Reset Test","email":"reset@x.eg","password":"old-password-Long","role":"lawyer"}, headers=A).json()
+reset_token = {"Authorization":"Bearer "+c.post("/login",json={"email":"reset@x.eg","password":"old-password-Long"}).json()["token"]}
+assert c.get("/cases", headers=reset_token).status_code == 200
+with patch.object(manage, "read_password", return_value="new-password-Long"):
+    manage.resetpw(SimpleNamespace(email="reset@x.eg"))
+assert c.get("/cases", headers=reset_token).status_code == 401
+assert c.post("/login",json={"email":"reset@x.eg","password":"old-password-Long"}).status_code == 401
+assert c.post("/login",json={"email":"reset@x.eg","password":"new-password-Long"}).status_code == 200
+# Non-admin users must not be able to invoke protected administrative law import.
+assert c.post("/law/import", json=rows, headers={**L, "X-Admin-Token":"stage0-test-admin-token-please-use-a-long-random-secret"}).status_code == 403
+# Concurrent successful login requests should not corrupt session state or spuriously lock the account.
+from concurrent.futures import ThreadPoolExecutor
+def concurrent_login(_):
+    return c.post("/login", json={"email":"reset@x.eg","password":"new-password-Long"}).status_code
+with ThreadPoolExecutor(max_workers=4) as pool:
+    concurrent_statuses = list(pool.map(concurrent_login, range(4)))
+assert concurrent_statuses == [200, 200, 200, 200], concurrent_statuses
 # Logout revokes the server-side session, not just the browser token.
 logout_headers = login("Junior")
 assert c.get("/cases", headers=logout_headers).status_code == 200
