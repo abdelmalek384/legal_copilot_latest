@@ -52,6 +52,9 @@ other_cid = c.post("/cases", json={"title":"Private second-firm matter","client"
 assert c.get("/cases", headers=S).status_code == 200
 assert [x["id"] for x in c.get("/cases", headers=S).json()] == [other_cid]
 assert c.get(f"/cases/{cid}", headers=S).status_code == 404
+assert c.post("/search", json={"q":"مدة العقد","case_id":cid}, headers=S).status_code == 404
+assert c.post("/ask", json={"q":"مدة العقد","case_id":cid}, headers=S).status_code == 404
+assert all(u["name"] != "Lead" for u in c.get("/users", headers=S).json())
 assert c.patch(f"/cases/{cid}", json={"status":"closed"}, headers=S).status_code == 404
 assert c.delete(f"/cases/{cid}", headers=S).status_code == 404
 assert c.post("/conflicts", json={"q":"عميل"}, headers=S).json()["matches"] == []
