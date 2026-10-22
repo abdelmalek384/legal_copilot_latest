@@ -339,14 +339,14 @@ def login(b: LoginIn, request: Request):
     if any(row["locked_until"] > now for row in attempts.values()):
         raise HTTPException(429, "too many attempts, try later")
     r = c.execute("SELECT * FROM users WHERE email=?", (k,)).fetchone()
-    # Equalize the expensive hash operation for unknown emails to reduce timing-based enumeration.
+    # Equalize the expensive hash operation for unknown/disabled emails to reduce account enumeration.
     dummy_salt = bytes.fromhex("00112233445566778899aabbccddeeff")
     if r:
         valid = check_pw(b.password, r["pw"])
     else:
         hash_pw(b.password, dummy_salt)
         valid = False
-    if not r or not valid:
+    if not r or not r["active"] or not valid:
         locked = False
         for identifier in identifiers:
             row = attempts.get(identifier)
@@ -490,6 +490,17 @@ def add_member(cid: int, b: MemberIn, u: dict = Depends(user)):
     c = conn(); need(c, u, cid, lead=True)
     if not c.execute("SELECT 1 FROM users WHERE id=? AND firm_id=?", (b.user_id, u["firm_id"])).fetchone(): raise HTTPException(404, "user not found")
     c.execute("INSERT OR REPLACE INTO members VALUES(?,?,?)", (cid, b.user_id, b.role)); log(c, cid, u["name"], "تحديث الفريق"); c.commit(); return {"ok": True}
+
+
+@app.delete("/cases/{cid}/members/{uid}")
+def remove_member(cid: int, uid: int, u: dict = Depends(user)):
+    c = conn(); need(c, u, cid, lead=True)
+    target = c.execute("SELECT id FROM users WHERE id=? AND firm_id=?", (uid, u["firm_id"])).fetchone()
+    if not target: raise HTTPException(404, "user not found")
+    c.execute("DELETE FROM members WHERE case_id=? AND user_id=?", (cid, uid))
+    c.execute("UPDATE tasks SET assignee=NULL WHERE case_id=? AND assignee=?", (cid, uid))
+    log(c, cid, u["name"], "إزالة عضو من القضية"); c.commit()
+    return {"ok": True}
 
 
 @app.post("/cases/{cid}/tasks")
