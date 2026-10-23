@@ -144,6 +144,25 @@ for _ in range(5): c.post("/login", json={"email": "lead@x.eg", "password": "bad
 assert c.post("/login", json={"email": "lead@x.eg", "password": "password-Lead"}).status_code == 200   # correct credentials bypass throttling lock
 print("API OK")
 
+# Persistent legal-research chat: history is owned by one user and scoped to their firm.
+chat = c.post("/research/conversations", json={}, headers=L)
+assert chat.status_code == 200, chat.text
+chat_id = chat.json()["id"]
+first_message = c.post(f"/research/conversations/{chat_id}/messages",
+                       json={"message":"مدة العقد"}, headers=L)
+assert first_message.status_code == 200, first_message.text
+chat_data = c.get(f"/research/conversations/{chat_id}", headers=L)
+assert chat_data.status_code == 200 and len(chat_data.json()["messages"]) == 2
+assert chat_data.json()["messages"][0]["role"] == "user"
+assert chat_data.json()["messages"][1]["role"] == "assistant"
+assert isinstance(chat_data.json()["messages"][1]["sources"], list)
+assert c.get(f"/research/conversations/{chat_id}", headers=J).status_code == 404
+assert c.get(f"/research/conversations/{chat_id}", headers=S).status_code == 404
+assert c.post(f"/research/conversations/{chat_id}/messages",
+              json={"message":"   "}, headers=L).status_code == 422
+assert any(x["id"] == chat_id for x in c.get("/research/conversations", headers=L).json())
+
+
 # Impossible calendar dates must fail validation, not just malformed date strings.
 from pydantic import ValidationError
 for model, field, valid, invalid in (

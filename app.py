@@ -107,6 +107,27 @@ CREATE TABLE IF NOT EXISTS legal_review_events(
 );
 CREATE INDEX IF NOT EXISTS idx_legal_review_events_version
   ON legal_review_events(version_id, reviewed_at);
+CREATE TABLE IF NOT EXISTS research_conversations(
+  id INTEGER PRIMARY KEY,
+  user_id INTEGER NOT NULL REFERENCES users(id),
+  firm_id INTEGER NOT NULL REFERENCES firms(id),
+  title TEXT NOT NULL DEFAULT 'محادثة جديدة',
+  created_at TEXT NOT NULL DEFAULT (datetime('now')),
+  updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+CREATE INDEX IF NOT EXISTS idx_research_conversations_owner
+  ON research_conversations(firm_id,user_id,updated_at);
+CREATE TABLE IF NOT EXISTS research_messages(
+  id INTEGER PRIMARY KEY,
+  conversation_id INTEGER NOT NULL REFERENCES research_conversations(id) ON DELETE CASCADE,
+  role TEXT NOT NULL CHECK(role IN ('user','assistant')),
+  content TEXT NOT NULL,
+  sources_json TEXT NOT NULL DEFAULT '[]',
+  message_json TEXT NOT NULL DEFAULT '{}',
+  created_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+CREATE INDEX IF NOT EXISTS idx_research_messages_conversation
+  ON research_messages(conversation_id,id);
 """
 _MAP = {"أ": "ا", "إ": "ا", "آ": "ا", "ى": "ي", "ة": "ه"}
 _MAP.update({chr(0x660 + i): str(i) for i in range(10)})
@@ -787,3 +808,90 @@ def do_ask(b: Q, u: dict = Depends(user)):
     c = conn(); need(c, u, b.case_id)
     try: return ask(c, b.q, b.case_id, firm_id=u["firm_id"], as_of=b.as_of)
     except ValueError as e: raise HTTPException(422, str(e))
+
+def _owned_research_conversation(c, u, conversation_id):
+    row = c.execute(
+        "SELECT id,user_id,firm_id,title,created_at,updated_at FROM research_conversations WHERE id=? AND user_id=? AND firm_id=?",
+        (conversation_id, u["id"], u["firm_id"])).fetchone()
+    if not row: raise HTTPException(404, "conversation not found")
+    return dict(row)
+
+
+@app.get("/research/conversations")
+def list_research_conversations(u: dict = Depends(user)):
+    c = conn()
+    rows = c.execute(
+        "SELECT id,title,created_at,updated_at FROM research_conversations WHERE user_id=? AND firm_id=? ORDER BY updated_at DESC,id DESC LIMIT 100",
+        (u["id"], u["firm_id"])).fetchall()
+    return [dict(r) for r in rows]
+
+
+@app.post("/research/conversations")
+def create_research_conversation(u: dict = Depends(user)):
+    c = conn()
+    cur = c.execute("INSERT INTO research_conversations(user_id,firm_id,title) VALUES(?,?,?)",
+                    (u["id"], u["firm_id"], "محادثة جديدة"))
+    c.commit()
+    return _owned_research_conversation(c, u, cur.lastrowid)
+
+
+@app.get("/research/conversations/{conversation_id}")
+def get_research_conversation(conversation_id: int, u: dict = Depends(user)):
+    c = conn(); conversation = _owned_research_conversation(c, u, conversation_id)
+    messages = c.execute(
+        "SELECT id,role,content,sources_json,message_json,created_at FROM research_messages WHERE conversation_id=? ORDER BY id",
+        (conversation_id,)).fetchall()
+    out = []
+    for row in messages:
+        item = dict(row)
+        try: item["sources"] = json.loads(item.pop("sources_json"))
+        except (ValueError, TypeError): item["sources"] = []
+        try: item["result"] = json.loads(item.pop("message_json"))
+        except (ValueError, TypeError): item["result"] = {}
+        out.append(item)
+    conversation["messages"] = out
+    return conversation
+
+
+class ResearchMessageIn(BaseModel):
+    message: str = Field(min_length=1, max_length=2000)
+    as_of: str | None = Field(default=None, pattern=r"^\d{4}-\d{2}-\d{2}$")
+
+
+@app.post("/research/conversations/{conversation_id}/messages")
+def send_research_message(conversation_id: int, b: ResearchMessageIn, u: dict = Depends(user)):
+    c = conn(); conversation = _owned_research_conversation(c, u, conversation_id)
+    question = b.message.strip()
+    if not question: raise HTTPException(422, "message cannot be blank")
+    if b.as_of:
+        try: date.fromisoformat(b.as_of)
+        except ValueError: raise HTTPException(422, "invalid as_of date")
+    prior = c.execute(
+        "SELECT role,content FROM research_messages WHERE conversation_id=? ORDER BY id DESC LIMIT 8",
+        (conversation_id,)).fetchall()
+    # Supply short, bounded conversational context to retrieval and the answer model.
+    history = list(reversed([dict(r) for r in prior]))
+    contextual_query = question
+    if history:
+        context = "\\n".join(("السائل: " if x["role"] == "user" else "المساعد: ") + x["content"][:500] for x in history)
+        contextual_query = "سياق المحادثة السابق (للفهم فقط، اعتمد في الإجابة على المصادر المسترجعة):\\n" + context + "\\nالسؤال الحالي: " + question
+    c.execute("INSERT INTO research_messages(conversation_id,role,content) VALUES(?,?,?)",
+              (conversation_id, "user", question))
+    try:
+        result = ask(c, contextual_query, firm_id=u["firm_id"], as_of=b.as_of)
+    except ValueError as e:
+        c.rollback()
+        raise HTTPException(422, str(e))
+    answer = result.get("answer") or result.get("message") or "لم أجد مصدرا كافيا للإجابة."
+    sources = result.get("sources", [])
+    c.execute("INSERT INTO research_messages(conversation_id,role,content,sources_json,message_json) VALUES(?,?,?,?,?)",
+              (conversation_id, "assistant", answer, json.dumps(sources, ensure_ascii=False),
+               json.dumps(result, ensure_ascii=False)))
+    title = conversation["title"]
+    if title == "محادثة جديدة":
+        title = question[:72] + ("…" if len(question) > 72 else "")
+    c.execute("UPDATE research_conversations SET title=?,updated_at=datetime('now') WHERE id=?",
+              (title, conversation_id))
+    c.commit()
+    return {"question": question, "answer": answer, **result}
+
