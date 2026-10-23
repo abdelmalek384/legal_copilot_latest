@@ -42,7 +42,15 @@
     "commencement_and_transitional_rules_status": "not_reviewed",
     "extraction_quality_status": "jsonl parses; legal text not compared article-by-article with Gazette",
     "egyptian_lawyer_review_status": "pending",
-    "search_eligible": false
+    "search_eligible": false,
+    "provisional_desk_review": "completed_with_blockers",
+    "permissions_review_outcome": "unresolved_keep_unknown",
+    "article_by_article_gazette_comparison": "not_performed_source_file_unavailable_in_session",
+    "general_commencement_date_candidate": "2025-09-01 — provisional lead only; confirm against page-verified Official Gazette and qualified Egyptian legal review",
+    "specialized_labour_courts_commencement_date_candidate": "2025-10-01 — provisional lead only; confirm against page-verified Official Gazette and qualified Egyptian legal review",
+    "amendment_history_verified": false,
+    "registry_import_decision": "candidate_only_pending_primary_source_comparison_and_legal_review",
+    "review_report": "source_and_legal_review.md"
   },
   "next_steps": [
     "Review the source's terms and obtain any needed permission for storage, indexing, redistribution, and commercial use.",
