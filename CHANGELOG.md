@@ -28,3 +28,10 @@ This is still an MVP, not a production-hardened legal system. No independent sec
 - Apply the same historical eligibility rule to exact article lookup; historical records without a known repeal boundary remain excluded.
 - Include recorded version, Gazette, review, and amendment-relation metadata in the answer-model context, with explicit warnings that metadata is not independent proof.
 - Add regression cases for historical retrieval boundaries and provenance-aware prompts.
+
+
+## Historical retrieval flag consistency
+- Allow registry-linked, reviewed versions to pass the initial search and exact-article gates based on version-registry date eligibility rather than the legacy chunk `in_force` flag.
+- Preserve legacy behavior for unlinked chunks.
+- Expose `applies_as_of` and use it for API warnings and UI badges so historically applicable repealed versions are not mislabeled.
+- Add a regression case where the chunk flag is false but the reviewed version applies before its repeal date.
