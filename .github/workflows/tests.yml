@@ -18,6 +18,8 @@ jobs:
           python-version: '3.12'
       - name: Install dependencies
         run: python -m pip install -r requirements.txt
+      - name: Validate legal data registry and evaluation seeds
+        run: python tools/validate_legal_data_foundation.py
       - name: Run unit tests
         run: python selftest.py
       - name: Run API tests
