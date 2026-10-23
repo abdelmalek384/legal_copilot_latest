@@ -13,7 +13,7 @@ assert app.search(c, "الإجازةُ السَّنَويّة")[0]["ref"].endswi
 synonym_hits = app.search(c, "عطلة سنوية")
 assert synonym_hits and synonym_hits[0]["ref"].endswith("المادة 1")
 assert "literal_match" in synonym_hits[0] and "expanded_match" in synonym_hits[0]
-assert app.norm("إجازة") in app.expanded_tokens("عطلة سنوية")
+assert app.stem(app.norm("إجازة")) in app.expanded_tokens("عطلة سنوية")
 
 assert app.search(c, "المادة ٢")[0]["ref"].endswith("المادة 2")
 assert app.search(c, "للعاملين") and app.tokens("في من على") == []
