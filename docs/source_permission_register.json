@@ -106,6 +106,24 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
       "required_next_action": "Use as a research map and review terms before copying or republishing page content."
+    },
+    {
+      "source_id": "EG-MINISTRY-OF-JUSTICE",
+      "authority": "Ministry of Justice, Arab Republic of Egypt",
+      "source_page": "https://moj.gov.eg/",
+      "material_types": [
+        "Official Gazette copies",
+        "legislation documents",
+        "justice publications"
+      ],
+      "access_status": "official PDF endpoint located",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": null,
+      "terms_checked_on": null,
+      "bulk_download_or_api": "one direct PDF endpoint located; no bulk/API permission established",
+      "required_next_action": "Review current terms and obtain confirmation for local preservation, text extraction, indexing, commercial product use, excerpt display, and redistribution."
     }
   ]
 }
