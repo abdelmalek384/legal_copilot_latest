@@ -562,6 +562,8 @@ _RATE_LIMITS = {
     # the intentional policy that a known user can still log in during lockout.
     "/ask": (20, 60),
     "/search": (40, 60),
+    # Share a single budget across persistent research conversation IDs.
+    "__research_message__": (20, 60),
 }
 _UPLOAD_RATE_LIMIT = (10, 3600)
 _rate_limit_state = {}
@@ -571,16 +573,28 @@ _rate_limit_checks = 0
 
 def _rate_limit(request: Request):
     path = request.url.path
-    limit = _RATE_LIMITS.get(path)
-    if path.startswith("/cases/") and path.endswith("/upload"):
+    is_upload = path.startswith("/cases/") and path.endswith("/upload")
+    is_research_message = (
+        path.startswith("/research/conversations/")
+        and path.endswith("/messages")
+        and request.method == "POST"
+    )
+    if is_upload:
         limit = _UPLOAD_RATE_LIMIT
+        bucket = "upload"
+    elif is_research_message:
+        limit = _RATE_LIMITS["__research_message__"]
+        bucket = "__research_message__"
+    else:
+        limit = _RATE_LIMITS.get(path)
+        bucket = path
     if limit is None:
         return 0
     max_requests, window_seconds = limit
     peer = request.client.host if request.client else "unknown"
     now = time.monotonic()
     window_start = int(now // window_seconds) * window_seconds
-    key = ("upload" if path.startswith("/cases/") and path.endswith("/upload") else path, peer)
+    key = (bucket, peer)
     global _rate_limit_checks
     with _rate_limit_lock:
         entry = _rate_limit_state.get(key)
