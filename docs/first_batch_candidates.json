@@ -44,6 +44,39 @@
       "effective_date": null,
       "amendment_history_verified": false,
       "next_action": "Review Amiri Press terms; verify Gazette issue and all subsequent amendments."
+    },
+    {
+      "document_id": "eg_criminal_procedure_law_174_2025_moj_pdf",
+      "source_id": "EG-MINISTRY-OF-JUSTICE",
+      "title": "قانون رقم 174 لسنة 2025 بإصدار قانون الإجراءات الجنائية",
+      "document_type": "legislation",
+      "candidate_url": "https://moj.gov.eg/backend/api/documents/download/20F3150C-29F1-487E-A0F0-FCCE10CB207B",
+      "official_source_page": "https://www.presidency.eg/ar/قسم-الأخبار/أخبار-رئاسية/news12112025/",
+      "gazette_reference": "الجريدة الرسمية، العدد 45 مكرر (د)، 12 نوفمبر 2025",
+      "publication_date": "2025-11-12",
+      "effective_date": "2027-10-01 (as amended by Law No. 160/2026; verify exact application and transition with counsel)",
+      "collection_permission": "unknown",
+      "reason_not_approved": "Official Ministry of Justice-hosted Gazette PDF located, but permission for automated retrieval, archival, extraction, and commercial indexing has not been established.",
+      "legal_authenticity_verified": false,
+      "current_legal_status_verified": false,
+      "amendment_history_verified": false,
+      "next_action": "Review collection terms; compare the Gazette PDF with Law No. 160/2026 and verify commencement and transition consequences with an Egyptian lawyer."
+    },
+    {
+      "document_id": "eg_criminal_procedure_law_160_2026_amiri_press",
+      "source_id": "EG-AMIRI-PRESS",
+      "title": "قانون رقم 160 لسنة 2026 بتعديل بعض أحكام القانون رقم 174 لسنة 2025 بإصدار قانون الإجراءات الجنائية",
+      "document_type": "amending_legislation",
+      "candidate_url": "https://alamiria.com/Sec/TashTxt?id=Aalg37zxdcU%3D",
+      "publication_date": "2026-09-30",
+      "effective_date": "2026-10-01",
+      "amends_document_id": "eg_criminal_procedure_law_174_2025_moj_pdf",
+      "collection_permission": "unknown",
+      "reason_not_approved": "Official Amiri Press text page located; permission for automated retrieval, local indexing and commercial use not yet established.",
+      "legal_authenticity_verified": false,
+      "current_legal_status_verified": false,
+      "amendment_history_verified": false,
+      "next_action": "Review collection terms; preserve the amending law as its own record; have counsel confirm the current procedure-law transition."
     }
   ]
 }
