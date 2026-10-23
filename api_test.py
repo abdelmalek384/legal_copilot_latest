@@ -221,3 +221,43 @@ for model, field, valid, invalid in (
         pass
     else:
         raise AssertionError(f"{model.__name__} accepted impossible date {invalid}")
+
+
+# Evidence-backed legal review events are admin-only and never auto-promote legal status.
+review_source_id = "SRC-REVIEW-EVENT-TEST"
+review_document_id = "DOC-REVIEW-EVENT-TEST"
+db.execute("INSERT INTO legal_sources(source_id,authority,source_page) VALUES(?,?,?)",
+           (review_source_id, "Test official authority", "https://example.gov/legal"))
+db.execute("INSERT INTO legal_documents(document_id,source_id,official_title,document_type) VALUES(?,?,?,?)",
+           (review_document_id, review_source_id, "Review workflow test instrument", "law"))
+db.execute("INSERT INTO legal_document_versions(document_id,version_label,source_url,legal_status,review_status) VALUES(?,?,?,?,?)",
+           (review_document_id, "initial", "https://example.gov/legal/test.pdf", "under_review", "pending_lawyer_review"))
+review_version_id = db.execute("SELECT version_id FROM legal_document_versions WHERE document_id=?",
+                               (review_document_id,)).fetchone()[0]
+db.commit()
+assert c.get(f"/legal-review/versions/{review_version_id}/events", headers=L).status_code == 403
+assert c.post(f"/legal-review/versions/{review_version_id}/events",
+              json={"review_type":"legal_status","outcome":"pass","evidence_url":"https://example.gov/status"},
+              headers=L).status_code == 403
+assert c.post(f"/legal-review/versions/{review_version_id}/events",
+              json={"review_type":"legal_status","outcome":"pass"},
+              headers=A_IMPORT).status_code == 422
+assert c.post(f"/legal-review/versions/{review_version_id}/events",
+              json={"review_type":"legal_status","outcome":"pass",
+                    "evidence_url":"https://reviewer:secret@example.gov/status"},
+              headers=A_IMPORT).status_code == 422
+review_created = c.post(f"/legal-review/versions/{review_version_id}/events",
+                        json={"review_type":"source_authenticity","outcome":"pass",
+                              "evidence_url":"https://example.gov/gazette/issue-123",
+                              "notes":"Evidence URL recorded for authorized human review."},
+                        headers=A_IMPORT)
+assert review_created.status_code == 201, review_created.text
+assert review_created.json()["status_changed"] is False
+db_review_state = db.execute(
+    "SELECT review_status,legal_status,authenticity_verified,status_verified,amendment_history_verified "
+    "FROM legal_document_versions WHERE version_id=?", (review_version_id,)).fetchone()
+assert tuple(db_review_state) == ("pending_lawyer_review","under_review",0,0,0), tuple(db_review_state)
+review_history = c.get(f"/legal-review/versions/{review_version_id}/events", headers=A_IMPORT)
+assert review_history.status_code == 200 and len(review_history.json()["events"]) == 1
+assert review_history.json()["events"][0]["reviewer"] == "Import Admin"
+assert c.get(f"/legal-review/versions/999999/events", headers=A_IMPORT).status_code == 404
