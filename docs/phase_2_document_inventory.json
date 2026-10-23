@@ -345,6 +345,28 @@
           "source_role": "official ministry discovery index",
           "status": "discovered_not_downloaded"
         }
+      ],
+      "related_instruments": [
+        {
+          "document_id": "EG-LABOUR-DECISION-259-2025",
+          "relationship": "implements_or_supports",
+          "relationship_status": "candidate_pending_text_review"
+        },
+        {
+          "document_id": "EG-LABOUR-DECISION-260-2025",
+          "relationship": "implements_or_supports",
+          "relationship_status": "candidate_pending_text_review"
+        },
+        {
+          "document_id": "EG-LABOUR-DECISION-264-2025",
+          "relationship": "implements_or_supports",
+          "relationship_status": "candidate_pending_text_review"
+        },
+        {
+          "document_id": "EG-LABOUR-DECISION-271-2025",
+          "relationship": "implements_or_supports",
+          "relationship_status": "candidate_pending_text_review"
+        }
       ]
     },
     {
@@ -810,6 +832,126 @@
         "official citation"
       ],
       "notes": "Do not automate collection until court-specific terms and permissions are assessed."
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-259-2025",
+      "official_title_ar": "قرار وزارة العمل رقم 259 لسنة 2025",
+      "practice_areas": [
+        "labour"
+      ],
+      "document_type": "ministerial_decision",
+      "instrument_number": 259,
+      "instrument_year": 2025,
+      "source_id": "EG-AMIRI-PRESS",
+      "source_urls": [
+        {
+          "url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc",
+          "source_role": "Egyptian Proceedings issue metadata candidate",
+          "status": "metadata_discovered_pdf_listed_not_downloaded"
+        }
+      ],
+      "source_status": "discovery_only",
+      "collection_permission": "permission_pending",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "authorized original issue PDF",
+        "exact title/date and page range",
+        "enabling legal provision",
+        "amendments/repeal/subsequent decisions",
+        "lawyer review"
+      ],
+      "notes": "Metadata indicates a decision concerning controls, procedures and dates for payment of workers' rights; verify the exact official title and text from the Gazette issue. No PDF acquired; no legal-status or reuse-permission review completed."
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-260-2025",
+      "official_title_ar": "قرار وزارة العمل رقم 260 لسنة 2025",
+      "practice_areas": [
+        "labour"
+      ],
+      "document_type": "ministerial_decision",
+      "instrument_number": 260,
+      "instrument_year": 2025,
+      "source_id": "EG-AMIRI-PRESS",
+      "source_urls": [
+        {
+          "url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc",
+          "source_role": "Egyptian Proceedings issue metadata candidate",
+          "status": "metadata_discovered_pdf_listed_not_downloaded"
+        }
+      ],
+      "source_status": "discovery_only",
+      "collection_permission": "permission_pending",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "authorized original issue PDF",
+        "exact title/date and page range",
+        "enabling legal provision",
+        "amendments/repeal/subsequent decisions",
+        "lawyer review"
+      ],
+      "notes": "Metadata indicates a decision identifying the administrative authority competent to apply Labour Law 14/2025; verify the exact official title and text from the Gazette issue. No PDF acquired; no legal-status or reuse-permission review completed."
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-264-2025",
+      "official_title_ar": "قرار وزارة العمل رقم 264 لسنة 2025",
+      "practice_areas": [
+        "labour"
+      ],
+      "document_type": "ministerial_decision",
+      "instrument_number": 264,
+      "instrument_year": 2025,
+      "source_id": "EG-AMIRI-PRESS",
+      "source_urls": [
+        {
+          "url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc",
+          "source_role": "Egyptian Proceedings issue metadata candidate",
+          "status": "metadata_discovered_pdf_listed_not_downloaded"
+        }
+      ],
+      "source_status": "discovery_only",
+      "collection_permission": "permission_pending",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "authorized original issue PDF",
+        "exact title/date and page range",
+        "enabling legal provision",
+        "amendments/repeal/subsequent decisions",
+        "lawyer review"
+      ],
+      "notes": "Metadata indicates a decision regulating training operations and development of training levels; verify exact title and whether/how it implements Labour Law 14/2025. No PDF acquired; no legal-status or reuse-permission review completed."
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-271-2025",
+      "official_title_ar": "قرار وزارة العمل رقم 271 لسنة 2025",
+      "practice_areas": [
+        "labour"
+      ],
+      "document_type": "ministerial_decision",
+      "instrument_number": 271,
+      "instrument_year": 2025,
+      "source_id": "EG-AMIRI-PRESS",
+      "source_urls": [
+        {
+          "url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc",
+          "source_role": "Egyptian Proceedings issue metadata candidate",
+          "status": "metadata_discovered_pdf_listed_not_downloaded"
+        }
+      ],
+      "source_status": "discovery_only",
+      "collection_permission": "permission_pending",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "authorized original issue PDF",
+        "exact title/date and page range",
+        "enabling legal provision",
+        "amendments/repeal/subsequent decisions",
+        "lawyer review"
+      ],
+      "notes": "Metadata indicates a decision on keeping a paper/electronic register for workers with disabilities or dwarfism; verify exact title and legal basis. No PDF acquired; no legal-status or reuse-permission review completed."
     }
   ],
   "next_actions": [
@@ -922,6 +1064,15 @@
         "observed_title": "Law No. 174 of 2025 on the Issuance of the Criminal Procedure Law",
         "finding": "NATLEX reports the enactment and original entry-into-force month. Because it predates the 2026 postponement, it is stale for present commencement status and must not be used alone to state the current operative date.",
         "status": "cross_check_only"
+      },
+      {
+        "evidence_id": "SRC-IDSC-EGYPTIAN-PROCEEDINGS-291-SUPP",
+        "source_type": "official proceedings issue metadata candidate",
+        "url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc",
+        "publisher": "Amiri Press metadata hosted by IDSC digital repository",
+        "observed_title": "الوقائع المصرية ملحق الجريدة الرسمية العدد 291 (تابع)",
+        "finding": "Issue metadata dated 25 December 2025 lists Ministry of Labour decisions 259/2025, 260/2025, 264/2025 and 271/2025. This identifies candidates only; each exact title, legal effect, page range and current status must be confirmed from the issue PDF.",
+        "status": "metadata_discovered_pdf_listed_not_downloaded"
       }
     ],
     "temporal_review_alerts": [
