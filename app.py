@@ -302,7 +302,8 @@ class LawRow(BaseModel):
 def sha(t): return hashlib.sha256(t.encode()).hexdigest()
 
 
-def user(request: Request, session_cookie: str = Cookie(None), csrf_cookie: str = Cookie(None),
+def user(request: Request, session_cookie: str = Cookie(None, alias="lc_session"),
+         csrf_cookie: str = Cookie(None, alias="lc_csrf"),
          csrf_header: str = Header(None, alias="X-CSRF-Token")):
     # Cookie-based sessions are not readable by JavaScript. Mutating requests require
     # a matching double-submit CSRF token and, when present, a same-origin Origin.
