@@ -108,6 +108,7 @@ assert c.delete(f"/cases/{cid}", headers=J).status_code == 404 and c.delete(f"/c
 # Authentication regression tests: malformed headers, expiry, password-reset revocation, role boundary and concurrent logins.
 for malformed in ("", "garbage", "Bearer", "Basic abc", "Bearer not-a-real-token"):
     assert c.get("/cases", headers={"Authorization": malformed}).status_code == 401
+assert c.post("/cases", json={"title":"Missing CSRF"}, headers={"Cookie": L["Cookie"]}).status_code == 403
 expired = login("Junior")
 expired_token = expired["Cookie"].split("lc_session=",1)[1].split(";",1)[0]
 db.execute("UPDATE auth_sessions SET expires=? WHERE token_hash=?", (int(__import__("time").time()) - 1, app.sha(expired_token)))
