@@ -312,7 +312,7 @@ class MemberIn(BaseModel): user_id: int; role: str = Field(pattern=ROLES)
 
 class LawRow(BaseModel):
     law: str = Field(max_length=300); article: str = Field(max_length=20); text: str = Field(max_length=20_000)
-    as_of: str | None = None; in_force: int = 1; verified: int = 0; source: str | None = None
+    as_of: str | None = None; in_force: int = 0; verified: int = 0; source: str | None = None
     _valid_as_of = field_validator("as_of")(validate_calendar_date)
 
 
