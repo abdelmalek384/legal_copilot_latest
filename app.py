@@ -322,17 +322,17 @@ LLM = llm
 def ask(c, q, case_id=None, firm_id=1, as_of=None):
     hits = search(c, q, case_id, firm_id=firm_id, as_of=as_of)
     if not hits or (hits[0]["cos"] < MIN_SCORE and hits[0]["score"] < 1):
-        return {"found": False, "answer": None, "sources": [], "message": "لم أجد مصدرا ذا صلة، ولن أخمن."}
+        return {"found": False, "answer": None, "sources": [], "message": "لم أجد مصدرا ذا صلة، ولن أخمن.", "requested_as_of": as_of or date.today().isoformat()}
     ans, msg = None, ""
     try:
-        ans = LLM("المصادر:\n" + "\n".join("[%d] %s: %s" % (i + 1, h["ref"], h["text"][:1500]) for i, h in enumerate(hits)) + "\n\nالسؤال: " + q)
+        ans = LLM("تاريخ تقييم السؤال (as_of): " + (as_of or date.today().isoformat()) + "\nلا تفترض أن التشريع المنشور نافذ في هذا التاريخ إلا إذا دعمت المصادر ذلك.\nالمصادر:\n" + "\n".join("[%d] %s: %s" % (i + 1, h["ref"], h["text"][:1500]) for i, h in enumerate(hits)) + "\n\nالسؤال: " + q)
     except Exception:
         msg = "تعذر الاتصال بالنموذج."
     if ans:
         cites = {int(x) for x in re.findall(r"\[(\d+)\]", ans)}
         if not cites or not cites <= set(range(1, len(hits) + 1)):
             ans, msg = None, "فشل التحقق من الاستشهادات، تُعرض المصادر فقط."
-    return {"found": True, "answer": ans, "message": msg, "sources": hits, "not_in_force": [h["ref"] for h in hits if not h["in_force"]]}
+    return {"found": True, "answer": ans, "message": msg, "sources": hits, "not_in_force": [h["ref"] for h in hits if not h["in_force"]], "requested_as_of": as_of or date.today().isoformat()}
 
 
 # ---------------- API ----------------
