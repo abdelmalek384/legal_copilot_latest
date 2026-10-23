@@ -22,3 +22,5 @@ jobs:
         run: python selftest.py
       - name: Run API tests
         run: python api_test.py
+      - name: Run Arabic multi-case scenario tests
+        run: python arabic_scenario_test.py
