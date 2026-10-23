@@ -1,0 +1,211 @@
+{
+  "schema_version": "1.0",
+  "queue_id": "EG-PHASE2-AUTHORIZED-ACQUISITION-QUEUE",
+  "created_on": "2026-10-23",
+  "purpose": "Turn discovery records into a prioritized, permission-gated acquisition work queue. This queue does not authorize downloads.",
+  "hard_gates": [
+    "Do not fetch a source until the exact access terms and acquisition method have been reviewed.",
+    "Do not mark collection_permission=allowed without documented evidence covering the intended acquisition method and use.",
+    "Do not treat a source's public availability as permission for automated retrieval, commercial use, indexing, or display.",
+    "Preserve the original acquired file unchanged and record SHA-256, final URL, retrieval timestamp, response metadata, Gazette issue, publication date, and page range.",
+    "Keep legal status and lawyer review separate from source acquisition and OCR/extraction status.",
+    "Do not automatically merge OCR output or an unofficial consolidation into the trusted current-law corpus."
+  ],
+  "priority_definitions": {
+    "P0": "Foundational and time-sensitive legislation needed for a reliable MVP; start permission/terms work first.",
+    "P1": "High-value coverage for common lawyer workflows after P0 acquisition is underway.",
+    "P2": "Specialist or broader coverage; queue after higher-priority foundational materials.",
+    "blocked": "No automated collection until permission or source terms are resolved."
+  },
+  "queue": [
+    {
+      "queue_item_id": "ACQ-001",
+      "document_ids": ["EG-CONSTITUTION-2014"],
+      "practice_areas": ["constitutional", "civil", "criminal", "family", "administrative", "tax", "property"],
+      "priority": "P0",
+      "action": "Locate the complete original Official Gazette issue and amendment instruments; verify the currently applicable constitutional text and amendment chain.",
+      "candidate_source": "https://www.presidency.eg/ar/مصر/الدستور/",
+      "source_type": "official government copy candidate; Gazette is controlling publication evidence",
+      "permission_state": "unknown",
+      "acquisition_state": "not_acquired",
+      "legal_review_state": "not_started",
+      "blocker": "Exact source terms and authorized storage/indexing/commercial display method not established.",
+      "required_evidence": ["official Gazette issue and page range", "original-file SHA-256", "amendment instrument links", "provision-level version map", "Egyptian constitutional-lawyer review"]
+    },
+    {
+      "queue_item_id": "ACQ-002",
+      "document_ids": ["EG-LABOUR-LAW-14-2025", "EG-LABOUR-DECISION-259-2025", "EG-LABOUR-DECISION-260-2025", "EG-LABOUR-DECISION-264-2025", "EG-LABOUR-DECISION-271-2025"],
+      "practice_areas": ["labour"],
+      "priority": "P0",
+      "action": "Acquire Law 14/2025 and separately identified implementing decisions from authorized Gazette/Proceedings copies; capture exact titles, dates, page ranges and legal basis.",
+      "candidate_sources": [
+        "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+        "https://dspace.id.com.eg/handle/123456789/8027",
+        "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc"
+      ],
+      "source_type": "official text and issue-metadata candidates",
+      "permission_state": "unknown_or_pending",
+      "acquisition_state": "not_acquired",
+      "legal_review_state": "not_started",
+      "blocker": "Source/repository terms and permission for intended acquisition and product use not established.",
+      "required_evidence": ["original Gazette/Proceedings issue and page range", "original-file SHA-256", "commencement and transition review", "decision-to-enabling-provision links", "subsequent amendment search", "Egyptian labour-lawyer review"]
+    },
+    {
+      "queue_item_id": "ACQ-003",
+      "document_ids": ["EG-PENAL-CODE-58-1937"],
+      "practice_areas": ["criminal"],
+      "priority": "P0",
+      "action": "Locate official promulgated text and all later amending instruments; build an article-level amendment chain with offence-date and more-favourable-law flags.",
+      "candidate_source": "https://www.alamiria.com/Sec/Home",
+      "source_type": "official publisher portal; exact source document not yet pinned",
+      "permission_state": "unknown",
+      "acquisition_state": "not_acquired",
+      "legal_review_state": "not_started",
+      "blocker": "Exact direct source and terms not established.",
+      "required_evidence": ["official Gazette source and page range", "original-file SHA-256", "all identified amendments", "article-level change map", "Egyptian criminal-lawyer review"]
+    },
+    {
+      "queue_item_id": "ACQ-004",
+      "document_ids": ["EG-CRIMINAL-PROCEDURE-150-1950", "EG-CRIMINAL-PROCEDURE-174-2025", "EG-CRIMINAL-PROCEDURE-160-2026"],
+      "practice_areas": ["criminal"],
+      "priority": "P0",
+      "action": "Acquire authorized official copies of the 1950 Code and Laws 174/2025 and 160/2026; map commencement, transitional effect and replacement relationships before assigning operative status.",
+      "candidate_sources": [
+        "https://www.alamiria.com/Sec/TashTxt?id=Aalg37zxdcU%3D",
+        "https://dspace.id.com.eg/handle/123456789/4666",
+        "https://dspace.id.com.eg/handle/123456789/8851"
+      ],
+      "source_type": "official text and Gazette metadata candidates",
+      "permission_state": "unknown_or_pending",
+      "acquisition_state": "not_acquired",
+      "legal_review_state": "urgent_review_required",
+      "blocker": "Source/repository terms, original issue review, and counsel determination of transition not complete.",
+      "required_evidence": ["complete Gazette issues and page ranges", "original-file SHA-256", "commencement clauses", "provision-level relationship map", "Egyptian criminal-procedure lawyer sign-off"]
+    },
+    {
+      "queue_item_id": "ACQ-005",
+      "document_ids": ["EG-CIVIL-CODE-131-1948", "EG-CIVIL-PROCEDURE-13-1968", "EG-EVIDENCE-25-1968"],
+      "practice_areas": ["civil", "commercial", "property", "family"],
+      "priority": "P0",
+      "action": "Pin original Gazette publications for the Civil Code, Civil and Commercial Procedure Code, and Evidence Law; identify amendments and related procedural instruments.",
+      "candidate_source": "https://www.alamiria.com/Sec/Home",
+      "source_type": "official publisher portal; exact direct sources not yet pinned",
+      "permission_state": "unknown",
+      "acquisition_state": "not_acquired",
+      "legal_review_state": "not_started",
+      "blocker": "Exact documents and terms not established.",
+      "required_evidence": ["official Gazette issue/page range for each law", "original-file SHA-256", "amendment chain", "provision-level current text map", "Egyptian civil-procedure lawyer review"]
+    },
+    {
+      "queue_item_id": "ACQ-006",
+      "document_ids": ["EG-COMMERCIAL-CODE-17-1999", "EG-COMPANIES-LAW-159-1981", "EG-BANKRUPTCY-11-2018", "EG-INVESTMENT-LAW-72-2017"],
+      "practice_areas": ["commercial", "civil", "administrative", "tax"],
+      "priority": "P1",
+      "action": "Acquire primary publications and executive regulations; map changes, repeals, and related implementing instruments separately.",
+      "candidate_source": "https://www.alamiria.com/Sec/Home",
+      "source_type": "official publisher portal; exact direct sources not yet pinned",
+      "permission_state": "unknown",
+      "acquisition_state": "not_acquired",
+      "legal_review_state": "not_started",
+      "blocker": "Exact primary documents and terms not established.",
+      "required_evidence": ["Gazette issue/page range per instrument", "original-file SHA-256", "executive regulation links", "amendment chain", "Egyptian commercial-lawyer review"]
+    },
+    {
+      "queue_item_id": "ACQ-007",
+      "document_ids": ["EG-INCOME-TAX-91-2005", "EG-INCOME-TAX-AMENDMENT-7-2024", "EG-VAT-67-2016", "EG-VAT-AMENDMENT-177-2023", "EG-UNIFIED-TAX-PROCEDURES-206-2020"],
+      "practice_areas": ["tax"],
+      "priority": "P1",
+      "action": "Acquire primary laws and amendment instruments; map tax-year-specific changes and commencement separately. Do not calculate tax from an unverified merged text.",
+      "candidate_sources": [
+        "https://alamiria.com/Sec/TashTxt?id=ZCysHHpa8gI%3D",
+        "https://www.alamiria.com/Sec/TashTxt?id=3Jx4puExLnY%3D",
+        "https://www.alamiria.com/Sec/Home"
+      ],
+      "source_type": "official amendment text and publisher portal candidates",
+      "permission_state": "unknown_or_pending",
+      "acquisition_state": "not_acquired",
+      "legal_review_state": "not_started",
+      "blocker": "Exact original publications, full amendment history, and source terms not established.",
+      "required_evidence": ["official Gazette issue/page range", "original-file SHA-256", "provision-level before/after map", "tax-year applicability", "subsequent annual amendments", "Egyptian tax-lawyer review"]
+    },
+    {
+      "queue_item_id": "ACQ-008",
+      "document_ids": ["EG-PERSONAL-STATUS-PROCEDURE-1-2000", "EG-FAMILY-COURTS-LAW-10-2004", "EG-PERSONAL-STATUS-COLLECTION"],
+      "practice_areas": ["family"],
+      "priority": "P1",
+      "action": "Acquire primary texts and separate the applicable personal-status rules by legal topic and applicable regime; do not represent a broad family-law collection record as a single statute.",
+      "candidate_source": "https://www.alamiria.com/Sec/Home",
+      "source_type": "official publisher portal; exact direct sources not yet pinned",
+      "permission_state": "unknown_or_pending",
+      "acquisition_state": "not_acquired",
+      "legal_review_state": "not_started",
+      "blocker": "Primary texts and full amendment history not established.",
+      "required_evidence": ["original Gazette texts", "amendments and implementing instruments", "topic/regime applicability map", "Egyptian family-lawyer review"]
+    },
+    {
+      "queue_item_id": "ACQ-009",
+      "document_ids": ["EG-STATE-COUNCIL-ADMINISTRATIVE-LAW-COLLECTION", "EG-ADMINISTRATIVE-PROCUREMENT-LAW-COLLECTION"],
+      "practice_areas": ["administrative", "commercial"],
+      "priority": "P1",
+      "action": "Acquire State Council Law and public procurement instruments with executive rules; track commencement, appeals and deadlines separately.",
+      "candidate_source": "https://www.alamiria.com/Sec/Home",
+      "source_type": "official publisher portal; exact direct sources not yet pinned",
+      "permission_state": "unknown",
+      "acquisition_state": "not_acquired",
+      "legal_review_state": "not_started",
+      "blocker": "Exact base statutes, source terms and amendment chain not established.",
+      "required_evidence": ["original Gazette texts", "executive instruments", "amendment/repeal relationships", "deadline rules reviewed by Egyptian administrative lawyer"]
+    },
+    {
+      "queue_item_id": "ACQ-010",
+      "document_ids": ["EG-PROPERTY-LAND-REGISTRATION-COLLECTION"],
+      "practice_areas": ["property", "civil"],
+      "priority": "P2",
+      "action": "Acquire Law 114/1946, Law 68/1947 and subsequent amendment/implementing instruments; keep registration, notarization and substantive property ownership rules distinct.",
+      "candidate_source": "https://www.alamiria.com/Sec/Home",
+      "source_type": "official publisher portal; exact base-law sources not yet pinned",
+      "permission_state": "unknown",
+      "acquisition_state": "not_acquired",
+      "legal_review_state": "not_started",
+      "blocker": "Original Gazette texts and complete amendment chains not established.",
+      "required_evidence": ["original Gazette texts", "amendment history", "registration vs notarization distinction", "Egyptian property-lawyer review"]
+    },
+    {
+      "queue_item_id": "ACQ-011",
+      "document_ids": ["EG-IP-LAW-82-2002"],
+      "practice_areas": ["intellectual_property", "commercial", "technology"],
+      "priority": "P2",
+      "action": "Acquire primary text, executive regulations and subsequent amendments; use WIPO Lex only as a discovery/cross-check source unless reuse permission is established.",
+      "candidate_sources": [
+        "https://www.alamiria.com/Sec/Home",
+        "https://www.wipo.int/wipolex/"
+      ],
+      "source_type": "official publisher and international research portal candidates",
+      "permission_state": "unknown",
+      "acquisition_state": "not_acquired",
+      "legal_review_state": "not_started",
+      "blocker": "Original publication, amendment chain and intended-use terms not established.",
+      "required_evidence": ["official Gazette text", "amendments and executive regulations", "treaty status where relevant", "Egyptian IP-lawyer review"]
+    },
+    {
+      "queue_item_id": "ACQ-012",
+      "document_ids": ["EG-JUDGMENTS-CASSATION", "EG-JUDGMENTS-SCC"],
+      "practice_areas": ["civil", "criminal", "labour", "commercial", "family", "administrative", "tax", "property", "intellectual_property"],
+      "priority": "blocked",
+      "action": "Request licensed API, official export or written exception before automated acquisition or commercial indexing of judgments. In the meantime, retain citation metadata and manually entered judgments only where their provenance and rights are documented.",
+      "candidate_sources": ["https://cc.gov.eg/terms", "https://www.sccourt.gov.eg/"],
+      "source_type": "official court portals",
+      "permission_state": "restricted_or_unknown",
+      "acquisition_state": "blocked_pending_written_authorization",
+      "legal_review_state": "not_started",
+      "blocker": "Court of Cassation published terms restrict automated/bulk extraction and require prior written approval for commercial use; other court-source terms also need review.",
+      "required_evidence": ["written permission or license", "approved acquisition method and rate limits", "judgment citation and court/date/chamber metadata", "anonymization/privacy review", "lawyer relevance and precedential-weight review"]
+    }
+  ],
+  "next_decisions": [
+    "Obtain written confirmation or a license from the relevant official publishers for storage, extraction, search indexing, commercial product use, and display.",
+    "Choose a first acquisition batch only after permission is documented; do not run the downloader against this queue as-is.",
+    "Where automated acquisition is blocked, use authorized manual document supply and record the permission evidence.",
+    "Do not represent the inventory as coverage-complete; update the coverage matrix only when source documents and amendment chains are verified."
+  ]
+}
