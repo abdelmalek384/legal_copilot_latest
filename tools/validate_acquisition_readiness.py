@@ -195,7 +195,7 @@ def main() -> int:
     rendered = json.dumps(report, ensure_ascii=False, indent=2)
     if args.out:
         args.out.parent.mkdir(parents=True, exist_ok=True)
-        args.out.write_text(rendered + "\\n", encoding="utf-8")
+        args.out.write_text(rendered + "\n", encoding="utf-8")
     print(rendered)
     if report.get("schema_error"):
         return 2
