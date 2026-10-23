@@ -143,3 +143,27 @@ assert c.get("/cases", headers=logout_headers).status_code == 401
 for _ in range(5): c.post("/login", json={"email": "lead@x.eg", "password": "bad"})
 assert c.post("/login", json={"email": "lead@x.eg", "password": "password-Lead"}).status_code == 200   # correct credentials bypass throttling lock
 print("API OK")
+
+# Impossible calendar dates must fail validation, not just malformed date strings.
+from pydantic import ValidationError
+for model, field, valid, invalid in (
+    (app.SessIn, "date", "2024-02-29", "2025-02-29"),
+    (app.DeadlineIn, "due", "2026-10-23", "2026-02-30"),
+    (app.TaskIn, "due", "2024-02-29", "2024-13-01"),
+    (app.FeeIn, "due", "2024-02-29", "2024-04-31"),
+    (app.LawRow, "as_of", "2024-02-29", "2024-02-30"),
+):
+    sample = {"date": valid} if model is app.SessIn else (
+        {"title": "deadline", "due": valid} if model is app.DeadlineIn else
+        {"title": "task", "due": valid} if model is app.TaskIn else
+        {"title": "fee", "amount": 10, "paid": 0, "due": valid} if model is app.FeeIn else
+        {"law": "test", "article": "1", "text": "test", "as_of": valid}
+    )
+    model(**sample)
+    bad = dict(sample); bad[field] = invalid
+    try:
+        model(**bad)
+    except ValidationError:
+        pass
+    else:
+        raise AssertionError(f"{model.__name__} accepted impossible date {invalid}")

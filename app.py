@@ -2,6 +2,7 @@
 Run: pip install -r requirements.txt && uvicorn app:app --reload"""
 import sqlite3, re, json, os, io, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request, zipfile
 from collections import Counter
+from datetime import date
 from fastapi import Request
 from fastapi.responses import JSONResponse, HTMLResponse, Response
 
@@ -239,7 +240,7 @@ def ask(c, q, case_id=None, firm_id=1):
 # ---------------- API ----------------
 from fastapi import Cookie, Depends, FastAPI, Header, HTTPException, UploadFile
 from fastapi.responses import FileResponse
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 app = FastAPI(title="Legal Copilot MVP", docs_url=None, redoc_url=None)
 
@@ -265,6 +266,15 @@ async def integer_overflow_handler(request: Request, exc: OverflowError):
     return JSONResponse(status_code=404, content={"detail": "not found"})
 ROLES = r"^(lead|associate|junior)$"
 
+def validate_calendar_date(value):
+    """Reject impossible calendar dates, not just strings with a YYYY-MM-DD shape."""
+    if value is not None:
+        try:
+            date.fromisoformat(value)
+        except (TypeError, ValueError):
+            raise ValueError("date must be a real calendar date in YYYY-MM-DD format")
+    return value
+
 
 class Q(BaseModel): q: str = Field(min_length=1, max_length=500); case_id: int | None = None
 class LoginIn(BaseModel): email: str = Field(max_length=200); password: str = Field(max_length=200)
@@ -285,18 +295,25 @@ class CasePatch(BaseModel):
 class NoteIn(BaseModel): text: str = Field(min_length=1, max_length=10000)
 class DeadlineIn(BaseModel):
     title: str = Field(min_length=1, max_length=200); due: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$"); note: str = Field("", max_length=1000)
+    _valid_due = field_validator("due")(validate_calendar_date)
 class FeeIn(BaseModel):
     title: str = Field(min_length=1, max_length=200); amount: float = Field(ge=0); paid: float = Field(ge=0)
     due: str | None = Field(None, pattern=r"^\d{4}-\d{2}-\d{2}$"); note: str = Field("", max_length=1000)
+    _valid_due = field_validator("due")(validate_calendar_date)
 class DocIn(BaseModel): name: str = Field(min_length=1, max_length=200); text: str = Field(min_length=1, max_length=300_000)
-class SessIn(BaseModel): date: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$"); note: str = Field("", max_length=500)
-class TaskIn(BaseModel): title: str = Field(min_length=1, max_length=300); assignee: int | None = None; due: str | None = Field(None, pattern=r"^\d{4}-\d{2}-\d{2}$")
+class SessIn(BaseModel):
+    date: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$"); note: str = Field("", max_length=500)
+    _valid_date = field_validator("date")(validate_calendar_date)
+class TaskIn(BaseModel):
+    title: str = Field(min_length=1, max_length=300); assignee: int | None = None; due: str | None = Field(None, pattern=r"^\d{4}-\d{2}-\d{2}$")
+    _valid_due = field_validator("due")(validate_calendar_date)
 class MemberIn(BaseModel): user_id: int; role: str = Field(pattern=ROLES)
 
 
 class LawRow(BaseModel):
     law: str = Field(max_length=300); article: str = Field(max_length=20); text: str = Field(max_length=20_000)
     as_of: str | None = None; in_force: int = 1; verified: int = 0; source: str | None = None
+    _valid_as_of = field_validator("as_of")(validate_calendar_date)
 
 
 def sha(t): return hashlib.sha256(t.encode()).hexdigest()
