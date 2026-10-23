@@ -1,18 +1,21 @@
-import json
-import tempfile
+import sys
 import unittest
 from pathlib import Path
 
+ROOT = Path(__file__).resolve().parents[1]
+# Running "python tests/test_..." sets sys.path[0] to tests/, not the repo root.
+# Add the repository root explicitly so the tools namespace imports consistently in CI.
+sys.path.insert(0, str(ROOT))
+
 from tools.collect_legal_documents import check_permission, load_manifest
 
-ROOT = Path(__file__).resolve().parents[1]
 
 class FirstOfficialBatchManifestTests(unittest.TestCase):
-    def test_manifest_has_two_unique_official_document_entries(self):
+    def test_manifest_has_four_unique_official_document_entries(self):
         path = ROOT / "docs" / "collection_manifest.example.json"
         docs = load_manifest(path)
         self.assertEqual(len(docs), 4)
-        self.assertEqual(len({d["document_id"] for d in docs}), 2)
+        self.assertEqual(len({d["document_id"] for d in docs}), 4)
         self.assertTrue(all(d["source_id"] for d in docs))
 
     def test_entries_have_permission_evidence_and_restricted_hosts(self):
@@ -33,10 +36,11 @@ class FirstOfficialBatchManifestTests(unittest.TestCase):
             "allowed_hosts": ["example.gov"],
             "collection_permission": "unknown",
             "permission_evidence": "unverified",
-            "terms_checked_on": "2026-10-23"
+            "terms_checked_on": "2026-10-23",
         }
         with self.assertRaises(ValueError):
             check_permission(doc)
+
 
 if __name__ == "__main__":
     unittest.main()
