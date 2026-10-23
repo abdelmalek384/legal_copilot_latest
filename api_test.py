@@ -157,6 +157,13 @@ sys.argv = ["manage.py", "resetpw", "reset@x.eg"]
 with patch("getpass.getpass", return_value="new-password-Long"):
     import manage
 assert c.get("/cases", headers=reset_token).status_code == 401
+# Isolate credential-reset assertions from login attempts made by earlier tests;
+# rate-limit behavior is exercised separately from password correctness.
+if hasattr(app, "_rate_limit_state"):
+    with app._rate_limit_lock:
+        for key in list(app._rate_limit_state):
+            if key[0] == "/login":
+                app._rate_limit_state.pop(key, None)
 assert c.post("/login",json={"email":"reset@x.eg","password":"old-password-Long"}).status_code == 401
 assert c.post("/login",json={"email":"reset@x.eg","password":"new-password-Long"}).status_code == 200
 assert c.post("/law/import", json=rows, headers={**L, "X-Admin-Token":"stage0-test-admin-token-please-use-a-long-random-secret"}).status_code == 403

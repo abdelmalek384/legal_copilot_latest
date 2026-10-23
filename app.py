@@ -475,14 +475,63 @@ from fastapi import Cookie, Depends, FastAPI, Header, HTTPException, UploadFile
 from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field, field_validator
 
-app = FastAPI(title="Legal Copilot MVP", docs_url=None, redoc_url=None)
+app = FastAPI(title="Legal Copilot MVP", docs_url=None, redoc_url=None, openapi_url=None)
+
+# Per-process fixed-window limits for expensive or abuse-prone endpoints.
+# Deliberately use the direct peer address; do not trust arbitrary X-Forwarded-For.
+_RATE_LIMITS = {
+    # Login has a separate failed-credential throttle in the login handler.
+    # A generic middleware cap would also reject correct credentials and break
+    # the intentional policy that a known user can still log in during lockout.
+    "/ask": (20, 60),
+    "/search": (40, 60),
+}
+_UPLOAD_RATE_LIMIT = (10, 3600)
+_rate_limit_state = {}
+_rate_limit_lock = threading.Lock()
+_rate_limit_checks = 0
+
+
+def _rate_limit(request: Request):
+    path = request.url.path
+    limit = _RATE_LIMITS.get(path)
+    if path.startswith("/cases/") and path.endswith("/upload"):
+        limit = _UPLOAD_RATE_LIMIT
+    if limit is None:
+        return 0
+    max_requests, window_seconds = limit
+    peer = request.client.host if request.client else "unknown"
+    now = time.monotonic()
+    window_start = int(now // window_seconds) * window_seconds
+    key = ("upload" if path.startswith("/cases/") and path.endswith("/upload") else path, peer)
+    global _rate_limit_checks
+    with _rate_limit_lock:
+        entry = _rate_limit_state.get(key)
+        count = entry[1] if entry and entry[0] == window_start else 0
+        if count >= max_requests:
+            return max(1, int(window_start + window_seconds - now) + 1)
+        _rate_limit_state[key] = (window_start, count + 1, window_seconds)
+        _rate_limit_checks += 1
+        if _rate_limit_checks % 256 == 0:
+            expired = [k for k, v in _rate_limit_state.items()
+                       if v[0] + v[2] <= now]
+            for k in expired:
+                _rate_limit_state.pop(k, None)
+    return 0
+
 
 @app.middleware("http")
 async def security_headers(request: Request, call_next):
     nonce = secrets.token_urlsafe(18)
     request.state.csp_nonce = nonce
+    retry_after = _rate_limit(request)
     try:
-        response = await call_next(request)
+        if retry_after:
+            response = JSONResponse(status_code=429,
+                                    content={"detail": "rate limit exceeded; try again later"},
+                                    headers={"Retry-After": str(retry_after)})
+        else:
+            response = await call_next(request)
     except OverflowError:
         response = JSONResponse(status_code=404, content={"detail": "not found"})
     response.headers["X-Content-Type-Options"] = "nosniff"
@@ -509,6 +558,14 @@ def validate_calendar_date(value):
     return value
 
 
+def validate_operational_deadline(value):
+    """Keep operational deadlines within a plausible date range; historical sessions remain allowed."""
+    validate_calendar_date(value)
+    if value is not None and not 2000 <= date.fromisoformat(value).year <= 2100:
+        raise ValueError("deadline year must be between 2000 and 2100")
+    return value
+
+
 class Q(BaseModel): q: str = Field(min_length=1, max_length=500); case_id: int | None = None; as_of: str | None = Field(default=None, pattern=r"^\d{4}-\d{2}-\d{2}$")
 class LoginIn(BaseModel): email: str = Field(max_length=200); password: str = Field(max_length=200)
 class UserCreateIn(BaseModel):
@@ -528,9 +585,9 @@ class CasePatch(BaseModel):
 class NoteIn(BaseModel): text: str = Field(min_length=1, max_length=10000)
 class DeadlineIn(BaseModel):
     title: str = Field(min_length=1, max_length=200); due: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$"); note: str = Field("", max_length=1000)
-    _valid_due = field_validator("due")(validate_calendar_date)
+    _valid_due = field_validator("due")(validate_operational_deadline)
 class FeeIn(BaseModel):
-    title: str = Field(min_length=1, max_length=200); amount: float = Field(ge=0); paid: float = Field(ge=0)
+    title: str = Field(min_length=1, max_length=200); amount: float = Field(ge=0, le=1_000_000_000_000); paid: float = Field(ge=0, le=1_000_000_000_000)
     due: str | None = Field(None, pattern=r"^\d{4}-\d{2}-\d{2}$"); note: str = Field("", max_length=1000)
     _valid_due = field_validator("due")(validate_calendar_date)
 class DocIn(BaseModel): name: str = Field(min_length=1, max_length=200); text: str = Field(min_length=1, max_length=300_000)
