@@ -112,11 +112,17 @@ def load_manifest(path: Path) -> list[dict]:
     docs = data.get("documents")
     if not isinstance(docs, list):
         raise ValueError("Manifest must contain a 'documents' list")
+    if any(not isinstance(doc, dict) for doc in docs):
+        raise ValueError("Every document entry must be a JSON object")
     ids = [d.get("document_id") for d in docs]
-    if any(not isinstance(i, str) or not i.strip() for i in ids):
-        raise ValueError("Every document needs a non-empty document_id")
+    # IDs become directory and filename components; restrict them to a safe alphabet.
+    if any(not isinstance(i, str) or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]{0,127}", i) for i in ids):
+        raise ValueError("document_id must start with a letter/digit and contain only letters, digits, '_' or '-' (max 128 characters)")
     if len(ids) != len(set(ids)):
         raise ValueError("document_id values must be unique")
+    for index, doc in enumerate(docs, start=1):
+        if not isinstance(doc.get("source_id"), str) or not doc["source_id"].strip():
+            raise ValueError(f"Document entry #{index} needs a non-empty source_id")
     return docs
 
 
