@@ -322,7 +322,7 @@ def delete_case(c, u, cid):
 
 
 SQL = ("SELECT chunks.*, bm25(chunks_fts) AS r FROM chunks_fts JOIN chunks ON chunks.id=chunks_fts.rowid "
-       "WHERE chunks_fts MATCH ? AND (chunks.case_id IS NOT NULL OR (chunks.verified=1 AND chunks.in_force=1)) AND (chunks.case_id IS NULL OR chunks.case_id IS ?) "
+       "WHERE chunks_fts MATCH ? AND (chunks.case_id IS NOT NULL OR (chunks.verified=1 AND (chunks.in_force=1 OR chunks.document_version_id IS NOT NULL))) AND (chunks.case_id IS NULL OR chunks.case_id IS ?) "
        "AND (chunks.case_id IS NULL OR chunks.case_id IN (SELECT id FROM cases WHERE firm_id=?)) "
        "AND (chunks.case_id IS NOT NULL OR chunks.document_version_id IS NULL OR EXISTS ("
        "SELECT 1 FROM legal_document_versions v WHERE v.version_id=chunks.document_version_id "
@@ -382,7 +382,7 @@ def search(c, q, case_id=None, k=5, firm_id=1, as_of=None):
         for r in c.execute(SQL, params): cand[r["id"]] = (r, -r["r"])
     am = re.search(r"(?:ماده|الماده|article|art)\s*\.?\s*(\d+)", norm(q))
     if am:
-        exact_sql = ("SELECT * FROM chunks WHERE article=? AND case_id IS NULL AND verified=1 AND in_force=1 "
+        exact_sql = ("SELECT * FROM chunks WHERE article=? AND case_id IS NULL AND verified=1 AND (in_force=1 OR document_version_id IS NOT NULL) "
                      "AND (document_version_id IS NULL OR EXISTS (SELECT 1 FROM legal_document_versions v "
                      "WHERE v.version_id=chunks.document_version_id AND v.review_status='verified' "
                      "AND v.authenticity_verified=1 AND v.status_verified=1 AND (v.legal_status='in_force' OR (v.legal_status IN ('repealed','historical') AND v.repeal_date IS NOT NULL)) "
@@ -400,6 +400,7 @@ def search(c, q, case_id=None, k=5, firm_id=1, as_of=None):
         out.append({"id": i, "ref": r["ref"], "text": r["text"], "in_force": bool(r["in_force"]), "verified": bool(r["verified"]), "as_of": r["as_of"],
                     "source": r["source"], "cos": round(cs, 3), "literal_match": round(original_match, 3), "expanded_match": round(expanded_match, 3), "score": 0.5 * b / top + 0.5 * cs + (1 if i in exact else 0),
                     "requested_as_of": as_of, "document_version_id": r["document_version_id"],
+                    "applies_as_of": bool(r["in_force"]) if r["document_version_id"] is None else True,
                     "provenance": citation_provenance(c, r["document_version_id"])})
     return sorted(out, key=lambda x: -x["score"])[:k]
 
@@ -466,7 +467,7 @@ def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None):
         cites = {int(x) for x in re.findall(r"\[(\d+)\]", ans)}
         if not cites or not cites <= set(range(1, len(hits) + 1)):
             ans, msg = None, "فشل التحقق من الاستشهادات، تُعرض المصادر فقط."
-    return {"found": True, "answer": ans, "message": msg, "sources": hits, "not_in_force": [h["ref"] for h in hits if h["verified"] and not h["in_force"]], "unverified_sources": [h["ref"] for h in hits if not h["verified"]], "requested_as_of": as_of or date.today().isoformat()}
+    return {"found": True, "answer": ans, "message": msg, "sources": hits, "not_in_force": [h["ref"] for h in hits if h["verified"] and not h.get("applies_as_of", h["in_force"])], "unverified_sources": [h["ref"] for h in hits if not h["verified"]], "requested_as_of": as_of or date.today().isoformat()}
 
 
 # ---------------- API ----------------
