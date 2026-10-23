@@ -521,6 +521,138 @@
       "language": "ar",
       "candidate_status": "discovery_only",
       "notes": "Secondary legal reference identifies a regulation amendment. Confirm exact official issue, affected provisions, and continuing effect."
+    },
+    {
+      "document_id": "EG-STATE-RESOURCE-FEES-147-1984",
+      "official_title": "قانون رقم 147 لسنة 1984 بفرض رسم تنمية موارد الدولة",
+      "document_type": "state_resource_fees_law",
+      "law_number": "147",
+      "law_year": 1984,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Base-instrument discovery record; verify original Gazette publication, later amendments, and exact title against official text."
+    },
+    {
+      "document_id": "EG-STAMP-TAX-111-1980",
+      "official_title": "قانون ضريبة الدمغة — القانون رقم 111 لسنة 1980",
+      "document_type": "stamp_tax_law",
+      "law_number": "111",
+      "law_year": 1980,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Base-instrument discovery record; verify original Gazette publication, later amendments, and exact title against official text."
+    },
+    {
+      "document_id": "EG-TAX-DISPUTES-79-2016",
+      "official_title": "قانون رقم 79 لسنة 2016 بشأن إنهاء المنازعات الضريبية",
+      "document_type": "tax_dispute_settlement_law",
+      "law_number": "79",
+      "law_year": 2016,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Base-instrument discovery record; verify original Gazette publication and the scope/duration of each later renewal."
+    },
+    {
+      "document_id": "EG-UNIFIED-TAX-PROCEDURES-AMENDMENT-7-2025",
+      "official_title": "قانون رقم 7 لسنة 2025 بتعديل بعض أحكام قانون الإجراءات الضريبية الموحد الصادر بالقانون رقم 206 لسنة 2020",
+      "document_type": "amending_law",
+      "law_number": "7",
+      "law_year": 2025,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official tax authority index lists this amendment. Obtain original Gazette issue/pages and map exact provisions; do not infer current consolidated text from index."
+    },
+    {
+      "document_id": "EG-VAT-AMENDMENT-157-2025",
+      "official_title": "قانون رقم 157 لسنة 2025 بتعديل بعض أحكام قانون الضريبة على القيمة المضافة الصادر بالقانون رقم 67 لسنة 2016",
+      "document_type": "amending_law",
+      "law_number": "157",
+      "law_year": 2025,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official tax authority index lists this amendment. Review Gazette text, exact affected provisions, commencement, and subsequent 2026 amendments."
+    },
+    {
+      "document_id": "EG-STATE-RESOURCE-FEES-AMENDMENT-148-2026",
+      "official_title": "قانون رقم 148 لسنة 2026 بتعديل بعض أحكام القانون رقم 147 لسنة 1984 بفرض رسم تنمية موارد الدولة",
+      "document_type": "amending_law",
+      "law_number": "148",
+      "law_year": 2026,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "2026 tax legislation package discovery lead. Verify original Gazette text, exact title, affected provisions, and commencement."
+    },
+    {
+      "document_id": "EG-VAT-AMENDMENT-149-2026",
+      "official_title": "قانون رقم 149 لسنة 2026 بتعديل بعض أحكام قانون الضريبة على القيمة المضافة الصادر بالقانون رقم 67 لسنة 2016",
+      "document_type": "amending_law",
+      "law_number": "149",
+      "law_year": 2026,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official Egyptian Tax Authority VAT index lists this amendment. Verify original Gazette text, exact provision mapping, and commencement."
+    },
+    {
+      "document_id": "EG-UNIFIED-TAX-PROCEDURES-AMENDMENT-150-2026",
+      "official_title": "قانون رقم 150 لسنة 2026 بتعديل بعض أحكام قانون الإجراءات الضريبية الموحد الصادر بالقانون رقم 206 لسنة 2020",
+      "document_type": "amending_law",
+      "law_number": "150",
+      "law_year": 2026,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official income-tax authority index lists this amendment; verify exact title because the same portal index may contain a year typo in the base-law citation. Original Gazette review required."
+    },
+    {
+      "document_id": "EG-INCOME-TAX-AMENDMENT-151-2026",
+      "official_title": "قانون رقم 151 لسنة 2026 بتعديل بعض أحكام قانون الضريبة على الدخل الصادر بالقانون رقم 91 لسنة 2005",
+      "document_type": "amending_law",
+      "law_number": "151",
+      "law_year": 2026,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official income-tax authority index lists this amendment. Verify original Gazette text, exact article mapping, commencement, and interaction with earlier amendments."
+    },
+    {
+      "document_id": "EG-TAX-DISPUTES-RENEWAL-152-2026",
+      "official_title": "قانون رقم 152 لسنة 2026 بتجديد العمل بالقانون رقم 79 لسنة 2016 بشأن إنهاء المنازعات الضريبية",
+      "document_type": "renewal_law",
+      "law_number": "152",
+      "law_year": 2026,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "2026 tax legislation package discovery lead. Verify original Gazette text, duration/conditions, commencement, and whether later instruments modify the renewal."
+    },
+    {
+      "document_id": "EG-STAMP-TAX-AMENDMENT-153-2026",
+      "official_title": "قانون رقم 153 لسنة 2026 بتعديل بعض أحكام قانون ضريبة الدمغة الصادر بالقانون رقم 111 لسنة 1980",
+      "document_type": "amending_law",
+      "law_number": "153",
+      "law_year": 2026,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "2026 tax legislation package discovery lead. Verify original Gazette text, exact affected provisions, and commencement."
+    },
+    {
+      "document_id": "EG-STATE-ENTITY-PROFITS-154-2026",
+      "official_title": "قانون رقم 154 لسنة 2026 بتخصيص نسبة من صافي أرباح بعض الشركات المملوكة للدولة والأشخاص الاعتبارية العامة للخزانة العامة للدولة",
+      "document_type": "public_finance_law",
+      "law_number": "154",
+      "law_year": 2026,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "2026 tax/public-finance package discovery lead. Verify exact official title, scope, entities covered, calculation base, commencement, and Gazette publication."
     }
   ]
 }
