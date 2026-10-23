@@ -204,6 +204,35 @@ def grams(t):
     s = " ".join(tokens(t)); return Counter(s[i:i + 3] for i in range(max(len(s) - 2, 0)))
 
 
+# Conservative, transparent query expansion for common Arabic/English legal concepts.
+# This improves lexical recall; it is not a substitute for a trained semantic embedding model.
+_LEGAL_SYNONYMS_RAW = {
+    "إجازة": ("عطلة", "leave", "vacation", "holiday"),
+    "سنوية": ("سنوي", "annual", "yearly"),
+    "عامل": ("موظف", "worker", "employee"),
+    "أجر": ("راتب", "wage", "salary"),
+    "تعويض": ("جبر الضرر", "compensation", "damages"),
+    "فسخ": ("إنهاء العقد", "termination", "terminate"),
+    "بطلان": ("عدم الصحة", "invalidity", "void"),
+    "طعن": ("استئناف", "نقض", "appeal", "cassation"),
+    "تقادم": ("مرور الزمن", "limitation period", "prescription"),
+    "عقد": ("اتفاق", "agreement", "contract"),
+    "دعوى": ("مطالبة قضائية", "claim", "lawsuit"),
+    "فصل": ("إنهاء الخدمة", "dismissal", "termination"),
+    "إيجار": ("كراء", "rent", "lease"),
+}
+LEGAL_SYNONYMS = {stem(norm(k)): tuple(tokens(v)) for k, v in _LEGAL_SYNONYMS_RAW.items()}
+
+
+def expanded_tokens(q, limit=48):
+    """Return unique query tokens plus curated synonyms, preserving original tokens first."""
+    original = tokens(q)
+    expanded = list(original)
+    for token in original:
+        expanded.extend(LEGAL_SYNONYMS.get(token, ()))
+    return list(dict.fromkeys(expanded))[:limit]
+
+
 def rel(q, d):
     """Share of the query's trigrams found in the chunk (suits short query vs long article)."""
     n = sum(q.values()); return sum(min(v, d.get(k, 0)) for k, v in q.items()) / n if n else 0.0
@@ -305,9 +334,11 @@ def search(c, q, case_id=None, k=5, firm_id=1, as_of=None):
         date.fromisoformat(as_of)
     except (TypeError, ValueError):
         raise ValueError("as_of must be an ISO date YYYY-MM-DD")
-    cand, exact, qt = {}, set(), tokens(q)
-    if qt:
-        params = (" OR ".join('"%s"' % t for t in qt), case_id, firm_id, as_of, as_of)
+    cand, exact = {}, set()
+    qt, expanded_qt = tokens(q), expanded_tokens(q)
+    if expanded_qt:
+        # Expand only with a small, curated bilingual lexicon; never alter the evidence text.
+        params = (" OR ".join('"%s"' % t.replace('"', '""') for t in expanded_qt), case_id, firm_id, as_of, as_of)
         for r in c.execute(SQL, params): cand[r["id"]] = (r, -r["r"])
     am = re.search(r"(?:ماده|الماده|article|art)\s*\.?\s*(\d+)", norm(q))
     if am:
@@ -319,11 +350,15 @@ def search(c, q, case_id=None, k=5, firm_id=1, as_of=None):
         for r in c.execute(exact_sql, (am.group(1), as_of, as_of)):
             exact.add(r["id"]); cand.setdefault(r["id"], (r, 0))
     if not cand: return []
-    top, qg, out = (max(b for _, b in cand.values()) or 1), grams(q), []
+    top, qg, expanded_qg, out = (max(b for _, b in cand.values()) or 1), grams(q), grams(" ".join(expanded_qt)), []
     for i, (r, b) in cand.items():
-        cs = rel(qg, grams(r["text"]))
+        doc_g = grams(r["text"])
+        original_match = rel(qg, doc_g)
+        expanded_match = rel(expanded_qg, doc_g)
+        # Prefer literal overlap; use synonym overlap as a bounded recall aid.
+        cs = max(original_match, 0.85 * expanded_match)
         out.append({"id": i, "ref": r["ref"], "text": r["text"], "in_force": bool(r["in_force"]), "verified": bool(r["verified"]), "as_of": r["as_of"],
-                    "source": r["source"], "cos": round(cs, 3), "score": 0.5 * b / top + 0.5 * cs + (1 if i in exact else 0),
+                    "source": r["source"], "cos": round(cs, 3), "literal_match": round(original_match, 3), "expanded_match": round(expanded_match, 3), "score": 0.5 * b / top + 0.5 * cs + (1 if i in exact else 0),
                     "requested_as_of": as_of, "document_version_id": r["document_version_id"]})
     return sorted(out, key=lambda x: -x["score"])[:k]
 
