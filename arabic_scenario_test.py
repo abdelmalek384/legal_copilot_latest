@@ -6,6 +6,7 @@ This script does not write to the normal copilot.db.
 """
 import json
 import os
+import sqlite3
 import tempfile
 from datetime import date, timedelta
 
@@ -240,6 +241,51 @@ print("نجاح: رفع ملف DOCX عربي واستخراج النص منه")
 print("نجاح: رفض امتداد ملف غير مدعوم")
 print("نجاح: رفض طلب تعديل دون CSRF")
 print("ملاحظة: جميع البيانات محفوظة في قاعدة SQLite مؤقتة منفصلة، ولن تُضاف إلى قاعدة بيانات المكتب.")
-print("لم يُختبر هنا: صحة الرأي القانوني، صحة مواعيد قانونية حقيقية، رفع ملفات PDF/DOCX فعليًا، أو اختبار اختراق مستقل.")
+# Encrypted backup/restore round trip using a separate temporary database.
+import base64
+import subprocess
+import sys
+from cryptography.fernet import Fernet
+
+backup_dir = os.path.join(tempfile.mkdtemp(prefix="legal_copilot_backup_test_"), "backups")
+restore_path = os.path.join(tempfile.mkdtemp(prefix="legal_copilot_restore_test_"), "restored.db")
+backup_key = Fernet.generate_key().decode()
+env = os.environ.copy()
+env["BACKUP_KEY"] = backup_key
+env["COPILOT_DB"] = os.environ["COPILOT_DB"]
+manage_path = os.path.join(os.path.dirname(__file__), "manage.py")
+backup_result = subprocess.run(
+    [sys.executable, manage_path, "backup", backup_dir, "--keep", "2"],
+    env=env, capture_output=True, text=True, timeout=30,
+)
+assert backup_result.returncode == 0, f"إنشاء النسخة الاحتياطية فشل: {backup_result.stdout} {backup_result.stderr}"
+backup_files = [os.path.join(backup_dir, name) for name in os.listdir(backup_dir) if name.endswith(".enc")]
+assert len(backup_files) == 1, "لم يتم إنشاء ملف نسخة احتياطية مشفر واحد"
+restore_result = subprocess.run(
+    [sys.executable, manage_path, "restore", backup_files[0], restore_path],
+    env=env, capture_output=True, text=True, timeout=30,
+)
+assert restore_result.returncode == 0, f"استعادة النسخة الاحتياطية فشلت: {restore_result.stdout} {restore_result.stderr}"
+restored_db = sqlite3.connect(restore_path)
+restored_cases = restored_db.execute("SELECT COUNT(*) FROM cases").fetchone()[0]
+restored_notes = restored_db.execute("SELECT COUNT(*) FROM notes").fetchone()[0]
+assert restored_cases == 5, f"عدد القضايا بعد الاستعادة غير صحيح: {restored_cases}"
+assert restored_notes >= 5, f"الملاحظات لم تُستعد بالكامل: {restored_notes}"
+integrity = restored_db.execute("PRAGMA integrity_check").fetchone()[0]
+assert integrity == "ok", f"قاعدة البيانات المستعادة غير سليمة: {integrity}"
+restored_db.close()
+# Wrong key must not produce a successful restore.
+wrong_env = env.copy()
+wrong_env["BACKUP_KEY"] = Fernet.generate_key().decode()
+wrong_path = os.path.join(tempfile.mkdtemp(prefix="legal_copilot_wrong_key_"), "bad.db")
+wrong_result = subprocess.run(
+    [sys.executable, manage_path, "restore", backup_files[0], wrong_path],
+    env=wrong_env, capture_output=True, text=True, timeout=30,
+)
+assert wrong_result.returncode != 0, "الاستعادة بمفتاح خاطئ لم تُرفض"
+print("نجاح: إنشاء نسخة احتياطية مشفرة واستعادتها")
+print("نجاح: التحقق من سلامة قاعدة البيانات المستعادة وعدد القضايا والملاحظات")
+print("نجاح: رفض الاستعادة بمفتاح تشفير خاطئ")
+print("لم يُختبر هنا: صحة الرأي القانوني، صحة مواعيد قانونية حقيقية، رفع ملفات PDF فعليًا، أو اختبار اختراق مستقل.")
 
 # CI execution is enabled for the audit/ branch family.
