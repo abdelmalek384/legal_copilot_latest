@@ -378,6 +378,17 @@
       "language": "ar",
       "candidate_status": "discovery_only",
       "notes": "Separate official portal; collect only after confirming access, terms, judgment metadata, and exact document URL."
+    },
+    {
+      "document_id": "EG-COMPETITION-LAW-3-2005",
+      "official_title": "قانون حماية المنافسة ومنع الممارسات الاحتكارية — القانون رقم 3 لسنة 2005",
+      "document_type": "competition_law",
+      "law_number": "3",
+      "law_year": 2005,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Discovery lead only. A later official decision cites Law 3/2005, but that citation is not the original promulgated text. Locate the original Official Gazette publication, amendments, implementing regulations, and current status before use."
     }
   ]
 }
