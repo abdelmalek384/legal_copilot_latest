@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.0",
+  "register_id": "EG-PHASE2-AMENDMENT-RELATIONSHIPS",
+  "updated_on": "2026-10-23",
+  "purpose": "Track explicit legal-instrument relationships separately from source discovery and operative-status decisions.",
+  "rules": {
+    "relationship_is_not_a_consolidated_text": true,
+    "do_not_infer_amendment_from_a_citation_alone": true,
+    "unknown_effective_dates_remain_unknown": true,
+    "every_confirmed_amendment_requires_official_instrument_and_provision_mapping": true,
+    "all_records_require_egyptian_lawyer_review_before_current_law_answers": true
+  },
+  "relationships": [
+    {
+      "relationship_id": "REL-CRIMPROC-160-2026-AMENDS-174-2025",
+      "source_instrument_id": "EG-CRIMINAL-PROCEDURE-160-2026",
+      "target_instrument_id": "EG-CRIMINAL-PROCEDURE-174-2025",
+      "relationship_type": "amends_commencement_provision",
+      "status": "official_text_discovered_provision_mapping_pending",
+      "affected_provision": "Commencement wording in Law 174/2025",
+      "stated_effect": "Replace prior commencement wording with 1 October 2027",
+      "instrument_effective_date": "unknown_pending_gazette_verification",
+      "legal_conclusion": "Do not label Law 174/2025 as operative before 1 October 2027 based only on its original commencement clause. Confirm full Gazette publication, exact clause, and transition with Egyptian criminal-procedure counsel.",
+      "source_url": "https://www.alamiria.com/Sec/TashTxt?id=Aalg37zxdcU%3D",
+      "required_evidence": ["complete official Gazette issue", "exact article and page range", "publication date and commencement clause", "later amending instruments search", "counsel sign-off"]
+    },
+    {
+      "relationship_id": "REL-TAX-7-2024-AMENDS-91-2005",
+      "source_instrument_id": "EG-INCOME-TAX-AMENDMENT-7-2024",
+      "target_instrument_id": "EG-INCOME-TAX-91-2005",
+      "relationship_type": "amends_specified_provisions",
+      "status": "official_text_discovered_provision_mapping_pending",
+      "affected_provisions": ["Article 8", "Article 13(1)"],
+      "stated_effect": "Amends specified income tax provisions; exact consolidated wording and category-specific commencement need source and tax-counsel review",
+      "instrument_effective_date": "unknown_pending_gazette_verification",
+      "source_url": "https://alamiria.com/Sec/TashTxt?id=ZCysHHpa8gI%3D",
+      "required_evidence": ["complete official Gazette issue", "exact article/page range", "provision-level before/after comparison", "subsequent amendments and annual tax changes", "tax-counsel sign-off"]
+    },
+    {
+      "relationship_id": "REL-VAT-177-2023-AMENDS-67-2016",
+      "source_instrument_id": "EG-VAT-AMENDMENT-177-2023",
+      "target_instrument_id": "EG-VAT-67-2016",
+      "relationship_type": "amends_specified_schedules",
+      "status": "source_discovered_instrument_record_pending",
+      "affected_provisions": ["Specified schedules of VAT Law 67/2016; exact schedule entries not yet mapped"],
+      "instrument_effective_date": "unknown_pending_gazette_verification",
+      "source_url": "https://www.alamiria.com/Sec/TashTxt?id=3Jx4puExLnY%3D",
+      "required_evidence": ["separate instrument record", "official Gazette issue/page range", "schedule-level before/after diff", "later amendments", "tax-counsel sign-off"]
+    },
+    {
+      "relationship_id": "REL-FAMILY-1-2000-BASE-LAW",
+      "source_instrument_id": "EG-PERSONAL-STATUS-PROCEDURE-1-2000",
+      "target_instrument_id": null,
+      "relationship_type": "base_instrument",
+      "status": "later_official_citation_only",
+      "source_url": "https://alamiria.com/Sec/TashTxt?id=QVqBTj6P1To%3D",
+      "required_evidence": ["original Gazette text", "all amendments", "scope and transitional provisions", "family-lawyer sign-off"]
+    },
+    {
+      "relationship_id": "REL-FAMILY-COURTS-10-2004-BASE-LAW",
+      "source_instrument_id": "EG-FAMILY-COURTS-LAW-10-2004",
+      "target_instrument_id": null,
+      "relationship_type": "base_instrument",
+      "status": "later_official_citation_only",
+      "source_url": "https://alamiria.com/Sec/TashTxt?id=QVqBTj6P1To%3D",
+      "required_evidence": ["original Gazette text", "all amendments", "implementing instruments", "family-lawyer sign-off"]
+    },
+    {
+      "relationship_id": "REL-COMPETITION-3-2005-BASE-LAW",
+      "source_instrument_id": "EG-COMPETITION-LAW-3-2005",
+      "target_instrument_id": null,
+      "relationship_type": "base_instrument",
+      "status": "later_official_citation_only",
+      "source_url": "https://www.alamiria.com/Sec/TashTxt?id=Cf3yhw6LOt4%3D",
+      "required_evidence": ["original Gazette text", "amending laws", "executive regulations and subsequent decisions", "competition-lawyer sign-off"]
+    }
+  ],
+  "next_actions": [
+    {
+      "id": "AM-01",
+      "action": "Add separate instrument record for VAT amending Law 177/2023 and map the exact schedules it changes.",
+      "status": "not_started"
+    },
+    {
+      "id": "AM-02",
+      "action": "Acquire authorized original Gazette publications and record hashes, issue/date/page range for each primary amendment.",
+      "status": "blocked_on_source_terms_and_permission"
+    },
+    {
+      "id": "AM-03",
+      "action": "Generate provision-level before/after comparisons from reviewed original texts; do not auto-merge OCR output into a current text without review.",
+      "status": "blocked_on_authorized_documents"
+    },
+    {
+      "id": "AM-04",
+      "action": "Extend amendment edges to civil, criminal, labour, commercial, family, administrative, property and IP laws after primary instrument evidence is located.",
+      "status": "not_started"
+    }
+  ]
+}

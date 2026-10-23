@@ -471,6 +471,11 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=BwYO%2FNoozvA%3D",
           "source_role": "official executive regulation citing the statute",
           "status": "supporting_reference_only"
+        },
+        {
+          "url": "https://alamiria.com/Sec/TashTxt?id=orxyPrbEkRo%3D",
+          "source_role": "official cross-reference to Law 159/1981",
+          "status": "supporting_reference_only"
         }
       ]
     },
@@ -552,6 +557,11 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=BwYO%2FNoozvA%3D",
           "source_role": "official executive regulation citing the statute",
           "status": "supporting_reference_only"
+        },
+        {
+          "url": "https://alamiria.com/Sec/TashTxt?id=ZCysHHpa8gI%3D",
+          "source_role": "official amending legislation — Law 7/2024",
+          "status": "discovered_not_downloaded"
         }
       ]
     },
@@ -651,7 +661,14 @@
         "procedure",
         "nationality/civil status where relevant"
       ],
-      "notes": "This is a research grouping, not a single statute. Identify each applicable instrument and legal regime before indexing."
+      "notes": "This is a research grouping, not a single statute. Identify each applicable instrument and legal regime before indexing.",
+      "source_urls": [
+        {
+          "url": "https://alamiria.com/Sec/TashTxt?id=QVqBTj6P1To%3D",
+          "source_role": "official decision citing Laws 1/2000 and 10/2004",
+          "status": "supporting_reference_only"
+        }
+      ]
     },
     {
       "document_id": "EG-STATE-COUNCIL-ADMINISTRATIVE-LAW-COLLECTION",
@@ -835,7 +852,14 @@
         "executive regulations",
         "official regulator decisions"
       ],
-      "notes": "Identify and verify the exact instruments before assigning legal status."
+      "notes": "Identify and verify the exact instruments before assigning legal status.",
+      "source_urls": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=Cf3yhw6LOt4%3D",
+          "source_role": "official decision citing Competition Law 3/2005",
+          "status": "supporting_reference_only"
+        }
+      ]
     },
     {
       "document_id": "EG-ADMINISTRATIVE-PROCUREMENT-LAW-COLLECTION",
@@ -1035,6 +1059,133 @@
         "lawyer review"
       ],
       "notes": "Metadata indicates a decision on keeping a paper/electronic register for workers with disabilities or dwarfism; verify exact title and legal basis. No PDF acquired; no legal-status or reuse-permission review completed."
+    },
+    {
+      "document_id": "EG-INCOME-TAX-AMENDMENT-7-2024",
+      "official_title_ar": "قانون رقم 7 لسنة 2024 بتعديل بعض أحكام قانون الضريبة على الدخل الصادر بالقانون رقم 91 لسنة 2005",
+      "practice_areas": [
+        "tax"
+      ],
+      "document_type": "amending_tax_law",
+      "instrument_number": 7,
+      "instrument_year": 2024,
+      "source_id": "EG-AMIRI-PRESS",
+      "source_urls": [
+        {
+          "url": "https://alamiria.com/Sec/TashTxt?id=ZCysHHpa8gI%3D",
+          "source_role": "official amending legislation text page",
+          "status": "discovered_not_downloaded"
+        }
+      ],
+      "source_status": "discovery_only",
+      "collection_permission": "permission_pending",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "amends": [
+        "EG-INCOME-TAX-91-2005"
+      ],
+      "required_related_records": [
+        "official Gazette issue/date/page range",
+        "complete promulgated text",
+        "later amendments affecting Articles 8 and 13",
+        "tax-period-specific commencement analysis",
+        "tax-lawyer review"
+      ],
+      "notes": "Official text identifies amendments to Articles 8 and 13(1). Separate instrument record created for provenance; no consolidated tax rules or current rates inferred."
+    },
+    {
+      "document_id": "EG-PERSONAL-STATUS-PROCEDURE-1-2000",
+      "official_title_ar": "قانون رقم 1 لسنة 2000 بتنظيم بعض أوضاع وإجراءات التقاضي في مسائل الأحوال الشخصية",
+      "practice_areas": [
+        "family"
+      ],
+      "document_type": "family_procedure_law",
+      "instrument_number": 1,
+      "instrument_year": 2000,
+      "source_id": "EG-AMIRI-PRESS",
+      "source_urls": [
+        {
+          "url": "https://alamiria.com/Sec/TashTxt?id=QVqBTj6P1To%3D",
+          "source_role": "official Ministry of Justice decision citing the law",
+          "status": "supporting_reference_only"
+        }
+      ],
+      "source_status": "discovery_only",
+      "collection_permission": "permission_pending",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "original Gazette text",
+        "all amendments",
+        "related procedural rules and executive instruments",
+        "scope and transitional provisions",
+        "family-lawyer review"
+      ],
+      "notes": "Current source is a later official decision citing this law, not the base law itself. Obtain and verify the original promulgated text."
+    },
+    {
+      "document_id": "EG-FAMILY-COURTS-LAW-10-2004",
+      "official_title_ar": "قانون رقم 10 لسنة 2004 بإصدار قانون إنشاء محاكم الأسرة",
+      "practice_areas": [
+        "family",
+        "administrative"
+      ],
+      "document_type": "family_courts_law",
+      "instrument_number": 10,
+      "instrument_year": 2004,
+      "source_id": "EG-AMIRI-PRESS",
+      "source_urls": [
+        {
+          "url": "https://alamiria.com/Sec/TashTxt?id=QVqBTj6P1To%3D",
+          "source_role": "official Ministry of Justice decision citing the law",
+          "status": "supporting_reference_only"
+        }
+      ],
+      "source_status": "discovery_only",
+      "collection_permission": "permission_pending",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "original Gazette text",
+        "all amendments",
+        "implementing decisions and court-circuit rules",
+        "scope and transitional provisions",
+        "family-lawyer review"
+      ],
+      "notes": "Current source is a later official decision citing this law, not the base law itself. Obtain and verify the original promulgated text."
+    },
+    {
+      "document_id": "EG-VAT-AMENDMENT-177-2023",
+      "official_title_ar": "قانون رقم 177 لسنة 2023 بتعديل بعض أحكام قانون الضريبة على القيمة المضافة الصادر بالقانون رقم 67 لسنة 2016",
+      "practice_areas": [
+        "tax"
+      ],
+      "document_type": "amending_tax_law",
+      "instrument_number": 177,
+      "instrument_year": 2023,
+      "source_id": "EG-AMIRI-PRESS",
+      "source_urls": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=3Jx4puExLnY%3D",
+          "source_role": "official amending legislation text page",
+          "status": "discovered_not_downloaded"
+        }
+      ],
+      "source_status": "discovery_only",
+      "collection_permission": "permission_pending",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "amends": [
+        "EG-VAT-67-2016"
+      ],
+      "required_related_records": [
+        "official Gazette issue/date/page range",
+        "complete promulgated text",
+        "exact schedule-level changes",
+        "subsequent VAT amendments and annual tax instruments",
+        "tax-lawyer review"
+      ],
+      "notes": "Official source discovery identifies Law 177/2023 as amending specified schedules of VAT Law 67/2016. Exact schedule entries and current consolidated wording are not yet mapped."
     }
   ],
   "next_actions": [
@@ -1237,6 +1388,57 @@
         "publisher": "General Authority for Amiri Press",
         "observed_title": "قرار مجلس الدولة رقم 289 لسنة 2025",
         "finding": "Official State Council decision expressly cites State Council Law 47/1972. This is a supporting reference only; locate the original law and subsequent amendments separately.",
+        "status": "supporting_reference_discovered"
+      },
+      {
+        "evidence_id": "SRC-AMIRIA-INCOME-TAX-AMENDMENT-7-2024",
+        "document_id": "EG-INCOME-TAX-91-2005",
+        "source_type": "official amending legislation text page",
+        "url": "https://alamiria.com/Sec/TashTxt?id=ZCysHHpa8gI%3D",
+        "publisher": "General Authority for Amiri Press",
+        "observed_title": "قانون رقم 7 لسنة 2024 بتعديل بعض أحكام قانون الضريبة على الدخل الصادر بالقانون رقم 91 لسنة 2005",
+        "finding": "Official text identifies amendments to Articles 8 and 13(1) of Income Tax Law 91/2005 and provides distinct commencement rules by income category. Store as a separate amending instrument and verify exact Gazette issue/pages and any later changes before computing current tax.",
+        "status": "source_discovered_not_downloaded",
+        "document_ids": [
+          "EG-INCOME-TAX-91-2005",
+          "EG-INCOME-TAX-AMENDMENT-7-2024"
+        ]
+      },
+      {
+        "evidence_id": "SRC-AMIRIA-FAMILY-LAWS-REFERENCED-5420-2024",
+        "document_ids": [
+          "EG-PERSONAL-STATUS-PROCEDURE-1-2000",
+          "EG-FAMILY-COURTS-LAW-10-2004"
+        ],
+        "source_type": "official Ministry of Justice decision citing base statutes",
+        "url": "https://alamiria.com/Sec/TashTxt?id=QVqBTj6P1To%3D",
+        "publisher": "General Authority for Amiri Press — Ministry of Justice decision",
+        "observed_title": "قرار وزير العدل رقم 5420 لسنة 2024",
+        "finding": "Official decision cites Personal Status Procedure Law 1/2000 and Family Courts Law 10/2004. It is a corroborating citation only; identify the exact base enactments and amendment instruments independently.",
+        "status": "supporting_reference_discovered"
+      },
+      {
+        "evidence_id": "SRC-AMIRIA-COMPETITION-LAW-3-2005-DECISION-6670-2023",
+        "document_ids": [
+          "EG-COMPETITION-LAW-COLLECTION"
+        ],
+        "source_type": "official Ministry of Justice decision citing base statute",
+        "url": "https://www.alamiria.com/Sec/TashTxt?id=Cf3yhw6LOt4%3D",
+        "publisher": "General Authority for Amiri Press — Ministry of Justice decision",
+        "observed_title": "قرار وزير العدل رقم 6670 لسنة 2023",
+        "finding": "Official decision cites Competition Protection Law 3/2005 and states the judicial-officer authority it grants expires 29 October 2025. This is a useful temporal-status example: the decision's own authority period is time-bounded, and it is not the underlying Competition Law text.",
+        "status": "supporting_reference_discovered"
+      },
+      {
+        "evidence_id": "SRC-AMIRIA-COMPANIES-LAW-159-1981-REFERENCES",
+        "document_ids": [
+          "EG-COMPANIES-LAW-159-1981"
+        ],
+        "source_type": "official legal text cross-reference",
+        "url": "https://alamiria.com/Sec/TashTxt?id=orxyPrbEkRo%3D",
+        "publisher": "General Authority for Amiri Press",
+        "observed_title": "Official text on public business sector companies referencing Law 159/1981",
+        "finding": "Official text references Companies Law 159/1981 and its executive regulations for merger and division matters. This is a supporting cross-reference only, not a consolidated copy of Law 159/1981.",
         "status": "supporting_reference_discovered"
       }
     ],
