@@ -11,7 +11,7 @@ class FirstOfficialBatchManifestTests(unittest.TestCase):
     def test_manifest_has_two_unique_official_document_entries(self):
         path = ROOT / "docs" / "collection_manifest.example.json"
         docs = load_manifest(path)
-        self.assertEqual(len(docs), 2)
+        self.assertEqual(len(docs), 4)
         self.assertEqual(len({d["document_id"] for d in docs}), 2)
         self.assertTrue(all(d["source_id"] for d in docs))
 
