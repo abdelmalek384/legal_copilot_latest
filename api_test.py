@@ -261,3 +261,14 @@ review_history = c.get(f"/legal-review/versions/{review_version_id}/events", hea
 assert review_history.status_code == 200 and len(review_history.json()["events"]) == 1
 assert review_history.json()["events"][0]["reviewer"] == "Import Admin"
 assert c.get(f"/legal-review/versions/999999/events", headers=A_IMPORT).status_code == 404
+
+
+# Legal-source reviewer workbench queue is administrator-only and read-only.
+assert c.get("/legal-review/queue", headers=L).status_code == 403
+review_queue_response = c.get("/legal-review/queue", headers=A_IMPORT)
+assert review_queue_response.status_code == 200, review_queue_response.text
+assert "versions" in review_queue_response.json()
+assert "warning" in review_queue_response.json()
+if review_queue_response.json()["versions"]:
+    queue_row = review_queue_response.json()["versions"][0]
+    assert {"version_id", "official_title", "review_status", "legal_status", "event_count"} <= set(queue_row)

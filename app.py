@@ -737,6 +737,27 @@ def conflict_check(b: Q, u: dict = Depends(user)):
             "warning": "فحص أولي بالبحث النصي فقط؛ لا يثبت وجود تعارض ولا ينفيه. إذا ظهرت إشارة عامة، اطلب مراجعة مسؤول المكتب. لا تعرض هذه النتيجة تفاصيل القضايا غير المصرح لك بها."}
 
 
+@app.get("/legal-review/queue")
+def legal_review_queue(u: dict = Depends(user)):
+    require_admin(u)
+    c = conn()
+    rows = c.execute(
+        "SELECT v.version_id,v.document_id,v.version_label,v.source_url,v.publication_date,"
+        "v.effective_date,v.repeal_date,v.legal_status,v.review_status,v.authenticity_verified,"
+        "v.status_verified,v.amendment_history_verified,v.original_sha256,"
+        "d.official_title,d.document_type,s.authority,s.collection_permission,"
+        "s.commercial_reuse_permission,"
+        "(SELECT COUNT(*) FROM legal_review_events e WHERE e.version_id=v.version_id) AS event_count "
+        "FROM legal_document_versions v "
+        "JOIN legal_documents d ON d.document_id=v.document_id "
+        "JOIN legal_sources s ON s.source_id=d.source_id "
+        "ORDER BY CASE WHEN v.review_status='verified' THEN 1 ELSE 0 END, v.version_id DESC "
+        "LIMIT 500"
+    ).fetchall()
+    return {"versions":[dict(r) for r in rows],
+            "warning":"This queue lists registry metadata only. It does not certify authenticity, current legal effect, or permissions."}
+
+
 @app.get("/legal-review/versions/{version_id}/events")
 def legal_review_events(version_id: int, u: dict = Depends(user)):
     require_admin(u)
