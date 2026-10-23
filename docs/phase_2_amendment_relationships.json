@@ -286,7 +286,7 @@
       "target_instrument_id": "EG-STATE-RESOURCE-FEES-147-1984",
       "relationship_type": "amends_specified_provisions",
       "status": "source_discovered_instrument_record_pending",
-      "source_url": "https://mof-web-prd.apps.fslabs.net/ar/legislation/legislation-6a731e1163496600085dd856",
+      "source_url": "https://mof.gov.eg/ar/archive/regulations/5fdf82ca3939500007111cc4/القوانين",
       "required_evidence": [
         "original Official Gazette issue/date/pages",
         "exact provision-level before/after comparison",
@@ -294,7 +294,7 @@
         "later amendment/repeal/renewal search",
         "qualified Egyptian tax-lawyer sign-off"
       ],
-      "notes": "Ministry of Finance legislation portal is a discovery lead; verify original Gazette and exact provisions."
+      "notes": "Ministry of Finance legislation portal is a discovery lead; verify original Gazette and exact provisions. Stable Ministry of Finance archive page is a discovery index only; obtain the individual instrument's official publication and exact pages."
     },
     {
       "relationship_id": "REL-VAT-149-2026-AMENDS-67-2016",
@@ -350,7 +350,7 @@
       "target_instrument_id": "EG-TAX-DISPUTES-79-2016",
       "relationship_type": "amends_specified_provisions",
       "status": "source_discovered_instrument_record_pending",
-      "source_url": "https://mof-web-prd.apps.fslabs.net/ar/legislation/legislation-6a731e1163496600085dd856",
+      "source_url": "https://mof.gov.eg/ar/archive/regulations/5fdf82ca3939500007111cc4/القوانين",
       "required_evidence": [
         "original Official Gazette issue/date/pages",
         "exact provision-level before/after comparison",
@@ -358,7 +358,7 @@
         "later amendment/repeal/renewal search",
         "qualified Egyptian tax-lawyer sign-off"
       ],
-      "notes": "Ministry of Finance index describes renewal of Law 79/2016; exact duration and conditions require primary-text review."
+      "notes": "Ministry of Finance index describes renewal of Law 79/2016; exact duration and conditions require primary-text review. Stable Ministry of Finance archive page is a discovery index only; obtain the individual instrument's official publication and exact pages."
     },
     {
       "relationship_id": "REL-STAMP-TAX-153-2026-AMENDS-111-1980",
