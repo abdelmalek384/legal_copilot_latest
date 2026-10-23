@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.0",
+  "tracker_id": "EG-PHASE2-PERMISSION-OUTREACH",
+  "last_updated": "2026-10-23",
+  "status_note": "Planning tracker only. These requests have not been sent from this project workflow. No permission or licence has been granted.",
+  "requests": [
+    {
+      "request_id": "PERM-001",
+      "source_id": "EG-AMIRI-PRESS",
+      "authority": "General Authority for Amiri Press",
+      "candidate_contact": "info@alamiria.com",
+      "contact_verified": false,
+      "draft_location": "docs/phase_2_source_authorization_outreach_pack.md",
+      "status": "draft_not_sent",
+      "sent_at": null,
+      "delivery_evidence": null,
+      "reference_number": null,
+      "reply_received_at": null,
+      "reply_location": null,
+      "follow_up_due": null,
+      "requested_scopes": [
+        "private original-file storage",
+        "Arabic extraction and OCR",
+        "search indexing and retrieval",
+        "limited excerpt display with Gazette citations",
+        "historical-version retention",
+        "metadata-only use if full text is not licensed",
+        "periodic update access"
+      ],
+      "authorized_scopes": [],
+      "decision": "no_permission_granted",
+      "reviewer": null,
+      "notes": "Verify contact address and submit through the authority's official channel. A public page or subscription must not be treated as blanket commercial reuse permission."
+    },
+    {
+      "request_id": "PERM-002",
+      "source_id": "EG-COURT-CASSATION",
+      "authority": "Egyptian Court of Cassation",
+      "candidate_contact": "cc_info@cc.gov.eg",
+      "contact_verified": false,
+      "draft_location": "docs/phase_2_source_authorization_outreach_pack.md",
+      "status": "draft_not_sent",
+      "sent_at": null,
+      "delivery_evidence": null,
+      "reference_number": null,
+      "reply_received_at": null,
+      "reply_location": null,
+      "follow_up_due": null,
+      "requested_scopes": [
+        "licensed API or export",
+        "authorized judgment text storage",
+        "indexing and retrieval",
+        "limited excerpt display with precise citation",
+        "case and judgment metadata",
+        "update feed",
+        "privacy and anonymization requirements"
+      ],
+      "authorized_scopes": [],
+      "decision": "blocked_pending_written_authorization",
+      "reviewer": null,
+      "notes": "Do not automate or bulk extract judgments unless written authorization expressly covers the proposed method and use."
+    },
+    {
+      "request_id": "PERM-003",
+      "source_id": "EG-PRESIDENCY",
+      "authority": "Presidency of the Arab Republic of Egypt",
+      "candidate_contact": null,
+      "contact_verified": false,
+      "draft_location": "docs/phase_2_source_authorization_outreach_pack.md",
+      "status": "contact_route_to_identify",
+      "sent_at": null,
+      "delivery_evidence": null,
+      "reference_number": null,
+      "reply_received_at": null,
+      "reply_location": null,
+      "follow_up_due": null,
+      "requested_scopes": [
+        "official Constitution copy",
+        "original-file storage",
+        "text extraction and indexing",
+        "commercial product use",
+        "limited excerpt display",
+        "historical versions"
+      ],
+      "authorized_scopes": [],
+      "decision": "no_permission_granted",
+      "reviewer": null,
+      "notes": "Identify an official contact route; Gazette publication remains necessary for publication provenance and amendment history."
+    }
+  ],
+  "response_review_checklist": [
+    "Confirm the reply is from an authorized representative or published licence source.",
+    "Check whether permission covers the specific documents and acquisition method.",
+    "Check storage, extraction, OCR, indexing, commercial use, display, redistribution and historical retention separately.",
+    "Record fees, term, expiry, rate limits, attribution, security, update cadence and termination conditions.",
+    "Have counsel or an authorized project reviewer interpret ambiguous scope before collection starts.",
+    "Update docs/source_permission_register.json with evidence and date, but do not overwrite the historical request/reply record.",
+    "Only then update queue permission_state and prepare an approved acquisition manifest."
+  ]
+}
