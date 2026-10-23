@@ -36,6 +36,11 @@ Add an entry to `docs/collection_manifest.example.json` only after checking the 
   "publication_date": null,
   "effective_date": null,
   "repeal_date": null,
+  "legal_status_assessment": "unknown",
+  "amends_document_ids": [],
+  "amended_by_document_ids": [],
+  "consolidates_document_ids": [],
+  "consolidated_version_as_of": null,
   "law_number": null,
   "gazette_issue": null
 }
