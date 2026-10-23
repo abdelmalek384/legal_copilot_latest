@@ -1059,6 +1059,100 @@
         "lawyer review"
       ],
       "notes": "Metadata indicates a decision on keeping a paper/electronic register for workers with disabilities or dwarfism; verify exact title and legal basis. No PDF acquired; no legal-status or reuse-permission review completed."
+    },
+    {
+      "document_id": "EG-INCOME-TAX-AMENDMENT-7-2024",
+      "official_title_ar": "قانون رقم 7 لسنة 2024 بتعديل بعض أحكام قانون الضريبة على الدخل الصادر بالقانون رقم 91 لسنة 2005",
+      "practice_areas": [
+        "tax"
+      ],
+      "document_type": "amending_tax_law",
+      "instrument_number": 7,
+      "instrument_year": 2024,
+      "source_id": "EG-AMIRI-PRESS",
+      "source_urls": [
+        {
+          "url": "https://alamiria.com/Sec/TashTxt?id=ZCysHHpa8gI%3D",
+          "source_role": "official amending legislation text page",
+          "status": "discovered_not_downloaded"
+        }
+      ],
+      "source_status": "discovery_only",
+      "collection_permission": "permission_pending",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "amends": [
+        "EG-INCOME-TAX-91-2005"
+      ],
+      "required_related_records": [
+        "official Gazette issue/date/page range",
+        "complete promulgated text",
+        "later amendments affecting Articles 8 and 13",
+        "tax-period-specific commencement analysis",
+        "tax-lawyer review"
+      ],
+      "notes": "Official text identifies amendments to Articles 8 and 13(1). Separate instrument record created for provenance; no consolidated tax rules or current rates inferred."
+    },
+    {
+      "document_id": "EG-PERSONAL-STATUS-PROCEDURE-1-2000",
+      "official_title_ar": "قانون رقم 1 لسنة 2000 بتنظيم بعض أوضاع وإجراءات التقاضي في مسائل الأحوال الشخصية",
+      "practice_areas": [
+        "family"
+      ],
+      "document_type": "family_procedure_law",
+      "instrument_number": 1,
+      "instrument_year": 2000,
+      "source_id": "EG-AMIRI-PRESS",
+      "source_urls": [
+        {
+          "url": "https://alamiria.com/Sec/TashTxt?id=QVqBTj6P1To%3D",
+          "source_role": "official Ministry of Justice decision citing the law",
+          "status": "supporting_reference_only"
+        }
+      ],
+      "source_status": "discovery_only",
+      "collection_permission": "permission_pending",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "original Gazette text",
+        "all amendments",
+        "related procedural rules and executive instruments",
+        "scope and transitional provisions",
+        "family-lawyer review"
+      ],
+      "notes": "Current source is a later official decision citing this law, not the base law itself. Obtain and verify the original promulgated text."
+    },
+    {
+      "document_id": "EG-FAMILY-COURTS-LAW-10-2004",
+      "official_title_ar": "قانون رقم 10 لسنة 2004 بإصدار قانون إنشاء محاكم الأسرة",
+      "practice_areas": [
+        "family",
+        "administrative"
+      ],
+      "document_type": "family_courts_law",
+      "instrument_number": 10,
+      "instrument_year": 2004,
+      "source_id": "EG-AMIRI-PRESS",
+      "source_urls": [
+        {
+          "url": "https://alamiria.com/Sec/TashTxt?id=QVqBTj6P1To%3D",
+          "source_role": "official Ministry of Justice decision citing the law",
+          "status": "supporting_reference_only"
+        }
+      ],
+      "source_status": "discovery_only",
+      "collection_permission": "permission_pending",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "original Gazette text",
+        "all amendments",
+        "implementing decisions and court-circuit rules",
+        "scope and transitional provisions",
+        "family-lawyer review"
+      ],
+      "notes": "Current source is a later official decision citing this law, not the base law itself. Obtain and verify the original promulgated text."
     }
   ],
   "next_actions": [
@@ -1271,12 +1365,17 @@
         "publisher": "General Authority for Amiri Press",
         "observed_title": "قانون رقم 7 لسنة 2024 بتعديل بعض أحكام قانون الضريبة على الدخل الصادر بالقانون رقم 91 لسنة 2005",
         "finding": "Official text identifies amendments to Articles 8 and 13(1) of Income Tax Law 91/2005 and provides distinct commencement rules by income category. Store as a separate amending instrument and verify exact Gazette issue/pages and any later changes before computing current tax.",
-        "status": "source_discovered_not_downloaded"
+        "status": "source_discovered_not_downloaded",
+        "document_ids": [
+          "EG-INCOME-TAX-91-2005",
+          "EG-INCOME-TAX-AMENDMENT-7-2024"
+        ]
       },
       {
         "evidence_id": "SRC-AMIRIA-FAMILY-LAWS-REFERENCED-5420-2024",
         "document_ids": [
-          "EG-PERSONAL-STATUS-COLLECTION"
+          "EG-PERSONAL-STATUS-PROCEDURE-1-2000",
+          "EG-FAMILY-COURTS-LAW-10-2004"
         ],
         "source_type": "official Ministry of Justice decision citing base statutes",
         "url": "https://alamiria.com/Sec/TashTxt?id=QVqBTj6P1To%3D",
