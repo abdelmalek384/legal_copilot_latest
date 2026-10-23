@@ -223,7 +223,7 @@ _LEGAL_SYNONYMS_RAW = {
 }
 LEGAL_SYNONYMS = {}
 for _key, _values in _LEGAL_SYNONYMS_RAW.items():
-    _group = tuple(dict.fromkeys(tokens(_key) + tokens(_values)))
+    _group = tuple(dict.fromkeys(tokens(_key) + tokens(" ".join(_values))))
     for _alias in _group:
         LEGAL_SYNONYMS[_alias] = tuple(x for x in _group if x != _alias)
 
