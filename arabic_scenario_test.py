@@ -133,6 +133,28 @@ assert fee is not None, "الأتعاب لا تظهر في القضية"
 assert fee["amount"] == 10000 and fee["paid"] == 2500, "قيمة الأتعاب أو المدفوع غير صحيحة"
 assert fee["amount"] - fee["paid"] == 7500, "حساب المتبقي غير صحيح"
 
+# Arabic document text storage and retrieval smoke test.
+doc_text = "مستند تجريبي خيالي: يوضح هذا النص شروط عقد التوريد محل الاختبار.\n\nفقرة ثانية باللغة العربية لاختبار حفظ النص."
+doc_response = client.post(
+    f"/cases/{created[0][0]}/docs",
+    json={"name": "مستند عقد توريد تجريبي", "text": doc_text},
+    headers=headers,
+)
+assert doc_response.status_code == 200, f"حفظ نص المستند فشل: {doc_response.status_code} {doc_response.text}"
+doc_detail = client.get(f"/cases/{created[0][0]}", headers=headers).json()
+assert any(d["name"] == "مستند عقد توريد تجريبي" for d in doc_detail.get("docs", [])), "المستند لا يظهر في ملف القضية"
+
+# Authorization and input-validation negative tests.
+anonymous = TestClient(app.app)
+anonymous_response = anonymous.get(f"/cases/{created[0][0]}")
+assert anonymous_response.status_code == 401, f"الطلب دون تسجيل دخول لم يُرفض: {anonymous_response.status_code}"
+bad_fee_response = client.post(
+    f"/cases/{fee_case}/fees",
+    json={"title": "اختبار مبلغ غير صحيح", "amount": 100, "paid": 150},
+    headers=headers,
+)
+assert bad_fee_response.status_code == 422, f"لم يُرفض دفع أكبر من إجمالي الأتعاب: {bad_fee_response.status_code}"
+
 # Conflict search should find the fictional client in its own case.
 response = client.post("/conflicts", json={"q": "شركة الأفق"}, headers=headers)
 assert response.status_code == 200, f"فحص تعارض المصالح فشل: {response.status_code} {response.text}"
@@ -149,7 +171,10 @@ print("نجاح: حفظ ٥ ملاحظات عربية و٥ مواعيد تجري�
 print("نجاح: تسجيل الأتعاب وحساب المتبقي (٧٥٠٠)")
 print("نجاح: فحص تعارض المصالح للموكل التجريبي")
 print("نجاح: استجابة واجهة البحث")
+print("نجاح: حفظ نص مستند عربي وظهوره في ملف القضية")
+print("نجاح: رفض الوصول دون تسجيل دخول")
+print("نجاح: رفض تسجيل مبلغ مدفوع أكبر من إجمالي الأتعاب")
 print("ملاحظة: جميع البيانات محفوظة في قاعدة SQLite مؤقتة منفصلة، ولن تُضاف إلى قاعدة بيانات المكتب.")
-print("لم يُختبر هنا: صحة الرأي القانوني، صحة مواعيد قانونية حقيقية، رفع مستندات، أو اختبار اختراق مستقل.")
+print("لم يُختبر هنا: صحة الرأي القانوني، صحة مواعيد قانونية حقيقية، رفع ملفات PDF/DOCX فعليًا، أو اختبار اختراق مستقل.")
 
 # CI execution is enabled for the audit/ branch family.
