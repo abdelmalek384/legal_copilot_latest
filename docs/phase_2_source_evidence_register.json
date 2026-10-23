@@ -322,6 +322,41 @@
       "access_terms_state": "not_reviewed",
       "collection_permission": "permission_pending",
       "notes": "Ministry index labels some electronic texts as guidance and identifies the Official Gazette as the legal reference. Capture the original Gazette issue and pages for every instrument; this index does not establish current status or commercial reuse rights."
+    },
+    {
+      "source_id": "EG-ETA-TAX-CORRIGENDUM-2026",
+      "publisher": "Egyptian Tax Authority",
+      "source_type": "official tax legislation index entry",
+      "url": "https://portal.eta.gov.eg/ar/content/qwanyn-aldrybt-ly-alqymt-almdaft",
+      "observed_title": "استدراك لتصحيح تعديل بعض أحكام قوانين أرقام 149 و150 و151 لسنة 2026",
+      "document_ids": [
+        "EG-TAX-CORRIGENDUM-149-151-2026",
+        "EG-VAT-AMENDMENT-149-2026",
+        "EG-UNIFIED-TAX-PROCEDURES-AMENDMENT-150-2026",
+        "EG-INCOME-TAX-AMENDMENT-151-2026"
+      ],
+      "source_state": "official_index_discovered_text_not_reviewed",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "The existence of a corrigendum is material to version control. Obtain the underlying official file and Gazette publication, compare each correction against the three laws, and do not rely on the uncorrected text until the effect is understood."
+    },
+    {
+      "source_id": "EG-ETA-VAT-DECISIONS-2025",
+      "publisher": "Egyptian Tax Authority",
+      "source_type": "official VAT legislation index",
+      "url": "https://portal.eta.gov.eg/ar/content/qwanyn-aldrybt-ly-alqymt-almdaft",
+      "observed_title": "Ministerial decisions 417/2025, 418/2025 and 420/2025 listed with tax laws",
+      "document_ids": [
+        "EG-VAT-EXEC-REG-AMENDMENT-417-2025",
+        "EG-VAT-EXEC-REG-418-2025",
+        "EG-TAX-SIMPLIFIED-RECORDS-420-2025",
+        "EG-TAX-INCENTIVES-6-2025",
+        "EG-TAX-SETTLEMENT-5-2025"
+      ],
+      "source_state": "official_index_discovered_not_downloaded",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Index entries are discovery leads. Verify the actual issuing instrument, publication series, exact text, commencement and applicable scope before use."
     }
   ],
   "document_records_to_create_from_batch": [
