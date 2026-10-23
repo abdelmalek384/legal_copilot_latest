@@ -26,11 +26,12 @@ Use `--out path/to/report.json` to preserve a report.
 - The manifest's collection permission is explicitly `allowed`.
 - The source register independently records `allowed` or `allowed_limited`, with permission evidence and a valid terms-review date.
 - The manifest has its own permission evidence and valid terms-review date.
+- A document-level `permission_scope_review` is marked `passed`, includes evidence and a review date, and explicitly lists `collection` in `approved_uses`.
 - The direct URL is HTTPS and its hostname matches the document's explicit allowlist.
-- Commercial product reuse is reported separately. Collection readiness does not imply permission for commercial indexing, retrieval, or excerpt display.
+- Commercial product use requires both source-level commercial permission and a document-level scope review explicitly listing `commercial_product_use`; collection approval alone is insufficient.
 
 ## Limits
 
-The audit is a preflight consistency check, not a legal opinion and not a permission grant. It cannot determine whether evidence actually covers the exact document, acquisition method, storage, extraction/OCR, indexing, commercial use, excerpt display, or redistribution. A human reviewer must compare the written authorization or applicable terms against each intended use.
+The audit is a preflight consistency check, not a legal opinion and not a permission grant. It cannot independently determine whether evidence actually covers the exact document, acquisition method, storage, extraction/OCR, indexing, commercial use, excerpt display, or redistribution. The `permission_scope_review` record must be completed by a human reviewer who compares the written authorization or applicable terms against each intended use; do not set it to `passed` merely to silence a blocker.
 
 The audit does not download files, crawl sites, change status fields, verify legal authenticity, infer commencement dates, establish amendment history, or mark a document current law. Legal-status review and qualified Egyptian-lawyer approval remain separate release gates.
