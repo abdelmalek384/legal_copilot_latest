@@ -3,6 +3,9 @@ os.environ["COPILOT_DB"] = os.path.join(tempfile.mkdtemp(), "t.db")
 import app
 c = app.conn()
 app.import_law(c, [json.loads(l) for l in open("sample_law.jsonl", encoding="utf-8")])
+# The search fixture is fictional test data; explicitly mark only its first two rows as reviewed.
+c.execute("UPDATE chunks SET verified=1,in_force=1 WHERE case_id IS NULL AND source='FICTIONAL-TEST-DATA' AND article IN ('1','2')")
+c.commit()
 assert app.norm("المَادَّة") == app.norm("الماده") and app.norm("ﻻ") == app.norm("لا")  # diacritics, PDF ligatures
 assert app.search(c, "اجازة سنوية")[0]["ref"].endswith("المادة 1")
 assert app.search(c, "الإجازةُ السَّنَويّة")[0]["ref"].endswith("المادة 1")
