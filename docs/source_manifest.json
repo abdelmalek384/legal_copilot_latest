@@ -1,0 +1,774 @@
+{
+  "schema_version": "1.0",
+  "manifest_title": "Legal Copilot — Egyptian legal source registry",
+  "prepared_on": "2026-10-23",
+  "purpose": "Track candidate sources and the legal, technical, and licensing checks required before collection or reuse.",
+  "policy": {
+    "do_not_infer_license": true,
+    "default_reuse_status": "unknown",
+    "default_legal_status": "unknown",
+    "require_original_source_for_authority": true,
+    "store_ai_answers_as_authoritative_law": false,
+    "rule": "A publicly accessible page is not automatically public domain, bulk-exportable, or licensed for commercial reuse. Confirm terms for storage, indexing, embeddings, model processing, redistribution, and commercial use separately."
+  },
+  "fields": {
+    "access_status": "candidate_not_a_verified_access_test",
+    "license_status": "unknown_until_terms_reviewed",
+    "export_status": "not_confirmed_unless_explicitly_documented",
+    "legal_text_status": "discovery_source_not_necessarily_primary"
+  },
+  "sources": [
+    {
+      "id": "EG-OFFICIAL-GAZETTE",
+      "name": "Amiri Press / Official Gazette and Egyptian Proceedings",
+      "category": "official_primary",
+      "url": "https://alamiria.com/Sec/Home",
+      "jurisdiction": "Egypt",
+      "content_types": [
+        "laws",
+        "presidential_decisions",
+        "ministerial_decisions",
+        "Official Gazette",
+        "Egyptian Proceedings"
+      ],
+      "access_method": "Official portal; historical copies may require request, subscription, or payment",
+      "access_status": "public_portal_exists; archive_depth_and_download_limits_to_check",
+      "license_status": "unknown; request terms for bulk digital reuse",
+      "commercial_reuse": "not_confirmed",
+      "bulk_export": "not_confirmed",
+      "automation_policy": "check terms and technical rules before automated retrieval",
+      "priority": "P0",
+      "verification_requirements": [
+        "retain Gazette name, issue, date, page range",
+        "hash original file",
+        "record publication and effective dates separately",
+        "compare extracted text to original"
+      ],
+      "notes": "Preferred primary publication provenance for enacted texts."
+    },
+    {
+      "id": "EG-CASSATION",
+      "name": "Court of Cassation judgment search",
+      "category": "official_primary",
+      "url": "https://cc.gov.eg/judgments_search/",
+      "jurisdiction": "Egypt",
+      "content_types": [
+        "judgments",
+        "legal_principles",
+        "case metadata"
+      ],
+      "access_method": "Official search portal",
+      "access_status": "public_search_portal_exists; full-text availability varies and must be tested",
+      "license_status": "unknown; confirm reuse and database rights",
+      "commercial_reuse": "not_confirmed",
+      "bulk_export": "not_confirmed",
+      "automation_policy": "no scraping until terms and access rules are reviewed",
+      "priority": "P0",
+      "verification_requirements": [
+        "court/circuit",
+        "case or appeal number",
+        "judgment date",
+        "full judgment vs headnote",
+        "source URL"
+      ],
+      "notes": "Record exact citation and whether the result is a full decision or summary."
+    },
+    {
+      "id": "EG-SCC",
+      "name": "Supreme Constitutional Court",
+      "category": "official_primary",
+      "url": "https://www.sccourt.gov.eg/newportal/",
+      "jurisdiction": "Egypt",
+      "content_types": [
+        "constitutional judgments",
+        "case information",
+        "constitutional materials"
+      ],
+      "access_method": "Official court portal",
+      "access_status": "public_portal_exists; archive coverage to check",
+      "license_status": "unknown",
+      "commercial_reuse": "not_confirmed",
+      "bulk_export": "not_confirmed",
+      "automation_policy": "check terms before automation",
+      "priority": "P0",
+      "verification_requirements": [
+        "case number",
+        "judgment date",
+        "disposition",
+        "official citation"
+      ],
+      "notes": "Separate constitutional holdings from summaries and commentary."
+    },
+    {
+      "id": "EG-PP-ENCYCLOPEDIA",
+      "name": "Public Prosecution legal encyclopedia",
+      "category": "official_or_institutional_discovery",
+      "url": "https://www.eg-pp.com/",
+      "jurisdiction": "Egypt",
+      "content_types": [
+        "legislation",
+        "decisions",
+        "Gazette references",
+        "judgments",
+        "prosecution instructions",
+        "deadlines"
+      ],
+      "access_method": "Website; some pages may require login or permissions",
+      "access_status": "portal_exists; page-level access restrictions apply",
+      "license_status": "unknown; request permission for bulk use",
+      "commercial_reuse": "not_confirmed",
+      "bulk_export": "not_confirmed",
+      "automation_policy": "do not bypass authentication or restrictions",
+      "priority": "P1",
+      "verification_requirements": [
+        "verify referenced legal text against official source",
+        "record access level and page URL"
+      ],
+      "notes": "Discovery index; not every item should be assumed public or reusable."
+    },
+    {
+      "id": "EG-PRESIDENCY-CONSTITUTION",
+      "name": "Presidency of Egypt — Constitution",
+      "category": "official_primary_or_government_copy",
+      "url": "https://www.presidency.eg/AR/مصر/الدستور/",
+      "jurisdiction": "Egypt",
+      "content_types": [
+        "Constitution",
+        "constitutional amendments"
+      ],
+      "access_method": "Government website",
+      "access_status": "public_page_candidate; validate exact URL and current content",
+      "license_status": "unknown",
+      "commercial_reuse": "not_confirmed",
+      "bulk_export": "not_confirmed",
+      "automation_policy": "check site terms",
+      "priority": "P0",
+      "verification_requirements": [
+        "identify amendment/version date",
+        "compare against Gazette publication"
+      ],
+      "notes": "Use as discovery/corroboration; preserve constitutional version."
+    },
+    {
+      "id": "EG-LABOUR",
+      "name": "Ministry of Labour — laws and legislation",
+      "category": "official_government",
+      "url": "https://www.labour.gov.eg/ar/القوانين-والتشريعات/",
+      "jurisdiction": "Egypt",
+      "content_types": [
+        "labour legislation",
+        "ministerial decisions",
+        "guidance"
+      ],
+      "access_method": "Government website",
+      "access_status": "public_page_candidate; verify availability and archive completeness",
+      "license_status": "unknown",
+      "commercial_reuse": "not_confirmed",
+      "bulk_export": "not_confirmed",
+      "automation_policy": "check terms",
+      "priority": "P0",
+      "verification_requirements": [
+        "compare law text to Gazette",
+        "track regulations and later amendments"
+      ],
+      "notes": "Labour Law 14/2025 requires careful commencement, transitional, and amendment tracking."
+    },
+    {
+      "id": "EG-ARAB-LEGAL-PORTAL",
+      "name": "Arab Legal Portal",
+      "category": "legal_database",
+      "url": "https://www.arablegalportal.org/",
+      "jurisdiction": "Egypt_and_arab_region",
+      "content_types": [
+        "legislation",
+        "legal materials; exact coverage to verify"
+      ],
+      "access_method": "Portal; access model must be tested",
+      "access_status": "availability_and_operator_to_confirm",
+      "license_status": "unknown",
+      "commercial_reuse": "not_confirmed",
+      "bulk_export": "not_confirmed",
+      "automation_policy": "confirm terms before automated retrieval",
+      "priority": "P1",
+      "verification_requirements": [
+        "identify publisher/operator",
+        "trace records to primary source",
+        "verify coverage dates"
+      ],
+      "notes": "Do not assume this portal is the same as a government-operated database without confirming."
+    },
+    {
+      "id": "EG-PARLIAMENT",
+      "name": "House of Representatives",
+      "category": "official_government",
+      "url": "https://www.parliament.gov.eg/",
+      "jurisdiction": "Egypt",
+      "content_types": [
+        "bills",
+        "legislative materials",
+        "committee materials",
+        "law references"
+      ],
+      "access_method": "Government website",
+      "access_status": "public_portal_candidate",
+      "license_status": "unknown",
+      "commercial_reuse": "not_confirmed",
+      "bulk_export": "not_confirmed",
+      "automation_policy": "check terms",
+      "priority": "P1",
+      "verification_requirements": [
+        "distinguish bill from enacted law",
+        "record legislative stage and dates"
+      ],
+      "notes": "Useful for legislative history; a bill is not current law merely because it is published."
+    },
+    {
+      "id": "EG-MFA-TREATIES",
+      "name": "Ministry of Foreign Affairs",
+      "category": "official_government",
+      "url": "https://www.mfa.gov.eg/",
+      "jurisdiction": "Egypt",
+      "content_types": [
+        "treaties",
+        "international instruments",
+        "ratification notices"
+      ],
+      "access_method": "Government website",
+      "access_status": "public_portal_candidate",
+      "license_status": "unknown",
+      "commercial_reuse": "not_confirmed",
+      "bulk_export": "not_confirmed",
+      "automation_policy": "check terms",
+      "priority": "P2",
+      "verification_requirements": [
+        "signature",
+        "ratification",
+        "entry into force",
+        "publication",
+        "reservations"
+      ],
+      "notes": "Treaty status must be tracked separately from signature."
+    },
+    {
+      "id": "EG-MOJ-PORTAL",
+      "name": "Ministry of Justice — portal/discovery",
+      "category": "official_government",
+      "url": "https://moj.gov.eg/",
+      "jurisdiction": "Egypt",
+      "content_types": [
+        "justice services",
+        "legal notices",
+        "official materials"
+      ],
+      "access_method": "Government website",
+      "access_status": "verify current route and relevant repositories",
+      "license_status": "unknown",
+      "commercial_reuse": "not_confirmed",
+      "bulk_export": "not_confirmed",
+      "automation_policy": "check terms",
+      "priority": "P1",
+      "verification_requirements": [
+        "record issuing authority and source URL",
+        "verify primary text"
+      ],
+      "notes": "Registry entry is for discovery; identify specific datasets before collection."
+    },
+    {
+      "id": "EG-TAX-AUTHORITY",
+      "name": "Egyptian Tax Authority",
+      "category": "official_regulator",
+      "url": "https://www.eta.gov.eg/",
+      "jurisdiction": "Egypt",
+      "content_types": [
+        "tax legislation",
+        "guidance",
+        "decisions",
+        "forms"
+      ],
+      "access_method": "Regulator website",
+      "access_status": "verify current document catalogue",
+      "license_status": "unknown",
+      "commercial_reuse": "not_confirmed",
+      "bulk_export": "not_confirmed",
+      "automation_policy": "check terms",
+      "priority": "P1",
+      "verification_requirements": [
+        "connect circulars to enabling law",
+        "record effective dates and tax year"
+      ],
+      "notes": "Tax guidance and binding legislation must be stored as different source classes."
+    },
+    {
+      "id": "EG-CUSTOMS",
+      "name": "Egyptian Customs Authority",
+      "category": "official_regulator",
+      "url": "https://www.customs.gov.eg/",
+      "jurisdiction": "Egypt",
+      "content_types": [
+        "customs legislation",
+        "tariff decisions",
+        "procedures",
+        "guidance"
+      ],
+      "access_method": "Regulator website",
+      "access_status": "verify current document catalogue",
+      "license_status": "unknown",
+      "commercial_reuse": "not_confirmed",
+      "bulk_export": "not_confirmed",
+      "automation_policy": "check terms",
+      "priority": "P2",
+      "verification_requirements": [
+        "effective date",
+        "tariff version",
+        "decision authority"
+      ],
+      "notes": "Tariffs and annual changes need temporal versioning."
+    },
+    {
+      "id": "EG-CBE",
+      "name": "Central Bank of Egypt",
+      "category": "official_regulator",
+      "url": "https://www.cbe.org.eg/",
+      "jurisdiction": "Egypt",
+      "content_types": [
+        "banking regulations",
+        "circulars",
+        "supervisory instructions",
+        "reports"
+      ],
+      "access_method": "Regulator website",
+      "access_status": "verify document catalogue and historical circular access",
+      "license_status": "unknown",
+      "commercial_reuse": "not_confirmed",
+      "bulk_export": "not_confirmed",
+      "automation_policy": "check terms",
+      "priority": "P2",
+      "verification_requirements": [
+        "circular number",
+        "issuer",
+        "issue/effective date",
+        "superseding circular"
+      ],
+      "notes": "Some supervisory material may be restricted or context-dependent."
+    },
+    {
+      "id": "EG-GAFI",
+      "name": "General Authority for Investment and Free Zones",
+      "category": "official_regulator",
+      "url": "https://www.gafi.gov.eg/",
+      "jurisdiction": "Egypt",
+      "content_types": [
+        "investment rules",
+        "company services",
+        "executive decisions",
+        "forms"
+      ],
+      "access_method": "Regulator website",
+      "access_status": "verify current legal-document collection",
+      "license_status": "unknown",
+      "commercial_reuse": "not_confirmed",
+      "bulk_export": "not_confirmed",
+      "automation_policy": "check terms",
+      "priority": "P2",
+      "verification_requirements": [
+        "connect guidance to statute and executive regulations",
+        "effective date"
+      ],
+      "notes": "Useful for investment and company formation practice areas."
+    },
+    {
+      "id": "EG-NTRA",
+      "name": "National Telecom Regulatory Authority",
+      "category": "official_regulator",
+      "url": "https://www.tra.gov.eg/",
+      "jurisdiction": "Egypt",
+      "content_types": [
+        "telecom regulations",
+        "licensing rules",
+        "decisions",
+        "guidance"
+      ],
+      "access_method": "Regulator website",
+      "access_status": "verify current document archive",
+      "license_status": "unknown",
+      "commercial_reuse": "not_confirmed",
+      "bulk_export": "not_confirmed",
+      "automation_policy": "check terms",
+      "priority": "P2",
+      "verification_requirements": [
+        "decision number",
+        "effective date",
+        "amendments"
+      ],
+      "notes": "Relevant to telecommunications, privacy and technology matters."
+    },
+    {
+      "id": "LOC-EGYPT-GUIDE",
+      "name": "Library of Congress — Egypt legal research guide",
+      "category": "secondary_discovery",
+      "url": "https://wwws.loc.gov/law/help/legal-research-guide/egypt.php",
+      "jurisdiction": "Egypt",
+      "content_types": [
+        "research guides",
+        "links to legal sources"
+      ],
+      "access_method": "Public research guide",
+      "access_status": "public_page_candidate",
+      "license_status": "check site and linked-source terms",
+      "commercial_reuse": "not_confirmed",
+      "bulk_export": "not_applicable_or_not_confirmed",
+      "automation_policy": "prefer manual source discovery",
+      "priority": "P1",
+      "verification_requirements": [
+        "use guide to find primary sources; do not cite guide as law"
+      ],
+      "notes": "Discovery tool, not a legal authority."
+    },
+    {
+      "id": "WIPO-LEX",
+      "name": "WIPO Lex",
+      "category": "international_specialist_database",
+      "url": "https://www.wipo.int/wipolex/",
+      "jurisdiction": "Egypt_and_international",
+      "content_types": [
+        "IP legislation",
+        "regulations",
+        "treaties"
+      ],
+      "access_method": "Public searchable database",
+      "access_status": "public_access_candidate",
+      "license_status": "review WIPO terms and individual document rights",
+      "commercial_reuse": "not_confirmed",
+      "bulk_export": "not_confirmed",
+      "automation_policy": "check terms",
+      "priority": "P1",
+      "verification_requirements": [
+        "check current version and official source",
+        "identify translation status"
+      ],
+      "notes": "Specialist discovery source for intellectual property."
+    },
+    {
+      "id": "ILO-NATLEX",
+      "name": "ILO NATLEX",
+      "category": "international_specialist_database",
+      "url": "https://natlex.ilo.org/",
+      "jurisdiction": "Egypt_and_international",
+      "content_types": [
+        "labour and social security legislation",
+        "selected translations"
+      ],
+      "access_method": "Public searchable database",
+      "access_status": "public_access_candidate",
+      "license_status": "review ILO terms and underlying source rights",
+      "commercial_reuse": "not_confirmed",
+      "bulk_export": "not_confirmed",
+      "automation_policy": "check terms",
+      "priority": "P1",
+      "verification_requirements": [
+        "verify current status against Egyptian primary source",
+        "record language/translation"
+      ],
+      "notes": "Useful labour-law discovery and comparative research."
+    },
+    {
+      "id": "FAOLEX",
+      "name": "FAOLEX",
+      "category": "international_specialist_database",
+      "url": "https://faolex.fao.org/",
+      "jurisdiction": "Egypt_and_international",
+      "content_types": [
+        "agriculture",
+        "food",
+        "environment",
+        "water",
+        "natural resources legislation"
+      ],
+      "access_method": "Public searchable database",
+      "access_status": "public_access_candidate",
+      "license_status": "review FAO and underlying document terms",
+      "commercial_reuse": "not_confirmed",
+      "bulk_export": "not_confirmed",
+      "automation_policy": "check terms",
+      "priority": "P2",
+      "verification_requirements": [
+        "verify current Egyptian legal text",
+        "record translation and version"
+      ],
+      "notes": "Sector-specific discovery."
+    },
+    {
+      "id": "CYRILLA",
+      "name": "Cyrilla",
+      "category": "specialist_legal_database",
+      "url": "https://cyrilla.org/",
+      "jurisdiction": "Egypt_and_other_jurisdictions",
+      "content_types": [
+        "digital rights",
+        "privacy",
+        "telecoms",
+        "technology law"
+      ],
+      "access_method": "Public database/search",
+      "access_status": "public_access_candidate; Egypt coverage to verify",
+      "license_status": "review site terms and source-level rights",
+      "commercial_reuse": "not_confirmed",
+      "bulk_export": "not_confirmed",
+      "automation_policy": "check terms",
+      "priority": "P2",
+      "verification_requirements": [
+        "verify source and current status"
+      ],
+      "notes": "Potential discovery source for digital rights and technology laws."
+    },
+    {
+      "id": "WJAD",
+      "name": "Wajid / واجد",
+      "category": "commercial_legal_ai",
+      "url": "https://wajid.ai/",
+      "jurisdiction": "Egypt",
+      "content_types": [
+        "legislation",
+        "judicial rulings",
+        "legal research answers"
+      ],
+      "access_method": "Commercial platform; account/pricing terms to confirm",
+      "access_status": "marketing_claims_not_independently_audited",
+      "license_status": "must obtain written licence for storing/indexing/reuse",
+      "commercial_reuse": "not_confirmed",
+      "bulk_export": "not_confirmed; ask about API and full-text export",
+      "automation_policy": "do not scrape without written authorization",
+      "priority": "P1",
+      "verification_requirements": [
+        "sample citation validation",
+        "corpus size/date range",
+        "full-text vs headnote",
+        "update lag"
+      ],
+      "notes": "Website has advertised large corpus counts; treat counts as vendor claims until independently verified."
+    },
+    {
+      "id": "HAQY",
+      "name": "Haqy / حقي",
+      "category": "commercial_legal_ai",
+      "url": "https://haqy.ai/",
+      "jurisdiction": "Egypt",
+      "content_types": [
+        "legislation",
+        "case law",
+        "document OCR",
+        "legal research answers"
+      ],
+      "access_method": "Commercial platform; account/pricing terms to confirm",
+      "access_status": "marketing_claims_not_independently_audited",
+      "license_status": "must obtain written licence for storing/indexing/reuse",
+      "commercial_reuse": "not_confirmed",
+      "bulk_export": "not_confirmed for underlying legal corpus",
+      "automation_policy": "no scraping or access-control bypass",
+      "priority": "P1",
+      "verification_requirements": [
+        "sample source trace",
+        "full-text access",
+        "court/topic coverage",
+        "export rights"
+      ],
+      "notes": "Extracted-document export, if offered, is not the same as bulk export of the vendor's database."
+    },
+    {
+      "id": "LEGALMIND",
+      "name": "LegalMind",
+      "category": "commercial_legal_ai",
+      "url": "https://getlegalmind.com/",
+      "jurisdiction": "Egypt_claimed_or_targeted; confirm current plan",
+      "content_types": [
+        "legal research",
+        "contract drafting",
+        "document summaries"
+      ],
+      "access_method": "Commercial platform; ask provider",
+      "access_status": "features_require_direct_verification",
+      "license_status": "written permission required for reuse of platform data",
+      "commercial_reuse": "not_confirmed",
+      "bulk_export": "not_confirmed",
+      "automation_policy": "confirm terms and API policy",
+      "priority": "P2",
+      "verification_requirements": [
+        "Egypt coverage",
+        "citations",
+        "source repository",
+        "retention and training policy"
+      ],
+      "notes": "Treat generated answers as research leads, not source law."
+    },
+    {
+      "id": "HAQQ",
+      "name": "HAQQ Legal AI",
+      "category": "commercial_legal_ai",
+      "url": "https://www.haqq.ai/",
+      "jurisdiction": "Egypt_coverage_requires_plan_level_confirmation",
+      "content_types": [
+        "legal research",
+        "document review",
+        "knowledge base",
+        "cited answers"
+      ],
+      "access_method": "Commercial platform",
+      "access_status": "verify Egypt coverage on actual subscription",
+      "license_status": "review product terms and source rights",
+      "commercial_reuse": "not_confirmed",
+      "bulk_export": "some extracted-data export features may not include underlying database",
+      "automation_policy": "confirm API and automation terms",
+      "priority": "P2",
+      "verification_requirements": [
+        "jurisdiction coverage",
+        "citation URL quality",
+        "export scope",
+        "data processing terms"
+      ],
+      "notes": "Distinguish exporting a user's documents from exporting vendor-owned corpus."
+    },
+    {
+      "id": "LAIWYER",
+      "name": "Laiwyer",
+      "category": "commercial_legal_ai",
+      "url": "https://www.laiwyer.ai/",
+      "jurisdiction": "Egypt_coverage_requires_plan_level_confirmation",
+      "content_types": [
+        "legal research",
+        "cited sources",
+        "document analysis"
+      ],
+      "access_method": "Commercial platform",
+      "access_status": "verify Egypt support in current product/plan",
+      "license_status": "review terms",
+      "commercial_reuse": "not_confirmed",
+      "bulk_export": "not_confirmed",
+      "automation_policy": "confirm API/automation terms",
+      "priority": "P2",
+      "verification_requirements": [
+        "Egypt filters",
+        "full text",
+        "citations",
+        "currentness",
+        "export terms"
+      ],
+      "notes": "Do not assume a multi-jurisdiction claim guarantees Egyptian coverage."
+    },
+    {
+      "id": "LEXVIRA",
+      "name": "LexVira — Egypt jurisdiction source map",
+      "category": "legal_source_discovery",
+      "url": "https://www.lexvira.com/en/jurisdictions/egypt",
+      "jurisdiction": "Egypt",
+      "content_types": [
+        "source map",
+        "legislation and court source links"
+      ],
+      "access_method": "Public website candidate",
+      "access_status": "verify indexed vs linked content",
+      "license_status": "review site terms and underlying sources",
+      "commercial_reuse": "not_confirmed",
+      "bulk_export": "not_confirmed",
+      "automation_policy": "check terms",
+      "priority": "P2",
+      "verification_requirements": [
+        "identify content actually hosted/indexed",
+        "follow links to primary source"
+      ],
+      "notes": "May be a source directory rather than a full text corpus."
+    },
+    {
+      "id": "BOOKS-COMMENTARIES",
+      "name": "Egyptian legal textbooks and commentaries (publisher-specific registry required)",
+      "category": "books_secondary_literature",
+      "url": null,
+      "jurisdiction": "Egypt",
+      "content_types": [
+        "civil-law commentary",
+        "criminal-law commentary",
+        "procedure",
+        "commercial/company law",
+        "tax",
+        "labour",
+        "personal status",
+        "administrative law"
+      ],
+      "access_method": "Purchase, licensed digital library, university library, or author/publisher permission",
+      "access_status": "not_a_single_source; catalogue titles and editions individually",
+      "license_status": "copyright-protected unless specific licence says otherwise",
+      "commercial_reuse": "assume_not_allowed_without_permission",
+      "bulk_export": "not_confirmed; usually restricted",
+      "automation_policy": "do not scan, scrape, or ingest full texts without permission",
+      "priority": "P2",
+      "verification_requirements": [
+        "author",
+        "full title",
+        "edition",
+        "publisher",
+        "publication year",
+        "ISBN",
+        "edition/version",
+        "licence"
+      ],
+      "notes": "Use books as commentary, never silently merge commentary into statutory text. Store bibliographic metadata and licensed excerpts only."
+    },
+    {
+      "id": "JOURNALS-ARTICLES",
+      "name": "Egyptian law journals and academic articles (publisher-specific registry required)",
+      "category": "books_secondary_literature",
+      "url": null,
+      "jurisdiction": "Egypt",
+      "content_types": [
+        "peer-reviewed articles",
+        "case comments",
+        "legal scholarship"
+      ],
+      "access_method": "Publisher subscription, university access, open-access repository or author permission",
+      "access_status": "catalogue each publisher/repository separately",
+      "license_status": "item-level licence required",
+      "commercial_reuse": "not_confirmed",
+      "bulk_export": "not_confirmed",
+      "automation_policy": "follow publisher and repository terms",
+      "priority": "P3",
+      "verification_requirements": [
+        "author",
+        "title",
+        "journal",
+        "volume/issue",
+        "pages",
+        "DOI or stable URL",
+        "licence"
+      ],
+      "notes": "Use as secondary analysis and attach citations; do not represent opinions as binding law."
+    },
+    {
+      "id": "COMMERCIAL_DATABASES",
+      "name": "Commercial legal databases and law-firm libraries (vendor-specific registry required)",
+      "category": "commercial_legal_database",
+      "url": null,
+      "jurisdiction": "Egypt",
+      "content_types": [
+        "legislation",
+        "judgments",
+        "commentary",
+        "templates",
+        "practical notes"
+      ],
+      "access_method": "Subscription or enterprise agreement",
+      "access_status": "identify providers and test actual account coverage",
+      "license_status": "subscription access does not automatically grant bulk extraction or commercial reuse",
+      "commercial_reuse": "requires written licence",
+      "bulk_export": "requires written confirmation",
+      "automation_policy": "no automation until contract and provider terms permit it",
+      "priority": "P1",
+      "verification_requirements": [
+        "coverage inventory",
+        "export specification",
+        "licence scope",
+        "data retention",
+        "update SLA"
+      ],
+      "notes": "Negotiate dataset/API access rather than scraping a browser UI."
+    }
+  ]
+}
