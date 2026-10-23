@@ -1,0 +1,185 @@
+{
+  "schema_version": "1.0",
+  "register_id": "EG-PHASE2-OFFICIAL-SOURCE-EVIDENCE-BATCH-1",
+  "checked_on": "2026-10-23",
+  "scope": "Source discovery and publication metadata only. No files were downloaded or OCR-processed by this register.",
+  "interpretation_rules": {
+    "source_discovered_does_not_mean_collected": true,
+    "official_publisher_does_not_mean_reuse_permission_granted": true,
+    "gazette_metadata_does_not_replace_page_level_review_of_original_pdf": true,
+    "effective_date_must_be_based_on_promulgated_text_and_lawyer_review": true,
+    "unknown_values_must_remain_unknown": true
+  },
+  "sources": [
+    {
+      "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+      "publisher": "الهيئة العامة لشئون المطابع الأميرية",
+      "source_type": "official legislation text page",
+      "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+      "observed_title": "قانون رقم 14 لسنة 2025 بإصدار قانون العمل",
+      "source_state": "discovered_not_downloaded",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Search result exposes the law text and commencement clause. Save and review the exact official Gazette PDF and page range before marking the document acquired or status-verified."
+    },
+    {
+      "source_id": "EG-IDSC-GAZETTE-2025-18-LABOUR",
+      "publisher": "المطابع الأميرية; metadata hosted by IDSC digital repository",
+      "source_type": "Official Gazette issue metadata and PDF listing",
+      "url": "https://dspace.id.com.eg/handle/123456789/8027",
+      "observed_title": "الجريدة الرسمية العدد 18 (تابع)",
+      "publication_date": "2025-05-03",
+      "document_ids": ["EG-LABOUR-LAW-14-2025"],
+      "source_state": "metadata_discovered_pdf_listed_not_downloaded",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Repository metadata identifies Law 14/2025. The record does not establish the repository's permission for automated retrieval, storage, extraction, indexing, or commercial display."
+    },
+    {
+      "source_id": "EG-MINISTRY-LABOUR-LAWS-INDEX",
+      "publisher": "Egyptian Ministry of Labour",
+      "source_type": "official ministry index",
+      "url": "https://www.labour.gov.eg/en/laws-and-legislations/",
+      "observed_title": "Laws and Legislations",
+      "document_ids": ["EG-LABOUR-LAW-14-2025", "EG-SOCIAL-INSURANCE-148-2019"],
+      "source_state": "index_discovered_not_downloaded",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Use for discovery and to identify implementing materials; pin each individual official Gazette instrument rather than treating the index as the primary text."
+    },
+    {
+      "source_id": "EG-IDSC-GAZETTE-2025-291-SUPP-LABOUR-DECISIONS",
+      "publisher": "المطابع الأميرية; metadata hosted by IDSC digital repository",
+      "source_type": "Egyptian Proceedings supplement issue metadata and PDF listing",
+      "url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc",
+      "observed_title": "الوقائع المصرية ملحق الجريدة الرسمية العدد 291 (تابع)",
+      "publication_date": "2025-12-25",
+      "document_ids": ["EG-LABOUR-DECISION-259-2025", "EG-LABOUR-DECISION-260-2025", "EG-LABOUR-DECISION-264-2025", "EG-LABOUR-DECISION-271-2025"],
+      "source_state": "metadata_discovered_pdf_listed_not_downloaded",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Metadata identifies Ministry of Labour decisions 259/2025, 260/2025, 264/2025 and 271/2025. Capture each as a separate instrument record after reviewing the issue PDF and exact titles, dates, articles, and any later amendments."
+    },
+    {
+      "source_id": "EG-AMIRI-PRESS-CRIMPROC-160-2026",
+      "publisher": "الهيئة العامة لشئون المطابع الأميرية",
+      "source_type": "official legislation text page",
+      "url": "https://www.alamiria.com/Sec/TashTxt?id=Aalg37zxdcU%3D",
+      "observed_title": "قانون رقم 160 لسنة 2026 بتعديل بعض أحكام القانون رقم 174 لسنة 2025 بإصدار قانون الإجراءات الجنائية",
+      "document_ids": ["EG-CRIMINAL-PROCEDURE-174-2025", "EG-CRIMINAL-PROCEDURE-160-2026", "EG-CRIMINAL-PROCEDURE-150-1950"],
+      "source_state": "discovered_not_downloaded",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "The text states that the commencement phrase in Law 174/2025 is replaced with 1 October 2027, and that Law 160/2026 itself takes effect the day after publication. Preserve the text as a source lead; legal effect and transition require review against the Gazette scan and specialist counsel."
+    },
+    {
+      "source_id": "EG-IDSC-GAZETTE-2026-39B-CRIMPROC-160",
+      "publisher": "المطابع الأميرية; metadata hosted by IDSC digital repository",
+      "source_type": "Official Gazette issue metadata and PDF listing",
+      "url": "https://dspace.id.com.eg/handle/123456789/8851",
+      "observed_title": "الجريدة الرسمية العدد 39 مكرر (ب)",
+      "publication_date": "2026-09-30",
+      "document_ids": ["EG-CRIMINAL-PROCEDURE-160-2026"],
+      "source_state": "metadata_discovered_pdf_listed_not_downloaded",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Repository metadata identifies the issue and Law 160/2026. Exact page range, scan integrity and reuse terms remain to be reviewed."
+    },
+    {
+      "source_id": "EG-IDSC-GAZETTE-2025-45D-CRIMPROC-174",
+      "publisher": "المطابع الأميرية; metadata hosted by IDSC digital repository",
+      "source_type": "Official Gazette issue metadata and PDF listing",
+      "url": "https://dspace.id.com.eg/handle/123456789/4666",
+      "observed_title": "الجريدة الرسمية العدد 45 مكرر (د)",
+      "publication_date": "2025-11-12",
+      "document_ids": ["EG-CRIMINAL-PROCEDURE-174-2025"],
+      "source_state": "metadata_discovered_pdf_listed_not_downloaded",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Repository metadata identifies the issue containing Law 174/2025. Read together with Law 160/2026; original commencement wording is not sufficient to describe current commencement."
+    },
+    {
+      "source_id": "EG-PARLIAMENT-CRIMPROC-160-2026",
+      "publisher": "Egyptian House of Representatives",
+      "source_type": "official parliamentary news / corroboration",
+      "url": "https://parliament.gov.eg/News_Show.aspx?frm=5874",
+      "observed_title": "مجلس النواب يوافق نهائياً على مشروع قانون بتعديل أحكام القانون رقم 174 لسنة 2025",
+      "publication_date": "2026-09-30",
+      "document_ids": ["EG-CRIMINAL-PROCEDURE-160-2026"],
+      "source_state": "discovered",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Corroborative context only. The promulgated law and Gazette issue control the legal text."
+    }
+  ],
+  "document_records_to_create_from_batch": [
+    {
+      "document_id": "EG-LABOUR-DECISION-259-2025",
+      "provisional_title_ar": "قرار وزارة العمل رقم 259 لسنة 2025",
+      "document_type": "ministerial_decision",
+      "related_to": ["EG-LABOUR-LAW-14-2025"],
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_action": "Confirm exact title, date, text, Gazette page range and legal basis from issue 291 supplement."
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-260-2025",
+      "provisional_title_ar": "قرار وزارة العمل رقم 260 لسنة 2025",
+      "document_type": "ministerial_decision",
+      "related_to": ["EG-LABOUR-LAW-14-2025"],
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_action": "Confirm exact title, date, text, Gazette page range and legal basis from issue 291 supplement."
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-264-2025",
+      "provisional_title_ar": "قرار وزارة العمل رقم 264 لسنة 2025",
+      "document_type": "ministerial_decision",
+      "related_to": ["EG-LABOUR-LAW-14-2025"],
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_action": "Confirm exact title, date, text, Gazette page range and legal basis from issue 291 supplement."
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-271-2025",
+      "provisional_title_ar": "قرار وزارة العمل رقم 271 لسنة 2025",
+      "document_type": "ministerial_decision",
+      "related_to": ["EG-LABOUR-LAW-14-2025"],
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_action": "Confirm exact title, date, text, Gazette page range and legal basis from issue 291 supplement."
+    }
+  ],
+  "next_actions": [
+    {
+      "id": "B1",
+      "action": "Review source terms and permitted use for each Amiri Press / IDSC repository source before download or indexing.",
+      "status": "not_started",
+      "blocking": true
+    },
+    {
+      "id": "B2",
+      "action": "Acquire authorized copies of Official Gazette issue 18 (supplement), 3 May 2025; Official Gazette issue 45 bis (D), 12 November 2025; and Official Gazette issue 39 bis (B), 30 September 2026; record original file hashes and page ranges.",
+      "status": "not_started",
+      "blocking": true
+    },
+    {
+      "id": "B3",
+      "action": "Acquire authorized copy of Egyptian Proceedings issue 291 supplement, 25 December 2025, and create individual records for decisions 259/2025, 260/2025, 264/2025 and 271/2025.",
+      "status": "not_started",
+      "blocking": true
+    },
+    {
+      "id": "B4",
+      "action": "Have Egyptian labour-law counsel review Law 14/2025 commencement, exclusions, transitional clauses and each implementing decision.",
+      "status": "not_started",
+      "blocking": true
+    },
+    {
+      "id": "B5",
+      "action": "Have Egyptian criminal-procedure counsel review the interaction of Laws 150/1950, 174/2025 and 160/2026 before assigning an operative-status label.",
+      "status": "not_started",
+      "blocking": true
+    }
+  ]
+}
