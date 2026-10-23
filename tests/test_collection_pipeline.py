@@ -1,7 +1,10 @@
 import json
 import tempfile
 import unittest
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from tools.collect_legal_documents import article_audit, check_permission, load_manifest, validate_public_https_url
 
