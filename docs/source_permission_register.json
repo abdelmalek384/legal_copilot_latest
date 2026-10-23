@@ -1,0 +1,111 @@
+{
+  "schema_version": "1.0",
+  "assessment_date": "2026-10-23",
+  "note": "A register of source candidates and permission questions, not a claim that rights have been granted.",
+  "sources": [
+    {
+      "source_id": "EG-PRESIDENCY",
+      "authority": "Presidency of the Arab Republic of Egypt",
+      "source_page": "https://www.presidency.eg/ar/مصر/الدستور/",
+      "material_types": [
+        "constitution",
+        "official statements",
+        "official publications"
+      ],
+      "access_status": "public_page_located",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": null,
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Review current site terms and request written confirmation for local archiving, Arabic text extraction, indexing, commercial product use, excerpt display, and redistribution."
+    },
+    {
+      "source_id": "EG-AMIRI-PRESS",
+      "authority": "General Authority for Amiri Press",
+      "source_page": "https://www.alamiria.com/Sec/Home",
+      "material_types": [
+        "Official Gazette",
+        "Egyptian Proceedings",
+        "legislation"
+      ],
+      "access_status": "public_portal_located",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": null,
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established; Official Gazette access may be subscription-based",
+      "required_next_action": "Ask for licensed digital archive/API or bulk export and written scope covering storage, text extraction, indexing, user display, commercial use, and rate limits."
+    },
+    {
+      "source_id": "EG-COURT-CASSATION",
+      "authority": "Egyptian Court of Cassation",
+      "source_page": "https://cc.gov.eg/",
+      "terms_url": "https://cc.gov.eg/terms",
+      "material_types": [
+        "judgments",
+        "judgment principles",
+        "case search"
+      ],
+      "access_status": "public portal with access restrictions described in published terms",
+      "collection_permission": "not_allowed_without_explicit_exception_or_license",
+      "commercial_reuse_permission": "prior_written_permission_required_per_published_terms",
+      "terms_checked_on": "2026-10-23",
+      "bulk_download_or_api": "do not automate or bulk extract absent written authorization",
+      "required_next_action": "Request an official API/licensed export and written permission. Do not scrape while permission is pending.",
+      "permission_evidence": "Published site policy reviewed on 2026-10-23: https://cc.gov.eg/terms. Policy prohibits automated/bulk extraction, restricts content to legal/academic/research/documentation uses, and requires prior written approval for commercial use/republication. This is a record of the restriction, not permission."
+    },
+    {
+      "source_id": "EG-WIPO-LEX",
+      "authority": "World Intellectual Property Organization",
+      "source_page": "https://www.wipo.int/wipolex/",
+      "material_types": [
+        "legal texts",
+        "IP legislation",
+        "metadata"
+      ],
+      "access_status": "public research portal",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://www.wipo.int/tools/en/disclaimers.html",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Review WIPO site/database terms; use as a discovery and cross-reference source unless intended reuse is clearly permitted."
+    },
+    {
+      "source_id": "EG-ILO-NATLEX",
+      "authority": "International Labour Organization",
+      "source_page": "https://natlex.ilo.org/",
+      "material_types": [
+        "labour legislation",
+        "metadata"
+      ],
+      "access_status": "public research portal",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://www.ilo.org/global/copyright/lang--en/index.htm",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Review ILO copyright and database terms; treat as a discovery/cross-check source until permission is clear."
+    },
+    {
+      "source_id": "EG-LOC-LEGAL-GUIDE",
+      "authority": "Library of Congress",
+      "source_page": "https://wwws.loc.gov/law/help/legal-research-guide/egypt.php",
+      "material_types": [
+        "research guides",
+        "source links",
+        "legal research context"
+      ],
+      "access_status": "public research guide",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://www.loc.gov/legal/",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Use as a research map and review terms before copying or republishing page content."
+    }
+  ]
+}
