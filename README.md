@@ -9,6 +9,24 @@ Model: set LLM_URL (OpenAI-compatible /chat/completions, e.g. vLLM or Ollama), L
 Not included yet: verified official law/ruling data, Arabic OCR, WhatsApp/SMS delivery
 of reminders (use /sessions/upcoming from a scheduler), embedding-model search, amendment/version tracking.
 
+## Egyptian legal corpus bootstrap
+
+The repository currently contains source registers and candidate metadata, not a complete verified Egyptian legal corpus. `sample_law.jsonl` contains fictional test material and must not be used as real law.
+
+Validate the initial candidate catalogue (dry run):
+
+```bash
+python tools/seed_legal_candidates.py
+```
+
+To seed source and document-candidate metadata into the local SQLite registry (no legal text is downloaded and no law is marked verified):
+
+```bash
+python tools/seed_legal_candidates.py --apply
+```
+
+See [the bootstrap guide](docs/legal_corpus_bootstrap.md), [candidate instrument catalogue](docs/legal_document_candidates.json), and [source permission register](docs/source_permission_register.json). Do not collect or commercially reuse a source unless the applicable permission has been established and documented.
+
 ## Arabic handling
 Normalizes diacritics, tatweel, alef/hamza forms, ya/alef maqsura, ta marbuta, and Arabic-Indic digits (so "المادة ٥" finds article 5);
 light prefix/suffix stemming and stopword removal at both index and query time; exact article-number lookup; RTL UI with Arabic fonts.
