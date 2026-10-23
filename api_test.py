@@ -299,6 +299,17 @@ if review_queue_response.json()["versions"]:
     assert {"version_id", "official_title", "review_status", "legal_status", "event_count"} <= set(queue_row)
 
 
+# Numeric legal claims must be supported by the text of the cited passages,
+# not merely by the existence of a syntactically valid citation.
+assert app._legal_quantities("The maximum is five years.") == {(5, "year")}
+assert app._legal_quantities("The maximum is 5 years.") == {(5, "year")}
+assert app._legal_quantities("المدة خمس سنوات") == {(5, "year")}
+numeric_hits = [{"text": "The maximum contract duration is five years."}]
+assert not app._answer_has_unsupported_quantities("The maximum is five years [1].", numeric_hits, {1})
+assert app._answer_has_unsupported_quantities("The maximum is ten years [1].", numeric_hits, {1})
+assert app._answer_has_unsupported_quantities("The maximum is ten years [1].", numeric_hits, set())
+
+
 # Persistent research-chat messages must share the same per-IP LLM budget
 # across conversation IDs, otherwise clients can evade the /ask limit by creating chats.
 from starlette.requests import Request as StarletteRequest
