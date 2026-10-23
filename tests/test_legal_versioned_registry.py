@@ -114,6 +114,11 @@ class LegalVersionedRegistryTests(unittest.TestCase):
             "INSERT INTO legal_review_events(version_id,reviewer,review_type,outcome,notes,evidence_url) VALUES(?,?,?,?,?,?)",
             (version_id, "reviewer-test", "amendment_history", "pass", "fixture only", "https://example.gov/review-evidence")
         )
+        _, amended_version_id = self._make_linked_chunk("provenance-amended", "2024-01-01", text="otherprovenanceprobe amended legal passage")
+        self.db.execute(
+            "INSERT INTO legal_version_relations(from_version_id,to_version_id,relation_type,notes) VALUES(?,?,?,?)",
+            (version_id, amended_version_id, "amends", "fixture only")
+        )
         self.db.commit()
         hit = self.app.search(self.db, "provenanceprobe", as_of="2026-10-23")[0]
         p = hit["provenance"]
@@ -124,6 +129,8 @@ class LegalVersionedRegistryTests(unittest.TestCase):
         self.assertEqual(p["gazette_issue"], "123")
         self.assertTrue(p["amendment_history_verified"])
         self.assertEqual(p["review_evidence"][0]["evidence_url"], "https://example.gov/review-evidence")
+        self.assertEqual(p["relations"][0]["relation_type"], "amends")
+        self.assertEqual(p["relations"][0]["to_version_id"], amended_version_id)
 
     def test_unlinked_legacy_citation_is_explicitly_labelled(self):
         self.app.add_chunks(self.db, [{"ref":"Legacy source","text":"legacyprobe passage","in_force":1,"verified":1,"source":"legacy"}])
