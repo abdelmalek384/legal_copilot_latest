@@ -21,3 +21,10 @@
 
 ## Important limitations
 This is still an MVP, not a production-hardened legal system. No independent security audit, two-factor authentication, password-reset email flow, encrypted application database, scanned-PDF OCR, official legal-data verification, or full conflict-of-interest workflow is included. Run locally only; do not expose it to the public internet without a security review and HTTPS deployment.
+
+
+## Historical date-aware retrieval and citation provenance
+- Permit reviewed, dated repealed/historical versions to be retrieved for dates before their recorded repeal boundary, while excluding them on and after that boundary.
+- Apply the same historical eligibility rule to exact article lookup; historical records without a known repeal boundary remain excluded.
+- Include recorded version, Gazette, review, and amendment-relation metadata in the answer-model context, with explicit warnings that metadata is not independent proof.
+- Add regression cases for historical retrieval boundaries and provenance-aware prompts.
