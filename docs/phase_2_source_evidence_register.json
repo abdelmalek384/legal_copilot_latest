@@ -145,6 +145,127 @@
       "access_terms_state": "not_reviewed",
       "collection_permission": "permission_pending",
       "notes": "Supporting reference only, not the original promulgated text of Law 3/2005. Verify the page title and issuing instrument, locate the original Official Gazette publication and all amendments, and review access/reuse terms before any acquisition or current-law use."
+    },
+    {
+      "source_id": "EG-IDSC-GAZETTE-2022-9A-REAL-ESTATE-9-2022",
+      "publisher": "المطابع الأميرية; metadata hosted by IDSC digital repository",
+      "source_type": "Official Gazette issue metadata and PDF listing",
+      "url": "https://dspace.id.com.eg/handle/123456789/6303",
+      "observed_title": "الجريدة الرسمية العدد 9 مكرر (أ) — قانون رقم 9 لسنة 2022 بتعديل بعض أحكام القانون رقم 114 لسنة 1946",
+      "publication_date": "2022-03-06",
+      "document_ids": [
+        "EG-REAL-ESTATE-REGISTRATION-AMENDMENT-9-2022",
+        "EG-REAL-ESTATE-REGISTRATION-114-1946"
+      ],
+      "source_state": "metadata_discovered_pdf_listed_not_downloaded",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Metadata identifies the amending instrument and Gazette issue. Exact page range, scan integrity, commencement, and reuse terms remain to be reviewed."
+    },
+    {
+      "source_id": "EG-AMIRI-PRESS-STATE-PROPERTY-200-2026",
+      "publisher": "الهيئة العامة لشئون المطابع الأميرية",
+      "source_type": "official legislation text page",
+      "url": "https://www.alamiria.com/Sec/TashTxt?id=cEpwOo6BfmY%3D",
+      "observed_title": "قرار رئيس مجلس الوزراء رقم 200 لسنة 2026 بإصدار اللائحة التنفيذية للقانون رقم 168 لسنة 2025 بشأن أملاك الدولة الخاصة",
+      "document_ids": [
+        "EG-STATE-PRIVATE-PROPERTY-168-2025",
+        "EG-STATE-PRIVATE-PROPERTY-EXEC-REG-200-2026"
+      ],
+      "source_state": "discovered_not_downloaded",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Official implementing regulation text cites Law 168/2025. This is not a substitute for the original law text or Gazette page review."
+    },
+    {
+      "source_id": "EG-GAGS-PUBLIC-CONTRACTS-INDEX",
+      "publisher": "الهيئة العامة للخدمات الحكومية",
+      "source_type": "official regulator index",
+      "url": "https://www.gags.gov.eg/Home/PurchasesIndex",
+      "observed_title": "كل ما يخص قانون التعاقدات الحكومية رقم 182 لسنة 2018",
+      "document_ids": [
+        "EG-PUBLIC-CONTRACTS-182-2018",
+        "EG-PUBLIC-CONTRACTS-AMENDMENT-188-2020",
+        "EG-PUBLIC-CONTRACTS-EXEC-REG-692-2019",
+        "EG-PUBLIC-CONTRACTS-EXEC-REG-AMENDMENT-28-2020",
+        "EG-PUBLIC-CONTRACTS-EXEC-REG-AMENDMENT-614-2020"
+      ],
+      "source_state": "index_discovered_not_downloaded",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Official index is a discovery lead, not the primary legal text. Pin each instrument and its Gazette/Egyptian Proceedings publication separately."
+    },
+    {
+      "source_id": "EG-ILO-NATLEX-PUBLIC-CONTRACTS-182-2018",
+      "publisher": "International Labour Organization — NATLEX",
+      "source_type": "secondary legislation catalogue",
+      "url": "https://natlex.ilo.org/dyn/natlex2/r/natlex/fe/details?p3_isn=112797",
+      "observed_title": "Law No. 182 of 2018 promulgating the Law Regulating Contracts Concluded by Public Entities",
+      "document_ids": [
+        "EG-PUBLIC-CONTRACTS-182-2018"
+      ],
+      "source_state": "secondary_discovery_only",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Use for discovery and cross-check only; verify the Arabic primary text against the official Gazette and review reuse terms."
+    },
+    {
+      "source_id": "EG-MANSHURAT-PERSONAL-STATUS-25-1920",
+      "publisher": "Manshurat Legal Database",
+      "source_type": "secondary legal text copy",
+      "url": "https://manshurat.org/node/879",
+      "observed_title": "القانون رقم 25 لسنة 1920 بشأن أحكام النفقة وبعض مسائل الأحوال الشخصية",
+      "document_ids": [
+        "EG-PERSONAL-STATUS-25-1920"
+      ],
+      "source_state": "secondary_discovery_only",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Discovery aid only. Metadata reports publication 15 July 1920 and amended status; verify against original Gazette and full later amendment/constitutional ruling chain."
+    },
+    {
+      "source_id": "EG-LAWEG-PERSONAL-STATUS-100-1985",
+      "publisher": "Laweg legal database",
+      "source_type": "secondary legal text copy",
+      "url": "https://www.laweg.net/framePlain.aspx?NID=35976&action=viewactivepages&itemid=30080&type=6",
+      "observed_title": "قانون رقم 100 لسنة 1985 بتعديل بعض أحكام قوانين الأحوال الشخصية",
+      "document_ids": [
+        "EG-PERSONAL-STATUS-AMENDMENT-100-1985",
+        "EG-PERSONAL-STATUS-25-1920",
+        "EG-PERSONAL-STATUS-25-1929"
+      ],
+      "source_state": "secondary_discovery_only",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Supports discovery of the amending instrument and affected family-law statutes; not primary authority. Confirm original Gazette issue and article mapping."
+    },
+    {
+      "source_id": "EG-LAWHUB-REAL-ESTATE-114-1946",
+      "publisher": "Law Hub legal database",
+      "source_type": "secondary legal text copy",
+      "url": "https://lawhub.info/eg/?p=11638",
+      "observed_title": "قانون تنظيم الشهر العقاري — القانون رقم 114 لسنة 1946",
+      "document_ids": [
+        "EG-REAL-ESTATE-REGISTRATION-114-1946"
+      ],
+      "source_state": "secondary_discovery_only",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Secondary discovery aid only; verify original Gazette and amendments including Law 9/2022 and any later instruments."
+    },
+    {
+      "source_id": "EG-LAWHUB-PUBLIC-CONTRACTS-692-2019",
+      "publisher": "Law Hub legal database",
+      "source_type": "secondary legal text copy",
+      "url": "https://lawhub.info/eg/?p=12694",
+      "observed_title": "قرار وزير المالية رقم 692 لسنة 2019 — اللائحة التنفيذية لقانون تنظيم التعاقدات",
+      "document_ids": [
+        "EG-PUBLIC-CONTRACTS-EXEC-REG-692-2019"
+      ],
+      "source_state": "secondary_discovery_only",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Secondary discovery aid only. Verify the original Egyptian Proceedings publication and later amending decisions."
     }
   ],
   "document_records_to_create_from_batch": [
