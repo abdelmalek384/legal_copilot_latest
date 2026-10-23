@@ -29,6 +29,84 @@ CREATE TABLE IF NOT EXISTS tasks(id INTEGER PRIMARY KEY, case_id INT, title TEXT
 CREATE TABLE IF NOT EXISTS events(id INTEGER PRIMARY KEY, case_id INT, who TEXT, at TEXT, text TEXT);
 CREATE TABLE IF NOT EXISTS sessions(id INTEGER PRIMARY KEY, case_id INT, date TEXT, note TEXT, done INT DEFAULT 0);
 CREATE TABLE IF NOT EXISTS docs(id INTEGER PRIMARY KEY, case_id INT, name TEXT, added TEXT);
+-- Legal corpus provenance: one stable source record, multiple immutable legal versions.
+CREATE TABLE IF NOT EXISTS legal_sources(
+  source_id TEXT PRIMARY KEY,
+  authority TEXT NOT NULL,
+  source_page TEXT NOT NULL,
+  access_status TEXT NOT NULL DEFAULT 'unknown',
+  collection_permission TEXT NOT NULL DEFAULT 'unknown'
+    CHECK(collection_permission IN ('unknown','allowed','allowed_limited','prohibited','not_allowed_without_explicit_exception_or_license')),
+  commercial_reuse_permission TEXT NOT NULL DEFAULT 'unknown',
+  terms_url TEXT,
+  terms_checked_on TEXT,
+  permission_evidence TEXT,
+  created_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+CREATE TABLE IF NOT EXISTS legal_documents(
+  document_id TEXT PRIMARY KEY,
+  source_id TEXT NOT NULL REFERENCES legal_sources(source_id),
+  official_title TEXT NOT NULL,
+  document_type TEXT NOT NULL,
+  law_number TEXT,
+  law_year INTEGER,
+  language TEXT NOT NULL DEFAULT 'ar',
+  created_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+CREATE TABLE IF NOT EXISTS legal_document_versions(
+  version_id INTEGER PRIMARY KEY,
+  document_id TEXT NOT NULL REFERENCES legal_documents(document_id),
+  version_label TEXT NOT NULL,
+  source_url TEXT NOT NULL,
+  original_path TEXT,
+  original_sha256 TEXT,
+  retrieved_at TEXT,
+  publication_date TEXT,
+  effective_date TEXT,
+  repeal_date TEXT,
+  consolidated_as_of TEXT,
+  gazette_issue TEXT,
+  gazette_pages TEXT,
+  legal_status TEXT NOT NULL DEFAULT 'unknown'
+    CHECK(legal_status IN ('unknown','under_review','not_yet_in_force','in_force','partially_repealed','repealed','historical')),
+  review_status TEXT NOT NULL DEFAULT 'pending_source_review'
+    CHECK(review_status IN ('pending_source_review','pending_lawyer_review','verified','rejected')),
+  authenticity_verified INTEGER NOT NULL DEFAULT 0 CHECK(authenticity_verified IN (0,1)),
+  status_verified INTEGER NOT NULL DEFAULT 0 CHECK(status_verified IN (0,1)),
+  amendment_history_verified INTEGER NOT NULL DEFAULT 0 CHECK(amendment_history_verified IN (0,1)),
+  permission_evidence TEXT,
+  notes TEXT,
+  created_at TEXT NOT NULL DEFAULT (datetime('now')),
+  UNIQUE(document_id, version_label)
+);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_legal_version_sha256
+  ON legal_document_versions(original_sha256) WHERE original_sha256 IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_legal_versions_dates
+  ON legal_document_versions(effective_date, repeal_date, legal_status);
+CREATE INDEX IF NOT EXISTS idx_legal_versions_review
+  ON legal_document_versions(review_status, status_verified);
+CREATE TABLE IF NOT EXISTS legal_version_relations(
+  relation_id INTEGER PRIMARY KEY,
+  from_version_id INTEGER NOT NULL REFERENCES legal_document_versions(version_id),
+  to_version_id INTEGER NOT NULL REFERENCES legal_document_versions(version_id),
+  relation_type TEXT NOT NULL CHECK(relation_type IN ('amends','repeals','consolidates','corrects','supersedes','implements')),
+  notes TEXT,
+  created_at TEXT NOT NULL DEFAULT (datetime('now')),
+  CHECK(from_version_id <> to_version_id),
+  UNIQUE(from_version_id, to_version_id, relation_type)
+);
+CREATE TABLE IF NOT EXISTS legal_review_events(
+  review_event_id INTEGER PRIMARY KEY,
+  version_id INTEGER NOT NULL REFERENCES legal_document_versions(version_id),
+  reviewer TEXT NOT NULL,
+  review_type TEXT NOT NULL CHECK(review_type IN ('source_authenticity','extraction_quality','legal_status','amendment_history','licensing','lawyer_approval')),
+  outcome TEXT NOT NULL CHECK(outcome IN ('pending','pass','fail','needs_correction')),
+  notes TEXT NOT NULL DEFAULT '',
+  evidence_url TEXT,
+  reviewed_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+CREATE INDEX IF NOT EXISTS idx_legal_review_events_version
+  ON legal_review_events(version_id, reviewed_at);
 """
 _MAP = {"أ": "ا", "إ": "ا", "آ": "ا", "ى": "ي", "ة": "ه"}
 _MAP.update({chr(0x660 + i): str(i) for i in range(10)})
@@ -66,6 +144,8 @@ def conn():
                 c.execute("CREATE INDEX IF NOT EXISTS idx_deadlines_case_due ON deadlines(case_id,due,status)")
                 if "verified" not in [r[1] for r in c.execute("PRAGMA table_info(chunks)")]:
                     c.execute("ALTER TABLE chunks ADD COLUMN verified INT DEFAULT 0")
+                if "document_version_id" not in [r[1] for r in c.execute("PRAGMA table_info(chunks)")]:
+                    c.execute("ALTER TABLE chunks ADD COLUMN document_version_id INT")
                 case_cols = {r[1] for r in c.execute("PRAGMA table_info(cases)")}
                 for col in ("case_number", "case_year", "court", "circuit", "opposing_party"):
                     if col not in case_cols:
