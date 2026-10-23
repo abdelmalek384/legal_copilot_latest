@@ -63,3 +63,9 @@ browser and use `--file saved_page.html`.
 
 ## Arabic law dataset (not bundled)
 This repository does **not** contain `data/law_rows_ar.jsonl`. Generate an Arabic dataset with `python tools/fetch_arabic_law.py out_dir`, or obtain a separately supplied dataset and verify its provenance. The fetch script uses an unofficial republication of Labor Law No. 14 of 2025; compare every imported text with the Official Gazette (issue 18 bis, 3 May 2025) before relying on it. Imported rows should remain marked unverified until reviewed by a qualified person. Do not assume that a downloaded dataset is official or complete.
+
+## Legal Research chat behavior
+
+The Legal Research tab stores conversations per user and firm and uses earlier **user questions** to interpret short follow-ups. Prior assistant answers are not reused as legal evidence. Each answer is grounded in the currently retrieved passages, with numbered citations checked against the returned source set; if retrieval finds no sufficiently relevant source, the API returns a no-source response rather than inventing an answer. Arabic and English questions are supported by the response instructions, but answer quality depends on the language and quality of the indexed source material and configured model.
+
+Source status labels are intentionally conservative: material not marked verified is shown as **Unverified source**, not automatically as repealed or not in force. Only verified material explicitly marked not in force receives the **Not in force** label. This is not a substitute for checking the official publication and amendment history. Uploaded material does not retrain the model; it must be ingested into the searchable corpus and reviewed under the legal-data workflow before being relied on.
