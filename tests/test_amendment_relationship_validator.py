@@ -55,6 +55,47 @@ class AmendmentRelationshipValidatorTests(unittest.TestCase):
         )
         self.assertEqual(report["error_count"], 0)
 
+    def test_duplicate_and_missing_relationship_ids_are_reported(self):
+        base = {
+            "source_instrument_id": "LAW-A",
+            "target_instrument_id": None,
+            "relationship_type": "base_instrument",
+            "status": "under_review",
+            "source_url": "https://gazette.example.gov/law.pdf",
+            "required_evidence": ["Original Gazette text"],
+        }
+        report = MODULE.validate(
+            {"relationships": [
+                {**base, "relationship_id": "REL-DUP"},
+                {**base, "relationship_id": "REL-DUP"},
+                {**base, "relationship_id": "   "},
+            ]},
+            {"documents": [{"document_id": "LAW-A"}]},
+        )
+        codes = [item["code"] for item in report["errors"]]
+        self.assertIn("duplicate_relationship_id", codes)
+        self.assertIn("missing_relationship_id", codes)
+
+    def test_https_source_url_with_embedded_credentials_is_rejected(self):
+        report = MODULE.validate(
+            {"relationships": [{
+                "relationship_id": "REL-CREDENTIALS",
+                "source_instrument_id": "LAW-A",
+                "target_instrument_id": None,
+                "relationship_type": "base_instrument",
+                "status": "under_review",
+                "source_url": "https://reviewer:secret@gazette.example.gov/law.pdf",
+                "required_evidence": ["Original Gazette text"],
+            }]},
+            {"documents": [{"document_id": "LAW-A"}]},
+        )
+        self.assertTrue(any(item["code"] == "missing_or_invalid_https_source_url" for item in report["errors"]))
+
+    def test_invalid_document_schema_is_reported_without_crashing(self):
+        report = MODULE.validate({"relationships": []}, {"documents": {}})
+        self.assertIn("schema_error", report)
+        self.assertEqual(report["relationships_checked"], 0)
+
     def test_invalid_or_missing_source_url_is_error(self):
         report = MODULE.validate(
             {"relationships": [{
