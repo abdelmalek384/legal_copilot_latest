@@ -76,6 +76,66 @@ def audit(db_path: Path):
                 result["version_quality"]=q
                 for key in q:
                     if q[key]: result["issues"].append({"severity":"high" if key in ("not_verified","unknown_legal_status") else "medium","code":"versions_"+key,"count":q[key]})
+
+                # Amendment-history assertions need evidence, not just a boolean flag.
+                vc_required = {"version_id", "legal_status", "review_status", "amendment_history_verified"}
+                if vc_required.issubset(vc):
+                    q["verified_in_force_without_amendment_history_review"] = db.execute(
+                        "SELECT COUNT(*) FROM legal_document_versions WHERE legal_status='in_force' "
+                        "AND review_status='verified' AND amendment_history_verified!=1"
+                    ).fetchone()[0]
+                    if q["verified_in_force_without_amendment_history_review"]:
+                        result["issues"].append({
+                            "severity":"high",
+                            "code":"versions_verified_in_force_without_amendment_history_review",
+                            "count":q["verified_in_force_without_amendment_history_review"],
+                            "detail":"Current-law candidates need an explicit amendment-history review; this audit does not change their status."
+                        })
+                if {"version_id", "amendment_history_verified"}.issubset(vc) and "legal_review_events" in tables:
+                    rc = columns(db, "legal_review_events")
+                    if {"version_id", "review_type", "outcome", "evidence_url"}.issubset(rc):
+                        q["amendment_history_flag_without_evidence"] = db.execute(
+                            "SELECT COUNT(*) FROM legal_document_versions v "
+                            "WHERE v.amendment_history_verified=1 AND NOT EXISTS ("
+                            "SELECT 1 FROM legal_review_events e WHERE e.version_id=v.version_id "
+                            "AND e.review_type='amendment_history' AND e.outcome='pass' "
+                            "AND e.evidence_url IS NOT NULL AND trim(e.evidence_url)!='')"
+                        ).fetchone()[0]
+                        if q["amendment_history_flag_without_evidence"]:
+                            result["issues"].append({
+                                "severity":"high",
+                                "code":"versions_amendment_history_flag_without_evidence",
+                                "count":q["amendment_history_flag_without_evidence"],
+                                "detail":"The flag is set but no passing amendment-history review event with an evidence URL exists."
+                            })
+                result["version_quality"] = q
+        if "legal_version_relations" in tables:
+            relc = columns(db, "legal_version_relations")
+            if {"from_version_id", "to_version_id", "relation_type"}.issubset(relc) and "legal_document_versions" in tables:
+                q = {
+                    "relations_missing_endpoint": db.execute(
+                        "SELECT COUNT(*) FROM legal_version_relations r "
+                        "LEFT JOIN legal_document_versions f ON f.version_id=r.from_version_id "
+                        "LEFT JOIN legal_document_versions t ON t.version_id=r.to_version_id "
+                        "WHERE f.version_id IS NULL OR t.version_id IS NULL"
+                    ).fetchone()[0],
+                    "relations_touching_unreviewed_amendment_history": db.execute(
+                        "SELECT COUNT(*) FROM legal_version_relations r "
+                        "JOIN legal_document_versions f ON f.version_id=r.from_version_id "
+                        "JOIN legal_document_versions t ON t.version_id=r.to_version_id "
+                        "WHERE f.amendment_history_verified!=1 OR t.amendment_history_verified!=1"
+                    ).fetchone()[0] if "amendment_history_verified" in columns(db, "legal_document_versions") else None
+                }
+                result["relation_quality"] = q
+                if q["relations_missing_endpoint"]:
+                    result["issues"].append({"severity":"high","code":"relations_missing_endpoint","count":q["relations_missing_endpoint"]})
+                if q["relations_touching_unreviewed_amendment_history"]:
+                    result["issues"].append({
+                        "severity":"medium",
+                        "code":"relations_touching_unreviewed_amendment_history",
+                        "count":q["relations_touching_unreviewed_amendment_history"],
+                        "detail":"Relation exists in metadata but one or both version histories have not been reviewed."
+                    })
         result["issue_count"]=len(result["issues"])
         result["issue_counts_by_severity"]=dict(Counter(i["severity"] for i in result["issues"]))
         return result
@@ -87,7 +147,7 @@ def render_markdown(report):
     if report["counts"]:
         lines += ["| Table | Rows |","|---|---:|"]+[f"| {k} | {v} |" for k,v in report["counts"].items()]
     else: lines.append("No recognized corpus tables found.")
-    for section in ("chunk_quality","source_permissions","version_quality"):
+    for section in ("chunk_quality","source_permissions","version_quality","relation_quality"):
         if section in report:
             lines += ["",f"## {section.replace('_',' ').title()}",""]
             lines += [f"- **{k.replace('_',' ')}:** {v}" for k,v in report[section].items()]
