@@ -65,7 +65,7 @@ class LegalVersionedRegistryTests(unittest.TestCase):
             self.db.execute("INSERT INTO legal_version_relations(from_version_id,to_version_id,relation_type) VALUES(?,?,?)", (ids[0], ids[1], "magic"))
 
 
-    def _make_linked_chunk(self, version_label, effective_date, repeal_date=None, review_status="verified", legal_status="in_force", authenticity_verified=1, status_verified=1, text="versionprobe legal text"):
+    def _make_linked_chunk(self, version_label, effective_date, repeal_date=None, review_status="verified", legal_status="in_force", authenticity_verified=1, status_verified=1, text="versionprobe legal text", chunk_in_force=1):
         self.db.execute("INSERT INTO legal_sources(source_id,authority,source_page) VALUES(?,?,?)",
                         ("S_" + version_label, "Example Authority", "https://example.gov"))
         self.db.execute("INSERT INTO legal_documents(document_id,source_id,official_title,document_type) VALUES(?,?,?,?)",
@@ -74,7 +74,7 @@ class LegalVersionedRegistryTests(unittest.TestCase):
             "INSERT INTO legal_document_versions(document_id,version_label,source_url,effective_date,repeal_date,legal_status,review_status,authenticity_verified,status_verified) VALUES(?,?,?,?,?,?,?,?,?)",
             ("D_" + version_label, version_label, "https://example.gov/" + version_label + ".pdf", effective_date, repeal_date, legal_status, review_status, authenticity_verified, status_verified)
         )
-        self.app.add_chunks(self.db, [{"ref":"Test law - article 1","article":"1","text":text,"in_force":1,"verified":1,"source":"https://example.gov"}])
+        self.app.add_chunks(self.db, [{"ref":"Test law - article 1","article":"1","text":text,"in_force":chunk_in_force,"verified":1,"source":"https://example.gov"}])
         chunk_id = self.db.execute("SELECT id FROM chunks WHERE ref='Test law - article 1' ORDER BY id DESC LIMIT 1").fetchone()[0]
         self.db.execute("UPDATE chunks SET document_version_id=? WHERE id=?", (cur.lastrowid, chunk_id))
         self.db.commit()
@@ -103,12 +103,15 @@ class LegalVersionedRegistryTests(unittest.TestCase):
     def test_repealed_version_remains_available_before_its_repeal_date(self):
         chunk_id, version_id = self._make_linked_chunk(
             "historical-before-repeal", "2010-01-01", repeal_date="2024-01-01",
-            legal_status="repealed", text="historicalbeforeprobe legal passage"
+            legal_status="repealed", text="historicalbeforeprobe legal passage", chunk_in_force=0
         )
         before = self.app.search(self.db, "historicalbeforeprobe", as_of="2023-12-31")
         on_repeal = self.app.search(self.db, "historicalbeforeprobe", as_of="2024-01-01")
         self.assertEqual([hit["id"] for hit in before], [chunk_id])
+        self.assertTrue(before[0]["applies_as_of"])
         self.assertEqual(on_repeal, [])
+        answer = self.app.ask(self.db, "historicalbeforeprobe", as_of="2023-12-31")
+        self.assertEqual(answer["not_in_force"], [])
         exact_before = self.app.search(self.db, "المادة 1", as_of="2023-12-31")
         exact_on_repeal = self.app.search(self.db, "المادة 1", as_of="2024-01-01")
         self.assertIn(chunk_id, [hit["id"] for hit in exact_before])

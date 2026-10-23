@@ -153,7 +153,7 @@ async function law(){
          const src=h('div',{className:'src research-source'});
          src.append(h('b',{textContent:'['+(i+1)+'] '+(s.ref||'Source')+' '}));
          if(!s.verified)src.append(pill(copy('مصدر غير متحقق'),'soon'));
-         else if(!s.in_force)src.append(pill(copy('غير سارٍ'),'late'));
+         else if(!s.in_force&&s.applies_as_of!==true)src.append(pill(copy('غير سارٍ'),'late'));
          src.append(h('p',{textContent:s.text||''}),h('div',{className:'mut',textContent:(s.source||'')+(s.as_of?' · '+fd(s.as_of):'')}));
          const p=s.provenance||{};
          if(p.status==='registry_linked'){
