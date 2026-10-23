@@ -75,7 +75,7 @@ def main(src, out):
             txt = list(pieces(body)); blocks[block].append(art)
             for t in txt:
                 allrows.append({"law": name + ("" if block <= 1 else " [block %d]" % block), "article": art, "text": t, "as_of": None,
-                                "in_force": 1, "verified": 0, "source": source}); n_rows += 1
+                                "in_force": 0, "verified": 0, "source": source}); n_rows += 1
         rep += ["## %s" % name, "- file: %s.pdf | pages: %d | OCR used: %s | rows: %d | review_status: %s" % (did, len(pages), ocr, n_rows, meta.get("review_status")), ""]
         rep += ["| block | first | last | articles found | missing numbers in range |", "|---|---|---|---|---|"]
         for b, arts in sorted(blocks.items()):
