@@ -92,3 +92,8 @@ Legacy passages without a `document_version_id` are explicitly returned as `lega
 ## Phase 2 amendment relationship register
 
 Before using the discovery-level amendment graph, run `python tools/validate_amendment_relationships.py`. It checks structural integrity and reports unresolved evidence, provision-mapping, and review-status gaps without changing the register. See [the audit guide](docs/amendment_relationship_validator.md). Structural validation is not legal confirmation; only evidence-backed review by qualified Egyptian counsel can support current-law conclusions.
+
+
+## Tax-law version review queue
+
+The tax discovery inventory now tracks 2025–2026 amendments and related decisions. Review [the tax-law version queue](docs/tax_law_version_review_queue.md), especially the official-index-listed corrigendum associated with Laws 149, 150 and 151 of 2026. Do not use an unreviewed or uncorrected text as current law; original Gazette evidence, correction mapping, permission, and Egyptian tax-counsel review remain prerequisites.
