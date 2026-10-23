@@ -124,6 +124,23 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "one direct PDF endpoint located; no bulk/API permission established",
       "required_next_action": "Review current terms and obtain confirmation for local preservation, text extraction, indexing, commercial product use, excerpt display, and redistribution."
+    },
+    {
+      "source_id": "EG-GAGS-PUBLIC-CONTRACTS-INDEX",
+      "authority": "Government Services Authority, Egypt",
+      "source_page": "https://www.gags.gov.eg/Home/PurchasesIndex",
+      "material_types": [
+        "public procurement legislation index",
+        "government contracts guidance and decisions"
+      ],
+      "access_status": "official_index_located",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": null,
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Identify exact instrument URLs, inspect terms, and request written permission for storage, extraction, indexing, commercial use, excerpt display, and redistribution."
     }
   ]
 }
