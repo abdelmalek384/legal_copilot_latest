@@ -100,3 +100,7 @@ Run `python tools/legal_source_review_queue.py --db path/to/legal.db --out repor
 ## Evidence-backed legal review events
 
 Administrators can append and inspect legal-source review events through `POST /legal-review/versions/{version_id}/events` and `GET /legal-review/versions/{version_id}/events`. Events require scoped review types and passing events require an HTTPS evidence URL. Recording an event never changes verification flags or legal status. See [`docs/evidence_backed_legal_review_events.md`](docs/evidence_backed_legal_review_events.md) for access controls and limitations.
+
+## Legal source review workbench
+
+Administrators can inspect registered legal document versions and review-event history from the **Legal Source Review** page, and append evidence-backed review events. Events never automatically change verification flags or legal status. See [`docs/legal_source_review_workbench.md`](docs/legal_source_review_workbench.md) and [`docs/evidence_backed_legal_review_events.md`](docs/evidence_backed_legal_review_events.md).
