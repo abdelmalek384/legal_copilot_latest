@@ -2,7 +2,14 @@ import os
 import sqlite3
 import tempfile
 import unittest
+import sys
 from pathlib import Path
+
+# Running `python tests/test_legal_versioned_registry.py` sets sys.path[0] to tests/.
+# Explicitly add the repository root so the application module is importable in CI.
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 class LegalVersionedRegistryTests(unittest.TestCase):
     def setUp(self):
@@ -50,12 +57,12 @@ class LegalVersionedRegistryTests(unittest.TestCase):
         self.db.execute("INSERT INTO legal_sources(source_id,authority,source_page) VALUES('S1','Example','https://example.gov')")
         self.db.execute("INSERT INTO legal_documents(document_id,source_id,official_title,document_type) VALUES('D1','S1','Test','law')")
         with self.assertRaises(sqlite3.IntegrityError):
-            self.db.execute("INSERT INTO legal_document_versions(document_id,version_label,source_url,legal_status) VALUES('D1','v1','https://example.gov/a.pdf','probably_current')")
+            self.db.execute("INSERT INTO legal_document_versions(document_id,version_label,source_url,legal_status) VALUES('D1','bad','https://example.gov/bad.pdf','probably_current')")
+        self.db.execute("INSERT INTO legal_document_versions(document_id,version_label,source_url) VALUES('D1','v1','https://example.gov/v1.pdf')")
+        self.db.execute("INSERT INTO legal_document_versions(document_id,version_label,source_url) VALUES('D1','v2','https://example.gov/v2.pdf')")
+        ids = [x[0] for x in self.db.execute("SELECT version_id FROM legal_document_versions ORDER BY version_id")]
         with self.assertRaises(sqlite3.IntegrityError):
-            self.db.execute("INSERT INTO legal_document_versions(document_id,version_label,source_url,legal_status) VALUES('D1','v1','https://example.gov/a.pdf','in_force')")
-            self.db.execute("INSERT INTO legal_document_versions(document_id,version_label,source_url,legal_status) VALUES('D1','v2','https://example.gov/b.pdf','in_force')")
-            ids = [x[0] for x in self.db.execute("SELECT version_id FROM legal_document_versions")]
-            self.db.execute("INSERT INTO legal_version_relations(from_version_id,to_version_id,relation_type) VALUES(?,?,?)", (ids[0],ids[1],"magic"))
+            self.db.execute("INSERT INTO legal_version_relations(from_version_id,to_version_id,relation_type) VALUES(?,?,?)", (ids[0], ids[1], "magic"))
 
 if __name__ == "__main__":
     unittest.main()
