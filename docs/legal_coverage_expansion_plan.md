@@ -7,7 +7,7 @@ Coverage status is a workflow state, not a claim that the database contains thes
 | P0 | Constitutional | Constitution and amendments | Gazette amendment instruments; official version history | Seed benchmark added; lawyer review pending |
 | P0 | Civil law | Civil Code No. 131/1948 | Amending laws, implementing legislation, relevant Cassation principles where licensed | Not started |
 | P0 | Criminal law | Penal Code No. 58/1937 | Amending laws, special penal statutes | Not started |
-| P0 | Criminal procedure | Code of Criminal Procedure No. 150/1950 and transition/replacement legislation | Commencement provisions, transitional provisions, amendments | Not started; status-sensitive |
+| P0 | Criminal procedure | Current operative Code No. 150/1950 (verify provision-by-provision); Law No. 174/2025 promulgating the replacement Code; Law No. 160/2026 postponing its commencement to 1 October 2027 | Official Gazette copies of both laws; transition/repeal provisions; intervening amendments and implementation decisions | Critical status correction required; legal text collection not started |
 | P0 | Civil/commercial procedure | Code No. 13/1968 | Amendments, fees and relevant procedural statutes | Not started |
 | P1 | Labour | Labour Law No. 14/2025 | Executive regulations, commencement, transitional provisions, related social-insurance provisions | Candidate source identified; permissions/status pending |
 | P1 | Companies/commercial | Companies Law No. 159/1981; Commercial Code No. 17/1999 | GAFI decisions and amendments, separately labeled non-binding guidance | Not started |
