@@ -221,7 +221,11 @@ _LEGAL_SYNONYMS_RAW = {
     "فصل": ("إنهاء الخدمة", "dismissal", "termination"),
     "إيجار": ("كراء", "rent", "lease"),
 }
-LEGAL_SYNONYMS = {stem(norm(k)): tuple(tokens(v)) for k, v in _LEGAL_SYNONYMS_RAW.items()}
+LEGAL_SYNONYMS = {}
+for _key, _values in _LEGAL_SYNONYMS_RAW.items():
+    _group = tuple(dict.fromkeys(tokens(_key) + tokens(_values)))
+    for _alias in _group:
+        LEGAL_SYNONYMS[_alias] = tuple(x for x in _group if x != _alias)
 
 
 def expanded_tokens(q, limit=48):
