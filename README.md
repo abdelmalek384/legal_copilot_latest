@@ -81,3 +81,8 @@ A successful OCR upload returns `ocr_used: true` and `text_status: "ocr_unverifi
 ## Amendment-history audit
 
 Run `python tools/audit_legal_corpus.py --db path/to/legal.db --out-dir reports/legal-audit` to generate a read-only metadata audit. The audit flags versions marked in force and verified without an amendment-history review, amendment-history flags that lack a passing review event with an evidence URL, and version relations whose endpoints have unreviewed histories. It reports findings; it never changes review flags or legal status. A passing metadata audit is not proof that the legal instrument is authentic, consolidated, or currently in force. A qualified reviewer must compare the official source and the applicable amendment/repeal instruments.
+
+
+## Phase 2 amendment relationship register
+
+Before using the discovery-level amendment graph, run `python tools/validate_amendment_relationships.py`. It checks structural integrity and reports unresolved evidence, provision-mapping, and review-status gaps without changing the register. See [the audit guide](docs/amendment_relationship_validator.md). Structural validation is not legal confirmation; only evidence-backed review by qualified Egyptian counsel can support current-law conclusions.
