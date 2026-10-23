@@ -46,6 +46,17 @@
       "terms_url": null,
       "terms_checked_on": null,
       "permission_evidence": null
+    },
+    {
+      "source_id": "EG-ETA-TAX-LAWS",
+      "authority": "Egyptian Tax Authority and Income Tax Authority portals",
+      "source_page": "https://portal.eta.gov.eg/ar/content/qwanyn-aldrybt-ly-alqymt-almdaft",
+      "access_status": "official_tax_legislation_indexes_located",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": null
     }
   ],
   "documents": [
