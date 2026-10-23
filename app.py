@@ -446,6 +446,81 @@ def _prompt_provenance(hit):
     }, ensure_ascii=False)
 
 
+_QUANTITY_NUMBER_WORDS = {
+    "zero": 0, "one": 1, "two": 2, "three": 3, "four": 4, "five": 5,
+    "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10,
+    "eleven": 11, "twelve": 12, "thirteen": 13, "fourteen": 14,
+    "fifteen": 15, "sixteen": 16, "seventeen": 17, "eighteen": 18,
+    "nineteen": 19, "twenty": 20,
+    "صفر": 0, "واحد": 1, "واحدة": 1, "واحدا": 1, "واحدةً": 1,
+    "اثنان": 2, "اثنين": 2, "اثنتان": 2, "اثنتين": 2, "إثنان": 2,
+    "ثلاث": 3, "ثلاثة": 3, "ثلاثةَ": 3, "أربع": 4, "أربعة": 4,
+    "خمس": 5, "خمسة": 5, "ست": 6, "ستة": 6, "سبع": 7, "سبعة": 7,
+    "ثمان": 8, "ثمانية": 8, "تسع": 9, "تسعة": 9, "عشر": 10, "عشرة": 10,
+    "أحد عشر": 11, "إحدى عشرة": 11, "اثنا عشر": 12, "اثني عشر": 12,
+    "اثنتا عشرة": 12, "اثنتي عشرة": 12, "ثلاثة عشر": 13, "ثلاث عشرة": 13,
+    "أربعة عشر": 14, "أربع عشرة": 14, "خمسة عشر": 15, "خمس عشرة": 15,
+    "ستة عشر": 16, "ست عشرة": 16, "سبعة عشر": 17, "سبع عشرة": 17,
+    "ثمانية عشر": 18, "ثماني عشرة": 18, "تسعة عشر": 19, "تسع عشرة": 19,
+    "عشرون": 20, "عشرين": 20,
+}
+_QUANTITY_UNITS = {
+    "year": "year", "years": "year", "yearly": "year",
+    "month": "month", "months": "month", "day": "day", "days": "day",
+    "week": "week", "weeks": "week", "hour": "hour", "hours": "hour",
+    "year(s)": "year", "month(s)": "month",
+    "سنة": "year", "سنه": "year", "سنوات": "year", "سنتين": "year",
+    "سنتان": "year", "عام": "year", "أعوام": "year", "عامين": "year",
+    "شهر": "month", "أشهر": "month", "شهور": "month", "شهرين": "month",
+    "يوم": "day", "أيام": "day", "اسبوع": "week", "أسبوع": "week",
+    "أسابيع": "week", "اسابيع": "week", "ساعة": "hour", "ساعات": "hour",
+    "جنيه": "currency", "جنيهًا": "currency", "جنيهات": "currency",
+    "egp": "currency", "pound": "currency", "pounds": "currency",
+    "percent": "percent", "percentage": "percent", "%": "percent", "٪": "percent",
+    "بالمائة": "percent", "في المئة": "percent",
+}
+_QUANTITY_NUM_RE = r"\\d+(?:[.,]\\d+)?|[a-z]+(?:[- ][a-z]+)?|[ء-ي]+(?: [ء-ي]+)?"
+_QUANTITY_UNIT_RE = "|".join(sorted((re.escape(x) for x in _QUANTITY_UNITS), key=len, reverse=True))
+
+
+def _normalize_quantity_number(raw):
+    raw = raw.strip().lower().replace(",", ".")
+    if raw in _QUANTITY_NUMBER_WORDS:
+        return _QUANTITY_NUMBER_WORDS[raw]
+    digits = raw.translate(str.maketrans("٠١٢٣٤٥٦٧٨٩", "0123456789")).translate(str.maketrans("۰۱۲۳۴۵۶۷۸۹", "0123456789"))
+    try:
+        value = float(digits)
+        return int(value) if value.is_integer() else value
+    except ValueError:
+        return None
+
+
+def _legal_quantities(text):
+    """Extract common numeric claims tied to durations, money, and percentages."""
+    text = text.lower().translate(str.maketrans("٠١٢٣٤٥٦٧٨٩", "0123456789")).translate(str.maketrans("۰۱۲۳۴۵۶۷۸۹", "0123456789"))
+    pattern = re.compile(
+        r"(?<![\\w])(?P<number>" + _QUANTITY_NUM_RE + r")\\s+(?P<unit>" + _QUANTITY_UNIT_RE + r")(?![\\w])",
+        re.IGNORECASE,
+    )
+    found = set()
+    for match in pattern.finditer(text):
+        number = _normalize_quantity_number(match.group("number"))
+        unit = _QUANTITY_UNITS.get(match.group("unit").lower())
+        if number is not None and unit:
+            found.add((number, unit))
+    return found
+
+
+def _answer_has_unsupported_quantities(answer, hits, cited_indices):
+    """Fail closed when a duration, monetary amount, or percentage lacks support in cited passage text."""
+    claims = _legal_quantities(re.sub(r"\\[\\d+\\]", " ", answer))
+    if not claims:
+        return False
+    evidence = " ".join(str(hits[index - 1].get("text") or "") for index in cited_indices)
+    supported = _legal_quantities(evidence)
+    return not claims.issubset(supported)
+
+
 def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None):
     # Context helps resolve follow-ups, but the current question remains explicit in the answer prompt.
     retrieval_query = ((conversation_context.strip() + "\n") if conversation_context else "") + q
@@ -467,6 +542,8 @@ def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None):
         cites = {int(x) for x in re.findall(r"\[(\d+)\]", ans)}
         if not cites or not cites <= set(range(1, len(hits) + 1)):
             ans, msg = None, "فشل التحقق من الاستشهادات، تُعرض المصادر فقط."
+        elif _answer_has_unsupported_quantities(ans, hits, cites):
+            ans, msg = None, "تعذر التحقق من الأرقام أو المدد من نصوص المصادر المستشهد بها، تُعرض المصادر فقط."
     return {"found": True, "answer": ans, "message": msg, "sources": hits, "not_in_force": [h["ref"] for h in hits if h["verified"] and not h.get("applies_as_of", h["in_force"])], "unverified_sources": [h["ref"] for h in hits if not h["verified"]], "requested_as_of": as_of or date.today().isoformat()}
 
 
