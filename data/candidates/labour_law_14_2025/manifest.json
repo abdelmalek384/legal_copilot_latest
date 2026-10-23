@@ -10,11 +10,12 @@
   "source": {
     "publisher": "Manshurat",
     "url": "https://manshurat.org/node/76602",
+    "current_page_url": "https://manshurat.org/content/qnwn-lml-ljdyd-rqm-14-lsn-2025",
     "source_class": "secondary_text_copy",
     "stated_origin": "Egyptian Official Gazette issue 18 (supplement), dated 2025-05-03",
-    "official_gazette_match": "not_verified",
-    "terms_review": "not_completed",
-    "collection_permission": "unknown",
+    "official_gazette_match": "partial_structural_cross_check_only; article_by_article_match_not_completed",
+    "terms_review": "reviewed_on_2026-10-24; no affirmative redistribution_or_commercial_reuse_license located",
+    "collection_permission": "unknown_pending_written_permission_or_terms_confirmation",
     "redistribution_permission": "unknown",
     "commercial_reuse_permission": "unknown"
   },
@@ -30,26 +31,31 @@
     },
     "observed_as_of_field": "2025-05-03",
     "observed_source_retrieval_date": "2026-10-22",
-    "embedded_verified_flags": "0 in inspected sample; must not be promoted automatically",
-    "embedded_in_force_flags": "not authoritative; ignore until legal-status review"
+    "embedded_verified_flags": "0 for all 311 records",
+    "embedded_in_force_flags": "1 for all 311 records; untrusted and must not be imported as verified status"
   },
   "legal_review": {
-    "official_gazette_issue": "18 (supplement), to be checked against original",
+    "official_gazette_issue": "18 (تابع)",
     "publication_date": "2025-05-03",
-    "effective_date": null,
-    "repeal_date": null,
-    "amendment_chain_status": "not_reviewed",
-    "commencement_and_transitional_rules_status": "not_reviewed",
-    "extraction_quality_status": "jsonl parses; legal text not compared article-by-article with Gazette",
+    "effective_date": "2025-09-01",
+    "effective_date_basis": "Article 13 commencement formula; corroborated by Amiri Press text and ILO NATLEX / Library of Congress references",
+    "specialized_labor_courts_effective_date": "2025-10-01",
+    "repeal_clause": "Article 12 repeals Law 12/2003 and Law 125/2010",
+    "direct_amendment_search": "No direct amending statute identified in the limited review; not a complete negative certification",
+    "amendment_chain_status": "partial; implementing instruments identified but not exhaustively verified",
+    "commencement_and_transitional_rules_status": "promulgation articles reviewed in accessible text; article-by-article official Gazette verification pending",
+    "extraction_quality_status": "311 records parse; structural counts align with 13 promulgation articles and 298 accompanying-law articles; no full article-by-article Gazette comparison completed",
+    "official_gazette_access": "IDSC item metadata verified; PDF is behind request-a-copy workflow; repository terms require written permission for systematic retrieval/database compilation and limit content use to personal non-commercial use absent permission",
     "egyptian_lawyer_review_status": "pending",
     "search_eligible": false
   },
   "next_steps": [
-    "Review the source's terms and obtain any needed permission for storage, indexing, redistribution, and commercial use.",
-    "Acquire or inspect the exact official Gazette publication and record issue/page evidence.",
-    "Compare all 311 records against the Gazette, including article numbering, wording, omissions, duplicates, and the 13 promulgation provisions.",
-    "Determine commencement and transitional rules from the enacted text and applicable instruments; do not infer the effective date from publication date.",
-    "Record amendments, repeal/supersession status, review evidence, and a lawyer-approved version timeline.",
-    "Import only through the versioned legal-source registry; do not trust incoming verified/in_force fields."
+    "Obtain written permission covering storage, extraction, indexing, embeddings, commercial use, display and redistribution as applicable; the IDSC repository terms prohibit systematic retrieval to compile a database without written permission.",
+    "Obtain the exact Official Gazette issue PDF through an authorized route and record the official page range.",
+    "Compare all 311 records against the authorized Gazette source, including exact wording, article numbering, omissions, duplicates, punctuation and the 13 promulgation provisions.",
+    "Register the candidate metadata with tools/register_labour_law_candidate.py; this creates registry records and pending review events only, never searchable chunks.",
+    "Review Article 13 commencement (general law effective 2025-09-01; specialized labor courts 2025-10-01) and Article 12 repeals; retain separate transitional rules.",
+    "Track implementing instruments as separate legal documents/versions and relations of type implements; do not label them as amendments unless the instrument actually amends the law.",
+    "Have Egyptian counsel verify the amendment/implementing-instrument chain and only then complete source-authenticity, status, amendment-history, licensing and lawyer-approval reviews."
   ]
 }
