@@ -141,6 +141,43 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
       "required_next_action": "Identify exact instrument URLs, inspect terms, and request written permission for storage, extraction, indexing, commercial use, excerpt display, and redistribution."
+    },
+    {
+      "source_id": "EG-ETA-TAX-LAWS",
+      "authority": "Egyptian Tax Authority / Income Tax Authority portals",
+      "source_page": "https://portal.eta.gov.eg/ar/content/qwanyn-aldrybt-ly-alqymt-almdaft",
+      "material_types": [
+        "VAT law index",
+        "income tax law index",
+        "tax amendment listings"
+      ],
+      "access_status": "official_index_located",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": null,
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Review site terms and seek written authorization for storing, downloading, OCR, indexing, commercial use, excerpts, and redistribution; acquire only original Gazette instruments under approved scope."
+    },
+    {
+      "source_id": "EG-MOF-TAX-LEGISLATION-INDEX-2026",
+      "authority": "Ministry of Finance, Arab Republic of Egypt",
+      "source_page": "https://mof-web-prd.apps.fslabs.net/ar/legislation/legislation-6a731e1163496600085dd856",
+      "material_types": [
+        "tax laws",
+        "financial legislation",
+        "ministerial decisions",
+        "tax dispute legislation"
+      ],
+      "access_status": "official_index_located",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": null,
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Confirm the production portal domain and terms, request permission for intended uses, and verify every instrument against the Official Gazette before indexing."
     }
   ]
 }
