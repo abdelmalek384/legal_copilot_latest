@@ -100,6 +100,44 @@ class LegalVersionedRegistryTests(unittest.TestCase):
         self.assertEqual(self.app.search(self.db, "repealprobe", as_of="2026-01-01"), [])
         self.assertEqual([h["id"] for h in self.app.search(self.db, "repealprobe", as_of="2025-12-31")], [chunk_id])
 
+    def test_repealed_version_remains_available_before_its_repeal_date(self):
+        chunk_id, version_id = self._make_linked_chunk(
+            "historical-before-repeal", "2010-01-01", repeal_date="2024-01-01",
+            legal_status="repealed", text="historicalbeforeprobe legal passage"
+        )
+        before = self.app.search(self.db, "historicalbeforeprobe", as_of="2023-12-31")
+        on_repeal = self.app.search(self.db, "historicalbeforeprobe", as_of="2024-01-01")
+        self.assertEqual([hit["id"] for hit in before], [chunk_id])
+        self.assertEqual(on_repeal, [])
+        exact_before = self.app.search(self.db, "المادة 1", as_of="2023-12-31")
+        exact_on_repeal = self.app.search(self.db, "المادة 1", as_of="2024-01-01")
+        self.assertIn(chunk_id, [hit["id"] for hit in exact_before])
+        self.assertNotIn(chunk_id, [hit["id"] for hit in exact_on_repeal])
+
+    def test_historical_version_without_repeal_boundary_is_excluded(self):
+        self._make_linked_chunk(
+            "historical-unknown-boundary", "2010-01-01", repeal_date=None,
+            legal_status="historical", text="unknownboundaryprobe legal passage"
+        )
+        self.assertEqual(self.app.search(self.db, "unknownboundaryprobe", as_of="2020-01-01"), [])
+
+    def test_answer_prompt_includes_version_and_gazette_provenance(self):
+        _, version_id = self._make_linked_chunk(
+            "prompt-provenance", "2020-01-01", text="promptprovenanceprobe legal passage"
+        )
+        self.db.execute(
+            "UPDATE legal_document_versions SET gazette_issue='77',gazette_pages='12-16' WHERE version_id=?",
+            (version_id,)
+        )
+        self.db.commit()
+        captured = []
+        self.app.LLM = lambda prompt: captured.append(prompt) or "الإجابة مدعومة بالمصدر [1]"
+        result = self.app.ask(self.db, "promptprovenanceprobe")
+        self.assertTrue(result["found"])
+        self.assertIn('"version_label": "prompt-provenance"', captured[0])
+        self.assertIn('"gazette_issue": "77"', captured[0])
+        self.assertIn("metadata is not independent proof", captured[0])
+
     def test_invalid_as_of_date_is_rejected(self):
         with self.assertRaises(ValueError):
             self.app.search(self.db, "anything", as_of="not-a-date")
