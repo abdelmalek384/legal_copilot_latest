@@ -32,6 +32,24 @@ rows = [json.loads(l) for l in open("sample_law.jsonl", encoding="utf-8")]
 assert c.post("/law/import", json=rows, headers=L).status_code == 403
 assert c.post("/law/import", json=rows, headers={"X-Admin-Token": "stage0-test-admin-token-please-use-a-long-random-secret"}).status_code == 401
 assert c.post("/law/import", json=rows, headers={**A_IMPORT, "X-Admin-Token": "stage0-test-admin-token-please-use-a-long-random-secret"}).json()["imported"] == 3
+# Legacy bulk import must ignore caller-supplied verification/current-law flags.
+legacy_rows = [
+    {"law":"Unreviewed import test", "article":"99", "text":"Synthetic legal passage for import safety test.",
+     "as_of":"2024-01-01", "source":"UNVERIFIED-IMPORT-TEST", "verified":1, "in_force":1}
+]
+legacy_import = c.post("/law/import", json=legacy_rows,
+                       headers={**A_IMPORT, "X-Admin-Token":"stage0-test-admin-token-please-use-a-long-random-secret"})
+assert legacy_import.status_code == 200, legacy_import.text
+legacy_payload = legacy_import.json()
+assert legacy_payload["imported"] == 1
+assert legacy_payload["review_required"] is True
+assert legacy_payload["search_eligible"] is False
+assert "unverified" in legacy_payload["warning"].lower()
+legacy_chunk = db.execute("SELECT verified,in_force,document_version_id FROM chunks WHERE ref=?",
+                          ("Unreviewed import test - المادة 99",)).fetchone()
+assert tuple(legacy_chunk) == (0, 0, None), tuple(legacy_chunk)
+legacy_search = c.post("/search", json={"q":"Synthetic legal passage"}, headers=L).json()
+assert all(hit["ref"] != "Unreviewed import test - المادة 99" for hit in legacy_search), legacy_search
 cid = c.post("/cases", json={"title": "<b>x</b>", "client": "عميل"}, headers=L).json()["id"]
 jid = [u for u in c.get("/users", headers=L).json() if u["name"] == "Junior"][0]["id"]
 assert c.post(f"/cases/{cid}/tasks", json={"title": "t", "assignee": jid}, headers=L).status_code == 422   # not a member yet
