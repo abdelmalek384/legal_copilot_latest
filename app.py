@@ -268,23 +268,41 @@ def delete_case(c, u, cid):
 
 SQL = ("SELECT chunks.*, bm25(chunks_fts) AS r FROM chunks_fts JOIN chunks ON chunks.id=chunks_fts.rowid "
        "WHERE chunks_fts MATCH ? AND (chunks.case_id IS NOT NULL OR (chunks.verified=1 AND chunks.in_force=1)) AND (chunks.case_id IS NULL OR chunks.case_id IS ?) "
-       "AND (chunks.case_id IS NULL OR chunks.case_id IN (SELECT id FROM cases WHERE firm_id=?)) ORDER BY r LIMIT 40")
+       "AND (chunks.case_id IS NULL OR chunks.case_id IN (SELECT id FROM cases WHERE firm_id=?)) "
+       "AND (chunks.case_id IS NOT NULL OR chunks.document_version_id IS NULL OR EXISTS ("
+       "SELECT 1 FROM legal_document_versions v WHERE v.version_id=chunks.document_version_id "
+       "AND v.review_status='verified' AND v.authenticity_verified=1 AND v.status_verified=1 AND v.legal_status='in_force' "
+       "AND v.effective_date IS NOT NULL AND v.effective_date<=? AND (v.repeal_date IS NULL OR v.repeal_date>?)"
+       ")) ORDER BY r LIMIT 40")
 
-
-def search(c, q, case_id=None, k=5, firm_id=1):
+def search(c, q, case_id=None, k=5, firm_id=1, as_of=None):
+    # Linked legal versions are filtered by effective/repeal dates and review evidence.
+    # Unlinked legacy chunks retain the pre-registry behavior for backwards compatibility.
+    as_of = as_of or date.today().isoformat()
+    try:
+        date.fromisoformat(as_of)
+    except (TypeError, ValueError):
+        raise ValueError("as_of must be an ISO date YYYY-MM-DD")
     cand, exact, qt = {}, set(), tokens(q)
     if qt:
-        for r in c.execute(SQL, (" OR ".join('"%s"' % t for t in qt), case_id, firm_id)): cand[r["id"]] = (r, -r["r"])
+        params = (" OR ".join('"%s"' % t for t in qt), case_id, firm_id, as_of, as_of)
+        for r in c.execute(SQL, params): cand[r["id"]] = (r, -r["r"])
     am = re.search(r"(?:ماده|الماده|article|art)\s*\.?\s*(\d+)", norm(q))
-    if am:  # lawyers search by exact article number
-        for r in c.execute("SELECT * FROM chunks WHERE article=? AND case_id IS NULL AND verified=1 AND in_force=1", (am.group(1),)):
+    if am:
+        exact_sql = ("SELECT * FROM chunks WHERE article=? AND case_id IS NULL AND verified=1 AND in_force=1 "
+                     "AND (document_version_id IS NULL OR EXISTS (SELECT 1 FROM legal_document_versions v "
+                     "WHERE v.version_id=chunks.document_version_id AND v.review_status='verified' "
+                     "AND v.authenticity_verified=1 AND v.status_verified=1 AND v.legal_status='in_force' "
+                     "AND v.effective_date IS NOT NULL AND v.effective_date<=? AND (v.repeal_date IS NULL OR v.repeal_date>?)) )")
+        for r in c.execute(exact_sql, (am.group(1), as_of, as_of)):
             exact.add(r["id"]); cand.setdefault(r["id"], (r, 0))
     if not cand: return []
     top, qg, out = (max(b for _, b in cand.values()) or 1), grams(q), []
     for i, (r, b) in cand.items():
         cs = rel(qg, grams(r["text"]))
         out.append({"id": i, "ref": r["ref"], "text": r["text"], "in_force": bool(r["in_force"]), "verified": bool(r["verified"]), "as_of": r["as_of"],
-                    "source": r["source"], "cos": round(cs, 3), "score": 0.5 * b / top + 0.5 * cs + (1 if i in exact else 0)})
+                    "source": r["source"], "cos": round(cs, 3), "score": 0.5 * b / top + 0.5 * cs + (1 if i in exact else 0),
+                    "requested_as_of": as_of, "document_version_id": r["document_version_id"]})
     return sorted(out, key=lambda x: -x["score"])[:k]
 
 
@@ -301,8 +319,8 @@ def llm(prompt):
 LLM = llm
 
 
-def ask(c, q, case_id=None, firm_id=1):
-    hits = search(c, q, case_id, firm_id=firm_id)
+def ask(c, q, case_id=None, firm_id=1, as_of=None):
+    hits = search(c, q, case_id, firm_id=firm_id, as_of=as_of)
     if not hits or (hits[0]["cos"] < MIN_SCORE and hits[0]["score"] < 1):
         return {"found": False, "answer": None, "sources": [], "message": "لم أجد مصدرا ذا صلة، ولن أخمن."}
     ans, msg = None, ""
@@ -356,7 +374,7 @@ def validate_calendar_date(value):
     return value
 
 
-class Q(BaseModel): q: str = Field(min_length=1, max_length=500); case_id: int | None = None
+class Q(BaseModel): q: str = Field(min_length=1, max_length=500); case_id: int | None = None; as_of: str | None = Field(default=None, pattern=r"^\d{4}-\d{2}-\d{2}$")
 class LoginIn(BaseModel): email: str = Field(max_length=200); password: str = Field(max_length=200)
 class UserCreateIn(BaseModel):
     name: str = Field(min_length=1, max_length=120)
@@ -759,9 +777,13 @@ def law_import(rows: list[LawRow], x_admin_token: str = Header(None), u: dict = 
 
 @app.post("/search")
 def do_search(b: Q, u: dict = Depends(user)):
-    c = conn(); need(c, u, b.case_id); return search(c, b.q, b.case_id, firm_id=u["firm_id"])
+    c = conn(); need(c, u, b.case_id)
+    try: return search(c, b.q, b.case_id, firm_id=u["firm_id"], as_of=b.as_of)
+    except ValueError as e: raise HTTPException(422, str(e))
 
 
 @app.post("/ask")
 def do_ask(b: Q, u: dict = Depends(user)):
-    c = conn(); need(c, u, b.case_id); return ask(c, b.q, b.case_id, firm_id=u["firm_id"])
+    c = conn(); need(c, u, b.case_id)
+    try: return ask(c, b.q, b.case_id, firm_id=u["firm_id"], as_of=b.as_of)
+    except ValueError as e: raise HTTPException(422, str(e))
