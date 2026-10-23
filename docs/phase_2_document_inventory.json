@@ -1153,6 +1153,39 @@
         "family-lawyer review"
       ],
       "notes": "Current source is a later official decision citing this law, not the base law itself. Obtain and verify the original promulgated text."
+    },
+    {
+      "document_id": "EG-VAT-AMENDMENT-177-2023",
+      "official_title_ar": "قانون رقم 177 لسنة 2023 بتعديل بعض أحكام قانون الضريبة على القيمة المضافة الصادر بالقانون رقم 67 لسنة 2016",
+      "practice_areas": [
+        "tax"
+      ],
+      "document_type": "amending_tax_law",
+      "instrument_number": 177,
+      "instrument_year": 2023,
+      "source_id": "EG-AMIRI-PRESS",
+      "source_urls": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=3Jx4puExLnY%3D",
+          "source_role": "official amending legislation text page",
+          "status": "discovered_not_downloaded"
+        }
+      ],
+      "source_status": "discovery_only",
+      "collection_permission": "permission_pending",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "amends": [
+        "EG-VAT-67-2016"
+      ],
+      "required_related_records": [
+        "official Gazette issue/date/page range",
+        "complete promulgated text",
+        "exact schedule-level changes",
+        "subsequent VAT amendments and annual tax instruments",
+        "tax-lawyer review"
+      ],
+      "notes": "Official source discovery identifies Law 177/2023 as amending specified schedules of VAT Law 67/2016. Exact schedule entries and current consolidated wording are not yet mapped."
     }
   ],
   "next_actions": [
