@@ -16,6 +16,7 @@ assert app.ask(c, "كيفية تسجيل علامة تجارية في الجما
 assert app.ask(c, "ما هي الاجازة السنوية للعامل؟")["found"] is True
 app.LLM = lambda p: "تستحق اجازة [1]"; assert app.ask(c, "اجازة سنوية")["answer"]
 app.LLM = lambda p: "اجابة بلا مصدر صالح [9]"; assert app.ask(c, "اجازة سنوية")["answer"] is None
-assert app.ask(c, "المادة 3")["not_in_force"]
+# Unverified article 3 must not be returned as legal authority.
+assert app.ask(c, "المادة 3")["found"] is False
 assert app.check_pw("correct horse 12", app.hash_pw("correct horse 12")) and not app.check_pw("x", app.hash_pw("y"))
 print("ALL OK")
