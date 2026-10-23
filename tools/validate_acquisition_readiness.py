@@ -2,8 +2,8 @@
 """Audit acquisition-manifest readiness against the source permission register.
 
 This tool is read-only: it never changes permission, downloads documents, or certifies
-legal authenticity/current status. It distinguishes collection readiness from permission
-for commercial product use.
+legal authenticity/current status. Collection and commercial product-use readiness
+require an explicit, evidence-backed, document-level permission-scope review.
 """
 from __future__ import annotations
 
@@ -47,6 +47,18 @@ def _host_matches(host: str | None, allowed_hosts: object) -> bool:
         if isinstance(item, str) and item.strip()
     }
     return any(host == item or host.endswith("." + item) for item in normalized)
+
+
+def _scope_review_valid(document: dict) -> bool:
+    review = document.get("permission_scope_review")
+    return (
+        isinstance(review, dict)
+        and review.get("status") == "passed"
+        and isinstance(review.get("evidence"), str)
+        and bool(review["evidence"].strip())
+        and _valid_date(review.get("reviewed_on"))
+        and isinstance(review.get("approved_uses"), list)
+    )
 
 
 def audit(manifest: dict, register: dict) -> dict:
@@ -97,13 +109,11 @@ def audit(manifest: dict, register: dict) -> dict:
             if source_id in duplicate_source_ids:
                 blockers.append("duplicate_source_id_in_permission_register")
 
-        manifest_permission = document.get("collection_permission")
-        if manifest_permission != "allowed":
+        if document.get("collection_permission") != "allowed":
             blockers.append("manifest_collection_permission_not_allowed")
 
         if source is not None:
-            source_permission = source.get("collection_permission")
-            if source_permission not in COLLECTION_ALLOWED:
+            if source.get("collection_permission") not in COLLECTION_ALLOWED:
                 blockers.append("source_register_does_not_allow_collection")
             if not source.get("permission_evidence") or not _valid_date(source.get("terms_checked_on")):
                 blockers.append("source_permission_evidence_or_terms_date_missing")
@@ -123,16 +133,20 @@ def audit(manifest: dict, register: dict) -> dict:
         if not _host_matches(host, document.get("allowed_hosts")):
             blockers.append("direct_url_host_not_in_allowlist")
 
-        # The register describes source-level findings; it does not prove that a
-        # particular permission covers this document, method, storage, indexing,
-        # excerpt display, or commercial use. A human must compare the evidence.
-        warnings.append("human_must_confirm_permission_scope_matches_exact_document_and_method")
+        scope_review = document.get("permission_scope_review")
+        scope_review_valid = _scope_review_valid(document)
+        if not scope_review_valid or "collection" not in scope_review.get("approved_uses", []):
+            blockers.append("document_level_collection_scope_review_missing")
+        if not scope_review_valid or "commercial_product_use" not in scope_review.get("approved_uses", []):
+            warnings.append("document_level_commercial_scope_review_missing")
 
         collection_ready = not blockers
-        product_use_ready = collection_ready and source is not None and (
-            source.get("commercial_reuse_permission") in COMMERCIAL_ALLOWED
-            and bool(source.get("permission_evidence"))
-            and _valid_date(source.get("terms_checked_on"))
+        product_use_ready = (
+            collection_ready
+            and scope_review_valid
+            and "commercial_product_use" in scope_review.get("approved_uses", [])
+            and source is not None
+            and source.get("commercial_reuse_permission") in COMMERCIAL_ALLOWED
         )
         results.append({
             "document_id": document_id,
@@ -157,7 +171,7 @@ def audit(manifest: dict, register: dict) -> dict:
         "findings": findings,
         "limitations": [
             "This report does not grant permission or initiate acquisition.",
-            "A source-level permission record does not establish that the exact document, acquisition method, storage, extraction, indexing, display, and commercial uses are in scope.",
+            "A document-level scope review must cite evidence that covers the exact document and intended method/use; a status flag alone is not legal advice.",
             "This report does not verify authenticity, completeness, commencement, amendment history, current legal status, or lawyer approval.",
         ],
     }
@@ -181,7 +195,7 @@ def main() -> int:
     rendered = json.dumps(report, ensure_ascii=False, indent=2)
     if args.out:
         args.out.parent.mkdir(parents=True, exist_ok=True)
-        args.out.write_text(rendered + "\n", encoding="utf-8")
+        args.out.write_text(rendered + "\\n", encoding="utf-8")
     print(rendered)
     if report.get("schema_error"):
         return 2
