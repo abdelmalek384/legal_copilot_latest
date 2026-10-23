@@ -180,6 +180,42 @@ bad_fee_response = client.post(
 )
 assert bad_fee_response.status_code == 422, f"لم يُرفض دفع أكبر من إجمالي الأتعاب: {bad_fee_response.status_code}"
 
+# Real DOCX upload and extraction test (not just saving text through the API).
+from io import BytesIO
+from docx import Document
+
+docx_buffer = BytesIO()
+docx_file = Document()
+docx_file.add_paragraph("مستند عربي خيالي لاختبار رفع الملفات واستخراج النص.")
+docx_file.add_paragraph("هذه فقرة ثانية للتأكد من حفظ محتوى الملف.")
+docx_file.save(docx_buffer)
+upload_response = client.post(
+    f"/cases/{created[0][0]}/upload",
+    files={"file": ("اختبار-عربي.docx", docx_buffer.getvalue(),
+                    "application/vnd.openxmlformats-officedocument.wordprocessingml.document")},
+    headers=headers,
+)
+assert upload_response.status_code == 200, (
+    f"رفع DOCX واستخراج النص فشل: {upload_response.status_code} {upload_response.text}"
+)
+uploaded_detail = client.get(f"/cases/{created[0][0]}", headers=headers).json()
+assert any(d["name"] == "اختبار-عربي.docx" for d in uploaded_detail.get("docs", [])), "الملف المرفوع لا يظهر في القضية"
+
+# Reject unsupported file types and mutation requests without a CSRF header.
+bad_upload = client.post(
+    f"/cases/{created[0][0]}/upload",
+    files={"file": ("not-allowed.txt", b"this is a text file that should be rejected", "text/plain")},
+    headers=headers,
+)
+assert bad_upload.status_code == 415, f"لم يُرفض نوع الملف غير المدعوم: {bad_upload.status_code}"
+no_csrf_headers = {"Cookie": f"lc_session={session}; lc_csrf={csrf}"}
+csrf_response = client.post(
+    f"/cases/{created[0][0]}/notes",
+    json={"text": "يجب رفض هذا الطلب لغياب ترويسة CSRF"},
+    headers=no_csrf_headers,
+)
+assert csrf_response.status_code == 403, f"لم يُرفض الطلب دون CSRF: {csrf_response.status_code}"
+
 # Conflict search should find the fictional client in its own case.
 response = client.post("/conflicts", json={"q": "شركة الأفق"}, headers=headers)
 assert response.status_code == 200, f"فحص تعارض المصالح فشل: {response.status_code} {response.text}"
@@ -200,6 +236,9 @@ print("نجاح: حفظ نص مستند عربي وظهوره في ملف الق
 print("نجاح: رفض الوصول دون تسجيل دخول")
 print("نجاح: منع مستخدم مكتب آخر من قراءة القضية")
 print("نجاح: رفض تسجيل مبلغ مدفوع أكبر من إجمالي الأتعاب")
+print("نجاح: رفع ملف DOCX عربي واستخراج النص منه")
+print("نجاح: رفض امتداد ملف غير مدعوم")
+print("نجاح: رفض طلب تعديل دون CSRF")
 print("ملاحظة: جميع البيانات محفوظة في قاعدة SQLite مؤقتة منفصلة، ولن تُضاف إلى قاعدة بيانات المكتب.")
 print("لم يُختبر هنا: صحة الرأي القانوني، صحة مواعيد قانونية حقيقية، رفع ملفات PDF/DOCX فعليًا، أو اختبار اختراق مستقل.")
 
