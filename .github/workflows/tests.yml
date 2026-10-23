@@ -20,6 +20,10 @@ jobs:
         run: python -m pip install -r requirements.txt
       - name: Validate legal data registry and evaluation seeds
         run: python tools/validate_legal_data_foundation.py
+      - name: Run collection pipeline tests
+        run: python -m unittest tests/test_collection_pipeline.py
+      - name: Validate collection manifest template
+        run: python -c "import json; d=json.load(open('docs/collection_manifest.example.json', encoding='utf-8')); assert isinstance(d.get('documents'), list); assert d['documents'] == []"
       - name: Run unit tests
         run: python selftest.py
       - name: Run API tests
