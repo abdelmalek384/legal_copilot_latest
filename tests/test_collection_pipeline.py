@@ -49,6 +49,31 @@ class CollectionPipelineTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 load_manifest(p)
 
+    def test_manifest_rejects_non_object_entries(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            p = Path(tmp) / "manifest.json"
+            p.write_text(json.dumps({"documents": ["not-an-object"]}), encoding="utf-8")
+            with self.assertRaises(ValueError):
+                load_manifest(p)
+
+    def test_manifest_rejects_path_traversal_ids(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            p = Path(tmp) / "manifest.json"
+            p.write_text(json.dumps({"documents": [
+                {"document_id": "../escape", "source_id": "test"}
+            ]}), encoding="utf-8")
+            with self.assertRaises(ValueError):
+                load_manifest(p)
+
+    def test_manifest_requires_source_id(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            p = Path(tmp) / "manifest.json"
+            p.write_text(json.dumps({"documents": [
+                {"document_id": "law-001"}
+            ]}), encoding="utf-8")
+            with self.assertRaises(ValueError):
+                load_manifest(p)
+
 
 if __name__ == "__main__":
     unittest.main()
