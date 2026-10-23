@@ -202,6 +202,38 @@ assert upload_response.status_code == 200, (
 uploaded_detail = client.get(f"/cases/{created[0][0]}", headers=headers).json()
 assert any(d["name"] == "اختبار-عربي.docx" for d in uploaded_detail.get("docs", [])), "الملف المرفوع لا يظهر في القضية"
 
+# Real PDF upload and text-extraction test (generated in memory; no external file).
+from io import BytesIO
+from pypdf import PdfWriter
+from pypdf.generic import DictionaryObject, NameObject, NumberObject, StreamObject
+
+pdf_writer = PdfWriter()
+pdf_page = pdf_writer.add_blank_page(width=612, height=792)
+font = DictionaryObject({
+    NameObject("/Type"): NameObject("/Font"),
+    NameObject("/Subtype"): NameObject("/Type1"),
+    NameObject("/BaseFont"): NameObject("/Helvetica"),
+})
+resources = DictionaryObject({
+    NameObject("/Font"): DictionaryObject({NameObject("/F1"): font})
+})
+pdf_page[NameObject("/Resources")] = resources
+pdf_stream = StreamObject()
+pdf_stream._data = b"BT /F1 12 Tf 72 720 Td (Fictional PDF contract text for extraction testing.) Tj ET"
+pdf_page[NameObject("/Contents")] = pdf_writer._add_object(pdf_stream)
+pdf_buffer = BytesIO()
+pdf_writer.write(pdf_buffer)
+pdf_response = client.post(
+    f"/cases/{created[0][0]}/upload",
+    files={"file": ("fictional-contract.pdf", pdf_buffer.getvalue(), "application/pdf")},
+    headers=headers,
+)
+assert pdf_response.status_code == 200, (
+    f"رفع PDF واستخراج النص فشل: {pdf_response.status_code} {pdf_response.text}"
+)
+pdf_detail = client.get(f"/cases/{created[0][0]}", headers=headers).json()
+assert any(d["name"] == "fictional-contract.pdf" for d in pdf_detail.get("docs", [])), "ملف PDF المرفوع لا يظهر في القضية"
+
 # Reject unsupported file types and mutation requests without a CSRF header.
 bad_upload = client.post(
     f"/cases/{created[0][0]}/upload",
@@ -238,6 +270,7 @@ print("نجاح: رفض الوصول دون تسجيل دخول")
 print("نجاح: منع مستخدم مكتب آخر من قراءة القضية")
 print("نجاح: رفض تسجيل مبلغ مدفوع أكبر من إجمالي الأتعاب")
 print("نجاح: رفع ملف DOCX عربي واستخراج النص منه")
+print("نجاح: رفع ملف PDF واستخراج النص منه")
 print("نجاح: رفض امتداد ملف غير مدعوم")
 print("نجاح: رفض طلب تعديل دون CSRF")
 print("ملاحظة: جميع البيانات محفوظة في قاعدة SQLite مؤقتة منفصلة، ولن تُضاف إلى قاعدة بيانات المكتب.")
