@@ -475,7 +475,7 @@ from fastapi import Cookie, Depends, FastAPI, Header, HTTPException, UploadFile
 from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field, field_validator
 
-app = FastAPI(title="Legal Copilot MVP", docs_url=None, redoc_url=None)
+app = FastAPI(title="Legal Copilot MVP", docs_url=None, redoc_url=None, openapi_url=None)
 
 # Per-process fixed-window limits for expensive or abuse-prone endpoints.
 # Deliberately use the direct peer address; do not trust arbitrary X-Forwarded-For.
@@ -556,6 +556,14 @@ def validate_calendar_date(value):
     return value
 
 
+def validate_operational_deadline(value):
+    """Keep operational deadlines within a plausible date range; historical sessions remain allowed."""
+    validate_calendar_date(value)
+    if value is not None and not 2000 <= date.fromisoformat(value).year <= 2100:
+        raise ValueError("deadline year must be between 2000 and 2100")
+    return value
+
+
 class Q(BaseModel): q: str = Field(min_length=1, max_length=500); case_id: int | None = None; as_of: str | None = Field(default=None, pattern=r"^\d{4}-\d{2}-\d{2}$")
 class LoginIn(BaseModel): email: str = Field(max_length=200); password: str = Field(max_length=200)
 class UserCreateIn(BaseModel):
@@ -575,9 +583,9 @@ class CasePatch(BaseModel):
 class NoteIn(BaseModel): text: str = Field(min_length=1, max_length=10000)
 class DeadlineIn(BaseModel):
     title: str = Field(min_length=1, max_length=200); due: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$"); note: str = Field("", max_length=1000)
-    _valid_due = field_validator("due")(validate_calendar_date)
+    _valid_due = field_validator("due")(validate_operational_deadline)
 class FeeIn(BaseModel):
-    title: str = Field(min_length=1, max_length=200); amount: float = Field(ge=0); paid: float = Field(ge=0)
+    title: str = Field(min_length=1, max_length=200); amount: float = Field(ge=0, le=1_000_000_000_000); paid: float = Field(ge=0, le=1_000_000_000_000)
     due: str | None = Field(None, pattern=r"^\d{4}-\d{2}-\d{2}$"); note: str = Field("", max_length=1000)
     _valid_due = field_validator("due")(validate_calendar_date)
 class DocIn(BaseModel): name: str = Field(min_length=1, max_length=200); text: str = Field(min_length=1, max_length=300_000)
