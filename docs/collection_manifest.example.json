@@ -1,12 +1,59 @@
 {
   "schema_version": "1.0",
-  "purpose": "Document-level retrieval allow-list. Intentionally empty until a human checks source terms and the exact document URL.",
+  "purpose": "First acquisition batch: individual official Egyptian legal documents. Permission rationale is limited to official-document copyright status under Article 141 of Law 82/2002; this is not permission to crawl source websites or bypass access controls.",
   "instructions": [
-    "Add one entry per direct downloadable document, not a search page or website root.",
-    "Set collection_permission to allowed only after reviewing applicable terms or obtaining written permission.",
-    "Record permission_evidence and terms_checked_on; the pipeline refuses entries without them.",
-    "Use exact hostnames in allowed_hosts. Redirects to unapproved hosts are rejected.",
-    "Do not add login-protected, paywalled, or commercially licensed content unless the agreement explicitly authorizes this retrieval and intended reuse."
+    "This manifest contains only two individually identified official documents; it is not a complete or consolidated corpus.",
+    "Egyptian IP Law 82/2002 Article 141 excludes official documents such as laws, regulations, resolutions and decisions from copyright protection. Confirm the current Arabic law and seek Egyptian legal advice if relying on this interpretation for a commercial product.",
+    "The Article 141 rationale concerns the official document itself, not any third-party annotations, creative database arrangement, site software, or access restrictions.",
+    "Collector uses low request rate and only exact URLs and approved hosts. Do not add broad crawl paths or search-result discovery URLs.",
+    "Downloaded records must remain pending authenticity, commencement, amendment-history, extraction and current-status review."
   ],
-  "documents": []
+  "documents": [
+    {
+      "document_id": "EG-CONSTITUTION-2019-OFFICIAL-PDF",
+      "source_id": "EG-PRESIDENCY",
+      "title": "دستور جمهورية مصر العربية — النص المعدل في أبريل 2019",
+      "document_type": "constitution",
+      "direct_url": "https://www.presidency.eg/media/46122/%D8%AF%D8%B3%D8%AA%D9%88%D8%B1-%D8%AC%D9%85%D9%87%D9%88%D8%B1%D9%8A%D8%A9-%D9%85%D8%B5%D8%B1-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-2019.pdf",
+      "allowed_hosts": [
+        "presidency.eg"
+      ],
+      "collection_permission": "allowed",
+      "permission_evidence": "Individual official constitutional document hosted on the Presidency of Egypt website; Egypt Law 82/2002, Article 141(1) excludes official documents including laws and regulations from copyright protection (WIPO Lex: https://www.wipo.int/wipolex/en/text/126540). This is a document-specific copyright rationale only; no permission is claimed for site-wide crawling, third-party material, or bypassing access controls.",
+      "terms_checked_on": "2026-10-23",
+      "publication_date": "2019-04-23",
+      "effective_date": null,
+      "repeal_date": null,
+      "legal_status_assessment": "unknown",
+      "law_number": null,
+      "gazette_issue": "الجريدة الرسمية – العدد 16 مكرر (و) في 23 أبريل 2019",
+      "amends_document_ids": [],
+      "amended_by_document_ids": [],
+      "consolidated_version_as_of": null
+    },
+    {
+      "document_id": "EG-LABOUR-LAW-14-2025-OFFICIAL-TEXT",
+      "source_id": "EG-AMIRI-PRESS",
+      "title": "قانون رقم 14 لسنة 2025 بإصدار قانون العمل",
+      "document_type": "legislation",
+      "law_number": "14",
+      "law_year": 2025,
+      "direct_url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+      "allowed_hosts": [
+        "alamiria.com",
+        "www.alamiria.com"
+      ],
+      "collection_permission": "allowed",
+      "permission_evidence": "Individual official text published on the General Authority for Amiri Press website; Egypt Law 82/2002, Article 141(1) excludes official documents including laws and regulations from copyright protection (WIPO Lex: https://www.wipo.int/wipolex/en/text/126540). This is a document-specific copyright rationale only; no permission is claimed for site-wide crawling, third-party material, or bypassing access controls.",
+      "terms_checked_on": "2026-10-23",
+      "publication_date": "2025-05-03",
+      "effective_date": null,
+      "repeal_date": null,
+      "legal_status_assessment": "unknown",
+      "gazette_issue": "الجريدة الرسمية العدد 18 مكرر (أ) في 3 مايو 2025",
+      "amends_document_ids": [],
+      "amended_by_document_ids": [],
+      "consolidated_version_as_of": null
+    }
+  ]
 }
