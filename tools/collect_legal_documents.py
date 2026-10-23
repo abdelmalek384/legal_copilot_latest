@@ -143,26 +143,44 @@ def download_document(client: httpx.Client, doc: dict, out: Path, max_bytes: int
     hosts = check_permission(doc)
     url = doc.get("direct_url", "")
     current = url
+    raw = bytearray()
+    content_type = ""
+    final_url = ""
+    response_headers = {}
     for _ in range(6):
         validate_public_https_url(current, hosts)
-        response = client.get(current, follow_redirects=False)
-        if response.status_code in {301, 302, 303, 307, 308}:
-            location = response.headers.get("location")
-            if not location:
-                raise ValueError("Redirect response has no Location header")
-            current = urljoin(current, location)
-            continue
-        response.raise_for_status()
+        # Stream instead of response.content: enforce the byte limit while reading,
+        # so a server cannot force an unbounded body into memory before the check.
+        with client.stream("GET", current, follow_redirects=False) as response:
+            if response.status_code in {301, 302, 303, 307, 308}:
+                location = response.headers.get("location")
+                if not location:
+                    raise ValueError("Redirect response has no Location header")
+                current = urljoin(current, location)
+                continue
+            response.raise_for_status()
+            final_url = str(response.url)
+            final_host = validate_public_https_url(final_url, hosts)
+            content_type = response.headers.get("content-type", "").split(";", 1)[0].strip().lower()
+            response_headers = dict(response.headers)
+            content_length = response.headers.get("content-length")
+            if content_length:
+                try:
+                    declared_size = int(content_length)
+                except ValueError:
+                    raise ValueError("Invalid Content-Length header")
+                if declared_size < 0 or declared_size > max_bytes:
+                    raise ValueError(f"File exceeds maximum size of {max_bytes} bytes")
+            for chunk in response.iter_bytes():
+                if len(raw) + len(chunk) > max_bytes:
+                    raise ValueError(f"File exceeds maximum size of {max_bytes} bytes")
+                raw.extend(chunk)
         break
     else:
         raise ValueError("Too many redirects")
-    final_host = validate_public_https_url(str(response.url), hosts)
-    raw = response.content
+    raw = bytes(raw)
     if not raw:
         raise ValueError("Downloaded file is empty")
-    if len(raw) > max_bytes:
-        raise ValueError(f"File exceeds maximum size of {max_bytes} bytes")
-    content_type = response.headers.get("content-type", "").split(";", 1)[0].strip().lower()
     if content_type not in ALLOWED_TYPES:
         # Some servers label PDFs as octet-stream; only accept when signature confirms PDF.
         if content_type != "application/octet-stream" or not raw.startswith(b"%PDF-"):
@@ -193,12 +211,12 @@ def download_document(client: httpx.Client, doc: dict, out: Path, max_bytes: int
         "title": doc.get("title", doc_id),
         "document_type": doc.get("document_type", "legislation"),
         "jurisdiction": "Egypt",
-        "source_url": str(response.url),
+        "source_url": final_url,
         "requested_url": url,
         "retrieved_at": retrieved_at,
         "http_content_type": content_type,
-        "http_last_modified": response.headers.get("last-modified"),
-        "http_etag": response.headers.get("etag"),
+        "http_last_modified": response_headers.get("last-modified"),
+        "http_etag": response_headers.get("etag"),
         "original_path": str(original_path.relative_to(out)),
         "original_filename": original_path.name,
         "original_size_bytes": len(raw),
