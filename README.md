@@ -97,7 +97,6 @@ Before using the discovery-level amendment graph, run `python tools/validate_ame
 
 Run `python tools/legal_source_review_queue.py --db path/to/legal.db --out reports/legal-source-review-queue.json` to generate a read-only reviewer queue for missing source/version provenance, legal-status and amendment-history checks, review-event evidence, and source collection/commercial-reuse permissions. See [`docs/legal_source_review_queue.md`](docs/legal_source_review_queue.md) for report fields and limitations. The queue prioritizes follow-up; it does not verify legal correctness or change review statuses.
 
+## Evidence-backed legal review events
 
-## Tax-law version review queue
-
-The tax discovery inventory tracks 2025–2026 amendments and related decisions. Review [the tax-law version queue](docs/tax_law_version_review_queue.md), especially the official-index-listed corrigendum associated with Laws 149, 150 and 151 of 2026. Do not use an unreviewed or uncorrected text as current law; original Gazette evidence, correction mapping, permission, and qualified Egyptian tax-counsel review remain prerequisites.
+Administrators can append and inspect legal-source review events through `POST /legal-review/versions/{version_id}/events` and `GET /legal-review/versions/{version_id}/events`. Events require scoped review types and passing events require an HTTPS evidence URL. Recording an event never changes verification flags or legal status. See [`docs/evidence_backed_legal_review_events.md`](docs/evidence_backed_legal_review_events.md) for access controls and limitations.
