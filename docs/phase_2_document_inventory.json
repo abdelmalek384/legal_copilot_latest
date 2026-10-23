@@ -148,7 +148,14 @@
         "amending instruments",
         "repeal/transition instruments if any"
       ],
-      "notes": "Do not label a consolidated text official without provenance."
+      "notes": "Do not label a consolidated text official without provenance.",
+      "source_urls": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=BwYO%2FNoozvA%3D",
+          "source_role": "official executive regulation citing the statute",
+          "status": "supporting_reference_only"
+        }
+      ]
     },
     {
       "document_id": "EG-CIVIL-PROCEDURE-13-1968",
@@ -214,7 +221,14 @@
         "amending instruments",
         "special criminal statutes"
       ],
-      "notes": "Offence-date and temporal-law handling requires specialist legal review."
+      "notes": "Offence-date and temporal-law handling requires specialist legal review.",
+      "source_urls": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=YbxnlD3e4Qc%3D",
+          "source_role": "official later instrument citing the statute",
+          "status": "supporting_reference_only"
+        }
+      ]
     },
     {
       "document_id": "EG-CRIMINAL-PROCEDURE-150-1950",
@@ -236,7 +250,14 @@
         "replacement code instrument(s)",
         "commencement postponement/transition instrument(s)"
       ],
-      "notes": "Critical temporal-status review required. Do not infer operative status from the existence of replacement legislation."
+      "notes": "Critical temporal-status review required. Do not infer operative status from the existence of replacement legislation.",
+      "source_urls": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=YbxnlD3e4Qc%3D",
+          "source_role": "official later instrument citing the statute",
+          "status": "supporting_reference_only"
+        }
+      ]
     },
     {
       "document_id": "EG-CRIMINAL-PROCEDURE-174-2025",
@@ -410,6 +431,18 @@
         "original Gazette text",
         "amending instruments",
         "special commercial legislation"
+      ],
+      "source_urls": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=BwYO%2FNoozvA%3D",
+          "source_role": "official executive regulation citing the statute",
+          "status": "supporting_reference_only"
+        },
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=YbxnlD3e4Qc%3D",
+          "source_role": "official later instrument citing the statute",
+          "status": "supporting_reference_only"
+        }
       ]
     },
     {
@@ -432,6 +465,13 @@
         "amending instruments",
         "executive regulations",
         "GAFI decisions"
+      ],
+      "source_urls": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=BwYO%2FNoozvA%3D",
+          "source_role": "official executive regulation citing the statute",
+          "status": "supporting_reference_only"
+        }
       ]
     },
     {
@@ -455,6 +495,13 @@
         "executive regulations",
         "amending instruments",
         "competent authority decisions"
+      ],
+      "source_urls": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=BwYO%2FNoozvA%3D",
+          "source_role": "official executive regulation citing the statute",
+          "status": "supporting_reference_only"
+        }
       ]
     },
     {
@@ -499,7 +546,14 @@
         "executive regulations",
         "official tax authority decisions"
       ],
-      "notes": "Tag rules and rates by tax period; do not generalize rates across years."
+      "notes": "Tag rules and rates by tax period; do not generalize rates across years.",
+      "source_urls": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=BwYO%2FNoozvA%3D",
+          "source_role": "official executive regulation citing the statute",
+          "status": "supporting_reference_only"
+        }
+      ]
     },
     {
       "document_id": "EG-VAT-67-2016",
@@ -1141,6 +1195,48 @@
         "publisher": "General Authority for Amiri Press",
         "observed_title": "قرار مجلس الدولة رقم 507 لسنة 2024",
         "finding": "Official State Council decision cites State Council Law 47/1972 and related procedural instruments. This is a supporting reference, not the original statute or a comprehensive administrative-law collection.",
+        "status": "supporting_reference_discovered"
+      },
+      {
+        "evidence_id": "SRC-AMIRIA-SOVEREIGN-SUKUK-EXEC-REGS-1574-2022",
+        "document_ids": [
+          "EG-CIVIL-CODE-131-1948",
+          "EG-COMMERCIAL-CODE-17-1999",
+          "EG-COMPANIES-LAW-159-1981",
+          "EG-INCOME-TAX-91-2005",
+          "EG-INVESTMENT-LAW-72-2017"
+        ],
+        "source_type": "official executive regulation citing base statutes",
+        "url": "https://www.alamiria.com/Sec/TashTxt?id=BwYO%2FNoozvA%3D",
+        "publisher": "General Authority for Amiri Press",
+        "observed_title": "قرار رئيس مجلس الوزراء رقم 1574 لسنة 2022 بإصدار اللائحة التنفيذية لقانون الصكوك السيادية",
+        "finding": "Official executive-regulation text cites the Civil Code, Commercial Code 17/1999, Companies Law 159/1981, Income Tax Law 91/2005, and Investment Law 72/2017. This is a corroborating cross-reference only, not the original statute text or a complete amendment chain.",
+        "status": "supporting_reference_discovered"
+      },
+      {
+        "evidence_id": "SRC-AMIRIA-PRESIDENTIAL-DECREE-PENAL-CODE-REFERENCES-219-2026",
+        "document_ids": [
+          "EG-PENAL-CODE-58-1937",
+          "EG-CRIMINAL-PROCEDURE-150-1950",
+          "EG-COMMERCIAL-CODE-17-1999"
+        ],
+        "source_type": "official later instrument citing base statutes",
+        "url": "https://www.alamiria.com/Sec/TashTxt?id=YbxnlD3e4Qc%3D",
+        "publisher": "General Authority for Amiri Press",
+        "observed_title": "قرار رئيس جمهورية مصر العربية رقم 219 لسنة 2026",
+        "finding": "Official presidential decision cites the Penal Code, Criminal Procedure Law, and Commercial Code among its legal bases. This confirms citation relationships in that decision only; it does not establish current consolidated text or amendment status of the cited codes.",
+        "status": "supporting_reference_discovered"
+      },
+      {
+        "evidence_id": "SRC-AMIRIA-STATE-COUNCIL-LAW-47-1972-REFERENCES-289-2025",
+        "document_ids": [
+          "EG-STATE-COUNCIL-ADMINISTRATIVE-LAW-COLLECTION"
+        ],
+        "source_type": "official later instrument citing base statute",
+        "url": "https://alamiria.com/Sec/TashTxt?id=w0%2BUkjj3Py0%3D",
+        "publisher": "General Authority for Amiri Press",
+        "observed_title": "قرار مجلس الدولة رقم 289 لسنة 2025",
+        "finding": "Official State Council decision expressly cites State Council Law 47/1972. This is a supporting reference only; locate the original law and subsequent amendments separately.",
         "status": "supporting_reference_discovered"
       }
     ],
