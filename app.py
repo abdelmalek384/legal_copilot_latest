@@ -1022,7 +1022,21 @@ def law_import(rows: list[LawRow], x_admin_token: str = Header(None), u: dict = 
     if u["role"] != "admin": raise HTTPException(403, "admin only")
     if len(tok) < 32 or not hmac.compare_digest(tok, x_admin_token or ""): raise HTTPException(403, "forbidden")
     if len(rows) > 5000: raise HTTPException(413, "max 5000 rows per call")
-    return {"imported": import_law(conn(), [r.model_dump() for r in rows])}
+    # Bulk legacy imports have no mandatory link to a reviewed registry version.
+    # Never let caller-supplied flags make an unlinked passage searchable as verified law.
+    import_rows = []
+    for row in rows:
+        item = row.model_dump()
+        item["verified"] = 0
+        item["in_force"] = 0
+        import_rows.append(item)
+    imported = import_law(conn(), import_rows)
+    return {
+        "imported": imported,
+        "review_required": True,
+        "search_eligible": False,
+        "warning": "Bulk-imported passages remain unverified and not in force until linked to a legal-document version and reviewed through the legal-source workflow."
+    }
 
 
 @app.post("/search")
