@@ -266,6 +266,62 @@
       "access_terms_state": "not_reviewed",
       "collection_permission": "permission_pending",
       "notes": "Secondary discovery aid only. Verify the original Egyptian Proceedings publication and later amending decisions."
+    },
+    {
+      "source_id": "EG-ETA-VAT-LAWS-INDEX",
+      "publisher": "Egyptian Tax Authority",
+      "source_type": "official tax authority legislation index",
+      "url": "https://portal.eta.gov.eg/ar/content/qwanyn-aldrybt-ly-alqymt-almdaft",
+      "observed_title": "قوانين الضريبة على القيمة المضافة",
+      "document_ids": [
+        "EG-VAT-67-2016",
+        "EG-VAT-AMENDMENT-177-2023",
+        "EG-VAT-AMENDMENT-157-2025",
+        "EG-VAT-AMENDMENT-149-2026"
+      ],
+      "source_state": "official_index_discovered_not_downloaded",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "The index lists VAT Law 67/2016 and later amendment entries including Laws 157/2025 and 149/2026. Index presence is not primary-text page verification or reuse permission."
+    },
+    {
+      "source_id": "EG-ETA-INCOME-TAX-LAWS-INDEX",
+      "publisher": "Egyptian Tax Authority / Income Tax Authority portal",
+      "source_type": "official tax authority legislation index",
+      "url": "https://www.incometax.gov.eg/ar/content/qwanyn-aldrybt-ly-aldkhl",
+      "observed_title": "قوانين الضريبة على الدخل",
+      "document_ids": [
+        "EG-INCOME-TAX-91-2005",
+        "EG-INCOME-TAX-AMENDMENT-7-2024",
+        "EG-INCOME-TAX-AMENDMENT-151-2026",
+        "EG-UNIFIED-TAX-PROCEDURES-206-2020",
+        "EG-UNIFIED-TAX-PROCEDURES-AMENDMENT-7-2025",
+        "EG-UNIFIED-TAX-PROCEDURES-AMENDMENT-150-2026"
+      ],
+      "source_state": "official_index_discovered_not_downloaded",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Index is a discovery lead. Its displayed entry for Law 150/2026 may contain an inconsistent reference to the base law/year; verify the Official Gazette and exact law title before linking or relying on it."
+    },
+    {
+      "source_id": "EG-MOF-TAX-LEGISLATION-INDEX-2026",
+      "publisher": "Ministry of Finance, Arab Republic of Egypt",
+      "source_type": "official ministry legislation portal",
+      "url": "https://mof-web-prd.apps.fslabs.net/ar/legislation/legislation-6a731e1163496600085dd856",
+      "observed_title": "تشريعات وقوانين — tax and public finance legislation index",
+      "document_ids": [
+        "EG-STATE-RESOURCE-FEES-AMENDMENT-148-2026",
+        "EG-VAT-AMENDMENT-149-2026",
+        "EG-UNIFIED-TAX-PROCEDURES-AMENDMENT-150-2026",
+        "EG-INCOME-TAX-AMENDMENT-151-2026",
+        "EG-TAX-DISPUTES-RENEWAL-152-2026",
+        "EG-STAMP-TAX-AMENDMENT-153-2026",
+        "EG-STATE-ENTITY-PROFITS-154-2026"
+      ],
+      "source_state": "official_index_discovered_not_downloaded",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Ministry index labels some electronic texts as guidance and identifies the Official Gazette as the legal reference. Capture the original Gazette issue and pages for every instrument; this index does not establish current status or commercial reuse rights."
     }
   ],
   "document_records_to_create_from_batch": [
