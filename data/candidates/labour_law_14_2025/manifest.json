@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0",
+  "document_id": "EG-LABOUR-LAW-14-2025-CANDIDATE-CORPUS",
+  "title_ar": "قانون العمل رقم 14 لسنة 2025",
+  "jurisdiction": "Egypt",
+  "document_type": "legislation_text_candidate",
+  "status": "candidate_pending_source_and_legal_review",
+  "corpus_file_in_repository": false,
+  "corpus_file_note": "The supplied law_rows_ar.jsonl was inspected locally but is not redistributed in this public repository while the source's storage, redistribution, and commercial reuse terms remain unverified. Add the file only after terms/permission review.",
+  "source": {
+    "publisher": "Manshurat",
+    "url": "https://manshurat.org/node/76602",
+    "source_class": "secondary_text_copy",
+    "stated_origin": "Egyptian Official Gazette issue 18 (supplement), dated 2025-05-03",
+    "official_gazette_match": "not_verified",
+    "terms_review": "not_completed",
+    "collection_permission": "unknown",
+    "redistribution_permission": "unknown",
+    "commercial_reuse_permission": "unknown"
+  },
+  "supplied_artifact": {
+    "filename": "law_rows_ar.jsonl",
+    "sha256": "3e964de5c9cc994aefcc29c031712e85d664febd97c428e61c2eacdccaf1c600",
+    "size_bytes": 393861,
+    "jsonl_records": 311,
+    "malformed_lines": 0,
+    "record_groups": {
+      "promulgation_or_introductory_provisions": 13,
+      "accompanying_law_articles": 298
+    },
+    "observed_as_of_field": "2025-05-03",
+    "observed_source_retrieval_date": "2026-10-22",
+    "embedded_verified_flags": "0 in inspected sample; must not be promoted automatically",
+    "embedded_in_force_flags": "not authoritative; ignore until legal-status review"
+  },
+  "legal_review": {
+    "official_gazette_issue": "18 (supplement), to be checked against original",
+    "publication_date": "2025-05-03",
+    "effective_date": null,
+    "repeal_date": null,
+    "amendment_chain_status": "not_reviewed",
+    "commencement_and_transitional_rules_status": "not_reviewed",
+    "extraction_quality_status": "jsonl parses; legal text not compared article-by-article with Gazette",
+    "egyptian_lawyer_review_status": "pending",
+    "search_eligible": false
+  },
+  "next_steps": [
+    "Review the source's terms and obtain any needed permission for storage, indexing, redistribution, and commercial use.",
+    "Acquire or inspect the exact official Gazette publication and record issue/page evidence.",
+    "Compare all 311 records against the Gazette, including article numbering, wording, omissions, duplicates, and the 13 promulgation provisions.",
+    "Determine commencement and transitional rules from the enacted text and applicable instruments; do not infer the effective date from publication date.",
+    "Record amendments, repeal/supersession status, review evidence, and a lawyer-approved version timeline.",
+    "Import only through the versioned legal-source registry; do not trust incoming verified/in_force fields."
+  ]
+}
