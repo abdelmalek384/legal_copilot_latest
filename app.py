@@ -480,7 +480,9 @@ app = FastAPI(title="Legal Copilot MVP", docs_url=None, redoc_url=None, openapi_
 # Per-process fixed-window limits for expensive or abuse-prone endpoints.
 # Deliberately use the direct peer address; do not trust arbitrary X-Forwarded-For.
 _RATE_LIMITS = {
-    "/login": (10, 60),
+    # Login has a separate failed-credential throttle in the login handler.
+    # A generic middleware cap would also reject correct credentials and break
+    # the intentional policy that a known user can still log in during lockout.
     "/ask": (20, 60),
     "/search": (40, 60),
 }
