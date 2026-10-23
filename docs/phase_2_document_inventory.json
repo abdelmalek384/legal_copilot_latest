@@ -862,6 +862,36 @@
       ]
     },
     {
+      "document_id": "EG-COMPETITION-LAW-3-2005",
+      "official_title_ar": "قانون حماية المنافسة ومنع الممارسات الاحتكارية — القانون رقم 3 لسنة 2005",
+      "practice_areas": [
+        "commercial",
+        "administrative"
+      ],
+      "document_type": "competition_law",
+      "instrument_number": "3",
+      "instrument_year": 2005,
+      "source_id": "EG-AMIRI-PRESS",
+      "source_status": "later_official_citation_only",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "original Gazette publication",
+        "all amending laws",
+        "executive regulations and later decisions",
+        "provision-level amendment mapping"
+      ],
+      "notes": "Instrument identity is recorded as a discovery lead because a later official decision cites Law 3/2005. The citation is not the original promulgated text; locate the original Gazette publication and amendment chain before assigning legal effect or current status.",
+      "source_urls": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=Cf3yhw6LOt4%3D",
+          "source_role": "later official citation",
+          "status": "supporting_reference_only"
+        }
+      ]
+    },
+    {
       "document_id": "EG-ADMINISTRATIVE-PROCUREMENT-LAW-COLLECTION",
       "official_title_ar": "تشريعات التعاقدات العامة",
       "practice_areas": [
