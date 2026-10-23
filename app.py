@@ -501,7 +501,7 @@ def _rate_limit(request: Request):
     peer = request.client.host if request.client else "unknown"
     now = time.monotonic()
     window_start = int(now // window_seconds) * window_seconds
-    key = (path, peer)
+    key = ("upload" if path.startswith("/cases/") and path.endswith("/upload") else path, peer)
     global _rate_limit_checks
     with _rate_limit_lock:
         entry = _rate_limit_state.get(key)
