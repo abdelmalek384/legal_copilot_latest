@@ -352,6 +352,17 @@ def citation_provenance(c, version_id):
         "SELECT review_type,outcome,evidence_url,reviewer,reviewed_at "
         "FROM legal_review_events WHERE version_id=? ORDER BY reviewed_at DESC,review_event_id DESC LIMIT 10",
         (version_id,)).fetchall()]
+    data["relations"] = [dict(e) for e in c.execute(
+        "SELECT r.relation_type,r.notes,"
+        "f.version_id AS from_version_id,fd.official_title AS from_title,f.version_label AS from_version_label,"
+        "t.version_id AS to_version_id,td.official_title AS to_title,t.version_label AS to_version_label "
+        "FROM legal_version_relations r "
+        "JOIN legal_document_versions f ON f.version_id=r.from_version_id "
+        "JOIN legal_document_versions t ON t.version_id=r.to_version_id "
+        "LEFT JOIN legal_documents fd ON fd.document_id=f.document_id "
+        "LEFT JOIN legal_documents td ON td.document_id=t.document_id "
+        "WHERE r.from_version_id=? OR r.to_version_id=? ORDER BY r.relation_id LIMIT 20",
+        (version_id, version_id)).fetchall()]
     return data
 
 
