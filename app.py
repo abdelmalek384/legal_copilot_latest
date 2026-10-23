@@ -3,7 +3,7 @@ Run: pip install -r requirements.txt && uvicorn app:app --reload"""
 import sqlite3, re, json, os, io, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request, zipfile
 from collections import Counter
 from fastapi import Request
-from fastapi.responses import JSONResponse, HTMLResponse
+from fastapi.responses import JSONResponse, HTMLResponse, Response
 
 DB = os.environ.get("COPILOT_DB", "copilot.db")
 MIN_SCORE = float(os.environ.get("MIN_SCORE", "0.3"))
@@ -237,7 +237,7 @@ def ask(c, q, case_id=None, firm_id=1):
 
 
 # ---------------- API ----------------
-from fastapi import Depends, FastAPI, Header, HTTPException, UploadFile
+from fastapi import Cookie, Depends, FastAPI, Header, HTTPException, UploadFile
 from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field
 
@@ -302,12 +302,29 @@ class LawRow(BaseModel):
 def sha(t): return hashlib.sha256(t.encode()).hexdigest()
 
 
-def user(authorization: str = Header(None)):
-    tok = (authorization or "").removeprefix("Bearer ").strip()
-    r = conn().execute("SELECT u.* FROM auth_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=? AND s.expires>?", (sha(tok), int(time.time()))).fetchone()
-    if not r or not r["active"]:
-        if r: conn().execute("DELETE FROM auth_sessions WHERE token_hash=?", (sha(tok),)); conn().commit()
+def user(request: Request, session_cookie: str = Cookie(None, alias="lc_session"),
+         csrf_cookie: str = Cookie(None, alias="lc_csrf"),
+         csrf_header: str = Header(None, alias="X-CSRF-Token")):
+    tok = session_cookie or ""
+    if not tok:
         raise HTTPException(401, "unauthorized")
+    token_hash = sha(tok)
+    c = conn()
+    r = c.execute("SELECT u.* FROM auth_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=? AND s.expires>?", (token_hash, int(time.time()))).fetchone()
+    if not r or not r["active"]:
+        c.execute("DELETE FROM auth_sessions WHERE token_hash=?", (token_hash,)); c.commit()
+        raise HTTPException(401, "unauthorized")
+    # Cookie-based sessions are not readable by JavaScript. Mutating requests require
+    # a matching double-submit CSRF token and, when present, a same-origin Origin.
+    if request.method not in ("GET", "HEAD", "OPTIONS"):
+        if not csrf_cookie or not csrf_header or not hmac.compare_digest(csrf_cookie, csrf_header):
+            raise HTTPException(403, "csrf check failed")
+        origin = request.headers.get("origin")
+        if origin:
+            from urllib.parse import urlsplit
+            parsed = urlsplit(origin)
+            if parsed.netloc != request.url.netloc or parsed.scheme != request.url.scheme:
+                raise HTTPException(403, "cross-origin request blocked")
     return dict(r)
 
 
@@ -354,7 +371,7 @@ def home(request: Request):
 
 
 @app.post("/login")
-def login(b: LoginIn, request: Request):
+def login(b: LoginIn, request: Request, response: Response):
     k = b.email.strip().lower()
     now = int(time.time())
     ip = request.client.host if request.client else "unknown"
@@ -400,20 +417,28 @@ def login(b: LoginIn, request: Request):
         c.commit()
         raise HTTPException(429 if locked else 401, "too many attempts, try later" if locked else "bad credentials")
     c.execute("DELETE FROM login_attempts WHERE email IN (?,?)", identifiers)
-    tok = secrets.token_urlsafe(32)
+    tok, csrf = secrets.token_urlsafe(32), secrets.token_urlsafe(32)
     c.execute("DELETE FROM auth_sessions WHERE expires<?", (now,))
     c.execute("INSERT INTO auth_sessions VALUES(?,?,?)", (sha(tok), r["id"], now + 43200)); c.commit()
-    return {"token": tok, "id": r["id"], "name": r["name"], "role": r["role"], "firm_id": r["firm_id"]}
+    secure = request.url.scheme == "https"
+    response.set_cookie("lc_session", tok, max_age=43200, httponly=True, secure=secure, samesite="lax", path="/")
+    response.set_cookie("lc_csrf", csrf, max_age=43200, httponly=False, secure=secure, samesite="lax", path="/")
+    return {"id": r["id"], "name": r["name"], "role": r["role"], "firm_id": r["firm_id"]}
+
+
+@app.get("/session")
+def current_session(u: dict = Depends(user)):
+    return {"id": u["id"], "name": u["name"], "role": u["role"], "firm_id": u["firm_id"]}
 
 
 @app.post("/logout")
-def logout(authorization: str = Header(None), u: dict = Depends(user)):
-    tok = (authorization or "").removeprefix("Bearer ").strip()
-    if not tok:
-        raise HTTPException(401, "unauthorized")
+def logout(request: Request, response: Response, u: dict = Depends(user)):
+    tok = request.cookies.get("lc_session", "")
     c = conn()
     c.execute("DELETE FROM auth_sessions WHERE token_hash=? AND user_id=?", (sha(tok), u["id"]))
     c.commit()
+    response.delete_cookie("lc_session", path="/", httponly=True, samesite="lax", secure=request.url.scheme == "https")
+    response.delete_cookie("lc_csrf", path="/", samesite="lax", secure=request.url.scheme == "https")
     return {"ok": True}
 
 
