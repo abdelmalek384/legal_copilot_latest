@@ -96,6 +96,13 @@
       "source_class": "secondary_discovery_and_cross_check",
       "permission": "unknown",
       "next_action": "Use for labour-law discovery; verify source/version and reuse terms."
+    },
+    "EG-ETA-TAX-LAWS": {
+      "authority": "Egyptian Tax Authority and Income Tax Authority portals",
+      "source_url": "https://portal.eta.gov.eg/ar/content/qwanyn-aldrybt-ly-alqymt-almdaft",
+      "source_class": "official_regulator_discovery_index",
+      "permission": "unknown",
+      "next_action": "Review terms and obtain authorization for storage, download, OCR, indexing, commercial use, excerpt display and redistribution; verify every instrument against the original Official Gazette before legal use."
     }
   },
   "documents": [
