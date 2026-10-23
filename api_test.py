@@ -16,6 +16,7 @@ def login_creds(email, password):
     assert response.status_code == 200, response.text
     session = response.cookies["lc_session"]
     csrf = response.cookies["lc_csrf"]
+    c.cookies.clear()  # Tests pass credentials explicitly; avoid leaking one login into later requests.
     return {"Cookie": f"lc_session={session}; lc_csrf={csrf}", "X-CSRF-Token": csrf}
 A_IMPORT = login_creds("import-admin@x.eg", "password-ImportAdmin")
 def login(n): return login_creds(n.lower() + "@x.eg", "password-" + n)
