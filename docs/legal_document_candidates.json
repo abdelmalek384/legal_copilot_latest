@@ -1,0 +1,372 @@
+{
+  "schema_version": "1.0",
+  "generated_on": "2026-10-23",
+  "purpose": "Seed discovery candidates into the local registry. These are metadata leads, not downloaded legal texts, verified current law, or permission to collect/reuse content.",
+  "sources": [
+    {
+      "source_id": "EG-PRESIDENCY",
+      "authority": "Presidency of the Arab Republic of Egypt",
+      "source_page": "https://www.presidency.eg/ar/مصر/الدستور/",
+      "access_status": "public_page_located",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": null
+    },
+    {
+      "source_id": "EG-AMIRI-PRESS",
+      "authority": "General Authority for Amiri Press",
+      "source_page": "https://www.alamiria.com/Sec/Home",
+      "access_status": "public_portal_located",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": null
+    },
+    {
+      "source_id": "EG-COURT-CASSATION",
+      "authority": "Egyptian Court of Cassation",
+      "source_page": "https://cc.gov.eg/",
+      "access_status": "public_portal_located",
+      "collection_permission": "not_allowed_without_explicit_exception_or_license",
+      "commercial_reuse_permission": "prior_written_permission_required_per_published_terms",
+      "terms_url": "https://cc.gov.eg/terms",
+      "terms_checked_on": "2026-10-23",
+      "permission_evidence": "Published site policy recorded in docs/source_permission_register.json. This is a restriction record, not permission."
+    }
+  ],
+  "documents": [
+    {
+      "document_id": "EG-CONSTITUTION-2014",
+      "official_title": "دستور جمهورية مصر العربية لسنة 2014 وتعديلاته",
+      "document_type": "constitution",
+      "law_number": null,
+      "law_year": 2014,
+      "source_id": "EG-PRESIDENCY",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Constitution text and amendment instruments; verify exact official versions and Gazette references."
+    },
+    {
+      "document_id": "EG-CIVIL-CODE-131-1948",
+      "official_title": "القانون المدني — القانون رقم 131 لسنة 1948",
+      "document_type": "code",
+      "law_number": "131",
+      "law_year": 1948,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Verify amendments, transitional provisions, and current consolidated text."
+    },
+    {
+      "document_id": "EG-CIVIL-PROCEDURE-13-1968",
+      "official_title": "قانون المرافعات المدنية والتجارية — القانون رقم 13 لسنة 1968",
+      "document_type": "procedural_code",
+      "law_number": "13",
+      "law_year": 1968,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Verify subsequent amendments and commencement provisions."
+    },
+    {
+      "document_id": "EG-EVIDENCE-25-1968",
+      "official_title": "قانون الإثبات في المواد المدنية والتجارية — القانون رقم 25 لسنة 1968",
+      "document_type": "evidence_law",
+      "law_number": "25",
+      "law_year": 1968,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Verify subsequent amendments and current text."
+    },
+    {
+      "document_id": "EG-PENAL-CODE-58-1937",
+      "official_title": "قانون العقوبات — القانون رقم 58 لسنة 1937",
+      "document_type": "penal_code",
+      "law_number": "58",
+      "law_year": 1937,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Verify amendments and special penal legislation."
+    },
+    {
+      "document_id": "EG-CRIMINAL-PROCEDURE-150-1950",
+      "official_title": "قانون الإجراءات الجنائية — القانون رقم 150 لسنة 1950 (مرجع تاريخي يحتاج مراجعة تشريعات الإحلال والنفاذ)",
+      "document_type": "procedural_code",
+      "law_number": "150",
+      "law_year": 1950,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Do not assume current applicability; check any replacement legislation and commencement date before use."
+    },
+    {
+      "document_id": "EG-COMMERCIAL-17-1999",
+      "official_title": "قانون التجارة — القانون رقم 17 لسنة 1999",
+      "document_type": "commercial_code",
+      "law_number": "17",
+      "law_year": 1999,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Verify amendments and interaction with special commercial legislation."
+    },
+    {
+      "document_id": "EG-COMPANIES-159-1981",
+      "official_title": "قانون شركات المساهمة وشركات التوصية بالأسهم والشركات ذات المسؤولية المحدودة — القانون رقم 159 لسنة 1981",
+      "document_type": "companies_law",
+      "law_number": "159",
+      "law_year": 1981,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Verify amendments and executive regulations."
+    },
+    {
+      "document_id": "EG-INVESTMENT-72-2017",
+      "official_title": "قانون الاستثمار — القانون رقم 72 لسنة 2017",
+      "document_type": "investment_law",
+      "law_number": "72",
+      "law_year": 2017,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Pair with applicable executive regulations and amendments."
+    },
+    {
+      "document_id": "EG-CONSUMER-PROTECTION-181-2018",
+      "official_title": "قانون حماية المستهلك — القانون رقم 181 لسنة 2018",
+      "document_type": "consumer_protection_law",
+      "law_number": "181",
+      "law_year": 2018,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Verify amendments and implementing decisions."
+    },
+    {
+      "document_id": "EG-PERSONAL-DATA-151-2020",
+      "official_title": "قانون حماية البيانات الشخصية — القانون رقم 151 لسنة 2020",
+      "document_type": "data_protection_law",
+      "law_number": "151",
+      "law_year": 2020,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Verify commencement, executive regulations, and implementing authority decisions."
+    },
+    {
+      "document_id": "EG-CYBERCRIME-175-2018",
+      "official_title": "قانون مكافحة جرائم تقنية المعلومات — القانون رقم 175 لسنة 2018",
+      "document_type": "cybercrime_law",
+      "law_number": "175",
+      "law_year": 2018,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Verify amendments and implementing instruments."
+    },
+    {
+      "document_id": "EG-IP-82-2002",
+      "official_title": "قانون حماية حقوق الملكية الفكرية — القانون رقم 82 لسنة 2002",
+      "document_type": "intellectual_property_law",
+      "law_number": "82",
+      "law_year": 2002,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Separate patents, trademarks, copyright, and implementing provisions."
+    },
+    {
+      "document_id": "EG-LABOUR-14-2025",
+      "official_title": "قانون العمل — القانون رقم 14 لسنة 2025",
+      "document_type": "labour_law",
+      "law_number": "14",
+      "law_year": 2025,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Confirm official Gazette issue, commencement, executive regulations, and transitional provisions."
+    },
+    {
+      "document_id": "EG-INCOME-TAX-91-2005",
+      "official_title": "قانون الضريبة على الدخل — القانون رقم 91 لسنة 2005",
+      "document_type": "tax_law",
+      "law_number": "91",
+      "law_year": 2005,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Requires amendment-by-amendment consolidation and current tax authority materials."
+    },
+    {
+      "document_id": "EG-VAT-67-2016",
+      "official_title": "قانون الضريبة على القيمة المضافة — القانون رقم 67 لسنة 2016",
+      "document_type": "tax_law",
+      "law_number": "67",
+      "law_year": 2016,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Verify amendments, schedules, executive regulations, and current decisions."
+    },
+    {
+      "document_id": "EG-BANKRUPTCY-11-2018",
+      "official_title": "قانون إعادة الهيكلة والصلح الواقي والإفلاس — القانون رقم 11 لسنة 2018",
+      "document_type": "insolvency_law",
+      "law_number": "11",
+      "law_year": 2018,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Verify amendments and relevant commercial-court practice."
+    },
+    {
+      "document_id": "EG-CIVIL-SERVICE-81-2016",
+      "official_title": "قانون الخدمة المدنية — القانون رقم 81 لسنة 2016",
+      "document_type": "public_service_law",
+      "law_number": "81",
+      "law_year": 2016,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Verify amendments, executive regulations, and scope/exceptions."
+    },
+    {
+      "document_id": "EG-STATE-COUNCIL-47-1972",
+      "official_title": "قانون مجلس الدولة — القانون رقم 47 لسنة 1972",
+      "document_type": "administrative_law",
+      "law_number": "47",
+      "law_year": 1972,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Verify amendments and related administrative judiciary legislation."
+    },
+    {
+      "document_id": "EG-ADMINISTRATIVE-COURTS-47-1972",
+      "official_title": "قانون تنظيم بعض أوضاع وإجراءات التقاضي أمام محاكم مجلس الدولة والاختصاصات الإدارية ذات الصلة — عنوان وصفي يحتاج تحديد النصوص",
+      "document_type": "administrative_procedure",
+      "law_number": "47",
+      "law_year": 1972,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Discovery placeholder only; do not treat this descriptive title as the official title. Identify the exact instrument before creating a version record."
+    },
+    {
+      "document_id": "EG-ECONOMIC-COURTS-120-2008",
+      "official_title": "قانون إنشاء المحاكم الاقتصادية — القانون رقم 120 لسنة 2008",
+      "document_type": "court_organization_law",
+      "law_number": "120",
+      "law_year": 2008,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Verify amendments, jurisdictional schedules, and current text."
+    },
+    {
+      "document_id": "EG-ARBITRATION-27-1994",
+      "official_title": "قانون التحكيم في المواد المدنية والتجارية — القانون رقم 27 لسنة 1994",
+      "document_type": "arbitration_law",
+      "law_number": "27",
+      "law_year": 1994,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Verify amendments and relevant treaty instruments."
+    },
+    {
+      "document_id": "EG-ANTI-MONEY-LAUNDERING-80-2002",
+      "official_title": "قانون مكافحة غسل الأموال — القانون رقم 80 لسنة 2002",
+      "document_type": "financial_crime_law",
+      "law_number": "80",
+      "law_year": 2002,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Verify amendments and current implementing decisions."
+    },
+    {
+      "document_id": "EG-BUILDING-119-2008",
+      "official_title": "قانون البناء — القانون رقم 119 لسنة 2008",
+      "document_type": "construction_law",
+      "law_number": "119",
+      "law_year": 2008,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Verify amendments, executive regulations, and local planning instruments."
+    },
+    {
+      "document_id": "EG-ENVIRONMENT-4-1994",
+      "official_title": "قانون البيئة — القانون رقم 4 لسنة 1994",
+      "document_type": "environmental_law",
+      "law_number": "4",
+      "law_year": 1994,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Verify amendments, executive regulations, and sector-specific decisions."
+    },
+    {
+      "document_id": "EG-TELECOM-10-2003",
+      "official_title": "قانون تنظيم الاتصالات — القانون رقم 10 لسنة 2003",
+      "document_type": "telecommunications_law",
+      "law_number": "10",
+      "law_year": 2003,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Verify amendments and current National Telecom Regulatory Authority decisions."
+    },
+    {
+      "document_id": "EG-ANTI-TRAFFICKING-64-2010",
+      "official_title": "قانون مكافحة الاتجار بالبشر — القانون رقم 64 لسنة 2010",
+      "document_type": "criminal_law",
+      "law_number": "64",
+      "law_year": 2010,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Verify amendments and related implementing instruments."
+    },
+    {
+      "document_id": "EG-CHILD-12-1996",
+      "official_title": "قانون الطفل — القانون رقم 12 لسنة 1996",
+      "document_type": "child_protection_law",
+      "law_number": "12",
+      "law_year": 1996,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Verify amendments and related child-protection provisions."
+    },
+    {
+      "document_id": "EG-NATIONALITY-26-1975",
+      "official_title": "قانون الجنسية المصرية — القانون رقم 26 لسنة 1975",
+      "document_type": "nationality_law",
+      "law_number": "26",
+      "law_year": 1975,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Verify amendments and relevant ministerial decisions."
+    },
+    {
+      "document_id": "EG-SCC-DECISIONS",
+      "official_title": "أحكام المحكمة الدستورية العليا ومبادئها",
+      "document_type": "judgments_collection",
+      "law_number": null,
+      "law_year": null,
+      "source_id": "EG-COURT-CASSATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Incorrect source placeholder: Supreme Constitutional Court has a separate official portal; move to a dedicated source record before ingestion."
+    }
+  ]
+}
