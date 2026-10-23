@@ -142,6 +142,8 @@ async function law(){
            if(!p.amendment_history_verified)src.append(pill(LANG==='ar'?'تاريخ التعديلات غير متحقق':'Amendment history unverified','soon'));
            const ev=(p.review_evidence||[]).filter(e=>e.outcome==='pass'&&e.evidence_url);
            if(ev.length)src.append(h('div',{className:'mut',textContent:(LANG==='ar'?'دليل المراجعة: ':'Review evidence: ')+ev.map(e=>e.review_type+' — '+e.evidence_url).join(' · ')}));
+           const rels=p.relations||[];
+           if(rels.length)src.append(h('div',{className:'mut',textContent:(LANG==='ar'?'علاقات الإصدار: ':'Version relations: ')+rels.map(r=>(r.from_title||r.from_version_id)+' '+r.relation_type+' '+(r.to_title||r.to_version_id)).join(' · ')}));
          }else if(p.status==='legacy_unlinked'){
            src.append(pill(LANG==='ar'?'لا يرتبط بإصدار قانوني مسجل':'Not linked to a registered legal version','soon'));
          }else if(p.status==='registry_record_missing'){
