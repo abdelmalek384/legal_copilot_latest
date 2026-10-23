@@ -75,7 +75,7 @@ def main(out, saved=None):
         for art, block, body in arts:
             for t in pieces(" ".join(body)):
                 rows.append({"law": law["name"] + " - " + law["blocks"].get(block, "جزء %d" % block), "article": art, "text": t,
-                             "as_of": law["as_of"], "in_force": 1, "verified": 0, "source": src})
+                             "as_of": law["as_of"], "in_force": 0, "verified": 0, "source": src})
         rep += ["## " + law["name"], "", "| block | first | last | articles | missing numbers |", "|---|---|---|---|---|"]
         for b in sorted({a[1] for a in arts}):
             nums = sorted({int(a[0].split()[0]) for a in arts if a[1] == b}); miss = sorted(set(range(nums[0], nums[-1] + 1)) - set(nums))
