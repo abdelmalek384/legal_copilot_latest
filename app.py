@@ -28,6 +28,19 @@ CREATE TABLE IF NOT EXISTS fees(id INTEGER PRIMARY KEY, case_id INT, title TEXT,
 CREATE TABLE IF NOT EXISTS members(case_id INT, user_id INT, role TEXT, PRIMARY KEY(case_id, user_id));
 CREATE TABLE IF NOT EXISTS tasks(id INTEGER PRIMARY KEY, case_id INT, title TEXT, assignee INT, due TEXT, status TEXT DEFAULT 'open', created_by INT);
 CREATE TABLE IF NOT EXISTS events(id INTEGER PRIMARY KEY, case_id INT, who TEXT, at TEXT, text TEXT);
+CREATE TABLE IF NOT EXISTS case_deletion_audit(
+  id INTEGER PRIMARY KEY,
+  firm_id INTEGER NOT NULL,
+  case_id INTEGER NOT NULL,
+  actor_user_id INTEGER NOT NULL,
+  actor_name TEXT NOT NULL,
+  case_snapshot_json TEXT NOT NULL,
+  events_snapshot_json TEXT NOT NULL,
+  related_counts_json TEXT NOT NULL,
+  deleted_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+CREATE INDEX IF NOT EXISTS idx_case_deletion_audit_firm_id
+  ON case_deletion_audit(firm_id, id DESC);
 CREATE TABLE IF NOT EXISTS sessions(id INTEGER PRIMARY KEY, case_id INT, date TEXT, note TEXT, done INT DEFAULT 0);
 CREATE TABLE IF NOT EXISTS docs(id INTEGER PRIMARY KEY, case_id INT, name TEXT, added TEXT);
 -- Legal corpus provenance: one stable source record, multiple immutable legal versions.
@@ -316,6 +329,26 @@ def upcoming(c, u, days=14):
 
 def delete_case(c, u, cid):
     if not is_lead(c, u, cid): return False
+    case_row = c.execute(
+        "SELECT id,title,client,stage,status,created_by,firm_id,case_number,case_year,court,circuit,opposing_party "
+        "FROM cases WHERE id=? AND firm_id=?", (cid, u["firm_id"])
+    ).fetchone()
+    if not case_row: return False
+    # Preserve an immutable audit snapshot before deleting the case and its event history.
+    prior_events = [dict(r) for r in c.execute(
+        "SELECT who,at,text FROM events WHERE case_id=? ORDER BY id", (cid,)
+    ).fetchall()]
+    related_counts = {}
+    for table in ("chunks", "sessions", "tasks", "docs", "members", "notes", "deadlines", "fees"):
+        related_counts[table] = c.execute(
+            "SELECT COUNT(*) FROM %s WHERE case_id=?" % table, (cid,)
+        ).fetchone()[0]
+    c.execute(
+        "INSERT INTO case_deletion_audit(firm_id,case_id,actor_user_id,actor_name,"
+        "case_snapshot_json,events_snapshot_json,related_counts_json) VALUES(?,?,?,?,?,?,?)",
+        (u["firm_id"], cid, u["id"], u["name"], json.dumps(dict(case_row), ensure_ascii=False),
+         json.dumps(prior_events, ensure_ascii=False), json.dumps(related_counts, ensure_ascii=False))
+    )
     c.execute("DELETE FROM chunks_fts WHERE rowid IN (SELECT id FROM chunks WHERE case_id=?)", (cid,))
     for t in ("chunks", "sessions", "tasks", "events", "docs", "members", "notes", "deadlines", "fees"): c.execute("DELETE FROM %s WHERE case_id=?" % t, (cid,))
     c.execute("DELETE FROM cases WHERE id=?", (cid,)); c.commit(); return True
@@ -1163,6 +1196,25 @@ def upload(cid: int, file: UploadFile, u: dict = Depends(user)):
 def rm_case(cid: int, u: dict = Depends(user)):
     if not delete_case(conn(), u, cid): raise HTTPException(404, "case not found")
     return {"deleted": True}
+
+
+@app.get("/audit/case-deletions")
+def case_deletion_audit(limit: int = 50, offset: int = 0, u: dict = Depends(user)):
+    require_admin(u)
+    if limit < 1 or limit > 100 or offset < 0:
+        raise HTTPException(422, "limit must be 1-100 and offset must be non-negative")
+    rows = conn().execute(
+        "SELECT * FROM case_deletion_audit WHERE firm_id=? ORDER BY id DESC LIMIT ? OFFSET ?",
+        (u["firm_id"], limit, offset)
+    ).fetchall()
+    return {"items": [{
+        "id": r["id"], "firm_id": r["firm_id"], "case_id": r["case_id"],
+        "actor_user_id": r["actor_user_id"], "actor_name": r["actor_name"],
+        "case_snapshot": json.loads(r["case_snapshot_json"]),
+        "events_snapshot": json.loads(r["events_snapshot_json"]),
+        "related_counts": json.loads(r["related_counts_json"]),
+        "deleted_at": r["deleted_at"]
+    } for r in rows], "limit": limit, "offset": offset}
 
 
 @app.post("/law/import")
