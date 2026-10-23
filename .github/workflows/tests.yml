@@ -34,6 +34,10 @@ jobs:
         run: python tests/test_legal_candidate_catalog.py
       - name: Validate legal candidate catalog
         run: python tools/seed_legal_candidates.py
+      - name: Test amendment relationship validator
+        run: python tests/test_amendment_relationship_validator.py
+      - name: Audit amendment relationship register
+        run: python tools/validate_amendment_relationships.py --out amendment-relationship-audit.json
       - name: Test first official batch manifest
         run: python tests/test_first_official_batch_manifest.py
       - name: Validate collection manifest template
