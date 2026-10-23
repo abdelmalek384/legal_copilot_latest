@@ -247,6 +247,230 @@
         "qualified Egyptian-lawyer sign-off"
       ],
       "notes": "Official 2026 regulation text cites Law 168/2025; confirm the original law and Gazette details."
+    },
+    {
+      "relationship_id": "REL-TAX-7-2025-AMENDS-206-2020",
+      "source_instrument_id": "EG-UNIFIED-TAX-PROCEDURES-AMENDMENT-7-2025",
+      "target_instrument_id": "EG-UNIFIED-TAX-PROCEDURES-206-2020",
+      "relationship_type": "amends_specified_provisions",
+      "status": "source_discovered_instrument_record_pending",
+      "source_url": "https://www.incometax.gov.eg/ar/content/qwanyn-aldrybt-ly-aldkhl",
+      "required_evidence": [
+        "original Official Gazette issue/date/pages",
+        "exact provision-level before/after comparison",
+        "commencement and transitional rules",
+        "later amendment/repeal/renewal search",
+        "qualified Egyptian tax-lawyer sign-off"
+      ],
+      "notes": "Official tax authority index lists Law 7/2025; exact Gazette text and article mapping pending."
+    },
+    {
+      "relationship_id": "REL-VAT-157-2025-AMENDS-67-2016",
+      "source_instrument_id": "EG-VAT-AMENDMENT-157-2025",
+      "target_instrument_id": "EG-VAT-67-2016",
+      "relationship_type": "amends_specified_provisions",
+      "status": "source_discovered_instrument_record_pending",
+      "source_url": "https://portal.eta.gov.eg/ar/content/qwanyn-aldrybt-ly-alqymt-almdaft",
+      "required_evidence": [
+        "original Official Gazette issue/date/pages",
+        "exact provision-level before/after comparison",
+        "commencement and transitional rules",
+        "later amendment/repeal/renewal search",
+        "qualified Egyptian tax-lawyer sign-off"
+      ],
+      "notes": "Official VAT index lists Law 157/2025; exact Gazette text and article mapping pending."
+    },
+    {
+      "relationship_id": "REL-STATE-FEES-148-2026-AMENDS-147-1984",
+      "source_instrument_id": "EG-STATE-RESOURCE-FEES-AMENDMENT-148-2026",
+      "target_instrument_id": "EG-STATE-RESOURCE-FEES-147-1984",
+      "relationship_type": "amends_specified_provisions",
+      "status": "source_discovered_instrument_record_pending",
+      "source_url": "https://mof.gov.eg/ar/archive/regulations/5fdf82ca3939500007111cc4/القوانين",
+      "required_evidence": [
+        "original Official Gazette issue/date/pages",
+        "exact provision-level before/after comparison",
+        "commencement and transitional rules",
+        "later amendment/repeal/renewal search",
+        "qualified Egyptian tax-lawyer sign-off"
+      ],
+      "notes": "Ministry of Finance legislation portal is a discovery lead; verify original Gazette and exact provisions. Stable Ministry of Finance archive page is a discovery index only; obtain the individual instrument's official publication and exact pages."
+    },
+    {
+      "relationship_id": "REL-VAT-149-2026-AMENDS-67-2016",
+      "source_instrument_id": "EG-VAT-AMENDMENT-149-2026",
+      "target_instrument_id": "EG-VAT-67-2016",
+      "relationship_type": "amends_specified_provisions",
+      "status": "source_discovered_instrument_record_pending",
+      "source_url": "https://portal.eta.gov.eg/ar/content/qwanyn-aldrybt-ly-alqymt-almdaft",
+      "required_evidence": [
+        "original Official Gazette issue/date/pages",
+        "exact provision-level before/after comparison",
+        "commencement and transitional rules",
+        "later amendment/repeal/renewal search",
+        "qualified Egyptian tax-lawyer sign-off"
+      ],
+      "notes": "Official VAT index lists Law 149/2026; exact Gazette text and article mapping pending."
+    },
+    {
+      "relationship_id": "REL-TAX-PROCEDURES-150-2026-AMENDS-206-2020",
+      "source_instrument_id": "EG-UNIFIED-TAX-PROCEDURES-AMENDMENT-150-2026",
+      "target_instrument_id": "EG-UNIFIED-TAX-PROCEDURES-206-2020",
+      "relationship_type": "amends_specified_provisions",
+      "status": "source_discovered_instrument_record_pending",
+      "source_url": "https://www.incometax.gov.eg/ar/content/qwanyn-aldrybt-ly-aldkhl",
+      "required_evidence": [
+        "original Official Gazette issue/date/pages",
+        "exact provision-level before/after comparison",
+        "commencement and transitional rules",
+        "later amendment/repeal/renewal search",
+        "qualified Egyptian tax-lawyer sign-off"
+      ],
+      "notes": "Official tax authority index lists Law 150/2026; verify original Gazette and title/reference accuracy."
+    },
+    {
+      "relationship_id": "REL-INCOME-TAX-151-2026-AMENDS-91-2005",
+      "source_instrument_id": "EG-INCOME-TAX-AMENDMENT-151-2026",
+      "target_instrument_id": "EG-INCOME-TAX-91-2005",
+      "relationship_type": "amends_specified_provisions",
+      "status": "source_discovered_instrument_record_pending",
+      "source_url": "https://www.incometax.gov.eg/ar/content/qwanyn-aldrybt-ly-aldkhl",
+      "required_evidence": [
+        "original Official Gazette issue/date/pages",
+        "exact provision-level before/after comparison",
+        "commencement and transitional rules",
+        "later amendment/repeal/renewal search",
+        "qualified Egyptian tax-lawyer sign-off"
+      ],
+      "notes": "Official income-tax index lists Law 151/2026; exact Gazette text and article mapping pending."
+    },
+    {
+      "relationship_id": "REL-TAX-DISPUTES-152-2026-RENEWS-79-2016",
+      "source_instrument_id": "EG-TAX-DISPUTES-RENEWAL-152-2026",
+      "target_instrument_id": "EG-TAX-DISPUTES-79-2016",
+      "relationship_type": "amends_specified_provisions",
+      "status": "source_discovered_instrument_record_pending",
+      "source_url": "https://mof.gov.eg/ar/archive/regulations/5fdf82ca3939500007111cc4/القوانين",
+      "required_evidence": [
+        "original Official Gazette issue/date/pages",
+        "exact provision-level before/after comparison",
+        "commencement and transitional rules",
+        "later amendment/repeal/renewal search",
+        "qualified Egyptian tax-lawyer sign-off"
+      ],
+      "notes": "Ministry of Finance index describes renewal of Law 79/2016; exact duration and conditions require primary-text review. Stable Ministry of Finance archive page is a discovery index only; obtain the individual instrument's official publication and exact pages."
+    },
+    {
+      "relationship_id": "REL-STAMP-TAX-153-2026-AMENDS-111-1980",
+      "source_instrument_id": "EG-STAMP-TAX-AMENDMENT-153-2026",
+      "target_instrument_id": "EG-STAMP-TAX-111-1980",
+      "relationship_type": "amends_specified_provisions",
+      "status": "source_discovered_instrument_record_pending",
+      "source_url": "https://mof-web-prd.apps.fslabs.net/ar/legislation/legislation-6a731e1163496600085dd856",
+      "required_evidence": [
+        "original Official Gazette issue/date/pages",
+        "exact provision-level before/after comparison",
+        "commencement and transitional rules",
+        "later amendment/repeal/renewal search",
+        "qualified Egyptian tax-lawyer sign-off"
+      ],
+      "notes": "Ministry of Finance index lists the 2026 stamp-tax amendment; exact Gazette text and provision mapping pending."
+    },
+    {
+      "relationship_id": "REL-TAX-CORRIGENDUM-CORRECTS-149-2026",
+      "source_instrument_id": "EG-TAX-CORRIGENDUM-149-151-2026",
+      "target_instrument_id": "EG-VAT-AMENDMENT-149-2026",
+      "relationship_type": "corrects",
+      "status": "source_discovered_instrument_record_pending",
+      "source_url": "https://portal.eta.gov.eg/ar/content/qwanyn-aldrybt-ly-alqymt-almdaft",
+      "required_evidence": [
+        "original Official Gazette or Egyptian Proceedings publication",
+        "exact correction/provision mapping",
+        "commencement and transitional rules",
+        "subsequent correction/amendment search",
+        "qualified Egyptian tax-lawyer sign-off"
+      ],
+      "notes": "Tax authority index lists a corrigendum associated with Laws 149/150/151 of 2026; exact corrections require primary-text review."
+    },
+    {
+      "relationship_id": "REL-TAX-CORRIGENDUM-CORRECTS-150-2026",
+      "source_instrument_id": "EG-TAX-CORRIGENDUM-149-151-2026",
+      "target_instrument_id": "EG-UNIFIED-TAX-PROCEDURES-AMENDMENT-150-2026",
+      "relationship_type": "corrects",
+      "status": "source_discovered_instrument_record_pending",
+      "source_url": "https://www.incometax.gov.eg/ar/content/qwanyn-aldrybt-ly-aldkhl",
+      "required_evidence": [
+        "original Official Gazette or Egyptian Proceedings publication",
+        "exact correction/provision mapping",
+        "commencement and transitional rules",
+        "subsequent correction/amendment search",
+        "qualified Egyptian tax-lawyer sign-off"
+      ],
+      "notes": "Tax authority index lists a corrigendum associated with Laws 149/150/151 of 2026; exact corrections require primary-text review."
+    },
+    {
+      "relationship_id": "REL-TAX-CORRIGENDUM-CORRECTS-151-2026",
+      "source_instrument_id": "EG-TAX-CORRIGENDUM-149-151-2026",
+      "target_instrument_id": "EG-INCOME-TAX-AMENDMENT-151-2026",
+      "relationship_type": "corrects",
+      "status": "source_discovered_instrument_record_pending",
+      "source_url": "https://www.incometax.gov.eg/ar/content/qwanyn-aldrybt-ly-aldkhl",
+      "required_evidence": [
+        "original Official Gazette or Egyptian Proceedings publication",
+        "exact correction/provision mapping",
+        "commencement and transitional rules",
+        "subsequent correction/amendment search",
+        "qualified Egyptian tax-lawyer sign-off"
+      ],
+      "notes": "Tax authority index lists a corrigendum associated with Laws 149/150/151 of 2026; exact corrections require primary-text review."
+    },
+    {
+      "relationship_id": "REL-VAT-DECISION-417-2025-AMENDS-EXEC-REG-66-2017",
+      "source_instrument_id": "EG-VAT-EXEC-REG-AMENDMENT-417-2025",
+      "target_instrument_id": "EG-VAT-67-2016",
+      "relationship_type": "amends_specified_provisions",
+      "status": "source_discovered_instrument_record_pending",
+      "source_url": "https://portal.eta.gov.eg/ar/content/qwanyn-aldrybt-ly-alqymt-almdaft",
+      "required_evidence": [
+        "original Official Gazette or Egyptian Proceedings publication",
+        "exact correction/provision mapping",
+        "commencement and transitional rules",
+        "subsequent correction/amendment search",
+        "qualified Egyptian tax-lawyer sign-off"
+      ],
+      "notes": "Official index identifies Decision 417/2025 as amending the VAT executive regulation; link to the VAT base law is a topical relation pending exact regulation record and provision mapping."
+    },
+    {
+      "relationship_id": "REL-VAT-DECISION-418-2025-RELATED-TO-157-2025",
+      "source_instrument_id": "EG-VAT-EXEC-REG-418-2025",
+      "target_instrument_id": "EG-VAT-AMENDMENT-157-2025",
+      "relationship_type": "implements",
+      "status": "source_discovered_instrument_record_pending",
+      "source_url": "https://portal.eta.gov.eg/ar/content/qwanyn-aldrybt-ly-alqymt-almdaft",
+      "required_evidence": [
+        "original Official Gazette or Egyptian Proceedings publication",
+        "exact correction/provision mapping",
+        "commencement and transitional rules",
+        "subsequent correction/amendment search",
+        "qualified Egyptian tax-lawyer sign-off"
+      ],
+      "notes": "Official index describes Decision 418/2025 as setting an accounting basis for qualifying ongoing construction contracts after Law 157/2025; exact legal relation and scope need review."
+    },
+    {
+      "relationship_id": "REL-TAX-DECISION-450-2026-IMPLEMENTS-152-2026",
+      "source_instrument_id": "EG-TAX-DISPUTES-EXEC-DECISION-450-2026",
+      "target_instrument_id": "EG-TAX-DISPUTES-RENEWAL-152-2026",
+      "relationship_type": "implements",
+      "status": "source_discovered_instrument_record_pending",
+      "source_url": "https://portal.eta.gov.eg/ar/content/qwanyn-aldrybt-ly-aldkhl",
+      "required_evidence": [
+        "original Official Gazette or Egyptian Proceedings publication",
+        "exact correction/provision mapping",
+        "commencement and transitional rules",
+        "subsequent correction/amendment search",
+        "qualified Egyptian tax-lawyer sign-off"
+      ],
+      "notes": "Official index lists Decision 450/2026 regarding applications under Law 152/2026; verify exact issuing instrument and scope."
     }
   ],
   "next_actions": [
