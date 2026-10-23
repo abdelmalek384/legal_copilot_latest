@@ -343,20 +343,20 @@ LLM = llm
 
 def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None):
     # Context helps resolve follow-ups, but the current question remains explicit in the answer prompt.
-    retrieval_query = ((conversation_context.strip() + "\\n") if conversation_context else "") + q
+    retrieval_query = ((conversation_context.strip() + "\n") if conversation_context else "") + q
     hits = search(c, retrieval_query, case_id, firm_id=firm_id, as_of=as_of)
     if not hits or (hits[0]["cos"] < MIN_SCORE and hits[0]["score"] < 1):
         return {"found": False, "answer": None, "sources": [], "message": "لم أجد مصدرا ذا صلة، ولن أخمن.", "requested_as_of": as_of or date.today().isoformat()}
     ans, msg = None, ""
     try:
-        ans = LLM("Evaluation date (as_of): " + (as_of or date.today().isoformat()) + "\\nDo not assume a law is in force on this date unless the sources support that status.\\n" + (("Conversation context for interpreting the follow-up (not itself legal evidence):\\n" + conversation_context + "\\n") if conversation_context else "") + "Numbered sources (the only legal evidence for this answer):\\n" + "\\n".join("[%d] %s: %s" % (i + 1, h["ref"], h["text"][:1500]) for i, h in enumerate(hits)) + "\\n\\nCurrent question: " + q)
+        ans = LLM("Evaluation date (as_of): " + (as_of or date.today().isoformat()) + "\nDo not assume a law is in force on this date unless the sources support that status.\n" + (("Conversation context for interpreting the follow-up (not itself legal evidence):\n" + conversation_context + "\n") if conversation_context else "") + "Numbered sources (the only legal evidence for this answer):\n" + "\n".join("[%d] %s: %s" % (i + 1, h["ref"], h["text"][:1500]) for i, h in enumerate(hits)) + "\n\nCurrent question: " + q)
     except Exception:
         msg = "تعذر الاتصال بالنموذج."
     if ans:
         cites = {int(x) for x in re.findall(r"\[(\d+)\]", ans)}
         if not cites or not cites <= set(range(1, len(hits) + 1)):
             ans, msg = None, "فشل التحقق من الاستشهادات، تُعرض المصادر فقط."
-    return {"found": True, "answer": ans, "message": msg, "sources": hits, "not_in_force": [h["ref"] for h in hits if not h["in_force"]], "requested_as_of": as_of or date.today().isoformat()}
+    return {"found": True, "answer": ans, "message": msg, "sources": hits, "not_in_force": [h["ref"] for h in hits if h["verified"] and not h["in_force"]], "unverified_sources": [h["ref"] for h in hits if not h["verified"]], "requested_as_of": as_of or date.today().isoformat()}
 
 
 # ---------------- API ----------------
@@ -874,7 +874,7 @@ def send_research_message(conversation_id: int, b: ResearchMessageIn, u: dict = 
         (conversation_id,)).fetchall()
     # Only earlier user questions help expand retrieval; assistant answers are not treated as legal evidence.
     history = list(reversed([dict(r) for r in prior if r["role"] == "user"]))
-    context = "\\n".join(x["content"][:350] for x in history[-4:])[:1400] if history else None
+    context = "\n".join(x["content"][:350] for x in history[-4:])[:1400] if history else None
     c.execute("INSERT INTO research_messages(conversation_id,role,content) VALUES(?,?,?)",
               (conversation_id, "user", question))
     try:
