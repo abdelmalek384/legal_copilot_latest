@@ -477,12 +477,59 @@ from pydantic import BaseModel, Field, field_validator
 
 app = FastAPI(title="Legal Copilot MVP", docs_url=None, redoc_url=None)
 
+# Per-process fixed-window limits for expensive or abuse-prone endpoints.
+# Deliberately use the direct peer address; do not trust arbitrary X-Forwarded-For.
+_RATE_LIMITS = {
+    "/login": (10, 60),
+    "/ask": (20, 60),
+    "/search": (40, 60),
+}
+_UPLOAD_RATE_LIMIT = (10, 3600)
+_rate_limit_state = {}
+_rate_limit_lock = threading.Lock()
+_rate_limit_checks = 0
+
+
+def _rate_limit(request: Request):
+    path = request.url.path
+    limit = _RATE_LIMITS.get(path)
+    if path.startswith("/cases/") and path.endswith("/upload"):
+        limit = _UPLOAD_RATE_LIMIT
+    if limit is None:
+        return 0
+    max_requests, window_seconds = limit
+    peer = request.client.host if request.client else "unknown"
+    now = time.monotonic()
+    window_start = int(now // window_seconds) * window_seconds
+    key = (path, peer)
+    global _rate_limit_checks
+    with _rate_limit_lock:
+        entry = _rate_limit_state.get(key)
+        count = entry[1] if entry and entry[0] == window_start else 0
+        if count >= max_requests:
+            return max(1, int(window_start + window_seconds - now) + 1)
+        _rate_limit_state[key] = (window_start, count + 1, window_seconds)
+        _rate_limit_checks += 1
+        if _rate_limit_checks % 256 == 0:
+            expired = [k for k, v in _rate_limit_state.items()
+                       if v[0] + v[2] <= now]
+            for k in expired:
+                _rate_limit_state.pop(k, None)
+    return 0
+
+
 @app.middleware("http")
 async def security_headers(request: Request, call_next):
     nonce = secrets.token_urlsafe(18)
     request.state.csp_nonce = nonce
+    retry_after = _rate_limit(request)
     try:
-        response = await call_next(request)
+        if retry_after:
+            response = JSONResponse(status_code=429,
+                                    content={"detail": "rate limit exceeded; try again later"},
+                                    headers={"Retry-After": str(retry_after)})
+        else:
+            response = await call_next(request)
     except OverflowError:
         response = JSONResponse(status_code=404, content={"detail": "not found"})
     response.headers["X-Content-Type-Options"] = "nosniff"
