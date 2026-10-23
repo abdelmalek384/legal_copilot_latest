@@ -35,6 +35,17 @@
       "terms_url": "https://cc.gov.eg/terms",
       "terms_checked_on": "2026-10-23",
       "permission_evidence": "Published site policy recorded in docs/source_permission_register.json. This is a restriction record, not permission."
+    },
+    {
+      "source_id": "EG-SCC",
+      "authority": "Supreme Constitutional Court of Egypt",
+      "source_page": "https://www.sccourt.gov.eg/newportal/",
+      "access_status": "public_portal_located",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": null
     }
   ],
   "documents": [
@@ -363,10 +374,10 @@
       "document_type": "judgments_collection",
       "law_number": null,
       "law_year": null,
-      "source_id": "EG-COURT-CASSATION",
+      "source_id": "EG-SCC",
       "language": "ar",
       "candidate_status": "discovery_only",
-      "notes": "Incorrect source placeholder: Supreme Constitutional Court has a separate official portal; move to a dedicated source record before ingestion."
+      "notes": "Separate official portal; collect only after confirming access, terms, judgment metadata, and exact document URL."
     }
   ]
 }
