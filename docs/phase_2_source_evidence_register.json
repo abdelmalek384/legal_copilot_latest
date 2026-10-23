@@ -29,7 +29,9 @@
       "url": "https://dspace.id.com.eg/handle/123456789/8027",
       "observed_title": "الجريدة الرسمية العدد 18 (تابع)",
       "publication_date": "2025-05-03",
-      "document_ids": ["EG-LABOUR-LAW-14-2025"],
+      "document_ids": [
+        "EG-LABOUR-LAW-14-2025"
+      ],
       "source_state": "metadata_discovered_pdf_listed_not_downloaded",
       "access_terms_state": "not_reviewed",
       "collection_permission": "permission_pending",
@@ -41,7 +43,10 @@
       "source_type": "official ministry index",
       "url": "https://www.labour.gov.eg/en/laws-and-legislations/",
       "observed_title": "Laws and Legislations",
-      "document_ids": ["EG-LABOUR-LAW-14-2025", "EG-SOCIAL-INSURANCE-148-2019"],
+      "document_ids": [
+        "EG-LABOUR-LAW-14-2025",
+        "EG-SOCIAL-INSURANCE-148-2019"
+      ],
       "source_state": "index_discovered_not_downloaded",
       "access_terms_state": "not_reviewed",
       "collection_permission": "permission_pending",
@@ -54,7 +59,12 @@
       "url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc",
       "observed_title": "الوقائع المصرية ملحق الجريدة الرسمية العدد 291 (تابع)",
       "publication_date": "2025-12-25",
-      "document_ids": ["EG-LABOUR-DECISION-259-2025", "EG-LABOUR-DECISION-260-2025", "EG-LABOUR-DECISION-264-2025", "EG-LABOUR-DECISION-271-2025"],
+      "document_ids": [
+        "EG-LABOUR-DECISION-259-2025",
+        "EG-LABOUR-DECISION-260-2025",
+        "EG-LABOUR-DECISION-264-2025",
+        "EG-LABOUR-DECISION-271-2025"
+      ],
       "source_state": "metadata_discovered_pdf_listed_not_downloaded",
       "access_terms_state": "not_reviewed",
       "collection_permission": "permission_pending",
@@ -66,7 +76,11 @@
       "source_type": "official legislation text page",
       "url": "https://www.alamiria.com/Sec/TashTxt?id=Aalg37zxdcU%3D",
       "observed_title": "قانون رقم 160 لسنة 2026 بتعديل بعض أحكام القانون رقم 174 لسنة 2025 بإصدار قانون الإجراءات الجنائية",
-      "document_ids": ["EG-CRIMINAL-PROCEDURE-174-2025", "EG-CRIMINAL-PROCEDURE-160-2026", "EG-CRIMINAL-PROCEDURE-150-1950"],
+      "document_ids": [
+        "EG-CRIMINAL-PROCEDURE-174-2025",
+        "EG-CRIMINAL-PROCEDURE-160-2026",
+        "EG-CRIMINAL-PROCEDURE-150-1950"
+      ],
       "source_state": "discovered_not_downloaded",
       "access_terms_state": "not_reviewed",
       "collection_permission": "permission_pending",
@@ -79,7 +93,9 @@
       "url": "https://dspace.id.com.eg/handle/123456789/8851",
       "observed_title": "الجريدة الرسمية العدد 39 مكرر (ب)",
       "publication_date": "2026-09-30",
-      "document_ids": ["EG-CRIMINAL-PROCEDURE-160-2026"],
+      "document_ids": [
+        "EG-CRIMINAL-PROCEDURE-160-2026"
+      ],
       "source_state": "metadata_discovered_pdf_listed_not_downloaded",
       "access_terms_state": "not_reviewed",
       "collection_permission": "permission_pending",
@@ -92,7 +108,9 @@
       "url": "https://dspace.id.com.eg/handle/123456789/4666",
       "observed_title": "الجريدة الرسمية العدد 45 مكرر (د)",
       "publication_date": "2025-11-12",
-      "document_ids": ["EG-CRIMINAL-PROCEDURE-174-2025"],
+      "document_ids": [
+        "EG-CRIMINAL-PROCEDURE-174-2025"
+      ],
       "source_state": "metadata_discovered_pdf_listed_not_downloaded",
       "access_terms_state": "not_reviewed",
       "collection_permission": "permission_pending",
@@ -105,11 +123,28 @@
       "url": "https://parliament.gov.eg/News_Show.aspx?frm=5874",
       "observed_title": "مجلس النواب يوافق نهائياً على مشروع قانون بتعديل أحكام القانون رقم 174 لسنة 2025",
       "publication_date": "2026-09-30",
-      "document_ids": ["EG-CRIMINAL-PROCEDURE-160-2026"],
+      "document_ids": [
+        "EG-CRIMINAL-PROCEDURE-160-2026"
+      ],
       "source_state": "discovered",
       "access_terms_state": "not_reviewed",
       "collection_permission": "permission_pending",
       "notes": "Corroborative context only. The promulgated law and Gazette issue control the legal text."
+    },
+    {
+      "source_id": "EG-AMIRI-PRESS-COMPETITION-LAW-CITATION",
+      "publisher": "الهيئة العامة لشئون المطابع الأميرية",
+      "source_type": "official text page; supporting citation only, exact instrument title to be verified",
+      "url": "https://www.alamiria.com/Sec/TashTxt?id=Cf3yhw6LOt4%3D",
+      "observed_title": "Official text page citing Competition Law 3/2005; exact title and instrument metadata require verification",
+      "document_ids": [
+        "EG-COMPETITION-LAW-3-2005",
+        "EG-COMPETITION-LAW-COLLECTION"
+      ],
+      "source_state": "discovered_not_downloaded",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Supporting reference only, not the original promulgated text of Law 3/2005. Verify the page title and issuing instrument, locate the original Official Gazette publication and all amendments, and review access/reuse terms before any acquisition or current-law use."
     }
   ],
   "document_records_to_create_from_batch": [
@@ -117,7 +152,9 @@
       "document_id": "EG-LABOUR-DECISION-259-2025",
       "provisional_title_ar": "قرار وزارة العمل رقم 259 لسنة 2025",
       "document_type": "ministerial_decision",
-      "related_to": ["EG-LABOUR-LAW-14-2025"],
+      "related_to": [
+        "EG-LABOUR-LAW-14-2025"
+      ],
       "legal_status": "unknown",
       "review_status": "discovery_only",
       "required_action": "Confirm exact title, date, text, Gazette page range and legal basis from issue 291 supplement."
@@ -126,7 +163,9 @@
       "document_id": "EG-LABOUR-DECISION-260-2025",
       "provisional_title_ar": "قرار وزارة العمل رقم 260 لسنة 2025",
       "document_type": "ministerial_decision",
-      "related_to": ["EG-LABOUR-LAW-14-2025"],
+      "related_to": [
+        "EG-LABOUR-LAW-14-2025"
+      ],
       "legal_status": "unknown",
       "review_status": "discovery_only",
       "required_action": "Confirm exact title, date, text, Gazette page range and legal basis from issue 291 supplement."
@@ -135,7 +174,9 @@
       "document_id": "EG-LABOUR-DECISION-264-2025",
       "provisional_title_ar": "قرار وزارة العمل رقم 264 لسنة 2025",
       "document_type": "ministerial_decision",
-      "related_to": ["EG-LABOUR-LAW-14-2025"],
+      "related_to": [
+        "EG-LABOUR-LAW-14-2025"
+      ],
       "legal_status": "unknown",
       "review_status": "discovery_only",
       "required_action": "Confirm exact title, date, text, Gazette page range and legal basis from issue 291 supplement."
@@ -144,7 +185,9 @@
       "document_id": "EG-LABOUR-DECISION-271-2025",
       "provisional_title_ar": "قرار وزارة العمل رقم 271 لسنة 2025",
       "document_type": "ministerial_decision",
-      "related_to": ["EG-LABOUR-LAW-14-2025"],
+      "related_to": [
+        "EG-LABOUR-LAW-14-2025"
+      ],
       "legal_status": "unknown",
       "review_status": "discovery_only",
       "required_action": "Confirm exact title, date, text, Gazette page range and legal basis from issue 291 supplement."
