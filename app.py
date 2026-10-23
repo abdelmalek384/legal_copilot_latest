@@ -326,7 +326,7 @@ SQL = ("SELECT chunks.*, bm25(chunks_fts) AS r FROM chunks_fts JOIN chunks ON ch
        "AND (chunks.case_id IS NULL OR chunks.case_id IN (SELECT id FROM cases WHERE firm_id=?)) "
        "AND (chunks.case_id IS NOT NULL OR chunks.document_version_id IS NULL OR EXISTS ("
        "SELECT 1 FROM legal_document_versions v WHERE v.version_id=chunks.document_version_id "
-       "AND v.review_status='verified' AND v.authenticity_verified=1 AND v.status_verified=1 AND v.legal_status='in_force' "
+       "AND v.review_status='verified' AND v.authenticity_verified=1 AND v.status_verified=1 AND (v.legal_status='in_force' OR (v.legal_status IN ('repealed','historical') AND v.repeal_date IS NOT NULL)) "
        "AND v.effective_date IS NOT NULL AND v.effective_date<=? AND (v.repeal_date IS NULL OR v.repeal_date>?)"
        ")) ORDER BY r LIMIT 40")
 
@@ -385,7 +385,7 @@ def search(c, q, case_id=None, k=5, firm_id=1, as_of=None):
         exact_sql = ("SELECT * FROM chunks WHERE article=? AND case_id IS NULL AND verified=1 AND in_force=1 "
                      "AND (document_version_id IS NULL OR EXISTS (SELECT 1 FROM legal_document_versions v "
                      "WHERE v.version_id=chunks.document_version_id AND v.review_status='verified' "
-                     "AND v.authenticity_verified=1 AND v.status_verified=1 AND v.legal_status='in_force' "
+                     "AND v.authenticity_verified=1 AND v.status_verified=1 AND (v.legal_status='in_force' OR (v.legal_status IN ('repealed','historical') AND v.repeal_date IS NOT NULL)) "
                      "AND v.effective_date IS NOT NULL AND v.effective_date<=? AND (v.repeal_date IS NULL OR v.repeal_date>?)) )")
         for r in c.execute(exact_sql, (am.group(1), as_of, as_of)):
             exact.add(r["id"]); cand.setdefault(r["id"], (r, 0))
@@ -417,15 +417,49 @@ def llm(prompt):
 LLM = llm
 
 
+def _prompt_provenance(hit):
+    """Format recorded citation metadata for the model without upgrading it into proof."""
+    provenance = hit.get("provenance") or {}
+    status = provenance.get("status", "unknown")
+    if status == "registry_linked":
+        fields = (
+            "official_title", "document_type", "law_number", "law_year", "version_label",
+            "source_url", "original_sha256", "publication_date", "effective_date",
+            "repeal_date", "consolidated_as_of", "gazette_issue", "gazette_pages",
+            "legal_status", "review_status", "authenticity_verified", "status_verified",
+            "amendment_history_verified",
+        )
+        metadata = {key: provenance.get(key) for key in fields if provenance.get(key) is not None}
+        metadata["registry_status"] = status
+        metadata["relations"] = provenance.get("relations", [])
+        metadata["review_evidence"] = provenance.get("review_evidence", [])
+        return json.dumps(metadata, ensure_ascii=False, sort_keys=True)
+    if status == "legacy_unlinked":
+        return json.dumps({
+            "registry_status": status,
+            "warning": "This passage is not linked to a reviewed legal-document version. Legacy verified/in-force flags do not establish authenticity, amendment history, or historical applicability."
+        }, ensure_ascii=False)
+    return json.dumps({
+        "registry_status": status,
+        "warning": "Version provenance is missing or incomplete; do not infer legal status or authenticity."
+    }, ensure_ascii=False)
+
+
 def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None):
     # Context helps resolve follow-ups, but the current question remains explicit in the answer prompt.
     retrieval_query = ((conversation_context.strip() + "\n") if conversation_context else "") + q
     hits = search(c, retrieval_query, case_id, firm_id=firm_id, as_of=as_of)
     if not hits or (hits[0]["cos"] < MIN_SCORE and hits[0]["score"] < 1):
         return {"found": False, "answer": None, "sources": [], "message": "لم أجد مصدرا ذا صلة، ولن أخمن.", "requested_as_of": as_of or date.today().isoformat()}
+    source_blocks = []
+    for i, hit in enumerate(hits):
+        source_blocks.append(
+            "[%d] %s\nRecorded provenance (metadata is not independent proof): %s\nPassage text: %s"
+            % (i + 1, hit["ref"], _prompt_provenance(hit), hit["text"][:1500])
+        )
     ans, msg = None, ""
     try:
-        ans = LLM("Evaluation date (as_of): " + (as_of or date.today().isoformat()) + "\nDo not assume a law is in force on this date unless the sources support that status.\n" + (("Conversation context for interpreting the follow-up (not itself legal evidence):\n" + conversation_context + "\n") if conversation_context else "") + "Numbered sources (the only legal evidence for this answer):\n" + "\n".join("[%d] %s: %s" % (i + 1, h["ref"], h["text"][:1500]) for i, h in enumerate(hits)) + "\n\nCurrent question: " + q)
+        ans = LLM("Evaluation date (as_of): " + (as_of or date.today().isoformat()) + "\nUse the requested date to assess temporal applicability. A version may have been repealed later but still have applied on an earlier date; rely on the recorded effective/repeal dates and legal review metadata, and explicitly state uncertainty if they are missing or conflicting. Metadata is not a substitute for the cited legal text. Do not assume a law is in force on the requested date unless the sources support that status.\n" + (("Conversation context for interpreting the follow-up (not itself legal evidence):\n" + conversation_context + "\n") if conversation_context else "") + "Numbered source passages and their recorded provenance (the only legal evidence supplied for this answer):\n" + "\n\n".join(source_blocks) + "\n\nCurrent question: " + q)
     except Exception:
         msg = "تعذر الاتصال بالنموذج."
     if ans:
