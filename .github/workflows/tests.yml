@@ -26,6 +26,8 @@ jobs:
         run: python tests/test_source_permission_register.py
       - name: Run collection pipeline tests
         run: python tests/test_collection_pipeline.py
+      - name: Test legal versioned registry
+        run: python tests/test_legal_versioned_registry.py
       - name: Validate collection manifest template
         run: python -c "import json; d=json.load(open('docs/collection_manifest.example.json', encoding='utf-8')); assert isinstance(d.get('documents'), list); assert d['documents'] == []"
       - name: Run unit tests
