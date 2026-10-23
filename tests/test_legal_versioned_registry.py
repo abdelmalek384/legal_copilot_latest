@@ -104,5 +104,31 @@ class LegalVersionedRegistryTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.app.search(self.db, "anything", as_of="not-a-date")
 
+    def test_search_citation_contains_exact_version_and_review_provenance(self):
+        chunk_id, version_id = self._make_linked_chunk("provenance", "2020-01-01", text="provenanceprobe legal passage")
+        self.db.execute(
+            "UPDATE legal_document_versions SET publication_date='2019-12-15',gazette_issue='123',gazette_pages='4-8',consolidated_as_of='2024-01-01',amendment_history_verified=1 WHERE version_id=?",
+            (version_id,)
+        )
+        self.db.execute(
+            "INSERT INTO legal_review_events(version_id,reviewer,review_type,outcome,notes,evidence_url) VALUES(?,?,?,?,?,?)",
+            (version_id, "reviewer-test", "amendment_history", "pass", "fixture only", "https://example.gov/review-evidence")
+        )
+        self.db.commit()
+        hit = self.app.search(self.db, "provenanceprobe", as_of="2026-10-23")[0]
+        p = hit["provenance"]
+        self.assertEqual(hit["id"], chunk_id)
+        self.assertEqual(p["status"], "registry_linked")
+        self.assertEqual(p["version_id"], version_id)
+        self.assertEqual(p["official_title"], "Test law")
+        self.assertEqual(p["gazette_issue"], "123")
+        self.assertTrue(p["amendment_history_verified"])
+        self.assertEqual(p["review_evidence"][0]["evidence_url"], "https://example.gov/review-evidence")
+
+    def test_unlinked_legacy_citation_is_explicitly_labelled(self):
+        self.app.add_chunks(self.db, [{"ref":"Legacy source","text":"legacyprobe passage","in_force":1,"verified":1,"source":"legacy"}])
+        hit = self.app.search(self.db, "legacyprobe")[0]
+        self.assertEqual(hit["provenance"]["status"], "legacy_unlinked")
+
 if __name__ == "__main__":
     unittest.main()
