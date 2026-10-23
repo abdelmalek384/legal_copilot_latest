@@ -389,6 +389,138 @@
       "language": "ar",
       "candidate_status": "discovery_only",
       "notes": "Discovery lead only. A later official decision cites Law 3/2005, but that citation is not the original promulgated text. Locate the original Official Gazette publication, amendments, implementing regulations, and current status before use."
+    },
+    {
+      "document_id": "EG-PERSONAL-STATUS-25-1920",
+      "official_title": "قانون رقم 25 لسنة 1920 بشأن أحكام النفقة وبعض مسائل الأحوال الشخصية",
+      "document_type": "personal_status_law",
+      "law_number": "25",
+      "law_year": 1920,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Secondary discovery references identify this instrument and historical amendments. Original Gazette text, amendment chain, constitutional rulings, and current wording remain to be verified."
+    },
+    {
+      "document_id": "EG-PERSONAL-STATUS-25-1929",
+      "official_title": "المرسوم بقانون رقم 25 لسنة 1929 بشأن بعض أحكام الأحوال الشخصية",
+      "document_type": "personal_status_law",
+      "law_number": "25",
+      "law_year": 1929,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Secondary discovery references identify this instrument and later amendments. Verify original Gazette issue, exact title, amendments, constitutional rulings, and current wording."
+    },
+    {
+      "document_id": "EG-PERSONAL-STATUS-AMENDMENT-100-1985",
+      "official_title": "قانون رقم 100 لسنة 1985 بتعديل بعض أحكام قوانين الأحوال الشخصية",
+      "document_type": "amending_law",
+      "law_number": "100",
+      "law_year": 1985,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Discovery lead for amendments to personal-status instruments. Exact article-level mapping, Gazette pages, later changes, and constitutional review remain pending."
+    },
+    {
+      "document_id": "EG-REAL-ESTATE-REGISTRATION-114-1946",
+      "official_title": "قانون تنظيم الشهر العقاري — القانون رقم 114 لسنة 1946",
+      "document_type": "real_estate_registration_law",
+      "law_number": "114",
+      "law_year": 1946,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Secondary text copies exist; locate and verify the original Gazette publication and full amendment chain before use."
+    },
+    {
+      "document_id": "EG-REAL-ESTATE-REGISTRATION-AMENDMENT-9-2022",
+      "official_title": "قانون رقم 9 لسنة 2022 بتعديل بعض أحكام القانون رقم 114 لسنة 1946 بتنظيم الشهر العقاري",
+      "document_type": "amending_law",
+      "law_number": "9",
+      "law_year": 2022,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official Gazette issue metadata identifies the instrument; inspect the original issue PDF, exact pages, commencement, and subsequent amendments."
+    },
+    {
+      "document_id": "EG-STATE-PRIVATE-PROPERTY-168-2025",
+      "official_title": "قانون رقم 168 لسنة 2025 بشأن بعض قواعد وإجراءات التصرف في أملاك الدولة الخاصة",
+      "document_type": "state_property_law",
+      "law_number": "168",
+      "law_year": 2025,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "An official 2026 implementing regulation cites this law. Obtain and review the original promulgated text and transition/repeal provisions."
+    },
+    {
+      "document_id": "EG-STATE-PRIVATE-PROPERTY-EXEC-REG-200-2026",
+      "official_title": "قرار رئيس مجلس الوزراء رقم 200 لسنة 2026 بإصدار اللائحة التنفيذية للقانون رقم 168 لسنة 2025 بشأن التصرف في أملاك الدولة الخاصة",
+      "document_type": "executive_regulation",
+      "law_number": "200",
+      "law_year": 2026,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official text page discovered. Gazette issue/page details, access/reuse terms, and relationship to prior rules require review."
+    },
+    {
+      "document_id": "EG-PUBLIC-CONTRACTS-182-2018",
+      "official_title": "قانون رقم 182 لسنة 2018 بإصدار قانون تنظيم التعاقدات التي تبرمها الجهات العامة",
+      "document_type": "public_procurement_law",
+      "law_number": "182",
+      "law_year": 2018,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official Government Services Authority index and ILO NATLEX entry are discovery leads. Locate the original Gazette text and verify amendments and implementing instruments."
+    },
+    {
+      "document_id": "EG-PUBLIC-CONTRACTS-AMENDMENT-188-2020",
+      "official_title": "قانون رقم 188 لسنة 2020 بتعديل بعض أحكام القانون رقم 182 لسنة 2018",
+      "document_type": "amending_law",
+      "law_number": "188",
+      "law_year": 2020,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Secondary legal reference identifies this amendment. Locate original Gazette text, exact affected provisions, and any later amendments."
+    },
+    {
+      "document_id": "EG-PUBLIC-CONTRACTS-EXEC-REG-692-2019",
+      "official_title": "قرار وزير المالية رقم 692 لسنة 2019 بإصدار اللائحة التنفيذية لقانون تنظيم التعاقدات التي تبرمها الجهات العامة",
+      "document_type": "executive_regulation",
+      "law_number": "692",
+      "law_year": 2019,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Secondary legal reference identifies the implementing regulation. Verify Egyptian Proceedings issue/page range and subsequent amending decisions."
+    },
+    {
+      "document_id": "EG-PUBLIC-CONTRACTS-EXEC-REG-AMENDMENT-28-2020",
+      "official_title": "قرار وزير المالية رقم 28 لسنة 2020 بتعديل بعض أحكام اللائحة التنفيذية لقانون تنظيم التعاقدات",
+      "document_type": "amending_decision",
+      "law_number": "28",
+      "law_year": 2020,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Secondary legal reference identifies a regulation amendment. Confirm exact official issue, affected provisions, and continuing effect."
+    },
+    {
+      "document_id": "EG-PUBLIC-CONTRACTS-EXEC-REG-AMENDMENT-614-2020",
+      "official_title": "قرار وزير المالية رقم 614 لسنة 2020 بتعديل بعض أحكام اللائحة التنفيذية لقانون تنظيم التعاقدات",
+      "document_type": "amending_decision",
+      "law_number": "614",
+      "law_year": 2020,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Secondary legal reference identifies a regulation amendment. Confirm exact official issue, affected provisions, and continuing effect."
     }
   ]
 }
