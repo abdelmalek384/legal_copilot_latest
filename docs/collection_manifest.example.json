@@ -54,6 +54,56 @@
       "amends_document_ids": [],
       "amended_by_document_ids": [],
       "consolidated_version_as_of": null
+    },
+    {
+      "document_id": "EG-LABOUR-MINISTER-DECISION-214-2025",
+      "source_id": "EG-AMIRI-PRESS",
+      "title": "قرار وزير العمل رقم 214 لسنة 2025 بشأن بعض أحكام عقد العمل",
+      "document_type": "ministerial_decision",
+      "law_number": "214",
+      "law_year": 2025,
+      "direct_url": "https://www.alamiria.com/Sec/TashTxt?id=5EinXV37k4w%3D",
+      "allowed_hosts": [
+        "alamiria.com",
+        "www.alamiria.com"
+      ],
+      "collection_permission": "allowed",
+      "permission_evidence": "Individual official decision published on the General Authority for Amiri Press website; Egypt Law 82/2002, Article 141(1) excludes official documents including resolutions and decisions from copyright protection (WIPO Lex: https://www.wipo.int/wipolex/en/text/126540). This is a document-specific copyright rationale only; no permission is claimed for site-wide crawling, third-party material, or bypassing access controls.",
+      "terms_checked_on": "2026-10-23",
+      "publication_date": null,
+      "effective_date": null,
+      "repeal_date": null,
+      "legal_status_assessment": "unknown",
+      "amends_document_ids": [
+        "EG-LABOUR-LAW-14-2025-OFFICIAL-TEXT"
+      ],
+      "amended_by_document_ids": [],
+      "consolidated_version_as_of": null
+    },
+    {
+      "document_id": "EG-JUSTICE-LABOUR-COURTS-4621-2025",
+      "source_id": "EG-AMIRI-PRESS",
+      "title": "قرار وزير العدل رقم 4621 لسنة 2025 بتعيين مقار المحاكم العمالية",
+      "document_type": "ministerial_decision",
+      "law_number": "4621",
+      "law_year": 2025,
+      "direct_url": "https://www.alamiria.com/Sec/TashTxt?id=7FYalJBNQ2s%3D",
+      "allowed_hosts": [
+        "alamiria.com",
+        "www.alamiria.com"
+      ],
+      "collection_permission": "allowed",
+      "permission_evidence": "Individual official decision published on the General Authority for Amiri Press website; Egypt Law 82/2002, Article 141(1) excludes official documents including resolutions and decisions from copyright protection (WIPO Lex: https://www.wipo.int/wipolex/en/text/126540). This is a document-specific copyright rationale only; no permission is claimed for site-wide crawling, third-party material, or bypassing access controls.",
+      "terms_checked_on": "2026-10-23",
+      "publication_date": null,
+      "effective_date": "2025-10-01",
+      "repeal_date": null,
+      "legal_status_assessment": "unknown",
+      "amends_document_ids": [
+        "EG-LABOUR-LAW-14-2025-OFFICIAL-TEXT"
+      ],
+      "amended_by_document_ids": [],
+      "consolidated_version_as_of": null
     }
   ]
 }
