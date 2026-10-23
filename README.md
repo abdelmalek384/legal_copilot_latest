@@ -104,3 +104,7 @@ Administrators can append and inspect legal-source review events through `POST /
 ## Legal source review workbench
 
 Administrators can inspect registered legal document versions and review-event history from the **Legal Source Review** page, and append evidence-backed review events. Events never automatically change verification flags or legal status. See [`docs/legal_source_review_workbench.md`](docs/legal_source_review_workbench.md) and [`docs/evidence_backed_legal_review_events.md`](docs/evidence_backed_legal_review_events.md).
+
+## Safe legacy law imports
+
+The legacy bulk import endpoint forces imported passages to remain unverified and not in force until reviewed; caller-supplied flags cannot make an unlinked passage searchable as verified law. See [`docs/safe_legacy_law_imports.md`](docs/safe_legacy_law_imports.md). This does not retroactively repair existing unlinked records.
