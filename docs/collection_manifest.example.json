@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Document-level retrieval allow-list. Intentionally empty until a human checks source terms and the exact document URL.",
+  "instructions": [
+    "Add one entry per direct downloadable document, not a search page or website root.",
+    "Set collection_permission to allowed only after reviewing applicable terms or obtaining written permission.",
+    "Record permission_evidence and terms_checked_on; the pipeline refuses entries without them.",
+    "Use exact hostnames in allowed_hosts. Redirects to unapproved hosts are rejected.",
+    "Do not add login-protected, paywalled, or commercially licensed content unless the agreement explicitly authorizes this retrieval and intended reuse."
+  ],
+  "documents": []
+}
