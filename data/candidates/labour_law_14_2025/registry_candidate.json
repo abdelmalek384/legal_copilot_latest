@@ -1,0 +1,106 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Input record for safe registration into SQLite legal-source registry; metadata only, not legal text/chunks.",
+  "sources": [
+    {
+      "source_id": "EG-MANSHURAT-LABOUR-14-2025",
+      "authority": "Manshurat (secondary text copy)",
+      "source_page": "https://manshurat.org/node/76602",
+      "access_status": "public_page_and_pdf_link_observed; reuse_terms_not_confirmed",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": "2026-10-24",
+      "permission_evidence": "No affirmative reuse license located in this review; keep permission unknown."
+    },
+    {
+      "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+      "authority": "General Authority for Amiri Press",
+      "source_page": "https://alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+      "access_status": "official_text_page_discovered; full Gazette scan not page-reviewed",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": "2026-10-24",
+      "permission_evidence": "Official text page confirms the law and promulgation clauses; no reuse permission conclusion."
+    },
+    {
+      "source_id": "EG-IDSC-GAZETTE-2025-18-LABOUR",
+      "authority": "Amiri Press Official Gazette metadata hosted by IDSC repository",
+      "source_page": "https://dspace.id.com.eg/items/75a95151-8a93-45c0-a607-9320863881df",
+      "access_status": "official_issue_metadata_verified; PDF access requires request-a-copy workflow",
+      "collection_permission": "not_allowed_without_explicit_exception_or_license",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://dspace.id.com.eg/info/end-user-agreement",
+      "terms_checked_on": "2026-10-24",
+      "permission_evidence": "Repository End User Agreement states content is for personal non-commercial use, bars commercial exploitation without express prior written permission, and prohibits systematic retrieval to compile a database without written permission."
+    }
+  ],
+  "document": {
+    "document_id": "EG-LABOUR-LAW-14-2025",
+    "source_id": "EG-MANSHURAT-LABOUR-14-2025",
+    "official_title": "قانون رقم 14 لسنة 2025 بإصدار قانون العمل",
+    "document_type": "legislation",
+    "law_number": "14",
+    "law_year": 2025,
+    "language": "ar"
+  },
+  "version": {
+    "version_label": "supplied-secondary-text-candidate-2026-10-22",
+    "source_url": "https://manshurat.org/node/76602",
+    "original_path": null,
+    "original_sha256": null,
+    "retrieved_at": "2026-10-22",
+    "publication_date": "2025-05-03",
+    "effective_date": "2025-09-01",
+    "repeal_date": null,
+    "consolidated_as_of": null,
+    "gazette_issue": "18 (تابع)",
+    "gazette_pages": null,
+    "legal_status": "under_review",
+    "review_status": "pending_source_review",
+    "authenticity_verified": 0,
+    "status_verified": 0,
+    "amendment_history_verified": 0,
+    "permission_evidence": "Reuse permission remains unknown; official IDSC Gazette repository requires written permission for systematic database compilation; the supplied JSONL is a derived transcription, not the original Gazette PDF.",
+    "notes": "Metadata-only candidate registration. Supplied JSONL SHA-256 is 3e964de5c9cc994aefcc29c031712e85d664febd97c428e61c2eacdccaf1c600 (393861 bytes, 311 records); this is not the hash of the original legal publication. All input rows have verified=0 and in_force=1; the latter is untrusted and must not set registry verification. No article chunks are inserted. General commencement 2025-09-01 and specialized labor courts 2025-10-01 are based on promulgation Article 13 and corroborating sources; full Gazette comparison and lawyer review remain pending."
+  },
+  "reviews": [
+    {
+      "review_type": "source_authenticity",
+      "outcome": "pending",
+      "evidence_url": "https://dspace.id.com.eg/items/75a95151-8a93-45c0-a607-9320863881df",
+      "notes": "Official issue metadata found; exact original PDF not yet obtained/page-reviewed."
+    },
+    {
+      "review_type": "extraction_quality",
+      "outcome": "pending",
+      "evidence_url": "https://manshurat.org/file/89254/download?token=aN3Nv2Ig",
+      "notes": "JSONL parses and record counts align; no full article-by-article comparison completed."
+    },
+    {
+      "review_type": "legal_status",
+      "outcome": "pending",
+      "evidence_url": "https://alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+      "notes": "Commencement clause located; complete current-status and transitional analysis awaits counsel and implementing-instrument review."
+    },
+    {
+      "review_type": "amendment_history",
+      "outcome": "pending",
+      "evidence_url": "https://www.labour.gov.eg/en/laws-and-legislations/",
+      "notes": "Initial discovery only; implementing decisions and amendment chain not exhaustively reviewed."
+    },
+    {
+      "review_type": "licensing",
+      "outcome": "pending",
+      "evidence_url": "https://dspace.id.com.eg/info/end-user-agreement",
+      "notes": "Written permission required for systematic database compilation; no permission obtained."
+    },
+    {
+      "review_type": "lawyer_approval",
+      "outcome": "pending",
+      "evidence_url": null,
+      "notes": "Await qualified Egyptian lawyer review."
+    }
+  ]
+}
