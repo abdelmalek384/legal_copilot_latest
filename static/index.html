@@ -116,7 +116,7 @@ async function reviewWorkbench(){
  const ar=LANG==='ar', txt=(a,e)=>ar?a:e;
  const main=h('div',{});
  shell(txt('مراجعة المصادر القانونية','Legal Source Review'),h('div',{className:'mut',textContent:txt('مساحة مراجعة إدارية. تسجيل حدث لا يغيّر حالة التحقق أو السريان القانوني.','Admin review workspace. Recording an event does not change verification or legal status.')}),main);
- main.append(h('div',{className:'card'},h('h3',{textContent:txt('سجل الإصدارات','Document versions')}));
+ main.append(h('div',{className:'card'},h('h3',{textContent:txt('سجل الإصدارات','Document versions')})));
  let data; try{data=await api('/legal-review/queue')}catch(_){main.append(h('div',{className:'card'},txt('تعذر تحميل قائمة المراجعة.','Could not load the review queue.')));return}
  const list=h('div',{className:'card'}), filter=h('input',{placeholder:txt('ابحث بالعنوان أو رقم الإصدار أو الحالة','Filter by title, version ID, or status'),style:'width:min(100%,460px)'}), rows=h('div',{}), versions=data.versions||[];
  const chosen=h('select',{style:'width:100%'},h('option',{value:'',textContent:txt('اختر إصداراً قانونياً','Select a legal document version')}),versions.map(v=>h('option',{value:String(v.version_id),textContent:'#'+v.version_id+' · '+v.official_title+' · '+v.version_label})));
