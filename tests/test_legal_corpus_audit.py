@@ -51,5 +51,39 @@ class CorpusAuditTests(unittest.TestCase):
             self.assertEqual(report["source_permissions"]["unknown"], 1)
             self.assertEqual(report["version_quality"]["missing_hash"], 1)
 
+    def test_amendment_history_flags_require_review_evidence_and_relations_are_audited(self):
+        with tempfile.TemporaryDirectory() as td:
+            db_path = Path(td) / "versions.db"
+            db = sqlite3.connect(db_path)
+            db.executescript("""
+            CREATE TABLE chunks(id INTEGER PRIMARY KEY, ref TEXT, article TEXT, text TEXT, source TEXT, verified INT, in_force INT, case_id INT, document_version_id INT);
+            CREATE TABLE legal_sources(source_id TEXT PRIMARY KEY, collection_permission TEXT);
+            CREATE TABLE legal_documents(document_id TEXT PRIMARY KEY);
+            CREATE TABLE legal_document_versions(
+              version_id INTEGER PRIMARY KEY, source_url TEXT, original_path TEXT, original_sha256 TEXT,
+              publication_date TEXT, effective_date TEXT, repeal_date TEXT, legal_status TEXT,
+              review_status TEXT, authenticity_verified INT, status_verified INT, amendment_history_verified INT
+            );
+            CREATE TABLE legal_version_relations(
+              relation_id INTEGER PRIMARY KEY, from_version_id INT, to_version_id INT, relation_type TEXT
+            );
+            CREATE TABLE legal_review_events(
+              review_event_id INTEGER PRIMARY KEY, version_id INT, review_type TEXT, outcome TEXT, evidence_url TEXT
+            );
+            INSERT INTO legal_document_versions VALUES
+              (1,'https://example.gov/a',NULL,NULL,'2020-01-01','2020-01-01',NULL,'in_force','verified',1,1,0),
+              (2,'https://example.gov/b',NULL,NULL,'2021-01-01','2021-01-01',NULL,'in_force','verified',1,1,1);
+            INSERT INTO legal_version_relations VALUES(1,1,2,'amends');
+            """)
+            db.commit()
+            db.close()
+            report = MODULE.audit(db_path)
+            codes = {issue["code"] for issue in report["issues"]}
+            self.assertIn("versions_verified_in_force_without_amendment_history_review", codes)
+            self.assertIn("versions_amendment_history_flag_without_evidence", codes)
+            self.assertIn("relations_touching_unreviewed_amendment_history", codes)
+            self.assertEqual(report["version_quality"]["amendment_history_flag_without_evidence"], 1)
+            self.assertEqual(report["relation_quality"]["relations_touching_unreviewed_amendment_history"], 1)
+
 if __name__ == "__main__":
     unittest.main()
