@@ -6,8 +6,8 @@ Mac quick start: double-click `start_mac.command`; it creates a virtual environm
 Load law: POST a JSON list of {law, article, text, as_of, in_force, source} to /law/import (see sample_law.jsonl: FICTIONAL test text only).
 Model: set LLM_URL (OpenAI-compatible /chat/completions, e.g. vLLM or Ollama), LLM_MODEL, LLM_KEY. Unset = sources-only mode.
 
-Not included yet: verified official law/ruling data, Arabic OCR, WhatsApp/SMS delivery
-of reminders (use /sessions/upcoming from a scheduler), embedding-model search, amendment/version tracking.
+Not included yet: a complete verified official law/ruling corpus, WhatsApp/SMS delivery
+of reminders (use /sessions/upcoming from a scheduler), embedding-model semantic search, and a complete end-to-end amendment/consolidation workflow.
 
 ## Egyptian legal corpus bootstrap
 
