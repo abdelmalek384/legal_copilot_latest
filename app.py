@@ -377,6 +377,9 @@ def login(b: LoginIn, request: Request, response: Response):
     ip = request.client.host if request.client else "unknown"
     identifiers = (k, "ip:" + ip)
     c = conn()
+    # Serialize the short login-attempt/session write transaction. Concurrent requests
+    # can otherwise race while upgrading SQLite read transactions to write transactions.
+    c.execute("BEGIN IMMEDIATE")
     # Expire old unlocked entries and cap the table during login traffic so random-email
     # probes cannot grow this table indefinitely. Active lockouts are retained.
     c.execute("DELETE FROM login_attempts WHERE locked_until<=? AND window_start<?", (now, now - 86400))
@@ -398,6 +401,7 @@ def login(b: LoginIn, request: Request, response: Response):
         valid = False
     if not r or not r["active"] or not valid:
         if is_locked:
+            c.rollback()
             raise HTTPException(429, "too many attempts, try later")
         locked = False
         for identifier in identifiers:
