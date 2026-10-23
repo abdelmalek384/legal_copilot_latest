@@ -92,3 +92,7 @@ Legacy passages without a `document_version_id` are explicitly returned as `lega
 ## Phase 2 amendment relationship register
 
 Before using the discovery-level amendment graph, run `python tools/validate_amendment_relationships.py`. It checks structural integrity and reports unresolved evidence, provision-mapping, and review-status gaps without changing the register. See [the audit guide](docs/amendment_relationship_validator.md). Structural validation is not legal confirmation; only evidence-backed review by qualified Egyptian counsel can support current-law conclusions.
+
+## Legal source review queue
+
+Run `python tools/legal_source_review_queue.py --db path/to/legal.db --out reports/legal-source-review-queue.json` to generate a read-only reviewer queue for missing source/version provenance, legal-status and amendment-history checks, review-event evidence, and source collection/commercial-reuse permissions. See [`docs/legal_source_review_queue.md`](docs/legal_source_review_queue.md) for report fields and limitations. The queue prioritizes follow-up; it does not verify legal correctness or change review statuses.
