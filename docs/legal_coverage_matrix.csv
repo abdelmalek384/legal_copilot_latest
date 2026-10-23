@@ -1,0 +1,22 @@
+practice_area,priority,core_materials,judgment_sources,temporal_checks,evaluation_owner,status
+Constitutional law,P0,"Constitution and amendments","Supreme Constitutional Court","amendment version; publication/effective dates",Egyptian lawyer,not_started
+Civil law,P0,"Civil Code; obligations; contracts; tort; property; special laws","Court of Cassation civil circuits; SCC","amendments; repeals; transitional rules",Egyptian lawyer,not_started
+Civil procedure and evidence,P0,"Civil and Commercial Procedure Code; Evidence Law; arbitration law","Court of Cassation; relevant court decisions","commencement; transitional provisions",Egyptian lawyer,not_started
+Criminal law,P0,"Penal Code; special criminal statutes; amendments","Court of Cassation criminal circuits; SCC","amendments; offence date; more-favourable-law issues",Egyptian lawyer,not_started
+Criminal procedure,P0,"Criminal Procedure Code and enacted replacement/amending instruments","Court of Cassation; SCC","commencement and transitional rules",Egyptian lawyer,not_started
+Labour and social insurance,P0,"Labour Law 14/2025; regulations; social insurance; OSH and union rules","Court of Cassation; labour courts where searchable","effective dates; transitional rules; amendment chain",Egyptian lawyer,not_started
+Companies and commercial,P1,"Commercial Code; Companies Law; executive regulations; agency and competition laws","Economic courts; Court of Cassation","current statutory and regulation versions",Egyptian lawyer,not_started
+Tax,P1,"Income tax; VAT; unified tax procedures; annual tax amendments","Tax dispute materials where public","tax year; effective date; annual amendments",Egyptian tax lawyer,not_started
+Customs,P2,"Customs Law; tariff decisions; executive regulations","Relevant administrative/economic judgments","tariff version and import date",Egyptian customs specialist,not_started
+Banking and finance,P2,"Central Bank and Banking Sector Law; circulars; capital-market rules","Economic courts; Court of Cassation","circular replacement and update dates",Egyptian specialist,not_started
+Investment and insolvency,P1,"Investment Law; Companies Law; restructuring/bankruptcy; executive rules","Economic courts; Court of Cassation","commencement and regulatory amendments",Egyptian lawyer,not_started
+Personal status and family,P1,"Applicable personal-status statutes by topic; nationality and civil-status laws","Personal-status Court of Cassation; SCC","applicable regime; amendments; transitional rules",Egyptian specialist,not_started
+Administrative law and public employment,P1,"State Council materials; civil service; public procurement","State Council decisions where accessible","decision date; appeal/deadline rules",Egyptian administrative lawyer,not_started
+Real estate and construction,P2,"Registration; building/urban planning; tenancy; mortgage; construction rules","Court of Cassation; administrative courts","registration date; tenancy regime; amendments",Egyptian specialist,not_started
+Intellectual property,P2,"IP Law 82/2002; regulations; treaties; trademarks/patents/copyright","Court of Cassation; regulator decisions","right type; filing/priority dates; treaty status",Egyptian IP lawyer,not_started
+Privacy, cybercrime and technology,P1,"Personal Data Protection Law; Cybercrime Law 175/2018; telecom/e-signature rules","Court of Cassation; regulator decisions","commencement; executive regulation status",Egyptian technology lawyer,not_started
+Environment, agriculture and water,P3,"Environmental, agricultural, food safety and water laws","Administrative and ordinary courts where relevant","permit dates; sector amendments",Sector specialist,not_started
+Health and pharmaceuticals,P3,"Health professions; medicines; medical devices; public health regulations","Relevant court decisions and regulator publications","licence and product-rule dates",Sector specialist,not_started
+Transport and maritime,P3,"Traffic; aviation; maritime; ports; transport-sector decisions","Relevant court decisions","instrument-specific effective dates",Sector specialist,not_started
+Education and professional licensing,P3,"Education statutes; university law; professional licensing rules","Administrative and ordinary courts","licence date; applicable institution/profession regime",Sector specialist,not_started
+Treaties and international law,P2,"Ratified treaties; ratification/publication instruments; implementing laws","Relevant court decisions","signature vs ratification vs entry into force",International-law specialist,not_started
