@@ -134,6 +134,21 @@ async function law(){
          if(!s.verified)src.append(pill(copy('مصدر غير متحقق'),'soon'));
          else if(!s.in_force)src.append(pill(copy('غير سارٍ'),'late'));
          src.append(h('p',{textContent:s.text||''}),h('div',{className:'mut',textContent:(s.source||'')+(s.as_of?' · '+fd(s.as_of):'')}));
+         const p=s.provenance||{};
+         if(p.status==='registry_linked'){
+           const meta=[p.official_title,p.version_label,p.legal_status,p.publication_date&&((LANG==='ar'?'النشر: ':'Published: ')+p.publication_date),p.effective_date&&((LANG==='ar'?'السريان: ':'Effective: ')+p.effective_date),p.repeal_date&&((LANG==='ar'?'الإلغاء: ':'Repeal: ')+p.repeal_date),p.consolidated_as_of&&((LANG==='ar'?'مجمع حتى: ':'Consolidated through: ')+p.consolidated_as_of),p.gazette_issue&&((LANG==='ar'?'الجريدة الرسمية: ':'Gazette: ')+p.gazette_issue+(p.gazette_pages?' · '+p.gazette_pages:''))].filter(Boolean).join(' · ');
+           if(meta)src.append(h('div',{className:'mut',textContent:meta}));
+           if(p.source_url)src.append(h('div',{className:'mut',textContent:(LANG==='ar'?'رابط المصدر المسجل: ':'Registered source URL: ')+p.source_url}));
+           if(!p.amendment_history_verified)src.append(pill(LANG==='ar'?'تاريخ التعديلات غير متحقق':'Amendment history unverified','soon'));
+           const ev=(p.review_evidence||[]).filter(e=>e.outcome==='pass'&&e.evidence_url);
+           if(ev.length)src.append(h('div',{className:'mut',textContent:(LANG==='ar'?'دليل المراجعة: ':'Review evidence: ')+ev.map(e=>e.review_type+' — '+e.evidence_url).join(' · ')}));
+           const rels=p.relations||[];
+           if(rels.length)src.append(h('div',{className:'mut',textContent:(LANG==='ar'?'علاقات الإصدار: ':'Version relations: ')+rels.map(r=>(r.from_title||r.from_version_id)+' '+r.relation_type+' '+(r.to_title||r.to_version_id)).join(' · ')}));
+         }else if(p.status==='legacy_unlinked'){
+           src.append(pill(LANG==='ar'?'لا يرتبط بإصدار قانوني مسجل':'Not linked to a registered legal version','soon'));
+         }else if(p.status==='registry_record_missing'){
+           src.append(pill(LANG==='ar'?'سجل الإصدار غير موجود':'Version registry record missing','late'));
+         }
          bubble.append(src);
        }
      }

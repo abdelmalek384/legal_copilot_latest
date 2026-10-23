@@ -330,6 +330,42 @@ SQL = ("SELECT chunks.*, bm25(chunks_fts) AS r FROM chunks_fts JOIN chunks ON ch
        "AND v.effective_date IS NOT NULL AND v.effective_date<=? AND (v.repeal_date IS NULL OR v.repeal_date>?)"
        ")) ORDER BY r LIMIT 40")
 
+def citation_provenance(c, version_id):
+    """Return registry-backed metadata for a cited passage; never infer missing legal facts."""
+    if version_id is None:
+        return {"status": "legacy_unlinked", "message": "Passage is not linked to a reviewed legal-document version."}
+    row = c.execute(
+        "SELECT v.version_id,v.document_id,v.version_label,v.source_url,v.original_sha256,"
+        "v.publication_date,v.effective_date,v.repeal_date,v.consolidated_as_of,v.gazette_issue,v.gazette_pages,"
+        "v.legal_status,v.review_status,v.authenticity_verified,v.status_verified,v.amendment_history_verified,"
+        "d.official_title,d.document_type,d.law_number,d.law_year,d.language "
+        "FROM legal_document_versions v LEFT JOIN legal_documents d ON d.document_id=v.document_id "
+        "WHERE v.version_id=?", (version_id,)).fetchone()
+    if not row:
+        return {"status": "registry_record_missing", "version_id": version_id}
+    data = dict(row)
+    data["status"] = "registry_linked"
+    data["authenticity_verified"] = bool(data["authenticity_verified"])
+    data["status_verified"] = bool(data["status_verified"])
+    data["amendment_history_verified"] = bool(data["amendment_history_verified"])
+    data["review_evidence"] = [dict(e) for e in c.execute(
+        "SELECT review_type,outcome,evidence_url,reviewer,reviewed_at "
+        "FROM legal_review_events WHERE version_id=? ORDER BY reviewed_at DESC,review_event_id DESC LIMIT 10",
+        (version_id,)).fetchall()]
+    data["relations"] = [dict(e) for e in c.execute(
+        "SELECT r.relation_type,r.notes,"
+        "f.version_id AS from_version_id,fd.official_title AS from_title,f.version_label AS from_version_label,"
+        "t.version_id AS to_version_id,td.official_title AS to_title,t.version_label AS to_version_label "
+        "FROM legal_version_relations r "
+        "JOIN legal_document_versions f ON f.version_id=r.from_version_id "
+        "JOIN legal_document_versions t ON t.version_id=r.to_version_id "
+        "LEFT JOIN legal_documents fd ON fd.document_id=f.document_id "
+        "LEFT JOIN legal_documents td ON td.document_id=t.document_id "
+        "WHERE r.from_version_id=? OR r.to_version_id=? ORDER BY r.relation_id LIMIT 20",
+        (version_id, version_id)).fetchall()]
+    return data
+
+
 def search(c, q, case_id=None, k=5, firm_id=1, as_of=None):
     # Linked legal versions are filtered by effective/repeal dates and review evidence.
     # Unlinked legacy chunks retain the pre-registry behavior for backwards compatibility.
@@ -363,7 +399,8 @@ def search(c, q, case_id=None, k=5, firm_id=1, as_of=None):
         cs = max(original_match, 0.85 * expanded_match)
         out.append({"id": i, "ref": r["ref"], "text": r["text"], "in_force": bool(r["in_force"]), "verified": bool(r["verified"]), "as_of": r["as_of"],
                     "source": r["source"], "cos": round(cs, 3), "literal_match": round(original_match, 3), "expanded_match": round(expanded_match, 3), "score": 0.5 * b / top + 0.5 * cs + (1 if i in exact else 0),
-                    "requested_as_of": as_of, "document_version_id": r["document_version_id"]})
+                    "requested_as_of": as_of, "document_version_id": r["document_version_id"],
+                    "provenance": citation_provenance(c, r["document_version_id"])})
     return sorted(out, key=lambda x: -x["score"])[:k]
 
 
