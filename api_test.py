@@ -74,7 +74,7 @@ db.execute("INSERT INTO firms(id,name) VALUES(2,'Second Firm')")
 db.execute("INSERT INTO users(name,email,pw,role,firm_id) VALUES(?,?,?,?,?)",
            ("Second Admin","second@x.eg",app.hash_pw("password-Second"),"admin",2))
 db.commit()
-S = {"Authorization": "Bearer " + c.post("/login", json={"email":"second@x.eg","password":"password-Second"}).json()["token"]}
+S = login_creds("second@x.eg", "password-Second")
 other_cid = c.post("/cases", json={"title":"Private second-firm matter","client":"Second Client"}, headers=S).json()["id"]
 assert c.get("/cases", headers=S).status_code == 200
 assert [x["id"] for x in c.get("/cases", headers=S).json()] == [other_cid]
@@ -90,7 +90,7 @@ assert all(x.get("case_title") != "مذكرة" for x in c.get("/dashboard", head
 db.execute("INSERT INTO users(name,email,pw,role,firm_id) VALUES(?,?,?,?,?)",
            ("First Firm Admin","admin@x.eg",app.hash_pw("password-Admin"),"admin",1))
 db.commit()
-A = {"Authorization": "Bearer " + c.post("/login", json={"email":"admin@x.eg","password":"password-Admin"}).json()["token"]}
+A = login_creds("admin@x.eg", "password-Admin")
 assert c.post("/users", json={"name":"Nope","email":"nope@x.eg","password":"long-enough-password","role":"lawyer"}, headers=J).status_code == 403
 assert c.post("/users", json={"name":"New User","email":"new@x.eg","password":"short","role":"lawyer"}, headers=A).status_code == 422
 assert c.post("/users", json={"name":"New User","email":"new@x.eg","password":"long-enough-password","role":"lawyer"}, headers=A).status_code == 200
@@ -108,14 +108,14 @@ assert c.delete(f"/cases/{cid}", headers=J).status_code == 404 and c.delete(f"/c
 for malformed in ("", "garbage", "Bearer", "Basic abc", "Bearer not-a-real-token"):
     assert c.get("/cases", headers={"Authorization": malformed}).status_code == 401
 expired = login("Junior")
-expired_token = expired["Authorization"].split(" ", 1)[1]
+expired_token = expired["Cookie"].split("lc_session=",1)[1].split(";",1)[0]
 db.execute("UPDATE auth_sessions SET expires=? WHERE token_hash=?", (int(__import__("time").time()) - 1, app.sha(expired_token)))
 db.commit()
 assert c.get("/cases", headers=expired).status_code == 401
 from unittest.mock import patch
 import sys, getpass
 c.post("/users", json={"name":"Reset Test","email":"reset@x.eg","password":"old-password-Long","role":"lawyer"}, headers=A)
-reset_token = {"Authorization":"Bearer "+c.post("/login",json={"email":"reset@x.eg","password":"old-password-Long"}).json()["token"]}
+reset_token = login_creds("reset@x.eg", "old-password-Long")
 assert c.get("/cases", headers=reset_token).status_code == 200
 # manage.py is a CLI script; set its arguments and patch the terminal prompt before importing it.
 sys.argv = ["manage.py", "resetpw", "reset@x.eg"]
