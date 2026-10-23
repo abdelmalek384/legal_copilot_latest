@@ -10,6 +10,8 @@ python tools/validate_amendment_relationships.py
 
 The report separates structural errors from review warnings. The default command reports findings without failing, because the current register intentionally includes unresolved discovery records.
 
+The standard GitHub Actions workflow now runs the validator regression tests and emits the read-only audit report on every CI run. CI uses report mode rather than `--strict` so known unresolved discovery records remain visible without being mistaken for structural breakage; structural errors should be reviewed before a relationship register is used downstream.
+
 To make structural errors fail a CI or review gate:
 
 ```bash
