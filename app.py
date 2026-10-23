@@ -479,7 +479,7 @@ _QUANTITY_UNITS = {
     "percent": "percent", "percentage": "percent", "%": "percent", "٪": "percent",
     "بالمائة": "percent", "في المئة": "percent",
 }
-_QUANTITY_NUM_RE = r"\d+(?:[.,]\d+)?|[a-z]+(?:[- ][a-z]+)?|[ء-ي]+(?: [ء-ي]+)?"
+_QUANTITY_NUM_RE = r"\d+(?:[.,]\d+)?|[a-z]+|[ء-ي]+"
 _QUANTITY_UNIT_RE = "|".join(sorted((re.escape(x) for x in _QUANTITY_UNITS), key=len, reverse=True))
 
 
