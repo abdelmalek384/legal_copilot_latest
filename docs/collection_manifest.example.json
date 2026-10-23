@@ -2,11 +2,12 @@
   "schema_version": "1.0",
   "purpose": "First acquisition batch: individual official Egyptian legal documents. Permission rationale is limited to official-document copyright status under Article 141 of Law 82/2002; this is not permission to crawl source websites or bypass access controls.",
   "instructions": [
-    "This manifest contains only two individually identified official documents; it is not a complete or consolidated corpus.",
-    "Egyptian IP Law 82/2002 Article 141 excludes official documents such as laws, regulations, resolutions and decisions from copyright protection. Confirm the current Arabic law and seek Egyptian legal advice if relying on this interpretation for a commercial product.",
-    "The Article 141 rationale concerns the official document itself, not any third-party annotations, creative database arrangement, site software, or access restrictions.",
-    "Collector uses low request rate and only exact URLs and approved hosts. Do not add broad crawl paths or search-result discovery URLs.",
-    "Downloaded records must remain pending authenticity, commencement, amendment-history, extraction and current-status review."
+    "This manifest contains a small set of individually identified official-document candidates; it is not a complete or consolidated corpus.",
+    "The Article 141 copyright rationale for an official document does not itself establish permission to automate access to a source website, bypass technical controls, use subscription-restricted archives, or reuse third-party database material.",
+    "All entries remain permission_pending until the exact URL, source terms/access restrictions, intended storage, extraction, indexing, commercial use and display have been reviewed and documented.",
+    "Do not change collection_permission to allowed unless evidence covers the actual intended collection method and uses, the terms_checked_on date is populated, and the approved hostname is confirmed.",
+    "Downloaded records must remain pending authenticity, commencement, amendment-history, extraction and current-status review.",
+    "This is an example manifest and must not be treated as a ready-to-run authorized acquisition batch."
   ],
   "documents": [
     {
@@ -18,9 +19,9 @@
       "allowed_hosts": [
         "presidency.eg"
       ],
-      "collection_permission": "allowed",
-      "permission_evidence": "Individual official constitutional document hosted on the Presidency of Egypt website; Egypt Law 82/2002, Article 141(1) excludes official documents including laws and regulations from copyright protection (WIPO Lex: https://www.wipo.int/wipolex/en/text/126540). This is a document-specific copyright rationale only; no permission is claimed for site-wide crawling, third-party material, or bypassing access controls.",
-      "terms_checked_on": "2026-10-23",
+      "collection_permission": "permission_pending",
+      "permission_evidence": "Official-document copyright status may be relevant under Egypt Law 82/2002 Article 141, but this does not establish website access, bulk retrieval, storage, indexing, or commercial reuse permission. Review the exact source terms and access method; obtain written permission where required before changing this status.",
+      "terms_checked_on": null,
       "publication_date": "2019-04-23",
       "effective_date": null,
       "repeal_date": null,
@@ -43,9 +44,9 @@
         "alamiria.com",
         "www.alamiria.com"
       ],
-      "collection_permission": "allowed",
-      "permission_evidence": "Individual official text published on the General Authority for Amiri Press website; Egypt Law 82/2002, Article 141(1) excludes official documents including laws and regulations from copyright protection (WIPO Lex: https://www.wipo.int/wipolex/en/text/126540). This is a document-specific copyright rationale only; no permission is claimed for site-wide crawling, third-party material, or bypassing access controls.",
-      "terms_checked_on": "2026-10-23",
+      "collection_permission": "permission_pending",
+      "permission_evidence": "Official-document copyright status may be relevant under Egypt Law 82/2002 Article 141, but this does not establish website access, bulk retrieval, storage, indexing, or commercial reuse permission. Review the exact source terms and access method; obtain written permission where required before changing this status.",
+      "terms_checked_on": null,
       "publication_date": "2025-05-03",
       "effective_date": null,
       "repeal_date": null,
@@ -67,9 +68,9 @@
         "alamiria.com",
         "www.alamiria.com"
       ],
-      "collection_permission": "allowed",
-      "permission_evidence": "Individual official decision published on the General Authority for Amiri Press website; Egypt Law 82/2002, Article 141(1) excludes official documents including resolutions and decisions from copyright protection (WIPO Lex: https://www.wipo.int/wipolex/en/text/126540). This is a document-specific copyright rationale only; no permission is claimed for site-wide crawling, third-party material, or bypassing access controls.",
-      "terms_checked_on": "2026-10-23",
+      "collection_permission": "permission_pending",
+      "permission_evidence": "Official-document copyright status may be relevant under Egypt Law 82/2002 Article 141, but this does not establish website access, bulk retrieval, storage, indexing, or commercial reuse permission. Review the exact source terms and access method; obtain written permission where required before changing this status.",
+      "terms_checked_on": null,
       "publication_date": null,
       "effective_date": null,
       "repeal_date": null,
@@ -92,9 +93,9 @@
         "alamiria.com",
         "www.alamiria.com"
       ],
-      "collection_permission": "allowed",
-      "permission_evidence": "Individual official decision published on the General Authority for Amiri Press website; Egypt Law 82/2002, Article 141(1) excludes official documents including resolutions and decisions from copyright protection (WIPO Lex: https://www.wipo.int/wipolex/en/text/126540). This is a document-specific copyright rationale only; no permission is claimed for site-wide crawling, third-party material, or bypassing access controls.",
-      "terms_checked_on": "2026-10-23",
+      "collection_permission": "permission_pending",
+      "permission_evidence": "Official-document copyright status may be relevant under Egypt Law 82/2002 Article 141, but this does not establish website access, bulk retrieval, storage, indexing, or commercial reuse permission. Review the exact source terms and access method; obtain written permission where required before changing this status.",
+      "terms_checked_on": null,
       "publication_date": null,
       "effective_date": "2025-10-01",
       "repeal_date": null,

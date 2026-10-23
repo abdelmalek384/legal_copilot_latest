@@ -126,6 +126,35 @@ def load_manifest(path: Path) -> list[dict]:
     return docs
 
 
+def validate_manifest_hosts(doc: dict) -> set[str]:
+    """Validate host allowlisting without implying collection permission.
+
+    This is safe to use for discovery-only / permission-pending manifest entries.
+    Actual download paths must still call check_permission(), which fails closed.
+    """
+    hosts = doc.get("allowed_hosts")
+    if not isinstance(hosts, list) or not hosts:
+        raise ValueError("allowed_hosts must explicitly list the approved source host(s)")
+    normalized = set()
+    for item in hosts:
+        if not isinstance(item, str) or not item.strip():
+            raise ValueError("allowed_hosts entries must be non-empty hostnames")
+        host = item.strip().lower().rstrip(".")
+        if ":" in host or "/" in host or "@" in host or host.startswith(".") or host.endswith("."):
+            raise ValueError("allowed_hosts entries must be hostnames without schemes, paths, ports, or credentials")
+        if not re.fullmatch(r"[a-z0-9](?:[a-z0-9.-]{0,251}[a-z0-9])?", host):
+            raise ValueError("allowed_hosts contains an invalid hostname")
+        normalized.add(host)
+    direct_url = doc.get("direct_url", "")
+    parsed = urlparse(direct_url)
+    if parsed.scheme != "https" or not parsed.hostname:
+        raise ValueError("direct_url must be an absolute HTTPS URL")
+    url_host = parsed.hostname.lower().rstrip(".")
+    if not any(url_host == h or url_host.endswith("." + h) for h in normalized):
+        raise ValueError("direct_url host must match an explicitly allowed host")
+    return normalized
+
+
 def check_permission(doc: dict) -> set[str]:
     if doc.get("collection_permission") != "allowed":
         raise ValueError("collection_permission must be explicitly set to 'allowed'")
@@ -133,10 +162,7 @@ def check_permission(doc: dict) -> set[str]:
     if not isinstance(evidence, str) or len(evidence.strip()) < 8:
         raise ValueError("permission_evidence must identify reviewed terms or written permission")
     parse_date(doc.get("terms_checked_on"), "terms_checked_on")
-    hosts = doc.get("allowed_hosts")
-    if not isinstance(hosts, list) or not hosts:
-        raise ValueError("allowed_hosts must explicitly list the approved source host(s)")
-    return {str(h).lower().rstrip(".") for h in hosts}
+    return validate_manifest_hosts(doc)
 
 
 def download_document(client: httpx.Client, doc: dict, out: Path, max_bytes: int) -> dict:
