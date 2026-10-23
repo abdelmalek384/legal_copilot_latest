@@ -54,6 +54,21 @@ d = docx.Document(); d.add_paragraph("مدة العقد سنتان ويجدد ت
 assert c.post(f"/cases/{cid}/upload", files={"file": ("a.docx", b.getvalue())}, headers=J).status_code == 200
 assert c.post(f"/cases/{cid}/upload", files={"file": ("a.txt", b"hello world")}, headers=J).status_code == 415
 assert c.post(f"/cases/{cid}/upload", files={"file": ("a.docx", b"not a docx")}, headers=J).status_code == 422
+# Verify the OCR route metadata without requiring Tesseract in the CI runner.
+_original_extract = app.extract
+_original_ocr = app.ocr_pdf_text
+try:
+    app.extract = lambda name, data: ""
+    app.ocr_pdf_text = lambda data: "recognized scanned document text that needs human review"
+    _ocr_response = c.post(f"/cases/{cid}/upload", files={"file": ("scan.pdf", b"pdf bytes")}, headers=J)
+finally:
+    app.extract = _original_extract
+    app.ocr_pdf_text = _original_ocr
+assert _ocr_response.status_code == 200, _ocr_response.text
+assert _ocr_response.json()["ocr_used"] is True
+assert _ocr_response.json()["text_status"] == "ocr_unverified"
+assert _ocr_response.json()["chunks"] >= 1
+
 assert c.post("/ask", json={"q": "مدة العقد", "case_id": cid}, headers=O).status_code == 404 and c.get(f"/cases/{cid}", headers=O).status_code == 404
 r = c.post("/ask", json={"q": "مدة العقد", "case_id": cid}, headers=J).json(); assert r["sources"][0]["source"] == "case-file"
 info = c.get(f"/cases/{cid}", headers=J).json(); assert len(info["events"]) >= 4 and info["tasks"][0]["status"] == "done"
