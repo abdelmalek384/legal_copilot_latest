@@ -12,15 +12,16 @@ If omitted, the application uses the server's current date. The response include
 
 ## Eligibility for linked versions
 
-For a chunk whose `document_version_id` points to the version registry, retrieval requires all of the following:
+For a chunk whose `document_version_id` points to the version registry, retrieval requires:
 
-- version review status is `verified`;
-- source authenticity and legal status flags are verified;
-- legal status is `in_force`;
-- an effective date is known and is on or before the requested date;
-- no repeal date exists on or before the requested date.
+- review status `verified`;
+- source authenticity and legal-status verification flags set;
+- a known effective date on or before the requested date; and
+- no recorded repeal date on or before the requested date.
 
-Exact article lookup uses the same eligibility predicate. The answer prompt receives the evaluation date and is told not to infer commencement solely from publication.
+Versions labelled `in_force` are eligible when those conditions hold. Versions labelled `repealed` or `historical` may also be retrieved **for a date before their recorded repeal date**; they are excluded on and after that date. A `repealed` or `historical` version without a known repeal boundary is excluded because the system cannot safely establish its temporal eligibility. Partially repealed instruments need provision-level treatment and are not made eligible by this rule.
+
+Exact article lookup uses the same temporal predicate. The answer prompt receives the evaluation date and recorded version provenance, including Gazette metadata and amendment relations where present. Recorded metadata is context, not independent proof; missing or conflicting dates must remain uncertain.
 
 ## Compatibility limitation: legacy unlinked chunks
 
