@@ -96,6 +96,13 @@
       "source_class": "secondary_discovery_and_cross_check",
       "permission": "unknown",
       "next_action": "Use for labour-law discovery; verify source/version and reuse terms."
+    },
+    "EG-ETA-TAX-LAWS": {
+      "authority": "Egyptian Tax Authority and Income Tax Authority portals",
+      "source_url": "https://portal.eta.gov.eg/ar/content/qwanyn-aldrybt-ly-alqymt-almdaft",
+      "source_class": "official_regulator_discovery_index",
+      "permission": "unknown",
+      "next_action": "Review terms and obtain authorization for storage, download, OCR, indexing, commercial use, excerpt display and redistribution; verify every instrument against the original Official Gazette before legal use."
     }
   },
   "documents": [
@@ -1494,6 +1501,438 @@
         "qualified Egyptian-lawyer review"
       ],
       "notes": "Secondary legal reference identifies a regulation amendment. Confirm exact official issue, affected provisions, and continuing effect."
+    },
+    {
+      "document_id": "EG-STATE-RESOURCE-FEES-147-1984",
+      "official_title_ar": "قانون رقم 147 لسنة 1984 بفرض رسم تنمية موارد الدولة",
+      "practice_areas": [
+        "tax"
+      ],
+      "document_type": "state_resource_fees_law",
+      "instrument_number": "147",
+      "instrument_year": 1984,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "source_status": "official_index_discovered_primary_text_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "original Official Gazette publication",
+        "amendment and implementing-instrument chain",
+        "qualified Egyptian tax-lawyer review"
+      ],
+      "notes": "Base-instrument discovery record; verify original Gazette publication, later amendments, and exact title against official text."
+    },
+    {
+      "document_id": "EG-STAMP-TAX-111-1980",
+      "official_title_ar": "قانون ضريبة الدمغة — القانون رقم 111 لسنة 1980",
+      "practice_areas": [
+        "tax"
+      ],
+      "document_type": "stamp_tax_law",
+      "instrument_number": "111",
+      "instrument_year": 1980,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "source_status": "official_index_discovered_primary_text_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "original Official Gazette publication",
+        "amendment and implementing-instrument chain",
+        "qualified Egyptian tax-lawyer review"
+      ],
+      "notes": "Base-instrument discovery record; verify original Gazette publication, later amendments, and exact title against official text."
+    },
+    {
+      "document_id": "EG-TAX-DISPUTES-79-2016",
+      "official_title_ar": "قانون رقم 79 لسنة 2016 بشأن إنهاء المنازعات الضريبية",
+      "practice_areas": [
+        "tax"
+      ],
+      "document_type": "tax_dispute_settlement_law",
+      "instrument_number": "79",
+      "instrument_year": 2016,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "source_status": "official_index_discovered_primary_text_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "original Official Gazette publication",
+        "amendment and implementing-instrument chain",
+        "qualified Egyptian tax-lawyer review"
+      ],
+      "notes": "Base-instrument discovery record; verify original Gazette publication and the scope/duration of each later renewal."
+    },
+    {
+      "document_id": "EG-UNIFIED-TAX-PROCEDURES-AMENDMENT-7-2025",
+      "official_title_ar": "قانون رقم 7 لسنة 2025 بتعديل بعض أحكام قانون الإجراءات الضريبية الموحد الصادر بالقانون رقم 206 لسنة 2020",
+      "practice_areas": [
+        "tax"
+      ],
+      "document_type": "amending_law",
+      "instrument_number": "7",
+      "instrument_year": 2025,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "source_status": "official_index_discovered_primary_text_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "original Official Gazette issue/date/page range",
+        "exact article-level before/after mapping",
+        "commencement and transitional analysis",
+        "later amendments and repeal/renewal search",
+        "qualified Egyptian tax-lawyer review"
+      ],
+      "notes": "Official tax authority index lists this amendment. Obtain original Gazette issue/pages and map exact provisions; do not infer current consolidated text from index."
+    },
+    {
+      "document_id": "EG-VAT-AMENDMENT-157-2025",
+      "official_title_ar": "قانون رقم 157 لسنة 2025 بتعديل بعض أحكام قانون الضريبة على القيمة المضافة الصادر بالقانون رقم 67 لسنة 2016",
+      "practice_areas": [
+        "tax"
+      ],
+      "document_type": "amending_law",
+      "instrument_number": "157",
+      "instrument_year": 2025,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "source_status": "official_index_discovered_primary_text_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "original Official Gazette issue/date/page range",
+        "exact article-level before/after mapping",
+        "commencement and transitional analysis",
+        "later amendments and repeal/renewal search",
+        "qualified Egyptian tax-lawyer review"
+      ],
+      "notes": "Official tax authority index lists this amendment. Review Gazette text, exact affected provisions, commencement, and subsequent 2026 amendments."
+    },
+    {
+      "document_id": "EG-STATE-RESOURCE-FEES-AMENDMENT-148-2026",
+      "official_title_ar": "قانون رقم 148 لسنة 2026 بتعديل بعض أحكام القانون رقم 147 لسنة 1984 بفرض رسم تنمية موارد الدولة",
+      "practice_areas": [
+        "tax"
+      ],
+      "document_type": "amending_law",
+      "instrument_number": "148",
+      "instrument_year": 2026,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "source_status": "official_index_discovered_primary_text_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "original Official Gazette issue/date/page range",
+        "exact article-level before/after mapping",
+        "commencement and transitional analysis",
+        "later amendments and repeal/renewal search",
+        "qualified Egyptian tax-lawyer review"
+      ],
+      "notes": "2026 tax legislation package discovery lead. Verify original Gazette text, exact title, affected provisions, and commencement."
+    },
+    {
+      "document_id": "EG-VAT-AMENDMENT-149-2026",
+      "official_title_ar": "قانون رقم 149 لسنة 2026 بتعديل بعض أحكام قانون الضريبة على القيمة المضافة الصادر بالقانون رقم 67 لسنة 2016",
+      "practice_areas": [
+        "tax"
+      ],
+      "document_type": "amending_law",
+      "instrument_number": "149",
+      "instrument_year": 2026,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "source_status": "official_index_discovered_primary_text_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "original Official Gazette issue/date/page range",
+        "exact article-level before/after mapping",
+        "commencement and transitional analysis",
+        "later amendments and repeal/renewal search",
+        "qualified Egyptian tax-lawyer review"
+      ],
+      "notes": "Official Egyptian Tax Authority VAT index lists this amendment. Verify original Gazette text, exact provision mapping, and commencement."
+    },
+    {
+      "document_id": "EG-UNIFIED-TAX-PROCEDURES-AMENDMENT-150-2026",
+      "official_title_ar": "قانون رقم 150 لسنة 2026 بتعديل بعض أحكام قانون الإجراءات الضريبية الموحد الصادر بالقانون رقم 206 لسنة 2020",
+      "practice_areas": [
+        "tax"
+      ],
+      "document_type": "amending_law",
+      "instrument_number": "150",
+      "instrument_year": 2026,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "source_status": "official_index_discovered_primary_text_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "original Official Gazette issue/date/page range",
+        "exact article-level before/after mapping",
+        "commencement and transitional analysis",
+        "later amendments and repeal/renewal search",
+        "qualified Egyptian tax-lawyer review"
+      ],
+      "notes": "Official income-tax authority index lists this amendment; verify exact title because the same portal index may contain a year typo in the base-law citation. Original Gazette review required."
+    },
+    {
+      "document_id": "EG-INCOME-TAX-AMENDMENT-151-2026",
+      "official_title_ar": "قانون رقم 151 لسنة 2026 بتعديل بعض أحكام قانون الضريبة على الدخل الصادر بالقانون رقم 91 لسنة 2005",
+      "practice_areas": [
+        "tax"
+      ],
+      "document_type": "amending_law",
+      "instrument_number": "151",
+      "instrument_year": 2026,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "source_status": "official_index_discovered_primary_text_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "original Official Gazette issue/date/page range",
+        "exact article-level before/after mapping",
+        "commencement and transitional analysis",
+        "later amendments and repeal/renewal search",
+        "qualified Egyptian tax-lawyer review"
+      ],
+      "notes": "Official income-tax authority index lists this amendment. Verify original Gazette text, exact article mapping, commencement, and interaction with earlier amendments."
+    },
+    {
+      "document_id": "EG-TAX-DISPUTES-RENEWAL-152-2026",
+      "official_title_ar": "قانون رقم 152 لسنة 2026 بتجديد العمل بالقانون رقم 79 لسنة 2016 بشأن إنهاء المنازعات الضريبية",
+      "practice_areas": [
+        "tax"
+      ],
+      "document_type": "renewal_law",
+      "instrument_number": "152",
+      "instrument_year": 2026,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "source_status": "official_index_discovered_primary_text_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "original Official Gazette issue/date/page range",
+        "exact article-level before/after mapping",
+        "commencement and transitional analysis",
+        "later amendments and repeal/renewal search",
+        "qualified Egyptian tax-lawyer review"
+      ],
+      "notes": "2026 tax legislation package discovery lead. Verify original Gazette text, duration/conditions, commencement, and whether later instruments modify the renewal."
+    },
+    {
+      "document_id": "EG-STAMP-TAX-AMENDMENT-153-2026",
+      "official_title_ar": "قانون رقم 153 لسنة 2026 بتعديل بعض أحكام قانون ضريبة الدمغة الصادر بالقانون رقم 111 لسنة 1980",
+      "practice_areas": [
+        "tax"
+      ],
+      "document_type": "amending_law",
+      "instrument_number": "153",
+      "instrument_year": 2026,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "source_status": "official_index_discovered_primary_text_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "original Official Gazette issue/date/page range",
+        "exact article-level before/after mapping",
+        "commencement and transitional analysis",
+        "later amendments and repeal/renewal search",
+        "qualified Egyptian tax-lawyer review"
+      ],
+      "notes": "2026 tax legislation package discovery lead. Verify original Gazette text, exact affected provisions, and commencement."
+    },
+    {
+      "document_id": "EG-STATE-ENTITY-PROFITS-154-2026",
+      "official_title_ar": "قانون رقم 154 لسنة 2026 بتخصيص نسبة من صافي أرباح بعض الشركات المملوكة للدولة والأشخاص الاعتبارية العامة للخزانة العامة للدولة",
+      "practice_areas": [
+        "tax",
+        "administrative"
+      ],
+      "document_type": "public_finance_law",
+      "instrument_number": "154",
+      "instrument_year": 2026,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "source_status": "official_index_discovered_primary_text_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "original Official Gazette publication",
+        "amendment and implementing-instrument chain",
+        "qualified Egyptian tax-lawyer review"
+      ],
+      "notes": "2026 tax/public-finance package discovery lead. Verify exact official title, scope, entities covered, calculation base, commencement, and Gazette publication."
+    },
+    {
+      "document_id": "EG-TAX-CORRIGENDUM-149-151-2026",
+      "official_title_ar": "استدراك لتصحيح تعديل بعض أحكام القوانين أرقام 149 و150 و151 لسنة 2026",
+      "practice_areas": [
+        "tax"
+      ],
+      "document_type": "corrigendum",
+      "instrument_number": null,
+      "instrument_year": 2026,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "source_status": "official_index_discovered_primary_text_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "original Official Gazette or Egyptian Proceedings issue/date/page range",
+        "exact text and legal effect review",
+        "commencement and transitional analysis",
+        "later amendment/correction search",
+        "qualified Egyptian tax-lawyer review"
+      ],
+      "notes": "Official tax authority indexes list a corrigendum associated with Laws 149/2026, 150/2026 and 151/2026. The exact Gazette issue, text and corrected wording must be obtained and reviewed before interpreting the affected amendments."
+    },
+    {
+      "document_id": "EG-VAT-EXEC-REG-AMENDMENT-417-2025",
+      "official_title_ar": "قرار وزير المالية رقم 417 لسنة 2025 بتعديل بعض أحكام اللائحة التنفيذية لقانون الضريبة على القيمة المضافة الصادرة بقرار وزير المالية رقم 66 لسنة 2017",
+      "practice_areas": [
+        "tax"
+      ],
+      "document_type": "amending_ministerial_decision",
+      "instrument_number": "417",
+      "instrument_year": 2025,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "source_status": "official_index_discovered_primary_text_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "original Official Gazette or Egyptian Proceedings issue/date/page range",
+        "exact text and legal effect review",
+        "commencement and transitional analysis",
+        "later amendment/correction search",
+        "qualified Egyptian tax-lawyer review"
+      ],
+      "notes": "Official VAT index lists this amendment to the VAT executive regulation. Verify the original Egyptian Proceedings issue and exact affected provisions."
+    },
+    {
+      "document_id": "EG-VAT-EXEC-REG-418-2025",
+      "official_title_ar": "قرار وزير المالية رقم 418 لسنة 2025 بشأن أساس محاسبي لبعض عقود المقاولات وأعمال التشييد والبناء",
+      "practice_areas": [
+        "tax"
+      ],
+      "document_type": "ministerial_decision",
+      "instrument_number": "418",
+      "instrument_year": 2025,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "source_status": "official_index_discovered_primary_text_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "original Official Gazette or Egyptian Proceedings issue/date/page range",
+        "exact text and legal effect review",
+        "commencement and transitional analysis",
+        "later amendment/correction search",
+        "qualified Egyptian tax-lawyer review"
+      ],
+      "notes": "Official VAT index lists the decision in relation to contracts continuing after VAT amendment Law 157/2025. Verify the full official text, scope, and transitional application."
+    },
+    {
+      "document_id": "EG-TAX-SIMPLIFIED-RECORDS-420-2025",
+      "official_title_ar": "قرار وزير المالية رقم 420 لسنة 2025 بشأن نماذج وسجلات المحاسبة الضريبية المبسطة",
+      "practice_areas": [
+        "tax"
+      ],
+      "document_type": "ministerial_decision",
+      "instrument_number": "420",
+      "instrument_year": 2025,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "source_status": "official_index_discovered_primary_text_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "original Official Gazette or Egyptian Proceedings issue/date/page range",
+        "exact text and legal effect review",
+        "commencement and transitional analysis",
+        "later amendment/correction search",
+        "qualified Egyptian tax-lawyer review"
+      ],
+      "notes": "Official tax authority index lists this decision. Verify the official publication, scope, effective date, and applicable taxpayers."
+    },
+    {
+      "document_id": "EG-TAX-SETTLEMENT-5-2025",
+      "official_title_ar": "قانون رقم 5 لسنة 2025 في شأن تسوية أوضاع بعض الممولين والمكلفين",
+      "practice_areas": [
+        "tax"
+      ],
+      "document_type": "tax_settlement_law",
+      "instrument_number": "5",
+      "instrument_year": 2025,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "source_status": "official_index_discovered_primary_text_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "original Official Gazette or Egyptian Proceedings issue/date/page range",
+        "exact text and legal effect review",
+        "commencement and transitional analysis",
+        "later amendment/correction search",
+        "qualified Egyptian tax-lawyer review"
+      ],
+      "notes": "Official tax authority index lists the instrument. Verify original Gazette text, eligibility, time limits, and any implementing decisions."
+    },
+    {
+      "document_id": "EG-TAX-INCENTIVES-6-2025",
+      "official_title_ar": "قانون رقم 6 لسنة 2025 بشأن بعض الحوافز والتيسيرات الضريبية للمشروعات التي لا يتجاوز حجم أعمالها السنوي عشرين مليون جنيه",
+      "practice_areas": [
+        "tax",
+        "commercial"
+      ],
+      "document_type": "tax_incentives_law",
+      "instrument_number": "6",
+      "instrument_year": 2025,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "source_status": "official_index_discovered_primary_text_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "original Official Gazette or Egyptian Proceedings issue/date/page range",
+        "exact text and legal effect review",
+        "commencement and transitional analysis",
+        "later amendment/correction search",
+        "qualified Egyptian tax-lawyer review"
+      ],
+      "notes": "Official tax authority index lists this law. Verify original Gazette text, eligibility definitions, turnover calculation, exclusions, commencement and implementing rules."
+    },
+    {
+      "document_id": "EG-TAX-DISPUTES-EXEC-DECISION-450-2026",
+      "official_title_ar": "قرار رقم 450 لسنة 2026 بشأن طلبات إنهاء المنازعات الضريبية والجمركية طبقًا للقانون رقم 152 لسنة 2026",
+      "practice_areas": [
+        "tax",
+        "administrative"
+      ],
+      "document_type": "implementing_decision",
+      "instrument_number": "450",
+      "instrument_year": 2026,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "source_status": "official_index_discovered_primary_text_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "original Official Gazette or Egyptian Proceedings issue/date/page range",
+        "exact text and legal effect review",
+        "commencement and transitional analysis",
+        "later amendment/correction search",
+        "qualified Egyptian tax-lawyer review"
+      ],
+      "notes": "Official tax authority index lists this decision under the 2026 tax-dispute renewal. Verify issuing authority, official publication, application process and deadlines."
     }
   ],
   "next_actions": [
