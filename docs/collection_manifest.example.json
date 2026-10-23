@@ -30,7 +30,8 @@
       "gazette_issue": "الجريدة الرسمية – العدد 16 مكرر (و) في 23 أبريل 2019",
       "amends_document_ids": [],
       "amended_by_document_ids": [],
-      "consolidated_version_as_of": null
+      "consolidated_version_as_of": null,
+      "permission_scope_review": null
     },
     {
       "document_id": "EG-LABOUR-LAW-14-2025-OFFICIAL-TEXT",
@@ -54,7 +55,8 @@
       "gazette_issue": "الجريدة الرسمية العدد 18 مكرر (أ) في 3 مايو 2025",
       "amends_document_ids": [],
       "amended_by_document_ids": [],
-      "consolidated_version_as_of": null
+      "consolidated_version_as_of": null,
+      "permission_scope_review": null
     },
     {
       "document_id": "EG-LABOUR-MINISTER-DECISION-214-2025",
@@ -79,7 +81,8 @@
         "EG-LABOUR-LAW-14-2025-OFFICIAL-TEXT"
       ],
       "amended_by_document_ids": [],
-      "consolidated_version_as_of": null
+      "consolidated_version_as_of": null,
+      "permission_scope_review": null
     },
     {
       "document_id": "EG-JUSTICE-LABOUR-COURTS-4621-2025",
@@ -104,7 +107,8 @@
         "EG-LABOUR-LAW-14-2025-OFFICIAL-TEXT"
       ],
       "amended_by_document_ids": [],
-      "consolidated_version_as_of": null
+      "consolidated_version_as_of": null,
+      "permission_scope_review": null
     }
   ]
 }

@@ -25,6 +25,8 @@ To seed source and document-candidate metadata into the local SQLite registry (n
 python tools/seed_legal_candidates.py --apply
 ```
 
+Before any authorized acquisition, review [the acquisition-readiness audit](docs/acquisition_readiness_audit.md) and run its read-only preflight against the candidate manifest and source permission register. A manifest entry marked pending is not permission to download, and collection readiness is not commercial reuse permission.
+
 See [the bootstrap guide](docs/legal_corpus_bootstrap.md), [candidate instrument catalogue](docs/legal_document_candidates.json), and [source permission register](docs/source_permission_register.json). Do not collect or commercially reuse a source unless the applicable permission has been established and documented.
 
 ## Arabic handling
