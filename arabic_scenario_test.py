@@ -144,6 +144,31 @@ assert doc_response.status_code == 200, f"حفظ نص المستند فشل: {do
 doc_detail = client.get(f"/cases/{created[0][0]}", headers=headers).json()
 assert any(d["name"] == "مستند عقد توريد تجريبي" for d in doc_detail.get("docs", [])), "المستند لا يظهر في ملف القضية"
 
+# Cross-firm isolation: a user in another firm must not read this firm's case.
+db.execute(
+    "INSERT INTO firms(id,name) VALUES(?,?)",
+    (2, "مكتب تجريبي ثانٍ"),
+)
+db.execute(
+    "INSERT INTO users(name,email,pw,role,firm_id) VALUES(?,?,?,?,?)",
+    ("محامٍ من مكتب آخر", "other-firm-test@example.invalid", app.hash_pw("Other-firm-test-password-2026"), "admin", 2),
+)
+db.commit()
+other_client = TestClient(app.app)
+other_login = other_client.post("/login", json={
+    "email": "other-firm-test@example.invalid",
+    "password": "Other-firm-test-password-2026",
+})
+assert other_login.status_code == 200, f"تسجيل دخول المكتب الثاني فشل: {other_login.status_code}"
+other_session = other_login.cookies.get("lc_session")
+other_csrf = other_login.cookies.get("lc_csrf")
+assert other_session and other_csrf, "لم تُنشأ جلسة للمكتب الثاني"
+other_headers = {"Cookie": f"lc_session={other_session}; lc_csrf={other_csrf}", "X-CSRF-Token": other_csrf}
+cross_firm_response = other_client.get(f"/cases/{created[0][0]}", headers=other_headers)
+assert cross_firm_response.status_code in (403, 404), (
+    f"قد يتمكن مستخدم من مكتب آخر من قراءة القضية: {cross_firm_response.status_code}"
+)
+
 # Authorization and input-validation negative tests.
 anonymous = TestClient(app.app)
 anonymous_response = anonymous.get(f"/cases/{created[0][0]}")
@@ -173,6 +198,7 @@ print("نجاح: فحص تعارض المصالح للموكل التجريبي"
 print("نجاح: استجابة واجهة البحث")
 print("نجاح: حفظ نص مستند عربي وظهوره في ملف القضية")
 print("نجاح: رفض الوصول دون تسجيل دخول")
+print("نجاح: منع مستخدم مكتب آخر من قراءة القضية")
 print("نجاح: رفض تسجيل مبلغ مدفوع أكبر من إجمالي الأتعاب")
 print("ملاحظة: جميع البيانات محفوظة في قاعدة SQLite مؤقتة منفصلة، ولن تُضاف إلى قاعدة بيانات المكتب.")
 print("لم يُختبر هنا: صحة الرأي القانوني، صحة مواعيد قانونية حقيقية، رفع ملفات PDF/DOCX فعليًا، أو اختبار اختراق مستقل.")
