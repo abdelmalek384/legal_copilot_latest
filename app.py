@@ -475,6 +475,35 @@ def require_admin(u):
     if u["role"] != "admin": raise HTTPException(403, "admin only")
 
 
+def ocr_pdf_text(data, lang=None, max_pages=30):
+    """OCR a small scanned PDF when optional local OCR dependencies are installed.
+
+    OCR output is unverified text: callers must not treat it as authoritative law.
+    Requires PyMuPDF, Pillow, pytesseract, the Tesseract binary, and matching language data.
+    """
+    try:
+        import pymupdf
+        import pytesseract
+        from PIL import Image
+    except ImportError as exc:
+        raise HTTPException(422, "scanned PDF needs optional OCR dependencies (PyMuPDF, Pillow, pytesseract, and Tesseract language data)") from exc
+    lang = lang or os.environ.get("OCR_LANG", "ara+eng")
+    try:
+        doc = pymupdf.open(stream=data, filetype="pdf")
+        if len(doc) > max_pages:
+            raise HTTPException(413, f"OCR is limited to {max_pages} pages per upload")
+        pages = []
+        for page in doc:
+            pix = page.get_pixmap(dpi=160, alpha=False)
+            image = Image.open(io.BytesIO(pix.tobytes("png")))
+            pages.append(pytesseract.image_to_string(image, lang=lang, timeout=30))
+        return "\n\n".join(pages).strip()
+    except HTTPException:
+        raise
+    except Exception as exc:
+        raise HTTPException(422, "OCR failed; check Tesseract installation and OCR_LANG language data") from exc
+
+
 def extract(name, data):
     ext = name.lower().rsplit(".", 1)[-1]
     if ext == "pdf":
@@ -777,11 +806,21 @@ def doc(cid: int, b: DocIn, u: dict = Depends(user)):
 def upload(cid: int, file: UploadFile, u: dict = Depends(user)):
     c = conn(); need(c, u, cid); data = file.file.read(15_000_001)
     if len(data) > 15_000_000: raise HTTPException(413, "max 15 MB")
-    try: text = extract(file.filename or "", data)
-    except HTTPException: raise
-    except Exception: raise HTTPException(422, "unreadable file")
-    if len(text.strip()) < 20: raise HTTPException(422, "no text found (scanned PDF? OCR is not supported)")
-    return {"chunks": save_doc(c, u, cid, (file.filename or "doc")[:200], text)}
+    name = file.filename or "doc"
+    try:
+        text = extract(name, data)
+    except HTTPException:
+        raise
+    except Exception:
+        raise HTTPException(422, "unreadable file")
+    ocr_used = False
+    if len(text.strip()) < 20 and name.lower().endswith(".pdf"):
+        text = ocr_pdf_text(data)
+        ocr_used = True
+    if len(text.strip()) < 20:
+        raise HTTPException(422, "no readable text found; for scanned PDFs enable OCR with Arabic/English Tesseract language data")
+    chunks = save_doc(c, u, cid, name[:200], text)
+    return {"chunks": chunks, "ocr_used": ocr_used, "text_status": "ocr_unverified" if ocr_used else "text_extracted"}
 
 
 @app.delete("/cases/{cid}")
