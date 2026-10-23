@@ -82,6 +82,12 @@ A successful OCR upload returns `ocr_used: true` and `text_status: "ocr_unverifi
 
 Run `python tools/audit_legal_corpus.py --db path/to/legal.db --out-dir reports/legal-audit` to generate a read-only metadata audit. The audit flags versions marked in force and verified without an amendment-history review, amendment-history flags that lack a passing review event with an evidence URL, and version relations whose endpoints have unreviewed histories. It reports findings; it never changes review flags or legal status. A passing metadata audit is not proof that the legal instrument is authentic, consolidated, or currently in force. A qualified reviewer must compare the official source and the applicable amendment/repeal instruments.
 
+## Version-aware research citations
+
+Research search results include a `provenance` object for each citation. When a passage is linked to the legal-version registry, this includes the registered title and version, source URL, publication/effective/repeal dates, gazette metadata, recorded legal/review status, content hash when available, review events and their evidence URLs, and linked amendment/repeal/consolidation relations. The research UI displays the metadata that exists; absent values remain absent rather than being inferred.
+
+Legacy passages without a `document_version_id` are explicitly returned as `legacy_unlinked`; they do not gain provenance by inference. This is a migration warning, not proof that a passage is false. Before relying on a citation for a legal opinion, reviewers should link the passage to the exact reviewed version and verify the cited official publication and applicable amendments. Registry metadata and an evidence URL alone do not establish legal correctness.
+
 
 ## Phase 2 amendment relationship register
 
