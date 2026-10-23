@@ -1,0 +1,163 @@
+#!/usr/bin/env python3
+"""Validate structural integrity of the Phase 2 legal-instrument relationship register.
+
+Read-only preflight. It does not verify legislation, establish legal effect, or approve
+a consolidated/current-law view.
+"""
+from __future__ import annotations
+
+import argparse
+import json
+from pathlib import Path
+from urllib.parse import urlparse
+
+ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_RELATIONSHIPS = ROOT / "docs" / "phase_2_amendment_relationships.json"
+DEFAULT_INVENTORY = ROOT / "docs" / "phase_2_document_inventory.json"
+BASE_TYPES = {"base_instrument"}
+KNOWN_RELATIONSHIP_TYPES = {
+    "base_instrument",
+    "amends_commencement_provision",
+    "amends_specified_provisions",
+    "amends_specified_schedules",
+    "repeals",
+    "repeals_specified_provisions",
+    "corrects",
+    "supersedes",
+    "implements",
+    "consolidates",
+}
+KNOWN_STATES = {
+    "official_text_discovered_provision_mapping_pending",
+    "source_discovered_instrument_record_pending",
+    "later_official_citation_only",
+    "provision_mapping_pending",
+    "under_review",
+    "reviewed_confirmed",
+    "reviewed_rejected",
+}
+
+
+def _https_url(value: object) -> bool:
+    if not isinstance(value, str):
+        return False
+    parsed = urlparse(value)
+    return parsed.scheme == "https" and bool(parsed.hostname) and not parsed.username and not parsed.password
+
+
+def validate(relationships_doc: dict, inventory_doc: dict) -> dict:
+    issues: list[dict] = []
+    relationships = relationships_doc.get("relationships") if isinstance(relationships_doc, dict) else None
+    documents = inventory_doc.get("documents") if isinstance(inventory_doc, dict) else None
+    if not isinstance(relationships, list):
+        return {"schema_error": "relationship register must contain a relationships list", "checked": 0, "errors": [], "warnings": []}
+    if not isinstance(documents, list):
+        return {"schema_error": "document inventory must contain a documents list", "checked": 0, "errors": [], "warnings": []}
+
+    document_ids = {
+        item.get("document_id")
+        for item in documents
+        if isinstance(item, dict) and isinstance(item.get("document_id"), str)
+    }
+    seen: set[str] = set()
+    errors: list[dict] = []
+    warnings: list[dict] = []
+
+    def add(severity: str, code: str, relationship_id: str | None, detail: str) -> None:
+        target = errors if severity == "error" else warnings
+        target.append({
+            "severity": severity,
+            "code": code,
+            "relationship_id": relationship_id,
+            "detail": detail,
+        })
+
+    for index, item in enumerate(relationships):
+        if not isinstance(item, dict):
+            add("error", "invalid_relationship_entry", None, f"Entry at index {index} is not an object.")
+            continue
+        rid = item.get("relationship_id")
+        rid_label = rid if isinstance(rid, str) and rid.strip() else None
+        if rid_label is None:
+            add("error", "missing_relationship_id", None, f"Entry at index {index} has no relationship_id.")
+        elif rid_label in seen:
+            add("error", "duplicate_relationship_id", rid_label, "relationship_id must be unique.")
+        else:
+            seen.add(rid_label)
+
+        source_id = item.get("source_instrument_id")
+        target_id = item.get("target_instrument_id")
+        relation_type = item.get("relationship_type")
+        status = item.get("status")
+
+        if not isinstance(source_id, str) or source_id not in document_ids:
+            add("error", "source_instrument_missing_from_inventory", rid_label, f"Unknown source instrument: {source_id!r}.")
+        if relation_type not in KNOWN_RELATIONSHIP_TYPES:
+            add("error", "unknown_relationship_type", rid_label, f"Unrecognized relationship_type: {relation_type!r}.")
+        if relation_type in BASE_TYPES:
+            if target_id is not None:
+                add("error", "base_instrument_must_not_have_target", rid_label, "A base_instrument record must use target_instrument_id=null.")
+        elif not isinstance(target_id, str) or target_id not in document_ids:
+            add("error", "target_instrument_missing_from_inventory", rid_label, f"Non-base relationship target is missing or unknown: {target_id!r}.")
+
+        if not _https_url(item.get("source_url")):
+            add("error", "missing_or_invalid_https_source_url", rid_label, "A direct evidence URL using HTTPS is required.")
+        evidence = item.get("required_evidence")
+        if not isinstance(evidence, list) or not evidence or any(not isinstance(x, str) or not x.strip() for x in evidence):
+            add("error", "required_evidence_list_missing", rid_label, "required_evidence must be a non-empty list of non-empty strings.")
+
+        if status not in KNOWN_STATES:
+            add("warning", "unrecognized_or_missing_status", rid_label, f"Review status requires normalization: {status!r}.")
+        if status != "reviewed_confirmed":
+            add("warning", "relationship_not_reviewed_confirmed", rid_label, "Do not treat this edge as legally confirmed or use it alone to construct current law.")
+        if relation_type != "base_instrument" and not item.get("affected_provision") and not item.get("affected_provisions"):
+            add("warning", "provision_mapping_not_recorded", rid_label, "Record affected articles/schedules when evidence supports the mapping.")
+        effective_date = item.get("instrument_effective_date")
+        if effective_date not in (None, "unknown_pending_gazette_verification") and not isinstance(effective_date, str):
+            add("error", "invalid_effective_date_value", rid_label, "Effective date must be an ISO date string or an explicit unknown sentinel.")
+        if effective_date == "unknown_pending_gazette_verification":
+            add("warning", "effective_date_unknown", rid_label, "Unknown commencement/effective date remains unresolved; do not infer it from publication date.")
+
+    return {
+        "schema_version": "1.0",
+        "audit_type": "read_only_amendment_relationship_integrity",
+        "relationships_checked": len(relationships),
+        "error_count": len(errors),
+        "warning_count": len(warnings),
+        "errors": errors,
+        "warnings": warnings,
+        "limitations": [
+            "Structural validation does not establish that an instrument exists, the source is authentic, or the described legal effect is correct.",
+            "An amendment edge requires the official instrument, exact provision mapping, publication and commencement analysis, and qualified Egyptian-lawyer review before use in current-law answers.",
+            "The tool does not download documents, alter relationship status, or consolidate legal text.",
+        ],
+    }
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--relationships", type=Path, default=DEFAULT_RELATIONSHIPS)
+    parser.add_argument("--inventory", type=Path, default=DEFAULT_INVENTORY)
+    parser.add_argument("--out", type=Path, help="Optional JSON report path")
+    parser.add_argument("--strict", action="store_true", help="Exit non-zero if structural errors are found")
+    args = parser.parse_args()
+    try:
+        relationships_doc = json.loads(args.relationships.read_text(encoding="utf-8"))
+        inventory_doc = json.loads(args.inventory.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        parser.error(str(exc))
+    report = validate(relationships_doc, inventory_doc)
+    rendered = json.dumps(report, ensure_ascii=False, indent=2)
+    if args.out:
+        args.out.parent.mkdir(parents=True, exist_ok=True)
+        args.out.write_text(rendered + "\n", encoding="utf-8")
+    print(rendered)
+    if report.get("schema_error"):
+        return 2
+    if args.strict and report["error_count"]:
+        return 1
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
