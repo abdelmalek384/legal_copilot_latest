@@ -50,9 +50,33 @@ def validate(relationships_doc: dict, inventory_doc: dict) -> dict:
     relationships = relationships_doc.get("relationships") if isinstance(relationships_doc, dict) else None
     documents = inventory_doc.get("documents") if isinstance(inventory_doc, dict) else None
     if not isinstance(relationships, list):
-        return {"schema_error": "relationship register must contain a relationships list", "checked": 0, "errors": [], "warnings": []}
+        return {
+            "schema_version": "1.0",
+            "audit_type": "read_only_amendment_relationship_integrity",
+            "schema_error": "relationship register must contain a relationships list",
+            "relationships_checked": 0,
+            "error_count": 0,
+            "warning_count": 0,
+            "errors": [],
+            "warnings": [],
+            "limitations": [
+                "Schema errors prevent structural validation; no legal status or effect is inferred."
+            ],
+        }
     if not isinstance(documents, list):
-        return {"schema_error": "document inventory must contain a documents list", "checked": 0, "errors": [], "warnings": []}
+        return {
+            "schema_version": "1.0",
+            "audit_type": "read_only_amendment_relationship_integrity",
+            "schema_error": "document inventory must contain a documents list",
+            "relationships_checked": len(relationships),
+            "error_count": 0,
+            "warning_count": 0,
+            "errors": [],
+            "warnings": [],
+            "limitations": [
+                "Schema errors prevent structural validation; no legal status or effect is inferred."
+            ],
+        }
 
     document_ids = {
         item.get("document_id")
