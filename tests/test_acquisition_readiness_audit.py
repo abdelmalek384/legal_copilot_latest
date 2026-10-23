@@ -21,7 +21,7 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
         self.assertTrue(all(not item["collection_ready"] for item in report["documents"]))
         self.assertTrue(any(item["code"] == "manifest_collection_permission_not_allowed" for item in report["findings"]))
 
-    def test_ready_collection_still_does_not_imply_commercial_product_use(self):
+    def test_collection_scope_does_not_imply_commercial_product_use(self):
         manifest = {"documents": [{
             "document_id": "LAW-1",
             "source_id": "SRC-1",
@@ -30,6 +30,12 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
             "collection_permission": "allowed",
             "permission_evidence": "written authorization ref AUTH-1",
             "terms_checked_on": "2026-10-23",
+            "permission_scope_review": {
+                "status": "passed",
+                "evidence": "AUTH-1 section 2",
+                "reviewed_on": "2026-10-23",
+                "approved_uses": ["collection"],
+            },
         }]}
         register = {"sources": [{
             "source_id": "SRC-1",
@@ -41,6 +47,7 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
         report = MODULE.audit(manifest, register)
         self.assertTrue(report["documents"][0]["collection_ready"])
         self.assertFalse(report["documents"][0]["commercial_product_use_ready"])
+        self.assertIn("document_level_commercial_scope_review_missing", report["documents"][0]["warnings"])
         self.assertIn("commercial_product_reuse_not_established", report["documents"][0]["warnings"])
 
     def test_manifest_permission_cannot_override_source_register(self):
@@ -52,6 +59,10 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
             "collection_permission": "allowed",
             "permission_evidence": "claim",
             "terms_checked_on": "2026-10-23",
+            "permission_scope_review": {
+                "status": "passed", "evidence": "claim", "reviewed_on": "2026-10-23",
+                "approved_uses": ["collection"],
+            },
         }]}
         register = {"sources": [{
             "source_id": "SRC-2",
@@ -73,6 +84,10 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
             "collection_permission": "allowed",
             "permission_evidence": "written authorization",
             "terms_checked_on": "2026-10-23",
+            "permission_scope_review": {
+                "status": "passed", "evidence": "written authorization", "reviewed_on": "2026-10-23",
+                "approved_uses": ["collection", "commercial_product_use"],
+            },
         }]}
         register = {"sources": [{
             "source_id": "SRC-3",
