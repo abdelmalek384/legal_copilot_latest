@@ -9,6 +9,12 @@ c.commit()
 assert app.norm("المَادَّة") == app.norm("الماده") and app.norm("ﻻ") == app.norm("لا")  # diacritics, PDF ligatures
 assert app.search(c, "اجازة سنوية")[0]["ref"].endswith("المادة 1")
 assert app.search(c, "الإجازةُ السَّنَويّة")[0]["ref"].endswith("المادة 1")
+# Curated synonym expansion improves paraphrase recall while retaining the source passage as evidence.
+synonym_hits = app.search(c, "عطلة سنوية")
+assert synonym_hits and synonym_hits[0]["ref"].endswith("المادة 1")
+assert "literal_match" in synonym_hits[0] and "expanded_match" in synonym_hits[0]
+assert "اجازة" in app.expanded_tokens("عطلة سنوية")
+
 assert app.search(c, "المادة ٢")[0]["ref"].endswith("المادة 2")
 assert app.search(c, "للعاملين") and app.tokens("في من على") == []
 assert app.ask(c, "qwerty zzz")["found"] is False
