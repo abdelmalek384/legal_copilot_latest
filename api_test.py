@@ -161,6 +161,26 @@ assert c.get(f"/research/conversations/{chat_id}", headers=S).status_code == 404
 assert c.post(f"/research/conversations/{chat_id}/messages",
               json={"message":"   "}, headers=L).status_code == 422
 assert any(x["id"] == chat_id for x in c.get("/research/conversations", headers=L).json())
+# Follow-ups preserve the current question separately and use prior user turns only as context.
+# Prior assistant prose must never be fed back as if it were authoritative legal material.
+from unittest.mock import patch as patch_ask
+captured = {}
+real_ask = app.ask
+def capture_research_ask(db_conn, question, case_id=None, firm_id=1, as_of=None, conversation_context=None):
+    captured.update(question=question, context=conversation_context, firm_id=firm_id)
+    return {"found": False, "answer": None, "sources": [], "message": "لم أجد مصدرا ذا صلة، ولن أخمن."}
+with patch_ask.object(app, "ask", side_effect=capture_research_ask):
+    followup = c.post(f"/research/conversations/{chat_id}/messages",
+                      json={"message":"وهل توجد استثناءات؟"}, headers=L)
+assert followup.status_code == 200, followup.text
+assert captured["question"] == "وهل توجد استثناءات؟"
+assert "مدة العقد" in (captured["context"] or "")
+assert "لم أجد مصدرا" not in (captured["context"] or "")
+assert captured["firm_id"] == 1
+chat_after_followup = c.get(f"/research/conversations/{chat_id}", headers=L).json()
+assert [m["role"] for m in chat_after_followup["messages"]][-2:] == ["user", "assistant"]
+assert chat_after_followup["messages"][-1]["sources"] == []
+
 
 
 # Impossible calendar dates must fail validation, not just malformed date strings.
