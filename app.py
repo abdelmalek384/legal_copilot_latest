@@ -506,6 +506,27 @@ class TaskIn(BaseModel):
     title: str = Field(min_length=1, max_length=300); assignee: int | None = None; due: str | None = Field(None, pattern=r"^\d{4}-\d{2}-\d{2}$")
     _valid_due = field_validator("due")(validate_calendar_date)
 class MemberIn(BaseModel): user_id: int; role: str = Field(pattern=ROLES)
+class LegalReviewEventIn(BaseModel):
+    review_type: str = Field(pattern=r"^(source_authenticity|extraction_quality|legal_status|amendment_history|licensing|lawyer_approval)$")
+    outcome: str = Field(pattern=r"^(pending|pass|fail|needs_correction)$")
+    notes: str = Field("", max_length=5000)
+    evidence_url: str | None = Field(None, max_length=2048)
+
+
+def validate_review_evidence_url(value):
+    if value is None or value == "":
+        return None
+    from urllib.parse import urlsplit
+    try:
+        parsed = urlsplit(value.strip())
+        if parsed.scheme != "https" or not parsed.hostname or parsed.username or parsed.password:
+            raise ValueError
+        if any(ord(ch) < 32 for ch in value):
+            raise ValueError
+    except (ValueError, TypeError):
+        raise HTTPException(422, "evidence_url must be an HTTPS URL without embedded credentials")
+    return value.strip()
+
 
 
 class LawRow(BaseModel):
@@ -714,6 +735,41 @@ def conflict_check(b: Q, u: dict = Depends(user)):
     return {"query": b.q, "matches": found[:100], "possible_conflict": hidden_match,
             "admin_review_required": hidden_match,
             "warning": "فحص أولي بالبحث النصي فقط؛ لا يثبت وجود تعارض ولا ينفيه. إذا ظهرت إشارة عامة، اطلب مراجعة مسؤول المكتب. لا تعرض هذه النتيجة تفاصيل القضايا غير المصرح لك بها."}
+
+
+@app.get("/legal-review/versions/{version_id}/events")
+def legal_review_events(version_id: int, u: dict = Depends(user)):
+    require_admin(u)
+    c = conn()
+    version = c.execute("SELECT version_id,document_id,version_label,source_url,review_status,legal_status FROM legal_document_versions WHERE version_id=?", (version_id,)).fetchone()
+    if not version:
+        raise HTTPException(404, "legal document version not found")
+    events = [dict(r) for r in c.execute(
+        "SELECT review_event_id,version_id,reviewer,review_type,outcome,notes,evidence_url,reviewed_at "
+        "FROM legal_review_events WHERE version_id=? ORDER BY reviewed_at DESC,review_event_id DESC",
+        (version_id,)).fetchall()]
+    return {"version": dict(version), "events": events,
+            "warning": "Review events are recorded workflow evidence, not automatic verification or legal approval."}
+
+
+@app.post("/legal-review/versions/{version_id}/events", status_code=201)
+def create_legal_review_event(version_id: int, b: LegalReviewEventIn, u: dict = Depends(user)):
+    require_admin(u)
+    evidence_url = validate_review_evidence_url(b.evidence_url)
+    if b.outcome == "pass" and not evidence_url:
+        raise HTTPException(422, "a passing review requires an HTTPS evidence_url")
+    c = conn()
+    if not c.execute("SELECT 1 FROM legal_document_versions WHERE version_id=?", (version_id,)).fetchone():
+        raise HTTPException(404, "legal document version not found")
+    cur = c.execute(
+        "INSERT INTO legal_review_events(version_id,reviewer,review_type,outcome,notes,evidence_url) VALUES(?,?,?,?,?,?)",
+        (version_id, u["name"], b.review_type, b.outcome, b.notes.strip(), evidence_url))
+    c.commit()
+    event = c.execute(
+        "SELECT review_event_id,version_id,reviewer,review_type,outcome,notes,evidence_url,reviewed_at "
+        "FROM legal_review_events WHERE review_event_id=?", (cur.lastrowid,)).fetchone()
+    return {"event": dict(event), "status_changed": False,
+            "warning": "Recording an event does not change review_status, legal_status, or verification flags."}
 
 
 @app.get("/users")
