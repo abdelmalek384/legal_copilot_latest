@@ -1,0 +1,49 @@
+{
+  "assessment_date": "2026-10-23",
+  "note": "Candidate records only. This is not the executable collection manifest and does not authorize downloads.",
+  "documents": [
+    {
+      "document_id": "eg_constitution_2019_presidency_pdf",
+      "source_id": "EG-PRESIDENCY",
+      "title": "دستور جمهورية مصر العربية (نسخة منشورة على موقع رئاسة الجمهورية)",
+      "document_type": "constitution",
+      "candidate_url": "https://www.presidency.eg/media/46122/دستور-جمهورية-مصر-العربية-2019.pdf",
+      "official_source_page": "https://www.presidency.eg/ar/مصر/الدستور/",
+      "collection_permission": "unknown",
+      "reason_not_approved": "Official PDF located, but bulk retrieval, local indexing and commercial reuse permissions have not been established from the page.",
+      "legal_authenticity_verified": false,
+      "current_version_verified": false,
+      "effective_date": null,
+      "amendment_history_verified": false,
+      "next_action": "Review applicable terms and obtain written confirmation if required; compare text and amendment history against Official Gazette."
+    },
+    {
+      "document_id": "eg_labour_law_14_2025_amiri_press",
+      "source_id": "EG-AMIRI-PRESS",
+      "title": "قانون رقم 14 لسنة 2025 بإصدار قانون العمل",
+      "document_type": "legislation",
+      "candidate_url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+      "collection_permission": "unknown",
+      "reason_not_approved": "Official text page located; permission for automated retrieval, storage and commercial indexing not yet confirmed.",
+      "legal_authenticity_verified": false,
+      "current_legal_status_verified": false,
+      "effective_date": null,
+      "amendment_history_verified": false,
+      "next_action": "Review Amiri Press terms and confirm commencement, implementing regulations, transitional provisions and later amendments."
+    },
+    {
+      "document_id": "eg_law_3_2024_amiri_press",
+      "source_id": "EG-AMIRI-PRESS",
+      "title": "قانون رقم 3 لسنة 2024 بشأن تأمين وحماية المنشآت والمرافق العامة والحيوية في الدولة",
+      "document_type": "legislation",
+      "candidate_url": "https://www.alamiria.com/Sec/TashTxt?id=9V6xAKvRmuA%3D",
+      "collection_permission": "unknown",
+      "reason_not_approved": "Official text page located; permission for automated retrieval, storage and commercial indexing not yet confirmed.",
+      "legal_authenticity_verified": false,
+      "current_legal_status_verified": false,
+      "effective_date": null,
+      "amendment_history_verified": false,
+      "next_action": "Review Amiri Press terms; verify Gazette issue and all subsequent amendments."
+    }
+  ]
+}
