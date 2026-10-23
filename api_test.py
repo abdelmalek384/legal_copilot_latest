@@ -297,3 +297,25 @@ assert "warning" in review_queue_response.json()
 if review_queue_response.json()["versions"]:
     queue_row = review_queue_response.json()["versions"][0]
     assert {"version_id", "official_title", "review_status", "legal_status", "event_count"} <= set(queue_row)
+
+
+# Persistent research-chat messages must share the same per-IP LLM budget
+# across conversation IDs, otherwise clients can evade the /ask limit by creating chats.
+from starlette.requests import Request as StarletteRequest
+with app._rate_limit_lock:
+    for key in list(app._rate_limit_state):
+        if key[0] == "__research_message__":
+            app._rate_limit_state.pop(key, None)
+def rate_request(path, method="POST"):
+    return StarletteRequest({
+        "type": "http", "http_version": "1.1", "method": method,
+        "scheme": "http", "path": path, "raw_path": path.encode(),
+        "query_string": b"", "headers": [], "client": ("rate-limit-test", 1234),
+        "server": ("testserver", 80),
+    })
+for n in range(20):
+    assert app._rate_limit(rate_request(f"/research/conversations/{n}/messages")) == 0
+retry_after = app._rate_limit(rate_request("/research/conversations/999/messages"))
+assert retry_after > 0, "research chat must return a retry delay after 20 requests/minute per IP"
+assert app._rate_limit(rate_request("/research/conversations/999/messages", method="GET")) == 0
+assert c.get("/openapi.json").status_code == 404
