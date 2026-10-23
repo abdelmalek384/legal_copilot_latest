@@ -138,6 +138,16 @@ new_uid = new_user.json()["id"]
 assert c.post(f"/users/{new_uid}/disable", headers=A).status_code == 200
 assert c.post("/login", json={"email":"disable@x.eg","password":"long-enough-password"}).status_code == 401
 assert c.delete(f"/cases/{cid}", headers=J).status_code == 404 and c.delete(f"/cases/{cid}", headers=L).status_code == 200
+# Permanent deletion must leave an admin-readable audit snapshot in the same firm.
+assert c.get("/audit/case-deletions", headers=L).status_code == 403
+deletion_audit = c.get("/audit/case-deletions", headers=A_IMPORT)
+assert deletion_audit.status_code == 200, deletion_audit.text
+audit_rows = deletion_audit.json()["items"]
+assert audit_rows and audit_rows[0]["case_id"] == cid
+assert audit_rows[0]["actor_name"] == "Lead"
+assert len(audit_rows[0]["events_snapshot"]) >= 4
+assert audit_rows[0]["case_snapshot"]["firm_id"] == 1
+assert c.get("/audit/case-deletions?limit=101", headers=A_IMPORT).status_code == 422
 # Authentication regression tests: malformed headers, expiry, password-reset revocation, role boundary and concurrent logins.
 for malformed in ("", "garbage", "Bearer", "Basic abc", "Bearer not-a-real-token"):
     assert c.get("/cases", headers={"Authorization": malformed}).status_code == 401
