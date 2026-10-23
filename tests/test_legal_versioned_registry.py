@@ -64,5 +64,45 @@ class LegalVersionedRegistryTests(unittest.TestCase):
         with self.assertRaises(sqlite3.IntegrityError):
             self.db.execute("INSERT INTO legal_version_relations(from_version_id,to_version_id,relation_type) VALUES(?,?,?)", (ids[0], ids[1], "magic"))
 
+
+    def _make_linked_chunk(self, version_label, effective_date, repeal_date=None, review_status="verified", legal_status="in_force", authenticity_verified=1, status_verified=1, text="versionprobe legal text"):
+        self.db.execute("INSERT INTO legal_sources(source_id,authority,source_page) VALUES(?,?,?)",
+                        ("S_" + version_label, "Example Authority", "https://example.gov"))
+        self.db.execute("INSERT INTO legal_documents(document_id,source_id,official_title,document_type) VALUES(?,?,?,?)",
+                        ("D_" + version_label, "S_" + version_label, "Test law", "legislation"))
+        cur = self.db.execute(
+            "INSERT INTO legal_document_versions(document_id,version_label,source_url,effective_date,repeal_date,legal_status,review_status,authenticity_verified,status_verified) VALUES(?,?,?,?,?,?,?,?,?)",
+            ("D_" + version_label, version_label, "https://example.gov/" + version_label + ".pdf", effective_date, repeal_date, legal_status, review_status, authenticity_verified, status_verified)
+        )
+        self.app.add_chunks(self.db, [{"ref":"Test law - article 1","article":"1","text":text,"in_force":1,"verified":1,"source":"https://example.gov"}])
+        chunk_id = self.db.execute("SELECT id FROM chunks WHERE ref='Test law - article 1' ORDER BY id DESC LIMIT 1").fetchone()[0]
+        self.db.execute("UPDATE chunks SET document_version_id=? WHERE id=?", (cur.lastrowid, chunk_id))
+        self.db.commit()
+        return chunk_id, cur.lastrowid
+
+    def test_linked_version_requires_review_and_status_verification(self):
+        chunk_id, version_id = self._make_linked_chunk("pending", "2020-01-01", review_status="pending_lawyer_review", authenticity_verified=0, status_verified=0)
+        self.assertEqual(self.app.search(self.db, "versionprobe", as_of="2026-10-23"), [])
+        self.db.execute("UPDATE legal_document_versions SET review_status='verified',authenticity_verified=1,status_verified=1 WHERE version_id=?", (version_id,))
+        self.db.commit()
+        hits = self.app.search(self.db, "versionprobe", as_of="2026-10-23")
+        self.assertEqual([h["id"] for h in hits], [chunk_id])
+        self.assertEqual(hits[0]["requested_as_of"], "2026-10-23")
+
+    def test_future_effective_version_is_excluded_until_effective_date(self):
+        chunk_id, _ = self._make_linked_chunk("future", "2027-10-01", text="futureprobe law text")
+        self.assertEqual(self.app.search(self.db, "futureprobe", as_of="2026-10-23"), [])
+        hits = self.app.search(self.db, "futureprobe", as_of="2027-10-01")
+        self.assertEqual([h["id"] for h in hits], [chunk_id])
+
+    def test_repealed_version_is_excluded_on_and_after_repeal_date(self):
+        chunk_id, _ = self._make_linked_chunk("repealed", "2020-01-01", repeal_date="2026-01-01", text="repealprobe law text")
+        self.assertEqual(self.app.search(self.db, "repealprobe", as_of="2026-01-01"), [])
+        self.assertEqual([h["id"] for h in self.app.search(self.db, "repealprobe", as_of="2025-12-31")], [chunk_id])
+
+    def test_invalid_as_of_date_is_rejected(self):
+        with self.assertRaises(ValueError):
+            self.app.search(self.db, "anything", as_of="not-a-date")
+
 if __name__ == "__main__":
     unittest.main()
