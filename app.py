@@ -305,6 +305,15 @@ def sha(t): return hashlib.sha256(t.encode()).hexdigest()
 def user(request: Request, session_cookie: str = Cookie(None, alias="lc_session"),
          csrf_cookie: str = Cookie(None, alias="lc_csrf"),
          csrf_header: str = Header(None, alias="X-CSRF-Token")):
+    tok = session_cookie or ""
+    if not tok:
+        raise HTTPException(401, "unauthorized")
+    token_hash = sha(tok)
+    c = conn()
+    r = c.execute("SELECT u.* FROM auth_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=? AND s.expires>?", (token_hash, int(time.time()))).fetchone()
+    if not r or not r["active"]:
+        c.execute("DELETE FROM auth_sessions WHERE token_hash=?", (token_hash,)); c.commit()
+        raise HTTPException(401, "unauthorized")
     # Cookie-based sessions are not readable by JavaScript. Mutating requests require
     # a matching double-submit CSRF token and, when present, a same-origin Origin.
     if request.method not in ("GET", "HEAD", "OPTIONS"):
@@ -316,15 +325,6 @@ def user(request: Request, session_cookie: str = Cookie(None, alias="lc_session"
             parsed = urlsplit(origin)
             if parsed.netloc != request.url.netloc or parsed.scheme != request.url.scheme:
                 raise HTTPException(403, "cross-origin request blocked")
-    tok = session_cookie or ""
-    if not tok:
-        raise HTTPException(401, "unauthorized")
-    token_hash = sha(tok)
-    c = conn()
-    r = c.execute("SELECT u.* FROM auth_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=? AND s.expires>?", (token_hash, int(time.time()))).fetchone()
-    if not r or not r["active"]:
-        c.execute("DELETE FROM auth_sessions WHERE token_hash=?", (token_hash,)); c.commit()
-        raise HTTPException(401, "unauthorized")
     return dict(r)
 
 
