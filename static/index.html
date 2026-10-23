@@ -22,7 +22,7 @@ button{cursor:pointer;background:var(--pri);color:#fff;border:0}button.g{backgro
 .auth-tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:4px;background:#F4F6FA;border:1px solid var(--line);border-radius:10px;margin:16px 0}.auth-tabs button{background:transparent;color:var(--mut);border:0;border-radius:7px;padding:9px;font-weight:600}.auth-tabs button.active{background:#fff;color:var(--pri);box-shadow:0 1px 3px #14284B18}.auth-brand{text-align:center;margin-bottom:16px}.auth-brand .mark{width:48px;height:48px;display:grid;place-items:center;border-radius:14px;background:var(--pri-l);color:var(--pri);font-size:25px;margin:0 auto 10px}.auth-card{width:min(420px,calc(100% - 28px));margin:7vh auto;padding:24px}.auth-card h2{margin:0 0 4px;text-align:center}.auth-card .mut{text-align:center}.auth-card input{min-height:44px}.auth-card button[type=submit],.auth-card .auth-main{min-height:44px;width:100%;margin-top:12px}.auth-note{background:#F4F6FA;border:1px solid var(--line);border-radius:9px;padding:12px;margin:14px 0;font-size:14px}.auth-card .lang-row{display:flex;justify-content:flex-end}
 .modal-backdrop{position:fixed;inset:0;background:#14284B99;display:flex;align-items:center;justify-content:center;padding:16px;z-index:1000}.modal{width:min(680px,100%);max-height:90vh;overflow:auto;margin:0}.modal h2{margin-top:0}.modal label{min-width:0}.modal input{width:100%;min-width:0}.modal button:disabled{opacity:.6;cursor:wait}
 .lang-switch{margin:8px 0}.lang-switch button{width:100%}
-@media(max-width:800px){#shell{flex-direction:column}#side{width:auto;flex-direction:row;overflow-x:auto;position:sticky;top:0;z-index:10}#side .me,#side h1{display:none}#main{padding:12px;min-width:0}.cols{grid-template-columns:minmax(0,1fr)}.grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))}.row{align-items:stretch}.row>input,.row>select{max-width:100%;min-width:0;flex:1}.tabs{max-width:100%}.modal-backdrop{align-items:flex-start;padding:10px}.modal{max-height:calc(100vh - 20px)}}
+.research-layout{display:grid;grid-template-columns:minmax(190px,240px) minmax(0,1fr);gap:14px;align-items:start}.research-list{position:sticky;top:12px;max-height:calc(100vh - 24px);overflow:auto}.research-list-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}.research-conversation{display:block;width:100%;text-align:start;background:transparent;color:var(--tx);border:1px solid transparent;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin:4px 0}.research-conversation.active{background:var(--pri-l);color:var(--pri);border-color:#B8CCFA}.research-main{min-width:0}.research-thread{min-height:48vh;max-height:62vh;overflow:auto}.research-heading{border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:14px}.research-empty{text-align:center;padding:48px 12px;color:var(--mut)}.research-message{max-width:94%;padding:12px;margin:12px 0;border:1px solid var(--line);border-radius:12px;background:#fff;white-space:pre-wrap;overflow-wrap:anywhere}.research-message.user{margin-inline-start:auto;background:var(--pri-l);border-color:#D6E3FF}.research-role,.research-sources-title{font-size:12px;color:var(--mut);font-weight:700;margin-bottom:5px}.research-content{white-space:pre-wrap}.research-source p{white-space:pre-wrap;overflow-wrap:anywhere}.research-composer{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:start}.research-composer textarea{width:100%;resize:vertical;min-height:76px}.research-composer .mut{grid-column:1/-1}.research-composer button{min-height:42px}@media(max-width:800px){.research-layout{grid-template-columns:minmax(0,1fr)}.research-list{position:static;max-height:180px}.research-thread{min-height:38vh;max-height:55vh}.research-message{max-width:100%}.research-composer{grid-template-columns:minmax(0,1fr)}.research-composer button{width:100%}}@media(max-width:800px){#shell{flex-direction:column}#side{width:auto;flex-direction:row;overflow-x:auto;position:sticky;top:0;z-index:10}#side .me,#side h1{display:none}#main{padding:12px;min-width:0}.cols{grid-template-columns:minmax(0,1fr)}.grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))}.row{align-items:stretch}.row>input,.row>select{max-width:100%;min-width:0;flex:1}.tabs{max-width:100%}.modal-backdrop{align-items:flex-start;padding:10px}.modal{max-height:calc(100vh - 20px)}}
 @media(max-width:420px){body{font-size:14px}#main{padding:8px}.card{padding:10px}.grid{grid-template-columns:minmax(0,1fr)}button{max-width:100%}}
 </style>
 <div id="app"></div><div id="toast"></div>
@@ -39,7 +39,7 @@ async function api(p,m='GET',b){const headers={};if(b!==undefined)headers['Conte
  if(r.status===401&&p!=='/login'){sessionStorage.removeItem('me');ME={};login();throw new Error('auth')}
  const j=await r.json().catch(()=>({}));if(!r.ok){toast(err(j));throw new Error('api')}return j}
 function shell(title,...k){A.replaceChildren(h('div',{id:'shell'},h('aside',{id:'side'},h('h1',{textContent:'⚖️ المساعد القانوني'}),h('div',{className:'lang-switch'},h('button',{type:'button','data-lang-switch':'1',textContent:LANG==='ar'?'English':'العربية',onclick:switchLanguage})),
- [['dash','الرئيسية',dash],['clients','العملاء',clients],['cases','القضايا',casesPage],['law','البحث القانوني',law],['settings','الإعدادات',settingsPage]].map(([id,t,f])=>h('a',{className:PAGE===id?'on':'',textContent:t,onclick:()=>{PAGE=id;window.CASE_ID=null;f()}})),
+ [['dash','الرئيسية',dash],['clients','العملاء',clients],['cases','القضايا',casesPage],['law',LANG==='ar'?'البحث القانوني':'Legal Research',law],['settings','الإعدادات',settingsPage]].map(([id,t,f])=>h('a',{className:PAGE===id?'on':'',textContent:t,onclick:()=>{PAGE=id;window.CASE_ID=null;f()}})),
  h('div',{className:'me'},h('div',{textContent:ME.name||''}),h('a',{textContent:'تسجيل الخروج',onclick:async()=>{try{await api('/logout','POST')}catch(_){}sessionStorage.removeItem('me');ME={};login()}}))),
  h('main',{id:'main'},h('h2',{textContent:title}),...k)))}
 function login(mode='signin'){window.CASE_ID=null;let viewMode=mode;
@@ -110,15 +110,67 @@ async function clients(){const cs=await api('/cases'),g={};cs.forEach(c=>(g[c.cl
 async function casesPage(){const cs=await api('/cases'),q=h('input',{placeholder:'ابحث بعنوان القضية أو العميل'}),s=h('select',{},new Option('الكل',''),new Option('مفتوحة','open'),new Option('مغلقة','closed')),box=h('div',{className:'card'});
  const draw=()=>{const r=cs.filter(c=>(!s.value||c.status===s.value)&&(c.title+' '+(c.client||'')).includes(q.value));box.replaceChildren(h('div',{},r.length?r.map(caseRow):empty('لا نتائج')))};
  q.oninput=s.onchange=draw;draw();shell('القضايا',h('div',{},q,' ',s,' ',btn('+ قضية جديدة',newCase)),box)}
-function askBox(cid){const q=h('input',{placeholder:cid?'اسأل عن هذه القضية والقوانين':'اكتب سؤالا أو رقم المادة',style:'width:60%'}),out=h('div');
- const go=async()=>{if(!q.value.trim())return;const r=await api('/ask','POST',{q:q.value,case_id:cid});
-  out.replaceChildren(h('div',{},r.answer&&h('div',{className:'card'},h('b',{textContent:'الإجابة'}),h('p',{textContent:r.answer})),
-   !r.found&&h('div',{className:'card mut',textContent:r.message}),r.found&&r.message&&h('div',{className:'card',style:'color:var(--warn)',textContent:r.message}),
-   (r.not_in_force||[]).length>0&&h('div',{className:'card',style:'color:var(--bad)',textContent:'تنبيه: مصادر غير سارية: '+r.not_in_force.join('، ')}),
-   (r.sources||[]).map((s,i)=>h('div',{className:'src'},h('b',{textContent:'['+(i+1)+'] '+s.ref}),' ',s.in_force?null:pill('غير ساري','late'),s.in_force&&!s.verified?pill('لم يُتحقق من سريانه','soon'):null,(s.source||'').includes('English translation')?pill('ترجمة إنجليزية غير رسمية','soon'):null,h('div',{textContent:s.text}),h('div',{className:'mut',textContent:(s.source||'')+(s.as_of?' · بتاريخ '+fd(s.as_of):'')}))),
-   h('div',{className:'mut',textContent:'نتائج بحثية مساعدة وليست استشارة قانونية. تحقق دائما من المصدر الرسمي.'})))};
- q.onkeydown=e=>e.key==='Enter'&&go();return h('div',{},q,' ',btn('بحث',go),out)}
-const law=()=>shell('البحث القانوني',h('div',{className:'card'},askBox(null)));
+async function law(){
+ PAGE='law';
+ const sidebar=h('div',{className:'research-list card'});
+ const thread=h('div',{className:'research-thread card'});
+ let activeId=null, sending=false;
+ const copy=(v)=>LANG==='ar'?v:({ 'محادثة جديدة':'New chat','ابدأ محادثة بحث قانوني':'Start a legal research chat','اسأل عن القانون المصري':'Ask about Egyptian law','اكتب سؤالك هنا…':'Type your question…','إرسال':'Send','مصادر الإجابة':'Answer sources','لا توجد محادثات بعد':'No conversations yet','ابدأ محادثة جديدة':'Start a new chat','بحث قانوني مدعوم بالمصادر':'Source-grounded legal research','لا توجد إجابة مولدة. راجع المصادر أدناه.':'No generated answer. Review the sources below.','نتائج بحثية مساعدة وليست استشارة قانونية. تحقق دائما من المصدر الرسمي.':'Research assistance, not legal advice. Always verify against the official source.','مصدر غير متحقق':'Unverified source','غير سارٍ':'Not in force','لم يُتحقق من سريانه':'Current status unverified'}[v]||v);
+ const makeBtn=(label,fn,cl='g')=>btn(copy(label),fn,cl);
+ const renderMessages=(messages)=>{
+   thread.replaceChildren();
+   const header=h('div',{className:'research-heading'},h('div',{},h('b',{textContent:copy('بحث قانوني مدعوم بالمصادر')}),h('div',{className:'mut',textContent:copy('نتائج بحثية مساعدة وليست استشارة قانونية. تحقق دائما من المصدر الرسمي.')})));
+   thread.append(header);
+   if(!messages.length) thread.append(h('div',{className:'research-empty'},h('div',{textContent:'⚖️',style:'font-size:32px'}),h('h3',{textContent:copy('ابدأ محادثة بحث قانوني')}),h('p',{textContent:copy('اسأل عن القانون المصري')})));
+   for(const m of messages){
+     const bubble=h('div',{className:'research-message '+(m.role==='user'?'user':'assistant')});
+     bubble.append(h('div',{className:'research-role',textContent:m.role==='user'?(LANG==='ar'?'أنت':'You'):(LANG==='ar'?'المساعد القانوني':'Legal assistant')}));
+     bubble.append(h('div',{className:'research-content',textContent:m.content||m.answer||''}));
+     if(m.role==='assistant'&&(m.sources||[]).length){
+       bubble.append(h('div',{className:'research-sources-title',textContent:copy('مصادر الإجابة')}));
+       for(const [i,s] of m.sources.entries()){
+         const src=h('div',{className:'src research-source'});
+         src.append(h('b',{textContent:'['+(i+1)+'] '+(s.ref||'Source')+' '}));
+         if(!s.in_force)src.append(pill(copy('غير سارٍ'),'late'));
+         else if(!s.verified)src.append(pill(copy('لم يُتحقق من سريانه'),'soon'));
+         src.append(h('p',{textContent:s.text||''}),h('div',{className:'mut',textContent:(s.source||'')+(s.as_of?' · '+fd(s.as_of):'')}));
+         bubble.append(src);
+       }
+     }
+     thread.append(bubble);
+   }
+   thread.scrollTop=thread.scrollHeight;
+ };
+ const loadConversation=async id=>{const data=await api('/research/conversations/'+id);activeId=id;renderMessages(data.messages||[]);drawList()};
+ const drawList=async()=>{
+   const list=await api('/research/conversations');
+   sidebar.replaceChildren(h('div',{className:'research-list-head'},h('b',{textContent:LANG==='ar'?'المحادثات':'Conversations'}),makeBtn('محادثة جديدة',newChat,'primary')));
+   if(!list.length)sidebar.append(h('p',{className:'mut',textContent:copy('لا توجد محادثات بعد')}));
+   for(const c of list){sidebar.append(h('button',{className:'research-conversation '+(c.id===activeId?'active':''),textContent:c.title,onclick:()=>loadConversation(c.id)}))}
+ };
+ const newChat=async()=>{
+   const c=await api('/research/conversations','POST',{});
+   activeId=c.id;renderMessages([]);await drawList();composer.focus();
+ };
+ const composer=h('textarea',{placeholder:copy('اكتب سؤالك هنا…'),rows:3,'aria-label':copy('اكتب سؤالك هنا…')});
+ const send=makeBtn('إرسال',async()=>{
+   const message=composer.value.trim();if(!message||sending)return;
+   if(!activeId){const c=await api('/research/conversations','POST',{});activeId=c.id}
+   sending=true;send.disabled=true;composer.disabled=true;
+   const current=message;composer.value='';
+   const optimistic=[...((await api('/research/conversations/'+activeId)).messages||[]),{role:'user',content:current},{role:'assistant',content:LANG==='ar'?'جارٍ البحث في المصادر…':'Searching sources…',sources:[]}];
+   renderMessages(optimistic);
+   try{await api('/research/conversations/'+activeId+'/messages','POST',{message:current});await loadConversation(activeId)}
+   catch(_){composer.value=current}
+   finally{sending=false;send.disabled=false;composer.disabled=false;composer.focus()}
+ },'primary');
+ composer.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send.click()}});
+ const composerArea=h('div',{className:'research-composer'},composer,send,h('div',{className:'mut',textContent:LANG==='ar'?'Enter للإرسال · Shift+Enter لسطر جديد':'Enter to send · Shift+Enter for a new line'}));
+ shell(LANG==='ar'?'البحث القانوني':'Legal Research',h('div',{className:'research-layout'},sidebar,h('section',{className:'research-main'},thread,composerArea)));
+ await drawList();
+ if(activeId)await loadConversation(activeId);
+ else {const list=await api('/research/conversations');if(list.length)await loadConversation(list[0].id);else await newChat()}
+}
 async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=await api('/users'),again=()=>view(id);
  const lead=ME.role==='admin'||c.members.some(m=>m.role==='lead'&&m.user_id===ME.id),dn=c.tasks.filter(t=>t.status==='done').length,tot=c.tasks.length;
  const tabs=[['sum','الملخص'],['tasks','المهام'],['sess','الجلسات'],['dead','المواعيد القانونية'],['notes','الملاحظات'],['fees','الأتعاب'],['docs','المستندات'],['team','الفريق'],['ask','اسأل'],['log','السجل']];let body;
