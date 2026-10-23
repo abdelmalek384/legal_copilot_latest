@@ -131,8 +131,8 @@ async function law(){
        for(const [i,s] of m.sources.entries()){
          const src=h('div',{className:'src research-source'});
          src.append(h('b',{textContent:'['+(i+1)+'] '+(s.ref||'Source')+' '}));
-         if(!s.in_force)src.append(pill(copy('غير سارٍ'),'late'));
-         else if(!s.verified)src.append(pill(copy('لم يُتحقق من سريانه'),'soon'));
+         if(!s.verified)src.append(pill(copy('مصدر غير متحقق'),'soon'));
+         else if(!s.in_force)src.append(pill(copy('غير سارٍ'),'late'));
          src.append(h('p',{textContent:s.text||''}),h('div',{className:'mut',textContent:(s.source||'')+(s.as_of?' · '+fd(s.as_of):'')}));
          bubble.append(src);
        }
