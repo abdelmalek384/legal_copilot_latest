@@ -479,7 +479,7 @@ _QUANTITY_UNITS = {
     "percent": "percent", "percentage": "percent", "%": "percent", "٪": "percent",
     "بالمائة": "percent", "في المئة": "percent",
 }
-_QUANTITY_NUM_RE = r"\\d+(?:[.,]\\d+)?|[a-z]+(?:[- ][a-z]+)?|[ء-ي]+(?: [ء-ي]+)?"
+_QUANTITY_NUM_RE = r"\d+(?:[.,]\d+)?|[a-z]+(?:[- ][a-z]+)?|[ء-ي]+(?: [ء-ي]+)?"
 _QUANTITY_UNIT_RE = "|".join(sorted((re.escape(x) for x in _QUANTITY_UNITS), key=len, reverse=True))
 
 
@@ -499,7 +499,7 @@ def _legal_quantities(text):
     """Extract common numeric claims tied to durations, money, and percentages."""
     text = text.lower().translate(str.maketrans("٠١٢٣٤٥٦٧٨٩", "0123456789")).translate(str.maketrans("۰۱۲۳۴۵۶۷۸۹", "0123456789"))
     pattern = re.compile(
-        r"(?<![\\w])(?P<number>" + _QUANTITY_NUM_RE + r")\\s+(?P<unit>" + _QUANTITY_UNIT_RE + r")(?![\\w])",
+        r"(?<![\w])(?P<number>" + _QUANTITY_NUM_RE + r")\s+(?P<unit>" + _QUANTITY_UNIT_RE + r")(?![\w])",
         re.IGNORECASE,
     )
     found = set()
@@ -513,7 +513,7 @@ def _legal_quantities(text):
 
 def _answer_has_unsupported_quantities(answer, hits, cited_indices):
     """Fail closed when a duration, monetary amount, or percentage lacks support in cited passage text."""
-    claims = _legal_quantities(re.sub(r"\\[\\d+\\]", " ", answer))
+    claims = _legal_quantities(re.sub(r"\[\d+\]", " ", answer))
     if not claims:
         return False
     evidence = " ".join(str(hits[index - 1].get("text") or "") for index in cited_indices)
