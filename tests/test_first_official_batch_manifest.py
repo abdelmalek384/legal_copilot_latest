@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 # Running "python tests/test_..." sets sys.path[0] to tests/, not the repo root.
 sys.path.insert(0, str(ROOT))
 
-from tools.collect_legal_documents import check_permission, load_manifest
+from tools.collect_legal_documents import check_permission, load_manifest, validate_manifest_hosts
 
 
 class FirstOfficialBatchManifestTests(unittest.TestCase):
@@ -17,13 +17,16 @@ class FirstOfficialBatchManifestTests(unittest.TestCase):
         self.assertEqual(len({d["document_id"] for d in docs}), 4)
         self.assertTrue(all(d["source_id"] for d in docs))
 
-    def test_entries_have_permission_evidence_and_restricted_hosts(self):
+    def test_pending_entries_have_valid_hosts_but_are_not_authorized_for_collection(self):
         docs = load_manifest(ROOT / "docs" / "collection_manifest.example.json")
         for doc in docs:
-            hosts = check_permission(doc)
+            hosts = validate_manifest_hosts(doc)
             self.assertTrue(hosts)
             self.assertIn("Article 141", doc["permission_evidence"])
+            self.assertEqual(doc["collection_permission"], "permission_pending")
             self.assertEqual(doc["legal_status_assessment"], "unknown")
+            with self.assertRaises(ValueError):
+                check_permission(doc)
             # Effective dates may be supplied for an individual instrument; when
             # present they must be ISO dates. Their presence does not verify status.
             effective_date = doc["effective_date"]
