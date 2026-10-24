@@ -25,6 +25,73 @@ button{cursor:pointer;background:var(--pri);color:#fff;border:0}button.g{backgro
 .research-layout{display:grid;grid-template-columns:minmax(190px,240px) minmax(0,1fr);gap:14px;align-items:start}.research-list{position:sticky;top:12px;max-height:calc(100vh - 24px);overflow:auto}.research-list-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}.research-conversation-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:4px}.research-delete{padding:5px 9px;min-width:34px;color:var(--mut);background:transparent;border:1px solid var(--line)}.research-delete:hover{color:#9f2222;border-color:#d88}
 .research-conversation{display:block;width:100%;text-align:start;background:transparent;color:var(--tx);border:1px solid transparent;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin:4px 0}.research-conversation.active{background:var(--pri-l);color:var(--pri);border-color:#B8CCFA}.research-main{min-width:0}.research-thread{min-height:48vh;max-height:62vh;overflow:auto}.research-heading{border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:14px}.research-empty{text-align:center;padding:48px 12px;color:var(--mut)}.research-message{max-width:94%;padding:12px;margin:12px 0;border:1px solid var(--line);border-radius:12px;background:#fff;white-space:pre-wrap;overflow-wrap:anywhere}.research-message.user{margin-inline-start:auto;background:var(--pri-l);border-color:#D6E3FF}.research-role,.research-sources-title{font-size:12px;color:var(--mut);font-weight:700;margin-bottom:5px}.research-content{white-space:pre-wrap}.research-source p{white-space:pre-wrap;overflow-wrap:anywhere}.research-composer{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:start}.research-composer textarea{width:100%;resize:vertical;min-height:76px}.research-composer .mut{grid-column:1/-1}.research-composer button{min-height:42px}@media(max-width:800px){.research-layout{grid-template-columns:minmax(0,1fr)}.research-list{position:static;max-height:180px}.research-thread{min-height:38vh;max-height:55vh}.research-message{max-width:100%}.research-composer{grid-template-columns:minmax(0,1fr)}.research-composer button{width:100%}}@media(max-width:800px){#shell{flex-direction:column}#side{width:auto;flex-direction:row;overflow-x:auto;position:sticky;top:0;z-index:10}#side .me,#side h1{display:none}#main{padding:12px;min-width:0}.cols{grid-template-columns:minmax(0,1fr)}.grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))}.row{align-items:stretch}.row>input,.row>select{max-width:100%;min-width:0;flex:1}.tabs{max-width:100%}.modal-backdrop{align-items:flex-start;padding:10px}.modal{max-height:calc(100vh - 20px)}}
 @media(max-width:420px){body{font-size:14px}#main{padding:8px}.card{padding:10px}.grid{grid-template-columns:minmax(0,1fr)}button{max-width:100%}}
+/* Workspace refresh: clearer hierarchy, calm surfaces, stronger focus and mobile behavior. */
+:root{--navy:#14284B;--bg:#F5F7FB;--line:#E5EAF2;--tx:#182230;--mut:#64748B;--pri:#2457C5;--pri-l:#EAF1FF;--ok:#16804A;--ok-l:#E8F7EF;--warn:#A95B08;--warn-l:#FFF4E4;--bad:#B42318;--bad-l:#FDECEC}
+body{background:var(--bg);font-family:Inter,"Noto Sans Arabic","Segoe UI",Tahoma,sans-serif;line-height:1.65}
+#shell{min-height:100vh;gap:0}
+#side{width:248px;background:#fff;color:var(--tx);padding:20px 14px;border-inline-end:1px solid var(--line);gap:6px;position:sticky;top:0;height:100vh;overflow:auto}
+#side h1{font-size:16px;color:var(--navy);padding:12px 10px;margin:0 0 12px;border-bottom:1px solid var(--line);line-height:1.5}
+#side a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;color:#526176;font-weight:600;transition:background .15s,color .15s}
+#side a:before{content:"";width:5px;height:5px;border-radius:50%;background:#B8C4D6;flex:none}
+#side a.on,#side a:hover{background:var(--pri-l);color:var(--pri)}
+#side a.on:before{background:var(--pri);width:6px;height:18px;border-radius:4px}
+#side .lang-switch{margin:2px 0 10px}
+#side .lang-switch button{width:100%;background:#fff;color:var(--mut);border:1px solid var(--line)}
+#side .me{margin-top:auto;padding:14px 10px 4px;border-top:1px solid var(--line);color:var(--tx);overflow-wrap:anywhere}
+#side .me a{margin-top:8px;color:var(--mut);font-size:13px}
+#main{flex:1;max-width:none;min-width:0;padding:28px clamp(16px,3vw,40px)}
+#main>h2{font-size:26px;line-height:1.3;letter-spacing:-.4px;margin:0 0 22px;color:#14284B}
+.card{border-color:var(--line);border-radius:14px;padding:18px;box-shadow:0 2px 8px #172b4d05;margin-bottom:16px}
+.grid,.cols{gap:16px}
+.stat{position:relative;overflow:hidden;min-height:116px;padding:20px}
+.stat b{font-size:32px;letter-spacing:-.7px;color:var(--navy)}
+.stat span{display:block;margin-top:3px;line-height:1.45}
+button,input,select,textarea{border-radius:9px;transition:border-color .15s,box-shadow .15s}
+input,select,textarea{border-color:#D8E0EB;min-height:40px}
+input:focus,select:focus,textarea:focus,button:focus-visible,a:focus-visible{outline:3px solid #2457C533;outline-offset:2px;border-color:var(--pri)}
+button{font-weight:650;padding:9px 14px}
+button.g{color:#344256}
+.row{padding:12px 0;gap:12px}
+.pill{padding:3px 10px;line-height:1.5}
+#main .workspace-subtitle{margin-top:-14px;margin-bottom:20px;color:var(--mut)}
+#main .workspace-actions{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+#main .workspace-hero{background:linear-gradient(115deg,#14284B,#234A86);color:#fff;border:0;padding:24px}
+#main .workspace-hero h3{font-size:21px;margin:0 0 4px}
+#main .workspace-hero p{color:#D9E5F7;margin:0 0 16px}
+#main .workspace-hero button.g{background:#fff;color:#18345F;border-color:#fff}
+#main .workspace-section-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:4px 0 10px}
+#main .workspace-section-title h3{margin:0}
+#main .quick-link{display:flex;flex-direction:column;align-items:flex-start;text-align:start;gap:5px;padding:14px;background:#fff;color:var(--tx);border:1px solid var(--line);border-radius:12px;min-height:90px}
+#main .quick-link b{color:var(--navy)}
+#main .quick-link span{font-size:12px;color:var(--mut);font-weight:400}
+#main .workspace-list-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+#main .workspace-list-item:last-child{border-bottom:0}
+#main .workspace-list-item .item-main{min-width:0;flex:1}
+#main .workspace-list-item .item-main b{display:block;overflow-wrap:anywhere}
+#main .workspace-list-item .item-meta{font-size:12px;color:var(--mut)}
+#main .filter-bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+#main .filter-bar input{flex:1;min-width:220px}
+#main .filter-bar select{min-width:130px}
+.research-layout{gap:16px}
+.research-list,.research-thread{border-radius:14px}
+.research-thread{background:#FBFCFE}
+.research-heading{position:sticky;top:0;background:#FBFCFE;z-index:2;padding-top:8px}
+.research-composer textarea{border-color:#D8E0EB;background:#fff}
+@media(max-width:800px){
+ #shell{flex-direction:column}
+ #side{width:100%;height:auto;position:sticky;top:0;z-index:20;flex-direction:row;align-items:center;padding:8px;gap:5px;border-inline-end:0;border-bottom:1px solid var(--line)}
+ #side h1{display:none}
+ #side .lang-switch{margin:0;min-width:88px}
+ #side .lang-switch button{padding:7px 9px}
+ #side>a{white-space:nowrap;padding:9px 11px;font-size:13px}
+ #side>a:before{display:none}
+ #side .me{display:none}
+ #main{padding:18px 12px}
+ #main>h2{font-size:22px;margin-bottom:18px}
+ #main .workspace-hero{padding:18px}
+ #main .workspace-list-item{align-items:flex-start}
+}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;scroll-behavior:auto!important}}
 </style>
 <div id="app"></div><div id="toast"></div>
 <script>
@@ -39,9 +106,9 @@ function csrfToken(){return document.cookie.split('; ').find(x=>x.startsWith('lc
 async function api(p,m='GET',b){const headers={};if(b!==undefined)headers['Content-Type']='application/json';const csrf=csrfToken();if(csrf)headers['X-CSRF-Token']=decodeURIComponent(csrf);const r=await fetch(p,{method:m,credentials:'same-origin',headers,body:b!==undefined?JSON.stringify(b):undefined});
  if(r.status===401&&p!=='/login'){sessionStorage.removeItem('me');ME={};login();throw new Error('auth')}
  const j=await r.json().catch(()=>({}));if(!r.ok){toast(err(j));throw new Error('api')}return j}
-function shell(title,...k){A.replaceChildren(h('div',{id:'shell'},h('aside',{id:'side'},h('h1',{textContent:'⚖️ المساعد القانوني'}),h('div',{className:'lang-switch'},h('button',{type:'button','data-lang-switch':'1',textContent:LANG==='ar'?'English':'العربية',onclick:switchLanguage})),
- [['dash','الرئيسية',dash],['clients','العملاء',clients],['cases','القضايا',casesPage],['law',LANG==='ar'?'البحث القانوني':'Legal Research',law],...(ME.role==='admin'?[['review',LANG==='ar'?'مراجعة المصادر القانونية':'Legal Source Review',reviewWorkbench]]:[]),['settings','الإعدادات',settingsPage]].map(([id,t,f])=>h('a',{className:PAGE===id?'on':'',textContent:t,onclick:()=>{PAGE=id;window.CASE_ID=null;f()}})),
- h('div',{className:'me'},h('div',{textContent:ME.name||''}),h('a',{textContent:'تسجيل الخروج',onclick:async()=>{try{await api('/logout','POST')}catch(_){}sessionStorage.removeItem('me');ME={};login()}}))),
+function shell(title,...k){const navLabel=(ar,en)=>LANG==='ar'?ar:en;A.replaceChildren(h('div',{id:'shell'},h('aside',{id:'side'},h('h1',{textContent:'⚖️ '+navLabel('مساحة المكتب القانوني','Firm Workspace')}),h('div',{className:'lang-switch'},h('button',{type:'button','data-lang-switch':'1',textContent:LANG==='ar'?'English':'العربية',onclick:switchLanguage})),
+ [['dash',navLabel('نظرة عامة','Overview'),dash],['cases',navLabel('القضايا','Cases'),casesPage],['clients',navLabel('العملاء وتعارض المصالح','Clients & Conflicts'),clients],['tasks',navLabel('المهام','Tasks'),tasksPage],['calendar',navLabel('الأجندة والمواعيد','Calendar'),calendarPage],['law',navLabel('البحث القانوني','Legal Research'),law],...(ME.role==='admin'?[['review',navLabel('مراجعة المصادر القانونية','Legal Source Review'),reviewWorkbench]]:[]),['settings',navLabel('الإعدادات والأمان','Settings & Security'),settingsPage]].map(([id,t,f])=>h('a',{className:PAGE===id?'on':'',textContent:t,onclick:()=>{PAGE=id;window.CASE_ID=null;f()}})),
+ h('div',{className:'me'},h('div',{textContent:ME.name||''}),h('a',{textContent:navLabel('تسجيل الخروج','Sign out'),onclick:async()=>{try{await api('/logout','POST')}catch(_){}sessionStorage.removeItem('me');ME={};login()}}))),
  h('main',{id:'main'},h('h2',{textContent:title}),...k)))}
 function login(mode='signin'){window.CASE_ID=null;let viewMode=mode;
  const title=LANG==='ar'?'المساعد القانوني':'Legal Copilot';
@@ -77,15 +144,26 @@ items.push(h('div',{className:'card'},h('h3',{textContent:LANG==='ar'?'تغيي�
 const duePill=t=>{if(!t.due)return null;const d=(new Date(t.due)-new Date(today))/864e5;return pill(fd(t.due),d<0?'late':d<=3?'soon':'open')};
 const prog=c=>{const t=c.done_tasks+c.open_tasks;return h('div',{className:'bar',title:c.done_tasks+'/'+t},h('i',{style:'width:'+(t?100*c.done_tasks/t:0)+'%'}))};
 const empty=t=>h('div',{className:'mut',textContent:t});
-async function dash(){const [d,cs]=await Promise.all([api('/dashboard'),api('/cases')]);
- const act=cs.filter(c=>c.status==='open'),late=d.tasks.filter(t=>t.due&&t.due<today).length;
+function uiText(ar,en){return LANG==='ar'?ar:en}
+function openPage(id,fn){PAGE=id;window.CASE_ID=null;fn()}
+async function dash(){PAGE='dash';const [d,cs]=await Promise.all([api('/dashboard'),api('/cases')]);
+ const active=cs.filter(c=>c.status==='open'),overdueTasks=d.tasks.filter(t=>t.due&&t.due<today).length;
  const overdueDeadlines=(d.deadlines||[]).filter(x=>x.due&&x.due<today);
- const st=(n,l,c)=>h('div',{className:'card stat'},h('b',{textContent:n,style:c?'color:'+c:''}),h('span',{textContent:l}));
- shell('مرحبا '+(ME.name||''),h('div',{className:'grid'},st(act.length,'قضايا نشطة'),st(act.reduce((a,c)=>a+c.open_tasks,0),'مهام مفتوحة في قضاياي'),st(d.sessions.length,'جلسات خلال 14 يوما'),st(late,'مهامي المتأخرة',late?'var(--bad)':''),st(overdueDeadlines.length,'مواعيد قانونية متأخرة',overdueDeadlines.length?'var(--bad)':'')),
+ const st=(n,l,sub,kind='')=>h('div',{className:'card stat'},h('b',{textContent:n,style:kind==='bad'?'color:var(--bad)':kind==='good'?'color:var(--ok)':''}),h('span',{textContent:l}),sub?h('div',{className:'mut',textContent:sub}):null);
+ const action=(title,desc,fn)=>h('button',{type:'button',className:'quick-link',onclick:fn},h('b',{textContent:title}),h('span',{textContent:desc}));
+ const listItem=(title,meta,right)=>h('div',{className:'workspace-list-item'},h('div',{className:'item-main'},h('b',{textContent:title}),h('div',{className:'item-meta',textContent:meta||''})),right);
+ shell(uiText('نظرة عامة','Workspace overview'),
+ h('p',{className:'workspace-subtitle',textContent:uiText('مساحة عمل المكتب — أهم ما يحتاج انتباهك اليوم.','Your firm workspace — the work that needs your attention today.')}),
+ h('section',{className:'card workspace-hero'},h('h3',{textContent:uiText('أهلاً، ','Welcome back, ')+(ME.name||'')}),h('p',{textContent:uiText('ابدأ من المهام المستحقة، راجع المواعيد، أو افتح ملف قضية.','Start with due work, review upcoming dates, or open a case file.')}),h('div',{className:'workspace-actions'},btn(uiText('+ قضية جديدة','+ New case'),newCase),btn(uiText('فتح البحث القانوني','Open legal research'),()=>openPage('law',law),'g'))),
+ h('div',{className:'grid'},st(active.length,uiText('قضايا نشطة','Active cases'),uiText('من الملفات التي يمكنك الوصول إليها','Cases you can access')),st(d.tasks.length,uiText('مهام مفتوحة مسندة إليك','Open tasks assigned to you'),overdueTasks?overdueTasks+' '+uiText('متأخرة','overdue'):'',overdueTasks?'bad':''),st((d.sessions||[]).length,uiText('جلسات قادمة','Upcoming hearings'),uiText('ضمن نطاق العرض الحالي','Within the current dashboard window')),st((d.deadlines||[]).length,uiText('مواعيد قانونية مفتوحة','Open legal deadlines'),overdueDeadlines.length?overdueDeadlines.length+' '+uiText('متأخرة','overdue'):'',overdueDeadlines.length?'bad':'')),
+ h('div',{className:'workspace-section-title'},h('h3',{textContent:uiText('وصول سريع','Quick access')})),
+ h('div',{className:'grid'},action(uiText('المهام','Tasks'),uiText('تابع وأنهِ الأعمال المسندة إليك','Review and complete assigned work'),()=>openPage('tasks',tasksPage)),action(uiText('الأجندة','Calendar'),uiText('اجمع الجلسات والمواعيد والمهام','See hearings, deadlines and tasks together'),()=>openPage('calendar',calendarPage)),action(uiText('ملفات القضايا','Case files'),uiText('ابحث وافتح ملف القضية','Find and open a case file'),()=>openPage('cases',casesPage)),action(uiText('العملاء والتعارض','Clients & conflicts'),uiText('راجع العملاء وافحص التعارض المحتمل','Review clients and check potential conflicts'),()=>openPage('clients',clients))),
  h('div',{className:'cols'},
-  h('div',{className:'card'},h('h3',{textContent:'مهامي المفتوحة'}),d.tasks.length?d.tasks.map(t=>h('div',{className:'row'},h('div',{},h('b',{textContent:t.title}),h('div',{className:'mut',textContent:t.case_title})),h('div',{},duePill(t),' ',btn('تم',async()=>{await api('/tasks/'+t.id+'/done','POST');dash()},'g')))):empty('لا توجد مهام مفتوحة')),
-  h('div',{className:'card'},h('h3',{textContent:'المواعيد القانونية القادمة'}),(d.deadlines||[]).length?(d.deadlines||[]).map(x=>h('div',{className:'row'},h('div',{},h('b',{textContent:x.title}),h('div',{className:'mut',textContent:x.case_title})),h('div',{},duePill(x),' ',btn('تم',async()=>{await api('/deadlines/'+x.id+'/done','POST');dash()},'g')))):empty('لا توجد مواعيد قانونية خلال 30 يوما')),
-  h('div',{className:'card'},h('h3',{textContent:'الجلسات القادمة'}),d.sessions.length?d.sessions.map(s=>h('div',{className:'row'},h('div',{},h('b',{textContent:s.title}),h('div',{className:'mut',textContent:s.note||''})),pill(fd(s.date),'open'))):empty('لا توجد جلسات قريبة'))))}
+ h('div',{className:'card'},h('div',{className:'workspace-section-title'},h('h3',{textContent:uiText('أولوية اليوم: مهامك','Your tasks')}),btn(uiText('عرض الكل','View all'),()=>openPage('tasks',tasksPage),'g')),d.tasks.length?d.tasks.slice(0,5).map(t=>listItem(t.title,(t.case_title||'')+' · '+(t.due?fd(t.due):uiText('بلا موعد','No due date')),h('div',{style:'display:flex;gap:7px;align-items:center;flex-wrap:wrap'},duePill(t),btn(uiText('تم','Done'),async()=>{await api('/tasks/'+t.id+'/done','POST');dash()},'g')))):empty(uiText('لا توجد مهام مفتوحة مسندة إليك.','No open tasks assigned to you.'))),
+ h('div',{className:'card'},h('div',{className:'workspace-section-title'},h('h3',{textContent:uiText('المواعيد القانونية','Legal deadlines')}),btn(uiText('فتح الأجندة','Open calendar'),()=>openPage('calendar',calendarPage),'g')),(d.deadlines||[]).length?d.deadlines.slice(0,5).map(x=>listItem(x.title,(x.case_title||'')+' · '+fd(x.due),h('div',{style:'display:flex;gap:7px;align-items:center;flex-wrap:wrap'},duePill(x),btn(uiText('تم','Done'),async()=>{await api('/deadlines/'+x.id+'/done','POST');dash()},'g')))):empty(uiText('لا توجد مواعيد قانونية مفتوحة خلال الثلاثين يوماً القادمة.','No open legal deadlines in the next 30 days.'))),
+ h('div',{className:'card'},h('div',{className:'workspace-section-title'},h('h3',{textContent:uiText('الجلسات القادمة','Upcoming hearings')}),btn(uiText('عرض الأجندة','View calendar'),()=>openPage('calendar',calendarPage),'g')),(d.sessions||[]).length?d.sessions.slice(0,5).map(x=>listItem(x.title||x.note||uiText('جلسة','Hearing'),(x.case_title||'')+' · '+fd(x.date),pill(fd(x.date),'open'))):empty(uiText('لا توجد جلسات قريبة ضمن نطاق العرض الحالي.','No upcoming hearings in the current view.')))))}
+async function tasksPage(){PAGE='tasks';const d=await api('/dashboard'),q=h('input',{placeholder:uiText('ابحث في مهامك أو اسم القضية','Search tasks or case name')}),status=h('select',{},new Option(uiText('كل المهام المفتوحة','All open tasks'),''),new Option(uiText('متأخرة','Overdue'),'overdue'),new Option(uiText('بلا موعد','No due date'),'none')),list=h('div',{className:'card'}),summary=h('div',{className:'mut'});const draw=()=>{const rows=(d.tasks||[]).filter(t=>{const match=(t.title+' '+(t.case_title||'')).toLocaleLowerCase().includes(q.value.trim().toLocaleLowerCase());return match&&(!status.value||(status.value==='overdue'?t.due&&t.due<today:status.value==='none'?!t.due:true))});summary.textContent=rows.length+' '+uiText('مهمة','tasks');list.replaceChildren(summary,...(rows.length?rows.map(t=>h('div',{className:'workspace-list-item'},h('div',{className:'item-main'},h('b',{textContent:t.title}),h('div',{className:'item-meta',textContent:(t.case_title||'')+' · '+(t.due?uiText('الاستحقاق: ','Due: ')+fd(t.due):uiText('بلا موعد محدد','No due date'))}),t.due&&t.due<today?pill(uiText('متأخرة','Overdue'),'late'):pill(uiText('مفتوحة','Open'),'open')),btn(uiText('إنجاز المهمة','Complete task'),async()=>{await api('/tasks/'+t.id+'/done','POST');tasksPage()},'g'))):[empty(uiText('لا توجد مهام مطابقة.','No matching tasks.'))]))};q.oninput=status.onchange=draw;shell(uiText('المهام','Tasks'),h('p',{className:'workspace-subtitle',textContent:uiText('قائمة موحدة بالمهام المفتوحة المسندة إليك عبر القضايا.','A consolidated view of your open tasks across accessible cases.')}),h('div',{className:'filter-bar'},q,status),list);draw()}
+async function calendarPage(){PAGE='calendar';const d=await api('/dashboard'),items=[];(d.tasks||[]).filter(x=>x.due).forEach(x=>items.push({kind:'task',title:x.title,date:x.due,meta:x.case_title||'',id:x.id}));(d.deadlines||[]).forEach(x=>items.push({kind:'deadline',title:x.title,date:x.due,meta:x.case_title||'',id:x.id}));(d.sessions||[]).forEach(x=>items.push({kind:'session',title:x.title||x.note||uiText('جلسة','Hearing'),date:x.date,meta:x.case_title||x.note||'',id:x.id}));items.sort((a,b)=>(a.date||'').localeCompare(b.date||''));const q=h('input',{placeholder:uiText('ابحث بالعنوان أو اسم القضية','Search title or case name')}),kind=h('select',{},new Option(uiText('كل العناصر','All items'),''),new Option(uiText('الجلسات','Hearings'),'session'),new Option(uiText('المواعيد القانونية','Legal deadlines'),'deadline'),new Option(uiText('المهام','Tasks'),'task')),list=h('div',{className:'card'}),info=h('p',{className:'mut',textContent:uiText('تعرض هذه الأجندة الجلسات التي يعيدها النظام، والمواعيد المفتوحة خلال 30 يوماً، ومهامك المسندة ذات تاريخ استحقاق. تحقق من الملف والمصدر القانوني قبل الاعتماد على أي ميعاد طعن.','This agenda combines hearings returned by the system, open deadlines within 30 days, and assigned tasks with due dates. Verify the case file and legal source before relying on any appeal deadline.')});const draw=()=>{const rows=items.filter(x=>(!kind.value||x.kind===kind.value)&&(x.title+' '+x.meta).toLocaleLowerCase().includes(q.value.trim().toLocaleLowerCase()));list.replaceChildren(info,...(rows.length?rows.map(x=>{const label=x.kind==='session'?uiText('جلسة','Hearing'):x.kind==='deadline'?uiText('موعد قانوني','Legal deadline'):uiText('مهمة','Task');const action=x.kind==='task'?btn(uiText('إنجاز','Complete'),async()=>{await api('/tasks/'+x.id+'/done','POST');calendarPage()},'g'):x.kind==='deadline'?btn(uiText('إنجاز','Complete'),async()=>{await api('/deadlines/'+x.id+'/done','POST');calendarPage()},'g'):null;return h('div',{className:'workspace-list-item'},h('div',{className:'item-main'},h('b',{textContent:x.title}),h('div',{className:'item-meta',textContent:label+' · '+(x.meta||'')}),pill(fd(x.date),x.date<today?'late':x.date===today?'soon':'open')),h('div',{style:'display:flex;align-items:center;gap:8px;flex-wrap:wrap'},h('b',{textContent:fd(x.date)}),action))}):[empty(uiText('لا توجد عناصر مطابقة في نطاق العرض الحالي.','No matching items in the current view.'))]))};q.oninput=kind.onchange=draw;shell(uiText('الأجندة والمواعيد','Calendar & deadlines'),h('p',{className:'workspace-subtitle',textContent:uiText('عرض موحد للمهام والجلسات والمواعيد المسجلة.','A unified view of assigned tasks, hearings and recorded deadlines.')}),h('div',{className:'filter-bar'},q,kind),list);draw()}
 const caseRow=c=>h('div',{className:'row',style:'cursor:pointer',onclick:()=>{TAB='sum';view(c.id)}},h('div',{},h('b',{textContent:c.title}),h('div',{className:'mut',textContent:c.stage||'بدون مرحلة'})),
  h('div',{style:'display:flex;gap:10px;align-items:center'},prog(c),h('span',{className:'mut',textContent:c.done_tasks+'/'+(c.done_tasks+c.open_tasks)+' مهام'}),pill(c.status==='open'?'مفتوحة':'مغلقة',c.status==='open'?'open':'closed')));
 async function newCase(){
@@ -113,9 +191,7 @@ async function clients(){const cs=await api('/cases'),g={};cs.forEach(c=>(g[c.cl
  cq.onkeydown=e=>e.key==='Enter'&&run();
  shell('العملاء',btn('+ قضية جديدة',newCase),h('div',{className:'card'},h('h3',{textContent:'فحص أولي لتعارض المصالح'}),h('div',{className:'row'},cq,btn('فحص',run)),cb),
  cs.length?Object.entries(g).map(([k,v])=>h('div',{className:'card'},h('h3',{textContent:'📁 '+k}),h('div',{className:'mut',textContent:v.length+' قضايا'}),v.map(caseRow))):h('div',{className:'card'},empty('لا توجد قضايا بعد. أنشئ أول قضية.')))}
-async function casesPage(){const cs=await api('/cases'),q=h('input',{placeholder:'ابحث بعنوان القضية أو العميل'}),s=h('select',{},new Option('الكل',''),new Option('مفتوحة','open'),new Option('مغلقة','closed')),box=h('div',{className:'card'});
- const draw=()=>{const r=cs.filter(c=>(!s.value||c.status===s.value)&&(c.title+' '+(c.client||'')).includes(q.value));box.replaceChildren(h('div',{},r.length?r.map(caseRow):empty('لا نتائج')))};
- q.oninput=s.onchange=draw;draw();shell('القضايا',h('div',{},q,' ',s,' ',btn('+ قضية جديدة',newCase)),box)}
+async function casesPage(){PAGE='cases';const cs=await api('/cases'),q=h('input',{placeholder:uiText('ابحث بالعنوان أو العميل أو رقم القضية أو الخصم','Search title, client, case number or opposing party')}),status=h('select',{},new Option(uiText('كل الحالات','All statuses'),''),new Option(uiText('مفتوحة','Open'),'open'),new Option(uiText('مغلقة','Closed'),'closed')),box=h('div',{className:'card'}),summary=h('div',{className:'mut'});const draw=()=>{const needle=q.value.trim().toLocaleLowerCase();const rows=cs.filter(c=>(!status.value||c.status===status.value)&&[c.title,c.client,c.case_number,c.case_year,c.court,c.circuit,c.opposing_party].filter(Boolean).join(' ').toLocaleLowerCase().includes(needle));summary.textContent=rows.length+' '+uiText('قضية','cases');box.replaceChildren(summary,...(rows.length?rows.map(caseRow):[empty(uiText('لا توجد قضايا مطابقة.','No matching cases.'))]))};q.oninput=status.onchange=draw;shell(uiText('القضايا','Cases'),h('p',{className:'workspace-subtitle',textContent:uiText('ابحث في بيانات القضايا الأساسية ثم افتح الملف لإدارة التفاصيل.','Search case metadata, then open a matter to manage its details.')}),h('div',{className:'filter-bar'},q,status,btn(uiText('+ قضية جديدة','+ New case'),newCase)),box);draw()}
 async function reviewWorkbench(){
  PAGE='review';
  if(ME.role!=='admin'){toast(LANG==='ar'?'هذه الصفحة مخصصة لمسؤول النظام':'Administrator access required');dash();return}
