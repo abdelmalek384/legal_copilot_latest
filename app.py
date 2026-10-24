@@ -169,6 +169,48 @@ _init_lock = threading.Lock()
 _schema_ready = False
 
 
+def _ensure_legacy_firm_ownership(c):
+    """Add nullable legacy ownership columns and quarantine ambiguous rows.
+
+    Do not give historical rows firm_id=1 by default: their real owner must be
+    established from evidence before an operator explicitly reconciles them.
+    """
+    c.execute("""
+        CREATE TABLE IF NOT EXISTS tenant_ownership_quarantine (
+            id INTEGER PRIMARY KEY,
+            entity_type TEXT NOT NULL CHECK(entity_type IN ('user','case')),
+            entity_id INTEGER NOT NULL,
+            observed_firm_id INTEGER,
+            reason TEXT NOT NULL,
+            first_seen TEXT NOT NULL DEFAULT (datetime('now')),
+            UNIQUE(entity_type, entity_id)
+        )
+    """)
+    user_cols = {row[1] for row in c.execute("PRAGMA table_info(users)")}
+    if "firm_id" not in user_cols:
+        # No default: pre-existing rows must remain explicitly unclassified.
+        c.execute("ALTER TABLE users ADD COLUMN firm_id INT")
+    if "active" not in user_cols:
+        c.execute("ALTER TABLE users ADD COLUMN active INT DEFAULT 1")
+    case_cols = {row[1] for row in c.execute("PRAGMA table_info(cases)")}
+    if "firm_id" not in case_cols:
+        # No default: pre-existing rows must remain explicitly unclassified.
+        c.execute("ALTER TABLE cases ADD COLUMN firm_id INT")
+
+    c.execute("""
+        INSERT OR IGNORE INTO tenant_ownership_quarantine
+            (entity_type, entity_id, observed_firm_id, reason)
+        SELECT 'user', id, firm_id, 'missing_firm_ownership'
+        FROM users WHERE firm_id IS NULL
+    """)
+    c.execute("""
+        INSERT OR IGNORE INTO tenant_ownership_quarantine
+            (entity_type, entity_id, observed_firm_id, reason)
+        SELECT 'case', id, firm_id, 'missing_firm_ownership'
+        FROM cases WHERE firm_id IS NULL
+    """)
+
+
 def conn():
     """Return a thread-local connection and initialize the configured SQLite schema once.
 
@@ -187,13 +229,7 @@ def conn():
                 if "practice_area" not in legal_document_cols:
                     c.execute("ALTER TABLE legal_documents ADD COLUMN practice_area TEXT NOT NULL DEFAULT 'unknown'")
                 c.execute("INSERT OR IGNORE INTO firms(id,name) VALUES(1,'Default Firm')")
-                user_cols = {r[1] for r in c.execute("PRAGMA table_info(users)")}
-                if "firm_id" not in user_cols: c.execute("ALTER TABLE users ADD COLUMN firm_id INT DEFAULT 1")
-                if "active" not in user_cols: c.execute("ALTER TABLE users ADD COLUMN active INT DEFAULT 1")
-                case_cols = {r[1] for r in c.execute("PRAGMA table_info(cases)")}
-                if "firm_id" not in case_cols: c.execute("ALTER TABLE cases ADD COLUMN firm_id INT DEFAULT 1")
-                c.execute("UPDATE users SET firm_id=1 WHERE firm_id IS NULL")
-                c.execute("UPDATE cases SET firm_id=1 WHERE firm_id IS NULL")
+                _ensure_legacy_firm_ownership(c)
                 deadline_cols = {r[1] for r in c.execute("PRAGMA table_info(deadlines)")}
                 if "status" not in deadline_cols: c.execute("ALTER TABLE deadlines ADD COLUMN status TEXT DEFAULT 'open'")
                 c.execute("CREATE INDEX IF NOT EXISTS idx_cases_firm ON cases(firm_id)")
@@ -848,7 +884,7 @@ def user(request: Request, session_cookie: str = Cookie(None, alias="lc_session"
     token_hash = sha(tok)
     c = conn()
     r = c.execute("SELECT u.* FROM auth_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=? AND s.expires>?", (token_hash, int(time.time()))).fetchone()
-    if not r or not r["active"]:
+    if not r or not r["active"] or r["firm_id"] is None:
         c.execute("DELETE FROM auth_sessions WHERE token_hash=?", (token_hash,)); c.commit()
         raise HTTPException(401, "unauthorized")
     # Cookie-based sessions are not readable by JavaScript. Mutating requests require
@@ -974,7 +1010,7 @@ def login(b: LoginIn, request: Request, response: Response):
     else:
         hash_pw(b.password, dummy_salt)
         valid = False
-    if not r or not r["active"] or not valid:
+    if not r or not r["active"] or r["firm_id"] is None or not valid:
         if is_locked:
             c.rollback()
             raise HTTPException(429, "too many attempts, try later")

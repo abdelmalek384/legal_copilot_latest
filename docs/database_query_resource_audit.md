@@ -28,6 +28,16 @@ The schema has some firm-aware checks at the application layer, but not a consis
 9. **Original uploaded binaries are not retained by the current upload flow.** The `docs` row records metadata/hash and extracted chunks, not a recoverable original file object. Historical original-file recovery/re-extraction cannot be promised; future object storage needs tenant-scoped paths, retention, encryption and restore coverage.
 10. **Schema changes run at application startup.** `conn()` runs `CREATE TABLE` and conditional `ALTER TABLE` operations guarded by an in-process flag. This is not a versioned, per-tenant migration system and is not sufficient for a controlled multi-database rollout.
 
+## Follow-up remediation proposed (pending merge and CI)
+
+The SEC-01 ownership-hardening change in the current working branch removes the startup updates that silently set NULL user/case ownership to firm 1. When an older schema lacks the ownership columns, it adds nullable columns without a default and records rows whose ownership remains NULL in `tenant_ownership_quarantine`. Login is denied and existing sessions are invalidated for accounts with NULL firm ownership. The quarantine is a review ledger, not an automatic repair mechanism.
+
+Important limits:
+- This does not identify or reverse records that a prior application version already assigned to firm 1.
+- It does not create database-per-firm routing, partition mixed legal/matter search, or prove tenant isolation.
+- Operators must inspect a protected copy, reconcile rows from authoritative evidence, and approve any ownership assignment. Do not automatically map every quarantined row to the first firm.
+- Existing schema columns that already have a DEFAULT 1 are not rewritten by SQLite; this change does not establish the provenance of such values.
+
 ## Endpoint families reviewed
 
 The static route pass found the following database-facing families in `app.py`:
