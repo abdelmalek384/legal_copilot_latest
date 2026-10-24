@@ -91,10 +91,6 @@ class TenantCatalogTests(unittest.TestCase):
     def test_symlink_to_another_tenant_database_is_rejected(self):
         first = provision_tenant_database(self.catalog, 11, self.root, self.initialize_tenant)
         second = provision_tenant_database(self.catalog, 12, self.root, self.initialize_tenant)
-        alias = self.root / "tenant-11-" / "unused"
-        alias.parent.mkdir(exist_ok=True)
-        alias.unlink(missing_ok=True)
-        link = self.root / "tenant-11-" / "unused"
         # Catalog filenames are validated; use the exact catalog filename for
         # firm 11 and replace its directory entry with a symlink to firm 12.
         row = self.catalog.execute(
