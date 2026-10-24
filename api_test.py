@@ -171,6 +171,8 @@ sys.argv = ["manage.py", "resetpw", "reset@x.eg"]
 with patch("getpass.getpass", return_value="new-password-Long"):
     import manage
 assert c.get("/cases", headers=reset_token).status_code == 401
+reset_audit = db.execute("SELECT event FROM security_audit_events WHERE user_id=(SELECT id FROM users WHERE email=?) ORDER BY id DESC LIMIT 1", ("reset@x.eg",)).fetchone()
+assert reset_audit and reset_audit["event"] == "password_reset_cli_sessions_revoked"
 # Isolate credential-reset assertions from login attempts made by earlier tests;
 # rate-limit behavior is exercised separately from password correctness.
 if hasattr(app, "_rate_limit_state"):
