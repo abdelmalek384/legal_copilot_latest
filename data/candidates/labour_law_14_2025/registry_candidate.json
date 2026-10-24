@@ -63,38 +63,38 @@
     "status_verified": 0,
     "amendment_history_verified": 0,
     "permission_evidence": "Reuse permission remains unknown; official IDSC Gazette repository requires written permission for systematic database compilation; the supplied JSONL is a derived transcription, not the original Gazette PDF.",
-    "notes": "Metadata-only candidate registration. Supplied JSONL SHA-256 is 3e964de5c9cc994aefcc29c031712e85d664febd97c428e61c2eacdccaf1c600 (393861 bytes, 311 records); this is not the hash of the original legal publication. All input rows have verified=0 and in_force=1; the latter is untrusted and must not set registry verification. No article chunks are inserted. General commencement 2025-09-01 and specialized labor courts 2025-10-01 are based on promulgation Article 13 and corroborating sources; full Gazette comparison and lawyer review remain pending."
+    "notes": "Metadata-only candidate registration. Supplied JSONL SHA-256 is 3e964de5c9cc994aefcc29c031712e85d664febd97c428e61c2eacdccaf1c600 (393861 bytes, 311 records); this is not the hash of the original legal publication. All input rows have verified=0 and in_force=1; the latter is untrusted and must not set registry verification. No article chunks are inserted. General commencement 2025-09-01 and specialized labor courts 2025-10-01 are based on promulgation Article 13 and corroborating sources; full Gazette comparison and lawyer review remain pending. Desk review updated 2026-10-24: supplied file parsed (311 records, SHA-256 independently recomputed); structural counts and selected provisions spot-checked against accessible Amiri Press/Manshurat text. Exact Gazette PDF unavailable for full article-by-article comparison. Permission remains unknown; do not import chunks or enable search. Commencement dates remain provisional pending primary-copy and counsel review."
   },
   "reviews": [
     {
       "review_type": "source_authenticity",
       "outcome": "pending",
       "evidence_url": "https://dspace.id.com.eg/items/75a95151-8a93-45c0-a607-9320863881df",
-      "notes": "Official issue metadata found; exact original PDF not yet obtained/page-reviewed."
+      "notes": "Amiri Press official text page and IDSC Gazette issue metadata were found; exact original Gazette PDF has not been obtained and page-reviewed."
     },
     {
       "review_type": "extraction_quality",
       "outcome": "pending",
       "evidence_url": "https://manshurat.org/file/89254/download?token=aN3Nv2Ig",
-      "notes": "JSONL parses and record counts align; no full article-by-article comparison completed."
+      "notes": "Supplied JSONL parsed successfully (311 records; SHA-256 independently recomputed). Selected promulgation provisions and opening/closing law text spot-checked against accessible secondary text; full Gazette article-by-article comparison not completed because exact Gazette PDF was not obtained."
     },
     {
       "review_type": "legal_status",
       "outcome": "pending",
       "evidence_url": "https://alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
-      "notes": "Commencement clause located; complete current-status and transitional analysis awaits counsel and implementing-instrument review."
+      "notes": "Article 13 accessible text supports provisional general commencement 2025-09-01 and specialized labour courts 2025-10-01; exact Gazette comparison and qualified Egyptian counsel review remain pending."
     },
     {
       "review_type": "amendment_history",
       "outcome": "pending",
       "evidence_url": "https://www.labour.gov.eg/en/laws-and-legislations/",
-      "notes": "Initial discovery only; implementing decisions and amendment chain not exhaustively reviewed."
+      "notes": "Limited search identified later instruments referring to/implementing the law, including PM Decree 2652/2026 and Labour Ministry Decisions 74/2026 and 75/2026. No direct amendment confirmed in this limited search; not a complete negative certification."
     },
     {
       "review_type": "licensing",
       "outcome": "pending",
       "evidence_url": "https://dspace.id.com.eg/info/end-user-agreement",
-      "notes": "Written permission required for systematic database compilation; no permission obtained."
+      "notes": "IDSC End User Agreement requires express written permission for commercial exploitation and prohibits systematic retrieval to compile a database without written permission; no permission obtained. Manshurat reuse terms also remain unconfirmed."
     },
     {
       "review_type": "lawyer_approval",
