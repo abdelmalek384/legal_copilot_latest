@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "tracker_id": "EG-PHASE2-PERMISSION-OUTREACH",
-  "last_updated": "2026-10-23",
+  "last_updated": "2026-10-24",
   "status_note": "Planning tracker only. These requests have not been sent from this project workflow. No permission or licence has been granted.",
   "requests": [
     {
@@ -9,7 +9,7 @@
       "source_id": "EG-AMIRI-PRESS",
       "authority": "General Authority for Amiri Press",
       "candidate_contact": "info@alamiria.com",
-      "contact_verified": false,
+      "contact_verified": true,
       "draft_location": "docs/phase_2_source_authorization_outreach_pack.md",
       "status": "draft_not_sent",
       "sent_at": null,
@@ -30,7 +30,9 @@
       "authorized_scopes": [],
       "decision": "no_permission_granted",
       "reviewer": null,
-      "notes": "Verify contact address and submit through the authority's official channel. A public page or subscription must not be treated as blanket commercial reuse permission."
+      "notes": "Contact address confirmed on the authority's official contact page. Request remains draft_not_sent; no permission is granted. Submit through the official channel and retain delivery evidence. A public page or subscription must not be treated as blanket commercial reuse permission.",
+      "contact_verified_on": "2026-10-24",
+      "contact_verification_evidence": "Official Amiri Press contact page lists info@alamiria.com: https://www.alamiria.com/Sec/Contact-Us"
     },
     {
       "request_id": "PERM-002",
