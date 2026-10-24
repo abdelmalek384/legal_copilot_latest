@@ -23,7 +23,6 @@ CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY, name TEXT, email TEXT U
 CREATE TABLE IF NOT EXISTS auth_sessions(token_hash TEXT PRIMARY KEY, user_id INT, expires INT);
 CREATE TABLE IF NOT EXISTS security_audit_events(id INTEGER PRIMARY KEY, firm_id INT NOT NULL, user_id INT NOT NULL, event TEXT NOT NULL, created_at TEXT DEFAULT (datetime('now')));
 CREATE TABLE IF NOT EXISTS login_attempts(email TEXT PRIMARY KEY, failures INT NOT NULL DEFAULT 0, window_start INT NOT NULL DEFAULT 0, locked_until INT NOT NULL DEFAULT 0);
-CREATE INDEX IF NOT EXISTS idx_login_attempts_window ON login_attempts(window_start,locked_until);
 CREATE TABLE IF NOT EXISTS cases(id INTEGER PRIMARY KEY, title TEXT, client TEXT, stage TEXT DEFAULT '', status TEXT DEFAULT 'open', created_by INT, firm_id INT DEFAULT 1,
   case_number TEXT DEFAULT '', case_year TEXT DEFAULT '', court TEXT DEFAULT '', circuit TEXT DEFAULT '', opposing_party TEXT DEFAULT '');
 CREATE TABLE IF NOT EXISTS notes(id INTEGER PRIMARY KEY, case_id INT, created_by INT, text TEXT, created_at TEXT DEFAULT (datetime('now')));
@@ -43,8 +42,6 @@ CREATE TABLE IF NOT EXISTS case_deletion_audit(
   related_counts_json TEXT NOT NULL,
   deleted_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
-CREATE INDEX IF NOT EXISTS idx_case_deletion_audit_firm_id
-  ON case_deletion_audit(firm_id, id DESC);
 CREATE TABLE IF NOT EXISTS api_rate_limit_windows(
   bucket TEXT NOT NULL,
   client_key TEXT NOT NULL,
@@ -52,8 +49,6 @@ CREATE TABLE IF NOT EXISTS api_rate_limit_windows(
   hits INTEGER NOT NULL DEFAULT 0,
   PRIMARY KEY(bucket, client_key, window_start)
 );
-CREATE INDEX IF NOT EXISTS idx_api_rate_limit_windows_start
-  ON api_rate_limit_windows(window_start);
 CREATE TABLE IF NOT EXISTS sessions(id INTEGER PRIMARY KEY, case_id INT, date TEXT, note TEXT, done INT DEFAULT 0);
 CREATE TABLE IF NOT EXISTS docs(id INTEGER PRIMARY KEY, case_id INT, name TEXT, added TEXT, firm_id INT, uploader_user_id INT, sha256 TEXT, content_type TEXT, byte_size INT, extraction_status TEXT, ocr_used INT NOT NULL DEFAULT 0);
 -- Legal corpus provenance: one stable source record, multiple immutable legal versions.
@@ -107,12 +102,6 @@ CREATE TABLE IF NOT EXISTS legal_document_versions(
   created_at TEXT NOT NULL DEFAULT (datetime('now')),
   UNIQUE(document_id, version_label)
 );
-CREATE UNIQUE INDEX IF NOT EXISTS idx_legal_version_sha256
-  ON legal_document_versions(original_sha256) WHERE original_sha256 IS NOT NULL;
-CREATE INDEX IF NOT EXISTS idx_legal_versions_dates
-  ON legal_document_versions(effective_date, repeal_date, legal_status);
-CREATE INDEX IF NOT EXISTS idx_legal_versions_review
-  ON legal_document_versions(review_status, status_verified);
 CREATE TABLE IF NOT EXISTS legal_version_relations(
   relation_id INTEGER PRIMARY KEY,
   from_version_id INTEGER NOT NULL REFERENCES legal_document_versions(version_id),
@@ -133,8 +122,6 @@ CREATE TABLE IF NOT EXISTS legal_review_events(
   evidence_url TEXT,
   reviewed_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
-CREATE INDEX IF NOT EXISTS idx_legal_review_events_version
-  ON legal_review_events(version_id, reviewed_at);
 CREATE TABLE IF NOT EXISTS research_conversations(
   id INTEGER PRIMARY KEY,
   user_id INTEGER NOT NULL REFERENCES users(id),
@@ -143,8 +130,6 @@ CREATE TABLE IF NOT EXISTS research_conversations(
   created_at TEXT NOT NULL DEFAULT (datetime('now')),
   updated_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
-CREATE INDEX IF NOT EXISTS idx_research_conversations_owner
-  ON research_conversations(firm_id,user_id,updated_at);
 CREATE TABLE IF NOT EXISTS research_messages(
   id INTEGER PRIMARY KEY,
   conversation_id INTEGER NOT NULL REFERENCES research_conversations(id) ON DELETE CASCADE,
@@ -154,8 +139,6 @@ CREATE TABLE IF NOT EXISTS research_messages(
   message_json TEXT NOT NULL DEFAULT '{}',
   created_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
-CREATE INDEX IF NOT EXISTS idx_research_messages_conversation
-  ON research_messages(conversation_id,id);
 """
 _MAP = {"أ": "ا", "إ": "ا", "آ": "ا", "ى": "ي", "ة": "ه"}
 _MAP.update({chr(0x660 + i): str(i) for i in range(10)})
