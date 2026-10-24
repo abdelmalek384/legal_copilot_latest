@@ -47,6 +47,31 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         self.assertTrue(any("explicit commercial reuse permission" in e for e in errors))
         self.assertTrue(any("permission evidence" in e for e in errors))
 
+    def test_source_permission_state_is_validated_independently(self):
+        data = copy.deepcopy(self.inventory)
+        data["source_ids"]["EG-PRESIDENCY"]["permission"] = "allowed_because_public"
+        errors = validate_inventory(data)
+        self.assertTrue(any("source_ids.EG-PRESIDENCY has unsupported permission state" in e for e in errors))
+
+    def test_source_record_requires_explicit_permission_metadata(self):
+        data = copy.deepcopy(self.inventory)
+        del data["source_ids"]["EG-PRESIDENCY"]["permission"]
+        errors = validate_inventory(data)
+        self.assertTrue(any("source_ids.EG-PRESIDENCY missing permission" in e for e in errors))
+
+    def test_source_url_must_be_https_or_null(self):
+        data = copy.deepcopy(self.inventory)
+        data["source_ids"]["EG-PRESIDENCY"]["source_url"] = "http://example.invalid"
+        errors = validate_inventory(data)
+        self.assertTrue(any("source_ids.EG-PRESIDENCY.source_url must be HTTPS or null" in e for e in errors))
+
+    def test_source_permissions_do_not_promote_document_permissions(self):
+        data = copy.deepcopy(self.inventory)
+        data["source_ids"]["EG-PRESIDENCY"]["permission"] = "allowed"
+        self.assertEqual(data["documents"][0]["collection_permission"], "unknown")
+        self.assertEqual(data["documents"][0]["review_status"], "discovery_only")
+        self.assertEqual(validate_inventory(data), [])
+
 
 if __name__ == "__main__":
     unittest.main()
