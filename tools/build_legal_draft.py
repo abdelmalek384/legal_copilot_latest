@@ -8,6 +8,7 @@ import json
 from datetime import date
 from pathlib import Path
 from typing import Any
+from urllib.parse import urlsplit
 
 DRAFT_TYPES = {
     "defense_memo": ("مذكرة دفاع", "مذكرة بدفاع"),
@@ -30,7 +31,9 @@ def _source_usable(source: dict[str, Any], as_of: date) -> bool:
     """Require explicit recorded review, status, dates, and permission evidence."""
     if source.get("lawyer_approved") is not True:
         return False
-    if source.get("legal_status") != "in_force" or source.get("status_verified") is not True:
+    if (source.get("legal_status") != "in_force"
+            or source.get("status_verified") is not True
+            or source.get("authenticity_verified") is not True):
         return False
     if source.get("permission_status") not in ALLOWED_PERMISSION_STATES:
         return False
@@ -49,6 +52,11 @@ def _source_usable(source: dict[str, Any], as_of: date) -> bool:
         except ValueError:
             return False
     if not str(source.get("title", "")).strip() or not str(source.get("citation", "")).strip():
+        return False
+    if not str(source.get("permission_evidence", "")).strip():
+        return False
+    parsed_url = urlsplit(str(source.get("url", "")))
+    if parsed_url.scheme != "https" or not parsed_url.netloc or parsed_url.username or parsed_url.password:
         return False
     return True
 
