@@ -71,12 +71,18 @@ class ResearchInspectorTests(unittest.TestCase):
         source = valid_source()
         source["scope"] = "firm_documents"
         self.assertEqual(source_status(source, "2026-10-24"), STATUS_USER_SUPPLIED)
+        source = valid_source()
+        source["provenance"]["document_type"] = "commentary"
+        self.assertEqual(source_status(source, "2026-10-24"), "secondary_copy")
 
     def test_citation_uses_only_recorded_pin_cite_and_metadata(self):
         citation = citation_text(valid_source(), "2026-10-24")
         self.assertIn("Test instrument", citation)
         self.assertIn("No. 10/2020", citation)
         self.assertIn("Article 12", citation)
+        source = valid_source()
+        source["page"] = "17"
+        self.assertIn("Page 17", citation_text(source, "2026-10-24"))
         self.assertIn("as of 2026-10-24", citation)
         self.assertIn("https://example.gov/law", citation)
         self.assertNotIn("page", citation.lower())
