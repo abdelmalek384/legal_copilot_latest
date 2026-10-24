@@ -18,6 +18,7 @@ CREATE VIRTUAL TABLE IF NOT EXISTS chunks_fts USING fts5(norm);
 CREATE TABLE IF NOT EXISTS firms(id INTEGER PRIMARY KEY, name TEXT NOT NULL, created_at TEXT DEFAULT (datetime('now')));
 CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY, name TEXT, email TEXT UNIQUE, pw TEXT, role TEXT DEFAULT 'lawyer', firm_id INT DEFAULT 1, active INT DEFAULT 1);
 CREATE TABLE IF NOT EXISTS auth_sessions(token_hash TEXT PRIMARY KEY, user_id INT, expires INT);
+CREATE TABLE IF NOT EXISTS security_audit_events(id INTEGER PRIMARY KEY, firm_id INT NOT NULL, user_id INT NOT NULL, event TEXT NOT NULL, created_at TEXT DEFAULT (datetime('now')));
 CREATE TABLE IF NOT EXISTS login_attempts(email TEXT PRIMARY KEY, failures INT NOT NULL DEFAULT 0, window_start INT NOT NULL DEFAULT 0, locked_until INT NOT NULL DEFAULT 0);
 CREATE INDEX IF NOT EXISTS idx_login_attempts_window ON login_attempts(window_start,locked_until);
 CREATE TABLE IF NOT EXISTS cases(id INTEGER PRIMARY KEY, title TEXT, client TEXT, stage TEXT DEFAULT '', status TEXT DEFAULT 'open', created_by INT, firm_id INT DEFAULT 1,
@@ -709,6 +710,9 @@ def validate_operational_deadline(value):
 
 class Q(BaseModel): q: str = Field(min_length=1, max_length=500); case_id: int | None = None; as_of: str | None = Field(default=None, pattern=r"^\d{4}-\d{2}-\d{2}$")
 class LoginIn(BaseModel): email: str = Field(max_length=200); password: str = Field(max_length=200)
+class PasswordChangeIn(BaseModel):
+    current_password: str = Field(min_length=1, max_length=200)
+    new_password: str = Field(min_length=12, max_length=200)
 class UserCreateIn(BaseModel):
     name: str = Field(min_length=1, max_length=120)
     email: str = Field(min_length=3, max_length=200)
@@ -942,6 +946,25 @@ def logout(request: Request, response: Response, u: dict = Depends(user)):
     response.delete_cookie("lc_session", path="/", httponly=True, samesite="lax", secure=request.url.scheme == "https")
     response.delete_cookie("lc_csrf", path="/", samesite="lax", secure=request.url.scheme == "https")
     return {"ok": True}
+
+
+
+@app.post("/account/password")
+def change_password(b: PasswordChangeIn, request: Request, response: Response, u: dict = Depends(user)):
+    c = conn()
+    row = c.execute("SELECT pw FROM users WHERE id=? AND active=1", (u["id"],)).fetchone()
+    if not row or not check_pw(b.current_password, row["pw"]):
+        raise HTTPException(403, "current password is incorrect")
+    if check_pw(b.new_password, row["pw"]):
+        raise HTTPException(422, "new password must differ from current password")
+    c.execute("BEGIN IMMEDIATE")
+    c.execute("UPDATE users SET pw=? WHERE id=? AND active=1", (hash_pw(b.new_password), u["id"]))
+    c.execute("DELETE FROM auth_sessions WHERE user_id=?", (u["id"],))
+    c.execute("INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)", (u["firm_id"], u["id"], "password_changed_sessions_revoked"))
+    c.commit()
+    response.delete_cookie("lc_session", path="/", httponly=True, samesite="lax", secure=request.url.scheme == "https")
+    response.delete_cookie("lc_csrf", path="/", samesite="lax", secure=request.url.scheme == "https")
+    return {"ok": True, "sessions_revoked": True, "login_required": True}
 
 
 @app.post("/conflicts")
