@@ -9,7 +9,7 @@
 - **In progress:** 6 of 19 deliverables (**31.6%**).
 - **Not started, blocked, or awaiting validation:** 6 of 19 (**31.6%**).
 - **Merged PRs from this workstream:** #88, #89, #90, #91, #92, #94, #96, #97, #98, #99, #100, #101, #102, #103, #104, #105, #106, #107, #108, #109, #110, #112, #114, #115.
-- **Open PRs:** SEC-01 repository storage/file/backup/job inventory (PR not yet opened). PR #115's behavior-preserving SQLite connection-provider interface is merged, along with PRs #110, #112, and #114.
+- **Open PRs:** SEC-01 repository storage/file/backup/job inventory (PR #116). PR #115's behavior-preserving SQLite connection-provider interface is merged, along with PRs #110, #112, and #114.
 - **External permission requests:** not sent by this project workflow. Claude is expected to handle outreach; approval is not assumed.
 - **Manual UI QA:** not yet completed.
 
