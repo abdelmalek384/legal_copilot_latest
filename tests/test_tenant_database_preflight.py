@@ -60,7 +60,11 @@ class TenantDatabasePreflightTests(unittest.TestCase):
         self.assertIn("database_missing", {item["code"] for item in report["findings"]})
 
     def test_invalid_mapping_and_not_ready_tenant_are_reported(self):
-        self.add_tenant(3, filename="../../outside.sqlite3")
+        self.catalog.execute(
+            "INSERT INTO tenant_database_catalog(firm_id,database_file,status) VALUES(3,?,?)",
+            ("../../outside.sqlite3", "provisioned"),
+        )
+        self.catalog.commit()
         self.add_tenant(4, status="provisioning")
         report = audit(self.catalog_path, self.root)
         codes = {item["code"] for item in report["findings"]}
