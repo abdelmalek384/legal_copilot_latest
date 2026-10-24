@@ -74,7 +74,7 @@ def audit(conn: sqlite3.Connection) -> dict[str, Any]:
             _count(conn, "SELECT COUNT(*) FROM docs d LEFT JOIN cases c ON c.id=d.case_id WHERE d.case_id IS NOT NULL AND c.id IS NULL"),
             "Document references a missing case.")
         add("docs_case_firm_mismatch", "critical",
-            _count(conn, "SELECT COUNT(*) FROM docs d JOIN cases c ON c.id=d.case_id WHERE d.firm_id IS NOT c.firm_id"),
+            _count(conn, "SELECT COUNT(*) FROM docs d JOIN cases c ON c.id=d.case_id WHERE d.firm_id IS NOT NULL AND c.firm_id IS NOT NULL AND d.firm_id IS NOT c.firm_id"),
             "Document firm_id differs from its parent case.")
     if "chunks" in tables:
         cols = _columns(conn, "chunks")
