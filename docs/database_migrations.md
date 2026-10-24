@@ -29,3 +29,16 @@ PYTHONPATH=. python tests/test_backup_restore_safety.py
 ```
 
 These checks do not provide per-firm backup/restore while the application still uses a single configured database. The backup key must be stored separately from the backup files, and operators must rehearse restore against a disposable destination before any production recovery.
+
+
+## Disposable-copy migration rehearsal
+
+Before a deployment rehearsal, use the read-only source / disposable-copy helper:
+
+```bash
+PYTHONPATH=. python scripts/rehearse_database_migrations.py /path/to/protected-copy.sqlite3
+```
+
+The helper opens the source in read-only mode, checks SQLite integrity and foreign-key violations, copies it through SQLite's backup API into a temporary directory, applies pending versioned migrations only to that copy, then reports the resulting migration ledger and integrity checks. Exit status is 0 only when both integrity checks are clean and no foreign-key violations are found; status 1 means manual review is required, and status 2 means the rehearsal could not run.
+
+This is a migration rehearsal aid, not a backup, not an authorization test, and not proof of tenant isolation. Use a protected representative copy, retain a separately verified backup, and review the report before any real migration.
