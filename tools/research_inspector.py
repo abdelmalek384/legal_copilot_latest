@@ -63,6 +63,9 @@ def citation_text(source, as_of=None):
     article = source.get("article")
     if article:
         parts.append("Article %s" % article)
+    page = source.get("page")
+    if page:
+        parts.append("Page %s" % page)
     if p.get("version_label"):
         parts.append("Version: %s" % p["version_label"])
     if p.get("gazette_issue"):
