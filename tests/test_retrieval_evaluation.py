@@ -1,0 +1,100 @@
+import json
+import sys
+import tempfile
+import unittest
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
+from tools.evaluate_retrieval_quality import DEFAULT_QUESTIONS, _load_jsonl, score_evaluation, validate_reviewed_question
+
+
+def reviewed_question(**overrides):
+    question = {
+        "id": "Q-TEST-001",
+        "practice_area": "civil_law",
+        "question_ar": "سؤال اختباري لا يمثل استشارة قانونية",
+        "review_status": "lawyer_reviewed",
+        "reviewer_name": "Reviewer A",
+        "review_date": "2026-10-24",
+        "expected_source_ids": ["LAW-A", "LAW-B"],
+        "expected_pin_cites": [
+            {"source_id": "LAW-A", "pin_cite": "Article 12"},
+        ],
+        "answerable": True,
+        "must_abstain_if_unverified": True,
+    }
+    question.update(overrides)
+    return question
+
+
+class RetrievalEvaluationTests(unittest.TestCase):
+    def test_unreviewed_seed_questions_are_excluded_not_scored(self):
+        seeds = _load_jsonl(DEFAULT_QUESTIONS)
+        result = score_evaluation(seeds, [])
+        self.assertEqual(result["reviewed_cases_scored"], 0)
+        self.assertEqual(len(result["excluded_cases"]), len(seeds))
+        self.assertIsNone(result["metrics"]["recall_at_5"])
+        self.assertIsNone(result["citation_precision"])
+        self.assertTrue(all("not marked" in " ".join(x["reasons"]) for x in result["excluded_cases"]))
+
+    def test_recall_mrr_citation_and_pin_cite_metrics(self):
+        question = reviewed_question()
+        run = {
+            "question_id": "Q-TEST-001",
+            "retrieved_source_ids": ["IRRELEVANT", "LAW-A", "LAW-B"],
+            "citations": [
+                {"source_id": "LAW-A", "pin_cite": "Article 12"},
+                {"source_id": "LAW-X", "pin_cite": "Article 99"},
+            ],
+            "abstained": False,
+            "used_unverified_source": False,
+        }
+        result = score_evaluation([question], [run], k_values=(1, 3, 5))
+        self.assertEqual(result["reviewed_cases_scored"], 1)
+        self.assertEqual(result["metrics"]["recall_at_1"], 0.0)
+        self.assertEqual(result["metrics"]["recall_at_3"], 1.0)
+        self.assertEqual(result["metrics"]["mrr_at_3"], 0.5)
+        self.assertEqual(result["citation_precision"], 0.5)
+        self.assertEqual(result["pin_cite_accuracy"], 1.0)
+        self.assertEqual(result["unsafe_unverified_source_uses"], 0)
+
+    def test_unanswerable_case_requires_abstention(self):
+        question = reviewed_question(
+            id="Q-TEST-002",
+            expected_source_ids=["LAW-A"],
+            expected_pin_cites=[],
+            answerable=False,
+        )
+        compliant = {
+            "question_id": "Q-TEST-002",
+            "retrieved_source_ids": [],
+            "citations": [],
+            "abstained": True,
+            "used_unverified_source": False,
+        }
+        result = score_evaluation([question], [compliant])
+        self.assertEqual(result["abstention_compliance"], 1.0)
+        unsafe = dict(compliant, abstained=False, used_unverified_source=True)
+        result = score_evaluation([question], [unsafe])
+        self.assertEqual(result["abstention_compliance"], 0.0)
+        self.assertEqual(result["unsafe_unverified_source_uses"], 1)
+
+    def test_invalid_reviewed_labels_are_excluded(self):
+        question = reviewed_question(expected_source_ids=[], reviewer_name=None)
+        result = score_evaluation([question], [{"question_id": question["id"]}])
+        self.assertEqual(result["reviewed_cases_scored"], 0)
+        reasons = " ".join(result["excluded_cases"][0]["reasons"])
+        self.assertIn("expected_source_ids", reasons)
+        self.assertIn("reviewer_name", reasons)
+
+    def test_duplicate_run_records_are_reported(self):
+        question = reviewed_question()
+        run = {"question_id": question["id"], "retrieved_source_ids": [], "citations": []}
+        result = score_evaluation([question], [run, run])
+        self.assertEqual(result["duplicate_run_question_ids"], [question["id"]])
+
+
+if __name__ == "__main__":
+    unittest.main()
