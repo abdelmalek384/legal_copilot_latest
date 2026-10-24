@@ -200,6 +200,8 @@ assert c.post("/account/password", json={"current_password":"initial-password-Lo
 pw_change = c.post("/account/password", json={"current_password":"initial-password-Long","new_password":"replacement-password-Long"}, headers=pw_session_one)
 assert pw_change.status_code == 200, pw_change.text
 assert pw_change.json()["sessions_revoked"] is True and pw_change.json()["login_required"] is True
+pw_audit = db.execute("SELECT firm_id,user_id,event FROM security_audit_events WHERE user_id=(SELECT id FROM users WHERE email=?) ORDER BY id DESC LIMIT 1", ("pwchange@x.eg",)).fetchone()
+assert pw_audit and pw_audit["firm_id"] == 1 and pw_audit["event"] == "password_changed_sessions_revoked"
 assert c.get("/session", headers=pw_session_one).status_code == 401
 assert c.get("/session", headers=pw_session_two).status_code == 401
 assert c.post("/login", json={"email":"pwchange@x.eg","password":"initial-password-Long"}).status_code == 401
