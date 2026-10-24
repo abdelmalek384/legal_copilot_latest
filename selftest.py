@@ -26,10 +26,21 @@ app.LLM = lambda p: "تستحق اجازة [1]"; assert app.ask(c, "اجازة �
 app.LLM = lambda p: "اجابة بلا مصدر صالح [9]"; assert app.ask(c, "اجازة سنوية")["answer"] is None
 # Unverified article 3 must not be returned as legal authority.
 assert app.ask(c, "المادة 3")["found"] is False
+# Matter-document passages require a separate approval, even when general LLM use is enabled.
+_matter_id = c.execute("INSERT INTO cases(title,firm_id) VALUES(?,?)", ("Private LLM gate fixture", 1)).lastrowid
+app.add_doc(c, _matter_id, "Private LLM gate fixture", "مدة العقد سنتان")
+os.environ["LLM_URL"] = "https://llm.example.test/v1/chat/completions"
+os.environ["LLM_DATA_PROCESSING_APPROVED"] = "1"
+os.environ.pop("LLM_FIRM_DATA_PROCESSING_APPROVED", None)
+_llm_called = []
+app.LLM = lambda p: _llm_called.append(p) or "إجابة [1]"
+_matter_result = app.ask(c, "مدة العقد", case_id=_matter_id, firm_id=1, scope="firm_documents")
+assert _matter_result["found"] is True and _matter_result["answer"] is None
+assert "تُعرض المصادر فقط" in _matter_result["message"] and not _llm_called
 # LLM transmission is fail-closed unless the deployment operator explicitly approves it.
 from unittest.mock import patch
 import io
-_saved_llm_env = {k: os.environ.get(k) for k in ("LLM_URL", "LLM_MODEL", "LLM_KEY", "LLM_DATA_PROCESSING_APPROVED")}
+_saved_llm_env = {k: os.environ.get(k) for k in ("LLM_URL", "LLM_MODEL", "LLM_KEY", "LLM_DATA_PROCESSING_APPROVED", "LLM_FIRM_DATA_PROCESSING_APPROVED")}
 try:
     os.environ["LLM_URL"] = "https://llm.example.test/v1/chat/completions"
     os.environ["LLM_MODEL"] = "test-model"
