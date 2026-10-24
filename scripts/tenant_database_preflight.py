@@ -9,6 +9,7 @@ The tool never provisions, repairs, migrates, or modifies a database.
 from __future__ import annotations
 
 import argparse
+from contextlib import closing
 import json
 import re
 import sqlite3
@@ -34,7 +35,7 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
     if not root.is_dir():
         raise ValueError("tenant storage root must be a directory")
 
-    with _readonly(catalog_path) as catalog:
+    with closing(_readonly(catalog_path)) as catalog:
         tables = {row[0] for row in catalog.execute(
             "SELECT name FROM sqlite_master WHERE type='table'"
         )}
@@ -80,7 +81,7 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
             add("database_path_escape", firm_id, "resolved database is not a regular file directly under the storage root")
             continue
         try:
-            with _readonly(resolved) as tenant:
+            with closing(_readonly(resolved)) as tenant:
                 quick = tenant.execute("PRAGMA quick_check").fetchall()
                 if len(quick) != 1 or quick[0][0] != "ok":
                     add("sqlite_quick_check_failed", firm_id, "; ".join(str(r[0]) for r in quick[:5]))
