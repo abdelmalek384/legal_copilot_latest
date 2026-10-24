@@ -37,6 +37,8 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("s.article", HTML)
         self.assertIn("Copy citation", HTML)
         self.assertIn("Copy exact passage", HTML)
+        self.assertIn("highlightTerms", HTML)
+        self.assertIn("document.createTextNode", HTML)
         self.assertIn("Export research memo", HTML)
         self.assertIn("save-to-matter", HTML)
         self.assertIn("No relevant verified legal text found in this scope", HTML)
