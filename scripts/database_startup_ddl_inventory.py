@@ -17,10 +17,9 @@ DDL_PATTERN = re.compile(
     re.IGNORECASE,
 )
 TABLE_PATTERN = re.compile(
-    r"\b(?:TABLE|INDEX)\s+(?:IF\s+(?:NOT\s+)?EXISTS\s+)?[\\"'`]?([A-Za-z_][A-Za-z0-9_]*)",
+    r"\b(?:TABLE|INDEX)\s+(?:IF\s+(?:NOT\s+)?EXISTS\s+)?([A-Za-z_][A-Za-z0-9_]*)",
     re.IGNORECASE,
 )
-
 
 def _schema_assignment(tree: ast.Module) -> ast.Assign:
     for node in tree.body:
