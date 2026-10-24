@@ -21,6 +21,8 @@ def source_status(source, as_of=None):
     if source.get("scope") == "firm_documents" or source.get("case_id") is not None:
         return STATUS_USER_SUPPLIED
     provenance = source.get("provenance") or {}
+    if provenance.get("document_type") in {"secondary", "commentary", "guide", "summary"} or source.get("source_type") == "secondary_copy":
+        return STATUS_SECONDARY
     if provenance.get("status") != "registry_linked":
         return STATUS_REVIEW
     required_true = ("authenticity_verified", "status_verified", "amendment_history_verified")
@@ -44,8 +46,6 @@ def source_status(source, as_of=None):
     repeal = provenance.get("repeal_date")
     if repeal and repeal <= as_of:
         return STATUS_REVIEW
-    if provenance.get("document_type") in {"secondary", "commentary", "guide", "summary"}:
-        return STATUS_SECONDARY
     return STATUS_VERIFIED
 
 
