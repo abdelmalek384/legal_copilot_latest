@@ -31,8 +31,7 @@ The control plane should contain only the minimum needed to authenticate and rou
 
 ## Current automated coverage
 
-The detailed route/table boundary inventory and current review findings are maintained in [tenant isolation inventory](tenant_isolation_inventory.md). That inventory records the shared-database limitation, backup/restore gaps, and a policy gap around global legal-review mutations being authorized by the generic firm-admin role.
-
+The detailed route/table boundary inventory and current review findings are maintained in [tenant isolation inventory](tenant_isolation_inventory.md). It records the shared-database limitation, backup/restore gaps, and the policy gap around global legal-review mutations being authorized by the generic firm-admin role.
 
 The API tests now exercise cross-firm case list/detail/update/delete, conflict checks, dashboard tasks, user listings, case search/answer requests, and admin-only user creation. Passing tests cover these cases in the current shared-database model only; they do not prove the target separate-database architecture is implemented.
 
@@ -52,3 +51,8 @@ These are regression tests for the current shared-database implementation, not p
 ## SEC-01 follow-through: extraction-review boundary
 
 The API regression suite now also attempts to use a second firm's administrator session to read an extraction-review audit and submit a correction against a guessed document/chunk ID. Both operations must return 404, and the test confirms the existing reviewed chunk text remains unchanged. This protects against a cross-firm correction path in the shared-database model; it does not replace a full route/table/background-job inventory or prove tenant database separation.
+
+
+## SEC-01 attack-surface baseline (PR follow-through)
+
+A static scan of `app.py` is recorded in [`sec-01-attack-surface-inventory.md`](sec-01-attack-surface-inventory.md). It lists 45 route decorators and 25 `CREATE TABLE` declarations found by simple source patterns. Treat this as a starting baseline only: reconcile with runtime OpenAPI, migrations/actual schema, indirect SQL and frontend calls; inspect external/deployment jobs and backup/restore paths. No separate tenant database is implemented, and no independent security review has been completed.
