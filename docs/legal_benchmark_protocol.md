@@ -20,3 +20,7 @@ For each query, the product should:
 3. Avoid adding details not supported by retrieved text.
 4. Say it cannot establish the answer, or return sources only according to the app's existing policy, when no reliable supporting source is retrieved.
 5. Distinguish constitutional text from implementing statutes, regulations, judgments and legal interpretation.
+
+## Human answer review
+
+Use [the proposed human legal-answer review rubric](legal_answer_review_rubric.md) to record evidence-based scores, critical defects, and case dispositions after an actual run. The rubric is a proposed workflow, not an approved legal standard. Do not claim answer accuracy until qualified Egyptian-law reviewers validate the source versions and review the outputs.
