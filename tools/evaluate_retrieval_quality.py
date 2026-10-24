@@ -85,17 +85,17 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5)):
 
     metrics = {}
     for k in k_values:
-        hits = 0
+        recall_values = []
         reciprocal_ranks = []
         for question, run in reviewed:
             expected = set(question["expected_source_ids"])
             ranked = _unique_ids(run.get("retrieved_source_ids", []))
+            top_k = set(ranked[:k])
+            recall_values.append(len(expected & top_k) / len(expected))
             rank = next((index for index, source_id in enumerate(ranked, 1) if source_id in expected), None)
-            if rank is not None and rank <= k:
-                hits += 1
             reciprocal_ranks.append(1.0 / rank if rank is not None and rank <= k else 0.0)
-        metrics[f"recall_at_{k}"] = round(hits / len(reviewed), 4) if reviewed else None
-        metrics[f"mrr_at_{k}"] = round(sum(reciprocal_ranks) / len(reviewed), 4) if reviewed else None
+        metrics[f"recall_at_{k}"] = round(sum(recall_values) / len(recall_values), 4) if reviewed else None
+        metrics[f"mrr_at_{k}"] = round(sum(reciprocal_ranks) / len(reciprocal_ranks), 4) if reviewed else None
 
     citation_total = citation_correct = pin_cite_total = pin_cite_correct = 0
     abstention_cases = abstention_correct = unsafe_unverified_uses = 0
