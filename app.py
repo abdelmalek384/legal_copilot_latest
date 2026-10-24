@@ -372,11 +372,13 @@ SQL = ("SELECT chunks.*, bm25(chunks_fts) AS r FROM chunks_fts JOIN chunks ON ch
        "WHERE chunks_fts MATCH ? AND (chunks.case_id IS NOT NULL OR (chunks.verified=1 AND (chunks.in_force=1 OR chunks.document_version_id IS NOT NULL))) AND (chunks.case_id IS NULL OR chunks.case_id IS ?) "
        "AND (chunks.case_id IS NULL OR chunks.case_id IN (SELECT id FROM cases WHERE firm_id=?)) "
        "AND (chunks.case_id IS NOT NULL OR chunks.document_version_id IS NOT NULL OR ?=1) "
+       "AND (?='all_permitted' OR (?='verified_corpus' AND chunks.case_id IS NULL) OR (?='firm_documents' AND chunks.case_id IS NOT NULL)) "
        "AND (chunks.case_id IS NOT NULL OR chunks.document_version_id IS NULL OR EXISTS ("
        "SELECT 1 FROM legal_document_versions v WHERE v.version_id=chunks.document_version_id "
        "AND v.review_status='verified' AND v.authenticity_verified=1 AND v.status_verified=1 AND v.amendment_history_verified=1 AND EXISTS (SELECT 1 FROM legal_documents d JOIN legal_sources s ON s.source_id=d.source_id WHERE d.document_id=v.document_id AND s.collection_permission='allowed' AND s.commercial_reuse_permission='allowed' AND TRIM(COALESCE(s.permission_evidence,''))<>'' AND TRIM(COALESCE(v.permission_evidence,''))<>'') AND (v.legal_status='in_force' OR (v.legal_status IN ('repealed','historical') AND v.repeal_date IS NOT NULL)) "
        "AND v.effective_date IS NOT NULL AND v.effective_date<=? AND (v.repeal_date IS NULL OR v.repeal_date>?)"
-       ")) ORDER BY r LIMIT 40")
+       "AND (?='all_permitted' OR (?='verified_corpus' AND chunks.case_id IS NULL) OR (?='firm_documents' AND chunks.case_id IS NOT NULL)))"
+       " ORDER BY r LIMIT 40")
 
 def citation_provenance(c, version_id):
     """Return registry-backed metadata for a cited passage; never infer missing legal facts."""
@@ -386,8 +388,8 @@ def citation_provenance(c, version_id):
         "SELECT v.version_id,v.document_id,v.version_label,v.source_url,v.original_sha256,"
         "v.publication_date,v.effective_date,v.repeal_date,v.consolidated_as_of,v.gazette_issue,v.gazette_pages,"
         "v.legal_status,v.review_status,v.authenticity_verified,v.status_verified,v.amendment_history_verified,"
-        "d.official_title,d.document_type,d.law_number,d.law_year,d.language "
-        "FROM legal_document_versions v LEFT JOIN legal_documents d ON d.document_id=v.document_id "
+        "d.official_title,d.document_type,d.law_number,d.law_year,d.language,s.authority,s.collection_permission,s.commercial_reuse_permission,s.permission_evidence AS source_permission_evidence "
+        "FROM legal_document_versions v JOIN legal_documents d ON d.document_id=v.document_id JOIN legal_sources s ON s.source_id=d.source_id "
         "WHERE v.version_id=?", (version_id,)).fetchone()
     if not row:
         return {"status": "registry_record_missing", "version_id": version_id}
@@ -414,7 +416,11 @@ def citation_provenance(c, version_id):
     return data
 
 
-def search(c, q, case_id=None, k=5, firm_id=1, as_of=None):
+def search(c, q, case_id=None, k=5, firm_id=1, as_of=None, scope="all_permitted"):
+    if scope not in {"all_permitted", "verified_corpus", "firm_documents"}:
+        raise ValueError("scope must be verified_corpus, firm_documents, or all_permitted")
+    if scope == "firm_documents" and case_id is None:
+        raise ValueError("Select a matter before searching firm documents")
     # Linked legal versions require verified provenance, status, dates, and reuse permission.
     # Unlinked legacy law chunks fail closed unless explicitly enabled for a controlled migration.
     as_of = as_of or date.today().isoformat()
@@ -427,7 +433,7 @@ def search(c, q, case_id=None, k=5, firm_id=1, as_of=None):
     if expanded_qt:
         # Expand only with a small, curated bilingual lexicon; never alter the evidence text.
         allow_legacy = os.environ.get("ALLOW_UNLINKED_LEGACY_LAW_SEARCH", "").strip() == "1"
-        params = (" OR ".join('"%s"' % t.replace('"', '""') for t in expanded_qt), case_id, firm_id, int(allow_legacy), as_of, as_of)
+        params = (" OR ".join('"%s"' % t.replace('"', '""') for t in expanded_qt), case_id, firm_id, int(allow_legacy), as_of, as_of, scope, scope, scope)
         for r in c.execute(SQL, params): cand[r["id"]] = (r, -r["r"])
     am = re.search(r"(?:ماده|الماده|article|art)\s*\.?\s*(\d+)", norm(q))
     if am:
@@ -436,7 +442,7 @@ def search(c, q, case_id=None, k=5, firm_id=1, as_of=None):
                      "WHERE v.version_id=chunks.document_version_id AND v.review_status='verified' "
                      "AND v.authenticity_verified=1 AND v.status_verified=1 AND v.amendment_history_verified=1 AND EXISTS (SELECT 1 FROM legal_documents d JOIN legal_sources s ON s.source_id=d.source_id WHERE d.document_id=v.document_id AND s.collection_permission='allowed' AND s.commercial_reuse_permission='allowed' AND TRIM(COALESCE(s.permission_evidence,''))<>'' AND TRIM(COALESCE(v.permission_evidence,''))<>'') AND (v.legal_status='in_force' OR (v.legal_status IN ('repealed','historical') AND v.repeal_date IS NOT NULL)) "
                      "AND v.effective_date IS NOT NULL AND v.effective_date<=? AND (v.repeal_date IS NULL OR v.repeal_date>?)) )")
-        for r in c.execute(exact_sql, (am.group(1), int(allow_legacy), as_of, as_of)):
+        for r in c.execute(exact_sql, (am.group(1), int(allow_legacy), as_of, as_of, scope, scope, scope)):
             exact.add(r["id"]); cand.setdefault(r["id"], (r, 0))
     if not cand: return []
     top, qg, expanded_qg, out = (max(b for _, b in cand.values()) or 1), grams(q), grams(" ".join(expanded_qt)), []
@@ -448,7 +454,7 @@ def search(c, q, case_id=None, k=5, firm_id=1, as_of=None):
         cs = max(original_match, 0.85 * expanded_match)
         out.append({"id": i, "ref": r["ref"], "text": r["text"], "in_force": bool(r["in_force"]), "verified": bool(r["verified"]), "as_of": r["as_of"],
                     "source": r["source"], "cos": round(cs, 3), "literal_match": round(original_match, 3), "expanded_match": round(expanded_match, 3), "score": 0.5 * b / top + 0.5 * cs + (1 if i in exact else 0),
-                    "requested_as_of": as_of, "document_version_id": r["document_version_id"],
+                    "requested_as_of": as_of, "document_version_id": r["document_version_id"], "article": r["article"], "page": None,
                     "applies_as_of": bool(r["in_force"]) if r["document_version_id"] is None else True,
                     "provenance": citation_provenance(c, r["document_version_id"])})
     return sorted(out, key=lambda x: -x["score"])[:k]
@@ -570,12 +576,12 @@ def _answer_has_unsupported_quantities(answer, hits, cited_indices):
     return not claims.issubset(supported)
 
 
-def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None):
+def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None, scope="all_permitted"):
     # Context helps resolve follow-ups, but the current question remains explicit in the answer prompt.
     retrieval_query = ((conversation_context.strip() + "\n") if conversation_context else "") + q
-    hits = search(c, retrieval_query, case_id, firm_id=firm_id, as_of=as_of)
+    hits = search(c, retrieval_query, case_id, firm_id=firm_id, as_of=as_of, scope=scope)
     if not hits or (hits[0]["cos"] < MIN_SCORE and hits[0]["score"] < 1):
-        return {"found": False, "answer": None, "sources": [], "message": "لم أجد مصدرا ذا صلة، ولن أخمن.", "requested_as_of": as_of or date.today().isoformat()}
+        return {"found": False, "answer": None, "sources": [], "scope": scope, "message": "لم أجد مصدرا ذا صلة، ولن أخمن.", "requested_as_of": as_of or date.today().isoformat()}
     source_blocks = []
     for i, hit in enumerate(hits):
         source_blocks.append(
@@ -593,7 +599,7 @@ def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None):
             ans, msg = None, "فشل التحقق من الاستشهادات، تُعرض المصادر فقط."
         elif _answer_has_unsupported_quantities(ans, hits, cites):
             ans, msg = None, "تعذر التحقق من الأرقام أو المدد من نصوص المصادر المستشهد بها، تُعرض المصادر فقط."
-    return {"found": True, "answer": ans, "message": msg, "sources": hits, "not_in_force": [h["ref"] for h in hits if h["verified"] and not h.get("applies_as_of", h["in_force"])], "unverified_sources": [h["ref"] for h in hits if not h["verified"]], "requested_as_of": as_of or date.today().isoformat()}
+    return {"found": True, "answer": ans, "message": msg, "sources": hits, "scope": scope, "not_in_force": [h["ref"] for h in hits if h["verified"] and not h.get("applies_as_of", h["in_force"])], "unverified_sources": [h["ref"] for h in hits if not h["verified"]], "requested_as_of": as_of or date.today().isoformat()}
 
 
 # ---------------- API ----------------
@@ -712,7 +718,7 @@ def validate_operational_deadline(value):
     return value
 
 
-class Q(BaseModel): q: str = Field(min_length=1, max_length=500); case_id: int | None = None; as_of: str | None = Field(default=None, pattern=r"^\d{4}-\d{2}-\d{2}$")
+class Q(BaseModel): q: str = Field(min_length=1, max_length=500); case_id: int | None = None; as_of: str | None = Field(default=None, pattern=r"^\d{4}-\d{2}-\d{2}$"); scope: str = Field(default="verified_corpus", pattern=r"^(verified_corpus|firm_documents|all_permitted)$")
 class LoginIn(BaseModel): email: str = Field(max_length=200); password: str = Field(max_length=200)
 class PasswordChangeIn(BaseModel):
     current_password: str = Field(min_length=1, max_length=200)
@@ -1363,14 +1369,18 @@ def law_import(rows: list[LawRow], x_admin_token: str = Header(None), u: dict = 
 @app.post("/search")
 def do_search(b: Q, u: dict = Depends(user)):
     c = conn(); need(c, u, b.case_id)
-    try: return search(c, b.q, b.case_id, firm_id=u["firm_id"], as_of=b.as_of)
+    try:
+        need(c, u, b.case_id)
+        return search(c, b.q, b.case_id, firm_id=u["firm_id"], as_of=b.as_of, scope=b.scope)
     except ValueError as e: raise HTTPException(422, str(e))
 
 
 @app.post("/ask")
 def do_ask(b: Q, u: dict = Depends(user)):
     c = conn(); need(c, u, b.case_id)
-    try: return ask(c, b.q, b.case_id, firm_id=u["firm_id"], as_of=b.as_of)
+    try:
+        need(c, u, b.case_id)
+        return ask(c, b.q, b.case_id, firm_id=u["firm_id"], as_of=b.as_of, scope=b.scope)
     except ValueError as e: raise HTTPException(422, str(e))
 
 def _owned_research_conversation(c, u, conversation_id):
@@ -1459,11 +1469,16 @@ def delete_research_conversation(conversation_id: int, u: dict = Depends(user)):
 class ResearchMessageIn(BaseModel):
     message: str = Field(min_length=1, max_length=2000)
     as_of: str | None = Field(default=None, pattern=r"^\d{4}-\d{2}-\d{2}$")
+    scope: str = Field(default="verified_corpus", pattern=r"^(verified_corpus|firm_documents|all_permitted)$")
+    case_id: int | None = None
 
 
 @app.post("/research/conversations/{conversation_id}/messages")
 def send_research_message(conversation_id: int, b: ResearchMessageIn, u: dict = Depends(user)):
     c = conn(); conversation = _owned_research_conversation(c, u, conversation_id)
+    need(c, u, b.case_id)
+    if b.scope == "firm_documents" and b.case_id is None:
+        raise HTTPException(422, "Select a matter before searching firm documents")
     question = b.message.strip()
     if not question: raise HTTPException(422, "message cannot be blank")
     if b.as_of:
@@ -1478,7 +1493,7 @@ def send_research_message(conversation_id: int, b: ResearchMessageIn, u: dict = 
     c.execute("INSERT INTO research_messages(conversation_id,role,content) VALUES(?,?,?)",
               (conversation_id, "user", question))
     try:
-        result = ask(c, question, firm_id=u["firm_id"], as_of=b.as_of, conversation_context=context)
+        result = ask(c, question, case_id=b.case_id, firm_id=u["firm_id"], as_of=b.as_of, conversation_context=context, scope=b.scope)
     except ValueError as e:
         c.rollback()
         raise HTTPException(422, str(e))
