@@ -88,6 +88,23 @@ class TenantCatalogTests(unittest.TestCase):
         with self.assertRaisesRegex(TenantCatalogError, "missing"):
             resolve_tenant_database(self.catalog, 9, self.root)
 
+    def test_symlink_to_another_tenant_database_is_rejected(self):
+        first = provision_tenant_database(self.catalog, 11, self.root, self.initialize_tenant)
+        second = provision_tenant_database(self.catalog, 12, self.root, self.initialize_tenant)
+        alias = self.root / "tenant-11-" / "unused"
+        alias.parent.mkdir(exist_ok=True)
+        alias.unlink(missing_ok=True)
+        link = self.root / "tenant-11-" / "unused"
+        # Catalog filenames are validated; use the exact catalog filename for
+        # firm 11 and replace its directory entry with a symlink to firm 12.
+        row = self.catalog.execute(
+            "SELECT database_file FROM tenant_database_catalog WHERE firm_id=11"
+        ).fetchone()
+        first.unlink()
+        (self.root / row[0]).symlink_to(second)
+        with self.assertRaisesRegex(TenantCatalogError, "symlink"):
+            resolve_tenant_database(self.catalog, 11, self.root)
+
     def test_disabled_tenant_cannot_be_resolved(self):
         provision_tenant_database(self.catalog, 10, self.root, self.initialize_tenant)
         self.catalog.execute(
