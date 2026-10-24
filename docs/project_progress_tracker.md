@@ -9,7 +9,7 @@
 - **In progress:** 2 of 20 deliverables (**10%**).
 - **Not started, blocked, or awaiting validation:** 14 of 20 (**70%**).
 - **Merged PRs from this workstream:** #88, #89, #90, #91.
-- **Open PRs:** #92 (corpus/UX roadmap documentation), #94 (coverage dashboard implementation; CI was running at last check).
+- **Open PRs:** [#92](https://github.com/abdelmalek384/legal_copilot_latest/pull/92) (corpus/UX roadmap documentation), [#94](https://github.com/abdelmalek384/legal_copilot_latest/pull/94) (coverage dashboard implementation; initial implementation CI passed, but latest refinements still need a fresh run).
 - **External permission requests:** not sent by this project workflow. Claude is expected to handle outreach; approval is not assumed.
 - **Manual UI QA:** not yet completed.
 
@@ -51,7 +51,7 @@ Percentages count deliverables equally; they are not a claim that 20% of all cod
 
 1. Check CI for PR #94; fix any API or frontend regression before merge.
 2. Review and merge PR #92 once its documentation is approved.
-3. After #94 is merged, implement the full Research Results & Source Inspector (RSH-01).
+3. Implement the Research Results & Source Inspector tracked in [Issue #95](https://github.com/abdelmalek384/legal_copilot_latest/issues/95) after #94 is merged.
 4. In parallel, build the metadata-only instrument inventory and document source-specific terms.
 5. Record Claude's outreach status and any written replies in the permission tracker; do not change permissions until written terms are reviewed.
 
