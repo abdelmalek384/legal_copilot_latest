@@ -22,7 +22,8 @@ class TenantOwnershipPreflightTests(unittest.TestCase):
             CREATE TABLE docs(id INTEGER PRIMARY KEY, case_id INTEGER, firm_id INTEGER, uploader_user_id INTEGER);
             CREATE TABLE chunks(id INTEGER PRIMARY KEY, case_id INTEGER, document_id INTEGER);
             CREATE TABLE research_conversations(id INTEGER PRIMARY KEY, user_id INTEGER, firm_id INTEGER);
-            CREATE TABLE case_deletion_audit(id INTEGER PRIMARY KEY, firm_id INTEGER, actor_user_id INTEGER);\n            CREATE TABLE document_extraction_reviews(id INTEGER PRIMARY KEY, document_id INTEGER, case_id INTEGER, firm_id INTEGER, chunk_id INTEGER, reviewer_user_id INTEGER);
+            CREATE TABLE case_deletion_audit(id INTEGER PRIMARY KEY, firm_id INTEGER, actor_user_id INTEGER);
+            CREATE TABLE document_extraction_reviews(id INTEGER PRIMARY KEY, document_id INTEGER, case_id INTEGER, firm_id INTEGER, chunk_id INTEGER, reviewer_user_id INTEGER);
             INSERT INTO firms VALUES (1,'Firm One'),(2,'Firm Two');
             INSERT INTO users VALUES (1,1),(2,2),(3,NULL);
             INSERT INTO cases VALUES (10,1),(20,2),(30,NULL);
@@ -30,7 +31,8 @@ class TenantOwnershipPreflightTests(unittest.TestCase):
             INSERT INTO docs VALUES (100,10,1,1),(200,20,1,2),(300,999,2,2),(400,10,NULL,1),(500,NULL,1,2),(600,10,1,999);
             INSERT INTO chunks VALUES (1000,10,100),(2000,20,100),(3000,999,999),(4000,NULL,NULL);
             INSERT INTO research_conversations VALUES (1,2,1);
-            INSERT INTO case_deletion_audit VALUES (1,NULL,1),(2,1,2);\n            INSERT INTO document_extraction_reviews VALUES (1,100,10,1,1000,2),(2,999,10,1,9999,1),(3,100,20,2,1000,1),(4,100,999,1,1000,1);
+            INSERT INTO case_deletion_audit VALUES (1,NULL,1),(2,1,2);
+            INSERT INTO document_extraction_reviews VALUES (1,100,10,1,1000,2),(2,999,10,1,9999,1),(3,100,20,2,1000,1),(4,100,999,1,1000,1);
         """)
 
     def tearDown(self):
