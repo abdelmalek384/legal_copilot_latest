@@ -9,6 +9,8 @@ The validator in tools/validate_phase2_document_inventory.py and tests/test_phas
 - Required root fields and non-empty source/document/action collections.
 - Unique instrument IDs and next-action IDs.
 - Every instrument references a source record already present in the inventory.
+- Source records include authority, source class, an explicit permission state, and a next action; unsupported source permission values are rejected.
+- Source-level permission is checked independently from instrument-level collection and reuse permission. An "allowed" source state does not promote any document's permission, review status, or legal status.
 - Known source, collection-permission, legal-status, review-status and action-status values.
 - HTTPS-only source links (or null where a source URL has not been verified).
 - No embedded legal passage/full-text/content payloads.
@@ -20,7 +22,8 @@ The current inventory has 69 unique instrument candidates across 13 source recor
 ## Operating rules
 
 1. Unknown stays unknown. An official publisher or discovered URL does not grant collection, OCR, storage, indexing, commercial display, or redistribution permission.
-2. Discovery status is not authenticity, current-law, amendment-history, or legal-effect verification.
-3. Source indexes and secondary catalogues are discovery aids; primary text and Gazette issue/page evidence remain separate requirements.
-4. The inventory validator is a structural safeguard, not legal research approval. A qualified Egyptian lawyer must review the exact instrument, amendments, commencement, repeal/transition, and relevant court rulings before a version is marked verified.
-5. Do not fetch, scrape, or download source content merely to populate this inventory.
+2. Source discovery and source-level terms are not item-level permission evidence. Confirm the exact instrument, intended acquisition method, storage, extraction, indexing, display, and commercial use separately.
+3. Discovery status is not authenticity, current-law, amendment-history, or legal-effect verification.
+4. Source indexes and secondary catalogues are discovery aids; primary text and Gazette issue/page evidence remain separate requirements.
+5. The inventory validator is a structural safeguard, not legal research approval. A qualified Egyptian lawyer must review the exact instrument, amendments, commencement, repeal/transition, and relevant court rulings before a version is marked verified.
+6. Do not fetch, scrape, or download source content merely to populate this inventory.
