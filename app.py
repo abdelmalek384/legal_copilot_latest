@@ -709,6 +709,9 @@ def validate_operational_deadline(value):
 
 class Q(BaseModel): q: str = Field(min_length=1, max_length=500); case_id: int | None = None; as_of: str | None = Field(default=None, pattern=r"^\d{4}-\d{2}-\d{2}$")
 class LoginIn(BaseModel): email: str = Field(max_length=200); password: str = Field(max_length=200)
+class PasswordChangeIn(BaseModel):
+    current_password: str = Field(min_length=1, max_length=200)
+    new_password: str = Field(min_length=12, max_length=200)
 class UserCreateIn(BaseModel):
     name: str = Field(min_length=1, max_length=120)
     email: str = Field(min_length=3, max_length=200)
@@ -942,6 +945,24 @@ def logout(request: Request, response: Response, u: dict = Depends(user)):
     response.delete_cookie("lc_session", path="/", httponly=True, samesite="lax", secure=request.url.scheme == "https")
     response.delete_cookie("lc_csrf", path="/", samesite="lax", secure=request.url.scheme == "https")
     return {"ok": True}
+
+
+
+@app.post("/account/password")
+def change_password(b: PasswordChangeIn, request: Request, response: Response, u: dict = Depends(user)):
+    c = conn()
+    row = c.execute("SELECT pw FROM users WHERE id=? AND active=1", (u["id"],)).fetchone()
+    if not row or not check_pw(b.current_password, row["pw"]):
+        raise HTTPException(403, "current password is incorrect")
+    if check_pw(b.new_password, row["pw"]):
+        raise HTTPException(422, "new password must differ from current password")
+    c.execute("BEGIN IMMEDIATE")
+    c.execute("UPDATE users SET pw=? WHERE id=? AND active=1", (hash_pw(b.new_password), u["id"]))
+    c.execute("DELETE FROM auth_sessions WHERE user_id=?", (u["id"],))
+    c.commit()
+    response.delete_cookie("lc_session", path="/", httponly=True, samesite="lax", secure=request.url.scheme == "https")
+    response.delete_cookie("lc_csrf", path="/", samesite="lax", secure=request.url.scheme == "https")
+    return {"ok": True, "sessions_revoked": True, "login_required": True}
 
 
 @app.post("/conflicts")
