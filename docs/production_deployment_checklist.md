@@ -16,6 +16,7 @@ This checklist is a release gate, not a certification. Completing it does not re
 
 - [ ] Set `ADMIN_TOKEN` to a randomly generated secret of at least 32 characters using the deployment secret manager. Never put it in source control, images, tickets, or logs.
 - [ ] Keep `LLM_KEY` and any other credentials in the secret manager; do not expose them to the browser.
+- [ ] Keep `LLM_DATA_PROCESSING_APPROVED` unset until the exact configured endpoint/model and its data-handling terms have been reviewed and approved for the intended data class. Set it to `1` only with documented approval; the setting is an operator attestation, not a technical privacy guarantee.
 - [ ] Use unique administrator credentials, a strong password, and least-privilege role assignment.
 - [ ] Establish a documented process for administrator offboarding, password reset, and secret rotation.
 - [ ] Until 2FA and self-service recovery are implemented and reviewed, document this limitation and apply compensating controls to administrator access.
