@@ -286,7 +286,7 @@ assert c.post("/research/discover", json={"q":"valid"}, headers=O).status_code =
 # Saving a research answer preserves the as-of date, scope, citations, and caveats in the matter note.
 assistant_message = chat_after_followup["messages"][-1]
 saved = c.post(f"/research/conversations/{chat_id}/save-to-matter",
-               json={"case_id":cid,"message_id":assistant_message["id"]}, headers=L)
+               json={"case_id":scope_cid,"message_id":assistant_message["id"]}, headers=L)
 assert saved.status_code == 201, saved.text
 saved_note = db.execute("SELECT text FROM notes WHERE id=?", (saved.json()["note_id"],)).fetchone()["text"]
 assert "LEGAL RESEARCH MEMO" in saved_note and "As of:" in saved_note and "Search scope:" in saved_note
