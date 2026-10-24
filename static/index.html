@@ -211,6 +211,57 @@ async function clients(){const cs=await api('/cases'),g={};cs.forEach(c=>(g[c.cl
  shell('العملاء',btn('+ قضية جديدة',newCase),h('div',{className:'card'},h('h3',{textContent:'فحص أولي لتعارض المصالح'}),h('div',{className:'row'},cq,btn('فحص',run)),cb),
  cs.length?Object.entries(g).map(([k,v])=>h('div',{className:'card'},h('h3',{textContent:'📁 '+k}),h('div',{className:'mut',textContent:v.length+' قضايا'}),v.map(caseRow))):h('div',{className:'card'},empty('لا توجد قضايا بعد. أنشئ أول قضية.')))}
 async function casesPage(){PAGE='cases';const cs=await api('/cases'),q=h('input',{placeholder:uiText('ابحث بالعنوان أو العميل أو رقم القضية أو الخصم','Search title, client, case number or opposing party')}),status=h('select',{},new Option(uiText('كل الحالات','All statuses'),''),new Option(uiText('مفتوحة','Open'),'open'),new Option(uiText('مغلقة','Closed'),'closed')),box=h('div',{className:'card'}),summary=h('div',{className:'mut'});const draw=()=>{const needle=q.value.trim().toLocaleLowerCase();const rows=cs.filter(c=>(!status.value||c.status===status.value)&&[c.title,c.client,c.case_number,c.case_year,c.court,c.circuit,c.opposing_party].filter(Boolean).join(' ').toLocaleLowerCase().includes(needle));summary.textContent=rows.length+' '+uiText('قضية','cases');box.replaceChildren(summary,...(rows.length?rows.map(caseRow):[empty(uiText('لا توجد قضايا مطابقة.','No matching cases.'))]))};q.oninput=status.onchange=draw;shell(uiText('القضايا','Cases'),h('p',{className:'workspace-subtitle',textContent:uiText('ابحث في بيانات القضايا الأساسية ثم افتح الملف لإدارة التفاصيل.','Search case metadata, then open a matter to manage its details.')}),h('div',{className:'filter-bar'},q,status,btn(uiText('+ قضية جديدة','+ New case'),newCase)),box);draw()}
+async function corpusCoverage(){
+ PAGE='coverage';
+ const ar=LANG==='ar';
+ const title=ar?'تغطية المجموعة القانونية':'Corpus Coverage & Provenance';
+ shell(title,h('p',{className:'mut',textContent:ar?'هذه مؤشرات لسجلات المصادر والإصدارات، وليست دليلاً على اكتمال القانون المصري.':'These metrics describe registered source/version records; they do not establish complete Egyptian-law coverage.'}));
+ const main=$('main');
+ const loading=h('div',{className:'card',role:'status',textContent:ar?'جارٍ تحميل المؤشرات…':'Loading metrics…'});
+ main.append(loading);
+ let data;
+ try{data=await api('/legal-review/coverage')}catch(_){loading.textContent=ar?'تعذر تحميل المؤشرات. أعد المحاولة.':'Could not load metrics. Please retry.';return}
+ const m=data.metrics||{};
+ const labels=ar?{
+ source_count:'المصادر المسجلة',document_count:'الأدوات القانونية المسجلة',version_count:'إصدارات المستندات',
+ metadata_only_documents:'أدوات ببيانات وصفية فقط',pending_source_review:'بانتظار مراجعة المصدر',
+ pending_lawyer_review:'بانتظار مراجعة المحامي',rejected_versions:'إصدارات مرفوضة',
+ labelled_verified_versions:'إصدارات موسومة كمتحقق منها',verified_operational_versions:'نصوص سارية اجتازت جميع بوابات التحقق',
+ missing_authenticity_review:'تحتاج مراجعة الأصالة',missing_status_review:'تحتاج مراجعة الحالة القانونية',
+ missing_amendment_history:'تاريخ التعديلات غير متحقق',permission_or_evidence_blocked_versions:'محجوبة بسبب الإذن أو الدليل'
+ }:{
+ source_count:'Registered sources',document_count:'Registered instruments',version_count:'Document versions',
+ metadata_only_documents:'Metadata-only instruments',pending_source_review:'Awaiting source review',
+ pending_lawyer_review:'Awaiting lawyer review',rejected_versions:'Rejected versions',
+ labelled_verified_versions:'Versions labelled verified',verified_operational_versions:'Operative texts passing all verification gates',
+ missing_authenticity_review:'Missing authenticity review',missing_status_review:'Missing legal-status review',
+ missing_amendment_history:'Amendment history unverified',permission_or_evidence_blocked_versions:'Blocked by permission or evidence'
+ };
+ const cards=h('div',{className:'grid'});
+ Object.entries(labels).forEach(([key,label])=>{
+   const value=Number(m[key]||0);
+   const card=h('div',{className:'card stat'},h('b',{textContent:String(value)}),h('span',{textContent:label}));
+   if(key==='verified_operational_versions')card.append(h('p',{className:'mut',textContent:ar?'يتطلب الإذن التجاري ودليل الإذن وتحقق الأصالة والسريان والتعديلات.':'Requires commercial reuse permission, evidence, authenticity, legal-status and amendment checks.'}));
+   if(key==='labelled_verified_versions')card.append(h('p',{className:'mut',textContent:ar?'الوسم وحده لا يعني أن النص اجتاز جميع البوابات.':'The label alone does not mean all verification gates passed.'}));
+   cards.append(card);
+ });
+ const permissions=h('section',{className:'card'},h('h3',{textContent:ar?'حالة الأذونات':'Permission states'}));
+ const permRows=data.sources_by_permission||[];
+ if(!permRows.length)permissions.append(h('p',{className:'mut',textContent:ar?'لا توجد مصادر مسجلة بعد.':'No sources registered yet.'}));
+ permRows.forEach(r=>permissions.append(h('div',{className:'row'},h('span',{textContent:(r.collection_permission||'unknown')+' / '+(r.commercial_reuse_permission||'unknown')}),pill(String(r.source_count),r.collection_permission==='allowed'&&r.commercial_reuse_permission==='allowed'?'done':'soon'))));
+ const areas=h('section',{className:'card'},h('h3',{textContent:ar?'التغطية حسب مجال الممارسة':'Coverage by practice area'}));
+ const areaRows=data.coverage_by_practice_area||[];
+ if(!areaRows.length)areas.append(h('p',{className:'mut',textContent:ar?'لا توجد أدوات قانونية مسجلة بعد.':'No instruments registered yet.'}));
+ areaRows.forEach(r=>areas.append(h('div',{className:'row'},h('div',{},h('b',{textContent:r.practice_area==='unknown'?(ar?'غير مصنف':'Unclassified'):r.practice_area}),h('div',{className:'mut',textContent:ar?'عدد الأدوات المسجلة':'Registered instruments'})),h('span',{textContent:String(r.document_count)+' · '+String(r.documents_with_verified_operational_text||0)+' '+(ar?'نص ساري متحقق':'verified operative text')}))));
+ const warning=h('section',{className:'card'},h('h3',{textContent:ar?'حدود المؤشرات':'Metric limitations'}));
+ (data.warnings||[]).forEach(w=>warning.append(h('p',{className:'mut',textContent:'• '+w})));
+ const actions=h('div',{className:'row'},btn(ar?'فتح قائمة مراجعة المصادر':'Open source review queue',()=>reviewWorkbench(),'g'),btn(ar?'تحديث':'Refresh',()=>corpusCoverage(),'primary'));
+ loading.remove();
+ main.append(cards,h('div',{className:'cols'},permissions,areas),warning,actions);
+ applyLanguage();
+}
+
+
 async function reviewWorkbench(){
  PAGE='review';
  if(ME.role!=='admin'){toast(LANG==='ar'?'هذه الصفحة مخصصة لمسؤول النظام':'Administrator access required');dash();return}
