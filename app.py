@@ -859,6 +859,13 @@ def require_admin(u):
     if u["role"] != "admin": raise HTTPException(403, "admin only")
 
 
+def require_platform_legal_reviewer(token: str | None):
+    """Fail closed unless a separately provisioned platform reviewer secret is configured."""
+    expected = os.environ.get("LEGAL_REVIEW_ADMIN_TOKEN", "")
+    if len(expected) < 32 or not token or not hmac.compare_digest(expected.encode("utf-8"), token.encode("utf-8")):
+        raise HTTPException(403, "platform legal reviewer authorization required")
+
+
 def ocr_pdf_text(data, lang=None, max_pages=30):
     """OCR a small scanned PDF when optional local OCR dependencies are installed.
 
@@ -1044,8 +1051,8 @@ def conflict_check(b: Q, u: dict = Depends(user)):
 
 
 @app.get("/legal-review/queue")
-def legal_review_queue(u: dict = Depends(user)):
-    require_admin(u)
+def legal_review_queue(u: dict = Depends(user), x_legal_review_token: str | None = Header(None)):
+    require_platform_legal_reviewer(x_legal_review_token)
     c = conn()
     rows = c.execute(
         "SELECT v.version_id,v.document_id,v.version_label,v.source_url,v.publication_date,"
@@ -1065,9 +1072,9 @@ def legal_review_queue(u: dict = Depends(user)):
 
 
 @app.get("/legal-review/coverage")
-def legal_review_coverage(u: dict = Depends(user)):
+def legal_review_coverage(u: dict = Depends(user), x_legal_review_token: str | None = Header(None)):
     """Permission-aware registry metrics; these counts do not certify legal completeness."""
-    require_admin(u)
+    require_platform_legal_reviewer(x_legal_review_token)
     c = conn()
     today = date.today().isoformat()
     metrics = c.execute(
@@ -1123,8 +1130,8 @@ def legal_review_coverage(u: dict = Depends(user)):
 
 
 @app.get("/legal-review/versions/{version_id}/events")
-def legal_review_events(version_id: int, u: dict = Depends(user)):
-    require_admin(u)
+def legal_review_events(version_id: int, u: dict = Depends(user), x_legal_review_token: str | None = Header(None)):
+    require_platform_legal_reviewer(x_legal_review_token)
     c = conn()
     version = c.execute("SELECT version_id,document_id,version_label,source_url,review_status,legal_status FROM legal_document_versions WHERE version_id=?", (version_id,)).fetchone()
     if not version:
@@ -1138,8 +1145,8 @@ def legal_review_events(version_id: int, u: dict = Depends(user)):
 
 
 @app.post("/legal-review/versions/{version_id}/events", status_code=201)
-def create_legal_review_event(version_id: int, b: LegalReviewEventIn, u: dict = Depends(user)):
-    require_admin(u)
+def create_legal_review_event(version_id: int, b: LegalReviewEventIn, u: dict = Depends(user), x_legal_review_token: str | None = Header(None)):
+    require_platform_legal_reviewer(x_legal_review_token)
     evidence_url = validate_review_evidence_url(b.evidence_url)
     if b.outcome == "pass" and not evidence_url:
         raise HTTPException(422, "a passing review requires an HTTPS evidence_url")
