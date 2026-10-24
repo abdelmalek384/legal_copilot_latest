@@ -68,6 +68,10 @@ class LegalVersionedRegistryTests(unittest.TestCase):
     def _make_linked_chunk(self, version_label, effective_date, repeal_date=None, review_status="verified", legal_status="in_force", authenticity_verified=1, status_verified=1, amendment_history_verified=1, text="versionprobe legal text", chunk_in_force=1):
         self.db.execute("INSERT INTO legal_sources(source_id,authority,source_page) VALUES(?,?,?)",
                         ("S_" + version_label, "Example Authority", "https://example.gov"))
+        self.db.execute(
+            "UPDATE legal_sources SET collection_permission='allowed',commercial_reuse_permission='allowed',permission_evidence=? WHERE source_id=?",
+            ("https://example.gov/terms#commercial-reuse", "S_" + version_label)
+        )
         self.db.execute("INSERT INTO legal_documents(document_id,source_id,official_title,document_type) VALUES(?,?,?,?)",
                         ("D_" + version_label, "S_" + version_label, "Test law", "legislation"))
         cur = self.db.execute(
@@ -75,8 +79,8 @@ class LegalVersionedRegistryTests(unittest.TestCase):
             ("D_" + version_label, version_label, "https://example.gov/" + version_label + ".pdf", effective_date, repeal_date, legal_status, review_status, authenticity_verified, status_verified)
         )
         self.db.execute(
-            "UPDATE legal_document_versions SET amendment_history_verified=? WHERE version_id=?",
-            (amendment_history_verified, cur.lastrowid)
+            "UPDATE legal_document_versions SET amendment_history_verified=?,permission_evidence=? WHERE version_id=?",
+            (amendment_history_verified, "https://example.gov/terms#commercial-reuse", cur.lastrowid)
         )
         self.app.add_chunks(self.db, [{"ref":"Test law - article 1","article":"1","text":text,"in_force":chunk_in_force,"verified":1,"source":"https://example.gov"}])
         chunk_id = self.db.execute("SELECT id FROM chunks WHERE ref='Test law - article 1' ORDER BY id DESC LIMIT 1").fetchone()[0]
@@ -92,6 +96,29 @@ class LegalVersionedRegistryTests(unittest.TestCase):
         hits = self.app.search(self.db, "versionprobe", as_of="2026-10-23")
         self.assertEqual([h["id"] for h in hits], [chunk_id])
         self.assertEqual(hits[0]["requested_as_of"], "2026-10-23")
+
+    def test_commercial_reuse_permission_and_evidence_are_required_for_search(self):
+        chunk_id, version_id = self._make_linked_chunk(
+            "permission-gate", "2020-01-01", text="permissiongateprobe legal text"
+        )
+        self.db.execute(
+            "UPDATE legal_sources SET collection_permission='unknown',commercial_reuse_permission='unknown',permission_evidence=NULL WHERE source_id=?",
+            ("S_permission-gate",)
+        )
+        self.db.commit()
+        self.assertEqual(self.app.search(self.db, "permissiongateprobe", as_of="2026-10-23"), [])
+        self.assertEqual(self.app.search(self.db, "المادة 1", as_of="2026-10-23"), [])
+        self.db.execute(
+            "UPDATE legal_sources SET collection_permission='allowed',commercial_reuse_permission='allowed',permission_evidence=? WHERE source_id=?",
+            ("https://example.gov/terms#commercial-reuse", "S_permission-gate")
+        )
+        self.db.execute(
+            "UPDATE legal_document_versions SET permission_evidence=? WHERE version_id=?",
+            ("https://example.gov/terms#commercial-reuse", version_id)
+        )
+        self.db.commit()
+        self.assertEqual([h["id"] for h in self.app.search(self.db, "permissiongateprobe", as_of="2026-10-23")], [chunk_id])
+        self.assertIn(chunk_id, [h["id"] for h in self.app.search(self.db, "المادة 1", as_of="2026-10-23")])
 
     def test_amendment_history_must_be_verified_for_regular_and_exact_search(self):
         chunk_id, version_id = self._make_linked_chunk(
