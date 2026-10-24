@@ -1,0 +1,31 @@
+-- Matter schema for one already-selected firm database. Identity remains external.
+PRAGMA foreign_keys = ON;
+CREATE TABLE cases(id INTEGER PRIMARY KEY,title TEXT,client TEXT,stage TEXT NOT NULL DEFAULT '',status TEXT NOT NULL DEFAULT 'open',created_by INTEGER,firm_id INTEGER,case_number TEXT NOT NULL DEFAULT '',case_year TEXT NOT NULL DEFAULT '',court TEXT NOT NULL DEFAULT '',circuit TEXT NOT NULL DEFAULT '',opposing_party TEXT NOT NULL DEFAULT '',created_at TEXT NOT NULL DEFAULT (datetime('now')));
+CREATE TABLE notes(id INTEGER PRIMARY KEY,case_id INTEGER NOT NULL REFERENCES cases(id) ON DELETE CASCADE,created_by INTEGER,text TEXT,created_at TEXT NOT NULL DEFAULT (datetime('now')));
+CREATE TABLE deadlines(id INTEGER PRIMARY KEY,case_id INTEGER NOT NULL REFERENCES cases(id) ON DELETE CASCADE,title TEXT,due TEXT,note TEXT NOT NULL DEFAULT '',created_by INTEGER,status TEXT NOT NULL DEFAULT 'open');
+CREATE TABLE fees(id INTEGER PRIMARY KEY,case_id INTEGER NOT NULL REFERENCES cases(id) ON DELETE CASCADE,title TEXT,amount REAL NOT NULL DEFAULT 0,paid REAL NOT NULL DEFAULT 0,due TEXT,note TEXT NOT NULL DEFAULT '',created_by INTEGER);
+CREATE TABLE members(case_id INTEGER NOT NULL REFERENCES cases(id) ON DELETE CASCADE,user_id INTEGER NOT NULL,role TEXT,PRIMARY KEY(case_id,user_id));
+CREATE TABLE tasks(id INTEGER PRIMARY KEY,case_id INTEGER NOT NULL REFERENCES cases(id) ON DELETE CASCADE,title TEXT,assignee INTEGER,due TEXT,status TEXT NOT NULL DEFAULT 'open',created_by INTEGER);
+CREATE TABLE events(id INTEGER PRIMARY KEY,case_id INTEGER NOT NULL REFERENCES cases(id) ON DELETE CASCADE,who TEXT,at TEXT,text TEXT);
+-- This is case/calendar sessions, not authentication sessions.
+CREATE TABLE sessions(id INTEGER PRIMARY KEY,case_id INTEGER NOT NULL REFERENCES cases(id) ON DELETE CASCADE,date TEXT,note TEXT,done INTEGER NOT NULL DEFAULT 0);
+CREATE TABLE docs(id INTEGER PRIMARY KEY,case_id INTEGER NOT NULL REFERENCES cases(id) ON DELETE CASCADE,name TEXT,added TEXT,firm_id INTEGER,uploader_user_id INTEGER,sha256 TEXT,content_type TEXT,byte_size INTEGER,extraction_status TEXT,ocr_used INTEGER NOT NULL DEFAULT 0);
+CREATE TABLE document_extraction_reviews(id INTEGER PRIMARY KEY,document_id INTEGER NOT NULL REFERENCES docs(id) ON DELETE CASCADE,case_id INTEGER NOT NULL REFERENCES cases(id) ON DELETE CASCADE,firm_id INTEGER NOT NULL,chunk_id INTEGER NOT NULL,reviewer_user_id INTEGER NOT NULL,outcome TEXT NOT NULL CHECK(outcome IN ('accepted','corrected','needs_recheck')),original_text TEXT NOT NULL,reviewed_text TEXT NOT NULL,note TEXT NOT NULL DEFAULT '',page_reference TEXT NOT NULL DEFAULT '',created_at TEXT NOT NULL DEFAULT (datetime('now')));
+CREATE TABLE research_conversations(id INTEGER PRIMARY KEY,user_id INTEGER NOT NULL,firm_id INTEGER NOT NULL,title TEXT NOT NULL DEFAULT 'محادثة جديدة',created_at TEXT NOT NULL DEFAULT (datetime('now')),updated_at TEXT NOT NULL DEFAULT (datetime('now')));
+CREATE TABLE research_messages(id INTEGER PRIMARY KEY,conversation_id INTEGER NOT NULL REFERENCES research_conversations(id) ON DELETE CASCADE,role TEXT NOT NULL CHECK(role IN ('user','assistant')),content TEXT NOT NULL,sources_json TEXT NOT NULL DEFAULT '[]',message_json TEXT NOT NULL DEFAULT '{}',created_at TEXT NOT NULL DEFAULT (datetime('now')));
+CREATE TABLE chunks(id INTEGER PRIMARY KEY,ref TEXT,article TEXT,page TEXT,text TEXT NOT NULL,norm TEXT NOT NULL,case_id INTEGER NOT NULL REFERENCES cases(id) ON DELETE CASCADE,document_id INTEGER REFERENCES docs(id) ON DELETE CASCADE,in_force INTEGER NOT NULL DEFAULT 0,as_of TEXT,source TEXT,verified INTEGER NOT NULL DEFAULT 0);
+CREATE VIRTUAL TABLE chunks_fts USING fts5(norm,content='chunks',content_rowid='id');
+CREATE TRIGGER chunks_fts_insert AFTER INSERT ON chunks BEGIN INSERT INTO chunks_fts(rowid,norm) VALUES(new.id,new.norm); END;
+CREATE TRIGGER chunks_fts_delete AFTER DELETE ON chunks BEGIN INSERT INTO chunks_fts(chunks_fts,rowid,norm) VALUES('delete',old.id,old.norm); END;
+CREATE TRIGGER chunks_fts_update AFTER UPDATE OF norm ON chunks BEGIN INSERT INTO chunks_fts(chunks_fts,rowid,norm) VALUES('delete',old.id,old.norm); INSERT INTO chunks_fts(rowid,norm) VALUES(new.id,new.norm); END;
+CREATE TABLE case_deletion_audit(id INTEGER PRIMARY KEY,firm_id INTEGER NOT NULL,case_id INTEGER NOT NULL,actor_user_id INTEGER NOT NULL,actor_name TEXT NOT NULL,case_snapshot_json TEXT NOT NULL,events_snapshot_json TEXT NOT NULL,related_counts_json TEXT NOT NULL,deleted_at TEXT NOT NULL DEFAULT (datetime('now')));
+CREATE INDEX idx_cases_firm ON cases(firm_id);
+CREATE INDEX idx_notes_case_id ON notes(case_id);
+CREATE INDEX idx_deadlines_case_due ON deadlines(case_id,due,status);
+CREATE INDEX idx_fees_case_id ON fees(case_id);
+CREATE INDEX idx_members_user_case ON members(user_id,case_id);
+CREATE INDEX idx_tasks_case_id ON tasks(case_id);
+CREATE INDEX idx_docs_case_added ON docs(case_id,id DESC);
+CREATE INDEX idx_chunks_case_id ON chunks(case_id);
+CREATE INDEX idx_doc_reviews_document ON document_extraction_reviews(firm_id,document_id,id DESC);
+CREATE INDEX idx_case_deletion_audit_firm_id ON case_deletion_audit(firm_id,id DESC);
