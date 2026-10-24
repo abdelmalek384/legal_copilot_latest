@@ -259,6 +259,7 @@ assert captured["scope"] == "verified_corpus"
 # Search scopes are explicit; firm documents require a matter and never blend with the legal corpus.
 scope_cid = c.post("/cases", json={"title":"Research scope test"}, headers=L).json()["id"]
 app.add_doc(db, scope_cid, "Research scope fixture", "مدة العقد سنتان")
+app.add_chunks(db, [{"ref":"Page pinpoint fixture","text":"مدة التقادم في المثال التشغيلي سبع سنوات","case_id":scope_cid,"source":"case-file","article":"12","page":"17"}])
 db.commit()
 scope_chat = c.post("/research/conversations", json={}, headers=L)
 assert scope_chat.status_code == 200, scope_chat.text
@@ -272,6 +273,11 @@ assert firm_scope.json()["scope"] == "firm_documents"
 assert firm_scope.json().get("sources"), firm_scope.json()
 assert all(source.get("case_id") == scope_cid for source in firm_scope.json().get("sources", []))
 assert all(source.get("source_status") == "user_supplied_unverified" for source in firm_scope.json().get("sources", []))
+page_search = c.post("/search", json={"q":"التقادم المثال التشغيلي","case_id":scope_cid,"scope":"firm_documents"}, headers=L)
+assert page_search.status_code == 200, page_search.text
+page_hit = next(x for x in page_search.json() if x["ref"] == "Page pinpoint fixture")
+assert page_hit["page"] == "17" and page_hit["article"] == "12"
+assert "Page 17" in page_hit["citation"] and "Article 12" in page_hit["citation"]
 assert c.delete(f"/research/conversations/{scope_chat_id}", headers=L).status_code == 200
 
 # Metadata discovery searches catalog fields only and returns no fabricated passage on a miss.
