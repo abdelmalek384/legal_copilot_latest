@@ -72,6 +72,7 @@ The table list below is a schema-review queue. “Needs schema-level review” i
 
 | Table | Initial status | Required review |
 |---|---|---|
+| `chunks_fts` | Virtual table | FTS5 search index over normalized chunk text; inspect index rebuild and consistency behavior |
 | `chunks` | Needs schema-level review | Confirm firm ownership / global-law status, foreign keys, access paths, retention and backup treatment |
 | `firms` | Needs schema-level review | Confirm firm ownership / global-law status, foreign keys, access paths, retention and backup treatment |
 | `users` | Needs schema-level review | Confirm firm ownership / global-law status, foreign keys, access paths, retention and backup treatment |
