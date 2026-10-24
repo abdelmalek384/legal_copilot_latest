@@ -5,6 +5,7 @@ from collections import Counter
 from datetime import date
 from tools.research_inspector import source_status, citation_text, research_memo
 from storage import SQLiteConnectionProvider
+from db_migrations import apply_migrations
 from fastapi import Request
 from fastapi.responses import JSONResponse, HTMLResponse, Response
 
@@ -274,6 +275,9 @@ def conn():
                     if col not in case_cols:
                         c.execute("ALTER TABLE cases ADD COLUMN %s TEXT DEFAULT ''" % col)
                 c.commit()
+                # Versioned migrations run only after legacy bootstrap has created
+                # prerequisite tables; future schema changes should move here.
+                apply_migrations(c, os.path.join(os.path.dirname(__file__), "migrations"))
                 _schema_ready = True
     return c
 

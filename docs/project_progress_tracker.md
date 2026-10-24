@@ -1,6 +1,6 @@
 # Legal Copilot — Project Progress Tracker
 
-**Last updated:** 2026-10-24 (PR #123 merged with passing CI; PR #125 revenue roadmap CI passed and awaits merge; PR #126 legacy ownership quarantine CI passed on an earlier head, final session-hardening commit queued for CI)  
+**Last updated:** 2026-10-25 (PR #126 merged with passing CI on head 02104dd; DB-02 versioned migration framework in progress)  
 **Tracking method:** deliverable-level checklist, not an estimate of engineering hours. A task is “complete” only when its change is merged and its acceptance criteria are met. Open PRs are in progress, not complete.
 
 ## Overall status
@@ -9,7 +9,7 @@
 - **In progress:** 7 of 20 deliverables (**35.0%**).
 - **Not started, blocked, or awaiting validation:** 6 of 20 (**30.0%**).
 - **Merged PRs from this workstream:** #88, #89, #90, #91, #92, #94, #96, #97, #98, #99, #100, #101, #102, #103, #104, #105, #106, #107, #108, #109, #110, #112, #114, #115, #116, #117, #119, #120, #121, #123.
-- **Open PRs:** PR #125 adds the revenue-readiness roadmap (latest Tests workflow passed; awaiting merge). PR #126 contains SEC-01 legacy ownership quarantine; CI passed before the final session-hardening commit, so verify the latest head's workflow before merge. PR #119's data-ownership/migration map is merged as a draft; PR #117's identity/membership contract is merged as an unapproved proposal. PR #116's storage/file/backup/job inventory and PR #115's behavior-preserving SQLite connection-provider interface are merged. PR #123's read-only tenant ownership preflight is merged and its latest Tests workflow passed; it detects selected anomalies but does not migrate data or prove tenant isolation.
+- **Open PRs:** DB-02 introduces a checksum-verified SQLite migration runner and starts moving new DDL into versioned migrations; the legacy startup schema/ALTER statements are still present and must be migrated incrementally. PR #125 revenue roadmap remains deprioritized while database work continues. PR #119's data-ownership/migration map is merged as a draft; PR #117's identity/membership contract is merged as an unapproved proposal. PR #116's storage/file/backup/job inventory and PR #115's behavior-preserving SQLite connection-provider interface are merged. PR #123's read-only tenant ownership preflight is merged and detects selected anomalies but does not migrate data or prove tenant isolation. PR #126 is merged; it quarantines unclassified ownership and denies unclassified logins but does not route databases by tenant.
 - **External permission requests:** not sent by this project workflow. Claude is expected to handle outreach; approval is not assumed.
 - **Manual UI QA:** not yet completed.
 
