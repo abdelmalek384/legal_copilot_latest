@@ -25,6 +25,22 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("e.key==='Escape'", HTML)
         self.assertIn("@media(prefers-reduced-motion:reduce)", HTML)
 
+    def test_research_scope_is_explicit_and_metadata_discovery_is_separate(self):
+        self.assertIn("value:'verified_corpus'", HTML)
+        self.assertIn("value:'firm_documents'", HTML)
+        self.assertIn("value:'metadata_only'", HTML)
+        self.assertIn("'/research/discover'", HTML)
+        self.assertIn("Select a matter to search firm documents", HTML)
+
+    def test_source_inspector_exposes_status_pin_cites_copy_and_memo_actions(self):
+        self.assertIn("source_status", HTML)
+        self.assertIn("s.article", HTML)
+        self.assertIn("Copy citation", HTML)
+        self.assertIn("Copy exact passage", HTML)
+        self.assertIn("Export research memo", HTML)
+        self.assertIn("save-to-matter", HTML)
+        self.assertIn("No relevant verified legal text found in this scope", HTML)
+
     def test_focus_and_small_screen_rules_exist(self):
         self.assertIn(":focus-visible", HTML)
         self.assertIn("@media(max-width:420px)", HTML)
