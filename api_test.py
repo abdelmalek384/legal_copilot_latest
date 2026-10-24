@@ -385,3 +385,22 @@ try:
     assert "rate limit" in second_limited_request.json()["detail"].lower()
 finally:
     app._RATE_LIMITS["/search"] = _rate_limit_original
+
+# Upload throttling is enforced before authentication and shares a persistent per-IP bucket.
+_upload_limit_original = app._UPLOAD_RATE_LIMIT
+_upload_now = int(app.time.time())
+_upload_window = int(_upload_now // 3600) * 3600
+db.execute(
+    "DELETE FROM api_rate_limit_windows WHERE bucket='upload' AND client_key='testclient' AND window_start=?",
+    (_upload_window,),
+)
+db.commit()
+app._UPLOAD_RATE_LIMIT = (1, 3600)
+try:
+    _upload_first = c.post("/cases/1/upload", files={"file": ("rate-limit.docx", b"x")})
+    assert _upload_first.status_code != 429, _upload_first.text
+    _upload_second = c.post("/cases/1/upload", files={"file": ("rate-limit.docx", b"x")})
+    assert _upload_second.status_code == 429, _upload_second.text
+    assert int(_upload_second.headers.get("retry-after", "0")) > 0
+finally:
+    app._UPLOAD_RATE_LIMIT = _upload_limit_original
