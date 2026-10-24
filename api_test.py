@@ -69,7 +69,27 @@ tid = c.get("/dashboard", headers=J).json()["tasks"][0]["id"]
 assert c.post(f"/tasks/{tid}/done", headers=O).status_code == 404 and c.post(f"/tasks/{tid}/done", headers=J).status_code == 200
 assert c.post(f"/cases/{cid}/sessions", json={"date": "tomorrow"}, headers=L).status_code == 422
 d = docx.Document(); d.add_paragraph("مدة العقد سنتان ويجدد تلقائيا"); b = io.BytesIO(); d.save(b)
-assert c.post(f"/cases/{cid}/upload", files={"file": ("a.docx", b.getvalue())}, headers=J).status_code == 200
+upload_bytes = b.getvalue()
+upload_response = c.post(f"/cases/{cid}/upload", files={"file": ("a.docx", upload_bytes)}, headers=J)
+assert upload_response.status_code == 200, upload_response.text
+upload_meta = upload_response.json()
+assert upload_meta["document_id"] > 0 and upload_meta["chunks"] >= 1
+assert upload_meta["sha256"] == app.hashlib.sha256(upload_bytes).hexdigest()
+stored_doc = db.execute("SELECT * FROM docs WHERE id=?", (upload_meta["document_id"],)).fetchone()
+assert stored_doc["case_id"] == cid and stored_doc["firm_id"] == 1
+assert stored_doc["uploader_user_id"] == db.execute("SELECT id FROM users WHERE email='junior@x.eg'").fetchone()[0]
+assert stored_doc["sha256"] == upload_meta["sha256"]
+assert stored_doc["content_type"] == "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+assert stored_doc["byte_size"] == len(upload_bytes) and stored_doc["extraction_status"] == "text_extracted"
+assert stored_doc["ocr_used"] == 0
+linked_chunks = db.execute("SELECT COUNT(*) FROM chunks WHERE document_id=?", (upload_meta["document_id"],)).fetchone()[0]
+assert linked_chunks == upload_meta["chunks"] and linked_chunks >= 1
+# Duplicate uploads are intentionally separate matter records; hashes allow auditing without cross-matter deduplication.
+duplicate_upload = c.post(f"/cases/{cid}/upload", files={"file": ("renamed.docx", upload_bytes)}, headers=J)
+assert duplicate_upload.status_code == 200
+assert duplicate_upload.json()["sha256"] == upload_meta["sha256"]
+assert duplicate_upload.json()["document_id"] != upload_meta["document_id"]
+assert c.get(f"/cases/{cid}", headers=J).json()["docs"][0]["sha256"] == upload_meta["sha256"]
 assert c.post(f"/cases/{cid}/upload", files={"file": ("a.txt", b"hello world")}, headers=J).status_code == 415
 assert c.post(f"/cases/{cid}/upload", files={"file": ("a.docx", b"not a docx")}, headers=J).status_code == 422
 # Verify the OCR route metadata without requiring Tesseract in the CI runner.
@@ -86,6 +106,9 @@ assert _ocr_response.status_code == 200, _ocr_response.text
 assert _ocr_response.json()["ocr_used"] is True
 assert _ocr_response.json()["text_status"] == "ocr_unverified"
 assert _ocr_response.json()["chunks"] >= 1
+ocr_doc = db.execute("SELECT * FROM docs WHERE id=?", (_ocr_response.json()["document_id"],)).fetchone()
+assert ocr_doc["ocr_used"] == 1 and ocr_doc["extraction_status"] == "ocr_unverified"
+assert ocr_doc["sha256"] == app.hashlib.sha256(b"pdf bytes").hexdigest()
 
 assert c.post("/ask", json={"q": "مدة العقد", "case_id": cid}, headers=O).status_code == 404 and c.get(f"/cases/{cid}", headers=O).status_code == 404
 r = c.post("/ask", json={"q": "مدة العقد", "case_id": cid}, headers=J).json(); assert r["sources"][0]["source"] == "case-file"
@@ -113,6 +136,9 @@ other_cid = c.post("/cases", json={"title":"Private second-firm matter","client"
 assert c.get("/cases", headers=S).status_code == 200
 assert [x["id"] for x in c.get("/cases", headers=S).json()] == [other_cid]
 assert c.get(f"/cases/{cid}", headers=S).status_code == 404
+cross_firm_upload = c.post(f"/cases/{cid}/upload", files={"file": ("leak.docx", upload_bytes)}, headers=S)
+assert cross_firm_upload.status_code == 404, cross_firm_upload.text
+assert db.execute("SELECT COUNT(*) FROM docs WHERE firm_id=2").fetchone()[0] == 0
 assert c.post("/search", json={"q":"مدة العقد","case_id":cid}, headers=S).status_code == 404
 assert c.post("/ask", json={"q":"مدة العقد","case_id":cid}, headers=S).status_code == 404
 assert all(u["name"] != "Lead" for u in c.get("/users", headers=S).json())
