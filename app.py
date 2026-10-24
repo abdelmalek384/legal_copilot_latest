@@ -3,6 +3,7 @@ Run: pip install -r requirements.txt && uvicorn app:app --reload"""
 import sqlite3, re, json, os, io, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request, zipfile
 from collections import Counter
 from datetime import date
+from tools.research_inspector import source_status, citation_text, research_memo
 from fastapi import Request
 from fastapi.responses import JSONResponse, HTMLResponse, Response
 
@@ -454,9 +455,12 @@ def search(c, q, case_id=None, k=5, firm_id=1, as_of=None, scope="all_permitted"
         cs = max(original_match, 0.85 * expanded_match)
         out.append({"id": i, "ref": r["ref"], "text": r["text"], "in_force": bool(r["in_force"]), "verified": bool(r["verified"]), "as_of": r["as_of"],
                     "source": r["source"], "cos": round(cs, 3), "literal_match": round(original_match, 3), "expanded_match": round(expanded_match, 3), "score": 0.5 * b / top + 0.5 * cs + (1 if i in exact else 0),
-                    "requested_as_of": as_of, "document_version_id": r["document_version_id"], "article": r["article"], "page": None,
+                    "requested_as_of": as_of, "document_version_id": r["document_version_id"], "article": r["article"], "page": None, "case_id": r["case_id"], "scope": scope,
                     "applies_as_of": bool(r["in_force"]) if r["document_version_id"] is None else True,
                     "provenance": citation_provenance(c, r["document_version_id"])})
+    for item in out:
+        item["source_status"] = source_status(item, as_of)
+        item["citation"] = citation_text(item, as_of)
     return sorted(out, key=lambda x: -x["score"])[:k]
 
 
@@ -1389,6 +1393,83 @@ def _owned_research_conversation(c, u, conversation_id):
         (conversation_id, u["id"], u["firm_id"])).fetchone()
     if not row: raise HTTPException(404, "conversation not found")
     return dict(row)
+
+
+
+class ResearchDiscoveryIn(BaseModel):
+    q: str = Field(min_length=2, max_length=200)
+    as_of: str | None = Field(default=None, pattern=r"^\d{4}-\d{2}-\d{2}$")
+
+
+@app.post("/research/discover")
+def discover_research_metadata(b: ResearchDiscoveryIn, u: dict = Depends(user)):
+    """Search the registry catalog only; never fetch source pages or return legal text."""
+    as_of = b.as_of or date.today().isoformat()
+    try:
+        date.fromisoformat(as_of)
+    except ValueError:
+        raise HTTPException(422, "invalid as_of date")
+    c = conn()
+    terms = [x.strip() for x in b.q.split() if x.strip()][:8]
+    where, params = [], []
+    for term in terms:
+        like = "%" + term.replace("%", "\\%").replace("_", "\\_") + "%"
+        where.append("(d.official_title LIKE ? ESCAPE '\\' OR d.law_number LIKE ? ESCAPE '\\' OR CAST(d.law_year AS TEXT) LIKE ? ESCAPE '\\' OR s.authority LIKE ? ESCAPE '\\')")
+        params.extend([like, like, like, like])
+    sql = ("SELECT d.document_id,d.official_title,d.document_type,d.law_number,d.law_year,d.language,d.practice_area,"
+           "s.authority,s.source_page,s.access_status,s.collection_permission,s.commercial_reuse_permission,s.terms_url,"
+           "v.version_id,v.version_label,v.source_url,v.publication_date,v.effective_date,v.legal_status,v.review_status "
+           "FROM legal_documents d JOIN legal_sources s ON s.source_id=d.source_id "
+           "LEFT JOIN legal_document_versions v ON v.document_id=d.document_id "
+           "WHERE " + " AND ".join(where) + " ORDER BY d.official_title,v.version_id DESC LIMIT 30")
+    rows = [dict(r) for r in c.execute(sql, params).fetchall()]
+    for row in rows:
+        row["status"] = "metadata_only"
+        row["as_of"] = as_of
+        row["text_available"] = False
+        row["warning"] = "Catalog metadata only; no passage was retrieved and no current-law status is implied."
+    return {
+        "scope": "metadata_only",
+        "query": b.q,
+        "requested_as_of": as_of,
+        "results": rows,
+        "found": bool(rows),
+        "message": None if rows else "No matching registry metadata found. This does not establish that no applicable law exists.",
+        "warning": "Metadata discovery is separate from verified legal text. No source page was scraped or downloaded."
+    }
+
+
+class ResearchSaveToMatterIn(BaseModel):
+    case_id: int
+    message_id: int
+
+
+@app.post("/research/conversations/{conversation_id}/save-to-matter", status_code=201)
+def save_research_to_matter(conversation_id: int, b: ResearchSaveToMatterIn, u: dict = Depends(user)):
+    c = conn()
+    _owned_research_conversation(c, u, conversation_id)
+    need(c, u, b.case_id)
+    row = c.execute(
+        "SELECT content,message_json FROM research_messages WHERE id=? AND conversation_id=? AND role='assistant'",
+        (b.message_id, conversation_id)
+    ).fetchone()
+    if not row:
+        raise HTTPException(404, "research answer not found")
+    try:
+        result = json.loads(row["message_json"] or "{}")
+    except (TypeError, ValueError):
+        result = {}
+    prior_question = c.execute(
+        "SELECT content FROM research_messages WHERE conversation_id=? AND role='user' AND id<? ORDER BY id DESC LIMIT 1",
+        (conversation_id, b.message_id)
+    ).fetchone()
+    memo = research_memo(prior_question["content"] if prior_question else None, result)
+    if len(memo) > 10000:
+        memo = memo[:9850] + "\n\n[Memo truncated to fit matter-note limit.]"
+    cur = c.execute("INSERT INTO notes(case_id,created_by,text) VALUES(?,?,?)", (b.case_id, u["id"], memo))
+    log(c, b.case_id, u["name"], "Saved research memo to matter notes (note %s)" % cur.lastrowid)
+    c.commit()
+    return {"ok": True, "note_id": cur.lastrowid, "case_id": b.case_id, "as_of": result.get("requested_as_of") or date.today().isoformat()}
 
 
 @app.get("/research/conversations")
