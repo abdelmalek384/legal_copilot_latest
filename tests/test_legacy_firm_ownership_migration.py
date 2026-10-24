@@ -1,5 +1,9 @@
 """Regression tests for safe legacy firm-ownership classification."""
 import sqlite3
+import time
+from unittest.mock import patch
+
+from fastapi import HTTPException
 
 import app
 
@@ -62,5 +66,39 @@ def test_explicitly_owned_rows_are_not_quarantined():
         """)
         app._ensure_legacy_firm_ownership(db)
         assert db.execute("SELECT COUNT(*) FROM tenant_ownership_quarantine").fetchone()[0] == 0
+    finally:
+        db.close()
+
+
+
+def test_existing_session_for_unclassified_user_is_revoked():
+    db = sqlite3.connect(":memory:")
+    db.row_factory = sqlite3.Row
+    token = "legacy-session-token"
+    try:
+        db.executescript("""
+            CREATE TABLE users (
+                id INTEGER PRIMARY KEY, firm_id INTEGER, active INTEGER
+            );
+            CREATE TABLE auth_sessions (
+                token_hash TEXT PRIMARY KEY, user_id INTEGER, expires INTEGER
+            );
+        """)
+        db.execute("INSERT INTO users(id, firm_id, active) VALUES(1, NULL, 1)")
+        db.execute(
+            "INSERT INTO auth_sessions(token_hash, user_id, expires) VALUES(?,?,?)",
+            (app.sha(token), 1, int(time.time()) + 3600),
+        )
+        db.commit()
+
+        with patch("app.conn", return_value=db):
+            try:
+                app.user(request=None, session_cookie=token)
+            except HTTPException as exc:
+                assert exc.status_code == 401
+            else:
+                raise AssertionError("unclassified legacy account session must be denied")
+
+        assert db.execute("SELECT COUNT(*) FROM auth_sessions").fetchone()[0] == 0
     finally:
         db.close()
