@@ -28,18 +28,18 @@ class SQLiteConnectionProvider:
 
     def connection(self) -> sqlite3.Connection:
         """Get this thread's connection, creating it lazily when needed."""
-        connection = getattr(self._local, "connection", None)
+        connection = getattr(self._local, "c", None)
         if connection is None:
             connection = sqlite3.connect(self.database_path, timeout=self.timeout)
             connection.row_factory = sqlite3.Row
-            self._local.connection = connection
+            self._local.c = connection
         return connection
 
     def close_current_thread(self) -> None:
         """Close and clear the connection owned by the calling thread."""
-        connection = getattr(self._local, "connection", None)
+        connection = getattr(self._local, "c", None)
         if connection is not None:
             try:
                 connection.close()
             finally:
-                del self._local.connection
+                del self._local.c
