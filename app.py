@@ -637,14 +637,16 @@ def _rate_limit(request: Request):
     now = time.time()
     window_start = int(now // window_seconds) * window_seconds
     db = conn()
-    row = db.execute(
+    cursor = db.execute(
         """INSERT INTO api_rate_limit_windows(bucket,client_key,window_start,hits)
            VALUES(?,?,?,1)
            ON CONFLICT(bucket,client_key,window_start)
            DO UPDATE SET hits=api_rate_limit_windows.hits+1
            RETURNING hits""",
         (bucket, peer, window_start),
-    ).fetchone()
+    )
+    row = cursor.fetchone()
+    cursor.fetchall()  # Finish the RETURNING statement before committing.
     db.commit()
     global _rate_limit_checks
     with _rate_limit_lock:
