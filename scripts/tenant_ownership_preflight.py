@@ -73,6 +73,9 @@ def audit(conn: sqlite3.Connection) -> dict[str, Any]:
         add("docs_case_missing", "high",
             _count(conn, "SELECT COUNT(*) FROM docs d LEFT JOIN cases c ON c.id=d.case_id WHERE d.case_id IS NOT NULL AND c.id IS NULL"),
             "Document references a missing case.")
+        add("docs_case_unlinked", "high",
+            _count(conn, "SELECT COUNT(*) FROM docs WHERE case_id IS NULL"),
+            "Document metadata has no parent case; establish whether it is valid shared material or an incomplete matter upload.")
         add("docs_case_firm_mismatch", "critical",
             _count(conn, "SELECT COUNT(*) FROM docs d JOIN cases c ON c.id=d.case_id WHERE d.firm_id IS NOT NULL AND c.firm_id IS NOT NULL AND d.firm_id IS NOT c.firm_id"),
             "Document firm_id differs from its parent case.")
@@ -110,6 +113,9 @@ def audit(conn: sqlite3.Connection) -> dict[str, Any]:
             add(f"orphan_{table}_case", "high",
                 _count(conn, f"SELECT COUNT(*) FROM {table} child LEFT JOIN cases c ON c.id=child.case_id WHERE child.case_id IS NOT NULL AND c.id IS NULL"),
                 f"{table} contains rows whose parent case does not exist.")
+            add(f"unlinked_{table}_case", "high",
+                _count(conn, f"SELECT COUNT(*) FROM {table} WHERE case_id IS NULL"),
+                f"{table} contains rows with no parent case; do not assign ownership without trusted evidence.")
 
     findings.sort(key=lambda item: (item["severity"], item["code"]))
     return {
