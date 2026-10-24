@@ -156,12 +156,9 @@ assert info["case_number"] == "77" and info["notes"][0]["text"] == "ملاحظة
 assert info["deadlines"][0]["title"] == "استئناف" and info["fees"][0]["paid"] == 250
 assert c.get("/cases", headers=O).json() == [] and len(c.get("/cases", headers=J).json()) == 1
 
-# Firm isolation regression checks: a second firm's admin must not see or mutate the first firm's data.
-db.execute("INSERT INTO firms(id,name) VALUES(2,'Second Firm')")
-db.execute("INSERT INTO users(name,email,pw,role,firm_id) VALUES(?,?,?,?,?)",
-           ("Second Admin","second@x.eg",app.hash_pw("password-Second"),"admin",2))
-db.commit()
-S = login_creds("second@x.eg", "password-Second")
+# Firm isolation regression checks reuse the second-firm admin created during test setup.
+# Do not insert firm id 2 again: the setup already creates it for the legal-review boundary tests.
+S = B_ADMIN
 # Firm-scoped audit APIs must not expose another firm's events or deletion snapshots.
 security_audit_b = c.get("/audit/security-events", headers=S)
 assert security_audit_b.status_code == 200, security_audit_b.text
