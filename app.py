@@ -507,9 +507,17 @@ def search(c, q, case_id=None, k=5, firm_id=1, as_of=None, scope="all_permitted"
 
 
 def llm(prompt):
-    """Any OpenAI-compatible endpoint (vLLM/Ollama/hosted). Unset LLM_URL = sources-only mode."""
+    """Call a configured OpenAI-compatible endpoint only after explicit data-processing approval.
+
+    LLM_URL alone is not consent to transmit potentially confidential legal questions or
+    retrieved matter passages. The deployment operator must verify the endpoint and its
+    data-handling terms, then explicitly set LLM_DATA_PROCESSING_APPROVED=1.
+    Unset URL or approval keeps the app in sources-only mode.
+    """
     url = os.environ.get("LLM_URL")
     if not url: return None
+    if os.environ.get("LLM_DATA_PROCESSING_APPROVED", "").strip() != "1":
+        return None
     body = json.dumps({"model": os.environ.get("LLM_MODEL", "local"), "temperature": 0,
                        "messages": [{"role": "system", "content": SYS}, {"role": "user", "content": prompt}]}).encode()
     req = urllib.request.Request(url, body, {"Content-Type": "application/json", "Authorization": "Bearer " + os.environ.get("LLM_KEY", "")})

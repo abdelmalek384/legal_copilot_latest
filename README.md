@@ -4,7 +4,7 @@ and answers that must cite numbered sources. If nothing relevant is found, or th
 
 Mac quick start: double-click `start_mac.command`; it creates a virtual environment, installs dependencies, prompts to create the first admin account if needed, and starts the app locally. Manual run: `pip install -r requirements.txt`, then `python selftest.py`, then `uvicorn app:app --host 127.0.0.1 --port 8000` and open http://127.0.0.1:8000
 Load law: POST a JSON list of {law, article, text, as_of, in_force, source} to /law/import (see sample_law.jsonl: FICTIONAL test text only).
-Model: set LLM_URL (OpenAI-compatible /chat/completions, e.g. vLLM or Ollama), LLM_MODEL, LLM_KEY. Unset = sources-only mode.
+Model: set LLM_URL (OpenAI-compatible /chat/completions, e.g. vLLM, Ollama, or a hosted provider), LLM_MODEL, and LLM_KEY. The app does not choose or bundle a model. LLM_URL alone is not enough to send prompts: explicitly set LLM_DATA_PROCESSING_APPROVED=1 only after reviewing the endpoint, data-processing terms, retention, and whether matter data may be sent. Otherwise, the app stays in sources-only mode. See [LLM data-processing policy](docs/llm_data_processing_policy.md).
 
 Not included yet: a complete verified official law/ruling corpus, WhatsApp/SMS delivery
 of reminders (use /sessions/upcoming from a scheduler), embedding-model semantic search, and a complete end-to-end amendment/consolidation workflow.
