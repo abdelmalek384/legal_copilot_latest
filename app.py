@@ -72,6 +72,7 @@ CREATE TABLE IF NOT EXISTS legal_documents(
   source_id TEXT NOT NULL REFERENCES legal_sources(source_id),
   official_title TEXT NOT NULL,
   document_type TEXT NOT NULL,
+  practice_area TEXT NOT NULL DEFAULT 'unknown',
   law_number TEXT,
   law_year INTEGER,
   language TEXT NOT NULL DEFAULT 'ar',
@@ -174,6 +175,9 @@ def conn():
             if not _schema_ready:
                 c.execute("PRAGMA journal_mode=WAL")
                 c.executescript(SCHEMA)
+                legal_document_cols = {r[1] for r in c.execute("PRAGMA table_info(legal_documents)")}
+                if "practice_area" not in legal_document_cols:
+                    c.execute("ALTER TABLE legal_documents ADD COLUMN practice_area TEXT NOT NULL DEFAULT 'unknown'")
                 c.execute("INSERT OR IGNORE INTO firms(id,name) VALUES(1,'Default Firm')")
                 user_cols = {r[1] for r in c.execute("PRAGMA table_info(users)")}
                 if "firm_id" not in user_cols: c.execute("ALTER TABLE users ADD COLUMN firm_id INT DEFAULT 1")
