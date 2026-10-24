@@ -1018,6 +1018,64 @@ def legal_review_queue(u: dict = Depends(user)):
             "warning":"This queue lists registry metadata only. It does not certify authenticity, current legal effect, or permissions."}
 
 
+@app.get("/legal-review/coverage")
+def legal_review_coverage(u: dict = Depends(user)):
+    """Permission-aware registry metrics; these counts do not certify legal completeness."""
+    require_admin(u)
+    c = conn()
+    today = date.today().isoformat()
+    metrics = c.execute(
+        "SELECT "
+        "(SELECT COUNT(*) FROM legal_sources) AS source_count, "
+        "(SELECT COUNT(*) FROM legal_documents) AS document_count, "
+        "(SELECT COUNT(*) FROM legal_document_versions) AS version_count, "
+        "(SELECT COUNT(*) FROM legal_documents d WHERE NOT EXISTS (SELECT 1 FROM legal_document_versions v WHERE v.document_id=d.document_id)) AS metadata_only_documents, "
+        "(SELECT COUNT(*) FROM legal_document_versions WHERE review_status='pending_source_review') AS pending_source_review, "
+        "(SELECT COUNT(*) FROM legal_document_versions WHERE review_status='pending_lawyer_review') AS pending_lawyer_review, "
+        "(SELECT COUNT(*) FROM legal_document_versions WHERE review_status='rejected') AS rejected_versions, "
+        "(SELECT COUNT(*) FROM legal_document_versions WHERE review_status='verified') AS labelled_verified_versions, "
+        "(SELECT COUNT(*) FROM legal_document_versions v JOIN legal_documents d ON d.document_id=v.document_id JOIN legal_sources s ON s.source_id=d.source_id "
+        " WHERE v.review_status='verified' AND v.legal_status='in_force' AND v.authenticity_verified=1 AND v.status_verified=1 "
+        " AND v.amendment_history_verified=1 AND s.collection_permission='allowed' AND s.commercial_reuse_permission='allowed' "
+        " AND TRIM(COALESCE(s.permission_evidence,''))<>'' AND TRIM(COALESCE(v.permission_evidence,''))<>'' "
+        " AND v.effective_date IS NOT NULL AND v.effective_date<=? AND (v.repeal_date IS NULL OR v.repeal_date>?)) AS verified_operational_versions, "
+        "(SELECT COUNT(*) FROM legal_document_versions WHERE authenticity_verified=0) AS missing_authenticity_review, "
+        "(SELECT COUNT(*) FROM legal_document_versions WHERE status_verified=0) AS missing_status_review, "
+        "(SELECT COUNT(*) FROM legal_document_versions WHERE amendment_history_verified=0) AS missing_amendment_history, "
+        "(SELECT COUNT(*) FROM legal_document_versions v JOIN legal_documents d ON d.document_id=v.document_id JOIN legal_sources s ON s.source_id=d.source_id "
+        " WHERE s.collection_permission<>'allowed' OR s.commercial_reuse_permission<>'allowed' "
+        " OR TRIM(COALESCE(s.permission_evidence,''))='' OR TRIM(COALESCE(v.permission_evidence,''))='') AS permission_or_evidence_blocked_versions",
+        (today, today)
+    ).fetchone()
+    sources_by_permission = [dict(r) for r in c.execute(
+        "SELECT collection_permission,commercial_reuse_permission,COUNT(*) AS source_count FROM legal_sources "
+        "GROUP BY collection_permission,commercial_reuse_permission ORDER BY source_count DESC,collection_permission,commercial_reuse_permission"
+    ).fetchall()]
+    coverage_by_practice_area = [dict(r) for r in c.execute(
+        "SELECT COALESCE(NULLIF(TRIM(d.practice_area),''),'unknown') AS practice_area,COUNT(*) AS document_count, "
+        "SUM(CASE WHEN EXISTS (SELECT 1 FROM legal_document_versions v JOIN legal_sources s ON s.source_id=d.source_id "
+        " WHERE v.document_id=d.document_id AND v.review_status='verified' AND v.legal_status='in_force' "
+        " AND v.authenticity_verified=1 AND v.status_verified=1 AND v.amendment_history_verified=1 "
+        " AND s.collection_permission='allowed' AND s.commercial_reuse_permission='allowed' "
+        " AND TRIM(COALESCE(s.permission_evidence,''))<>'' AND TRIM(COALESCE(v.permission_evidence,''))<>'' "
+        " AND v.effective_date IS NOT NULL AND v.effective_date<=? AND (v.repeal_date IS NULL OR v.repeal_date>?)) "
+        " THEN 1 ELSE 0 END) AS documents_with_verified_operational_text FROM legal_documents d "
+        "GROUP BY COALESCE(NULLIF(TRIM(d.practice_area),''),'unknown') ORDER BY document_count DESC,practice_area",
+        (today, today)
+    ).fetchall()]
+    return {
+        "as_of": today, "metrics": dict(metrics),
+        "sources_by_permission": sources_by_permission,
+        "coverage_by_practice_area": coverage_by_practice_area,
+        "warnings": [
+            "These are registry workflow counts, not total Egyptian-law coverage.",
+            "Operative-text counts require verified legal status, authenticity, amendment history, collection permission, commercial reuse permission, evidence, and effective dates.",
+            "Practice areas remain unknown until each instrument is explicitly classified.",
+            "This endpoint does not download, scrape, or contact any source."
+        ]
+    }
+
+
 @app.get("/legal-review/versions/{version_id}/events")
 def legal_review_events(version_id: int, u: dict = Depends(user)):
     require_admin(u)
