@@ -1,7 +1,7 @@
 # Database completion tracker
 
 **Last updated:** 2026-10-25  
-**Overall database completion estimate:** 30%  
+**Estimated completion:** 28%  
 **Status:** In progress — not production-ready for confidential multi-firm matter data.
 
 This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. Update this file as database PRs merge and as acceptance criteria are completed.

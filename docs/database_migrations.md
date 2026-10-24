@@ -42,3 +42,14 @@ PYTHONPATH=. python scripts/rehearse_database_migrations.py /path/to/protected-c
 The helper opens the source in read-only mode, checks SQLite integrity and foreign-key violations, copies it through SQLite's backup API into a temporary directory, applies pending versioned migrations only to that copy, then reports the resulting migration ledger and integrity checks. Exit status is 0 only when both integrity checks are clean and no foreign-key violations are found; status 1 means manual review is required, and status 2 means the rehearsal could not run.
 
 This is a migration rehearsal aid, not a backup, not an authorization test, and not proof of tenant isolation. Use a protected representative copy, retain a separately verified backup, and review the report before any real migration.
+
+
+## Startup DDL inventory
+
+Before migrating remaining startup DDL, run:
+
+```bash
+PYTHONPATH=. python scripts/database_startup_ddl_inventory.py
+```
+
+The source-only report inventories the literal `SCHEMA` string, DDL statements outside that string (including conditional legacy `ALTER TABLE` operations), and each versioned migration. It does not open a database and is not proof of runtime behavior. Review dynamic SQL and test both fresh and legacy database copies before moving any table/FTS creation or conditional column changes into migrations.
