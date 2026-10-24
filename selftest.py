@@ -26,5 +26,29 @@ app.LLM = lambda p: "تستحق اجازة [1]"; assert app.ask(c, "اجازة �
 app.LLM = lambda p: "اجابة بلا مصدر صالح [9]"; assert app.ask(c, "اجازة سنوية")["answer"] is None
 # Unverified article 3 must not be returned as legal authority.
 assert app.ask(c, "المادة 3")["found"] is False
+# LLM transmission is fail-closed unless the deployment operator explicitly approves it.
+from unittest.mock import patch
+import io
+_saved_llm_env = {k: os.environ.get(k) for k in ("LLM_URL", "LLM_MODEL", "LLM_KEY", "LLM_DATA_PROCESSING_APPROVED")}
+try:
+    os.environ["LLM_URL"] = "https://llm.example.test/v1/chat/completions"
+    os.environ["LLM_MODEL"] = "test-model"
+    os.environ["LLM_KEY"] = "test-key"
+    os.environ.pop("LLM_DATA_PROCESSING_APPROVED", None)
+    with patch("app.urllib.request.urlopen") as open_url:
+        assert app.llm("CONFIDENTIAL-SENTINEL") is None
+        open_url.assert_not_called()
+    os.environ["LLM_DATA_PROCESSING_APPROVED"] = "1"
+    fake_response = io.BytesIO(json.dumps({"choices": [{"message": {"content": "test answer"}}]}).encode())
+    with patch("app.urllib.request.urlopen", return_value=fake_response) as open_url:
+        assert app.llm("CONFIDENTIAL-SENTINEL") == "test answer"
+        sent_request = open_url.call_args.args[0]
+        assert b"CONFIDENTIAL-SENTINEL" in sent_request.data
+finally:
+    for _key, _value in _saved_llm_env.items():
+        if _value is None:
+            os.environ.pop(_key, None)
+        else:
+            os.environ[_key] = _value
 assert app.check_pw("correct horse 12", app.hash_pw("correct horse 12")) and not app.check_pw("x", app.hash_pw("y"))
 print("ALL OK")
