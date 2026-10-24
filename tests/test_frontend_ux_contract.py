@@ -40,6 +40,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Export research memo", HTML)
         self.assertIn("save-to-matter", HTML)
         self.assertIn("No relevant verified legal text found in this scope", HTML)
+        self.assertNotIn("matterSelect.disabled", HTML)
 
     def test_focus_and_small_screen_rules_exist(self):
         self.assertIn(":focus-visible", HTML)
