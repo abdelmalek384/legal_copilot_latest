@@ -163,6 +163,8 @@ _TR = str.maketrans(_MAP)
 
 
 _connection_provider = SQLiteConnectionProvider(DB, timeout=30)
+# Compatibility alias for existing tests and legacy callers that reset app._t.c.
+_t = _connection_provider._local
 _init_lock = threading.Lock()
 _schema_ready = False
 
