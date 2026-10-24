@@ -41,6 +41,15 @@ CREATE TABLE IF NOT EXISTS case_deletion_audit(
 );
 CREATE INDEX IF NOT EXISTS idx_case_deletion_audit_firm_id
   ON case_deletion_audit(firm_id, id DESC);
+CREATE TABLE IF NOT EXISTS api_rate_limit_windows(
+  bucket TEXT NOT NULL,
+  client_key TEXT NOT NULL,
+  window_start INTEGER NOT NULL,
+  hits INTEGER NOT NULL DEFAULT 0,
+  PRIMARY KEY(bucket, client_key, window_start)
+);
+CREATE INDEX IF NOT EXISTS idx_api_rate_limit_windows_start
+  ON api_rate_limit_windows(window_start);
 CREATE TABLE IF NOT EXISTS sessions(id INTEGER PRIMARY KEY, case_id INT, date TEXT, note TEXT, done INT DEFAULT 0);
 CREATE TABLE IF NOT EXISTS docs(id INTEGER PRIMARY KEY, case_id INT, name TEXT, added TEXT);
 -- Legal corpus provenance: one stable source record, multiple immutable legal versions.
