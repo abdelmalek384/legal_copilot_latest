@@ -144,9 +144,9 @@ items.push(h('div',{className:'card'},h('h3',{textContent:LANG==='ar'?'تغيي�
 const duePill=t=>{if(!t.due)return null;const d=(new Date(t.due)-new Date(today))/864e5;return pill(fd(t.due),d<0?'late':d<=3?'soon':'open')};
 const prog=c=>{const t=c.done_tasks+c.open_tasks;return h('div',{className:'bar',title:c.done_tasks+'/'+t},h('i',{style:'width:'+(t?100*c.done_tasks/t:0)+'%'}))};
 const empty=t=>h('div',{className:'mut',textContent:t});
-async function uiText(ar,en){return LANG==='ar'?ar:en}
+function uiText(ar,en){return LANG==='ar'?ar:en}
 function openPage(id,fn){PAGE=id;window.CASE_ID=null;fn()}
-function dash(){PAGE='dash';const [d,cs]=await Promise.all([api('/dashboard'),api('/cases')]);
+async function dash(){PAGE='dash';const [d,cs]=await Promise.all([api('/dashboard'),api('/cases')]);
  const active=cs.filter(c=>c.status==='open'),overdueTasks=d.tasks.filter(t=>t.due&&t.due<today).length;
  const overdueDeadlines=(d.deadlines||[]).filter(x=>x.due&&x.due<today);
  const st=(n,l,sub,kind='')=>h('div',{className:'card stat'},h('b',{textContent:n,style:kind==='bad'?'color:var(--bad)':kind==='good'?'color:var(--ok)':''}),h('span',{textContent:l}),sub?h('div',{className:'mut',textContent:sub}):null);
