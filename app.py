@@ -1108,7 +1108,12 @@ def new_case(b: CaseIn, u: dict = Depends(user)):
 
 @app.get("/cases/{cid}")
 def case(cid: int, u: dict = Depends(user)):
-    c = conn(); need(c, u, cid); rows = lambda q: [dict(r) for r in c.execute(q, (cid,))]
+    c = conn(); need(c, u, cid)
+    # Record only successful, authorized detail reads; do not store client names or case contents.
+    c.execute("INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
+              (u["firm_id"], u["id"], "case_read:%s" % cid))
+    c.commit()
+    rows = lambda q: [dict(r) for r in c.execute(q, (cid,))]
     return {**dict(c.execute("SELECT * FROM cases WHERE id=?", (cid,)).fetchone()),
             "members": rows("SELECT m.user_id, m.role, u.name FROM members m JOIN users u ON u.id=m.user_id WHERE m.case_id=?"),
             "tasks": rows("SELECT t.*, u.name AS assignee_name FROM tasks t LEFT JOIN users u ON u.id=t.assignee WHERE t.case_id=? ORDER BY t.status DESC, t.due"),
@@ -1255,6 +1260,19 @@ def case_deletion_audit(limit: int = 50, offset: int = 0, u: dict = Depends(user
         "related_counts": json.loads(r["related_counts_json"]),
         "deleted_at": r["deleted_at"]
     } for r in rows], "limit": limit, "offset": offset}
+
+
+@app.get("/audit/security-events")
+def security_events(limit: int = 50, offset: int = 0, u: dict = Depends(user)):
+    require_admin(u)
+    if limit < 1 or limit > 100 or offset < 0:
+        raise HTTPException(422, "limit must be 1-100 and offset must be non-negative")
+    rows = conn().execute(
+        "SELECT id,firm_id,user_id,event,created_at FROM security_audit_events "
+        "WHERE firm_id=? ORDER BY id DESC LIMIT ? OFFSET ?",
+        (u["firm_id"], limit, offset)
+    ).fetchall()
+    return {"items": [dict(r) for r in rows], "limit": limit, "offset": offset}
 
 
 @app.post("/law/import")
