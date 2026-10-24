@@ -1004,9 +1004,9 @@ def legal_review_queue(u: dict = Depends(user)):
     rows = c.execute(
         "SELECT v.version_id,v.document_id,v.version_label,v.source_url,v.publication_date,"
         "v.effective_date,v.repeal_date,v.legal_status,v.review_status,v.authenticity_verified,"
-        "v.status_verified,v.amendment_history_verified,v.original_sha256,"
+        "v.status_verified,v.amendment_history_verified,v.original_sha256,v.permission_evidence AS version_permission_evidence,"
         "d.official_title,d.document_type,s.authority,s.collection_permission,"
-        "s.commercial_reuse_permission,"
+        "s.commercial_reuse_permission,s.permission_evidence AS source_permission_evidence,"
         "(SELECT COUNT(*) FROM legal_review_events e WHERE e.version_id=v.version_id) AS event_count "
         "FROM legal_document_versions v "
         "JOIN legal_documents d ON d.document_id=v.document_id "
