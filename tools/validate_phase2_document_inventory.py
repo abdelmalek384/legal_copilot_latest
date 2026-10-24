@@ -44,6 +44,24 @@ def _walk(value, path="$"):
             yield from _walk(child, path + "[" + str(index) + "]")
 
 
+def _validate_metadata_urls(record, label):
+    errors = []
+    for path, value in _walk(record, label):
+        if isinstance(value, dict):
+            for key in value:
+                if key.lower() in FORBIDDEN_CONTENT_KEYS:
+                    errors.append(path + " contains content field " + key)
+                if key in {"url", "source_url"} and value[key] is not None:
+                    if not isinstance(value[key], str) or not value[key].startswith("https://"):
+                        errors.append(path + "." + key + " must be HTTPS or null")
+        elif isinstance(value, str) and value.startswith(("http://", "https://")):
+            # URLs are accepted only in explicitly named URL fields.
+            final_key = path.rsplit(".", 1)[-1]
+            if final_key not in {"source_url", "url"}:
+                errors.append(path + " stores a URL under an unexpected field")
+    return errors
+
+
 def validate_inventory(data):
     """Return validation errors; validation never changes permission or legal status."""
     errors = []
@@ -64,6 +82,20 @@ def validate_inventory(data):
     if not isinstance(actions, list) or not actions:
         errors.append("next_actions must be a non-empty list")
         actions = []
+
+    # Source-level permissions are independent of instrument-level permissions.
+    # Validate them explicitly; never infer a document's rights from its publisher.
+    for source_id, source in sources.items():
+        label = "source_ids." + str(source_id)
+        if not isinstance(source, dict):
+            errors.append(label + " must be an object")
+            continue
+        for field in ("authority", "source_class", "permission", "next_action"):
+            if not source.get(field):
+                errors.append(label + " missing " + field)
+        if source.get("permission") not in COLLECTION_STATES:
+            errors.append(label + " has unsupported permission state")
+        errors.extend(_validate_metadata_urls(source, label))
 
     ids = []
     for index, document in enumerate(documents):
@@ -98,19 +130,7 @@ def validate_inventory(data):
         if document.get("legal_status") == "in_force":
             if document.get("review_status") != "verified" or not document.get("effective_date"):
                 errors.append(label + " cannot be labelled in_force without verified review and effective_date")
-        for path, value in _walk(document, label):
-            if isinstance(value, dict):
-                for key in value:
-                    if key.lower() in FORBIDDEN_CONTENT_KEYS:
-                        errors.append(path + " contains content field " + key)
-                    if key in {"url", "source_url"} and value[key] is not None:
-                        if not isinstance(value[key], str) or not value[key].startswith("https://"):
-                            errors.append(path + "." + key + " must be HTTPS or null")
-            elif isinstance(value, str) and value.startswith(("http://", "https://")):
-                # URLs are accepted only in explicitly named URL fields.
-                final_key = path.rsplit(".", 1)[-1]
-                if final_key not in {"source_url", "url"}:
-                    errors.append(path + " stores a URL under an unexpected field")
+        errors.extend(_validate_metadata_urls(document, label))
 
     if len(ids) != len(set(ids)):
         errors.append("duplicate document_id values")
