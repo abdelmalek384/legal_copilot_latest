@@ -75,6 +75,16 @@ button.g{color:#344256}
 .research-layout{gap:16px}
 .research-list,.research-thread{border-radius:14px}
 .research-thread{background:#FBFCFE}
+.research-controls{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;margin:0 0 12px}
+.research-controls label{display:grid;gap:5px;min-width:0;font-size:12px;color:var(--mut);font-weight:700}
+.research-controls select{width:100%;min-width:0;min-height:40px}
+.research-source-actions,.research-message-actions{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.research-source-actions button,.research-message-actions button{min-height:34px;font-size:12px}
+.research-pin{font-size:12px;color:var(--mut);overflow-wrap:anywhere}
+.research-exact-passage{border-inline-start:3px solid var(--pri);padding:8px 12px;margin:8px 0;background:#F3F6FB;white-space:pre-wrap;overflow-wrap:anywhere}
+.research-status{display:inline-block;margin:4px 0}
+.research-discovery-result{border:1px solid var(--line);border-radius:10px;padding:12px;margin:8px 0;background:#fff}
+@media(max-width:560px){.research-controls{grid-template-columns:minmax(0,1fr)}}
 .research-heading{position:sticky;top:0;background:#FBFCFE;z-index:2;padding-top:8px}
 .research-composer textarea{border-color:#D8E0EB;background:#fff}
 @media(max-width:800px){
@@ -296,6 +306,20 @@ async function law(){
  const thread=h('div',{className:'research-thread card'});
  let activeId=null, sending=false, conversationItems=[];
  const conversationFilter=h('input',{type:'search',placeholder:LANG==='ar'?'ابحث في المحادثات المحفوظة':'Search saved conversations','aria-label':LANG==='ar'?'ابحث في المحادثات المحفوظة':'Search saved conversations'});
+  const scopeSelect=h('select',{'aria-label':LANG==='ar'?'نطاق البحث':'Research scope'},
+    h('option',{value:'verified_corpus',textContent:LANG==='ar'?'النصوص القانونية المتحقق منها':'Verified legal corpus'}),
+    h('option',{value:'firm_documents',textContent:LANG==='ar'?'مستندات المكتب داخل ملف قضية':'Firm documents in a matter'}),
+    h('option',{value:'metadata_only',textContent:LANG==='ar'?'اكتشاف فهرس المصادر (بيانات وصفية فقط)':'Source catalog discovery (metadata only)'}));
+  const matterSelect=h('select',{'aria-label':LANG==='ar'?'ملف القضية':'Matter'},h('option',{value:'',textContent:LANG==='ar'?'اختر ملف قضية':'Select a matter'}));
+  let accessibleCases=[];
+  try{accessibleCases=await api('/cases');accessibleCases.forEach(c=>matterSelect.append(new Option((c.title||('Matter '+c.id))+' (#'+c.id+')',String(c.id))))}catch(_){}
+  scopeSelect.onchange=()=>{if(scopeSelect.value==='firm_documents'&&!matterSelect.value)toast(LANG==='ar'?'اختر ملف قضية للبحث في مستندات المكتب':'Select a matter to search firm documents')};
+  const copyText=async(text)=>{try{if(navigator.clipboard&&navigator.clipboard.writeText)await navigator.clipboard.writeText(String(text||''));else{const t=h('textarea',{value:String(text||''),style:'position:fixed;opacity:0'});document.body.append(t);t.select();document.execCommand('copy');t.remove()}toast(LANG==='ar'?'تم النسخ':'Copied to clipboard')}catch(_){toast(LANG==='ar'?'تعذر النسخ؛ حدد النص يدوياً':'Copy failed; select the text manually')}};
+  const highlightTerms=(text,question)=>{const terms=String(question||'').trim().split(/\s+/).filter(t=>t.length>1).slice(0,8).sort((a,b)=>b.length-a.length);if(!terms.length)return [document.createTextNode(String(text||''))];const escaped=terms.map(t=>t.replace(/[.*+?^{}()|[\]\\$]/g,ch=>'\\'+ch));const re=new RegExp('('+escaped.join('|')+')','giu');return String(text||'').split(re).filter(x=>x!=='').map(part=>terms.some(t=>part.toLocaleLowerCase()===t.toLocaleLowerCase())?h('mark',{textContent:part}):document.createTextNode(part))};
+  const memoText=(question,result)=>{const asOf=result.requested_as_of||new Date().toISOString().slice(0,10),lines=['LEGAL RESEARCH MEMO','Question: '+(question||'(not recorded)'),'As of: '+asOf,'Search scope: '+(result.scope||scopeSelect.value),'','Answer',result.answer||result.message||'No generated answer.','','Sources and exact passages'];const sources=result.sources||[];if(!sources.length)lines.push('No relevant verified passage was found in this search scope.');sources.forEach((x,i)=>{lines.push('','['+(i+1)+'] '+(x.citation||x.ref||'Unresolved citation'),'Status: '+(x.source_status||'outdated_or_under_review'),'Exact passage (verbatim):',x.text||'(No passage text recorded; metadata-only result.)')});lines.push('','Limitations','- This memo reflects only the selected search scope and records available as of the stated date.','- A URL, registry entry, or model-generated answer is not independent proof of authenticity or current legal status.','- Missing pin-cites, publication/effective dates, amendment history, or permission evidence remain missing; do not infer them.','- If no relevant verified passage was found, this is not evidence that no applicable law exists.');return lines.join('\n')};
+  const exportMemo=(question,result)=>{const blob=new Blob([memoText(question,result)],{type:'text/plain;charset=utf-8'}),url=URL.createObjectURL(blob),a=h('a',{href:url,download:'legal-research-memo-'+(result.requested_as_of||new Date().toISOString().slice(0,10))+'.txt'});document.body.append(a);a.click();a.remove();URL.revokeObjectURL(url)};
+  const renderDiscovery=(data,question)=>{thread.replaceChildren(h('div',{className:'research-heading'},h('b',{textContent:LANG==='ar'?'اكتشاف المصادر — بيانات وصفية فقط':'Source discovery — metadata only'}),h('p',{className:'mut',textContent:data.warning||''})));if(!data.results||!data.results.length){thread.append(h('div',{className:'research-empty',role:'status',textContent:data.message|| (LANG==='ar'?'لم يُعثر على بيانات وصفية مطابقة.':'No matching metadata found.')}));return}data.results.forEach((r,i)=>{const card=h('article',{className:'research-discovery-result'});card.append(h('b',{textContent:(i+1)+'. '+(r.official_title||r.document_id)}),pill(LANG==='ar'?'بيانات وصفية فقط':'Metadata only','soon'));card.append(h('p',{textContent:[r.authority,r.document_type,r.law_number&&('No. '+r.law_number),r.law_year,r.version_label,r.legal_status,r.review_status].filter(Boolean).join(' · ')}),h('p',{className:'mut',textContent:(LANG==='ar'?'النشر: ':'Published: ')+(r.publication_date||'—')+' · '+(LANG==='ar'?'السريان: ':'Effective: ')+(r.effective_date||'—')}),h('p',{className:'mut',textContent:(LANG==='ar'?'إذن الجمع / إعادة الاستخدام التجاري: ':'Collection / commercial reuse: ')+(r.collection_permission||'unknown')+' / '+(r.commercial_reuse_permission||'unknown')}));const source=safeHttpsUrl(r.source_url||r.source_page);if(source)card.append(h('a',{className:'research-source-link',href:source,target:'_blank',rel:'noopener noreferrer',textContent:LANG==='ar'?'فتح صفحة المصدر المسجلة':'Open recorded source page'}));const terms=safeHttpsUrl(r.terms_url);if(terms)card.append(h('a',{className:'research-source-link',href:terms,target:'_blank',rel:'noopener noreferrer',textContent:LANG==='ar'?'شروط المصدر':'Source terms'}));card.append(h('p',{className:'mut',textContent:LANG==='ar'?'لم يُسترجع أي نص قانوني. هذه النتيجة لا تثبت السريان أو الإذن.':'No legal text was retrieved. This result does not establish current status or reuse permission.'}));thread.append(card)})};
+
  const copy=(v)=>LANG==='ar'?v:({ 'محادثة جديدة':'New chat','ابدأ محادثة بحث قانوني':'Start a legal research chat','اسأل عن القانون المصري':'Ask about Egyptian law','اكتب سؤالك هنا…':'Type your question…','إرسال':'Send','مصادر الإجابة':'Answer sources','لا توجد محادثات بعد':'No conversations yet','ابدأ محادثة جديدة':'Start a new chat','بحث قانوني مدعوم بالمصادر':'Source-grounded legal research','لا توجد إجابة مولدة. راجع المصادر أدناه.':'No generated answer. Review the sources below.','نتائج بحثية مساعدة وليست استشارة قانونية. تحقق دائما من المصدر الرسمي.':'Research assistance, not legal advice. Always verify against the official source.','مصدر غير متحقق':'Unverified source','غير سارٍ':'Not in force','لم يُتحقق من سريانه':'Current status unverified'}[v]||v);
  const makeBtn=(label,fn,cl='g')=>btn(copy(label),fn,cl);
  const renderMessages=(messages)=>{
@@ -303,7 +327,7 @@ async function law(){
    const header=h('div',{className:'research-heading'},h('div',{},h('b',{textContent:copy('بحث قانوني مدعوم بالمصادر')}),h('div',{className:'mut',textContent:copy('نتائج بحثية مساعدة وليست استشارة قانونية. تحقق دائما من المصدر الرسمي.')})));
    thread.append(header);
    if(!messages.length) thread.append(h('div',{className:'research-empty'},h('div',{textContent:'⚖️',style:'font-size:32px'}),h('h3',{textContent:copy('ابدأ محادثة بحث قانوني')}),h('p',{textContent:copy('اسأل عن القانون المصري')})));
-   for(const m of messages){
+   for(const [messageIndex,m] of messages.entries()){
      const bubble=h('div',{className:'research-message '+(m.role==='user'?'user':'assistant')});
      bubble.append(h('div',{className:'research-role',textContent:m.role==='user'?(LANG==='ar'?'أنت':'You'):(LANG==='ar'?'المساعد القانوني':'Legal assistant')}));
      bubble.append(h('div',{className:'research-content',textContent:m.content||m.answer||''}));
@@ -312,12 +336,22 @@ async function law(){
        for(const [i,s] of m.sources.entries()){
          const src=h('div',{className:'src research-source'});
          src.append(h('b',{textContent:'['+(i+1)+'] '+(s.ref||'Source')+' '}));
-         if(!s.verified)src.append(pill(copy('مصدر غير متحقق'),'soon'));
-         else if(!s.in_force&&s.applies_as_of!==true)src.append(pill(copy('غير سارٍ'),'late'));
-         src.append(h('p',{textContent:s.text||''}),h('div',{className:'mut',textContent:(s.source||'')+(s.as_of?' · '+fd(s.as_of):'')}));
+         const status=s.source_status||'outdated_or_under_review';
+         const statusLabels={verified_operative_text:LANG==='ar'?'نص ساري متحقق منه':'Verified operative text',secondary_copy:LANG==='ar'?'نسخة ثانوية':'Secondary copy',user_supplied_unverified:LANG==='ar'?'مستند مكتب غير متحقق':'Firm document / unverified',metadata_only:LANG==='ar'?'بيانات وصفية فقط':'Metadata only',outdated_or_under_review:LANG==='ar'?'قديم أو قيد المراجعة':'Outdated / under review',no_relevant_verified_source:LANG==='ar'?'لا يوجد مصدر متحقق ذو صلة':'No relevant verified source'};
+         src.append(pill(statusLabels[status]||statusLabels.outdated_or_under_review,status==='verified_operative_text'?'done':(status==='user_supplied_unverified'?'late':'soon')));
+         const pin=[s.article&&(LANG==='ar'?'المادة ':'Article ')+s.article,s.page&&(LANG==='ar'?'الصفحة ':'Page ')+s.page].filter(Boolean).join(' · ');
+         if(pin)src.append(h('div',{className:'research-pin',textContent:pin}));
+         const sourceQuestion=messages.slice(0,messageIndex).reverse().find(x=>x.role==='user')?.content||'';
+         src.append(h('div',{className:'research-exact-passage'},...highlightTerms(s.text||'',sourceQuestion)),h('div',{className:'mut',textContent:(s.source||'')+(s.as_of?' · '+fd(s.as_of):'')}));
+         const sourceActions=h('div',{className:'research-source-actions'});
+         sourceActions.append(makeBtn(LANG==='ar'?'نسخ الاستشهاد':'Copy citation',()=>copyText(s.citation||s.ref||'Unresolved citation')));
+         sourceActions.append(makeBtn(LANG==='ar'?'نسخ المقطع الحرفي':'Copy exact passage',()=>copyText(s.text||'')));
+         const recordedSource=safeHttpsUrl((s.provenance||{}).source_url||s.source_url);
+         if(recordedSource)sourceActions.append(h('a',{className:'research-source-link',href:recordedSource,target:'_blank',rel:'noopener noreferrer',textContent:LANG==='ar'?'فتح المصدر الأصلي':'Open original source'}));
+         src.append(sourceActions);
          const p=s.provenance||{};
          if(p.status==='registry_linked'){
-           const meta=[p.official_title,p.version_label,p.legal_status,p.publication_date&&((LANG==='ar'?'النشر: ':'Published: ')+p.publication_date),p.effective_date&&((LANG==='ar'?'السريان: ':'Effective: ')+p.effective_date),p.repeal_date&&((LANG==='ar'?'الإلغاء: ':'Repeal: ')+p.repeal_date),p.consolidated_as_of&&((LANG==='ar'?'مجمع حتى: ':'Consolidated through: ')+p.consolidated_as_of),p.gazette_issue&&((LANG==='ar'?'الجريدة الرسمية: ':'Gazette: ')+p.gazette_issue+(p.gazette_pages?' · '+p.gazette_pages:''))].filter(Boolean).join(' · ');
+           const meta=[p.official_title,p.authority,p.law_number&&((LANG==='ar'?'القانون رقم ':'Law No. ')+p.law_number+(p.law_year?'/'+p.law_year:'')),p.version_label,p.legal_status,p.publication_date&&((LANG==='ar'?'النشر: ':'Published: ')+p.publication_date),p.effective_date&&((LANG==='ar'?'السريان: ':'Effective: ')+p.effective_date),p.repeal_date&&((LANG==='ar'?'الإلغاء: ':'Repeal: ')+p.repeal_date),p.consolidated_as_of&&((LANG==='ar'?'مجمع حتى: ':'Consolidated through: ')+p.consolidated_as_of),p.gazette_issue&&((LANG==='ar'?'الجريدة الرسمية: ':'Gazette: ')+p.gazette_issue+(p.gazette_pages?' · '+p.gazette_pages:'')),s.requested_as_of&&((LANG==='ar'?'تاريخ البحث: ':'As of: ')+s.requested_as_of)].filter(Boolean).join(' · ');
            if(meta)src.append(h('div',{className:'mut',textContent:meta}));
            const sourceUrl=safeHttpsUrl(p.source_url||s.source_url);if(sourceUrl)src.append(h('a',{className:'research-source-link',href:sourceUrl,target:'_blank',rel:'noopener noreferrer',textContent:LANG==='ar'?'فتح المصدر المسجل':'Open registered source'}));
            if(!p.amendment_history_verified)src.append(pill(LANG==='ar'?'تاريخ التعديلات غير متحقق':'Amendment history unverified','soon'));
@@ -331,6 +365,18 @@ async function law(){
            src.append(pill(LANG==='ar'?'سجل الإصدار غير موجود':'Version registry record missing','late'));
          }
          bubble.append(src);
+       }
+     }
+     if(m.role==='assistant'){
+       const priorQuestion=messages.slice(0,messageIndex).reverse().find(x=>x.role==='user')?.content||'';
+       const result=m.result||{answer:m.content||'',sources:m.sources||[],requested_as_of:new Date().toISOString().slice(0,10),scope:scopeSelect.value};
+       const actions=h('div',{className:'research-message-actions'});
+       actions.append(makeBtn(LANG==='ar'?'تصدير مذكرة بحث':'Export research memo',()=>exportMemo(priorQuestion,result),'g'));
+       if(m.id)actions.append(makeBtn(LANG==='ar'?'حفظ إلى ملف قضية':'Save to matter',async()=>{if(!matterSelect.value){toast(LANG==='ar'?'اختر ملف قضية أولاً':'Select a matter first');matterSelect.focus();return}try{await api('/research/conversations/'+activeId+'/save-to-matter','POST',{case_id:Number(matterSelect.value),message_id:m.id});toast(LANG==='ar'?'تم حفظ مذكرة البحث في ملاحظات القضية':'Research memo saved to matter notes')}catch(_){}},'g'));
+       bubble.append(actions);
+       if(!(m.sources||[]).length){
+         bubble.append(pill(LANG==='ar'?'لم يُعثر على نص قانوني متحقق ذي صلة في هذا النطاق':'No relevant verified legal text found in this scope','soon'));
+         actions.append(makeBtn(LANG==='ar'?'اكتشاف بيانات وصفية للمصادر':'Discover source metadata',async()=>{if(!priorQuestion.trim())return;scopeSelect.value='metadata_only';try{renderDiscovery(await api('/research/discover','POST',{q:priorQuestion}),priorQuestion)}catch(_){}},'g'));
        }
      }
      thread.append(bubble);
@@ -374,18 +420,25 @@ async function law(){
  const composer=h('textarea',{placeholder:copy('اكتب سؤالك هنا…'),rows:3,'aria-label':copy('اكتب سؤالك هنا…')});
  const send=makeBtn('إرسال',async()=>{
    const message=composer.value.trim();if(!message||sending)return;
+   const current=message;
+   if(scopeSelect.value==='metadata_only'){
+     sending=true;send.disabled=true;composer.disabled=true;
+     try{const data=await api('/research/discover','POST',{q:current});composer.value='';renderDiscovery(data,current)}
+     catch(_){}finally{sending=false;send.disabled=false;composer.disabled=false;composer.focus()}
+     return;
+   }
+   if(scopeSelect.value==='firm_documents'&&!matterSelect.value){toast(LANG==='ar'?'اختر ملف قضية للبحث في مستندات المكتب':'Select a matter to search firm documents');matterSelect.focus();return}
    if(!activeId){const c=await api('/research/conversations','POST',{});activeId=c.id}
-   sending=true;send.disabled=true;composer.disabled=true;
-   const current=message;composer.value='';
+   sending=true;send.disabled=true;composer.disabled=true;composer.value='';
    const optimistic=[...((await api('/research/conversations/'+activeId)).messages||[]),{role:'user',content:current},{role:'assistant',content:LANG==='ar'?'جارٍ البحث في المصادر…':'Searching sources…',sources:[]}];
    renderMessages(optimistic);
-   try{await api('/research/conversations/'+activeId+'/messages','POST',{message:current});await loadConversation(activeId)}
+   try{await api('/research/conversations/'+activeId+'/messages','POST',{message:current,scope:scopeSelect.value,case_id:scopeSelect.value==='firm_documents'?Number(matterSelect.value):null});await loadConversation(activeId)}
    catch(_){composer.value=current}
    finally{sending=false;send.disabled=false;composer.disabled=false;composer.focus()}
  },'primary');
  composer.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send.click()}});
  const composerArea=h('div',{className:'research-composer'},composer,send,h('div',{className:'mut',textContent:LANG==='ar'?'Enter للإرسال · Shift+Enter لسطر جديد':'Enter to send · Shift+Enter for a new line'}));
- shell(LANG==='ar'?'البحث القانوني':'Legal Research',h('div',{className:'research-layout'},sidebar,h('section',{className:'research-main'},thread,composerArea)));
+ shell(LANG==='ar'?'البحث القانوني':'Legal Research',h('div',{className:'research-controls'},h('label',{},h('span',{textContent:LANG==='ar'?'نطاق البحث':'Search scope'}),scopeSelect),h('label',{},h('span',{textContent:LANG==='ar'?'ملف القضية (للبحث والحفظ)':'Matter (for search and saving)'}),matterSelect)),h('div',{className:'research-layout'},sidebar,h('section',{className:'research-main'},thread,composerArea)));
  await drawList();
  if(activeId)await loadConversation(activeId);
  else {const list=await api('/research/conversations');if(list.length)await loadConversation(list[0].id);else await newChat()}

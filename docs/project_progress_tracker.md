@@ -5,11 +5,11 @@
 
 ## Overall status
 
-- **Completed and merged:** 4 of 20 tracked deliverables (**20%**).
-- **In progress:** 2 of 20 deliverables (**10%**).
-- **Not started, blocked, or awaiting validation:** 14 of 20 (**70%**).
-- **Merged PRs from this workstream:** #88, #89, #90, #91.
-- **Open PRs:** [#92](https://github.com/abdelmalek384/legal_copilot_latest/pull/92) (corpus/UX roadmap documentation), [#94](https://github.com/abdelmalek384/legal_copilot_latest/pull/94) (coverage dashboard implementation; initial implementation CI passed, but latest refinements still need a fresh run).
+- **Completed and merged:** 5 of 20 tracked deliverables (**25%**).
+- **In progress:** 4 of 20 deliverables (**20%**).
+- **Not started, blocked, or awaiting validation:** 11 of 20 (**55%**).
+- **Merged PRs from this workstream:** #88, #89, #90, #91, #94.
+- **Open PRs:** [#92](https://github.com/abdelmalek384/legal_copilot_latest/pull/92) (corpus/UX roadmap documentation), [#96](https://github.com/abdelmalek384/legal_copilot_latest/pull/96) (Research Results & Source Inspector; CI passed, manual QA pending), [#97](https://github.com/abdelmalek384/legal_copilot_latest/pull/97) (metadata-only instrument inventory validation; CI passed), [#98](https://github.com/abdelmalek384/legal_copilot_latest/pull/98) (WIPO/ILO source terms evidence; CI passed, Egyptian portal terms still unresolved).
 - **External permission requests:** not sent by this project workflow. Claude is expected to handle outreach; approval is not assumed.
 - **Manual UI QA:** not yet completed.
 
@@ -24,13 +24,13 @@ Percentages count deliverables equally; they are not a claim that 20% of all cod
 | UI-03 | Saved research search/rename and safer source-link handling | Complete | Merged PR #91; this is not the complete source-inspector workflow |
 | SRC-01 | Permission outreach tracker, official contact verification and permission-gate tests | Complete | Merged PR #90; verified contact does not mean permission granted |
 | DATA-01 | Document permission-aware corpus strategy and alternatives | In progress | PR #92; review and merge the strategy documents |
-| DATA-02 | Corpus coverage/provenance dashboard and admin-only metrics API | In progress | PR #94; wait for CI, fix failures, review and merge |
-| DATA-03 | Review terms and reuse conditions for every proposed external source | Not started | Record item-specific terms, allowed purpose, attribution and evidence before ingestion |
-| DATA-04 | Prioritized Egyptian instrument metadata inventory | Not started | Seed metadata-only candidates with source URL and unknown states; never fabricate legal text |
+| DATA-02 | Corpus coverage/provenance dashboard and admin-only metrics API | Complete | Merged PR #94; coverage remains a registry metric, not total-law coverage |
+| DATA-03 | Review terms and reuse conditions for every proposed external source | In progress | PR #98 records WIPO/ILO policy limits; Egyptian primary portal terms and item-level rights remain unresolved |
+| DATA-04 | Prioritized Egyptian instrument metadata inventory | In progress | Existing 69-record inventory now has structural/permission-state validation and CI tests in PR #97; candidates remain metadata-only |
 | DATA-05 | Expand the verified starter corpus using permitted acquisition routes | Blocked / ongoing | Depends on lawful source copies, source-specific terms, and lawyer validation; continue metadata discovery meanwhile |
 | DATA-06 | Firm-supplied document ingestion with provenance and tenant scoping | Not started | Build upload, hashing, ownership, retention and access-control workflow |
 | DATA-07 | OCR/extraction review against original pages | Not started | Add page preview, OCR confidence, corrections and reviewer audit trail |
-| RSH-01 | Full research result/source inspector with exact passages and pin-cites | Partial | Source links and saved-research UX improved in #91; exact passage/version inspection and no-source states remain |
+| RSH-01 | Full research result/source inspector with exact passages and pin-cites | In progress | PR #96 adds explicit scopes, status labels, literal Arabic/English term highlighting, passage/citation actions, optional page pin-cites with migration, memo export/save, and metadata-only discovery; existing chunks without page metadata remain unpinned |
 | RSH-02 | Arabic retrieval evaluation set and citation-quality metrics | Not started | Lawyer-reviewed questions; measure retrieval recall, pin-cite accuracy, stale-law and answerability failures |
 | RSH-03 | Amendment/repeal graph and historical version comparison | Not started | Use only evidence-backed version relations and effective dates |
 | UI-04 | Complete responsive browser/RTL/LTR/keyboard/reader QA | Not started | Test mobile, tablet, 200% zoom, forced colors, screen readers, errors and empty states |
@@ -49,10 +49,10 @@ Percentages count deliverables equally; they are not a claim that 20% of all cod
 
 ## Immediate next actions
 
-1. Check CI for PR #94; fix any API or frontend regression before merge.
+1. Current-head CI for [PR #96](https://github.com/abdelmalek384/legal_copilot_latest/pull/96) passed; manual RTL/LTR/keyboard/screen-reader and lawyer review remain before merge.
 2. Review and merge PR #92 once its documentation is approved.
-3. Implement the Research Results & Source Inspector tracked in [Issue #95](https://github.com/abdelmalek384/legal_copilot_latest/issues/95) after #94 is merged.
-4. In parallel, build the metadata-only instrument inventory and document source-specific terms.
+3. Complete manual RTL/LTR/keyboard/screen-reader and lawyer review for Issue #95; page values are shown only when recorded.
+4. Review PRs [#97](https://github.com/abdelmalek384/legal_copilot_latest/pull/97) and [#98](https://github.com/abdelmalek384/legal_copilot_latest/pull/98), both with passing CI; continue instrument-level source terms review under DATA-03.
 5. Record Claude's outreach status and any written replies in the permission tracker; do not change permissions until written terms are reviewed.
 
 ## Known limitations

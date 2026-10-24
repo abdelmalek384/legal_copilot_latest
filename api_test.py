@@ -240,8 +240,8 @@ assert any(x["id"] == chat_id for x in c.get("/research/conversations", headers=
 from unittest.mock import patch as patch_ask
 captured = {}
 real_ask = app.ask
-def capture_research_ask(db_conn, question, case_id=None, firm_id=1, as_of=None, conversation_context=None):
-    captured.update(question=question, context=conversation_context, firm_id=firm_id)
+def capture_research_ask(db_conn, question, case_id=None, firm_id=1, as_of=None, conversation_context=None, scope="all_permitted"):
+    captured.update(question=question, context=conversation_context, firm_id=firm_id, scope=scope)
     return {"found": False, "answer": None, "sources": [], "message": "لم أجد مصدرا ذا صلة، ولن أخمن."}
 with patch_ask.object(app, "ask", side_effect=capture_research_ask):
     followup = c.post(f"/research/conversations/{chat_id}/messages",
@@ -254,6 +254,49 @@ assert captured["firm_id"] == 1
 chat_after_followup = c.get(f"/research/conversations/{chat_id}", headers=L).json()
 assert [m["role"] for m in chat_after_followup["messages"]][-2:] == ["user", "assistant"]
 assert chat_after_followup["messages"][-1]["sources"] == []
+assert captured["scope"] == "verified_corpus"
+
+# Search scopes are explicit; firm documents require a matter and never blend with the legal corpus.
+scope_cid = c.post("/cases", json={"title":"Research scope test"}, headers=L).json()["id"]
+app.add_doc(db, scope_cid, "Research scope fixture", "مدة العقد سنتان")
+app.add_chunks(db, [{"ref":"Page pinpoint fixture","text":"مدة التقادم في المثال التشغيلي سبع سنوات","case_id":scope_cid,"source":"case-file","article":"12","page":"17"}])
+db.commit()
+scope_chat = c.post("/research/conversations", json={}, headers=L)
+assert scope_chat.status_code == 200, scope_chat.text
+scope_chat_id = scope_chat.json()["id"]
+assert c.post(f"/research/conversations/{scope_chat_id}/messages",
+              json={"message":"مدة العقد","scope":"firm_documents"}, headers=L).status_code == 422
+firm_scope = c.post(f"/research/conversations/{scope_chat_id}/messages",
+                    json={"message":"مدة العقد","scope":"firm_documents","case_id":scope_cid}, headers=L)
+assert firm_scope.status_code == 200, firm_scope.text
+assert firm_scope.json()["scope"] == "firm_documents"
+assert firm_scope.json().get("sources"), firm_scope.json()
+assert all(source.get("case_id") == scope_cid for source in firm_scope.json().get("sources", []))
+assert all(source.get("source_status") == "user_supplied_unverified" for source in firm_scope.json().get("sources", []))
+page_search = c.post("/search", json={"q":"التقادم المثال التشغيلي","case_id":scope_cid,"scope":"firm_documents"}, headers=L)
+assert page_search.status_code == 200, page_search.text
+page_hit = next(x for x in page_search.json() if x["ref"] == "Page pinpoint fixture")
+assert page_hit["page"] == "17" and page_hit["article"] == "12"
+assert "Page 17" in page_hit["citation"] and "Article 12" in page_hit["citation"]
+assert c.delete(f"/research/conversations/{scope_chat_id}", headers=L).status_code == 200
+
+# Metadata discovery searches catalog fields only and returns no fabricated passage on a miss.
+discovery = c.post("/research/discover", json={"q":"zz_no_catalog_match_2026"}, headers=L)
+assert discovery.status_code == 200, discovery.text
+assert discovery.json()["scope"] == "metadata_only"
+assert discovery.json()["found"] is False and discovery.json()["results"] == []
+assert "does not establish" in discovery.json()["message"]
+assert "No source page was scraped or downloaded" in discovery.json()["warning"]
+assert c.post("/research/discover", json={"q":"valid"}, headers=O).status_code == 200
+
+# Saving a research answer preserves the as-of date, scope, citations, and caveats in the matter note.
+assistant_message = chat_after_followup["messages"][-1]
+saved = c.post(f"/research/conversations/{chat_id}/save-to-matter",
+               json={"case_id":scope_cid,"message_id":assistant_message["id"]}, headers=L)
+assert saved.status_code == 201, saved.text
+saved_note = db.execute("SELECT text FROM notes WHERE id=?", (saved.json()["note_id"],)).fetchone()["text"]
+assert "LEGAL RESEARCH MEMO" in saved_note and "As of:" in saved_note and "Search scope:" in saved_note
+assert "not evidence that no applicable law exists" in saved_note
 
 # Renaming a research conversation is validated and scoped to its owner and firm.
 renamed = c.patch(f"/research/conversations/{chat_id}", json={"title":"  Labour contract research  "}, headers=L)
