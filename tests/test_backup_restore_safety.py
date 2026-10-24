@@ -100,3 +100,42 @@ def test_authenticated_non_sqlite_payload_cannot_replace_existing_database(tmp_p
     assert "not a readable SQLite database" in result.stderr
     assert destination.read_bytes() == original
     assert not list(tmp_path.glob(".restore-*.tmp"))
+
+def run_backup(directory: Path, key: bytes, db_path: Path, keep: int = 14):
+    env = os.environ.copy()
+    env["BACKUP_KEY"] = key.decode()
+    env["COPILOT_DB"] = str(db_path)
+    return subprocess.run(
+        [sys.executable, str(MANAGE), "backup", str(directory), "--keep", str(keep)],
+        cwd=ROOT,
+        env=env,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+
+
+def test_backup_uses_unique_atomic_files_and_enforces_retention(tmp_path):
+    key = Fernet.generate_key()
+    backup_dir = tmp_path / "backups"
+    db_path = tmp_path / "app.db"
+
+    first = run_backup(backup_dir, key, db_path, keep=2)
+    second = run_backup(backup_dir, key, db_path, keep=2)
+
+    assert first.returncode == 0, first.stderr
+    assert second.returncode == 0, second.stderr
+    backups = sorted(backup_dir.glob("backup-*.db.enc"))
+    assert len(backups) == 2
+    assert backups[0].name != backups[1].name
+    assert not list(backup_dir.glob(".backup-db-*.tmp"))
+    assert not list(backup_dir.glob(".backup-enc-*.tmp"))
+    for backup in backups:
+        plaintext = Fernet(key).decrypt(backup.read_bytes())
+        restored = tmp_path / (backup.stem + ".sqlite3")
+        restored.write_bytes(plaintext)
+        connection = sqlite3.connect(restored)
+        try:
+            assert connection.execute("PRAGMA quick_check").fetchone() == ("ok",)
+        finally:
+            connection.close()
