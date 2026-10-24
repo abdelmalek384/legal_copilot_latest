@@ -87,10 +87,22 @@ assert linked_chunks == upload_meta["chunks"] and linked_chunks >= 1
 review_chunk = db.execute("SELECT id,text FROM chunks WHERE document_id=? ORDER BY id LIMIT 1", (upload_meta["document_id"],)).fetchone()
 review_response = c.post(
     f"/cases/{cid}/docs/{upload_meta['document_id']}/chunks/{review_chunk['id']}/review",
-    json={"outcome":"corrected","corrected_text":review_chunk["text"] + " [reviewed correction]","note":"Test-only correction"},
+    json={"outcome":"corrected","corrected_text":review_chunk["text"] + " [reviewed correction]",
+          "expected_text_sha256":app.hashlib.sha256(review_chunk["text"].encode("utf-8")).hexdigest(),
+          "page_reference":"PDF p. 4","note":"Test-only correction"},
     headers=J)
 assert review_response.status_code == 201, review_response.text
 assert review_response.json()["text_updated"] is True
+assert review_response.json()["page_reference"] == "PDF p. 4"
+assert review_response.json()["source_page_verified"] is False
+assert db.execute("SELECT text,page FROM chunks WHERE id=?", (review_chunk["id"],)).fetchone()["page"] == "PDF p. 4"
+# Stale correction must not overwrite the first reviewed version.
+stale_review = c.post(
+    f"/cases/{cid}/docs/{upload_meta['document_id']}/chunks/{review_chunk['id']}/review",
+    json={"outcome":"corrected","corrected_text":"stale overwrite",
+          "expected_text_sha256":app.hashlib.sha256(review_chunk["text"].encode("utf-8")).hexdigest()},
+    headers=J)
+assert stale_review.status_code == 409, stale_review.text
 assert db.execute("SELECT text FROM chunks WHERE id=?", (review_chunk["id"],)).fetchone()[0].endswith("[reviewed correction]")
 review_audit = c.get(f"/cases/{cid}/docs/{upload_meta['document_id']}/reviews", headers=J)
 assert review_audit.status_code == 200 and review_audit.json()["reviews"][0]["outcome"] == "corrected"
