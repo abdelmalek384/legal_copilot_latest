@@ -357,6 +357,8 @@ db.execute("INSERT INTO legal_documents(document_id,source_id,official_title,doc
            ("COVERAGE-TEST-DOC","COVERAGE-TEST-SOURCE","Coverage test instrument","law","labour"))
 db.execute("INSERT INTO legal_document_versions(document_id,version_label,source_url,publication_date,effective_date,legal_status,review_status,authenticity_verified,status_verified,amendment_history_verified,permission_evidence) VALUES(?,?,?,?,?,?,?,?,?,?,?)",
            ("COVERAGE-TEST-DOC","2020-current","https://example.org/law","2020-01-01","2020-01-01","in_force","verified",1,1,1,"test version permission evidence"))
+db.execute("INSERT INTO legal_document_versions(document_id,version_label,source_url,publication_date,effective_date,legal_status,review_status,authenticity_verified,status_verified,amendment_history_verified) VALUES(?,?,?,?,?,?,?,?,?,?)",
+           ("COVERAGE-TEST-DOC","2021-missing-evidence","https://example.org/law2","2021-01-01","2021-01-01","in_force","verified",1,1,1))
 db.execute("INSERT INTO legal_sources(source_id,authority,source_page) VALUES(?,?,?)",
            ("COVERAGE-METADATA-SOURCE","Metadata only authority","https://example.org/catalog"))
 db.execute("INSERT INTO legal_documents(document_id,source_id,official_title,document_type) VALUES(?,?,?,?)",
@@ -368,7 +370,8 @@ coverage = coverage_response.json()
 assert coverage["metrics"]["source_count"] >= 2
 assert coverage["metrics"]["metadata_only_documents"] >= 1
 assert coverage["metrics"]["verified_operational_versions"] == coverage_before + 1, coverage["metrics"]
-assert coverage["metrics"]["labelled_verified_versions"] >= 1
+assert coverage["metrics"]["labelled_verified_versions"] >= 2
+assert coverage["metrics"]["permission_or_evidence_blocked_versions"] >= 1
 assert any(x["practice_area"] == "labour" and x["documents_with_verified_operational_text"] == 1 for x in coverage["coverage_by_practice_area"])
 assert any("not total Egyptian-law coverage" in w for w in coverage["warnings"])
 
