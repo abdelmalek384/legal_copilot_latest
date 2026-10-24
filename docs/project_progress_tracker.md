@@ -9,7 +9,7 @@
 - **In progress:** 6 of 19 deliverables (**31.6%**).
 - **Not started, blocked, or awaiting validation:** 6 of 19 (**31.6%**).
 - **Merged PRs from this workstream:** #88, #89, #90, #91, #92, #94, #96, #97, #98, #99, #100, #101.
-- **Open PRs:** DATA-07 page-reference and stale-review guard PR is being prepared; no other open PRs identified at last check.
+- **Open PRs:** [#103](https://github.com/abdelmalek384/legal_copilot_latest/pull/103) (DATA-07 page-reference and stale-review guard; CI status pending).
 - **External permission requests:** not sent by this project workflow. Claude is expected to handle outreach; approval is not assumed.
 - **Manual UI QA:** not yet completed.
 
