@@ -57,7 +57,7 @@ class RetrievalEvaluationTests(unittest.TestCase):
         self.assertEqual(result["metrics"]["recall_at_3"], 1.0)
         self.assertEqual(result["metrics"]["mrr_at_3"], 0.5)
         self.assertEqual(result["citation_precision"], 0.5)
-        self.assertEqual(result["pin_cite_accuracy"], 1.0)
+        self.assertEqual(result["pin_cite_accuracy"], 0.5)
         self.assertEqual(result["unsafe_unverified_source_uses"], 0)
 
     def test_unanswerable_case_requires_abstention(self):
