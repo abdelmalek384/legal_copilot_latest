@@ -1355,6 +1355,28 @@ def get_research_conversation(conversation_id: int, u: dict = Depends(user)):
     return conversation
 
 
+class ResearchConversationPatchIn(BaseModel):
+    title: str = Field(min_length=1, max_length=120)
+
+
+@app.patch("/research/conversations/{conversation_id}")
+def rename_research_conversation(conversation_id: int, b: ResearchConversationPatchIn, u: dict = Depends(user)):
+    c = conn()
+    _owned_research_conversation(c, u, conversation_id)
+    title = b.title.strip()
+    if not title:
+        raise HTTPException(422, "conversation title cannot be blank")
+    updated = c.execute(
+        "UPDATE research_conversations SET title=?,updated_at=CURRENT_TIMESTAMP WHERE id=? AND user_id=? AND firm_id=?",
+        (title, conversation_id, u["id"], u["firm_id"]),
+    )
+    if updated.rowcount != 1:
+        c.rollback()
+        raise HTTPException(404, "conversation not found")
+    c.commit()
+    return _owned_research_conversation(c, u, conversation_id)
+
+
 @app.delete("/research/conversations/{conversation_id}")
 def delete_research_conversation(conversation_id: int, u: dict = Depends(user)):
     c = conn()
