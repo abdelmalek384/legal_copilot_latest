@@ -44,3 +44,8 @@ The API test suite now creates a private research conversation with synthetic se
 - saving the owner's answer into a matter belonging to another firm is denied.
 
 These are regression tests for the current shared-database implementation, not proof of independent tenant storage. The target separate-database architecture, exhaustive endpoint inventory, backup/restore isolation, independent security review, and production controls remain outstanding.
+
+
+## SEC-01 follow-through: extraction-review boundary
+
+The API regression suite now also attempts to use a second firm's administrator session to read an extraction-review audit and submit a correction against a guessed document/chunk ID. Both operations must return 404, and the test confirms the existing reviewed chunk text remains unchanged. This protects against a cross-firm correction path in the shared-database model; it does not replace a full route/table/background-job inventory or prove tenant database separation.
