@@ -1,6 +1,6 @@
 # Legal Copilot — Project Progress Tracker
 
-**Last updated:** 2026-10-24 (after PRs #107–#109; platform reviewer boundary work in progress)  
+**Last updated:** 2026-10-24 (after PR #110 merged; database tenancy architecture and Phase 0 review in progress)  
 **Tracking method:** deliverable-level checklist, not an estimate of engineering hours. A task is “complete” only when its change is merged and its acceptance criteria are met. Open PRs are in progress, not complete.
 
 ## Overall status
@@ -9,7 +9,7 @@
 - **In progress:** 6 of 19 deliverables (**31.6%**).
 - **Not started, blocked, or awaiting validation:** 6 of 19 (**31.6%**).
 - **Merged PRs from this workstream:** #88, #89, #90, #91, #92, #94, #96, #97, #98, #99, #100, #101, #102, #103, #104, #105, #106, #107, #108, #109.
-- **Open PRs:** SEC-01 platform-level legal-review authorization boundary (PR pending).
+- **Open PRs:** database tenancy architecture proposal (PR #112, open); Phase 0 data-boundary review (this branch, PR not yet opened). PR #110's platform-reviewer boundary is merged.
 - **External permission requests:** not sent by this project workflow. Claude is expected to handle outreach; approval is not assumed.
 - **Manual UI QA:** not yet completed.
 
@@ -35,7 +35,7 @@ Percentages count the 19 deliverables actually listed in this register equally; 
 | RSH-03 | Amendment/repeal graph and historical version comparison | Not started | Use only evidence-backed version relations and effective dates |
 | UI-04 | Complete responsive browser/RTL/LTR/keyboard/reader QA | Not started | Test mobile, tablet, 200% zoom, forced colors, screen readers, errors and empty states |
 | UX-01 | Lawyer usability study for core research and case tasks | Not started | Test with 3–5 Egyptian lawyers; record completion rate, time, errors and trust |
-| SEC-01 | Multi-firm isolation verification and independent security review | In progress | Merged PR #102 covers research conversation boundaries, #104 adds extraction-review read/write denial tests, #107 adds tenant-boundary inventory and cross-firm audit regression tests, and #108 adds runtime route/schema inventory drift checks. PR #109 hardens encrypted restore to authenticate before replacing a destination and stage writes atomically. Global legal-review endpoints now require a deployment-configured platform reviewer allowlist in addition to admin role. Proposed target architecture is documented in docs/database_tenancy_architecture.md: shared app, trusted tenant catalog, database per firm, and separately controlled shared legal corpus. This is a design proposal only; current shared SQLite remains. Full table/query/file/export/job inventory, migration tooling, firm-specific backup/restore, and independent review remain outstanding. |
+| SEC-01 | Multi-firm isolation verification and independent security review | In progress | Merged PR #102 covers research conversation boundaries, #104 adds extraction-review read/write denial tests, #107 adds tenant-boundary inventory and cross-firm audit regression tests, and #108 adds runtime route/schema inventory drift checks. PR #109 hardens encrypted restore to authenticate before replacing a destination and stage writes atomically. Global legal-review endpoints now require a deployment-configured platform reviewer allowlist in addition to admin role. Proposed target architecture is documented in docs/database_tenancy_architecture.md: shared app, trusted tenant catalog, database per firm, and separately controlled shared legal corpus. This is a design proposal only; current shared SQLite remains. docs/database_boundary_phase0_review.md records an initial static review of storage entry points, table classifications, mixed legal/matter search, identity/session questions, and migration exit criteria. It is not a complete query-by-query or deployment inventory. Full-repository/deployment review, storage adapter, tenant catalog/provisioning, migration tooling, firm-specific backup/restore, and independent review remain outstanding. |
 | SEC-02 | Production account recovery, MFA/session/device controls and retention policies | Not started | Complete threat model and release checklist before public/production launch |
 | OPS-01 | Production observability, backup/restore rehearsal and deployment release gates | Not started | Add structured logs, alerts, backup restore test and documented rollback |
 
@@ -55,7 +55,7 @@ Percentages count the 19 deliverables actually listed in this register equally; 
 4. Continue item-level terms and reuse review for Egyptian sources under DATA-03; retain unknown permission states unless evidence supports a change.
 5. Continue the 69-candidate metadata inventory under DATA-04, adding only verified metadata and source references.
 
-6. Continue SEC-01: reconcile PR #107's tenant-boundary inventory with the runtime/schema drift checks from #108; inspect indirect queries and deployment/external jobs; then follow docs/database_tenancy_architecture.md: complete Phase 0 data classification and connection/file-path inventory, then extract storage access behind a testable interface before planning database-per-firm migration. Rehearse backup/restore and obtain independent review. Shared SQLite is not tenant-separated.
+6. Continue SEC-01: review docs/database_boundary_phase0_review.md and complete its unchecked repository/deployment-wide SQL, file-path, export, cache, job, and backup inventory; decide global-vs-firm identity semantics; then implement a behavior-preserving storage/connection interface with tests for server-controlled tenant selection. Only after review should per-firm provisioning and migration be planned. Shared SQLite is not tenant-separated.
 
 ## Known limitations
 
