@@ -69,10 +69,11 @@
       "access_status": "public research portal",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
-      "terms_url": "https://www.wipo.int/tools/en/disclaimers.html",
-      "terms_checked_on": null,
+      "terms_url": "https://www.wipo.int/en/web/terms-of-use/index",
+      "terms_checked_on": "2026-10-24",
       "bulk_download_or_api": "not established",
-      "required_next_action": "Review WIPO site/database terms; use as a discovery and cross-reference source unless intended reuse is clearly permitted."
+      "required_next_action": "Review WIPO site/database terms; use as a discovery and cross-reference source unless intended reuse is clearly permitted.",
+      "permission_evidence": "Terms reviewed 2026-10-24. WIPO's open-access policy generally licenses WIPO-owned online publications/content under CC BY 4.0 unless more restrictive terms apply, but expressly excludes third-party content. WIPO Lex includes national legal materials; item-level ownership and service-specific terms are not established here. Keep collection and commercial reuse unknown until rights for each record are confirmed."
     },
     {
       "source_id": "EG-ILO-NATLEX",
@@ -85,10 +86,11 @@
       "access_status": "public research portal",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
-      "terms_url": "https://www.ilo.org/global/copyright/lang--en/index.htm",
-      "terms_checked_on": null,
+      "terms_url": "https://www.ilo.org/rights-and-permissions",
+      "terms_checked_on": "2026-10-24",
       "bulk_download_or_api": "not established",
-      "required_next_action": "Review ILO copyright and database terms; treat as a discovery/cross-check source until permission is clear."
+      "required_next_action": "Review ILO copyright and database terms; treat as a discovery/cross-check source until permission is clear.",
+      "permission_evidence": "Rights and permissions page reviewed 2026-10-24. ILO states that its own publications and datasets/metadata published on or after 2023-05-03 are generally CC BY 4.0 unless otherwise indicated; older publications do not automatically receive that licence, and third-party components require separate clearance. NATLEX-linked national legislation is not presumed to be ILO-owned content. Keep collection and commercial reuse unknown for legal-text copies until item-specific rights and service terms are confirmed."
     },
     {
       "source_id": "EG-LOC-LEGAL-GUIDE",
