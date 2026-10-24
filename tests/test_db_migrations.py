@@ -82,9 +82,19 @@ class DatabaseMigrationTests(unittest.TestCase):
             CREATE TABLE document_extraction_reviews(
                 firm_id INTEGER, document_id INTEGER, id INTEGER
             );
+            CREATE TABLE login_attempts(window_start INTEGER, locked_until INTEGER);
+            CREATE TABLE case_deletion_audit(firm_id INTEGER, id INTEGER);
+            CREATE TABLE api_rate_limit_windows(window_start INTEGER);
+            CREATE TABLE legal_document_versions(
+                original_sha256 TEXT, effective_date TEXT, repeal_date TEXT,
+                legal_status TEXT, review_status TEXT, status_verified INTEGER
+            );
+            CREATE TABLE legal_review_events(version_id INTEGER, reviewed_at TEXT);
+            CREATE TABLE research_conversations(firm_id INTEGER, user_id INTEGER, updated_at TEXT);
+            CREATE TABLE research_messages(conversation_id INTEGER, id INTEGER);
         """)
         migrations = Path(__file__).resolve().parents[1] / "migrations"
-        self.assertEqual(apply_migrations(self.db, migrations), [1, 2])
+        self.assertEqual(apply_migrations(self.db, migrations), [1, 2, 3])
         indexes = {
             row[0] for row in self.db.execute(
                 "SELECT name FROM sqlite_master WHERE type='index'"
@@ -98,6 +108,15 @@ class DatabaseMigrationTests(unittest.TestCase):
             "idx_docs_case_added",
             "idx_chunks_document_id",
             "idx_doc_reviews_document",
+            "idx_login_attempts_window",
+            "idx_case_deletion_audit_firm_id",
+            "idx_api_rate_limit_windows_start",
+            "idx_legal_version_sha256",
+            "idx_legal_versions_dates",
+            "idx_legal_versions_review",
+            "idx_legal_review_events_version",
+            "idx_research_conversations_owner",
+            "idx_research_messages_conversation",
         } <= indexes)
         self.assertEqual(apply_migrations(self.db, migrations), [])
 
