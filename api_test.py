@@ -257,16 +257,20 @@ assert chat_after_followup["messages"][-1]["sources"] == []
 assert captured["scope"] == "verified_corpus"
 
 # Search scopes are explicit; firm documents require a matter and never blend with the legal corpus.
+scope_cid = c.post("/cases", json={"title":"Research scope test"}, headers=L).json()["id"]
+app.add_doc(db, scope_cid, "Research scope fixture", "مدة العقد سنتان")
+db.commit()
 scope_chat = c.post("/research/conversations", json={}, headers=L)
 assert scope_chat.status_code == 200, scope_chat.text
 scope_chat_id = scope_chat.json()["id"]
 assert c.post(f"/research/conversations/{scope_chat_id}/messages",
               json={"message":"مدة العقد","scope":"firm_documents"}, headers=L).status_code == 422
 firm_scope = c.post(f"/research/conversations/{scope_chat_id}/messages",
-                    json={"message":"مدة العقد","scope":"firm_documents","case_id":cid}, headers=L)
+                    json={"message":"مدة العقد","scope":"firm_documents","case_id":scope_cid}, headers=L)
 assert firm_scope.status_code == 200, firm_scope.text
 assert firm_scope.json()["scope"] == "firm_documents"
-assert all(source.get("case_id") == cid for source in firm_scope.json().get("sources", []))
+assert firm_scope.json().get("sources"), firm_scope.json()
+assert all(source.get("case_id") == scope_cid for source in firm_scope.json().get("sources", []))
 assert all(source.get("source_status") == "user_supplied_unverified" for source in firm_scope.json().get("sources", []))
 assert c.delete(f"/research/conversations/{scope_chat_id}", headers=L).status_code == 200
 
