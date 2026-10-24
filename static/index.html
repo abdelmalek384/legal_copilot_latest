@@ -93,14 +93,11 @@ button.g{color:#344256}
 }
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;scroll-behavior:auto!important}}
 
-/* UI refresh follow-up: preserve current main workspace and layer in accessibility refinements. */
-:root{--ui-radius:14px;--ui-focus:#80a7ff}
-.card{border-radius:var(--ui-radius)}
-button,input,select,textarea{transition:border-color .15s ease,box-shadow .15s ease,background-color .15s ease}
+/* UI refresh conflict resolution: accessible controls and resilient narrow layouts. */
+:root{--ui-focus:#80a7ff}
 :where(button,input,select,textarea,a,[tabindex]):focus-visible{outline:3px solid var(--ui-focus);outline-offset:2px}
-input:focus,select:focus,textarea:focus{border-color:#7295ed;box-shadow:0 0 0 3px #2856c71a;outline:none}
+input:focus,select:focus,textarea:focus{border-color:#7295ed;box-shadow:0 0 0 3px #2856c71a}
 button{min-height:40px}
-button:hover{filter:brightness(.98)}
 @media(max-width:800px){#shell{min-width:0}#main{min-width:0;width:100%}img,svg,canvas,video{max-width:100%}}
 @media(max-width:420px){#main{padding-inline:10px}.card{padding:14px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
