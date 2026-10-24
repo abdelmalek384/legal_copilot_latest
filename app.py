@@ -4,6 +4,7 @@ import sqlite3, re, json, os, io, hmac, time, secrets, hashlib, threading, unico
 from collections import Counter
 from datetime import date
 from tools.research_inspector import source_status, citation_text, research_memo
+from storage import SQLiteConnectionProvider
 from fastapi import Request
 from fastapi.responses import JSONResponse, HTMLResponse, Response
 
@@ -161,17 +162,23 @@ _MAP.update({chr(0x6F0 + i): str(i) for i in range(10)})
 _TR = str.maketrans(_MAP)
 
 
-_t = threading.local()
+_connection_provider = SQLiteConnectionProvider(DB, timeout=30)
+# Compatibility alias for existing tests and legacy callers that reset app._t.c.
+_t = _connection_provider._local
 _init_lock = threading.Lock()
 _schema_ready = False
 
 
 def conn():
-    """One connection per thread; initialize/migrate the shared SQLite schema once."""
+    """Return a thread-local connection and initialize the configured SQLite schema once.
+
+    The provider is a connection-lifecycle boundary only: it does not select a
+    tenant database or establish firm isolation. The application still uses the
+    single COPILOT_DB path until tenant routing is designed and implemented.
+    """
     global _schema_ready
-    if getattr(_t, "c", None) is None:
-        c = sqlite3.connect(DB, timeout=30)
-        c.row_factory = sqlite3.Row
+    c = _connection_provider.connection()
+    if not _schema_ready:
         with _init_lock:
             if not _schema_ready:
                 c.execute("PRAGMA journal_mode=WAL")
@@ -232,8 +239,7 @@ def conn():
                         c.execute("ALTER TABLE cases ADD COLUMN %s TEXT DEFAULT ''" % col)
                 c.commit()
                 _schema_ready = True
-        _t.c = c
-    return _t.c
+    return c
 
 def norm(t):
     return re.sub("[\u064b-\u0652\u0670\u0640]", "", unicodedata.normalize("NFKC", t or "")).translate(_TR).lower()
