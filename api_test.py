@@ -1,6 +1,6 @@
 import os, io, json, tempfile
 from datetime import date, timedelta
-os.environ.update(COPILOT_DB=os.path.join(tempfile.mkdtemp(), "a.db"), ADMIN_TOKEN="stage0-test-admin-token-please-use-a-long-random-secret")
+os.environ.update(COPILOT_DB=os.path.join(tempfile.mkdtemp(), "a.db"), ADMIN_TOKEN="stage0-test-admin-token-please-use-a-long-random-secret", LEGAL_REVIEWER_EMAILS="import-admin@x.eg")
 from fastapi.testclient import TestClient
 import app, docx
 c = TestClient(app.app); db = app.conn()
@@ -19,6 +19,10 @@ def login_creds(email, password):
     c.cookies.clear()  # Tests pass credentials explicitly; avoid leaking one login into later requests.
     return {"Cookie": f"lc_session={session}; lc_csrf={csrf}", "X-CSRF-Token": csrf}
 A_IMPORT = login_creds("import-admin@x.eg", "password-ImportAdmin")
+db.execute("INSERT OR IGNORE INTO firms(id,name) VALUES(2,?)", ("Other Firm",))
+db.execute("INSERT INTO users(name,email,pw,role,firm_id) VALUES(?,?,?,?,?)", ("Other Firm Admin","other-admin@x.eg",app.hash_pw("password-OtherAdmin"),"admin",2))
+db.commit()
+B_ADMIN = login_creds("other-admin@x.eg", "password-OtherAdmin")
 def login(n): return login_creds(n.lower() + "@x.eg", "password-" + n)
 L, J, O = login("Lead"), login("Junior"), login("Outsider")
 assert c.get("/").headers.get("x-content-type-options") == "nosniff"
@@ -152,12 +156,9 @@ assert info["case_number"] == "77" and info["notes"][0]["text"] == "ملاحظة
 assert info["deadlines"][0]["title"] == "استئناف" and info["fees"][0]["paid"] == 250
 assert c.get("/cases", headers=O).json() == [] and len(c.get("/cases", headers=J).json()) == 1
 
-# Firm isolation regression checks: a second firm's admin must not see or mutate the first firm's data.
-db.execute("INSERT INTO firms(id,name) VALUES(2,'Second Firm')")
-db.execute("INSERT INTO users(name,email,pw,role,firm_id) VALUES(?,?,?,?,?)",
-           ("Second Admin","second@x.eg",app.hash_pw("password-Second"),"admin",2))
-db.commit()
-S = login_creds("second@x.eg", "password-Second")
+# Firm isolation regression checks reuse the second-firm admin created during test setup.
+# Do not insert firm id 2 again: the setup already creates it for the legal-review boundary tests.
+S = B_ADMIN
 # Firm-scoped audit APIs must not expose another firm's events or deletion snapshots.
 security_audit_b = c.get("/audit/security-events", headers=S)
 assert security_audit_b.status_code == 200, security_audit_b.text
@@ -471,10 +472,14 @@ review_history = c.get(f"/legal-review/versions/{review_version_id}/events", hea
 assert review_history.status_code == 200 and len(review_history.json()["events"]) == 1
 assert review_history.json()["events"][0]["reviewer"] == "Import Admin"
 assert c.get(f"/legal-review/versions/999999/events", headers=A_IMPORT).status_code == 404
+assert c.get(f"/legal-review/versions/{review_version_id}/events", headers=B_ADMIN).status_code == 403
+assert c.post(f"/legal-review/versions/{review_version_id}/events", json={"review_type":"legal_status","outcome":"pending","notes":"must be denied"}, headers=B_ADMIN).status_code == 403
 
 
-# Legal-source reviewer workbench queue is administrator-only and read-only.
+# Global legal-source review is platform-level, not granted to every firm administrator.
 assert c.get("/legal-review/queue", headers=L).status_code == 403
+assert c.get("/legal-review/queue", headers=B_ADMIN).status_code == 403
+assert c.get("/legal-review/coverage", headers=B_ADMIN).status_code == 403
 review_queue_response = c.get("/legal-review/queue", headers=A_IMPORT)
 assert review_queue_response.status_code == 200, review_queue_response.text
 assert "versions" in review_queue_response.json()

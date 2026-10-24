@@ -859,6 +859,15 @@ def require_admin(u):
     if u["role"] != "admin": raise HTTPException(403, "admin only")
 
 
+def require_platform_legal_reviewer(u):
+    """Restrict global legal-registry access to explicitly configured reviewer identities."""
+    if u["role"] != "admin":
+        raise HTTPException(403, "platform legal reviewer only")
+    allowed = {email.strip().lower() for email in os.environ.get("LEGAL_REVIEWER_EMAILS", "").split(",") if email.strip()}
+    if not allowed or (u.get("email") or "").strip().lower() not in allowed:
+        raise HTTPException(403, "platform legal reviewer only")
+
+
 def ocr_pdf_text(data, lang=None, max_pages=30):
     """OCR a small scanned PDF when optional local OCR dependencies are installed.
 
@@ -1045,7 +1054,7 @@ def conflict_check(b: Q, u: dict = Depends(user)):
 
 @app.get("/legal-review/queue")
 def legal_review_queue(u: dict = Depends(user)):
-    require_admin(u)
+    require_platform_legal_reviewer(u)
     c = conn()
     rows = c.execute(
         "SELECT v.version_id,v.document_id,v.version_label,v.source_url,v.publication_date,"
@@ -1067,7 +1076,7 @@ def legal_review_queue(u: dict = Depends(user)):
 @app.get("/legal-review/coverage")
 def legal_review_coverage(u: dict = Depends(user)):
     """Permission-aware registry metrics; these counts do not certify legal completeness."""
-    require_admin(u)
+    require_platform_legal_reviewer(u)
     c = conn()
     today = date.today().isoformat()
     metrics = c.execute(
@@ -1124,7 +1133,7 @@ def legal_review_coverage(u: dict = Depends(user)):
 
 @app.get("/legal-review/versions/{version_id}/events")
 def legal_review_events(version_id: int, u: dict = Depends(user)):
-    require_admin(u)
+    require_platform_legal_reviewer(u)
     c = conn()
     version = c.execute("SELECT version_id,document_id,version_label,source_url,review_status,legal_status FROM legal_document_versions WHERE version_id=?", (version_id,)).fetchone()
     if not version:
@@ -1139,7 +1148,7 @@ def legal_review_events(version_id: int, u: dict = Depends(user)):
 
 @app.post("/legal-review/versions/{version_id}/events", status_code=201)
 def create_legal_review_event(version_id: int, b: LegalReviewEventIn, u: dict = Depends(user)):
-    require_admin(u)
+    require_platform_legal_reviewer(u)
     evidence_url = validate_review_evidence_url(b.evidence_url)
     if b.outcome == "pass" and not evidence_url:
         raise HTTPException(422, "a passing review requires an HTTPS evidence_url")
