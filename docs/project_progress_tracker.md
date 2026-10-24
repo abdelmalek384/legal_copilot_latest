@@ -1,6 +1,6 @@
 # Legal Copilot — Project Progress Tracker
 
-**Last updated:** 2026-10-25 (PR #126 merged with passing CI on head 02104dd; DB-02 versioned migration framework in progress)  
+**Last updated:** 2026-10-25 (PR #126 and PR #130 merged with passing CI; DB-03 trusted tenant catalog/provisioning primitives in progress)  
 **Tracking method:** deliverable-level checklist, not an estimate of engineering hours. A task is “complete” only when its change is merged and its acceptance criteria are met. Open PRs are in progress, not complete.
 
 ## Overall status
@@ -8,8 +8,8 @@
 - **Completed and merged:** 7 of 20 tracked deliverables (**35.0%**).
 - **In progress:** 7 of 20 deliverables (**35.0%**).
 - **Not started, blocked, or awaiting validation:** 6 of 20 (**30.0%**).
-- **Merged PRs from this workstream:** #88, #89, #90, #91, #92, #94, #96, #97, #98, #99, #100, #101, #102, #103, #104, #105, #106, #107, #108, #109, #110, #112, #114, #115, #116, #117, #119, #120, #121, #123.
-- **Open PRs:** DB-02 introduces a checksum-verified SQLite migration runner and starts moving new DDL into versioned migrations; the legacy startup schema/ALTER statements are still present and must be migrated incrementally. PR #125 revenue roadmap remains deprioritized while database work continues. PR #119's data-ownership/migration map is merged as a draft; PR #117's identity/membership contract is merged as an unapproved proposal. PR #116's storage/file/backup/job inventory and PR #115's behavior-preserving SQLite connection-provider interface are merged. PR #123's read-only tenant ownership preflight is merged and detects selected anomalies but does not migrate data or prove tenant isolation. PR #126 is merged; it quarantines unclassified ownership and denies unclassified logins but does not route databases by tenant.
+- **Merged PRs from this workstream:** #88, #89, #90, #91, #92, #94, #96, #97, #98, #99, #100, #101, #102, #103, #104, #105, #106, #107, #108, #109, #110, #112, #114, #115, #116, #117, #119, #120, #121, #123, #126, #130.
+- **Open PRs:** DB-03 introduces a trusted server-side tenant database catalog and safe SQLite provisioning primitives; not wired into request routing. PR #130 is merged: checksum-verified versioned migration runner added, but legacy startup schema/ALTER statements still need incremental conversion. PR #125 revenue roadmap remains deprioritized while database work continues. PR #119's data-ownership/migration map is merged as a draft; PR #117's identity/membership contract is merged as an unapproved proposal. PR #116's storage/file/backup/job inventory and PR #115's behavior-preserving SQLite connection-provider interface are merged. PR #123's read-only tenant ownership preflight is merged and detects selected anomalies but does not migrate data or prove tenant isolation. PR #126 is merged; it quarantines unclassified ownership and denies unclassified logins but does not route databases by tenant. The tenant catalog/provisioning primitive is not yet an end-to-end tenant boundary.
 - **External permission requests:** not sent by this project workflow. Claude is expected to handle outreach; approval is not assumed.
 - **Manual UI QA:** not yet completed.
 
