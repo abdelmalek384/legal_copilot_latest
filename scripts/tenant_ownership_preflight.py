@@ -102,6 +102,15 @@ def audit(conn: sqlite3.Connection) -> dict[str, Any]:
             _count(conn, "SELECT COUNT(*) FROM case_deletion_audit WHERE firm_id IS NULL"),
             "Deletion audit snapshots need explicit firm ownership.")
 
+    # Matter child tables do not currently carry firm_id consistently. Their
+    # parent case must exist, and application access must always authorize that
+    # parent before reading or mutating a child record.
+    for table in ("notes", "deadlines", "fees", "tasks", "events", "sessions"):
+        if table in tables and "case_id" in _columns(conn, table) and "cases" in tables:
+            add(f"orphan_{table}_case", "high",
+                _count(conn, f"SELECT COUNT(*) FROM "{table}" child LEFT JOIN cases c ON c.id=child.case_id WHERE child.case_id IS NOT NULL AND c.id IS NULL"),
+                f"{table} contains rows whose parent case does not exist.")
+
     findings.sort(key=lambda item: (item["severity"], item["code"]))
     return {
         "mode": "read_only",
