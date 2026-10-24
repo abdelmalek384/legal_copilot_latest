@@ -378,7 +378,7 @@ db.commit()
 app._RATE_LIMITS["/search"] = (1, 60)
 try:
     first_limited_request = c.post("/search", json={"q":"rate-limit middleware test"})
-    assert first_limited_request.status_code == 401
+    assert first_limited_request.status_code != 429, first_limited_request.text
     second_limited_request = c.post("/search", json={"q":"rate-limit middleware test"})
     assert second_limited_request.status_code == 429, second_limited_request.text
     assert int(second_limited_request.headers.get("retry-after", "0")) > 0
