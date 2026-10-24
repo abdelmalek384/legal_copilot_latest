@@ -1,0 +1,79 @@
+# SEC-01 — tenant-isolation inventory and audit findings
+
+**Review date:** 2026-10-24  
+**Scope:** static review of `app.py`, current API regression tests, schema/table definitions, and the existing multi-firm isolation plan. This is an engineering inventory, not an independent penetration test or production certification.
+
+## Executive finding
+
+The application still uses a **single shared SQLite database**. Many routes scope matter data through the authenticated user's `firm_id`, and `api_test.py` exercises cross-firm denials for matters, uploads, search/answers, users, dashboards, research conversations, extraction-review writes, and now audit records. That is useful defense-in-depth, but it does not provide database-level tenant separation.
+
+**Do not onboard unrelated firms or production confidential client material yet.** Separate tenant stores, exhaustive route/query review, backup/restore isolation, production controls, and independent security review remain release blockers.
+
+## Current automated coverage
+
+The API suite uses synthetic records and two firms. Existing assertions include:
+- case list/detail/update/delete and membership/task boundaries;
+- dashboard tasks/deadlines and conflict checks;
+- user listing/creation/disablement and session revocation;
+- document upload, document-to-case linkage, and extraction review history/correction;
+- case-scoped search and answer requests;
+- research conversation list/detail/rename/delete/message and matter export;
+- admin-only case deletion and security audit endpoints;
+- legal-review queue/coverage/event authorization and legacy law-import gates.
+
+This PR adds explicit checks that Firm B's administrator cannot see Firm A's security events or case-deletion snapshots. The test suite's synthetic setup is not a substitute for testing the deployed environment.
+
+## Route inventory
+
+Routes are grouped by the data boundary they should preserve. "Tested" means there are relevant assertions in `api_test.py`; it does not mean every branch, role, and failure mode has been exhaustively tested.
+
+| Route(s) | Boundary / expected authorization | Current coverage and remaining concern |
+|---|---|---|
+| `GET /` | Public shell only; no matter content | Security headers/CSP are asserted; browser/manual QA remains |
+| `POST /login`, `GET /session`, `POST /logout`, `POST /account/password` | Auth/session belongs to one user; disabled, expired, or revoked sessions must stop working | API tests cover malformed credentials, CSRF, expiry, password change/reset revocation and concurrent login; production browser/cookie policy still needs review |
+| `GET /users`, `POST /users`, `POST /users/{uid}/disable` | User records scoped to authenticated firm; administration is role-gated | Cross-firm listing and admin/disable tests exist; review uniqueness and account lifecycle in production |
+| `GET /dashboard`, `GET /cases`, `POST /cases`, `GET /cases/{cid}`, `PATCH /cases/{cid}`, `DELETE /cases/{cid}` | Case must belong to same firm; non-admin access must respect case membership | Cross-firm list/detail/update/delete and dashboard tests exist; route/query audit should be repeated after every new endpoint |
+| `POST /cases/{cid}/members`, `DELETE /cases/{cid}/members/{uid}` | Both case and target user must be in the same firm; only authorized case lead/admin may manage membership | Role/membership tests exist; add further guessed-ID permutations as the route changes |
+| `POST /cases/{cid}/tasks`, `POST /tasks/{tid}/done`, `POST /cases/{cid}/sessions`, `POST /cases/{cid}/notes`, `POST /cases/{cid}/deadlines`, `POST /deadlines/{did}/done`, `POST /cases/{cid}/fees` | Parent case and referenced user/task/deadline must be firm- and membership-scoped | Several role and guessed-ID tests exist; coverage is not exhaustive for every child table and mutation |
+| `POST /cases/{cid}/docs`, `POST /cases/{cid}/upload` | Parent case must be authorized; metadata, chunks, and indexes must retain firm/case linkage | Upload ownership, hashes, metadata, and cross-firm upload denial are tested. Original binaries are not retained; retention/page preview is not implemented |
+| `GET /cases/{cid}/docs/{document_id}/reviews`, `POST /cases/{cid}/docs/{document_id}/chunks/{chunk_id}/review` | Case, document, chunk, and review history must all resolve inside same authorized firm/case | Cross-firm review read/write and stale correction protections are tested; reviewer UI and page-level source verification remain outstanding |
+| `POST /conflicts` | Search only within current firm's cases; hidden same-firm cases may yield a generic warning, not details | Tests cover firm boundary and warning behavior; requires lawyer workflow validation |
+| `POST /search`, `POST /ask` | Matter-scoped context must pass case authorization; global statutory corpus is a separate read-only shared scope | Cross-firm case-scoped requests tested; audit future retrieval and cached results for tenant leakage |
+| `POST /research/discover` | Must not expose unauthorized matter content or persist cross-tenant context | Scope/permission denial tests exist; test every supported scope and future connector |
+| `GET /research/conversations`, `POST /research/conversations`, `GET/PATCH/DELETE /research/conversations/{conversation_id}`, `POST /research/conversations/{conversation_id}/messages`, `POST /research/conversations/{conversation_id}/save-to-matter` | Conversation belongs to user and firm; target matter and message must be authorized | Cross-user and cross-firm read/write/export tests exist |
+| `GET /audit/case-deletions`, `GET /audit/security-events` | Admin-only, firm-filtered audit data; snapshots must not cross firm boundary | Existing role/limit tests; this PR adds Firm B no-leak assertions |
+| `POST /law/import` | Shared law content is global; import requires admin role plus protected import token; caller flags cannot mark law verified/current | Tests cover missing token, non-admin denial, and forced unverified/ineligible import. Reconsider whether any firm admin should be able to import global law even with token |
+| `GET /legal-review/queue`, `GET /legal-review/coverage`, `GET/POST /legal-review/versions/{version_id}/events` | Shared legal registry is global, but review mutations should be restricted to explicitly trusted platform reviewers | Tests currently gate these endpoints by the generic `admin` role. **Policy gap:** any firm's admin appears eligible to view/change global legal-source review metadata. Decide and implement a platform-level reviewer role/token before production |
+| No background worker/scheduled-job route identified in the current `app.py` | Any future OCR, indexing, cleanup, export, backup, and restore job must preserve tenant scope from trusted job metadata | No separate worker implementation was identified in the reviewed application file; re-inventory if one is added |
+
+## Data-table and storage inventory
+
+| Table / resource | Classification | Required isolation rule / gap |
+|---|---|---|
+| `firms` | Control-plane-like metadata in shared DB | Firm status/identity must be trusted server-side; this is not yet a separate control-plane database |
+| `users`, `auth_sessions`, `login_attempts`, `api_rate_limit_windows` | Identity/session/security state | User/session ownership and rate limits must not be client-selectable; review session/token storage and firm lifecycle |
+| `cases`, `members`, `tasks`, `events`, `notes`, `deadlines`, `fees`, `sessions` | Firm matter data | Every access path must join to an authorized firm/case; child IDs alone are never authorization |
+| `docs`, `document_extraction_reviews` | Firm document metadata and review audit | Enforce case + firm ownership through every read/write; raw uploaded binaries are not retained currently |
+| `chunks` | Mixed: global legal passages and firm-linked document chunks | Every firm-document chunk must remain linked to its document/case; shared legal chunks must be clearly distinguished from matter chunks |
+| `case_deletion_audit`, `security_audit_events` | Sensitive firm audit data | Firm-filter reads and writes; redact confidential content and ensure retention/deletion policy |
+| `research_conversations`, `research_messages` | User/firm private research | Conversation owner and firm scope must be checked for parent and child operations |
+| `legal_sources`, `legal_documents`, `legal_document_versions`, `legal_version_relations`, `legal_review_events` | Shared global legal registry | Shared read-only legal data may be global; changes/review outcomes need platform-level authority, immutable audit evidence, and source rights gates |
+
+## Release blockers
+
+1. **Shared database:** target tenant database/storage isolation architecture is not implemented.
+2. **Global reviewer privilege:** legal registry mutations use generic firm-admin authorization; platform-level reviewer authority is not yet distinct.
+3. **Incomplete inventory:** static route/table inventory is now recorded, but SQL query-by-query, UI, export, deployment, and operational path review still needs a second pass.
+4. **Backups and restore:** no cross-tenant backup/restore isolation test or restore drill has been demonstrated.
+5. **File retention:** original upload binaries and secure page previews are not available, so extraction corrections cannot be independently compared to retained original pages.
+6. **Independent review:** no independent security assessment is recorded.
+7. **Production hardening:** verify HTTPS/cookie flags, CSRF policy, secret handling, rate limits, structured security logging, encrypted backups, retention/deletion, incident response, and rollback in the deployment environment.
+
+## Recommended next sequence
+
+1. Keep the new audit endpoint regression tests in CI.
+2. Resolve global legal-registry reviewer authorization before inviting external firms.
+3. Perform SQL-query-by-query and UI/API route review, then add tests for every newly identified cross-firm path.
+4. Design tenant DB and file-storage boundaries; migrate only after backup, row-count, relationship, and rollback verification are tested.
+5. Implement backup/restore/deletion isolation tests and obtain independent security review.
+6. Keep public registration and production confidential matter use disabled until release gates pass.
