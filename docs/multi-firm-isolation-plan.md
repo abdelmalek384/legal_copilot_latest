@@ -32,3 +32,15 @@ The control plane should contain only the minimum needed to authenticate and rou
 ## Current automated coverage
 
 The API tests now exercise cross-firm case list/detail/update/delete, conflict checks, dashboard tasks, user listings, case search/answer requests, and admin-only user creation. Passing tests cover these cases in the current shared-database model only; they do not prove the target separate-database architecture is implemented.
+
+## Additional regression coverage (SEC-01)
+
+The API test suite now creates a private research conversation with synthetic sentinel content and verifies that:
+
+- the owning user can read its messages;
+- another user in the same firm and an administrator in another firm receive 404 for the conversation detail;
+- the other firm's conversation list does not include it;
+- cross-firm rename, delete, and message attempts are denied;
+- saving the owner's answer into a matter belonging to another firm is denied.
+
+These are regression tests for the current shared-database implementation, not proof of independent tenant storage. The target separate-database architecture, exhaustive endpoint inventory, backup/restore isolation, independent security review, and production controls remain outstanding.
