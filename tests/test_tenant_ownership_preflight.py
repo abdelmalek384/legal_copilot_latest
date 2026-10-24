@@ -19,18 +19,18 @@ class TenantOwnershipPreflightTests(unittest.TestCase):
             INSERT INTO notes VALUES (2,10,'valid note');
             INSERT INTO notes VALUES (3,NULL,'unlinked note');
             CREATE TABLE members(case_id INTEGER, user_id INTEGER);
-            CREATE TABLE docs(id INTEGER PRIMARY KEY, case_id INTEGER, firm_id INTEGER);
+            CREATE TABLE docs(id INTEGER PRIMARY KEY, case_id INTEGER, firm_id INTEGER, uploader_user_id INTEGER);
             CREATE TABLE chunks(id INTEGER PRIMARY KEY, case_id INTEGER, document_id INTEGER);
             CREATE TABLE research_conversations(id INTEGER PRIMARY KEY, user_id INTEGER, firm_id INTEGER);
-            CREATE TABLE case_deletion_audit(id INTEGER PRIMARY KEY, firm_id INTEGER);
+            CREATE TABLE case_deletion_audit(id INTEGER PRIMARY KEY, firm_id INTEGER, actor_user_id INTEGER);\n            CREATE TABLE document_extraction_reviews(id INTEGER PRIMARY KEY, document_id INTEGER, case_id INTEGER, firm_id INTEGER, chunk_id INTEGER, reviewer_user_id INTEGER);
             INSERT INTO firms VALUES (1,'Firm One'),(2,'Firm Two');
             INSERT INTO users VALUES (1,1),(2,2),(3,NULL);
             INSERT INTO cases VALUES (10,1),(20,2),(30,NULL);
             INSERT INTO members VALUES (10,1),(10,2),(999,1);
-            INSERT INTO docs VALUES (100,10,1),(200,20,1),(300,999,2),(400,10,NULL),(500,NULL,1);
+            INSERT INTO docs VALUES (100,10,1,1),(200,20,1,2),(300,999,2,2),(400,10,NULL,1),(500,NULL,1,2),(600,10,1,999);
             INSERT INTO chunks VALUES (1000,10,100),(2000,20,100),(3000,999,999),(4000,NULL,NULL);
             INSERT INTO research_conversations VALUES (1,2,1);
-            INSERT INTO case_deletion_audit VALUES (1,NULL);
+            INSERT INTO case_deletion_audit VALUES (1,NULL,1),(2,1,2);\n            INSERT INTO document_extraction_reviews VALUES (1,100,10,1,1000,2),(2,999,10,1,9999,1),(3,100,20,2,1000,1),(4,100,999,1,1000,1);
         """)
 
     def tearDown(self):
@@ -52,6 +52,17 @@ class TenantOwnershipPreflightTests(unittest.TestCase):
         self.assertEqual(codes["research_owner_firm_mismatch"], 1)
         self.assertEqual(codes["orphan_notes_case"], 1)
         self.assertEqual(codes["unlinked_notes_case"], 1)
+        self.assertEqual(codes["docs_uploader_missing_user"], 1)
+        self.assertEqual(codes["docs_uploader_firm_mismatch"], 2)
+        self.assertEqual(codes["document_review_document_missing"], 1)
+        self.assertEqual(codes["document_review_case_missing"], 1)
+        self.assertEqual(codes["document_review_document_firm_mismatch"], 1)
+        self.assertEqual(codes["document_review_case_firm_mismatch"], 1)
+        self.assertEqual(codes["document_review_reviewer_firm_mismatch"], 1)
+        self.assertEqual(codes["document_review_chunk_missing"], 1)
+        self.assertEqual(codes["document_review_chunk_scope_mismatch"], 1)
+        self.assertEqual(codes["deletion_audit_actor_firm_mismatch"], 1)
+        self.assertEqual(codes["deletion_audit_actor_missing"], 0)
         self.assertEqual(report["status"], "review_required")
 
     def test_clean_minimal_database_has_no_findings(self):
