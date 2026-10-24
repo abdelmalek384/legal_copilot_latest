@@ -26,6 +26,8 @@ jobs:
           python-version: '3.12'
       - name: Install dependencies
         run: python -m pip install -r requirements.txt
+      - name: Test SEC-01 runtime route and schema inventory
+        run: python tests/test_security_surface_inventory.py
       - name: Validate legal data registry and evaluation seeds
         run: python tools/validate_legal_data_foundation.py
       - name: Test retrieval and citation evaluation harness
