@@ -92,6 +92,16 @@ button.g{color:#344256}
  #main .workspace-list-item{align-items:flex-start}
 }
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;scroll-behavior:auto!important}}
+
+/* UI refresh conflict resolution: accessible controls and resilient narrow layouts. */
+:root{--ui-focus:#80a7ff}
+:where(button,input,select,textarea,a,[tabindex]):focus-visible{outline:3px solid var(--ui-focus);outline-offset:2px}
+input:focus,select:focus,textarea:focus{border-color:#7295ed;box-shadow:0 0 0 3px #2856c71a}
+button{min-height:40px}
+@media(max-width:800px){#shell{min-width:0}#main{min-width:0;width:100%}img,svg,canvas,video{max-width:100%}}
+@media(max-width:420px){#main{padding-inline:10px}.card{padding:14px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
 </style>
 <div id="app"></div><div id="toast"></div>
 <script>
