@@ -1,6 +1,6 @@
 """Admin commands. adduser: create an account. genkey: make a backup key. backup/restore: encrypted database backups.
 Examples: python manage.py adduser "Ahmed" ahmed@firm.eg lawyer | BACKUP_KEY=... python manage.py backup backups --keep 14"""
-import argparse, getpass, glob, json, os, sqlite3, time
+import argparse, getpass, glob, json, os, sqlite3, tempfile, time
 from cryptography.fernet import Fernet
 import app
 
@@ -58,7 +58,21 @@ def importlaws(a):
 
 
 def restore(a):
-    with open(a.file, "rb") as f, open(a.out, "wb") as o: o.write(Fernet(os.environ["BACKUP_KEY"]).decrypt(f.read()))
+    # Authenticate and decrypt completely before touching the destination.
+    with open(a.file, "rb") as source:
+        plaintext = Fernet(os.environ["BACKUP_KEY"]).decrypt(source.read())
+    destination = os.path.abspath(a.out)
+    parent = os.path.dirname(destination) or "."
+    fd, staged = tempfile.mkstemp(prefix=".restore-", suffix=".tmp", dir=parent)
+    try:
+        with os.fdopen(fd, "wb") as output:
+            output.write(plaintext)
+            output.flush()
+            os.fsync(output.fileno())
+        os.replace(staged, destination)
+    finally:
+        if os.path.exists(staged):
+            os.remove(staged)
 
 
 p = argparse.ArgumentParser(); sp = p.add_subparsers(dest="cmd", required=True)
