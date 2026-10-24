@@ -9,7 +9,7 @@
 - **In progress:** 4 of 20 deliverables (**20%**).
 - **Not started, blocked, or awaiting validation:** 11 of 20 (**55%**).
 - **Merged PRs from this workstream:** #88, #89, #90, #91, #94.
-- **Open PRs:** [#92](https://github.com/abdelmalek384/legal_copilot_latest/pull/92) (corpus/UX roadmap documentation), [#96](https://github.com/abdelmalek384/legal_copilot_latest/pull/96) (Research Results & Source Inspector; CI passed, manual QA pending), [#97](https://github.com/abdelmalek384/legal_copilot_latest/pull/97) (metadata-only instrument inventory validation; CI passed), [#98](https://github.com/abdelmalek384/legal_copilot_latest/pull/98) (WIPO/ILO source terms evidence; CI running).
+- **Open PRs:** [#92](https://github.com/abdelmalek384/legal_copilot_latest/pull/92) (corpus/UX roadmap documentation), [#96](https://github.com/abdelmalek384/legal_copilot_latest/pull/96) (Research Results & Source Inspector; CI passed, manual QA pending), [#97](https://github.com/abdelmalek384/legal_copilot_latest/pull/97) (metadata-only instrument inventory validation; CI passed), [#98](https://github.com/abdelmalek384/legal_copilot_latest/pull/98) (WIPO/ILO source terms evidence; CI passed, Egyptian portal terms still unresolved).
 - **External permission requests:** not sent by this project workflow. Claude is expected to handle outreach; approval is not assumed.
 - **Manual UI QA:** not yet completed.
 
