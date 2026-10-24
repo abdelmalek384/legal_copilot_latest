@@ -344,3 +344,22 @@ retry_after = app._rate_limit(rate_request("/research/conversations/999/messages
 assert retry_after > 0, "research chat must return a retry delay after 20 requests/minute per IP"
 assert app._rate_limit(rate_request("/research/conversations/999/messages", method="GET")) == 0
 assert c.get("/openapi.json").status_code == 404
+
+
+# Login lockout must slow password guessing without locking out a legitimate user.
+# Simulate active email and client-IP lockouts directly to avoid timing-sensitive sleeps.
+_login_now = int(time.time())
+for _identifier in ("lead@x.eg", "ip:testclient"):
+    db.execute(
+        "INSERT INTO login_attempts(email,failures,window_start,locked_until) VALUES(?,?,?,?) "
+        "ON CONFLICT(email) DO UPDATE SET failures=excluded.failures,window_start=excluded.window_start,locked_until=excluded.locked_until",
+        (_identifier, 5, _login_now, _login_now + 120),
+    )
+db.commit()
+locked_bad_password = c.post("/login", json={"email":"lead@x.eg","password":"definitely-wrong"})
+assert locked_bad_password.status_code == 429, locked_bad_password.text
+# Correct credentials should be evaluated even while an attacker has exhausted the
+# shared email/IP failure budget; successful login clears both lockout entries.
+locked_good_password = c.post("/login", json={"email":"lead@x.eg","password":"password-Lead"})
+assert locked_good_password.status_code == 200, locked_good_password.text
+assert db.execute("SELECT COUNT(*) FROM login_attempts WHERE email IN ('lead@x.eg','ip:testclient')").fetchone()[0] == 0
