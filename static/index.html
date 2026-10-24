@@ -310,10 +310,10 @@ async function law(){
     h('option',{value:'verified_corpus',textContent:LANG==='ar'?'النصوص القانونية المتحقق منها':'Verified legal corpus'}),
     h('option',{value:'firm_documents',textContent:LANG==='ar'?'مستندات المكتب داخل ملف قضية':'Firm documents in a matter'}),
     h('option',{value:'metadata_only',textContent:LANG==='ar'?'اكتشاف فهرس المصادر (بيانات وصفية فقط)':'Source catalog discovery (metadata only)'}));
-  const matterSelect=h('select',{'aria-label':LANG==='ar'?'ملف القضية':'Matter',disabled:true},h('option',{value:'',textContent:LANG==='ar'?'اختر ملف قضية':'Select a matter'}));
+  const matterSelect=h('select',{'aria-label':LANG==='ar'?'ملف القضية':'Matter'},h('option',{value:'',textContent:LANG==='ar'?'اختر ملف قضية':'Select a matter'}));
   let accessibleCases=[];
   try{accessibleCases=await api('/cases');accessibleCases.forEach(c=>matterSelect.append(new Option((c.title||('Matter '+c.id))+' (#'+c.id+')',String(c.id))))}catch(_){}
-  scopeSelect.onchange=()=>{matterSelect.disabled=scopeSelect.value!=='firm_documents';if(scopeSelect.value==='firm_documents'&&!matterSelect.value)toast(LANG==='ar'?'اختر ملف قضية للبحث في مستندات المكتب':'Select a matter to search firm documents')};
+  scopeSelect.onchange=()=>{if(scopeSelect.value==='firm_documents'&&!matterSelect.value)toast(LANG==='ar'?'اختر ملف قضية للبحث في مستندات المكتب':'Select a matter to search firm documents')};
   const copyText=async(text)=>{try{if(navigator.clipboard&&navigator.clipboard.writeText)await navigator.clipboard.writeText(String(text||''));else{const t=h('textarea',{value:String(text||''),style:'position:fixed;opacity:0'});document.body.append(t);t.select();document.execCommand('copy');t.remove()}toast(LANG==='ar'?'تم النسخ':'Copied to clipboard')}catch(_){toast(LANG==='ar'?'تعذر النسخ؛ حدد النص يدوياً':'Copy failed; select the text manually')}};
   const highlightTerms=(text,question)=>{const terms=String(question||'').trim().split(/\s+/).filter(t=>t.length>1).slice(0,8).sort((a,b)=>b.length-a.length);if(!terms.length)return [document.createTextNode(String(text||''))];const escaped=terms.map(t=>t.replace(/[.*+?^{}()|[\]\\$]/g,ch=>'\\'+ch));const re=new RegExp('('+escaped.join('|')+')','giu');return String(text||'').split(re).filter(x=>x!=='').map(part=>terms.some(t=>part.toLocaleLowerCase()===t.toLocaleLowerCase())?h('mark',{textContent:part}):document.createTextNode(part))};
   const memoText=(question,result)=>{const asOf=result.requested_as_of||new Date().toISOString().slice(0,10),lines=['LEGAL RESEARCH MEMO','Question: '+(question||'(not recorded)'),'As of: '+asOf,'Search scope: '+(result.scope||scopeSelect.value),'','Answer',result.answer||result.message||'No generated answer.','','Sources and exact passages'];const sources=result.sources||[];if(!sources.length)lines.push('No relevant verified passage was found in this search scope.');sources.forEach((x,i)=>{lines.push('','['+(i+1)+'] '+(x.citation||x.ref||'Unresolved citation'),'Status: '+(x.source_status||'outdated_or_under_review'),'Exact passage (verbatim):',x.text||'(No passage text recorded; metadata-only result.)')});lines.push('','Limitations','- This memo reflects only the selected search scope and records available as of the stated date.','- A URL, registry entry, or model-generated answer is not independent proof of authenticity or current legal status.','- Missing pin-cites, publication/effective dates, amendment history, or permission evidence remain missing; do not infer them.','- If no relevant verified passage was found, this is not evidence that no applicable law exists.');return lines.join('\n')};
@@ -376,7 +376,7 @@ async function law(){
        bubble.append(actions);
        if(!(m.sources||[]).length){
          bubble.append(pill(LANG==='ar'?'لم يُعثر على نص قانوني متحقق ذي صلة في هذا النطاق':'No relevant verified legal text found in this scope','soon'));
-         actions.append(makeBtn(LANG==='ar'?'اكتشاف بيانات وصفية للمصادر':'Discover source metadata',async()=>{if(!priorQuestion.trim())return;scopeSelect.value='metadata_only';matterSelect.disabled=true;try{renderDiscovery(await api('/research/discover','POST',{q:priorQuestion}),priorQuestion)}catch(_){}},'g'));
+         actions.append(makeBtn(LANG==='ar'?'اكتشاف بيانات وصفية للمصادر':'Discover source metadata',async()=>{if(!priorQuestion.trim())return;scopeSelect.value='metadata_only';try{renderDiscovery(await api('/research/discover','POST',{q:priorQuestion}),priorQuestion)}catch(_){}},'g'));
        }
      }
      thread.append(bubble);
@@ -438,7 +438,7 @@ async function law(){
  },'primary');
  composer.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send.click()}});
  const composerArea=h('div',{className:'research-composer'},composer,send,h('div',{className:'mut',textContent:LANG==='ar'?'Enter للإرسال · Shift+Enter لسطر جديد':'Enter to send · Shift+Enter for a new line'}));
- shell(LANG==='ar'?'البحث القانوني':'Legal Research',h('div',{className:'research-controls'},h('label',{},h('span',{textContent:LANG==='ar'?'نطاق البحث':'Search scope'}),scopeSelect),h('label',{},h('span',{textContent:LANG==='ar'?'ملف القضية (لمستندات المكتب)':'Matter (for firm documents)'}),matterSelect)),h('div',{className:'research-layout'},sidebar,h('section',{className:'research-main'},thread,composerArea)));
+ shell(LANG==='ar'?'البحث القانوني':'Legal Research',h('div',{className:'research-controls'},h('label',{},h('span',{textContent:LANG==='ar'?'نطاق البحث':'Search scope'}),scopeSelect),h('label',{},h('span',{textContent:LANG==='ar'?'ملف القضية (للبحث والحفظ)':'Matter (for search and saving)'}),matterSelect)),h('div',{className:'research-layout'},sidebar,h('section',{className:'research-main'},thread,composerArea)));
  await drawList();
  if(activeId)await loadConversation(activeId);
  else {const list=await api('/research/conversations');if(list.length)await loadConversation(list[0].id);else await newChat()}
