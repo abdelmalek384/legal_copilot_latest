@@ -22,7 +22,7 @@ button{cursor:pointer;background:var(--pri);color:#fff;border:0}button.g{backgro
 .auth-tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:4px;background:#F4F6FA;border:1px solid var(--line);border-radius:10px;margin:16px 0}.auth-tabs button{background:transparent;color:var(--mut);border:0;border-radius:7px;padding:9px;font-weight:600}.auth-tabs button.active{background:#fff;color:var(--pri);box-shadow:0 1px 3px #14284B18}.auth-brand{text-align:center;margin-bottom:16px}.auth-brand .mark{width:48px;height:48px;display:grid;place-items:center;border-radius:14px;background:var(--pri-l);color:var(--pri);font-size:25px;margin:0 auto 10px}.auth-card{width:min(420px,calc(100% - 28px));margin:7vh auto;padding:24px}.auth-card h2{margin:0 0 4px;text-align:center}.auth-card .mut{text-align:center}.auth-card input{min-height:44px}.auth-card button[type=submit],.auth-card .auth-main{min-height:44px;width:100%;margin-top:12px}.auth-note{background:#F4F6FA;border:1px solid var(--line);border-radius:9px;padding:12px;margin:14px 0;font-size:14px}.auth-card .lang-row{display:flex;justify-content:flex-end}
 .modal-backdrop{position:fixed;inset:0;background:#14284B99;display:flex;align-items:center;justify-content:center;padding:16px;z-index:1000}.modal{width:min(680px,100%);max-height:90vh;overflow:auto;margin:0}.modal h2{margin-top:0}.modal label{min-width:0}.modal input{width:100%;min-width:0}.modal button:disabled{opacity:.6;cursor:wait}
 .lang-switch{margin:8px 0}.lang-switch button{width:100%}
-.research-layout{display:grid;grid-template-columns:minmax(190px,240px) minmax(0,1fr);gap:14px;align-items:start}.research-list{position:sticky;top:12px;max-height:calc(100vh - 24px);overflow:auto}.research-list-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}.research-conversation-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:4px}.research-delete{padding:5px 9px;min-width:34px;color:var(--mut);background:transparent;border:1px solid var(--line)}.research-delete:hover{color:#9f2222;border-color:#d88}
+.research-layout{display:grid;grid-template-columns:minmax(190px,240px) minmax(0,1fr);gap:14px;align-items:start}.research-list{position:sticky;top:12px;max-height:calc(100vh - 24px);overflow:auto}.research-list-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}.research-conversation-row{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:4px}.research-source-link{display:inline-block;margin:4px 0;color:var(--pri);text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}.research-source-link:focus-visible{outline:3px solid var(--ui-focus);outline-offset:2px;border-radius:3px}.research-delete{padding:5px 9px;min-width:34px;color:var(--mut);background:transparent;border:1px solid var(--line)}.research-delete:hover{color:#9f2222;border-color:#d88}
 .research-conversation{display:block;width:100%;text-align:start;background:transparent;color:var(--tx);border:1px solid transparent;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin:4px 0}.research-conversation.active{background:var(--pri-l);color:var(--pri);border-color:#B8CCFA}.research-main{min-width:0}.research-thread{min-height:48vh;max-height:62vh;overflow:auto}.research-heading{border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:14px}.research-empty{text-align:center;padding:48px 12px;color:var(--mut)}.research-message{max-width:94%;padding:12px;margin:12px 0;border:1px solid var(--line);border-radius:12px;background:#fff;white-space:pre-wrap;overflow-wrap:anywhere}.research-message.user{margin-inline-start:auto;background:var(--pri-l);border-color:#D6E3FF}.research-role,.research-sources-title{font-size:12px;color:var(--mut);font-weight:700;margin-bottom:5px}.research-content{white-space:pre-wrap}.research-source p{white-space:pre-wrap;overflow-wrap:anywhere}.research-composer{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:start}.research-composer textarea{width:100%;resize:vertical;min-height:76px}.research-composer .mut{grid-column:1/-1}.research-composer button{min-height:42px}@media(max-width:800px){.research-layout{grid-template-columns:minmax(0,1fr)}.research-list{position:static;max-height:180px}.research-thread{min-height:38vh;max-height:55vh}.research-message{max-width:100%}.research-composer{grid-template-columns:minmax(0,1fr)}.research-composer button{width:100%}}@media(max-width:800px){#shell{flex-direction:column}#side{width:auto;flex-direction:row;overflow-x:auto;position:sticky;top:0;z-index:10}#side .me,#side h1{display:none}#main{padding:12px;min-width:0}.cols{grid-template-columns:minmax(0,1fr)}.grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))}.row{align-items:stretch}.row>input,.row>select{max-width:100%;min-width:0;flex:1}.tabs{max-width:100%}.modal-backdrop{align-items:flex-start;padding:10px}.modal{max-height:calc(100vh - 20px)}}
 @media(max-width:420px){body{font-size:14px}#main{padding:8px}.card{padding:10px}.grid{grid-template-columns:minmax(0,1fr)}button{max-width:100%}}
 /* Workspace refresh: clearer hierarchy, calm surfaces, stronger focus and mobile behavior. */
@@ -118,6 +118,7 @@ const RL={lead:'رئيسي',associate:'محامٍ مساعد',junior:'متدرب
 const h=(t,p={},...k)=>{const e=document.createElement(t);Object.assign(e,p);e.append(...k.flat().filter(x=>x!=null&&x!==false));if((t==='input'||t==='textarea')&&p.placeholder&&!e.hasAttribute('aria-label'))e.setAttribute('aria-label',p.placeholder);return e};
 const pill=(t,k)=>h('span',{className:'pill '+k,textContent:t}),btn=(t,f,c='')=>h('button',{textContent:t,onclick:f,className:c});
 const fd=s=>s?s.slice(0,10).split('-').reverse().join('/'):'',err=j=>typeof j.detail==='string'?j.detail:'بيانات غير صحيحة';
+const safeHttpsUrl=v=>{try{const u=new URL(v);return u.protocol==='https:'?u.href:null}catch(_){return null}};
 const toast=t=>{const e=$('toast');e.textContent=t;e.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>e.style.display='none',3500)};
 function csrfToken(){return document.cookie.split('; ').find(x=>x.startsWith('lc_csrf='))?.split('=').slice(1).join('=')||''}
 async function api(p,m='GET',b){const headers={};if(b!==undefined)headers['Content-Type']='application/json';const csrf=csrfToken();if(csrf)headers['X-CSRF-Token']=decodeURIComponent(csrf);const r=await fetch(p,{method:m,credentials:'same-origin',headers,body:b!==undefined?JSON.stringify(b):undefined});
@@ -235,7 +236,8 @@ async function law(){
  PAGE='law';
  const sidebar=h('div',{className:'research-list card'});
  const thread=h('div',{className:'research-thread card'});
- let activeId=null, sending=false;
+ let activeId=null, sending=false, conversationItems=[];
+ const conversationFilter=h('input',{type:'search',placeholder:LANG==='ar'?'ابحث في المحادثات المحفوظة':'Search saved conversations','aria-label':LANG==='ar'?'ابحث في المحادثات المحفوظة':'Search saved conversations'});
  const copy=(v)=>LANG==='ar'?v:({ 'محادثة جديدة':'New chat','ابدأ محادثة بحث قانوني':'Start a legal research chat','اسأل عن القانون المصري':'Ask about Egyptian law','اكتب سؤالك هنا…':'Type your question…','إرسال':'Send','مصادر الإجابة':'Answer sources','لا توجد محادثات بعد':'No conversations yet','ابدأ محادثة جديدة':'Start a new chat','بحث قانوني مدعوم بالمصادر':'Source-grounded legal research','لا توجد إجابة مولدة. راجع المصادر أدناه.':'No generated answer. Review the sources below.','نتائج بحثية مساعدة وليست استشارة قانونية. تحقق دائما من المصدر الرسمي.':'Research assistance, not legal advice. Always verify against the official source.','مصدر غير متحقق':'Unverified source','غير سارٍ':'Not in force','لم يُتحقق من سريانه':'Current status unverified'}[v]||v);
  const makeBtn=(label,fn,cl='g')=>btn(copy(label),fn,cl);
  const renderMessages=(messages)=>{
@@ -259,7 +261,7 @@ async function law(){
          if(p.status==='registry_linked'){
            const meta=[p.official_title,p.version_label,p.legal_status,p.publication_date&&((LANG==='ar'?'النشر: ':'Published: ')+p.publication_date),p.effective_date&&((LANG==='ar'?'السريان: ':'Effective: ')+p.effective_date),p.repeal_date&&((LANG==='ar'?'الإلغاء: ':'Repeal: ')+p.repeal_date),p.consolidated_as_of&&((LANG==='ar'?'مجمع حتى: ':'Consolidated through: ')+p.consolidated_as_of),p.gazette_issue&&((LANG==='ar'?'الجريدة الرسمية: ':'Gazette: ')+p.gazette_issue+(p.gazette_pages?' · '+p.gazette_pages:''))].filter(Boolean).join(' · ');
            if(meta)src.append(h('div',{className:'mut',textContent:meta}));
-           if(p.source_url)src.append(h('div',{className:'mut',textContent:(LANG==='ar'?'رابط المصدر المسجل: ':'Registered source URL: ')+p.source_url}));
+           const sourceUrl=safeHttpsUrl(p.source_url||s.source_url);if(sourceUrl)src.append(h('a',{className:'research-source-link',href:sourceUrl,target:'_blank',rel:'noopener noreferrer',textContent:LANG==='ar'?'فتح المصدر المسجل':'Open registered source'}));
            if(!p.amendment_history_verified)src.append(pill(LANG==='ar'?'تاريخ التعديلات غير متحقق':'Amendment history unverified','soon'));
            const ev=(p.review_evidence||[]).filter(e=>e.outcome==='pass'&&e.evidence_url);
            if(ev.length)src.append(h('div',{className:'mut',textContent:(LANG==='ar'?'دليل المراجعة: ':'Review evidence: ')+ev.map(e=>e.review_type+' — '+e.evidence_url).join(' · ')}));
@@ -278,12 +280,21 @@ async function law(){
    thread.scrollTop=thread.scrollHeight;
  };
  const loadConversation=async id=>{const data=await api('/research/conversations/'+id);activeId=id;renderMessages(data.messages||[]);drawList()};
- const drawList=async()=>{
-   const list=await api('/research/conversations');
-   sidebar.replaceChildren(h('div',{className:'research-list-head'},h('b',{textContent:LANG==='ar'?'المحادثات':'Conversations'}),makeBtn('محادثة جديدة',newChat,'primary')));
-   if(!list.length)sidebar.append(h('p',{className:'mut',textContent:copy('لا توجد محادثات بعد')}));
+ const renderList=()=>{
+   const head=h('div',{className:'research-list-head'},h('b',{textContent:LANG==='ar'?'المحادثات':'Conversations'}),makeBtn('محادثة جديدة',newChat,'primary'));
+   sidebar.replaceChildren(head,conversationFilter);
+   const needle=conversationFilter.value.trim().toLocaleLowerCase();
+   const list=conversationItems.filter(c=>!needle||String(c.title||'').toLocaleLowerCase().includes(needle));
+   if(!conversationItems.length)sidebar.append(h('p',{className:'mut',textContent:copy('لا توجد محادثات بعد')}));
+   else if(!list.length)sidebar.append(h('p',{className:'mut',textContent:LANG==='ar'?'لا توجد محادثات مطابقة.':'No matching conversations.'}));
    for(const c of list){
      const openButton=h('button',{className:'research-conversation '+(c.id===activeId?'active':''),textContent:c.title,onclick:()=>loadConversation(c.id)});
+     const renameButton=h('button',{className:'research-delete',type:'button',textContent:'✎',title:LANG==='ar'?'إعادة تسمية المحادثة':'Rename conversation','aria-label':(LANG==='ar'?'إعادة تسمية المحادثة: ':'Rename conversation: ')+c.title,onclick:async()=>{
+       const title=window.prompt(LANG==='ar'?'اكتب عنواناً جديداً للمحادثة':'Enter a new conversation title',c.title);
+       if(title===null)return;
+       if(!title.trim()){toast(LANG==='ar'?'لا يمكن أن يكون العنوان فارغاً':'Conversation title cannot be blank');return}
+       try{await api('/research/conversations/'+c.id,'PATCH',{title:title.trim()});await drawList()}catch(_){}
+     }});
      const deleteButton=h('button',{className:'research-delete',type:'button',textContent:'×',title:copy('حذف المحادثة'), 'aria-label':(LANG==='ar'?'حذف المحادثة: ':'Delete conversation: ')+c.title,onclick:async()=>{
        const promptText=LANG==='ar'?'هل تريد حذف هذه المحادثة وكل رسائلها؟':'Delete this conversation and all its messages?';
        if(!window.confirm(promptText))return;
@@ -293,9 +304,11 @@ async function law(){
          await drawList();
        }catch(_){}
      }});
-     sidebar.append(h('div',{className:'research-conversation-row'},openButton,deleteButton));
+     sidebar.append(h('div',{className:'research-conversation-row'},openButton,renameButton,deleteButton));
    }
  };
+ conversationFilter.oninput=renderList;
+ const drawList=async()=>{conversationItems=await api('/research/conversations');renderList()};
  const newChat=async()=>{
    const c=await api('/research/conversations','POST',{});
    activeId=c.id;renderMessages([]);await drawList();composer.focus();
