@@ -9,7 +9,7 @@
 - **In progress:** 6 of 19 deliverables (**31.6%**).
 - **Not started, blocked, or awaiting validation:** 6 of 19 (**31.6%**).
 - **Merged PRs from this workstream:** #88, #89, #90, #91, #92, #94, #96, #97, #98, #99, #100, #101, #102, #103.
-- **Open PRs:** none at last check; SEC-01 follow-through is in progress on the current branch.
+- **Open PRs:** [#104](https://github.com/abdelmalek384/legal_copilot_latest/pull/104) (SEC-01 extraction-review isolation regression tests; CI pending).
 - **External permission requests:** not sent by this project workflow. Claude is expected to handle outreach; approval is not assumed.
 - **Manual UI QA:** not yet completed.
 
