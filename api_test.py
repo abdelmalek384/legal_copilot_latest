@@ -84,6 +84,20 @@ assert stored_doc["byte_size"] == len(upload_bytes) and stored_doc["extraction_s
 assert stored_doc["ocr_used"] == 0
 linked_chunks = db.execute("SELECT COUNT(*) FROM chunks WHERE document_id=?", (upload_meta["document_id"],)).fetchone()[0]
 assert linked_chunks == upload_meta["chunks"] and linked_chunks >= 1
+review_chunk = db.execute("SELECT id,text FROM chunks WHERE document_id=? ORDER BY id LIMIT 1", (upload_meta["document_id"],)).fetchone()
+review_response = c.post(
+    f"/cases/{cid}/docs/{upload_meta['document_id']}/chunks/{review_chunk['id']}/review",
+    json={"outcome":"corrected","corrected_text":review_chunk["text"] + " [reviewed correction]","note":"Test-only correction"},
+    headers=J)
+assert review_response.status_code == 201, review_response.text
+assert review_response.json()["text_updated"] is True
+assert db.execute("SELECT text FROM chunks WHERE id=?", (review_chunk["id"],)).fetchone()[0].endswith("[reviewed correction]")
+review_audit = c.get(f"/cases/{cid}/docs/{upload_meta['document_id']}/reviews", headers=J)
+assert review_audit.status_code == 200 and review_audit.json()["reviews"][0]["outcome"] == "corrected"
+assert review_audit.json()["reviews"][0]["original_text"] == review_chunk["text"]
+assert c.post(f"/cases/{cid}/docs/{upload_meta['document_id']}/chunks/{review_chunk['id']}/review",
+             json={"outcome":"corrected"}, headers=J).status_code == 422
+
 # Duplicate uploads are intentionally separate matter records; hashes allow auditing without cross-matter deduplication.
 duplicate_upload = c.post(f"/cases/{cid}/upload", files={"file": ("renamed.docx", upload_bytes)}, headers=J)
 assert duplicate_upload.status_code == 200
@@ -132,6 +146,7 @@ db.execute("INSERT INTO users(name,email,pw,role,firm_id) VALUES(?,?,?,?,?)",
            ("Second Admin","second@x.eg",app.hash_pw("password-Second"),"admin",2))
 db.commit()
 S = login_creds("second@x.eg", "password-Second")
+assert c.get(f"/cases/{cid}/docs/{upload_meta['document_id']}/reviews", headers=S).status_code == 404
 other_cid = c.post("/cases", json={"title":"Private second-firm matter","client":"Second Client"}, headers=S).json()["id"]
 assert c.get("/cases", headers=S).status_code == 200
 assert [x["id"] for x in c.get("/cases", headers=S).json()] == [other_cid]

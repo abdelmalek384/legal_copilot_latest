@@ -208,6 +208,20 @@ def conn():
                 c.execute("UPDATE docs SET firm_id=(SELECT firm_id FROM cases WHERE cases.id=docs.case_id) WHERE firm_id IS NULL")
                 c.execute("CREATE INDEX IF NOT EXISTS idx_docs_case_added ON docs(case_id, id DESC)")
                 c.execute("CREATE INDEX IF NOT EXISTS idx_chunks_document_id ON chunks(document_id)")
+                c.execute("""CREATE TABLE IF NOT EXISTS document_extraction_reviews(
+                    id INTEGER PRIMARY KEY,
+                    document_id INTEGER NOT NULL,
+                    case_id INTEGER NOT NULL,
+                    firm_id INTEGER NOT NULL,
+                    chunk_id INTEGER NOT NULL,
+                    reviewer_user_id INTEGER NOT NULL,
+                    outcome TEXT NOT NULL CHECK(outcome IN ('accepted','corrected','needs_recheck')),
+                    original_text TEXT NOT NULL,
+                    reviewed_text TEXT NOT NULL,
+                    note TEXT NOT NULL DEFAULT '',
+                    created_at TEXT NOT NULL DEFAULT (datetime('now'))
+                )""")
+                c.execute("CREATE INDEX IF NOT EXISTS idx_doc_reviews_document ON document_extraction_reviews(firm_id,document_id,id DESC)")
                 case_cols = {r[1] for r in c.execute("PRAGMA table_info(cases)")}
                 for col in ("case_number", "case_year", "court", "circuit", "opposing_party"):
                     if col not in case_cols:
@@ -1334,6 +1348,53 @@ def upload(cid: int, file: UploadFile, u: dict = Depends(user)):
         content_type=(file.content_type or ("application/pdf" if name.lower().endswith(".pdf") else "application/vnd.openxmlformats-officedocument.wordprocessingml.document")),
         byte_size=len(data), extraction_status=extraction_status, ocr_used=ocr_used)
     return {"document_id": document_id, "sha256": digest, "chunks": chunks, "ocr_used": ocr_used, "text_status": extraction_status}
+
+
+class ExtractionReviewIn(BaseModel):
+    outcome: str = Field(pattern=r"^(accepted|corrected|needs_recheck)$")
+    corrected_text: str | None = Field(default=None, max_length=20000)
+    note: str = Field(default="", max_length=2000)
+
+
+@app.get("/cases/{cid}/docs/{document_id}/reviews")
+def list_document_reviews(cid: int, document_id: int, u: dict = Depends(user)):
+    c = conn(); need(c, u, cid)
+    doc = c.execute("SELECT id FROM docs WHERE id=? AND case_id=? AND firm_id=?", (document_id, cid, u["firm_id"])).fetchone()
+    if not doc: raise HTTPException(404, "document not found")
+    rows = c.execute(
+        "SELECT r.id,r.chunk_id,r.reviewer_user_id,r.outcome,r.original_text,r.reviewed_text,r.note,r.created_at "
+        "FROM document_extraction_reviews r WHERE r.document_id=? AND r.case_id=? AND r.firm_id=? ORDER BY r.id DESC LIMIT 200",
+        (document_id, cid, u["firm_id"])).fetchall()
+    return {"document_id": document_id, "reviews": [dict(r) for r in rows]}
+
+
+@app.post("/cases/{cid}/docs/{document_id}/chunks/{chunk_id}/review", status_code=201)
+def review_document_chunk(cid: int, document_id: int, chunk_id: int, b: ExtractionReviewIn, u: dict = Depends(user)):
+    c = conn(); need(c, u, cid)
+    doc = c.execute("SELECT id FROM docs WHERE id=? AND case_id=? AND firm_id=?", (document_id, cid, u["firm_id"])).fetchone()
+    chunk = c.execute("SELECT id,text FROM chunks WHERE id=? AND document_id=? AND case_id=?", (chunk_id, document_id, cid)).fetchone()
+    if not doc or not chunk: raise HTTPException(404, "document chunk not found")
+    old_text = chunk["text"]
+    if b.outcome == "corrected":
+        corrected = (b.corrected_text or "").strip()
+        if not corrected: raise HTTPException(422, "corrected_text is required for a correction")
+        if corrected == old_text: raise HTTPException(422, "corrected_text must differ from the extracted text")
+    else:
+        if b.corrected_text is not None: raise HTTPException(422, "corrected_text is only valid for corrected outcome")
+        corrected = old_text
+    cur = c.execute(
+        "INSERT INTO document_extraction_reviews(document_id,case_id,firm_id,chunk_id,reviewer_user_id,outcome,original_text,reviewed_text,note) "
+        "VALUES(?,?,?,?,?,?,?,?,?)",
+        (document_id, cid, u["firm_id"], chunk_id, u["id"], b.outcome, old_text, corrected, b.note.strip()))
+    if b.outcome == "corrected":
+        c.execute("UPDATE chunks SET text=?,norm=? WHERE id=? AND document_id=? AND case_id=?",
+                  (corrected, norm(corrected), chunk_id, document_id, cid))
+        c.execute("DELETE FROM chunks_fts WHERE rowid=?", (chunk_id,))
+        c.execute("INSERT INTO chunks_fts(rowid,norm) VALUES(?,?)", (chunk_id, " ".join(tokens(corrected))))
+    c.commit()
+    return {"review_id": cur.lastrowid, "document_id": document_id, "chunk_id": chunk_id,
+            "outcome": b.outcome, "text_updated": b.outcome == "corrected",
+            "warning": "Reviewer correction is an audited transcription change, not proof of legal accuracy or source authenticity."}
 
 
 @app.delete("/cases/{cid}")
