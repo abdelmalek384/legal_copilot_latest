@@ -25,7 +25,7 @@ Percentages count deliverables equally; they are not a claim that 20% of all cod
 | SRC-01 | Permission outreach tracker, official contact verification and permission-gate tests | Complete | Merged PR #90; verified contact does not mean permission granted |
 | DATA-01 | Document permission-aware corpus strategy and alternatives | In progress | PR #92; review and merge the strategy documents |
 | DATA-02 | Corpus coverage/provenance dashboard and admin-only metrics API | Complete | Merged PR #94; coverage remains a registry metric, not total-law coverage |
-| DATA-03 | Review terms and reuse conditions for every proposed external source | Not started | Record item-specific terms, allowed purpose, attribution and evidence before ingestion |
+| DATA-03 | Review terms and reuse conditions for every proposed external source | In progress | PR #98 records WIPO/ILO policy limits; Egyptian primary portal terms and item-level rights remain unresolved |
 | DATA-04 | Prioritized Egyptian instrument metadata inventory | In progress | Existing 69-record inventory now has structural/permission-state validation and CI tests in PR #97; candidates remain metadata-only |
 | DATA-05 | Expand the verified starter corpus using permitted acquisition routes | Blocked / ongoing | Depends on lawful source copies, source-specific terms, and lawyer validation; continue metadata discovery meanwhile |
 | DATA-06 | Firm-supplied document ingestion with provenance and tenant scoping | Not started | Build upload, hashing, ownership, retention and access-control workflow |
@@ -49,10 +49,10 @@ Percentages count deliverables equally; they are not a claim that 20% of all cod
 
 ## Immediate next actions
 
-1. Check current-head CI for [PR #96](https://github.com/abdelmalek384/legal_copilot_latest/pull/96); fix API/JavaScript/test failures before merge.
+1. Current-head CI for [PR #96](https://github.com/abdelmalek384/legal_copilot_latest/pull/96) passed; manual RTL/LTR/keyboard/screen-reader and lawyer review remain before merge.
 2. Review and merge PR #92 once its documentation is approved.
 3. Complete manual RTL/LTR/keyboard/screen-reader and lawyer review for Issue #95; page values are shown only when recorded.
-4. Review and merge PR #97 after CI passes; continue instrument-level source terms review under DATA-03.
+4. Review PRs [#97](https://github.com/abdelmalek384/legal_copilot_latest/pull/97) and [#98](https://github.com/abdelmalek384/legal_copilot_latest/pull/98), both with passing CI; continue instrument-level source terms review under DATA-03.
 5. Record Claude's outreach status and any written replies in the permission tracker; do not change permissions until written terms are reviewed.
 
 ## Known limitations
