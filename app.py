@@ -884,7 +884,7 @@ def user(request: Request, session_cookie: str = Cookie(None, alias="lc_session"
     token_hash = sha(tok)
     c = conn()
     r = c.execute("SELECT u.* FROM auth_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=? AND s.expires>?", (token_hash, int(time.time()))).fetchone()
-    if not r or not r["active"]:
+    if not r or not r["active"] or r["firm_id"] is None:
         c.execute("DELETE FROM auth_sessions WHERE token_hash=?", (token_hash,)); c.commit()
         raise HTTPException(401, "unauthorized")
     # Cookie-based sessions are not readable by JavaScript. Mutating requests require
