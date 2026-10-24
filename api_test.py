@@ -1,6 +1,6 @@
 import os, io, json, tempfile
 from datetime import date, timedelta
-os.environ.update(COPILOT_DB=os.path.join(tempfile.mkdtemp(), "a.db"), ADMIN_TOKEN="stage0-test-admin-token-please-use-a-long-random-secret")
+os.environ.update(COPILOT_DB=os.path.join(tempfile.mkdtemp(), "a.db"), ADMIN_TOKEN="stage0-test-admin-token-please-use-a-long-random-secret", LEGAL_REVIEW_ADMIN_TOKEN="platform-review-test-token-must-be-32-chars-minimum")
 from fastapi.testclient import TestClient
 import app, docx
 c = TestClient(app.app); db = app.conn()
@@ -19,8 +19,11 @@ def login_creds(email, password):
     c.cookies.clear()  # Tests pass credentials explicitly; avoid leaking one login into later requests.
     return {"Cookie": f"lc_session={session}; lc_csrf={csrf}", "X-CSRF-Token": csrf}
 A_IMPORT = login_creds("import-admin@x.eg", "password-ImportAdmin")
+REVIEW_HEADERS = {"X-Legal-Review-Token": os.environ["LEGAL_REVIEW_ADMIN_TOKEN"]}
+REVIEW_ADMIN = {**A_IMPORT, **REVIEW_HEADERS}
 def login(n): return login_creds(n.lower() + "@x.eg", "password-" + n)
 L, J, O = login("Lead"), login("Junior"), login("Outsider")
+REVIEW_LAWYER = {**L, **REVIEW_HEADERS}
 assert c.get("/").headers.get("x-content-type-options") == "nosniff"
 assert c.get("/").headers.get("x-frame-options") == "DENY"
 landing = c.get("/")
@@ -433,7 +436,7 @@ for model, field, valid, invalid in (
         raise AssertionError(f"{model.__name__} accepted impossible date {invalid}")
 
 
-# Evidence-backed legal review events are admin-only and never auto-promote legal status.
+# Shared legal review requires a platform reviewer token plus an authenticated account.
 review_source_id = "SRC-REVIEW-EVENT-TEST"
 review_document_id = "DOC-REVIEW-EVENT-TEST"
 db.execute("INSERT INTO legal_sources(source_id,authority,source_page) VALUES(?,?,?)",
@@ -446,36 +449,43 @@ review_version_id = db.execute("SELECT version_id FROM legal_document_versions W
                                (review_document_id,)).fetchone()[0]
 db.commit()
 assert c.get(f"/legal-review/versions/{review_version_id}/events", headers=L).status_code == 403
+assert c.get(f"/legal-review/versions/{review_version_id}/events", headers=A_IMPORT).status_code == 403
+assert c.get(f"/legal-review/versions/{review_version_id}/events", headers={**A_IMPORT, "X-Legal-Review-Token":"wrong-platform-token"}).status_code == 403
+assert c.get(f"/legal-review/versions/{review_version_id}/events", headers=REVIEW_LAWYER).status_code == 200
+_saved_review_token = os.environ.pop("LEGAL_REVIEW_ADMIN_TOKEN")
+assert c.get(f"/legal-review/versions/{review_version_id}/events", headers=REVIEW_LAWYER).status_code == 403
+os.environ["LEGAL_REVIEW_ADMIN_TOKEN"] = _saved_review_token
 assert c.post(f"/legal-review/versions/{review_version_id}/events",
               json={"review_type":"legal_status","outcome":"pass","evidence_url":"https://example.gov/status"},
               headers=L).status_code == 403
 assert c.post(f"/legal-review/versions/{review_version_id}/events",
               json={"review_type":"legal_status","outcome":"pass"},
-              headers=A_IMPORT).status_code == 422
+              headers=REVIEW_ADMIN).status_code == 422
 assert c.post(f"/legal-review/versions/{review_version_id}/events",
               json={"review_type":"legal_status","outcome":"pass",
                     "evidence_url":"https://reviewer:secret@example.gov/status"},
-              headers=A_IMPORT).status_code == 422
+              headers=REVIEW_ADMIN).status_code == 422
 review_created = c.post(f"/legal-review/versions/{review_version_id}/events",
                         json={"review_type":"source_authenticity","outcome":"pass",
                               "evidence_url":"https://example.gov/gazette/issue-123",
                               "notes":"Evidence URL recorded for authorized human review."},
-                        headers=A_IMPORT)
+                        headers=REVIEW_ADMIN)
 assert review_created.status_code == 201, review_created.text
 assert review_created.json()["status_changed"] is False
 db_review_state = db.execute(
     "SELECT review_status,legal_status,authenticity_verified,status_verified,amendment_history_verified "
     "FROM legal_document_versions WHERE version_id=?", (review_version_id,)).fetchone()
 assert tuple(db_review_state) == ("pending_lawyer_review","under_review",0,0,0), tuple(db_review_state)
-review_history = c.get(f"/legal-review/versions/{review_version_id}/events", headers=A_IMPORT)
+review_history = c.get(f"/legal-review/versions/{review_version_id}/events", headers=REVIEW_LAWYER)
 assert review_history.status_code == 200 and len(review_history.json()["events"]) == 1
 assert review_history.json()["events"][0]["reviewer"] == "Import Admin"
-assert c.get(f"/legal-review/versions/999999/events", headers=A_IMPORT).status_code == 404
+assert c.get(f"/legal-review/versions/999999/events", headers=REVIEW_LAWYER).status_code == 404
 
 
 # Legal-source reviewer workbench queue is administrator-only and read-only.
 assert c.get("/legal-review/queue", headers=L).status_code == 403
-review_queue_response = c.get("/legal-review/queue", headers=A_IMPORT)
+assert c.get("/legal-review/queue", headers=A_IMPORT).status_code == 403
+review_queue_response = c.get("/legal-review/queue", headers=REVIEW_LAWYER)
 assert review_queue_response.status_code == 200, review_queue_response.text
 assert "versions" in review_queue_response.json()
 assert "warning" in review_queue_response.json()
@@ -486,7 +496,8 @@ if review_queue_response.json()["versions"]:
 
 # Corpus coverage is admin-only and counts only versions passing every provenance and permission gate.
 assert c.get("/legal-review/coverage", headers=L).status_code == 403
-coverage_before = c.get("/legal-review/coverage", headers=A_IMPORT).json()["metrics"]["verified_operational_versions"]
+assert c.get("/legal-review/coverage", headers=A_IMPORT).status_code == 403
+coverage_before = c.get("/legal-review/coverage", headers=REVIEW_LAWYER).json()["metrics"]["verified_operational_versions"]
 db.execute("INSERT INTO legal_sources(source_id,authority,source_page,access_status,collection_permission,commercial_reuse_permission,permission_evidence) VALUES(?,?,?,?,?,?,?)",
            ("COVERAGE-TEST-SOURCE","Test authority","https://example.org/source","reviewed","allowed","allowed","test permission evidence"))
 db.execute("INSERT INTO legal_documents(document_id,source_id,official_title,document_type,practice_area) VALUES(?,?,?,?,?)",
@@ -500,7 +511,7 @@ db.execute("INSERT INTO legal_sources(source_id,authority,source_page) VALUES(?,
 db.execute("INSERT INTO legal_documents(document_id,source_id,official_title,document_type) VALUES(?,?,?,?)",
            ("COVERAGE-METADATA-DOC","COVERAGE-METADATA-SOURCE","Metadata-only test instrument","law"))
 db.commit()
-coverage_response = c.get("/legal-review/coverage", headers=A_IMPORT)
+coverage_response = c.get("/legal-review/coverage", headers=REVIEW_LAWYER)
 assert coverage_response.status_code == 200, coverage_response.text
 coverage = coverage_response.json()
 assert coverage["metrics"]["source_count"] >= 2
