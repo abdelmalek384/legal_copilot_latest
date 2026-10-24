@@ -13,7 +13,7 @@ import uuid
 from pathlib import Path
 from typing import Callable
 
-_FILENAME = re.compile(r"^tenant-(?P<firm_id>[1-9][0-9]*)-(?P<nonce>[0-9a-f]{32})\\.sqlite3$")
+_FILENAME = re.compile(r"^tenant-(?P<firm_id>[1-9][0-9]*)-(?P<nonce>[0-9a-f]{32})\.sqlite3$")
 
 
 class TenantCatalogError(RuntimeError):
