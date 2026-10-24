@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0",
+  "parent_document_id": "EG-LABOUR-LAW-14-2025",
+  "purpose": "Discovery-only records for instruments that refer to or implement Labour Law No. 14/2025. These are not certified amendments and are not imported automatically.",
+  "policy": {
+    "legal_status": "unknown_pending_primary_text_review",
+    "review_status": "discovery_only",
+    "source_permission": "unknown",
+    "do_not_assume_amendment": true,
+    "do_not_import_text_or_chunks": true,
+    "search_eligible": false
+  },
+  "instruments": [
+    {
+      "document_id": "EG-PM-DECREE-2652-2026",
+      "title_ar": "قرار رئيس مجلس الوزراء رقم 2652 لسنة 2026",
+      "instrument_type": "prime_minister_decree",
+      "official_source_url": "https://alamiria.com/Sec/TashTxt?id=MWc8qnk3Yg8%3D",
+      "issuance_date": "2026-09-07",
+      "observed_effect": "Extends by six months the period for private employment agencies covered by the final paragraph of Article 6 of Law 14/2025 to regularize their status.",
+      "candidate_relation_to_parent": "implements_or_extends_deadline_under",
+      "formal_amendment_confirmed": false,
+      "gazette_issue_and_pages": null,
+      "effective_date": null,
+      "source_text_review": "official Amiri Press page located; exact Gazette issue/page and operative timeline need recording",
+      "permission": "unknown",
+      "legal_review": "pending"
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-74-2026",
+      "title_ar": "قرار وزارة العمل رقم 74 لسنة 2026 بشأن تنظيم عمل مراصد سوق العمل",
+      "instrument_type": "ministerial_decision",
+      "official_source_url": "https://alamiria.com/Sec/TashTxt?id=7RH1OgZLsC8%3D",
+      "issuance_date": null,
+      "observed_effect": "Regulates labour-market observatories; its preamble cites Law 14/2025 among other legal authorities.",
+      "candidate_relation_to_parent": "implements_or_related",
+      "formal_amendment_confirmed": false,
+      "gazette_issue_and_pages": null,
+      "effective_date": null,
+      "source_text_review": "official Amiri Press page located; full operative text, publication details, and temporal effect need review",
+      "permission": "unknown",
+      "legal_review": "pending"
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-75-2026",
+      "title_ar": "قرار وزارة العمل رقم 75 لسنة 2026 بشأن تحديد الأعمال والأحوال التى لا يجوز تشغيل النساء فيها لحماية الأمومة أو مواجهة مخاطر السلامة والصحة المهنية",
+      "instrument_type": "ministerial_decision",
+      "official_source_url": "https://alamiria.com/Sec/TashTxt?id=82Iv%2FEE2jDk%3D",
+      "issuance_date": null,
+      "observed_effect": "Addresses work prohibited for women for maternity protection or occupational safety/health risks; its preamble cites Law 14/2025.",
+      "candidate_relation_to_parent": "implements_or_related",
+      "formal_amendment_confirmed": false,
+      "gazette_issue_and_pages": null,
+      "effective_date": null,
+      "source_text_review": "official Amiri Press page located; full operative text, publication details, and temporal effect need review",
+      "permission": "unknown",
+      "legal_review": "pending"
+    }
+  ],
+  "next_steps": [
+    "Obtain and preserve each official publication through a permitted route.",
+    "Record Gazette name, issue, date, pages, exact source URL, hash, publication/effective dates, and applicable transitional provisions.",
+    "Determine whether each instrument implements, supplements, extends a deadline, or formally amends the parent law based on its enacted operative text.",
+    "Create versioned registry entries and relation rows only after source evidence is reviewed; do not activate text for search automatically."
+  ]
+}
