@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS api_rate_limit_windows(
 CREATE INDEX IF NOT EXISTS idx_api_rate_limit_windows_start
   ON api_rate_limit_windows(window_start);
 CREATE TABLE IF NOT EXISTS sessions(id INTEGER PRIMARY KEY, case_id INT, date TEXT, note TEXT, done INT DEFAULT 0);
-CREATE TABLE IF NOT EXISTS docs(id INTEGER PRIMARY KEY, case_id INT, name TEXT, added TEXT);
+CREATE TABLE IF NOT EXISTS docs(id INTEGER PRIMARY KEY, case_id INT, name TEXT, added TEXT, firm_id INT, uploader_user_id INT, sha256 TEXT, content_type TEXT, byte_size INT, extraction_status TEXT, ocr_used INT NOT NULL DEFAULT 0);
 -- Legal corpus provenance: one stable source record, multiple immutable legal versions.
 CREATE TABLE IF NOT EXISTS legal_sources(
   source_id TEXT PRIMARY KEY,
@@ -199,6 +199,15 @@ def conn():
                     c.execute("ALTER TABLE chunks ADD COLUMN document_version_id INT")
                 if "page" not in chunk_cols:
                     c.execute("ALTER TABLE chunks ADD COLUMN page TEXT")
+                if "document_id" not in chunk_cols:
+                    c.execute("ALTER TABLE chunks ADD COLUMN document_id INT")
+                doc_cols = {r[1] for r in c.execute("PRAGMA table_info(docs)")}
+                for col, declaration in (("firm_id", "INT"), ("uploader_user_id", "INT"), ("sha256", "TEXT"), ("content_type", "TEXT"), ("byte_size", "INT"), ("extraction_status", "TEXT"), ("ocr_used", "INT NOT NULL DEFAULT 0")):
+                    if col not in doc_cols:
+                        c.execute(f"ALTER TABLE docs ADD COLUMN {col} {declaration}")
+                c.execute("UPDATE docs SET firm_id=(SELECT firm_id FROM cases WHERE cases.id=docs.case_id) WHERE firm_id IS NULL")
+                c.execute("CREATE INDEX IF NOT EXISTS idx_docs_case_added ON docs(case_id, id DESC)")
+                c.execute("CREATE INDEX IF NOT EXISTS idx_chunks_document_id ON chunks(document_id)")
                 case_cols = {r[1] for r in c.execute("PRAGMA table_info(cases)")}
                 for col in ("case_number", "case_year", "court", "circuit", "opposing_party"):
                     if col not in case_cols:
@@ -275,9 +284,9 @@ def rel(q, d):
 
 def add_chunks(c, rows):
     for r in rows:
-        cur = c.execute("INSERT INTO chunks(ref,article,page,text,norm,case_id,in_force,as_of,source,verified) VALUES(?,?,?,?,?,?,?,?,?,?)",
+        cur = c.execute("INSERT INTO chunks(ref,article,page,text,norm,case_id,in_force,as_of,source,verified,document_id) VALUES(?,?,?,?,?,?,?,?,?,?,?)",
                         (r["ref"], r.get("article"), r.get("page"), r["text"], norm(r["text"]), r.get("case_id"),
-                         int(r.get("in_force", 1)), r.get("as_of"), r.get("source"), int(r.get("verified", 0))))
+                         int(r.get("in_force", 1)), r.get("as_of"), r.get("source"), int(r.get("verified", 0)), r.get("document_id")))
         c.execute("INSERT INTO chunks_fts(rowid,norm) VALUES(?,?)", (cur.lastrowid, " ".join(tokens(r["text"]))))
     c.commit(); return len(rows)
 
@@ -318,15 +327,22 @@ def add_case(c, u, title, client="", stage="", case_number="", case_year="", cou
     c.execute("INSERT INTO members VALUES(?,?,'lead')", (cid, u["id"])); log(c, cid, u["name"], "فتح القضية"); c.commit(); return cid
 
 
-def add_doc(c, case_id, name, text):
+def add_doc(c, case_id, name, text, document_id=None):
     paras = [p.strip() for p in re.split(r"\n\s*\n", text) if p.strip()]
-    return add_chunks(c, [{"ref": "%s (فقرة %d)" % (name, i + 1), "text": p, "case_id": case_id, "source": "case-file"}
+    return add_chunks(c, [{"ref": "%s (فقرة %d)" % (name, i + 1), "text": p, "case_id": case_id, "source": "case-file", "document_id": document_id}
                           for i, p in enumerate(paras)])
 
-
-def save_doc(c, u, cid, name, text):
-    n = add_doc(c, cid, name, text)
-    c.execute("INSERT INTO docs(case_id,name,added) VALUES(?,?,datetime('now'))", (cid, name)); log(c, cid, u["name"], "إضافة مستند: " + name); c.commit(); return n
+def save_doc(c, u, cid, name, text, *, content_hash=None, content_type="text/plain", byte_size=None, extraction_status="text_extracted", ocr_used=False):
+    content_hash = content_hash or hashlib.sha256(text.encode("utf-8")).hexdigest()
+    byte_size = len(text.encode("utf-8")) if byte_size is None else byte_size
+    cur = c.execute(
+        "INSERT INTO docs(case_id,name,added,firm_id,uploader_user_id,sha256,content_type,byte_size,extraction_status,ocr_used) "
+        "VALUES(?,?,datetime('now'),?,?,?,?,?,?,?)",
+        (cid, name, u["firm_id"], u["id"], content_hash, content_type, byte_size, extraction_status, int(ocr_used)))
+    document_id = cur.lastrowid
+    n = add_doc(c, cid, name, text, document_id=document_id)
+    log(c, cid, u["name"], "إضافة مستند: " + name); c.commit()
+    return n, document_id
 
 
 def add_task(c, u, cid, title, assignee, due):
@@ -1192,7 +1208,7 @@ def case(cid: int, u: dict = Depends(user)):
             "members": rows("SELECT m.user_id, m.role, u.name FROM members m JOIN users u ON u.id=m.user_id WHERE m.case_id=?"),
             "tasks": rows("SELECT t.*, u.name AS assignee_name FROM tasks t LEFT JOIN users u ON u.id=t.assignee WHERE t.case_id=? ORDER BY t.status DESC, t.due"),
             "sessions": rows("SELECT * FROM sessions WHERE case_id=? ORDER BY date"),
-            "docs": rows("SELECT name, added FROM docs WHERE case_id=? ORDER BY id DESC"),
+            "docs": rows("SELECT id AS document_id,name,added,sha256,content_type,byte_size,extraction_status,ocr_used,uploader_user_id FROM docs WHERE case_id=? ORDER BY id DESC"),
             "notes": rows("SELECT n.id,n.text,n.created_at,u.name AS author FROM notes n JOIN users u ON u.id=n.created_by WHERE n.case_id=? ORDER BY n.id DESC"),
             "deadlines": rows("SELECT * FROM deadlines WHERE case_id=? ORDER BY due"),
             "fees": rows("SELECT * FROM fees WHERE case_id=? ORDER BY due"),
@@ -1287,14 +1303,18 @@ def new_fee(cid: int, b: FeeIn, u: dict = Depends(user)):
 
 @app.post("/cases/{cid}/docs")
 def doc(cid: int, b: DocIn, u: dict = Depends(user)):
-    c = conn(); need(c, u, cid); return {"chunks": save_doc(c, u, cid, b.name, b.text)}
+    c = conn(); need(c, u, cid)
+    chunks, document_id = save_doc(c, u, cid, b.name, b.text)
+    row = c.execute("SELECT sha256 FROM docs WHERE id=?", (document_id,)).fetchone()
+    return {"document_id": document_id, "sha256": row["sha256"], "chunks": chunks}
 
 
 @app.post("/cases/{cid}/upload")
 def upload(cid: int, file: UploadFile, u: dict = Depends(user)):
     c = conn(); need(c, u, cid); data = file.file.read(15_000_001)
     if len(data) > 15_000_000: raise HTTPException(413, "max 15 MB")
-    name = file.filename or "doc"
+    raw_name = (file.filename or "doc").replace("\\", "/").split("/")[-1]
+    name = "".join(ch for ch in raw_name if ord(ch) >= 32 and ch not in "\x7f").strip()[:200] or "doc"
     try:
         text = extract(name, data)
     except HTTPException:
@@ -1307,8 +1327,13 @@ def upload(cid: int, file: UploadFile, u: dict = Depends(user)):
         ocr_used = True
     if len(text.strip()) < 20:
         raise HTTPException(422, "no readable text found; for scanned PDFs enable OCR with Arabic/English Tesseract language data")
-    chunks = save_doc(c, u, cid, name[:200], text)
-    return {"chunks": chunks, "ocr_used": ocr_used, "text_status": "ocr_unverified" if ocr_used else "text_extracted"}
+    extraction_status = "ocr_unverified" if ocr_used else "text_extracted"
+    digest = hashlib.sha256(data).hexdigest()
+    chunks, document_id = save_doc(
+        c, u, cid, name, text, content_hash=digest,
+        content_type=(file.content_type or ("application/pdf" if name.lower().endswith(".pdf") else "application/vnd.openxmlformats-officedocument.wordprocessingml.document")),
+        byte_size=len(data), extraction_status=extraction_status, ocr_used=ocr_used)
+    return {"document_id": document_id, "sha256": digest, "chunks": chunks, "ocr_used": ocr_used, "text_status": extraction_status}
 
 
 @app.delete("/cases/{cid}")
