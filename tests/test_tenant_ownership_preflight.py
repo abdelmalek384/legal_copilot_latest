@@ -13,6 +13,10 @@ class TenantOwnershipPreflightTests(unittest.TestCase):
             CREATE TABLE firms(id INTEGER PRIMARY KEY, name TEXT);
             CREATE TABLE users(id INTEGER PRIMARY KEY, firm_id INTEGER);
             CREATE TABLE cases(id INTEGER PRIMARY KEY, firm_id INTEGER);
+            CREATE TABLE notes(id INTEGER PRIMARY KEY, case_id INTEGER, text TEXT);
+            CREATE TABLE deadlines(id INTEGER PRIMARY KEY, case_id INTEGER, title TEXT);
+            INSERT INTO notes VALUES (1,999,'orphan note');
+            INSERT INTO notes VALUES (2,10,'valid note');
             CREATE TABLE members(case_id INTEGER, user_id INTEGER);
             CREATE TABLE docs(id INTEGER PRIMARY KEY, case_id INTEGER, firm_id INTEGER);
             CREATE TABLE chunks(id INTEGER PRIMARY KEY, case_id INTEGER, document_id INTEGER);
@@ -44,6 +48,7 @@ class TenantOwnershipPreflightTests(unittest.TestCase):
         self.assertEqual(codes["chunks_document_case_mismatch"], 1)
         self.assertEqual(codes["chunks_unclassified_shared"], 1)
         self.assertEqual(codes["research_owner_firm_mismatch"], 1)
+        self.assertEqual(codes["orphan_notes_case"], 1)
         self.assertEqual(report["status"], "review_required")
 
     def test_clean_minimal_database_has_no_findings(self):
