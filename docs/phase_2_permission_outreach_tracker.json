@@ -39,7 +39,7 @@
       "source_id": "EG-COURT-CASSATION",
       "authority": "Egyptian Court of Cassation",
       "candidate_contact": "cc_info@cc.gov.eg",
-      "contact_verified": false,
+      "contact_verified": true,
       "draft_location": "docs/phase_2_source_authorization_outreach_pack.md",
       "status": "draft_not_sent",
       "sent_at": null,
@@ -60,7 +60,9 @@
       "authorized_scopes": [],
       "decision": "blocked_pending_written_authorization",
       "reviewer": null,
-      "notes": "Do not automate or bulk extract judgments unless written authorization expressly covers the proposed method and use."
+      "notes": "Contact address confirmed on the Court's official homepage. Request remains draft_not_sent and blocked pending written authorization; the published site policy restricts commercial republication and access. Do not scrape or bulk-download.",
+      "contact_verified_on": "2026-10-24",
+      "contact_verification_evidence": "Official Egyptian Court of Cassation homepage lists cc_info@cc.gov.eg: https://cc.gov.eg/"
     },
     {
       "request_id": "PERM-003",
