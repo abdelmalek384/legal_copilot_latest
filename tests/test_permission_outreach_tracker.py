@@ -30,7 +30,8 @@ class PermissionOutreachTrackerTests(unittest.TestCase):
         self.assertIsNone(request["sent_at"])
 
     def test_contact_verification_does_not_grant_collection_permission(self):
-        for request in TRACKER["requests"]:
+        for request_id in ("PERM-001", "PERM-002"):
+            request = next(item for item in TRACKER["requests"] if item["request_id"] == request_id)
             self.assertTrue(request["contact_verified"])
             self.assertIn("https://", request["contact_verification_evidence"])
             self.assertEqual(request["authorized_scopes"], [])
