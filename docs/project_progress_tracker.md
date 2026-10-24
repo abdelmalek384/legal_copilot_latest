@@ -8,8 +8,8 @@
 - **Completed and merged:** 6 of 20 tracked deliverables (**30%**).
 - **In progress:** 4 of 20 deliverables (**20%**).
 - **Not started, blocked, or awaiting validation:** 10 of 20 (**50%**).
-- **Merged PRs from this workstream:** #88, #89, #90, #91, #92, #94, #96, #97, #98.
-- **Open PRs:** [#99](https://github.com/abdelmalek384/legal_copilot_latest/pull/99) (Arabic retrieval/citation evaluation harness; CI pending).
+- **Merged PRs from this workstream:** #88, #89, #90, #91, #92, #94, #96, #97, #98, #99.
+- **Open PRs:** [#100](https://github.com/abdelmalek384/legal_copilot_latest/pull/100) (firm document ingestion provenance; validation pending).
 - **External permission requests:** not sent by this project workflow. Claude is expected to handle outreach; approval is not assumed.
 - **Manual UI QA:** not yet completed.
 
@@ -25,13 +25,13 @@ Percentages count deliverables equally; they are not a claim that 20% of all cod
 | SRC-01 | Permission outreach tracker, official contact verification and permission-gate tests | Complete | Merged PR #90; verified contact does not mean permission granted |
 | DATA-01 | Document permission-aware corpus strategy and alternatives | Complete | Merged PR #92; alternatives remain useful if permissions are declined |
 | DATA-02 | Corpus coverage/provenance dashboard and admin-only metrics API | Complete | Merged PR #94; coverage remains a registry metric, not total-law coverage |
-| DATA-03 | Review terms and reuse conditions for every proposed external source | In progress | PR #98 records WIPO/ILO policy limits; Egyptian primary portal terms and item-level rights remain unresolved |
-| DATA-04 | Prioritized Egyptian instrument metadata inventory | In progress | Existing 69-record inventory now has structural/permission-state validation and CI tests in PR #97; candidates remain metadata-only |
+| DATA-03 | Review terms and reuse conditions for every proposed external source | In progress | Merged PR #98 records WIPO/ILO policy limits; Egyptian primary portal terms and item-level rights remain unresolved |
+| DATA-04 | Prioritized Egyptian instrument metadata inventory | In progress | Merged PR #97 adds structural/permission-state validation and CI tests for the 69-record inventory; candidates remain metadata-only |
 | DATA-05 | Expand the verified starter corpus using permitted acquisition routes | Blocked / ongoing | Depends on lawful source copies, source-specific terms, and lawyer validation; continue metadata discovery meanwhile |
-| DATA-06 | Firm-supplied document ingestion with provenance and tenant scoping | Not started | Build upload, hashing, ownership, retention and access-control workflow |
+| DATA-06 | Firm-supplied document ingestion with provenance and tenant scoping | Not started | PR #100 adds per-upload SHA-256, uploader/firm metadata, extraction/OCR state and chunk-to-document linkage; binaries are not retained; duplicate uploads remain separate records |
 | DATA-07 | OCR/extraction review against original pages | Not started | Add page preview, OCR confidence, corrections and reviewer audit trail |
-| RSH-01 | Full research result/source inspector with exact passages and pin-cites | In progress | PR #96 adds explicit scopes, status labels, literal Arabic/English term highlighting, passage/citation actions, optional page pin-cites with migration, memo export/save, and metadata-only discovery; existing chunks without page metadata remain unpinned |
-| RSH-02 | Arabic retrieval evaluation set and citation-quality metrics | In progress | PR #99 adds Recall@k/MRR, citation source precision, exact reviewed pin-cite scoring, and abstention compliance; unreviewed seeds are excluded from scores |
+| RSH-01 | Full research result/source inspector with exact passages and pin-cites | In progress | Merged PR #96 adds explicit scopes, status labels, literal Arabic/English term highlighting, passage/citation actions, optional page pin-cites with migration, memo export/save, and metadata-only discovery; existing chunks without page metadata remain unpinned |
+| RSH-02 | Arabic retrieval evaluation set and citation-quality metrics | In progress | Merged PR #99 adds Recall@k/MRR, citation source precision, exact reviewed pin-cite scoring, and abstention compliance; unreviewed seeds are excluded from scores, and no quality score is claimed until reviewed labels and real runs exist |
 | RSH-03 | Amendment/repeal graph and historical version comparison | Not started | Use only evidence-backed version relations and effective dates |
 | UI-04 | Complete responsive browser/RTL/LTR/keyboard/reader QA | Not started | Test mobile, tablet, 200% zoom, forced colors, screen readers, errors and empty states |
 | UX-01 | Lawyer usability study for core research and case tasks | Not started | Test with 3–5 Egyptian lawyers; record completion rate, time, errors and trust |
