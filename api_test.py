@@ -320,13 +320,11 @@ assert app._answer_has_unsupported_quantities("The maximum is ten years [1].", n
 assert app._answer_has_unsupported_quantities("The maximum is ten years [1].", numeric_hits, set())
 
 
-# Persistent research-chat messages must share the same per-IP LLM budget
-# across conversation IDs, otherwise clients can evade the /ask limit by creating chats.
+# Persistent research-chat messages share one SQLite-backed per-IP budget
+# across conversation IDs and worker processes.
 from starlette.requests import Request as StarletteRequest
-with app._rate_limit_lock:
-    for key in list(app._rate_limit_state):
-        if key[0] == "__research_message__":
-            app._rate_limit_state.pop(key, None)
+db.execute("DELETE FROM api_rate_limit_windows WHERE bucket='__research_message__' AND client_key='rate-limit-test'")
+db.commit()
 def rate_request(path, method="POST"):
     return StarletteRequest({
         "type": "http", "http_version": "1.1", "method": method,
@@ -336,6 +334,8 @@ def rate_request(path, method="POST"):
     })
 for n in range(20):
     assert app._rate_limit(rate_request(f"/research/conversations/{n}/messages")) == 0
+stored = db.execute("SELECT hits FROM api_rate_limit_windows WHERE bucket='__research_message__' AND client_key='rate-limit-test'").fetchone()
+assert stored and stored["hits"] == 20, "request counts must be stored outside process-local memory"
 retry_after = app._rate_limit(rate_request("/research/conversations/999/messages"))
 assert retry_after > 0, "research chat must return a retry delay after 20 requests/minute per IP"
 assert app._rate_limit(rate_request("/research/conversations/999/messages", method="GET")) == 0

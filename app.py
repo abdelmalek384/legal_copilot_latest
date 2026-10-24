@@ -41,6 +41,15 @@ CREATE TABLE IF NOT EXISTS case_deletion_audit(
 );
 CREATE INDEX IF NOT EXISTS idx_case_deletion_audit_firm_id
   ON case_deletion_audit(firm_id, id DESC);
+CREATE TABLE IF NOT EXISTS api_rate_limit_windows(
+  bucket TEXT NOT NULL,
+  client_key TEXT NOT NULL,
+  window_start INTEGER NOT NULL,
+  hits INTEGER NOT NULL DEFAULT 0,
+  PRIMARY KEY(bucket, client_key, window_start)
+);
+CREATE INDEX IF NOT EXISTS idx_api_rate_limit_windows_start
+  ON api_rate_limit_windows(window_start);
 CREATE TABLE IF NOT EXISTS sessions(id INTEGER PRIMARY KEY, case_id INT, date TEXT, note TEXT, done INT DEFAULT 0);
 CREATE TABLE IF NOT EXISTS docs(id INTEGER PRIMARY KEY, case_id INT, name TEXT, added TEXT);
 -- Legal corpus provenance: one stable source record, multiple immutable legal versions.
@@ -625,24 +634,30 @@ def _rate_limit(request: Request):
         return 0
     max_requests, window_seconds = limit
     peer = request.client.host if request.client else "unknown"
-    now = time.monotonic()
+    now = time.time()
     window_start = int(now // window_seconds) * window_seconds
-    key = (bucket, peer)
+    db = conn()
+    cursor = db.execute(
+        """INSERT INTO api_rate_limit_windows(bucket,client_key,window_start,hits)
+           VALUES(?,?,?,1)
+           ON CONFLICT(bucket,client_key,window_start)
+           DO UPDATE SET hits=api_rate_limit_windows.hits+1
+           RETURNING hits""",
+        (bucket, peer, window_start),
+    )
+    row = cursor.fetchone()
+    cursor.fetchall()  # Finish the RETURNING statement before committing.
+    db.commit()
     global _rate_limit_checks
     with _rate_limit_lock:
-        entry = _rate_limit_state.get(key)
-        count = entry[1] if entry and entry[0] == window_start else 0
-        if count >= max_requests:
-            return max(1, int(window_start + window_seconds - now) + 1)
-        _rate_limit_state[key] = (window_start, count + 1, window_seconds)
         _rate_limit_checks += 1
         if _rate_limit_checks % 256 == 0:
-            expired = [k for k, v in _rate_limit_state.items()
-                       if v[0] + v[2] <= now]
-            for k in expired:
-                _rate_limit_state.pop(k, None)
+            db.execute("DELETE FROM api_rate_limit_windows WHERE window_start < ?",
+                       (int(now) - 7200,))
+            db.commit()
+    if row["hits"] > max_requests:
+        return max(1, int(window_start + window_seconds - now))
     return 0
-
 
 @app.middleware("http")
 async def security_headers(request: Request, call_next):
