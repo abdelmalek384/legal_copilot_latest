@@ -33,7 +33,7 @@ These labels describe recorded data only; they do not replace legal review.
 ## Citations and memos
 
 - Citation strings include only recorded title, instrument number/year, article pinpoint, version label, Gazette reference, as-of date, and source URL.
-- Page pinpoint is shown only when actually recorded. The current chunks schema has an article field but no reliable page field, so page is intentionally omitted rather than guessed.
+- Page pinpoint is shown only when actually recorded. The chunks schema now has an optional page field with a migration for existing databases; legacy chunks and uploads without page metadata remain unpinned until a lawful, reviewed ingestion path supplies that value.
 - Passage-copy uses the exact stored passage. It does not copy a generated paraphrase as a quotation.
 - Memo export and save-to-matter retain the question, search scope, as-of date, answer, exact source passages, citation strings, source status, and explicit limitations.
 - Matter saving is scoped to the signed-in user's own research conversation and a matter they can access; it stores the memo as a matter note and records an audit event.
