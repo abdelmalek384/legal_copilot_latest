@@ -79,6 +79,63 @@ def audit(conn: sqlite3.Connection) -> dict[str, Any]:
         add("docs_case_firm_mismatch", "critical",
             _count(conn, "SELECT COUNT(*) FROM docs d JOIN cases c ON c.id=d.case_id WHERE d.firm_id IS NOT NULL AND c.firm_id IS NOT NULL AND d.firm_id IS NOT c.firm_id"),
             "Document firm_id differs from its parent case.")
+    if "docs" in tables and "users" in tables:
+        doc_cols = _columns(conn, "docs")
+        user_cols = _columns(conn, "users")
+        if {"uploader_user_id", "firm_id"} <= doc_cols and "firm_id" in user_cols:
+            add("docs_uploader_missing_user", "high",
+                _count(conn, "SELECT COUNT(*) FROM docs d LEFT JOIN users u ON u.id=d.uploader_user_id WHERE d.uploader_user_id IS NOT NULL AND u.id IS NULL"),
+                "Document uploader_user_id points to a missing user.")
+            add("docs_uploader_firm_mismatch", "critical",
+                _count(conn, "SELECT COUNT(*) FROM docs d JOIN users u ON u.id=d.uploader_user_id WHERE d.uploader_user_id IS NOT NULL AND d.firm_id IS NOT NULL AND u.firm_id IS NOT NULL AND d.firm_id IS NOT u.firm_id"),
+                "Document firm differs from the uploader's firm; verify uploader identity and document ownership before migration.")
+
+    if "document_extraction_reviews" in tables:
+        review_cols = _columns(conn, "document_extraction_reviews")
+        if "document_id" in review_cols and "docs" in tables:
+            add("document_review_document_missing", "high",
+                _count(conn, "SELECT COUNT(*) FROM document_extraction_reviews r LEFT JOIN docs d ON d.id=r.document_id WHERE d.id IS NULL"),
+                "Extraction review references a missing document.")
+            if {"firm_id"} <= review_cols and "firm_id" in _columns(conn, "docs"):
+                add("document_review_document_firm_mismatch", "critical",
+                    _count(conn, "SELECT COUNT(*) FROM document_extraction_reviews r JOIN docs d ON d.id=r.document_id WHERE r.firm_id IS NOT d.firm_id"),
+                    "Extraction review firm differs from its document firm.")
+        if "case_id" in review_cols and "cases" in tables:
+            add("document_review_case_missing", "high",
+                _count(conn, "SELECT COUNT(*) FROM document_extraction_reviews r LEFT JOIN cases c ON c.id=r.case_id WHERE c.id IS NULL"),
+                "Extraction review references a missing matter.")
+            if "firm_id" in review_cols and "firm_id" in _columns(conn, "cases"):
+                add("document_review_case_firm_mismatch", "critical",
+                    _count(conn, "SELECT COUNT(*) FROM document_extraction_reviews r JOIN cases c ON c.id=r.case_id WHERE r.firm_id IS NOT c.firm_id"),
+                    "Extraction review firm differs from its matter firm.")
+        if "reviewer_user_id" in review_cols and "users" in tables:
+            add("document_review_reviewer_missing", "high",
+                _count(conn, "SELECT COUNT(*) FROM document_extraction_reviews r LEFT JOIN users u ON u.id=r.reviewer_user_id WHERE u.id IS NULL"),
+                "Extraction review references a missing reviewer.")
+            if "firm_id" in review_cols and "firm_id" in _columns(conn, "users"):
+                add("document_review_reviewer_firm_mismatch", "critical",
+                    _count(conn, "SELECT COUNT(*) FROM document_extraction_reviews r JOIN users u ON u.id=r.reviewer_user_id WHERE r.firm_id IS NOT u.firm_id"),
+                    "Extraction review firm differs from the reviewer's firm.")
+        if "chunk_id" in review_cols and "chunks" in tables:
+            add("document_review_chunk_missing", "high",
+                _count(conn, "SELECT COUNT(*) FROM document_extraction_reviews r LEFT JOIN chunks ch ON ch.id=r.chunk_id WHERE ch.id IS NULL"),
+                "Extraction review references a missing extracted chunk.")
+            if {"case_id", "document_id"} <= review_cols and {"case_id", "document_id"} <= _columns(conn, "chunks"):
+                add("document_review_chunk_scope_mismatch", "critical",
+                    _count(conn, "SELECT COUNT(*) FROM document_extraction_reviews r JOIN chunks ch ON ch.id=r.chunk_id WHERE r.case_id IS NOT ch.case_id OR r.document_id IS NOT ch.document_id"),
+                    "Extraction review matter/document scope differs from its chunk.")
+
+    if "case_deletion_audit" in tables and "users" in tables:
+        audit_cols = _columns(conn, "case_deletion_audit")
+        user_cols = _columns(conn, "users")
+        if {"firm_id", "actor_user_id"} <= audit_cols and "firm_id" in user_cols:
+            add("deletion_audit_actor_missing", "high",
+                _count(conn, "SELECT COUNT(*) FROM case_deletion_audit a LEFT JOIN users u ON u.id=a.actor_user_id WHERE a.actor_user_id IS NOT NULL AND u.id IS NULL"),
+                "Case deletion audit references a missing actor.")
+            add("deletion_audit_actor_firm_mismatch", "critical",
+                _count(conn, "SELECT COUNT(*) FROM case_deletion_audit a JOIN users u ON u.id=a.actor_user_id WHERE a.firm_id IS NOT u.firm_id"),
+                "Case deletion audit firm differs from the actor's firm.")
+
     if "chunks" in tables:
         cols = _columns(conn, "chunks")
         if "case_id" in cols:
