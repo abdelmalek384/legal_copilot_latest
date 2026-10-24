@@ -7,10 +7,10 @@
 ## Findings at a glance
 
 - Found **45 FastAPI route decorators** in `app.py`.
-- Found **25 SQLite `CREATE TABLE` declarations** in `app.py`.
+- Found **25 SQLite `CREATE TABLE` declarations** plus the `chunks_fts` FTS5 virtual table in `app.py`.
 - Static scan found no registered background task framework, scheduler, cron hook, or explicit thread/timer worker in `app.py`. This does **not** prove no jobs exist in deployment scripts, external services, GitHub Actions, or imported modules.
 - The application uses a shared SQLite database configured by `COPILOT_DB`; the target separate-tenant database architecture is not implemented.
-- This list is generated from decorator / SQL text patterns. Dynamic routes, indirect SQL, migration-created tables, frontend calls, reverse-proxy paths, and infrastructure jobs may be missing.
+- CI now compares this documented list with registered FastAPI routes and initialized SQLite schema objects through `tests/test_security_surface_inventory.py`. Dynamic routes, indirect SQL, migration-created tables, frontend calls, reverse-proxy paths, and infrastructure jobs still require separate review.
 
 ## HTTP route inventory
 
@@ -66,10 +66,13 @@ For every route, review authentication and role checks, tenant derivation from t
 
 ## Database table inventory
 
+The inventory includes the FTS5 virtual table `chunks_fts`; SQLite's internal FTS shadow tables are implementation details and are excluded from the application-owned object list.
+
 The table list below is a schema-review queue. “Needs schema-level review” is deliberately not a finding that a table is vulnerable. For each table, inspect its actual columns, indexes, foreign keys, insert/update/delete paths, firm ownership, and backup/restore/deletion behavior. Shared statutory-law data may be global and read-only only where explicitly intended; firm/client data must be tenant-scoped.
 
 | Table | Initial status | Required review |
 |---|---|---|
+| `chunks_fts` | Virtual table | FTS5 search index over normalized chunk text; inspect index rebuild and consistency behavior |
 | `chunks` | Needs schema-level review | Confirm firm ownership / global-law status, foreign keys, access paths, retention and backup treatment |
 | `firms` | Needs schema-level review | Confirm firm ownership / global-law status, foreign keys, access paths, retention and backup treatment |
 | `users` | Needs schema-level review | Confirm firm ownership / global-law status, foreign keys, access paths, retention and backup treatment |

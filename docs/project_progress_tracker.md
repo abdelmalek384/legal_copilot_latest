@@ -8,8 +8,8 @@
 - **Completed and merged:** 7 of 19 tracked deliverables (**36.8%**).
 - **In progress:** 6 of 19 deliverables (**31.6%**).
 - **Not started, blocked, or awaiting validation:** 6 of 19 (**31.6%**).
-- **Merged PRs from this workstream:** #88, #89, #90, #91, #92, #94, #96, #97, #98, #99, #100, #101, #102, #103, #104.
-- **Open PRs:** [#106](https://github.com/abdelmalek384/legal_copilot_latest/pull/106) (SEC-01 static route/table attack-surface inventory; CI pending).
+- **Merged PRs from this workstream:** #88, #89, #90, #91, #92, #94, #96, #97, #98, #99, #100, #101, #102, #103, #104, #106.
+- **Open PRs:** [#108](https://github.com/abdelmalek384/legal_copilot_latest/pull/108) (SEC-01 runtime route/schema inventory drift tests; CI pending).
 - **External permission requests:** not sent by this project workflow. Claude is expected to handle outreach; approval is not assumed.
 - **Manual UI QA:** not yet completed.
 
@@ -55,7 +55,7 @@ Percentages count the 19 deliverables actually listed in this register equally; 
 4. Continue item-level terms and reuse review for Egyptian sources under DATA-03; retain unknown permission states unless evidence supports a change.
 5. Continue the 69-candidate metadata inventory under DATA-04, adding only verified metadata and source references.
 
-6. Continue SEC-01: reconcile the new static route/table inventory against runtime OpenAPI, all migrations and queries; inspect deployment/external jobs; then add backup/restore isolation tests and obtain independent review. Shared SQLite is not tenant-separated.\n\n## Known limitations
+6. Continue SEC-01: inspect indirect queries and deployment/external jobs; then add backup/restore isolation tests and obtain independent review. Shared SQLite is not tenant-separated.\n\n## Known limitations
 
 - The legal corpus is not comprehensive and may lack current amendments.
 - Some source permission requests may be declined or unanswered; the roadmap must remain useful without them.
