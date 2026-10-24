@@ -348,7 +348,7 @@ assert c.get("/openapi.json").status_code == 404
 
 # Login lockout must slow password guessing without locking out a legitimate user.
 # Simulate active email and client-IP lockouts directly to avoid timing-sensitive sleeps.
-_login_now = int(time.time())
+_login_now = int(app.time.time())
 for _identifier in ("lead@x.eg", "ip:testclient"):
     db.execute(
         "INSERT INTO login_attempts(email,failures,window_start,locked_until) VALUES(?,?,?,?) "
