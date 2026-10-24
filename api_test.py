@@ -189,6 +189,22 @@ def concurrent_login(_):
 with ThreadPoolExecutor(max_workers=4) as pool:
     concurrent_statuses = list(pool.map(concurrent_login, range(4)))
 assert concurrent_statuses == [200, 200, 200, 200], concurrent_statuses
+# Authenticated password changes require the current password, enforce strength, and revoke every session.
+c.post("/users", json={"name":"Password Change Test","email":"pwchange@x.eg","password":"initial-password-Long","role":"lawyer"}, headers=A)
+pw_session_one = login_creds("pwchange@x.eg", "initial-password-Long")
+pw_session_two = login_creds("pwchange@x.eg", "initial-password-Long")
+assert c.get("/session", headers=pw_session_one).status_code == 200
+assert c.post("/account/password", json={"current_password":"wrong-current","new_password":"replacement-password-Long"}, headers=pw_session_one).status_code == 403
+assert c.post("/account/password", json={"current_password":"initial-password-Long","new_password":"short"}, headers=pw_session_one).status_code == 422
+assert c.post("/account/password", json={"current_password":"initial-password-Long","new_password":"initial-password-Long"}, headers=pw_session_one).status_code == 422
+pw_change = c.post("/account/password", json={"current_password":"initial-password-Long","new_password":"replacement-password-Long"}, headers=pw_session_one)
+assert pw_change.status_code == 200, pw_change.text
+assert pw_change.json()["sessions_revoked"] is True and pw_change.json()["login_required"] is True
+assert c.get("/session", headers=pw_session_one).status_code == 401
+assert c.get("/session", headers=pw_session_two).status_code == 401
+assert c.post("/login", json={"email":"pwchange@x.eg","password":"initial-password-Long"}).status_code == 401
+assert c.post("/login", json={"email":"pwchange@x.eg","password":"replacement-password-Long"}).status_code == 200
+
 # Logout revokes the server-side session, not just the browser token.
 logout_headers = login("Junior")
 assert c.get("/cases", headers=logout_headers).status_code == 200
