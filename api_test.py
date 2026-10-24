@@ -350,6 +350,7 @@ if review_queue_response.json()["versions"]:
 
 # Corpus coverage is admin-only and counts only versions passing every provenance and permission gate.
 assert c.get("/legal-review/coverage", headers=L).status_code == 403
+coverage_before = c.get("/legal-review/coverage", headers=A_IMPORT).json()["metrics"]["verified_operational_versions"]
 db.execute("INSERT INTO legal_sources(source_id,authority,source_page,access_status,collection_permission,commercial_reuse_permission,permission_evidence) VALUES(?,?,?,?,?,?,?)",
            ("COVERAGE-TEST-SOURCE","Test authority","https://example.org/source","reviewed","allowed","allowed","test permission evidence"))
 db.execute("INSERT INTO legal_documents(document_id,source_id,official_title,document_type,practice_area) VALUES(?,?,?,?,?)",
@@ -366,7 +367,7 @@ assert coverage_response.status_code == 200, coverage_response.text
 coverage = coverage_response.json()
 assert coverage["metrics"]["source_count"] >= 2
 assert coverage["metrics"]["metadata_only_documents"] >= 1
-assert coverage["metrics"]["verified_operational_versions"] == 1, coverage["metrics"]
+assert coverage["metrics"]["verified_operational_versions"] == coverage_before + 1, coverage["metrics"]
 assert coverage["metrics"]["labelled_verified_versions"] >= 1
 assert any(x["practice_area"] == "labour" and x["documents_with_verified_operational_text"] == 1 for x in coverage["coverage_by_practice_area"])
 assert any("not total Egyptian-law coverage" in w for w in coverage["warnings"])
