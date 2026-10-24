@@ -83,4 +83,4 @@ Routes are grouped by the data boundary they should preserve. "Tested" means the
 
 `scripts/tenant_ownership_preflight.py` now checks for orphaned rows in the `notes`, `deadlines`, `fees`, `tasks`, `events`, and `sessions` tables when those tables and the `cases` table exist. Such child rows must not be repaired by guessing a parent; reconcile them from trusted records and a reviewed backup. Run `PYTHONPATH=. python tests/test_tenant_ownership_preflight.py` to exercise the added checks.
 
-The check remains a read-only data-quality aid. It does not prove that API endpoints authorize every parent/child operation and does not migrate or repair data.
+The preflight also flags document metadata and matter-child rows whose `case_id` is NULL. These rows are reported as unlinked rather than automatically treated as shared or assigned to a firm; an operator must establish their intended classification from trusted evidence. The check remains a read-only data-quality aid. It does not prove that API endpoints authorize every parent/child operation and does not migrate or repair data.

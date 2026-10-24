@@ -17,6 +17,7 @@ class TenantOwnershipPreflightTests(unittest.TestCase):
             CREATE TABLE deadlines(id INTEGER PRIMARY KEY, case_id INTEGER, title TEXT);
             INSERT INTO notes VALUES (1,999,'orphan note');
             INSERT INTO notes VALUES (2,10,'valid note');
+            INSERT INTO notes VALUES (3,NULL,'unlinked note');
             CREATE TABLE members(case_id INTEGER, user_id INTEGER);
             CREATE TABLE docs(id INTEGER PRIMARY KEY, case_id INTEGER, firm_id INTEGER);
             CREATE TABLE chunks(id INTEGER PRIMARY KEY, case_id INTEGER, document_id INTEGER);
@@ -26,7 +27,7 @@ class TenantOwnershipPreflightTests(unittest.TestCase):
             INSERT INTO users VALUES (1,1),(2,2),(3,NULL);
             INSERT INTO cases VALUES (10,1),(20,2),(30,NULL);
             INSERT INTO members VALUES (10,1),(10,2),(999,1);
-            INSERT INTO docs VALUES (100,10,1),(200,20,1),(300,999,2),(400,10,NULL);
+            INSERT INTO docs VALUES (100,10,1),(200,20,1),(300,999,2),(400,10,NULL),(500,NULL,1);
             INSERT INTO chunks VALUES (1000,10,100),(2000,20,100),(3000,999,999),(4000,NULL,NULL);
             INSERT INTO research_conversations VALUES (1,2,1);
             INSERT INTO case_deletion_audit VALUES (1,NULL);
@@ -44,11 +45,13 @@ class TenantOwnershipPreflightTests(unittest.TestCase):
         self.assertEqual(codes["cross_firm_membership"], 1)
         self.assertEqual(codes["orphan_membership_case"], 1)
         self.assertEqual(codes["docs_case_firm_mismatch"], 1)
+        self.assertEqual(codes["docs_case_unlinked"], 1)
         self.assertEqual(codes["docs_missing_firm"], 1)
         self.assertEqual(codes["chunks_document_case_mismatch"], 1)
         self.assertEqual(codes["chunks_unclassified_shared"], 1)
         self.assertEqual(codes["research_owner_firm_mismatch"], 1)
         self.assertEqual(codes["orphan_notes_case"], 1)
+        self.assertEqual(codes["unlinked_notes_case"], 1)
         self.assertEqual(report["status"], "review_required")
 
     def test_clean_minimal_database_has_no_findings(self):
