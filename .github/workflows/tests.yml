@@ -26,6 +26,10 @@ jobs:
         run: python -m pip install -r requirements.txt
       - name: Validate legal data registry and evaluation seeds
         run: python tools/validate_legal_data_foundation.py
+      - name: Validate Phase 2 metadata-only instrument inventory
+        run: python tools/validate_phase2_document_inventory.py
+      - name: Test Phase 2 instrument inventory safeguards
+        run: python tests/test_phase2_document_inventory.py
       - name: Test permission outreach tracking guardrails
         run: python tests/test_permission_outreach_tracker.py
       - name: Validate source permission register
