@@ -28,10 +28,16 @@ def adduser(a):
 def resetpw(a):
     pw = read_password("كلمة المرور الجديدة: ")
     c = app.conn()
-    cur = c.execute("UPDATE users SET pw=? WHERE email=?", (app.hash_pw(pw), a.email.strip().lower()))
-    c.commit()
-    if not cur.rowcount: raise SystemExit("لا يوجد حساب بهذا البريد الإلكتروني.")
-    c.execute("DELETE FROM auth_sessions WHERE user_id=(SELECT id FROM users WHERE email=?)", (a.email.strip().lower(),))
+    email = a.email.strip().lower()
+    c.execute("BEGIN IMMEDIATE")
+    account = c.execute("SELECT id,firm_id FROM users WHERE email=?", (email,)).fetchone()
+    if not account:
+        c.rollback()
+        raise SystemExit("لا يوجد حساب بهذا البريد الإلكتروني.")
+    c.execute("UPDATE users SET pw=? WHERE id=?", (app.hash_pw(pw), account["id"]))
+    c.execute("DELETE FROM auth_sessions WHERE user_id=?", (account["id"],))
+    c.execute("INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
+              (account["firm_id"], account["id"], "password_reset_cli_sessions_revoked"))
     c.commit()
     print("تم تحديث كلمة المرور؛ سجّل الدخول من جديد.")
 
