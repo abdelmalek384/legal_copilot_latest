@@ -30,7 +30,7 @@ The schema has some firm-aware checks at the application layer, but not a consis
 
 ## Follow-up remediation proposed (pending merge and CI)
 
-The SEC-01 ownership-hardening change in the current working branch removes the startup updates that silently set NULL user/case ownership to firm 1. When an older schema lacks the ownership columns, it adds nullable columns without a default and records rows whose ownership remains NULL in `tenant_ownership_quarantine`. Login is denied for accounts with NULL firm ownership. The quarantine is a review ledger, not an automatic repair mechanism.
+The SEC-01 ownership-hardening change in the current working branch removes the startup updates that silently set NULL user/case ownership to firm 1. When an older schema lacks the ownership columns, it adds nullable columns without a default and records rows whose ownership remains NULL in `tenant_ownership_quarantine`. Login is denied and existing sessions are invalidated for accounts with NULL firm ownership. The quarantine is a review ledger, not an automatic repair mechanism.
 
 Important limits:
 - This does not identify or reverse records that a prior application version already assigned to firm 1.
