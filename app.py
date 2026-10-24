@@ -676,6 +676,16 @@ def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None, sc
     hits = search(c, retrieval_query, case_id, firm_id=firm_id, as_of=as_of, scope=scope)
     if not hits or (hits[0]["cos"] < MIN_SCORE and hits[0]["score"] < 1):
         return {"found": False, "answer": None, "sources": [], "scope": scope, "message": "لم أجد مصدرا ذا صلة، ولن أخمن.", "requested_as_of": as_of or date.today().isoformat()}
+    # Matter-file passages may contain confidential or privileged information. The general
+    # model-processing approval is not sufficient: require a separate explicit approval
+    # before any such passage can be included in a model prompt.
+    if any(hit.get("case_id") is not None for hit in hits) and os.environ.get("LLM_FIRM_DATA_PROCESSING_APPROVED", "").strip() != "1":
+        return {"found": True, "answer": None,
+                "message": "تم العثور على مستندات القضية، لكن إرسال محتواها إلى النموذج غير معتمد في إعدادات النشر؛ تُعرض المصادر فقط.",
+                "sources": hits, "scope": scope,
+                "not_in_force": [h["ref"] for h in hits if h["verified"] and not h.get("applies_as_of", h["in_force"])],
+                "unverified_sources": [h["ref"] for h in hits if not h["verified"]],
+                "requested_as_of": as_of or date.today().isoformat()}
     source_blocks = []
     for i, hit in enumerate(hits):
         source_blocks.append(
