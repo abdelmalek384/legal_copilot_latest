@@ -108,7 +108,7 @@ def audit(conn: sqlite3.Connection) -> dict[str, Any]:
     for table in ("notes", "deadlines", "fees", "tasks", "events", "sessions"):
         if table in tables and "case_id" in _columns(conn, table) and "cases" in tables:
             add(f"orphan_{table}_case", "high",
-                _count(conn, f"SELECT COUNT(*) FROM "{table}" child LEFT JOIN cases c ON c.id=child.case_id WHERE child.case_id IS NOT NULL AND c.id IS NULL"),
+                _count(conn, f"SELECT COUNT(*) FROM {table} child LEFT JOIN cases c ON c.id=child.case_id WHERE child.case_id IS NOT NULL AND c.id IS NULL"),
                 f"{table} contains rows whose parent case does not exist.")
 
     findings.sort(key=lambda item: (item["severity"], item["code"]))
