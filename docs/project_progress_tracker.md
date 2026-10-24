@@ -8,8 +8,8 @@
 - **Completed and merged:** 7 of 19 tracked deliverables (**36.8%**).
 - **In progress:** 6 of 19 deliverables (**31.6%**).
 - **Not started, blocked, or awaiting validation:** 6 of 19 (**31.6%**).
-- **Merged PRs from this workstream:** #88, #89, #90, #91, #92, #94, #96, #97, #98, #99, #100.
-- **Open PRs:** SEC-01 research-conversation isolation regression tests (PR will be linked after creation).
+- **Merged PRs from this workstream:** #88, #89, #90, #91, #92, #94, #96, #97, #98, #99, #100, #101.
+- **Open PRs:** [#102](https://github.com/abdelmalek384/legal_copilot_latest/pull/102) (SEC-01 research-conversation isolation regression tests; latest-head CI pending).
 - **External permission requests:** not sent by this project workflow. Claude is expected to handle outreach; approval is not assumed.
 - **Manual UI QA:** not yet completed.
 
