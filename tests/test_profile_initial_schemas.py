@@ -38,6 +38,18 @@ class ProfileInitialSchemaTests(unittest.TestCase):
         self.assertEqual(db.execute("SELECT count(*) FROM chunks_fts WHERE chunks_fts MATCH 'updatedsecretterm'").fetchone()[0], 0)
         db.close()
 
+    def test_two_firm_databases_do_not_share_search_content(self):
+        firm_a, firm_b = self.build("firm"), self.build("firm")
+        firm_a.execute("INSERT INTO cases(id,title) VALUES(1,'A')")
+        firm_b.execute("INSERT INTO cases(id,title) VALUES(1,'B')")
+        firm_a.execute("INSERT INTO chunks(id,text,norm,case_id) VALUES(1,'alpha private sentinel','alphaprivatesentinel',1)")
+        firm_b.execute("INSERT INTO chunks(id,text,norm,case_id) VALUES(1,'beta private sentinel','betaprivatesentinel',1)")
+        self.assertEqual(firm_a.execute("SELECT count(*) FROM chunks_fts WHERE chunks_fts MATCH 'alphaprivatesentinel'").fetchone()[0], 1)
+        self.assertEqual(firm_a.execute("SELECT count(*) FROM chunks_fts WHERE chunks_fts MATCH 'betaprivatesentinel'").fetchone()[0], 0)
+        self.assertEqual(firm_b.execute("SELECT count(*) FROM chunks_fts WHERE chunks_fts MATCH 'betaprivatesentinel'").fetchone()[0], 1)
+        self.assertEqual(firm_b.execute("SELECT count(*) FROM chunks_fts WHERE chunks_fts MATCH 'alphaprivatesentinel'").fetchone()[0], 0)
+        firm_a.close(); firm_b.close()
+
     def test_corpus_requires_version_provenance(self):
         db = self.build("legal_corpus")
         with self.assertRaises(sqlite3.IntegrityError):
