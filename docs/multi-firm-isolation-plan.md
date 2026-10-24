@@ -56,3 +56,8 @@ The API regression suite now also attempts to use a second firm's administrator 
 ## SEC-01 attack-surface baseline (PR follow-through)
 
 A static scan of `app.py` is recorded in [`sec-01-attack-surface-inventory.md`](sec-01-attack-surface-inventory.md). It lists 45 route decorators and 25 `CREATE TABLE` declarations found by simple source patterns. Treat this as a starting baseline only: reconcile with runtime OpenAPI, migrations/actual schema, indirect SQL and frontend calls; inspect external/deployment jobs and backup/restore paths. No separate tenant database is implemented, and no independent security review has been completed.
+
+
+## Platform legal-review authorization (SEC-01 follow-through)
+
+Global `/legal-review/*` endpoints must not rely on the generic firm-admin role. Require an authenticated account plus a separately provisioned `LEGAL_REVIEW_ADMIN_TOKEN` supplied as `X-Legal-Review-Token`; keep it distinct from `ADMIN_TOKEN`. The platform token must be at least 32 characters, fail closed when absent/misconfigured, and never be committed or logged. This token gate is an interim authorization boundary, not a substitute for named platform reviewer identities, per-reviewer audit identity, secret rotation controls, or independent security review.

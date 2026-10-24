@@ -43,7 +43,7 @@ Routes are grouped by the data boundary they should preserve. "Tested" means the
 | `GET /research/conversations`, `POST /research/conversations`, `GET/PATCH/DELETE /research/conversations/{conversation_id}`, `POST /research/conversations/{conversation_id}/messages`, `POST /research/conversations/{conversation_id}/save-to-matter` | Conversation belongs to user and firm; target matter and message must be authorized | Cross-user and cross-firm read/write/export tests exist |
 | `GET /audit/case-deletions`, `GET /audit/security-events` | Admin-only, firm-filtered audit data; snapshots must not cross firm boundary | Existing role/limit tests; this PR adds Firm B no-leak assertions |
 | `POST /law/import` | Shared law content is global; import requires admin role plus protected import token; caller flags cannot mark law verified/current | Tests cover missing token, non-admin denial, and forced unverified/ineligible import. Reconsider whether any firm admin should be able to import global law even with token |
-| `GET /legal-review/queue`, `GET /legal-review/coverage`, `GET/POST /legal-review/versions/{version_id}/events` | Shared legal registry is global, but review mutations should be restricted to explicitly trusted platform reviewers | Tests currently gate these endpoints by the generic `admin` role. **Policy gap:** any firm's admin appears eligible to view/change global legal-source review metadata. Decide and implement a platform-level reviewer role/token before production |
+| `GET /legal-review/queue`, `GET /legal-review/coverage`, `GET/POST /legal-review/versions/{version_id}/events` | Shared legal registry is global, but review mutations should be restricted to explicitly trusted platform reviewers | A platform-level authorization gate is being added because generic `admin` alone must not grant access. **Policy gap:** any firm's admin appears eligible to view/change global legal-source review metadata. PR adds `LEGAL_REVIEW_ADMIN_TOKEN` / `X-Legal-Review-Token` checks and tests that firm-admin role alone is denied. This is an interim shared-secret gate; named reviewer identity, rotation controls and independent review remain outstanding |
 | No background worker/scheduled-job route identified in the current `app.py` | Any future OCR, indexing, cleanup, export, backup, and restore job must preserve tenant scope from trusted job metadata | No separate worker implementation was identified in the reviewed application file; re-inventory if one is added |
 
 ## Data-table and storage inventory
@@ -62,7 +62,7 @@ Routes are grouped by the data boundary they should preserve. "Tested" means the
 ## Release blockers
 
 1. **Shared database:** target tenant database/storage isolation architecture is not implemented.
-2. **Global reviewer privilege:** legal registry mutations use generic firm-admin authorization; platform-level reviewer authority is not yet distinct.
+2. **Global reviewer privilege:** verify the separate platform-reviewer token gate and document operational secret provisioning/rotation; named reviewer identity and audit attribution remain future work.
 3. **Incomplete inventory:** static route/table inventory is now recorded, but SQL query-by-query, UI, export, deployment, and operational path review still needs a second pass.
 4. **Backups and restore:** no cross-tenant backup/restore isolation test or restore drill has been demonstrated.
 5. **File retention:** original upload binaries and secure page previews are not available, so extraction corrections cannot be independently compared to retained original pages.
@@ -72,7 +72,7 @@ Routes are grouped by the data boundary they should preserve. "Tested" means the
 ## Recommended next sequence
 
 1. Keep the new audit endpoint regression tests in CI.
-2. Resolve global legal-registry reviewer authorization before inviting external firms.
+2. Verify the platform-level legal-registry reviewer authorization before inviting external firms.
 3. Perform SQL-query-by-query and UI/API route review, then add tests for every newly identified cross-firm path.
 4. Design tenant DB and file-storage boundaries; migrate only after backup, row-count, relationship, and rollback verification are tested.
 5. Implement backup/restore/deletion isolation tests and obtain independent security review.
