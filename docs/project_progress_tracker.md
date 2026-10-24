@@ -9,7 +9,7 @@
 - **In progress:** 6 of 19 deliverables (**31.6%**).
 - **Not started, blocked, or awaiting validation:** 6 of 19 (**31.6%**).
 - **Merged PRs from this workstream:** #88, #89, #90, #91, #92, #94, #96, #97, #98, #99, #100, #101, #102, #103, #104, #105, #106, #107, #108, #109, #110, #112.
-- **Open PRs:** SEC-01 Phase 0 database boundary review (PR pending). PR #110's platform-reviewer boundary and PR #112's database-tenancy architecture proposal are merged.
+- **Open PRs:** SEC-01 Phase 0 database boundary review (PR #114). PR #110's platform-reviewer boundary and PR #112's database-tenancy architecture proposal are merged.
 - **External permission requests:** not sent by this project workflow. Claude is expected to handle outreach; approval is not assumed.
 - **Manual UI QA:** not yet completed.
 
