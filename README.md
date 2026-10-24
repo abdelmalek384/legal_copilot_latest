@@ -38,6 +38,12 @@ embedding model such as bge-m3 or multilingual-e5, stored in pgvector), and MIN_
 ## Setup and security
 
 Before deploying for real client matters, use the [production deployment checklist](docs/production_deployment_checklist.md). It is a release gate, not a substitute for an independent security review or legal validation.
+
+Run the read-only deployment configuration preflight as the application OS account before release:
+```bash
+python tools/deployment_preflight.py --strict
+```
+It checks basic secret configuration, `MIN_SCORE`, and SQLite path/access settings. It does not test TLS, proxy configuration, legal corpus validity, or certify deployment security.
 1. `pip install -r requirements.txt`, then `python selftest.py && python api_test.py`.
 2. Create the first account: `python manage.py adduser "Name" name@firm.eg admin` (roles: admin, lawyer, junior; password min 12 characters). When typing the password in the terminal, characters do not appear on screen; this is normal. Press Enter after typing it. If you need to change a forgotten password later, run `python manage.py resetpw name@firm.eg`.
 3. Set `ADMIN_TOKEN` to a randomly generated secret of at least 32 characters in the server environment (never commit it or print it in logs). `/law/import` requires both a valid signed-in admin account and the `X-Admin-Token` header. Rotate the secret immediately if exposed. Optional: `LLM_URL` / `LLM_MODEL` / `LLM_KEY`.
