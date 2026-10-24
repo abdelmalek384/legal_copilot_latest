@@ -123,7 +123,7 @@ button{min-height:40px}
 <div id="app"></div><div id="toast"></div>
 <script>
 const $=i=>document.getElementById(i),A=$('app');
-let ME=JSON.parse(sessionStorage.me||'{}'),TAB='sum',PAGE='dash';
+let ME=JSON.parse(sessionStorage.me||'{}'),TAB='sum',PAGE='dash',LEGAL_REVIEW_TOKEN='';
 const RL={lead:'رئيسي',associate:'محامٍ مساعد',junior:'متدرب'},today=(()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')})();
 const h=(t,p={},...k)=>{const e=document.createElement(t);Object.assign(e,p);e.append(...k.flat().filter(x=>x!=null&&x!==false));if((t==='input'||t==='textarea')&&p.placeholder&&!e.hasAttribute('aria-label'))e.setAttribute('aria-label',p.placeholder);return e};
 const pill=(t,k)=>h('span',{className:'pill '+k,textContent:t}),btn=(t,f,c='')=>h('button',{textContent:t,onclick:f,className:c});
@@ -131,7 +131,7 @@ const fd=s=>s?s.slice(0,10).split('-').reverse().join('/'):'',err=j=>typeof j.de
 const safeHttpsUrl=v=>{try{const u=new URL(v);return u.protocol==='https:'?u.href:null}catch(_){return null}};
 const toast=t=>{const e=$('toast');e.textContent=t;e.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>e.style.display='none',3500)};
 function csrfToken(){return document.cookie.split('; ').find(x=>x.startsWith('lc_csrf='))?.split('=').slice(1).join('=')||''}
-async function api(p,m='GET',b){const headers={};if(b!==undefined)headers['Content-Type']='application/json';const csrf=csrfToken();if(csrf)headers['X-CSRF-Token']=decodeURIComponent(csrf);const r=await fetch(p,{method:m,credentials:'same-origin',headers,body:b!==undefined?JSON.stringify(b):undefined});
+async function api(p,m='GET',b){const headers={};if(b!==undefined)headers['Content-Type']='application/json';const csrf=csrfToken();if(csrf)headers['X-CSRF-Token']=decodeURIComponent(csrf);if(p.startsWith('/legal-review/')&&LEGAL_REVIEW_TOKEN)headers['X-Legal-Review-Token']=LEGAL_REVIEW_TOKEN;const r=await fetch(p,{method:m,credentials:'same-origin',headers,body:b!==undefined?JSON.stringify(b):undefined});
  if(r.status===401&&p!=='/login'){sessionStorage.removeItem('me');ME={};login();throw new Error('auth')}
  const j=await r.json().catch(()=>({}));if(!r.ok){toast(err(j));throw new Error('api')}return j}
 function shell(title,...k){const navLabel=(ar,en)=>LANG==='ar'?ar:en;A.replaceChildren(h('div',{id:'shell'},h('a',{className:'skip-link',href:'#main',textContent:navLabel('تخطي إلى المحتوى الرئيسي','Skip to main content'),onclick:e=>{e.preventDefault();const main=$('main');if(main)main.focus()} }),h('aside',{id:'side','aria-label':navLabel('التنقل الرئيسي','Primary navigation')},h('h1',{textContent:'⚖️ '+navLabel('مساحة المكتب القانوني','Firm Workspace')}),h('div',{className:'lang-switch'},h('button',{type:'button','data-lang-switch':'1',textContent:LANG==='ar'?'English':'العربية',onclick:switchLanguage})),
@@ -229,8 +229,9 @@ async function corpusCoverage(){
  const main=$('main');
  const loading=h('div',{className:'card',role:'status',textContent:ar?'جارٍ تحميل المؤشرات…':'Loading metrics…'});
  main.append(loading);
- let data;
- try{data=await api('/legal-review/coverage')}catch(_){loading.textContent=ar?'تعذر تحميل المؤشرات. أعد المحاولة.':'Could not load metrics. Please retry.';return}
+ if(!LEGAL_REVIEW_TOKEN){const tokenInput=h('input',{type:'password',autocomplete:'off',placeholder:ar?'رمز مراجعة المنصة':'Platform reviewer token',style:'width:100%','aria-label':ar?'رمز مراجعة المنصة':'Platform reviewer token'});const tokenCard=h('div',{className:'card'},h('p',{className:'mut',textContent:ar?'يلزم رمز منفصل لمسؤول المراجعة على مستوى المنصة. لا تستخدم رمز استيراد القوانين. يبقى الرمز في ذاكرة هذه الصفحة فقط.':'A separate platform reviewer token is required. Do not use the law-import token. The token stays in this page memory only.'}),tokenInput,btn(ar?'متابعة':'Continue',()=>{if(!tokenInput.value.trim()){toast(ar?'أدخل رمز المراجعة':'Enter the reviewer token');return}LEGAL_REVIEW_TOKEN=tokenInput.value.trim();corpusCoverage()},'primary'));loading.replaceWith(tokenCard);return;}
+  let data;
+ try{data=await api('/legal-review/coverage')}catch(_){LEGAL_REVIEW_TOKEN='';corpusCoverage();return}
  const m=data.metrics||{};
  const labels=ar?{
  source_count:'المصادر المسجلة',document_count:'الأدوات القانونية المسجلة',version_count:'إصدارات المستندات',
@@ -283,7 +284,8 @@ async function reviewWorkbench(){
  const main=h('div',{});
  shell(txt('مراجعة المصادر القانونية','Legal Source Review'),h('div',{className:'mut',textContent:txt('مساحة مراجعة إدارية. تسجيل حدث لا يغيّر حالة التحقق أو السريان القانوني.','Admin review workspace. Recording an event does not change verification or legal status.')}),main);
  main.append(h('div',{className:'card'},h('h3',{textContent:txt('سجل الإصدارات','Document versions')})));
- let data; try{data=await api('/legal-review/queue')}catch(_){main.append(h('div',{className:'card'},txt('تعذر تحميل قائمة المراجعة.','Could not load the review queue.')));return}
+ if(!LEGAL_REVIEW_TOKEN){const tokenInput=h('input',{type:'password',autocomplete:'off',placeholder:txt('رمز مراجعة المنصة','Platform reviewer token'),style:'width:100%','aria-label':txt('رمز مراجعة المنصة','Platform reviewer token')});const tokenCard=h('div',{className:'card'},h('p',{className:'mut',textContent:txt('يلزم رمز منفصل لمسؤول المراجعة على مستوى المنصة. لا تستخدم رمز استيراد القوانين. يبقى الرمز في ذاكرة هذه الصفحة فقط.','A separate platform reviewer token is required. Do not use the law-import token. The token stays in this page memory only.')}),tokenInput,btn(txt('متابعة','Continue'),()=>{if(!tokenInput.value.trim()){toast(txt('أدخل رمز المراجعة','Enter the reviewer token'));return}LEGAL_REVIEW_TOKEN=tokenInput.value.trim();reviewWorkbench()},'primary'));main.append(tokenCard);return;}
+ let data; try{data=await api('/legal-review/queue')}catch(_){LEGAL_REVIEW_TOKEN='';reviewWorkbench();return}
  const list=h('div',{className:'card'}), filter=h('input',{placeholder:txt('ابحث بالعنوان أو رقم الإصدار أو الحالة','Filter by title, version ID, or status'),style:'width:min(100%,460px)'}), rows=h('div',{}), versions=data.versions||[];
  let queueMode=window.COVERAGE_QUEUE_FILTER||'';window.COVERAGE_QUEUE_FILTER='';
  const modeLabels={pending_source_review:txt('بانتظار مراجعة المصدر','Awaiting source review'),pending_lawyer_review:txt('بانتظار مراجعة المحامي','Awaiting lawyer review'),rejected_versions:txt('إصدارات مرفوضة','Rejected versions'),labelled_verified_versions:txt('موسومة كمتحقق منها','Labelled verified'),verified_operational_versions:txt('نصوص سارية متحققة','Verified operative text'),missing_authenticity_review:txt('الأصالة غير متحققة','Authenticity missing'),missing_status_review:txt('الحالة القانونية غير متحققة','Legal status missing'),missing_amendment_history:txt('تاريخ التعديلات غير متحقق','Amendment history missing'),permission_or_evidence_blocked_versions:txt('الإذن أو الدليل ناقص','Permission or evidence blocked')};
