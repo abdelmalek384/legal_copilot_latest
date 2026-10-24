@@ -40,8 +40,13 @@ def _safe_database_path(root: Path, firm_id: int, filename: str) -> Path:
     if not match or int(match.group("firm_id")) != firm_id:
         raise TenantCatalogError("Tenant catalog contains an invalid database reference")
     resolved_root = root.resolve()
-    candidate = (resolved_root / filename).resolve()
-    if candidate.parent != resolved_root or candidate.is_symlink():
+    raw_candidate = resolved_root / filename
+    # Check the directory entry before resolve(): resolving first would erase
+    # evidence that the catalog filename itself is a symlink to another tenant.
+    if raw_candidate.is_symlink():
+        raise TenantCatalogError("Tenant database reference must not be a symlink")
+    candidate = raw_candidate.resolve()
+    if candidate.parent != resolved_root:
         raise TenantCatalogError("Tenant database path escapes its configured storage root")
     return candidate
 
