@@ -101,6 +101,13 @@ button{min-height:40px}
 @media(max-width:800px){#shell{min-width:0}#main{min-width:0;width:100%}img,svg,canvas,video{max-width:100%}}
 @media(max-width:420px){#main{padding-inline:10px}.card{padding:14px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+.skip-link{position:fixed;top:8px;inset-inline-start:8px;z-index:2001;transform:translateY(-160%);padding:10px 14px;background:#fff;color:var(--navy);border:2px solid var(--pri);border-radius:9px;box-shadow:0 4px 18px #14284b24;font-weight:700}
+.skip-link:focus{transform:translateY(0)}
+#side a[role=button]{display:flex;align-items:center;min-height:42px;text-decoration:none}
+#side a[role=button]:focus-visible{outline:3px solid #80a7ff;outline-offset:2px}
+#main:focus{outline:none}
+@media(max-width:800px){.skip-link{top:6px}#side a[role=button]{white-space:nowrap;flex:none}}
+@media(forced-colors:active){.skip-link:focus,#side a[role=button]:focus-visible{outline:2px solid Highlight}}
 
 </style>
 <div id="app"></div><div id="toast"></div>
@@ -116,11 +123,12 @@ function csrfToken(){return document.cookie.split('; ').find(x=>x.startsWith('lc
 async function api(p,m='GET',b){const headers={};if(b!==undefined)headers['Content-Type']='application/json';const csrf=csrfToken();if(csrf)headers['X-CSRF-Token']=decodeURIComponent(csrf);const r=await fetch(p,{method:m,credentials:'same-origin',headers,body:b!==undefined?JSON.stringify(b):undefined});
  if(r.status===401&&p!=='/login'){sessionStorage.removeItem('me');ME={};login();throw new Error('auth')}
  const j=await r.json().catch(()=>({}));if(!r.ok){toast(err(j));throw new Error('api')}return j}
-function shell(title,...k){const navLabel=(ar,en)=>LANG==='ar'?ar:en;A.replaceChildren(h('div',{id:'shell'},h('aside',{id:'side'},h('h1',{textContent:'⚖️ '+navLabel('مساحة المكتب القانوني','Firm Workspace')}),h('div',{className:'lang-switch'},h('button',{type:'button','data-lang-switch':'1',textContent:LANG==='ar'?'English':'العربية',onclick:switchLanguage})),
- [['dash',navLabel('نظرة عامة','Overview'),dash],['cases',navLabel('القضايا','Cases'),casesPage],['clients',navLabel('العملاء وتعارض المصالح','Clients & Conflicts'),clients],['tasks',navLabel('المهام','Tasks'),tasksPage],['calendar',navLabel('الأجندة والمواعيد','Calendar'),calendarPage],['law',navLabel('البحث القانوني','Legal Research'),law],...(ME.role==='admin'?[['review',navLabel('مراجعة المصادر القانونية','Legal Source Review'),reviewWorkbench]]:[]),['settings',navLabel('الإعدادات والأمان','Settings & Security'),settingsPage]].map(([id,t,f])=>h('a',{className:PAGE===id?'on':'',textContent:t,onclick:()=>{PAGE=id;window.CASE_ID=null;f()}})),
+function shell(title,...k){const navLabel=(ar,en)=>LANG==='ar'?ar:en;A.replaceChildren(h('div',{id:'shell'},h('a',{className:'skip-link',href:'#main',textContent:navLabel('تخطي إلى المحتوى الرئيسي','Skip to main content'),onclick:e=>{e.preventDefault();const main=$('main');if(main)main.focus()} }),h('aside',{id:'side','aria-label':navLabel('التنقل الرئيسي','Primary navigation')},h('h1',{textContent:'⚖️ '+navLabel('مساحة المكتب القانوني','Firm Workspace')}),h('div',{className:'lang-switch'},h('button',{type:'button','data-lang-switch':'1',textContent:LANG==='ar'?'English':'العربية',onclick:switchLanguage})),
+ [['dash',navLabel('نظرة عامة','Overview'),dash],['cases',navLabel('القضايا','Cases'),casesPage],['clients',navLabel('العملاء وتعارض المصالح','Clients & Conflicts'),clients],['tasks',navLabel('المهام','Tasks'),tasksPage],['calendar',navLabel('الأجندة والمواعيد','Calendar'),calendarPage],['law',navLabel('البحث القانوني','Legal Research'),law],...(ME.role==='admin'?[['review',navLabel('مراجعة المصادر القانونية','Legal Source Review'),reviewWorkbench]]:[]),['settings',navLabel('الإعدادات والأمان','Settings & Security'),settingsPage]].map(([id,t,f])=>h('a',{className:PAGE===id?'on':'',role:'button',tabIndex:0,'aria-current':PAGE===id?'page':null,textContent:t,onclick:()=>{PAGE=id;window.CASE_ID=null;f()},onkeydown:e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();PAGE=id;window.CASE_ID=null;f()}}})),
  h('div',{className:'me'},h('div',{textContent:ME.name||''}),h('a',{textContent:navLabel('تسجيل الخروج','Sign out'),onclick:async()=>{try{await api('/logout','POST')}catch(_){}sessionStorage.removeItem('me');ME={};login()}}))),
- h('main',{id:'main'},h('h2',{textContent:title}),...k)))}
-function login(mode='signin'){window.CASE_ID=null;let viewMode=mode;
+ h('main',{id:'main',tabIndex:-1,'aria-label':title},h('h2',{textContent:title}),...k)))}
+let AUTH_MODE='signin';
+function login(mode='signin'){AUTH_MODE=mode;window.CASE_ID=null;let viewMode=mode;
  const title=LANG==='ar'?'المساعد القانوني':'Legal Copilot';
  const tabs=()=>h('div',{className:'auth-tabs',role:'tablist'},
    h('button',{type:'button',className:viewMode==='signin'?'active':'',role:'tab','aria-selected':String(viewMode==='signin'),textContent:LANG==='ar'?'تسجيل الدخول':'Sign in',onclick:()=>login('signin')}),
@@ -411,7 +419,8 @@ function applyLanguage(root=document.body){
  walk(root);
  document.querySelectorAll('[data-lang-switch]').forEach(b=>b.textContent=LANG==='ar'?'English':'العربية');
 }
-function switchLanguage(){LANG=LANG==='ar'?'en':'ar';sessionStorage.lang=LANG;if(window.CASE_ID){view(window.CASE_ID)}else if(PAGE==='dash')dash();else if(PAGE==='clients')clients();else if(PAGE==='cases')casesPage();else if(PAGE==='law')law();else if(PAGE==='settings')settingsPage();else login();setTimeout(()=>applyLanguage(),0)}
+function switchLanguage(){LANG=LANG==='ar'?'en':'ar';sessionStorage.lang=LANG;if(!ME.id){login(AUTH_MODE);setTimeout(()=>applyLanguage(),0);return}if(window.CASE_ID){view(window.CASE_ID)}else if(PAGE==='dash')dash();else if(PAGE==='clients')clients();else if(PAGE==='cases')casesPage();else if(PAGE==='tasks')tasksPage();else if(PAGE==='calendar')calendarPage();else if(PAGE==='law')law();else if(PAGE==='review')reviewWorkbench();else if(PAGE==='settings')settingsPage();else dash();setTimeout(()=>applyLanguage(),0)}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){const overlays=document.querySelectorAll('.modal-backdrop');const overlay=overlays[overlays.length-1];if(overlay)overlay.remove()}});
 const languageObserver=new MutationObserver(ms=>{for(const m of ms)for(const n of m.addedNodes)if(n.nodeType===Node.ELEMENT_NODE||n.nodeType===Node.TEXT_NODE)applyLanguage(n.nodeType===Node.ELEMENT_NODE?n:n.parentElement||document.body)});
 languageObserver.observe(document.body,{childList:true,subtree:true});
 applyLanguage();api('/session').then(r=>{ME={id:r.id,name:r.name,role:r.role};sessionStorage.me=JSON.stringify(ME);dash()}).catch(()=>login())
