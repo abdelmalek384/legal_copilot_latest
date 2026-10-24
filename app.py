@@ -433,7 +433,7 @@ def search(c, q, case_id=None, k=5, firm_id=1, as_of=None, scope="all_permitted"
     if expanded_qt:
         # Expand only with a small, curated bilingual lexicon; never alter the evidence text.
         allow_legacy = os.environ.get("ALLOW_UNLINKED_LEGACY_LAW_SEARCH", "").strip() == "1"
-        params = (" OR ".join('"%s"' % t.replace('"', '""') for t in expanded_qt), case_id, firm_id, int(allow_legacy), as_of, as_of, scope, scope, scope)
+        params = (" OR ".join('"%s"' % t.replace('"', '""') for t in expanded_qt), case_id, firm_id, int(allow_legacy), scope, scope, scope, as_of, as_of)
         for r in c.execute(SQL, params): cand[r["id"]] = (r, -r["r"])
     am = re.search(r"(?:ماده|الماده|article|art)\s*\.?\s*(\d+)", norm(q))
     if am and scope != "firm_documents":
