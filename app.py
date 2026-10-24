@@ -721,7 +721,7 @@ def validate_operational_deadline(value):
     return value
 
 
-class Q(BaseModel): q: str = Field(min_length=1, max_length=500); case_id: int | None = None; as_of: str | None = Field(default=None, pattern=r"^\d{4}-\d{2}-\d{2}$"); scope: str = Field(default="verified_corpus", pattern=r"^(verified_corpus|firm_documents|all_permitted)$")
+class Q(BaseModel): q: str = Field(min_length=1, max_length=500); case_id: int | None = None; as_of: str | None = Field(default=None, pattern=r"^\d{4}-\d{2}-\d{2}$"); scope: str = Field(default="all_permitted", pattern=r"^(verified_corpus|firm_documents|all_permitted)$")
 class LoginIn(BaseModel): email: str = Field(max_length=200); password: str = Field(max_length=200)
 class PasswordChangeIn(BaseModel):
     current_password: str = Field(min_length=1, max_length=200)
