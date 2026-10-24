@@ -18,6 +18,7 @@ CREATE VIRTUAL TABLE IF NOT EXISTS chunks_fts USING fts5(norm);
 CREATE TABLE IF NOT EXISTS firms(id INTEGER PRIMARY KEY, name TEXT NOT NULL, created_at TEXT DEFAULT (datetime('now')));
 CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY, name TEXT, email TEXT UNIQUE, pw TEXT, role TEXT DEFAULT 'lawyer', firm_id INT DEFAULT 1, active INT DEFAULT 1);
 CREATE TABLE IF NOT EXISTS auth_sessions(token_hash TEXT PRIMARY KEY, user_id INT, expires INT);
+CREATE TABLE IF NOT EXISTS security_audit_events(id INTEGER PRIMARY KEY, firm_id INT NOT NULL, user_id INT NOT NULL, event TEXT NOT NULL, created_at TEXT DEFAULT (datetime('now')));
 CREATE TABLE IF NOT EXISTS login_attempts(email TEXT PRIMARY KEY, failures INT NOT NULL DEFAULT 0, window_start INT NOT NULL DEFAULT 0, locked_until INT NOT NULL DEFAULT 0);
 CREATE INDEX IF NOT EXISTS idx_login_attempts_window ON login_attempts(window_start,locked_until);
 CREATE TABLE IF NOT EXISTS cases(id INTEGER PRIMARY KEY, title TEXT, client TEXT, stage TEXT DEFAULT '', status TEXT DEFAULT 'open', created_by INT, firm_id INT DEFAULT 1,
@@ -959,6 +960,7 @@ def change_password(b: PasswordChangeIn, request: Request, response: Response, u
     c.execute("BEGIN IMMEDIATE")
     c.execute("UPDATE users SET pw=? WHERE id=? AND active=1", (hash_pw(b.new_password), u["id"]))
     c.execute("DELETE FROM auth_sessions WHERE user_id=?", (u["id"],))
+    c.execute("INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)", (u["firm_id"], u["id"], "password_changed_sessions_revoked"))
     c.commit()
     response.delete_cookie("lc_session", path="/", httponly=True, samesite="lax", secure=request.url.scheme == "https")
     response.delete_cookie("lc_csrf", path="/", samesite="lax", secure=request.url.scheme == "https")
