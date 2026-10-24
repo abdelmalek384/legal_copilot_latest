@@ -1,22 +1,45 @@
 # Labour Law No. 14 of 2025 — candidate corpus
 
-**Status: pending source, permission, and Egyptian-lawyer review. Not approved for legal retrieval or legal advice.**
+**Status: pending source permission, full Official Gazette comparison, and Egyptian-lawyer review. Not approved for authoritative retrieval.**
 
-This directory records the assessment of a supplied JSONL candidate corpus for Egypt's Labour Law No. 14 of 2025. The inspected file contained 311 parseable records: 13 promulgation/introductory provisions and 298 articles of the accompanying law. Its `as_of` field is `2025-05-03`, which is treated as the reported Gazette publication date only—not as proof of the law's effective date.
+This directory tracks the supplied Arabic JSONL corpus and its source review. The file is **not** committed to this public repository because redistribution and commercial-reuse permission have not been established.
 
-## Provenance
+## Inspected artifact
 
-- Secondary text source: [Manshurat — Labour Law No. 14 of 2025](https://manshurat.org/node/76602)
-- Claimed publication origin: Official Gazette issue 18 (supplement), dated 2025-05-03
-- Official Gazette text match: **not verified**
-- Source terms and permissions for storage, redistribution, indexing, and commercial use: **unknown / not reviewed**
-- Effective date, amendment chain, and lawyer review: **pending**
-- Corpus SHA-256 (for the supplied local artifact): `3e964de5c9cc994aefcc29c031712e85d664febd97c428e61c2eacdccaf1c600`
+- Supplied filename: `law_rows_ar.jsonl`
+- SHA-256: `3e964de5c9cc994aefcc29c031712e85d664febd97c428e61c2eacdccaf1c600`
+- Size: 393,861 bytes
+- Records: 311 valid JSONL records (13 promulgation provisions and 298 articles of the accompanying law)
+- All rows had `verified=0`; all rows had `in_force=1`. The latter is untrusted input and must never be used to establish legal status.
+- Source: [Manshurat text copy](https://manshurat.org/content/qnwn-lml-ljdyd-rqm-14-lsn-2025)
+- Claimed primary publication: Official Gazette issue 18 (supplement), 2025-05-03
+- Review result: structural checks and selected text spot checks only; no full article-by-article comparison against the exact Gazette PDF.
 
-The source artifact itself is intentionally not committed in this public repository yet because the source's redistribution and commercial-reuse terms have not been verified. The SHA-256 identifies the inspected supplied file; it does not authenticate the law or grant rights to redistribute it.
+## Current review documents
 
-## Safe handling
+- [Source and legal-status review](source_and_legal_review.md)
+- [Detailed review report](review_report_2026-10-24.md)
+- [Versioned registry candidate metadata](registry_candidate.json)
+- [Related implementing-instrument candidates](related_instruments_candidates.json)
+- Registration helper: [`tools/register_labour_law_candidate.py`](../../../tools/register_labour_law_candidate.py)
 
-Do not import the supplied records as verified/current law. Incoming `verified` and `in_force` flags are untrusted claims and must not override the registry's review workflow. Keep search eligibility disabled until source authenticity, extraction accuracy, applicable dates, commencement/transitional provisions, amendment history, and required permissions have been reviewed and recorded.
+## Commencement and repeal leads
 
-See [Safe legacy law imports](../../safe_legacy_law_imports.md), the [legal knowledge base policy](../../phase_2_legal_knowledge_base.md), and [version-aware retrieval](../../as_of_version_aware_retrieval.md).
+The accessible promulgation text states general commencement from 2025-09-01, specialized labour courts from 2025-10-01, and repeal of Labour Law No. 12/2003 and Law No. 125/2010 in Article 12. Treat these as provisional version metadata until the exact Official Gazette issue is reviewed and qualified Egyptian counsel confirms the commencement, transitional rules, and current legal effect.
+
+Later official-source leads include Prime Minister's Decree 2652/2026 and Labour Ministry Decisions 74/2026 and 75/2026. They are tracked separately as possible implementing/related instruments, not assumed to be formal amendments.
+
+## Permission and import safeguards
+
+The IDSC repository [End User Agreement](https://dspace.id.com.eg/info/end-user-agreement) says commercial exploitation and systematic retrieval to compile a database require express written permission. No permission has been obtained. Public accessibility is not treated as a license.
+
+The registry helper creates metadata and pending review events only. It does not import article chunks, trust incoming `verified`/`in_force` flags, or enable search. It has **not** been run against the user's local SQLite database from this session.
+
+Before activation:
+1. Obtain permission for storage, extraction, indexing, embeddings, display, redistribution, and commercial use, or verify another lawful licensed source.
+2. Obtain the exact Official Gazette issue through an authorized route and compare every row against it with page-level evidence.
+3. Register related instruments separately and determine their exact legal relationship and dates.
+4. Obtain qualified Egyptian-lawyer review of authenticity, commencement, transitional rules, repeals, and the amendment/implementation chain.
+5. Only then consider approval and search eligibility.
+
+A JSONL hash proves the identity of the supplied data file, not the authenticity of the law or permission to reuse it.
