@@ -64,7 +64,7 @@ class TenantOwnershipPreflightTests(unittest.TestCase):
         self.assertEqual(codes["document_review_chunk_missing"], 1)
         self.assertEqual(codes["document_review_chunk_scope_mismatch"], 1)
         self.assertEqual(codes["deletion_audit_actor_firm_mismatch"], 1)
-        self.assertEqual(codes["deletion_audit_actor_missing"], 0)
+        self.assertEqual(codes.get("deletion_audit_actor_missing", 0), 0)
         self.assertEqual(report["status"], "review_required")
 
     def test_clean_minimal_database_has_no_findings(self):
