@@ -31,6 +31,9 @@ The control plane should contain only the minimum needed to authenticate and rou
 
 ## Current automated coverage
 
+The detailed route/table boundary inventory and current review findings are maintained in [tenant isolation inventory](tenant_isolation_inventory.md). That inventory records the shared-database limitation, backup/restore gaps, and a policy gap around global legal-review mutations being authorized by the generic firm-admin role.
+
+
 The API tests now exercise cross-firm case list/detail/update/delete, conflict checks, dashboard tasks, user listings, case search/answer requests, and admin-only user creation. Passing tests cover these cases in the current shared-database model only; they do not prove the target separate-database architecture is implemented.
 
 ## Additional regression coverage (SEC-01)
