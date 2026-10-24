@@ -6,9 +6,9 @@
 ## Overall status
 
 - **Completed and merged:** 6 of 20 tracked deliverables (**30%**).
-- **In progress:** 5 of 20 deliverables (**25%**).
-- **Not started, blocked, or awaiting validation:** 9 of 20 (**45%**).
-- **Merged PRs from this workstream:** #88, #89, #90, #91, #92, #94, #96, #97, #98, #99.
+- **In progress:** 6 of 20 deliverables (**30%**).
+- **Not started, blocked, or awaiting validation:** 8 of 20 (**40%**).
+- **Merged PRs from this workstream:** #88, #89, #90, #91, #92, #94, #96, #97, #98, #99, #100.
 - **Open PRs:** [#100](https://github.com/abdelmalek384/legal_copilot_latest/pull/100) (firm document ingestion provenance; current-head CI passed, review/merge pending).
 - **External permission requests:** not sent by this project workflow. Claude is expected to handle outreach; approval is not assumed.
 - **Manual UI QA:** not yet completed.
@@ -29,7 +29,7 @@ Percentages count deliverables equally; they are not a claim that 20% of all cod
 | DATA-04 | Prioritized Egyptian instrument metadata inventory | In progress | Merged PR #97 adds structural/permission-state validation and CI tests for the 69-record inventory; candidates remain metadata-only |
 | DATA-05 | Expand the verified starter corpus using permitted acquisition routes | Blocked / ongoing | Depends on lawful source copies, source-specific terms, and lawyer validation; continue metadata discovery meanwhile |
 | DATA-06 | Firm-supplied document ingestion with provenance and tenant scoping | In progress | PR #100 adds per-upload SHA-256, uploader/firm metadata, extraction/OCR state and chunk-to-document linkage; binaries are not retained; duplicate uploads remain separate records |
-| DATA-07 | OCR/extraction review against original pages | Not started | Add page preview, OCR confidence, corrections and reviewer audit trail |
+| DATA-07 | OCR/extraction review against original pages | In progress | First slice adds audited extracted-text corrections and retrieval index refresh; original binaries/page previews still require an approved retention design |
 | RSH-01 | Full research result/source inspector with exact passages and pin-cites | In progress | Merged PR #96 adds explicit scopes, status labels, literal Arabic/English term highlighting, passage/citation actions, optional page pin-cites with migration, memo export/save, and metadata-only discovery; existing chunks without page metadata remain unpinned |
 | RSH-02 | Arabic retrieval evaluation set and citation-quality metrics | In progress | Merged PR #99 adds Recall@k/MRR, citation source precision, exact reviewed pin-cite scoring, and abstention compliance; unreviewed seeds are excluded from scores, and no quality score is claimed until reviewed labels and real runs exist |
 | RSH-03 | Amendment/repeal graph and historical version comparison | Not started | Use only evidence-backed version relations and effective dates |
@@ -49,7 +49,7 @@ Percentages count deliverables equally; they are not a claim that 20% of all cod
 
 ## Immediate next actions
 
-1. Review and merge [PR #100](https://github.com/abdelmalek384/legal_copilot_latest/pull/100) after checking the passing current-head CI; DATA-06 remains in progress until merged.
+1. Validate and review DATA-07 extraction review/audit changes; corrections must not be described as source authenticity or legal verification.
 2. Do not claim retrieval evaluation quality until RSH-02 has lawyer-labelled questions and real runs; its harness is merged in PR #99.
 3. Complete manual RTL/LTR/keyboard/screen-reader and lawyer review for the merged source inspector (RSH-01).
 4. Continue item-level terms and reuse review for Egyptian sources under DATA-03; retain unknown permission states unless evidence supports a change.
