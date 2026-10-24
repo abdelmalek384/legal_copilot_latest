@@ -207,7 +207,7 @@ def conn():
                         c.execute(f"ALTER TABLE docs ADD COLUMN {col} {declaration}")
                 c.execute("UPDATE docs SET firm_id=(SELECT firm_id FROM cases WHERE cases.id=docs.case_id) WHERE firm_id IS NULL")
                 c.execute("CREATE INDEX IF NOT EXISTS idx_docs_case_added ON docs(case_id, id DESC)")
-                c.execute("CREATE INDEX IF NOT EXISTS idx_chunks_document_id ON chunks(document_id);
+                c.execute("CREATE INDEX IF NOT EXISTS idx_chunks_document_id ON chunks(document_id)")
                 c.execute("""CREATE TABLE IF NOT EXISTS document_extraction_reviews(
                     id INTEGER PRIMARY KEY,
                     document_id INTEGER NOT NULL,
@@ -221,7 +221,7 @@ def conn():
                     note TEXT NOT NULL DEFAULT '',
                     created_at TEXT NOT NULL DEFAULT (datetime('now'))
                 )""")
-                c.execute("CREATE INDEX IF NOT EXISTS idx_doc_reviews_document ON document_extraction_reviews(firm_id,document_id,id DESC)")")
+                c.execute("CREATE INDEX IF NOT EXISTS idx_doc_reviews_document ON document_extraction_reviews(firm_id,document_id,id DESC)")
                 case_cols = {r[1] for r in c.execute("PRAGMA table_info(cases)")}
                 for col in ("case_number", "case_year", "court", "circuit", "opposing_party"):
                     if col not in case_cols:
