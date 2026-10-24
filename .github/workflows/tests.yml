@@ -28,6 +28,10 @@ jobs:
         run: python -m pip install -r requirements.txt
       - name: Validate legal data registry and evaluation seeds
         run: python tools/validate_legal_data_foundation.py
+      - name: Test retrieval and citation evaluation harness
+        run: python tests/test_retrieval_evaluation.py
+      - name: Smoke-test evaluation report on unreviewed seeds
+        run: python tools/evaluate_retrieval_quality.py
       - name: Validate Phase 2 metadata-only instrument inventory
         run: python tools/validate_phase2_document_inventory.py
       - name: Test Phase 2 instrument inventory safeguards
