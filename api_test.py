@@ -255,6 +255,14 @@ chat_after_followup = c.get(f"/research/conversations/{chat_id}", headers=L).jso
 assert [m["role"] for m in chat_after_followup["messages"]][-2:] == ["user", "assistant"]
 assert chat_after_followup["messages"][-1]["sources"] == []
 
+# Renaming a research conversation is validated and scoped to its owner and firm.
+renamed = c.patch(f"/research/conversations/{chat_id}", json={"title":"  Labour contract research  "}, headers=L)
+assert renamed.status_code == 200, renamed.text
+assert renamed.json()["title"] == "Labour contract research"
+assert c.patch(f"/research/conversations/{chat_id}", json={"title":"   "}, headers=L).status_code == 422
+assert c.patch(f"/research/conversations/{chat_id}", json={"title":"Other user's title"}, headers=J).status_code == 404
+assert c.patch(f"/research/conversations/{chat_id}", json={"title":"Other firm's title"}, headers=S).status_code == 404
+
 # Deleting a conversation removes its message history and is restricted to its owner.
 assert c.delete(f"/research/conversations/{chat_id}", headers=J).status_code == 404
 assert c.delete(f"/research/conversations/{chat_id}", headers=L).status_code == 200
