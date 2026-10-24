@@ -44,6 +44,12 @@ def apply_profile_migrations(
     if not directory.is_dir() or directory.resolve().parent != root:
         raise MigrationError(f"Migration directory does not exist for profile: {profile}")
 
+    # SQLite foreign-key enforcement is connection-local and must be enabled
+    # before the migration runner opens its transaction.
+    connection.execute("PRAGMA foreign_keys = ON")
+    if connection.execute("PRAGMA foreign_keys").fetchone()[0] != 1:
+        raise DatabaseProfileError("SQLite foreign-key enforcement could not be enabled")
+
     connection.execute("""
         CREATE TABLE IF NOT EXISTS database_profile (
             singleton INTEGER PRIMARY KEY CHECK(singleton = 1),
