@@ -69,6 +69,24 @@ class DatabaseMigrationTests(unittest.TestCase):
             "SELECT name FROM sqlite_master WHERE type='table' AND name='sample'"
         ).fetchone())
 
+    def test_startup_schema_no_longer_creates_indexes_inline(self):
+        # Guard the incremental DDL cutover: indexes belong in immutable
+        # migrations, while legacy table/FTS bootstrap remains for now.
+        import ast
+
+        app_path = Path(__file__).resolve().parents[1] / "app.py"
+        tree = ast.parse(app_path.read_text(encoding="utf-8"))
+        schema = next(
+            ast.literal_eval(node.value)
+            for node in tree.body
+            if isinstance(node, ast.Assign)
+            and any(isinstance(target, ast.Name) and target.id == "SCHEMA"
+                    for target in node.targets)
+        )
+        self.assertNotIn("CREATE INDEX", schema.upper())
+        self.assertIn("CREATE TABLE IF NOT EXISTS", schema.upper())
+        self.assertIn("CREATE VIRTUAL TABLE", schema.upper())
+
     def test_repository_migrations_create_startup_indexes(self):
         # Startup creates these prerequisite tables/columns before applying
         # repository migrations. This guards the migration-backed index set.
