@@ -54,6 +54,24 @@ These are candidate classifications, not a completed migration mapping. Foreign 
 7. **Background jobs and external integrations need re-inventory.** The reviewed `app.py` did not expose a separate worker implementation, but deployment schedules, scripts, backups, maintenance commands, caches, and future jobs still require a repository/deployment-wide check.
 8. **Startup schema changes are not a tenant migration strategy.** Per-firm databases need versioned migrations, migration locking, per-tenant status reporting, retries, and a tested rollback/recovery plan.
 
+
+
+## Repository-wide database and operations entry points found
+
+A follow-up GitHub code search identified these non-route entry points. They are in scope for Phase 0 because a future tenant-aware web connection helper will not automatically make command-line tools, maintenance scripts, or backups tenant-safe.
+
+| Path | Observed database behavior | Required follow-up |
+|---|---|---|
+| `manage.py` | `adduser`, `resetpw`, `importlaws`, and `backup` call `app.conn()`; backup exports the entire current database to one encrypted file. Restore decrypts a backup and replaces a caller-selected output path. | Define explicit control-plane vs tenant-admin commands; implement firm-scoped backup/restore and restore validation; ensure account operations target the intended firm and cannot silently default to firm 1 in a multi-tenant deployment. |
+| `tools/seed_legal_candidates.py` | Imports `app` and calls `app.conn()` to write shared legal-registry metadata. | Route registry writes through an explicitly selected platform/shared-corpus store, with a safe dry-run and permission controls. |
+| `tools/register_labour_law_candidate.py` | Accepts an optional `--db` path by setting `COPILOT_DB`, then uses the app connection to write shared legal registry metadata and review events. | Make target-store selection explicit; do not let a tenant DB path be mistaken for the shared legal registry. |
+| `tools/audit_legal_corpus.py`, `tools/legal_source_review_queue.py` | Open a caller-specified SQLite file in read-only mode and inspect corpus tables. | Keep read-only behavior; validate that operators point to the intended shared-corpus store and label reports with clear scope. |
+| `tools/deployment_preflight.py` | Checks the configured `COPILOT_DB` path, permissions, and deployment environment; it does not provision a tenant or establish isolation. | Extend preflight for tenant catalog/connection configuration and require explicit production topology, while retaining the current shared-SQLite warning until migration is complete. |
+| `selftest.py`, `tests/test_security_surface_inventory.py`, and scenario tests | Set `COPILOT_DB` to temporary paths before importing `app`; these exercise the current single-store model. | Add isolated-store and tenant-routing tests when the storage interface is introduced; avoid shared temp filenames that can collide between concurrent CI runs. |
+| `docs/production_deployment_checklist.md`, `README.md`, `docs/multi-firm-isolation-plan.md` | Document one configured database path and encrypted whole-database backups; the multi-firm plan already states that separate tenant stores are not implemented. | Keep docs consistent after the architecture changes; never present path hardening or encrypted backup as tenant isolation. |
+
+The initial code search did not find a cache/Redis integration or a registered scheduler in `app.py`. That is not proof that deployment automation, shell scripts, external services, or imported modules have no such behavior; those still require direct inspection. The repository's existing attack-surface inventory also notes that route/schema drift checks do not cover dynamic routes, indirect SQL, frontend calls, reverse-proxy paths, or infrastructure jobs.
+
 ## Required Phase 0 completion checklist
 
 - [ ] Enumerate every SQL statement by route/helper and mark it firm-owned, control-plane, shared-corpus, or mixed.
