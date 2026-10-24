@@ -110,5 +110,23 @@ class TenantCatalogTests(unittest.TestCase):
             resolve_tenant_database(self.catalog, 10, self.root)
 
 
+    def test_symlinked_storage_root_is_rejected_before_provisioning(self):
+        real_root = Path(self.temp.name) / "real-tenants"
+        real_root.mkdir()
+        link_root = Path(self.temp.name) / "tenants-link"
+        link_root.symlink_to(real_root, target_is_directory=True)
+        with self.assertRaisesRegex(TenantCatalogError, "storage root.*symlink"):
+            provision_tenant_database(self.catalog, 21, link_root, self.initialize_tenant)
+        self.assertEqual(list(real_root.iterdir()), [])
+
+    def test_symlinked_storage_root_is_rejected_during_resolution(self):
+        real_root = Path(self.temp.name) / "real-tenants"
+        real_root.mkdir()
+        link_root = Path(self.temp.name) / "tenants-link"
+        link_root.symlink_to(real_root, target_is_directory=True)
+        with self.assertRaisesRegex(TenantCatalogError, "storage root.*symlink"):
+            resolve_tenant_database(self.catalog, 22, link_root)
+
+
 if __name__ == "__main__":
     unittest.main()
