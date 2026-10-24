@@ -12,6 +12,11 @@ def inspect_environment(env=None):
     env = os.environ if env is None else env
     errors, warnings, passed = [], [], []
 
+    if env.get("ALLOW_UNLINKED_LEGACY_LAW_SEARCH", "").strip() == "1":
+        errors.append("ALLOW_UNLINKED_LEGACY_LAW_SEARCH=1 enables unreviewed legacy-law retrieval and is not allowed for deployment.")
+    else:
+        passed.append("Unlinked legacy-law search override is disabled.")
+
     token = env.get("ADMIN_TOKEN", "")
     weak_markers = ("change-me", "changeme", "example", "placeholder", "test-token", "your-secret")
     if len(token) < 32 or any(marker in token.lower() for marker in weak_markers):

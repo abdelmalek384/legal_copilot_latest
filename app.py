@@ -366,6 +366,7 @@ def delete_case(c, u, cid):
 SQL = ("SELECT chunks.*, bm25(chunks_fts) AS r FROM chunks_fts JOIN chunks ON chunks.id=chunks_fts.rowid "
        "WHERE chunks_fts MATCH ? AND (chunks.case_id IS NOT NULL OR (chunks.verified=1 AND (chunks.in_force=1 OR chunks.document_version_id IS NOT NULL))) AND (chunks.case_id IS NULL OR chunks.case_id IS ?) "
        "AND (chunks.case_id IS NULL OR chunks.case_id IN (SELECT id FROM cases WHERE firm_id=?)) "
+       "AND (chunks.case_id IS NOT NULL OR chunks.document_version_id IS NOT NULL OR ?=1) "
        "AND (chunks.case_id IS NOT NULL OR chunks.document_version_id IS NULL OR EXISTS ("
        "SELECT 1 FROM legal_document_versions v WHERE v.version_id=chunks.document_version_id "
        "AND v.review_status='verified' AND v.authenticity_verified=1 AND v.status_verified=1 AND v.amendment_history_verified=1 AND EXISTS (SELECT 1 FROM legal_documents d JOIN legal_sources s ON s.source_id=d.source_id WHERE d.document_id=v.document_id AND s.collection_permission='allowed' AND s.commercial_reuse_permission='allowed' AND TRIM(COALESCE(s.permission_evidence,''))<>'' AND TRIM(COALESCE(v.permission_evidence,''))<>'') AND (v.legal_status='in_force' OR (v.legal_status IN ('repealed','historical') AND v.repeal_date IS NOT NULL)) "
@@ -409,8 +410,8 @@ def citation_provenance(c, version_id):
 
 
 def search(c, q, case_id=None, k=5, firm_id=1, as_of=None):
-    # Linked legal versions are filtered by effective/repeal dates and review evidence.
-    # Unlinked legacy chunks retain the pre-registry behavior for backwards compatibility.
+    # Linked legal versions require verified provenance, status, dates, and reuse permission.
+    # Unlinked legacy law chunks fail closed unless explicitly enabled for a controlled migration.
     as_of = as_of or date.today().isoformat()
     try:
         date.fromisoformat(as_of)
@@ -420,16 +421,17 @@ def search(c, q, case_id=None, k=5, firm_id=1, as_of=None):
     qt, expanded_qt = tokens(q), expanded_tokens(q)
     if expanded_qt:
         # Expand only with a small, curated bilingual lexicon; never alter the evidence text.
-        params = (" OR ".join('"%s"' % t.replace('"', '""') for t in expanded_qt), case_id, firm_id, as_of, as_of)
+        allow_legacy = os.environ.get("ALLOW_UNLINKED_LEGACY_LAW_SEARCH", "").strip() == "1"
+        params = (" OR ".join('"%s"' % t.replace('"', '""') for t in expanded_qt), case_id, firm_id, int(allow_legacy), as_of, as_of)
         for r in c.execute(SQL, params): cand[r["id"]] = (r, -r["r"])
     am = re.search(r"(?:ماده|الماده|article|art)\s*\.?\s*(\d+)", norm(q))
     if am:
         exact_sql = ("SELECT * FROM chunks WHERE article=? AND case_id IS NULL AND verified=1 AND (in_force=1 OR document_version_id IS NOT NULL) "
-                     "AND (document_version_id IS NULL OR EXISTS (SELECT 1 FROM legal_document_versions v "
+                     "AND (document_version_id IS NOT NULL OR ?=1) AND (document_version_id IS NULL OR EXISTS (SELECT 1 FROM legal_document_versions v "
                      "WHERE v.version_id=chunks.document_version_id AND v.review_status='verified' "
                      "AND v.authenticity_verified=1 AND v.status_verified=1 AND v.amendment_history_verified=1 AND EXISTS (SELECT 1 FROM legal_documents d JOIN legal_sources s ON s.source_id=d.source_id WHERE d.document_id=v.document_id AND s.collection_permission='allowed' AND s.commercial_reuse_permission='allowed' AND TRIM(COALESCE(s.permission_evidence,''))<>'' AND TRIM(COALESCE(v.permission_evidence,''))<>'') AND (v.legal_status='in_force' OR (v.legal_status IN ('repealed','historical') AND v.repeal_date IS NOT NULL)) "
                      "AND v.effective_date IS NOT NULL AND v.effective_date<=? AND (v.repeal_date IS NULL OR v.repeal_date>?)) )")
-        for r in c.execute(exact_sql, (am.group(1), as_of, as_of)):
+        for r in c.execute(exact_sql, (am.group(1), int(allow_legacy), as_of, as_of)):
             exact.add(r["id"]); cand.setdefault(r["id"], (r, 0))
     if not cand: return []
     top, qg, expanded_qg, out = (max(b for _, b in cand.values()) or 1), grams(q), grams(" ".join(expanded_qt)), []

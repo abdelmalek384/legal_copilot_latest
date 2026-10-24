@@ -21,6 +21,15 @@ class DeploymentPreflightTests(unittest.TestCase):
             "COPILOT_DB": str(self.db_path),
         }
 
+    def test_rejects_unlinked_legacy_law_search_override(self):
+        _, _, errors = preflight.inspect_environment(dict(self.env, ALLOW_UNLINKED_LEGACY_LAW_SEARCH="1"))
+        self.assertTrue(any("ALLOW_UNLINKED_LEGACY_LAW_SEARCH" in item for item in errors))
+
+    def test_default_legacy_law_search_override_is_safe(self):
+        passed, _, errors = preflight.inspect_environment(self.env)
+        self.assertTrue(any("legacy-law search override is disabled" in item for item in passed))
+        self.assertEqual(errors, [])
+
     def test_valid_config_and_missing_db_is_warning_only(self):
         passed, warnings, errors = preflight.inspect_environment(self.env)
         self.assertTrue(any("ADMIN_TOKEN" in item for item in passed))

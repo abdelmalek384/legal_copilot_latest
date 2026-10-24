@@ -1,5 +1,7 @@
 import os, json, tempfile
 os.environ["COPILOT_DB"] = os.path.join(tempfile.mkdtemp(), "t.db")
+# This self-test deliberately exercises the fictional legacy corpus during migration.
+os.environ["ALLOW_UNLINKED_LEGACY_LAW_SEARCH"] = "1"
 import app
 c = app.conn()
 app.import_law(c, [json.loads(l) for l in open("sample_law.jsonl", encoding="utf-8")])

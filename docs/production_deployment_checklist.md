@@ -33,6 +33,7 @@ This checklist is a release gate, not a certification. Completing it does not re
 
 - [ ] Confirm acquisition rights and commercial reuse permission for every corpus source; a URL or public availability is not sufficient.
 - [ ] Keep candidate/unreviewed instruments ineligible for legal retrieval. Do not mark a text verified or in force without documented source and legal review.
+- [ ] Keep `ALLOW_UNLINKED_LEGACY_LAW_SEARCH` unset in production. Unlinked legacy-law chunks are excluded by default; the explicit `=1` override is a temporary migration/testing escape hatch only and must not be used for client-facing legal answers without documented review and risk approval.
 - [ ] Validate article-level extraction against the authoritative Gazette or an authorized official copy; preserve source hash, retrieval date, version and reviewer evidence.
 - [ ] Have qualified Egyptian counsel review currentness, amendments, commencement dates, repeals, and representative answers before any client-facing legal use.
 - [ ] Keep fictional sample data out of production and label unverified sources visibly.
