@@ -150,6 +150,31 @@ assert c.get(f"/cases/{cid}/docs/{upload_meta['document_id']}/reviews", headers=
 other_cid = c.post("/cases", json={"title":"Private second-firm matter","client":"Second Client"}, headers=S).json()["id"]
 assert c.get("/cases", headers=S).status_code == 200
 assert [x["id"] for x in c.get("/cases", headers=S).json()] == [other_cid]
+
+# Research conversations are user-owned and firm-scoped, including child messages and matter export.
+research_conversation = c.post("/research/conversations", headers=J)
+assert research_conversation.status_code == 200, research_conversation.text
+research_id = research_conversation.json()["id"]
+db.execute("INSERT INTO research_messages(conversation_id,role,content) VALUES(?,?,?)",
+           (research_id, "user", "Private research question sentinel"))
+db.execute("INSERT INTO research_messages(conversation_id,role,content) VALUES(?,?,?)",
+           (research_id, "assistant", "Private research answer sentinel"))
+db.commit()
+own_research = c.get(f"/research/conversations/{research_id}", headers=J)
+assert own_research.status_code == 200
+assert any(m["content"] == "Private research answer sentinel" for m in own_research.json()["messages"])
+assert c.get(f"/research/conversations/{research_id}", headers=S).status_code == 404
+assert c.get(f"/research/conversations/{research_id}", headers=L).status_code == 404
+assert all(x["id"] != research_id for x in c.get("/research/conversations", headers=S).json())
+assert c.patch(f"/research/conversations/{research_id}", json={"title":"stolen"}, headers=S).status_code == 404
+assert c.delete(f"/research/conversations/{research_id}", headers=S).status_code == 404
+assert c.post(f"/research/conversations/{research_id}/messages",
+              json={"message":"attempted cross-firm access"}, headers=S).status_code == 404
+assert c.post(f"/research/conversations/{research_id}/save-to-matter",
+              json={"case_id":other_cid,"message_id":db.execute(
+                  "SELECT id FROM research_messages WHERE conversation_id=? AND role='assistant'", (research_id,)
+              ).fetchone()[0]}, headers=J).status_code == 404
+assert c.get(f"/research/conversations/{research_id}", headers=J).status_code == 200
 assert c.get(f"/cases/{cid}", headers=S).status_code == 404
 cross_firm_upload = c.post(f"/cases/{cid}/upload", files={"file": ("leak.docx", upload_bytes)}, headers=S)
 assert cross_firm_upload.status_code == 404, cross_firm_upload.text
