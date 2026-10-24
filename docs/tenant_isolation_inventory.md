@@ -77,3 +77,10 @@ Routes are grouped by the data boundary they should preserve. "Tested" means the
 4. Design tenant DB and file-storage boundaries; migrate only after backup, row-count, relationship, and rollback verification are tested.
 5. Implement backup/restore/deletion isolation tests and obtain independent security review.
 6. Keep public registration and production confidential matter use disabled until release gates pass.
+
+
+## Read-only ownership preflight extension
+
+`scripts/tenant_ownership_preflight.py` now checks for orphaned rows in the `notes`, `deadlines`, `fees`, `tasks`, `events`, and `sessions` tables when those tables and the `cases` table exist. Such child rows must not be repaired by guessing a parent; reconcile them from trusted records and a reviewed backup. Run `PYTHONPATH=. python tests/test_tenant_ownership_preflight.py` to exercise the added checks.
+
+The check remains a read-only data-quality aid. It does not prove that API endpoints authorize every parent/child operation and does not migrate or repair data.
