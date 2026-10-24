@@ -158,6 +158,13 @@ db.execute("INSERT INTO users(name,email,pw,role,firm_id) VALUES(?,?,?,?,?)",
            ("Second Admin","second@x.eg",app.hash_pw("password-Second"),"admin",2))
 db.commit()
 S = login_creds("second@x.eg", "password-Second")
+# Firm-scoped audit APIs must not expose another firm's events or deletion snapshots.
+security_audit_b = c.get("/audit/security-events", headers=S)
+assert security_audit_b.status_code == 200, security_audit_b.text
+assert all(row["firm_id"] == 2 for row in security_audit_b.json()["items"]), security_audit_b.json()
+deletion_audit_b = c.get("/audit/case-deletions", headers=S)
+assert deletion_audit_b.status_code == 200, deletion_audit_b.text
+assert deletion_audit_b.json()["items"] == [], deletion_audit_b.json()
 assert c.get(f"/cases/{cid}/docs/{upload_meta['document_id']}/reviews", headers=S).status_code == 404
 # Extraction-review writes must also be firm-scoped; guessed document/chunk IDs cannot be used to alter another firm's text.
 assert c.post(
