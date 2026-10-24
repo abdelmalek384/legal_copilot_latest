@@ -9,7 +9,7 @@
 - **In progress:** 2 of 20 deliverables (**10%**).
 - **Not started, blocked, or awaiting validation:** 13 of 20 (**65%**).
 - **Merged PRs from this workstream:** #88, #89, #90, #91, #94.
-- **Open PRs:** [#92](https://github.com/abdelmalek384/legal_copilot_latest/pull/92) (corpus/UX roadmap documentation), [#96](https://github.com/abdelmalek384/legal_copilot_latest/pull/96) (Research Results & Source Inspector; current-head CI pending).
+- **Open PRs:** [#92](https://github.com/abdelmalek384/legal_copilot_latest/pull/92) (corpus/UX roadmap documentation), [#96](https://github.com/abdelmalek384/legal_copilot_latest/pull/96) (Research Results & Source Inspector; current-head CI passed, manual QA pending).
 - **External permission requests:** not sent by this project workflow. Claude is expected to handle outreach; approval is not assumed.
 - **Manual UI QA:** not yet completed.
 
@@ -51,7 +51,7 @@ Percentages count deliverables equally; they are not a claim that 20% of all cod
 
 1. Check current-head CI for [PR #96](https://github.com/abdelmalek384/legal_copilot_latest/pull/96); fix API/JavaScript/test failures before merge.
 2. Review and merge PR #92 once its documentation is approved.
-3. Finish Issue #95 with a fresh CI pass and manual RTL/LTR/keyboard/screen-reader review; page values are shown only when recorded.
+3. Complete manual RTL/LTR/keyboard/screen-reader and lawyer review for Issue #95; page values are shown only when recorded.
 4. Continue the metadata-only instrument inventory and source-specific terms review.
 5. Record Claude's outreach status and any written replies in the permission tracker; do not change permissions until written terms are reviewed.
 
