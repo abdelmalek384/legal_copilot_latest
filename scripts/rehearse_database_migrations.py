@@ -39,7 +39,8 @@ def rehearse(database: str | Path, migrations_dir: str | Path) -> dict[str, Any]
         raise FileNotFoundError(f"Database file not found: {source_path}")
     source_check: list[str]
     source_fk_count: int
-    with _connect_read_only(source_path) as source:
+    source = _connect_read_only(source_path)
+    try:
         source_check = _quick_check(source)
         source_fk_count = _foreign_key_violation_count(source)
         with tempfile.TemporaryDirectory(prefix="legal-db-migration-rehearsal-") as tmp:
@@ -51,8 +52,9 @@ def rehearse(database: str | Path, migrations_dir: str | Path) -> dict[str, Any]
             finally:
                 staged.close()
 
-            with sqlite3.connect(staged_path) as rehearsal_db:
-                rehearsal_db.row_factory = sqlite3.Row
+            rehearsal_db = sqlite3.connect(staged_path)
+            rehearsal_db.row_factory = sqlite3.Row
+            try:
                 applied = apply_migrations(rehearsal_db, migrations_dir)
                 staged_check = _quick_check(rehearsal_db)
                 staged_fk_count = _foreign_key_violation_count(rehearsal_db)
@@ -62,6 +64,10 @@ def rehearse(database: str | Path, migrations_dir: str | Path) -> dict[str, Any]
                         "SELECT version, name FROM schema_migrations ORDER BY version"
                     )
                 ]
+            finally:
+                rehearsal_db.close()
+    finally:
+        source.close()
 
     checks_pass = source_check == ["ok"] and staged_check == ["ok"]
     status = "passed" if checks_pass and source_fk_count == 0 and staged_fk_count == 0 else "review_required"
