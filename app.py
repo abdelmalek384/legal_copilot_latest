@@ -219,8 +219,12 @@ def conn():
                     original_text TEXT NOT NULL,
                     reviewed_text TEXT NOT NULL,
                     note TEXT NOT NULL DEFAULT '',
+                    page_reference TEXT NOT NULL DEFAULT '',
                     created_at TEXT NOT NULL DEFAULT (datetime('now'))
                 )""")
+                review_cols = {r[1] for r in c.execute("PRAGMA table_info(document_extraction_reviews)")}
+                if "page_reference" not in review_cols:
+                    c.execute("ALTER TABLE document_extraction_reviews ADD COLUMN page_reference TEXT NOT NULL DEFAULT ''")
                 c.execute("CREATE INDEX IF NOT EXISTS idx_doc_reviews_document ON document_extraction_reviews(firm_id,document_id,id DESC)")
                 case_cols = {r[1] for r in c.execute("PRAGMA table_info(cases)")}
                 for col in ("case_number", "case_year", "court", "circuit", "opposing_party"):
@@ -1353,6 +1357,8 @@ def upload(cid: int, file: UploadFile, u: dict = Depends(user)):
 class ExtractionReviewIn(BaseModel):
     outcome: str = Field(pattern=r"^(accepted|corrected|needs_recheck)$")
     corrected_text: str | None = Field(default=None, max_length=20000)
+    expected_text_sha256: str | None = Field(default=None, pattern=r"^[0-9a-f]{64}$")
+    page_reference: str = Field(default="", max_length=100)
     note: str = Field(default="", max_length=2000)
 
 
@@ -1362,7 +1368,7 @@ def list_document_reviews(cid: int, document_id: int, u: dict = Depends(user)):
     doc = c.execute("SELECT id FROM docs WHERE id=? AND case_id=? AND firm_id=?", (document_id, cid, u["firm_id"])).fetchone()
     if not doc: raise HTTPException(404, "document not found")
     rows = c.execute(
-        "SELECT r.id,r.chunk_id,r.reviewer_user_id,r.outcome,r.original_text,r.reviewed_text,r.note,r.created_at "
+        "SELECT r.id,r.chunk_id,r.reviewer_user_id,r.outcome,r.original_text,r.reviewed_text,r.page_reference,r.note,r.created_at "
         "FROM document_extraction_reviews r WHERE r.document_id=? AND r.case_id=? AND r.firm_id=? ORDER BY r.id DESC LIMIT 200",
         (document_id, cid, u["firm_id"])).fetchall()
     return {"document_id": document_id, "reviews": [dict(r) for r in rows]}
@@ -1375,26 +1381,46 @@ def review_document_chunk(cid: int, document_id: int, chunk_id: int, b: Extracti
     chunk = c.execute("SELECT id,text FROM chunks WHERE id=? AND document_id=? AND case_id=?", (chunk_id, document_id, cid)).fetchone()
     if not doc or not chunk: raise HTTPException(404, "document chunk not found")
     old_text = chunk["text"]
+    old_digest = hashlib.sha256(old_text.encode("utf-8")).hexdigest()
     if b.outcome == "corrected":
         corrected = (b.corrected_text or "").strip()
         if not corrected: raise HTTPException(422, "corrected_text is required for a correction")
         if corrected == old_text: raise HTTPException(422, "corrected_text must differ from the extracted text")
+        if not b.expected_text_sha256:
+            raise HTTPException(422, "expected_text_sha256 is required for corrections to prevent overwriting a newer review")
+        if b.expected_text_sha256 != old_digest:
+            raise HTTPException(409, "extracted text changed since this review was opened; reload the latest text and retry")
     else:
         if b.corrected_text is not None: raise HTTPException(422, "corrected_text is only valid for corrected outcome")
+        if b.expected_text_sha256 is not None and b.expected_text_sha256 != old_digest:
+            raise HTTPException(409, "extracted text changed since this review was opened; reload the latest text and retry")
         corrected = old_text
-    cur = c.execute(
-        "INSERT INTO document_extraction_reviews(document_id,case_id,firm_id,chunk_id,reviewer_user_id,outcome,original_text,reviewed_text,note) "
-        "VALUES(?,?,?,?,?,?,?,?,?)",
-        (document_id, cid, u["firm_id"], chunk_id, u["id"], b.outcome, old_text, corrected, b.note.strip()))
+    # Compare-and-swap update prevents a stale reviewer from overwriting a newer correction.
     if b.outcome == "corrected":
-        c.execute("UPDATE chunks SET text=?,norm=? WHERE id=? AND document_id=? AND case_id=?",
-                  (corrected, norm(corrected), chunk_id, document_id, cid))
+        updated = c.execute(
+            "UPDATE chunks SET text=?,norm=?,page=CASE WHEN ?<>'' THEN ? ELSE page END "
+            "WHERE id=? AND document_id=? AND case_id=? AND text=?",
+            (corrected, norm(corrected), b.page_reference.strip(), b.page_reference.strip(),
+             chunk_id, document_id, cid, old_text))
+        if updated.rowcount != 1:
+            c.rollback()
+            raise HTTPException(409, "extracted text changed during review; reload the latest text and retry")
         c.execute("DELETE FROM chunks_fts WHERE rowid=?", (chunk_id,))
         c.execute("INSERT INTO chunks_fts(rowid,norm) VALUES(?,?)", (chunk_id, " ".join(tokens(corrected))))
+    elif b.page_reference.strip():
+        c.execute("UPDATE chunks SET page=? WHERE id=? AND document_id=? AND case_id=? AND text=?",
+                  (b.page_reference.strip(), chunk_id, document_id, cid, old_text))
+    cur = c.execute(
+        "INSERT INTO document_extraction_reviews(document_id,case_id,firm_id,chunk_id,reviewer_user_id,outcome,original_text,reviewed_text,note,page_reference) "
+        "VALUES(?,?,?,?,?,?,?,?,?,?)",
+        (document_id, cid, u["firm_id"], chunk_id, u["id"], b.outcome, old_text, corrected,
+         b.note.strip(), b.page_reference.strip()))
     c.commit()
     return {"review_id": cur.lastrowid, "document_id": document_id, "chunk_id": chunk_id,
             "outcome": b.outcome, "text_updated": b.outcome == "corrected",
-            "warning": "Reviewer correction is an audited transcription change, not proof of legal accuracy or source authenticity."}
+            "page_reference": b.page_reference.strip() or None,
+            "source_page_verified": False,
+            "warning": "Reviewer correction is an audited transcription change, not proof of legal accuracy or source authenticity. Page references are reviewer-entered and are not verified against a retained original file."}
 
 
 @app.delete("/cases/{cid}")
