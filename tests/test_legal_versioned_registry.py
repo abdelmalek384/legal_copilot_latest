@@ -15,6 +15,7 @@ class LegalVersionedRegistryTests(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         os.environ["COPILOT_DB"] = str(Path(self.tmp.name) / "registry.db")
+        os.environ.pop("ALLOW_UNLINKED_LEGACY_LAW_SEARCH", None)
         import importlib
         import app
         self.app = importlib.reload(app)
@@ -29,6 +30,7 @@ class LegalVersionedRegistryTests(unittest.TestCase):
             app._schema_ready = False
             self.tmp.cleanup()
             os.environ.pop("COPILOT_DB", None)
+            os.environ.pop("ALLOW_UNLINKED_LEGACY_LAW_SEARCH", None)
 
     def test_registry_tables_exist_and_legacy_chunks_are_linkable(self):
         tables = {r[0] for r in self.db.execute("SELECT name FROM sqlite_master WHERE type='table'")}
@@ -219,10 +221,18 @@ class LegalVersionedRegistryTests(unittest.TestCase):
         self.assertEqual(p["relations"][0]["relation_type"], "amends")
         self.assertEqual(p["relations"][0]["to_version_id"], amended_version_id)
 
-    def test_unlinked_legacy_citation_is_explicitly_labelled(self):
-        self.app.add_chunks(self.db, [{"ref":"Legacy source","text":"legacyprobe passage","in_force":1,"verified":1,"source":"legacy"}])
+    def test_unlinked_legacy_law_search_fails_closed_by_default(self):
+        self.app.add_chunks(self.db, [{"ref":"Legacy source","article":"1","text":"legacyprobe passage","in_force":1,"verified":1,"source":"legacy"}])
+        self.assertEqual(self.app.search(self.db, "legacyprobe"), [])
+        self.assertEqual(self.app.search(self.db, "المادة 1"), [])
+
+    def test_unlinked_legacy_search_requires_explicit_temporary_opt_in(self):
+        self.app.add_chunks(self.db, [{"ref":"Legacy source","article":"1","text":"legacyprobe passage","in_force":1,"verified":1,"source":"legacy"}])
+        os.environ["ALLOW_UNLINKED_LEGACY_LAW_SEARCH"] = "1"
         hit = self.app.search(self.db, "legacyprobe")[0]
         self.assertEqual(hit["provenance"]["status"], "legacy_unlinked")
+        exact = self.app.search(self.db, "المادة 1")
+        self.assertTrue(any(item["provenance"]["status"] == "legacy_unlinked" for item in exact))
 
 if __name__ == "__main__":
     unittest.main()
