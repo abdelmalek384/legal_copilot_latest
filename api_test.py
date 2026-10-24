@@ -97,7 +97,6 @@ assert review_audit.status_code == 200 and review_audit.json()["reviews"][0]["ou
 assert review_audit.json()["reviews"][0]["original_text"] == review_chunk["text"]
 assert c.post(f"/cases/{cid}/docs/{upload_meta['document_id']}/chunks/{review_chunk['id']}/review",
              json={"outcome":"corrected"}, headers=J).status_code == 422
-assert c.get(f"/cases/{cid}/docs/{upload_meta['document_id']}/reviews", headers=S).status_code == 404
 
 # Duplicate uploads are intentionally separate matter records; hashes allow auditing without cross-matter deduplication.
 duplicate_upload = c.post(f"/cases/{cid}/upload", files={"file": ("renamed.docx", upload_bytes)}, headers=J)
@@ -147,6 +146,7 @@ db.execute("INSERT INTO users(name,email,pw,role,firm_id) VALUES(?,?,?,?,?)",
            ("Second Admin","second@x.eg",app.hash_pw("password-Second"),"admin",2))
 db.commit()
 S = login_creds("second@x.eg", "password-Second")
+assert c.get(f"/cases/{cid}/docs/{upload_meta['document_id']}/reviews", headers=S).status_code == 404
 other_cid = c.post("/cases", json={"title":"Private second-firm matter","client":"Second Client"}, headers=S).json()["id"]
 assert c.get("/cases", headers=S).status_code == 200
 assert [x["id"] for x in c.get("/cases", headers=S).json()] == [other_cid]
