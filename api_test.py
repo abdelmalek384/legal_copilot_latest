@@ -135,7 +135,11 @@ assert probe["matches"] == [] and probe["possible_conflict"] is True and probe["
 new_user = c.post("/users", json={"name":"Disable Me","email":"disable@x.eg","password":"long-enough-password","role":"lawyer"}, headers=A)
 assert new_user.status_code == 200
 new_uid = new_user.json()["id"]
+# A session issued before account disablement must stop authorizing requests immediately.
+disabled_session = login_creds("disable@x.eg", "long-enough-password")
+assert c.get("/cases", headers=disabled_session).status_code == 200
 assert c.post(f"/users/{new_uid}/disable", headers=A).status_code == 200
+assert c.get("/cases", headers=disabled_session).status_code == 401
 assert c.post("/login", json={"email":"disable@x.eg","password":"long-enough-password"}).status_code == 401
 assert c.delete(f"/cases/{cid}", headers=J).status_code == 404 and c.delete(f"/cases/{cid}", headers=L).status_code == 200
 # Permanent deletion must leave an admin-readable audit snapshot in the same firm.
