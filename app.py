@@ -233,9 +233,6 @@ def conn():
                 _ensure_legacy_firm_ownership(c)
                 deadline_cols = {r[1] for r in c.execute("PRAGMA table_info(deadlines)")}
                 if "status" not in deadline_cols: c.execute("ALTER TABLE deadlines ADD COLUMN status TEXT DEFAULT 'open'")
-                c.execute("CREATE INDEX IF NOT EXISTS idx_cases_firm ON cases(firm_id)")
-                c.execute("CREATE INDEX IF NOT EXISTS idx_members_user_case ON members(user_id,case_id)")
-                c.execute("CREATE INDEX IF NOT EXISTS idx_deadlines_case_due ON deadlines(case_id,due,status)")
                 if "verified" not in [r[1] for r in c.execute("PRAGMA table_info(chunks)")]:
                     c.execute("ALTER TABLE chunks ADD COLUMN verified INT DEFAULT 0")
                 chunk_cols = {r[1] for r in c.execute("PRAGMA table_info(chunks)")}
@@ -250,8 +247,6 @@ def conn():
                     if col not in doc_cols:
                         c.execute(f"ALTER TABLE docs ADD COLUMN {col} {declaration}")
                 c.execute("UPDATE docs SET firm_id=(SELECT firm_id FROM cases WHERE cases.id=docs.case_id) WHERE firm_id IS NULL")
-                c.execute("CREATE INDEX IF NOT EXISTS idx_docs_case_added ON docs(case_id, id DESC)")
-                c.execute("CREATE INDEX IF NOT EXISTS idx_chunks_document_id ON chunks(document_id)")
                 c.execute("""CREATE TABLE IF NOT EXISTS document_extraction_reviews(
                     id INTEGER PRIMARY KEY,
                     document_id INTEGER NOT NULL,
@@ -269,7 +264,6 @@ def conn():
                 review_cols = {r[1] for r in c.execute("PRAGMA table_info(document_extraction_reviews)")}
                 if "page_reference" not in review_cols:
                     c.execute("ALTER TABLE document_extraction_reviews ADD COLUMN page_reference TEXT NOT NULL DEFAULT ''")
-                c.execute("CREATE INDEX IF NOT EXISTS idx_doc_reviews_document ON document_extraction_reviews(firm_id,document_id,id DESC)")
                 case_cols = {r[1] for r in c.execute("PRAGMA table_info(cases)")}
                 for col in ("case_number", "case_year", "court", "circuit", "opposing_party"):
                     if col not in case_cols:

@@ -69,6 +69,38 @@ class DatabaseMigrationTests(unittest.TestCase):
             "SELECT name FROM sqlite_master WHERE type='table' AND name='sample'"
         ).fetchone())
 
+    def test_repository_migrations_create_startup_indexes(self):
+        # Startup creates these prerequisite tables/columns before applying
+        # repository migrations. This guards the migration-backed index set.
+        self.db.executescript("""
+            CREATE TABLE tenant_ownership_quarantine(first_seen TEXT);
+            CREATE TABLE cases(firm_id INTEGER);
+            CREATE TABLE members(user_id INTEGER, case_id INTEGER);
+            CREATE TABLE deadlines(case_id INTEGER, due TEXT, status TEXT);
+            CREATE TABLE docs(case_id INTEGER, id INTEGER);
+            CREATE TABLE chunks(document_id INTEGER);
+            CREATE TABLE document_extraction_reviews(
+                firm_id INTEGER, document_id INTEGER, id INTEGER
+            );
+        """)
+        migrations = Path(__file__).resolve().parents[1] / "migrations"
+        self.assertEqual(apply_migrations(self.db, migrations), [1, 2])
+        indexes = {
+            row[0] for row in self.db.execute(
+                "SELECT name FROM sqlite_master WHERE type='index'"
+            )
+        }
+        self.assertTrue({
+            "idx_tenant_quarantine_first_seen",
+            "idx_cases_firm",
+            "idx_members_user_case",
+            "idx_deadlines_case_due",
+            "idx_docs_case_added",
+            "idx_chunks_document_id",
+            "idx_doc_reviews_document",
+        } <= indexes)
+        self.assertEqual(apply_migrations(self.db, migrations), [])
+
 
 if __name__ == "__main__":
     unittest.main()
