@@ -13,7 +13,7 @@
     "current_page_url": "https://manshurat.org/content/qnwn-lml-ljdyd-rqm-14-lsn-2025",
     "source_class": "secondary_text_copy",
     "stated_origin": "Egyptian Official Gazette issue 18 (supplement), dated 2025-05-03",
-    "official_gazette_match": "partial_structural_cross_check_only; article_by_article_match_not_completed",
+    "official_gazette_match": "partial_structural_and_spot_check_only; full article-by-article comparison not completed",
     "terms_review": "reviewed_on_2026-10-24; no affirmative redistribution_or_commercial_reuse_license located",
     "collection_permission": "unknown_pending_written_permission_or_terms_confirmation",
     "redistribution_permission": "unknown",
@@ -44,26 +44,26 @@
     "direct_amendment_search": "No direct amending statute identified in the limited review; not a complete negative certification",
     "amendment_chain_status": "partial; implementing instruments identified but not exhaustively verified",
     "commencement_and_transitional_rules_status": "promulgation articles reviewed in accessible text; article-by-article official Gazette verification pending",
-    "extraction_quality_status": "311 records parse; structural counts align with 13 promulgation articles and 298 accompanying-law articles; no full article-by-article Gazette comparison completed",
+    "extraction_quality_status": "311 records parse; structure and selected promulgation/opening/closing provisions spot-checked against accessible secondary text; no full Gazette comparison",
     "official_gazette_access": "IDSC item metadata verified; PDF is behind request-a-copy workflow; repository terms require written permission for systematic retrieval/database compilation and limit content use to personal non-commercial use absent permission",
     "egyptian_lawyer_review_status": "pending",
     "search_eligible": false,
     "provisional_desk_review": "completed_with_blockers",
     "permissions_review_outcome": "unresolved_keep_unknown",
-    "article_by_article_gazette_comparison": "not_performed_source_file_unavailable_in_session",
+    "article_by_article_gazette_comparison": "not_completed; exact Gazette PDF not obtained/page-reviewed",
     "general_commencement_date_candidate": "2025-09-01 — provisional lead only; confirm against page-verified Official Gazette and qualified Egyptian legal review",
     "specialized_labour_courts_commencement_date_candidate": "2025-10-01 — provisional lead only; confirm against page-verified Official Gazette and qualified Egyptian legal review",
     "amendment_history_verified": false,
-    "registry_import_decision": "candidate_only_pending_primary_source_comparison_and_legal_review",
+    "registry_import_decision": "metadata-only candidate registration possible; do not import article chunks or enable search until source permission, Gazette comparison, and counsel review",
     "review_report": "source_and_legal_review.md"
   },
   "next_steps": [
-    "Obtain written permission covering storage, extraction, indexing, embeddings, commercial use, display and redistribution as applicable; the IDSC repository terms prohibit systematic retrieval to compile a database without written permission.",
-    "Obtain the exact Official Gazette issue PDF through an authorized route and record the official page range.",
-    "Compare all 311 records against the authorized Gazette source, including exact wording, article numbering, omissions, duplicates, punctuation and the 13 promulgation provisions.",
-    "Register the candidate metadata with tools/register_labour_law_candidate.py; this creates registry records and pending review events only, never searchable chunks.",
-    "Review Article 13 commencement (general law effective 2025-09-01; specialized labor courts 2025-10-01) and Article 12 repeals; retain separate transitional rules.",
-    "Track implementing instruments as separate legal documents/versions and relations of type implements; do not label them as amendments unless the instrument actually amends the law.",
-    "Have Egyptian counsel verify the amendment/implementing-instrument chain and only then complete source-authenticity, status, amendment-history, licensing and lawyer-approval reviews."
-  ]
+    "Obtain written permission covering storage, extraction, indexing, embeddings, display, redistribution and commercial use, or confirm a separately licensed source.",
+    "Obtain the exact Official Gazette issue through an authorized route and complete the 311-record article-by-article comparison with page-level evidence.",
+    "Register and review the identified implementing instruments as separate documents; distinguish implementation/extension from formal amendment.",
+    "Verify commencement, transitional rules, repeals and temporal effects with qualified Egyptian counsel.",
+    "Register metadata in the local versioned registry only after backing up the database; keep review states pending and do not create searchable chunks until approved."
+  ],
+  "terms_review": "reviewed_on_2026-10-24; no affirmative redistribution_or_commercial_reuse permission located",
+  "collection_permission": "unknown_pending_written_permission_or_terms_confirmation"
 }
