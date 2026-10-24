@@ -1318,11 +1318,11 @@ def delete_research_conversation(conversation_id: int, u: dict = Depends(user)):
     _owned_research_conversation(c, u, conversation_id)
     # Explicitly delete children; SQLite foreign-key enforcement is not enabled globally.
     c.execute("DELETE FROM research_messages WHERE conversation_id=?", (conversation_id,))
-    c.execute(
+    deleted = c.execute(
         "DELETE FROM research_conversations WHERE id=? AND user_id=? AND firm_id=?",
         (conversation_id, u["id"], u["firm_id"])
     )
-    if c.rowcount != 1:
+    if deleted.rowcount != 1:
         c.rollback()
         raise HTTPException(404, "conversation not found")
     c.commit()
