@@ -1,6 +1,6 @@
 # Legal Copilot — Project Progress Tracker
 
-**Last updated:** 2026-10-24 (after PRs #110, #112, and #114 merged; storage interface in progress)  
+**Last updated:** 2026-10-24 (after PR #115 merged; repository storage-entrypoint inventory in progress)  
 **Tracking method:** deliverable-level checklist, not an estimate of engineering hours. A task is “complete” only when its change is merged and its acceptance criteria are met. Open PRs are in progress, not complete.
 
 ## Overall status
@@ -8,8 +8,8 @@
 - **Completed and merged:** 7 of 19 tracked deliverables (**36.8%**).
 - **In progress:** 6 of 19 deliverables (**31.6%**).
 - **Not started, blocked, or awaiting validation:** 6 of 19 (**31.6%**).
-- **Merged PRs from this workstream:** #88, #89, #90, #91, #92, #94, #96, #97, #98, #99, #100, #101, #102, #103, #104, #105, #106, #107, #108, #109, #110, #112, #114.
-- **Open PRs:** SEC-01 behavior-preserving SQLite connection-provider interface (implementation branch; PR not yet opened). PR #110's platform-reviewer boundary, PR #112's database-tenancy architecture proposal, and PR #114's Phase 0 boundary review are merged.
+- **Merged PRs from this workstream:** #88, #89, #90, #91, #92, #94, #96, #97, #98, #99, #100, #101, #102, #103, #104, #105, #106, #107, #108, #109, #110, #112, #114, #115.
+- **Open PRs:** SEC-01 repository storage/file/backup/job inventory (PR #116). PR #115's behavior-preserving SQLite connection-provider interface is merged, along with PRs #110, #112, and #114.
 - **External permission requests:** not sent by this project workflow. Claude is expected to handle outreach; approval is not assumed.
 - **Manual UI QA:** not yet completed.
 
@@ -35,7 +35,7 @@ Percentages count the 19 deliverables actually listed in this register equally; 
 | RSH-03 | Amendment/repeal graph and historical version comparison | Not started | Use only evidence-backed version relations and effective dates |
 | UI-04 | Complete responsive browser/RTL/LTR/keyboard/reader QA | Not started | Test mobile, tablet, 200% zoom, forced colors, screen readers, errors and empty states |
 | UX-01 | Lawyer usability study for core research and case tasks | Not started | Test with 3–5 Egyptian lawyers; record completion rate, time, errors and trust |
-| SEC-01 | Multi-firm isolation verification and independent security review | In progress | Merged PR #102 covers research conversation boundaries, #104 adds extraction-review read/write denial tests, #107 adds tenant-boundary inventory and cross-firm audit regression tests, and #108 adds runtime route/schema inventory drift checks. PR #109 hardens encrypted restore to authenticate before replacing a destination and stage writes atomically. Global legal-review endpoints now require a deployment-configured platform reviewer allowlist in addition to admin role. Proposed target architecture is documented in docs/database_tenancy_architecture.md: shared app, trusted tenant catalog, database per firm, and separately controlled shared legal corpus. PR #112 is merged, but this is a design proposal only; current shared SQLite remains. docs/database_boundary_phase0_review.md records an initial static review of storage entry points, table classifications, mixed legal/matter search, identity/session questions, and migration exit criteria (PR #114). The current change extracts SQLite connection lifecycle behind a testable provider without changing the single configured database path; it does not select tenant databases or provide isolation. Full query-by-query/deployment review, identity decision, trusted tenant catalog/provisioning, migration tooling, firm-specific backup/restore, and independent review remain outstanding. |
+| SEC-01 | Multi-firm isolation verification and independent security review | In progress | Merged PR #102 covers research conversation boundaries, #104 adds extraction-review read/write denial tests, #107 adds tenant-boundary inventory and cross-firm audit regression tests, and #108 adds runtime route/schema inventory drift checks. PR #109 hardens encrypted restore to authenticate before replacing a destination and stage writes atomically. Global legal-review endpoints now require a deployment-configured platform reviewer allowlist in addition to admin role. Proposed target architecture is documented in docs/database_tenancy_architecture.md: shared app, trusted tenant catalog, database per firm, and separately controlled shared legal corpus. PR #112 is merged, but this is a design proposal only; current shared SQLite remains. docs/database_boundary_phase0_review.md records an initial static review of storage entry points, table classifications, mixed legal/matter search, identity/session questions, and migration exit criteria (PR #114). PR #115 extracts SQLite connection lifecycle behind a testable provider without changing the single configured database path; its CI passed and it is merged, but it does not select tenant databases or provide isolation. docs/repository_storage_entrypoint_inventory.md now records the non-route CLI, corpus tooling, file outputs, backup/restore, deployment-preflight, and job-inventory gaps. Complete exhaustive query/file/deployment review, decide global-vs-firm identity semantics, build a trusted tenant catalog/provisioning, migration tooling, firm-specific backup/restore, and independent review remain outstanding. |
 | SEC-02 | Production account recovery, MFA/session/device controls and retention policies | Not started | Complete threat model and release checklist before public/production launch |
 | OPS-01 | Production observability, backup/restore rehearsal and deployment release gates | Not started | Add structured logs, alerts, backup restore test and documented rollback |
 
@@ -55,7 +55,7 @@ Percentages count the 19 deliverables actually listed in this register equally; 
 4. Continue item-level terms and reuse review for Egyptian sources under DATA-03; retain unknown permission states unless evidence supports a change.
 5. Continue the 69-candidate metadata inventory under DATA-04, adding only verified metadata and source references.
 
-6. Continue SEC-01: review docs/database_boundary_phase0_review.md and complete the remaining repository/deployment SQL, file-path, export, cache, job, and backup inventory; decide global-vs-firm identity semantics; validate the new connection-provider interface and add tenant-routing tests only after the identity model is agreed. Then plan the trusted tenant catalog, firm-scoped backup/restore, and migration rehearsal. Shared SQLite is not tenant-separated.
+6. Continue SEC-01: review docs/repository_storage_entrypoint_inventory.md alongside docs/database_boundary_phase0_review.md; obtain the actual deployment/job inventory; decide global-vs-firm identity semantics; then define trusted tenant catalog/provisioning and test the storage-routing contract before migrating data. Add per-firm backup/restore and migration rehearsal after ownership boundaries are approved. Shared SQLite is not tenant-separated.
 
 ## Known limitations
 
