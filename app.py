@@ -378,8 +378,7 @@ SQL = ("SELECT chunks.*, bm25(chunks_fts) AS r FROM chunks_fts JOIN chunks ON ch
        "SELECT 1 FROM legal_document_versions v WHERE v.version_id=chunks.document_version_id "
        "AND v.review_status='verified' AND v.authenticity_verified=1 AND v.status_verified=1 AND v.amendment_history_verified=1 AND EXISTS (SELECT 1 FROM legal_documents d JOIN legal_sources s ON s.source_id=d.source_id WHERE d.document_id=v.document_id AND s.collection_permission='allowed' AND s.commercial_reuse_permission='allowed' AND TRIM(COALESCE(s.permission_evidence,''))<>'' AND TRIM(COALESCE(v.permission_evidence,''))<>'') AND (v.legal_status='in_force' OR (v.legal_status IN ('repealed','historical') AND v.repeal_date IS NOT NULL)) "
        "AND v.effective_date IS NOT NULL AND v.effective_date<=? AND (v.repeal_date IS NULL OR v.repeal_date>?)"
-       "AND (?='all_permitted' OR (?='verified_corpus' AND chunks.case_id IS NULL) OR (?='firm_documents' AND chunks.case_id IS NOT NULL)))"
-       " ORDER BY r LIMIT 40")
+       ")) ORDER BY r LIMIT 40")
 
 def citation_provenance(c, version_id):
     """Return registry-backed metadata for a cited passage; never infer missing legal facts."""
@@ -388,7 +387,7 @@ def citation_provenance(c, version_id):
     row = c.execute(
         "SELECT v.version_id,v.document_id,v.version_label,v.source_url,v.original_sha256,"
         "v.publication_date,v.effective_date,v.repeal_date,v.consolidated_as_of,v.gazette_issue,v.gazette_pages,"
-        "v.legal_status,v.review_status,v.authenticity_verified,v.status_verified,v.amendment_history_verified,"
+        "v.legal_status,v.review_status,v.permission_evidence,v.authenticity_verified,v.status_verified,v.amendment_history_verified,"
         "d.official_title,d.document_type,d.law_number,d.law_year,d.language,s.authority,s.collection_permission,s.commercial_reuse_permission,s.permission_evidence AS source_permission_evidence "
         "FROM legal_document_versions v JOIN legal_documents d ON d.document_id=v.document_id JOIN legal_sources s ON s.source_id=d.source_id "
         "WHERE v.version_id=?", (version_id,)).fetchone()
@@ -437,13 +436,13 @@ def search(c, q, case_id=None, k=5, firm_id=1, as_of=None, scope="all_permitted"
         params = (" OR ".join('"%s"' % t.replace('"', '""') for t in expanded_qt), case_id, firm_id, int(allow_legacy), as_of, as_of, scope, scope, scope)
         for r in c.execute(SQL, params): cand[r["id"]] = (r, -r["r"])
     am = re.search(r"(?:ماده|الماده|article|art)\s*\.?\s*(\d+)", norm(q))
-    if am:
+    if am and scope != "firm_documents":
         exact_sql = ("SELECT * FROM chunks WHERE article=? AND case_id IS NULL AND verified=1 AND (in_force=1 OR document_version_id IS NOT NULL) "
                      "AND (document_version_id IS NOT NULL OR ?=1) AND (document_version_id IS NULL OR EXISTS (SELECT 1 FROM legal_document_versions v "
                      "WHERE v.version_id=chunks.document_version_id AND v.review_status='verified' "
                      "AND v.authenticity_verified=1 AND v.status_verified=1 AND v.amendment_history_verified=1 AND EXISTS (SELECT 1 FROM legal_documents d JOIN legal_sources s ON s.source_id=d.source_id WHERE d.document_id=v.document_id AND s.collection_permission='allowed' AND s.commercial_reuse_permission='allowed' AND TRIM(COALESCE(s.permission_evidence,''))<>'' AND TRIM(COALESCE(v.permission_evidence,''))<>'') AND (v.legal_status='in_force' OR (v.legal_status IN ('repealed','historical') AND v.repeal_date IS NOT NULL)) "
                      "AND v.effective_date IS NOT NULL AND v.effective_date<=? AND (v.repeal_date IS NULL OR v.repeal_date>?)) )")
-        for r in c.execute(exact_sql, (am.group(1), int(allow_legacy), as_of, as_of, scope, scope, scope)):
+        for r in c.execute(exact_sql, (am.group(1), int(allow_legacy), as_of, as_of)):
             exact.add(r["id"]); cand.setdefault(r["id"], (r, 0))
     if not cand: return []
     top, qg, expanded_qg, out = (max(b for _, b in cand.values()) or 1), grams(q), grams(" ".join(expanded_qt)), []
