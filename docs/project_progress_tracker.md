@@ -8,8 +8,8 @@
 - **Completed and merged:** 7 of 19 tracked deliverables (**36.8%**).
 - **In progress:** 6 of 19 deliverables (**31.6%**).
 - **Not started, blocked, or awaiting validation:** 6 of 19 (**31.6%**).
-- **Merged PRs from this workstream:** #88, #89, #90, #91, #92, #94, #96, #97, #98, #99, #100, #101, #102, #103.
-- **Open PRs:** [#104](https://github.com/abdelmalek384/legal_copilot_latest/pull/104) (SEC-01 extraction-review isolation regression tests; CI pending).
+- **Merged PRs from this workstream:** #88, #89, #90, #91, #92, #94, #96, #97, #98, #99, #100, #101, #102, #103, #104.
+- **Open PRs:** SEC-01 route/table attack-surface inventory (this branch; PR to be opened).
 - **External permission requests:** not sent by this project workflow. Claude is expected to handle outreach; approval is not assumed.
 - **Manual UI QA:** not yet completed.
 
@@ -35,7 +35,7 @@ Percentages count the 19 deliverables actually listed in this register equally; 
 | RSH-03 | Amendment/repeal graph and historical version comparison | Not started | Use only evidence-backed version relations and effective dates |
 | UI-04 | Complete responsive browser/RTL/LTR/keyboard/reader QA | Not started | Test mobile, tablet, 200% zoom, forced colors, screen readers, errors and empty states |
 | UX-01 | Lawyer usability study for core research and case tasks | Not started | Test with 3–5 Egyptian lawyers; record completion rate, time, errors and trust |
-| SEC-01 | Multi-firm isolation verification and independent security review | In progress | Merged PR #102 covers research conversation boundaries; current follow-through adds cross-firm extraction-review read/write denial tests. Shared DB remains; full endpoint/table/job inventory, backup/restore tests, and independent review are outstanding |
+| SEC-01 | Multi-firm isolation verification and independent security review | In progress | Merged PR #102 covers research conversation boundaries and #104 adds extraction-review read/write denial tests. New static baseline in `docs/sec-01-attack-surface-inventory.md` lists 45 route decorators and 25 table declarations; it is not yet reconciled against runtime OpenAPI, migrations, queries, jobs, or infrastructure. Shared DB remains; backup/restore tests and independent review are outstanding |
 | SEC-02 | Production account recovery, MFA/session/device controls and retention policies | Not started | Complete threat model and release checklist before public/production launch |
 | OPS-01 | Production observability, backup/restore rehearsal and deployment release gates | Not started | Add structured logs, alerts, backup restore test and documented rollback |
 
@@ -55,7 +55,7 @@ Percentages count the 19 deliverables actually listed in this register equally; 
 4. Continue item-level terms and reuse review for Egyptian sources under DATA-03; retain unknown permission states unless evidence supports a change.
 5. Continue the 69-candidate metadata inventory under DATA-04, adding only verified metadata and source references.
 
-6. Continue SEC-01 with an endpoint/table/background-job inventory, backup/restore isolation tests, and independent review; the current shared SQLite database is not tenant-separated.\n\n## Known limitations
+6. Continue SEC-01: reconcile the new static route/table inventory against runtime OpenAPI, all migrations and queries; inspect deployment/external jobs; then add backup/restore isolation tests and obtain independent review. Shared SQLite is not tenant-separated.\n\n## Known limitations
 
 - The legal corpus is not comprehensive and may lack current amendments.
 - Some source permission requests may be declined or unanswered; the roadmap must remain useful without them.
