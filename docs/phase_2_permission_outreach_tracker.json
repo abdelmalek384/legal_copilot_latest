@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "tracker_id": "EG-PHASE2-PERMISSION-OUTREACH",
-  "last_updated": "2026-10-23",
+  "last_updated": "2026-10-24",
   "status_note": "Planning tracker only. These requests have not been sent from this project workflow. No permission or licence has been granted.",
   "requests": [
     {
@@ -9,7 +9,7 @@
       "source_id": "EG-AMIRI-PRESS",
       "authority": "General Authority for Amiri Press",
       "candidate_contact": "info@alamiria.com",
-      "contact_verified": false,
+      "contact_verified": true,
       "draft_location": "docs/phase_2_source_authorization_outreach_pack.md",
       "status": "draft_not_sent",
       "sent_at": null,
@@ -30,14 +30,16 @@
       "authorized_scopes": [],
       "decision": "no_permission_granted",
       "reviewer": null,
-      "notes": "Verify contact address and submit through the authority's official channel. A public page or subscription must not be treated as blanket commercial reuse permission."
+      "notes": "Contact address confirmed on the authority's official contact page. Request remains draft_not_sent; no permission is granted. Submit through the official channel and retain delivery evidence. A public page or subscription must not be treated as blanket commercial reuse permission.",
+      "contact_verified_on": "2026-10-24",
+      "contact_verification_evidence": "Official Amiri Press contact page lists info@alamiria.com: https://www.alamiria.com/Sec/Contact-Us"
     },
     {
       "request_id": "PERM-002",
       "source_id": "EG-COURT-CASSATION",
       "authority": "Egyptian Court of Cassation",
       "candidate_contact": "cc_info@cc.gov.eg",
-      "contact_verified": false,
+      "contact_verified": true,
       "draft_location": "docs/phase_2_source_authorization_outreach_pack.md",
       "status": "draft_not_sent",
       "sent_at": null,
@@ -58,7 +60,9 @@
       "authorized_scopes": [],
       "decision": "blocked_pending_written_authorization",
       "reviewer": null,
-      "notes": "Do not automate or bulk extract judgments unless written authorization expressly covers the proposed method and use."
+      "notes": "Contact address confirmed on the Court's official homepage. Request remains draft_not_sent and blocked pending written authorization; the published site policy restricts commercial republication and access. Do not scrape or bulk-download.",
+      "contact_verified_on": "2026-10-24",
+      "contact_verification_evidence": "Official Egyptian Court of Cassation homepage lists cc_info@cc.gov.eg: https://cc.gov.eg/"
     },
     {
       "request_id": "PERM-003",
