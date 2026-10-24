@@ -53,8 +53,8 @@ It checks basic secret configuration, `MIN_SCORE`, and SQLite path/access settin
 6. Encrypt the server disk (LUKS or your host's volume encryption). The database itself is not encrypted, so disk encryption is what protects it at rest.
 
 Permissions: admin sees all cases; a lawyer sees only cases they belong to; only a case's lead (or admin) can edit status, manage the team, or delete.
-Uploads: PDF/DOCX with real text only (max 15 MB); original files are not stored, only the extracted text. Scanned PDFs are rejected.
-Not yet done: independent security review, 2FA, email-based account recovery, audit export, OCR, reminder delivery, embeddings, a formal conflict-check workflow, and dedicated per-firm databases. Admins can reset passwords manually with `python manage.py resetpw EMAIL`; there is no self-service email reset.
+Uploads: PDF/DOCX up to 15 MB. Text-based PDFs and DOCX files are extracted locally; scanned PDFs may use optional local OCR when the OCR dependencies and Arabic/English Tesseract language data are installed. Original uploads are not retained by this workflow; extracted text is stored. OCR output remains unverified until checked against the original.
+Not yet done: independent security review, a decision and implementation for 2FA, email-based account recovery, audit export, reminder delivery, embeddings, a formal conflict-check workflow, and dedicated per-firm databases. Optional local OCR exists, but Arabic OCR quality has not yet been validated on a representative Egyptian court-scan benchmark. Admins can reset passwords manually with `python manage.py resetpw EMAIL`; there is no self-service email reset.
 
 ## Loading law data
 1. Download PDFs plus their .json metadata (see download_egypt_laws.py), then: `python tools/import_laws.py egypt_laws out` (needs pymupdf; PDFs with a broken text layer are OCR'd, which needs tesseract; the run is resumable).
@@ -85,6 +85,8 @@ Source status labels are intentionally conservative: material not marked verifie
 The case-file upload endpoint can attempt local OCR when a PDF has no extractable text. Install the optional Python packages from `requirements-ocr.txt` and install the Tesseract executable plus Arabic and English language data on the host. Set `OCR_LANG` if your installed language codes differ (default: `ara+eng`). OCR is limited to 30 pages per upload and uses a per-page timeout. Missing dependencies, missing language packs, or OCR failures produce an explicit error instead of silently storing an empty document.
 
 A successful OCR upload returns `ocr_used: true` and `text_status: "ocr_unverified"`. This indicates only that text was recognized; it does not establish authenticity, completeness, or legal status. Review OCR against the original page images before relying on it, and do not mark legal materials verified solely because OCR succeeded.
+
+For a repeatable page-level quality measurement workflow, see [Arabic OCR evaluation](docs/arabic_ocr_evaluation.md). The evaluator is tooling only; no representative real-scan benchmark has passed yet.
 
 ## Amendment-history audit
 
