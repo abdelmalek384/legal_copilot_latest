@@ -625,24 +625,28 @@ def _rate_limit(request: Request):
         return 0
     max_requests, window_seconds = limit
     peer = request.client.host if request.client else "unknown"
-    now = time.monotonic()
+    now = time.time()
     window_start = int(now // window_seconds) * window_seconds
-    key = (bucket, peer)
+    db = conn()
+    row = db.execute(
+        """INSERT INTO api_rate_limit_windows(bucket,client_key,window_start,hits)
+           VALUES(?,?,?,1)
+           ON CONFLICT(bucket,client_key,window_start)
+           DO UPDATE SET hits=api_rate_limit_windows.hits+1
+           RETURNING hits""",
+        (bucket, peer, window_start),
+    ).fetchone()
+    db.commit()
     global _rate_limit_checks
     with _rate_limit_lock:
-        entry = _rate_limit_state.get(key)
-        count = entry[1] if entry and entry[0] == window_start else 0
-        if count >= max_requests:
-            return max(1, int(window_start + window_seconds - now) + 1)
-        _rate_limit_state[key] = (window_start, count + 1, window_seconds)
         _rate_limit_checks += 1
         if _rate_limit_checks % 256 == 0:
-            expired = [k for k, v in _rate_limit_state.items()
-                       if v[0] + v[2] <= now]
-            for k in expired:
-                _rate_limit_state.pop(k, None)
+            db.execute("DELETE FROM api_rate_limit_windows WHERE window_start < ?",
+                       (int(now) - 7200,))
+            db.commit()
+    if row["hits"] > max_requests:
+        return max(1, int(window_start + window_seconds - now))
     return 0
-
 
 @app.middleware("http")
 async def security_headers(request: Request, call_next):
