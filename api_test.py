@@ -235,6 +235,13 @@ chat_after_followup = c.get(f"/research/conversations/{chat_id}", headers=L).jso
 assert [m["role"] for m in chat_after_followup["messages"]][-2:] == ["user", "assistant"]
 assert chat_after_followup["messages"][-1]["sources"] == []
 
+# Deleting a conversation removes its message history and is restricted to its owner.
+assert c.delete(f"/research/conversations/{chat_id}", headers=J).status_code == 404
+assert c.delete(f"/research/conversations/{chat_id}", headers=L).status_code == 200
+assert c.get(f"/research/conversations/{chat_id}", headers=L).status_code == 404
+assert all(x["id"] != chat_id for x in c.get("/research/conversations", headers=L).json())
+
+
 
 
 # Impossible calendar dates must fail validation, not just malformed date strings.
