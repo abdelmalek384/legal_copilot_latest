@@ -433,15 +433,18 @@ finally:
     app._UPLOAD_RATE_LIMIT = _upload_limit_original
 
 
-// Successful authorized case-detail reads create a minimal security audit event.
-case_read_response = c.get(f"/cases/{cid}", headers=L)
+# Successful authorized case-detail reads create a minimal security audit event.
+audit_case = c.post("/cases", json={"title":"Audit Read Test","client":"Audit Client"}, headers=L)
+assert audit_case.status_code == 200, audit_case.text
+audit_cid = audit_case.json()["id"]
+case_read_response = c.get(f"/cases/{audit_cid}", headers=L)
 assert case_read_response.status_code == 200, case_read_response.text
 assert c.get("/audit/security-events", headers=L).status_code == 403
 security_audit = c.get("/audit/security-events?limit=100", headers=A_IMPORT)
 assert security_audit.status_code == 200, security_audit.text
 read_events = [
     item for item in security_audit.json()["items"]
-    if item["event"] == f"case_read:{cid}" and item["user_id"] == db.execute(
+    if item["event"] == f"case_read:{audit_cid}" and item["user_id"] == db.execute(
         "SELECT id FROM users WHERE email='lead@x.eg'"
     ).fetchone()[0]
 ]
