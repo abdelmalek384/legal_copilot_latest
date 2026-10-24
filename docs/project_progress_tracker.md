@@ -6,10 +6,10 @@
 ## Overall status
 
 - **Completed and merged:** 5 of 20 tracked deliverables (**25%**).
-- **In progress:** 2 of 20 deliverables (**10%**).
-- **Not started, blocked, or awaiting validation:** 13 of 20 (**65%**).
+- **In progress:** 3 of 20 deliverables (**15%**).
+- **Not started, blocked, or awaiting validation:** 12 of 20 (**60%**).
 - **Merged PRs from this workstream:** #88, #89, #90, #91, #94.
-- **Open PRs:** [#92](https://github.com/abdelmalek384/legal_copilot_latest/pull/92) (corpus/UX roadmap documentation), [#96](https://github.com/abdelmalek384/legal_copilot_latest/pull/96) (Research Results & Source Inspector; current-head CI passed, manual QA pending).
+- **Open PRs:** [#92](https://github.com/abdelmalek384/legal_copilot_latest/pull/92) (corpus/UX roadmap documentation), [#96](https://github.com/abdelmalek384/legal_copilot_latest/pull/96) (Research Results & Source Inspector; CI passed, manual QA pending), [#97](https://github.com/abdelmalek384/legal_copilot_latest/pull/97) (metadata-only instrument inventory validation; CI running).
 - **External permission requests:** not sent by this project workflow. Claude is expected to handle outreach; approval is not assumed.
 - **Manual UI QA:** not yet completed.
 
@@ -26,7 +26,7 @@ Percentages count deliverables equally; they are not a claim that 20% of all cod
 | DATA-01 | Document permission-aware corpus strategy and alternatives | In progress | PR #92; review and merge the strategy documents |
 | DATA-02 | Corpus coverage/provenance dashboard and admin-only metrics API | Complete | Merged PR #94; coverage remains a registry metric, not total-law coverage |
 | DATA-03 | Review terms and reuse conditions for every proposed external source | Not started | Record item-specific terms, allowed purpose, attribution and evidence before ingestion |
-| DATA-04 | Prioritized Egyptian instrument metadata inventory | Not started | Seed metadata-only candidates with source URL and unknown states; never fabricate legal text |
+| DATA-04 | Prioritized Egyptian instrument metadata inventory | In progress | Existing 69-record inventory now has structural/permission-state validation and CI tests in PR #97; candidates remain metadata-only |
 | DATA-05 | Expand the verified starter corpus using permitted acquisition routes | Blocked / ongoing | Depends on lawful source copies, source-specific terms, and lawyer validation; continue metadata discovery meanwhile |
 | DATA-06 | Firm-supplied document ingestion with provenance and tenant scoping | Not started | Build upload, hashing, ownership, retention and access-control workflow |
 | DATA-07 | OCR/extraction review against original pages | Not started | Add page preview, OCR confidence, corrections and reviewer audit trail |
@@ -52,7 +52,7 @@ Percentages count deliverables equally; they are not a claim that 20% of all cod
 1. Check current-head CI for [PR #96](https://github.com/abdelmalek384/legal_copilot_latest/pull/96); fix API/JavaScript/test failures before merge.
 2. Review and merge PR #92 once its documentation is approved.
 3. Complete manual RTL/LTR/keyboard/screen-reader and lawyer review for Issue #95; page values are shown only when recorded.
-4. Continue the metadata-only instrument inventory and source-specific terms review.
+4. Review and merge PR #97 after CI passes; continue instrument-level source terms review under DATA-03.
 5. Record Claude's outreach status and any written replies in the permission tracker; do not change permissions until written terms are reviewed.
 
 ## Known limitations
