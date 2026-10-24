@@ -5,8 +5,8 @@ def good_source(**overrides):
     source = {
         "title": "قانون افتراضي للاختبار", "citation": "المادة ١",
         "url": "https://example.org/law", "lawyer_approved": True,
-        "legal_status": "in_force", "status_verified": True,
-        "permission_status": "allowed", "effective_date": "2020-01-01",
+        "legal_status": "in_force", "status_verified": True, "authenticity_verified": True,
+        "permission_status": "allowed", "permission_evidence": "Reviewed terms record T-1", "effective_date": "2020-01-01",
         "reviewed_at": "2025-01-01", "repeal_date": None,
     }
     source.update(overrides)
@@ -35,8 +35,10 @@ class DraftBuilderTests(unittest.TestCase):
     def test_unreviewed_or_unpermitted_sources_are_not_cited(self):
         sources = [
             good_source(lawyer_approved=False), good_source(legal_status="unknown"),
-            good_source(status_verified=False), good_source(permission_status="unknown"),
-            good_source(permission_status="prohibited"),
+            good_source(status_verified=False), good_source(authenticity_verified=False),
+            good_source(permission_status="unknown"), good_source(permission_status="prohibited"),
+            good_source(permission_evidence=""), good_source(url="http://example.org/law"),
+            good_source(url="javascript:alert(1)"),
         ]
         result = render_draft(payload(sources=sources))
         self.assertNotIn("[S1]", result)
