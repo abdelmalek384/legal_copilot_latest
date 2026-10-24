@@ -35,11 +35,31 @@ def initialize_catalog(connection: sqlite3.Connection) -> None:
     connection.commit()
 
 
+def _storage_root_path(storage_root: str | Path, *, create: bool = False) -> Path:
+    """Validate the configured storage root before resolving it.
+
+    Calling resolve() first would erase evidence that the configured root itself
+    is a symlink. Reject that mapping for both provisioning and resolution.
+    """
+    raw_root = Path(storage_root).expanduser()
+    if raw_root.is_symlink():
+        raise TenantCatalogError("Tenant storage root must not be a symlink")
+    if create:
+        raw_root.mkdir(parents=True, exist_ok=True)
+    if raw_root.is_symlink() or not raw_root.is_dir():
+        raise TenantCatalogError("Tenant storage root must be a real directory")
+    return raw_root.resolve()
+
+
 def _safe_database_path(root: Path, firm_id: int, filename: str) -> Path:
     match = _FILENAME.fullmatch(filename)
     if not match or int(match.group("firm_id")) != firm_id:
         raise TenantCatalogError("Tenant catalog contains an invalid database reference")
+    if root.is_symlink():
+        raise TenantCatalogError("Tenant storage root must not be a symlink")
     resolved_root = root.resolve()
+    if not resolved_root.is_dir():
+        raise TenantCatalogError("Tenant storage root must be a real directory")
     raw_candidate = resolved_root / filename
     # Check the directory entry before resolve(): resolving first would erase
     # evidence that the catalog filename itself is a symlink to another tenant.
@@ -69,10 +89,7 @@ def provision_tenant_database(
         raise TypeError("initialize_database must be callable")
 
     initialize_catalog(catalog)
-    root = Path(storage_root).expanduser().resolve()
-    root.mkdir(parents=True, exist_ok=True)
-    if root.is_symlink() or not root.is_dir():
-        raise TenantCatalogError("Tenant storage root must be a real directory")
+    root = _storage_root_path(storage_root, create=True)
 
     catalog.execute("BEGIN IMMEDIATE")
     try:
@@ -167,6 +184,7 @@ def resolve_tenant_database(
     """Resolve only an active, provisioned catalog entry; never accept a raw path."""
     if isinstance(firm_id, bool) or not isinstance(firm_id, int) or firm_id <= 0:
         raise ValueError("firm_id must be a positive integer")
+    root = _storage_root_path(storage_root)
     initialize_catalog(catalog)
     row = catalog.execute(
         "SELECT database_file, status FROM tenant_database_catalog WHERE firm_id=?",
@@ -174,7 +192,7 @@ def resolve_tenant_database(
     ).fetchone()
     if row is None or row[1] != "provisioned" or not row[0]:
         raise TenantCatalogError("Tenant database is not provisioned")
-    path = _safe_database_path(Path(storage_root).expanduser(), firm_id, row[0])
+    path = _safe_database_path(root, firm_id, row[0])
     if not path.is_file():
         raise TenantCatalogError("Provisioned tenant database is missing")
     return path

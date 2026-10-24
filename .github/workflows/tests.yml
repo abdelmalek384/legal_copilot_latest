@@ -38,6 +38,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_backup_restore_safety.py
       - name: Test read-only tenant database preflight
         run: PYTHONPATH=. python tests/test_tenant_database_preflight.py
+      - name: Test tenant catalog provisioning and path safety
+        run: PYTHONPATH=. python tests/test_tenant_catalog.py
       - name: Test tenant ownership and orphan preflight
         run: PYTHONPATH=. python tests/test_tenant_ownership_preflight.py
       - name: Validate legal data registry and evaluation seeds
