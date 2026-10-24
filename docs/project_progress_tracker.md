@@ -30,7 +30,7 @@ Percentages count deliverables equally; they are not a claim that 20% of all cod
 | DATA-05 | Expand the verified starter corpus using permitted acquisition routes | Blocked / ongoing | Depends on lawful source copies, source-specific terms, and lawyer validation; continue metadata discovery meanwhile |
 | DATA-06 | Firm-supplied document ingestion with provenance and tenant scoping | Not started | Build upload, hashing, ownership, retention and access-control workflow |
 | DATA-07 | OCR/extraction review against original pages | Not started | Add page preview, OCR confidence, corrections and reviewer audit trail |
-| RSH-01 | Full research result/source inspector with exact passages and pin-cites | In progress | PR #96 adds explicit scopes, status labels, passage/citation actions, memo export/save, and metadata-only discovery; page pinpoint remains unavailable in the current schema |
+| RSH-01 | Full research result/source inspector with exact passages and pin-cites | In progress | PR #96 adds explicit scopes, status labels, literal Arabic/English term highlighting, passage/citation actions, optional page pin-cites with migration, memo export/save, and metadata-only discovery; existing chunks without page metadata remain unpinned |
 | RSH-02 | Arabic retrieval evaluation set and citation-quality metrics | Not started | Lawyer-reviewed questions; measure retrieval recall, pin-cite accuracy, stale-law and answerability failures |
 | RSH-03 | Amendment/repeal graph and historical version comparison | Not started | Use only evidence-backed version relations and effective dates |
 | UI-04 | Complete responsive browser/RTL/LTR/keyboard/reader QA | Not started | Test mobile, tablet, 200% zoom, forced colors, screen readers, errors and empty states |
@@ -51,7 +51,7 @@ Percentages count deliverables equally; they are not a claim that 20% of all cod
 
 1. Check current-head CI for [PR #96](https://github.com/abdelmalek384/legal_copilot_latest/pull/96); fix API/JavaScript/test failures before merge.
 2. Review and merge PR #92 once its documentation is approved.
-3. Finish Issue #95 with Arabic term highlighting, a fresh CI pass, and manual RTL/LTR/keyboard/screen-reader review.
+3. Finish Issue #95 with a fresh CI pass and manual RTL/LTR/keyboard/screen-reader review; page values are shown only when recorded.
 4. Continue the metadata-only instrument inventory and source-specific terms review.
 5. Record Claude's outreach status and any written replies in the permission tracker; do not change permissions until written terms are reviewed.
 
