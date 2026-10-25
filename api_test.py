@@ -81,7 +81,7 @@ deadline = next(x for x in dash["deadlines"] if x["title"] == "استئناف")
 assert c.post(f"/deadlines/{deadline['id']}/done", headers=J).status_code == 404
 assert c.post(f"/deadlines/{deadline['id']}/done", headers=L).status_code == 200
 assert all(x["id"] != deadline["id"] for x in c.get("/dashboard", headers=J).json()["deadlines"])
-assert len(c.get("/dashboard", headers=J).json()["tasks"]) == 1
+assert len(c.get("/dashboard", headers=J).json()["tasks"]) == 2  # original assignment plus the newly claimed task
 tid = c.get("/dashboard", headers=J).json()["tasks"][0]["id"]
 assert c.post(f"/tasks/{tid}/done", headers=O).status_code == 404 and c.post(f"/tasks/{tid}/done", headers=J).status_code == 200
 assert c.post(f"/cases/{cid}/sessions", json={"date": "tomorrow"}, headers=L).status_code == 422
