@@ -51,6 +51,7 @@ class TenantOwnershipPreflightTests(unittest.TestCase):
     def test_detects_ownership_anomalies_and_mixed_chunks(self):
         report = audit(self.db)
         codes = {finding["code"]: finding["count"] for finding in report["findings"]}
+        self.assertEqual(len(codes), len(report["findings"]), "finding codes must be unique")
         self.assertEqual(report["mode"], "read_only")
         self.assertEqual(codes["users_missing_firm"], 1)
         self.assertEqual(codes["cases_missing_firm"], 1)
