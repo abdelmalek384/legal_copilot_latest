@@ -29,7 +29,7 @@ class DatabaseStartupDDLInventoryTests(unittest.TestCase):
             [item["file"] for item in report["migrations"]],
             sorted(item["file"] for item in report["migrations"]),
         )
-        self.assertEqual(len(report["migrations"]), 9
+        self.assertEqual(len(report["migrations"]), 9)
 
     def test_inventory_uses_explicit_paths_and_does_not_require_a_database(self):
         with tempfile.TemporaryDirectory() as tmp:
