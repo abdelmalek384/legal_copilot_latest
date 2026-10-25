@@ -135,7 +135,7 @@ def compare_version_chunks(left_chunks, right_chunks):
 
     if left_malformed or right_malformed:
         extra_warning = (
-            "Malformed, duplicate-ID, or empty extracted passages were found; inspect the unmapped_passages lists "
+            "Malformed or empty extracted passages (including duplicate chunk IDs) were found; inspect the unmapped_passages lists "
             "before relying on any article-level result."
         )
     else:
