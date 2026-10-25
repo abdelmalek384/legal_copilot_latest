@@ -22,10 +22,12 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 - [x] Move six independent authentication/case-workspace tables (`auth_sessions`, `notes`, `fees`, `tasks`, `events`, and case-calendar `sessions`) into migration 0006, with migration, inventory, and disposable-copy coverage (PR #149, merged).
 - [x] Add end-to-end fresh database startup and restart coverage in CI; verify the migration ledger and preservation of an existing row (PR #151, merged).
 - [x] Reject out-of-order recorded migration histories in the migration runner, with regression coverage and CI (PR #152, merged).
+- [x] Move `legal_sources`, FTS5 setup, and the default-firm seed into migrations 0007–0009 (PR #153, merged; CI passed). `legal_documents` remains in bootstrap because startup conditionally inspects/alters it before the migration runner. FTS migration preserves an existing virtual table and does not implicitly rebuild it.
+- [x] Move non-prerequisite conditional column upgrades into migration 0010 using checksum-protected `@add-column-if-missing` directives (PR #155, merged; CI passed). Columns required by immutable migrations 0001–0003 remain in startup bootstrap.
+- [x] Add read-only FTS consistency preflight for missing/orphaned rows and indexed-content mismatches, with CI coverage and repair safety guidance (PR #156, merged; CI passed).
+- [x] Add a staged-copy FTS rebuild utility that leaves the source database untouched, refuses output overwrite, validates integrity/foreign keys/chunk counts, and includes regression tests (PR #163, merged; CI run 40216663954 passed).
 
 ## In progress
-
-- [ ] **PR #157 — Serialize concurrent migration runners.** Rechecks each pending version under `BEGIN IMMEDIATE` so simultaneous application startups cannot execute the same migration twice; includes a deterministic two-connection regression test. Awaiting CI.
 
 - [x] Move `legal_sources`, FTS5 setup, and the default-firm seed into migrations 0007–0009 (PR #153, merged; CI passed). `legal_documents` remains in bootstrap because startup conditionally inspects/alters it before the migration runner. FTS migration preserves an existing virtual table and does not implicitly rebuild it.
 - [x] Move non-prerequisite conditional column upgrades into migration 0010 using checksum-protected `@add-column-if-missing` directives (PR #155, merged; CI passed). Columns required by immutable migrations 0001–0003 remain in startup bootstrap.
