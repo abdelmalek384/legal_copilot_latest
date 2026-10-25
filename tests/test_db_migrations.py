@@ -87,16 +87,40 @@ class DatabaseMigrationTests(unittest.TestCase):
         self.assertIn("CREATE TABLE IF NOT EXISTS", schema.upper())
         self.assertNotIn("CREATE VIRTUAL TABLE", schema.upper())
 
+    def test_conditional_column_migration_adds_missing_column(self):
+        self.write("0001_create_sample.sql", "CREATE TABLE sample(id INTEGER PRIMARY KEY);")
+        self.write("0002_optional_column.sql", """
+            -- @add-column-if-missing sample value
+            ALTER TABLE sample ADD COLUMN value TEXT DEFAULT '';
+        """)
+        self.assertEqual(apply_migrations(self.db, self.path), [1, 2])
+        columns = {row["name"] for row in self.db.execute("PRAGMA table_info(sample)")}
+        self.assertIn("value", columns)
+
+    def test_conditional_column_migration_skips_existing_column(self):
+        self.write("0001_create_sample.sql", "CREATE TABLE sample(id INTEGER PRIMARY KEY, value TEXT);")
+        self.write("0002_optional_column.sql", """
+            -- @add-column-if-missing sample value
+            ALTER TABLE sample ADD COLUMN value TEXT DEFAULT '';
+        """)
+        self.assertEqual(apply_migrations(self.db, self.path), [1, 2])
+        columns = [row["name"] for row in self.db.execute("PRAGMA table_info(sample)")]
+        self.assertEqual(columns, ["id", "value"])
+
     def test_repository_migrations_create_startup_indexes(self):
         # Startup creates these prerequisite tables/columns before applying
         # repository migrations. This guards the migration-backed index set.
         self.db.executescript("""
             CREATE TABLE firms(id INTEGER PRIMARY KEY, name TEXT NOT NULL);
+            CREATE TABLE users(id INTEGER PRIMARY KEY, firm_id INTEGER);
+            CREATE TABLE legal_documents(document_id TEXT PRIMARY KEY, official_title TEXT, document_type TEXT);
             CREATE TABLE tenant_ownership_quarantine(first_seen TEXT);
-            CREATE TABLE cases(firm_id INTEGER);
+            CREATE TABLE cases(id INTEGER PRIMARY KEY, firm_id INTEGER);
+            INSERT INTO cases(id,firm_id) VALUES (1,7);
             CREATE TABLE members(user_id INTEGER, case_id INTEGER);
             CREATE TABLE deadlines(case_id INTEGER, due TEXT, status TEXT);
             CREATE TABLE docs(case_id INTEGER, id INTEGER);
+            INSERT INTO docs(case_id,id) VALUES (1,10);
             CREATE TABLE chunks(document_id INTEGER);
             CREATE TABLE document_extraction_reviews(
                 firm_id INTEGER, document_id INTEGER, id INTEGER
@@ -114,7 +138,7 @@ class DatabaseMigrationTests(unittest.TestCase):
             CREATE TABLE research_messages(conversation_id INTEGER, id INTEGER);
         """)
         migrations = Path(__file__).resolve().parents[1] / "migrations"
-        self.assertEqual(apply_migrations(self.db, migrations), [1, 2, 3, 4, 5, 6, 7, 8, 9])
+        self.assertEqual(apply_migrations(self.db, migrations), [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
         indexes = {
             row[0] for row in self.db.execute(
                 "SELECT name FROM sqlite_master WHERE type='index'"
@@ -185,6 +209,17 @@ class DatabaseMigrationTests(unittest.TestCase):
             1,
         )
         self.assertEqual(self.db.execute("SELECT name FROM firms WHERE id=1").fetchone()[0], "Default Firm")
+        self.assertEqual(self.db.execute("SELECT firm_id FROM docs WHERE id=10").fetchone()[0], 7)
+        for table, expected in {
+            "users": {"active"},
+            "legal_documents": {"practice_area"},
+            "chunks": {"verified", "document_version_id", "page"},
+            "docs": {"firm_id", "uploader_user_id", "sha256", "content_type", "byte_size", "extraction_status", "ocr_used"},
+            "document_extraction_reviews": {"page_reference"},
+            "cases": {"case_number", "case_year", "court", "circuit", "opposing_party"},
+        }.items():
+            columns = {row["name"] for row in self.db.execute(f"PRAGMA table_info({table})")}
+            self.assertTrue(expected <= columns, f"{table} missing columns: {expected - columns}")
         self.assertEqual(apply_migrations(self.db, migrations), [])
 
 
