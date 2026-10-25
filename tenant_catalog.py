@@ -222,6 +222,22 @@ def provision_tenant_database(
             # Enable it before running tenant schema/data initialization.
             tenant.execute("PRAGMA foreign_keys=ON")
             initialize_database(tenant)
+            # A database that is structurally valid but belongs to the wrong
+            # profile must never be marked provisioned for a firm. The router
+            # also checks this on every connection; reject it here as well so
+            # the catalog cannot advertise an unusable or misclassified file.
+            try:
+                profile = tenant.execute(
+                    "SELECT profile FROM database_profile WHERE singleton=1"
+                ).fetchone()
+            except sqlite3.Error as exc:
+                raise TenantCatalogError(
+                    "New tenant database is missing its required firm schema profile binding"
+                ) from exc
+            if profile is None or profile[0] != "firm":
+                raise TenantCatalogError(
+                    "New tenant database is not bound to the firm schema profile"
+                )
             # The catalog mapping alone is not enough: bind the file contents
             # to the same trusted firm ID so a copied/swapped database fails closed.
             _bind_tenant_database(tenant, firm_id)
