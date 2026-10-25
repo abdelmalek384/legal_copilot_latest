@@ -91,7 +91,10 @@ class RetrievalEvaluationTests(unittest.TestCase):
 
     def test_duplicate_run_records_are_reported(self):
         question = reviewed_question()
-        run = {"question_id": question["id"], "retrieved_source_ids": [], "citations": []}
+        run = {
+            "question_id": question["id"], "retrieved_source_ids": [], "citations": [],
+            "abstained": False, "used_unverified_source": False,
+        }
         result = score_evaluation([question], [run, run])
         self.assertEqual(result["duplicate_run_question_ids"], [question["id"]])
 
