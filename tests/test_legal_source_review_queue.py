@@ -41,6 +41,25 @@ class LegalSourceReviewQueueTests(unittest.TestCase):
             self.assertEqual(db.execute("SELECT COUNT(*) FROM legal_review_events").fetchone()[0],0)
             db.close()
 
+    def test_commercial_reuse_restrictions_are_never_treated_as_approved(self):
+        cases = (
+            ("prohibited", "source_commercial_reuse_permission_not_allowed"),
+            ("not_allowed_without_explicit_exception_or_license", "source_commercial_reuse_permission_not_allowed"),
+            ("allowed_limited", "source_commercial_reuse_permission_scope_limited"),
+            ("unknown", "commercial_reuse_permission_unknown"),
+        )
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td)/"legal.db"
+            make_db(path)
+            for permission, expected_reason in cases:
+                db = sqlite3.connect(path)
+                db.execute("UPDATE legal_sources SET commercial_reuse_permission=?", (permission,))
+                db.commit()
+                db.close()
+                report = MODULE.review_queue(path)
+                self.assertIn(expected_reason, report["source_permissions"][0]["review_reasons"], permission)
+                self.assertIn(expected_reason, report["records"][0]["review_reasons"], permission)
+
     def test_missing_registry_tables_report_schema_issue(self):
         with tempfile.TemporaryDirectory() as td:
             path=Path(td)/"empty.db"
