@@ -32,6 +32,13 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("'/research/discover'", HTML)
         self.assertIn("Select a matter to search firm documents", HTML)
 
+    def test_research_async_status_and_toasts_are_announced(self):
+        self.assertIn('id="toast" role="status" aria-live="polite" aria-atomic="true"', HTML)
+        self.assertIn("role:'status','aria-live':'polite','aria-atomic':'true'", HTML)
+        self.assertIn("Searching sources…", HTML)
+        self.assertIn("Research complete. Review the answer and sources.", HTML)
+        self.assertIn("Found '+count+' metadata-only source records.", HTML)
+
     def test_registered_source_links_show_host_and_reject_url_credentials(self):
         self.assertIn("u.protocol==='https:'&&!u.username&&!u.password", HTML)
         self.assertIn("const sourceHostLabel=v=>", HTML)
