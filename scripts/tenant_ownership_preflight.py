@@ -13,6 +13,8 @@ import sys
 from pathlib import Path
 from typing import Any
 
+from identity import normalize_email
+
 
 def _tables(conn: sqlite3.Connection) -> set[str]:
     return {row[0] for row in conn.execute(
@@ -76,6 +78,20 @@ def audit(conn: sqlite3.Connection) -> dict[str, Any]:
         }
 
     firms = "firms" in tables
+    if "users" in tables and "email" in _columns(conn, "users"):
+        # Python normalization matches account creation/login rules; SQLite's
+        # built-in NOCASE collation is ASCII-only and is not sufficient here.
+        normalized_emails: dict[str, list[int]] = {}
+        for row in conn.execute("SELECT id, email FROM users WHERE email IS NOT NULL"):
+            normalized = normalize_email(str(row[1]))
+            if normalized:
+                normalized_emails.setdefault(normalized, []).append(int(row[0]))
+        duplicate_groups = [ids for ids in normalized_emails.values() if len(ids) > 1]
+        add(
+            "users_duplicate_normalized_email", "critical", len(duplicate_groups),
+            "Multiple user rows share an email after NFC normalization, trimming, and Unicode case-folding; resolve identity conflicts manually before enforcing global uniqueness. No accounts are merged.",
+        )
+
     if "users" in tables and "firm_id" in _columns(conn, "users"):
         add("users_missing_firm", "critical",
             _count(conn, "SELECT COUNT(*) FROM users WHERE firm_id IS NULL"),
