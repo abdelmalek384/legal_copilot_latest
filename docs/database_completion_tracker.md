@@ -25,7 +25,7 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 
 ## In progress
 
-- [ ] **PR #153 — Move the independent `legal_sources` registry into migration 0007.** PR #149 is merged; `legal_documents` remains in bootstrap because startup conditionally inspects/alters it before the migration runner. Awaiting latest CI.
+- [ ] **PR #153 — Move `legal_sources` and FTS5 setup into migrations 0007 and 0008.** `legal_documents` remains in bootstrap because startup conditionally inspects/alters it before the migration runner. FTS migration preserves an existing virtual table and does not attempt an implicit rebuild. Awaiting latest CI.
 
 ## Remaining database work
 
