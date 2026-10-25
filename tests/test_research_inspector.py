@@ -132,6 +132,11 @@ class ResearchInspectorTests(unittest.TestCase):
         malformed_sources = research_memo("Question", {"sources": "not-a-list"})
         self.assertIn("Source data was malformed", malformed_sources)
 
+    def test_missing_memo_scope_is_not_defaulted_to_verified_corpus(self):
+        memo = research_memo("Question", {"sources": []})
+        self.assertIn("Search scope: unknown", memo)
+        self.assertNotIn("Search scope: verified_corpus", memo)
+
     def test_non_string_passages_are_not_presented_as_verbatim_text(self):
         for malformed in (["not exact source text"], {"text": "not exact source text"}, 123):
             source = valid_source()
