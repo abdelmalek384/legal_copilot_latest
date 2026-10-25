@@ -36,6 +36,8 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 
 - [ ] **PR #178 — Enforce firm document and extraction review scope.** Adds a fail-closed migration guard for existing chunk/document/review mismatches, then adds triggers to prevent mismatched chunk-to-document cases and review-to-document/case/chunk/firm links on inserts and updates. GitHub Actions run 40221835993 passed, including profile schema acceptance, migration tests, unit tests, API tests, and Arabic scenarios; this does not replace route authorization or tenant routing.
 
+- [ ] **Follow-up — Preserve parent scope on firm-profile updates.** A stacked follow-up adds firm migration 0003 to reject legacy document/case firm mismatches and prevent later case-firm or document-case/firm changes from invalidating existing chunks and extraction reviews. Regression tests cover rejected parent updates and fail-closed migration rollback. Waiting on CI; this remains dependent on PR #178 and does not enable runtime tenant routing.
+
 
 
 ## Remaining database work
