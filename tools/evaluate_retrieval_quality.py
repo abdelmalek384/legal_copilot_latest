@@ -3,15 +3,19 @@
 
 Input JSONL rows must contain a reviewed question and a corresponding run record.
 Unreviewed question seeds are reported as excluded, never treated as negative examples.
+Malformed records are reported and excluded rather than crashing or being scored as misses.
 """
 import argparse
 import json
+import re
+from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_QUESTIONS = ROOT / "tests" / "legal_eval" / "practice_questions.seed.jsonl"
 DEFAULT_RUNS = ROOT / "tests" / "legal_eval" / "runs.example.jsonl"
 REVIEWED_STATES = {"lawyer_reviewed", "approved_for_evaluation"}
+_DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
 
 def _load_jsonl(path):
@@ -27,31 +31,83 @@ def _load_jsonl(path):
     return rows
 
 
+def _nonempty_string(value):
+    return isinstance(value, str) and bool(value.strip())
+
+
+def _valid_calendar_date(value):
+    if not isinstance(value, str) or not _DATE_RE.fullmatch(value):
+        return False
+    try:
+        return date.fromisoformat(value).isoformat() == value
+    except ValueError:
+        return False
+
+
 def validate_reviewed_question(question):
     """Return validation errors; no labels are inferred or generated."""
+    if not isinstance(question, dict):
+        return ["question record must be a JSON object"]
     errors = []
     if question.get("review_status") not in REVIEWED_STATES:
         return ["question is not marked lawyer_reviewed/approved_for_evaluation"]
     for field in ("id", "practice_area", "question_ar"):
-        if not question.get(field):
-            errors.append("missing " + field)
-    if not question.get("reviewer_name") or not question.get("review_date"):
-        errors.append("reviewer_name and review_date are required")
+        if not _nonempty_string(question.get(field)):
+            errors.append("missing or invalid " + field)
+    if not _nonempty_string(question.get("reviewer_name")):
+        errors.append("reviewer_name is required")
+    if not _valid_calendar_date(question.get("review_date")):
+        errors.append("review_date must be a real YYYY-MM-DD calendar date")
     expected = question.get("expected_source_ids")
-    if not isinstance(expected, list) or not expected or not all(isinstance(x, str) and x.strip() for x in expected):
+    if (not isinstance(expected, list) or not expected
+            or not all(_nonempty_string(x) for x in expected)):
         errors.append("expected_source_ids must be a non-empty list of reviewed source IDs")
-    if question.get("answerable") not in (True, False):
+    pin_cites = question.get("expected_pin_cites")
+    if pin_cites is not None:
+        if not isinstance(pin_cites, list):
+            errors.append("expected_pin_cites must be a list when supplied")
+        else:
+            for index, item in enumerate(pin_cites):
+                if (not isinstance(item, dict)
+                        or not _nonempty_string(item.get("source_id"))
+                        or not _nonempty_string(item.get("pin_cite"))):
+                    errors.append(f"expected_pin_cites[{index}] must contain non-empty source_id and pin_cite strings")
+    if not isinstance(question.get("answerable"), bool):
         errors.append("answerable must be an explicit boolean")
     if question.get("must_abstain_if_unverified") is not True:
         errors.append("must_abstain_if_unverified must remain true")
-    pin_cites = question.get("expected_pin_cites")
-    if pin_cites is not None and not isinstance(pin_cites, list):
-        errors.append("expected_pin_cites must be a list when supplied")
+    return errors
+
+
+def validate_run_record(run):
+    """Return errors for a run record so malformed results are never silently scored."""
+    if not isinstance(run, dict):
+        return ["run record must be a JSON object"]
+    errors = []
+    if not _nonempty_string(run.get("question_id")):
+        errors.append("question_id must be a non-empty string")
+    retrieved = run.get("retrieved_source_ids")
+    if (not isinstance(retrieved, list)
+            or not all(_nonempty_string(source_id) for source_id in retrieved)):
+        errors.append("retrieved_source_ids must be a list of non-empty source ID strings")
+    citations = run.get("citations")
+    if not isinstance(citations, list):
+        errors.append("citations must be a list")
+    else:
+        for index, citation in enumerate(citations):
+            if not isinstance(citation, dict) or not _nonempty_string(citation.get("source_id")):
+                errors.append(f"citations[{index}] must contain a non-empty source_id")
+                continue
+            if "pin_cite" in citation and not _nonempty_string(citation.get("pin_cite")):
+                errors.append(f"citations[{index}].pin_cite must be a non-empty string when supplied")
+    for field in ("abstained", "used_unverified_source"):
+        if not isinstance(run.get(field), bool):
+            errors.append(field + " must be an explicit boolean")
     return errors
 
 
 def _unique_ids(values):
-    return list(dict.fromkeys(x for x in values if isinstance(x, str) and x.strip()))
+    return list(dict.fromkeys(x.strip() for x in values if _nonempty_string(x)))
 
 
 def score_evaluation(questions, runs, k_values=(1, 3, 5)):
@@ -60,36 +116,76 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5)):
     Each run row: {"question_id": "...", "retrieved_source_ids": [...],
     "citations": [{"source_id": "...", "pin_cite": "Article 12"}],
     "abstained": true|false, "used_unverified_source": true|false}.
+    Duplicate question/run IDs are excluded instead of choosing an arbitrary record.
     """
-    question_by_id = {q.get("id"): q for q in questions if q.get("id")}
-    run_by_id = {}
-    duplicate_runs = []
-    for run in runs:
-        qid = run.get("question_id")
-        if not qid:
+    if not isinstance(questions, list) or not isinstance(runs, list):
+        raise ValueError("questions and runs must each be a list of JSON objects")
+    if (not isinstance(k_values, (list, tuple)) or not k_values
+            or any(type(k) is not int or k < 1 for k in k_values)):
+        raise ValueError("k_values must contain positive integers")
+
+    question_by_id = {}
+    question_counts = {}
+    invalid_questions = []
+    for index, question in enumerate(questions, start=1):
+        errors = validate_reviewed_question(question)
+        qid = question.get("id") if isinstance(question, dict) else None
+        if not isinstance(qid, str) or not qid.strip():
+            invalid_questions.append({"record": index, "question_id": None, "reasons": errors or ["id must be a non-empty string"]})
             continue
-        if qid in run_by_id:
-            duplicate_runs.append(qid)
+        question_counts[qid] = question_counts.get(qid, 0) + 1
+        if errors:
+            invalid_questions.append({"record": index, "question_id": qid, "reasons": errors})
+        question_by_id[qid] = question
+
+    duplicate_question_ids = sorted(qid for qid, count in question_counts.items() if count > 1)
+    for qid in duplicate_question_ids:
+        question_by_id.pop(qid, None)
+
+    run_by_id = {}
+    run_counts = {}
+    invalid_runs = []
+    invalid_run_ids = set()
+    for index, run in enumerate(runs, start=1):
+        errors = validate_run_record(run)
+        qid = run.get("question_id") if isinstance(run, dict) else None
+        if errors:
+            invalid_runs.append({"record": index, "question_id": qid if isinstance(qid, str) else None, "reasons": errors})
+            if isinstance(qid, str) and qid.strip():
+                invalid_run_ids.add(qid)
+            continue
+        run_counts[qid] = run_counts.get(qid, 0) + 1
         run_by_id[qid] = run
+
+    duplicate_run_ids = sorted(qid for qid, count in run_counts.items() if count > 1)
+    for qid in duplicate_run_ids:
+        run_by_id.pop(qid, None)
 
     reviewed = []
     excluded = []
     for qid, question in question_by_id.items():
-        errors = validate_reviewed_question(question)
-        if errors:
-            excluded.append({"question_id": qid, "reasons": errors})
+        if qid in duplicate_question_ids:
+            excluded.append({"question_id": qid, "reasons": ["duplicate question ID; resolve the reviewed labels before scoring"]})
+        elif validate_reviewed_question(question):
+            excluded.append({"question_id": qid, "reasons": validate_reviewed_question(question)})
+        elif qid in duplicate_run_ids:
+            excluded.append({"question_id": qid, "reasons": ["duplicate run records; resolve the runs before scoring"]})
+        elif qid in invalid_run_ids:
+            excluded.append({"question_id": qid, "reasons": ["run record is malformed; see invalid_run_records"]})
         elif qid not in run_by_id:
-            excluded.append({"question_id": qid, "reasons": ["no run record"]})
+            excluded.append({"question_id": qid, "reasons": ["no valid run record"]})
         else:
             reviewed.append((question, run_by_id[qid]))
-
+    for qid in duplicate_question_ids:
+        if not any(item["question_id"] == qid for item in excluded):
+            excluded.append({"question_id": qid, "reasons": ["duplicate question ID; resolve the reviewed labels before scoring"]})
     metrics = {}
     for k in k_values:
         recall_values = []
         reciprocal_ranks = []
         for question, run in reviewed:
             expected = set(question["expected_source_ids"])
-            ranked = _unique_ids(run.get("retrieved_source_ids", []))
+            ranked = _unique_ids(run["retrieved_source_ids"])
             top_k = set(ranked[:k])
             recall_values.append(len(expected & top_k) / len(expected))
             rank = next((index for index, source_id in enumerate(ranked, 1) if source_id in expected), None)
@@ -101,31 +197,33 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5)):
     abstention_cases = abstention_correct = unsafe_unverified_uses = 0
     for question, run in reviewed:
         expected_sources = set(question["expected_source_ids"])
-        for citation in run.get("citations", []):
+        expected_pin_cites = question.get("expected_pin_cites") or []
+        for citation in run["citations"]:
             citation_total += 1
-            if citation.get("source_id") in expected_sources:
+            if citation["source_id"] in expected_sources:
                 citation_correct += 1
-            expected_pin_cites = question.get("expected_pin_cites") or []
             if expected_pin_cites:
                 pin_cite_total += 1
                 if any(
-                    citation.get("source_id") == expected.get("source_id")
-                    and citation.get("pin_cite") == expected.get("pin_cite")
+                    citation["source_id"] == expected["source_id"]
+                    and citation.get("pin_cite") == expected["pin_cite"]
                     for expected in expected_pin_cites
                 ):
                     pin_cite_correct += 1
         if question["answerable"] is False:
             abstention_cases += 1
-            if run.get("abstained") is True and run.get("used_unverified_source") is not True:
+            if run["abstained"] is True and run["used_unverified_source"] is not True:
                 abstention_correct += 1
-        if run.get("used_unverified_source") is True and run.get("abstained") is not True:
+        if run["used_unverified_source"] is True and run["abstained"] is not True:
             unsafe_unverified_uses += 1
 
-    count = len(reviewed)
     return {
-        "reviewed_cases_scored": count,
+        "reviewed_cases_scored": len(reviewed),
         "excluded_cases": excluded,
-        "duplicate_run_question_ids": sorted(set(duplicate_runs)),
+        "invalid_question_records": invalid_questions,
+        "invalid_run_records": invalid_runs,
+        "duplicate_question_ids": duplicate_question_ids,
+        "duplicate_run_question_ids": duplicate_run_ids,
         "metrics": metrics,
         "citation_precision": round(citation_correct / citation_total, 4) if citation_total else None,
         "citation_correct": citation_correct,
@@ -138,7 +236,8 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5)):
         "unanswerable_reviewed_cases": abstention_cases,
         "unsafe_unverified_source_uses": unsafe_unverified_uses,
         "limitations": [
-            "Scores cover only lawyer-reviewed cases with explicit expected source IDs and a matching run.",
+            "Scores cover only lawyer-reviewed cases with explicit expected source IDs and a matching valid run.",
+            "Malformed records and duplicate question/run IDs are excluded and listed; resolve them before relying on a score.",
             "Metrics do not establish legal correctness, completeness, or current-law status.",
             "Review labels must be assigned by a qualified reviewer; this tool never generates ground truth.",
             "Pin-cite accuracy is scored only where reviewed expected_pin_cites are provided.",

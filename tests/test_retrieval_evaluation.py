@@ -91,9 +91,63 @@ class RetrievalEvaluationTests(unittest.TestCase):
 
     def test_duplicate_run_records_are_reported(self):
         question = reviewed_question()
-        run = {"question_id": question["id"], "retrieved_source_ids": [], "citations": []}
+        run = {
+            "question_id": question["id"], "retrieved_source_ids": [], "citations": [],
+            "abstained": False, "used_unverified_source": False,
+        }
         result = score_evaluation([question], [run, run])
         self.assertEqual(result["duplicate_run_question_ids"], [question["id"]])
+
+    def test_malformed_question_shapes_and_dates_are_excluded_without_crashing(self):
+        question = reviewed_question(review_date="2026-02-30")
+        result = score_evaluation([None, ["not", "an", "object"], question], [])
+        self.assertEqual(result["reviewed_cases_scored"], 0)
+        self.assertEqual(len(result["invalid_question_records"]), 3)
+        reasons = " ".join(result["excluded_cases"][0]["reasons"])
+        self.assertIn("real YYYY-MM-DD", reasons)
+        self.assertIsNone(result["metrics"]["recall_at_5"])
+
+    def test_malformed_run_shapes_and_citations_are_reported_and_excluded(self):
+        question = reviewed_question()
+        malformed = {
+            "question_id": question["id"],
+            "retrieved_source_ids": "LAW-A",
+            "citations": [None],
+            "abstained": "false",
+            "used_unverified_source": False,
+        }
+        result = score_evaluation([question], [None, malformed])
+        self.assertEqual(result["reviewed_cases_scored"], 0)
+        self.assertEqual(len(result["invalid_run_records"]), 2)
+        self.assertIn("run record is malformed", result["excluded_cases"][0]["reasons"][0])
+
+    def test_duplicate_run_records_are_excluded_not_arbitrarily_scored(self):
+        question = reviewed_question()
+        run = {
+            "question_id": question["id"], "retrieved_source_ids": ["LAW-A"], "citations": [],
+            "abstained": False, "used_unverified_source": False,
+        }
+        result = score_evaluation([question], [run, run])
+        self.assertEqual(result["reviewed_cases_scored"], 0)
+        self.assertEqual(result["duplicate_run_question_ids"], [question["id"]])
+        self.assertIn("duplicate run records", result["excluded_cases"][0]["reasons"][0])
+
+    def test_duplicate_question_ids_are_excluded(self):
+        question = reviewed_question()
+        run = {
+            "question_id": question["id"], "retrieved_source_ids": ["LAW-A"], "citations": [],
+            "abstained": False, "used_unverified_source": False,
+        }
+        result = score_evaluation([question, dict(question)], [run])
+        self.assertEqual(result["reviewed_cases_scored"], 0)
+        self.assertEqual(result["duplicate_question_ids"], [question["id"]])
+        self.assertIn("duplicate question ID", result["excluded_cases"][0]["reasons"][0])
+
+    def test_invalid_pin_cite_labels_are_excluded(self):
+        question = reviewed_question(expected_pin_cites=[{"source_id": "LAW-A"}])
+        result = score_evaluation([question], [])
+        self.assertEqual(result["reviewed_cases_scored"], 0)
+        self.assertIn("expected_pin_cites[0]", " ".join(result["excluded_cases"][0]["reasons"]))
 
 
 if __name__ == "__main__":
