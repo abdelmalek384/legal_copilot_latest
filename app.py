@@ -280,7 +280,7 @@ _LEGAL_SYNONYMS_RAW = {
     "إيجار": ("كراء", "rent", "lease"),
     # Common inflection/derivation variants observed in Arabic matter-file queries.
     # These are retrieval hints, not legal equivalence or a change to source text.
-    "شيك": ("شيكا", "شيكات", "الشيك", "الشيكات", "cheque", "check"),
+    "شيك": ("شيكا", "شيكات", "الشيك", "الشيكات", "cheque"),
     "تأخير": ("تأخر", "متأخر", "متأخرة", "تأخيرا", "delay", "delayed"),
 }
 LEGAL_SYNONYMS = {}
