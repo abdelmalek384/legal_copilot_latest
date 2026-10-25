@@ -74,6 +74,11 @@ class CorpusAuditTests(unittest.TestCase):
               (1,'https://example.gov/a',NULL,NULL,'2020-01-01','2020-01-01',NULL,'in_force','verified',1,1,0),
               (2,'https://example.gov/b',NULL,NULL,'2021-01-01','2021-01-01',NULL,'in_force','verified',1,1,1);
             INSERT INTO legal_version_relations VALUES(1,1,2,'amends');
+            INSERT INTO legal_document_versions VALUES
+              (3,'https://example.gov/c',NULL,NULL,'2022-01-01','2022-01-01',NULL,'in_force','verified',1,1,1);
+            INSERT INTO legal_review_events VALUES
+              (1,2,'amendment_history','pass','not-a-url'),
+              (2,3,'amendment_history','pass','https://example.gov/evidence/review.pdf');
             """)
             db.commit()
             db.close()
