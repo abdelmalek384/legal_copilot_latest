@@ -13,11 +13,12 @@ class DatabaseStartupDDLInventoryTests(unittest.TestCase):
         self.assertEqual(report["mode"], "source_only_read_only")
         self.assertFalse(report["database_opened"])
         self.assertGreater(report["startup_schema"]["counts"]["create_table"], 0)
-        self.assertGreater(report["startup_schema"]["counts"]["create_virtual_table"], 0)
+        self.assertEqual(report["startup_schema"]["counts"]["create_virtual_table"], 0)
         self.assertEqual(report["startup_schema"]["counts"]["create_index"], 0)
         self.assertNotIn("CREATE TABLE IF NOT EXISTS legal_version_relations", (root / "app.py").read_text(encoding="utf-8"))
         self.assertNotIn("CREATE TABLE IF NOT EXISTS security_audit_events", (root / "app.py").read_text(encoding="utf-8"))
         self.assertNotIn("CREATE TABLE IF NOT EXISTS legal_sources", (root / "app.py").read_text(encoding="utf-8"))
+        self.assertNotIn("CREATE VIRTUAL TABLE IF NOT EXISTS chunks_fts", (root / "app.py").read_text(encoding="utf-8"))
         startup_schema = (root / "app.py").read_text(encoding="utf-8")
         for table in ("auth_sessions", "notes", "fees", "tasks", "events", "sessions"):
             self.assertNotIn(f"CREATE TABLE IF NOT EXISTS {table}(", startup_schema)
@@ -28,7 +29,7 @@ class DatabaseStartupDDLInventoryTests(unittest.TestCase):
             [item["file"] for item in report["migrations"]],
             sorted(item["file"] for item in report["migrations"]),
         )
-        self.assertEqual(len(report["migrations"]), 7)
+        self.assertEqual(len(report["migrations"]), 8)
 
     def test_inventory_uses_explicit_paths_and_does_not_require_a_database(self):
         with tempfile.TemporaryDirectory() as tmp:
