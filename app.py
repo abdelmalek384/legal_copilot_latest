@@ -143,8 +143,6 @@ def _ensure_legacy_firm_ownership(c):
     if "firm_id" not in user_cols:
         # No default: pre-existing rows must remain explicitly unclassified.
         c.execute("ALTER TABLE users ADD COLUMN firm_id INT")
-    if "active" not in user_cols:
-        c.execute("ALTER TABLE users ADD COLUMN active INT DEFAULT 1")
     case_cols = {row[1] for row in c.execute("PRAGMA table_info(cases)")}
     if "firm_id" not in case_cols:
         # No default: pre-existing rows must remain explicitly unclassified.
@@ -178,26 +176,12 @@ def conn():
             if not _schema_ready:
                 c.execute("PRAGMA journal_mode=WAL")
                 c.executescript(SCHEMA)
-                legal_document_cols = {r[1] for r in c.execute("PRAGMA table_info(legal_documents)")}
-                if "practice_area" not in legal_document_cols:
-                    c.execute("ALTER TABLE legal_documents ADD COLUMN practice_area TEXT NOT NULL DEFAULT 'unknown'")
                 _ensure_legacy_firm_ownership(c)
                 deadline_cols = {r[1] for r in c.execute("PRAGMA table_info(deadlines)")}
                 if "status" not in deadline_cols: c.execute("ALTER TABLE deadlines ADD COLUMN status TEXT DEFAULT 'open'")
-                if "verified" not in [r[1] for r in c.execute("PRAGMA table_info(chunks)")]:
-                    c.execute("ALTER TABLE chunks ADD COLUMN verified INT DEFAULT 0")
                 chunk_cols = {r[1] for r in c.execute("PRAGMA table_info(chunks)")}
-                if "document_version_id" not in chunk_cols:
-                    c.execute("ALTER TABLE chunks ADD COLUMN document_version_id INT")
-                if "page" not in chunk_cols:
-                    c.execute("ALTER TABLE chunks ADD COLUMN page TEXT")
                 if "document_id" not in chunk_cols:
                     c.execute("ALTER TABLE chunks ADD COLUMN document_id INT")
-                doc_cols = {r[1] for r in c.execute("PRAGMA table_info(docs)")}
-                for col, declaration in (("firm_id", "INT"), ("uploader_user_id", "INT"), ("sha256", "TEXT"), ("content_type", "TEXT"), ("byte_size", "INT"), ("extraction_status", "TEXT"), ("ocr_used", "INT NOT NULL DEFAULT 0")):
-                    if col not in doc_cols:
-                        c.execute(f"ALTER TABLE docs ADD COLUMN {col} {declaration}")
-                c.execute("UPDATE docs SET firm_id=(SELECT firm_id FROM cases WHERE cases.id=docs.case_id) WHERE firm_id IS NULL")
                 c.execute("""CREATE TABLE IF NOT EXISTS document_extraction_reviews(
                     id INTEGER PRIMARY KEY,
                     document_id INTEGER NOT NULL,
@@ -212,16 +196,9 @@ def conn():
                     page_reference TEXT NOT NULL DEFAULT '',
                     created_at TEXT NOT NULL DEFAULT (datetime('now'))
                 )""")
-                review_cols = {r[1] for r in c.execute("PRAGMA table_info(document_extraction_reviews)")}
-                if "page_reference" not in review_cols:
-                    c.execute("ALTER TABLE document_extraction_reviews ADD COLUMN page_reference TEXT NOT NULL DEFAULT ''")
-                case_cols = {r[1] for r in c.execute("PRAGMA table_info(cases)")}
-                for col in ("case_number", "case_year", "court", "circuit", "opposing_party"):
-                    if col not in case_cols:
-                        c.execute("ALTER TABLE cases ADD COLUMN %s TEXT DEFAULT ''" % col)
                 c.commit()
-                # Versioned migrations run only after legacy bootstrap has created
-                # prerequisite tables; future schema changes should move here.
+                # Versioned migrations run after the legacy bootstrap has prepared columns
+                # required by earlier immutable migrations.
                 apply_migrations(c, os.path.join(os.path.dirname(__file__), "migrations"))
                 _schema_ready = True
     return c
