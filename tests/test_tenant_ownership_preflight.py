@@ -1,8 +1,12 @@
 """Tests for the read-only tenant ownership preflight."""
+import contextlib
+import io
 import sqlite3
+import tempfile
 import unittest
+from pathlib import Path
 
-from scripts.tenant_ownership_preflight import audit
+from scripts.tenant_ownership_preflight import audit, main
 
 
 class TenantOwnershipPreflightTests(unittest.TestCase):
@@ -94,6 +98,23 @@ class TenantOwnershipPreflightTests(unittest.TestCase):
             )
         finally:
             db.close()
+
+    def test_cli_refuses_symlinked_database_path(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            target = root / "actual.db"
+            with sqlite3.connect(target) as db:
+                db.executescript("CREATE TABLE firms(id INTEGER PRIMARY KEY); CREATE TABLE users(id INTEGER PRIMARY KEY, firm_id INTEGER); CREATE TABLE cases(id INTEGER PRIMARY KEY, firm_id INTEGER);")
+            link = root / "linked.db"
+            try:
+                link.symlink_to(target)
+            except (NotImplementedError, OSError) as exc:
+                self.skipTest(f"symlinks unavailable: {exc}")
+            stderr = io.StringIO()
+            with contextlib.redirect_stderr(stderr):
+                result = main([str(link)])
+            self.assertEqual(result, 2)
+            self.assertIn("database path must not be a symlink", stderr.getvalue())
 
     def test_clean_minimal_database_has_no_findings(self):
         db = sqlite3.connect(":memory:")
