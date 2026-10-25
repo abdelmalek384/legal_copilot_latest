@@ -19,6 +19,9 @@ class ArabicMatchingTests(unittest.TestCase):
         self.assertIn("شيكا", matched_surface_terms("حرر المدين شيكا للمستفيد", expanded_tokens("الشيك")))
         self.assertIn("تأخر", matched_surface_terms("عند تأخر المدين في السداد", expanded_tokens("التأخير")))
 
+    def test_matched_surface_terms_preserve_diacritics_for_highlighting(self):
+        self.assertIn("شيكًا", matched_surface_terms("حرر المدين شيكًا للمستفيد", expanded_tokens("الشيك")))
+
     def test_matched_surface_terms_are_bounded_and_deduplicated(self):
         terms = matched_surface_terms("شيكا شيكا شيكا", expanded_tokens("الشيك"), limit=2)
         self.assertEqual(terms, ["شيكا"])
