@@ -29,6 +29,8 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 
 ## In progress
 
+- [ ] **PR #165 — Validate tenant foreign keys after provisioning.** Enables SQLite foreign-key enforcement while initializing a new tenant database and checks `integrity_check` plus `foreign_key_check`; regression coverage passes in GitHub Actions run 40217212814. Awaiting review/merge. This does not wire tenant databases into application request routing.
+
 
 
 ## Remaining database work
