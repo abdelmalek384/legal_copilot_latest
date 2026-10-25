@@ -75,6 +75,12 @@ assert any(x["title"] == "مهمة غير مسندة" for x in c.get("/dashboard
 assert all(x["title"] != "مهمة غير مسندة" for x in c.get("/dashboard", headers=J).json()["unassigned_tasks"])
 soon = (date.today() + timedelta(days=7)).isoformat()
 assert c.post(f"/cases/{cid}/deadlines", json={"title":"استئناف","due":soon,"note":""}, headers=L).status_code == 200
+assert c.post(f"/cases/{cid}/sessions", json={"date":soon,"note":"جلسة تجريبية"}, headers=L).status_code == 200
+calendar_response = c.get("/calendar.ics", headers=J)
+assert calendar_response.status_code == 200 and "text/calendar" in calendar_response.headers.get("content-type", "")
+assert "BEGIN:VCALENDAR" in calendar_response.text and "END:VCALENDAR" in calendar_response.text
+assert "Legal deadline: استئناف" in calendar_response.text and "Hearing:" in calendar_response.text
+assert c.get("/calendar.ics", headers=O).status_code == 200 and "استئناف" not in c.get("/calendar.ics", headers=O).text
 dash = c.get("/dashboard", headers=J).json()
 assert any(x["title"] == "استئناف" for x in dash["deadlines"])
 deadline = next(x for x in dash["deadlines"] if x["title"] == "استئناف")
