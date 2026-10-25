@@ -58,6 +58,16 @@ def initialize_catalog(connection: sqlite3.Connection) -> None:
         raise TenantCatalogError(
             "Tenant catalog is missing its firm ownership constraint; apply control-plane migrations"
         )
+    # A declared FK does not prove that existing rows satisfy it: SQLite can
+    # contain violations from a prior connection that had foreign_keys OFF.
+    # Refuse to resolve any tenant until catalog ownership is reconciled.
+    violations = connection.execute(
+        "PRAGMA foreign_key_check(tenant_database_catalog)"
+    ).fetchall()
+    if violations:
+        raise TenantCatalogError(
+            "Tenant catalog contains invalid firm ownership references; reconcile before use"
+        )
     connection.commit()
 
 
