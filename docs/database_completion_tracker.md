@@ -25,7 +25,7 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 
 ## In progress
 
-- [ ] **PR #153 — Move `legal_sources` and FTS5 setup into migrations 0007 and 0008.** `legal_documents` remains in bootstrap because startup conditionally inspects/alters it before the migration runner. FTS migration preserves an existing virtual table and does not attempt an implicit rebuild. Awaiting latest CI.
+- [ ] **PR #153 — Move `legal_sources`, FTS5 setup, and the default-firm seed into migrations 0007–0009.** `legal_documents` remains in bootstrap because startup conditionally inspects/alters it before the migration runner. FTS migration preserves an existing virtual table and does not attempt an implicit rebuild; the seed uses `INSERT OR IGNORE` to preserve an existing firm record. Awaiting latest CI.
 
 ## Remaining database work
 
