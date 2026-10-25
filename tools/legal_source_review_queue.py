@@ -11,6 +11,16 @@ def tables(db):
 def cols(db, table):
     return {r[1] for r in db.execute(f'PRAGMA table_info("{table}")')}
 
+def commercial_reuse_issue(value):
+    """Return a review reason unless commercial reuse is explicitly unrestricted."""
+    if value == "allowed":
+        return None
+    if value == "allowed_limited":
+        return "source_commercial_reuse_permission_scope_limited"
+    if value in ("prohibited", "not_allowed_without_explicit_exception_or_license"):
+        return "source_commercial_reuse_permission_not_allowed"
+    return "commercial_reuse_permission_unknown"
+
 def review_queue(db_path: Path) -> dict:
     if not db_path.exists():
         raise FileNotFoundError(f"Database not found: {db_path}")
@@ -43,7 +53,8 @@ def review_queue(db_path: Path) -> dict:
         for src in sources:
             row=dict(src); reasons=[]
             if row["collection_permission"] not in ("allowed","allowed_limited"): reasons.append("source_collection_permission_not_confirmed")
-            if row["commercial_reuse_permission"] in (None,"","unknown"): reasons.append("commercial_reuse_permission_unknown")
+            reuse_issue = commercial_reuse_issue(row["commercial_reuse_permission"])
+            if reuse_issue: reasons.append(reuse_issue)
             if not row["terms_url"]: reasons.append("terms_url_missing")
             if not row["permission_evidence"]: reasons.append("permission_evidence_missing")
             if reasons: report["source_permissions"].append({**row,"review_reasons":reasons,
@@ -65,7 +76,7 @@ def review_queue(db_path: Path) -> dict:
               (not row["amendment_history_verified"],"amendment_history_not_verified"),
               (not row["permission_evidence"],"version_permission_evidence_missing"),
               (row["collection_permission"] not in ("allowed","allowed_limited"),"source_collection_permission_not_confirmed"),
-              (row["commercial_reuse_permission"] in (None,"","unknown"),"source_commercial_reuse_permission_unknown")]
+              (commercial_reuse_issue(row["commercial_reuse_permission"]) is not None,commercial_reuse_issue(row["commercial_reuse_permission"]))]
             reasons.extend(label for missing,label in checks if missing)
             for rt in review_types:
                 if not any(e["review_type"]==rt and e["outcome"]=="pass" and e["evidence_url"] for e in events):
