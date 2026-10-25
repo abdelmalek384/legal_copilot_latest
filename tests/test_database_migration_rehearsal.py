@@ -55,6 +55,9 @@ class DatabaseMigrationRehearsalTests(unittest.TestCase):
         self.assertEqual(report["staged_quick_check"], ["ok"])
         self.assertEqual(report["source_foreign_key_violations"], 0)
         self.assertEqual(report["staged_foreign_key_violations"], 0)
+        self.assertEqual(report["row_count_decreases"], [])
+        self.assertEqual(report["source_table_row_counts"]["cases"], 1)
+        self.assertEqual(report["staged_table_row_counts"]["cases"], 1)
         with sqlite3.connect(self.database) as db:
             names = {row[0] for row in db.execute("SELECT name FROM sqlite_master")}
             self.assertNotIn("schema_migrations", names)
@@ -67,6 +70,21 @@ class DatabaseMigrationRehearsalTests(unittest.TestCase):
             self.assertIsNone(db.execute("SELECT id FROM firms WHERE id=1").fetchone())
             self.assertNotIn("firm_id", {row[1] for row in db.execute("PRAGMA table_info(docs)")})
             self.assertNotIn("practice_area", {row[1] for row in db.execute("PRAGMA table_info(legal_documents)")})
+
+    def test_row_count_decrease_requires_review(self):
+        migration_dir = self.root / "destructive_migrations"
+        migration_dir.mkdir()
+        (migration_dir / "0001_delete_cases.sql").write_text(
+            "DELETE FROM cases;", encoding="utf-8"
+        )
+        report = rehearse(self.database, migration_dir)
+        self.assertEqual(report["status"], "review_required")
+        self.assertEqual(report["row_count_decreases"], [{
+            "table": "cases", "source_rows": 1, "staged_rows": 0,
+        }])
+        self.assertFalse(report["source_modified"])
+        with sqlite3.connect(self.database) as db:
+            self.assertEqual(db.execute("SELECT COUNT(*) FROM cases").fetchone()[0], 1)
 
     def test_missing_source_fails_closed(self):
         with self.assertRaises(FileNotFoundError):
