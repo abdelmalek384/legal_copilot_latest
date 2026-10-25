@@ -179,6 +179,16 @@ class DatabaseMigrationTests(unittest.TestCase):
         columns = [row["name"] for row in self.db.execute("PRAGMA table_info(sample)")]
         self.assertEqual(columns, ["id", "value"])
 
+    def test_conditional_column_migration_matches_existing_column_case_insensitively(self):
+        self.write("0001_create_sample.sql", "CREATE TABLE sample(id INTEGER PRIMARY KEY, Value TEXT);")
+        self.write("0002_optional_column.sql", """
+            -- @add-column-if-missing sample value
+            ALTER TABLE sample ADD COLUMN value TEXT DEFAULT '';
+        """)
+        self.assertEqual(apply_migrations(self.db, self.path), [1, 2])
+        columns = [row["name"] for row in self.db.execute("PRAGMA table_info(sample)")]
+        self.assertEqual(columns, ["id", "Value"])
+
     def test_repository_migrations_create_startup_indexes(self):
         # Startup creates these prerequisite tables/columns before applying
         # repository migrations. This guards the migration-backed index set.
