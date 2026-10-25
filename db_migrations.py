@@ -82,6 +82,22 @@ def apply_migrations(connection: sqlite3.Connection, directory: str | Path) -> l
     if missing:
         raise MigrationError(f"Applied migration files are missing: {missing}")
 
+    # Recorded history must be a prefix of the migrations available in this
+    # checkout. Otherwise a newly added lower version could be applied after
+    # a higher version was already recorded, violating migration order.
+    available_versions = sorted(available)
+    if recorded:
+        latest_recorded = max(recorded)
+        expected_prefix = [
+            version for version in available_versions if version <= latest_recorded
+        ]
+        actual_recorded = sorted(recorded)
+        if actual_recorded != expected_prefix:
+            raise MigrationError(
+                "Applied migration history is not an ordered prefix: "
+                f"recorded {actual_recorded}, expected {expected_prefix}"
+            )
+
     for version, (name, checksum, _sql) in available.items():
         if version in recorded and recorded[version] != (name, checksum):
             raise MigrationError(
