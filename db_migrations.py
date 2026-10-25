@@ -39,17 +39,27 @@ def _migration_files(directory: Path) -> list[tuple[int, str, Path, str]]:
 
 
 def _statements(sql: str) -> Iterable[str]:
-    """Split SQL using SQLite's own completeness parser, preserving trigger bodies."""
+    """Split at complete statement terminators, including multiple per line.
+
+    SQLite's completeness parser keeps semicolons inside trigger bodies from
+    ending the statement early, while character-wise scanning supports compact
+    migration files containing several ordinary statements on one line.
+    """
     buffer = ""
-    for line in sql.splitlines(keepends=True):
-        buffer += line
-        if sqlite3.complete_statement(buffer):
+    for char in sql:
+        buffer += char
+        if char == ";" and sqlite3.complete_statement(buffer):
             statement = buffer.strip()
             if statement:
                 yield statement
             buffer = ""
     if buffer.strip():
-        raise MigrationError("Migration ends with an incomplete SQL statement")
+        non_comments = [
+            line for line in buffer.splitlines()
+            if line.strip() and not line.lstrip().startswith("--")
+        ]
+        if non_comments:
+            raise MigrationError("Migration ends with an incomplete SQL statement")
 
 
 _CONDITIONAL_ADD_COLUMN = re.compile(
@@ -66,7 +76,9 @@ def _migration_operations(sql: str):
 
     A guarded operation is declared by a comment directive immediately before
     its ALTER TABLE statement. The raw file, including directives, remains
-    checksum-protected by the migration ledger.
+    checksum-protected by the migration ledger. Statement terminators are
+    scanned character by character so multiple statements per line work while
+    SQLite's parser keeps trigger bodies intact.
     """
     buffer = ""
     pending_column: tuple[str, str] | None = None
@@ -86,8 +98,10 @@ def _migration_operations(sql: str):
             pending_column = (directive.group(1), directive.group(2))
             continue
 
-        buffer += line
-        if sqlite3.complete_statement(buffer):
+        for char in line:
+            buffer += char
+            if char != ";" or not sqlite3.complete_statement(buffer):
+                continue
             statement = buffer.strip()
             if statement:
                 if pending_column is None:
@@ -107,7 +121,12 @@ def _migration_operations(sql: str):
             buffer = ""
 
     if buffer.strip():
-        raise MigrationError("Migration ends with an incomplete SQL statement")
+        non_comments = [
+            line for line in buffer.splitlines()
+            if line.strip() and not line.lstrip().startswith("--")
+        ]
+        if non_comments:
+            raise MigrationError("Migration ends with an incomplete SQL statement")
     if pending_column is not None:
         raise MigrationError("Conditional column directive has no ALTER TABLE statement")
 

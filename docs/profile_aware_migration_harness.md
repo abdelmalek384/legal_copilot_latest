@@ -10,7 +10,7 @@ The caller must supply trusted deployment configuration and an existing migratio
 
 ## What it does not add
 
-- It does not create the actual production schemas for the three profiles.
+- The initial migration files define prototype schemas for all three profiles, but they are not yet reviewed or complete production schemas.
 - It does not split existing `app.py` tables or mixed `chunks/chunks_fts`.
 - It does not select tenant databases from authenticated requests.
 - It does not approve the proposed global identity/membership model.
@@ -20,4 +20,4 @@ Do not point this harness at production until each profile has a reviewed, compl
 
 ## Tests and next gate
 
-Tests cover profile allowlisting, profile mismatch denial, profile-specific migration selection, idempotent re-entry, missing profile directories, and failed migration rollback. Next: implement and review the initial schema migrations for each profile, using the ownership map and schema-boundary contract; then test a dry-run migration against a protected database copy. Runtime routing remains blocked until those schemas and identity semantics are approved.
+Tests cover profile allowlisting, profile mismatch denial, profile-specific migration selection, idempotent re-entry, missing profile directories, failed migration rollback, and initial-schema separation/constraints. These profile tests are now included in CI. Next: review and complete the profile migrations against the ownership map and schema-boundary contract, then rehearse a dry-run migration against a protected database copy. Runtime routing remains blocked until the schemas and identity semantics are approved.
