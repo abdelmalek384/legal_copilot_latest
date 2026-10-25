@@ -39,8 +39,18 @@ def apply_profile_migrations(
     if not isinstance(profile, str) or profile not in _ALLOWED_PROFILES or not _PROFILE_RE.fullmatch(profile):
         raise DatabaseProfileError("Unsupported database profile")
 
-    root = Path(migrations_root).resolve()
+    requested_root = Path(migrations_root).expanduser()
+    if requested_root.is_symlink():
+        raise MigrationError("Migration root must not be a symlink")
+    root = requested_root.resolve()
+    if not root.is_dir():
+        raise MigrationError(f"Migration root does not exist: {root}")
     directory = root / profile
+    # Reject the profile directory itself when it is a symlink. Resolving first
+    # is insufficient: a firm symlink to the sibling legal_corpus directory
+    # still has a resolved parent equal to root and could run the wrong schema.
+    if directory.is_symlink():
+        raise MigrationError(f"Migration directory for profile must not be a symlink: {profile}")
     if not directory.is_dir() or directory.resolve().parent != root:
         raise MigrationError(f"Migration directory does not exist for profile: {profile}")
 
