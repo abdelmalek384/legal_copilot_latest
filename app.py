@@ -1296,7 +1296,7 @@ def dashboard(u: dict = Depends(user)):
 
 
 def _ics_escape(value):
-    return str(value or "").replace("\\", "\\\\").replace("\r\n", "\n").replace("\n", "\\n").replace(",", "\\,").replace(";", "\\;")
+    return str(value or "").replace("\\", "\\\\").replace("\r\n", "\n").replace("\r", "\n").replace("\n", "\\n").replace(",", "\\,").replace(";", "\\;")
 
 
 def _ics_event(kind, item_id, firm_id, case_id, day, summary, description):
