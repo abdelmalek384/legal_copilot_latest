@@ -32,6 +32,20 @@ def _foreign_key_violation_count(conn: sqlite3.Connection) -> int:
     return sum(1 for _ in conn.execute("PRAGMA foreign_key_check"))
 
 
+def _table_row_counts(conn: sqlite3.Connection) -> dict[str, int]:
+    """Count rows in existing tables using quoted names from sqlite_master."""
+    names = [
+        str(row[0]) for row in conn.execute(
+            "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%' ORDER BY name"
+        )
+    ]
+    counts: dict[str, int] = {}
+    for name in names:
+        quoted = '"' + name.replace('"', '""') + '"'
+        counts[name] = int(conn.execute(f"SELECT COUNT(*) FROM {quoted}").fetchone()[0])
+    return counts
+
+
 def rehearse(database: str | Path, migrations_dir: str | Path) -> dict[str, Any]:
     """Apply pending migrations to a disposable copy and report integrity checks."""
     source_path = Path(database)
@@ -39,10 +53,13 @@ def rehearse(database: str | Path, migrations_dir: str | Path) -> dict[str, Any]
         raise FileNotFoundError(f"Database file not found: {source_path}")
     source_check: list[str]
     source_fk_count: int
+    source_row_counts: dict[str, int]
+    staged_row_counts: dict[str, int]
     source = _connect_read_only(source_path)
     try:
         source_check = _quick_check(source)
         source_fk_count = _foreign_key_violation_count(source)
+        source_row_counts = _table_row_counts(source)
         with tempfile.TemporaryDirectory(prefix="legal-db-migration-rehearsal-") as tmp:
             staged_path = Path(tmp) / "staged.sqlite3"
             staged = sqlite3.connect(staged_path)
@@ -58,6 +75,7 @@ def rehearse(database: str | Path, migrations_dir: str | Path) -> dict[str, Any]
                 applied = apply_migrations(rehearsal_db, migrations_dir)
                 staged_check = _quick_check(rehearsal_db)
                 staged_fk_count = _foreign_key_violation_count(rehearsal_db)
+                staged_row_counts = _table_row_counts(rehearsal_db)
                 ledger = [
                     {"version": int(row["version"]), "name": str(row["name"])}
                     for row in rehearsal_db.execute(
@@ -69,8 +87,21 @@ def rehearse(database: str | Path, migrations_dir: str | Path) -> dict[str, Any]
     finally:
         source.close()
 
+    row_count_decreases = [
+        {
+            "table": table,
+            "source_rows": count,
+            "staged_rows": staged_row_counts.get(table, 0),
+        }
+        for table, count in sorted(source_row_counts.items())
+        if staged_row_counts.get(table, 0) < count
+    ]
     checks_pass = source_check == ["ok"] and staged_check == ["ok"]
-    status = "passed" if checks_pass and source_fk_count == 0 and staged_fk_count == 0 else "review_required"
+    status = (
+        "passed"
+        if checks_pass and source_fk_count == 0 and staged_fk_count == 0 and not row_count_decreases
+        else "review_required"
+    )
     return {
         "mode": "disposable_copy_only",
         "source_modified": False,
@@ -79,6 +110,9 @@ def rehearse(database: str | Path, migrations_dir: str | Path) -> dict[str, Any]
         "source_foreign_key_violations": source_fk_count,
         "staged_quick_check": staged_check,
         "staged_foreign_key_violations": staged_fk_count,
+        "source_table_row_counts": source_row_counts,
+        "staged_table_row_counts": staged_row_counts,
+        "row_count_decreases": row_count_decreases,
         "migrations_applied": applied,
         "migration_ledger": ledger,
         "limitations": [
