@@ -34,7 +34,7 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 
 - [ ] **PR #176 — Constrain tenant catalog entries to existing firms.** Adds a forward migration with `FOREIGN KEY (firm_id) REFERENCES firms(id) ON DELETE RESTRICT`; invalid pre-existing orphan catalog rows cause migration rollback instead of guessed ownership. The runtime helper now requires the migration-managed `firms` table, enforces SQLite foreign keys, and rejects catalog tables missing the constraint. GitHub Actions run 40221546143 passed. Runtime tenant routing remains out of scope.
 
-- [ ] **PR #178 — Enforce firm document and extraction review scope.** Adds a fail-closed migration guard for existing chunk/document/review mismatches, then adds triggers to prevent mismatched chunk-to-document cases and review-to-document/case/chunk/firm links on inserts and updates. GitHub Actions run 40221709539 is queued; this does not replace route authorization or tenant routing.
+- [ ] **PR #178 — Enforce firm document and extraction review scope.** Adds a fail-closed migration guard for existing chunk/document/review mismatches, then adds triggers to prevent mismatched chunk-to-document cases and review-to-document/case/chunk/firm links on inserts and updates. GitHub Actions run 40221835993 passed, including profile schema acceptance, migration tests, unit tests, API tests, and Arabic scenarios; this does not replace route authorization or tenant routing.
 
 
 
