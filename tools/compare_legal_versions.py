@@ -30,31 +30,59 @@ def compare_version_chunks(left_chunks, right_chunks):
     def group(rows):
         grouped = {}
         unmapped = []
+        malformed_count = 0
+        uncertain_articles = set()
         for row in rows:
+            if not isinstance(row, dict):
+                malformed_count += 1
+                unmapped.append({
+                    "chunk_id": None,
+                    "page": None,
+                    "text": None,
+                    "unmapped_reason": "invalid_chunk_record",
+                })
+                continue
             article = row.get("article")
-            text = row.get("text") if isinstance(row.get("text"), str) else ""
+            raw_text = row.get("text")
+            text = raw_text if isinstance(raw_text, str) else None
             page = row.get("page")
             chunk = {
                 "chunk_id": row.get("id"),
                 "page": page if _nonempty(page) else None,
                 "text": text,
             }
+            if text is None or not text.strip():
+                malformed_count += 1
+                chunk["unmapped_reason"] = "missing_or_invalid_text"
+                unmapped.append(chunk)
+                if _nonempty(article):
+                    uncertain_articles.add(article.strip())
+                continue
             if not _nonempty(article):
+                chunk["unmapped_reason"] = "missing_article_label"
                 unmapped.append(chunk)
                 continue
             grouped.setdefault(article.strip(), []).append(chunk)
-        return grouped, unmapped
+        return grouped, unmapped, malformed_count, uncertain_articles
 
-    left_by_article, left_unmapped = group(left_chunks)
-    right_by_article, right_unmapped = group(right_chunks)
+    left_by_article, left_unmapped, left_malformed, left_uncertain = group(left_chunks)
+    right_by_article, right_unmapped, right_malformed, right_uncertain = group(right_chunks)
     provisions = []
-    counts = {"added_in_right": 0, "removed_from_right": 0, "changed": 0, "unchanged": 0}
-    for article in sorted(set(left_by_article) | set(right_by_article)):
+    counts = {
+        "added_in_right": 0,
+        "removed_from_right": 0,
+        "changed": 0,
+        "unchanged": 0,
+        "uncomparable_incomplete_text": 0,
+    }
+    for article in sorted(set(left_by_article) | set(right_by_article) | left_uncertain | right_uncertain):
         left_parts = left_by_article.get(article, [])
         right_parts = right_by_article.get(article, [])
         left_text = "\n\n".join(part["text"] for part in left_parts)
         right_text = "\n\n".join(part["text"] for part in right_parts)
-        if not left_parts:
+        if article in left_uncertain or article in right_uncertain:
+            change = "uncomparable_incomplete_text"
+        elif not left_parts:
             change = "added_in_right"
         elif not right_parts:
             change = "removed_from_right"
@@ -81,21 +109,36 @@ def compare_version_chunks(left_chunks, right_chunks):
             ))
         provisions.append(item)
 
+    if left_malformed or right_malformed:
+        extra_warning = (
+            "Malformed or empty extracted passages were found; inspect the unmapped_passages lists "
+            "before relying on any article-level result."
+        )
+    else:
+        extra_warning = None
+
+    warnings = [
+        "This is a comparison of extracted chunks, not a legal conclusion about amendment, repeal, or legal effect.",
+        "Matching uses exact article labels; renumbered or restructured provisions may appear as removed/added and are not automatically mapped.",
+        "Missing provisions may reflect incomplete extraction rather than a change in the legal instrument.",
+        "Passages with missing/invalid text are excluded from text comparison; any article label affected on either side is marked uncomparable rather than added, removed, changed, or unchanged.",
+        "Verify both texts against their authoritative source pages and have qualified Egyptian counsel review the legal effect.",
+    ]
+    if extra_warning:
+        warnings.append(extra_warning)
+
     return {
         "comparison_type": "extracted_chunk_text_diff",
         "summary": {
             **counts,
             "unmapped_left_passages": len(left_unmapped),
             "unmapped_right_passages": len(right_unmapped),
+            "malformed_left_passages": left_malformed,
+            "malformed_right_passages": right_malformed,
         },
         "provisions": provisions,
         "unmapped_passages": {"left": left_unmapped, "right": right_unmapped},
-        "warnings": [
-            "This is a comparison of extracted chunks, not a legal conclusion about amendment, repeal, or legal effect.",
-            "Matching uses exact article labels; renumbered or restructured provisions may appear as removed/added and are not automatically mapped.",
-            "Missing provisions may reflect incomplete extraction rather than a change in the legal instrument.",
-            "Verify both texts against their authoritative source pages and have qualified Egyptian counsel review the legal effect.",
-        ],
+        "warnings": warnings,
     }
 
 
