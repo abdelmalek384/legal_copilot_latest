@@ -21,7 +21,7 @@ The evaluator requires:
 - non-empty `expected_source_ids`
 - explicit boolean `answerable`
 - `must_abstain_if_unverified: true`
-- optional `expected_pin_cites`, as a list of `{source_id, pin_cite}` objects
+- optional `expected_pin_cites`, as a list of objects with non-empty string `source_id` and `pin_cite` values
 
 Do not mark a question reviewed merely to make it count. Keep the seed file unlabelled until the review occurs.
 
@@ -41,7 +41,7 @@ One JSON object per question in `runs.example.jsonl`:
 }
 ```
 
-This is a schema example, not a real result. Do not copy placeholder IDs into the measured dataset.
+Both boolean fields are required explicitly; malformed source-ID lists, citation objects, booleans, or dates are reported and excluded rather than interpreted as zero-quality results. This is a schema example, not a real result. Do not copy placeholder IDs into the measured dataset.
 
 ## Metrics
 
@@ -52,7 +52,7 @@ This is a schema example, not a real result. Do not copy placeholder IDs into th
 - **Abstention compliance:** among reviewed unanswerable cases, fraction where the system abstained and did not use an unverified source.
 - **Unsafe unverified-source uses:** count of runs marked as using an unverified source without abstaining.
 
-Metrics are `null` when there is no eligible denominator. The report lists excluded questions and reasons. Duplicate run question IDs are reported; resolve them before relying on a score.
+Metrics are `null` when there is no eligible denominator. The report lists excluded questions and reasons, malformed question/run records, duplicate question IDs, and duplicate run question IDs. Duplicate IDs are excluded from scoring instead of choosing an arbitrary record. Resolve these data-quality errors before relying on a score.
 
 ## Run locally
 
