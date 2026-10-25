@@ -25,6 +25,8 @@ class TenantOwnershipPreflightTests(unittest.TestCase):
             CREATE TABLE members(case_id INTEGER, user_id INTEGER);
             CREATE TABLE docs(id INTEGER PRIMARY KEY, case_id INTEGER, firm_id INTEGER, uploader_user_id INTEGER);
             CREATE TABLE chunks(id INTEGER PRIMARY KEY, case_id INTEGER, document_id INTEGER);
+            CREATE TABLE IF NOT EXISTS tasks(id INTEGER PRIMARY KEY, case_id INTEGER, assignee INTEGER, created_by INTEGER, status TEXT);
+            INSERT INTO tasks VALUES (1,10,2,1,'open'),(2,999,1,1,'open'),(3,10,999,1,'open'),(4,10,NULL,999,'open'),(5,10,NULL,2,'open');
             CREATE TABLE research_conversations(id INTEGER PRIMARY KEY, user_id INTEGER, firm_id INTEGER);
             CREATE TABLE case_deletion_audit(id INTEGER PRIMARY KEY, firm_id INTEGER, actor_user_id INTEGER);
             CREATE TABLE document_extraction_reviews(id INTEGER PRIMARY KEY, document_id INTEGER, case_id INTEGER, firm_id INTEGER, chunk_id INTEGER, reviewer_user_id INTEGER);
@@ -65,6 +67,10 @@ class TenantOwnershipPreflightTests(unittest.TestCase):
         self.assertEqual(codes["research_message_conversation_missing"], 1)
         self.assertEqual(codes["research_message_conversation_unassigned"], 1)
         self.assertEqual(codes["orphan_notes_case"], 1)
+        self.assertEqual(codes["task_assignee_missing_user"], 1)
+        self.assertEqual(codes["task_assignee_firm_mismatch"], 1)
+        self.assertEqual(codes["task_creator_missing_user"], 1)
+        self.assertEqual(codes["task_creator_firm_mismatch"], 1)
         self.assertEqual(codes["unlinked_notes_case"], 1)
         self.assertEqual(codes["docs_uploader_missing_user"], 1)
         self.assertEqual(codes["docs_uploader_firm_mismatch"], 2)
