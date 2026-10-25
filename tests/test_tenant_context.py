@@ -49,6 +49,14 @@ class ResolveFirmContextTests(unittest.TestCase):
             with self.subTest(firm_id=firm_id), self.assertRaises(FirmContextError):
                 resolve_firm_context(self.user, firm_id, self.lookup)
 
+    def test_rejects_unknown_role_even_if_membership_is_active(self):
+        for role in ("owner", "platform_admin", "", None, 7):
+            with self.subTest(role=role), self.assertRaises(FirmContextError):
+                resolve_firm_context(
+                    self.user, 101,
+                    lambda user_id, firm_id, role=role: {"status": "active", "role": role},
+                )
+
     def test_fails_closed_when_membership_backend_errors(self):
         def broken_lookup(user_id, firm_id):
             raise RuntimeError("database unavailable")
