@@ -37,6 +37,10 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("e.setAttribute(key,String(value))", HTML)
         self.assertIn("if(value!=null)e.setAttribute", HTML)
 
+    def test_research_highlighting_uses_actual_matched_surface_terms(self):
+        self.assertIn("const highlightTerms=(text,question,matchedTerms)=>", HTML)
+        self.assertIn("highlightTerms(s.text||'',sourceQuestion,s.matched_terms)", HTML)
+
     def test_research_async_status_and_toasts_are_announced(self):
         self.assertIn('id="toast" role="status" aria-live="polite" aria-atomic="true"', HTML)
         self.assertIn("role:'status','aria-live':'polite','aria-atomic':'true'", HTML)

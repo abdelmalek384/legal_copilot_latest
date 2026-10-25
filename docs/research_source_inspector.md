@@ -8,7 +8,7 @@ Expose the evidence behind a research answer without treating model confidence, 
 
 1. Select **Verified legal corpus**, **Firm documents in a matter**, or **Source catalog discovery (metadata only)**.
 2. Search with a natural-language question, title/citation, or article number.
-3. Inspect exact retrieved passage text and recorded source/version metadata.
+3. Inspect exact retrieved passage text, highlighted matched surface terms, and recorded source/version metadata.
 4. Copy the recorded citation or exact passage, open the registered HTTPS source, export a plain-text research memo, or save the memo to a matter's notes.
 5. If no relevant passage is found, see a no-source state and run a separate metadata-only discovery search.
 
@@ -40,6 +40,6 @@ These labels describe recorded data only; they do not replace legal review. Malf
 
 ## Validation and limitations
 
-Automated tests cover conservative status gates, citation formatting, memo caveats, search-scope separation, metadata-only empty states, matter saving, and frontend controls. CI is the source of truth for test status. Manual browser review, screen-reader checks, lawyer validation, and a production security review remain separate requirements.
+Automated tests cover conservative status gates, citation formatting, memo caveats, search-scope separation, metadata-only empty states, matter saving, frontend controls, and highlighting of the actual source-word forms matched by curated Arabic query expansion. CI is the source of truth for test status. Manual browser review, screen-reader checks, lawyer validation, and a production security review remain separate requirements.
 
 The corpus remains incomplete. Missing metadata, page numbers, legal text, or written permission are not inferred.

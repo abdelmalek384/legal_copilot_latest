@@ -1,7 +1,7 @@
 """Regression tests for Arabic query expansion and preliminary conflict-name matching."""
 import unittest
 
-from app import conflict_name_matches, expanded_tokens, tokens
+from app import conflict_name_matches, expanded_tokens, matched_surface_terms, tokens
 
 
 class ArabicMatchingTests(unittest.TestCase):
@@ -14,6 +14,14 @@ class ArabicMatchingTests(unittest.TestCase):
         query = expanded_tokens("التأخير")
         self.assertIn("تأخير", query)
         self.assertIn("تأخر", query)
+
+    def test_matched_surface_terms_highlight_retrieved_arabic_variants(self):
+        self.assertIn("شيكا", matched_surface_terms("حرر المدين شيكا للمستفيد", expanded_tokens("الشيك")))
+        self.assertIn("تأخر", matched_surface_terms("عند تأخر المدين في السداد", expanded_tokens("التأخير")))
+
+    def test_matched_surface_terms_are_bounded_and_deduplicated(self):
+        terms = matched_surface_terms("شيكا شيكا شيكا", expanded_tokens("الشيك"), limit=2)
+        self.assertEqual(terms, ["شيكا"])
 
     def test_arabic_case_search_keeps_the_surface_text_unchanged(self):
         self.assertEqual(tokens("الشيك"), ["شيك"])
