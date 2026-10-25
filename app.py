@@ -311,7 +311,7 @@ def matched_surface_terms(text, expanded_terms, limit=12):
     if not expanded:
         return []
     matched = []
-    for surface in re.findall(r"\w+", text):
+    for surface in re.findall(r"[\w\u064b-\u0652\u0670\u0640]+", text):
         if len(surface) < 2:
             continue
         if any(token in expanded for token in tokens(surface)) and surface not in matched:
