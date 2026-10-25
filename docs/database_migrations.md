@@ -60,6 +60,16 @@ PYTHONPATH=. python scripts/chunks_fts_preflight.py /path/to/protected-copy.sqli
 The audit opens the source in SQLite read-only mode and compares chunk row IDs with FTS row IDs, detects missing/orphaned rows, and checks indexed text against the application's current tokenization. Exit status is 0 when no anomalies are detected, 1 when review is required, and 2 when the audit cannot run. It does not rebuild the index or prove that legal content itself is complete/correct. Review findings and rehearse any repair on a disposable copy before applying it to an operational database.
 
 
+## Rebuild FTS only on a new database copy
+
+When `scripts/chunks_fts_preflight.py` reports missing, orphaned, or stale FTS rows, prepare a rebuilt index on a new copy without writing to the source:
+
+```bash
+PYTHONPATH=. python scripts/rebuild_chunks_fts_copy.py /path/to/source.sqlite3 /path/to/new-rebuilt-copy.sqlite3
+```
+
+The output path must not exist; the utility refuses to overwrite it. It copies the source through SQLite's backup API, recreates `chunks_fts` on the output copy, repopulates it from `chunks.text` using the application's canonical tokenizer, and checks SQLite integrity, foreign keys, chunk counts, and FTS consistency. It deletes a failed partial output rather than leaving it looking like a successful rebuild. A successful copy is a review artifact, not an instruction to replace a live database; replacement requires an independent backup, review, and tested restore/deployment plan.
+
 ## Startup DDL inventory
 
 Before migrating remaining startup DDL, run:
