@@ -74,6 +74,8 @@ jobs:
         run: python tests/test_collection_pipeline.py
       - name: Test legal versioned registry
         run: python tests/test_legal_versioned_registry.py
+      - name: Test read-only legal version comparison
+        run: python tests/test_compare_legal_versions.py
       - name: Test legal corpus audit
         run: python tests/test_legal_corpus_audit.py
       - name: Test legal source review queue
