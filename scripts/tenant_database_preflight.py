@@ -49,19 +49,75 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
     if not root.is_dir():
         raise ValueError("tenant storage root must be a directory")
 
+    catalog_authoritative = True
     with closing(_readonly(resolved_catalog)) as catalog:
         tables = {row[0] for row in catalog.execute(
             "SELECT name FROM sqlite_master WHERE type='table'"
         )}
         if "tenant_database_catalog" not in tables:
             raise ValueError("catalog is missing tenant_database_catalog")
+
+        # Do not follow any catalog-selected tenant path unless the catalog
+        # itself is recognizably the migration-managed control-plane database.
+        if "database_profile" not in tables:
+            add("missing_control_plane_profile", None, "catalog has no database profile marker")
+            catalog_authoritative = False
+        else:
+            try:
+                profile_rows = catalog.execute(
+                    "SELECT profile FROM database_profile WHERE singleton=1"
+                ).fetchall()
+                if len(profile_rows) != 1:
+                    add("invalid_control_plane_profile", None, "expected exactly one control-plane profile marker")
+                    catalog_authoritative = False
+                elif profile_rows[0][0] != "control_plane":
+                    add("wrong_control_plane_profile", None, "catalog database profile is not 'control_plane'")
+                    catalog_authoritative = False
+            except sqlite3.Error:
+                add("invalid_control_plane_profile", None, "control-plane profile marker could not be read")
+                catalog_authoritative = False
+
+            profile_triggers = {
+                row[0] for row in catalog.execute(
+                    "SELECT name FROM sqlite_master WHERE type='trigger' "
+                    "AND name IN ('database_profile_no_update','database_profile_no_delete')"
+                )
+            }
+            if profile_triggers != {"database_profile_no_update", "database_profile_no_delete"}:
+                add("mutable_control_plane_profile", None, "control-plane profile marker lacks immutable update/delete guards")
+                catalog_authoritative = False
+
+        if "firms" not in tables:
+            add("missing_firms_table", None, "control-plane catalog has no firms table")
+            catalog_authoritative = False
+
+        catalog_fks = catalog.execute("PRAGMA foreign_key_list(tenant_database_catalog)").fetchall()
+        if not any(
+            row[2] == "firms" and row[3] == "firm_id" and row[4] == "id"
+            for row in catalog_fks
+        ):
+            add("catalog_missing_firm_fk", None, "tenant catalog does not enforce firm ownership with a foreign key")
+            catalog_authoritative = False
+
+        try:
+            catalog_fk_violations = catalog.execute(
+                "PRAGMA foreign_key_check(tenant_database_catalog)"
+            ).fetchmany(20)
+            if catalog_fk_violations:
+                add("catalog_foreign_key_violations", None, "tenant catalog contains one or more invalid firm references")
+                catalog_authoritative = False
+        except sqlite3.Error:
+            add("catalog_foreign_key_check_failed", None, "tenant catalog foreign-key integrity could not be checked")
+            catalog_authoritative = False
+
         rows = catalog.execute(
             "SELECT firm_id, database_file, status FROM tenant_database_catalog ORDER BY firm_id"
         ).fetchall()
 
     seen_files: dict[str, int] = {}
     inspected = 0
-    for firm_id, filename, status in rows:
+    # A malformed or untrusted catalog must not be used to choose database files.
+    for firm_id, filename, status in (rows if catalog_authoritative else []):
         if status != "provisioned":
             if status in ("provisioning", "failed"):
                 add("tenant_not_ready", firm_id, f"catalog status is {status!r}")
