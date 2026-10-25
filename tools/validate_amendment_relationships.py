@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import json
+from datetime import date
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -137,8 +138,16 @@ def validate(relationships_doc: dict, inventory_doc: dict) -> dict:
         if relation_type != "base_instrument" and not item.get("affected_provision") and not item.get("affected_provisions"):
             add("warning", "provision_mapping_not_recorded", rid_label, "Record affected articles/schedules when evidence supports the mapping.")
         effective_date = item.get("instrument_effective_date")
-        if effective_date not in (None, "unknown_pending_gazette_verification") and not isinstance(effective_date, str):
-            add("error", "invalid_effective_date_value", rid_label, "Effective date must be an ISO date string or an explicit unknown sentinel.")
+        if effective_date not in (None, "unknown_pending_gazette_verification"):
+            valid_date = False
+            if isinstance(effective_date, str):
+                try:
+                    parsed_date = date.fromisoformat(effective_date)
+                    valid_date = parsed_date.isoformat() == effective_date
+                except ValueError:
+                    valid_date = False
+            if not valid_date:
+                add("error", "invalid_effective_date_value", rid_label, "Effective date must be a valid calendar date in YYYY-MM-DD format, null, or the explicit unknown sentinel.")
         if effective_date == "unknown_pending_gazette_verification":
             add("warning", "effective_date_unknown", rid_label, "Unknown commencement/effective date remains unresolved; do not infer it from publication date.")
 
