@@ -4,9 +4,11 @@
 **Estimated completion:** 28%  
 **Status:** In progress — not production-ready for confidential multi-firm matter data.
 
-This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. The checklist currently tracks 43 completed tasks and 21 remaining tasks; this count is not a readiness percentage. Update this file as database PRs merge and as acceptance criteria are completed.
+This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. The checklist currently tracks 44 completed tasks and 21 remaining tasks; this count is not a readiness percentage. Update this file as database PRs merge and as acceptance criteria are completed.
 
 ## Completed and merged
+
+- [x] Remove duplicated research-conversation ownership findings from the read-only tenant preflight and assert finding codes are unique (PR #247 merged; CI run 40235595413 passed).
 
 - [x] Extend read-only ownership preflight to flag missing creators and cross-firm creator attribution for notes, deadlines, and fees (PR #242 merged; CI run 40234817307 passed).
 
