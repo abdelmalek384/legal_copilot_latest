@@ -295,5 +295,15 @@ class DatabaseMigrationTests(unittest.TestCase):
         self.assertEqual(apply_migrations(self.db, migrations), [])
 
 
+    def test_conditional_column_migration_matches_existing_column_case_insensitively(self):
+        self.write("0001_create_sample.sql", "CREATE TABLE sample(id INTEGER PRIMARY KEY, Value TEXT);")
+        self.write("0002_optional_column.sql", """
+            -- @add-column-if-missing sample value
+            ALTER TABLE sample ADD COLUMN value TEXT DEFAULT '';
+        """)
+        self.assertEqual(apply_migrations(self.db, self.path), [1, 2])
+        columns = [row["name"] for row in self.db.execute("PRAGMA table_info(sample)")]
+        self.assertEqual(columns, ["id", "Value"])
+
 if __name__ == "__main__":
     unittest.main()
