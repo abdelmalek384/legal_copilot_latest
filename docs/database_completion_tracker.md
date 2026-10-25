@@ -4,9 +4,11 @@
 **Estimated completion:** 28%  
 **Status:** In progress — not production-ready for confidential multi-firm matter data.
 
-This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. The checklist currently tracks 40 completed tasks and 21 remaining tasks; this count is not a readiness percentage. Update this file as database PRs merge and as acceptance criteria are completed.
+This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. The checklist currently tracks 41 completed tasks and 21 remaining tasks; this count is not a readiness percentage. Update this file as database PRs merge and as acceptance criteria are completed.
 
 ## Completed and merged
+
+- [x] Extend read-only ownership preflight to flag research messages with missing or unassigned conversation parents (PR #235 merged; CI run 40234397873 passed).
 
 - [x] Extend the read-only ownership preflight to detect research conversations with missing/unassigned users, missing firm ownership, or unknown firm IDs (PR #231 merged; CI run 40234204885 passed).
 
