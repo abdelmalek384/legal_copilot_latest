@@ -1,7 +1,12 @@
 """Security tests for trusted firm-context resolution."""
+import sqlite3
 import unittest
+from pathlib import Path
 
-from tenant_context import FirmContext, FirmContextError, resolve_firm_context
+from schema_profiles import apply_profile_migrations
+from tenant_context import FirmContext, FirmContextError, resolve_firm_context, sqlite_membership_lookup
+
+MIGRATIONS = Path(__file__).resolve().parents[1] / "migrations"
 
 
 class ResolveFirmContextTests(unittest.TestCase):
@@ -49,6 +54,35 @@ class ResolveFirmContextTests(unittest.TestCase):
             raise RuntimeError("database unavailable")
         with self.assertRaises(FirmContextError):
             resolve_firm_context(self.user, 101, broken_lookup)
+
+    def test_sqlite_membership_lookup_uses_control_plane_status_and_firm_role(self):
+        db = sqlite3.connect(":memory:")
+        db.execute("PRAGMA foreign_keys=ON")
+        try:
+            apply_profile_migrations(db, "control_plane", MIGRATIONS)
+            db.execute("INSERT INTO firms(id,name) VALUES(101,'Firm A'),(202,'Firm B')")
+            db.execute(
+                "INSERT INTO users(id,name,email_display,email_normalized,password_hash) VALUES(7,'Lawyer','lawyer@example.test','lawyer@example.test','hash')"
+            )
+            db.execute(
+                "INSERT INTO firm_memberships(user_id,firm_id,firm_role,status) VALUES(7,101,'lawyer','active'),(7,202,'admin','suspended')"
+            )
+            lookup = sqlite_membership_lookup(db)
+            self.assertEqual(lookup(7, 101), {"status": "active", "role": "lawyer"})
+            self.assertEqual(lookup(7, 202), {"status": "suspended", "role": "admin"})
+            self.assertIsNone(lookup(7, 303))
+            self.assertEqual(
+                resolve_firm_context({"id": 7}, 101, lookup),
+                FirmContext(user_id=7, firm_id=101, role="lawyer"),
+            )
+            with self.assertRaises(FirmContextError):
+                resolve_firm_context({"id": 7}, 202, lookup)
+        finally:
+            db.close()
+
+    def test_sqlite_membership_lookup_requires_a_trusted_sqlite_connection(self):
+        with self.assertRaises(TypeError):
+            sqlite_membership_lookup("/client/supplied/database.sqlite3")
 
     def test_fails_closed_on_malformed_membership(self):
         for membership in (None, {"status": "active"}, {"status": "active", "role": ""}):

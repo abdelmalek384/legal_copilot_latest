@@ -9,6 +9,7 @@ schema and legacy-user reconciliation plan are approved.
 from __future__ import annotations
 
 from dataclasses import dataclass
+import sqlite3
 from typing import Any, Callable, Mapping
 
 
@@ -24,6 +25,29 @@ class FirmContext:
 
 
 MembershipLookup = Callable[[int, int], Mapping[str, Any] | None]
+
+
+
+def sqlite_membership_lookup(connection: sqlite3.Connection) -> MembershipLookup:
+    """Build a fail-closed lookup over the control-plane membership schema.
+
+    The supplied connection must target the trusted control-plane database and
+    be owned by the current request/thread. The function never accepts a
+    database path or firm mapping from the client.
+    """
+    if not isinstance(connection, sqlite3.Connection):
+        raise TypeError("trusted control-plane SQLite connection is required")
+
+    def lookup(user_id: int, firm_id: int) -> Mapping[str, Any] | None:
+        row = connection.execute(
+            "SELECT status, firm_role FROM firm_memberships WHERE user_id=? AND firm_id=?",
+            (user_id, firm_id),
+        ).fetchone()
+        if row is None:
+            return None
+        return {"status": row[0], "role": row[1]}
+
+    return lookup
 
 
 def resolve_firm_context(
