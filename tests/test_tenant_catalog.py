@@ -45,6 +45,26 @@ class TenantCatalogTests(unittest.TestCase):
         finally:
             db.close()
 
+    def test_existing_catalog_without_firm_foreign_key_is_rejected(self):
+        db = sqlite3.connect(":memory:")
+        try:
+            db.execute("CREATE TABLE firms(id INTEGER PRIMARY KEY, name TEXT NOT NULL)")
+            db.execute("""
+                CREATE TABLE tenant_database_catalog (
+                    firm_id INTEGER PRIMARY KEY,
+                    database_file TEXT UNIQUE,
+                    status TEXT NOT NULL CHECK(status IN ('provisioning','provisioned','failed','disabled')),
+                    created_at TEXT NOT NULL DEFAULT (datetime('now')),
+                    updated_at TEXT NOT NULL DEFAULT (datetime('now')),
+                    last_error_code TEXT
+                )
+            """)
+            db.commit()
+            with self.assertRaisesRegex(TenantCatalogError, "missing its firm ownership constraint"):
+                initialize_catalog(db)
+        finally:
+            db.close()
+
     def test_provision_requires_an_existing_firm(self):
         with self.assertRaisesRegex(sqlite3.IntegrityError, "FOREIGN KEY"):
             provision_tenant_database(self.catalog, 404, self.root, self.initialize_tenant)
