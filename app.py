@@ -1296,7 +1296,7 @@ def dashboard(u: dict = Depends(user)):
 
 
 def _ics_escape(value):
-    return str(value or "").replace("\\\\", "\\\\\\\\").replace("\\r\\n", "\\n").replace("\\n", "\\\\n").replace(",", "\\\\,").replace(";", "\\\\;")
+    return str(value or "").replace("\\", "\\\\").replace("\r\n", "\n").replace("\n", "\\n").replace(",", "\\,").replace(";", "\\;")
 
 
 def _ics_event(kind, item_id, firm_id, case_id, day, summary, description):
@@ -1358,7 +1358,7 @@ def export_calendar(u: dict = Depends(user)):
     lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Legal Copilot//Case Calendar//EN",
              "CALSCALE:GREGORIAN", "METHOD:PUBLISH"] + events + ["END:VCALENDAR"]
     return Response(
-        content="\\r\\n".join(lines) + "\\r\\n",
+        content="\r\n".join(lines) + "\r\n",
         media_type="text/calendar; charset=utf-8",
         headers={"Content-Disposition": 'attachment; filename="legal-copilot-calendar.ics"'},
     )
