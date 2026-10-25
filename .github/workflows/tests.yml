@@ -28,6 +28,10 @@ jobs:
         run: python -m pip install -r requirements.txt
       - name: Test versioned database migrations
         run: PYTHONPATH=. python tests/test_db_migrations.py
+      - name: Test profile-aware migration binding
+        run: PYTHONPATH=. python tests/test_schema_profiles.py
+      - name: Test initial isolated database profile schemas
+        run: PYTHONPATH=. python tests/test_profile_initial_schemas.py
       - name: Test migration history ordering guard
         run: PYTHONPATH=. python tests/test_migration_history_ordering.py
       - name: Test read-only startup DDL inventory
