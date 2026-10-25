@@ -71,7 +71,7 @@ class DatabaseMigrationTests(unittest.TestCase):
 
     def test_startup_schema_no_longer_creates_indexes_inline(self):
         # Guard the incremental DDL cutover: indexes belong in immutable
-        # migrations, while legacy table/FTS bootstrap remains for now.
+        # migrations, while legacy table bootstrap remains for now.
         import ast
 
         app_path = Path(__file__).resolve().parents[1] / "app.py"
@@ -175,7 +175,7 @@ class DatabaseMigrationTests(unittest.TestCase):
         fts_sql = self.db.execute(
             "SELECT sql FROM sqlite_master WHERE type='table' AND name='chunks_fts'"
         ).fetchone()[0]
-        self.assertIn("USING fts5(norm)", fts_sql.lower())
+        self.assertIn("using fts5(norm)", fts_sql.lower())
         self.db.execute("INSERT INTO chunks_fts(norm) VALUES('migration search sentinel')")
         self.assertEqual(
             self.db.execute(
