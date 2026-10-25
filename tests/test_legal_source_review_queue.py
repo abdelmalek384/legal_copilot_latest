@@ -60,6 +60,31 @@ class LegalSourceReviewQueueTests(unittest.TestCase):
                 self.assertIn(expected_reason, report["source_permissions"][0]["review_reasons"], permission)
                 self.assertIn(expected_reason, report["records"][0]["review_reasons"], permission)
 
+    def test_orphaned_versions_are_included_in_review_queue(self):
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td)/"legal.db"
+            make_db(path)
+            db = sqlite3.connect(path)
+            db.execute(
+                "INSERT INTO legal_document_versions VALUES(2,'DOC-MISSING','orphaned','https://example.gov/orphan.pdf',NULL,NULL,NULL,NULL,'unknown','pending_source_review',0,0,0,NULL)"
+            )
+            db.execute(
+                "INSERT INTO legal_documents VALUES('DOC-NO-SOURCE','SRC-MISSING','Missing source law','law')"
+            )
+            db.execute(
+                "INSERT INTO legal_document_versions VALUES(3,'DOC-NO-SOURCE','initial','https://example.gov/no-source.pdf',NULL,NULL,NULL,NULL,'unknown','pending_source_review',0,0,0,NULL)"
+            )
+            db.commit()
+            db.close()
+
+            report = MODULE.review_queue(path)
+            by_id = {record["version_id"]: record for record in report["records"]}
+            self.assertIn(2, by_id)
+            self.assertIn("document_missing_from_registry", by_id[2]["review_reasons"])
+            self.assertIn(3, by_id)
+            self.assertIn("source_missing_from_registry", by_id[3]["review_reasons"])
+            self.assertEqual(report["summary"]["versions_scanned"], 3)
+
     def test_missing_registry_tables_report_schema_issue(self):
         with tempfile.TemporaryDirectory() as td:
             path=Path(td)/"empty.db"
