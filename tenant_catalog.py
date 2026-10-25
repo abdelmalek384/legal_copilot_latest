@@ -21,10 +21,29 @@ class TenantCatalogError(RuntimeError):
 
 
 def initialize_catalog(connection: sqlite3.Connection) -> None:
-    """Create the control-plane catalog schema, without provisioning any tenant."""
+    """Validate and initialize the migration-managed control-plane catalog.
+
+    The firms table and tenant catalog migrations are the schema authority.
+    This helper must not silently create a weaker catalog without a firm FK.
+    """
+    if connection.in_transaction:
+        raise TenantCatalogError("Initialize the tenant catalog outside an active transaction")
+    connection.execute("PRAGMA foreign_keys = ON")
+    if connection.execute("PRAGMA foreign_keys").fetchone()[0] != 1:
+        raise TenantCatalogError("Control-plane foreign-key enforcement could not be enabled")
+    tables = {
+        row[0] for row in connection.execute(
+            "SELECT name FROM sqlite_master WHERE type='table'"
+        )
+    }
+    if "firms" not in tables:
+        raise TenantCatalogError(
+            "Control-plane firms table must be created by migrations before catalog initialization"
+        )
     connection.execute("""
         CREATE TABLE IF NOT EXISTS tenant_database_catalog (
-            firm_id INTEGER PRIMARY KEY CHECK(firm_id > 0),
+            firm_id INTEGER PRIMARY KEY CHECK(firm_id > 0)
+                REFERENCES firms(id) ON DELETE RESTRICT,
             database_file TEXT UNIQUE,
             status TEXT NOT NULL CHECK(status IN ('provisioning','provisioned','failed','disabled')),
             created_at TEXT NOT NULL DEFAULT (datetime('now')),
@@ -32,6 +51,13 @@ def initialize_catalog(connection: sqlite3.Connection) -> None:
             last_error_code TEXT
         )
     """)
+    foreign_keys = connection.execute(
+        "PRAGMA foreign_key_list(tenant_database_catalog)"
+    ).fetchall()
+    if not any(row[2] == "firms" and row[3] == "firm_id" and row[4] == "id" for row in foreign_keys):
+        raise TenantCatalogError(
+            "Tenant catalog is missing its firm ownership constraint; apply control-plane migrations"
+        )
     connection.commit()
 
 
