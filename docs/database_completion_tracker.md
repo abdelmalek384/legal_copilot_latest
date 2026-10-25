@@ -8,6 +8,8 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 
 ## Completed and merged
 
+- [x] Require the trusted membership lookup to verify the immutable `control_plane` profile marker and reject wrong/unbound database connections; retain fail-closed user/firm lifecycle checks (PR #280 merged; CI run 40237828642 passed).
+
 - [x] Extend the read-only tenant database preflight to verify the firm schema profile marker and embedded firm ID against the trusted catalog mapping (PR #271 merged; CI run 40237510600 passed).
 
 - [x] Validate platform-role input types and reject malformed role values with a controlled error (PR #272 merged; CI run 40237519341 passed).
