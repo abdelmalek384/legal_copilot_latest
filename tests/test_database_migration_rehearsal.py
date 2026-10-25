@@ -40,7 +40,6 @@ class DatabaseMigrationRehearsalTests(unittest.TestCase):
                 CREATE TABLE legal_review_events(version_id INTEGER, reviewed_at TEXT);
                 CREATE TABLE research_conversations(firm_id INTEGER, user_id INTEGER, updated_at TEXT);
                 CREATE TABLE research_messages(conversation_id INTEGER, id INTEGER);
-                INSERT INTO cases VALUES (1);
             """)
         self.migrations = Path(__file__).resolve().parents[1] / "migrations"
 
