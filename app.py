@@ -332,7 +332,7 @@ def validate_password_strength(password):
         "012345678901", "123456789012", "1234567890ab",
         "098765432109", "987654321098",
     }
-    repeated = re.fullmatch(r"(.)\\1{11,}", value) is not None
+    repeated = re.fullmatch(r"(.)\1{11,}", value) is not None
     if common_prefix or sequential_digits or repeated:
         raise ValueError("choose a less predictable password; common patterns are not allowed")
     return password
