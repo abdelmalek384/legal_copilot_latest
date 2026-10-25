@@ -9,7 +9,7 @@ The rubric in [Human Review Rubric for Egyptian Legal Answers](legal_answer_revi
 Create a UTF-8 JSONL file with one assessment per line. Use synthetic scenarios or approved anonymized material only; never commit privileged/client facts, secrets, or re-identifiable records.
 
 Each record requires:
-- Unique `assessment_id`, `case_id`, `practice_area`, `reviewer_name`, `review_date`, and `disposition`.
+- Unique `assessment_id`, `case_id`, `practice_area`, `reviewer_name`, `review_date`, and `disposition`. `review_date` must be a real calendar date in `YYYY-MM-DD` format; malformed disposition values are rejected without crashing the validator.
 - `scores`: all seven dimensions, each scored `0`, `1`, `2`, or `not_applicable`.
 - `rationales`: an evidence-based rationale for every dimension. A not-applicable rationale must explain why the dimension does not apply.
 - `critical_defect`: explicit boolean. If true, disposition must be `unsafe` and `critical_defect_description` is required.
