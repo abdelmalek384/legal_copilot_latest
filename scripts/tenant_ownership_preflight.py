@@ -190,10 +190,27 @@ def audit(conn: sqlite3.Connection) -> dict[str, Any]:
             add("chunks_unclassified_shared", "review",
                 _count(conn, "SELECT COUNT(*) FROM chunks WHERE case_id IS NULL"),
                 "NULL case_id may mean shared legal corpus, but must be verified against corpus provenance before migration.")
-    if "research_conversations" in tables and {"firm_id", "user_id"} <= _columns(conn, "research_conversations") and "users" in tables:
-        add("research_owner_firm_mismatch", "critical",
-            _count(conn, "SELECT COUNT(*) FROM research_conversations rc JOIN users u ON u.id=rc.user_id WHERE rc.firm_id IS NOT u.firm_id"),
-            "Research conversation firm differs from its owner's current firm.")
+    if "research_conversations" in tables:
+        research_cols = _columns(conn, "research_conversations")
+        if "user_id" in research_cols and "users" in tables:
+            add("research_owner_missing_user", "high",
+                _count(conn, "SELECT COUNT(*) FROM research_conversations rc LEFT JOIN users u ON u.id=rc.user_id WHERE rc.user_id IS NOT NULL AND u.id IS NULL"),
+                "Research conversation owner points to a missing user.")
+            add("research_owner_unassigned", "high",
+                _count(conn, "SELECT COUNT(*) FROM research_conversations WHERE user_id IS NULL"),
+                "Research conversation has no explicit owner; establish ownership from trusted evidence.")
+            if "firm_id" in research_cols and "firm_id" in _columns(conn, "users"):
+                add("research_owner_firm_mismatch", "critical",
+                    _count(conn, "SELECT COUNT(*) FROM research_conversations rc JOIN users u ON u.id=rc.user_id WHERE rc.firm_id IS NOT u.firm_id"),
+                    "Research conversation firm differs from its owner's current firm.")
+        if "firm_id" in research_cols:
+            add("research_missing_firm", "critical",
+                _count(conn, "SELECT COUNT(*) FROM research_conversations WHERE firm_id IS NULL"),
+                "Research conversation has no explicit firm ownership.")
+            if "firms" in tables and "id" in _columns(conn, "firms"):
+                add("research_unknown_firm", "critical",
+                    _count(conn, "SELECT COUNT(*) FROM research_conversations rc LEFT JOIN firms f ON f.id=rc.firm_id WHERE rc.firm_id IS NOT NULL AND f.id IS NULL"),
+                    "Research conversation firm_id does not resolve to a firms row.")
     if "case_deletion_audit" in tables and "firm_id" in _columns(conn, "case_deletion_audit"):
         add("deletion_audit_missing_firm", "critical",
             _count(conn, "SELECT COUNT(*) FROM case_deletion_audit WHERE firm_id IS NULL"),
