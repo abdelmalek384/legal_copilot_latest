@@ -5,7 +5,10 @@ import unittest
 import uuid
 from pathlib import Path
 
+from schema_profiles import apply_profile_migrations
 from scripts.tenant_database_preflight import audit
+
+MIGRATIONS = Path(__file__).resolve().parents[1] / "migrations"
 
 
 class TenantDatabasePreflightTests(unittest.TestCase):
@@ -16,13 +19,8 @@ class TenantDatabasePreflightTests(unittest.TestCase):
         self.root.mkdir()
         self.catalog_path = self.base / "catalog.sqlite3"
         self.catalog = sqlite3.connect(self.catalog_path)
-        self.catalog.execute("""
-            CREATE TABLE tenant_database_catalog (
-                firm_id INTEGER PRIMARY KEY,
-                database_file TEXT UNIQUE,
-                status TEXT NOT NULL
-            )
-        """)
+        self.catalog.execute("PRAGMA foreign_keys=ON")
+        apply_profile_migrations(self.catalog, "control_plane", MIGRATIONS)
 
     def tearDown(self):
         self.catalog.close()
@@ -30,6 +28,8 @@ class TenantDatabasePreflightTests(unittest.TestCase):
 
     def add_tenant(self, firm_id, status="provisioned", filename=None):
         filename = filename or f"tenant-{firm_id}-{uuid.uuid4().hex}.sqlite3"
+        if not self.catalog.execute("SELECT 1 FROM firms WHERE id=?", (firm_id,)).fetchone():
+            self.catalog.execute("INSERT INTO firms(id,name) VALUES(?,?)", (firm_id, f"Firm {firm_id}"))
         self.catalog.execute(
             "INSERT INTO tenant_database_catalog(firm_id,database_file,status) VALUES(?,?,?)",
             (firm_id, filename, status),
@@ -86,6 +86,7 @@ class TenantDatabasePreflightTests(unittest.TestCase):
         self.assertIn("database_missing", {item["code"] for item in report["findings"]})
 
     def test_invalid_mapping_and_not_ready_tenant_are_reported(self):
+        self.catalog.execute("INSERT INTO firms(id,name) VALUES(3,'Firm 3')")
         self.catalog.execute(
             "INSERT INTO tenant_database_catalog(firm_id,database_file,status) VALUES(3,?,?)",
             ("../../outside.sqlite3", "provisioned"),
@@ -96,6 +97,41 @@ class TenantDatabasePreflightTests(unittest.TestCase):
         codes = {item["code"] for item in report["findings"]}
         self.assertIn("invalid_database_reference", codes)
         self.assertIn("tenant_not_ready", codes)
+
+
+
+    def test_untrusted_control_plane_profile_is_reported_and_tenant_files_are_not_opened(self):
+        self.add_tenant(8)
+        self.catalog.execute("DROP TRIGGER database_profile_no_update")
+        self.catalog.execute("UPDATE database_profile SET profile='firm' WHERE singleton=1")
+        self.catalog.commit()
+        report = audit(self.catalog_path, self.root)
+        codes = {item["code"] for item in report["findings"]}
+        self.assertIn("wrong_control_plane_profile", codes)
+        self.assertIn("mutable_control_plane_profile", codes)
+        self.assertEqual(report["tenant_databases_inspected"], 0)
+
+    def test_catalog_missing_firm_foreign_key_is_reported_without_opening_tenant_files(self):
+        self.add_tenant(9)
+        row = self.catalog.execute(
+            "SELECT database_file,status FROM tenant_database_catalog WHERE firm_id=9"
+        ).fetchone()
+        self.catalog.execute("DROP TABLE tenant_database_catalog")
+        self.catalog.execute("""
+            CREATE TABLE tenant_database_catalog (
+                firm_id INTEGER PRIMARY KEY,
+                database_file TEXT UNIQUE,
+                status TEXT NOT NULL
+            )
+        """)
+        self.catalog.execute(
+            "INSERT INTO tenant_database_catalog(firm_id,database_file,status) VALUES(9,?,?)",
+            row,
+        )
+        self.catalog.commit()
+        report = audit(self.catalog_path, self.root)
+        self.assertIn("catalog_missing_firm_fk", {item["code"] for item in report["findings"]})
+        self.assertEqual(report["tenant_databases_inspected"], 0)
 
 
     def test_wrong_profile_and_embedded_firm_binding_are_reported(self):
