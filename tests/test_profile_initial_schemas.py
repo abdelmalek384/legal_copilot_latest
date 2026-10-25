@@ -237,5 +237,26 @@ class ProfileInitialSchemaTests(unittest.TestCase):
                 VALUES(1,'firm_admin')""")
         db.close()
 
+    def test_normalized_email_key_uses_shared_unicode_normalizer(self):
+        from identity import normalize_email
+
+        first = normalize_email("  Straße@EXAMPLE.COM ")
+        second = normalize_email("STRASSE@example.com")
+        self.assertEqual(first, second)
+        self.assertEqual(
+            normalize_email("E\u0301@example.com"),
+            normalize_email("É@EXAMPLE.COM"),
+        )
+
+        db = self.build("control_plane")
+        db.execute("""INSERT INTO users
+            (id,name,email_display,email_normalized,password_hash)
+            VALUES(1,'First','Straße@EXAMPLE.COM',?,'test-hash')""", (first,))
+        with self.assertRaises(sqlite3.IntegrityError):
+            db.execute("""INSERT INTO users
+                (id,name,email_display,email_normalized,password_hash)
+                VALUES(2,'Second','STRASSE@example.com',?,'test-hash')""", (second,))
+        db.close()
+
 if __name__ == "__main__":
     unittest.main()
