@@ -28,6 +28,15 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
     """Inspect catalog mappings and provisioned SQLite files without writing."""
     findings: list[dict[str, Any]] = []
 
+    requested_catalog = Path(catalog_path).expanduser()
+    # Match the storage-root policy: do not silently follow a configured
+    # catalog symlink to a different database during a read-only audit.
+    if requested_catalog.is_symlink():
+        raise ValueError("tenant catalog database must not be a symlink")
+    resolved_catalog = requested_catalog.resolve(strict=True)
+    if not resolved_catalog.is_file():
+        raise ValueError("tenant catalog database must be a regular file")
+
     def add(code: str, firm_id: int | None, detail: str) -> None:
         findings.append({"code": code, "firm_id": firm_id, "detail": detail})
 
@@ -40,7 +49,7 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
     if not root.is_dir():
         raise ValueError("tenant storage root must be a directory")
 
-    with closing(_readonly(catalog_path)) as catalog:
+    with closing(_readonly(resolved_catalog)) as catalog:
         tables = {row[0] for row in catalog.execute(
             "SELECT name FROM sqlite_master WHERE type='table'"
         )}
@@ -99,7 +108,7 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
 
     return {
         "mode": "read_only",
-        "catalog": str(catalog_path),
+        "catalog": str(resolved_catalog),
         "tenant_storage_root": str(root),
         "catalog_entries": len(rows),
         "tenant_databases_inspected": inspected,

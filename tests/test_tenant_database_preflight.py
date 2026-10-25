@@ -71,6 +71,12 @@ class TenantDatabasePreflightTests(unittest.TestCase):
         self.assertIn("invalid_database_reference", codes)
         self.assertIn("tenant_not_ready", codes)
 
+    def test_symlinked_catalog_database_is_rejected(self):
+        link = self.base / "catalog-link.sqlite3"
+        link.symlink_to(self.catalog_path)
+        with self.assertRaisesRegex(ValueError, "catalog database must not be a symlink"):
+            audit(link, self.root)
+
     def test_symlinked_storage_root_is_rejected(self):
         real_root = self.base / "real-tenants"
         real_root.mkdir()
