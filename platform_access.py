@@ -19,7 +19,7 @@ def has_platform_role(
         raise TypeError("trusted control-plane SQLite connection is required")
     if isinstance(user_id, bool) or not isinstance(user_id, int) or user_id <= 0:
         raise ValueError("user_id must be a positive integer")
-    if role_name not in _PLATFORM_ROLES:
+    if not isinstance(role_name, str) or role_name not in _PLATFORM_ROLES:
         raise ValueError("unsupported platform role")
     return connection.execute(
         "SELECT 1 FROM user_platform_roles WHERE user_id=? AND role_name=?",
