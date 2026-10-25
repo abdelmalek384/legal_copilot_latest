@@ -75,6 +75,15 @@ class ResearchInspectorTests(unittest.TestCase):
         source["provenance"]["document_type"] = "commentary"
         self.assertEqual(source_status(source, "2026-10-24"), "secondary_copy")
 
+    def test_unknown_or_missing_scope_never_inherits_verified_status(self):
+        for scope in (None, "", "metadata_only", "future_scope", [], {}):
+            source = valid_source()
+            if scope is None:
+                source.pop("scope")
+            else:
+                source["scope"] = scope
+            self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW, repr(scope))
+
     def test_citation_uses_only_recorded_pin_cite_and_metadata(self):
         citation = citation_text(valid_source(), "2026-10-24")
         self.assertIn("Test instrument", citation)

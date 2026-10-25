@@ -41,6 +41,11 @@ def source_status(source, as_of=None):
     if source.get("scope") == "firm_documents" or source.get("case_id") is not None:
         return STATUS_USER_SUPPLIED
 
+    # Only an explicitly selected verified-corpus scope may pass the legal-status gates.
+    # Missing, malformed, or future scope values must not inherit a verified label.
+    if source.get("scope") != "verified_corpus":
+        return STATUS_REVIEW
+
     provenance = source.get("provenance")
     if not isinstance(provenance, Mapping):
         return STATUS_REVIEW
