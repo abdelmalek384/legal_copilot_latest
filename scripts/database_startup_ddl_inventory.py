@@ -82,10 +82,10 @@ def inventory(app_path: str | Path, migrations_dir: str | Path) -> dict[str, Any
 
     migration_entries = []
     directory = Path(migrations_dir)
-    for path in sorted(directory.glob("*.sql")):
+    for path in sorted(directory.rglob("*.sql")):
         classified = _classify(path.read_text(encoding="utf-8"))
         migration_entries.append({
-            "file": path.name,
+            "file": path.relative_to(directory).as_posix(),
             **classified,
         })
 
