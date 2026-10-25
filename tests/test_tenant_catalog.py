@@ -18,7 +18,7 @@ class TenantCatalogTests(unittest.TestCase):
         self.root = Path(self.temp.name) / "tenants"
         self.catalog = sqlite3.connect(":memory:")
         self.catalog.execute("CREATE TABLE firms(id INTEGER PRIMARY KEY, name TEXT NOT NULL)")
-        for firm_id in (3, 4, 8, 9, 10, 11, 12, 17, 21, 22, 23, 24):
+        for firm_id in (3, 4, 8, 9, 10, 11, 12, 17, 21, 22, 23, 24, 30, 31):
             self.catalog.execute(
                 "INSERT INTO firms(id,name) VALUES(?,?)", (firm_id, f"Firm {firm_id}")
             )
