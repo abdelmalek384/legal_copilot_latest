@@ -21,7 +21,35 @@ def has_platform_role(
         raise ValueError("user_id must be a positive integer")
     if not isinstance(role_name, str) or role_name not in _PLATFORM_ROLES:
         raise ValueError("unsupported platform role")
+    # A wrong-profile connection must never become the authority for platform
+    # privileges. Require the immutable control-plane marker before querying.
+    try:
+        profile = connection.execute(
+            "SELECT profile FROM database_profile WHERE singleton=1"
+        ).fetchone()
+        triggers = {
+            row[0] for row in connection.execute(
+                "SELECT name FROM sqlite_master WHERE type='trigger' "
+                "AND name IN ('database_profile_no_update','database_profile_no_delete')"
+            )
+        }
+    except sqlite3.Error as exc:
+        raise ValueError("SQLite connection is not bound to the trusted control-plane profile") from exc
+    if (
+        profile is None
+        or profile[0] != "control_plane"
+        or triggers != {"database_profile_no_update", "database_profile_no_delete"}
+    ):
+        raise ValueError("SQLite connection is not bound to the trusted control-plane profile")
+
+    # A disabled global identity must not retain platform privileges through a
+    # stale role assignment. Role checks are evaluated against current state.
     return connection.execute(
-        "SELECT 1 FROM user_platform_roles WHERE user_id=? AND role_name=?",
+        """
+        SELECT 1
+        FROM user_platform_roles AS r
+        JOIN users AS u ON u.id = r.user_id
+        WHERE r.user_id=? AND r.role_name=? AND u.status='active'
+        """,
         (user_id, role_name),
     ).fetchone() is not None
