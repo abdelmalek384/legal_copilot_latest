@@ -40,6 +40,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("highlightTerms", HTML)
         self.assertIn("document.createTextNode", HTML)
         self.assertIn("Export research memo", HTML)
+        self.assertIn("setTimeout(()=>URL.revokeObjectURL(url),1000)", HTML)
         self.assertIn("save-to-matter", HTML)
         self.assertIn("No relevant verified legal text found in this scope", HTML)
         self.assertNotIn("matterSelect.disabled", HTML)
