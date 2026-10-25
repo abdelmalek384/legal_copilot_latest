@@ -359,7 +359,9 @@ async function law(){
          src.append(h('b',{textContent:'['+(i+1)+'] '+(s.ref||'Source')+' '}));
          const status=s.source_status||'outdated_or_under_review';
          const statusLabels={verified_operative_text:LANG==='ar'?'نص ساري متحقق منه':'Verified operative text',secondary_copy:LANG==='ar'?'نسخة ثانوية':'Secondary copy',user_supplied_unverified:LANG==='ar'?'مستند مكتب غير متحقق':'Firm document / unverified',metadata_only:LANG==='ar'?'بيانات وصفية فقط':'Metadata only',outdated_or_under_review:LANG==='ar'?'قديم أو قيد المراجعة':'Outdated / under review',no_relevant_verified_source:LANG==='ar'?'لا يوجد مصدر متحقق ذو صلة':'No relevant verified source'};
+         const statusDescriptions={verified_operative_text:LANG==='ar'?'يعكس هذا التصنيف بيانات المصدر والمراجعة والتواريخ المسجلة؛ راجع النص الرسمي قبل الاعتماد.':'This label reflects recorded provenance, review, and date checks; verify the official text before relying on it.',secondary_copy:LANG==='ar'?'نسخة ثانوية وليست النص الرسمي الأصلي؛ تحقق من النشر الرسمي.':'Secondary copy, not the official primary text. Verify against the official publication.',user_supplied_unverified:LANG==='ar'?'مستند مقدم من المكتب أو المستخدم ولم يتم التحقق منه بصورة مستقلة كنص قانوني.':'User-supplied matter document; not independently verified as law.',metadata_only:LANG==='ar'?'بيانات فهرس فقط؛ لم يتم استرجاع نص قانوني.':'Catalog metadata only; no legal passage was retrieved.',outdated_or_under_review:LANG==='ar'?'بعض بيانات المصدر أو الحالة القانونية غير مكتملة أو قيد المراجعة؛ لا تعتبره نصاً سارياً متحققاً.':'One or more source/current-status checks are missing or unresolved; do not treat this as verified operative text.',no_relevant_verified_source:LANG==='ar'?'لم يُعثر على مقطع متحقق ذي صلة في هذا النطاق؛ هذا لا يثبت عدم وجود قانون منطبق.':'No relevant verified passage was returned in this scope; this does not prove no applicable law exists.'};
          src.append(pill(statusLabels[status]||statusLabels.outdated_or_under_review,status==='verified_operative_text'?'done':(status==='user_supplied_unverified'?'late':'soon')));
+         src.append(h('p',{className:'mut',textContent:statusDescriptions[status]||statusDescriptions.outdated_or_under_review}));
          const pin=[s.article&&(LANG==='ar'?'المادة ':'Article ')+s.article,s.page&&(LANG==='ar'?'الصفحة ':'Page ')+s.page].filter(Boolean).join(' · ');
          if(pin)src.append(h('div',{className:'research-pin',textContent:pin}));
          const sourceQuestion=messages.slice(0,messageIndex).reverse().find(x=>x.role==='user')?.content||'';
@@ -368,7 +370,7 @@ async function law(){
          sourceActions.append(makeBtn(LANG==='ar'?'نسخ الاستشهاد':'Copy citation',()=>copyText(s.citation||s.ref||'Unresolved citation')));
          sourceActions.append(makeBtn(LANG==='ar'?'نسخ المقطع الحرفي':'Copy exact passage',()=>copyText(s.text||'')));
          const recordedSource=safeHttpsUrl((s.provenance||{}).source_url||s.source_url);
-         if(recordedSource)sourceActions.append(h('a',{className:'research-source-link',href:recordedSource,target:'_blank',rel:'noopener noreferrer',textContent:LANG==='ar'?'فتح المصدر الأصلي':'Open original source'}));
+         if(recordedSource)sourceActions.append(h('a',{className:'research-source-link',href:recordedSource,target:'_blank',rel:'noopener noreferrer',textContent:LANG==='ar'?'فتح المصدر الأصلي ('+sourceHostLabel(recordedSource)+')':'Open original source ('+sourceHostLabel(recordedSource)+')'}));
          src.append(sourceActions);
          const p=s.provenance||{};
          if(p.status==='registry_linked'){
