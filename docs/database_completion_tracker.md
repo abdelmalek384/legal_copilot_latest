@@ -4,9 +4,17 @@
 **Estimated completion:** 28%  
 **Status:** In progress — not production-ready for confidential multi-firm matter data.
 
-This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. The checklist currently tracks 51 completed tasks and 20 remaining tasks; this count is not a readiness percentage. Update this file as database PRs merge and as acceptance criteria are completed.
+This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. The checklist currently tracks 55 completed tasks and 20 remaining tasks; this count is not a readiness percentage. Update this file as database PRs merge and as acceptance criteria are completed.
 
 ## Completed and merged
+
+- [x] Extend the read-only tenant database preflight to verify the firm schema profile marker and embedded firm ID against the trusted catalog mapping (PR #271 merged; CI run 40237510600 passed).
+
+- [x] Validate platform-role input types and reject malformed role values with a controlled error (PR #272 merged; CI run 40237519341 passed).
+
+- [x] Deny firm-context resolution for suspended/disabled/provisioning firms even when membership is active (PR #273 merged; CI run 40237557121 passed).
+
+- [x] Deny disabled global identities during firm membership validation, even if a membership row remains active (PR #276 merged; CI run 40237663867 passed).
 
 - [x] Require tenant provisioning to verify the new database has the expected firm schema profile before marking the catalog entry provisioned; fail closed and clean up failed provisioning (PR #266 merged; CI run 40237378927 passed).
 
