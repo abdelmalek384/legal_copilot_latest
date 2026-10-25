@@ -63,7 +63,22 @@ class TenantSQLiteConnectionRouter:
         request authorization.
         """
         self._validate_firm_id(trusted_firm_id)
-        catalog = self._catalog_connection_factory()
+        try:
+            catalog = self._catalog_connection_factory()
+        except Exception as exc:
+            # A catalog-open failure is also a failed revalidation. Do not leave
+            # a previously cached connection available for later reuse.
+            connections = getattr(self._local, "connections", None)
+            cached = connections.pop(trusted_firm_id, None) if connections else None
+            if cached is not None:
+                try:
+                    cached[1].close()
+                except sqlite3.Error:
+                    pass
+            raise TenantConnectionError(
+                "Tenant catalog is unavailable; refusing cached tenant storage"
+            ) from exc
+
         try:
             try:
                 path = resolve_tenant_database(catalog, trusted_firm_id, self._storage_root)
