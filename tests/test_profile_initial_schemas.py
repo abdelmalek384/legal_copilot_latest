@@ -27,6 +27,50 @@ class ProfileInitialSchemaTests(unittest.TestCase):
         self.assertNotIn("cases", names(corpus)); self.assertNotIn("tenant_database_catalog", names(corpus))
         control.close(); firm.close(); corpus.close()
 
+    def test_control_plane_catalog_requires_existing_firm_and_blocks_firm_delete(self):
+        db = self.build("control_plane")
+        with self.assertRaises(sqlite3.IntegrityError):
+            db.execute(
+                "INSERT INTO tenant_database_catalog(firm_id,status) VALUES(404,'provisioning')"
+            )
+        db.execute("INSERT INTO firms(id,name) VALUES(10,'Firm A')")
+        db.execute(
+            "INSERT INTO tenant_database_catalog(firm_id,status) VALUES(10,'provisioned')"
+        )
+        with self.assertRaises(sqlite3.IntegrityError):
+            db.execute("DELETE FROM firms WHERE id=10")
+        db.close()
+
+    def test_catalog_firm_integrity_migration_fails_closed_on_legacy_orphan(self):
+        import shutil
+        import tempfile
+        from schema_profiles import apply_profile_migrations
+
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            control = root / "control_plane"
+            control.mkdir()
+            shutil.copy(ROOT / "control_plane" / "0001_control_plane_catalog.sql", control)
+            db = sqlite3.connect(":memory:")
+            try:
+                apply_profile_migrations(db, "control_plane", root)
+                db.execute(
+                    "INSERT INTO tenant_database_catalog(firm_id,status) VALUES(404,'failed')"
+                )
+                db.commit()
+                shutil.copy(ROOT / "control_plane" / "0002_catalog_firm_integrity.sql", control)
+                with self.assertRaises(sqlite3.IntegrityError):
+                    apply_profile_migrations(db, "control_plane", root)
+                self.assertIsNotNone(db.execute(
+                    "SELECT 1 FROM tenant_database_catalog WHERE firm_id=404"
+                ).fetchone())
+                self.assertEqual(
+                    db.execute("SELECT COUNT(*) FROM schema_migrations WHERE version=2").fetchone()[0],
+                    0,
+                )
+            finally:
+                db.close()
+
     def test_firm_fts_insert_update_delete(self):
         db = self.build("firm")
         db.execute("INSERT INTO cases(id,title) VALUES(1,'matter')")
