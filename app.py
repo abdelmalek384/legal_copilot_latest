@@ -300,6 +300,27 @@ def expanded_tokens(q, limit=48):
     return list(dict.fromkeys(expanded))[:limit]
 
 
+def matched_surface_terms(text, expanded_terms, limit=12):
+    """Return exact words in a passage that matched the expanded retrieval vocabulary.
+
+    This is display metadata only: it never rewrites source text or changes ranking.
+    """
+    if not isinstance(text, str) or not text.strip():
+        return []
+    expanded = set(expanded_terms)
+    if not expanded:
+        return []
+    matched = []
+    for surface in re.findall(r"\w+", text):
+        if len(surface) < 2:
+            continue
+        if any(token in expanded for token in tokens(surface)) and surface not in matched:
+            matched.append(surface)
+            if len(matched) >= limit:
+                break
+    return matched
+
+
 def rel(q, d):
     """Share of the query's trigrams found in the chunk (suits short query vs long article)."""
     n = sum(q.values()); return sum(min(v, d.get(k, 0)) for k, v in q.items()) / n if n else 0.0
@@ -514,7 +535,7 @@ def search(c, q, case_id=None, k=5, firm_id=1, as_of=None, scope="all_permitted"
         expanded_match = rel(expanded_qg, doc_g)
         # Prefer literal overlap; use synonym overlap as a bounded recall aid.
         cs = max(original_match, 0.85 * expanded_match)
-        out.append({"id": i, "ref": r["ref"], "text": r["text"], "in_force": bool(r["in_force"]), "verified": bool(r["verified"]), "as_of": r["as_of"],
+        out.append({"id": i, "ref": r["ref"], "text": r["text"], "matched_terms": matched_surface_terms(r["text"], expanded_qt), "in_force": bool(r["in_force"]), "verified": bool(r["verified"]), "as_of": r["as_of"],
                     "source": r["source"], "cos": round(cs, 3), "literal_match": round(original_match, 3), "expanded_match": round(expanded_match, 3), "score": 0.5 * b / top + 0.5 * cs + (1 if i in exact else 0),
                     "requested_as_of": as_of, "document_version_id": r["document_version_id"], "article": r["article"], "page": r["page"], "case_id": r["case_id"], "scope": scope,
                     "applies_as_of": bool(r["in_force"]) if r["document_version_id"] is None else True,
