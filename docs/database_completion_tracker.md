@@ -35,6 +35,7 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 - [x] Make the database profile-binding marker immutable against ordinary SQL updates/deletes (PR #184, merged; CI run 40228431913 passed).
 - [x] Handle case-insensitive conditional column migration checks and add a legacy `Value`/`value` regression test (PR #187, merged; PR checks and post-merge main CI passed).
 - [x] Add regression coverage ensuring tenant catalog initialization rejects a pre-existing catalog schema missing its `firms` foreign key (PR #189, merged; GitHub Actions run 40228763730 passed).
+- [x] Validate existing tenant catalog rows with `PRAGMA foreign_key_check`, failing closed on orphaned firm mappings even when foreign-key enforcement was previously disabled (PR #191, merged; GitHub Actions run 40228904762 passed).
 
 ## In progress
 
