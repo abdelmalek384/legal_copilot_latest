@@ -170,6 +170,23 @@ def apply_migrations(connection: sqlite3.Connection, directory: str | Path) -> l
             continue
         try:
             connection.execute("BEGIN IMMEDIATE")
+            # Another process may have applied this version after the initial
+            # ledger snapshot. Recheck under the write lock so concurrent app
+            # startups do not execute the same migration twice.
+            current = connection.execute(
+                "SELECT name, checksum_sha256 FROM schema_migrations WHERE version=?",
+                (version,),
+            ).fetchone()
+            if current is not None:
+                current_name = current["name"] if isinstance(current, sqlite3.Row) else current[0]
+                current_checksum = current["checksum_sha256"] if isinstance(current, sqlite3.Row) else current[1]
+                if (current_name, current_checksum) != (name, checksum):
+                    raise MigrationError(
+                        f"Applied migration {version} differs from its recorded name/checksum"
+                    )
+                connection.commit()
+                continue
+
             for operation in _migration_operations(sql):
                 if operation[0] == "add_column_if_missing":
                     _kind, table, column, statement = operation
