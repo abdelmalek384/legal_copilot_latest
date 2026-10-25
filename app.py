@@ -1283,7 +1283,16 @@ def dashboard(u: dict = Depends(user)):
                   "WHERE cs.firm_id=? AND cs.status='open' AND d.status='open' AND d.due<=date('now','+30 day') "
                   "AND (?='admin' OR d.case_id IN (SELECT case_id FROM members WHERE user_id=?)) ORDER BY d.due",
                   (u["firm_id"], u["role"], u["id"]))
-    return {"tasks": [dict(r) for r in t], "sessions": upcoming(c, u), "deadlines": [dict(r) for r in d]}
+    unassigned = c.execute(
+        "SELECT t.id,t.title,t.due,cs.title AS case_title FROM tasks t "
+        "JOIN cases cs ON cs.id=t.case_id "
+        "WHERE t.assignee IS NULL AND t.status='open' AND cs.status='open' AND cs.firm_id=? "
+        "AND (?='admin' OR t.case_id IN (SELECT case_id FROM members WHERE user_id=?)) "
+        "ORDER BY t.due IS NULL, t.due, t.id",
+        (u["firm_id"], u["role"], u["id"]),
+    )
+    return {"tasks": [dict(r) for r in t], "unassigned_tasks": [dict(r) for r in unassigned],
+            "sessions": upcoming(c, u), "deadlines": [dict(r) for r in d]}
 
 
 @app.get("/finance/overview")
@@ -1381,6 +1390,32 @@ def new_task(cid: int, b: TaskIn, u: dict = Depends(user)):
     if b.assignee and not c.execute("SELECT 1 FROM members WHERE case_id=? AND user_id=?", (cid, b.assignee)).fetchone():
         raise HTTPException(422, "assignee must be a member of the case")
     add_task(c, u, cid, b.title, b.assignee, b.due); return {"ok": True}
+
+
+@app.post("/tasks/{tid}/claim")
+def claim_task(tid: int, u: dict = Depends(user)):
+    c = conn()
+    task = c.execute(
+        "SELECT t.case_id,t.title,t.assignee,t.status FROM tasks t "
+        "JOIN cases cs ON cs.id=t.case_id WHERE t.id=? AND cs.firm_id=?",
+        (tid, u["firm_id"]),
+    ).fetchone()
+    if not task or task["status"] != "open":
+        raise HTTPException(404, "task not found")
+    need(c, u, task["case_id"])
+    if task["assignee"] is not None:
+        raise HTTPException(409, "task is already assigned")
+    # Conditional update prevents two team members from claiming the same task.
+    changed = c.execute(
+        "UPDATE tasks SET assignee=? WHERE id=? AND assignee IS NULL AND status='open'",
+        (u["id"], tid),
+    ).rowcount
+    if not changed:
+        c.rollback()
+        raise HTTPException(409, "task is already assigned")
+    log(c, task["case_id"], u["name"], "استلام مهمة: " + task["title"])
+    c.commit()
+    return {"ok": True}
 
 
 @app.post("/tasks/{tid}/done")
