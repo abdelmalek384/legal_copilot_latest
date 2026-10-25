@@ -231,6 +231,12 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("database", type=Path, help="SQLite database file to inspect (read-only)")
     args = parser.parse_args(argv)
+    # Do not silently follow a caller-supplied symlink to another database.
+    # This preflight is often used against sensitive legacy files; the path
+    # being inspected must be an explicitly selected regular file.
+    if args.database.is_symlink():
+        print(json.dumps({"error": "database path must not be a symlink", "path": str(args.database)}), file=sys.stderr)
+        return 2
     if not args.database.is_file():
         print(json.dumps({"error": "database file not found", "path": str(args.database)}), file=sys.stderr)
         return 2
