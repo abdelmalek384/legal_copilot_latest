@@ -128,9 +128,9 @@ def validate(relationships_doc: dict, inventory_doc: dict) -> dict:
 
         if not isinstance(source_id, str) or source_id not in document_ids:
             add("error", "source_instrument_missing_from_inventory", rid_label, f"Unknown source instrument: {source_id!r}.")
-        if relation_type not in KNOWN_RELATIONSHIP_TYPES:
+        if not isinstance(relation_type, str) or relation_type not in KNOWN_RELATIONSHIP_TYPES:
             add("error", "unknown_relationship_type", rid_label, f"Unrecognized relationship_type: {relation_type!r}.")
-        if relation_type in BASE_TYPES:
+        if relation_type == "base_instrument":
             if target_id is not None:
                 add("error", "base_instrument_must_not_have_target", rid_label, "A base_instrument record must use target_instrument_id=null.")
         elif not isinstance(target_id, str) or target_id not in document_ids:
@@ -142,7 +142,7 @@ def validate(relationships_doc: dict, inventory_doc: dict) -> dict:
         if not isinstance(evidence, list) or not evidence or any(not isinstance(x, str) or not x.strip() for x in evidence):
             add("error", "required_evidence_list_missing", rid_label, "required_evidence must be a non-empty list of non-empty strings.")
 
-        if status not in KNOWN_STATES:
+        if not isinstance(status, str) or status not in KNOWN_STATES:
             add("warning", "unrecognized_or_missing_status", rid_label, f"Review status requires normalization: {status!r}.")
         if status != "reviewed_confirmed":
             add("warning", "relationship_not_reviewed_confirmed", rid_label, "Do not treat this edge as legally confirmed or use it alone to construct current law.")
