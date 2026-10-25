@@ -3,6 +3,9 @@ from datetime import date, timedelta
 os.environ.update(COPILOT_DB=os.path.join(tempfile.mkdtemp(), "a.db"), ADMIN_TOKEN="stage0-test-admin-token-please-use-a-long-random-secret", LEGAL_REVIEWER_EMAILS="import-admin@x.eg")
 from fastapi.testclient import TestClient
 import app, docx
+
+# iCalendar text values must not allow raw CR/LF to inject new content lines.
+assert app._ics_escape("a\\b,c;d\r\ne\rf\ng") == "a\\\\b\\,c\\;d\\ne\\nf\\ng"
 c = TestClient(app.app); db = app.conn()
 for n, role in (("Lead", "lawyer"), ("Junior", "junior"), ("Outsider", "lawyer")):
     db.execute("INSERT INTO users(name,email,pw,role) VALUES(?,?,?,?)", (n, n.lower() + "@x.eg", app.hash_pw("password-" + n), role))
