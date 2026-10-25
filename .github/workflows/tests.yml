@@ -32,6 +32,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_database_startup_ddl_inventory.py
       - name: Test disposable-copy migration rehearsal
         run: PYTHONPATH=. python tests/test_database_migration_rehearsal.py
+      - name: Test fresh database startup and restart
+        run: PYTHONPATH=. python tests/test_database_fresh_install_schema.py
       - name: Test SEC-01 runtime route and schema inventory
         run: PYTHONPATH=. python tests/test_security_surface_inventory.py
       - name: Test encrypted restore safety
