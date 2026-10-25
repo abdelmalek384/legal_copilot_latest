@@ -64,6 +64,23 @@ class TenantCatalogTests(unittest.TestCase):
         self.assertEqual(row, (None, "failed", "provisioning_failed"))
         self.assertEqual(list(self.root.glob("tenant-4-*.sqlite3")), [])
 
+    def test_provision_enables_foreign_key_enforcement_for_initializer(self):
+        def initialize_with_invalid_reference(db):
+            db.execute("CREATE TABLE parent (id INTEGER PRIMARY KEY)")
+            db.execute("CREATE TABLE child (parent_id INTEGER REFERENCES parent(id))")
+            db.execute("INSERT INTO child(parent_id) VALUES(404)")
+
+        with self.assertRaises(sqlite3.IntegrityError):
+            provision_tenant_database(
+                self.catalog, 24, self.root, initialize_with_invalid_reference
+            )
+
+        row = self.catalog.execute(
+            "SELECT database_file,status,last_error_code FROM tenant_database_catalog WHERE firm_id=24"
+        ).fetchone()
+        self.assertEqual(row, (None, "failed", "provisioning_failed"))
+        self.assertEqual(list(self.root.glob("tenant-24-*.sqlite3")), [])
+
     def test_provision_rejects_foreign_key_violations_and_cleans_partial_file(self):
         def initialize_with_broken_reference(db):
             db.execute("PRAGMA foreign_keys=ON")
