@@ -35,6 +35,8 @@ class CompareLegalVersionsTests(unittest.TestCase):
             "unmapped_right_passages": 1,
             "malformed_left_passages": 0,
             "malformed_right_passages": 0,
+            "duplicate_left_chunk_ids": 0,
+            "duplicate_right_chunk_ids": 0,
             "uncomparable_incomplete_text": 0,
         })
         changes = {item["article"]: item["change"] for item in result["provisions"]}
@@ -71,6 +73,41 @@ class CompareLegalVersionsTests(unittest.TestCase):
         self.assertEqual(result["provisions"][0]["change"], "uncomparable_incomplete_text")
         self.assertEqual(result["unmapped_passages"]["left"][0]["unmapped_reason"], "missing_or_invalid_text")
         self.assertTrue(any("Malformed or empty extracted passages" in warning for warning in result["warnings"]))
+
+    def test_duplicate_chunk_ids_exclude_all_occurrences_and_make_article_uncomparable(self):
+        result = compare_version_chunks(
+            [
+                {"id": 7, "article": "8", "page": "1", "text": "first copy"},
+                {"id": 7, "article": "8", "page": "2", "text": "second copy"},
+                {"id": 8, "article": "9", "page": "3", "text": "valid other article"},
+            ],
+            [{"id": 70, "article": "8", "page": "4", "text": "right text"}],
+        )
+        self.assertEqual(result["summary"]["duplicate_left_chunk_ids"], 1)
+        self.assertEqual(result["summary"]["duplicate_right_chunk_ids"], 0)
+        self.assertEqual(result["summary"]["unmapped_left_passages"], 2)
+        self.assertEqual(
+            [item["unmapped_reason"] for item in result["unmapped_passages"]["left"]],
+            ["duplicate_chunk_id", "duplicate_chunk_id"],
+        )
+        changes = {item["article"]: item["change"] for item in result["provisions"]}
+        self.assertEqual(changes["8"], "uncomparable_incomplete_text")
+        self.assertEqual(changes["9"], "removed_from_right")
+
+    def test_duplicate_chunk_id_across_article_labels_marks_both_uncomparable(self):
+        result = compare_version_chunks(
+            [
+                {"id": 4, "article": "1", "page": "1", "text": "text one"},
+                {"id": 4, "article": "2", "page": "2", "text": "text two"},
+            ],
+            [],
+        )
+        changes = {item["article"]: item["change"] for item in result["provisions"]}
+        self.assertEqual(changes, {
+            "1": "uncomparable_incomplete_text",
+            "2": "uncomparable_incomplete_text",
+        })
+        self.assertEqual(result["summary"]["duplicate_left_chunk_ids"], 1)
 
     def test_non_object_chunk_record_is_reported_without_crashing(self):
         result = compare_version_chunks(
