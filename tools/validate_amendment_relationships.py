@@ -167,14 +167,6 @@ def validate(relationships_doc: dict, inventory_doc: dict) -> dict:
         # metadata before accepting reviewed_confirmed as structurally complete.
         if status == "reviewed_confirmed":
             confirmation = item.get("confirmation_evidence")
-            required_confirmation_fields = (
-                "gazette_issue",
-                "gazette_publication_date",
-                "gazette_page_range",
-                "reviewed_on",
-                "reviewer_role",
-                "review_basis",
-            )
             if not isinstance(confirmation, dict):
                 add(
                     "error",
