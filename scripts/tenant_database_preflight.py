@@ -24,6 +24,18 @@ def _readonly(path: Path) -> sqlite3.Connection:
     return sqlite3.connect(path.resolve().as_uri() + "?mode=ro", uri=True, timeout=5)
 
 
+def _has_immutable_guard(sql: str | None, table: str, operation: str, message: str) -> bool:
+    """Check that a named trigger actually rejects mutation, not just that it exists."""
+    if not isinstance(sql, str):
+        return False
+    normalized = " ".join(sql.lower().split())
+    return (
+        f"before {operation.lower()} on {table.lower()}" in normalized
+        and "raise(abort" in normalized
+        and message.lower() in normalized
+    )
+
+
 def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
     """Inspect catalog mappings and provisioned SQLite files without writing."""
     findings: list[dict[str, Any]] = []
@@ -115,13 +127,16 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
                     except sqlite3.Error:
                         add("invalid_database_profile_binding", firm_id, "schema profile marker could not be read")
                     profile_triggers = {
-                        row[0] for row in tenant.execute(
-                            "SELECT name FROM sqlite_master WHERE type='trigger' "
+                        row[0]: row[1] for row in tenant.execute(
+                            "SELECT name, sql FROM sqlite_master WHERE type='trigger' "
                             "AND name IN ('database_profile_no_update','database_profile_no_delete')"
                         )
                     }
-                    if profile_triggers != {"database_profile_no_update", "database_profile_no_delete"}:
-                        add("mutable_database_profile_binding", firm_id, "schema profile marker lacks immutable update/delete guards")
+                    if not (
+                        _has_immutable_guard(profile_triggers.get("database_profile_no_update"), "database_profile", "UPDATE", "database profile binding is immutable")
+                        and _has_immutable_guard(profile_triggers.get("database_profile_no_delete"), "database_profile", "DELETE", "database profile binding is immutable")
+                    ):
+                        add("mutable_database_profile_binding", firm_id, "schema profile marker lacks effective immutable update/delete guards")
 
                 if "tenant_database_binding" not in tables:
                     add("missing_tenant_firm_binding", firm_id, "tenant database has no embedded firm ID binding")
@@ -137,13 +152,16 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
                     except sqlite3.Error:
                         add("invalid_tenant_firm_binding", firm_id, "embedded firm ID binding could not be read")
                     binding_triggers = {
-                        row[0] for row in tenant.execute(
-                            "SELECT name FROM sqlite_master WHERE type='trigger' "
+                        row[0]: row[1] for row in tenant.execute(
+                            "SELECT name, sql FROM sqlite_master WHERE type='trigger' "
                             "AND name IN ('tenant_database_binding_no_update','tenant_database_binding_no_delete')"
                         )
                     }
-                    if binding_triggers != {"tenant_database_binding_no_update", "tenant_database_binding_no_delete"}:
-                        add("mutable_tenant_firm_binding", firm_id, "embedded firm ID lacks immutable update/delete guards")
+                    if not (
+                        _has_immutable_guard(binding_triggers.get("tenant_database_binding_no_update"), "tenant_database_binding", "UPDATE", "tenant database firm binding is immutable")
+                        and _has_immutable_guard(binding_triggers.get("tenant_database_binding_no_delete"), "tenant_database_binding", "DELETE", "tenant database firm binding is immutable")
+                    ):
+                        add("mutable_tenant_firm_binding", firm_id, "embedded firm ID lacks effective immutable update/delete guards")
 
                 quick = tenant.execute("PRAGMA quick_check").fetchall()
                 if len(quick) != 1 or quick[0][0] != "ok":
