@@ -132,6 +132,30 @@ class DatabaseMigrationTests(unittest.TestCase):
         self.write("migration.sql", "SELECT 1;")
         with self.assertRaisesRegex(MigrationError, "filename"):
             apply_migrations(self.db, self.path)
+    def test_symlinked_migration_file_is_rejected(self):
+        target = self.path / "outside.sql"
+        target.write_text("CREATE TABLE unexpected (id INTEGER);", encoding="utf-8")
+        link = self.path / "0001_linked.sql"
+        link.symlink_to(target)
+        with self.assertRaisesRegex(MigrationError, "must not be a symlink"):
+            apply_migrations(self.db, self.path)
+        self.assertIsNone(self.db.execute(
+            "SELECT name FROM sqlite_master WHERE type='table' AND name='unexpected'"
+        ).fetchone())
+
+    def test_symlinked_migration_directory_is_rejected(self):
+        actual = self.path / "actual"
+        actual.mkdir()
+        (actual / "0001_create_sample.sql").write_text(
+            "CREATE TABLE sample (id INTEGER);", encoding="utf-8"
+        )
+        link = self.path / "linked"
+        link.symlink_to(actual, target_is_directory=True)
+        with self.assertRaisesRegex(MigrationError, "directory must not be a symlink"):
+            apply_migrations(self.db, link)
+        self.assertIsNone(self.db.execute(
+            "SELECT name FROM sqlite_master WHERE type='table' AND name='sample'"
+        ).fetchone())
 
     def test_transaction_control_is_rejected(self):
         self.write("0001_bad.sql", "BEGIN; CREATE TABLE sample (id INTEGER);")
