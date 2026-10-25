@@ -106,6 +106,51 @@ class ResolveFirmContextTests(unittest.TestCase):
         finally:
             db.close()
 
+
+    def test_sqlite_membership_lookup_rejects_wrong_or_unbound_database_profile(self):
+        wrong = sqlite3.connect(":memory:")
+        try:
+            apply_profile_migrations(wrong, "firm", MIGRATIONS)
+            with self.assertRaisesRegex(ValueError, "trusted control-plane profile"):
+                sqlite_membership_lookup(wrong)
+        finally:
+            wrong.close()
+
+        unbound = sqlite3.connect(":memory:")
+        try:
+            with self.assertRaisesRegex(ValueError, "trusted control-plane profile"):
+                sqlite_membership_lookup(unbound)
+        finally:
+            unbound.close()
+
+    def test_sqlite_membership_lookup_denies_disabled_user_and_inactive_firm(self):
+        db = sqlite3.connect(":memory:")
+        try:
+            apply_profile_migrations(db, "control_plane", MIGRATIONS)
+            db.execute("INSERT INTO firms(id,name) VALUES(101,'Firm A'),(202,'Firm B')")
+            db.execute(
+                "INSERT INTO users(id,name,email_display,email_normalized,password_hash) "
+                "VALUES(7,'Lawyer','lawyer@example.test','lawyer@example.test','hash')"
+            )
+            db.execute(
+                "INSERT INTO firm_memberships(user_id,firm_id,firm_role,status) "
+                "VALUES(7,101,'lawyer','active'),(7,202,'lawyer','active')"
+            )
+            lookup = sqlite_membership_lookup(db)
+            db.execute("UPDATE users SET status='disabled' WHERE id=7")
+            self.assertEqual(lookup(7, 101)["status"], "disabled")
+            with self.assertRaises(FirmContextError):
+                resolve_firm_context({"id": 7}, 101, lookup)
+
+            db.execute("UPDATE users SET status='active' WHERE id=7")
+            db.execute("UPDATE firms SET status='suspended' WHERE id=202")
+            self.assertEqual(lookup(7, 202)["status"], "suspended")
+            with self.assertRaises(FirmContextError):
+                resolve_firm_context({"id": 7}, 202, lookup)
+        finally:
+            db.close()
+
+
     def test_sqlite_membership_lookup_requires_a_trusted_sqlite_connection(self):
         with self.assertRaises(TypeError):
             sqlite_membership_lookup("/client/supplied/database.sqlite3")
