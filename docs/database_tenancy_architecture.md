@@ -1,6 +1,6 @@
 # SEC-01 — Database tenancy architecture decision
 
-**Status:** Proposed; implementation and migration are not complete  
+**Status:** Architecture approved as the working plan; implementation and migration are not complete  
 **Date:** 2026-10-24  
 **Scope:** firm-owned matter data, uploaded documents, research history, audit records, backups, and shared legal-reference content
 
@@ -17,6 +17,23 @@ Microsoft's SaaS tenancy guidance describes database-per-tenant as providing str
 ZKBioTime's official product page lists PostgreSQL as its default database and also lists Microsoft SQL Server, MySQL, and Oracle options. This is a useful deployment/database-operations reference, but the public product page does **not** establish that ZKBioTime uses database-per-customer isolation. We should not infer its tenant model from its supported database engines. See [ZKBioTime's official specifications](https://www.zkteco.com/en/ZKBio_Time/ZKBioTime).
 
 Legal practice-management vendors also describe controls such as encryption in transit and at rest and restricted production access; those controls complement, but do not replace, tenant separation and authorization. See [Clio's compliance overview](https://help.clio.com/hc/en-us/articles/9284651312411-Compliance).
+
+## Approved working decisions (2026-10-26)
+
+The project owner approved the following decisions as the working plan. Approval fixes the target architecture; it does not authorize destructive legacy-data operations or imply that production implementation is complete.
+
+1. **Firm storage:** one database per firm, selected only through a trusted server-side tenant catalog.
+2. **User membership:** a user may belong to multiple firms. Membership and active status must be checked for the current request.
+3. **Email identity:** globally unique normalized email. Normalization rules must be explicit and applied consistently before uniqueness is enforced; existing conflicts require review, not automatic account merging.
+4. **Authorization roles:** platform-administration privileges are separate from firm-level roles. Platform-admin grants and revocation require a separately authorized workflow.
+5. **Legacy data:** a fresh database/cutover may be used only after explicit backup and retention review. No automatic reset, deletion, or ambiguous ownership repair is authorized.
+6. **Legal corpus:** shared central legal-reference corpus; firm-private matters, documents, research, annotations, and audit records remain isolated.
+7. **Release:** controlled rollout with migration, backup/restore, cross-firm isolation, and security gates.
+8. **Billing:** defer billing implementation until database safety work passes its required gates.
+
+### Approval boundary
+
+The owner has approved these as architectural direction, not as permission to change production data. Before any destructive or security-sensitive cutover, obtain explicit approval of the concrete operation, source/target databases, verified backup and restore evidence, retention treatment, and rollback plan. Keep billing and production cutover blocked until their stated prerequisites are satisfied.
 
 ## Target logical architecture
 
