@@ -226,6 +226,38 @@ def stem(w):
 def tokens(t): return [stem(w) for w in re.findall(r"\w+", norm(t)) if w not in STOP]
 
 
+# Generic entity descriptors are ignored for preliminary conflict screening so
+# "شركة النيل" can match "النيل"; they are not treated as identities by themselves.
+_GENERIC_CONFLICT_NAME_TOKENS = {
+    token
+    for label in ("شركة", "الشركة", "شركه", "مؤسسة", "المؤسسة", "مؤسسه",
+                  "مجموعة", "المجموعة", "مجموعه", "مكتب")
+    for token in tokens(label)
+}
+
+
+def conflict_name_matches(query, candidate):
+    """Conservative token-order-insensitive match for preliminary conflict screening.
+
+    Returns only a possible-match signal. It is not entity resolution and must
+    never be presented as a definitive legal conflict determination.
+    """
+    query_text = norm(query).strip()
+    candidate_text = norm(candidate).strip()
+    if not query_text or not candidate_text:
+        return False
+    query_tokens = [t for t in tokens(query_text) if t not in _GENERIC_CONFLICT_NAME_TOKENS]
+    candidate_tokens = [t for t in tokens(candidate_text) if t not in _GENERIC_CONFLICT_NAME_TOKENS]
+    # A generic descriptor alone ("شركة") must not match every company.
+    if not query_tokens or not candidate_tokens:
+        return False
+    # Full token-set containment handles reordered words and repeated whitespace.
+    if set(query_tokens).issubset(set(candidate_tokens)):
+        return True
+    # Preserve the old useful substring behavior for partial names and case numbers.
+    return query_text in candidate_text
+
+
 def grams(t):
     s = " ".join(tokens(t)); return Counter(s[i:i + 3] for i in range(max(len(s) - 2, 0)))
 
@@ -246,6 +278,10 @@ _LEGAL_SYNONYMS_RAW = {
     "دعوى": ("مطالبة قضائية", "claim", "lawsuit"),
     "فصل": ("إنهاء الخدمة", "dismissal", "termination"),
     "إيجار": ("كراء", "rent", "lease"),
+    # Common inflection/derivation variants observed in Arabic matter-file queries.
+    # These are retrieval hints, not legal equivalence or a change to source text.
+    "شيك": ("شيكا", "شيكات", "الشيك", "الشيكات", "cheque", "check"),
+    "تأخير": ("تأخر", "متأخر", "متأخرة", "تأخيرا", "delay", "delayed"),
 }
 LEGAL_SYNONYMS = {}
 for _key, _values in _LEGAL_SYNONYMS_RAW.items():
@@ -1026,7 +1062,7 @@ def conflict_check(b: Q, u: dict = Depends(user)):
     for r in rows:
         d = dict(r)
         fields = ("title", "client", "opposing_party", "case_number")
-        matches = [k for k in fields if term in norm(d.get(k) or "")]
+        matches = [k for k in fields if conflict_name_matches(b.q, d.get(k) or "")]
         if matches and not d["visible"]:
             hidden_match = True
         elif matches:
