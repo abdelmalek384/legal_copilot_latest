@@ -4,7 +4,7 @@
 **Estimated completion:** 28%  
 **Status:** In progress — not production-ready for confidential multi-firm matter data.
 
-This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. Update this file as database PRs merge and as acceptance criteria are completed.
+This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. The checklist currently tracks 32 completed tasks and 21 remaining tasks; this count is not a readiness percentage. Update this file as database PRs merge and as acceptance criteria are completed.
 
 ## Completed and merged
 
@@ -41,7 +41,9 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 
 - [x] Add a trusted active-firm context resolver and adversarial tests (PR #198 merged; CI run 40230700867 passed): accepts a caller-supplied verified server-side identity, validates active membership through a server-side lookup, and fails closed on suspended/missing/error states. This is an authorization primitive, not session authentication; it is not wired to routes until membership schema and identity semantics are approved.
 
-- [x] Revoke a cached tenant connection when opening the tenant catalog fails, with regression coverage proving the prior connection is closed (PR #204 merged; PR CI run 40231783111 passed; post-merge main CI pending at tracker update time).
+- [x] Revoke a cached tenant connection when opening the tenant catalog fails, with regression coverage proving the prior connection is closed (PR #204 merged; PR CI run 40231783111 and post-merge main CI run 40231840643 passed).
+
+- [x] Close and avoid leaking a tenant connection when connection initialization fails before caching, with injected-failure regression coverage (PR #205 merged; PR CI run 40231914349 passed; post-merge main CI pending at tracker update time).
 
 - [x] Add catalog-backed tenant connection-router foundation (`tenant_storage.py`) with fail-closed catalog resolution, disabled-tenant revalidation, per-thread/per-firm connections, foreign-key enforcement, and cleanup. PR #195 merged; post-merge main CI run 40230147410 passed. PR #200 adds regression-tested closure of the current thread's cached connection when catalog validation fails (CI run 40230742941 passed). PR #201 adds passing CI coverage for distinct same-firm connections across threads and thread-owned cleanup (CI run 40231059405 passed). The router is not wired into app routes pending approved session/membership integration and shared-corpus migration.
 
