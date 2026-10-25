@@ -45,19 +45,6 @@ CREATE TABLE IF NOT EXISTS api_rate_limit_windows(
 );
 CREATE TABLE IF NOT EXISTS docs(id INTEGER PRIMARY KEY, case_id INT, name TEXT, added TEXT, firm_id INT, uploader_user_id INT, sha256 TEXT, content_type TEXT, byte_size INT, extraction_status TEXT, ocr_used INT NOT NULL DEFAULT 0);
 -- Legal corpus provenance: one stable source record, multiple immutable legal versions.
-CREATE TABLE IF NOT EXISTS legal_sources(
-  source_id TEXT PRIMARY KEY,
-  authority TEXT NOT NULL,
-  source_page TEXT NOT NULL,
-  access_status TEXT NOT NULL DEFAULT 'unknown',
-  collection_permission TEXT NOT NULL DEFAULT 'unknown'
-    CHECK(collection_permission IN ('unknown','allowed','allowed_limited','prohibited','not_allowed_without_explicit_exception_or_license')),
-  commercial_reuse_permission TEXT NOT NULL DEFAULT 'unknown',
-  terms_url TEXT,
-  terms_checked_on TEXT,
-  permission_evidence TEXT,
-  created_at TEXT NOT NULL DEFAULT (datetime('now'))
-);
 CREATE TABLE IF NOT EXISTS legal_documents(
   document_id TEXT PRIMARY KEY,
   source_id TEXT NOT NULL REFERENCES legal_sources(source_id),
