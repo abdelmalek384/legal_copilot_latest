@@ -90,6 +90,29 @@ class TenantOwnershipPreflightTests(unittest.TestCase):
         self.assertEqual(codes.get("deletion_audit_actor_missing", 0), 0)
         self.assertEqual(report["status"], "review_required")
 
+    def test_detects_globally_duplicate_normalized_emails_without_merging_users(self):
+        db = sqlite3.connect(":memory:")
+        try:
+            db.executescript("""
+                CREATE TABLE firms(id INTEGER PRIMARY KEY);
+                CREATE TABLE users(id INTEGER PRIMARY KEY, firm_id INTEGER, email TEXT);
+                CREATE TABLE cases(id INTEGER PRIMARY KEY, firm_id INTEGER);
+                INSERT INTO firms VALUES (1),(2);
+                INSERT INTO users VALUES
+                    (1,1,'Lawyer@example.com'),
+                    (2,2,' lawyer@EXAMPLE.com '),
+                    (3,2,'other@example.com');
+                INSERT INTO cases VALUES (1,1);
+            """)
+            before = db.execute("SELECT id, firm_id, email FROM users ORDER BY id").fetchall()
+            report = audit(db)
+            findings = {item["code"]: item["count"] for item in report["findings"]}
+            self.assertEqual(findings["users_duplicate_normalized_email"], 1)
+            after = db.execute("SELECT id, firm_id, email FROM users ORDER BY id").fetchall()
+            self.assertEqual(before, after, "preflight must not rewrite or merge identity records")
+        finally:
+            db.close()
+
     def test_empty_database_is_not_reported_as_clean(self):
         db = sqlite3.connect(":memory:")
         try:
