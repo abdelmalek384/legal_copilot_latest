@@ -20,16 +20,11 @@ CREATE TABLE IF NOT EXISTS chunks(id INTEGER PRIMARY KEY, ref TEXT, article TEXT
 CREATE VIRTUAL TABLE IF NOT EXISTS chunks_fts USING fts5(norm);
 CREATE TABLE IF NOT EXISTS firms(id INTEGER PRIMARY KEY, name TEXT NOT NULL, created_at TEXT DEFAULT (datetime('now')));
 CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY, name TEXT, email TEXT UNIQUE, pw TEXT, role TEXT DEFAULT 'lawyer', firm_id INT DEFAULT 1, active INT DEFAULT 1);
-CREATE TABLE IF NOT EXISTS auth_sessions(token_hash TEXT PRIMARY KEY, user_id INT, expires INT);
 CREATE TABLE IF NOT EXISTS login_attempts(email TEXT PRIMARY KEY, failures INT NOT NULL DEFAULT 0, window_start INT NOT NULL DEFAULT 0, locked_until INT NOT NULL DEFAULT 0);
 CREATE TABLE IF NOT EXISTS cases(id INTEGER PRIMARY KEY, title TEXT, client TEXT, stage TEXT DEFAULT '', status TEXT DEFAULT 'open', created_by INT, firm_id INT DEFAULT 1,
   case_number TEXT DEFAULT '', case_year TEXT DEFAULT '', court TEXT DEFAULT '', circuit TEXT DEFAULT '', opposing_party TEXT DEFAULT '');
-CREATE TABLE IF NOT EXISTS notes(id INTEGER PRIMARY KEY, case_id INT, created_by INT, text TEXT, created_at TEXT DEFAULT (datetime('now')));
 CREATE TABLE IF NOT EXISTS deadlines(id INTEGER PRIMARY KEY, case_id INT, title TEXT, due TEXT, note TEXT DEFAULT '', created_by INT, status TEXT DEFAULT 'open');
-CREATE TABLE IF NOT EXISTS fees(id INTEGER PRIMARY KEY, case_id INT, title TEXT, amount REAL DEFAULT 0, paid REAL DEFAULT 0, due TEXT, note TEXT DEFAULT '', created_by INT);
 CREATE TABLE IF NOT EXISTS members(case_id INT, user_id INT, role TEXT, PRIMARY KEY(case_id, user_id));
-CREATE TABLE IF NOT EXISTS tasks(id INTEGER PRIMARY KEY, case_id INT, title TEXT, assignee INT, due TEXT, status TEXT DEFAULT 'open', created_by INT);
-CREATE TABLE IF NOT EXISTS events(id INTEGER PRIMARY KEY, case_id INT, who TEXT, at TEXT, text TEXT);
 CREATE TABLE IF NOT EXISTS case_deletion_audit(
   id INTEGER PRIMARY KEY,
   firm_id INTEGER NOT NULL,
@@ -48,7 +43,6 @@ CREATE TABLE IF NOT EXISTS api_rate_limit_windows(
   hits INTEGER NOT NULL DEFAULT 0,
   PRIMARY KEY(bucket, client_key, window_start)
 );
-CREATE TABLE IF NOT EXISTS sessions(id INTEGER PRIMARY KEY, case_id INT, date TEXT, note TEXT, done INT DEFAULT 0);
 CREATE TABLE IF NOT EXISTS docs(id INTEGER PRIMARY KEY, case_id INT, name TEXT, added TEXT, firm_id INT, uploader_user_id INT, sha256 TEXT, content_type TEXT, byte_size INT, extraction_status TEXT, ocr_used INT NOT NULL DEFAULT 0);
 -- Legal corpus provenance: one stable source record, multiple immutable legal versions.
 CREATE TABLE IF NOT EXISTS legal_sources(

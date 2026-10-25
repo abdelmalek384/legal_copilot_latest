@@ -46,7 +46,7 @@ class DatabaseMigrationRehearsalTests(unittest.TestCase):
         report = rehearse(self.database, self.migrations)
         self.assertEqual(report["status"], "passed")
         self.assertFalse(report["source_modified"])
-        self.assertEqual(report["migrations_applied"], [1, 2, 3, 4, 5])
+        self.assertEqual(report["migrations_applied"], [1, 2, 3, 4, 5, 6])
         self.assertEqual(report["source_quick_check"], ["ok"])
         self.assertEqual(report["staged_quick_check"], ["ok"])
         self.assertEqual(report["source_foreign_key_violations"], 0)
@@ -56,6 +56,9 @@ class DatabaseMigrationRehearsalTests(unittest.TestCase):
             self.assertNotIn("schema_migrations", names)
             self.assertNotIn("idx_cases_firm", names)
             self.assertNotIn("idx_login_attempts_window", names)
+            self.assertTrue({
+                "auth_sessions", "notes", "fees", "tasks", "events", "sessions"
+            }.isdisjoint(names))
             self.assertEqual(db.execute("SELECT firm_id FROM cases").fetchone()[0], 1)
 
     def test_missing_source_fails_closed(self):
