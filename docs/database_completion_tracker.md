@@ -12,11 +12,16 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 - [x] Extend read-only tenant ownership preflight to detect orphaned child records (PR #139).
 - [x] Move six operational indexes into versioned migration 0002 (PR #140).
 - [x] Add disposable-copy migration rehearsal with source read-only behavior and integrity checks (PR #141).
+- [x] Move remaining operational indexes into versioned migration 0003 (PR #142).
+- [x] Add read-only preflight checks for unlinked matter records (PR #143).
+- [x] Add persistent database completion tracker (PR #144).
+- [x] Inventory remaining startup DDL without opening a database (PR #145).
+- [x] Reject symlinked tenant storage roots and explicitly test tenant catalog safety in CI (PR #146).
+- [x] Expand read-only ownership preflight for cross-firm document, extraction-review, and audit inconsistencies (PR #147).
 
 ## In progress
 
-- [ ] **PR #142 — Move remaining startup indexes into migration 0003.** Implementation and migration tests added; first CI attempt exposed an incomplete disposable-rehearsal fixture. The fixture was updated to include migration 0003's prerequisite tables and a regression guard was added to ensure startup's SCHEMA string does not recreate indexes. Re-check CI on the latest commit before merge.
-- [ ] **PR #143 — Detect unlinked matter records before tenant migration.** Read-only preflight now flags documents and matter-child rows with NULL parent case IDs. CI passed (run #435); merge after review.
+- [ ] **PR #148 — Move two independent tables into versioned migrations 0004 and 0005.** `legal_version_relations` and `security_audit_events` are removed from the startup `SCHEMA` string; regression coverage checks migration ordering, constraints, inventory, and disposable-copy rehearsal. The latest full CI run is in progress; do not count this milestone complete until the latest commit passes and the PR is merged.
 
 ## Remaining database work
 

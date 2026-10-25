@@ -104,15 +104,16 @@ class DatabaseMigrationTests(unittest.TestCase):
             CREATE TABLE case_deletion_audit(firm_id INTEGER, id INTEGER);
             CREATE TABLE api_rate_limit_windows(window_start INTEGER);
             CREATE TABLE legal_document_versions(
-                original_sha256 TEXT, effective_date TEXT, repeal_date TEXT,
-                legal_status TEXT, review_status TEXT, status_verified INTEGER
+                version_id INTEGER PRIMARY KEY, original_sha256 TEXT,
+                effective_date TEXT, repeal_date TEXT, legal_status TEXT,
+                review_status TEXT, status_verified INTEGER
             );
             CREATE TABLE legal_review_events(version_id INTEGER, reviewed_at TEXT);
             CREATE TABLE research_conversations(firm_id INTEGER, user_id INTEGER, updated_at TEXT);
             CREATE TABLE research_messages(conversation_id INTEGER, id INTEGER);
         """)
         migrations = Path(__file__).resolve().parents[1] / "migrations"
-        self.assertEqual(apply_migrations(self.db, migrations), [1, 2, 3])
+        self.assertEqual(apply_migrations(self.db, migrations), [1, 2, 3, 4, 5])
         indexes = {
             row[0] for row in self.db.execute(
                 "SELECT name FROM sqlite_master WHERE type='index'"
@@ -136,6 +137,23 @@ class DatabaseMigrationTests(unittest.TestCase):
             "idx_research_conversations_owner",
             "idx_research_messages_conversation",
         } <= indexes)
+        relation_columns = {
+            row["name"] for row in self.db.execute("PRAGMA table_info(legal_version_relations)")
+        }
+        self.assertTrue({
+            "relation_id", "from_version_id", "to_version_id", "relation_type",
+            "notes", "created_at",
+        } <= relation_columns)
+        with self.assertRaises(sqlite3.IntegrityError):
+            self.db.execute(
+                "INSERT INTO legal_version_relations(from_version_id,to_version_id,relation_type) VALUES(1,1,'amends')"
+            )
+        audit_columns = {
+            row["name"] for row in self.db.execute("PRAGMA table_info(security_audit_events)")
+        }
+        self.assertEqual(
+            audit_columns, {"id", "firm_id", "user_id", "event", "created_at"}
+        )
         self.assertEqual(apply_migrations(self.db, migrations), [])
 
 
