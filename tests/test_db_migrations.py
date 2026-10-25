@@ -113,7 +113,7 @@ class DatabaseMigrationTests(unittest.TestCase):
             CREATE TABLE research_messages(conversation_id INTEGER, id INTEGER);
         """)
         migrations = Path(__file__).resolve().parents[1] / "migrations"
-        self.assertEqual(apply_migrations(self.db, migrations), [1, 2, 3, 4, 5, 6])
+        self.assertEqual(apply_migrations(self.db, migrations), [1, 2, 3, 4, 5, 6, 7])
         indexes = {
             row[0] for row in self.db.execute(
                 "SELECT name FROM sqlite_master WHERE type='index'"
@@ -164,6 +164,14 @@ class DatabaseMigrationTests(unittest.TestCase):
         self.assertEqual(workspace_columns["tasks"], {"id", "case_id", "title", "assignee", "due", "status", "created_by"})
         self.assertEqual(workspace_columns["events"], {"id", "case_id", "who", "at", "text"})
         self.assertEqual(workspace_columns["sessions"], {"id", "case_id", "date", "note", "done"})
+        source_columns = {
+            row["name"] for row in self.db.execute("PRAGMA table_info(legal_sources)")
+        }
+        self.assertEqual(source_columns, {
+            "source_id", "authority", "source_page", "access_status",
+            "collection_permission", "commercial_reuse_permission", "terms_url",
+            "terms_checked_on", "permission_evidence", "created_at",
+        })
         self.assertEqual(apply_migrations(self.db, migrations), [])
 
 
