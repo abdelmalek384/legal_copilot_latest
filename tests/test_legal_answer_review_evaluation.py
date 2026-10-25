@@ -12,6 +12,7 @@ def review(**overrides):
     scores = {dimension: 2 for dimension in DIMENSIONS}
     rationales = {dimension: "Checked against the reviewed source passage." for dimension in DIMENSIONS}
     record = {
+        "assessment_id": "ASSESS-001",
         "case_id": "CASE-001",
         "practice_area": "labour_law",
         "reviewer_name": "Qualified Reviewer A",
@@ -67,11 +68,19 @@ class LegalAnswerReviewEvaluationTests(unittest.TestCase):
         rationales["temporal_correctness"] = "Not applicable because the case has no date-dependent issue."
         self.assertEqual(validate_review(review(scores=scores, rationales=rationales)), [])
 
-    def test_duplicate_case_ids_are_excluded(self):
-        result = summarize_reviews([review(), review()])
+    def test_duplicate_assessment_ids_are_excluded(self):
+        first = review()
+        second = review(case_id="CASE-002", reviewer_name="Reviewer B")
+        result = summarize_reviews([first, second])
         self.assertEqual(result["valid_assessments"], 1)
         self.assertEqual(result["invalid_assessments_excluded"], 1)
-        self.assertIn("duplicate case_id", " ".join(result["invalid_records"][0]["errors"]))
+        self.assertIn("duplicate assessment_id", " ".join(result["invalid_records"][0]["errors"]))
+
+    def test_multiple_reviewers_can_review_same_case(self):
+        first = review()
+        second = review(assessment_id="ASSESS-002", reviewer_name="Reviewer B")
+        result = summarize_reviews([first, second])
+        self.assertEqual(result["valid_assessments"], 2)
 
     def test_unknown_dimensions_are_rejected(self):
         scores = dict(review()["scores"])
