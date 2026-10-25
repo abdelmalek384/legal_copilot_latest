@@ -24,6 +24,11 @@ def _migration_files(directory: Path) -> list[tuple[int, str, Path, str]]:
     found: list[tuple[int, str, Path, str]] = []
     versions: set[int] = set()
     for path in sorted(directory.glob("*.sql")):
+        # Migration SQL is executable schema input; never follow a symlink.
+        if path.is_symlink():
+            raise MigrationError(f"Migration file must not be a symlink: {path.name}")
+        if path.resolve().parent != directory.resolve():
+            raise MigrationError(f"Migration file escapes its directory: {path.name}")
         match = _MIGRATION_NAME.fullmatch(path.name)
         if not match:
             raise MigrationError(f"Invalid migration filename: {path.name}")
@@ -134,6 +139,8 @@ def _migration_operations(sql: str):
 def apply_migrations(connection: sqlite3.Connection, directory: str | Path) -> list[int]:
     """Apply pending migrations; return the versions applied in this invocation."""
     path = Path(directory)
+    if path.is_symlink():
+        raise MigrationError(f"Migration directory must not be a symlink: {path}")
     if not path.is_dir():
         raise MigrationError(f"Migration directory does not exist: {path}")
     migrations = _migration_files(path)
