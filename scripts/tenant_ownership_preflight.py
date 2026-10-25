@@ -274,6 +274,20 @@ def audit(conn: sqlite3.Connection) -> dict[str, Any]:
             _count(conn, "SELECT COUNT(*) FROM case_deletion_audit WHERE firm_id IS NULL"),
             "Deletion audit snapshots need explicit firm ownership.")
 
+    # Creator references on matter children must resolve to a real user in
+    # the same firm as the parent case; otherwise historical attribution is
+    # ambiguous and must be reviewed rather than silently repaired.
+    for table in ("notes", "deadlines", "fees"):
+        if table not in tables or "created_by" not in _columns(conn, table) or "cases" not in tables or "users" not in tables:
+            continue
+        add(f"{table}_creator_missing_user", "high",
+            _count(conn, f"SELECT COUNT(*) FROM {table} child LEFT JOIN users u ON u.id=child.created_by WHERE child.created_by IS NOT NULL AND u.id IS NULL"),
+            f"{table} creator points to a missing user.")
+        if "case_id" in _columns(conn, table) and "firm_id" in _columns(conn, "cases") and "firm_id" in _columns(conn, "users"):
+            add(f"{table}_creator_firm_mismatch", "critical",
+                _count(conn, f"SELECT COUNT(*) FROM {table} child JOIN cases c ON c.id=child.case_id JOIN users u ON u.id=child.created_by WHERE child.created_by IS NOT NULL AND c.firm_id IS NOT u.firm_id"),
+                f"{table} creator belongs to a different firm than the parent case.")
+
     # Matter child tables do not currently carry firm_id consistently. Their
     # parent case must exist, and application access must always authorize that
     # parent before reading or mutating a child record.
