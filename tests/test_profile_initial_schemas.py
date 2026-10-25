@@ -50,6 +50,50 @@ class ProfileInitialSchemaTests(unittest.TestCase):
         self.assertEqual(firm_b.execute("SELECT count(*) FROM chunks_fts WHERE chunks_fts MATCH 'alphaprivatesentinel'").fetchone()[0], 0)
         firm_a.close(); firm_b.close()
 
+    def test_firm_document_review_scope_guards(self):
+        db = self.build("firm")
+        db.execute("INSERT INTO cases(id,title,firm_id) VALUES(1,'Matter A',7)")
+        db.execute("INSERT INTO cases(id,title,firm_id) VALUES(2,'Matter B',7)")
+        db.execute("INSERT INTO docs(id,case_id,firm_id,name) VALUES(10,1,7,'doc-a')")
+        db.execute("INSERT INTO docs(id,case_id,firm_id,name) VALUES(20,2,7,'doc-b')")
+        db.execute("INSERT INTO chunks(id,text,norm,case_id,document_id) VALUES(100,'text a','texta',1,10)")
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "chunk document/case scope mismatch"):
+            db.execute("INSERT INTO chunks(id,text,norm,case_id,document_id) VALUES(101,'bad','bad',2,10)")
+        db.execute("""INSERT INTO document_extraction_reviews
+            (id,document_id,case_id,firm_id,chunk_id,reviewer_user_id,outcome,original_text,reviewed_text)
+            VALUES(1,10,1,7,100,55,'accepted','raw','reviewed')""")
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "document extraction review scope mismatch"):
+            db.execute("""INSERT INTO document_extraction_reviews
+                (id,document_id,case_id,firm_id,chunk_id,reviewer_user_id,outcome,original_text,reviewed_text)
+                VALUES(2,10,2,7,100,55,'accepted','raw','reviewed')""")
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "document extraction review scope mismatch"):
+            db.execute("UPDATE document_extraction_reviews SET chunk_id=999 WHERE id=1")
+        db.close()
+
+    def test_firm_scope_migration_fails_closed_on_existing_mismatch(self):
+        import shutil
+        import tempfile
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            firm = root / "firm"
+            firm.mkdir()
+            shutil.copy(ROOT / "firm" / "0001_firm_matter_foundation.sql", firm)
+            db = sqlite3.connect(":memory:")
+            try:
+                self.assertEqual(apply_profile_migrations(db, "firm", root), [1])
+                db.execute("INSERT INTO cases(id,title,firm_id) VALUES(1,'Matter A',7)")
+                db.execute("INSERT INTO cases(id,title,firm_id) VALUES(2,'Matter B',7)")
+                db.execute("INSERT INTO docs(id,case_id,firm_id,name) VALUES(10,1,7,'doc-a')")
+                db.execute("INSERT INTO chunks(id,text,norm,case_id,document_id) VALUES(100,'bad','bad',2,10)")
+                db.commit()
+                shutil.copy(ROOT / "firm" / "0002_enforce_document_review_scope.sql", firm)
+                with self.assertRaises(sqlite3.IntegrityError):
+                    apply_profile_migrations(db, "firm", root)
+                self.assertIsNotNone(db.execute("SELECT 1 FROM chunks WHERE id=100").fetchone())
+                self.assertEqual(db.execute("SELECT COUNT(*) FROM schema_migrations WHERE version=2").fetchone()[0], 0)
+            finally:
+                db.close()
+
     def test_corpus_requires_version_provenance(self):
         db = self.build("legal_corpus")
         with self.assertRaises(sqlite3.IntegrityError):
