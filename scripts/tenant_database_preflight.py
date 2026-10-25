@@ -328,7 +328,7 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
         "findings": findings,
         "limitations": [
             "A clean report does not prove tenant authorization or cross-firm isolation.",
-            "This checks catalog mappings and SQLite integrity only; it does not inspect application queries, file storage, backups, or deployment configuration.",
+            "This validates catalog authority and migration ledgers, then checks tenant file mappings and SQLite integrity; it does not inspect application authorization, query scoping, file storage, backups, or deployment configuration.",
             "Disabled tenants are not opened. Provisioning and failed entries are reported but never repaired.",
             "The catalog and tenant files can change after inspection; run during a quiet maintenance window for a stable snapshot.",
         ],
