@@ -181,7 +181,6 @@ def conn():
                 legal_document_cols = {r[1] for r in c.execute("PRAGMA table_info(legal_documents)")}
                 if "practice_area" not in legal_document_cols:
                     c.execute("ALTER TABLE legal_documents ADD COLUMN practice_area TEXT NOT NULL DEFAULT 'unknown'")
-                c.execute("INSERT OR IGNORE INTO firms(id,name) VALUES(1,'Default Firm')")
                 _ensure_legacy_firm_ownership(c)
                 deadline_cols = {r[1] for r in c.execute("PRAGMA table_info(deadlines)")}
                 if "status" not in deadline_cols: c.execute("ALTER TABLE deadlines ADD COLUMN status TEXT DEFAULT 'open'")
