@@ -191,5 +191,51 @@ class ProfileInitialSchemaTests(unittest.TestCase):
         self.assertEqual(db.execute("SELECT count(*) FROM notes").fetchone()[0], 0)
         db.close()
 
+    def test_control_plane_global_identity_and_membership_constraints(self):
+        db = self.build("control_plane")
+        db.execute("INSERT INTO firms(id,name) VALUES(10,'Firm A')")
+        db.execute("INSERT INTO firms(id,name) VALUES(20,'Firm B')")
+        db.execute("""INSERT INTO users
+            (id,name,email_display,email_normalized,password_hash)
+            VALUES(1,'Lawyer','Lawyer@Example.com','lawyer@example.com','test-hash')""")
+        # A global identity can have separate memberships in multiple firms.
+        db.execute("""INSERT INTO firm_memberships(user_id,firm_id,firm_role,status)
+            VALUES(1,10,'lawyer','active')""")
+        db.execute("""INSERT INTO firm_memberships(user_id,firm_id,firm_role,status)
+            VALUES(1,20,'admin','active')""")
+        self.assertEqual(
+            db.execute("SELECT COUNT(*) FROM firm_memberships WHERE user_id=1").fetchone()[0],
+            2,
+        )
+        # The canonical normalized email is globally unique, not per firm.
+        with self.assertRaises(sqlite3.IntegrityError):
+            db.execute("""INSERT INTO users
+                (id,name,email_display,email_normalized,password_hash)
+                VALUES(2,'Another','LAWYER@example.com','LAWYER@example.com','test-hash')""")
+        with self.assertRaises(sqlite3.IntegrityError):
+            db.execute("""INSERT INTO firm_memberships(user_id,firm_id,firm_role,status)
+                VALUES(1,10,'lawyer','active')""")
+        with self.assertRaises(sqlite3.IntegrityError):
+            db.execute("""INSERT INTO firm_memberships(user_id,firm_id,firm_role,status)
+                VALUES(1,999,'lawyer','active')""")
+        db.close()
+
+    def test_platform_roles_are_separate_from_firm_memberships(self):
+        db = self.build("control_plane")
+        db.execute("""INSERT INTO users
+            (id,name,email_display,email_normalized,password_hash)
+            VALUES(1,'Reviewer','reviewer@example.com','reviewer@example.com','test-hash')""")
+        db.execute("""INSERT INTO user_platform_roles(user_id,role_name)
+            VALUES(1,'platform_reviewer')""")
+        self.assertEqual(
+            db.execute("SELECT role_name FROM user_platform_roles WHERE user_id=1").fetchone()[0],
+            "platform_reviewer",
+        )
+        self.assertEqual(db.execute("SELECT COUNT(*) FROM firm_memberships").fetchone()[0], 0)
+        with self.assertRaises(sqlite3.IntegrityError):
+            db.execute("""INSERT INTO user_platform_roles(user_id,role_name)
+                VALUES(1,'firm_admin')""")
+        db.close()
+
 if __name__ == "__main__":
     unittest.main()
