@@ -17,6 +17,9 @@ class DatabaseStartupDDLInventoryTests(unittest.TestCase):
         self.assertEqual(report["startup_schema"]["counts"]["create_index"], 0)
         self.assertNotIn("CREATE TABLE IF NOT EXISTS legal_version_relations", (root / "app.py").read_text(encoding="utf-8"))
         self.assertNotIn("CREATE TABLE IF NOT EXISTS security_audit_events", (root / "app.py").read_text(encoding="utf-8"))
+        startup_schema = (root / "app.py").read_text(encoding="utf-8")
+        for table in ("auth_sessions", "notes", "fees", "tasks", "events", "sessions"):
+            self.assertNotIn(f"CREATE TABLE IF NOT EXISTS {table}(", startup_schema)
         self.assertTrue(report["startup_ddl_outside_schema_literal"])
         operations = {item["operation"] for item in report["startup_ddl_outside_schema_literal"]}
         self.assertIn("alter table", operations)
@@ -24,7 +27,7 @@ class DatabaseStartupDDLInventoryTests(unittest.TestCase):
             [item["file"] for item in report["migrations"]],
             sorted(item["file"] for item in report["migrations"]),
         )
-        self.assertEqual(len(report["migrations"]), 5)
+        self.assertEqual(len(report["migrations"]), 6)
 
     def test_inventory_uses_explicit_paths_and_does_not_require_a_database(self):
         with tempfile.TemporaryDirectory() as tmp:
