@@ -13,7 +13,11 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from identity import normalize_email
+try:
+    from identity import normalize_email
+except ModuleNotFoundError:  # Support direct `python scripts/...py` invocation.
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+    from identity import normalize_email
 
 
 def _tables(conn: sqlite3.Connection) -> set[str]:
