@@ -33,6 +33,9 @@ class CompareLegalVersionsTests(unittest.TestCase):
             "unchanged": 1,
             "unmapped_left_passages": 1,
             "unmapped_right_passages": 1,
+            "malformed_left_passages": 0,
+            "malformed_right_passages": 0,
+            "uncomparable_incomplete_text": 0,
         })
         changes = {item["article"]: item["change"] for item in result["provisions"]}
         self.assertEqual(changes, {
@@ -57,6 +60,27 @@ class CompareLegalVersionsTests(unittest.TestCase):
         self.assertEqual(result["summary"]["unchanged"], 1)
         self.assertEqual(result["provisions"][0]["left_pages"], ["1", "2"])
         self.assertEqual(result["provisions"][0]["right_pages"], ["3", "4"])
+
+    def test_missing_text_does_not_get_misclassified_as_added_or_removed(self):
+        result = compare_version_chunks(
+            [{"id": 1, "article": "5", "page": "2", "text": None}],
+            [{"id": 2, "article": "5", "page": "3", "text": "valid extracted text"}],
+        )
+        self.assertEqual(result["summary"]["uncomparable_incomplete_text"], 1)
+        self.assertEqual(result["summary"]["malformed_left_passages"], 1)
+        self.assertEqual(result["provisions"][0]["change"], "uncomparable_incomplete_text")
+        self.assertEqual(result["unmapped_passages"]["left"][0]["unmapped_reason"], "missing_or_invalid_text")
+        self.assertTrue(any("Malformed or empty extracted passages" in warning for warning in result["warnings"]))
+
+    def test_non_object_chunk_record_is_reported_without_crashing(self):
+        result = compare_version_chunks(
+            [None, {"id": 2, "article": "6", "page": "2", "text": "left"}],
+            [{"id": 3, "article": "6", "page": "3", "text": "right"}],
+        )
+        self.assertEqual(result["summary"]["malformed_left_passages"], 1)
+        self.assertEqual(result["unmapped_passages"]["left"][0]["unmapped_reason"], "invalid_chunk_record")
+        self.assertEqual(result["summary"]["changed"], 1)
+
 
     def _database(self, path):
         db = sqlite3.connect(path)
