@@ -32,6 +32,11 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("'/research/discover'", HTML)
         self.assertIn("Select a matter to search firm documents", HTML)
 
+    def test_element_helper_sets_aria_data_and_role_attributes(self):
+        self.assertIn("key==='role'||key.startsWith('aria-')||key.startsWith('data-')", HTML)
+        self.assertIn("e.setAttribute(key,String(value))", HTML)
+        self.assertIn("if(value!=null)e.setAttribute", HTML)
+
     def test_research_async_status_and_toasts_are_announced(self):
         self.assertIn('id="toast" role="status" aria-live="polite" aria-atomic="true"', HTML)
         self.assertIn("role:'status','aria-live':'polite','aria-atomic':'true'", HTML)
