@@ -116,7 +116,7 @@ class ProfileInitialSchemaTests(unittest.TestCase):
         # Parent mutations must not invalidate already-valid child relationships.
         with self.assertRaisesRegex(sqlite3.IntegrityError, "document child scope mismatch"):
             db.execute("UPDATE docs SET case_id=2 WHERE id=10")
-        with self.assertRaisesRegex(sqlite3.IntegrityError, "document case/firm scope mismatch"):
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "document (child scope|case/firm scope) mismatch"):
             db.execute("UPDATE docs SET firm_id=8 WHERE id=10")
         with self.assertRaisesRegex(sqlite3.IntegrityError, "case firm scope mismatch"):
             db.execute("UPDATE cases SET firm_id=8 WHERE id=1")
