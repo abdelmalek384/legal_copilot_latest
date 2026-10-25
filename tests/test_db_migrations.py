@@ -30,6 +30,62 @@ class DatabaseMigrationTests(unittest.TestCase):
         self.assertEqual(columns, ["id", "value"])
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM schema_migrations").fetchone()[0], 2)
 
+    def test_concurrent_runners_do_not_apply_the_same_migration_twice(self):
+        import threading
+
+        database = self.path / "concurrent.sqlite3"
+        self.write("0001_create_sample.sql", """
+            CREATE TABLE sample(id INTEGER PRIMARY KEY, value TEXT);
+            INSERT INTO sample(value) VALUES('once');
+        """)
+        barrier = threading.Barrier(2)
+        failures = []
+        failure_lock = threading.Lock()
+
+        class BarrierConnection(sqlite3.Connection):
+            def __init__(self, *args, **kwargs):
+                super().__init__(*args, **kwargs)
+                self._initial_ledger_read = False
+
+            def execute(self, sql, parameters=()):
+                cursor = super().execute(sql, parameters)
+                if (
+                    sql.strip().startswith(
+                        "SELECT version, name, checksum_sha256 FROM schema_migrations"
+                    )
+                    and not self._initial_ledger_read
+                ):
+                    self._initial_ledger_read = True
+                    barrier.wait(timeout=10)
+                return cursor
+
+        def run_migrations():
+            connection = sqlite3.connect(
+                database, timeout=10, factory=BarrierConnection
+            )
+            try:
+                apply_migrations(connection, self.path)
+            except Exception as exc:
+                with failure_lock:
+                    failures.append(exc)
+            finally:
+                connection.close()
+
+        threads = [threading.Thread(target=run_migrations) for _ in range(2)]
+        for thread in threads:
+            thread.start()
+        for thread in threads:
+            thread.join(timeout=15)
+
+        self.assertFalse(any(thread.is_alive() for thread in threads), "migration runner deadlocked")
+        self.assertEqual(failures, [])
+        with sqlite3.connect(database) as db:
+            self.assertEqual(db.execute("SELECT COUNT(*) FROM sample").fetchone()[0], 1)
+            self.assertEqual(
+                db.execute("SELECT COUNT(*) FROM schema_migrations WHERE version=1").fetchone()[0],
+                1,
+            )
+
     def test_failed_migration_rolls_back_schema_and_ledger(self):
         self.write("0001_atomic.sql", """
             CREATE TABLE should_rollback (id INTEGER);
