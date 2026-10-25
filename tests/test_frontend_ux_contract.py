@@ -32,6 +32,13 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("'/research/discover'", HTML)
         self.assertIn("Select a matter to search firm documents", HTML)
 
+    def test_registered_source_links_show_host_and_reject_url_credentials(self):
+        self.assertIn("u.protocol==='https:'&&!u.username&&!u.password", HTML)
+        self.assertIn("const sourceHostLabel=v=>", HTML)
+        self.assertIn("sourceHostLabel(sourceUrl)", HTML)
+        self.assertIn("sourceHostLabel(source)", HTML)
+        self.assertIn("rel:'noopener noreferrer'", HTML)
+
     def test_copy_fallback_checks_result_and_always_removes_temporary_textarea(self):
         self.assertIn("copied=document.execCommand('copy')===true", HTML)
         self.assertIn("finally{t.remove()}", HTML)
