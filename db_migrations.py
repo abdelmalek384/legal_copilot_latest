@@ -52,6 +52,66 @@ def _statements(sql: str) -> Iterable[str]:
         raise MigrationError("Migration ends with an incomplete SQL statement")
 
 
+_CONDITIONAL_ADD_COLUMN = re.compile(
+    r"^\s*--\s*@add-column-if-missing\s+([A-Za-z_][A-Za-z0-9_]*)\s+([A-Za-z_][A-Za-z0-9_]*)\s*$",
+    re.IGNORECASE,
+)
+_ADD_COLUMN_STATEMENT = re.compile(
+    r"(?is)^\s*ALTER\s+TABLE\s+([A-Za-z_][A-Za-z0-9_]*)\s+ADD\s+COLUMN\s+([A-Za-z_][A-Za-z0-9_]*)\b"
+)
+
+
+def _migration_operations(sql: str):
+    """Yield SQL statements and guarded ADD COLUMN operations in file order.
+
+    A guarded operation is declared by a comment directive immediately before
+    its ALTER TABLE statement. The raw file, including directives, remains
+    checksum-protected by the migration ledger.
+    """
+    buffer = ""
+    pending_column: tuple[str, str] | None = None
+    for line in sql.splitlines(keepends=True):
+        directive = _CONDITIONAL_ADD_COLUMN.fullmatch(line.rstrip("\r\n"))
+        if directive:
+            if pending_column is not None:
+                raise MigrationError("Conditional column directive has no ALTER TABLE statement")
+            if buffer.strip():
+                non_comments = [
+                    item for item in buffer.splitlines()
+                    if item.strip() and not item.lstrip().startswith("--")
+                ]
+                if non_comments:
+                    raise MigrationError("Conditional column directive must precede its ALTER TABLE statement")
+                buffer = ""
+            pending_column = (directive.group(1), directive.group(2))
+            continue
+
+        buffer += line
+        if sqlite3.complete_statement(buffer):
+            statement = buffer.strip()
+            if statement:
+                if pending_column is None:
+                    yield ("sql", statement)
+                else:
+                    alter = _ADD_COLUMN_STATEMENT.match(statement)
+                    if (
+                        alter is None
+                        or alter.group(1).lower() != pending_column[0].lower()
+                        or alter.group(2).lower() != pending_column[1].lower()
+                    ):
+                        raise MigrationError(
+                            "Conditional column directive must match the following ALTER TABLE statement"
+                        )
+                    yield ("add_column_if_missing", pending_column[0], pending_column[1], statement)
+                    pending_column = None
+            buffer = ""
+
+    if buffer.strip():
+        raise MigrationError("Migration ends with an incomplete SQL statement")
+    if pending_column is not None:
+        raise MigrationError("Conditional column directive has no ALTER TABLE statement")
+
+
 def apply_migrations(connection: sqlite3.Connection, directory: str | Path) -> list[int]:
     """Apply pending migrations; return the versions applied in this invocation."""
     path = Path(directory)
@@ -82,6 +142,22 @@ def apply_migrations(connection: sqlite3.Connection, directory: str | Path) -> l
     if missing:
         raise MigrationError(f"Applied migration files are missing: {missing}")
 
+    # Recorded history must be a prefix of the migrations available in this
+    # checkout. Otherwise a newly added lower version could be applied after
+    # a higher version was already recorded, violating migration order.
+    available_versions = sorted(available)
+    if recorded:
+        latest_recorded = max(recorded)
+        expected_prefix = [
+            version for version in available_versions if version <= latest_recorded
+        ]
+        actual_recorded = sorted(recorded)
+        if actual_recorded != expected_prefix:
+            raise MigrationError(
+                "Applied migration history is not an ordered prefix: "
+                f"recorded {actual_recorded}, expected {expected_prefix}"
+            )
+
     for version, (name, checksum, _sql) in available.items():
         if version in recorded and recorded[version] != (name, checksum):
             raise MigrationError(
@@ -94,7 +170,21 @@ def apply_migrations(connection: sqlite3.Connection, directory: str | Path) -> l
             continue
         try:
             connection.execute("BEGIN IMMEDIATE")
-            for statement in _statements(sql):
+            for operation in _migration_operations(sql):
+                if operation[0] == "add_column_if_missing":
+                    _kind, table, column, statement = operation
+                    columns = {
+                        row[1] for row in connection.execute(f"PRAGMA table_info({table})")
+                    }
+                    if not columns:
+                        raise MigrationError(
+                            f"Conditional column migration references missing table {table}"
+                        )
+                    if column not in columns:
+                        connection.execute(statement)
+                    continue
+
+                statement = operation[1]
                 # Do not allow migration files to control transaction boundaries.
                 if re.match(r"(?is)^\s*(BEGIN|COMMIT|END|ROLLBACK|SAVEPOINT|RELEASE)\b", statement):
                     raise MigrationError(f"Transaction control is not allowed in {name}")
