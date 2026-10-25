@@ -79,11 +79,8 @@ def validate(relationships_doc: dict, inventory_doc: dict) -> dict:
             ],
         }
 
-    document_ids = {
-        item.get("document_id")
-        for item in documents
-        if isinstance(item, dict) and isinstance(item.get("document_id"), str)
-    }
+    document_ids: set[str] = set()
+    seen_document_ids: set[str] = set()
     seen: set[str] = set()
     errors: list[dict] = []
     warnings: list[dict] = []
@@ -96,6 +93,20 @@ def validate(relationships_doc: dict, inventory_doc: dict) -> dict:
             "relationship_id": relationship_id,
             "detail": detail,
         })
+
+    for index, item in enumerate(documents):
+        if not isinstance(item, dict):
+            add("error", "invalid_document_entry", None, f"Inventory entry at index {index} is not an object.")
+            continue
+        document_id = item.get("document_id")
+        if not isinstance(document_id, str) or not document_id.strip():
+            add("error", "missing_document_id", None, f"Inventory entry at index {index} must have a non-empty document_id.")
+            continue
+        if document_id in seen_document_ids:
+            add("error", "duplicate_document_id", None, f"document_id {document_id!r} occurs more than once in the inventory.")
+            continue
+        seen_document_ids.add(document_id)
+        document_ids.add(document_id)
 
     for index, item in enumerate(relationships):
         if not isinstance(item, dict):
