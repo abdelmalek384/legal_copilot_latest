@@ -20,6 +20,15 @@ class TenantSQLiteConnectionRouterTests(unittest.TestCase):
         def initialize_tenant(db):
             db.execute("CREATE TABLE marker (value TEXT NOT NULL)")
             db.execute("INSERT INTO marker(value) VALUES (?)", ("created",))
+            db.execute("""
+                CREATE TABLE database_profile (
+                    singleton INTEGER PRIMARY KEY CHECK(singleton=1),
+                    profile TEXT NOT NULL
+                )
+            """)
+            db.execute(
+                "INSERT INTO database_profile(singleton,profile) VALUES(1,'firm')"
+            )
 
         with self._catalog() as catalog:
             provision_tenant_database(catalog, 101, self.root, initialize_tenant)
@@ -58,6 +67,28 @@ class TenantSQLiteConnectionRouterTests(unittest.TestCase):
         self.assertEqual(a.execute("SELECT value FROM marker").fetchone()[0], "firm-a")
         self.assertEqual(b.execute("SELECT value FROM marker").fetchone()[0], "firm-b")
         self.assertIsNot(a, b)
+
+    def test_rejects_tenant_database_bound_to_non_firm_profile(self):
+        with self._catalog() as catalog:
+            path = resolve_tenant_database(catalog, 101, self.root)
+        with sqlite3.connect(path) as db:
+            db.execute(
+                "UPDATE database_profile SET profile='legal_corpus' WHERE singleton=1"
+            )
+        router = TenantSQLiteConnectionRouter(self._catalog, self.root)
+        with self.assertRaisesRegex(TenantConnectionError, "not bound to the firm schema profile"):
+            router.connection_for_firm(101)
+        router.close_current_thread()
+
+    def test_rejects_tenant_database_without_profile_binding(self):
+        with self._catalog() as catalog:
+            path = resolve_tenant_database(catalog, 202, self.root)
+        with sqlite3.connect(path) as db:
+            db.execute("DROP TABLE database_profile")
+        router = TenantSQLiteConnectionRouter(self._catalog, self.root)
+        with self.assertRaisesRegex(TenantConnectionError, "missing its required firm profile binding"):
+            router.connection_for_firm(202)
+        router.close_current_thread()
 
     def test_reuses_connection_for_same_firm_on_current_thread(self):
         first = self.router.connection_for_firm(101)

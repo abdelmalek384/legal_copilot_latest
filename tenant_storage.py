@@ -120,12 +120,26 @@ class TenantSQLiteConnectionRouter:
                 raise TenantConnectionError(
                     "Tenant database foreign-key enforcement could not be enabled"
                 )
-        except sqlite3.Error as exc:
+            try:
+                profile = connection.execute(
+                    "SELECT profile FROM database_profile WHERE singleton=1"
+                ).fetchone()
+            except sqlite3.Error as exc:
+                raise TenantConnectionError(
+                    "Tenant database is missing its required firm profile binding"
+                ) from exc
+            if profile is None or profile[0] != "firm":
+                raise TenantConnectionError(
+                    "Tenant database is not bound to the firm schema profile"
+                )
+        except (sqlite3.Error, TenantConnectionError) as exc:
             if connection is not None:
                 try:
                     connection.close()
                 except sqlite3.Error:
                     pass
+            if isinstance(exc, TenantConnectionError):
+                raise
             raise TenantConnectionError(
                 "Tenant database is unavailable; refusing fallback to shared storage"
             ) from exc
