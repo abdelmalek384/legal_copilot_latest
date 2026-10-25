@@ -47,6 +47,17 @@ class DatabaseProfileTests(unittest.TestCase):
         with self.assertRaisesRegex(DatabaseProfileError, "bound to profile"):
             apply_profile_migrations(self.db, "legal_corpus", self.root)
 
+    def test_profile_binding_cannot_be_updated_or_deleted(self):
+        apply_profile_migrations(self.db, "firm", self.root)
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "profile binding is immutable"):
+            self.db.execute("UPDATE database_profile SET profile='legal_corpus' WHERE singleton=1")
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "profile binding is immutable"):
+            self.db.execute("DELETE FROM database_profile WHERE singleton=1")
+        self.assertEqual(
+            self.db.execute("SELECT profile FROM database_profile WHERE singleton=1").fetchone()[0],
+            "firm",
+        )
+
     def test_rejects_unknown_or_path_like_profile(self):
         for profile in ("tenant-7", "../firm", "", None, 7):
             with self.subTest(profile=profile), self.assertRaises(DatabaseProfileError):

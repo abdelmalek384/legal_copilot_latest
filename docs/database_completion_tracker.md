@@ -29,16 +29,14 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 - [x] Enable SQLite foreign-key enforcement during tenant database initialization and validate `integrity_check` plus `foreign_key_check`, with cleanup on failed provisioning (PR #165, merged; CI run 40217212814 passed).
 - [x] Reject symlinked tenant storage roots in the read-only preflight before path resolution (PR #167, merged; CI run 40217356965 passed).
 - [x] Add profile-binding and initial isolated-schema acceptance tests to CI; fix same-line SQL statement parsing while preserving trigger bodies (PR #171, merged; CI run 40217630357 passed).
+- [x] Constrain tenant catalog entries to existing firms with a foreign key and fail-closed legacy-orphan migration; align the runtime catalog helper (PR #176, merged; CI passed).
+- [x] Enforce firm document/chunk/extraction-review scope with a fail-closed migration and insert/update guards (PR #178, merged; CI run 40225478660 passed).
 
 ## In progress
 
-- [ ] **PR #176 — Constrain tenant catalog entries to existing firms.** Adds a forward migration with `FOREIGN KEY (firm_id) REFERENCES firms(id) ON DELETE RESTRICT`; invalid pre-existing orphan catalog rows cause migration rollback instead of guessed ownership. The runtime helper now requires the migration-managed `firms` table, enforces SQLite foreign keys, and rejects catalog tables missing the constraint. GitHub Actions run 40221546143 passed. Runtime tenant routing remains out of scope.
+- [ ] **PR #179 — Preserve firm scope when parent records change.** Adds firm-profile migration 0003 to reject legacy document/case firm mismatches and prevent later case-firm or document-case/firm changes from invalidating existing chunks and extraction reviews. Regression tests cover rejected parent updates and fail-closed migration rollback. GitHub Actions run 40226136870 passed. PR remains open and unmerged.
 
-- [ ] **PR #178 — Enforce firm document and extraction review scope.** Adds a fail-closed migration guard for existing chunk/document/review mismatches, then adds triggers to prevent mismatched chunk-to-document cases and review-to-document/case/chunk/firm links on inserts and updates. GitHub Actions run 40221835993 passed, including profile schema acceptance, migration tests, unit tests, API tests, and Arabic scenarios; this does not replace route authorization or tenant routing.
-
-- [ ] **Follow-up — Preserve parent scope on firm-profile updates.** A stacked follow-up adds firm migration 0003 to reject legacy document/case firm mismatches and prevent later case-firm or document-case/firm changes from invalidating existing chunks and extraction reviews. Regression tests cover rejected parent updates and fail-closed migration rollback. Waiting on CI; this remains dependent on PR #178 and does not enable runtime tenant routing.
-
-
+- [ ] **PR #184 — Make database profile binding immutable.** Adds SQLite triggers that prevent ordinary updates or deletes of the `database_profile` marker, with regression coverage. GitHub Actions run 40228349976 passed for the initial replacement branch; the current PR will rerun checks after this tracker correction. The profile marker remains a safety boundary only; this does not certify tenant routing or runtime isolation.
 
 ## Remaining database work
 

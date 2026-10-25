@@ -57,6 +57,22 @@ def apply_profile_migrations(
             bound_at TEXT NOT NULL DEFAULT (datetime('now'))
         )
     """)
+    # The profile marker is a safety boundary, not mutable application data.
+    # Guard it in SQLite so ordinary SQL cannot silently rebind or unbind a DB.
+    connection.execute("""
+        CREATE TRIGGER IF NOT EXISTS database_profile_no_update
+        BEFORE UPDATE ON database_profile
+        BEGIN
+            SELECT RAISE(ABORT, 'database profile binding is immutable');
+        END
+    """)
+    connection.execute("""
+        CREATE TRIGGER IF NOT EXISTS database_profile_no_delete
+        BEFORE DELETE ON database_profile
+        BEGIN
+            SELECT RAISE(ABORT, 'database profile binding is immutable');
+        END
+    """)
     row = connection.execute(
         "SELECT profile FROM database_profile WHERE singleton=1"
     ).fetchone()
