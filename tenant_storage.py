@@ -68,6 +68,15 @@ class TenantSQLiteConnectionRouter:
             try:
                 path = resolve_tenant_database(catalog, trusted_firm_id, self._storage_root)
             except (TenantCatalogError, sqlite3.Error) as exc:
+                # A disabled or invalid catalog entry must also revoke any
+                # connection already cached for this firm on the current thread.
+                connections = getattr(self._local, "connections", None)
+                cached = connections.pop(trusted_firm_id, None) if connections else None
+                if cached is not None:
+                    try:
+                        cached[1].close()
+                    except sqlite3.Error:
+                        pass
                 raise TenantConnectionError(
                     "Tenant database is not available through the trusted catalog"
                 ) from exc

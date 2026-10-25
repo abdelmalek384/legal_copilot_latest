@@ -71,13 +71,15 @@ class TenantSQLiteConnectionRouterTests(unittest.TestCase):
         with self.assertRaises(TenantConnectionError):
             self.router.connection_for_firm(303)
 
-    def test_disabled_tenant_is_rejected_even_after_connection_was_cached(self):
-        self.router.connection_for_firm(101)
+    def test_disabled_tenant_is_rejected_and_cached_connection_is_closed(self):
+        connection = self.router.connection_for_firm(101)
         with self._catalog() as catalog:
             catalog.execute("UPDATE tenant_database_catalog SET status='disabled' WHERE firm_id=101")
             catalog.commit()
         with self.assertRaises(TenantConnectionError):
             self.router.connection_for_firm(101)
+        with self.assertRaises(sqlite3.ProgrammingError):
+            connection.execute("SELECT 1")
 
     def test_each_tenant_connection_enables_foreign_keys(self):
         for firm_id in (101, 202):
