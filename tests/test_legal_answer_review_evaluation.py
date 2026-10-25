@@ -34,8 +34,7 @@ class LegalAnswerReviewEvaluationTests(unittest.TestCase):
         self.assertEqual(result["critical_defect_count"], 0)
 
     def test_insufficient_evidence_is_not_counted_as_a_pass_or_score(self):
-        scores = {dimension: 2 for dimension in DIMENSIONS}
-        record = review(disposition="not_scored_insufficient_evidence", scores=scores)
+        record = review(disposition="not_scored_insufficient_evidence")
         result = summarize_reviews([record])
         self.assertEqual(result["disposition_counts"]["pass_for_this_case"], 0)
         self.assertEqual(result["disposition_counts"]["not_scored_insufficient_evidence"], 1)
@@ -78,6 +77,11 @@ class LegalAnswerReviewEvaluationTests(unittest.TestCase):
         scores = dict(review()["scores"])
         scores["overall_vibe"] = 2
         self.assertTrue(any("unknown score dimensions" in e for e in validate_review(review(scores=scores))))
+
+    def test_boolean_is_not_accepted_as_numeric_score(self):
+        scores = dict(review()["scores"])
+        scores["legal_correctness"] = True
+        self.assertTrue(any("legal_correctness must be 0, 1, 2" in e for e in validate_review(review(scores=scores))))
 
 
 if __name__ == "__main__":
