@@ -4,9 +4,11 @@
 **Estimated completion:** 28%  
 **Status:** In progress — not production-ready for confidential multi-firm matter data.
 
-This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. The checklist currently tracks 45 completed tasks and 21 remaining tasks; this count is not a readiness percentage. Update this file as database PRs merge and as acceptance criteria are completed.
+This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. The checklist currently tracks 46 completed tasks and 20 remaining tasks; this count is not a readiness percentage. Update this file as database PRs merge and as acceptance criteria are completed.
 
 ## Completed and merged
+
+- [x] Add a fresh control-plane schema for global normalized-email identities, many-to-many firm memberships, firm-scoped roles/status, and separate platform-role assignments; schema acceptance tests pass, but runtime auth/routing is not wired (PR #253 merged; CI run 40236818594 passed).
 
 - [x] Canonicalize login/user-creation/reviewer emails and add a read-only legacy audit for duplicate normalized global emails; existing collisions are flagged for manual resolution, never auto-merged (PR #252 merged; CI run 40236580927 passed).
 
@@ -79,9 +81,9 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 - [ ] Keep migrations immutable after merge; add new forward migrations for corrections.
 
 ### 2. Approve identity and tenant contract
-- [ ] Product/deployment owners decide whether identities can belong to multiple firms, email normalization/uniqueness, role domains, invitation rules, and session behavior after membership revocation.
+- [ ] Finish operational identity policy for invitations, initial firm-owner bootstrap, platform-role grant/revocation workflow, and session behavior after membership revocation; core decisions on multi-firm membership, global normalized email, and separate role domains are approved.
 - [ ] Complete the deployment and storage inventory before selecting production routing behavior.
-- [ ] Implement firm memberships and trusted active-firm resolution only after contract approval.
+- [ ] Wire the new control-plane membership and platform-role tables into authentication, session validation, and trusted active-firm routing after remaining operational policy is settled; revoke access promptly when membership is suspended/revoked.
 
 ### 3. Implement actual tenant storage boundaries
 - [ ] Route each firm-scoped request through an authenticated, server-validated firm membership and trusted server-side tenant catalog.
