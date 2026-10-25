@@ -32,6 +32,11 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("'/research/discover'", HTML)
         self.assertIn("Select a matter to search firm documents", HTML)
 
+    def test_copy_fallback_checks_result_and_always_removes_temporary_textarea(self):
+        self.assertIn("copied=document.execCommand('copy')===true", HTML)
+        self.assertIn("finally{t.remove()}", HTML)
+        self.assertIn("if(!copied)throw new Error('copy failed')", HTML)
+
     def test_source_inspector_exposes_status_pin_cites_copy_and_memo_actions(self):
         self.assertIn("source_status", HTML)
         self.assertIn("s.article", HTML)
