@@ -107,6 +107,46 @@ def _safe_database_path(root: Path, firm_id: int, filename: str) -> Path:
     return candidate
 
 
+def _bind_tenant_database(connection: sqlite3.Connection, firm_id: int) -> None:
+    """Permanently bind a newly provisioned tenant database to one firm ID."""
+    connection.execute("""
+        CREATE TABLE IF NOT EXISTS tenant_database_binding (
+            singleton INTEGER PRIMARY KEY CHECK(singleton = 1),
+            firm_id INTEGER NOT NULL CHECK(firm_id > 0),
+            bound_at TEXT NOT NULL DEFAULT (datetime('now'))
+        )
+    """)
+    connection.execute("""
+        CREATE TRIGGER IF NOT EXISTS tenant_database_binding_no_update
+        BEFORE UPDATE ON tenant_database_binding
+        BEGIN
+            SELECT RAISE(ABORT, 'tenant database firm binding is immutable');
+        END
+    """)
+    connection.execute("""
+        CREATE TRIGGER IF NOT EXISTS tenant_database_binding_no_delete
+        BEFORE DELETE ON tenant_database_binding
+        BEGIN
+            SELECT RAISE(ABORT, 'tenant database firm binding is immutable');
+        END
+    """)
+    rows = connection.execute(
+        "SELECT singleton, firm_id FROM tenant_database_binding"
+    ).fetchall()
+    if not rows:
+        connection.execute(
+            "INSERT INTO tenant_database_binding(singleton, firm_id) VALUES(1, ?)",
+            (firm_id,),
+        )
+        return
+    if len(rows) != 1 or rows[0][0] != 1:
+        raise TenantCatalogError("Tenant database has an invalid firm binding marker")
+    if rows[0][1] != firm_id:
+        raise TenantCatalogError(
+            "Tenant database is already bound to a different firm"
+        )
+
+
 def provision_tenant_database(
     catalog: sqlite3.Connection,
     firm_id: int,
@@ -182,6 +222,9 @@ def provision_tenant_database(
             # Enable it before running tenant schema/data initialization.
             tenant.execute("PRAGMA foreign_keys=ON")
             initialize_database(tenant)
+            # The catalog mapping alone is not enough: bind the file contents
+            # to the same trusted firm ID so a copied/swapped database fails closed.
+            _bind_tenant_database(tenant, firm_id)
             tenant.commit()
             integrity = tenant.execute("PRAGMA integrity_check").fetchone()[0]
             if integrity != "ok":
