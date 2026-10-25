@@ -32,6 +32,17 @@ def compare_version_chunks(left_chunks, right_chunks):
         unmapped = []
         malformed_count = 0
         uncertain_articles = set()
+        # Duplicate non-null string/integer IDs make passage identity ambiguous.
+        # Treat every occurrence as unusable, not just the later duplicate.
+        id_counts = {}
+        for row in rows:
+            if not isinstance(row, dict):
+                continue
+            chunk_id = row.get("id")
+            if isinstance(chunk_id, (str, int)) and not isinstance(chunk_id, bool):
+                key = (type(chunk_id).__name__, chunk_id)
+                id_counts[key] = id_counts.get(key, 0) + 1
+        duplicate_ids = {key for key, count in id_counts.items() if count > 1}
         for row in rows:
             if not isinstance(row, dict):
                 malformed_count += 1
@@ -46,11 +57,22 @@ def compare_version_chunks(left_chunks, right_chunks):
             raw_text = row.get("text")
             text = raw_text if isinstance(raw_text, str) else None
             page = row.get("page")
+            chunk_id = row.get("id")
             chunk = {
-                "chunk_id": row.get("id"),
+                "chunk_id": chunk_id,
                 "page": page if _nonempty(page) else None,
                 "text": text,
             }
+            id_key = (type(chunk_id).__name__, chunk_id) if (
+                isinstance(chunk_id, (str, int)) and not isinstance(chunk_id, bool)
+            ) else None
+            if id_key in duplicate_ids:
+                malformed_count += 1
+                chunk["unmapped_reason"] = "duplicate_chunk_id"
+                unmapped.append(chunk)
+                if _nonempty(article):
+                    uncertain_articles.add(article.strip())
+                continue
             if text is None or not text.strip():
                 malformed_count += 1
                 chunk["unmapped_reason"] = "missing_or_invalid_text"
@@ -63,10 +85,12 @@ def compare_version_chunks(left_chunks, right_chunks):
                 unmapped.append(chunk)
                 continue
             grouped.setdefault(article.strip(), []).append(chunk)
-        return grouped, unmapped, malformed_count, uncertain_articles
+        return grouped, unmapped, malformed_count, uncertain_articles, len(duplicate_ids)
 
-    left_by_article, left_unmapped, left_malformed, left_uncertain = group(left_chunks)
-    right_by_article, right_unmapped, right_malformed, right_uncertain = group(right_chunks)
+    (left_by_article, left_unmapped, left_malformed, left_uncertain,
+     left_duplicate_ids) = group(left_chunks)
+    (right_by_article, right_unmapped, right_malformed, right_uncertain,
+     right_duplicate_ids) = group(right_chunks)
     provisions = []
     counts = {
         "added_in_right": 0,
@@ -111,7 +135,7 @@ def compare_version_chunks(left_chunks, right_chunks):
 
     if left_malformed or right_malformed:
         extra_warning = (
-            "Malformed or empty extracted passages were found; inspect the unmapped_passages lists "
+            "Malformed, duplicate-ID, or empty extracted passages were found; inspect the unmapped_passages lists "
             "before relying on any article-level result."
         )
     else:
@@ -122,6 +146,7 @@ def compare_version_chunks(left_chunks, right_chunks):
         "Matching uses exact article labels; renumbered or restructured provisions may appear as removed/added and are not automatically mapped.",
         "Missing provisions may reflect incomplete extraction rather than a change in the legal instrument.",
         "Passages with missing/invalid text are excluded from text comparison; any article label affected on either side is marked uncomparable rather than added, removed, changed, or unchanged.",
+        "All occurrences of duplicate non-null chunk IDs are excluded; any associated article labels are marked uncomparable because passage identity is ambiguous.",
         "Verify both texts against their authoritative source pages and have qualified Egyptian counsel review the legal effect.",
     ]
     if extra_warning:
