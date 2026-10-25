@@ -115,6 +115,27 @@ class TenantDatabasePreflightTests(unittest.TestCase):
         self.assertIn("mutable_database_profile_binding", codes)
         self.assertIn("mutable_tenant_firm_binding", codes)
 
+    def test_trigger_names_with_noop_bodies_are_not_accepted_as_immutable_guards(self):
+        self.add_tenant(8)
+        filename = self.catalog.execute(
+            "SELECT database_file FROM tenant_database_catalog WHERE firm_id=8"
+        ).fetchone()[0]
+        with sqlite3.connect(self.root / filename) as db:
+            db.execute("DROP TRIGGER database_profile_no_update")
+            db.execute("DROP TRIGGER database_profile_no_delete")
+            db.execute("DROP TRIGGER tenant_database_binding_no_update")
+            db.execute("DROP TRIGGER tenant_database_binding_no_delete")
+            db.executescript("""
+                CREATE TRIGGER database_profile_no_update BEFORE UPDATE ON database_profile BEGIN SELECT 1; END;
+                CREATE TRIGGER database_profile_no_delete BEFORE DELETE ON database_profile BEGIN SELECT 1; END;
+                CREATE TRIGGER tenant_database_binding_no_update BEFORE UPDATE ON tenant_database_binding BEGIN SELECT 1; END;
+                CREATE TRIGGER tenant_database_binding_no_delete BEFORE DELETE ON tenant_database_binding BEGIN SELECT 1; END;
+            """)
+        report = audit(self.catalog_path, self.root)
+        codes = {item["code"] for item in report["findings"] if item["firm_id"] == 8}
+        self.assertIn("mutable_database_profile_binding", codes)
+        self.assertIn("mutable_tenant_firm_binding", codes)
+
     def test_missing_profile_and_firm_binding_are_reported(self):
         self.add_tenant(7)
         filename = self.catalog.execute(
