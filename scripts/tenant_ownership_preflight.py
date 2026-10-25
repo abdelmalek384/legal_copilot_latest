@@ -162,6 +162,21 @@ def audit(conn: sqlite3.Connection) -> dict[str, Any]:
                     _count(conn, "SELECT COUNT(*) FROM document_extraction_reviews r JOIN chunks ch ON ch.id=r.chunk_id WHERE r.case_id IS NOT ch.case_id OR r.document_id IS NOT ch.document_id"),
                     "Extraction review matter/document scope differs from its chunk.")
 
+    if "research_messages" in tables:
+        message_cols = _columns(conn, "research_messages")
+        if "conversation_id" in message_cols:
+            if "research_conversations" in tables:
+                add("research_message_conversation_missing", "high",
+                    _count(conn, "SELECT COUNT(*) FROM research_messages m LEFT JOIN research_conversations rc ON rc.id=m.conversation_id WHERE m.conversation_id IS NOT NULL AND rc.id IS NULL"),
+                    "Research message points to a missing conversation.")
+                add("research_message_conversation_unassigned", "high",
+                    _count(conn, "SELECT COUNT(*) FROM research_messages WHERE conversation_id IS NULL"),
+                    "Research message has no parent conversation, so its firm/owner scope cannot be established.")
+            else:
+                add("research_message_parent_table_missing", "critical",
+                    _count(conn, "SELECT COUNT(*) FROM research_messages"),
+                    "Research messages exist but the conversation table required to establish their scope is missing.")
+
     if "case_deletion_audit" in tables and "users" in tables:
         audit_cols = _columns(conn, "case_deletion_audit")
         user_cols = _columns(conn, "users")
