@@ -60,6 +60,19 @@ assert c.post(f"/cases/{cid}/tasks", json={"title": "t", "assignee": jid}, heade
 assert c.post(f"/cases/{cid}/members", json={"user_id": jid, "role": "junior"}, headers=J).status_code == 404  # junior cannot manage team
 assert c.post(f"/cases/{cid}/members", json={"user_id": jid, "role": "junior"}, headers=L).status_code == 200
 assert c.post(f"/cases/{cid}/tasks", json={"title": "مذكرة", "assignee": jid, "due": "2099-01-01"}, headers=L).status_code == 200
+# Unassigned work is visible only to members of the case and can be claimed once.
+assert c.post(f"/cases/{cid}/tasks", json={"title": "مهمة غير مسندة", "due": "2099-01-02"}, headers=L).status_code == 200
+lead_dash = c.get("/dashboard", headers=L).json()
+junior_dash = c.get("/dashboard", headers=J).json()
+outsider_dash = c.get("/dashboard", headers=O).json()
+unassigned = next(x for x in junior_dash["unassigned_tasks"] if x["title"] == "مهمة غير مسندة")
+assert any(x["title"] == "مهمة غير مسندة" for x in lead_dash["unassigned_tasks"])
+assert all(x["title"] != "مهمة غير مسندة" for x in outsider_dash["unassigned_tasks"])
+assert c.post(f"/tasks/{unassigned['id']}/claim", headers=O).status_code == 404
+assert c.post(f"/tasks/{unassigned['id']}/claim", headers=J).status_code == 200
+assert c.post(f"/tasks/{unassigned['id']}/claim", headers=L).status_code == 409
+assert any(x["title"] == "مهمة غير مسندة" for x in c.get("/dashboard", headers=J).json()["tasks"])
+assert all(x["title"] != "مهمة غير مسندة" for x in c.get("/dashboard", headers=J).json()["unassigned_tasks"])
 soon = (date.today() + timedelta(days=7)).isoformat()
 assert c.post(f"/cases/{cid}/deadlines", json={"title":"استئناف","due":soon,"note":""}, headers=L).status_code == 200
 dash = c.get("/dashboard", headers=J).json()
@@ -68,7 +81,7 @@ deadline = next(x for x in dash["deadlines"] if x["title"] == "استئناف")
 assert c.post(f"/deadlines/{deadline['id']}/done", headers=J).status_code == 404
 assert c.post(f"/deadlines/{deadline['id']}/done", headers=L).status_code == 200
 assert all(x["id"] != deadline["id"] for x in c.get("/dashboard", headers=J).json()["deadlines"])
-assert len(c.get("/dashboard", headers=J).json()["tasks"]) == 1
+assert len(c.get("/dashboard", headers=J).json()["tasks"]) == 2  # original assignment plus the newly claimed task
 tid = c.get("/dashboard", headers=J).json()["tasks"][0]["id"]
 assert c.post(f"/tasks/{tid}/done", headers=O).status_code == 404 and c.post(f"/tasks/{tid}/done", headers=J).status_code == 200
 assert c.post(f"/cases/{cid}/sessions", json={"date": "tomorrow"}, headers=L).status_code == 422
@@ -142,7 +155,7 @@ assert ocr_doc["sha256"] == app.hashlib.sha256(b"pdf bytes").hexdigest()
 
 assert c.post("/ask", json={"q": "مدة العقد", "case_id": cid}, headers=O).status_code == 404 and c.get(f"/cases/{cid}", headers=O).status_code == 404
 r = c.post("/ask", json={"q": "مدة العقد", "case_id": cid}, headers=J).json(); assert r["sources"][0]["source"] == "case-file"
-info = c.get(f"/cases/{cid}", headers=J).json(); assert len(info["events"]) >= 4 and info["tasks"][0]["status"] == "done"
+info = c.get(f"/cases/{cid}", headers=J).json(); assert len(info["events"]) >= 4 and any(task["status"] == "done" for task in info["tasks"])
 assert c.patch(f"/cases/{cid}", json={"case_number":"77","case_year":"2025","court":"محكمة","circuit":"دائرة 3","opposing_party":"خصم"}, headers=L).status_code == 200
 assert c.post(f"/cases/{cid}/notes", json={"text":"ملاحظة اختبار"}, headers=J).status_code == 200
 assert c.post(f"/cases/{cid}/deadlines", json={"title":"استئناف","due":"2099-02-01","note":"تجريبي"}, headers=J).status_code == 200
