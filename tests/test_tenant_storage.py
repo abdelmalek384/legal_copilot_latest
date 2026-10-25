@@ -1,6 +1,7 @@
 """Tests for catalog-backed tenant connection routing (not request authorization)."""
 import sqlite3
 import tempfile
+import threading
 import unittest
 from pathlib import Path
 
@@ -61,6 +62,38 @@ class TenantSQLiteConnectionRouterTests(unittest.TestCase):
         first = self.router.connection_for_firm(101)
         second = self.router.connection_for_firm(101)
         self.assertIs(first, second)
+
+    def test_same_firm_uses_distinct_connections_across_threads(self):
+        barrier = threading.Barrier(2)
+        connections = []
+        errors = []
+
+        def worker():
+            try:
+                connection = self.router.connection_for_firm(101)
+                connections.append(connection)
+                barrier.wait(timeout=5)
+                self.assertEqual(
+                    connection.execute("SELECT value FROM marker").fetchone()[0],
+                    "firm-a",
+                )
+                barrier.wait(timeout=5)
+                self.router.close_current_thread()
+                with self.assertRaises(sqlite3.ProgrammingError):
+                    connection.execute("SELECT 1")
+            except BaseException as exc:
+                errors.append(exc)
+
+        workers = [threading.Thread(target=worker) for _ in range(2)]
+        for worker_thread in workers:
+            worker_thread.start()
+        for worker_thread in workers:
+            worker_thread.join(timeout=10)
+
+        self.assertTrue(all(not worker_thread.is_alive() for worker_thread in workers))
+        self.assertEqual(errors, [])
+        self.assertEqual(len(connections), 2)
+        self.assertIsNot(connections[0], connections[1])
 
     def test_rejects_invalid_firm_id_shapes(self):
         for value in (0, -1, True, "101", None):
