@@ -37,33 +37,86 @@ def _has_immutable_guard(sql: str | None, table: str, operation: str, message: s
     )
 
 
-def _expected_firm_migrations() -> dict[int, tuple[str, str]]:
-    """Read the trusted firm-profile migration manifest without opening a database."""
-    directory = Path(__file__).resolve().parents[1] / "migrations" / "firm"
+def _expected_profile_migrations(profile: str) -> dict[int, tuple[str, str]]:
+    """Read a trusted profile's migration manifest without opening a database."""
+    if profile not in {"control_plane", "firm"}:
+        raise ValueError("unsupported migration profile")
+    directory = Path(__file__).resolve().parents[1] / "migrations" / profile
     if directory.is_symlink() or not directory.is_dir():
-        raise ValueError("trusted firm migration directory is unavailable")
+        raise ValueError(f"trusted {profile} migration directory is unavailable")
     expected: dict[int, tuple[str, str]] = {}
     for path in sorted(directory.glob("*.sql")):
         if path.is_symlink() or path.resolve().parent != directory.resolve():
-            raise ValueError("firm migration sources must be regular files in the trusted directory")
+            raise ValueError(f"{profile} migration sources must be regular files in the trusted directory")
         match = re.fullmatch(r"([0-9]{4,})_[a-z0-9_]+\.sql", path.name)
         if match is None:
-            raise ValueError(f"invalid firm migration filename: {path.name}")
+            raise ValueError(f"invalid {profile} migration filename: {path.name}")
         version = int(match.group(1))
         sql = path.read_text(encoding="utf-8")
         if version in expected:
-            raise ValueError(f"duplicate firm migration version: {version}")
+            raise ValueError(f"duplicate {profile} migration version: {version}")
         expected[version] = (path.name, hashlib.sha256(sql.encode("utf-8")).hexdigest())
     if not expected:
-        raise ValueError("trusted firm migration directory contains no migrations")
+        raise ValueError(f"trusted {profile} migration directory contains no migrations")
     return expected
 
+
+def _migration_ledger_findings(
+    connection: sqlite3.Connection,
+    tables: set[str],
+    expected: dict[int, tuple[str, str]],
+    scope: str,
+) -> list[tuple[str, str]]:
+    """Compare a read-only migration ledger with the trusted repository manifest."""
+    if scope == "control_plane":
+        codes = {
+            "missing": "missing_control_plane_migration_ledger",
+            "incomplete": "incomplete_control_plane_migration_history",
+            "unexpected": "unexpected_control_plane_migration_history",
+            "checksum": "control_plane_migration_checksum_mismatch",
+            "invalid": "invalid_control_plane_migration_ledger",
+        }
+        label = "control-plane"
+    else:
+        codes = {
+            "missing": "missing_schema_migration_ledger",
+            "incomplete": "incomplete_schema_migration_history",
+            "unexpected": "unexpected_schema_migration_history",
+            "checksum": "schema_migration_checksum_mismatch",
+            "invalid": "invalid_schema_migration_ledger",
+        }
+        label = "firm"
+
+    if "schema_migrations" not in tables:
+        return [(codes["missing"], f"{label} database has no versioned migration ledger")]
+    try:
+        ledger_rows = connection.execute(
+            "SELECT version, name, checksum_sha256 FROM schema_migrations"
+        ).fetchall()
+        recorded = {int(row[0]): (str(row[1]), str(row[2])) for row in ledger_rows}
+    except (sqlite3.Error, ValueError, TypeError, IndexError):
+        return [(codes["invalid"], f"{label} migration ledger is malformed or unreadable")]
+
+    findings: list[tuple[str, str]] = []
+    expected_versions = set(expected)
+    recorded_versions = set(recorded)
+    missing_versions = sorted(expected_versions - recorded_versions)
+    unexpected_versions = sorted(recorded_versions - expected_versions)
+    if missing_versions:
+        findings.append((codes["incomplete"], f"missing {label} migration versions: {missing_versions}"))
+    if unexpected_versions:
+        findings.append((codes["unexpected"], f"unknown {label} migration versions: {unexpected_versions}"))
+    mismatched = sorted(
+        version for version in expected_versions & recorded_versions
+        if recorded[version] != expected[version]
+    )
+    if mismatched:
+        findings.append((codes["checksum"], f"migration name/checksum differs for {label} versions: {mismatched}"))
+    return findings
 
 def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
     """Inspect catalog mappings and provisioned SQLite files without writing."""
     findings: list[dict[str, Any]] = []
-    expected_migrations = _expected_firm_migrations()
-
     requested_catalog = Path(catalog_path).expanduser()
     # Match the storage-root policy: do not silently follow a configured
     # catalog symlink to a different database during a read-only audit.
@@ -85,12 +138,17 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
     if not root.is_dir():
         raise ValueError("tenant storage root must be a directory")
 
+    expected_control_plane_migrations = _expected_profile_migrations("control_plane")
+    expected_firm_migrations = _expected_profile_migrations("firm")
+    catalog_authoritative = True
+
     with closing(_readonly(resolved_catalog)) as catalog:
         tables = {row[0] for row in catalog.execute(
             "SELECT name FROM sqlite_master WHERE type='table'"
         )}
         if "database_profile" not in tables:
             add("missing_catalog_profile", None, "catalog database has no schema profile marker")
+            catalog_authoritative = False
         else:
             try:
                 profile_rows = catalog.execute(
@@ -98,10 +156,13 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
                 ).fetchall()
                 if len(profile_rows) != 1:
                     add("invalid_catalog_profile_binding", None, "expected exactly one control-plane profile marker")
+                    catalog_authoritative = False
                 elif profile_rows[0][0] != "control_plane":
                     add("wrong_catalog_profile", None, "catalog database profile is not 'control_plane'")
+                    catalog_authoritative = False
             except sqlite3.Error:
                 add("invalid_catalog_profile_binding", None, "control-plane profile marker could not be read")
+                catalog_authoritative = False
             profile_triggers = {
                 row[0]: row[1] for row in catalog.execute(
                     "SELECT name, sql FROM sqlite_master WHERE type='trigger' "
@@ -113,15 +174,45 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
                 and _has_immutable_guard(profile_triggers.get("database_profile_no_delete"), "database_profile", "DELETE", "database profile binding is immutable")
             ):
                 add("mutable_catalog_profile_binding", None, "control-plane profile marker lacks effective immutable update/delete guards")
+                catalog_authoritative = False
+
+        for code, detail in _migration_ledger_findings(
+            catalog, tables, expected_control_plane_migrations, "control_plane"
+        ):
+            add(code, None, detail)
+            catalog_authoritative = False
+
+        if "firms" not in tables:
+            add("missing_firms_table", None, "control-plane catalog has no firms table")
+            catalog_authoritative = False
+
         if "tenant_database_catalog" not in tables:
             raise ValueError("catalog is missing tenant_database_catalog")
+        catalog_fks = catalog.execute("PRAGMA foreign_key_list(tenant_database_catalog)").fetchall()
+        if not any(
+            row[2] == "firms" and row[3] == "firm_id" and row[4] == "id"
+            for row in catalog_fks
+        ):
+            add("catalog_missing_firm_fk", None, "tenant catalog does not enforce firm ownership with a foreign key")
+            catalog_authoritative = False
+        try:
+            catalog_fk_violations = catalog.execute(
+                "PRAGMA foreign_key_check(tenant_database_catalog)"
+            ).fetchmany(20)
+            if catalog_fk_violations:
+                add("catalog_foreign_key_violations", None, "tenant catalog contains one or more invalid firm references")
+                catalog_authoritative = False
+        except sqlite3.Error:
+            add("catalog_foreign_key_check_failed", None, "tenant catalog foreign-key integrity could not be checked")
+            catalog_authoritative = False
+
         rows = catalog.execute(
             "SELECT firm_id, database_file, status FROM tenant_database_catalog ORDER BY firm_id"
         ).fetchall()
 
     seen_files: dict[str, int] = {}
     inspected = 0
-    for firm_id, filename, status in rows:
+    for firm_id, filename, status in (rows if catalog_authoritative else []):
         if status != "provisioned":
             if status in ("provisioning", "failed"):
                 add("tenant_not_ready", firm_id, f"catalog status is {status!r}")
@@ -211,30 +302,10 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
                     ):
                         add("mutable_tenant_firm_binding", firm_id, "embedded firm ID lacks effective immutable update/delete guards")
 
-                if "schema_migrations" not in tables:
-                    add("missing_schema_migration_ledger", firm_id, "tenant database has no versioned migration ledger")
-                else:
-                    try:
-                        ledger_rows = tenant.execute(
-                            "SELECT version, name, checksum_sha256 FROM schema_migrations"
-                        ).fetchall()
-                        recorded = {int(row[0]): (str(row[1]), str(row[2])) for row in ledger_rows}
-                        expected_versions = set(expected_migrations)
-                        recorded_versions = set(recorded)
-                        missing_versions = sorted(expected_versions - recorded_versions)
-                        unexpected_versions = sorted(recorded_versions - expected_versions)
-                        if missing_versions:
-                            add("incomplete_schema_migration_history", firm_id, f"missing firm migration versions: {missing_versions}")
-                        if unexpected_versions:
-                            add("unexpected_schema_migration_history", firm_id, f"unknown firm migration versions: {unexpected_versions}")
-                        mismatched = sorted(
-                            version for version in expected_versions & recorded_versions
-                            if recorded[version] != expected_migrations[version]
-                        )
-                        if mismatched:
-                            add("schema_migration_checksum_mismatch", firm_id, f"migration name/checksum differs for versions: {mismatched}")
-                    except (sqlite3.Error, ValueError, TypeError, IndexError):
-                        add("invalid_schema_migration_ledger", firm_id, "tenant migration ledger is malformed or unreadable")
+                for code, detail in _migration_ledger_findings(
+                    tenant, tables, expected_firm_migrations, "firm"
+                ):
+                    add(code, firm_id, detail)
 
                 quick = tenant.execute("PRAGMA quick_check").fetchall()
                 if len(quick) != 1 or quick[0][0] != "ok":
