@@ -36,15 +36,12 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 - [x] Handle case-insensitive conditional column migration checks and add a legacy `Value`/`value` regression test (PR #187, merged; PR checks and post-merge main CI passed).
 - [x] Add regression coverage ensuring tenant catalog initialization rejects a pre-existing catalog schema missing its `firms` foreign key (PR #189, merged; GitHub Actions run 40228763730 passed).
 - [x] Validate existing tenant catalog rows with `PRAGMA foreign_key_check`, failing closed on orphaned firm mappings even when foreign-key enforcement was previously disabled (PR #191, merged; GitHub Actions run 40228904762 passed).
-- [x] Add catalog-backed tenant connection-router foundation (`tenant_storage.py`) with fail-closed catalog resolution, disabled-tenant revalidation, per-thread/per-firm connections, foreign-key enforcement, and cleanup (PR #195, merged; post-merge CI run 40230147410 passed).
-- [x] Add immutable trusted `FirmContext` resolution backed by server-side active-membership lookup; fail closed on invalid identity, membership, role, and backend errors (PR #198, merged; PR CI run 40230884630 passed).
-- [x] Revoke and close cached tenant connections when the catalog disables or invalidates a firm mapping, with regression coverage (PR #200, merged; PR CI run 40230742941 and post-merge main CI run 40230896085 passed).
 
 ## In progress
 
-- [ ] Add regression coverage proving same-firm connections are isolated per thread and cannot be reused across threads (current PR).
+- [ ] Add a trusted active-firm context resolver and adversarial tests (current PR): accepts only a verified server-side user identity, validates an active membership through a server-side lookup, and fails closed on suspended/missing/error states. Not wired to routes until membership schema and identity semantics are approved.
 
-The router and trusted context resolver are infrastructure primitives only. They are not wired into app routes pending membership/schema decisions, legacy ownership reconciliation, and the shared-corpus boundary.
+- [x] Add catalog-backed tenant connection-router foundation (`tenant_storage.py`) with fail-closed catalog resolution, disabled-tenant revalidation, per-thread/per-firm connections, foreign-key enforcement, and cleanup. PR #195 merged; post-merge main CI run 40230147410 passed. The router is not wired into app routes pending membership and shared-corpus migration.
 
 ## Remaining database work
 
