@@ -1,12 +1,14 @@
 # Database completion tracker
 
-**Last updated:** 2026-10-25  
+**Last updated:** 2026-10-26  
 **Estimated completion:** 28%  
 **Status:** In progress — not production-ready for confidential multi-firm matter data.
 
-This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. The checklist currently tracks 37 completed tasks and 21 remaining tasks; this count is not a readiness percentage. Update this file as database PRs merge and as acceptance criteria are completed.
+This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. The checklist currently tracks 38 completed tasks and 21 remaining tasks; this count is not a readiness percentage. Update this file as database PRs merge and as acceptance criteria are completed.
 
 ## Completed and merged
+
+- [x] Reject symlinked migration directories and SQL files in the versioned migration runner, with regression tests proving linked sources are not executed (PR #225 merged; PR CI run 40233614310 passed).
 
 - [x] Harden SQLite backup concurrency, staged validation, encryption output, retention ordering, and restore replacement safety (PR #138).
 - [x] Extend read-only tenant ownership preflight to detect orphaned child records (PR #139).
