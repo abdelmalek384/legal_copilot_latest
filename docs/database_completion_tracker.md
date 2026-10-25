@@ -36,7 +36,7 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 
 - [ ] **PR #179 — Preserve firm scope when parent records change.** Adds firm-profile migration 0003 to reject legacy document/case firm mismatches and prevent later case-firm or document-case/firm changes from invalidating existing chunks and extraction reviews. Regression tests cover rejected parent updates and fail-closed migration rollback. GitHub Actions run 40226136870 passed. PR remains open and unmerged.
 
-- [ ] **PR #182 — Make database profile binding immutable.** Adds SQLite triggers that prevent ordinary updates or deletes of the `database_profile` marker, with regression coverage. The profile marker remains a safety boundary only; this does not certify tenant routing or runtime isolation.
+- [ ] **PR #184 — Make database profile binding immutable.** Adds SQLite triggers that prevent ordinary updates or deletes of the `database_profile` marker, with regression coverage. GitHub Actions run 40228349976 passed for the initial replacement branch; the current PR will rerun checks after this tracker correction. The profile marker remains a safety boundary only; this does not certify tenant routing or runtime isolation.
 
 ## Remaining database work
 
