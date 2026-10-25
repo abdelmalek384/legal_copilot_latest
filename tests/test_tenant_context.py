@@ -88,6 +88,24 @@ class ResolveFirmContextTests(unittest.TestCase):
         finally:
             db.close()
 
+    def test_suspended_firm_denies_even_active_membership(self):
+        db = sqlite3.connect(":memory:")
+        db.execute("PRAGMA foreign_keys=ON")
+        try:
+            apply_profile_migrations(db, "control_plane", MIGRATIONS)
+            db.execute("INSERT INTO firms(id,name,status) VALUES(303,'Suspended Firm','suspended')")
+            db.execute(
+                "INSERT INTO users(id,name,email_display,email_normalized,password_hash) VALUES(7,'Lawyer','lawyer@example.test','lawyer@example.test','hash')"
+            )
+            db.execute(
+                "INSERT INTO firm_memberships(user_id,firm_id,firm_role,status) VALUES(7,303,'admin','active')"
+            )
+            lookup = sqlite_membership_lookup(db)
+            with self.assertRaises(FirmContextError):
+                resolve_firm_context({"id": 7}, 303, lookup)
+        finally:
+            db.close()
+
     def test_sqlite_membership_lookup_requires_a_trusted_sqlite_connection(self):
         with self.assertRaises(TypeError):
             sqlite_membership_lookup("/client/supplied/database.sqlite3")
