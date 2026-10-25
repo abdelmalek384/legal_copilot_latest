@@ -29,15 +29,14 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 - [x] Enable SQLite foreign-key enforcement during tenant database initialization and validate `integrity_check` plus `foreign_key_check`, with cleanup on failed provisioning (PR #165, merged; CI run 40217212814 passed).
 - [x] Reject symlinked tenant storage roots in the read-only preflight before path resolution (PR #167, merged; CI run 40217356965 passed).
 - [x] Add profile-binding and initial isolated-schema acceptance tests to CI; fix same-line SQL statement parsing while preserving trigger bodies (PR #171, merged; CI run 40217630357 passed).
-- [x] Constrain tenant catalog entries to existing firms with a foreign key and fail-closed legacy-orphan migration; align the runtime catalog helper (PR #176, merged; CI passed).
-- [x] Enforce firm document/chunk/extraction-review scope with a fail-closed migration and insert/update guards (PR #178, merged; CI run 40225478660 passed).
 
 ## In progress
 
-- [ ] **PR #179 — Preserve firm scope when parent records change.** Adds firm-profile migration 0003 to reject legacy document/case firm mismatches and prevent later case-firm or document-case/firm changes from invalidating existing chunks and extraction reviews. GitHub Actions run 40226136870 passed after correcting an assertion to accept either fail-closed trigger message. PR remains open and unmerged.
+- [ ] **PR #179 — Preserve firm scope when parent records change.** Adds firm-profile migration 0003 to reject legacy document/case firm mismatches and prevent later case-firm or document-case/firm changes from invalidating existing chunks and extraction reviews. Regression tests cover rejected parent updates and fail-closed migration rollback. GitHub Actions run 40226136870 passed. PR remains open and unmerged.
 
-- [ ] **PR #181 — Make database profile binding immutable.** Adds SQLite triggers that prevent ordinary updates or deletes of the `database_profile` marker, with regression coverage. GitHub Actions run 40226267967 passed. This protects the profile marker but does not certify tenant routing or runtime isolation.
+- [ ] **PR #181 — Make database profile binding immutable.** Adds SQLite triggers that prevent ordinary updates or deletes of the `database_profile` marker, with regression coverage. GitHub Actions run 40226331925 passed for the latest tracker correction. This protects the profile marker but does not certify tenant routing or runtime isolation.
 
+ 
 ## Remaining database work
 
 ### 1. Finish versioned schema migrations
