@@ -47,12 +47,14 @@ Both boolean fields are required explicitly; malformed source-ID lists, citation
 
 - **Recall@k:** mean fraction of reviewer-labelled relevant source IDs found in the top k unique retrieved sources.
 - **MRR@k:** mean reciprocal rank of the first relevant source, with zero if no relevant source appears in the first k.
-- **Citation precision:** fraction of emitted citations whose source ID is in the reviewed expected-source set. This is a source-match metric, not proof the proposition is legally correct.
-- **Pin-cite accuracy:** fraction of citation records that match a reviewer-labelled source ID and exact pin-cite, scored only for questions with expected pin-cites.
+- **Citation precision:** fraction of emitted citations whose source ID is in the reviewed expected-source set. This is a source-match metric, not proof the proposition is legally correct. If no citations are emitted, precision is `null` rather than zero.
+- **Citation coverage:** fraction of answerable reviewed cases that emit at least one citation to an expected source. This prevents a run with no citations from looking healthy simply because its remaining citations are all correct.
+- **Pin-cite accuracy (precision):** fraction of emitted citation records that match a reviewer-labelled source ID and exact pin-cite, scored only for questions with expected pin-cites.
+- **Expected pin-cite recall:** fraction of distinct reviewer-expected source-ID/pin-cite pairs that were emitted exactly. A missing citation counts against recall.
 - **Abstention compliance:** among reviewed unanswerable cases, fraction where the system abstained and did not use an unverified source.
 - **Unsafe unverified-source uses:** count of runs marked as using an unverified source without abstaining.
 
-Metrics are `null` when there is no eligible denominator. The report lists excluded questions and reasons, malformed question/run records, duplicate question IDs, and duplicate run question IDs. Duplicate IDs are excluded from scoring instead of choosing an arbitrary record. Resolve these data-quality errors before relying on a score.
+Metrics are `null` when there is no eligible denominator (for example, no answerable reviewed cases for citation coverage, or no expected pin-cite pairs for pin-cite recall). The report lists excluded questions and reasons, malformed question/run records, duplicate question IDs, and duplicate run question IDs. Duplicate IDs are excluded from scoring instead of choosing an arbitrary record. Resolve these data-quality errors before relying on a score.
 
 ## Run locally
 

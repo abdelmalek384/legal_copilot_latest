@@ -194,10 +194,21 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5)):
         metrics[f"mrr_at_{k}"] = round(sum(reciprocal_ranks) / len(reciprocal_ranks), 4) if reviewed else None
 
     citation_total = citation_correct = pin_cite_total = pin_cite_correct = 0
+    expected_pin_cite_total = expected_pin_cite_correct = 0
+    answerable_cases = answerable_with_expected_citation = 0
     abstention_cases = abstention_correct = unsafe_unverified_uses = 0
     for question, run in reviewed:
         expected_sources = set(question["expected_source_ids"])
         expected_pin_cites = question.get("expected_pin_cites") or []
+        cited_expected_sources = {
+            citation["source_id"]
+            for citation in run["citations"]
+            if citation["source_id"] in expected_sources
+        }
+        if question["answerable"] is True:
+            answerable_cases += 1
+            if cited_expected_sources:
+                answerable_with_expected_citation += 1
         for citation in run["citations"]:
             citation_total += 1
             if citation["source_id"] in expected_sources:
@@ -210,6 +221,18 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5)):
                     for expected in expected_pin_cites
                 ):
                     pin_cite_correct += 1
+        # Recall is measured against the reviewer's expected citation pairs, so
+        # returning no citations cannot yield an undefined or perfect score.
+        expected_pairs = {
+            (item["source_id"], item["pin_cite"])
+            for item in expected_pin_cites
+        }
+        actual_pairs = {
+            (citation["source_id"], citation.get("pin_cite"))
+            for citation in run["citations"]
+        }
+        expected_pin_cite_total += len(expected_pairs)
+        expected_pin_cite_correct += len(expected_pairs & actual_pairs)
         if question["answerable"] is False:
             abstention_cases += 1
             if run["abstained"] is True and run["used_unverified_source"] is not True:
@@ -228,9 +251,15 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5)):
         "citation_precision": round(citation_correct / citation_total, 4) if citation_total else None,
         "citation_correct": citation_correct,
         "citation_count": citation_total,
+        "citation_coverage": round(answerable_with_expected_citation / answerable_cases, 4) if answerable_cases else None,
+        "answerable_cases_with_expected_citation": answerable_with_expected_citation,
+        "answerable_reviewed_cases": answerable_cases,
         "pin_cite_accuracy": round(pin_cite_correct / pin_cite_total, 4) if pin_cite_total else None,
         "pin_cite_correct": pin_cite_correct,
         "pin_cite_count": pin_cite_total,
+        "expected_pin_cite_recall": round(expected_pin_cite_correct / expected_pin_cite_total, 4) if expected_pin_cite_total else None,
+        "expected_pin_cites_found": expected_pin_cite_correct,
+        "expected_pin_cite_count": expected_pin_cite_total,
         "abstention_compliance": round(abstention_correct / abstention_cases, 4) if abstention_cases else None,
         "abstention_correct": abstention_correct,
         "unanswerable_reviewed_cases": abstention_cases,
@@ -240,7 +269,8 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5)):
             "Malformed records and duplicate question/run IDs are excluded and listed; resolve them before relying on a score.",
             "Metrics do not establish legal correctness, completeness, or current-law status.",
             "Review labels must be assigned by a qualified reviewer; this tool never generates ground truth.",
-            "Pin-cite accuracy is scored only where reviewed expected_pin_cites are provided.",
+            "Pin-cite precision (pin_cite_accuracy) is scored only where reviewed expected_pin_cites are provided; expected_pin_cite_recall measures how many reviewed expected citation pairs were returned.",
+            "Citation coverage measures the share of answerable reviewed cases that cite at least one expected source; it complements citation precision so answers with no citations are not silently omitted from the coverage view.",
         ],
     }
 
