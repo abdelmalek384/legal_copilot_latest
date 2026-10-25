@@ -119,6 +119,25 @@ button{min-height:40px}
 @media(max-width:800px){.skip-link{top:6px}#side a[role=button]{white-space:nowrap;flex:none}}
 @media(forced-colors:active){.skip-link:focus,#side a[role=button]:focus-visible{outline:2px solid Highlight}}
 
+
+/* Small-screen and long-content resilience pass from usability review. */
+.auth-card form>label{display:block;margin:10px 0 4px;line-height:1.5;overflow-wrap:anywhere}
+.auth-card .password-row{min-width:0}
+.auth-card .password-row button{flex:0 0 auto;white-space:nowrap}
+#side{min-width:0}
+.card,.stat,.quick-link,.workspace-list-item,.workspace-list-item .item-main{min-width:0}
+.stat b{font-size:clamp(22px,2.5vw,32px);line-height:1.25;overflow-wrap:anywhere}
+#main .quick-link span,#main .workspace-list-item .item-meta,.research-role,.research-sources-title,.research-pin{font-size:13px}
+@media(max-width:800px){
+ #side{overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin}
+ #side>a{flex:0 0 auto;white-space:nowrap}
+ #main .grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))}
+}
+@media(max-width:420px){
+ .auth-card{padding:18px}
+ .auth-tabs button{min-width:0;overflow-wrap:anywhere}
+ .stat b{font-size:26px}
+}
 </style>
 <div id="app"></div><div id="toast"></div>
 <script>
