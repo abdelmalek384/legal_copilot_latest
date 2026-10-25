@@ -63,6 +63,18 @@ class DatabaseProfileTests(unittest.TestCase):
             with self.subTest(profile=profile), self.assertRaises(DatabaseProfileError):
                 apply_profile_migrations(self.db, profile, self.root)
 
+    def test_profile_migration_directory_symlink_is_rejected(self):
+        (self.root / "firm").rmdir()
+        (self.root / "firm").symlink_to(self.root / "legal_corpus", target_is_directory=True)
+        with self.assertRaisesRegex(MigrationError, "must not be a symlink"):
+            apply_profile_migrations(self.db, "firm", self.root)
+
+    def test_migration_root_symlink_is_rejected(self):
+        linked_root = self.root.parent / (self.root.name + "-link")
+        linked_root.symlink_to(self.root, target_is_directory=True)
+        with self.assertRaisesRegex(MigrationError, "Migration root must not be a symlink"):
+            apply_profile_migrations(self.db, "firm", linked_root)
+
     def test_missing_profile_migration_directory_fails(self):
         (self.root / "legal_corpus").rmdir()
         with self.assertRaisesRegex(MigrationError, "does not exist"):
