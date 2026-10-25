@@ -11,20 +11,14 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 DIMENSIONS = (
-    "legal_correctness",
-    "source_support",
-    "citation_precision",
-    "temporal_correctness",
-    "completeness_issue_spotting",
-    "arabic_clarity",
-    "uncertainty_abstention",
+    "legal_correctness", "source_support", "citation_precision",
+    "temporal_correctness", "completeness_issue_spotting",
+    "arabic_clarity", "uncertainty_abstention",
 )
 SCORES = {0, 1, 2}
 NOT_APPLICABLE = "not_applicable"
 DISPOSITIONS = {
-    "pass_for_this_case",
-    "needs_revision",
-    "unsafe",
+    "pass_for_this_case", "needs_revision", "unsafe",
     "not_scored_insufficient_evidence",
 }
 
@@ -69,7 +63,8 @@ def validate_review(record):
         errors.append("unknown score dimensions: " + ", ".join(unknown))
     for dimension in DIMENSIONS:
         value = scores.get(dimension)
-        if value not in SCORES and value != NOT_APPLICABLE:
+        valid_numeric = type(value) is int and value in SCORES
+        if not valid_numeric and value != NOT_APPLICABLE:
             errors.append(f"{dimension} must be 0, 1, 2, or {NOT_APPLICABLE}")
             continue
         rationale = rationales.get(dimension)
@@ -88,20 +83,21 @@ def validate_review(record):
     if critical and not (isinstance(record.get("critical_defect_description"), str) and record["critical_defect_description"].strip()):
         errors.append("critical_defect=true requires critical_defect_description")
     if record.get("disposition") == "pass_for_this_case":
-        scored = [v for v in scores.values() if v in SCORES]
+        scored = [v for v in scores.values() if type(v) is int and v in SCORES]
         if not scored:
             errors.append("pass_for_this_case requires at least one numerically scored dimension")
-    if record.get("disposition") == "not_scored_insufficient_evidence" and record.get("critical_defect") is True:
+    if record.get("disposition") == "not_scored_insufficient_evidence" and critical is True:
         errors.append("insufficient-evidence disposition cannot suppress a recorded critical defect")
     return errors
 
 
 def summarize_reviews(records):
     """Summarize valid records; invalid rows are reported and never scored."""
-    valid = []
-    invalid = []
-    seen = set()
+    valid, invalid, seen = [], [], set()
     for index, record in enumerate(records, start=1):
+        if not isinstance(record, dict):
+            invalid.append({"record": f"line-{index}", "record_index": index, "errors": ["record must be an object"]})
+            continue
         errors = validate_review(record)
         case_id = record.get("case_id", f"line-{index}")
         if errors:
@@ -109,9 +105,8 @@ def summarize_reviews(records):
             continue
         if record["case_id"] in seen:
             invalid.append({
-                "record": record["case_id"],
-                "record_index": index,
-                "errors": ["duplicate case_id; provide one record per case/reviewer assessment or use a unique assessment_id"],
+                "record": record["case_id"], "record_index": index,
+                "errors": ["duplicate case_id; use a unique case_id for each assessment"],
             })
             continue
         seen.add(record["case_id"])
@@ -120,12 +115,11 @@ def summarize_reviews(records):
     counts = Counter(record["disposition"] for record in valid)
     dimension_values = defaultdict(list)
     for record in valid:
-        # Insufficient evidence is not a pass and is excluded from score means.
         if record["disposition"] == "not_scored_insufficient_evidence":
             continue
         for dimension in DIMENSIONS:
             value = record["scores"][dimension]
-            if value in SCORES:
+            if type(value) is int and value in SCORES:
                 dimension_values[dimension].append(value)
 
     dimension_summary = {}
@@ -136,7 +130,6 @@ def summarize_reviews(records):
             "mean_score_0_to_2": round(sum(values) / len(values), 4) if values else None,
             "score_counts": {str(score): values.count(score) for score in (0, 1, 2)},
         }
-
     practice_areas = Counter(record["practice_area"] for record in valid)
     critical_defects = [
         {"case_id": record["case_id"], "description": record["critical_defect_description"]}
