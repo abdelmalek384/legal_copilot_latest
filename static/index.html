@@ -144,7 +144,7 @@ button{min-height:40px}
 const $=i=>document.getElementById(i),A=$('app');
 let ME=JSON.parse(sessionStorage.me||'{}'),TAB='sum',PAGE='dash';
 const RL={lead:'رئيسي',associate:'محامٍ مساعد',junior:'متدرب'},today=(()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')})();
-const h=(t,p={},...k)=>{const e=document.createElement(t);Object.assign(e,p);e.append(...k.flat().filter(x=>x!=null&&x!==false));if((t==='input'||t==='textarea')&&p.placeholder&&!e.hasAttribute('aria-label'))e.setAttribute('aria-label',p.placeholder);return e};
+const h=(t,p={},...k)=>{const e=document.createElement(t);for(const [key,value] of Object.entries(p||{})){if(key==='role'||key.startsWith('aria-')||key.startsWith('data-')){if(value!=null)e.setAttribute(key,String(value))}else e[key]=value}e.append(...k.flat().filter(x=>x!=null&&x!==false));if((t==='input'||t==='textarea')&&p.placeholder&&!e.hasAttribute('aria-label'))e.setAttribute('aria-label',p.placeholder);return e};
 const pill=(t,k)=>h('span',{className:'pill '+k,textContent:t}),btn=(t,f,c='')=>h('button',{textContent:t,onclick:f,className:c});
 const fd=s=>s?s.slice(0,10).split('-').reverse().join('/'):'',err=j=>typeof j.detail==='string'?j.detail:'بيانات غير صحيحة';
 const safeHttpsUrl=v=>{try{const u=new URL(v);return u.protocol==='https:'&&!u.username&&!u.password?u.href:null}catch(_){return null}};const sourceHostLabel=v=>{try{return new URL(v).hostname}catch(_){return ''}};
