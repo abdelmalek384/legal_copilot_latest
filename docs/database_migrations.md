@@ -45,6 +45,10 @@ The helper opens the source in read-only mode, checks SQLite integrity and forei
 This is a migration rehearsal aid, not a backup, not an authorization test, and not proof of tenant isolation. Use a protected representative copy, retain a separately verified backup, and review the report before any real migration.
 
 
+## Migration rehearsal data-preservation checks
+
+The disposable-copy rehearsal records row counts for tables already present in the source database and compares them with the staged database after migrations. If an existing table disappears or its row count decreases, the rehearsal returns `review_required` and lists the table and before/after counts. This is a guardrail against accidental deletion, not proof that row values are unchanged: a migration that overwrites rows while preserving the count still requires schema-specific validation and review.
+
 ## Read-only FTS consistency preflight
 
 Before rebuilding or replacing the FTS index, run the read-only audit against a protected database copy:
