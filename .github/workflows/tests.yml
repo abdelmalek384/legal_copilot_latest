@@ -38,6 +38,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_database_fresh_install_schema.py
       - name: Test read-only FTS consistency preflight
         run: PYTHONPATH=. python tests/test_chunks_fts_preflight.py
+      - name: Test staged-copy FTS rebuild safety
+        run: PYTHONPATH=. python tests/test_rebuild_chunks_fts_copy.py
       - name: Test SEC-01 runtime route and schema inventory
         run: PYTHONPATH=. python tests/test_security_surface_inventory.py
       - name: Test encrypted restore safety
