@@ -79,6 +79,8 @@ class TenantSQLiteConnectionRouterTests(unittest.TestCase):
                 )
                 barrier.wait(timeout=5)
                 self.router.close_current_thread()
+                with self.assertRaises(sqlite3.ProgrammingError):
+                    connection.execute("SELECT 1")
             except BaseException as exc:
                 errors.append(exc)
 
@@ -92,9 +94,6 @@ class TenantSQLiteConnectionRouterTests(unittest.TestCase):
         self.assertEqual(errors, [])
         self.assertEqual(len(connections), 2)
         self.assertIsNot(connections[0], connections[1])
-        for connection in connections:
-            with self.assertRaises(sqlite3.ProgrammingError):
-                connection.execute("SELECT 1")
 
     def test_rejects_invalid_firm_id_shapes(self):
         for value in (0, -1, True, "101", None):
