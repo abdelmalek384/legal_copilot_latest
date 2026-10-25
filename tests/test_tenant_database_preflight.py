@@ -71,6 +71,18 @@ class TenantDatabasePreflightTests(unittest.TestCase):
         self.assertIn("invalid_database_reference", codes)
         self.assertIn("tenant_not_ready", codes)
 
+    def test_symlinked_storage_root_is_rejected(self):
+        real_root = self.base / "real-tenants"
+        real_root.mkdir()
+        target = real_root / f"tenant-7-{uuid.uuid4().hex}.sqlite3"
+        with sqlite3.connect(target) as db:
+            db.execute("CREATE TABLE marker (value TEXT)")
+        link_root = self.base / "tenants-link"
+        link_root.symlink_to(real_root, target_is_directory=True)
+
+        with self.assertRaisesRegex(ValueError, "storage root must not be a symlink"):
+            audit(self.catalog_path, link_root)
+
     def test_symlink_is_reported_without_following_it(self):
         target = self.add_tenant(5)
         row = self.catalog.execute(
