@@ -34,7 +34,7 @@ class TenantOwnershipPreflightTests(unittest.TestCase):
             INSERT INTO members VALUES (10,1),(10,2),(999,1);
             INSERT INTO docs VALUES (100,10,1,1),(200,20,1,2),(300,999,2,2),(400,10,NULL,1),(500,NULL,1,2),(600,10,1,999);
             INSERT INTO chunks VALUES (1000,10,100),(2000,20,100),(3000,999,999),(4000,NULL,NULL);
-            INSERT INTO research_conversations VALUES (1,2,1),(2,999,1),(3,NULL,99),(4,1,NULL);
+            INSERT INTO research_conversations VALUES (1,2,1),(2,999,1),(3,NULL,99),(4,NULL,NULL);
             INSERT INTO case_deletion_audit VALUES (1,NULL,1);
             INSERT INTO document_extraction_reviews VALUES (1,100,10,1,1000,2),(2,999,10,1,9999,1),(3,100,10,2,1000,2),(4,100,999,1,1000,1);
         """)
@@ -57,7 +57,7 @@ class TenantOwnershipPreflightTests(unittest.TestCase):
         self.assertEqual(codes["chunks_unclassified_shared"], 1)
         self.assertEqual(codes["research_owner_firm_mismatch"], 1)
         self.assertEqual(codes["research_owner_missing_user"], 1)
-        self.assertEqual(codes["research_owner_unassigned"], 1)
+        self.assertEqual(codes["research_owner_unassigned"], 2)
         self.assertEqual(codes["research_missing_firm"], 1)
         self.assertEqual(codes["research_unknown_firm"], 1)
         self.assertEqual(codes["orphan_notes_case"], 1)
