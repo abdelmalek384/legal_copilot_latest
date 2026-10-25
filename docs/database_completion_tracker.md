@@ -39,9 +39,9 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 
 ## In progress
 
-- [ ] Add a trusted active-firm context resolver and adversarial tests (current PR): accepts only a verified server-side user identity, validates an active membership through a server-side lookup, and fails closed on suspended/missing/error states. Not wired to routes until membership schema and identity semantics are approved.
+- [x] Add a trusted active-firm context resolver and adversarial tests (PR #198 merged; CI run 40230700867 passed): accepts a caller-supplied verified server-side identity, validates active membership through a server-side lookup, and fails closed on suspended/missing/error states. This is an authorization primitive, not session authentication; it is not wired to routes until membership schema and identity semantics are approved.
 
-- [x] Add catalog-backed tenant connection-router foundation (`tenant_storage.py`) with fail-closed catalog resolution, disabled-tenant revalidation, per-thread/per-firm connections, foreign-key enforcement, and cleanup. PR #195 merged; post-merge main CI run 40230147410 passed. The router is not wired into app routes pending membership and shared-corpus migration.
+- [x] Add catalog-backed tenant connection-router foundation (`tenant_storage.py`) with fail-closed catalog resolution, disabled-tenant revalidation, per-thread/per-firm connections, foreign-key enforcement, and cleanup. PR #195 merged; post-merge main CI run 40230147410 passed. PR #200 adds regression-tested closure of the current thread's cached connection when catalog validation fails (CI run 40230742941 passed). The router is not wired into app routes pending approved session/membership integration and shared-corpus migration.
 
 ## Remaining database work
 
