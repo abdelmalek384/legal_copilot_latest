@@ -57,7 +57,7 @@ class DatabaseMigrationRehearsalTests(unittest.TestCase):
             self.assertNotIn("idx_cases_firm", names)
             self.assertNotIn("idx_login_attempts_window", names)
             self.assertTrue({
-                "auth_sessions", "notes", "fees", "tasks", "events", "sessions"
+                "auth_sessions", "notes", "fees", "tasks", "events", "sessions", "chunks_fts"
             }.isdisjoint(names))
             self.assertEqual(db.execute("SELECT firm_id FROM cases").fetchone()[0], 1)
 
