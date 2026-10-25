@@ -111,16 +111,21 @@ class TenantSQLiteConnectionRouter:
             connection.close()
             del connections[trusted_firm_id]
 
+        connection = None
         try:
             connection = sqlite3.connect(str(path), timeout=self._timeout)
             connection.row_factory = sqlite3.Row
             connection.execute("PRAGMA foreign_keys=ON")
             if connection.execute("PRAGMA foreign_keys").fetchone()[0] != 1:
-                connection.close()
                 raise TenantConnectionError(
                     "Tenant database foreign-key enforcement could not be enabled"
                 )
         except sqlite3.Error as exc:
+            if connection is not None:
+                try:
+                    connection.close()
+                except sqlite3.Error:
+                    pass
             raise TenantConnectionError(
                 "Tenant database is unavailable; refusing fallback to shared storage"
             ) from exc
