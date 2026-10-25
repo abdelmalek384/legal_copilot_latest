@@ -5,6 +5,7 @@ import argparse, hashlib, json, sqlite3
 from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
+from urllib.parse import urlparse
 
 REGISTRY_TABLES = {"legal_sources","legal_documents","legal_document_versions","legal_version_relations","legal_review_events"}
 
@@ -14,6 +15,15 @@ def columns(db, table):
     return {r[1] for r in db.execute(f"PRAGMA table_info({table})")}
 def count(db, table):
     return db.execute(f'SELECT COUNT(*) FROM "{table}"').fetchone()[0]
+
+def valid_evidence_url(value):
+    if not isinstance(value, str):
+        return False
+    try:
+        parsed = urlparse(value)
+        return parsed.scheme == "https" and bool(parsed.hostname) and not parsed.username and not parsed.password
+    except ValueError:
+        return False
 
 def audit(db_path: Path):
     if not db_path.exists():
@@ -94,13 +104,19 @@ def audit(db_path: Path):
                 if {"version_id", "amendment_history_verified"}.issubset(vc) and "legal_review_events" in tables:
                     rc = columns(db, "legal_review_events")
                     if {"version_id", "review_type", "outcome", "evidence_url"}.issubset(rc):
-                        q["amendment_history_flag_without_evidence"] = db.execute(
-                            "SELECT COUNT(*) FROM legal_document_versions v "
-                            "WHERE v.amendment_history_verified=1 AND NOT EXISTS ("
-                            "SELECT 1 FROM legal_review_events e WHERE e.version_id=v.version_id "
-                            "AND e.review_type='amendment_history' AND e.outcome='pass' "
-                            "AND e.evidence_url IS NOT NULL AND trim(e.evidence_url)!='')"
-                        ).fetchone()[0]
+                        flagged_versions = db.execute(
+                            "SELECT version_id FROM legal_document_versions WHERE amendment_history_verified=1"
+                        ).fetchall()
+                        missing_evidence_count = 0
+                        for flagged in flagged_versions:
+                            events = db.execute(
+                                "SELECT evidence_url FROM legal_review_events "
+                                "WHERE version_id=? AND review_type='amendment_history' AND outcome='pass'",
+                                (flagged["version_id"],),
+                            ).fetchall()
+                            if not any(valid_evidence_url(event["evidence_url"]) for event in events):
+                                missing_evidence_count += 1
+                        q["amendment_history_flag_without_evidence"] = missing_evidence_count
                         if q["amendment_history_flag_without_evidence"]:
                             result["issues"].append({
                                 "severity":"high",
