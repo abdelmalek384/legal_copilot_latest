@@ -40,6 +40,7 @@ class TenantCatalogTests(unittest.TestCase):
             )
         """)
         db.execute("INSERT INTO database_profile(singleton,profile) VALUES(1,'firm')")
+        db.commit()
 
     def test_catalog_initialization_requires_migration_managed_firms_table(self):
         db = sqlite3.connect(":memory:")
