@@ -38,11 +38,33 @@ def sqlite_membership_lookup(connection: sqlite3.Connection) -> MembershipLookup
     if not isinstance(connection, sqlite3.Connection):
         raise TypeError("trusted control-plane SQLite connection is required")
 
+    # A valid SQLite connection is not enough: accidentally supplying a firm
+    # database would make the wrong database authoritative for membership.
+    try:
+        profile = connection.execute(
+            "SELECT profile FROM database_profile WHERE singleton=1"
+        ).fetchone()
+        triggers = {
+            row[0] for row in connection.execute(
+                "SELECT name FROM sqlite_master WHERE type='trigger' "
+                "AND name IN ('database_profile_no_update','database_profile_no_delete')"
+            )
+        }
+    except sqlite3.Error as exc:
+        raise ValueError("SQLite connection is not bound to the trusted control-plane profile") from exc
+    if (
+        profile is None
+        or profile[0] != "control_plane"
+        or triggers != {"database_profile_no_update", "database_profile_no_delete"}
+    ):
+        raise ValueError("SQLite connection is not bound to the trusted control-plane profile")
+
     def lookup(user_id: int, firm_id: int) -> Mapping[str, Any] | None:
         row = connection.execute(
             """
-            SELECT fm.status, fm.firm_role, f.status
+            SELECT fm.status, fm.firm_role, u.status, f.status
             FROM firm_memberships fm
+            JOIN users u ON u.id=fm.user_id
             JOIN firms f ON f.id=fm.firm_id
             WHERE fm.user_id=? AND fm.firm_id=?
             """,
@@ -50,12 +72,15 @@ def sqlite_membership_lookup(connection: sqlite3.Connection) -> MembershipLookup
         ).fetchone()
         if row is None:
             return None
-        # An active membership cannot override a firm-level suspension or
-        # incomplete provisioning state.
-        status = row[0] if row[2] == "active" else row[2]
-        return {"status": status, "role": row[1]}
-
-    return lookup
+        membership_status, role, user_status, firm_status = row
+        # Firm access requires active membership, enabled identity, and active
+        # firm lifecycle state; any inactive prerequisite fails closed.
+        status = membership_status
+        if status == "active" and user_status != "active":
+            status = user_status
+        if status == "active" and firm_status != "active":
+            status = firm_status
+        return {"status": status, "role": role}
 
 
 def resolve_firm_context(
