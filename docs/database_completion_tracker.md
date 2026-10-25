@@ -27,10 +27,11 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 - [x] Add read-only FTS consistency preflight for missing/orphaned rows and indexed-content mismatches, with CI coverage and repair safety guidance (PR #156, merged; CI passed).
 - [x] Add a staged-copy FTS rebuild utility that leaves the source database untouched, refuses output overwrite, validates integrity/foreign keys/chunk counts, and includes regression tests (PR #163, merged; CI run 40216663954 passed).
 - [x] Enable SQLite foreign-key enforcement during tenant database initialization and validate `integrity_check` plus `foreign_key_check`, with cleanup on failed provisioning (PR #165, merged; CI run 40217212814 passed).
+- [x] Reject symlinked tenant storage roots in the read-only preflight before path resolution (PR #167, merged; CI run 40217356965 passed).
 
 ## In progress
 
-- [ ] **PR #167 — Reject symlinked tenant storage roots in preflight.** Aligns the read-only tenant database preflight with provisioning safety by rejecting a configured storage-root symlink before path resolution. Regression coverage passed in GitHub Actions run 40217356965; awaiting review/merge. This does not change runtime routing.
+- [ ] **PR #171 — Run database profile acceptance tests in CI.** Adds profile-binding and initial isolated-schema acceptance tests to the required workflow and corrects profile-harness maturity documentation. GitHub Actions run 40217510963 is queued. This does not wire tenant routing into application requests.
 
 
 
