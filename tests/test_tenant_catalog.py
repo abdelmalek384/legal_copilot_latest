@@ -17,6 +17,13 @@ class TenantCatalogTests(unittest.TestCase):
         self.temp = tempfile.TemporaryDirectory()
         self.root = Path(self.temp.name) / "tenants"
         self.catalog = sqlite3.connect(":memory:")
+        self.catalog.execute("CREATE TABLE firms(id INTEGER PRIMARY KEY, name TEXT NOT NULL)")
+        for firm_id in (3, 4, 8, 9, 10, 11, 12, 17, 21, 22, 23, 24):
+            self.catalog.execute(
+                "INSERT INTO firms(id,name) VALUES(?,?)", (firm_id, f"Firm {firm_id}")
+            )
+        self.catalog.commit()
+        initialize_catalog(self.catalog)
 
     def tearDown(self):
         self.catalog.close()
@@ -26,6 +33,24 @@ class TenantCatalogTests(unittest.TestCase):
     def initialize_tenant(db):
         db.execute("CREATE TABLE tenant_marker (value TEXT NOT NULL)")
         db.execute("INSERT INTO tenant_marker(value) VALUES('initialized')")
+
+    def test_catalog_initialization_requires_migration_managed_firms_table(self):
+        db = sqlite3.connect(":memory:")
+        try:
+            with self.assertRaisesRegex(TenantCatalogError, "firms table must be created by migrations"):
+                initialize_catalog(db)
+            self.assertIsNone(db.execute(
+                "SELECT name FROM sqlite_master WHERE type='table' AND name='tenant_database_catalog'"
+            ).fetchone())
+        finally:
+            db.close()
+
+    def test_provision_requires_an_existing_firm(self):
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "FOREIGN KEY"):
+            provision_tenant_database(self.catalog, 404, self.root, self.initialize_tenant)
+        self.assertIsNone(self.catalog.execute(
+            "SELECT 1 FROM tenant_database_catalog WHERE firm_id=404"
+        ).fetchone())
 
     def test_provision_and_resolve_uses_catalog_not_client_path(self):
         initialize_catalog(self.catalog)
