@@ -38,6 +38,32 @@ class TenantDatabasePreflightTests(unittest.TestCase):
         if status == "provisioned":
             db = sqlite3.connect(self.root / filename)
             db.execute("CREATE TABLE marker (value TEXT)")
+            db.execute("""
+                CREATE TABLE database_profile (
+                    singleton INTEGER PRIMARY KEY CHECK(singleton=1),
+                    profile TEXT NOT NULL CHECK(profile IN ('control_plane','firm','legal_corpus'))
+                )
+            """)
+            db.execute("INSERT INTO database_profile(singleton,profile) VALUES(1,'firm')")
+            db.executescript("""
+                CREATE TRIGGER database_profile_no_update BEFORE UPDATE ON database_profile
+                BEGIN SELECT RAISE(ABORT, 'database profile binding is immutable'); END;
+                CREATE TRIGGER database_profile_no_delete BEFORE DELETE ON database_profile
+                BEGIN SELECT RAISE(ABORT, 'database profile binding is immutable'); END;
+            """)
+            db.execute("""
+                CREATE TABLE tenant_database_binding (
+                    singleton INTEGER PRIMARY KEY CHECK(singleton=1),
+                    firm_id INTEGER NOT NULL CHECK(firm_id>0)
+                )
+            """)
+            db.execute("INSERT INTO tenant_database_binding(singleton,firm_id) VALUES(1,?)", (firm_id,))
+            db.executescript("""
+                CREATE TRIGGER tenant_database_binding_no_update BEFORE UPDATE ON tenant_database_binding
+                BEGIN SELECT RAISE(ABORT, 'tenant database firm binding is immutable'); END;
+                CREATE TRIGGER tenant_database_binding_no_delete BEFORE DELETE ON tenant_database_binding
+                BEGIN SELECT RAISE(ABORT, 'tenant database firm binding is immutable'); END;
+            """)
             db.commit()
             db.close()
         return filename
@@ -70,6 +96,38 @@ class TenantDatabasePreflightTests(unittest.TestCase):
         codes = {item["code"] for item in report["findings"]}
         self.assertIn("invalid_database_reference", codes)
         self.assertIn("tenant_not_ready", codes)
+
+
+    def test_wrong_profile_and_embedded_firm_binding_are_reported(self):
+        self.add_tenant(6)
+        filename = self.catalog.execute(
+            "SELECT database_file FROM tenant_database_catalog WHERE firm_id=6"
+        ).fetchone()[0]
+        with sqlite3.connect(self.root / filename) as db:
+            db.execute("DROP TRIGGER database_profile_no_update")
+            db.execute("DROP TRIGGER tenant_database_binding_no_update")
+            db.execute("UPDATE database_profile SET profile='legal_corpus' WHERE singleton=1")
+            db.execute("UPDATE tenant_database_binding SET firm_id=99 WHERE singleton=1")
+        report = audit(self.catalog_path, self.root)
+        codes = {item["code"] for item in report["findings"]}
+        self.assertIn("wrong_database_profile", codes)
+        self.assertIn("tenant_firm_binding_mismatch", codes)
+        self.assertIn("mutable_database_profile_binding", codes)
+        self.assertIn("mutable_tenant_firm_binding", codes)
+
+    def test_missing_profile_and_firm_binding_are_reported(self):
+        self.add_tenant(7)
+        filename = self.catalog.execute(
+            "SELECT database_file FROM tenant_database_catalog WHERE firm_id=7"
+        ).fetchone()[0]
+        with sqlite3.connect(self.root / filename) as db:
+            db.execute("DROP TABLE database_profile")
+            db.execute("DROP TABLE tenant_database_binding")
+        report = audit(self.catalog_path, self.root)
+        codes = {item["code"] for item in report["findings"]}
+        self.assertIn("missing_database_profile", codes)
+        self.assertIn("missing_tenant_firm_binding", codes)
+
 
     def test_symlinked_catalog_database_is_rejected(self):
         link = self.base / "catalog-link.sqlite3"
