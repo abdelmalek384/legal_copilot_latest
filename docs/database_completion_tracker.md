@@ -34,10 +34,9 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 - [x] Preserve firm scope when parent cases/documents change, rejecting inconsistent legacy ownership and unsafe parent updates (PR #179, merged; CI passed).
 - [x] Make the database profile-binding marker immutable against ordinary SQL updates/deletes (PR #184, merged; CI run 40228431913 passed).
 - [x] Handle case-insensitive conditional column migration checks and add a legacy `Value`/`value` regression test (PR #187, merged; PR checks and post-merge main CI passed).
+- [x] Add regression coverage ensuring tenant catalog initialization rejects a pre-existing catalog schema missing its `firms` foreign key (PR #189, merged; GitHub Actions run 40228763730 passed).
 
 ## In progress
-
-- [ ] **PR #189 — Test rejection of tenant catalog schema drift.** Adds regression coverage proving catalog initialization fails closed when an existing `tenant_database_catalog` table lacks the required foreign key to `firms`; GitHub Actions is running.
 
 ## Remaining database work
 
