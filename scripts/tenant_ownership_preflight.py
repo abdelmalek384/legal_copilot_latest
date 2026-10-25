@@ -165,7 +165,28 @@ def audit(conn: sqlite3.Connection) -> dict[str, Any]:
     if "research_messages" in tables:
         message_cols = _columns(conn, "research_messages")
         if "conversation_id" in message_cols:
-            if "research_conversations" in tables:
+            if "tasks" in tables and "cases" in tables and "users" in tables:
+        task_cols = _columns(conn, "tasks")
+        case_cols = _columns(conn, "cases")
+        user_cols = _columns(conn, "users")
+        if "assignee" in task_cols:
+            add("task_assignee_missing_user", "high",
+                _count(conn, "SELECT COUNT(*) FROM tasks t LEFT JOIN users u ON u.id=t.assignee WHERE t.assignee IS NOT NULL AND u.id IS NULL"),
+                "Task assignee points to a missing user.")
+            if "firm_id" in case_cols and "firm_id" in user_cols:
+                add("task_assignee_firm_mismatch", "critical",
+                    _count(conn, "SELECT COUNT(*) FROM tasks t JOIN cases c ON c.id=t.case_id JOIN users u ON u.id=t.assignee WHERE t.assignee IS NOT NULL AND c.firm_id IS NOT u.firm_id"),
+                    "Task assignee belongs to a different firm than the task's case.")
+        if "created_by" in task_cols:
+            add("task_creator_missing_user", "high",
+                _count(conn, "SELECT COUNT(*) FROM tasks t LEFT JOIN users u ON u.id=t.created_by WHERE t.created_by IS NOT NULL AND u.id IS NULL"),
+                "Task creator points to a missing user.")
+            if "firm_id" in case_cols and "firm_id" in user_cols:
+                add("task_creator_firm_mismatch", "critical",
+                    _count(conn, "SELECT COUNT(*) FROM tasks t JOIN cases c ON c.id=t.case_id JOIN users u ON u.id=t.created_by WHERE t.created_by IS NOT NULL AND c.firm_id IS NOT u.firm_id"),
+                    "Task creator belongs to a different firm than the task's case.")
+
+    if "research_conversations" in tables:
                 add("research_message_conversation_missing", "high",
                     _count(conn, "SELECT COUNT(*) FROM research_messages m LEFT JOIN research_conversations rc ON rc.id=m.conversation_id WHERE m.conversation_id IS NOT NULL AND rc.id IS NULL"),
                     "Research message points to a missing conversation.")
