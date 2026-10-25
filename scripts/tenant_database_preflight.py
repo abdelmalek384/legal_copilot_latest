@@ -96,6 +96,55 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
             continue
         try:
             with closing(_readonly(resolved)) as tenant:
+                tables = {
+                    row[0] for row in tenant.execute(
+                        "SELECT name FROM sqlite_master WHERE type='table'"
+                    )
+                }
+                if "database_profile" not in tables:
+                    add("missing_database_profile", firm_id, "tenant database has no schema profile marker")
+                else:
+                    try:
+                        profile_rows = tenant.execute(
+                            "SELECT profile FROM database_profile WHERE singleton=1"
+                        ).fetchall()
+                        if len(profile_rows) != 1:
+                            add("invalid_database_profile_binding", firm_id, "expected exactly one profile marker")
+                        elif profile_rows[0][0] != "firm":
+                            add("wrong_database_profile", firm_id, "tenant database profile is not 'firm'")
+                    except sqlite3.Error:
+                        add("invalid_database_profile_binding", firm_id, "schema profile marker could not be read")
+                    profile_triggers = {
+                        row[0] for row in tenant.execute(
+                            "SELECT name FROM sqlite_master WHERE type='trigger' "
+                            "AND name IN ('database_profile_no_update','database_profile_no_delete')"
+                        )
+                    }
+                    if profile_triggers != {"database_profile_no_update", "database_profile_no_delete"}:
+                        add("mutable_database_profile_binding", firm_id, "schema profile marker lacks immutable update/delete guards")
+
+                if "tenant_database_binding" not in tables:
+                    add("missing_tenant_firm_binding", firm_id, "tenant database has no embedded firm ID binding")
+                else:
+                    try:
+                        binding_rows = tenant.execute(
+                            "SELECT firm_id FROM tenant_database_binding WHERE singleton=1"
+                        ).fetchall()
+                        if len(binding_rows) != 1:
+                            add("invalid_tenant_firm_binding", firm_id, "expected exactly one embedded firm ID binding")
+                        elif binding_rows[0][0] != firm_id:
+                            add("tenant_firm_binding_mismatch", firm_id, "embedded firm ID does not match the catalog")
+                    except sqlite3.Error:
+                        add("invalid_tenant_firm_binding", firm_id, "embedded firm ID binding could not be read")
+                    binding_triggers = {
+                        row[0] for row in tenant.execute(
+                            "SELECT name FROM sqlite_master WHERE type='trigger' "
+                            "AND name IN ('tenant_database_binding_no_update','tenant_database_binding_no_delete')"
+                        )
+                    }
+                    if binding_triggers != {"tenant_database_binding_no_update", "tenant_database_binding_no_delete"}:
+                        add("mutable_tenant_firm_binding", firm_id, "embedded firm ID lacks immutable update/delete guards")
+
                 quick = tenant.execute("PRAGMA quick_check").fetchall()
                 if len(quick) != 1 or quick[0][0] != "ok":
                     add("sqlite_quick_check_failed", firm_id, "; ".join(str(r[0]) for r in quick[:5]))
