@@ -244,7 +244,7 @@ class ProfileInitialSchemaTests(unittest.TestCase):
         second = normalize_email("STRASSE@example.com")
         self.assertEqual(first, second)
         self.assertEqual(
-            normalize_email("E\\u0301@example.com"),
+            normalize_email("E\u0301@example.com"),
             normalize_email("É@EXAMPLE.COM"),
         )
 
