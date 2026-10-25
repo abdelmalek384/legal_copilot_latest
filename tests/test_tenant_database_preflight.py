@@ -19,13 +19,8 @@ class TenantDatabasePreflightTests(unittest.TestCase):
         self.root.mkdir()
         self.catalog_path = self.base / "catalog.sqlite3"
         self.catalog = sqlite3.connect(self.catalog_path)
-        self.catalog.execute("""
-            CREATE TABLE tenant_database_catalog (
-                firm_id INTEGER PRIMARY KEY,
-                database_file TEXT UNIQUE,
-                status TEXT NOT NULL
-            )
-        """)
+        self.catalog.execute("PRAGMA foreign_keys=ON")
+        apply_profile_migrations(self.catalog, "control_plane", MIGRATIONS_ROOT)
 
     def tearDown(self):
         self.catalog.close()
@@ -33,6 +28,10 @@ class TenantDatabasePreflightTests(unittest.TestCase):
 
     def add_tenant(self, firm_id, status="provisioned", filename=None):
         filename = filename or f"tenant-{firm_id}-{uuid.uuid4().hex}.sqlite3"
+        self.catalog.execute(
+            "INSERT INTO firms(id,name) VALUES(?,?)",
+            (firm_id, f"Firm {firm_id}"),
+        )
         self.catalog.execute(
             "INSERT INTO tenant_database_catalog(firm_id,database_file,status) VALUES(?,?,?)",
             (firm_id, filename, status),
@@ -100,6 +99,7 @@ class TenantDatabasePreflightTests(unittest.TestCase):
         self.assertIn("database_missing", {item["code"] for item in report["findings"]})
 
     def test_invalid_mapping_and_not_ready_tenant_are_reported(self):
+        self.catalog.execute("INSERT INTO firms(id,name) VALUES(3,'Firm 3')")
         self.catalog.execute(
             "INSERT INTO tenant_database_catalog(firm_id,database_file,status) VALUES(3,?,?)",
             ("../../outside.sqlite3", "provisioned"),
