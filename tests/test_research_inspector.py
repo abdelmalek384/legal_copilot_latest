@@ -96,6 +96,38 @@ class ResearchInspectorTests(unittest.TestCase):
         self.assertIn("No relevant verified passage was found", empty)
         self.assertIn("not evidence that no applicable law exists", empty)
 
+    def test_malformed_as_of_and_provenance_dates_fail_closed(self):
+        source = valid_source()
+        self.assertEqual(source_status(source, "2026-02-30"), STATUS_REVIEW)
+        self.assertEqual(source_status(source, "not-a-date"), STATUS_REVIEW)
+        source = valid_source()
+        source["provenance"]["effective_date"] = "2026-02-30"
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+        source = valid_source()
+        source["provenance"]["effective_date"] = "2026/01/01"
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+        source = valid_source()
+        source["provenance"]["repeal_date"] = "not-a-date"
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
+    def test_malformed_nested_shapes_do_not_crash_memo_or_status(self):
+        self.assertEqual(source_status({"text": "passage", "provenance": []}, "2026-10-24"), STATUS_REVIEW)
+        self.assertEqual(source_status(None, "2026-10-24"), STATUS_METADATA_ONLY)
+        self.assertIn("Unresolved citation", citation_text(None, "2026-10-24"))
+        memo = research_memo("Question", {
+            "answer": "Answer", "sources": [None, {"text": "passage", "provenance": []}],
+            "requested_as_of": "2026-10-24",
+        })
+        self.assertIn("malformed source record", memo)
+        self.assertIn("Status: outdated_or_under_review", memo)
+        malformed_sources = research_memo("Question", {"sources": "not-a-list"})
+        self.assertIn("Source data was malformed", malformed_sources)
+
+    def test_boolean_verification_flags_do_not_accept_float_one(self):
+        source = valid_source()
+        source["provenance"]["status_verified"] = 1.0
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
 
 if __name__ == "__main__":
     unittest.main()
