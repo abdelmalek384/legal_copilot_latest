@@ -71,7 +71,7 @@ class DatabaseMigrationTests(unittest.TestCase):
 
     def test_startup_schema_no_longer_creates_indexes_inline(self):
         # Guard the incremental DDL cutover: indexes belong in immutable
-        # migrations, while legacy table/FTS bootstrap remains for now.
+        # migrations, while legacy table bootstrap remains for now.
         import ast
 
         app_path = Path(__file__).resolve().parents[1] / "app.py"
@@ -85,12 +85,13 @@ class DatabaseMigrationTests(unittest.TestCase):
         )
         self.assertNotIn("CREATE INDEX", schema.upper())
         self.assertIn("CREATE TABLE IF NOT EXISTS", schema.upper())
-        self.assertIn("CREATE VIRTUAL TABLE", schema.upper())
+        self.assertNotIn("CREATE VIRTUAL TABLE", schema.upper())
 
     def test_repository_migrations_create_startup_indexes(self):
         # Startup creates these prerequisite tables/columns before applying
         # repository migrations. This guards the migration-backed index set.
         self.db.executescript("""
+            CREATE TABLE firms(id INTEGER PRIMARY KEY, name TEXT NOT NULL);
             CREATE TABLE tenant_ownership_quarantine(first_seen TEXT);
             CREATE TABLE cases(firm_id INTEGER);
             CREATE TABLE members(user_id INTEGER, case_id INTEGER);
@@ -113,7 +114,7 @@ class DatabaseMigrationTests(unittest.TestCase):
             CREATE TABLE research_messages(conversation_id INTEGER, id INTEGER);
         """)
         migrations = Path(__file__).resolve().parents[1] / "migrations"
-        self.assertEqual(apply_migrations(self.db, migrations), [1, 2, 3, 4, 5, 6])
+        self.assertEqual(apply_migrations(self.db, migrations), [1, 2, 3, 4, 5, 6, 7, 8, 9])
         indexes = {
             row[0] for row in self.db.execute(
                 "SELECT name FROM sqlite_master WHERE type='index'"
@@ -164,6 +165,26 @@ class DatabaseMigrationTests(unittest.TestCase):
         self.assertEqual(workspace_columns["tasks"], {"id", "case_id", "title", "assignee", "due", "status", "created_by"})
         self.assertEqual(workspace_columns["events"], {"id", "case_id", "who", "at", "text"})
         self.assertEqual(workspace_columns["sessions"], {"id", "case_id", "date", "note", "done"})
+        source_columns = {
+            row["name"] for row in self.db.execute("PRAGMA table_info(legal_sources)")
+        }
+        self.assertEqual(source_columns, {
+            "source_id", "authority", "source_page", "access_status",
+            "collection_permission", "commercial_reuse_permission", "terms_url",
+            "terms_checked_on", "permission_evidence", "created_at",
+        })
+        fts_sql = self.db.execute(
+            "SELECT sql FROM sqlite_master WHERE type='table' AND name='chunks_fts'"
+        ).fetchone()[0]
+        self.assertIn("using fts5(norm)", fts_sql.lower())
+        self.db.execute("INSERT INTO chunks_fts(norm) VALUES('migration search sentinel')")
+        self.assertEqual(
+            self.db.execute(
+                "SELECT COUNT(*) FROM chunks_fts WHERE chunks_fts MATCH 'sentinel'"
+            ).fetchone()[0],
+            1,
+        )
+        self.assertEqual(self.db.execute("SELECT name FROM firms WHERE id=1").fetchone()[0], "Default Firm")
         self.assertEqual(apply_migrations(self.db, migrations), [])
 
 

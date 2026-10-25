@@ -17,7 +17,6 @@ SYS = ("Answer in the same language as the current question (Arabic or English).
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS chunks(id INTEGER PRIMARY KEY, ref TEXT, article TEXT, page TEXT, text TEXT, norm TEXT,
   case_id INT, in_force INT DEFAULT 0, as_of TEXT, source TEXT, verified INT DEFAULT 0);
-CREATE VIRTUAL TABLE IF NOT EXISTS chunks_fts USING fts5(norm);
 CREATE TABLE IF NOT EXISTS firms(id INTEGER PRIMARY KEY, name TEXT NOT NULL, created_at TEXT DEFAULT (datetime('now')));
 CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY, name TEXT, email TEXT UNIQUE, pw TEXT, role TEXT DEFAULT 'lawyer', firm_id INT DEFAULT 1, active INT DEFAULT 1);
 CREATE TABLE IF NOT EXISTS login_attempts(email TEXT PRIMARY KEY, failures INT NOT NULL DEFAULT 0, window_start INT NOT NULL DEFAULT 0, locked_until INT NOT NULL DEFAULT 0);
@@ -45,19 +44,6 @@ CREATE TABLE IF NOT EXISTS api_rate_limit_windows(
 );
 CREATE TABLE IF NOT EXISTS docs(id INTEGER PRIMARY KEY, case_id INT, name TEXT, added TEXT, firm_id INT, uploader_user_id INT, sha256 TEXT, content_type TEXT, byte_size INT, extraction_status TEXT, ocr_used INT NOT NULL DEFAULT 0);
 -- Legal corpus provenance: one stable source record, multiple immutable legal versions.
-CREATE TABLE IF NOT EXISTS legal_sources(
-  source_id TEXT PRIMARY KEY,
-  authority TEXT NOT NULL,
-  source_page TEXT NOT NULL,
-  access_status TEXT NOT NULL DEFAULT 'unknown',
-  collection_permission TEXT NOT NULL DEFAULT 'unknown'
-    CHECK(collection_permission IN ('unknown','allowed','allowed_limited','prohibited','not_allowed_without_explicit_exception_or_license')),
-  commercial_reuse_permission TEXT NOT NULL DEFAULT 'unknown',
-  terms_url TEXT,
-  terms_checked_on TEXT,
-  permission_evidence TEXT,
-  created_at TEXT NOT NULL DEFAULT (datetime('now'))
-);
 CREATE TABLE IF NOT EXISTS legal_documents(
   document_id TEXT PRIMARY KEY,
   source_id TEXT NOT NULL REFERENCES legal_sources(source_id),
@@ -195,7 +181,6 @@ def conn():
                 legal_document_cols = {r[1] for r in c.execute("PRAGMA table_info(legal_documents)")}
                 if "practice_area" not in legal_document_cols:
                     c.execute("ALTER TABLE legal_documents ADD COLUMN practice_area TEXT NOT NULL DEFAULT 'unknown'")
-                c.execute("INSERT OR IGNORE INTO firms(id,name) VALUES(1,'Default Firm')")
                 _ensure_legacy_firm_ownership(c)
                 deadline_cols = {r[1] for r in c.execute("PRAGMA table_info(deadlines)")}
                 if "status" not in deadline_cols: c.execute("ALTER TABLE deadlines ADD COLUMN status TEXT DEFAULT 'open'")
