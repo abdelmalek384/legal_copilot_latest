@@ -309,7 +309,10 @@ assert c.get("/cases", headers=logout_headers).status_code == 200
 assert c.post("/logout", headers=logout_headers).status_code == 200
 assert c.get("/cases", headers=logout_headers).status_code == 401
 for _ in range(5): c.post("/login", json={"email": "lead@x.eg", "password": "bad"})
-assert c.post("/login", json={"email": "lead@x.eg", "password": "password-Lead"}).status_code == 200   # correct credentials bypass throttling lock
+assert c.post("/login", json={"email": "lead@x.eg", "password": "password-Lead"}).status_code == 429
+db.execute("DELETE FROM login_attempts WHERE email IN ('lead@x.eg','ip:testclient')")
+db.commit()
+assert c.post("/login", json={"email": "lead@x.eg", "password": "password-Lead"}).status_code == 200
 print("API OK")
 
 # Persistent legal-research chat: history is owned by one user and scoped to their firm.
@@ -550,8 +553,8 @@ assert app._rate_limit(rate_request("/research/conversations/999/messages", meth
 assert c.get("/openapi.json").status_code == 404
 
 
-# Login lockout must slow password guessing without locking out a legitimate user.
-# Simulate active email and client-IP lockouts directly to avoid timing-sensitive sleeps.
+# Active email or client-IP lockouts must reject even correct credentials, before scrypt.
+# This intentionally tests the anti-flood path without timing-sensitive sleeps.
 _login_now = int(app.time.time())
 for _identifier in ("lead@x.eg", "ip:testclient"):
     db.execute(
@@ -562,11 +565,18 @@ for _identifier in ("lead@x.eg", "ip:testclient"):
 db.commit()
 locked_bad_password = c.post("/login", json={"email":"lead@x.eg","password":"definitely-wrong"})
 assert locked_bad_password.status_code == 429, locked_bad_password.text
-# Correct credentials should be evaluated even while an attacker has exhausted the
-# shared email/IP failure budget; successful login clears both lockout entries.
 locked_good_password = c.post("/login", json={"email":"lead@x.eg","password":"password-Lead"})
-assert locked_good_password.status_code == 200, locked_good_password.text
-assert db.execute("SELECT COUNT(*) FROM login_attempts WHERE email IN ('lead@x.eg','ip:testclient')").fetchone()[0] == 0
+assert locked_good_password.status_code == 429, locked_good_password.text
+assert int(locked_good_password.headers.get("retry-after", "0")) > 0
+
+# Clear the synthetic lockout, then prove valid credentials work after the lock expires.
+db.execute("DELETE FROM login_attempts WHERE email IN ('lead@x.eg','ip:testclient')")
+db.commit()
+assert c.post("/login", json={"email":"lead@x.eg","password":"password-Lead"}).status_code == 200
+
+# Weak but long passwords must be rejected by account creation.
+weak_password = c.post("/users", json={"name":"Weak Password","email":"weak-password@x.eg","password":"password1234","role":"lawyer"}, headers=A)
+assert weak_password.status_code == 422, weak_password.text
 
 
 # Exercise the HTTP middleware contract, not only the underlying rate-limit counter.
