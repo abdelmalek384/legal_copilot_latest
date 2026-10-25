@@ -4,9 +4,11 @@
 **Estimated completion:** 28%  
 **Status:** In progress — not production-ready for confidential multi-firm matter data.
 
-This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. The checklist currently tracks 57 completed tasks and 20 remaining tasks; this count is not a readiness percentage. Update this file as database PRs merge and as acceptance criteria are completed.
+This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. The checklist currently tracks 58 completed tasks and 20 remaining tasks; this count is not a readiness percentage. Update this file as database PRs merge and as acceptance criteria are completed.
 
 ## Completed and merged
+
+- [x] Extend the read-only tenant database preflight to verify the firm migration ledger's versions, filenames, and checksums against trusted migration files; missing or drifted history is reported without repair (PR #292 merged; CI run 40238470057 passed).
 
 - [x] Require the trusted membership lookup to verify the immutable `control_plane` profile marker and reject wrong/unbound database connections; retain fail-closed user/firm lifecycle checks (PR #280 merged; CI run 40237828642 passed).
 
