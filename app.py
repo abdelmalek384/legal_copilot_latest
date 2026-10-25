@@ -17,7 +17,6 @@ SYS = ("Answer in the same language as the current question (Arabic or English).
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS chunks(id INTEGER PRIMARY KEY, ref TEXT, article TEXT, page TEXT, text TEXT, norm TEXT,
   case_id INT, in_force INT DEFAULT 0, as_of TEXT, source TEXT, verified INT DEFAULT 0);
-CREATE VIRTUAL TABLE IF NOT EXISTS chunks_fts USING fts5(norm);
 CREATE TABLE IF NOT EXISTS firms(id INTEGER PRIMARY KEY, name TEXT NOT NULL, created_at TEXT DEFAULT (datetime('now')));
 CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY, name TEXT, email TEXT UNIQUE, pw TEXT, role TEXT DEFAULT 'lawyer', firm_id INT DEFAULT 1, active INT DEFAULT 1);
 CREATE TABLE IF NOT EXISTS login_attempts(email TEXT PRIMARY KEY, failures INT NOT NULL DEFAULT 0, window_start INT NOT NULL DEFAULT 0, locked_until INT NOT NULL DEFAULT 0);
