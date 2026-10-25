@@ -84,3 +84,8 @@ Routes are grouped by the data boundary they should preserve. "Tested" means the
 `scripts/tenant_ownership_preflight.py` now checks for orphaned rows in the `notes`, `deadlines`, `fees`, `tasks`, `events`, and `sessions` tables when those tables and the `cases` table exist. Such child rows must not be repaired by guessing a parent; reconcile them from trusted records and a reviewed backup. Run `PYTHONPATH=. python tests/test_tenant_ownership_preflight.py` to exercise the added checks.
 
 The preflight also flags document metadata and matter-child rows whose `case_id` is NULL. These rows are reported as unlinked rather than automatically treated as shared or assigned to a firm; an operator must establish their intended classification from trusted evidence. The check remains a read-only data-quality aid. It does not prove that API endpoints authorize every parent/child operation and does not migrate or repair data.
+
+
+## Ownership preflight schema-readiness guard
+
+The read-only ownership preflight now fails closed when the database is empty or lacks any core ownership table/column (`firms.id`, `users.id`, `users.firm_id`, `cases.id`, `cases.firm_id`). It returns `review_required` instead of treating an uninspectable schema as a clean ownership result. This detects only core schema readiness; it does not prove that all optional tables exist or that tenant isolation is enforced at runtime.
