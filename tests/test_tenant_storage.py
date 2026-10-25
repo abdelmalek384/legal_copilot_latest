@@ -100,6 +100,23 @@ class TenantSQLiteConnectionRouterTests(unittest.TestCase):
             with self.subTest(value=value), self.assertRaises(ValueError):
                 self.router.connection_for_firm(value)
 
+    def test_catalog_open_failure_revokes_cached_connection(self):
+        unavailable = {"value": False}
+
+        def catalog_factory():
+            if unavailable["value"]:
+                raise sqlite3.OperationalError("catalog unavailable")
+            return self._catalog()
+
+        router = TenantSQLiteConnectionRouter(catalog_factory, self.root)
+        connection = router.connection_for_firm(101)
+        unavailable["value"] = True
+
+        with self.assertRaisesRegex(TenantConnectionError, "catalog is unavailable"):
+            router.connection_for_firm(101)
+        with self.assertRaises(sqlite3.ProgrammingError):
+            connection.execute("SELECT 1")
+
     def test_unknown_firm_fails_closed_without_shared_database_fallback(self):
         with self.assertRaises(TenantConnectionError):
             self.router.connection_for_firm(303)
