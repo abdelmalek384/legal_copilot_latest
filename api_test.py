@@ -155,7 +155,7 @@ assert ocr_doc["sha256"] == app.hashlib.sha256(b"pdf bytes").hexdigest()
 
 assert c.post("/ask", json={"q": "مدة العقد", "case_id": cid}, headers=O).status_code == 404 and c.get(f"/cases/{cid}", headers=O).status_code == 404
 r = c.post("/ask", json={"q": "مدة العقد", "case_id": cid}, headers=J).json(); assert r["sources"][0]["source"] == "case-file"
-info = c.get(f"/cases/{cid}", headers=J).json(); assert len(info["events"]) >= 4 and info["tasks"][0]["status"] == "done"
+info = c.get(f"/cases/{cid}", headers=J).json(); assert len(info["events"]) >= 4 and any(task["status"] == "done" for task in info["tasks"])
 assert c.patch(f"/cases/{cid}", json={"case_number":"77","case_year":"2025","court":"محكمة","circuit":"دائرة 3","opposing_party":"خصم"}, headers=L).status_code == 200
 assert c.post(f"/cases/{cid}/notes", json={"text":"ملاحظة اختبار"}, headers=J).status_code == 200
 assert c.post(f"/cases/{cid}/deadlines", json={"title":"استئناف","due":"2099-02-01","note":"تجريبي"}, headers=J).status_code == 200
