@@ -41,9 +41,10 @@ def sqlite_membership_lookup(connection: sqlite3.Connection) -> MembershipLookup
     def lookup(user_id: int, firm_id: int) -> Mapping[str, Any] | None:
         row = connection.execute(
             """
-            SELECT fm.status, fm.firm_role, f.status
+            SELECT fm.status, fm.firm_role, f.status, u.status
             FROM firm_memberships fm
             JOIN firms f ON f.id=fm.firm_id
+            JOIN users u ON u.id=fm.user_id
             WHERE fm.user_id=? AND fm.firm_id=?
             """,
             (user_id, firm_id),
