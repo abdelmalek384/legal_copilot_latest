@@ -46,7 +46,7 @@ def _expected_firm_migrations() -> dict[int, tuple[str, str]]:
     for path in sorted(directory.glob("*.sql")):
         if path.is_symlink() or path.resolve().parent != directory.resolve():
             raise ValueError("firm migration sources must be regular files in the trusted directory")
-        match = re.fullmatch(r"([0-9]{4,})_[a-z0-9_]+\\.sql", path.name)
+        match = re.fullmatch(r"([0-9]{4,})_[a-z0-9_]+\.sql", path.name)
         if match is None:
             raise ValueError(f"invalid firm migration filename: {path.name}")
         version = int(match.group(1))
@@ -63,7 +63,6 @@ def _expected_firm_migrations() -> dict[int, tuple[str, str]]:
 def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
     """Inspect catalog mappings and provisioned SQLite files without writing."""
     findings: list[dict[str, Any]] = []
-    expected_migrations = _expected_firm_migrations()
 
     requested_catalog = Path(catalog_path).expanduser()
     # Match the storage-root policy: do not silently follow a configured
@@ -86,6 +85,7 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
     if not root.is_dir():
         raise ValueError("tenant storage root must be a directory")
 
+    expected_migrations = _expected_firm_migrations()
     catalog_authoritative = True
     with closing(_readonly(resolved_catalog)) as catalog:
         tables = {row[0] for row in catalog.execute(
