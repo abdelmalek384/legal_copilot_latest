@@ -125,7 +125,9 @@ def research_memo(question, result, scope=None):
     if not isinstance(result, Mapping):
         result = {}
     as_of = result.get("requested_as_of") or date.today().isoformat()
-    scope = scope or result.get("scope") or "verified_corpus"
+    scope = scope or result.get("scope")
+    if not isinstance(scope, str) or not scope.strip():
+        scope = "unknown"
     lines = [
         "LEGAL RESEARCH MEMO",
         "Question: %s" % (question or "(not recorded)"),
