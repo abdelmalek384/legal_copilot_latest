@@ -1286,6 +1286,36 @@ def dashboard(u: dict = Depends(user)):
     return {"tasks": [dict(r) for r in t], "sessions": upcoming(c, u), "deadlines": [dict(r) for r in d]}
 
 
+@app.get("/finance/overview")
+def finance_overview(u: dict = Depends(user)):
+    """Aggregate recorded fees only for cases the signed-in user is allowed to access."""
+    c = conn()
+    row = c.execute(
+        """
+        SELECT
+            COUNT(f.id) AS fee_count,
+            COALESCE(SUM(f.amount), 0) AS total_amount,
+            COALESCE(SUM(f.paid), 0) AS total_paid,
+            COALESCE(SUM(CASE WHEN f.amount > f.paid THEN f.amount - f.paid ELSE 0 END), 0) AS outstanding_amount,
+            COALESCE(SUM(CASE WHEN f.amount > f.paid AND f.due IS NOT NULL AND date(f.due) < date('now') THEN 1 ELSE 0 END), 0) AS overdue_count,
+            COALESCE(SUM(CASE WHEN f.amount > f.paid AND f.due IS NOT NULL AND date(f.due) < date('now') THEN f.amount - f.paid ELSE 0 END), 0) AS overdue_amount
+        FROM fees f
+        JOIN cases cs ON cs.id = f.case_id
+        WHERE cs.firm_id = ?
+          AND (? = 'admin' OR cs.id IN (SELECT case_id FROM members WHERE user_id = ?))
+        """,
+        (u["firm_id"], u["role"], u["id"]),
+    ).fetchone()
+    return {
+        "fee_count": int(row["fee_count"] or 0),
+        "total_amount": round(float(row["total_amount"] or 0), 2),
+        "total_paid": round(float(row["total_paid"] or 0), 2),
+        "outstanding_amount": round(float(row["outstanding_amount"] or 0), 2),
+        "overdue_count": int(row["overdue_count"] or 0),
+        "overdue_amount": round(float(row["overdue_amount"] or 0), 2),
+    }
+
+
 @app.get("/cases")
 def cases(u: dict = Depends(user)):
     q = ("SELECT cs.*, (SELECT COUNT(*) FROM tasks t WHERE t.case_id=cs.id AND t.status='open') AS open_tasks, "
