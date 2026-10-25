@@ -42,9 +42,10 @@ def _validate_sqlite(path):
 def read_password(prompt):
     print("ملاحظة: لن تظهر أحرف كلمة المرور أثناء الكتابة في الطرفية؛ هذا طبيعي.")
     pw = getpass.getpass(prompt)
-    if len(pw) < 12:
-        raise SystemExit("كلمة المرور يجب أن تكون 12 حرفا على الأقل.")
-    return pw
+    try:
+        return app.validate_password_strength(pw)
+    except ValueError as exc:
+        raise SystemExit("كلمة المرور ضعيفة: " + str(exc)) from exc
 
 
 def adduser(a):
