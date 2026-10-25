@@ -43,7 +43,7 @@ def load_jsonl(path):
 def validate_review(record):
     """Return schema/evidence errors without inventing or repairing labels."""
     errors = []
-    for field in ("case_id", "practice_area", "reviewer_name", "review_date", "disposition"):
+    for field in ("assessment_id", "case_id", "practice_area", "reviewer_name", "review_date", "disposition"):
         if not isinstance(record.get(field), str) or not record[field].strip():
             errors.append(f"missing or empty {field}")
     if record.get("disposition") not in DISPOSITIONS:
@@ -92,24 +92,24 @@ def validate_review(record):
 
 
 def summarize_reviews(records):
-    """Summarize valid records; invalid rows are reported and never scored."""
+    """Summarize valid assessments; repeated case IDs are allowed for independent reviews."""
     valid, invalid, seen = [], [], set()
     for index, record in enumerate(records, start=1):
         if not isinstance(record, dict):
             invalid.append({"record": f"line-{index}", "record_index": index, "errors": ["record must be an object"]})
             continue
         errors = validate_review(record)
-        case_id = record.get("case_id", f"line-{index}")
+        assessment_id = record.get("assessment_id", f"line-{index}")
         if errors:
-            invalid.append({"record": case_id, "record_index": index, "errors": errors})
+            invalid.append({"record": assessment_id, "record_index": index, "errors": errors})
             continue
-        if record["case_id"] in seen:
+        if assessment_id in seen:
             invalid.append({
-                "record": record["case_id"], "record_index": index,
-                "errors": ["duplicate case_id; use a unique case_id for each assessment"],
+                "record": assessment_id, "record_index": index,
+                "errors": ["duplicate assessment_id; each reviewer assessment must have a unique ID"],
             })
             continue
-        seen.add(record["case_id"])
+        seen.add(assessment_id)
         valid.append(record)
 
     counts = Counter(record["disposition"] for record in valid)
@@ -132,7 +132,8 @@ def summarize_reviews(records):
         }
     practice_areas = Counter(record["practice_area"] for record in valid)
     critical_defects = [
-        {"case_id": record["case_id"], "description": record["critical_defect_description"]}
+        {"assessment_id": record["assessment_id"], "case_id": record["case_id"],
+         "description": record["critical_defect_description"]}
         for record in valid if record["critical_defect"]
     ]
     return {
