@@ -5,6 +5,7 @@ from collections import Counter
 from datetime import date, timedelta
 from tools.research_inspector import source_status, citation_text, research_memo
 from storage import SQLiteConnectionProvider
+from identity import normalize_email
 from db_migrations import apply_migrations
 from fastapi import Request
 from fastapi.responses import JSONResponse, HTMLResponse, Response
@@ -921,8 +922,8 @@ def require_platform_legal_reviewer(u):
     """Restrict global legal-registry access to explicitly configured reviewer identities."""
     if u["role"] != "admin":
         raise HTTPException(403, "platform legal reviewer only")
-    allowed = {email.strip().lower() for email in os.environ.get("LEGAL_REVIEWER_EMAILS", "").split(",") if email.strip()}
-    if not allowed or (u.get("email") or "").strip().lower() not in allowed:
+    allowed = {normalize_email(email) for email in os.environ.get("LEGAL_REVIEWER_EMAILS", "").split(",") if email.strip()}
+    if not allowed or normalize_email(u.get("email") or "") not in allowed:
         raise HTTPException(403, "platform legal reviewer only")
 
 
@@ -991,7 +992,7 @@ def home(request: Request):
 
 @app.post("/login")
 def login(b: LoginIn, request: Request, response: Response):
-    k = b.email.strip().lower()
+    k = normalize_email(b.email)
     now = int(time.time())
     ip = request.client.host if request.client else "unknown"
     identifiers = (k, "ip:" + ip)
@@ -1266,7 +1267,7 @@ def create_user(b: UserCreateIn, u: dict = Depends(user)):
     c = conn()
     try:
         cur = c.execute("INSERT INTO users(name,email,pw,role,firm_id) VALUES(?,?,?,?,?)",
-                         (b.name.strip(), b.email.strip().lower(), hash_pw(b.password), b.role, u["firm_id"]))
+                         (b.name.strip(), normalize_email(b.email), hash_pw(b.password), b.role, u["firm_id"]))
         c.commit()
     except sqlite3.IntegrityError:
         c.rollback()
