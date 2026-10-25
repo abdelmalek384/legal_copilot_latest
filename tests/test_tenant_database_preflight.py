@@ -67,6 +67,57 @@ class TenantDatabasePreflightTests(unittest.TestCase):
         self.assertEqual(report["tenant_databases_inspected"], 1)
         self.assertEqual(before, after)
 
+
+    def test_control_plane_migration_history_is_required_before_tenant_inspection(self):
+        self.add_tenant(14)
+        self.catalog.execute(
+            "DELETE FROM schema_migrations WHERE version=(SELECT MAX(version) FROM schema_migrations)"
+        )
+        self.catalog.commit()
+        report = audit(self.catalog_path, self.root)
+        self.assertIn(
+            "incomplete_control_plane_migration_history",
+            {item["code"] for item in report["findings"]},
+        )
+        self.assertEqual(report["tenant_databases_inspected"], 0)
+
+    def test_control_plane_checksum_drift_prevents_tenant_inspection(self):
+        self.add_tenant(15)
+        self.catalog.execute(
+            "UPDATE schema_migrations SET checksum_sha256='bad-checksum' "
+            "WHERE version=(SELECT MIN(version) FROM schema_migrations)"
+        )
+        self.catalog.commit()
+        report = audit(self.catalog_path, self.root)
+        self.assertIn(
+            "control_plane_migration_checksum_mismatch",
+            {item["code"] for item in report["findings"]},
+        )
+        self.assertEqual(report["tenant_databases_inspected"], 0)
+
+    def test_catalog_missing_firm_foreign_key_is_reported_and_tenant_files_are_not_opened(self):
+        self.add_tenant(17)
+        row = self.catalog.execute(
+            "SELECT database_file,status FROM tenant_database_catalog WHERE firm_id=17"
+        ).fetchone()
+        self.catalog.execute("DROP TABLE tenant_database_catalog")
+        self.catalog.execute("""
+            CREATE TABLE tenant_database_catalog (
+                firm_id INTEGER PRIMARY KEY,
+                database_file TEXT UNIQUE,
+                status TEXT NOT NULL
+            )
+        """)
+        self.catalog.execute(
+            "INSERT INTO tenant_database_catalog(firm_id,database_file,status) VALUES(17,?,?)",
+            row,
+        )
+        self.catalog.commit()
+        report = audit(self.catalog_path, self.root)
+        self.assertIn("catalog_missing_firm_fk", {item["code"] for item in report["findings"]})
+        self.assertEqual(report["tenant_databases_inspected"], 0)
+
+
     def test_missing_migration_history_is_reported(self):
         self.add_tenant(9)
         filename = self.catalog.execute(
@@ -91,6 +142,7 @@ class TenantDatabasePreflightTests(unittest.TestCase):
         self.assertIn("schema_migration_checksum_mismatch", codes)
 
     def test_wrong_catalog_profile_and_mutable_profile_guards_are_reported(self):
+        self.add_tenant(16)
         with sqlite3.connect(self.catalog_path) as db:
             db.execute("DROP TRIGGER database_profile_no_update")
             db.execute("UPDATE database_profile SET profile='firm' WHERE singleton=1")
@@ -98,8 +150,10 @@ class TenantDatabasePreflightTests(unittest.TestCase):
         codes = {item["code"] for item in report["findings"] if item["firm_id"] is None}
         self.assertIn("wrong_catalog_profile", codes)
         self.assertIn("mutable_catalog_profile_binding", codes)
+        self.assertEqual(report["tenant_databases_inspected"], 0)
 
     def test_missing_catalog_profile_is_reported(self):
+        self.add_tenant(18)
         with sqlite3.connect(self.catalog_path) as db:
             db.execute("DROP TABLE database_profile")
         report = audit(self.catalog_path, self.root)
@@ -107,6 +161,7 @@ class TenantDatabasePreflightTests(unittest.TestCase):
             "missing_catalog_profile",
             {item["code"] for item in report["findings"] if item["firm_id"] is None},
         )
+        self.assertEqual(report["tenant_databases_inspected"], 0)
 
     def test_missing_database_is_reported(self):
         self.add_tenant(2, filename=f"tenant-2-{uuid.uuid4().hex}.sqlite3")
