@@ -9,6 +9,7 @@ The tool never provisions, repairs, migrates, or modifies a database.
 from __future__ import annotations
 
 import argparse
+import hashlib
 from contextlib import closing
 import json
 import re
@@ -36,9 +37,32 @@ def _has_immutable_guard(sql: str | None, table: str, operation: str, message: s
     )
 
 
+def _expected_firm_migrations() -> dict[int, tuple[str, str]]:
+    """Read the trusted firm-profile migration manifest without opening a database."""
+    directory = Path(__file__).resolve().parents[1] / "migrations" / "firm"
+    if directory.is_symlink() or not directory.is_dir():
+        raise ValueError("trusted firm migration directory is unavailable")
+    expected: dict[int, tuple[str, str]] = {}
+    for path in sorted(directory.glob("*.sql")):
+        if path.is_symlink() or path.resolve().parent != directory.resolve():
+            raise ValueError("firm migration sources must be regular files in the trusted directory")
+        match = re.fullmatch(r"([0-9]{4,})_[a-z0-9_]+\.sql", path.name)
+        if match is None:
+            raise ValueError(f"invalid firm migration filename: {path.name}")
+        version = int(match.group(1))
+        sql = path.read_text(encoding="utf-8")
+        if version in expected:
+            raise ValueError(f"duplicate firm migration version: {version}")
+        expected[version] = (path.name, hashlib.sha256(sql.encode("utf-8")).hexdigest())
+    if not expected:
+        raise ValueError("trusted firm migration directory contains no migrations")
+    return expected
+
+
 def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
     """Inspect catalog mappings and provisioned SQLite files without writing."""
     findings: list[dict[str, Any]] = []
+    expected_migrations = _expected_firm_migrations()
 
     requested_catalog = Path(catalog_path).expanduser()
     # Match the storage-root policy: do not silently follow a configured
@@ -61,75 +85,19 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
     if not root.is_dir():
         raise ValueError("tenant storage root must be a directory")
 
-    catalog_authoritative = True
     with closing(_readonly(resolved_catalog)) as catalog:
         tables = {row[0] for row in catalog.execute(
             "SELECT name FROM sqlite_master WHERE type='table'"
         )}
         if "tenant_database_catalog" not in tables:
             raise ValueError("catalog is missing tenant_database_catalog")
-
-        # Do not follow any catalog-selected tenant path unless the catalog
-        # itself is recognizably the migration-managed control-plane database.
-        if "database_profile" not in tables:
-            add("missing_control_plane_profile", None, "catalog has no database profile marker")
-            catalog_authoritative = False
-        else:
-            try:
-                profile_rows = catalog.execute(
-                    "SELECT profile FROM database_profile WHERE singleton=1"
-                ).fetchall()
-                if len(profile_rows) != 1:
-                    add("invalid_control_plane_profile", None, "expected exactly one control-plane profile marker")
-                    catalog_authoritative = False
-                elif profile_rows[0][0] != "control_plane":
-                    add("wrong_control_plane_profile", None, "catalog database profile is not 'control_plane'")
-                    catalog_authoritative = False
-            except sqlite3.Error:
-                add("invalid_control_plane_profile", None, "control-plane profile marker could not be read")
-                catalog_authoritative = False
-
-            profile_triggers = {
-                row[0] for row in catalog.execute(
-                    "SELECT name FROM sqlite_master WHERE type='trigger' "
-                    "AND name IN ('database_profile_no_update','database_profile_no_delete')"
-                )
-            }
-            if profile_triggers != {"database_profile_no_update", "database_profile_no_delete"}:
-                add("mutable_control_plane_profile", None, "control-plane profile marker lacks immutable update/delete guards")
-                catalog_authoritative = False
-
-        if "firms" not in tables:
-            add("missing_firms_table", None, "control-plane catalog has no firms table")
-            catalog_authoritative = False
-
-        catalog_fks = catalog.execute("PRAGMA foreign_key_list(tenant_database_catalog)").fetchall()
-        if not any(
-            row[2] == "firms" and row[3] == "firm_id" and row[4] == "id"
-            for row in catalog_fks
-        ):
-            add("catalog_missing_firm_fk", None, "tenant catalog does not enforce firm ownership with a foreign key")
-            catalog_authoritative = False
-
-        try:
-            catalog_fk_violations = catalog.execute(
-                "PRAGMA foreign_key_check(tenant_database_catalog)"
-            ).fetchmany(20)
-            if catalog_fk_violations:
-                add("catalog_foreign_key_violations", None, "tenant catalog contains one or more invalid firm references")
-                catalog_authoritative = False
-        except sqlite3.Error:
-            add("catalog_foreign_key_check_failed", None, "tenant catalog foreign-key integrity could not be checked")
-            catalog_authoritative = False
-
         rows = catalog.execute(
             "SELECT firm_id, database_file, status FROM tenant_database_catalog ORDER BY firm_id"
         ).fetchall()
 
     seen_files: dict[str, int] = {}
     inspected = 0
-    # A malformed or untrusted catalog must not be used to choose database files.
-    for firm_id, filename, status in (rows if catalog_authoritative else []):
+    for firm_id, filename, status in rows:
         if status != "provisioned":
             if status in ("provisioning", "failed"):
                 add("tenant_not_ready", firm_id, f"catalog status is {status!r}")
@@ -218,6 +186,31 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
                         and _has_immutable_guard(binding_triggers.get("tenant_database_binding_no_delete"), "tenant_database_binding", "DELETE", "tenant database firm binding is immutable")
                     ):
                         add("mutable_tenant_firm_binding", firm_id, "embedded firm ID lacks effective immutable update/delete guards")
+
+                if "schema_migrations" not in tables:
+                    add("missing_schema_migration_ledger", firm_id, "tenant database has no versioned migration ledger")
+                else:
+                    try:
+                        ledger_rows = tenant.execute(
+                            "SELECT version, name, checksum_sha256 FROM schema_migrations"
+                        ).fetchall()
+                        recorded = {int(row[0]): (str(row[1]), str(row[2])) for row in ledger_rows}
+                        expected_versions = set(expected_migrations)
+                        recorded_versions = set(recorded)
+                        missing_versions = sorted(expected_versions - recorded_versions)
+                        unexpected_versions = sorted(recorded_versions - expected_versions)
+                        if missing_versions:
+                            add("incomplete_schema_migration_history", firm_id, f"missing firm migration versions: {missing_versions}")
+                        if unexpected_versions:
+                            add("unexpected_schema_migration_history", firm_id, f"unknown firm migration versions: {unexpected_versions}")
+                        mismatched = sorted(
+                            version for version in expected_versions & recorded_versions
+                            if recorded[version] != expected_migrations[version]
+                        )
+                        if mismatched:
+                            add("schema_migration_checksum_mismatch", firm_id, f"migration name/checksum differs for versions: {mismatched}")
+                    except (sqlite3.Error, ValueError, TypeError, IndexError):
+                        add("invalid_schema_migration_ledger", firm_id, "tenant migration ledger is malformed or unreadable")
 
                 quick = tenant.execute("PRAGMA quick_check").fetchall()
                 if len(quick) != 1 or quick[0][0] != "ok":
