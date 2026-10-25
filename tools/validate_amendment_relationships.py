@@ -162,6 +162,67 @@ def validate(relationships_doc: dict, inventory_doc: dict) -> dict:
         if effective_date == "unknown_pending_gazette_verification":
             add("warning", "effective_date_unknown", rid_label, "Unknown commencement/effective date remains unresolved; do not infer it from publication date.")
 
+        # A status label alone must never make a relationship look legally confirmed.
+        # Require an explicit, inspectable review record and the key publication
+        # metadata before accepting reviewed_confirmed as structurally complete.
+        if status == "reviewed_confirmed":
+            confirmation = item.get("confirmation_evidence")
+            required_confirmation_fields = (
+                "gazette_issue",
+                "gazette_publication_date",
+                "gazette_page_range",
+                "reviewed_on",
+                "reviewer_role",
+                "review_basis",
+            )
+            if not isinstance(confirmation, dict):
+                add(
+                    "error",
+                    "confirmed_relationship_missing_confirmation_evidence",
+                    rid_label,
+                    "reviewed_confirmed requires a confirmation_evidence object with Gazette publication and reviewer details.",
+                )
+            else:
+                for field in ("gazette_issue", "gazette_page_range", "reviewer_role", "review_basis"):
+                    value = confirmation.get(field)
+                    if not isinstance(value, str) or not value.strip():
+                        add(
+                            "error",
+                            "confirmed_relationship_missing_confirmation_field",
+                            rid_label,
+                            f"confirmation_evidence.{field} must be a non-empty string.",
+                        )
+                for field in ("gazette_publication_date", "reviewed_on"):
+                    value = confirmation.get(field)
+                    valid_date = False
+                    if isinstance(value, str):
+                        try:
+                            parsed_date = date.fromisoformat(value)
+                            valid_date = parsed_date.isoformat() == value
+                        except ValueError:
+                            valid_date = False
+                    if not valid_date:
+                        add(
+                            "error",
+                            "confirmed_relationship_invalid_confirmation_date",
+                            rid_label,
+                            f"confirmation_evidence.{field} must be a real YYYY-MM-DD calendar date.",
+                        )
+            if relation_type != "base_instrument" and not item.get("affected_provision") and not item.get("affected_provisions"):
+                add(
+                    "error",
+                    "confirmed_relationship_missing_provision_mapping",
+                    rid_label,
+                    "A confirmed non-base relationship requires an explicit affected article, provision, or schedule mapping.",
+                )
+            if effective_date in (None, "unknown_pending_gazette_verification"):
+                add(
+                    "error",
+                    "confirmed_relationship_effective_date_unresolved",
+                    rid_label,
+                    "A confirmed relationship must record a verified effective date; publication date alone is not a substitute.",
+                )
+
     return {
         "schema_version": "1.0",
         "audit_type": "read_only_amendment_relationship_integrity",
