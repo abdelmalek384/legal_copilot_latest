@@ -46,6 +46,8 @@ class PlatformRoleLookupTests(unittest.TestCase):
                 has_platform_role(self.db, user_id, "platform_reviewer")
         with self.assertRaises(ValueError):
             has_platform_role(self.db, 1, "admin")
+        with self.assertRaises(ValueError):
+            has_platform_role(self.db, 1, ["platform_reviewer"])
         with self.assertRaises(TypeError):
             has_platform_role("client-controlled-path", 1, "platform_reviewer")
 
