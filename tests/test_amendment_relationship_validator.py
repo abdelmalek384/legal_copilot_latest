@@ -143,6 +143,28 @@ class AmendmentRelationshipValidatorTests(unittest.TestCase):
         self.assertIn("missing_document_id", codes)
         self.assertIn("invalid_document_entry", codes)
 
+    def test_malformed_relationship_type_and_status_do_not_crash(self):
+        base = {
+            "relationship_id": "REL-MALFORMED",
+            "source_instrument_id": "LAW-A",
+            "target_instrument_id": None,
+            "source_url": "https://gazette.example.gov/law.pdf",
+            "required_evidence": ["Original Gazette text"],
+        }
+        inventory = {"documents": [{"document_id": "LAW-A"}]}
+        for relation_type in ([], {}, 12):
+            with self.subTest(relationship_type=relation_type):
+                report = MODULE.validate(
+                    {"relationships": [{**base, "relationship_type": relation_type, "status": []}]},
+                    inventory,
+                )
+                codes = [item["code"] for item in report["errors"]]
+                self.assertIn("unknown_relationship_type", codes)
+                self.assertIn("target_instrument_missing_from_inventory", codes)
+                self.assertTrue(any(
+                    item["code"] == "unrecognized_or_missing_status" for item in report["warnings"]
+                ))
+
     def test_invalid_document_schema_is_reported_without_crashing(self):
         report = MODULE.validate({"relationships": []}, {"documents": {}})
         self.assertIn("schema_error", report)
