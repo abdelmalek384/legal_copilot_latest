@@ -85,7 +85,7 @@ class DatabaseMigrationTests(unittest.TestCase):
         )
         self.assertNotIn("CREATE INDEX", schema.upper())
         self.assertIn("CREATE TABLE IF NOT EXISTS", schema.upper())
-        self.assertIn("CREATE VIRTUAL TABLE", schema.upper())
+        self.assertNotIn("CREATE VIRTUAL TABLE", schema.upper())
 
     def test_repository_migrations_create_startup_indexes(self):
         # Startup creates these prerequisite tables/columns before applying
@@ -113,7 +113,7 @@ class DatabaseMigrationTests(unittest.TestCase):
             CREATE TABLE research_messages(conversation_id INTEGER, id INTEGER);
         """)
         migrations = Path(__file__).resolve().parents[1] / "migrations"
-        self.assertEqual(apply_migrations(self.db, migrations), [1, 2, 3, 4, 5, 6, 7])
+        self.assertEqual(apply_migrations(self.db, migrations), [1, 2, 3, 4, 5, 6, 7, 8])
         indexes = {
             row[0] for row in self.db.execute(
                 "SELECT name FROM sqlite_master WHERE type='index'"
@@ -172,6 +172,17 @@ class DatabaseMigrationTests(unittest.TestCase):
             "collection_permission", "commercial_reuse_permission", "terms_url",
             "terms_checked_on", "permission_evidence", "created_at",
         })
+        fts_sql = self.db.execute(
+            "SELECT sql FROM sqlite_master WHERE type='table' AND name='chunks_fts'"
+        ).fetchone()[0]
+        self.assertIn("USING fts5(norm)", fts_sql.lower())
+        self.db.execute("INSERT INTO chunks_fts(norm) VALUES('migration search sentinel')")
+        self.assertEqual(
+            self.db.execute(
+                "SELECT COUNT(*) FROM chunks_fts WHERE chunks_fts MATCH 'sentinel'"
+            ).fetchone()[0],
+            1,
+        )
         self.assertEqual(apply_migrations(self.db, migrations), [])
 
 
