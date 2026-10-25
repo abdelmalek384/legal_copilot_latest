@@ -136,8 +136,7 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5)):
         question_counts[qid] = question_counts.get(qid, 0) + 1
         if errors:
             invalid_questions.append({"record": index, "question_id": qid, "reasons": errors})
-        else:
-            question_by_id[qid] = question
+        question_by_id[qid] = question
 
     duplicate_question_ids = sorted(qid for qid, count in question_counts.items() if count > 1)
     for qid in duplicate_question_ids:
@@ -164,10 +163,11 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5)):
 
     reviewed = []
     excluded = []
-    seen_ids = set(question_counts)
     for qid, question in question_by_id.items():
         if qid in duplicate_question_ids:
             excluded.append({"question_id": qid, "reasons": ["duplicate question ID; resolve the reviewed labels before scoring"]})
+        elif validate_reviewed_question(question):
+            excluded.append({"question_id": qid, "reasons": validate_reviewed_question(question)})
         elif qid in duplicate_run_ids:
             excluded.append({"question_id": qid, "reasons": ["duplicate run records; resolve the runs before scoring"]})
         elif qid in invalid_run_ids:
@@ -179,12 +179,6 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5)):
     for qid in duplicate_question_ids:
         if not any(item["question_id"] == qid for item in excluded):
             excluded.append({"question_id": qid, "reasons": ["duplicate question ID; resolve the reviewed labels before scoring"]})
-    # Include otherwise-valid questions with invalid labels in the exclusion report.
-    for qid, question in question_by_id.items():
-        if validate_reviewed_question(question):
-            if not any(item["question_id"] == qid for item in excluded):
-                excluded.append({"question_id": qid, "reasons": validate_reviewed_question(question)})
-
     metrics = {}
     for k in k_values:
         recall_values = []
