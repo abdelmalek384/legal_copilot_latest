@@ -40,6 +40,31 @@ class PlatformRoleLookupTests(unittest.TestCase):
         )
         self.assertFalse(has_platform_role(self.db, 1, "platform_reviewer"))
 
+
+    def test_disabled_global_identity_does_not_retain_platform_role(self):
+        self.db.execute(
+            "INSERT INTO user_platform_roles(user_id,role_name) VALUES(1,'platform_admin')"
+        )
+        self.db.execute("UPDATE users SET status='disabled' WHERE id=1")
+        self.assertFalse(has_platform_role(self.db, 1, "platform_admin"))
+
+    def test_rejects_wrong_or_unbound_database_profile(self):
+        wrong = sqlite3.connect(":memory:")
+        try:
+            apply_profile_migrations(wrong, "firm", MIGRATIONS)
+            with self.assertRaisesRegex(ValueError, "trusted control-plane profile"):
+                has_platform_role(wrong, 1, "platform_admin")
+        finally:
+            wrong.close()
+
+        unbound = sqlite3.connect(":memory:")
+        try:
+            with self.assertRaisesRegex(ValueError, "trusted control-plane profile"):
+                has_platform_role(unbound, 1, "platform_admin")
+        finally:
+            unbound.close()
+
+
     def test_rejects_invalid_identity_or_role_inputs(self):
         for user_id in (0, -1, True, "1", None):
             with self.subTest(user_id=user_id), self.assertRaises(ValueError):
