@@ -1,12 +1,12 @@
 # SEC-01 — Identity, firm membership, and tenant-routing contract
 
-**Status:** Proposed decision for product/operations approval; implementation not started  
+**Status:** Core identity decisions approved as the working contract; implementation and operational details remain incomplete  
 **Date:** 2026-10-24  
 **Depends on:** `docs/database_tenancy_architecture.md`, `docs/database_boundary_phase0_review.md`, and `docs/repository_storage_entrypoint_inventory.md`
 
-## Decision needed
+## Approved core decisions
 
-Before implementing multi-firm database routing, the product owner and deployment owner must approve the identity semantics below. This document makes a concrete recommendation to unblock that decision; it does not change runtime behavior or authorize migration.
+The project owner approved multi-firm membership, globally unique normalized email, and separate platform versus firm roles as the working plan on 2026-10-26. This document records the intended contract; it does not change runtime behavior or authorize migration.
 
 ## Recommended contract
 
@@ -46,18 +46,16 @@ A likely target is:
 
 This sketch is not a migration specification. Before implementation, inventory uniqueness constraints, existing users with missing or default `firm_id`, duplicate emails under normalization, foreign keys, session/token format, audit attribution, and any routes that currently infer a firm implicitly.
 
-## Required answers before implementation
+## Remaining operational decisions before route integration
 
-The product owner and deployment owner must confirm:
+The core architecture choices above are settled, but these details still need explicit product/deployment policy before they are wired into authentication or production routing:
 
-1. Can one person legitimately access more than one firm?
-2. Is email globally unique across all firms, and what normalization/verification rules apply?
-3. Are roles firm-scoped, platform-scoped, or both? Who can grant platform privileges?
-4. What should happen to active sessions when a membership is suspended or removed?
-5. How are invitations accepted and how is initial firm ownership/admin status established?
-6. Does the actual deployment have any legacy users or operator workflows not represented in repository fixtures?
+1. **Membership revocation and sessions:** choose the maximum acceptable revocation delay and whether every request rechecks membership or uses a short-lived, invalidatable cache. Default safe behavior: deny on failed membership/catalog validation and invalidate affected cached tenant connections.
+2. **Invitations and first firm owner:** define invitation expiry, email verification, who may invite, and the bootstrap path for the first firm owner. Never grant platform-admin privileges from a firm invitation.
+3. **Platform-admin grants:** configure a separate, audited operator process for granting/revoking platform privileges; do not infer platform status from a firm role or email domain.
+4. **Legacy deployment facts:** before migration, confirm actual user/account workflows, current database path, number of firms, session/token format, and backup/retention requirements. Repository fixtures are not evidence about production data.
 
-If question 1 is answered “no,” explicitly select separate firm identities and document duplicate-account/recovery behavior before schema work. Do not silently implement the recommended model merely because it is convenient.
+Do not block safe isolated tests or migration audits on these open operational details. Do block route integration, identity merges, and production cutover until the applicable policy and evidence are in place.
 
 ## Security acceptance criteria
 
