@@ -19,13 +19,8 @@ class TenantDatabasePreflightTests(unittest.TestCase):
         self.root.mkdir()
         self.catalog_path = self.base / "catalog.sqlite3"
         self.catalog = sqlite3.connect(self.catalog_path)
-        self.catalog.execute("""
-            CREATE TABLE tenant_database_catalog (
-                firm_id INTEGER PRIMARY KEY,
-                database_file TEXT UNIQUE,
-                status TEXT NOT NULL
-            )
-        """)
+        self.catalog.execute("PRAGMA foreign_keys=ON")
+        apply_profile_migrations(self.catalog, "control_plane", MIGRATIONS_ROOT)
 
     def tearDown(self):
         self.catalog.close()
@@ -33,6 +28,10 @@ class TenantDatabasePreflightTests(unittest.TestCase):
 
     def add_tenant(self, firm_id, status="provisioned", filename=None):
         filename = filename or f"tenant-{firm_id}-{uuid.uuid4().hex}.sqlite3"
+        self.catalog.execute(
+            "INSERT INTO firms(id,name) VALUES(?,?)",
+            (firm_id, f"Firm {firm_id}"),
+        )
         self.catalog.execute(
             "INSERT INTO tenant_database_catalog(firm_id,database_file,status) VALUES(?,?,?)",
             (firm_id, filename, status),
@@ -91,6 +90,24 @@ class TenantDatabasePreflightTests(unittest.TestCase):
         self.assertIn("incomplete_schema_migration_history", codes)
         self.assertIn("schema_migration_checksum_mismatch", codes)
 
+    def test_wrong_catalog_profile_and_mutable_profile_guards_are_reported(self):
+        with sqlite3.connect(self.catalog_path) as db:
+            db.execute("DROP TRIGGER database_profile_no_update")
+            db.execute("UPDATE database_profile SET profile='firm' WHERE singleton=1")
+        report = audit(self.catalog_path, self.root)
+        codes = {item["code"] for item in report["findings"] if item["firm_id"] is None}
+        self.assertIn("wrong_catalog_profile", codes)
+        self.assertIn("mutable_catalog_profile_binding", codes)
+
+    def test_missing_catalog_profile_is_reported(self):
+        with sqlite3.connect(self.catalog_path) as db:
+            db.execute("DROP TABLE database_profile")
+        report = audit(self.catalog_path, self.root)
+        self.assertIn(
+            "missing_catalog_profile",
+            {item["code"] for item in report["findings"] if item["firm_id"] is None},
+        )
+
     def test_missing_database_is_reported(self):
         self.add_tenant(2, filename=f"tenant-2-{uuid.uuid4().hex}.sqlite3")
         (self.root / self.catalog.execute(
@@ -100,6 +117,7 @@ class TenantDatabasePreflightTests(unittest.TestCase):
         self.assertIn("database_missing", {item["code"] for item in report["findings"]})
 
     def test_invalid_mapping_and_not_ready_tenant_are_reported(self):
+        self.catalog.execute("INSERT INTO firms(id,name) VALUES(3,'Firm 3')")
         self.catalog.execute(
             "INSERT INTO tenant_database_catalog(firm_id,database_file,status) VALUES(3,?,?)",
             ("../../outside.sqlite3", "provisioned"),

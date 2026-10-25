@@ -89,6 +89,30 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
         tables = {row[0] for row in catalog.execute(
             "SELECT name FROM sqlite_master WHERE type='table'"
         )}
+        if "database_profile" not in tables:
+            add("missing_catalog_profile", None, "catalog database has no schema profile marker")
+        else:
+            try:
+                profile_rows = catalog.execute(
+                    "SELECT profile FROM database_profile WHERE singleton=1"
+                ).fetchall()
+                if len(profile_rows) != 1:
+                    add("invalid_catalog_profile_binding", None, "expected exactly one control-plane profile marker")
+                elif profile_rows[0][0] != "control_plane":
+                    add("wrong_catalog_profile", None, "catalog database profile is not 'control_plane'")
+            except sqlite3.Error:
+                add("invalid_catalog_profile_binding", None, "control-plane profile marker could not be read")
+            profile_triggers = {
+                row[0]: row[1] for row in catalog.execute(
+                    "SELECT name, sql FROM sqlite_master WHERE type='trigger' "
+                    "AND name IN ('database_profile_no_update','database_profile_no_delete')"
+                )
+            }
+            if not (
+                _has_immutable_guard(profile_triggers.get("database_profile_no_update"), "database_profile", "UPDATE", "database profile binding is immutable")
+                and _has_immutable_guard(profile_triggers.get("database_profile_no_delete"), "database_profile", "DELETE", "database profile binding is immutable")
+            ):
+                add("mutable_catalog_profile_binding", None, "control-plane profile marker lacks effective immutable update/delete guards")
         if "tenant_database_catalog" not in tables:
             raise ValueError("catalog is missing tenant_database_catalog")
         rows = catalog.execute(
