@@ -40,12 +40,20 @@ def sqlite_membership_lookup(connection: sqlite3.Connection) -> MembershipLookup
 
     def lookup(user_id: int, firm_id: int) -> Mapping[str, Any] | None:
         row = connection.execute(
-            "SELECT status, firm_role FROM firm_memberships WHERE user_id=? AND firm_id=?",
+            """
+            SELECT fm.status, fm.firm_role, f.status
+            FROM firm_memberships fm
+            JOIN firms f ON f.id=fm.firm_id
+            WHERE fm.user_id=? AND fm.firm_id=?
+            """,
             (user_id, firm_id),
         ).fetchone()
         if row is None:
             return None
-        return {"status": row[0], "role": row[1]}
+        # An active membership cannot override a firm-level suspension or
+        # incomplete provisioning state.
+        status = row[0] if row[2] == "active" else row[2]
+        return {"status": status, "role": row[1]}
 
     return lookup
 
