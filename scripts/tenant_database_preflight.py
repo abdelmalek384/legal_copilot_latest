@@ -46,7 +46,7 @@ def _expected_firm_migrations() -> dict[int, tuple[str, str]]:
     for path in sorted(directory.glob("*.sql")):
         if path.is_symlink() or path.resolve().parent != directory.resolve():
             raise ValueError("firm migration sources must be regular files in the trusted directory")
-        match = re.fullmatch(r"([0-9]{4,})_[a-z0-9_]+\\.sql", path.name)
+        match = re.fullmatch(r"([0-9]{4,})_[a-z0-9_]+\.sql", path.name)
         if match is None:
             raise ValueError(f"invalid firm migration filename: {path.name}")
         version = int(match.group(1))
