@@ -29,6 +29,8 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 - [x] Enable SQLite foreign-key enforcement during tenant database initialization and validate `integrity_check` plus `foreign_key_check`, with cleanup on failed provisioning (PR #165, merged; CI run 40217212814 passed).
 - [x] Reject symlinked tenant storage roots in the read-only preflight before path resolution (PR #167, merged; CI run 40217356965 passed).
 - [x] Add profile-binding and initial isolated-schema acceptance tests to CI; fix same-line SQL statement parsing while preserving trigger bodies (PR #171, merged; CI run 40217630357 passed).
+- [x] Constrain tenant catalog entries to existing firms with a foreign key and fail-closed legacy-orphan migration; align the runtime catalog helper (PR #176, merged; CI passed).
+- [x] Enforce firm document/chunk/extraction-review scope with a fail-closed migration and insert/update guards (PR #178, merged; CI run 40225478660 passed).
 
 ## In progress
 
@@ -36,7 +38,6 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 
 - [ ] **PR #181 — Make database profile binding immutable.** Adds SQLite triggers that prevent ordinary updates or deletes of the `database_profile` marker, with regression coverage. GitHub Actions run 40226331925 passed for the latest tracker correction. This protects the profile marker but does not certify tenant routing or runtime isolation.
 
- 
 ## Remaining database work
 
 ### 1. Finish versioned schema migrations
