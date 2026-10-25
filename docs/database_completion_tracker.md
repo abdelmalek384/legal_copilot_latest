@@ -39,6 +39,8 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 
 ## In progress
 
+- [ ] Tenant connection-router foundation in PR: `tenant_storage.py` resolves only catalog-provisioned firm databases, revalidates catalog status before each connection lookup, caches connections per thread and firm, enables SQLite foreign keys, and fails closed without a shared-database fallback. It is not wired into app routes because authenticated membership/session semantics and the mixed shared-corpus boundary still require approval and migration. Tests cover distinct firm DBs, invalid/unknown firms, disabled tenants, connection reuse, and cleanup.
+
 ## Remaining database work
 
 ### 1. Finish versioned schema migrations
