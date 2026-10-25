@@ -28,7 +28,7 @@ Expose the evidence behind a research answer without treating model confidence, 
 - `outdated_or_under_review` covers missing registry links or unmet current-law/provenance gates.
 - `no_relevant_verified_source` is communicated when the selected scope has no retrieved passage. It does not mean no applicable law exists.
 
-These labels describe recorded data only; they do not replace legal review.
+These labels describe recorded data only; they do not replace legal review. Malformed as-of, effective, or repeal dates, and malformed nested provenance fields, fail closed to `outdated_or_under_review`; they are not compared as arbitrary strings. Invalid source shapes in memo generation are surfaced as unresolved records rather than crashing or being presented as verified text.
 
 ## Citations and memos
 
