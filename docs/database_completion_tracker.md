@@ -26,10 +26,12 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 - [x] Move non-prerequisite conditional column upgrades into migration 0010 using checksum-protected `@add-column-if-missing` directives (PR #155, merged; CI passed). Columns required by immutable migrations 0001–0003 remain in startup bootstrap.
 - [x] Add read-only FTS consistency preflight for missing/orphaned rows and indexed-content mismatches, with CI coverage and repair safety guidance (PR #156, merged; CI passed).
 - [x] Add a staged-copy FTS rebuild utility that leaves the source database untouched, refuses output overwrite, validates integrity/foreign keys/chunk counts, and includes regression tests (PR #163, merged; CI run 40216663954 passed).
+- [x] Enable SQLite foreign-key enforcement during tenant database initialization and validate `integrity_check` plus `foreign_key_check`, with cleanup on failed provisioning (PR #165, merged; CI run 40217212814 passed).
+- [x] Reject symlinked tenant storage roots in the read-only preflight before path resolution (PR #167, merged; CI run 40217356965 passed).
 
 ## In progress
 
-- [ ] **PR #165 — Validate tenant foreign keys after provisioning.** Enables SQLite foreign-key enforcement while initializing a new tenant database and checks `integrity_check` plus `foreign_key_check`; regression coverage passes in GitHub Actions run 40217212814. Awaiting review/merge. This does not wire tenant databases into application request routing.
+- [ ] **PR #171 — Fix compact migration parsing and test profiles in CI.** Adds profile-binding and initial isolated-schema acceptance tests to the required workflow; fixes same-line SQL statement parsing while preserving trigger bodies; adds a regression test. Initial CI exposed the parser bug; the parser fix and trigger regression are now covered by passing GitHub Actions run 40217630357. Awaiting review/merge. This does not wire tenant routing into application requests.
 
 
 
