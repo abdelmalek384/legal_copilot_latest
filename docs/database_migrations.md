@@ -45,6 +45,17 @@ The helper opens the source in read-only mode, checks SQLite integrity and forei
 This is a migration rehearsal aid, not a backup, not an authorization test, and not proof of tenant isolation. Use a protected representative copy, retain a separately verified backup, and review the report before any real migration.
 
 
+## Read-only FTS consistency preflight
+
+Before rebuilding or replacing the FTS index, run the read-only audit against a protected database copy:
+
+```bash
+PYTHONPATH=. python scripts/chunks_fts_preflight.py /path/to/protected-copy.sqlite3
+```
+
+The audit opens the source in SQLite read-only mode and compares chunk row IDs with FTS row IDs, detects missing/orphaned rows, and checks indexed text against the application's current tokenization. Exit status is 0 when no anomalies are detected, 1 when review is required, and 2 when the audit cannot run. It does not rebuild the index or prove that legal content itself is complete/correct. Review findings and rehearse any repair on a disposable copy before applying it to an operational database.
+
+
 ## Startup DDL inventory
 
 Before migrating remaining startup DDL, run:
