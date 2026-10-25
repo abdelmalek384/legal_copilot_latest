@@ -18,14 +18,14 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 - [x] Inventory remaining startup DDL without opening a database (PR #145).
 - [x] Reject symlinked tenant storage roots and explicitly test tenant catalog safety in CI (PR #146).
 - [x] Expand read-only ownership preflight for cross-firm document, extraction-review, and audit inconsistencies (PR #147).
-
-## In progress
-
 - [x] Move `legal_version_relations` and `security_audit_events` into versioned migrations 0004 and 0005, with migration-order, constraint, inventory, and rehearsal coverage (PR #148, merged).
 - [x] Move six independent authentication/case-workspace tables (`auth_sessions`, `notes`, `fees`, `tasks`, `events`, and case-calendar `sessions`) into migration 0006, with migration, inventory, and disposable-copy coverage (PR #149, merged).
 - [x] Add end-to-end fresh database startup and restart coverage in CI; verify the migration ledger and preservation of an existing row (PR #151, merged).
-- [ ] **PR #152 — Reject out-of-order recorded migration histories.** A regression test removes a middle ledger row and verifies the runner fails closed; CI passed, awaiting merge.
-- [ ] **PR #153 — Move the independent `legal_sources` registry into migration 0007.** PR #149 is now merged; `legal_documents` remains in bootstrap because startup conditionally inspects/alters it before the migration runner. Awaiting latest CI.
+- [x] Reject out-of-order recorded migration histories in the migration runner, with regression coverage and CI (PR #152, merged).
+
+## In progress
+
+- [ ] **PR #153 — Move the independent `legal_sources` registry into migration 0007.** PR #149 is merged; `legal_documents` remains in bootstrap because startup conditionally inspects/alters it before the migration runner. Awaiting latest CI.
 
 ## Remaining database work
 
