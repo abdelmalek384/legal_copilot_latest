@@ -102,16 +102,6 @@ CREATE TABLE IF NOT EXISTS legal_document_versions(
   created_at TEXT NOT NULL DEFAULT (datetime('now')),
   UNIQUE(document_id, version_label)
 );
-CREATE TABLE IF NOT EXISTS legal_version_relations(
-  relation_id INTEGER PRIMARY KEY,
-  from_version_id INTEGER NOT NULL REFERENCES legal_document_versions(version_id),
-  to_version_id INTEGER NOT NULL REFERENCES legal_document_versions(version_id),
-  relation_type TEXT NOT NULL CHECK(relation_type IN ('amends','repeals','consolidates','corrects','supersedes','implements')),
-  notes TEXT,
-  created_at TEXT NOT NULL DEFAULT (datetime('now')),
-  CHECK(from_version_id <> to_version_id),
-  UNIQUE(from_version_id, to_version_id, relation_type)
-);
 CREATE TABLE IF NOT EXISTS legal_review_events(
   review_event_id INTEGER PRIMARY KEY,
   version_id INTEGER NOT NULL REFERENCES legal_document_versions(version_id),
