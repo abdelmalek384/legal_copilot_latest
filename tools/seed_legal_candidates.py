@@ -14,28 +14,59 @@ CATALOG = ROOT / "docs" / "legal_document_candidates.json"
 
 def load_catalog(path=CATALOG):
     data = json.loads(Path(path).read_text(encoding="utf-8"))
-    errors=[]
-    sources=data.get("sources")
-    docs=data.get("documents")
-    if not isinstance(sources,list) or not isinstance(docs,list):
+    if not isinstance(data, dict):
+        raise ValueError("catalog root must be an object")
+    sources = data.get("sources")
+    docs = data.get("documents")
+    if not isinstance(sources, list) or not isinstance(docs, list):
         raise ValueError("catalog must contain sources and documents arrays")
-    source_ids=[s.get("source_id") for s in sources]
-    if len(source_ids)!=len(set(source_ids)):
+
+    errors = []
+    valid_sources = []
+    valid_docs = []
+    for index, source in enumerate(sources):
+        if not isinstance(source, dict):
+            errors.append(f"sources[{index}] must be an object")
+        else:
+            valid_sources.append(source)
+            for field in ("source_id", "authority", "source_page"):
+                if not isinstance(source.get(field), str) or not source[field].strip():
+                    errors.append(f"sources[{index}]: {field} must be a non-empty string")
+    for index, document in enumerate(docs):
+        if not isinstance(document, dict):
+            errors.append(f"documents[{index}] must be an object")
+        else:
+            valid_docs.append(document)
+            for field in ("document_id", "source_id", "official_title", "document_type"):
+                if not isinstance(document.get(field), str) or not document[field].strip():
+                    errors.append(f"documents[{index}]: {field} must be a non-empty string")
+
+    source_ids = [s["source_id"] for s in valid_sources if isinstance(s.get("source_id"), str) and s["source_id"].strip()]
+    if len(source_ids) != len(set(source_ids)):
         errors.append("duplicate source_id")
-    document_ids=[d.get("document_id") for d in docs]
-    if len(document_ids)!=len(set(document_ids)):
+    document_ids = [d["document_id"] for d in valid_docs if isinstance(d.get("document_id"), str) and d["document_id"].strip()]
+    if len(document_ids) != len(set(document_ids)):
         errors.append("duplicate document_id")
-    known=set(source_ids)
-    for d in docs:
-        if d.get("source_id") not in known:
-            errors.append(f"{d.get('document_id')}: unknown source_id {d.get('source_id')}")
-        if d.get("candidate_status")!="discovery_only":
-            errors.append(f"{d.get('document_id')}: candidate_status must remain discovery_only")
-    for s in sources:
-        if s.get("collection_permission") not in {"unknown","allowed","allowed_limited","prohibited","not_allowed_without_explicit_exception_or_license"}:
-            errors.append(f"{s.get('source_id')}: invalid collection_permission")
-        if s.get("collection_permission")=="allowed" and not (s.get("permission_evidence") and s.get("terms_checked_on")):
-            errors.append(f"{s.get('source_id')}: allowed permission requires evidence and terms_checked_on")
+    known = set(source_ids)
+
+    for document in valid_docs:
+        document_id = document.get("document_id", "<missing document_id>")
+        source_id = document.get("source_id")
+        if not isinstance(source_id, str) or source_id not in known:
+            errors.append(f"{document_id}: unknown source_id {source_id!r}")
+        if document.get("candidate_status") != "discovery_only":
+            errors.append(f"{document_id}: candidate_status must remain discovery_only")
+    allowed_collection_permissions = {
+        "unknown", "allowed", "allowed_limited", "prohibited",
+        "not_allowed_without_explicit_exception_or_license",
+    }
+    for source in valid_sources:
+        source_id = source.get("source_id", "<missing source_id>")
+        permission = source.get("collection_permission", "unknown")
+        if not isinstance(permission, str) or permission not in allowed_collection_permissions:
+            errors.append(f"{source_id}: invalid collection_permission")
+        if permission == "allowed" and not (source.get("permission_evidence") and source.get("terms_checked_on")):
+            errors.append(f"{source_id}: allowed permission requires evidence and terms_checked_on")
     if errors:
         raise ValueError("; ".join(errors))
     return data

@@ -18,6 +18,23 @@ class CandidateCatalogTests(unittest.TestCase):
         self.assertTrue(all(d["source_id"] in known for d in data["documents"]))
         self.assertTrue(all(d["candidate_status"]=="discovery_only" for d in data["documents"]))
 
+    def test_malformed_catalog_entries_fail_with_clear_validation_errors(self):
+        cases = [
+            ({"sources": [None], "documents": []}, "sources[0] must be an object"),
+            ({"sources": [{"source_id": []}], "documents": []}, "source_id must be a non-empty string"),
+            ({"sources": [{"source_id": "SRC-1", "authority": "Authority", "source_page": "https://example.gov", "collection_permission": []}], "documents": []}, "invalid collection_permission"),
+            ({"sources": [{"source_id": "SRC-1", "authority": "Authority", "source_page": "https://example.gov"}], "documents": [None]}, "documents[0] must be an object"),
+            ([], "catalog root must be an object"),
+        ]
+        import json
+        import tempfile
+        for catalog, expected in cases:
+            with self.subTest(expected=expected), tempfile.TemporaryDirectory() as td:
+                path = Path(td) / "catalog.json"
+                path.write_text(json.dumps(catalog), encoding="utf-8")
+                with self.assertRaisesRegex(ValueError, expected.replace("[", r"\[").replace("]", r"\]")):
+                    MODULE.load_catalog(path)
+
     def test_seed_is_idempotent_and_does_not_create_versions(self):
         data=MODULE.load_catalog()
         db=sqlite3.connect(":memory:")
