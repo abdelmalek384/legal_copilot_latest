@@ -124,6 +124,24 @@ class ResolveFirmContextTests(unittest.TestCase):
         finally:
             db.close()
 
+
+    def test_sqlite_membership_lookup_rejects_wrong_or_unbound_database_profile(self):
+        wrong = sqlite3.connect(":memory:")
+        try:
+            apply_profile_migrations(wrong, "firm", MIGRATIONS)
+            with self.assertRaisesRegex(ValueError, "trusted control-plane profile"):
+                sqlite_membership_lookup(wrong)
+        finally:
+            wrong.close()
+
+        unbound = sqlite3.connect(":memory:")
+        try:
+            with self.assertRaisesRegex(ValueError, "trusted control-plane profile"):
+                sqlite_membership_lookup(unbound)
+        finally:
+            unbound.close()
+
+
     def test_sqlite_membership_lookup_requires_a_trusted_sqlite_connection(self):
         with self.assertRaises(TypeError):
             sqlite_membership_lookup("/client/supplied/database.sqlite3")
