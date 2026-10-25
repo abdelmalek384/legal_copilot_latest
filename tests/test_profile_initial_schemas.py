@@ -10,7 +10,8 @@ class ProfileInitialSchemaTests(unittest.TestCase):
     def build(self, profile):
         db = sqlite3.connect(":memory:")
         db.row_factory = sqlite3.Row
-        self.assertEqual(apply_profile_migrations(db, profile, ROOT), [1])
+        expected_versions = [1, 2] if profile in ("control_plane", "firm") else [1]
+        self.assertEqual(apply_profile_migrations(db, profile, ROOT), expected_versions)
         self.assertEqual(db.execute("PRAGMA integrity_check").fetchone()[0], "ok")
         self.assertEqual(db.execute("PRAGMA foreign_key_check").fetchall(), [])
         return db
