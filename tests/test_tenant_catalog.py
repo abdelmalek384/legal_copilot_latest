@@ -33,6 +33,13 @@ class TenantCatalogTests(unittest.TestCase):
     def initialize_tenant(db):
         db.execute("CREATE TABLE tenant_marker (value TEXT NOT NULL)")
         db.execute("INSERT INTO tenant_marker(value) VALUES('initialized')")
+        db.execute("""
+            CREATE TABLE database_profile (
+                singleton INTEGER PRIMARY KEY CHECK(singleton=1),
+                profile TEXT NOT NULL
+            )
+        """)
+        db.execute("INSERT INTO database_profile(singleton,profile) VALUES(1,'firm')")
 
     def test_catalog_initialization_requires_migration_managed_firms_table(self):
         db = sqlite3.connect(":memory:")
@@ -137,6 +144,7 @@ class TenantCatalogTests(unittest.TestCase):
 
     def test_provision_enables_foreign_key_enforcement_for_initializer(self):
         def initialize_with_invalid_reference(db):
+            self.initialize_tenant(db)
             db.execute("CREATE TABLE parent (id INTEGER PRIMARY KEY)")
             db.execute("CREATE TABLE child (parent_id INTEGER REFERENCES parent(id))")
             db.execute("INSERT INTO child(parent_id) VALUES(404)")
@@ -154,6 +162,7 @@ class TenantCatalogTests(unittest.TestCase):
 
     def test_provision_rejects_foreign_key_violations_and_cleans_partial_file(self):
         def initialize_with_broken_reference(db):
+            self.initialize_tenant(db)
             db.execute("PRAGMA foreign_keys=ON")
             db.execute("CREATE TABLE parent (id INTEGER PRIMARY KEY)")
             db.execute("CREATE TABLE child (parent_id INTEGER REFERENCES parent(id))")
@@ -172,6 +181,29 @@ class TenantCatalogTests(unittest.TestCase):
         ).fetchone()
         self.assertEqual(row, (None, "failed", "provisioning_failed"))
         self.assertEqual(list(self.root.glob("tenant-23-*.sqlite3")), [])
+
+
+    def test_provision_rejects_missing_or_wrong_firm_profile(self):
+        def without_profile(db):
+            db.execute("CREATE TABLE marker (value TEXT)")
+
+        def wrong_profile(db):
+            self.initialize_tenant(db)
+            db.execute("UPDATE database_profile SET profile='legal_corpus' WHERE singleton=1")
+
+        for firm_id, initializer, message in (
+            (30, without_profile, "missing its required firm schema profile binding"),
+            (31, wrong_profile, "not bound to the firm schema profile"),
+        ):
+            with self.subTest(firm_id=firm_id), self.assertRaisesRegex(TenantCatalogError, message):
+                provision_tenant_database(self.catalog, firm_id, self.root, initializer)
+            row = self.catalog.execute(
+                "SELECT database_file,status,last_error_code FROM tenant_database_catalog WHERE firm_id=?",
+                (firm_id,),
+            ).fetchone()
+            self.assertEqual(row, (None, "failed", "provisioning_failed"))
+            self.assertEqual(list(self.root.glob(f"tenant-{firm_id}-*.sqlite3")), [])
+
 
     def test_unprovisioned_or_unknown_tenant_is_denied(self):
         with self.assertRaises(TenantCatalogError):
