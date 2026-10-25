@@ -37,32 +37,35 @@ def _has_immutable_guard(sql: str | None, table: str, operation: str, message: s
     )
 
 
-def _expected_firm_migrations() -> dict[int, tuple[str, str]]:
-    """Read the trusted firm-profile migration manifest without opening a database."""
-    directory = Path(__file__).resolve().parents[1] / "migrations" / "firm"
+def _expected_profile_migrations(profile: str) -> dict[int, tuple[str, str]]:
+    """Read a trusted profile's migration manifest without opening a database."""
+    if profile not in {"control_plane", "firm"}:
+        raise ValueError("unsupported profile for tenant preflight migration checks")
+    directory = Path(__file__).resolve().parents[1] / "migrations" / profile
     if directory.is_symlink() or not directory.is_dir():
-        raise ValueError("trusted firm migration directory is unavailable")
+        raise ValueError(f"trusted {profile} migration directory is unavailable")
     expected: dict[int, tuple[str, str]] = {}
     for path in sorted(directory.glob("*.sql")):
         if path.is_symlink() or path.resolve().parent != directory.resolve():
-            raise ValueError("firm migration sources must be regular files in the trusted directory")
+            raise ValueError(f"{profile} migration sources must be regular files in the trusted directory")
         match = re.fullmatch(r"([0-9]{4,})_[a-z0-9_]+\.sql", path.name)
         if match is None:
-            raise ValueError(f"invalid firm migration filename: {path.name}")
+            raise ValueError(f"invalid {profile} migration filename: {path.name}")
         version = int(match.group(1))
         sql = path.read_text(encoding="utf-8")
         if version in expected:
-            raise ValueError(f"duplicate firm migration version: {version}")
+            raise ValueError(f"duplicate {profile} migration version: {version}")
         expected[version] = (path.name, hashlib.sha256(sql.encode("utf-8")).hexdigest())
     if not expected:
-        raise ValueError("trusted firm migration directory contains no migrations")
+        raise ValueError(f"trusted {profile} migration directory contains no migrations")
     return expected
 
 
 def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
     """Inspect catalog mappings and provisioned SQLite files without writing."""
     findings: list[dict[str, Any]] = []
-    expected_migrations = _expected_firm_migrations()
+    expected_migrations = _expected_profile_migrations("firm")
+    expected_catalog_migrations = _expected_profile_migrations("control_plane")
 
     requested_catalog = Path(catalog_path).expanduser()
     # Match the storage-root policy: do not silently follow a configured
@@ -113,6 +116,30 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
                 and _has_immutable_guard(profile_triggers.get("database_profile_no_delete"), "database_profile", "DELETE", "database profile binding is immutable")
             ):
                 add("mutable_catalog_profile_binding", None, "control-plane profile marker lacks effective immutable update/delete guards")
+        if "schema_migrations" not in tables:
+            add("missing_catalog_migration_ledger", None, "control-plane catalog has no versioned migration ledger")
+        else:
+            try:
+                ledger_rows = catalog.execute(
+                    "SELECT version, name, checksum_sha256 FROM schema_migrations"
+                ).fetchall()
+                recorded = {int(row[0]): (str(row[1]), str(row[2])) for row in ledger_rows}
+                expected_versions = set(expected_catalog_migrations)
+                recorded_versions = set(recorded)
+                missing_versions = sorted(expected_versions - recorded_versions)
+                unexpected_versions = sorted(recorded_versions - expected_versions)
+                if missing_versions:
+                    add("incomplete_catalog_migration_history", None, f"missing control-plane migration versions: {missing_versions}")
+                if unexpected_versions:
+                    add("unexpected_catalog_migration_history", None, f"unknown control-plane migration versions: {unexpected_versions}")
+                mismatched = sorted(
+                    version for version in expected_versions & recorded_versions
+                    if recorded[version] != expected_catalog_migrations[version]
+                )
+                if mismatched:
+                    add("catalog_migration_checksum_mismatch", None, f"control-plane migration name/checksum differs for versions: {mismatched}")
+            except (sqlite3.Error, ValueError, TypeError, IndexError):
+                add("invalid_catalog_migration_ledger", None, "control-plane migration ledger is malformed or unreadable")
         if "tenant_database_catalog" not in tables:
             raise ValueError("catalog is missing tenant_database_catalog")
         rows = catalog.execute(

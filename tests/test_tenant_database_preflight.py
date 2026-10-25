@@ -108,6 +108,24 @@ class TenantDatabasePreflightTests(unittest.TestCase):
             {item["code"] for item in report["findings"] if item["firm_id"] is None},
         )
 
+    def test_missing_catalog_migration_history_is_reported(self):
+        with sqlite3.connect(self.catalog_path) as db:
+            db.execute("DROP TABLE schema_migrations")
+        report = audit(self.catalog_path, self.root)
+        self.assertIn(
+            "missing_catalog_migration_ledger",
+            {item["code"] for item in report["findings"] if item["firm_id"] is None},
+        )
+
+    def test_catalog_migration_checksum_drift_is_reported(self):
+        with sqlite3.connect(self.catalog_path) as db:
+            db.execute("UPDATE schema_migrations SET checksum_sha256='bad-checksum' WHERE version=(SELECT MIN(version) FROM schema_migrations)")
+        report = audit(self.catalog_path, self.root)
+        self.assertIn(
+            "catalog_migration_checksum_mismatch",
+            {item["code"] for item in report["findings"] if item["firm_id"] is None},
+        )
+
     def test_missing_database_is_reported(self):
         self.add_tenant(2, filename=f"tenant-2-{uuid.uuid4().hex}.sqlite3")
         (self.root / self.catalog.execute(
