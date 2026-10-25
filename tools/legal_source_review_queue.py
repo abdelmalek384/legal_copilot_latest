@@ -4,12 +4,23 @@ from __future__ import annotations
 import argparse, json, sqlite3
 from datetime import datetime, timezone
 from pathlib import Path
+from urllib.parse import urlparse
 
 def tables(db):
     return {r[0] for r in db.execute("SELECT name FROM sqlite_master WHERE type='table'")}
 
 def cols(db, table):
     return {r[1] for r in db.execute(f'PRAGMA table_info("{table}")')}
+
+def valid_evidence_url(value):
+    """Evidence links must be HTTPS URLs without embedded credentials."""
+    if not isinstance(value, str):
+        return False
+    try:
+        parsed = urlparse(value)
+        return parsed.scheme == "https" and bool(parsed.hostname) and not parsed.username and not parsed.password
+    except ValueError:
+        return False
 
 def commercial_reuse_issue(value):
     """Return a review reason unless commercial reuse is explicitly unrestricted."""
@@ -83,7 +94,7 @@ def review_queue(db_path: Path) -> dict:
               (commercial_reuse_issue(row["commercial_reuse_permission"]) is not None,commercial_reuse_issue(row["commercial_reuse_permission"]))]
             reasons.extend(label for missing,label in checks if missing)
             for rt in review_types:
-                if not any(e["review_type"]==rt and e["outcome"]=="pass" and e["evidence_url"] for e in events):
+                if not any(e["review_type"]==rt and e["outcome"]=="pass" and valid_evidence_url(e["evidence_url"]) for e in events):
                     reasons.append("review_evidence_missing:"+rt)
             if reasons:
                 report["records"].append({**row,"review_reasons":reasons,"review_events":events,

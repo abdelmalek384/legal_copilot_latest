@@ -85,6 +85,35 @@ class LegalSourceReviewQueueTests(unittest.TestCase):
             self.assertIn("source_missing_from_registry", by_id[3]["review_reasons"])
             self.assertEqual(report["summary"]["versions_scanned"], 3)
 
+    def test_review_events_require_valid_https_evidence_urls(self):
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td)/"legal.db"
+            make_db(path)
+            db = sqlite3.connect(path)
+            review_types = (
+                "source_authenticity", "extraction_quality", "legal_status",
+                "amendment_history", "licensing", "lawyer_approval",
+            )
+            for index, review_type in enumerate(review_types, start=1):
+                url = "not-a-url" if review_type == "source_authenticity" else f"https://example.gov/evidence/{index}"
+                db.execute(
+                    "INSERT INTO legal_review_events VALUES(?,?,?,?,?,?,?)",
+                    (index, 1, review_type, "pass", url, "Reviewer", "2026-10-25T10:00:00Z"),
+                )
+            db.commit()
+            db.close()
+
+            report = MODULE.review_queue(path)
+            reasons = report["records"][0]["review_reasons"]
+            self.assertIn("review_evidence_missing:source_authenticity", reasons)
+            self.assertNotIn("review_evidence_missing:legal_status", reasons)
+
+    def test_evidence_url_validator_rejects_credentials_and_non_https(self):
+        for value in ("http://example.gov/evidence", "https://user:secret@example.gov/evidence", "", None, "not a url"):
+            with self.subTest(value=value):
+                self.assertFalse(MODULE.valid_evidence_url(value))
+        self.assertTrue(MODULE.valid_evidence_url("https://example.gov/evidence"))
+
     def test_missing_registry_tables_report_schema_issue(self):
         with tempfile.TemporaryDirectory() as td:
             path=Path(td)/"empty.db"
