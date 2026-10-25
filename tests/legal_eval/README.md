@@ -23,3 +23,9 @@ This directory is a scaffold for a lawyer-reviewed benchmark. The seed questions
 
 ## Initial release gate
 Do not describe Legal Copilot as legally accurate or production-ready until an Egyptian lawyer reviews the answer key and results, corpus provenance is audited, and failures are documented.
+
+## Labour-law draft question set (awaiting lawyer review)
+- `labour_law_questions.draft.jsonl`: 61 draft questions in the same format as the seed file (20 direct, 10 paraphrased, 10 colloquial Egyptian, 10 plain-terms, 6 date-sensitive, 5 that must be refused). Every `expected_answer` and `expected_sources` field is intentionally empty.
+- `labour_law_questions_for_lawyer.csv`: the same questions as an Excel-friendly sheet with Arabic headers and blank answer columns for the reviewing lawyer.
+- Do not score model accuracy on these until an Egyptian lawyer has filled in the answers, cited primary sources, and recorded `reviewer_name` and `review_date`. After review, copy approved rows back into the JSONL and set `review_status` accordingly.
+- The date-sensitive questions test whether the system applies the correct law for events before and after the new labour law took effect; the lawyer must confirm the applicable dates from the Official Gazette.
