@@ -39,7 +39,9 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 
 ## In progress
 
-- [ ] Tenant connection-router foundation in PR: `tenant_storage.py` resolves only catalog-provisioned firm databases, revalidates catalog status before each connection lookup, caches connections per thread and firm, enables SQLite foreign keys, and fails closed without a shared-database fallback. It is not wired into app routes because authenticated membership/session semantics and the mixed shared-corpus boundary still require approval and migration. Tests cover distinct firm DBs, invalid/unknown firms, disabled tenants, connection reuse, and cleanup.
+- [ ] Add a trusted active-firm context resolver and adversarial tests (current PR): accepts only a verified server-side user identity, validates an active membership through a server-side lookup, and fails closed on suspended/missing/error states. Not wired to routes until membership schema and identity semantics are approved.
+
+- [x] Add catalog-backed tenant connection-router foundation (`tenant_storage.py`) with fail-closed catalog resolution, disabled-tenant revalidation, per-thread/per-firm connections, foreign-key enforcement, and cleanup. PR #195 merged; post-merge main CI run 40230147410 passed. The router is not wired into app routes pending membership and shared-corpus migration.
 
 ## Remaining database work
 
