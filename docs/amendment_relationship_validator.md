@@ -25,6 +25,7 @@ An optional JSON report can be written with `--out path/to/report.json`.
 - Non-base relationships point to a known target instrument; base-instrument records have a null target.
 - Relationship types are from the controlled vocabulary.
 - Each record has a direct HTTPS evidence URL and a non-empty evidence checklist.
+- Effective dates must be real calendar dates in `YYYY-MM-DD` format or an explicit unknown sentinel; impossible dates and malformed strings are errors.
 - Unreviewed status, missing provision mapping, and unknown effective dates are reported explicitly.
 
 ## Review and legal-status limits
