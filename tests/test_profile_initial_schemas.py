@@ -113,6 +113,13 @@ class ProfileInitialSchemaTests(unittest.TestCase):
                 VALUES(2,10,2,7,100,55,'accepted','raw','reviewed')""")
         with self.assertRaisesRegex(sqlite3.IntegrityError, "document extraction review scope mismatch"):
             db.execute("UPDATE document_extraction_reviews SET chunk_id=999 WHERE id=1")
+        # Parent mutations must not invalidate already-valid child relationships.
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "document child scope mismatch"):
+            db.execute("UPDATE docs SET case_id=2 WHERE id=10")
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "document case/firm scope mismatch"):
+            db.execute("UPDATE docs SET firm_id=8 WHERE id=10")
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "case firm scope mismatch"):
+            db.execute("UPDATE cases SET firm_id=8 WHERE id=1")
         db.close()
 
     def test_firm_scope_migration_fails_closed_on_existing_mismatch(self):
@@ -136,6 +143,32 @@ class ProfileInitialSchemaTests(unittest.TestCase):
                     apply_profile_migrations(db, "firm", root)
                 self.assertIsNotNone(db.execute("SELECT 1 FROM chunks WHERE id=100").fetchone())
                 self.assertEqual(db.execute("SELECT COUNT(*) FROM schema_migrations WHERE version=2").fetchone()[0], 0)
+            finally:
+                db.close()
+
+    def test_parent_scope_migration_fails_closed_on_existing_firm_mismatch(self):
+        import shutil
+        import tempfile
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            firm = root / "firm"
+            firm.mkdir()
+            shutil.copy(ROOT / "firm" / "0001_firm_matter_foundation.sql", firm)
+            shutil.copy(ROOT / "firm" / "0002_enforce_document_review_scope.sql", firm)
+            db = sqlite3.connect(":memory:")
+            try:
+                self.assertEqual(apply_profile_migrations(db, "firm", root), [1, 2])
+                db.execute("INSERT INTO cases(id,title,firm_id) VALUES(1,'Matter A',7)")
+                db.execute("INSERT INTO docs(id,case_id,firm_id,name) VALUES(10,1,8,'wrong-firm-doc')")
+                db.commit()
+                shutil.copy(ROOT / "firm" / "0003_preserve_parent_scope.sql", firm)
+                with self.assertRaises(sqlite3.IntegrityError):
+                    apply_profile_migrations(db, "firm", root)
+                self.assertIsNotNone(db.execute("SELECT 1 FROM docs WHERE id=10").fetchone())
+                self.assertEqual(
+                    db.execute("SELECT COUNT(*) FROM schema_migrations WHERE version=3").fetchone()[0],
+                    0,
+                )
             finally:
                 db.close()
 
