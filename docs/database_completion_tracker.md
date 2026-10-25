@@ -31,11 +31,12 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 - [x] Add profile-binding and initial isolated-schema acceptance tests to CI; fix same-line SQL statement parsing while preserving trigger bodies (PR #171, merged; CI run 40217630357 passed).
 - [x] Constrain tenant catalog entries to existing firms with a foreign key and fail-closed legacy-orphan migration; align the runtime catalog helper (PR #176, merged; CI passed).
 - [x] Enforce firm document/chunk/extraction-review scope with a fail-closed migration and insert/update guards (PR #178, merged; CI run 40225478660 passed).
+- [x] Preserve firm scope when parent cases/documents change, rejecting inconsistent legacy ownership and unsafe parent updates (PR #179, merged; CI passed).
+- [x] Make the database profile-binding marker immutable against ordinary SQL updates/deletes (PR #184, merged; CI run 40228431913 passed).
+- [x] Handle case-insensitive conditional column migration checks and add a legacy `Value`/`value` regression test (PR #187, merged; PR checks and post-merge main CI passed).
+- [x] Add regression coverage ensuring tenant catalog initialization rejects a pre-existing catalog schema missing its `firms` foreign key (PR #189, merged; GitHub Actions run 40228763730 passed).
 
 ## In progress
-
-- [ ] **PR #187 — Handle case-insensitive conditional column migrations.** Normalizes existing SQLite column names and the migration directive with `casefold()`, preventing a legacy `Value` column from being treated as absent when the directive names `value`. Regression test added; waiting for GitHub Actions on the refreshed branch.
-- [ ] **Profile binding hardening is merged, but is not tenant routing.** PR #184 prevents ordinary SQL from switching/unbinding the database profile marker; privileged schema changes remain outside this guard.
 
 ## Remaining database work
 
