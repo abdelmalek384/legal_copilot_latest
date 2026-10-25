@@ -4,9 +4,11 @@
 **Estimated completion:** 28%  
 **Status:** In progress — not production-ready for confidential multi-firm matter data.
 
-This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. The checklist currently tracks 60 completed tasks and 20 remaining tasks; this count is not a readiness percentage. Update this file as database PRs merge and as acceptance criteria are completed.
+This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. The checklist currently tracks 61 completed tasks and 20 remaining tasks; this count is not a readiness percentage. Update this file as database PRs merge and as acceptance criteria are completed.
 
 ## Completed and merged
+
+- [x] Extend the read-only tenant preflight to validate the control-plane catalog migration ledger against trusted migration files, including missing history and checksum drift (PR #301 merged; CI run 40238866669 passed).
 
 - [x] Require the read-only tenant preflight's catalog database to carry the immutable `control_plane` profile marker; report missing/wrong/mutable catalog profile bindings and test against real versioned control-plane fixtures (PR #298 merged; CI run 40238741573 passed).
 
