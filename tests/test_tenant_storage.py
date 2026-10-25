@@ -3,6 +3,7 @@ import sqlite3
 import tempfile
 import threading
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
 from tenant_catalog import initialize_catalog, provision_tenant_database, resolve_tenant_database
@@ -130,6 +131,35 @@ class TenantSQLiteConnectionRouterTests(unittest.TestCase):
             self.router.connection_for_firm(101)
         with self.assertRaises(sqlite3.ProgrammingError):
             connection.execute("SELECT 1")
+
+    def test_failed_connection_setup_closes_untracked_connection(self):
+        original_connect = sqlite3.connect
+        opened = []
+
+        class FailingPragmaConnection(sqlite3.Connection):
+            def execute(self, sql, parameters=()):
+                if sql.strip().upper() == "PRAGMA FOREIGN_KEYS=ON":
+                    raise sqlite3.OperationalError("foreign key pragma failed")
+                return super().execute(sql, parameters)
+
+        def connect_with_failure(database, *args, **kwargs):
+            if str(database) == str(self.catalog_path):
+                return original_connect(database, *args, **kwargs)
+            kwargs["factory"] = FailingPragmaConnection
+            connection = original_connect(database, *args, **kwargs)
+            opened.append(connection)
+            return connection
+
+        router = TenantSQLiteConnectionRouter(
+            lambda: original_connect(self.catalog_path), self.root
+        )
+        with patch("tenant_storage.sqlite3.connect", side_effect=connect_with_failure):
+            with self.assertRaisesRegex(TenantConnectionError, "unavailable"):
+                router.connection_for_firm(101)
+
+        self.assertEqual(len(opened), 1)
+        with self.assertRaises(sqlite3.ProgrammingError):
+            opened[0].execute("SELECT 1")
 
     def test_each_tenant_connection_enables_foreign_keys(self):
         for firm_id in (101, 202):
