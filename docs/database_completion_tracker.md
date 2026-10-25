@@ -32,7 +32,7 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 
 ## In progress
 
-- [ ] **PR #176 — Constrain tenant catalog entries to existing firms.** Adds a forward migration with `FOREIGN KEY (firm_id) REFERENCES firms(id) ON DELETE RESTRICT`; invalid pre-existing orphan catalog rows cause migration rollback instead of guessed ownership. Regression tests cover inserts, deletion protection, and migration failure; CI run 40221411417 is running. Runtime tenant routing remains out of scope.
+- [ ] **PR #176 — Constrain tenant catalog entries to existing firms.** Adds a forward migration with `FOREIGN KEY (firm_id) REFERENCES firms(id) ON DELETE RESTRICT`; invalid pre-existing orphan catalog rows cause migration rollback instead of guessed ownership. Regression tests cover inserts, deletion protection, and migration failure; GitHub Actions run 40221411417 passed. Runtime tenant routing remains out of scope.
 
 
 
