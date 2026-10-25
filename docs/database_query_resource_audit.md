@@ -22,9 +22,9 @@ The schema has some firm-aware checks at the application layer, but not a consis
 ### P1 — schema and operational migration risks
 
 5. **Matter child tables do not carry a tenant key.** `notes`, `deadlines`, `fees`, `members`, `tasks`, `events`, and case `sessions` are associated through `case_id`; access relies on verifying the parent case before returning or mutating children. Tenant-scoped database migration must preserve these relationships and test orphan detection.
-6. **User identity is globally unique by email today.** `users.email` is UNIQUE and each user row has one `firm_id`. This does not implement the proposed global identity with many-to-many firm memberships; that proposal is not approved. Do not change identity schema until the product owner selects the model.
+6. **Legacy identity is still single-firm; the approved target is not runtime-integrated.** The current application schema has a globally unique `users.email` and one `firm_id` per user. The approved target is a control-plane identity with a globally unique canonical email and many-to-many `firm_memberships`, with platform roles separate from firm roles. The initial profile-schema implementation is in progress; it does not migrate legacy users or change login/session behavior. Do not infer or merge legacy memberships without authoritative evidence and explicit approval.
 7. **Security audit data has mixed scope.** `security_audit_events` stores a required `firm_id` and user ID; the taxonomy does not yet formally distinguish firm audit events from platform/control-plane events. `case_deletion_audit` includes sensitive case snapshots and must remain firm-scoped and tightly access-controlled.
-8. **Backup covers the configured whole database, not one firm.** `manage.py backup` backs up the single active database; restore replaces a destination file after decrypting and staging. This is useful hardening but not firm-specific backup/restore or a tenant migration rehearsal. The backup routine uses a fixed `tmp.db` name in the requested backup directory; concurrent runs and crash cleanup need operational handling.
+8. **Backup is whole-database, not firm-specific.** `manage.py backup` uses unique temporary staging files, validates the SQLite snapshot, encrypts to a staged output, and applies retention after a completed backup; `tests/test_backup_restore_safety.py` covers sequential backups and restore failure safety. It still backs up only the single configured database, not an individual firm. Concurrent backup/retention behavior, per-firm backup/restore, and an operator-run restore drill remain unverified.
 9. **Original uploaded binaries are not retained by the current upload flow.** The `docs` row records metadata/hash and extracted chunks, not a recoverable original file object. Historical original-file recovery/re-extraction cannot be promised; future object storage needs tenant-scoped paths, retention, encryption and restore coverage.
 10. **Schema changes run at application startup.** `conn()` runs `CREATE TABLE` and conditional `ALTER TABLE` operations guarded by an in-process flag. This is not a versioned, per-tenant migration system and is not sufficient for a controlled multi-database rollout.
 
@@ -56,7 +56,7 @@ This is a source-code route inventory only. It does not include every SQL statem
 | Resource | Candidate ownership | Required boundary |
 |---|---|---|
 | `firms` | Trusted tenant catalog/control plane | Provisioning authority; no client-controlled tenant selection |
-| `users`, `auth_sessions`, `login_attempts` | Unresolved identity/control plane | Product decision on global identity vs per-firm accounts; revocation and session semantics |
+| `users`, `firm_memberships`, platform-role assignments, `auth_sessions`, `login_attempts` | Control plane (approved target; runtime integration incomplete) | Global canonical email key and multi-firm membership; define session/revocation and audit-retention semantics; reconcile legacy users only with evidence and approval |
 | `cases` and children (`notes`, `deadlines`, `fees`, `members`, `tasks`, `events`, case `sessions`) | Firm-owned | Parent/child integrity, membership checks, no orphan or cross-firm references |
 | `docs`, `document_extraction_reviews`, matter `chunks` | Firm-owned | Firm-scoped original-object storage; tenant-aware search and retention |
 | `research_conversations`, `research_messages` | Firm-owned plus user ownership | Enforce both firm and owner; delete/save-to-matter checks |
@@ -69,7 +69,7 @@ This is a source-code route inventory only. It does not include every SQL statem
 
 ## Required follow-up before migration
 
-1. Obtain written product-owner approval of identity and firm-membership semantics; merged `docs/identity_firm_membership_contract.md` is a proposal only.
+1. Implement the approved global-identity / many-to-many membership direction in fresh control-plane schemas, then define session revocation, invitation, recovery, and audit-retention semantics before wiring runtime authentication. Keep legacy identity reconciliation separately approval-gated.
 2. Inventory real deployment configuration, containers/volumes, environment variables, scheduled jobs, external workers, file/object storage, logs, exports and backup destinations.
 3. Search every SQL query and data-writing script; classify each read/write by resource owner and tenant authorization source. Add a test inventory so new endpoints must declare their scope.
 4. Define how to classify every existing user, case, document, chunk and child row. Quarantine ambiguous/orphaned records; do not silently assign them to Firm 1.
