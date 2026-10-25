@@ -82,6 +82,19 @@ class LegalAnswerReviewEvaluationTests(unittest.TestCase):
         result = summarize_reviews([first, second])
         self.assertEqual(result["valid_assessments"], 2)
 
+    def test_malformed_disposition_does_not_crash(self):
+        for value in ([], {}, 7, None):
+            with self.subTest(disposition=value):
+                errors = validate_review(review(disposition=value))
+                self.assertTrue(any("disposition must be one" in error for error in errors))
+
+    def test_review_date_must_be_a_real_iso_calendar_date(self):
+        for value in ("2026-02-30", "26-10-25", "20261025", "not-a-date"):
+            with self.subTest(review_date=value):
+                errors = validate_review(review(review_date=value))
+                self.assertTrue(any("review_date must be a real calendar date" in error for error in errors))
+        self.assertEqual(validate_review(review(review_date="2026-10-25")), [])
+
     def test_unknown_dimensions_are_rejected(self):
         scores = dict(review()["scores"])
         scores["overall_vibe"] = 2
