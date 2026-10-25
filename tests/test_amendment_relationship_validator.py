@@ -119,6 +119,30 @@ class AmendmentRelationshipValidatorTests(unittest.TestCase):
                     item["code"] == "invalid_effective_date_value" for item in report["errors"]
                 ))
 
+    def test_duplicate_and_missing_document_ids_are_reported(self):
+        base_relationship = {
+            "relationship_id": "REL-BASE",
+            "source_instrument_id": "LAW-A",
+            "target_instrument_id": None,
+            "relationship_type": "base_instrument",
+            "status": "under_review",
+            "source_url": "https://gazette.example.gov/law.pdf",
+            "required_evidence": ["Original Gazette text"],
+        }
+        report = MODULE.validate(
+            {"relationships": [base_relationship]},
+            {"documents": [
+                {"document_id": "LAW-A"},
+                {"document_id": "LAW-A"},
+                {"title": "Missing ID"},
+                None,
+            ]},
+        )
+        codes = [item["code"] for item in report["errors"]]
+        self.assertIn("duplicate_document_id", codes)
+        self.assertIn("missing_document_id", codes)
+        self.assertIn("invalid_document_entry", codes)
+
     def test_invalid_document_schema_is_reported_without_crashing(self):
         report = MODULE.validate({"relationships": []}, {"documents": {}})
         self.assertIn("schema_error", report)
