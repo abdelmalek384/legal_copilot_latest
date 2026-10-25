@@ -28,8 +28,9 @@ class DatabaseMigrationRehearsalTests(unittest.TestCase):
                 CREATE TABLE case_deletion_audit(firm_id INTEGER, id INTEGER);
                 CREATE TABLE api_rate_limit_windows(window_start INTEGER);
                 CREATE TABLE legal_document_versions(
-                    original_sha256 TEXT, effective_date TEXT, repeal_date TEXT,
-                    legal_status TEXT, review_status TEXT, status_verified INTEGER
+                    version_id INTEGER PRIMARY KEY, original_sha256 TEXT,
+                    effective_date TEXT, repeal_date TEXT, legal_status TEXT,
+                    review_status TEXT, status_verified INTEGER
                 );
                 CREATE TABLE legal_review_events(version_id INTEGER, reviewed_at TEXT);
                 CREATE TABLE research_conversations(firm_id INTEGER, user_id INTEGER, updated_at TEXT);
@@ -45,7 +46,7 @@ class DatabaseMigrationRehearsalTests(unittest.TestCase):
         report = rehearse(self.database, self.migrations)
         self.assertEqual(report["status"], "passed")
         self.assertFalse(report["source_modified"])
-        self.assertEqual(report["migrations_applied"], [1, 2, 3])
+        self.assertEqual(report["migrations_applied"], [1, 2, 3, 4])
         self.assertEqual(report["source_quick_check"], ["ok"])
         self.assertEqual(report["staged_quick_check"], ["ok"])
         self.assertEqual(report["source_foreign_key_violations"], 0)
