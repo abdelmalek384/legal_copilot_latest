@@ -87,7 +87,7 @@ def resolve_firm_context(
         raise FirmContextError("active firm membership is required")
 
     role = membership.get("role")
-    if not isinstance(role, str) or not role.strip():
+    if not isinstance(role, str) or role.strip() not in {"admin", "lawyer", "junior"}:
         raise FirmContextError("firm membership role is invalid")
 
     return FirmContext(user_id=user_id, firm_id=requested_firm_id, role=role.strip())
