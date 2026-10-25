@@ -146,7 +146,14 @@ info = c.get(f"/cases/{cid}", headers=J).json(); assert len(info["events"]) >= 4
 assert c.patch(f"/cases/{cid}", json={"case_number":"77","case_year":"2025","court":"محكمة","circuit":"دائرة 3","opposing_party":"خصم"}, headers=L).status_code == 200
 assert c.post(f"/cases/{cid}/notes", json={"text":"ملاحظة اختبار"}, headers=J).status_code == 200
 assert c.post(f"/cases/{cid}/deadlines", json={"title":"استئناف","due":"2099-02-01","note":"تجريبي"}, headers=J).status_code == 200
-assert c.post(f"/cases/{cid}/fees", json={"title":"أتعاب","amount":1000,"paid":250}, headers=J).status_code == 200
+assert c.post(f"/cases/{cid}/fees", json={"title":"أتعاب","amount":1000,"paid":250,"due":"2099-02-01"}, headers=J).status_code == 200
+finance = c.get("/finance/overview", headers=J)
+assert finance.status_code == 200, finance.text
+assert finance.json()["fee_count"] == 1
+assert finance.json()["total_amount"] == 1000 and finance.json()["total_paid"] == 250
+assert finance.json()["outstanding_amount"] == 750 and finance.json()["overdue_count"] == 0
+assert c.get("/finance/overview", headers=O).json()["fee_count"] == 0
+assert c.get("/finance/overview", headers=B_ADMIN).json()["fee_count"] == 0
 assert c.post(f"/cases/{cid}/fees", json={"title":"أتعاب غير صحيحة","amount":100,"paid":101}, headers=J).status_code == 422
 assert c.post(f"/cases/{cid}/fees", json={"title":"مبلغ سالب","amount":-1,"paid":0}, headers=J).status_code == 422
 assert c.post(f"/cases/{cid}/fees", json={"title":"مدفوع سالب","amount":100,"paid":-1}, headers=J).status_code == 422
