@@ -160,6 +160,8 @@ def compare_version_chunks(left_chunks, right_chunks):
             "unmapped_right_passages": len(right_unmapped),
             "malformed_left_passages": left_malformed,
             "malformed_right_passages": right_malformed,
+            "duplicate_left_chunk_ids": left_duplicate_ids,
+            "duplicate_right_chunk_ids": right_duplicate_ids,
         },
         "provisions": provisions,
         "unmapped_passages": {"left": left_unmapped, "right": right_unmapped},
