@@ -23,6 +23,7 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 
 - [x] Move `legal_version_relations` and `security_audit_events` into versioned migrations 0004 and 0005, with migration-order, constraint, inventory, and rehearsal coverage (PR #148, merged).
 - [ ] **PR #149 — Move six independent authentication/case-workspace tables into migration 0006.** The branch removes `auth_sessions`, `notes`, `fees`, `tasks`, `events`, and case-calendar `sessions` from startup `SCHEMA`; migration and disposable-copy tests cover their creation. Full CI passed on the latest PR head; awaiting merge.
+- [ ] **PR #150 — Move the independent `legal_sources` registry into migration 0007.** Depends on PR #149's migration 0006; `legal_documents` remains in bootstrap because startup conditionally inspects/alters it before the migration runner.
 
 ## Remaining database work
 
