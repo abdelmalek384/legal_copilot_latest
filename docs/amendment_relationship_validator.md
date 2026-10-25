@@ -28,9 +28,11 @@ An optional JSON report can be written with `--out path/to/report.json`.
 - Each record has a direct HTTPS evidence URL and a non-empty evidence checklist.
 - Effective dates must be real calendar dates in `YYYY-MM-DD` format or an explicit unknown sentinel; impossible dates and malformed strings are errors.
 - Unreviewed status, missing provision mapping, and unknown effective dates are reported explicitly.
+- A `reviewed_confirmed` relationship is structurally rejected unless it carries a `confirmation_evidence` object with Gazette issue, real publication date, page range, review date, reviewer role, and review basis.
+- Confirmed non-base relationships must record affected provisions and a known effective date. Publication date is not treated as an effective date.
 
 ## Review and legal-status limits
 
 This is a data-integrity check, not legal verification. It cannot prove that a URL is official, that the document is authentic or complete, or that an amendment has the asserted effect. It does not decide commencement, repeal, transitional provisions, or current status.
 
-Do not mark a relationship `reviewed_confirmed` simply to suppress a warning. That status requires the official instrument, Gazette issue/date/page range, exact article or schedule mapping, effective-date analysis, later-amendment search, and qualified Egyptian-lawyer review. Until then, preserve uncertainty and do not use the relationship alone to construct current law.
+Do not mark a relationship `reviewed_confirmed` simply to suppress a warning. The structural gate requires a `confirmation_evidence` object with these fields: `gazette_issue`, `gazette_publication_date` (real `YYYY-MM-DD`), `gazette_page_range`, `reviewed_on` (real `YYYY-MM-DD`), `reviewer_role`, and `review_basis`. A confirmed non-base edge also needs an explicit `affected_provision` or `affected_provisions` value and a known `instrument_effective_date`. These fields are an auditable record of review, not proof that the review was correct. Confirmation still requires the official instrument, exact article or schedule mapping, commencement and transitional analysis, later-amendment search, and qualified Egyptian-lawyer review. Until then, preserve uncertainty and do not use the relationship alone to construct current law.
