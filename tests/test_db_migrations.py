@@ -113,7 +113,7 @@ class DatabaseMigrationTests(unittest.TestCase):
             CREATE TABLE research_messages(conversation_id INTEGER, id INTEGER);
         """)
         migrations = Path(__file__).resolve().parents[1] / "migrations"
-        self.assertEqual(apply_migrations(self.db, migrations), [1, 2, 3, 4, 5])
+        self.assertEqual(apply_migrations(self.db, migrations), [1, 2, 3, 4, 5, 6])
         indexes = {
             row[0] for row in self.db.execute(
                 "SELECT name FROM sqlite_master WHERE type='index'"
@@ -154,6 +154,16 @@ class DatabaseMigrationTests(unittest.TestCase):
         self.assertEqual(
             audit_columns, {"id", "firm_id", "user_id", "event", "created_at"}
         )
+        workspace_columns = {
+            table: {row["name"] for row in self.db.execute(f"PRAGMA table_info({table})")}
+            for table in ("auth_sessions", "notes", "fees", "tasks", "events", "sessions")
+        }
+        self.assertEqual(workspace_columns["auth_sessions"], {"token_hash", "user_id", "expires"})
+        self.assertEqual(workspace_columns["notes"], {"id", "case_id", "created_by", "text", "created_at"})
+        self.assertEqual(workspace_columns["fees"], {"id", "case_id", "title", "amount", "paid", "due", "note", "created_by"})
+        self.assertEqual(workspace_columns["tasks"], {"id", "case_id", "title", "assignee", "due", "status", "created_by"})
+        self.assertEqual(workspace_columns["events"], {"id", "case_id", "who", "at", "text"})
+        self.assertEqual(workspace_columns["sessions"], {"id", "case_id", "date", "note", "done"})
         self.assertEqual(apply_migrations(self.db, migrations), [])
 
 
