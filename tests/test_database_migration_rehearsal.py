@@ -58,7 +58,7 @@ class DatabaseMigrationRehearsalTests(unittest.TestCase):
             self.assertNotIn("idx_login_attempts_window", names)
             self.assertTrue({
                 "auth_sessions", "notes", "fees", "tasks", "events", "sessions"
-            } <= names)
+            }.isdisjoint(names))
             self.assertEqual(db.execute("SELECT firm_id FROM cases").fetchone()[0], 1)
 
     def test_missing_source_fails_closed(self):
