@@ -113,7 +113,7 @@ class DatabaseMigrationTests(unittest.TestCase):
             CREATE TABLE research_messages(conversation_id INTEGER, id INTEGER);
         """)
         migrations = Path(__file__).resolve().parents[1] / "migrations"
-        self.assertEqual(apply_migrations(self.db, migrations), [1, 2, 3, 4])
+        self.assertEqual(apply_migrations(self.db, migrations), [1, 2, 3, 4, 5])
         indexes = {
             row[0] for row in self.db.execute(
                 "SELECT name FROM sqlite_master WHERE type='index'"
@@ -148,6 +148,12 @@ class DatabaseMigrationTests(unittest.TestCase):
             self.db.execute(
                 "INSERT INTO legal_version_relations(from_version_id,to_version_id,relation_type) VALUES(1,1,'amends')"
             )
+        audit_columns = {
+            row["name"] for row in self.db.execute("PRAGMA table_info(security_audit_events)")
+        }
+        self.assertEqual(
+            audit_columns, {"id", "firm_id", "user_id", "event", "created_at"}
+        )
         self.assertEqual(apply_migrations(self.db, migrations), [])
 
 
