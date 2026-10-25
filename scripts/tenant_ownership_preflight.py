@@ -165,7 +165,19 @@ def audit(conn: sqlite3.Connection) -> dict[str, Any]:
     if "research_messages" in tables:
         message_cols = _columns(conn, "research_messages")
         if "conversation_id" in message_cols:
-            if "tasks" in tables and "cases" in tables and "users" in tables:
+            if "research_conversations" in tables:
+                add("research_message_conversation_missing", "high",
+                    _count(conn, "SELECT COUNT(*) FROM research_messages m LEFT JOIN research_conversations rc ON rc.id=m.conversation_id WHERE m.conversation_id IS NOT NULL AND rc.id IS NULL"),
+                    "Research message points to a missing conversation.")
+                add("research_message_conversation_unassigned", "high",
+                    _count(conn, "SELECT COUNT(*) FROM research_messages WHERE conversation_id IS NULL"),
+                    "Research message has no parent conversation, so its firm/owner scope cannot be established.")
+            else:
+                add("research_message_parent_table_missing", "critical",
+                    _count(conn, "SELECT COUNT(*) FROM research_messages"),
+                    "Research messages exist but the conversation table required to establish their scope is missing.")
+
+    if "tasks" in tables and "cases" in tables and "users" in tables:
         task_cols = _columns(conn, "tasks")
         case_cols = _columns(conn, "cases")
         user_cols = _columns(conn, "users")
@@ -187,16 +199,26 @@ def audit(conn: sqlite3.Connection) -> dict[str, Any]:
                     "Task creator belongs to a different firm than the task's case.")
 
     if "research_conversations" in tables:
-                add("research_message_conversation_missing", "high",
-                    _count(conn, "SELECT COUNT(*) FROM research_messages m LEFT JOIN research_conversations rc ON rc.id=m.conversation_id WHERE m.conversation_id IS NOT NULL AND rc.id IS NULL"),
-                    "Research message points to a missing conversation.")
-                add("research_message_conversation_unassigned", "high",
-                    _count(conn, "SELECT COUNT(*) FROM research_messages WHERE conversation_id IS NULL"),
-                    "Research message has no parent conversation, so its firm/owner scope cannot be established.")
-            else:
-                add("research_message_parent_table_missing", "critical",
-                    _count(conn, "SELECT COUNT(*) FROM research_messages"),
-                    "Research messages exist but the conversation table required to establish their scope is missing.")
+        research_cols = _columns(conn, "research_conversations")
+        if "user_id" in research_cols and "users" in tables:
+            add("research_owner_missing_user", "high",
+                _count(conn, "SELECT COUNT(*) FROM research_conversations rc LEFT JOIN users u ON u.id=rc.user_id WHERE rc.user_id IS NOT NULL AND u.id IS NULL"),
+                "Research conversation owner points to a missing user.")
+            add("research_owner_unassigned", "high",
+                _count(conn, "SELECT COUNT(*) FROM research_conversations WHERE user_id IS NULL"),
+                "Research conversation has no explicit owner; establish ownership from trusted evidence.")
+            if "firm_id" in research_cols and "firm_id" in _columns(conn, "users"):
+                add("research_owner_firm_mismatch", "critical",
+                    _count(conn, "SELECT COUNT(*) FROM research_conversations rc JOIN users u ON u.id=rc.user_id WHERE rc.firm_id IS NOT u.firm_id"),
+                    "Research conversation firm differs from its owner's current firm.")
+        if "firm_id" in research_cols:
+            add("research_missing_firm", "critical",
+                _count(conn, "SELECT COUNT(*) FROM research_conversations WHERE firm_id IS NULL"),
+                "Research conversation has no explicit firm ownership.")
+            if "firms" in tables and "id" in _columns(conn, "firms"):
+                add("research_unknown_firm", "critical",
+                    _count(conn, "SELECT COUNT(*) FROM research_conversations rc LEFT JOIN firms f ON f.id=rc.firm_id WHERE rc.firm_id IS NOT NULL AND f.id IS NULL"),
+                    "Research conversation firm_id does not resolve to a firms row.")
 
     if "case_deletion_audit" in tables and "users" in tables:
         audit_cols = _columns(conn, "case_deletion_audit")
