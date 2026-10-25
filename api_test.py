@@ -403,6 +403,7 @@ page_search = c.post("/search", json={"q":"التقادم المثال التش�
 assert page_search.status_code == 200, page_search.text
 page_hit = next(x for x in page_search.json() if x["ref"] == "Page pinpoint fixture")
 assert page_hit["page"] == "17" and page_hit["article"] == "12"
+assert "matched_terms" in page_hit and "التقادم" in page_hit["matched_terms"], page_hit
 assert "Page 17" in page_hit["citation"] and "Article 12" in page_hit["citation"]
 assert c.delete(f"/research/conversations/{scope_chat_id}", headers=L).status_code == 200
 
