@@ -25,8 +25,12 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 
 ## In progress
 
-- [ ] **PR #153 — Move `legal_sources`, FTS5 setup, and the default-firm seed into migrations 0007–0009.** `legal_documents` remains in bootstrap because startup conditionally inspects/alters it before the migration runner. FTS migration preserves an existing virtual table and does not attempt an implicit rebuild; the seed uses `INSERT OR IGNORE` to preserve an existing firm record. Full CI passed on PR #153's current head; awaiting merge.
-- [ ] **PR #155 — Move non-prerequisite conditional column upgrades into migration 0010.** The runner supports checksum-protected `@add-column-if-missing` directives; columns required by immutable migrations 0001–0003 remain in startup bootstrap until a safe ordering redesign is available. Full CI passed on the current PR head.
+- [ ] **PR #157 — Serialize concurrent migration runners.** Rechecks each pending version under `BEGIN IMMEDIATE` so simultaneous application startups cannot execute the same migration twice; includes a deterministic two-connection regression test. Awaiting CI.
+
+- [x] Move `legal_sources`, FTS5 setup, and the default-firm seed into migrations 0007–0009 (PR #153, merged; CI passed). `legal_documents` remains in bootstrap because startup conditionally inspects/alters it before the migration runner. FTS migration preserves an existing virtual table and does not implicitly rebuild it.
+- [x] Move non-prerequisite conditional column upgrades into migration 0010 using checksum-protected `@add-column-if-missing` directives (PR #155, merged; CI passed). Columns required by immutable migrations 0001–0003 remain in startup bootstrap.
+
+- [x] Add read-only FTS consistency preflight for missing/orphaned rows and indexed-content mismatches, with CI coverage and repair safety guidance (PR #156, merged; CI passed).
 
 ## Remaining database work
 
