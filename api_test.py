@@ -153,7 +153,7 @@ assert finance.json()["fee_count"] == 1
 assert finance.json()["total_amount"] == 1000 and finance.json()["total_paid"] == 250
 assert finance.json()["outstanding_amount"] == 750 and finance.json()["overdue_count"] == 0
 assert c.get("/finance/overview", headers=O).json()["fee_count"] == 0
-assert c.get("/finance/overview", headers=S).json()["fee_count"] == 0
+assert c.get("/finance/overview", headers=B_ADMIN).json()["fee_count"] == 0
 assert c.post(f"/cases/{cid}/fees", json={"title":"أتعاب غير صحيحة","amount":100,"paid":101}, headers=J).status_code == 422
 assert c.post(f"/cases/{cid}/fees", json={"title":"مبلغ سالب","amount":-1,"paid":0}, headers=J).status_code == 422
 assert c.post(f"/cases/{cid}/fees", json={"title":"مدفوع سالب","amount":100,"paid":-1}, headers=J).status_code == 422
