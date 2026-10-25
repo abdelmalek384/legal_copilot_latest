@@ -4,9 +4,11 @@
 **Estimated completion:** 28%  
 **Status:** In progress — not production-ready for confidential multi-firm matter data.
 
-This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. The checklist currently tracks 58 completed tasks and 20 remaining tasks; this count is not a readiness percentage. Update this file as database PRs merge and as acceptance criteria are completed.
+This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. The checklist currently tracks 59 completed tasks and 20 remaining tasks; this count is not a readiness percentage. Update this file as database PRs merge and as acceptance criteria are completed.
 
 ## Completed and merged
+
+- [x] Add schema acceptance assertions that global identities, firm memberships, and platform-role assignments exist only in the control-plane profile, not in firm or shared legal-corpus databases (PR #295 merged; CI run 40238588271 passed).
 
 - [x] Extend the read-only tenant database preflight to verify the firm migration ledger's versions, filenames, and checksums against trusted migration files; missing or drifted history is reported without repair (PR #292 merged; CI run 40238470057 passed).
 
