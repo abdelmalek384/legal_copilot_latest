@@ -31,7 +31,7 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 
 ## In progress
 
-- [ ] **PR #171 — Fix compact migration parsing and test profiles in CI.** Adds profile-binding and initial isolated-schema acceptance tests to the required workflow; fixes same-line SQL statement parsing while preserving trigger bodies; adds a regression test. Initial CI exposed the parser bug; the fix is on the branch and GitHub Actions run 40217630357 is queued. This does not wire tenant routing into application requests.
+- [ ] **PR #171 — Fix compact migration parsing and test profiles in CI.** Adds profile-binding and initial isolated-schema acceptance tests to the required workflow; fixes same-line SQL statement parsing while preserving trigger bodies; adds a regression test. Initial CI exposed the parser bug; the parser fix and trigger regression are now covered by passing GitHub Actions run 40217630357. Awaiting review/merge. This does not wire tenant routing into application requests.
 
 
 
