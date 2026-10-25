@@ -45,6 +45,16 @@ The helper opens the source in read-only mode, checks SQLite integrity and forei
 This is a migration rehearsal aid, not a backup, not an authorization test, and not proof of tenant isolation. Use a protected representative copy, retain a separately verified backup, and review the report before any real migration.
 
 
+## Rebuild FTS only on a new database copy
+
+When `scripts/chunks_fts_preflight.py` reports missing, orphaned, or stale FTS rows, a rebuilt index can be prepared on a new copy without writing to the source:
+
+```bash
+PYTHONPATH=. python scripts/rebuild_chunks_fts_copy.py /path/to/source.sqlite3 /path/to/new-rebuilt-copy.sqlite3
+```
+
+The output path must not exist; the utility refuses to overwrite it. It copies the source through SQLite's backup API, recreates `chunks_fts` on the output copy, repopulates it from `chunks.text` using the application's canonical tokenizer, and checks SQLite integrity, foreign keys, chunk counts, and FTS consistency. It deletes a failed partial output rather than leaving it looking like a successful rebuild. A successful copy is a review artifact, not an instruction to replace a live database; replacement requires an independent backup, review, and tested restore/deployment plan.
+
 ## Read-only FTS consistency preflight
 
 Before rebuilding or replacing the FTS index, run the read-only audit against a protected database copy:
