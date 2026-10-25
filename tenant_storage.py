@@ -14,7 +14,7 @@ import threading
 from pathlib import Path
 from typing import Callable
 
-from tenant_catalog import resolve_tenant_database
+from tenant_catalog import TenantCatalogError, resolve_tenant_database
 
 
 class TenantConnectionError(RuntimeError):
@@ -65,7 +65,12 @@ class TenantSQLiteConnectionRouter:
         self._validate_firm_id(trusted_firm_id)
         catalog = self._catalog_connection_factory()
         try:
-            path = resolve_tenant_database(catalog, trusted_firm_id, self._storage_root)
+            try:
+                path = resolve_tenant_database(catalog, trusted_firm_id, self._storage_root)
+            except (TenantCatalogError, sqlite3.Error) as exc:
+                raise TenantConnectionError(
+                    "Tenant database is not available through the trusted catalog"
+                ) from exc
         finally:
             catalog.close()
 
