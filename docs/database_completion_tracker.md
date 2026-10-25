@@ -32,11 +32,9 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 
 ## In progress
 
-- [ ] **PR #176 — Constrain tenant catalog entries to existing firms.** Adds a forward migration with `FOREIGN KEY (firm_id) REFERENCES firms(id) ON DELETE RESTRICT`; invalid pre-existing orphan catalog rows cause migration rollback instead of guessed ownership. The runtime helper now requires the migration-managed `firms` table, enforces SQLite foreign keys, and rejects catalog tables missing the constraint. GitHub Actions run 40221546143 passed. Runtime tenant routing remains out of scope.
+- [ ] **PR #179 — Preserve firm scope when parent records change.** Adds firm-profile migration 0003 to reject legacy document/case firm mismatches and prevent later case-firm or document-case/firm changes from invalidating existing chunks and extraction reviews. GitHub Actions run 40226136870 passed after correcting an assertion to accept either fail-closed trigger message. PR remains open and unmerged.
 
-- [ ] **PR #178 — Enforce firm document and extraction review scope.** Adds a fail-closed migration guard for existing chunk/document/review mismatches, then adds triggers to prevent mismatched chunk-to-document cases and review-to-document/case/chunk/firm links on inserts and updates. GitHub Actions run 40221835993 passed, including profile schema acceptance, migration tests, unit tests, API tests, and Arabic scenarios; this does not replace route authorization or tenant routing.
-
-
+- [ ] **PR #180 — Make database profile binding immutable.** Adds SQLite triggers that prevent ordinary updates or deletes of the `database_profile` marker, with regression coverage. CI pending. This protects the profile marker but does not certify tenant routing or runtime isolation.
 
 ## Remaining database work
 
