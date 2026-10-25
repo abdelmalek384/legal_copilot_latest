@@ -37,6 +37,12 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("e.setAttribute(key,String(value))", HTML)
         self.assertIn("if(value!=null)e.setAttribute", HTML)
 
+    def test_source_status_labels_have_plain_language_explanations_and_original_host(self):
+        self.assertIn("const statusDescriptions={", HTML)
+        self.assertIn("not independently verified as law", HTML)
+        self.assertIn("does not prove no applicable law exists", HTML)
+        self.assertIn("sourceHostLabel(recordedSource)", HTML)
+
     def test_research_highlighting_uses_actual_matched_surface_terms(self):
         self.assertIn("const highlightTerms=(text,question,matchedTerms)=>", HTML)
         self.assertIn("highlightTerms(s.text||'',sourceQuestion,s.matched_terms)", HTML)
