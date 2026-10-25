@@ -31,7 +31,12 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
     def add(code: str, firm_id: int | None, detail: str) -> None:
         findings.append({"code": code, "firm_id": firm_id, "detail": detail})
 
-    root = storage_root.expanduser().resolve(strict=True)
+    requested_root = storage_root.expanduser()
+    # Check the configured directory entry before resolve(), otherwise a
+    # symlinked root would be silently converted to its target path.
+    if requested_root.is_symlink():
+        raise ValueError("tenant storage root must not be a symlink")
+    root = requested_root.resolve(strict=True)
     if not root.is_dir():
         raise ValueError("tenant storage root must be a directory")
 
