@@ -20,6 +20,7 @@ The left version is the baseline and the right version is compared against it. I
 - Reports labels as `unchanged`, `changed`, `added_in_right`, or `removed_from_right`.
 - Includes source/version metadata, page references when recorded, exact extracted text, and a unified text diff for changed labels.
 - Leaves passages with no article label in an unmapped list rather than guessing where they belong.
+- Excludes malformed chunk records and passages with missing/empty text; an affected article is marked `uncomparable_incomplete_text` rather than falsely classified as added, removed, changed, or unchanged.
 - Warns when a version is not fully marked as reviewed/verified or either version has no linked chunks.
 
 Whitespace-only differences are treated as unchanged for classification, but the returned text preserves the extracted content. If an article contains multiple chunks, they are joined in chunk-ID order.
@@ -40,4 +41,4 @@ Run:
 python tests/test_compare_legal_versions.py
 ```
 
-Tests cover article-level change categories, multi-chunk grouping, unmapped passages, missing registry data, cross-document rejection, and a read-only database check. Passing software tests do not validate legal content.
+Tests cover article-level change categories, multi-chunk grouping, unmapped passages, malformed/incomplete extraction, missing registry data, cross-document rejection, and a read-only database check. Passing software tests do not validate legal content.
