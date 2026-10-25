@@ -65,6 +65,32 @@ class TenantCatalogTests(unittest.TestCase):
         finally:
             db.close()
 
+    def test_catalog_with_existing_orphan_firm_reference_is_rejected(self):
+        db = sqlite3.connect(":memory:")
+        try:
+            db.execute("CREATE TABLE firms(id INTEGER PRIMARY KEY, name TEXT NOT NULL)")
+            db.execute("""
+                CREATE TABLE tenant_database_catalog (
+                    firm_id INTEGER PRIMARY KEY CHECK(firm_id > 0)
+                        REFERENCES firms(id) ON DELETE RESTRICT,
+                    database_file TEXT UNIQUE,
+                    status TEXT NOT NULL CHECK(status IN ('provisioning','provisioned','failed','disabled')),
+                    created_at TEXT NOT NULL DEFAULT (datetime('now')),
+                    updated_at TEXT NOT NULL DEFAULT (datetime('now')),
+                    last_error_code TEXT
+                )
+            """)
+            db.execute("PRAGMA foreign_keys=OFF")
+            db.execute("""
+                INSERT INTO tenant_database_catalog(firm_id,database_file,status)
+                VALUES(404,NULL,'failed')
+            """)
+            db.commit()
+            with self.assertRaisesRegex(TenantCatalogError, "invalid firm ownership references"):
+                initialize_catalog(db)
+        finally:
+            db.close()
+
     def test_provision_requires_an_existing_firm(self):
         with self.assertRaisesRegex(sqlite3.IntegrityError, "FOREIGN KEY"):
             provision_tenant_database(self.catalog, 404, self.root, self.initialize_tenant)
