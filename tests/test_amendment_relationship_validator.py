@@ -185,6 +185,88 @@ class AmendmentRelationshipValidatorTests(unittest.TestCase):
         )
         self.assertTrue(any(item["code"] == "missing_or_invalid_https_source_url" for item in report["errors"]))
 
+    def test_reviewed_confirmed_relationship_requires_review_evidence_and_effective_date(self):
+        relationship = {
+            "relationship_id": "REL-CONFIRMED",
+            "source_instrument_id": "LAW-A",
+            "target_instrument_id": "LAW-B",
+            "relationship_type": "amends_specified_provisions",
+            "status": "reviewed_confirmed",
+            "source_url": "https://gazette.example.gov/law.pdf",
+            "required_evidence": ["Official Gazette text"],
+            "affected_provisions": ["Article 3"],
+            "instrument_effective_date": "unknown_pending_gazette_verification",
+        }
+        report = MODULE.validate(
+            {"relationships": [relationship]},
+            {"documents": [{"document_id": "LAW-A"}, {"document_id": "LAW-B"}]},
+        )
+        codes = {item["code"] for item in report["errors"]}
+        self.assertIn("confirmed_relationship_missing_confirmation_evidence", codes)
+        self.assertIn("confirmed_relationship_effective_date_unresolved", codes)
+
+    def test_reviewed_confirmed_relationship_accepts_complete_review_metadata(self):
+        relationship = {
+            "relationship_id": "REL-CONFIRMED",
+            "source_instrument_id": "LAW-A",
+            "target_instrument_id": "LAW-B",
+            "relationship_type": "amends_specified_provisions",
+            "status": "reviewed_confirmed",
+            "source_url": "https://gazette.example.gov/law.pdf",
+            "required_evidence": ["Official Gazette text"],
+            "affected_provisions": ["Article 3"],
+            "instrument_effective_date": "2026-10-01",
+            "confirmation_evidence": {
+                "gazette_issue": "Official Gazette issue 42",
+                "gazette_publication_date": "2026-09-30",
+                "gazette_page_range": "12-15",
+                "reviewed_on": "2026-10-02",
+                "reviewer_role": "qualified_egyptian_lawyer",
+                "review_basis": "Compared complete official issue, provision text, commencement clause, and later amendments.",
+            },
+        }
+        report = MODULE.validate(
+            {"relationships": [relationship]},
+            {"documents": [{"document_id": "LAW-A"}, {"document_id": "LAW-B"}]},
+        )
+        confirmation_errors = {
+            "confirmed_relationship_missing_confirmation_evidence",
+            "confirmed_relationship_missing_confirmation_field",
+            "confirmed_relationship_invalid_confirmation_date",
+            "confirmed_relationship_missing_provision_mapping",
+            "confirmed_relationship_effective_date_unresolved",
+        }
+        self.assertFalse(any(item["code"] in confirmation_errors for item in report["errors"]))
+
+    def test_reviewed_confirmed_rejects_impossible_review_dates(self):
+        relationship = {
+            "relationship_id": "REL-CONFIRMED-DATE",
+            "source_instrument_id": "LAW-A",
+            "target_instrument_id": "LAW-B",
+            "relationship_type": "amends_specified_provisions",
+            "status": "reviewed_confirmed",
+            "source_url": "https://gazette.example.gov/law.pdf",
+            "required_evidence": ["Official Gazette text"],
+            "affected_provisions": ["Article 3"],
+            "instrument_effective_date": "2026-10-01",
+            "confirmation_evidence": {
+                "gazette_issue": "Official Gazette issue 42",
+                "gazette_publication_date": "2026-02-30",
+                "gazette_page_range": "12-15",
+                "reviewed_on": "2026-10-02",
+                "reviewer_role": "qualified_egyptian_lawyer",
+                "review_basis": "Review notes",
+            },
+        }
+        report = MODULE.validate(
+            {"relationships": [relationship]},
+            {"documents": [{"document_id": "LAW-A"}, {"document_id": "LAW-B"}]},
+        )
+        self.assertTrue(any(
+            item["code"] == "confirmed_relationship_invalid_confirmation_date"
+            for item in report["errors"]
+        ))
+
 
 if __name__ == "__main__":
     unittest.main()
