@@ -30,6 +30,22 @@ class DatabaseMigrationTests(unittest.TestCase):
         self.assertEqual(columns, ["id", "value"])
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM schema_migrations").fetchone()[0], 2)
 
+    def test_multiple_statements_per_line_and_trigger_bodies(self):
+        self.write(
+            "0001_compact_schema.sql",
+            "CREATE TABLE sample(id INTEGER PRIMARY KEY); "
+            "CREATE TABLE audit(value INTEGER); "
+            "CREATE TRIGGER sample_audit AFTER INSERT ON sample BEGIN "
+            "INSERT INTO audit(value) VALUES(new.id); "
+            "INSERT INTO audit(value) VALUES(new.id + 1); END;"
+        )
+        self.assertEqual(apply_migrations(self.db, self.path), [1])
+        self.db.execute("INSERT INTO sample(id) VALUES(40)")
+        self.assertEqual(
+            [row[0] for row in self.db.execute("SELECT value FROM audit ORDER BY value")],
+            [40, 41],
+        )
+
     def test_concurrent_runners_do_not_apply_the_same_migration_twice(self):
         import threading
 
