@@ -142,6 +142,9 @@ def provision_tenant_database(
 
         tenant = sqlite3.connect(str(path), timeout=30)
         try:
+            # SQLite disables FK enforcement by default on each connection.
+            # Enable it before running tenant schema/data initialization.
+            tenant.execute("PRAGMA foreign_keys=ON")
             initialize_database(tenant)
             tenant.commit()
             integrity = tenant.execute("PRAGMA integrity_check").fetchone()[0]
