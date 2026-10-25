@@ -30,7 +30,7 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 
 ## In progress
 
-- [ ] **PR #167 — Reject symlinked tenant storage roots in preflight.** Aligns the read-only tenant database preflight with provisioning safety by rejecting a configured storage-root symlink before path resolution. Regression test added; CI pending. This does not change runtime routing.
+- [ ] **PR #167 — Reject symlinked tenant storage roots in preflight.** Aligns the read-only tenant database preflight with provisioning safety by rejecting a configured storage-root symlink before path resolution. Regression coverage passed in GitHub Actions run 40217356965; awaiting review/merge. This does not change runtime routing.
 
 
 
