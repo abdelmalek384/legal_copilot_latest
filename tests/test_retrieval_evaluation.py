@@ -58,6 +58,8 @@ class RetrievalEvaluationTests(unittest.TestCase):
         self.assertEqual(result["metrics"]["mrr_at_3"], 0.5)
         self.assertEqual(result["citation_precision"], 0.5)
         self.assertEqual(result["pin_cite_accuracy"], 0.5)
+        self.assertEqual(result["citation_coverage"], 1.0)
+        self.assertEqual(result["expected_pin_cite_recall"], 1.0)
         self.assertEqual(result["unsafe_unverified_source_uses"], 0)
 
     def test_unanswerable_case_requires_abstention(self):
@@ -148,6 +150,43 @@ class RetrievalEvaluationTests(unittest.TestCase):
         result = score_evaluation([question], [])
         self.assertEqual(result["reviewed_cases_scored"], 0)
         self.assertIn("expected_pin_cites[0]", " ".join(result["excluded_cases"][0]["reasons"]))
+
+
+    def test_missing_citations_reduce_coverage_and_expected_pin_cite_recall(self):
+        question = reviewed_question()
+        run = {
+            "question_id": question["id"],
+            "retrieved_source_ids": ["LAW-A", "LAW-B"],
+            "citations": [],
+            "abstained": False,
+            "used_unverified_source": False,
+        }
+        result = score_evaluation([question], [run])
+        self.assertIsNone(result["citation_precision"])
+        self.assertEqual(result["citation_coverage"], 0.0)
+        self.assertEqual(result["answerable_cases_with_expected_citation"], 0)
+        self.assertEqual(result["answerable_reviewed_cases"], 1)
+        self.assertEqual(result["expected_pin_cite_recall"], 0.0)
+        self.assertEqual(result["expected_pin_cites_found"], 0)
+        self.assertEqual(result["expected_pin_cite_count"], 1)
+
+    def test_citation_coverage_excludes_unanswerable_abstention_cases(self):
+        question = reviewed_question(
+            id="Q-TEST-UNANSWERABLE",
+            answerable=False,
+            expected_pin_cites=[],
+        )
+        run = {
+            "question_id": question["id"],
+            "retrieved_source_ids": [],
+            "citations": [],
+            "abstained": True,
+            "used_unverified_source": False,
+        }
+        result = score_evaluation([question], [run])
+        self.assertIsNone(result["citation_coverage"])
+        self.assertEqual(result["answerable_reviewed_cases"], 0)
+        self.assertEqual(result["abstention_compliance"], 1.0)
 
 
 if __name__ == "__main__":
