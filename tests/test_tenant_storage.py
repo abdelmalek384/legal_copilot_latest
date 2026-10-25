@@ -1,5 +1,6 @@
 """Tests for catalog-backed tenant connection routing (not request authorization)."""
 import sqlite3
+import shutil
 import tempfile
 import threading
 import unittest
@@ -89,6 +90,27 @@ class TenantSQLiteConnectionRouterTests(unittest.TestCase):
         with self.assertRaisesRegex(TenantConnectionError, "missing its required firm profile binding"):
             router.connection_for_firm(202)
         router.close_current_thread()
+
+    def test_rejects_database_file_copied_from_another_firm(self):
+        with self._catalog() as catalog:
+            source = resolve_tenant_database(catalog, 101, self.root)
+            target = resolve_tenant_database(catalog, 202, self.root)
+        # Both database connections are closed here; replacing B's contents
+        # with A's file must be detected by the immutable in-database binding.
+        shutil.copyfile(source, target)
+        router = TenantSQLiteConnectionRouter(self._catalog, self.root)
+        with self.assertRaisesRegex(TenantConnectionError, "bound to a different firm"):
+            router.connection_for_firm(202)
+        router.close_current_thread()
+
+    def test_tenant_database_firm_binding_cannot_be_updated_or_deleted(self):
+        with self._catalog() as catalog:
+            path = resolve_tenant_database(catalog, 101, self.root)
+        with sqlite3.connect(path) as db:
+            with self.assertRaisesRegex(sqlite3.IntegrityError, "firm binding is immutable"):
+                db.execute("UPDATE tenant_database_binding SET firm_id=202 WHERE singleton=1")
+            with self.assertRaisesRegex(sqlite3.IntegrityError, "firm binding is immutable"):
+                db.execute("DELETE FROM tenant_database_binding WHERE singleton=1")
 
     def test_reuses_connection_for_same_firm_on_current_thread(self):
         first = self.router.connection_for_firm(101)
