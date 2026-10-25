@@ -22,8 +22,10 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 ## In progress
 
 - [x] Move `legal_version_relations` and `security_audit_events` into versioned migrations 0004 and 0005, with migration-order, constraint, inventory, and rehearsal coverage (PR #148, merged).
-- [ ] **PR #149 — Move six independent authentication/case-workspace tables into migration 0006.** The branch removes `auth_sessions`, `notes`, `fees`, `tasks`, `events`, and case-calendar `sessions` from startup `SCHEMA`; migration and disposable-copy tests cover their creation. Full CI passed on the latest PR head; awaiting merge.
-- [ ] **PR #150 — Move the independent `legal_sources` registry into migration 0007.** Depends on PR #149's migration 0006; `legal_documents` remains in bootstrap because startup conditionally inspects/alters it before the migration runner.
+- [x] Move six independent authentication/case-workspace tables (`auth_sessions`, `notes`, `fees`, `tasks`, `events`, and case-calendar `sessions`) into migration 0006, with migration, inventory, and disposable-copy coverage (PR #149, merged).
+- [x] Add end-to-end fresh database startup and restart coverage in CI; verify the migration ledger and preservation of an existing row (PR #151, merged).
+- [ ] **PR #152 — Reject out-of-order recorded migration histories.** A regression test removes a middle ledger row and verifies the runner fails closed; CI passed, awaiting merge.
+- [ ] **PR #153 — Move the independent `legal_sources` registry into migration 0007.** PR #149 is now merged; `legal_documents` remains in bootstrap because startup conditionally inspects/alters it before the migration runner. Awaiting latest CI.
 
 ## Remaining database work
 
