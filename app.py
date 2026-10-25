@@ -2,7 +2,7 @@
 Run: pip install -r requirements.txt && uvicorn app:app --reload"""
 import sqlite3, re, json, os, io, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request, zipfile
 from collections import Counter
-from datetime import date
+from datetime import date, timedelta
 from tools.research_inspector import source_status, citation_text, research_memo
 from storage import SQLiteConnectionProvider
 from db_migrations import apply_migrations
@@ -1293,6 +1293,75 @@ def dashboard(u: dict = Depends(user)):
     )
     return {"tasks": [dict(r) for r in t], "unassigned_tasks": [dict(r) for r in unassigned],
             "sessions": upcoming(c, u), "deadlines": [dict(r) for r in d]}
+
+
+def _ics_escape(value):
+    return str(value or "").replace("\\\\", "\\\\\\\\").replace("\\r\\n", "\\n").replace("\\n", "\\\\n").replace(",", "\\\\,").replace(";", "\\\\;")
+
+
+def _ics_event(kind, item_id, firm_id, case_id, day, summary, description):
+    start = date.fromisoformat(day)
+    end = start + timedelta(days=1)
+    return [
+        "BEGIN:VEVENT",
+        f"UID:lc-{firm_id}-{case_id}-{kind}-{item_id}@legal-copilot",
+        f"DTSTAMP:{__import__('datetime').datetime.utcnow().strftime('%Y%m%dT%H%M%SZ')}",
+        f"DTSTART;VALUE=DATE:{start.strftime('%Y%m%d')}",
+        f"DTEND;VALUE=DATE:{end.strftime('%Y%m%d')}",
+        f"SUMMARY:{_ics_escape(summary)}",
+        f"DESCRIPTION:{_ics_escape(description)}",
+        "END:VEVENT",
+    ]
+
+
+@app.get("/calendar.ics")
+def export_calendar(u: dict = Depends(user)):
+    """Export accessible tasks, hearings, and open deadlines as all-day calendar events."""
+    c = conn()
+    today = date.today().isoformat()
+    horizon = (date.today() + timedelta(days=90)).isoformat()
+    events = []
+
+    tasks = c.execute(
+        "SELECT t.id,t.title,t.due,t.case_id,cs.title AS case_title FROM tasks t "
+        "JOIN cases cs ON cs.id=t.case_id WHERE t.assignee=? AND t.status='open' "
+        "AND cs.status='open' AND cs.firm_id=? AND t.due>=? AND t.due<=? "
+        "ORDER BY t.due,t.id LIMIT 500",
+        (u["id"], u["firm_id"], today, horizon),
+    ).fetchall()
+    for item in tasks:
+        events.extend(_ics_event("task", item["id"], u["firm_id"], item["case_id"], item["due"],
+                                 "Task: " + item["title"], "Case: " + item["case_title"]))
+
+    deadlines = c.execute(
+        "SELECT d.id,d.title,d.due,d.case_id,cs.title AS case_title FROM deadlines d "
+        "JOIN cases cs ON cs.id=d.case_id WHERE d.status='open' AND cs.status='open' "
+        "AND cs.firm_id=? AND d.due>=? AND d.due<=? "
+        "AND (?='admin' OR d.case_id IN (SELECT case_id FROM members WHERE user_id=?)) "
+        "ORDER BY d.due,d.id LIMIT 500",
+        (u["firm_id"], today, horizon, u["role"], u["id"]),
+    ).fetchall()
+    for item in deadlines:
+        events.extend(_ics_event("deadline", item["id"], u["firm_id"], item["case_id"], item["due"],
+                                 "Legal deadline: " + item["title"], "Case: " + item["case_title"]))
+
+    hearings = upcoming(c, u, days=90)
+    for item in hearings[:500]:
+        case_id = item.get("case_id")
+        if case_id is None:
+            case_row = c.execute("SELECT case_id FROM sessions WHERE id=?", (item["id"],)).fetchone()
+            case_id = case_row["case_id"] if case_row else 0
+        events.extend(_ics_event("hearing", item["id"], u["firm_id"], case_id, item["date"],
+                                 "Hearing: " + (item.get("title") or item.get("note") or "Court hearing"),
+                                 "Case: " + (item.get("title") or "")))
+
+    lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Legal Copilot//Case Calendar//EN",
+             "CALSCALE:GREGORIAN", "METHOD:PUBLISH"] + events + ["END:VCALENDAR"]
+    return Response(
+        content="\\r\\n".join(lines) + "\\r\\n",
+        media_type="text/calendar; charset=utf-8",
+        headers={"Content-Disposition": 'attachment; filename="legal-copilot-calendar.ics"'},
+    )
 
 
 @app.get("/finance/overview")
