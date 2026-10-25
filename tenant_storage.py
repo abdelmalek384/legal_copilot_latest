@@ -132,6 +132,18 @@ class TenantSQLiteConnectionRouter:
                 raise TenantConnectionError(
                     "Tenant database is not bound to the firm schema profile"
                 )
+            try:
+                binding = connection.execute(
+                    "SELECT firm_id FROM tenant_database_binding WHERE singleton=1"
+                ).fetchone()
+            except sqlite3.Error as exc:
+                raise TenantConnectionError(
+                    "Tenant database is missing its required firm ID binding"
+                ) from exc
+            if binding is None or binding[0] != trusted_firm_id:
+                raise TenantConnectionError(
+                    "Tenant database is bound to a different firm"
+                )
         except (sqlite3.Error, TenantConnectionError) as exc:
             if connection is not None:
                 try:
