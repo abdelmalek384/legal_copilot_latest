@@ -37,20 +37,8 @@ class TenantDatabasePreflightTests(unittest.TestCase):
         self.catalog.commit()
         if status == "provisioned":
             db = sqlite3.connect(self.root / filename)
-            db.execute("CREATE TABLE marker (value TEXT)")
-            db.execute("""
-                CREATE TABLE database_profile (
-                    singleton INTEGER PRIMARY KEY CHECK(singleton=1),
-                    profile TEXT NOT NULL CHECK(profile IN ('control_plane','firm','legal_corpus'))
-                )
-            """)
-            db.execute("INSERT INTO database_profile(singleton,profile) VALUES(1,'firm')")
-            db.executescript("""
-                CREATE TRIGGER database_profile_no_update BEFORE UPDATE ON database_profile
-                BEGIN SELECT RAISE(ABORT, 'database profile binding is immutable'); END;
-                CREATE TRIGGER database_profile_no_delete BEFORE DELETE ON database_profile
-                BEGIN SELECT RAISE(ABORT, 'database profile binding is immutable'); END;
-            """)
+            db.execute("PRAGMA foreign_keys=ON")
+            apply_profile_migrations(db, "firm", MIGRATIONS)
             db.execute("""
                 CREATE TABLE tenant_database_binding (
                     singleton INTEGER PRIMARY KEY CHECK(singleton=1),
@@ -76,6 +64,31 @@ class TenantDatabasePreflightTests(unittest.TestCase):
         self.assertEqual(report["status"], "no_detected_problems")
         self.assertEqual(report["tenant_databases_inspected"], 1)
         self.assertEqual(before, after)
+
+
+    def test_missing_migration_history_is_reported(self):
+        self.add_tenant(12)
+        filename = self.catalog.execute(
+            "SELECT database_file FROM tenant_database_catalog WHERE firm_id=12"
+        ).fetchone()[0]
+        with sqlite3.connect(self.root / filename) as db:
+            db.execute("DROP TABLE schema_migrations")
+        report = audit(self.catalog_path, self.root)
+        self.assertIn("missing_schema_migration_ledger", {item["code"] for item in report["findings"]})
+
+    def test_incomplete_and_checksum_drifted_migration_history_are_reported(self):
+        self.add_tenant(13)
+        filename = self.catalog.execute(
+            "SELECT database_file FROM tenant_database_catalog WHERE firm_id=13"
+        ).fetchone()[0]
+        with sqlite3.connect(self.root / filename) as db:
+            db.execute("DELETE FROM schema_migrations WHERE version=(SELECT MAX(version) FROM schema_migrations)")
+            db.execute("UPDATE schema_migrations SET checksum_sha256='bad-checksum' WHERE version=(SELECT MIN(version) FROM schema_migrations)")
+        report = audit(self.catalog_path, self.root)
+        codes = {item["code"] for item in report["findings"] if item["firm_id"] == 13}
+        self.assertIn("incomplete_schema_migration_history", codes)
+        self.assertIn("schema_migration_checksum_mismatch", codes)
+
 
     def test_missing_database_is_reported(self):
         self.add_tenant(2, filename=f"tenant-2-{uuid.uuid4().hex}.sqlite3")
