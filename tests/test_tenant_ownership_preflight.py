@@ -67,6 +67,34 @@ class TenantOwnershipPreflightTests(unittest.TestCase):
         self.assertEqual(codes.get("deletion_audit_actor_missing", 0), 0)
         self.assertEqual(report["status"], "review_required")
 
+    def test_empty_database_is_not_reported_as_clean(self):
+        db = sqlite3.connect(":memory:")
+        try:
+            report = audit(db)
+            self.assertEqual(report["status"], "review_required")
+            codes = {finding["code"] for finding in report["findings"]}
+            self.assertIn("core_schema_table_missing", codes)
+            self.assertEqual(report["finding_count"], 3)
+        finally:
+            db.close()
+
+    def test_missing_firm_column_is_reported_as_incomplete_schema(self):
+        db = sqlite3.connect(":memory:")
+        try:
+            db.executescript("""
+                CREATE TABLE firms(id INTEGER PRIMARY KEY);
+                CREATE TABLE users(id INTEGER PRIMARY KEY);
+                CREATE TABLE cases(id INTEGER PRIMARY KEY, firm_id INTEGER);
+            """)
+            report = audit(db)
+            self.assertEqual(report["status"], "review_required")
+            self.assertIn(
+                "core_schema_columns_missing",
+                {finding["code"] for finding in report["findings"]},
+            )
+        finally:
+            db.close()
+
     def test_clean_minimal_database_has_no_findings(self):
         db = sqlite3.connect(":memory:")
         try:

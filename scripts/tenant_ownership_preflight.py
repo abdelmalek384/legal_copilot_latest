@@ -38,6 +38,43 @@ def audit(conn: sqlite3.Connection) -> dict[str, Any]:
         if count:
             findings.append({"code": code, "severity": severity, "count": count, "detail": detail})
 
+    # Do not report "clean" for an empty or structurally incomplete database:
+    # ownership checks are meaningful only when core tables and key columns exist.
+    required_core_columns = {
+        "firms": {"id"},
+        "users": {"id", "firm_id"},
+        "cases": {"id", "firm_id"},
+    }
+    schema_issues = False
+    for table, required_columns in required_core_columns.items():
+        if table not in tables:
+            add(
+                "core_schema_table_missing", "critical", 1,
+                f"Required ownership table {table!r} is missing; this database cannot be certified by the ownership preflight.",
+            )
+            schema_issues = True
+            continue
+        missing_columns = required_columns - _columns(conn, table)
+        if missing_columns:
+            add(
+                "core_schema_columns_missing", "critical", len(missing_columns),
+                f"Required columns are missing from {table!r}: {sorted(missing_columns)}.",
+            )
+            schema_issues = True
+    if schema_issues:
+        findings.sort(key=lambda item: (item["severity"], item["code"]))
+        return {
+            "mode": "read_only",
+            "database_tables_seen": sorted(tables),
+            "findings": findings,
+            "finding_count": len(findings),
+            "status": "review_required",
+            "limitations": [
+                "Core schema is incomplete, so ownership checks could not be fully evaluated.",
+                "No records are assigned, repaired, deleted, or migrated by this tool.",
+            ],
+        }
+
     firms = "firms" in tables
     if "users" in tables and "firm_id" in _columns(conn, "users"):
         add("users_missing_firm", "critical",
