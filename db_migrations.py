@@ -209,14 +209,18 @@ def apply_migrations(connection: sqlite3.Connection, directory: str | Path) -> l
             for operation in _migration_operations(sql):
                 if operation[0] == "add_column_if_missing":
                     _kind, table, column, statement = operation
+                    # SQLite identifiers are case-insensitive. Legacy schemas may
+                    # use a different case than the migration directive, so compare
+                    # normalized names to avoid duplicate-column ALTER failures.
                     columns = {
-                        row[1] for row in connection.execute(f"PRAGMA table_info({table})")
+                        str(row[1]).casefold()
+                        for row in connection.execute(f"PRAGMA table_info({table})")
                     }
                     if not columns:
                         raise MigrationError(
                             f"Conditional column migration references missing table {table}"
                         )
-                    if column not in columns:
+                    if column.casefold() not in columns:
                         connection.execute(statement)
                     continue
 
