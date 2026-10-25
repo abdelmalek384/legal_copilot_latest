@@ -318,6 +318,26 @@ def import_law(c, rows):
     return add_chunks(c, [dict(r, ref="%s - المادة %s" % (r["law"], r["article"])) for r in rows])
 
 
+def validate_password_strength(password):
+    """Reject common/predictable passwords in addition to enforcing the 12-character minimum."""
+    value = password.strip()
+    lowered = value.casefold()
+    if len(value) < 12:
+        raise ValueError("password must be at least 12 characters")
+    common_prefix = re.fullmatch(
+        r"(?:password|passw0rd|qwerty|letmein|welcome|admin|changeme|iloveyou)[0-9!@#$%^&*._-]*",
+        lowered,
+    )
+    sequential_digits = lowered in {
+        "012345678901", "123456789012", "1234567890ab",
+        "098765432109", "987654321098",
+    }
+    repeated = re.fullmatch(r"(.)\\1{11,}", value) is not None
+    if common_prefix or sequential_digits or repeated:
+        raise ValueError("choose a less predictable password; common patterns are not allowed")
+    return password
+
+
 def hash_pw(p, salt=None):
     salt = salt or os.urandom(16)
     return salt.hex() + ":" + hashlib.scrypt(p.encode(), salt=salt, n=2 ** 14, r=8, p=1).hex()
@@ -683,6 +703,10 @@ _RATE_LIMITS = {
     "__research_message__": (20, 60),
 }
 _UPLOAD_RATE_LIMIT = (10, 3600)
+# Bound expensive scrypt operations so login floods cannot occupy every worker.
+# This is a per-process safeguard; production multi-worker deployments still need
+# edge/proxy rate limiting or a shared limiter.
+_LOGIN_HASH_SLOTS = threading.BoundedSemaphore(max(2, int(os.environ.get("LOGIN_HASH_CONCURRENCY", "4"))))
 _rate_limit_state = {}
 _rate_limit_lock = threading.Lock()
 _rate_limit_checks = 0
@@ -785,11 +809,23 @@ class LoginIn(BaseModel): email: str = Field(max_length=200); password: str = Fi
 class PasswordChangeIn(BaseModel):
     current_password: str = Field(min_length=1, max_length=200)
     new_password: str = Field(min_length=12, max_length=200)
+
+    @field_validator("new_password")
+    @classmethod
+    def validate_new_password(cls, value):
+        return validate_password_strength(value)
+
+
 class UserCreateIn(BaseModel):
     name: str = Field(min_length=1, max_length=120)
     email: str = Field(min_length=3, max_length=200)
     password: str = Field(min_length=12, max_length=200)
     role: str = Field(pattern=r"^(lawyer|junior)$")
+
+    @field_validator("password")
+    @classmethod
+    def validate_user_password(cls, value):
+        return validate_password_strength(value)
 class CaseIn(BaseModel):
     title: str = Field(min_length=1, max_length=200); client: str = Field("", max_length=200); stage: str = Field("", max_length=200)
     case_number: str = Field("", max_length=100); case_year: str = Field("", max_length=20)
@@ -960,32 +996,48 @@ def login(b: LoginIn, request: Request, response: Response):
     ip = request.client.host if request.client else "unknown"
     identifiers = (k, "ip:" + ip)
     c = conn()
-    # Serialize the short login-attempt/session write transaction. Concurrent requests
-    # can otherwise race while upgrading SQLite read transactions to write transactions.
+
+    # Fast preflight: reject an active email/IP lockout before doing expensive password hashing.
+    attempts = {row["email"]: row for row in c.execute(
+        "SELECT email,failures,window_start,locked_until FROM login_attempts WHERE email IN (?,?)",
+        identifiers,
+    ).fetchall()}
+    active_locks = [row["locked_until"] for row in attempts.values() if row["locked_until"] > now]
+    if active_locks:
+        retry_after = max(1, max(active_locks) - now)
+        raise HTTPException(429, "too many attempts, try later", headers={"Retry-After": str(retry_after)})
+
+    # Do not allow a flood to run unbounded scrypt work in parallel. This semaphore is
+    # intentionally non-blocking: excess requests fail quickly rather than queueing.
+    if not _LOGIN_HASH_SLOTS.acquire(blocking=False):
+        raise HTTPException(429, "login temporarily busy; try again shortly", headers={"Retry-After": "1"})
+    try:
+        r = c.execute("SELECT * FROM users WHERE email=?", (k,)).fetchone()
+        # Equalize the expensive hash operation for unknown/disabled emails to reduce enumeration.
+        dummy_salt = bytes.fromhex("00112233445566778899aabbccddeeff")
+        if r:
+            valid = check_pw(b.password, r["pw"])
+        else:
+            hash_pw(b.password, dummy_salt)
+            valid = False
+    finally:
+        _LOGIN_HASH_SLOTS.release()
+
+    # Keep the write transaction short; never hold SQLite's writer lock during scrypt.
     c.execute("BEGIN IMMEDIATE")
-    # Expire old unlocked entries and cap the table during login traffic so random-email
-    # probes cannot grow this table indefinitely. Active lockouts are retained.
     c.execute("DELETE FROM login_attempts WHERE locked_until<=? AND window_start<?", (now, now - 86400))
     c.execute("DELETE FROM login_attempts WHERE email IN ("
               "SELECT email FROM login_attempts ORDER BY window_start DESC, rowid DESC LIMIT -1 OFFSET 10000)")
     attempts = {row["email"]: row for row in c.execute(
         "SELECT email,failures,window_start,locked_until FROM login_attempts WHERE email IN (?,?)", identifiers
     ).fetchall()}
-    is_locked = any(row["locked_until"] > now for row in attempts.values())
-    # Do not reject a correct password just because an attacker exhausted the failure
-    # budget for this email or shared IP; this avoids turning throttling into account lockout.
-    r = c.execute("SELECT * FROM users WHERE email=?", (k,)).fetchone()
-    # Equalize the expensive hash operation for unknown/disabled emails to reduce account enumeration.
-    dummy_salt = bytes.fromhex("00112233445566778899aabbccddeeff")
-    if r:
-        valid = check_pw(b.password, r["pw"])
-    else:
-        hash_pw(b.password, dummy_salt)
-        valid = False
+    active_locks = [row["locked_until"] for row in attempts.values() if row["locked_until"] > now]
+    if active_locks:
+        c.rollback()
+        retry_after = max(1, max(active_locks) - now)
+        raise HTTPException(429, "too many attempts, try later", headers={"Retry-After": str(retry_after)})
+
     if not r or not r["active"] or r["firm_id"] is None or not valid:
-        if is_locked:
-            c.rollback()
-            raise HTTPException(429, "too many attempts, try later")
         locked = False
         for identifier in identifiers:
             row = attempts.get(identifier)
@@ -1003,10 +1055,12 @@ def login(b: LoginIn, request: Request, response: Response):
                       (identifier, failures, window_start, locked_until))
         c.commit()
         raise HTTPException(429 if locked else 401, "too many attempts, try later" if locked else "bad credentials")
+
     c.execute("DELETE FROM login_attempts WHERE email IN (?,?)", identifiers)
     tok, csrf = secrets.token_urlsafe(32), secrets.token_urlsafe(32)
     c.execute("DELETE FROM auth_sessions WHERE expires<?", (now,))
-    c.execute("INSERT INTO auth_sessions VALUES(?,?,?)", (sha(tok), r["id"], now + 43200)); c.commit()
+    c.execute("INSERT INTO auth_sessions VALUES(?,?,?)", (sha(tok), r["id"], now + 43200))
+    c.commit()
     secure = request.url.scheme == "https"
     response.set_cookie("lc_session", tok, max_age=43200, httponly=True, secure=secure, samesite="lax", path="/")
     response.set_cookie("lc_csrf", csrf, max_age=43200, httponly=False, secure=secure, samesite="lax", path="/")
