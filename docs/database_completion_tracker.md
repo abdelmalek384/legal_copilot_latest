@@ -4,7 +4,7 @@
 **Estimated completion:** 28%  
 **Status:** In progress — not production-ready for confidential multi-firm matter data.
 
-This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. The checklist currently tracks 32 completed tasks and 21 remaining tasks; this count is not a readiness percentage. Update this file as database PRs merge and as acceptance criteria are completed.
+This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. The checklist currently tracks 34 completed tasks and 21 remaining tasks; this count is not a readiness percentage. Update this file as database PRs merge and as acceptance criteria are completed.
 
 ## Completed and merged
 
@@ -36,6 +36,8 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 - [x] Handle case-insensitive conditional column migration checks and add a legacy `Value`/`value` regression test (PR #187, merged; PR checks and post-merge main CI passed).
 - [x] Add regression coverage ensuring tenant catalog initialization rejects a pre-existing catalog schema missing its `firms` foreign key (PR #189, merged; GitHub Actions run 40228763730 passed).
 - [x] Validate existing tenant catalog rows with `PRAGMA foreign_key_check`, failing closed on orphaned firm mappings even when foreign-key enforcement was previously disabled (PR #191, merged; GitHub Actions run 40228904762 passed).
+- [x] Extend the source-only startup DDL inventory recursively across root, control-plane, firm, and shared legal-corpus migration families; assert all 16 migration files are included (PR #209 merged; PR CI run 40232339854 and post-merge main CI run 40232382371 passed).
+- [x] Reject a symlinked tenant catalog database in the read-only tenant database preflight, with regression coverage (PR #210 merged; PR CI run 40232412055 passed; post-merge main CI pending at tracker update time).
 
 ## In progress
 
