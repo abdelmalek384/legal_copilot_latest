@@ -28,7 +28,10 @@ def _calendar_date(value):
 
 def source_status(source, as_of=None):
     """Return a conservative, UI-ready source state based only on recorded fields."""
-    if not isinstance(source, Mapping) or not str(source.get("text") or "").strip():
+    if not isinstance(source, Mapping):
+        return STATUS_METADATA_ONLY
+    passage = source.get("text")
+    if not isinstance(passage, str) or not passage.strip():
         return STATUS_METADATA_ONLY
 
     if as_of is None:
@@ -150,12 +153,15 @@ def research_memo(question, result, scope=None):
                 "(No passage text recorded; source record was malformed.)",
             ])
             continue
+        passage = source.get("text")
+        if not isinstance(passage, str) or not passage.strip():
+            passage = "(No passage text recorded; metadata-only result.)"
         lines.extend([
             "",
             "[%d] %s" % (index, citation_text(source, as_of)),
             "Status: %s" % source_status(source, as_of),
             "Exact passage (verbatim):",
-            str(source.get("text") or "(No passage text recorded; metadata-only result.)"),
+            passage,
         ])
     lines.extend([
         "",
