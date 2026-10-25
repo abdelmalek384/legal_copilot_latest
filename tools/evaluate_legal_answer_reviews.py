@@ -7,6 +7,7 @@ Use synthetic or approved anonymized records only.
 """
 import argparse
 import json
+from datetime import date
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -46,8 +47,17 @@ def validate_review(record):
     for field in ("assessment_id", "case_id", "practice_area", "reviewer_name", "review_date", "disposition"):
         if not isinstance(record.get(field), str) or not record[field].strip():
             errors.append(f"missing or empty {field}")
-    if record.get("disposition") not in DISPOSITIONS:
+    disposition = record.get("disposition")
+    if not isinstance(disposition, str) or disposition not in DISPOSITIONS:
         errors.append("disposition must be one of the documented values")
+    review_date = record.get("review_date")
+    if isinstance(review_date, str) and review_date.strip():
+        try:
+            parsed_review_date = date.fromisoformat(review_date)
+            if parsed_review_date.isoformat() != review_date:
+                raise ValueError("date must use YYYY-MM-DD")
+        except ValueError:
+            errors.append("review_date must be a real calendar date in YYYY-MM-DD format")
 
     scores = record.get("scores")
     rationales = record.get("rationales")
