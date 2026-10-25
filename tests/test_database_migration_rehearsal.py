@@ -46,7 +46,7 @@ class DatabaseMigrationRehearsalTests(unittest.TestCase):
         report = rehearse(self.database, self.migrations)
         self.assertEqual(report["status"], "passed")
         self.assertFalse(report["source_modified"])
-        self.assertEqual(report["migrations_applied"], [1, 2, 3, 4, 5, 6, 7])
+        self.assertEqual(report["migrations_applied"], [1, 2, 3, 4, 5, 6, 7, 8])
         self.assertEqual(report["source_quick_check"], ["ok"])
         self.assertEqual(report["staged_quick_check"], ["ok"])
         self.assertEqual(report["source_foreign_key_violations"], 0)
