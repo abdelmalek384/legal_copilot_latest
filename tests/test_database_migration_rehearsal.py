@@ -15,6 +15,7 @@ class DatabaseMigrationRehearsalTests(unittest.TestCase):
         self.database = self.root / "source.sqlite3"
         with sqlite3.connect(self.database) as db:
             db.executescript("""
+                CREATE TABLE firms(id INTEGER PRIMARY KEY, name TEXT NOT NULL);
                 CREATE TABLE tenant_ownership_quarantine(first_seen TEXT);
                 CREATE TABLE cases(firm_id INTEGER);
                 CREATE TABLE members(user_id INTEGER, case_id INTEGER);
@@ -46,7 +47,7 @@ class DatabaseMigrationRehearsalTests(unittest.TestCase):
         report = rehearse(self.database, self.migrations)
         self.assertEqual(report["status"], "passed")
         self.assertFalse(report["source_modified"])
-        self.assertEqual(report["migrations_applied"], [1, 2, 3, 4, 5, 6, 7, 8])
+        self.assertEqual(report["migrations_applied"], [1, 2, 3, 4, 5, 6, 7, 8, 9])
         self.assertEqual(report["source_quick_check"], ["ok"])
         self.assertEqual(report["staged_quick_check"], ["ok"])
         self.assertEqual(report["source_foreign_key_violations"], 0)
@@ -60,6 +61,7 @@ class DatabaseMigrationRehearsalTests(unittest.TestCase):
                 "auth_sessions", "notes", "fees", "tasks", "events", "sessions", "chunks_fts"
             }.isdisjoint(names))
             self.assertEqual(db.execute("SELECT firm_id FROM cases").fetchone()[0], 1)
+            self.assertIsNone(db.execute("SELECT id FROM firms WHERE id=1").fetchone())
 
     def test_missing_source_fails_closed(self):
         with self.assertRaises(FileNotFoundError):
