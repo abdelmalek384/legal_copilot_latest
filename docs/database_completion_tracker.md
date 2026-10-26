@@ -4,9 +4,11 @@
 **Estimated completion:** 28%  
 **Status:** In progress — not production-ready for confidential multi-firm matter data.
 
-This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. The checklist currently tracks 75 completed tasks and 19 remaining tasks; this count is not a readiness percentage. Update this file as database PRs merge and as acceptance criteria are completed.
+This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. The checklist currently tracks 76 completed tasks and 19 remaining tasks; this count is not a readiness percentage. Update this file as database PRs merge and as acceptance criteria are completed.
 
 ## Completed and merged
+
+- [x] Make the tenant router reject POSIX tenant database files with group/other access and revoke cached connections if file permissions become unsafe (PR #355 merged; CI run 40356138402 passed).
 
 - [x] Fail tenant provisioning when restrictive POSIX permissions cannot be applied to a newly created tenant database; verify failed provisioning cleans up the file and records failure (PR #354 merged; CI run 40355964176 passed).
 
