@@ -81,6 +81,35 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
     def add(code: str, firm_id: int | None, detail: str) -> None:
         findings.append({"code": code, "firm_id": firm_id, "detail": detail})
 
+    def check_sidecars(database_path: Path, firm_id: int | None) -> None:
+        if os.name != "posix":
+            return
+        for suffix in ("-wal", "-shm", "-journal"):
+            sidecar = Path(str(database_path) + suffix)
+            if sidecar.is_symlink():
+                add(
+                    "database_sidecar_symlink",
+                    firm_id,
+                    f"SQLite sidecar {sidecar.name} must not be a symbolic link",
+                )
+                continue
+            if not sidecar.exists():
+                continue
+            try:
+                sidecar_mode = stat.S_IMODE(sidecar.stat().st_mode)
+                if sidecar_mode & 0o077:
+                    add(
+                        "database_sidecar_permissions_too_open",
+                        firm_id,
+                        f"SQLite sidecar {sidecar.name} permissions {sidecar_mode:04o} allow group/other access",
+                    )
+            except OSError:
+                add(
+                    "database_sidecar_permissions_unreadable",
+                    firm_id,
+                    f"SQLite sidecar {sidecar.name} permissions could not be inspected",
+                )
+
     if os.name == "posix":
         try:
             catalog_mode = stat.S_IMODE(resolved_catalog.stat().st_mode)
@@ -92,6 +121,7 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
                 )
         except OSError:
             add("catalog_permissions_unreadable", None, "control-plane catalog file permissions could not be inspected")
+    check_sidecars(resolved_catalog, None)
 
     requested_root = storage_root.expanduser()
     # Check the configured directory entry before resolve(), otherwise a
@@ -267,6 +297,7 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
                     )
             except OSError:
                 add("database_permissions_unreadable", firm_id, "tenant database file permissions could not be inspected")
+        check_sidecars(resolved, firm_id)
         try:
             with closing(_readonly(resolved)) as tenant:
                 tables = {
