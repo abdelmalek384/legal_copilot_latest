@@ -1547,7 +1547,7 @@ def _login_separate(b: LoginIn, request: Request, response: Response):
               (sha(token), account["id"], now + 43200))
     c.commit()
     first_firm = memberships[0]
-    secure = request.url.scheme == "https"
+    secure = _secure_cookie_transport(request)
     response.set_cookie("lc_session", token, max_age=43200, httponly=True, secure=secure, samesite="lax", path="/")
     response.set_cookie("lc_csrf", csrf, max_age=43200, httponly=False, secure=secure, samesite="lax", path="/")
     response.set_cookie("lc_firm", str(first_firm["firm_id"]), max_age=43200, httponly=True, secure=secure, samesite="lax", path="/")
@@ -1632,7 +1632,7 @@ def login(b: LoginIn, request: Request, response: Response):
     c.execute("DELETE FROM auth_sessions WHERE expires<?", (now,))
     c.execute("INSERT INTO auth_sessions VALUES(?,?,?)", (sha(tok), r["id"], now + 43200))
     c.commit()
-    secure = request.url.scheme == "https"
+    secure = _secure_cookie_transport(request)
     response.set_cookie("lc_session", tok, max_age=43200, httponly=True, secure=secure, samesite="lax", path="/")
     response.set_cookie("lc_csrf", csrf, max_age=43200, httponly=False, secure=secure, samesite="lax", path="/")
     return {"id": r["id"], "name": r["name"], "role": r["role"], "firm_id": r["firm_id"]}
@@ -1671,7 +1671,7 @@ def logout(request: Request, response: Response, u: dict = Depends(user)):
     c.commit()
     for cookie in ("lc_session", "lc_csrf", "lc_firm"):
         response.delete_cookie(cookie, path="/", httponly=(cookie != "lc_csrf"),
-                               samesite="lax", secure=request.url.scheme == "https")
+                               samesite="lax", secure=_secure_cookie_transport(request))
     return {"ok": True}
 
 
@@ -1709,7 +1709,7 @@ def change_password(b: PasswordChangeIn, request: Request, response: Response, u
         c.commit()
     for cookie in ("lc_session", "lc_csrf", "lc_firm"):
         response.delete_cookie(cookie, path="/", httponly=(cookie != "lc_csrf"),
-                               samesite="lax", secure=request.url.scheme == "https")
+                               samesite="lax", secure=_secure_cookie_transport(request))
     return {"ok": True, "sessions_revoked": True, "login_required": True}
 
 
