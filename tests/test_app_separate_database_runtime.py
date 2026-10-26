@@ -535,6 +535,53 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         finally:
             read_only.close()
 
+    def test_password_change_revokes_sessions_across_all_firm_memberships(self):
+        first_login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(first_login.status_code, 200, first_login.text)
+        from fastapi.testclient import TestClient
+        other_client = TestClient(app.app)
+        try:
+            second_login = other_client.post(
+                "/login", json={"email": "OWNER@example.test", "password": self.password}
+            )
+            self.assertEqual(second_login.status_code, 200, second_login.text)
+            switch = other_client.post(
+                "/session/firm", json={"firm_id": self.firm_b},
+                headers={"X-CSRF-Token": other_client.cookies.get("lc_csrf") or ""},
+            )
+            self.assertEqual(switch.status_code, 200, switch.text)
+            self.assertEqual(other_client.get("/cases").status_code, 200)
+
+            changed = self._mutate(
+                "post", "/account/password",
+                json={"current_password": self.password,
+                      "new_password": "EvenLongerUniqueTestPassphrase-2026!"},
+            )
+            self.assertEqual(changed.status_code, 200, changed.text)
+            self.assertEqual(other_client.get("/cases").status_code, 401)
+            self.assertEqual(
+                self.runtime.control_connection().execute(
+                    "SELECT COUNT(*) FROM auth_sessions WHERE user_id=?", (self.user_id,)
+                ).fetchone()[0],
+                0,
+            )
+            self.assertEqual(
+                self.runtime.control_connection().execute(
+                    "SELECT status FROM firm_memberships WHERE user_id=? AND firm_id=?",
+                    (self.user_id, self.firm_b),
+                ).fetchone()["status"],
+                "active",
+            )
+            new_login = self.client.post(
+                "/login", json={"email": "OWNER@example.test",
+                                "password": "EvenLongerUniqueTestPassphrase-2026!"},
+            )
+            self.assertEqual(new_login.status_code, 200, new_login.text)
+        finally:
+            other_client.close()
+
     def test_nonmember_cannot_switch_firms_and_revoked_membership_blocks_cached_session(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
