@@ -249,15 +249,18 @@ async function corpusCoverage(){
  shell(title,h('p',{className:'mut',textContent:ar?'هذه مؤشرات لسجلات المصادر والإصدارات، وليست دليلاً على اكتمال القانون المصري.':'These metrics describe registered source/version records; they do not establish complete Egyptian-law coverage.'}));
  const main=$('main');
  const catalogPanel=h('section',{className:'card'});
- const openCatalog=async(kind,query='')=>{
+ const openCatalog=async(kind,query='',filters={})=>{
    const catalogTitle=kind==='sources'?(ar?'سجل المصادر':'Source registry'):kind==='metadata_only_documents'?(ar?'أدوات ببيانات وصفية فقط':'Metadata-only instruments'):(ar?'سجل الأدوات القانونية':'Instrument registry');
    const header=()=>h('div',{className:'row',style:'align-items:center'},h('h3',{textContent:catalogTitle}),btn(ar?'إغلاق':'Close',()=>catalogPanel.remove(),'g'));
-   const searchInput=h('input',{type:'search',value:query,placeholder:ar?'ابحث بالعنوان أو المعرف أو الجهة':'Search title, ID, or authority','aria-label':ar?'ابحث في سجل المصادر والأدوات':'Search source and instrument registry',onkeydown:e=>{if(e.key==='Enter'){e.preventDefault();openCatalog(kind,searchInput.value)}},style:'width:min(100%,420px)'});
-   const searchRow=h('div',{className:'row'},searchInput,btn(ar?'بحث':'Search',()=>openCatalog(kind,searchInput.value),'g'));
+   const searchInput=h('input',{type:'search',value:query,placeholder:ar?'ابحث بالعنوان أو المعرف أو الجهة':'Search title, ID, or authority','aria-label':ar?'ابحث في سجل المصادر والأدوات':'Search source and instrument registry',onkeydown:e=>{if(e.key==='Enter'){e.preventDefault();openCatalog(kind,searchInput.value,filters)}},style:'width:min(100%,420px)'});
+   const searchRow=h('div',{className:'row'},searchInput,btn(ar?'بحث':'Search',()=>openCatalog(kind,searchInput.value,filters),'g'));
    catalogPanel.replaceChildren(header(),searchRow,h('p',{className:'mut',role:'status',textContent:ar?'جارٍ تحميل السجلات…':'Loading registry records…'}));
    if(!main.contains(catalogPanel))main.append(catalogPanel);
    try{
-     const data=await api('/legal-review/catalog?kind='+encodeURIComponent(kind)+'&q='+encodeURIComponent(query));
+     let catalogPath='/legal-review/catalog?kind='+encodeURIComponent(kind)+'&q='+encodeURIComponent(query);
+     if(filters.collection_permission)catalogPath+='&collection_permission='+encodeURIComponent(filters.collection_permission);
+     if(filters.commercial_reuse_permission)catalogPath+='&commercial_reuse_permission='+encodeURIComponent(filters.commercial_reuse_permission);
+     const data=await api(catalogPath);
      const rows=data.items||[];
      const content=rows.map(item=>{
        const title=item.official_title||item.authority||item.source_id||item.document_id||'—';
@@ -342,7 +345,7 @@ async function corpusCoverage(){
  const permissions=h('section',{className:'card'},h('h3',{textContent:ar?'حالة الأذونات':'Permission states'}));
  const permRows=data.sources_by_permission||[];
  if(!permRows.length)permissions.append(h('p',{className:'mut',textContent:ar?'لا توجد مصادر مسجلة بعد.':'No sources registered yet.'}));
- permRows.forEach(r=>permissions.append(h('div',{className:'row'},h('span',{textContent:(r.collection_permission||'unknown')+' / '+(r.commercial_reuse_permission||'unknown')}),pill(String(r.source_count),r.collection_permission==='allowed'&&r.commercial_reuse_permission==='allowed'?'done':'soon'))));
+ permRows.forEach(r=>permissions.append(h('div',{className:'row',role:'button',tabIndex:0,'aria-label':(ar?'عرض المصادر بحالة الإذن ':'View sources with permission state ')+(r.collection_permission||'unknown')+' / '+(r.commercial_reuse_permission||'unknown'),style:'cursor:pointer',onclick:()=>openCatalog('sources','',{collection_permission:r.collection_permission||'unknown',commercial_reuse_permission:r.commercial_reuse_permission||'unknown'}),onkeydown:e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openCatalog('sources','',{collection_permission:r.collection_permission||'unknown',commercial_reuse_permission:r.commercial_reuse_permission||'unknown'})}}},h('span',{textContent:(r.collection_permission||'unknown')+' / '+(r.commercial_reuse_permission||'unknown')}),pill(String(r.source_count),r.collection_permission==='allowed'&&r.commercial_reuse_permission==='allowed'?'done':'soon'))));
  const areas=h('section',{className:'card'},h('h3',{textContent:ar?'التغطية حسب مجال الممارسة':'Coverage by practice area'}));
  const areaRows=data.coverage_by_practice_area||[];
  if(!areaRows.length)areas.append(h('p',{className:'mut',textContent:ar?'لا توجد أدوات قانونية مسجلة بعد.':'No instruments registered yet.'}));
