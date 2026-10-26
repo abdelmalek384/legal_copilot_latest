@@ -172,6 +172,40 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             2,
         )
 
+    def test_case_detail_update_and_delete_are_isolated_between_firms(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate(
+            "post", "/cases", json={"title": "Firm A protected matter"}
+        )
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+
+        context_a = self.runtime.resolve_context(self.user_id, self.firm_a)
+        db_a = self.runtime.firm_connection(context_a)
+        self.assertEqual(
+            db_a.execute("SELECT title FROM cases WHERE id=?", (case_id,)).fetchone()[0],
+            "Firm A protected matter",
+        )
+        switched = self._mutate("post", "/session/firm", json={"firm_id": self.firm_b})
+        self.assertEqual(switched.status_code, 200, switched.text)
+
+        detail = self.client.get(f"/cases/{case_id}")
+        self.assertEqual(detail.status_code, 404, detail.text)
+        update = self._mutate(
+            "patch", f"/cases/{case_id}", json={"stage": "closed"}
+        )
+        self.assertEqual(update.status_code, 404, update.text)
+        deletion = self._mutate("delete", f"/cases/{case_id}")
+        self.assertEqual(deletion.status_code, 404, deletion.text)
+
+        self.assertEqual(
+            db_a.execute("SELECT title FROM cases WHERE id=?", (case_id,)).fetchone()[0],
+            "Firm A protected matter",
+        )
+
     def test_search_and_ask_reject_case_ids_from_another_firm(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
