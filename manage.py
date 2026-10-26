@@ -129,6 +129,64 @@ def init_tenancy(a):
     print("لم يتم منح دور إداري على مستوى المنصة.")
 
 
+def provision_firm_cli(a):
+    """Provision a new firm database through the trusted runtime catalog."""
+    if not app._separate_runtime_enabled():
+        raise SystemExit("Set the three separate database paths before provisioning a firm.")
+    runtime = DatabaseRuntime.from_env()
+    try:
+        firm_id, database_path = runtime.provision_firm(a.name)
+        print(json.dumps({
+            "status": "provisioned",
+            "firm_id": firm_id,
+            "firm_name": a.name.strip(),
+            "database_path": str(database_path),
+            "next_step": "Create a new owner with adduser --firm-id or attach an existing identity with addmembership.",
+        }, ensure_ascii=False, sort_keys=True))
+    except (DatabaseRuntimeError, ValueError, sqlite3.Error) as exc:
+        raise SystemExit("Firm provisioning failed: " + str(exc)) from exc
+    finally:
+        runtime.close_current_thread()
+
+
+def addmembership_cli(a):
+    """Attach an existing active global identity to a provisioned firm."""
+    if not app._separate_runtime_enabled():
+        raise SystemExit("Cross-firm memberships require the separate database architecture.")
+    runtime = DatabaseRuntime.from_env()
+    try:
+        runtime.initialize()
+        normalized = app.normalize_email(a.email)
+        control = runtime.control_connection()
+        identity = control.execute(
+            "SELECT id,name,status FROM users WHERE email_normalized=?", (normalized,)
+        ).fetchone()
+        if identity is None:
+            raise SystemExit("No global identity exists for that normalized email.")
+        if identity["status"] != "active":
+            raise SystemExit("Disabled global identities cannot receive new memberships.")
+        existing = control.execute(
+            "SELECT status FROM firm_memberships WHERE user_id=? AND firm_id=?",
+            (identity["id"], a.firm_id),
+        ).fetchone()
+        if existing is not None:
+            raise SystemExit("Membership already exists; reactivation requires a reviewed workflow.")
+        try:
+            runtime.create_firm_membership(int(identity["id"]), a.firm_id, a.role)
+        except (DatabaseRuntimeError, ValueError, sqlite3.Error) as exc:
+            raise SystemExit("Membership creation failed: " + str(exc)) from exc
+        print(json.dumps({
+            "status": "membership_created",
+            "user_id": int(identity["id"]),
+            "name": identity["name"],
+            "email": normalized,
+            "firm_id": a.firm_id,
+            "role": a.role,
+        }, ensure_ascii=False, sort_keys=True))
+    finally:
+        runtime.close_current_thread()
+
+
 def resetpw(a):
     pw = read_password("كلمة المرور الجديدة: ")
     if app._separate_runtime_enabled():
@@ -287,6 +345,8 @@ p = argparse.ArgumentParser()
 sp = p.add_subparsers(dest="cmd", required=True)
 x = sp.add_parser("adduser"); x.add_argument("name"); x.add_argument("email"); x.add_argument("role", choices=["admin", "lawyer", "junior"]); x.add_argument("--firm-id", type=int); x.set_defaults(f=adduser)
 x = sp.add_parser("init-tenancy"); x.add_argument("--firm-name", required=True); x.add_argument("--owner-name", required=True); x.add_argument("--owner-email", required=True); x.set_defaults(f=init_tenancy)
+x = sp.add_parser("provision-firm"); x.add_argument("name"); x.set_defaults(f=provision_firm_cli)
+x = sp.add_parser("addmembership"); x.add_argument("email"); x.add_argument("--firm-id", type=int, required=True); x.add_argument("--role", choices=["lawyer", "junior"], required=True); x.set_defaults(f=addmembership_cli)
 x = sp.add_parser("resetpw"); x.add_argument("email"); x.set_defaults(f=resetpw)
 sp.add_parser("genkey").set_defaults(f=lambda a: print(Fernet.generate_key().decode()))
 x = sp.add_parser("backup"); x.add_argument("dir"); x.add_argument("--keep", type=int, default=14); x.set_defaults(f=backup)

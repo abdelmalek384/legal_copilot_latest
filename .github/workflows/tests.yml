@@ -64,6 +64,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_tenant_database_preflight.py
       - name: Test tenant catalog provisioning and path safety
         run: PYTHONPATH=. python tests/test_tenant_catalog.py
+      - name: Test tenancy provisioning and membership CLI
+        run: PYTHONPATH=. python tests/test_manage_tenancy_commands.py
       - name: Test tenant ownership and orphan preflight
         run: PYTHONPATH=. python tests/test_tenant_ownership_preflight.py
       - name: Validate legal data registry and evaluation seeds
