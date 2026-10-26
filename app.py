@@ -11,6 +11,7 @@ from db_migrations import apply_migrations
 from database_runtime import DatabaseRuntime, DatabaseRuntimeError
 from tenant_context import FirmContext, FirmContextError
 from fastapi import Request
+from starlette.middleware.trustedhost import TrustedHostMiddleware
 from fastapi.responses import JSONResponse, HTMLResponse, Response
 
 DB = os.environ.get("COPILOT_DB", "copilot.db")
@@ -1077,8 +1078,42 @@ class RequestBodyLimitMiddleware:
         await send({"type": "http.response.body", "body": body})
 
 
+def _trusted_host_patterns(raw):
+    if not isinstance(raw, str) or not raw.strip():
+        return []
+    hosts = [item.strip().lower().rstrip(".") for item in raw.split(",")]
+    if any(not host or host == "*" or "://" in host or any(ch in host for ch in "/@?#") for host in hosts):
+        raise ValueError("COPILOT_ALLOWED_HOSTS must be a comma-separated host allowlist; wildcard-all and URL syntax are forbidden")
+    for host in hosts:
+        candidate = host[2:] if host.startswith("*.") else host
+        if "*" in candidate or not candidate:
+            raise ValueError("COPILOT_ALLOWED_HOSTS only permits a leading *. subdomain wildcard")
+        ip_candidate = candidate[1:-1] if candidate.startswith("[") and candidate.endswith("]") else candidate
+        try:
+            ipaddress.ip_address(ip_candidate)
+            if host.startswith("*."):
+                raise ValueError("IP addresses cannot use subdomain wildcards")
+            continue
+        except ValueError as exc:
+            if "wildcards" in str(exc):
+                raise
+        labels = candidate.split(".")
+        if any(not label or len(label) > 63 or label.startswith("-") or label.endswith("-")
+               or not re.fullmatch(r"[a-z0-9-]+", label) for label in labels):
+            raise ValueError("COPILOT_ALLOWED_HOSTS contains an invalid hostname")
+    return hosts
+
+
+def _install_trusted_host_middleware(target_app, raw):
+    hosts = _trusted_host_patterns(raw)
+    if hosts:
+        target_app.add_middleware(TrustedHostMiddleware, allowed_hosts=hosts)
+    return hosts
+
+
 app = FastAPI(title="Legal Copilot MVP", docs_url=None, redoc_url=None, openapi_url=None)
 app.add_middleware(RequestBodyLimitMiddleware, max_body_bytes=MAX_REQUEST_BODY_BYTES)
+TRUSTED_HOSTS = _install_trusted_host_middleware(app, os.environ.get("COPILOT_ALLOWED_HOSTS", ""))
 
 # Per-process fixed-window limits for expensive or abuse-prone endpoints.
 # Deliberately use the direct peer address; do not trust arbitrary X-Forwarded-For.
