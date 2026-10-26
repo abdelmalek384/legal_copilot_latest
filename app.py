@@ -1825,6 +1825,8 @@ def discover_research_metadata(b: ResearchDiscoveryIn, u: dict = Depends(user)):
         raise HTTPException(422, "invalid as_of date")
     c = conn()
     terms = [x.strip() for x in b.q.split() if x.strip()][:8]
+    if not terms:
+        raise HTTPException(422, "query must contain searchable terms")
     where, params = [], []
     for term in terms:
         like = "%" + term.replace("%", "\\%").replace("_", "\\_") + "%"

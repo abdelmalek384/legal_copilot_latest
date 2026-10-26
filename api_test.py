@@ -415,6 +415,8 @@ assert discovery.json()["found"] is False and discovery.json()["results"] == []
 assert "does not establish" in discovery.json()["message"]
 assert "No source page was scraped or downloaded" in discovery.json()["warning"]
 assert c.post("/research/discover", json={"q":"valid"}, headers=O).status_code == 200
+# Whitespace-only search input must be rejected cleanly rather than generating an empty SQL WHERE clause.
+assert c.post("/research/discover", json={"q":"   "}, headers=L).status_code == 422
 
 # Positive metadata discovery must return catalog fields only, never legal passage text.
 metadata_source_id = "SRC-METADATA-DISCOVERY-TEST"
