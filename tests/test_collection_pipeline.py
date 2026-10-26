@@ -147,6 +147,20 @@ class CollectionPipelineTests(unittest.TestCase):
                     with self.assertRaises(ValueError):
                         collector.persist_metadata(out, bad_id, {"document_id": bad_id})
 
+    def test_source_hostname_rejects_any_non_public_dns_answer(self):
+        public_answer = (2, 1, 6, "", ("8.8.8.8", 443))
+        private_answer = (2, 1, 6, "", ("127.0.0.1", 443))
+        with patch("tools.collect_legal_documents.socket.getaddrinfo", return_value=[public_answer]):
+            self.assertEqual(validate_public_https_url("https://example.gov/law.pdf", {"example.gov"}), "example.gov")
+        with patch("tools.collect_legal_documents.socket.getaddrinfo", return_value=[public_answer, private_answer]):
+            with self.assertRaisesRegex(ValueError, "non-public address"):
+                validate_public_https_url("https://example.gov/law.pdf", {"example.gov"})
+
+    def test_source_hostname_resolution_failure_fails_closed(self):
+        with patch("tools.collect_legal_documents.socket.getaddrinfo", side_effect=OSError("no resolver")):
+            with self.assertRaisesRegex(ValueError, "Cannot resolve source host"):
+                validate_public_https_url("https://example.gov/law.pdf", {"example.gov"})
+
     def test_permission_is_opt_in(self):
         with self.assertRaises(ValueError):
             check_permission({"collection_permission": "unknown"})
