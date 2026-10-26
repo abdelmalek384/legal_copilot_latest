@@ -202,9 +202,9 @@ This is a planning estimate across fresh-install schema/migrations, tenant isola
 - [x] Verify clean-install shared legal-corpus FTS insert/update/delete synchronization and external-content integrity (PR #479 merged; CI run 40381954656 passed).
 - [ ] Conditional future import only: reconcile FTS against authoritative source content if an actual legacy corpus is deliberately introduced for import; migration 0008 itself does not rebuild stale/missing indexes.
 - [x] Reject symlinked source database paths in the read-only FTS preflight before resolution/open, with regression coverage (PR #458 merged; CI run 40376020538 passed).
-- [ ] Document and verify the supported clean first-install path for all three profiles. Remaining application `SCHEMA` bootstrap belongs to the explicitly configured compatibility path; it is not the approved fresh-install path.
-- [ ] Test migration order, idempotency, checksum drift, interrupted migrations, and rollback/restore on representative disposable database copies.
-- [ ] Keep migrations immutable after merge; add new forward migrations for corrections.
+- [x] Document and verify the supported clean first-install path for all three profiles: README quick start configures distinct control-plane, tenant-root, and corpus paths; profile-schema tests initialize all three profiles; separate-runtime startup/restart and routing tests pass (CI run #1436 passed). Remaining application `SCHEMA` bootstrap belongs only to the explicitly configured compatibility path.
+- [x] Test migration order, idempotency, checksum drift, interrupted migrations, and rollback/restore on representative disposable copies (`tests/test_db_migrations.py` and `tests/test_database_migration_rehearsal.py`; CI run #1436 passed).
+- [x] Enforce migration immutability through checksum drift and missing-applied-file rejection; document forward-only corrective migrations (`docs/database_migrations.md`; CI run #1436 passed).
 
 ### 2. Approve identity and tenant contract
 - [ ] Finish operational identity policy for invitations, initial firm-owner bootstrap, platform-role grant/revocation workflow, and session behavior after membership revocation; core decisions on multi-firm membership, global normalized email, and separate role domains are approved.

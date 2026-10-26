@@ -1,6 +1,6 @@
 # Versioned database migrations
 
-**Status:** Initial migration framework; legacy startup DDL is not yet fully converted.
+**Status:** The versioned migration runner is used for the three approved separate-database profiles. Legacy startup DDL remains only in the explicitly configured `COPILOT_DB` compatibility mode, which is not the approved fresh-install path.
 
 ## Workflow
 
