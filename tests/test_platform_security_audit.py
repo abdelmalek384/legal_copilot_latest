@@ -141,6 +141,8 @@ class PlatformSecurityAuditTests(unittest.TestCase):
         self.assertIn("detail", result["items"][0])
         with self.assertRaisesRegex(SystemExit, "between 1 and 500"):
             manage.platform_audit(Namespace(limit=501, event_type=None, firm_id=None, target_user_id=None))
+        with self.assertRaisesRegex(SystemExit, "integer between 1 and 500"):
+            manage.platform_audit(Namespace(limit=True, event_type=None, firm_id=None, target_user_id=None))
 
     def test_platform_security_audit_is_append_only(self):
         control = self.runtime.control_connection()
