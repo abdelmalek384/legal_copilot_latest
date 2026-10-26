@@ -252,6 +252,123 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             0,
         )
 
+    def test_document_extraction_review_routes_are_isolated_across_firms(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+
+        created_case = self._mutate("post", "/cases", json={"title": "Firm A review matter"})
+        self.assertEqual(created_case.status_code, 200, created_case.text)
+        case_id = created_case.json()["id"]
+        uploaded = self._mutate(
+            "post",
+            f"/cases/{case_id}/docs",
+            json={"name": "private-review.txt", "text": "CONFIDENTIAL-REVIEW-SENTINEL " * 12},
+        )
+        self.assertEqual(uploaded.status_code, 200, uploaded.text)
+        document_id = uploaded.json()["document_id"]
+        context_a = self.runtime.resolve_context(self.user_id, self.firm_a)
+        firm_a_db = self.runtime.firm_connection(context_a)
+        chunk = firm_a_db.execute(
+            "SELECT id,text FROM chunks WHERE document_id=? AND case_id=? ORDER BY id LIMIT 1",
+            (document_id, case_id),
+        ).fetchone()
+        self.assertIsNotNone(chunk)
+        chunk_id, original_text = chunk["id"], chunk["text"]
+        import hashlib
+        original_digest = hashlib.sha256(original_text.encode("utf-8")).hexdigest()
+
+        switched = self._mutate("post", "/session/firm", json={"firm_id": self.firm_b})
+        self.assertEqual(switched.status_code, 200, switched.text)
+        for method, url, kwargs in (
+            ("get", f"/cases/{case_id}/docs/{document_id}/reviews", {}),
+            ("get", f"/cases/{case_id}/docs/{document_id}/chunks", {}),
+            ("post", f"/cases/{case_id}/docs/{document_id}/chunks/{chunk_id}/review", {
+                "json": {
+                    "outcome": "corrected",
+                    "corrected_text": "UNAUTHORIZED-CROSS-FIRM-CORRECTION",
+                    "expected_text_sha256": original_digest,
+                },
+            }),
+        ):
+            response = self._mutate(method, url, **kwargs) if method != "get" else self.client.get(url)
+            self.assertEqual(response.status_code, 404, response.text)
+
+        # Denied review requests must not alter the source firm's extracted text.
+        unchanged = firm_a_db.execute(
+            "SELECT text FROM chunks WHERE id=? AND document_id=? AND case_id=?",
+            (chunk_id, document_id, case_id),
+        ).fetchone()
+        self.assertIsNotNone(unchanged)
+        self.assertEqual(unchanged["text"], original_text)
+        self.assertEqual(
+            firm_a_db.execute(
+                "SELECT COUNT(*) FROM document_extraction_reviews WHERE chunk_id=?",
+                (chunk_id,),
+            ).fetchone()[0],
+            0,
+        )
+
+    def test_research_conversations_are_isolated_across_firms(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+
+        created = self._mutate("post", "/research/conversations")
+        self.assertEqual(created.status_code, 200, created.text)
+        conversation_id = created.json()["id"]
+        context_a = self.runtime.resolve_context(self.user_id, self.firm_a)
+        firm_a_db = self.runtime.firm_connection(context_a)
+        self.assertEqual(
+            firm_a_db.execute(
+                "SELECT COUNT(*) FROM research_conversations WHERE id=? AND firm_id=? AND user_id=?",
+                (conversation_id, self.firm_a, self.user_id),
+            ).fetchone()[0],
+            1,
+        )
+
+        switched = self._mutate("post", "/session/firm", json={"firm_id": self.firm_b})
+        self.assertEqual(switched.status_code, 200, switched.text)
+        self.assertEqual(self.client.get("/research/conversations").json(), [])
+
+        detail = self.client.get(f"/research/conversations/{conversation_id}")
+        self.assertEqual(detail.status_code, 404, detail.text)
+        rename = self._mutate(
+            "patch", f"/research/conversations/{conversation_id}",
+            json={"title": "Unauthorized cross-firm rename"},
+        )
+        self.assertEqual(rename.status_code, 404, rename.text)
+        send_message = self._mutate(
+            "post", f"/research/conversations/{conversation_id}/messages",
+            json={"message": "CONFIDENTIAL-RESEARCH-SENTINEL", "scope": "verified_corpus"},
+        )
+        self.assertEqual(send_message.status_code, 404, send_message.text)
+        save_to_matter = self._mutate(
+            "post", f"/research/conversations/{conversation_id}/save-to-matter",
+            json={"case_id": 1, "message_id": 1},
+        )
+        self.assertEqual(save_to_matter.status_code, 404, save_to_matter.text)
+        delete = self._mutate("delete", f"/research/conversations/{conversation_id}")
+        self.assertEqual(delete.status_code, 404, delete.text)
+
+        # Attempts in Firm B must not mutate or delete Firm A's conversation.
+        self.assertEqual(
+            firm_a_db.execute(
+                "SELECT COUNT(*) FROM research_conversations WHERE id=? AND firm_id=?",
+                (conversation_id, self.firm_a),
+            ).fetchone()[0],
+            1,
+        )
+        self.assertEqual(
+            firm_a_db.execute(
+                "SELECT COUNT(*) FROM research_messages WHERE conversation_id=?",
+                (conversation_id,),
+            ).fetchone()[0],
+            0,
+        )
+
     def test_login_firm_switch_and_shared_corpus_are_separated(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}

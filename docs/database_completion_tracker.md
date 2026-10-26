@@ -1,7 +1,7 @@
 # Database completion tracker
 
 **Last updated:** 2026-10-26  
-**Estimated completion:** 46%  
+**Estimated completion:** 47%  
 **Status:** In progress — not production-ready for confidential multi-firm matter data.
 
 This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. This is a weighted engineering estimate, not a test-pass percentage or a count of commits. The separate-database runtime and encrypted backup/restore are now merged, but legacy-data reconciliation, exhaustive route coverage, schema-migration completion, and recovery/rollback drills remain release blockers.
@@ -14,6 +14,8 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 - [x] Verify FTS5 external-content index integrity on a disposable copy so stale inverted indexes are detected without modifying the source database (PR #388 merged; CI passed).
 - [x] Extend migration rehearsal to hash rows in shared source/staged columns and flag same-count row rewrites or deletions for review while allowing append-only inserts; source remains unchanged (PR #430 merged; CI run 40372094006 passed).
 - [x] Add runtime regression coverage for denying non-member firm switches and revoking access after membership revocation even when a tenant connection is cached (PR #390 merged; CI passed).
+- [x] Extend separate-runtime integration tests to deny cross-firm listing, reading, renaming, messaging, saving, and deleting of research conversations while preserving the source firm's record (PR #435 merged; CI run 40372780977 passed). This covers the research-conversation route family only; other route families remain under audit.
+- [x] Add cross-firm document-extraction review tests covering review listing, extracted chunk reads, correction attempts, and preservation of the source firm's extracted text (PR #437 merged; CI passed). Other document and export routes remain under audit.
 
 - [x] Extend tenant preflight to audit POSIX SQLite WAL/SHM/journal sidecars, and refuse to open a catalog or tenant database when a sidecar is symlinked or has unsafe permissions (PR #362 merged; CI run 40357742798 passed).
 - [x] Extend the tenant router to reject symlinked or overly permissive SQLite sidecars and revoke cached connections when sidecars become unsafe (PR #363 merged; CI run 40357383129 passed).
@@ -177,7 +179,7 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 - [x] Add explicit three-path configuration and a fail-closed deployment preflight for the separate runtime (PR #384 merged; CI passed). Legacy `COPILOT_DB` compatibility remains available only when explicitly configured and is not approved for unrelated firms' confidential matters.
 - [x] Define separate firm and corpus schema profiles and initialize separate databases.
 - [ ] Complete reconciliation/classification of legacy mixed `chunks`/FTS records before any legacy cutover.
-- [ ] Complete lifecycle acceptance for provisioning retries/reconciliation, disabled tenants, unknown catalog entries, unavailable tenant databases, and revoked memberships across all API/background paths. PRs #407, #408, #410, #413, #419, #420, #422, and #425 cover selected onboarding, failure-cleanup, membership, disable, attached-storage validation, and cached-connection revocation paths; this is not exhaustive lifecycle coverage.
+- [ ] Complete lifecycle acceptance for provisioning retries/reconciliation, disabled tenants, unknown catalog entries, unavailable tenant databases, and revoked memberships across all API/background paths. PRs #407, #408, #410, #413, #419, #420, #422, and #425 cover selected onboarding, failure-cleanup, membership, disable, storage-revalidation, and cached-connection revocation paths; this is not exhaustive lifecycle coverage.
 
 ### 4. Reconcile existing data safely
 - [ ] Run read-only ownership preflight against a protected production-like copy and retain its report.
