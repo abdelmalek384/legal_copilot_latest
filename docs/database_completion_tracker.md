@@ -12,6 +12,7 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 - [x] Add encrypted multi-database backup/restore bundles for the control plane, shared corpus, and every cataloged firm database; validate profiles, firm bindings, SQLite integrity, catalog consistency, and manifest checksums; restore only to a new destination (PR #382 merged; CI passed).
 - [x] Update deployment preflight for the three separate-database paths, rejecting partial configuration, unsafe path overlap, symlinks, and unsafe POSIX storage permissions without creating databases (PR #384 merged; CI passed).
 - [x] Verify FTS5 external-content index integrity on a disposable copy so stale inverted indexes are detected without modifying the source database (PR #388 merged; CI passed).
+- [x] Extend migration rehearsal to hash rows in shared source/staged columns and flag same-count row rewrites or deletions for review while allowing append-only inserts; source remains unchanged (PR #430 merged; CI run 40372094006 passed).
 - [x] Add runtime regression coverage for denying non-member firm switches and revoking access after membership revocation even when a tenant connection is cached (PR #390 merged; CI passed).
 
 - [x] Extend tenant preflight to audit POSIX SQLite WAL/SHM/journal sidecars, and refuse to open a catalog or tenant database when a sidecar is symlinked or has unsafe permissions (PR #362 merged; CI run 40357742798 passed).
@@ -36,10 +37,10 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 - [x] Reject CLI user creation when the target firm is missing or inactive, atomically preventing orphaned global identities (PR #413 merged; CI passed).
 - [x] Create new control-plane and shared-corpus database files with restrictive POSIX permissions and clean up incomplete newly created files if permissions cannot be enforced (PR #415 merged; CI passed).
 - [x] Revalidate control-plane/corpus file permissions and SQLite sidecars before direct connection use, revoking unsafe cached direct connections (PR #418 merged; CI passed).
+- [x] Revalidate attached control-plane and corpus storage on every firm request, including when tenant connections are cached (PR #420 merged; CI passed).
+- [x] Revoke the current thread's cached firm connection immediately when membership, firm lifecycle, or role validation fails (PR #422 merged; CI passed).
 - [x] Add a non-destructive `disable-firm` operator command that atomically disables the firm and its catalog mapping without deleting data; no re-enable path is provided (PR #419 merged; CI passed).
 - [x] Serialize `/users` and `/memberships` writes with an immediate control-plane transaction and recheck active firm state before creating identities or memberships, preventing lifecycle races (PR #425 merged; CI passed).
-- [x] Revalidate the control-plane and shared-corpus database files and sidecars on every firm request, including cached tenant connections, before attaching those profiles (PR #420 merged; CI passed).
-- [x] Close the current thread's cached firm connection immediately when membership or firm lifecycle authorization is lost, including stale role contexts (PR #422 merged; CI passed).
 - [x] Add regression coverage that `deployment_preflight.py --strict` fails while the shared-database multi-firm safety warning remains, without creating a database file (PR #341 merged; CI run 40354404426 passed).
 
 - [x] Refuse to provision a tenant when pre-existing firm-binding trigger names conceal ineffective update/delete guards; validate the guards before marking the tenant provisioned (PR #340 merged; CI run 40354238518 passed).
@@ -176,7 +177,7 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 - [x] Add explicit three-path configuration and a fail-closed deployment preflight for the separate runtime (PR #384 merged; CI passed). Legacy `COPILOT_DB` compatibility remains available only when explicitly configured and is not approved for unrelated firms' confidential matters.
 - [x] Define separate firm and corpus schema profiles and initialize separate databases.
 - [ ] Complete reconciliation/classification of legacy mixed `chunks`/FTS records before any legacy cutover.
-- [ ] Complete lifecycle acceptance for provisioning retries/reconciliation, disabled tenants, unknown catalog entries, unavailable tenant databases, and revoked memberships across all API/background paths. PRs #407, #408, #410, #413, #419, #420, #422, and #425 cover selected onboarding, failure-cleanup, membership, disable, storage-revalidation, and cached-connection revocation paths; this is not exhaustive lifecycle coverage.
+- [ ] Complete lifecycle acceptance for provisioning retries/reconciliation, disabled tenants, unknown catalog entries, unavailable tenant databases, and revoked memberships across all API/background paths. PRs #407, #408, #410, #413, #419, #420, #422, and #425 cover selected onboarding, failure-cleanup, membership, disable, attached-storage validation, and cached-connection revocation paths; this is not exhaustive lifecycle coverage.
 
 ### 4. Reconcile existing data safely
 - [ ] Run read-only ownership preflight against a protected production-like copy and retain its report.
