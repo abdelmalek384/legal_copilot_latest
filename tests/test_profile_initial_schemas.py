@@ -20,6 +20,24 @@ class ProfileInitialSchemaTests(unittest.TestCase):
         self.assertEqual(db.execute("PRAGMA foreign_key_check").fetchall(), [])
         return db
 
+    def test_firm_binding_schema_is_migration_managed_and_immutable(self):
+        db = self.build("firm")
+        self.assertIn(
+            "tenant_database_binding",
+            {row[0] for row in db.execute(
+                "SELECT name FROM sqlite_master WHERE type='table'"
+            )},
+        )
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "binding is immutable"):
+            db.execute("UPDATE tenant_database_binding SET firm_id=8 WHERE singleton=1")
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "binding is immutable"):
+            db.execute("DELETE FROM tenant_database_binding WHERE singleton=1")
+        self.assertEqual(
+            db.execute("SELECT firm_id FROM tenant_database_binding WHERE singleton=1").fetchone()[0],
+            7,
+        )
+        db.close()
+
     def test_profiles_have_disjoint_ownership_tables(self):
         control, firm, corpus = (self.build(p) for p in ("control_plane","firm","legal_corpus"))
         names = lambda db: {r[0] for r in db.execute("SELECT name FROM sqlite_master WHERE type='table'")}
