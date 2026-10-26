@@ -12,7 +12,7 @@ from pathlib import Path
 from cryptography.fernet import Fernet
 import app
 from database_runtime import DatabaseRuntime, DatabaseRuntimeError
-from database_backup import DatabaseBundleError, create_backup_bundle, restore_backup_bundle
+from database_backup import DatabaseBundleError, create_backup_bundle, restore_backup_bundle, verify_backup_bundle
 
 
 def _backup_fernet():
@@ -330,6 +330,15 @@ def backup_tenancy(a):
     print("The application must remain quiesced for the entire snapshot window.")
 
 
+def verify_tenancy_backup(a):
+    """Verify an encrypted tenancy bundle without changing configured database paths."""
+    try:
+        report = verify_backup_bundle(a.file, _backup_fernet())
+    except (DatabaseBundleError, ValueError, OSError) as exc:
+        raise SystemExit("Backup verification failed: " + str(exc)) from exc
+    print(json.dumps(report, ensure_ascii=False, sort_keys=True))
+
+
 def restore_tenancy(a):
     try:
         restored = restore_backup_bundle(a.file, _backup_fernet(), a.target_root)
@@ -378,6 +387,7 @@ sp.add_parser("genkey").set_defaults(f=lambda a: print(Fernet.generate_key().dec
 x = sp.add_parser("backup"); x.add_argument("dir"); x.add_argument("--keep", type=int, default=14); x.set_defaults(f=backup)
 x = sp.add_parser("backup-tenancy"); x.add_argument("dir"); x.add_argument("--keep", type=int, default=14); x.add_argument("--quiesced", action="store_true", help="Assert application writes are paused for the full bundle snapshot"); x.set_defaults(f=backup_tenancy)
 x = sp.add_parser("restore-tenancy"); x.add_argument("file"); x.add_argument("--target-root", required=True); x.set_defaults(f=restore_tenancy)
+x = sp.add_parser("verify-backup-tenancy", help="Verify an encrypted tenancy bundle using temporary protected storage"); x.add_argument("file"); x.set_defaults(f=verify_tenancy_backup)
 x = sp.add_parser("importlaws"); x.add_argument("file"); x.set_defaults(f=importlaws)
 x = sp.add_parser("restore"); x.add_argument("file"); x.add_argument("out"); x.set_defaults(f=restore)
 a = p.parse_args(); a.f(a)
