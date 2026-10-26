@@ -33,6 +33,39 @@ def valid_llm_endpoint(value):
         return False
 
 
+def valid_trusted_hosts(value):
+    """Validate explicit hostnames/IPs and optional subdomain wildcards."""
+    if not isinstance(value, str) or not value.strip():
+        return False
+    label_pattern = __import__("re").compile(r"^[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?$")
+    for raw in value.split(","):
+        host = raw.strip().lower()
+        if not host or host == "*" or "://" in host or "/" in host or "@" in host:
+            return False
+        wildcard = host.startswith("*.")
+        candidate = host[2:] if wildcard else host
+        if "*" in candidate or not candidate:
+            return False
+        if candidate.startswith("[") and candidate.endswith("]"):
+            try:
+                ipaddress.IPv6Address(candidate[1:-1])
+            except ValueError:
+                return False
+            if wildcard:
+                return False
+            continue
+        try:
+            ipaddress.ip_address(candidate)
+        except ValueError:
+            labels = candidate.split(".")
+            if not labels or any(not label_pattern.fullmatch(label) for label in labels):
+                return False
+        else:
+            if wildcard:
+                return False
+    return True
+
+
 def inspect_environment(env=None):
     env = os.environ if env is None else env
     errors, warnings, passed = [], [], []
@@ -48,6 +81,15 @@ def inspect_environment(env=None):
         errors.append("ADMIN_TOKEN must be a non-placeholder secret of at least 32 characters.")
     else:
         passed.append("ADMIN_TOKEN is present and meets the basic length/placeholder check.")
+
+    allowed_hosts = env.get("COPILOT_ALLOWED_HOSTS", "").strip()
+    if allowed_hosts:
+        if valid_trusted_hosts(allowed_hosts):
+            passed.append("COPILOT_ALLOWED_HOSTS contains valid explicit host patterns.")
+        else:
+            errors.append("COPILOT_ALLOWED_HOSTS must be a comma-separated list of explicit hostnames or IP addresses, not URLs or wildcard-all.")
+    else:
+        warnings.append("COPILOT_ALLOWED_HOSTS is unset; Host-header allowlisting is disabled.")
 
     if env.get("COPILOT_SECURE_COOKIES", "").strip() == "1":
         passed.append("Secure cookies and HSTS are explicitly enabled for HTTPS/proxy deployment.")
