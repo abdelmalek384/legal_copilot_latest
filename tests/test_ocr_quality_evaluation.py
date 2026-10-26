@@ -34,6 +34,8 @@ class OCRQualityEvaluationTests(unittest.TestCase):
             {"id": "B", "document_id": "DOC", "page": 2, "reference_text": "نص آخر", "ocr_text": "نص آخر"},
         ])
         self.assertGreater(report["overall"]["raw_wer"]["error_rate"], 0)
+        self.assertEqual(report["pages"][0]["raw_wer"]["edits"], 1)
+        self.assertEqual(report["pages"][0]["raw_wer"]["reference_units"], 3)
         self.assertEqual(report["by_document"]["DOC"]["pages_scored"], 2)
         self.assertEqual(report["rows_scored"], 2)
 
