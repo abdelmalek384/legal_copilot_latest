@@ -10,6 +10,14 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("id:'main',tabIndex:-1", HTML)
         self.assertIn("aria-label':navLabel('التنقل الرئيسي','Primary navigation')", HTML)
 
+    def test_local_browser_reminders_are_opt_in_and_privacy_preserving(self):
+        self.assertIn("Enable reminders", HTML)
+        self.assertIn("Notification.requestPermission()", HTML)
+        self.assertIn("lc_local_reminder_sent_", HTML)
+        self.assertIn("They do not run after the browser closes", HTML)
+        self.assertIn("notifications never include case names", HTML)
+        self.assertIn("15*60*1000", HTML)
+
     def test_admin_audit_export_entrypoint_is_present(self):
         self.assertIn("/audit/security-events.csv", HTML)
         self.assertIn("Download security audit CSV", HTML)
