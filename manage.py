@@ -11,7 +11,8 @@ from pathlib import Path
 
 from cryptography.fernet import Fernet
 import app
-from database_runtime import DatabaseRuntime
+from database_runtime import DatabaseRuntime, DatabaseRuntimeError
+from database_backup import DatabaseBundleError, create_backup_bundle, restore_backup_bundle
 
 
 def _backup_fernet():
@@ -232,6 +233,32 @@ def importlaws(a):
     print("imported", sum(app.import_law(app.conn(), rows[i:i + 500]) for i in range(0, len(rows), 500)))
 
 
+def backup_tenancy(a):
+    if not app._separate_runtime_enabled():
+        raise SystemExit("Set the three separate database paths before creating a tenancy bundle.")
+    try:
+        runtime = DatabaseRuntime.from_env()
+        path = create_backup_bundle(
+            runtime, _backup_fernet(), a.dir, keep=a.keep, quiesced=a.quiesced
+        )
+    except (DatabaseBundleError, DatabaseRuntimeError, ValueError) as exc:
+        raise SystemExit(str(exc)) from exc
+    print("Encrypted database bundle created:", path)
+    print("The application must remain quiesced for the entire snapshot window.")
+
+
+def restore_tenancy(a):
+    try:
+        restored = restore_backup_bundle(a.file, _backup_fernet(), a.target_root)
+    except DatabaseBundleError as exc:
+        raise SystemExit(str(exc)) from exc
+    print("Verified bundle restored to a new directory.")
+    print("COPILOT_CONTROL_DB=" + str(restored["control_plane"]))
+    print("COPILOT_TENANT_DB_ROOT=" + str(restored["tenant_root"]))
+    print("COPILOT_CORPUS_DB=" + str(restored["legal_corpus"]))
+    print("Review the restored databases and rehearse application startup before switching paths.")
+
+
 def restore(a):
     if app._separate_runtime_enabled():
         raise SystemExit("Refusing single-file restore in separate-database mode. A verified multi-database restore bundle is required.")
@@ -263,6 +290,8 @@ x = sp.add_parser("init-tenancy"); x.add_argument("--firm-name", required=True);
 x = sp.add_parser("resetpw"); x.add_argument("email"); x.set_defaults(f=resetpw)
 sp.add_parser("genkey").set_defaults(f=lambda a: print(Fernet.generate_key().decode()))
 x = sp.add_parser("backup"); x.add_argument("dir"); x.add_argument("--keep", type=int, default=14); x.set_defaults(f=backup)
+x = sp.add_parser("backup-tenancy"); x.add_argument("dir"); x.add_argument("--keep", type=int, default=14); x.add_argument("--quiesced", action="store_true", help="Assert application writes are paused for the full bundle snapshot"); x.set_defaults(f=backup_tenancy)
+x = sp.add_parser("restore-tenancy"); x.add_argument("file"); x.add_argument("--target-root", required=True); x.set_defaults(f=restore_tenancy)
 x = sp.add_parser("importlaws"); x.add_argument("file"); x.set_defaults(f=importlaws)
 x = sp.add_parser("restore"); x.add_argument("file"); x.add_argument("out"); x.set_defaults(f=restore)
 a = p.parse_args(); a.f(a)
