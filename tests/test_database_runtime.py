@@ -331,6 +331,29 @@ class DatabaseRuntimeTests(unittest.TestCase):
         with self.assertRaises(sqlite3.ProgrammingError):
             cached.execute("SELECT 1")
 
+    def test_disabling_global_identity_closes_cached_firm_connection(self):
+        user_id = self._identity("disabled-global-identity@example.test")
+        firm_id, database_path = self.runtime.provision_firm("Disabled Global Identity")
+        self.runtime.create_firm_membership(user_id, firm_id, "admin")
+        context = self.runtime.resolve_context(user_id, firm_id)
+        cached = self.runtime.firm_connection(context)
+        control = self.runtime.control_connection()
+        control.execute("UPDATE users SET status='disabled' WHERE id=?", (user_id,))
+        control.commit()
+
+        with self.assertRaises(FirmContextError):
+            self.runtime.firm_connection(context)
+        with self.assertRaises(sqlite3.ProgrammingError):
+            cached.execute("SELECT 1")
+        self.assertTrue(database_path.is_file(), "disabling an identity must not delete firm data")
+        self.assertEqual(
+            control.execute(
+                "SELECT status FROM firm_memberships WHERE user_id=? AND firm_id=?",
+                (user_id, firm_id),
+            ).fetchone()[0],
+            "active",
+        )
+
     def test_disabling_firm_closes_cached_firm_connection(self):
         user_id = self._identity()
         firm_id, database_path = self.runtime.provision_firm("Disable Cached Connection")
