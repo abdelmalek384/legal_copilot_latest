@@ -741,6 +741,182 @@
       "language": "ar",
       "candidate_status": "discovery_only",
       "notes": "Official tax authority index lists this decision under the 2026 tax-dispute renewal. Verify issuing authority, official publication, application process and deadlines."
+    },
+    {
+      "document_id": "EG-PERSONAL-STATUS-PROCEDURE-1-2000",
+      "official_title": "قانون تنظيم بعض أوضاع وإجراءات التقاضي في مسائل الأحوال الشخصية — القانون رقم 1 لسنة 2000",
+      "document_type": "personal_status_procedure_law",
+      "law_number": "1",
+      "law_year": 2000,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Candidate metadata only. Confirm Gazette title, publication, amendments, current text, and khula procedure against the Official Gazette and lawyer review before use."
+    },
+    {
+      "document_id": "EG-FAMILY-COURTS-10-2004",
+      "official_title": "قانون إنشاء محاكم الأسرة — القانون رقم 10 لسنة 2004",
+      "document_type": "court_organization_law",
+      "law_number": "10",
+      "law_year": 2004,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Candidate metadata only. Confirm Gazette text, amendments, commencement, and current procedural effect before use."
+    },
+    {
+      "document_id": "EG-FAMILY-INSURANCE-FUND-11-2004",
+      "official_title": "قانون إنشاء صندوق تأمين الأسرة — القانون رقم 11 لسنة 2004",
+      "document_type": "personal_status_support_law",
+      "law_number": "11",
+      "law_year": 2004,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Candidate metadata only. Confirm Gazette text, amendments, implementing rules, and current status before use."
+    },
+    {
+      "document_id": "EG-PERSONAL-STATUS-AMENDMENT-4-2005",
+      "official_title": "قانون رقم 4 لسنة 2005 بتعديل بعض أحكام قوانين الأحوال الشخصية (الحضانة)",
+      "document_type": "personal_status_law",
+      "law_number": "4",
+      "law_year": 2005,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Candidate metadata only. Confirm exact title, scope, article references, amendments, and current effect against the Official Gazette."
+    },
+    {
+      "document_id": "EG-RENT-164-2025",
+      "official_title": "قانون رقم 164 لسنة 2025 بشأن بعض الأحكام المتعلقة بقوانين إيجار الأماكن وإعادة تنظيم العلاقة بين المؤجر والمستأجر",
+      "document_type": "rent_law",
+      "law_number": "164",
+      "law_year": 2025,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Candidate metadata only. High-priority time-sensitive candidate. Verify Gazette text, publication and commencement dates, transition periods, rent adjustments, implementing decisions, and amendments; do not infer current effect from secondary reporting."
+    },
+    {
+      "document_id": "EG-RENT-49-1977",
+      "official_title": "قانون تأجير وبيع الأماكن وتنظيم العلاقة بين المؤجر والمستأجر — القانون رقم 49 لسنة 1977",
+      "document_type": "rent_law",
+      "law_number": "49",
+      "law_year": 1977,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Candidate metadata only. Historical/transitional rent-law candidate. Verify amendments, constitutional rulings, repeal and transition provisions against primary sources; do not treat as simply in force or repealed without date-specific review."
+    },
+    {
+      "document_id": "EG-RENT-136-1981",
+      "official_title": "قانون بعض الأحكام الخاصة بتأجير وبيع الأماكن وتنظيم العلاقة بين المؤجر والمستأجر — القانون رقم 136 لسنة 1981",
+      "document_type": "rent_law",
+      "law_number": "136",
+      "law_year": 1981,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Candidate metadata only. Historical/transitional rent-law candidate. Verify amendments, constitutional rulings, repeal and transition provisions against primary sources and counsel review."
+    },
+    {
+      "document_id": "EG-RENT-4-1996",
+      "official_title": "القانون رقم 4 لسنة 1996 بشأن سريان أحكام القانون المدني على الأماكن التي لم يسبق تأجيرها والأماكن التي انتهت عقود إيجارها",
+      "document_type": "rent_law",
+      "law_number": "4",
+      "law_year": 1996,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Candidate metadata only. Verify Gazette text, scope, amendments, and interaction with later rent reforms before use."
+    },
+    {
+      "document_id": "EG-SOCIAL-INSURANCE-148-2019",
+      "official_title": "قانون التأمينات الاجتماعية والمعاشات — القانون رقم 148 لسنة 2019",
+      "document_type": "social_insurance_law",
+      "law_number": "148",
+      "law_year": 2019,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Candidate metadata only. Verify Official Gazette text, executive regulations, amendments, and date-specific applicability."
+    },
+    {
+      "document_id": "EG-JUDICIAL-AUTHORITY-46-1972",
+      "official_title": "قانون السلطة القضائية — القانون رقم 46 لسنة 1972",
+      "document_type": "court_organization_law",
+      "law_number": "46",
+      "law_year": 1972,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Candidate metadata only. Verify Gazette text, amendments, and current status before use."
+    },
+    {
+      "document_id": "EG-CASSATION-PROCEDURE-57-1959",
+      "official_title": "قانون في شأن حالات وإجراءات الطعن أمام محكمة النقض — القانون رقم 57 لسنة 1959",
+      "document_type": "procedural_law",
+      "law_number": "57",
+      "law_year": 1959,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Candidate metadata only. High-value procedural candidate. Verify amendments, applicable deadlines, transitional rules, and current text against primary sources before use."
+    },
+    {
+      "document_id": "EG-LAWYERS-17-1983",
+      "official_title": "قانون المحاماة — القانون رقم 17 لسنة 1983",
+      "document_type": "legal_profession_law",
+      "law_number": "17",
+      "law_year": 1983,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Candidate metadata only. Verify Gazette text, amendments, professional duties, and current status before use."
+    },
+    {
+      "document_id": "EG-LABOUR-12-2003",
+      "official_title": "قانون العمل — القانون رقم 12 لسنة 2003 (نسخة تاريخية)",
+      "document_type": "labour_law_historical",
+      "law_number": "12",
+      "law_year": 2003,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Candidate metadata only. Historical-version candidate. Verify repeal/commencement provisions and transitional rules of Law 14/2025 against the Official Gazette; determine applicable law by event date."
+    },
+    {
+      "document_id": "EG-WORKERS-RIGHTS-PRIORITY-125-2010",
+      "official_title": "القانون رقم 125 لسنة 2010 بشأن أولوية حقوق العمال (مرشح تاريخي)",
+      "document_type": "labour_law_historical",
+      "law_number": "125",
+      "law_year": 2010,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Candidate metadata only. Confirm exact title, Gazette publication, repeal status, and transitional treatment against primary sources before use."
+    },
+    {
+      "document_id": "EG-COMPULSORY-VEHICLE-INSURANCE-72-2007",
+      "official_title": "قانون التأمين الإجباري عن المسئولية المدنية الناشئة عن حوادث المركبات — القانون رقم 72 لسنة 2007",
+      "document_type": "insurance_law",
+      "law_number": "72",
+      "law_year": 2007,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Candidate metadata only. Verify Gazette text, amendments, executive rules, and date-specific applicability to motor-vehicle accident claims."
+    },
+    {
+      "document_id": "EG-TRAFFIC-66-1973",
+      "official_title": "قانون المرور — القانون رقم 66 لسنة 1973",
+      "document_type": "traffic_law",
+      "law_number": "66",
+      "law_year": 1973,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Candidate metadata only. Verify Gazette text, amendments, and current status before use."
     }
   ]
 }
