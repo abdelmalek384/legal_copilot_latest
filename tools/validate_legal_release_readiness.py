@@ -53,6 +53,14 @@ def https_host(value: object) -> str | None:
         return None
 
 
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
 def add(blockers: list[dict], code: str, detail: str) -> None:
     blockers.append({"code": code, "detail": detail})
 
@@ -129,7 +137,7 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
     if not valid_date(source.get("terms_checked_on")):
         add(blockers, "candidate_terms_date_invalid", "Candidate source needs a valid, non-future terms_checked_on date.")
 
-    scope = candidate.get("permission_scope_review")
+    scope = document.get("permission_scope_review")
     if not isinstance(scope, dict) or scope.get("status") != "passed":
         add(blockers, "document_scope_review_not_passed", "Document-level permission scope review must be passed.")
     else:
@@ -146,8 +154,11 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
 
     if version.get("review_status") != "verified":
         add(blockers, "version_not_verified", "Version review_status must be verified.")
-    if version.get("legal_status") != "in_force":
-        add(blockers, "legal_status_not_in_force", "Only a reviewed in-force version can pass this release gate.")
+    if version.get("legal_status") not in {
+        "in_force", "partially_repealed", "repealed", "historical", "not_yet_in_force"
+    }:
+        add(blockers, "legal_status_unverified",
+            "Version needs a recognized, reviewed legal status; unknown/under_review cannot pass.")
     for field in ("authenticity_verified", "status_verified", "amendment_history_verified"):
         if version.get(field) not in (1, True):
             add(blockers, f"{field}_false", f"Version field {field} must be explicitly true.")
@@ -177,7 +188,7 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
         else:
             if not candidate_path.is_file():
                 add(blockers, "original_file_not_found", "Recorded original file does not exist.")
-            elif hashlib.sha256(candidate_path.read_bytes()).hexdigest().lower() != original_hash.lower():
+            elif sha256_file(candidate_path).lower() != original_hash.lower():
                 add(blockers, "original_hash_mismatch", "Recorded SHA-256 does not match the original file bytes.")
 
     review_by_type: dict[str, list[dict]] = {}
