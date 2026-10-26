@@ -120,6 +120,33 @@ class CollectionPipelineTests(unittest.TestCase):
                 collector.persist_metadata(out, "TEST-LAW", {"document_id": "TEST-LAW"})
             self.assertEqual(target.read_text(encoding="utf-8"), '{"sentinel":"untouched"}')
 
+    def test_collector_refuses_symlinked_storage_roots(self):
+        metadata = {"document_id": "TEST-LAW", "retrieved_at": "2026-10-26T18:00:00+00:00", "sha256": "a" * 64}
+        with tempfile.TemporaryDirectory() as td:
+            out = Path(td)
+            outside = out / "outside"
+            outside.mkdir()
+            meta_dir = out / "metadata"
+            meta_dir.mkdir()
+            (meta_dir / "history").symlink_to(outside, target_is_directory=True)
+            with self.assertRaises(ValueError):
+                collector.persist_metadata(out, "TEST-LAW", metadata)
+            (out / "metadata" / "history").unlink()
+            (out / "originals").symlink_to(outside, target_is_directory=True)
+            with self.assertRaises(ValueError):
+                collector.store_original(out, "TEST-LAW", ".pdf", b"%PDF-safe")
+            self.assertEqual(list(outside.iterdir()), [])
+
+    def test_storage_helpers_reject_unsafe_document_ids(self):
+        with tempfile.TemporaryDirectory() as td:
+            out = Path(td)
+            for bad_id in ("../escape", ".hidden", "has/slash", "x" * 129):
+                with self.subTest(document_id=bad_id):
+                    with self.assertRaises(ValueError):
+                        collector.store_original(out, bad_id, ".pdf", b"%PDF-safe")
+                    with self.assertRaises(ValueError):
+                        collector.persist_metadata(out, bad_id, {"document_id": bad_id})
+
     def test_permission_is_opt_in(self):
         with self.assertRaises(ValueError):
             check_permission({"collection_permission": "unknown"})
