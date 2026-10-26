@@ -47,6 +47,35 @@ class ProfileInitialSchemaTests(unittest.TestCase):
         self.assertNotIn("cases", names(corpus)); self.assertNotIn("tenant_database_catalog", names(corpus))
         control.close(); firm.close(); corpus.close()
 
+    def test_firm_profile_installs_insert_and_update_scope_guards_for_every_owned_table(self):
+        db = self.build("firm")
+        expected = {
+            "cases": {"cases_tenant_firm_insert", "cases_tenant_firm_update"},
+            "docs": {"docs_tenant_firm_insert", "docs_tenant_firm_update"},
+            "document_extraction_reviews": {"reviews_tenant_firm_insert", "reviews_tenant_firm_update"},
+            "research_conversations": {
+                "research_conversations_tenant_firm_insert",
+                "research_conversations_tenant_firm_update",
+            },
+            "case_deletion_audit": {
+                "case_deletion_audit_tenant_firm_insert",
+                "case_deletion_audit_tenant_firm_update",
+            },
+        }
+        installed = {
+            row["name"]
+            for row in db.execute(
+                "SELECT name FROM sqlite_master WHERE type='trigger'"
+            )
+        }
+        for table, trigger_names in expected.items():
+            with self.subTest(table=table):
+                self.assertTrue(
+                    trigger_names <= installed,
+                    f"{table} is missing tenant-binding guards: {sorted(trigger_names - installed)}",
+                )
+        db.close()
+
     def test_control_plane_catalog_requires_existing_firm_and_blocks_firm_delete(self):
         db = self.build("control_plane")
         with self.assertRaises(sqlite3.IntegrityError):
