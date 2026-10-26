@@ -77,6 +77,13 @@ class ReminderScheduleTests(unittest.TestCase):
         second = build_reminder_plan(event, "shared-user", self.now, "Africa/Cairo", "firm-2")
         self.assertNotEqual(first["reminders"][0]["idempotency_key"], second["reminders"][0]["idempotency_key"])
 
+    def test_rejects_missing_scope_and_wrong_sent_key_container(self):
+        event = [self.events[0]]
+        with self.assertRaises(ReminderScheduleError):
+            build_reminder_plan(event, "user-7", self.now, "Africa/Cairo", "")
+        with self.assertRaises(ReminderScheduleError):
+            build_reminder_plan(event, "user-7", self.now, "Africa/Cairo", "firm-1", already_sent=[])
+
     def test_rejects_noncanonical_dates_and_bad_lead_windows(self):
         event = [{"kind": "task", "event_id": "1", "due_date": "2026-1-2", "is_complete": False}]
         with self.assertRaises(ReminderScheduleError):
