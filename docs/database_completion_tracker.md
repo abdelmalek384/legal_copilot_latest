@@ -1,10 +1,10 @@
 # Database completion tracker
 
 **Last updated:** 2026-10-26  
-**Estimated completion:** 47%  
+**Estimated completion:** 48%  
 **Status:** In progress — not production-ready for confidential multi-firm matter data.
 
-This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. This is a weighted engineering estimate, not a test-pass percentage or a count of commits. The separate-database runtime and encrypted backup/restore are merged, and row-scope enforcement plus fresh-install/restart and cross-firm case tests have been added. The percentage remains a weighted engineering estimate; exhaustive route/query coverage, remaining legacy bootstrap DDL, identity lifecycle workflows, and a witnessed operational recovery drill remain open.
+This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. This is a weighted engineering estimate, not a test-pass percentage or a count of commits. The separate-database runtime and encrypted backup/restore are merged, and row-scope enforcement plus fresh-install/restart and cross-firm case tests have been added. The percentage remains a weighted engineering estimate; exhaustive route/query coverage, remaining legacy bootstrap DDL, invitation/account-recovery policy, platform-role grant governance, and a witnessed operational recovery drill remain open.
 
 ## Completed and merged
 
@@ -21,6 +21,8 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 - [x] Verify firm-scoped case-deletion audit history, security-event JSON, and CSV exports with records seeded in two firm databases; each active firm sees only its own sentinels (PR #439 merged; CI run 40373438210 passed).
 - [x] Enforce database-bound firm IDs on inserts/updates for cases, documents, extraction reviews, research conversations, and case-deletion audit rows; add cross-firm case detail/update/delete tests and separate-profile fresh-install/restart persistence coverage (PR #465 merged; CI run 40379864878 passed).
 - [x] Extend separate-runtime route tests to reject cross-firm writes for notes, deadlines, fees, sessions, document text, case members, tasks, and uploads; assert the source tenant's records remain unchanged (PR #476 merged; CI run 40381720498 passed).
+- [x] Verify a firm administrator cannot suspend an identity belonging only to another firm; the target identity and other-firm membership remain active (PR #482 merged; CI run 40382596457 passed).
+- [x] Verify platform legal-review authorization is distinct from firm-admin membership and that removing a platform reviewer role denies the very next request without trusting stale session claims (PR #483 merged; CI run 40382833193 passed).
 - [x] Reject stale shared COPILOT_DB configuration when the three approved separate-database paths are configured, preventing ambiguous deployment storage intent (PR #477 merged; CI run 40381467990 passed).
 - [x] Verify clean-install shared legal-corpus FTS insert/update/delete synchronization using FTS5 external-content integrity checks against source chunks (PR #479 merged; CI run 40381954656 passed).
 
