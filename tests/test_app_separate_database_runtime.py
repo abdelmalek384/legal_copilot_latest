@@ -50,6 +50,35 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         headers["X-CSRF-Token"] = csrf or ""
         return getattr(self.client, method)(url, headers=headers, **kwargs)
 
+    def test_disabled_global_identity_cannot_receive_new_membership(self):
+        firm_c, _ = self.runtime.provision_firm("Disabled Identity Firm")
+        disabled_user_id = self.runtime.create_initial_firm_owner(
+            firm_c, "Disabled Owner", "disabled-owner@example.test", app.hash_pw(self.password)
+        )
+        control = self.runtime.control_connection()
+        control.execute(
+            "UPDATE users SET status='disabled',updated_at=datetime('now') WHERE id=?",
+            (disabled_user_id,),
+        )
+        control.commit()
+
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        response = self._mutate(
+            "post", "/memberships",
+            json={"email": "disabled-owner@example.test", "role": "lawyer"},
+        )
+        self.assertEqual(response.status_code, 409, response.text)
+        self.assertEqual(
+            control.execute(
+                "SELECT COUNT(*) FROM firm_memberships WHERE user_id=? AND firm_id=?",
+                (disabled_user_id, self.firm_a),
+            ).fetchone()[0],
+            0,
+        )
+
     def test_existing_global_identity_can_join_another_firm_without_duplication(self):
         firm_c, _ = self.runtime.provision_firm("Firm C")
         existing_user_id = self.runtime.create_initial_firm_owner(
