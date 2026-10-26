@@ -74,6 +74,12 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
                 with self.assertRaisesRegex(EvaluationError, "review_date"):
                     evaluate([q], [result()])
 
+    def test_future_lawyer_review_date_is_rejected(self):
+        q = dict(approved())
+        q["review_date"] = "9999-12-31"
+        with self.assertRaisesRegex(EvaluationError, "cannot be in the future"):
+            evaluate([q], [result()])
+
     def test_missing_results_and_unknown_results_are_errors(self):
         with self.assertRaisesRegex(EvaluationError, "missing results"):
             evaluate([approved()], [])
