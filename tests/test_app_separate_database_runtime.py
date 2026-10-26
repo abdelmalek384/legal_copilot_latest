@@ -504,8 +504,8 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
 
         switched = self._mutate("post", "/session/firm", json={"firm_id": self.firm_b})
         self.assertEqual(switched.status_code, 200, switched.text)
-        response = self.client.post(
-            "/research/discover", json={"q": "PRIVATE_FIRM_ONLY_DISCOVERY_SENTINEL"}
+        response = self._mutate(
+            "post", "/research/discover", json={"q": "PRIVATE_FIRM_ONLY_DISCOVERY_SENTINEL"}
         )
         self.assertEqual(response.status_code, 200, response.text)
         self.assertEqual(response.json()["scope"], "metadata_only")
