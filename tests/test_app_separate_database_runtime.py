@@ -263,6 +263,40 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             "Firm A child-write boundary",
         )
 
+    def test_cross_firm_document_and_membership_writes_are_denied(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate(
+            "post", "/cases", json={"title": "Firm A document boundary"}
+        )
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+        switched = self._mutate("post", "/session/firm", json={"firm_id": self.firm_b})
+        self.assertEqual(switched.status_code, 200, switched.text)
+
+        attempts = (
+            ("post", f"/cases/{case_id}/docs", {"name": "secret.txt", "text": "firm A private evidence"}),
+            ("post", f"/cases/{case_id}/members", {"user_id": self.user_id, "role": "lawyer"}),
+            ("post", f"/cases/{case_id}/tasks", {"title": "Cross-firm task"}),
+        )
+        for method, path, payload in attempts:
+            with self.subTest(path=path):
+                response = self._mutate(method, path, json=payload)
+                self.assertEqual(response.status_code, 404, response.text)
+
+        context_a = self.runtime.resolve_context(self.user_id, self.firm_a)
+        context_b = self.runtime.resolve_context(self.user_id, self.firm_b)
+        db_a = self.runtime.firm_connection(context_a)
+        db_b = self.runtime.firm_connection(context_b)
+        self.assertEqual(db_a.execute("SELECT COUNT(*) FROM docs WHERE case_id=?", (case_id,)).fetchone()[0], 0)
+        self.assertEqual(db_a.execute("SELECT COUNT(*) FROM tasks WHERE case_id=?", (case_id,)).fetchone()[0], 0)
+        self.assertEqual(db_a.execute("SELECT COUNT(*) FROM members WHERE case_id=?", (case_id,)).fetchone()[0], 0)
+        for table in ("docs", "tasks", "members"):
+            with self.subTest(table=table):
+                self.assertEqual(db_b.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0], 0)
+
     def test_search_and_ask_reject_case_ids_from_another_firm(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
