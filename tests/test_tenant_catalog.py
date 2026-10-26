@@ -74,19 +74,12 @@ class TenantCatalogTests(unittest.TestCase):
                     last_error_code TEXT
                 )
             """)
-            db.execute("""
-                CREATE TABLE database_profile (
-                    singleton INTEGER PRIMARY KEY CHECK(singleton=1),
-                    profile TEXT NOT NULL
-                )
-            """)
+            db.execute("CREATE TABLE database_profile (singleton INTEGER PRIMARY KEY CHECK(singleton=1), profile TEXT NOT NULL)")
             db.execute("INSERT INTO database_profile(singleton,profile) VALUES(1,'firm')")
             db.executescript("""
-                CREATE TRIGGER database_profile_no_update
-                BEFORE UPDATE ON database_profile
+                CREATE TRIGGER database_profile_no_update BEFORE UPDATE ON database_profile
                 BEGIN SELECT RAISE(ABORT, 'database profile binding is immutable'); END;
-                CREATE TRIGGER database_profile_no_delete
-                BEFORE DELETE ON database_profile
+                CREATE TRIGGER database_profile_no_delete BEFORE DELETE ON database_profile
                 BEGIN SELECT RAISE(ABORT, 'database profile binding is immutable'); END;
             """)
             db.commit()
@@ -124,6 +117,19 @@ class TenantCatalogTests(unittest.TestCase):
         finally:
             db.close()
 
+    def test_untrusted_catalog_is_not_modified_before_profile_validation(self):
+        db = sqlite3.connect(":memory:")
+        try:
+            db.execute("CREATE TABLE firms(id INTEGER PRIMARY KEY, name TEXT NOT NULL)")
+            db.commit()
+            with self.assertRaisesRegex(TenantCatalogError, "trusted control-plane profile"):
+                initialize_catalog(db)
+            self.assertIsNone(db.execute(
+                "SELECT name FROM sqlite_master WHERE type='table' AND name='tenant_database_catalog'"
+            ).fetchone())
+        finally:
+            db.close()
+
     def test_catalog_initialization_requires_migration_managed_firms_table(self):
         db = sqlite3.connect(":memory:")
         try:
@@ -139,6 +145,14 @@ class TenantCatalogTests(unittest.TestCase):
         db = sqlite3.connect(":memory:")
         try:
             db.execute("CREATE TABLE firms(id INTEGER PRIMARY KEY, name TEXT NOT NULL)")
+            db.execute("CREATE TABLE database_profile (singleton INTEGER PRIMARY KEY CHECK(singleton=1), profile TEXT NOT NULL)")
+            db.execute("INSERT INTO database_profile(singleton,profile) VALUES(1,'control_plane')")
+            db.executescript("""
+                CREATE TRIGGER database_profile_no_update BEFORE UPDATE ON database_profile
+                BEGIN SELECT RAISE(ABORT, 'database profile binding is immutable'); END;
+                CREATE TRIGGER database_profile_no_delete BEFORE DELETE ON database_profile
+                BEGIN SELECT RAISE(ABORT, 'database profile binding is immutable'); END;
+            """)
             db.execute("""
                 CREATE TABLE tenant_database_catalog (
                     firm_id INTEGER PRIMARY KEY,
@@ -159,6 +173,14 @@ class TenantCatalogTests(unittest.TestCase):
         db = sqlite3.connect(":memory:")
         try:
             db.execute("CREATE TABLE firms(id INTEGER PRIMARY KEY, name TEXT NOT NULL)")
+            db.execute("CREATE TABLE database_profile (singleton INTEGER PRIMARY KEY CHECK(singleton=1), profile TEXT NOT NULL)")
+            db.execute("INSERT INTO database_profile(singleton,profile) VALUES(1,'control_plane')")
+            db.executescript("""
+                CREATE TRIGGER database_profile_no_update BEFORE UPDATE ON database_profile
+                BEGIN SELECT RAISE(ABORT, 'database profile binding is immutable'); END;
+                CREATE TRIGGER database_profile_no_delete BEFORE DELETE ON database_profile
+                BEGIN SELECT RAISE(ABORT, 'database profile binding is immutable'); END;
+            """)
             db.execute("""
                 CREATE TABLE tenant_database_catalog (
                     firm_id INTEGER PRIMARY KEY CHECK(firm_id > 0)
