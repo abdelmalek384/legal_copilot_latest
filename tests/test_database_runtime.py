@@ -41,11 +41,11 @@ class DatabaseRuntimeTests(unittest.TestCase):
             self.runtime.create_global_identity(
                 "Duplicate Person", "STRASSE@example.test", "other-hash"
             )
+        self.runtime.create_global_identity("Composed Unicode", "é@example.test", "test-hash")
         with self.assertRaises(sqlite3.IntegrityError):
             self.runtime.create_global_identity(
                 "Unicode Normalization Duplicate", "e\u0301@example.test", "other-hash"
             )
-        self.runtime.create_global_identity("Composed Unicode", "é@example.test", "test-hash")
 
     def test_new_control_and_corpus_files_have_restrictive_permissions(self):
         if os.name != "posix":
