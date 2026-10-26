@@ -103,6 +103,21 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
         with self.assertRaisesRegex(EvaluationError, "cannot be in the future"):
             evaluate([q], [result()])
 
+    def test_invalid_citation_indexes_are_reported_and_validated(self):
+        r = result()
+        r["invalid_citation_indices"] = [2, 7]
+        report = evaluate([approved()], [r])
+        self.assertEqual(report["results"][0]["invalid_citation_index_count"], 2)
+        self.assertEqual(report["overall"]["invalid_citation_index_count"], 2)
+        self.assertEqual(report["overall"]["questions_with_invalid_citation_indices"], 1)
+        self.assertEqual(report["overall"]["invalid_citation_question_rate"], 1.0)
+        for value in ([0], [-1], [True], ["2"], [2, 2], "2"):
+            with self.subTest(value=value):
+                malformed = result()
+                malformed["invalid_citation_indices"] = value
+                with self.assertRaisesRegex(EvaluationError, "invalid_citation_indices"):
+                    evaluate([approved()], [malformed])
+
     def test_expected_pin_citation_must_reference_expected_source(self):
         q = dict(approved())
         q["expected_sources"] = ["LAW-10"]
