@@ -36,6 +36,15 @@ def valid_source():
             "permission_evidence": "version permission ref",
             "effective_date": "2020-01-01",
             "repeal_date": None,
+            "review_evidence": [
+                {"review_event_id": i, "review_type": kind, "outcome": "pass",
+                 "evidence_url": "https://example.gov/review", "reviewer": "Reviewer",
+                 "reviewed_at": "2026-10-24 10:00:00"}
+                for i, kind in enumerate((
+                    "source_authenticity", "extraction_quality", "legal_status",
+                    "amendment_history", "licensing", "lawyer_approval",
+                ), start=1)
+            ],
         },
     }
 
@@ -57,6 +66,29 @@ class ResearchInspectorTests(unittest.TestCase):
             candidate = valid_source()
             candidate["provenance"][key] = value
             self.assertEqual(source_status(candidate, "2026-10-24"), STATUS_REVIEW, key)
+
+    def test_all_latest_review_types_are_required_for_verified_status(self):
+        source = valid_source()
+        source["provenance"]["review_evidence"] = [
+            e for e in source["provenance"]["review_evidence"] if e["review_type"] != "licensing"
+        ]
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
+        source = valid_source()
+        source["provenance"]["review_evidence"].append({
+            "review_event_id": 99, "review_type": "lawyer_approval", "outcome": "fail",
+            "evidence_url": "https://example.gov/review", "reviewer": "Reviewer",
+            "reviewed_at": "2026-10-25 10:00:00",
+        })
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
+    def test_review_evidence_requires_https_and_reviewer_identity(self):
+        source = valid_source()
+        source["provenance"]["review_evidence"][0]["evidence_url"] = "http://example.gov/review"
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+        source = valid_source()
+        source["provenance"]["review_evidence"][0]["reviewer"] = " "
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
 
     def test_future_or_repealed_version_is_not_labelled_current(self):
         source = valid_source()
