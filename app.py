@@ -2275,6 +2275,10 @@ def upload(cid: int, file: UploadFile, u: dict = Depends(user)):
                     ocr_warning = "Some pages contain no extractable text; OCR dependencies were unavailable, so those pages were not indexed."
                 else:
                     raise
+        elif len(_extracted_text_content(text)) < 20:
+            # Compatibility path for empty extraction results without page markers.
+            text = ocr_pdf_text(data)
+            ocr_used = True
     if len(_extracted_text_content(text)) < 20:
         raise HTTPException(422, "no readable text found; for scanned PDFs enable OCR with Arabic/English Tesseract language data")
     extraction_status = "ocr_unverified" if ocr_used else ("partial_text_ocr_unavailable" if ocr_warning else "text_extracted")
