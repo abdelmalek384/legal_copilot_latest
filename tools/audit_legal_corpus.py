@@ -257,10 +257,13 @@ def audit(db_path: Path):
         db.close()
 
 def render_markdown(report):
-    lines=["# Legal corpus audit","",f"- Generated: {report['generated_at']}","- Database opened read-only: yes",f"- Database SHA-256: {report['database_sha256']}","","## Record counts",""]
+    lines=["# Legal corpus audit","",f"- Generated: {report['generated_at']}","- Database opened read-only: yes",f"- Database main-file SHA-256: {report['database_sha256']}","","## Record counts",""]
     if report["counts"]:
         lines += ["| Table | Rows |","|---|---:|"]+[f"| {k} | {v} |" for k,v in report["counts"].items()]
     else: lines.append("No recognized corpus tables found.")
+    if report.get("sqlite_sidecars"):
+        lines += ["", "## SQLite sidecars", "", "| File | Size (bytes) | SHA-256 |", "|---|---:|---|"]
+        lines += [f"| {name} | {meta['size_bytes']} | {meta['sha256']} |" for name, meta in sorted(report["sqlite_sidecars"].items())]
     for section in ("chunk_quality","source_permissions","commercial_reuse_permissions","version_quality","relation_quality"):
         if section in report:
             lines += ["",f"## {section.replace('_',' ').title()}",""]
