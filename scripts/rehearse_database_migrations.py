@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+from collections import Counter
 import json
 import sqlite3
 import sys
@@ -61,8 +62,8 @@ def _stable_sqlite_value(value: Any) -> Any:
     return value
 
 
-def _table_content_hash(conn: sqlite3.Connection, table: str, columns: list[str]) -> str:
-    """Hash the multiset of rows in shared columns, independent of row order."""
+def _table_row_hashes(conn: sqlite3.Connection, table: str, columns: list[str]) -> list[str]:
+    """Hash rows in shared columns independently of row order."""
     quoted_table = '"' + table.replace('"', '""') + '"'
     quoted_columns = ", ".join('"' + column.replace('"', '""') + '"' for column in columns)
     row_hashes = []
@@ -72,8 +73,12 @@ def _table_content_hash(conn: sqlite3.Connection, table: str, columns: list[str]
             ensure_ascii=False, separators=(",", ":"), sort_keys=True, allow_nan=False,
         ).encode("utf-8")
         row_hashes.append(hashlib.sha256(payload).hexdigest())
+    return sorted(row_hashes)
+
+
+def _table_content_hash(conn: sqlite3.Connection, table: str, columns: list[str]) -> str:
     digest = hashlib.sha256()
-    for row_hash in sorted(row_hashes):
+    for row_hash in _table_row_hashes(conn, table, columns):
         digest.update(row_hash.encode("ascii"))
         digest.update(b"\\n")
     return digest.hexdigest()
@@ -100,9 +105,13 @@ def _common_table_content_changes(
         common_columns = [column for column in source_columns if column in staged_columns]
         if not common_columns:
             continue
+        source_row_hashes = Counter(_table_row_hashes(source, table, common_columns))
+        staged_row_hashes = Counter(_table_row_hashes(staged, table, common_columns))
         source_hash = _table_content_hash(source, table, common_columns)
         staged_hash = _table_content_hash(staged, table, common_columns)
-        if source_hash != staged_hash:
+        # New rows are not treated as rewrites if every pre-existing row survives.
+        # A same-count edit or deletion/replacement removes an old row hash and is flagged.
+        if any(count > staged_row_hashes[row_hash] for row_hash, count in source_row_hashes.items()):
             changes.append({
                 "table": table,
                 "columns_compared": common_columns,
