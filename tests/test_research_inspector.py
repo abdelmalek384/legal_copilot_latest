@@ -137,6 +137,19 @@ class ResearchInspectorTests(unittest.TestCase):
         self.assertIn("Search scope: unknown", memo)
         self.assertNotIn("Search scope: verified_corpus", memo)
 
+    def test_empty_memo_message_does_not_overstate_metadata_only_search(self):
+        metadata = research_memo("Question", {"sources": [], "scope": "metadata_only"})
+        self.assertIn("No matching source-catalog metadata was returned", metadata)
+        self.assertIn("this search did not retrieve legal text", metadata)
+        self.assertNotIn("No relevant verified passage was returned", metadata)
+
+        firm = research_memo("Question", {"sources": [], "scope": "firm_documents"})
+        self.assertIn("No relevant passage was returned from the selected matter documents", firm)
+
+        verified = research_memo("Question", {"sources": [], "scope": "verified_corpus"})
+        self.assertIn("No relevant verified passage was returned by this verified-corpus search", verified)
+        self.assertIn("not evidence that no applicable law exists", verified)
+
     def test_non_string_passages_are_not_presented_as_verbatim_text(self):
         for malformed in (["not exact source text"], {"text": "not exact source text"}, 123):
             source = valid_source()
