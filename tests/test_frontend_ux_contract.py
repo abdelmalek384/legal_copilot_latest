@@ -46,6 +46,12 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("window.COVERAGE_QUEUE_FILTER='all_versions'", HTML)
         self.assertIn("safeHttpsUrl(item.source_page)", HTML)
 
+    def test_corpus_registry_drilldowns_can_search_beyond_the_first_page(self):
+        self.assertIn("const openCatalog=async(kind,query='')=>", HTML)
+        self.assertIn("q='+encodeURIComponent(query)", HTML)
+        self.assertIn("Search title, ID, or authority", HTML)
+        self.assertIn("Search source and instrument registry", HTML)
+
     def test_source_status_labels_have_plain_language_explanations_and_original_host(self):
         self.assertIn("const statusDescriptions={", HTML)
         self.assertIn("not independently verified as law", HTML)
