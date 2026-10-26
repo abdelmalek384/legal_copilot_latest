@@ -252,10 +252,14 @@ def provision_tenant_database(
         created = True
         try:
             os.chmod(path, 0o600)
-        except OSError:
-            # Some platforms do not support POSIX file modes; deployment must
-            # enforce equivalent filesystem ACLs there.
-            pass
+        except OSError as exc:
+            # On POSIX, inability to enforce restrictive file permissions is a
+            # provisioning failure, not a warning. Other platforms must enforce
+            # equivalent filesystem ACLs at the deployment boundary.
+            if os.name == "posix":
+                raise TenantCatalogError(
+                    "Cannot enforce restrictive permissions on new tenant database"
+                ) from exc
 
         tenant = sqlite3.connect(str(path), timeout=30)
         try:
