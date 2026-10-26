@@ -181,6 +181,7 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 - [ ] Complete lifecycle acceptance for provisioning retries/reconciliation, disabled tenants, unknown catalog entries, unavailable tenant databases, and revoked memberships across all API/background paths. PRs #407, #408, #410, #413, and #419 cover selected onboarding, failure-cleanup, membership, and disable paths; cached-connection revocation and attached-profile validation remain in review (PRs #420 and #422). This is not exhaustive lifecycle coverage.
 
 ### 4. Reconcile existing data safely
+- [x] Add a read-only row-level legacy chunk evidence manifest with hashes but no extracted text, human-review classifications, and CI coverage; source database remains query-only (PR #443 merged; CI run 40374261835 passed). This enables evidence review but does not itself resolve ownership.
 - [ ] Run read-only ownership preflight against a protected production-like copy and retain its report.
 - [ ] Resolve missing/unknown firm ownership, orphaned rows, unlinked documents/children, cross-firm references, and ambiguous shared-corpus chunks from trusted evidence.
 - [ ] Migrate with source/target row counts, stable hashes where applicable, foreign-key checks, FTS reconciliation, and explicit quarantine for unresolved rows.
