@@ -176,5 +176,37 @@ class TenantOwnershipPreflightTests(unittest.TestCase):
             db.close()
 
 
+    def test_cli_audit_is_byte_for_byte_read_only_on_anomaly_database(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "legacy.db"
+            with sqlite3.connect(path) as db:
+                db.executescript("""
+                    CREATE TABLE firms(id INTEGER PRIMARY KEY, name TEXT);
+                    CREATE TABLE users(id INTEGER PRIMARY KEY, firm_id INTEGER, email TEXT);
+                    CREATE TABLE cases(id INTEGER PRIMARY KEY, firm_id INTEGER);
+                    INSERT INTO firms VALUES (1, 'Firm One');
+                    INSERT INTO users VALUES (1, NULL, 'unclassified@example.test');
+                    INSERT INTO cases VALUES (7, NULL);
+                """)
+            before_bytes = path.read_bytes()
+            before_stat = path.stat()
+
+            stdout = io.StringIO()
+            stderr = io.StringIO()
+            with contextlib.redirect_stdout(stdout), contextlib.redirect_stderr(stderr):
+                result = main([str(path)])
+
+            after_stat = path.stat()
+            self.assertEqual(result, 1, stderr.getvalue())
+            report = __import__("json").loads(stdout.getvalue())
+            self.assertEqual(report["mode"], "read_only")
+            findings = {item["code"]: item["count"] for item in report["findings"]}
+            self.assertEqual(findings["users_missing_firm"], 1)
+            self.assertEqual(findings["cases_missing_firm"], 1)
+            self.assertEqual(path.read_bytes(), before_bytes, "preflight must not change database bytes")
+            self.assertEqual(after_stat.st_size, before_stat.st_size)
+            self.assertEqual(after_stat.st_mtime_ns, before_stat.st_mtime_ns)
+
+
 if __name__ == "__main__":
     unittest.main()
