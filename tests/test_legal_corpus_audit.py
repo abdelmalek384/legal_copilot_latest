@@ -85,6 +85,7 @@ class CorpusAuditTests(unittest.TestCase):
             INSERT INTO legal_document_versions VALUES(1,'http://unsafe.example.com/law','missing.pdf','not-a-hash','2024-13-40','2025-01-01','2024-12-31',NULL,'unknown','pending_source_review',0,0,0);
             INSERT INTO legal_sources VALUES('S2','allowed','allowed',NULL,'https://terms.example.com','https://source.example.com','2024-01-01');
             INSERT INTO legal_sources VALUES('S3','allowed','unknown',NULL,NULL,NULL,NULL);
+            INSERT INTO legal_sources VALUES('S4','allowed','unknown','reviewed terms evidence','https://terms.example.com','https://source.example.com','9999-12-31');
             """)
             db.commit()
             db.close()
@@ -97,6 +98,7 @@ class CorpusAuditTests(unittest.TestCase):
             self.assertIn("source_page_not_https", codes)
             self.assertIn("source_page_missing", codes)
             self.assertIn("source_permission_terms_check_date_invalid", codes)
+            self.assertIn("source_permission_terms_check_date_in_future", codes)
             self.assertIn("source_permission_terms_check_date_missing", codes)
             self.assertIn("versions_malformed_sha256", codes)
             self.assertIn("versions_invalid_source_url", codes)

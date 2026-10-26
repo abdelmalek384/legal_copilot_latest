@@ -148,6 +148,14 @@ def audit(db_path: Path):
                         result["issues"].append({"severity":"high","code":"source_permission_terms_check_date_missing","count":missing_terms_dates})
                     if invalid_terms_dates:
                         result["issues"].append({"severity":"high","code":"source_permission_terms_check_date_invalid","count":invalid_terms_dates})
+                    future_terms_dates = sum(
+                        valid_iso_date(row[0]) and date.fromisoformat(row[0]) > datetime.now(timezone.utc).date()
+                        for row in db.execute(
+                            f"SELECT terms_checked_on FROM legal_sources WHERE ({allowed_where}) AND terms_checked_on IS NOT NULL AND trim(terms_checked_on)!=''"
+                        ).fetchall()
+                    )
+                    if future_terms_dates:
+                        result["issues"].append({"severity":"high","code":"source_permission_terms_check_date_in_future","count":future_terms_dates,"detail":"A future date cannot evidence a completed permission-terms review."})
         if "legal_document_versions" in tables:
             vc=columns(db,"legal_document_versions")
             required={"source_url","original_path","original_sha256","publication_date","effective_date","repeal_date","legal_status","review_status","authenticity_verified","status_verified","amendment_history_verified"}
