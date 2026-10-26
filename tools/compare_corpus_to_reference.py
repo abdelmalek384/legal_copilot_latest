@@ -15,7 +15,7 @@ def label(v):
  if v is None:return None
  s=re.sub(r"^(?:المادة|مادة)\s*","",norm(v).strip())
  s=re.sub(r"^\(\s*(\d+)\s*\)",r"\1",s).strip()
- b=re.search(r"\s*(?:مكررا|مكررة|مكرر|bis)(?:\s*\(?\s*([ء-ي])\s*\)?)?\s*$",s,re.I)
+ b=re.search(r"\s*(?:مكررا|مكررة|مكرر|bis)(?:\s+\(?\s*([ء-ي])\s*\)?)?\s*$",s,re.I)
  letter=b.group(1) if b else None
  if b:s=s[:b.start()].strip()
  s=re.sub(r"^\((.*?)\)$",r"\1",s).strip()
@@ -34,7 +34,7 @@ def extract_heading(line):
  m=re.match(r"^(?:المادة|مادة)\s*(.*)$",s)
  if not m:return None,None
  rest=m.group(1).strip()
- n=re.match(r"^\(?\s*(\d+)\s*\)?(?:\s+(مكرر(?:ا|ة)?(?:\s*\(?[ء-ي]\s*\)?)?))?(?:\s+(.*))?$",rest,re.I)
+ n=re.match(r"^\(?\s*(\d+)\s*\)?(?:\s+(مكرر(?:ا|ة)?(?:\s+\(?[ء-ي]\s*\)?)?))?(?:\s+(.*))?$",rest,re.I)
  if n:
   key=n.group(1)+((" مكرر"+((" "+re.search(r"[ء-ي]",n.group(2)).group(0)) if re.search(r"[ء-ي]",n.group(2)) else "")) if n.group(2) else "")
   return key,(n.group(3) or "").strip()
