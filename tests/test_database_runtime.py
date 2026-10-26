@@ -163,6 +163,24 @@ class DatabaseRuntimeTests(unittest.TestCase):
         finally:
             restarted.close_current_thread()
 
+    def test_missing_provisioned_tenant_database_fails_closed_without_recreating_file(self):
+        user_id = self._identity("missing-tenant@example.test")
+        firm_id, database_path = self.runtime.provision_firm("Missing Tenant Database")
+        self.runtime.create_firm_membership(user_id, firm_id, "admin")
+        context = self.runtime.resolve_context(user_id, firm_id)
+        self.runtime.firm_connection(context)
+        self.runtime.close_current_thread()
+
+        database_path.unlink()
+        self.assertFalse(database_path.exists())
+        with self.assertRaisesRegex(DatabaseRuntimeError, "no shared fallback is permitted"):
+            self.runtime.firm_connection(context)
+        self.assertFalse(database_path.exists(), "runtime must not recreate a missing tenant database")
+        catalog_row = self.runtime.control_connection().execute(
+            "SELECT status FROM tenant_database_catalog WHERE firm_id=?", (firm_id,)
+        ).fetchone()
+        self.assertEqual(catalog_row["status"], "provisioned")
+
     def test_profiles_are_separate_and_firm_databases_are_distinct(self):
         user_id = self._identity()
         firm_a, path_a = self.runtime.provision_firm("Firm A")
