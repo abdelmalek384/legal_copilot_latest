@@ -33,6 +33,15 @@ def inspect_environment(env=None):
     except (TypeError, ValueError):
         errors.append("MIN_SCORE must be a finite number between 0 and 1.")
 
+    # The current application still has a single shared database boundary.
+    # Keep this as a release-gate warning until authenticated firm routing,
+    # per-firm database selection, and isolation tests are actually shipped.
+    warnings.append(
+        "This build still uses one shared COPILOT_DB; do not store unrelated firms' "
+        "confidential matters until tenant-aware routing, per-firm storage, and "
+        "isolation validation are complete."
+    )
+
     raw_db = env.get("COPILOT_DB", "")
     if not raw_db:
         warnings.append("COPILOT_DB is unset; the app defaults to a relative copilot.db path.")
