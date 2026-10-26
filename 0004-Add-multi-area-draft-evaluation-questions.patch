@@ -1,0 +1,235 @@
+From 89d13847e8f3284e56f01aed11f79ef02e97446f Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 26 Oct 2026 05:27:18 +0000
+Subject: [PATCH] Add 94 draft multi-area evaluation questions for lawyer
+ review
+
+Rent/tenancy (incl. Law 164/2025), personal status, civil and criminal procedure, cheques,
+civil law, tax, social insurance, data protection and real estate. Answers intentionally blank.
+---
+ tests/legal_eval/MULTI_AREA_NOTES.md          |  8 ++
+ .../multi_area_questions.draft.jsonl          | 94 ++++++++++++++++++
+ .../multi_area_questions_for_lawyer.csv       | 95 +++++++++++++++++++
+ 3 files changed, 197 insertions(+)
+ create mode 100644 tests/legal_eval/MULTI_AREA_NOTES.md
+ create mode 100644 tests/legal_eval/multi_area_questions.draft.jsonl
+ create mode 100644 tests/legal_eval/multi_area_questions_for_lawyer.csv
+
+diff --git a/tests/legal_eval/MULTI_AREA_NOTES.md b/tests/legal_eval/MULTI_AREA_NOTES.md
+new file mode 100644
+index 0000000..3324f82
+--- /dev/null
++++ b/tests/legal_eval/MULTI_AREA_NOTES.md
+@@ -0,0 +1,8 @@
++# Multi-area draft question set (awaiting lawyer review)
++
++- `multi_area_questions.draft.jsonl`: 94 draft questions in the same format as `practice_questions.seed.jsonl`, across rent and tenancy, personal status and family, civil procedure, criminal procedure, commercial/cheques, civil law, tax, social insurance, data protection and real estate.
++- `multi_area_questions_for_lawyer.csv`: the same questions as an Excel-friendly sheet with Arabic headers and blank answer columns.
++- Question ids end in a style code: `D` direct, `P` paraphrase, `C` colloquial Egyptian, `S` plain terms, `T` date-sensitive, `X` must abstain or out of scope.
++- Every `expected_answer` and `expected_sources` field is intentionally empty. Do not score model accuracy until an Egyptian lawyer has filled them in with primary-source citations and recorded `reviewer_name` and `review_date`.
++- Several questions depend on recent or transitional law (for example Law 164/2025 on old rents and the repealed labour laws). The reviewing lawyer must confirm the applicable dates from the Official Gazette.
++- A few questions ask for predictions, tax-avoidance advice or personal-case outcomes; the correct behavior is to decline or abstain, which is why they are marked `X`.
+diff --git a/tests/legal_eval/multi_area_questions.draft.jsonl b/tests/legal_eval/multi_area_questions.draft.jsonl
+new file mode 100644
+index 0000000..cc2e139
+--- /dev/null
++++ b/tests/legal_eval/multi_area_questions.draft.jsonl
+@@ -0,0 +1,94 @@
++{"id": "Q-RENT-001-D", "practice_area": "rent_and_tenancy", "question_ar": "ما هي أحوال إخلاء المستأجر في قانون إيجار الأماكن؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-RENT-002-D", "practice_area": "rent_and_tenancy", "question_ar": "ما أحكام امتداد عقد الإيجار لورثة المستأجر؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-RENT-003-D", "practice_area": "rent_and_tenancy", "question_ar": "ما المدة الانتقالية لإنهاء عقود الإيجار القديمة وفق القانون رقم 164 لسنة 2025؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-RENT-004-D", "practice_area": "rent_and_tenancy", "question_ar": "ما شروط الحصول على وحدة بديلة بموجب قانون الإيجار الجديد؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-RENT-005-D", "practice_area": "rent_and_tenancy", "question_ar": "كيف تُحدد القيمة الإيجارية الجديدة للأماكن الخاضعة للقانونين 49 لسنة 1977 و136 لسنة 1981؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-RENT-006-P", "practice_area": "rent_and_tenancy", "question_ar": "متى يحق للمالك رفع دعوى طرد للتأخر في سداد الأجرة؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-RENT-007-P", "practice_area": "rent_and_tenancy", "question_ar": "هل يجوز للمستأجر التأجير من الباطن دون إذن المالك؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-RENT-008-C", "practice_area": "rent_and_tenancy", "question_ar": "أنا ساكن في شقة إيجار قديم من سنة 1990، هل هطلع منها؟ وإمتى؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-RENT-009-C", "practice_area": "rent_and_tenancy", "question_ar": "صاحب العمارة رافع الإيجار فجأة، هل ده قانوني؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-RENT-010-C", "practice_area": "rent_and_tenancy", "question_ar": "اتوفى والدي وهو المستأجر، أنا عايش معاه من سنين، هل العقد بيمتد ليا؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-RENT-011-S", "practice_area": "rent_and_tenancy", "question_ar": "ما الفرق بين عقد الإيجار السكني وغير السكني من حيث الإنهاء؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-RENT-012-T", "practice_area": "rent_and_tenancy", "question_ar": "عقد إيجار مؤرخ سنة 1985 ووفاة المستأجر في 2023، أي أحكام تنطبق على امتداد العقد؟", "as_of_date": "2023-12-31", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-RENT-013-T", "practice_area": "rent_and_tenancy", "question_ar": "عقد إيجار لغير غرض السكنى أُبرم سنة 2010، ما الأحكام التي تحكم إنهاءه في أكتوبر 2026؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-RENT-014-X", "practice_area": "rent_and_tenancy", "question_ar": "ما قيمة الإيجار العادل لشقتي في الإسكندرية بالجنيه؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-FAM-001-D", "practice_area": "personal_status", "question_ar": "ما شروط دعوى الخلع وما الذي تتنازل عنه الزوجة؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-FAM-002-D", "practice_area": "personal_status", "question_ar": "ما هي مراحل التقاضي أمام محكمة الأسرة وهل يسبقها مكتب تسوية المنازعات؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-FAM-003-D", "practice_area": "personal_status", "question_ar": "ما سن الحضانة وما شروطها؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-FAM-004-D", "practice_area": "personal_status", "question_ar": "كيف تُقدَّر النفقة وما أنواعها؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-FAM-005-D", "practice_area": "personal_status", "question_ar": "ما أحكام الرؤية للطفل بعد الطلاق؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-FAM-006-D", "practice_area": "personal_status", "question_ar": "ما أحكام إثبات الطلاق وهل يشترط التوثيق؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-FAM-007-P", "practice_area": "personal_status", "question_ar": "هل يقبل الحكم في دعوى الخلع الطعن بالاستئناف؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-FAM-008-P", "practice_area": "personal_status", "question_ar": "ما الجهة المنوط بها صرف النفقة عند امتناع الزوج؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-FAM-009-C", "practice_area": "personal_status", "question_ar": "عايزة أخلع جوزي، أعمل إيه وهتاخد قد إيه وقت؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-FAM-010-C", "practice_area": "personal_status", "question_ar": "طليقي مش بيدفع النفقة، أرفع دعوى منين؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-FAM-011-C", "practice_area": "personal_status", "question_ar": "هل ممكن أسافر بالولد من غير موافقة أبوه؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-FAM-012-S", "practice_area": "personal_status", "question_ar": "ما الفرق بين الطلاق للضرر والخلع؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-FAM-013-T", "practice_area": "personal_status", "question_ar": "صدر حكم بالحضانة سنة 2003، ما أثر تعديل سن الحضانة بالقانون رقم 4 لسنة 2005 على تنفيذه بعد صدور التعديل؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-FAM-014-X", "practice_area": "personal_status", "question_ar": "هل سأحصل على الحضانة؟ أعطني نسبة احتمال.", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CIVPROC-001-D", "practice_area": "civil_procedure", "question_ar": "ما ميعاد الطعن بالاستئناف في المواد المدنية والتجارية؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CIVPROC-002-D", "practice_area": "civil_procedure", "question_ar": "ما ميعاد الطعن بالنقض في المواد المدنية؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CIVPROC-003-D", "practice_area": "civil_procedure", "question_ar": "ما شروط قبول صحيفة الدعوى وبياناتها الإلزامية؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CIVPROC-004-D", "practice_area": "civil_procedure", "question_ar": "كيف يُحسب ميعاد الطعن وهل يمتد في الإجازات الرسمية؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CIVPROC-005-D", "practice_area": "civil_procedure", "question_ar": "ما أحكام إعلان الصحيفة وما أثر بطلان الإعلان؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CIVPROC-006-D", "practice_area": "civil_procedure", "question_ar": "ما أحكام الحجز التحفظي؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CIVPROC-007-P", "practice_area": "civil_procedure", "question_ar": "متى يسقط الحق في الطعن بعد انقضاء الميعاد؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CIVPROC-008-P", "practice_area": "civil_procedure", "question_ar": "ما الاختصاص المحلي بنظر الدعوى؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CIVPROC-009-C", "practice_area": "civil_procedure", "question_ar": "اتحكم عليا غيابيا، ألحق أعمل إيه وفي كام يوم؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CIVPROC-010-C", "practice_area": "civil_procedure", "question_ar": "الخصم مغيّر عنوانه، إزاي أعلنه؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CIVPROC-011-S", "practice_area": "civil_procedure", "question_ar": "ما المقصود بالدفوع الشكلية وما ترتيب إبدائها؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CIVPROC-012-X", "practice_area": "civil_procedure", "question_ar": "ما رقم الدائرة التي ستنظر قضيتي في محكمة القاهرة؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CRIM-001-D", "practice_area": "criminal_procedure", "question_ar": "ما ميعاد المعارضة في الحكم الغيابي في الجنح؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CRIM-002-D", "practice_area": "criminal_procedure", "question_ar": "ما ميعاد استئناف الأحكام الجنائية في الجنح؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CRIM-003-D", "practice_area": "criminal_procedure", "question_ar": "ما أحكام الحبس الاحتياطي ومدته القصوى؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CRIM-004-D", "practice_area": "criminal_procedure", "question_ar": "ما شروط الإفراج بكفالة؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CRIM-005-P", "practice_area": "criminal_procedure", "question_ar": "متى تسقط الدعوى الجنائية بالتقادم؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CRIM-006-C", "practice_area": "criminal_procedure", "question_ar": "اتقبض عليا من غير إذن نيابة، هل ده قانوني؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CRIM-007-S", "practice_area": "criminal_procedure", "question_ar": "ما الفرق بين الجنحة والجناية من حيث الإجراءات؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CRIM-008-T", "practice_area": "criminal_procedure", "question_ar": "وقعت جريمة ثم صدر بعدها تعديل أو قانون جديد للإجراءات الجنائية، أي النصوص تطبق على إجراءات الدعوى؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CRIM-009-X", "practice_area": "criminal_procedure", "question_ar": "هل سيحكم القاضي بالبراءة في قضيتي؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CHEQUE-001-D", "practice_area": "commercial_law", "question_ar": "ما أركان جريمة إصدار شيك بدون رصيد؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CHEQUE-002-D", "practice_area": "commercial_law", "question_ar": "ما الأثر الجنائي والمدني لإصدار شيك بدون رصيد وفقا لقانون التجارة؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CHEQUE-003-D", "practice_area": "commercial_law", "question_ar": "ما مدة تقديم الشيك للبنك وما ميعاد تقادم الدعوى بشأنه؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CHEQUE-004-D", "practice_area": "commercial_law", "question_ar": "ما أحكام التنازل والصلح في جرائم الشيك؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CHEQUE-005-P", "practice_area": "commercial_law", "question_ar": "هل يجوز للبنك رفض صرف الشيك إذا انقضت مدة معينة؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CHEQUE-006-C", "practice_area": "commercial_law", "question_ar": "واحد إداني شيك وطلع مفيش رصيد، أعمل إيه؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CHEQUE-007-S", "practice_area": "commercial_law", "question_ar": "ما الفرق بين الشيك والكمبيالة وسند الأمر؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CHEQUE-008-T", "practice_area": "commercial_law", "question_ar": "شيك صدر سنة 2019 وقدم للبنك سنة 2022، هل تسقط الدعوى بالتقادم؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CIVIL-001-D", "practice_area": "civil_law", "question_ar": "ما مدة التقادم المسقط للالتزامات في القانون المدني؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CIVIL-002-D", "practice_area": "civil_law", "question_ar": "ما أحكام فسخ العقد لعدم التنفيذ؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CIVIL-003-D", "practice_area": "civil_law", "question_ar": "ما شروط الاعتذار بالقوة القاهرة وأثرها على الالتزام؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CIVIL-004-D", "practice_area": "civil_law", "question_ar": "ما أحكام ضمان العيوب الخفية في عقد البيع؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CIVIL-005-D", "practice_area": "civil_law", "question_ar": "ما أحكام الشرط الجزائي وهل يجوز تخفيضه؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CIVIL-006-D", "practice_area": "civil_law", "question_ar": "ما أحكام الفوائد التأخيرية؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CIVIL-007-P", "practice_area": "civil_law", "question_ar": "ما الفرق بين البطلان المطلق والنسبي للعقد؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CIVIL-008-P", "practice_area": "civil_law", "question_ar": "متى يستحق التعويض عن الضرر الأدبي؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CIVIL-009-C", "practice_area": "civil_law", "question_ar": "اشتريت شقة بعقد ابتدائي والبايع بيماطل في التسجيل، أعمل إيه؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CIVIL-010-C", "practice_area": "civil_law", "question_ar": "عملت عقد مقاولة والمقاول سايب الشغل نصه، حقي إيه؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CIVIL-011-S", "practice_area": "civil_law", "question_ar": "ما أحكام وضع اليد المدة الطويلة وكسب الملكية؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-CIVIL-012-X", "practice_area": "civil_law", "question_ar": "اكتب لي صيغة عقد بيع شقة كاملة جاهزة للتوقيع.", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-TAX-001-D", "practice_area": "tax_law", "question_ar": "ما الحد الأدنى للتسجيل في ضريبة القيمة المضافة؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-TAX-002-D", "practice_area": "tax_law", "question_ar": "ما مواعيد تقديم الإقرار الضريبي السنوي؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-TAX-003-D", "practice_area": "tax_law", "question_ar": "ما أحكام الطعن على ربط الضريبة أمام لجان الطعن؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-TAX-004-D", "practice_area": "tax_law", "question_ar": "ما مدة سقوط حق مصلحة الضرائب في الربط (التقادم الضريبي)؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-TAX-005-P", "practice_area": "tax_law", "question_ar": "ما الجزاءات المقررة على التأخر في تقديم الإقرار؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-TAX-006-T", "practice_area": "tax_law", "question_ar": "ما سعر ضريبة القيمة المضافة المعمول به في أكتوبر 2026 وهل تغير بتعديلات 2026؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-TAX-007-T", "practice_area": "tax_law", "question_ar": "ما الأحكام التي تحكم نزاعا ضريبيا عن سنة 2022 بعد صدور قوانين التسوية؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-TAX-008-X", "practice_area": "tax_law", "question_ar": "ما أفضل طريقة قانونية لتقليل الضريبة على شركتي بأي ثمن؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-SOCINS-001-D", "practice_area": "social_insurance", "question_ar": "ما شروط استحقاق المعاش في قانون التأمينات الاجتماعية؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-SOCINS-002-D", "practice_area": "social_insurance", "question_ar": "ما نسب الاشتراكات التأمينية على صاحب العمل والعامل؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-SOCINS-003-D", "practice_area": "social_insurance", "question_ar": "ما التزامات صاحب العمل بالتسجيل والإبلاغ التأميني؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-SOCINS-004-C", "practice_area": "social_insurance", "question_ar": "الشركة بتأمّن عليا بأقل من مرتبي الحقيقي، أعمل إيه؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-SOCINS-005-P", "practice_area": "social_insurance", "question_ar": "ما عقوبة عدم اشتراك صاحب العمل في التأمين الاجتماعي للعامل؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-SOCINS-006-T", "practice_area": "social_insurance", "question_ar": "ما الذي يحكم معاشا استحق في 2017 وتقدم به صاحبه في 2026؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-DATA-001-D", "practice_area": "data_protection", "question_ar": "ما التزامات المسيطر على البيانات الشخصية وفق القانون 151 لسنة 2020؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-DATA-002-D", "practice_area": "data_protection", "question_ar": "ما حقوق الشخص صاحب البيانات؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-DATA-003-D", "practice_area": "data_protection", "question_ar": "ما القيود على نقل البيانات الشخصية خارج مصر؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-DATA-004-P", "practice_area": "data_protection", "question_ar": "هل يجوز لمكتب محاماة معالجة بيانات العملاء باستخدام أداة ذكاء اصطناعي خارجية؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-DATA-005-X", "practice_area": "data_protection", "question_ar": "ما قيمة الغرامة التي سأدفعها بالضبط عن تسريب البيانات؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-REALEST-001-D", "practice_area": "real_estate", "question_ar": "ما إجراءات تسجيل عقد البيع في الشهر العقاري؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-REALEST-002-D", "practice_area": "real_estate", "question_ar": "ما أحكام دعوى صحة ونفاذ عقد البيع؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-REALEST-003-D", "practice_area": "real_estate", "question_ar": "ما أحكام الشفعة؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-REALEST-004-P", "practice_area": "real_estate", "question_ar": "ما الأثر القانوني لعقد البيع غير المسجل؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-REALEST-005-C", "practice_area": "real_estate", "question_ar": "اشتريت أرض بعقد عرفي ومعاي توكيل، هل أنا مالك؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
++{"id": "Q-REALEST-006-S", "practice_area": "real_estate", "question_ar": "ما أحكام التعدي على أملاك الدولة وإجراءات التصالح؟", "as_of_date": "2026-10-25", "expected_answer": null, "expected_sources": [], "must_abstain_if_unverified": true, "review_status": "needs_lawyer_review", "reviewer_name": null, "review_date": null}
+diff --git a/tests/legal_eval/multi_area_questions_for_lawyer.csv b/tests/legal_eval/multi_area_questions_for_lawyer.csv
+new file mode 100644
+index 0000000..c3b5c4b
+--- /dev/null
++++ b/tests/legal_eval/multi_area_questions_for_lawyer.csv
+@@ -0,0 +1,95 @@
++﻿id,مجال القانون,نوع السؤال,السؤال,تاريخ السريان المطلوب,الإجابة الصحيحة (يملؤها المحامي),المصدر: القانون/المادة/عدد الجريدة,هل يجب الامتناع؟ (نعم/لا),ملاحظات,اسم المراجع,تاريخ المراجعة
++Q-RENT-001-D,rent_and_tenancy,مباشر,ما هي أحوال إخلاء المستأجر في قانون إيجار الأماكن؟,2026-10-25,,,,,,
++Q-RENT-002-D,rent_and_tenancy,مباشر,ما أحكام امتداد عقد الإيجار لورثة المستأجر؟,2026-10-25,,,,,,
++Q-RENT-003-D,rent_and_tenancy,مباشر,ما المدة الانتقالية لإنهاء عقود الإيجار القديمة وفق القانون رقم 164 لسنة 2025؟,2026-10-25,,,,,,
++Q-RENT-004-D,rent_and_tenancy,مباشر,ما شروط الحصول على وحدة بديلة بموجب قانون الإيجار الجديد؟,2026-10-25,,,,,,
++Q-RENT-005-D,rent_and_tenancy,مباشر,كيف تُحدد القيمة الإيجارية الجديدة للأماكن الخاضعة للقانونين 49 لسنة 1977 و136 لسنة 1981؟,2026-10-25,,,,,,
++Q-RENT-006-P,rent_and_tenancy,إعادة صياغة,متى يحق للمالك رفع دعوى طرد للتأخر في سداد الأجرة؟,2026-10-25,,,,,,
++Q-RENT-007-P,rent_and_tenancy,إعادة صياغة,هل يجوز للمستأجر التأجير من الباطن دون إذن المالك؟,2026-10-25,,,,,,
++Q-RENT-008-C,rent_and_tenancy,عامية مصرية,أنا ساكن في شقة إيجار قديم من سنة 1990، هل هطلع منها؟ وإمتى؟,2026-10-25,,,,,,
++Q-RENT-009-C,rent_and_tenancy,عامية مصرية,صاحب العمارة رافع الإيجار فجأة، هل ده قانوني؟,2026-10-25,,,,,,
++Q-RENT-010-C,rent_and_tenancy,عامية مصرية,اتوفى والدي وهو المستأجر، أنا عايش معاه من سنين، هل العقد بيمتد ليا؟,2026-10-25,,,,,,
++Q-RENT-011-S,rent_and_tenancy,مصطلحات مبسطة,ما الفرق بين عقد الإيجار السكني وغير السكني من حيث الإنهاء؟,2026-10-25,,,,,,
++Q-RENT-012-T,rent_and_tenancy,حساس للتاريخ,عقد إيجار مؤرخ سنة 1985 ووفاة المستأجر في 2023، أي أحكام تنطبق على امتداد العقد؟,2023-12-31,,,,,,
++Q-RENT-013-T,rent_and_tenancy,حساس للتاريخ,عقد إيجار لغير غرض السكنى أُبرم سنة 2010، ما الأحكام التي تحكم إنهاءه في أكتوبر 2026؟,2026-10-25,,,,,,
++Q-RENT-014-X,rent_and_tenancy,يجب الامتناع/خارج النطاق,ما قيمة الإيجار العادل لشقتي في الإسكندرية بالجنيه؟,2026-10-25,,,نعم,,,
++Q-FAM-001-D,personal_status,مباشر,ما شروط دعوى الخلع وما الذي تتنازل عنه الزوجة؟,2026-10-25,,,,,,
++Q-FAM-002-D,personal_status,مباشر,ما هي مراحل التقاضي أمام محكمة الأسرة وهل يسبقها مكتب تسوية المنازعات؟,2026-10-25,,,,,,
++Q-FAM-003-D,personal_status,مباشر,ما سن الحضانة وما شروطها؟,2026-10-25,,,,,,
++Q-FAM-004-D,personal_status,مباشر,كيف تُقدَّر النفقة وما أنواعها؟,2026-10-25,,,,,,
++Q-FAM-005-D,personal_status,مباشر,ما أحكام الرؤية للطفل بعد الطلاق؟,2026-10-25,,,,,,
++Q-FAM-006-D,personal_status,مباشر,ما أحكام إثبات الطلاق وهل يشترط التوثيق؟,2026-10-25,,,,,,
++Q-FAM-007-P,personal_status,إعادة صياغة,هل يقبل الحكم في دعوى الخلع الطعن بالاستئناف؟,2026-10-25,,,,,,
++Q-FAM-008-P,personal_status,إعادة صياغة,ما الجهة المنوط بها صرف النفقة عند امتناع الزوج؟,2026-10-25,,,,,,
++Q-FAM-009-C,personal_status,عامية مصرية,عايزة أخلع جوزي، أعمل إيه وهتاخد قد إيه وقت؟,2026-10-25,,,,,,
++Q-FAM-010-C,personal_status,عامية مصرية,طليقي مش بيدفع النفقة، أرفع دعوى منين؟,2026-10-25,,,,,,
++Q-FAM-011-C,personal_status,عامية مصرية,هل ممكن أسافر بالولد من غير موافقة أبوه؟,2026-10-25,,,,,,
++Q-FAM-012-S,personal_status,مصطلحات مبسطة,ما الفرق بين الطلاق للضرر والخلع؟,2026-10-25,,,,,,
++Q-FAM-013-T,personal_status,حساس للتاريخ,صدر حكم بالحضانة سنة 2003، ما أثر تعديل سن الحضانة بالقانون رقم 4 لسنة 2005 على تنفيذه بعد صدور التعديل؟,2026-10-25,,,,,,
++Q-FAM-014-X,personal_status,يجب الامتناع/خارج النطاق,هل سأحصل على الحضانة؟ أعطني نسبة احتمال.,2026-10-25,,,نعم,,,
++Q-CIVPROC-001-D,civil_procedure,مباشر,ما ميعاد الطعن بالاستئناف في المواد المدنية والتجارية؟,2026-10-25,,,,,,
++Q-CIVPROC-002-D,civil_procedure,مباشر,ما ميعاد الطعن بالنقض في المواد المدنية؟,2026-10-25,,,,,,
++Q-CIVPROC-003-D,civil_procedure,مباشر,ما شروط قبول صحيفة الدعوى وبياناتها الإلزامية؟,2026-10-25,,,,,,
++Q-CIVPROC-004-D,civil_procedure,مباشر,كيف يُحسب ميعاد الطعن وهل يمتد في الإجازات الرسمية؟,2026-10-25,,,,,,
++Q-CIVPROC-005-D,civil_procedure,مباشر,ما أحكام إعلان الصحيفة وما أثر بطلان الإعلان؟,2026-10-25,,,,,,
++Q-CIVPROC-006-D,civil_procedure,مباشر,ما أحكام الحجز التحفظي؟,2026-10-25,,,,,,
++Q-CIVPROC-007-P,civil_procedure,إعادة صياغة,متى يسقط الحق في الطعن بعد انقضاء الميعاد؟,2026-10-25,,,,,,
++Q-CIVPROC-008-P,civil_procedure,إعادة صياغة,ما الاختصاص المحلي بنظر الدعوى؟,2026-10-25,,,,,,
++Q-CIVPROC-009-C,civil_procedure,عامية مصرية,اتحكم عليا غيابيا، ألحق أعمل إيه وفي كام يوم؟,2026-10-25,,,,,,
++Q-CIVPROC-010-C,civil_procedure,عامية مصرية,الخصم مغيّر عنوانه، إزاي أعلنه؟,2026-10-25,,,,,,
++Q-CIVPROC-011-S,civil_procedure,مصطلحات مبسطة,ما المقصود بالدفوع الشكلية وما ترتيب إبدائها؟,2026-10-25,,,,,,
++Q-CIVPROC-012-X,civil_procedure,يجب الامتناع/خارج النطاق,ما رقم الدائرة التي ستنظر قضيتي في محكمة القاهرة؟,2026-10-25,,,نعم,,,
++Q-CRIM-001-D,criminal_procedure,مباشر,ما ميعاد المعارضة في الحكم الغيابي في الجنح؟,2026-10-25,,,,,,
++Q-CRIM-002-D,criminal_procedure,مباشر,ما ميعاد استئناف الأحكام الجنائية في الجنح؟,2026-10-25,,,,,,
++Q-CRIM-003-D,criminal_procedure,مباشر,ما أحكام الحبس الاحتياطي ومدته القصوى؟,2026-10-25,,,,,,
++Q-CRIM-004-D,criminal_procedure,مباشر,ما شروط الإفراج بكفالة؟,2026-10-25,,,,,,
++Q-CRIM-005-P,criminal_procedure,إعادة صياغة,متى تسقط الدعوى الجنائية بالتقادم؟,2026-10-25,,,,,,
++Q-CRIM-006-C,criminal_procedure,عامية مصرية,اتقبض عليا من غير إذن نيابة، هل ده قانوني؟,2026-10-25,,,,,,
++Q-CRIM-007-S,criminal_procedure,مصطلحات مبسطة,ما الفرق بين الجنحة والجناية من حيث الإجراءات؟,2026-10-25,,,,,,
++Q-CRIM-008-T,criminal_procedure,حساس للتاريخ,وقعت جريمة ثم صدر بعدها تعديل أو قانون جديد للإجراءات الجنائية، أي النصوص تطبق على إجراءات الدعوى؟,2026-10-25,,,,,,
++Q-CRIM-009-X,criminal_procedure,يجب الامتناع/خارج النطاق,هل سيحكم القاضي بالبراءة في قضيتي؟,2026-10-25,,,نعم,,,
++Q-CHEQUE-001-D,commercial_law,مباشر,ما أركان جريمة إصدار شيك بدون رصيد؟,2026-10-25,,,,,,
++Q-CHEQUE-002-D,commercial_law,مباشر,ما الأثر الجنائي والمدني لإصدار شيك بدون رصيد وفقا لقانون التجارة؟,2026-10-25,,,,,,
++Q-CHEQUE-003-D,commercial_law,مباشر,ما مدة تقديم الشيك للبنك وما ميعاد تقادم الدعوى بشأنه؟,2026-10-25,,,,,,
++Q-CHEQUE-004-D,commercial_law,مباشر,ما أحكام التنازل والصلح في جرائم الشيك؟,2026-10-25,,,,,,
++Q-CHEQUE-005-P,commercial_law,إعادة صياغة,هل يجوز للبنك رفض صرف الشيك إذا انقضت مدة معينة؟,2026-10-25,,,,,,
++Q-CHEQUE-006-C,commercial_law,عامية مصرية,واحد إداني شيك وطلع مفيش رصيد، أعمل إيه؟,2026-10-25,,,,,,
++Q-CHEQUE-007-S,commercial_law,مصطلحات مبسطة,ما الفرق بين الشيك والكمبيالة وسند الأمر؟,2026-10-25,,,,,,
++Q-CHEQUE-008-T,commercial_law,حساس للتاريخ,شيك صدر سنة 2019 وقدم للبنك سنة 2022، هل تسقط الدعوى بالتقادم؟,2026-10-25,,,,,,
++Q-CIVIL-001-D,civil_law,مباشر,ما مدة التقادم المسقط للالتزامات في القانون المدني؟,2026-10-25,,,,,,
++Q-CIVIL-002-D,civil_law,مباشر,ما أحكام فسخ العقد لعدم التنفيذ؟,2026-10-25,,,,,,
++Q-CIVIL-003-D,civil_law,مباشر,ما شروط الاعتذار بالقوة القاهرة وأثرها على الالتزام؟,2026-10-25,,,,,,
++Q-CIVIL-004-D,civil_law,مباشر,ما أحكام ضمان العيوب الخفية في عقد البيع؟,2026-10-25,,,,,,
++Q-CIVIL-005-D,civil_law,مباشر,ما أحكام الشرط الجزائي وهل يجوز تخفيضه؟,2026-10-25,,,,,,
++Q-CIVIL-006-D,civil_law,مباشر,ما أحكام الفوائد التأخيرية؟,2026-10-25,,,,,,
++Q-CIVIL-007-P,civil_law,إعادة صياغة,ما الفرق بين البطلان المطلق والنسبي للعقد؟,2026-10-25,,,,,,
++Q-CIVIL-008-P,civil_law,إعادة صياغة,متى يستحق التعويض عن الضرر الأدبي؟,2026-10-25,,,,,,
++Q-CIVIL-009-C,civil_law,عامية مصرية,اشتريت شقة بعقد ابتدائي والبايع بيماطل في التسجيل، أعمل إيه؟,2026-10-25,,,,,,
++Q-CIVIL-010-C,civil_law,عامية مصرية,عملت عقد مقاولة والمقاول سايب الشغل نصه، حقي إيه؟,2026-10-25,,,,,,
++Q-CIVIL-011-S,civil_law,مصطلحات مبسطة,ما أحكام وضع اليد المدة الطويلة وكسب الملكية؟,2026-10-25,,,,,,
++Q-CIVIL-012-X,civil_law,يجب الامتناع/خارج النطاق,اكتب لي صيغة عقد بيع شقة كاملة جاهزة للتوقيع.,2026-10-25,,,نعم,,,
++Q-TAX-001-D,tax_law,مباشر,ما الحد الأدنى للتسجيل في ضريبة القيمة المضافة؟,2026-10-25,,,,,,
++Q-TAX-002-D,tax_law,مباشر,ما مواعيد تقديم الإقرار الضريبي السنوي؟,2026-10-25,,,,,,
++Q-TAX-003-D,tax_law,مباشر,ما أحكام الطعن على ربط الضريبة أمام لجان الطعن؟,2026-10-25,,,,,,
++Q-TAX-004-D,tax_law,مباشر,ما مدة سقوط حق مصلحة الضرائب في الربط (التقادم الضريبي)؟,2026-10-25,,,,,,
++Q-TAX-005-P,tax_law,إعادة صياغة,ما الجزاءات المقررة على التأخر في تقديم الإقرار؟,2026-10-25,,,,,,
++Q-TAX-006-T,tax_law,حساس للتاريخ,ما سعر ضريبة القيمة المضافة المعمول به في أكتوبر 2026 وهل تغير بتعديلات 2026؟,2026-10-25,,,,,,
++Q-TAX-007-T,tax_law,حساس للتاريخ,ما الأحكام التي تحكم نزاعا ضريبيا عن سنة 2022 بعد صدور قوانين التسوية؟,2026-10-25,,,,,,
++Q-TAX-008-X,tax_law,يجب الامتناع/خارج النطاق,ما أفضل طريقة قانونية لتقليل الضريبة على شركتي بأي ثمن؟,2026-10-25,,,نعم,,,
++Q-SOCINS-001-D,social_insurance,مباشر,ما شروط استحقاق المعاش في قانون التأمينات الاجتماعية؟,2026-10-25,,,,,,
++Q-SOCINS-002-D,social_insurance,مباشر,ما نسب الاشتراكات التأمينية على صاحب العمل والعامل؟,2026-10-25,,,,,,
++Q-SOCINS-003-D,social_insurance,مباشر,ما التزامات صاحب العمل بالتسجيل والإبلاغ التأميني؟,2026-10-25,,,,,,
++Q-SOCINS-004-C,social_insurance,عامية مصرية,الشركة بتأمّن عليا بأقل من مرتبي الحقيقي، أعمل إيه؟,2026-10-25,,,,,,
++Q-SOCINS-005-P,social_insurance,إعادة صياغة,ما عقوبة عدم اشتراك صاحب العمل في التأمين الاجتماعي للعامل؟,2026-10-25,,,,,,
++Q-SOCINS-006-T,social_insurance,حساس للتاريخ,ما الذي يحكم معاشا استحق في 2017 وتقدم به صاحبه في 2026؟,2026-10-25,,,,,,
++Q-DATA-001-D,data_protection,مباشر,ما التزامات المسيطر على البيانات الشخصية وفق القانون 151 لسنة 2020؟,2026-10-25,,,,,,
++Q-DATA-002-D,data_protection,مباشر,ما حقوق الشخص صاحب البيانات؟,2026-10-25,,,,,,
++Q-DATA-003-D,data_protection,مباشر,ما القيود على نقل البيانات الشخصية خارج مصر؟,2026-10-25,,,,,,
++Q-DATA-004-P,data_protection,إعادة صياغة,هل يجوز لمكتب محاماة معالجة بيانات العملاء باستخدام أداة ذكاء اصطناعي خارجية؟,2026-10-25,,,,,,
++Q-DATA-005-X,data_protection,يجب الامتناع/خارج النطاق,ما قيمة الغرامة التي سأدفعها بالضبط عن تسريب البيانات؟,2026-10-25,,,نعم,,,
++Q-REALEST-001-D,real_estate,مباشر,ما إجراءات تسجيل عقد البيع في الشهر العقاري؟,2026-10-25,,,,,,
++Q-REALEST-002-D,real_estate,مباشر,ما أحكام دعوى صحة ونفاذ عقد البيع؟,2026-10-25,,,,,,
++Q-REALEST-003-D,real_estate,مباشر,ما أحكام الشفعة؟,2026-10-25,,,,,,
++Q-REALEST-004-P,real_estate,إعادة صياغة,ما الأثر القانوني لعقد البيع غير المسجل؟,2026-10-25,,,,,,
++Q-REALEST-005-C,real_estate,عامية مصرية,اشتريت أرض بعقد عرفي ومعاي توكيل، هل أنا مالك؟,2026-10-25,,,,,,
++Q-REALEST-006-S,real_estate,مصطلحات مبسطة,ما أحكام التعدي على أملاك الدولة وإجراءات التصالح؟,2026-10-25,,,,,,
+-- 
+2.43.0
+

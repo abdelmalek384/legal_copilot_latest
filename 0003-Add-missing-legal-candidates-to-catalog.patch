@@ -1,0 +1,204 @@
+From 345d72ee99cb6d7de019c1a5535c391cc94d7443 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 26 Oct 2026 05:26:23 +0000
+Subject: [PATCH] Add 16 missing discovery-only legal candidates (rent, family,
+ court organization, social insurance, historical labour laws)
+
+Adds Law 164/2025 and the legacy rent laws, Law 1/2000 (khula procedure), family courts
+and fund laws, social insurance, judicial authority, Cassation procedure, lawyers' law,
+repealed Law 12/2003 and 125/2010 (needed for temporal questions), vehicle insurance and
+traffic law. Metadata only; each entry notes what must be confirmed against the Gazette.
+---
+ docs/legal_document_candidates.json | 176 ++++++++++++++++++++++++++++
+ 1 file changed, 176 insertions(+)
+
+diff --git a/docs/legal_document_candidates.json b/docs/legal_document_candidates.json
+index 0a239bc..240d7c1 100644
+--- a/docs/legal_document_candidates.json
++++ b/docs/legal_document_candidates.json
+@@ -741,6 +741,182 @@
+       "language": "ar",
+       "candidate_status": "discovery_only",
+       "notes": "Official tax authority index lists this decision under the 2026 tax-dispute renewal. Verify issuing authority, official publication, application process and deadlines."
++    },
++    {
++      "document_id": "EG-PERSONAL-STATUS-PROCEDURE-1-2000",
++      "official_title": "قانون تنظيم بعض أوضاع وإجراءات التقاضي في مسائل الأحوال الشخصية — القانون رقم 1 لسنة 2000",
++      "document_type": "personal_status_procedure_law",
++      "law_number": "1",
++      "law_year": 2000,
++      "source_id": "EG-AMIRI-PRESS",
++      "language": "ar",
++      "candidate_status": "discovery_only",
++      "notes": "Contains the khula (الخلع) procedure (commonly cited as Article 20). Secondary sources list it as amended (including Law 91/2000 and a later amendment reported in 2020); map the full amendment chain from the Gazette and have counsel confirm the current text. Constitutional challenges to Article 20 exist and should be tracked separately as judicial materials. Number, year and title identified from secondary references; confirm against the Official Gazette before any registration."
++    },
++    {
++      "document_id": "EG-FAMILY-COURTS-10-2004",
++      "official_title": "قانون إنشاء محاكم الأسرة — القانون رقم 10 لسنة 2004",
++      "document_type": "court_organization_law",
++      "law_number": "10",
++      "law_year": 2004,
++      "source_id": "EG-AMIRI-PRESS",
++      "language": "ar",
++      "candidate_status": "discovery_only",
++      "notes": "Creates the family courts and the family dispute settlement offices that khula and alimony cases pass through. Number, year and title identified from secondary references; confirm against the Official Gazette before any registration."
++    },
++    {
++      "document_id": "EG-FAMILY-INSURANCE-FUND-11-2004",
++      "official_title": "قانون إنشاء صندوق تأمين الأسرة — القانون رقم 11 لسنة 2004",
++      "document_type": "personal_status_support_law",
++      "law_number": "11",
++      "law_year": 2004,
++      "source_id": "EG-AMIRI-PRESS",
++      "language": "ar",
++      "candidate_status": "discovery_only",
++      "notes": "Fund for paying court-ordered alimony; relevant to enforcement of family judgments. Number, year and title identified from secondary references; confirm against the Official Gazette before any registration."
++    },
++    {
++      "document_id": "EG-PERSONAL-STATUS-AMENDMENT-4-2005",
++      "official_title": "قانون رقم 4 لسنة 2005 بتعديل بعض أحكام قوانين الأحوال الشخصية (الحضانة)",
++      "document_type": "personal_status_law",
++      "law_number": "4",
++      "law_year": 2005,
++      "source_id": "EG-AMIRI-PRESS",
++      "language": "ar",
++      "candidate_status": "discovery_only",
++      "notes": "Reported by secondary sources as raising the custody age; confirm exact scope and article references before use. Number, year and title identified from secondary references; confirm against the Official Gazette before any registration."
++    },
++    {
++      "document_id": "EG-RENT-164-2025",
++      "official_title": "قانون رقم 164 لسنة 2025 بشأن بعض الأحكام المتعلقة بقوانين إيجار الأماكن وإعادة تنظيم العلاقة بين المؤجر والمستأجر",
++      "document_type": "rent_law",
++      "law_number": "164",
++      "law_year": 2025,
++      "source_id": "EG-AMIRI-PRESS",
++      "language": "ar",
++      "candidate_status": "discovery_only",
++      "notes": "High priority and time-sensitive. News reports state publication in Official Gazette issue 31 (supplement) on 2025-08-04 with commencement the day after publication, and rent adjustments starting from the first rent due after 2025-09-01; reports also describe a staged end to old-rent contracts and a Cabinet decision implementing Article 8. These dates come from secondary reporting and MUST be checked against the Gazette and counsel; do not treat any single effective date as the answer to every temporal question."
++    },
++    {
++      "document_id": "EG-RENT-49-1977",
++      "official_title": "قانون تأجير وبيع الأماكن وتنظيم العلاقة بين المؤجر والمستأجر — القانون رقم 49 لسنة 1977",
++      "document_type": "rent_law",
++      "law_number": "49",
++      "law_year": 1977,
++      "source_id": "EG-AMIRI-PRESS",
++      "language": "ar",
++      "candidate_status": "discovery_only",
++      "notes": "Legacy rent law still relevant to existing contracts and pre-2025 events; Law 164/2025 is reported to repeal it after a transition period. Model as a historical/transitional version, not as simply repealed. Number, year and title identified from secondary references; confirm against the Official Gazette before any registration."
++    },
++    {
++      "document_id": "EG-RENT-136-1981",
++      "official_title": "قانون بعض الأحكام الخاصة بتأجير وبيع الأماكن وتنظيم العلاقة بين المؤجر والمستأجر — القانون رقم 136 لسنة 1981",
++      "document_type": "rent_law",
++      "law_number": "136",
++      "law_year": 1981,
++      "source_id": "EG-AMIRI-PRESS",
++      "language": "ar",
++      "candidate_status": "discovery_only",
++      "notes": "Legacy rent law (reported Supreme Constitutional Court ruling on Articles 1 and 2 first paragraphs in 2024 preceded the 2025 reform); same transitional-version caution as Law 49/1977. Number, year and title identified from secondary references; confirm against the Official Gazette before any registration."
++    },
++    {
++      "document_id": "EG-RENT-4-1996",
++      "official_title": "القانون رقم 4 لسنة 1996 بشأن سريان أحكام القانون المدني على الأماكن التي لم يسبق تأجيرها والأماكن التي انتهت عقود إيجارها",
++      "document_type": "rent_law",
++      "law_number": "4",
++      "law_year": 1996,
++      "source_id": "EG-AMIRI-PRESS",
++      "language": "ar",
++      "candidate_status": "discovery_only",
++      "notes": "Contracts after January 1996 are generally governed by the Civil Code under this law; confirm title, scope and its relationship with Law 164/2025. Number, year and title identified from secondary references; confirm against the Official Gazette before any registration."
++    },
++    {
++      "document_id": "EG-SOCIAL-INSURANCE-148-2019",
++      "official_title": "قانون التأمينات الاجتماعية والمعاشات — القانون رقم 148 لسنة 2019",
++      "document_type": "social_insurance_law",
++      "law_number": "148",
++      "law_year": 2019,
++      "source_id": "EG-AMIRI-PRESS",
++      "language": "ar",
++      "candidate_status": "discovery_only",
++      "notes": "Core companion to the labour law (insured status, contributions, pensions). Check amendments and executive regulations. Number, year and title identified from secondary references; confirm against the Official Gazette before any registration."
++    },
++    {
++      "document_id": "EG-JUDICIAL-AUTHORITY-46-1972",
++      "official_title": "قانون السلطة القضائية — القانون رقم 46 لسنة 1972",
++      "document_type": "court_organization_law",
++      "law_number": "46",
++      "law_year": 1972,
++      "source_id": "EG-AMIRI-PRESS",
++      "language": "ar",
++      "candidate_status": "discovery_only",
++      "notes": "Courts' organization and judicial authority; many amendments. Number, year and title identified from secondary references; confirm against the Official Gazette before any registration."
++    },
++    {
++      "document_id": "EG-CASSATION-PROCEDURE-57-1959",
++      "official_title": "قانون في شأن حالات وإجراءات الطعن أمام محكمة النقض — القانون رقم 57 لسنة 1959",
++      "document_type": "procedural_law",
++      "law_number": "57",
++      "law_year": 1959,
++      "source_id": "EG-AMIRI-PRESS",
++      "language": "ar",
++      "candidate_status": "discovery_only",
++      "notes": "Appeal-to-Cassation grounds and procedure, including time limits; high value for deadline logic. Many amendments. Number, year and title identified from secondary references; confirm against the Official Gazette before any registration."
++    },
++    {
++      "document_id": "EG-LAWYERS-17-1983",
++      "official_title": "قانون المحاماة — القانون رقم 17 لسنة 1983",
++      "document_type": "legal_profession_law",
++      "law_number": "17",
++      "law_year": 1983,
++      "source_id": "EG-AMIRI-PRESS",
++      "language": "ar",
++      "candidate_status": "discovery_only",
++      "notes": "Legal profession and Bar Association rules, including professional duties relevant to client confidentiality. Many amendments. Number, year and title identified from secondary references; confirm against the Official Gazette before any registration."
++    },
++    {
++      "document_id": "EG-LABOUR-12-2003",
++      "official_title": "قانون العمل — القانون رقم 12 لسنة 2003 (ملغى)",
++      "document_type": "labour_law_historical",
++      "law_number": "12",
++      "law_year": 2003,
++      "source_id": "EG-AMIRI-PRESS",
++      "language": "ar",
++      "candidate_status": "discovery_only",
++      "notes": "Historical version needed for events before Law 14/2025 took effect. The Law 14/2025 promulgation reportedly repeals it (Article 12) from the commencement date, with transitional rules in other articles; model as a historical version and have counsel confirm which law governs each pre- and post-commencement fact pattern."
++    },
++    {
++      "document_id": "EG-WORKERS-RIGHTS-PRIORITY-125-2010",
++      "official_title": "القانون رقم 125 لسنة 2010 بشأن أولوية حقوق العمال (ملغى)",
++      "document_type": "labour_law_historical",
++      "law_number": "125",
++      "law_year": 2010,
++      "source_id": "EG-AMIRI-PRESS",
++      "language": "ar",
++      "candidate_status": "discovery_only",
++      "notes": "Reported as repealed by the Law 14/2025 promulgation (Article 12) together with Law 12/2003; confirm title, status and transitional treatment."
++    },
++    {
++      "document_id": "EG-COMPULSORY-VEHICLE-INSURANCE-72-2007",
++      "official_title": "قانون التأمين الإجباري عن المسئولية المدنية الناشئة عن حوادث المركبات — القانون رقم 72 لسنة 2007",
++      "document_type": "insurance_law",
++      "law_number": "72",
++      "law_year": 2007,
++      "source_id": "EG-AMIRI-PRESS",
++      "language": "ar",
++      "candidate_status": "discovery_only",
++      "notes": "Relevant to road-accident compensation claims. Number, year and title identified from secondary references; confirm against the Official Gazette before any registration."
++    },
++    {
++      "document_id": "EG-TRAFFIC-66-1973",
++      "official_title": "قانون المرور — القانون رقم 66 لسنة 1973",
++      "document_type": "traffic_law",
++      "law_number": "66",
++      "law_year": 1973,
++      "source_id": "EG-AMIRI-PRESS",
++      "language": "ar",
++      "candidate_status": "discovery_only",
++      "notes": "Traffic offences and procedures; many amendments. Number, year and title identified from secondary references; confirm against the Official Gazette before any registration."
+     }
+   ]
+ }
+-- 
+2.43.0
+
