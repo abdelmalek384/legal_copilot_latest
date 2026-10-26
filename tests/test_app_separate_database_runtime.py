@@ -1063,6 +1063,11 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             ("test-law", "current", "https://example.test/law/current", "2020-01-01",
              "in_force", "verified", 1, 1, 1, "version evidence"),
         ).lastrowid
+        for review_type in ("source_authenticity", "extraction_quality", "legal_status", "amendment_history", "licensing", "lawyer_approval"):
+            corpus.execute(
+                "INSERT INTO legal_review_events(version_id,reviewer,review_type,outcome,notes,evidence_url) VALUES(?,?,?,?,?,?)",
+                (version_id, "Test reviewer", review_type, "pass", "Reviewed test fixture.", "https://example.test/review"),
+            )
         corpus.execute(
             "INSERT INTO chunks(ref,article,page,text,norm,document_version_id,in_force,as_of,source,verified) "
             "VALUES(?,?,?,?,?,?,?,?,?,1)",
