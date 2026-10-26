@@ -1211,7 +1211,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         # Caller-supplied trust flags must not bypass the reviewed-corpus workflow.
         self.assertEqual(
             corpus.execute(
-                "SELECT COUNT(*) FROM legal_document_versions WHERE official_title=?",
+                "SELECT COUNT(*) FROM legal_documents WHERE official_title=?",
                 ("Synthetic staged law import",),
             ).fetchone()[0],
             0,
