@@ -155,7 +155,7 @@ def audit(db_path: Path):
                         ).fetchall()
                     )
                     if future_terms_dates:
-                        result["issues"].append({"severity":"high","code":"source_permission_terms_check_date_in_future","count":future_terms_dates})
+                        result["issues"].append({"severity":"high","code":"source_permission_terms_check_date_in_future","count":future_terms_dates,"detail":"A future date cannot evidence a completed permission-terms review."})
         if "legal_document_versions" in tables:
             vc=columns(db,"legal_document_versions")
             required={"source_url","original_path","original_sha256","publication_date","effective_date","repeal_date","legal_status","review_status","authenticity_verified","status_verified","amendment_history_verified"}
