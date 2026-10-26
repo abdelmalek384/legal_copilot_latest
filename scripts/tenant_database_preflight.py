@@ -82,8 +82,6 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
         findings.append({"code": code, "firm_id": firm_id, "detail": detail})
 
     def check_sidecars(database_path: Path, firm_id: int | None) -> bool:
-        if os.name != "posix":
-            return False
         has_symlink = False
         for suffix in ("-wal", "-shm", "-journal"):
             sidecar = Path(str(database_path) + suffix)
@@ -95,7 +93,7 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
                 )
                 has_symlink = True
                 continue
-            if not sidecar.exists():
+            if not sidecar.exists() or os.name != "posix":
                 continue
             try:
                 sidecar_mode = stat.S_IMODE(sidecar.stat().st_mode)
