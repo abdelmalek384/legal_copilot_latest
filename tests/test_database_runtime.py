@@ -28,6 +28,25 @@ class DatabaseRuntimeTests(unittest.TestCase):
     def _identity(self, email="lawyer@example.test"):
         return self.runtime.create_global_identity("Test Lawyer", email, "test-hash")
 
+    def test_global_identity_email_uniqueness_uses_unicode_casefold_and_normalization(self):
+        first_id = self.runtime.create_global_identity(
+            "First Person", "  Straße@Example.test ", "test-hash"
+        )
+        row = self.runtime.control_connection().execute(
+            "SELECT email_display,email_normalized FROM users WHERE id=?", (first_id,)
+        ).fetchone()
+        self.assertEqual(row["email_display"], "Straße@Example.test")
+        self.assertEqual(row["email_normalized"], "strasse@example.test")
+        with self.assertRaises(sqlite3.IntegrityError):
+            self.runtime.create_global_identity(
+                "Duplicate Person", "STRASSE@example.test", "other-hash"
+            )
+        with self.assertRaises(sqlite3.IntegrityError):
+            self.runtime.create_global_identity(
+                "Unicode Normalization Duplicate", "e\u0301@example.test", "other-hash"
+            )
+        self.runtime.create_global_identity("Composed Unicode", "é@example.test", "test-hash")
+
     def test_new_control_and_corpus_files_have_restrictive_permissions(self):
         if os.name != "posix":
             self.skipTest("POSIX mode bits are not portable to this platform")
