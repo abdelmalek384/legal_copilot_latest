@@ -1098,6 +1098,25 @@ def _origin_matches_request(origin, request):
         return False
 
 
+MAX_REQUEST_BODY_BYTES = 16 * 1024 * 1024  # 15 MB upload cap plus multipart overhead
+
+
+def _declared_body_size_error(request):
+    """Reject malformed or oversized declared request bodies before route parsing."""
+    raw_length = request.headers.get("content-length")
+    if raw_length is None:
+        return None
+    try:
+        length = int(raw_length)
+    except (TypeError, ValueError):
+        return (400, "invalid content-length")
+    if length < 0:
+        return (400, "invalid content-length")
+    if length > MAX_REQUEST_BODY_BYTES:
+        return (413, "request body exceeds 16 MB limit")
+    return None
+
+
 @app.middleware("http")
 async def security_headers(request: Request, call_next):
     nonce = secrets.token_urlsafe(18)
@@ -1108,7 +1127,10 @@ async def security_headers(request: Request, call_next):
         if not retry_after and _separate_runtime_enabled():
             _active_firm_context.set(_request_firm_context(request))
         try:
-            if retry_after:
+            body_size_error = _declared_body_size_error(request)
+            if body_size_error:
+                response = JSONResponse(status_code=body_size_error[0], content={"detail": body_size_error[1]})
+            elif retry_after:
                 response = JSONResponse(status_code=429,
                                         content={"detail": "rate limit exceeded; try again later"},
                                         headers={"Retry-After": str(retry_after)})
