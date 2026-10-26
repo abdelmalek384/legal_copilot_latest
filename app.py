@@ -1090,7 +1090,9 @@ def _trusted_host_patterns(raw):
             raise ValueError("COPILOT_ALLOWED_HOSTS only permits a leading *. subdomain wildcard")
         ip_candidate = candidate[1:-1] if candidate.startswith("[") and candidate.endswith("]") else candidate
         try:
-            ipaddress.ip_address(ip_candidate)
+            parsed_ip = ipaddress.ip_address(ip_candidate)
+            if parsed_ip.version == 6:
+                raise ValueError("IPv6 Host-header patterns are not supported; configure a hostname or IPv4 address")
             if host.startswith("*."):
                 raise ValueError("IP addresses cannot use subdomain wildcards")
             continue
