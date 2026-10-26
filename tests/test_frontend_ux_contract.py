@@ -57,6 +57,14 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Search source and instrument registry", HTML)
         self.assertIn("e.key==='Enter'){e.preventDefault();openCatalog(kind,searchInput.value,filters)", HTML)
 
+    def test_review_queue_rejects_unsafe_source_links_and_explains_missing_gates(self):
+        self.assertIn("const versionUrl=safeHttpsUrl(v.source_url)", HTML)
+        self.assertIn("No safe HTTPS source URL is recorded.", HTML)
+        self.assertIn("Gates not met: ", HTML)
+        self.assertIn("v.version_permission_evidence", HTML)
+        self.assertIn("v.source_permission_evidence", HTML)
+        self.assertIn("independent source/lawyer verification is still required", HTML)
+
     def test_source_status_labels_have_plain_language_explanations_and_original_host(self):
         self.assertIn("const statusDescriptions={", HTML)
         self.assertIn("not independently verified as law", HTML)
