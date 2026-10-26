@@ -124,6 +124,17 @@ class TenantSQLiteConnectionRouterTests(unittest.TestCase):
         with self.assertRaisesRegex(sqlite3.ProgrammingError, "closed"):
             connection.execute("SELECT 1")
 
+    @unittest.skipUnless(os.name == "posix", "POSIX named pipes are required")
+    def test_fifo_sqlite_sidecar_revokes_cached_tenant_connection(self):
+        connection = self.router.connection_for_firm(101)
+        with self._catalog() as catalog:
+            path = resolve_tenant_database(catalog, 101, self.root)
+        os.mkfifo(Path(str(path) + "-wal"))
+        with self.assertRaisesRegex(TenantConnectionError, "sidecar must be a regular file"):
+            self.router.connection_for_firm(101)
+        with self.assertRaisesRegex(sqlite3.ProgrammingError, "closed"):
+            connection.execute("SELECT 1")
+
     def test_rejects_tenant_database_bound_to_non_firm_profile(self):
         with self._catalog() as catalog:
             path = resolve_tenant_database(catalog, 101, self.root)
