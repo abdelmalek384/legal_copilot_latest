@@ -171,9 +171,12 @@ def _bind_tenant_database(connection: sqlite3.Connection, firm_id: int) -> None:
             and "tenant database firm binding is immutable" in normalized
         )
 
+    if schema is None:
+        raise TenantCatalogError(
+            "Tenant database binding schema must be created by firm migrations"
+        )
     if (
-        schema is None
-        or not has_immutable_binding_guard(
+        not has_immutable_binding_guard(
             trigger_rows.get("tenant_database_binding_no_update"), "update"
         )
         or not has_immutable_binding_guard(
@@ -181,7 +184,7 @@ def _bind_tenant_database(connection: sqlite3.Connection, firm_id: int) -> None:
         )
     ):
         raise TenantCatalogError(
-            "Tenant database binding schema and immutable guards must be created by firm migrations"
+            "Firm binding lacks effective immutable guards"
         )
     rows = connection.execute(
         "SELECT singleton, firm_id FROM tenant_database_binding"
