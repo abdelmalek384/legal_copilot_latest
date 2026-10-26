@@ -21,6 +21,14 @@ class SecureCookieTransportTests(unittest.TestCase):
             os.environ.pop("COPILOT_SECURE_COOKIES", None)
             self.assertTrue(app._secure_cookie_transport(request))
 
+    def test_public_origin_allows_only_configured_https_origin(self):
+        request = SimpleNamespace(url=SimpleNamespace(scheme="http", netloc="internal:8000"))
+        with patch.dict(os.environ, {"COPILOT_PUBLIC_ORIGIN": "https://legal.example.com"}):
+            self.assertTrue(app._origin_matches_request("https://legal.example.com", request))
+            self.assertFalse(app._origin_matches_request("https://attacker.example", request))
+            self.assertFalse(app._origin_matches_request("http://legal.example.com", request))
+            self.assertFalse(app._origin_matches_request("https://legal.example.com/evil", request))
+
     def test_explicit_proxy_mode_marks_http_backend_request_secure(self):
         request = SimpleNamespace(url=SimpleNamespace(scheme="http"))
         with patch.dict(os.environ, {"COPILOT_SECURE_COOKIES": "1"}):
