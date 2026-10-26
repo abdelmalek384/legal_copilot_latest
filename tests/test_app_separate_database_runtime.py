@@ -3,6 +3,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from fastapi import HTTPException
 from fastapi.testclient import TestClient
 
 import app
@@ -49,6 +50,48 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         headers = dict(kwargs.pop("headers", {}) or {})
         headers["X-CSRF-Token"] = csrf or ""
         return getattr(self.client, method)(url, headers=headers, **kwargs)
+
+    def test_membership_writers_recheck_active_firm_inside_write_transaction(self):
+        target_user = self.runtime.create_initial_firm_owner(
+            self.firm_b, "Second Firm User", "second-firm-user@example.test",
+            app.hash_pw(self.password)
+        )
+        self.assertTrue(self.runtime.disable_firm(self.firm_a))
+        admin_context = {"id": self.user_id, "firm_id": self.firm_a, "role": "admin"}
+
+        with self.assertRaises(HTTPException) as create_error:
+            app.create_user(
+                app.UserCreateIn(
+                    name="Must Not Exist",
+                    email="must-not-exist@example.test",
+                    password=self.password,
+                    role="lawyer",
+                ),
+                admin_context,
+            )
+        self.assertEqual(create_error.exception.status_code, 409)
+
+        with self.assertRaises(HTTPException) as membership_error:
+            app.add_existing_user_membership(
+                app.ExistingMembershipIn(email="second-firm-user@example.test", role="lawyer"),
+                admin_context,
+            )
+        self.assertEqual(membership_error.exception.status_code, 409)
+
+        control = self.runtime.control_connection()
+        self.assertIsNone(
+            control.execute(
+                "SELECT id FROM users WHERE email_normalized=?",
+                ("must-not-exist@example.test",),
+            ).fetchone()
+        )
+        self.assertEqual(
+            control.execute(
+                "SELECT COUNT(*) FROM firm_memberships WHERE user_id=? AND firm_id=?",
+                (target_user, self.firm_a),
+            ).fetchone()[0],
+            0,
+        )
 
     def test_disabled_global_identity_cannot_receive_new_membership(self):
         firm_c, _ = self.runtime.provision_firm("Disabled Identity Firm")
