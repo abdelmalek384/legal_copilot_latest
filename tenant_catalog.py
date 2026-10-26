@@ -40,34 +40,6 @@ def initialize_catalog(connection: sqlite3.Connection) -> None:
         raise TenantCatalogError(
             "Control-plane firms table must be created by migrations before catalog initialization"
         )
-    connection.execute("""
-        CREATE TABLE IF NOT EXISTS tenant_database_catalog (
-            firm_id INTEGER PRIMARY KEY CHECK(firm_id > 0)
-                REFERENCES firms(id) ON DELETE RESTRICT,
-            database_file TEXT UNIQUE,
-            status TEXT NOT NULL CHECK(status IN ('provisioning','provisioned','failed','disabled')),
-            created_at TEXT NOT NULL DEFAULT (datetime('now')),
-            updated_at TEXT NOT NULL DEFAULT (datetime('now')),
-            last_error_code TEXT
-        )
-    """)
-    foreign_keys = connection.execute(
-        "PRAGMA foreign_key_list(tenant_database_catalog)"
-    ).fetchall()
-    if not any(row[2] == "firms" and row[3] == "firm_id" and row[4] == "id" for row in foreign_keys):
-        raise TenantCatalogError(
-            "Tenant catalog is missing its firm ownership constraint; apply control-plane migrations"
-        )
-    # A declared FK does not prove that existing rows satisfy it: SQLite can
-    # contain violations from a prior connection that had foreign_keys OFF.
-    # Refuse to resolve any tenant until catalog ownership is reconciled.
-    violations = connection.execute(
-        "PRAGMA foreign_key_check(tenant_database_catalog)"
-    ).fetchall()
-    if violations:
-        raise TenantCatalogError(
-            "Tenant catalog contains invalid firm ownership references; reconcile before use"
-        )
     # The catalog is an authorization-critical routing authority. A database
     # with the right table names is not sufficient: require its immutable
     # control-plane profile before resolving or provisioning any tenant.
@@ -108,6 +80,34 @@ def initialize_catalog(connection: sqlite3.Connection) -> None:
     ):
         raise TenantCatalogError(
             "Tenant catalog is not bound to the trusted control-plane profile"
+        )
+    connection.execute("""
+        CREATE TABLE IF NOT EXISTS tenant_database_catalog (
+            firm_id INTEGER PRIMARY KEY CHECK(firm_id > 0)
+                REFERENCES firms(id) ON DELETE RESTRICT,
+            database_file TEXT UNIQUE,
+            status TEXT NOT NULL CHECK(status IN ('provisioning','provisioned','failed','disabled')),
+            created_at TEXT NOT NULL DEFAULT (datetime('now')),
+            updated_at TEXT NOT NULL DEFAULT (datetime('now')),
+            last_error_code TEXT
+        )
+    """)
+    foreign_keys = connection.execute(
+        "PRAGMA foreign_key_list(tenant_database_catalog)"
+    ).fetchall()
+    if not any(row[2] == "firms" and row[3] == "firm_id" and row[4] == "id" for row in foreign_keys):
+        raise TenantCatalogError(
+            "Tenant catalog is missing its firm ownership constraint; apply control-plane migrations"
+        )
+    # A declared FK does not prove that existing rows satisfy it: SQLite can
+    # contain violations from a prior connection that had foreign_keys OFF.
+    # Refuse to resolve any tenant until catalog ownership is reconciled.
+    violations = connection.execute(
+        "PRAGMA foreign_key_check(tenant_database_catalog)"
+    ).fetchall()
+    if violations:
+        raise TenantCatalogError(
+            "Tenant catalog contains invalid firm ownership references; reconcile before use"
         )
     connection.commit()
 
