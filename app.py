@@ -1008,7 +1008,77 @@ from fastapi import Cookie, Depends, FastAPI, Header, HTTPException, UploadFile
 from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field, field_validator
 
+MAX_REQUEST_BODY_BYTES = 16 * 1024 * 1024  # 15 MB upload cap plus multipart overhead
+
+
+class RequestBodyLimitMiddleware:
+    """Bound HTTP request bodies, including chunked requests without Content-Length."""
+    def __init__(self, app, max_body_bytes=MAX_REQUEST_BODY_BYTES):
+        self.app = app
+        self.max_body_bytes = max_body_bytes
+
+    async def __call__(self, scope, receive, send):
+        if scope.get("type") != "http":
+            await self.app(scope, receive, send)
+            return
+
+        lengths = [value for key, value in scope.get("headers", []) if key.lower() == b"content-length"]
+        if len(lengths) > 1:
+            await self._reject(send, 400, "invalid content-length")
+            return
+        if lengths:
+            try:
+                declared = int(lengths[0].decode("ascii"))
+            except (UnicodeDecodeError, ValueError):
+                await self._reject(send, 400, "invalid content-length")
+                return
+            if declared < 0:
+                await self._reject(send, 400, "invalid content-length")
+                return
+            if declared > self.max_body_bytes:
+                await self._reject(send, 413, "request body exceeds 16 MB limit")
+                return
+
+        received = 0
+        too_large = False
+
+        async def limited_receive():
+            nonlocal received, too_large
+            if too_large:
+                return {"type": "http.disconnect"}
+            message = await receive()
+            if message.get("type") == "http.request":
+                received += len(message.get("body", b""))
+                if received > self.max_body_bytes:
+                    too_large = True
+                    return {"type": "http.disconnect"}
+            return message
+
+        async def guarded_send(message):
+            if not too_large:
+                await send(message)
+
+        try:
+            await self.app(scope, limited_receive, guarded_send)
+        except Exception:
+            if not too_large:
+                raise
+        if too_large:
+            await self._reject(send, 413, "request body exceeds 16 MB limit")
+
+    @staticmethod
+    async def _reject(send, status, detail):
+        body = json.dumps({"detail": detail}).encode("utf-8")
+        await send({"type": "http.response.start", "status": status, "headers": [
+            (b"content-type", b"application/json; charset=utf-8"),
+            (b"content-length", str(len(body)).encode("ascii")),
+            (b"cache-control", b"no-store"),
+        ]})
+        await send({"type": "http.response.body", "body": body})
+
+
 app = FastAPI(title="Legal Copilot MVP", docs_url=None, redoc_url=None, openapi_url=None)
+app.add_middleware(RequestBodyLimitMiddleware, max_body_bytes=MAX_REQUEST_BODY_BYTES)
 
 # Per-process fixed-window limits for expensive or abuse-prone endpoints.
 # Deliberately use the direct peer address; do not trust arbitrary X-Forwarded-For.
@@ -1132,9 +1202,6 @@ def _origin_matches_request(origin, request):
         return parsed.netloc.lower() == request.url.netloc.lower() and parsed.scheme == request.url.scheme
     except (TypeError, ValueError):
         return False
-
-
-MAX_REQUEST_BODY_BYTES = 16 * 1024 * 1024  # 15 MB upload cap plus multipart overhead
 
 
 def _declared_body_size_error(request):
