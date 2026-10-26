@@ -168,11 +168,12 @@ class DatabaseRuntimeTests(unittest.TestCase):
             list(self.runtime.paths.tenant_root.glob("tenant-*.sqlite3")), []
         )
 
-    def test_revoked_membership_is_denied_even_after_context_was_resolved(self):
+    def test_revoked_membership_closes_cached_firm_connection(self):
         user_id = self._identity()
         firm_id, _ = self.runtime.provision_firm("Revocation Test")
         self.runtime.create_firm_membership(user_id, firm_id, "admin")
         old_context = self.runtime.resolve_context(user_id, firm_id)
+        cached = self.runtime.firm_connection(old_context)
         control = self.runtime.control_connection()
         control.execute(
             "UPDATE firm_memberships SET status='revoked' WHERE user_id=? AND firm_id=?",
@@ -181,6 +182,23 @@ class DatabaseRuntimeTests(unittest.TestCase):
         control.commit()
         with self.assertRaises(FirmContextError):
             self.runtime.firm_connection(old_context)
+        with self.assertRaises(sqlite3.ProgrammingError):
+            cached.execute("SELECT 1")
+
+    def test_disabling_firm_closes_cached_firm_connection(self):
+        user_id = self._identity()
+        firm_id, database_path = self.runtime.provision_firm("Disable Cached Connection")
+        self.runtime.create_firm_membership(user_id, firm_id, "admin")
+        context = self.runtime.resolve_context(user_id, firm_id)
+        cached = self.runtime.firm_connection(context)
+        self.assertTrue(database_path.is_file())
+
+        self.assertTrue(self.runtime.disable_firm(firm_id))
+        with self.assertRaises(FirmContextError):
+            self.runtime.firm_connection(context)
+        with self.assertRaises(sqlite3.ProgrammingError):
+            cached.execute("SELECT 1")
+        self.assertTrue(database_path.is_file())
 
     def test_role_change_requires_context_refresh(self):
         user_id = self._identity()
