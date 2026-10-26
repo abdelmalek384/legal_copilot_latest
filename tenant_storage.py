@@ -123,7 +123,14 @@ class TenantSQLiteConnectionRouter:
                 raise TenantConnectionError(
                     "Tenant SQLite sidecar must not be a symbolic link"
                 )
-            if not sidecar.exists() or os.name != "posix":
+            if not sidecar.exists():
+                continue
+            if not sidecar.is_file():
+                self._revoke_cached_connection(trusted_firm_id)
+                raise TenantConnectionError(
+                    "Tenant SQLite sidecar must be a regular file"
+                )
+            if os.name != "posix":
                 continue
             try:
                 sidecar_mode = stat.S_IMODE(sidecar.stat().st_mode)
