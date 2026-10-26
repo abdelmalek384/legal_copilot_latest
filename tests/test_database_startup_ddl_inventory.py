@@ -29,8 +29,13 @@ class DatabaseStartupDDLInventoryTests(unittest.TestCase):
             [item["file"] for item in report["migrations"]],
             sorted(item["file"] for item in report["migrations"]),
         )
-        self.assertEqual(len(report["migrations"]), 20)
+        expected_migrations = {
+            path.relative_to(root / "migrations").as_posix()
+            for path in (root / "migrations").rglob("*.sql")
+            if path.is_file() and not path.is_symlink()
+        }
         migration_files = {item["file"] for item in report["migrations"]}
+        self.assertEqual(migration_files, expected_migrations)
         self.assertIn("control_plane/0001_control_plane_catalog.sql", migration_files)
         self.assertIn("firm/0001_firm_matter_foundation.sql", migration_files)
         self.assertIn("legal_corpus/0001_shared_legal_corpus.sql", migration_files)

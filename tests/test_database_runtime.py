@@ -94,6 +94,56 @@ class DatabaseRuntimeTests(unittest.TestCase):
         finally:
             os.chmod(self.runtime.paths.legal_corpus, 0o600)
 
+    def test_separate_profile_fresh_install_and_restart_preserve_data(self):
+        firm_id, _ = self.runtime.provision_firm("Restart Firm")
+        user_id = self.runtime.create_initial_firm_owner(
+            firm_id, "Restart Owner", "restart-owner@example.test", "test-hash"
+        )
+        context = self.runtime.resolve_context(user_id, firm_id)
+        firm_db = self.runtime.firm_connection(context)
+        case_id = firm_db.execute(
+            "INSERT INTO cases(title,firm_id) VALUES(?,?)",
+            ("Restart sentinel matter", firm_id),
+        ).lastrowid
+        firm_db.commit()
+        corpus = self.runtime.legal_corpus_connection()
+        corpus.execute(
+            "INSERT INTO legal_sources(source_id,authority,source_page) VALUES(?,?,?)",
+            ("restart-source", "Restart source", "https://example.test/source"),
+        )
+        corpus.commit()
+        self.runtime.close_current_thread()
+
+        restarted = DatabaseRuntime(
+            self.root / "control.sqlite3",
+            self.root / "tenants",
+            self.root / "corpus.sqlite3",
+        )
+        try:
+            restarted.initialize()
+            restarted_context = restarted.resolve_context(user_id, firm_id)
+            restarted_firm_db = restarted.firm_connection(restarted_context)
+            self.assertEqual(
+                restarted_firm_db.execute(
+                    "SELECT title FROM cases WHERE id=?", (case_id,)
+                ).fetchone()[0],
+                "Restart sentinel matter",
+            )
+            self.assertEqual(
+                restarted.legal_corpus_connection().execute(
+                    "SELECT authority FROM legal_sources WHERE source_id='restart-source'"
+                ).fetchone()[0],
+                "Restart source",
+            )
+            self.assertEqual(
+                restarted.control_connection().execute(
+                    "SELECT status FROM firms WHERE id=?", (firm_id,)
+                ).fetchone()[0],
+                "active",
+            )
+        finally:
+            restarted.close_current_thread()
+
     def test_profiles_are_separate_and_firm_databases_are_distinct(self):
         user_id = self._identity()
         firm_a, path_a = self.runtime.provision_firm("Firm A")
@@ -141,6 +191,65 @@ class DatabaseRuntimeTests(unittest.TestCase):
         self.assertEqual(
             db_a.execute("SELECT COUNT(*) FROM users WHERE id=?", (user_id,)).fetchone()[0],
             1,
+        )
+
+    def test_firm_row_ids_must_match_immutable_database_binding(self):
+        user_id = self._identity("scope-owner@example.test")
+        firm_a, _ = self.runtime.provision_firm("Scope Firm A")
+        firm_b, _ = self.runtime.provision_firm("Scope Firm B")
+        self.runtime.create_firm_membership(user_id, firm_a, "admin")
+        context_a = self.runtime.resolve_context(user_id, firm_a)
+        db = self.runtime.firm_connection(context_a)
+        case_id = db.execute(
+            "INSERT INTO cases(title,firm_id) VALUES('Scoped matter',?)", (firm_a,)
+        ).lastrowid
+        db.commit()
+
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "case firm scope"):
+            db.execute(
+                "INSERT INTO cases(title,firm_id) VALUES('Wrong tenant',?)", (firm_b,)
+            )
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "document (case/firm scope|firm scope)"):
+            db.execute(
+                "INSERT INTO docs(case_id,name,firm_id) VALUES(?,?,?)",
+                (case_id, "wrong-tenant.pdf", firm_b),
+            )
+        conversation_id = db.execute(
+            "INSERT INTO research_conversations(user_id,firm_id,title) VALUES(?,?,?)",
+            (user_id, firm_a, "valid tenant"),
+        ).lastrowid
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "research conversation firm scope"):
+            db.execute(
+                "INSERT INTO research_conversations(user_id,firm_id,title) VALUES(?,?,?)",
+                (user_id, firm_b, "wrong tenant"),
+            )
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "research conversation firm scope"):
+            db.execute(
+                "UPDATE research_conversations SET firm_id=? WHERE id=?",
+                (firm_b, conversation_id),
+            )
+        audit_id = db.execute(
+            "INSERT INTO case_deletion_audit(firm_id,case_id,actor_user_id,actor_name,"
+            "case_snapshot_json,events_snapshot_json,related_counts_json) "
+            "VALUES(?,?,?,?,?,?,?)",
+            (firm_a, case_id, user_id, "actor", "{}", "[]", "{}"),
+        ).lastrowid
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "case deletion audit firm scope"):
+            db.execute(
+                "INSERT INTO case_deletion_audit(firm_id,case_id,actor_user_id,actor_name,"
+                "case_snapshot_json,events_snapshot_json,related_counts_json) "
+                "VALUES(?,?,?,?,?,?,?)",
+                (firm_b, case_id, user_id, "actor", "{}", "[]", "{}"),
+            )
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "case deletion audit firm scope does not match tenant database"):
+            db.execute(
+                "UPDATE case_deletion_audit SET firm_id=? WHERE id=?",
+                (firm_b, audit_id),
+            )
+        db.rollback()
+        self.assertEqual(
+            db.execute("SELECT firm_id FROM cases WHERE id=?", (case_id,)).fetchone()[0],
+            firm_a,
         )
 
     def test_catalog_connection_failure_does_not_strand_firm_in_provisioning(self):

@@ -12,6 +12,17 @@ class ProfileInitialSchemaTests(unittest.TestCase):
         db.row_factory = sqlite3.Row
         expected_versions = sorted(int(path.name.split("_", 1)[0]) for path in (ROOT / profile).glob("*.sql"))
         self.assertEqual(apply_profile_migrations(db, profile, ROOT), expected_versions)
+        # Runtime provisioning writes the immutable binding after the profile
+        # migrations have created the schema and its binding-aware triggers.
+        if profile == "firm":
+            db.execute("""
+                CREATE TABLE tenant_database_binding (
+                    singleton INTEGER PRIMARY KEY CHECK(singleton=1),
+                    firm_id INTEGER NOT NULL CHECK(firm_id>0),
+                    bound_at TEXT NOT NULL DEFAULT (datetime('now'))
+                )
+            """)
+            db.execute("INSERT INTO tenant_database_binding(singleton,firm_id) VALUES(1,7)")
         self.assertEqual(db.execute("PRAGMA integrity_check").fetchone()[0], "ok")
         self.assertEqual(db.execute("PRAGMA foreign_key_check").fetchall(), [])
         return db
@@ -82,7 +93,7 @@ class ProfileInitialSchemaTests(unittest.TestCase):
 
     def test_firm_fts_insert_update_delete(self):
         db = self.build("firm")
-        db.execute("INSERT INTO cases(id,title) VALUES(1,'matter')")
+        db.execute("INSERT INTO cases(id,title,firm_id) VALUES(1,'matter',7)")
         db.execute("INSERT INTO chunks(id,text,norm,case_id) VALUES(1,'secret firm text','firmsecretterm',1)")
         self.assertEqual(db.execute("SELECT count(*) FROM chunks_fts WHERE chunks_fts MATCH 'firmsecretterm'").fetchone()[0], 1)
         db.execute("UPDATE chunks SET norm='updatedsecretterm' WHERE id=1")
@@ -94,8 +105,8 @@ class ProfileInitialSchemaTests(unittest.TestCase):
 
     def test_two_firm_databases_do_not_share_search_content(self):
         firm_a, firm_b = self.build("firm"), self.build("firm")
-        firm_a.execute("INSERT INTO cases(id,title) VALUES(1,'A')")
-        firm_b.execute("INSERT INTO cases(id,title) VALUES(1,'B')")
+        firm_a.execute("INSERT INTO cases(id,title,firm_id) VALUES(1,'A',7)")
+        firm_b.execute("INSERT INTO cases(id,title,firm_id) VALUES(1,'B',7)")
         firm_a.execute("INSERT INTO chunks(id,text,norm,case_id) VALUES(1,'alpha private sentinel','alphaprivatesentinel',1)")
         firm_b.execute("INSERT INTO chunks(id,text,norm,case_id) VALUES(1,'beta private sentinel','betaprivatesentinel',1)")
         self.assertEqual(firm_a.execute("SELECT count(*) FROM chunks_fts WHERE chunks_fts MATCH 'alphaprivatesentinel'").fetchone()[0], 1)
@@ -122,12 +133,14 @@ class ProfileInitialSchemaTests(unittest.TestCase):
                 VALUES(2,10,2,7,100,55,'accepted','raw','reviewed')""")
         with self.assertRaisesRegex(sqlite3.IntegrityError, "document extraction review scope mismatch"):
             db.execute("UPDATE document_extraction_reviews SET chunk_id=999 WHERE id=1")
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "review firm scope does not match tenant database"):
+            db.execute("UPDATE document_extraction_reviews SET firm_id=8 WHERE id=1")
         # Parent mutations must not invalidate already-valid child relationships.
         with self.assertRaisesRegex(sqlite3.IntegrityError, "document child scope mismatch"):
             db.execute("UPDATE docs SET case_id=2 WHERE id=10")
-        with self.assertRaisesRegex(sqlite3.IntegrityError, "document (child scope|case/firm scope) mismatch"):
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "document (child scope|case/firm scope mismatch|firm scope does not match tenant database)"):
             db.execute("UPDATE docs SET firm_id=8 WHERE id=10")
-        with self.assertRaisesRegex(sqlite3.IntegrityError, "case firm scope mismatch"):
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "case firm scope (mismatch|does not match tenant database)"):
             db.execute("UPDATE cases SET firm_id=8 WHERE id=1")
         db.close()
 
@@ -194,7 +207,7 @@ class ProfileInitialSchemaTests(unittest.TestCase):
 
     def test_case_children_cascade(self):
         db = self.build("firm")
-        db.execute("INSERT INTO cases(id,title) VALUES(7,'test')")
+        db.execute("INSERT INTO cases(id,title,firm_id) VALUES(7,'test',7)")
         db.execute("INSERT INTO notes(case_id,text) VALUES(7,'note')")
         db.execute("DELETE FROM cases WHERE id=7")
         self.assertEqual(db.execute("SELECT count(*) FROM notes").fetchone()[0], 0)
