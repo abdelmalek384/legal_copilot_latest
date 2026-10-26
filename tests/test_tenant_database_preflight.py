@@ -211,6 +211,15 @@ class TenantDatabasePreflightTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "unsafe SQLite sidecar"):
             audit(self.catalog_path, self.root)
 
+    @unittest.skipUnless(os.name == "posix", "POSIX named pipes are required")
+    def test_tenant_fifo_sidecar_is_reported_and_database_is_not_opened(self):
+        filename = self.add_tenant(28)
+        os.mkfifo(Path(str(self.root / filename) + "-wal"))
+        report = audit(self.catalog_path, self.root)
+        findings = [item for item in report["findings"] if item["firm_id"] == 28]
+        self.assertIn("database_sidecar_not_regular_file", {item["code"] for item in findings})
+        self.assertEqual(report["tenant_databases_inspected"], 0)
+
     def test_missing_database_is_reported(self):
         self.add_tenant(2, filename=f"tenant-2-{uuid.uuid4().hex}.sqlite3")
         (self.root / self.catalog.execute(
