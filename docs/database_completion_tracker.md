@@ -10,6 +10,7 @@ This is a planning estimate across fresh-install schema/migrations, tenant isola
 
 - [x] Add an operator-facing backup verification command (python manage.py verify-backup-tenancy) that validates encrypted multi-database bundles using a restricted temporary restore, checks database integrity, and removes temporary plaintext. Deletion is not secure erasure; this is not a witnessed recovery drill (PR #538 merged; CI passed).
 - [x] Add an append-only control-plane platform security event ledger and atomically audit CLI password resets without storing raw email/password values (PR #544 merged; CI run #1446 passed).
+- [ ] Add operator-only platform-role grant/revoke CLI with actor authorization, required reason, audit event, and last-admin protection; first platform-admin bootstrap still requires a separately approved out-of-band procedure.
 - [x] Extend platform audit coverage to firm provisioning/disablement, membership creation, initial-owner bootstrap and a bounded read-only audit CLI (PR #561 merged; CI passed). PR #564 adds atomic membership/audit rollback tests and is merged with CI passing.
 - [x] Record self-service password changes in the control-plane audit ledger and roll back credential/session changes if audit persistence fails (PR #568 merged; CI passed).
 - [ ] Audit web membership creation and suspension in the control-plane ledger, rolling back state changes if audit writes fail; add migration preserving audit history; pending PR.
