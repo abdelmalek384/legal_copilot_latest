@@ -199,6 +199,16 @@ class TenantDatabasePreflightTests(unittest.TestCase):
         report = audit(self.catalog_path, self.root)
         findings = [item for item in report["findings"] if item["firm_id"] == 27]
         self.assertIn("database_sidecar_symlink", {item["code"] for item in findings})
+        self.assertEqual(report["tenant_databases_inspected"], 0)
+
+    @unittest.skipUnless(os.name == "posix", "POSIX symlinks are required")
+    def test_catalog_sidecar_symlink_prevents_catalog_open(self):
+        sidecar = Path(str(self.catalog_path) + "-wal")
+        target = self.root / "catalog-sidecar-target"
+        target.write_text("synthetic WAL sidecar", encoding="utf-8")
+        sidecar.symlink_to(target)
+        with self.assertRaisesRegex(ValueError, "symlinked SQLite sidecar"):
+            audit(self.catalog_path, self.root)
 
     def test_missing_database_is_reported(self):
         self.add_tenant(2, filename=f"tenant-2-{uuid.uuid4().hex}.sqlite3")
