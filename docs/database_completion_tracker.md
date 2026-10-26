@@ -145,7 +145,7 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 ### 1. Finish versioned schema migrations
 - [ ] Move remaining prerequisite table creation out of startup only after earlier migration dependencies are redesigned; `firms`, `users`, `cases`, `deadlines`, `members`, `docs`, `chunks`, legal-version/review tables, research tables, and the dynamic `document_extraction_reviews` table still participate in bootstrap ordering.
 - [ ] Move remaining pre-migration compatibility work (`tenant_ownership_quarantine` creation/population, `users.firm_id`, `cases.firm_id`, `deadlines.status`, and `chunks.document_id`) into a safe ordered compatibility phase; migrations 0001–0003 currently require these prerequisites before they run.
-- [ ] Add explicit FTS integrity/reconciliation checks and a controlled rebuild procedure; migration 0008 preserves an existing `chunks_fts` table but intentionally does not rebuild stale/missing contents.
+- [x] Add a read-only FTS5 internal index-integrity check on a disposable copy, detecting stale inverted indexes without mutating the source database (PR #388 merged; CI passed). [ ] Add a controlled repair/rebuild procedure and full corpus/firm FTS reconciliation; migration 0008 still preserves an existing `chunks_fts` table without rebuilding stale/missing contents.
 - [ ] Define a supported fresh-install schema path and an upgrade path for each currently deployed legacy schema shape.
 - [ ] Test migration order, idempotency, checksum drift, interrupted migrations, and rollback/restore on representative disposable database copies.
 - [ ] Keep migrations immutable after merge; add new forward migrations for corrections.
