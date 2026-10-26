@@ -109,13 +109,7 @@ class TenantSQLiteConnectionRouter:
                     "Tenant database file permissions cannot be verified"
                 ) from exc
             if database_mode & 0o077:
-                connections = getattr(self._local, "connections", None)
-                cached = connections.pop(trusted_firm_id, None) if connections else None
-                if cached is not None:
-                    try:
-                        cached[1].close()
-                    except sqlite3.Error:
-                        pass
+                self._revoke_cached_connection(trusted_firm_id)
                 raise TenantConnectionError(
                     "Tenant database file permissions allow group/other access"
                 )
