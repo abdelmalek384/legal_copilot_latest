@@ -1887,11 +1887,29 @@ def change_password(b: PasswordChangeIn, request: Request, response: Response, u
             raise HTTPException(403, "current password is incorrect")
         if check_pw(b.new_password, row["password_hash"]):
             raise HTTPException(422, "new password must differ from current password")
+        new_password_hash = hash_pw(b.new_password)
         control.execute("BEGIN IMMEDIATE")
-        control.execute("UPDATE users SET password_hash=?,updated_at=datetime('now') WHERE id=? AND status='active'",
-                        (hash_pw(b.new_password), u["id"]))
-        control.execute("DELETE FROM auth_sessions WHERE user_id=?", (u["id"],))
-        control.commit()
+        try:
+            updated = control.execute(
+                "UPDATE users SET password_hash=?,updated_at=datetime('now') "
+                "WHERE id=? AND status='active' AND password_hash=?",
+                (new_password_hash, u["id"], row["password_hash"]),
+            )
+            if updated.rowcount != 1:
+                raise HTTPException(409, "credentials changed; log in again")
+            control.execute("DELETE FROM auth_sessions WHERE user_id=?", (u["id"],))
+            control.execute(
+                "INSERT INTO platform_security_events(actor_user_id,target_user_id,event_type,detail_json) "
+                "VALUES(?,?,'password_changed_web',?)",
+                (u["id"], u["id"], json.dumps({"method": "web", "sessions_revoked": True}, sort_keys=True)),
+            )
+            control.commit()
+        except HTTPException:
+            control.rollback()
+            raise
+        except sqlite3.Error as exc:
+            control.rollback()
+            raise HTTPException(503, "password change was not committed because audit logging failed") from exc
         audit = conn()
         audit.execute("INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
                       (u["firm_id"], u["id"], "password_changed_sessions_revoked"))
