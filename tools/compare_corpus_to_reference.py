@@ -12,12 +12,19 @@ def norm(s):
  s=unicodedata.normalize("NFKC",str(s or "")).translate(DIGITS);s=DIAC.sub("",s);s=re.sub(r"[أإآٱ]","ا",s).replace("ى","ي");return re.sub(r"[\u200b-\u200f\u202a-\u202e\ufeff]","",s)
 def label(v):
  if v is None:return None
- s=re.sub(r"^(?:المادة|مادة)\s*","",norm(v).strip());s=re.sub(r"^\((.*?)\)$",r"\1",s).strip();m=re.match(r"^(\d+|[\u0600-\u06ff ]+?)\s*(.*)$",s)
- if not m:return None
- n=str(ORD.get(re.sub(r"\s+"," ",m.group(1).strip()),re.sub(r"\s+"," ",m.group(1).strip())));suffix=m.group(2).strip()
- if not suffix:return n
- b=re.fullmatch(r"(?:مكررا|مكررة|مكرر|bis)(?:\s*\(?\s*([ء-ي])\s*\)?)?",suffix,re.I)
- return n+" مكرر"+((" "+b.group(1)) if b and b.group(1) else "") if b else None
+ s=re.sub(r"^(?:المادة|مادة)\\s*","",norm(v).strip())
+ s=re.sub(r"^\\(\\s*(\\d+)\\s*\\)",r"\\1",s).strip()
+ b=re.search(r"\\s*(?:مكررا|مكررة|مكرر|bis)(?:\\s*\\(?\\s*([ء-ي])\\s*\\)?)?\\s*$",s,re.I)
+ letter=b.group(1) if b else None
+ if b:s=s[:b.start()].strip()
+ s=re.sub(r"^\\((.*?)\\)$",r"\\1",s).strip()
+ s=re.sub(r"\\s+"," ",s)
+ if s.isdigit():n=s
+ else:
+  n=str(ORD.get(s,s))
+  if n==s and not re.fullmatch(r"[\\u0600-\\u06ff ]+",s):return None
+  if n==s:return None
+ return n+(" مكرر"+((" "+letter) if letter else "") if b else "")
 def textnorm(s):return re.sub(r"\s+"," ",re.sub(r"[^\w\s]|_"," ",norm(s))).strip()
 def nums(s):
  s=textnorm(s);return Counter(re.findall(r"\d+",s)),Counter(w for w in re.findall(r"\w+",s.replace("ة","ه")) if w in WORDS)
