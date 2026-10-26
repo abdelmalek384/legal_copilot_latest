@@ -75,7 +75,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("No relevant passage was returned from the selected matter documents.", HTML)
         self.assertIn("No relevant verified legal text was returned by this verified-corpus search.", HTML)
         self.assertIn("No source records were returned; the search scope was not recorded.", HTML)
-        self.assertIn("if(m.scope!=='metadata_only')actions.append", HTML)
+        self.assertIn("if(messageScope!=='metadata_only')actions.append", HTML)
 
     def test_research_async_status_and_toasts_are_announced(self):
         self.assertIn('id="toast" role="status" aria-live="polite" aria-atomic="true"', HTML)
