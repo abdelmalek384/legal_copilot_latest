@@ -208,7 +208,7 @@ class TenantDatabasePreflightTests(unittest.TestCase):
         target = Path(self.temp.name) / "catalog-sidecar-target"
         target.write_text("synthetic WAL sidecar", encoding="utf-8")
         sidecar.symlink_to(target)
-        with self.assertRaisesRegex(ValueError, "symlinked SQLite sidecar"):
+        with self.assertRaisesRegex(ValueError, "unsafe SQLite sidecar"):
             audit(self.catalog_path, self.root)
 
     def test_missing_database_is_reported(self):
