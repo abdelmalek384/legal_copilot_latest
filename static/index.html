@@ -402,8 +402,15 @@ async function law(){
        if(m.id)actions.append(makeBtn(LANG==='ar'?'حفظ إلى ملف قضية':'Save to matter',async()=>{if(!matterSelect.value){toast(LANG==='ar'?'اختر ملف قضية أولاً':'Select a matter first');matterSelect.focus();return}try{await api('/research/conversations/'+activeId+'/save-to-matter','POST',{case_id:Number(matterSelect.value),message_id:m.id});toast(LANG==='ar'?'تم حفظ مذكرة البحث في ملاحظات القضية':'Research memo saved to matter notes')}catch(_){}},'g'));
        bubble.append(actions);
        if(!(m.sources||[]).length){
-         bubble.append(pill(LANG==='ar'?'لم يُعثر على نص قانوني متحقق ذي صلة في هذا النطاق':'No relevant verified legal text found in this scope','soon'));
-         actions.append(makeBtn(LANG==='ar'?'اكتشاف بيانات وصفية للمصادر':'Discover source metadata',async()=>{if(!priorQuestion.trim())return;scopeSelect.value='metadata_only';try{renderDiscovery(await api('/research/discover','POST',{q:priorQuestion}),priorQuestion)}catch(_){}},'g'));
+         const emptyScope=m.scope==='metadata_only'
+           ? (LANG==='ar'?'لم تُعثر على بيانات وصفية مطابقة؛ هذا البحث لا يسترجع النص القانوني.':'No matching source-catalog metadata was returned; this search does not retrieve legal text.')
+           : m.scope==='firm_documents'
+             ? (LANG==='ar'?'لم يُعثر على نص ذي صلة في مستندات ملف القضية المحدد.':'No relevant passage was returned from the selected matter documents.')
+             : m.scope==='verified_corpus'
+               ? (LANG==='ar'?'لم يُعثر على نص قانوني متحقق ذي صلة في بحث المجموعة القانونية.':'No relevant verified legal text was returned by this verified-corpus search.')
+               : (LANG==='ar'?'لم تُسجل مصادر لهذا البحث ولم يُسجل نطاقه.':'No source records were returned; the search scope was not recorded.');
+         bubble.append(pill(emptyScope,'soon'));
+         if(m.scope!=='metadata_only')actions.append(makeBtn(LANG==='ar'?'اكتشاف بيانات وصفية للمصادر':'Discover source metadata',async()=>{if(!priorQuestion.trim())return;scopeSelect.value='metadata_only';try{renderDiscovery(await api('/research/discover','POST',{q:priorQuestion}),priorQuestion)}catch(_){}},'g'));
        }
      }
      thread.append(bubble);
