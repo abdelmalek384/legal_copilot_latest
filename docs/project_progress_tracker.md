@@ -1,6 +1,6 @@
 # Legal Copilot — Project Progress Tracker
 
-**Last updated:** 2026-10-26 (refreshed through PR #540; source-to-release and benchmark safeguards merged; draft deadline arithmetic remains isolated pending lawyer review; legal permission, lawyer approval, representative OCR benchmark, manual UI QA, and production release gates remain outstanding)  
+**Last updated:** 2026-10-26 (refreshed through PR #561; backup verification, deadline arithmetic prototype, and platform audit foundations merged; legal permission, lawyer approval, representative OCR benchmark, manual UI QA, and production release gates remain outstanding)  
 **Tracking method:** deliverable-level checklist, not an estimate of engineering hours. A task is “complete” only when its change is merged and its acceptance criteria are met. Open PRs are in progress, not complete.
 
 ## Overall status
