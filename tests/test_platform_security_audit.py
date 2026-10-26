@@ -90,6 +90,21 @@ class PlatformSecurityAuditTests(unittest.TestCase):
         self.assertIn(("membership_created", second_id, self.firm_id), logged)
         self.assertIn(("firm_disabled", None, self.firm_id), logged)
 
+    def test_cli_adduser_records_membership_without_granting_platform_role(self):
+        with patch("manage.read_password", return_value="NewStrongPassphrase_2026"):
+            manage.adduser(Namespace(name="CLI User", email="cli-user@example.test", role="lawyer", firm_id=self.firm_id))
+        control = self.runtime.control_connection()
+        target = control.execute("SELECT id FROM users WHERE email_normalized='cli-user@example.test'").fetchone()
+        self.assertIsNotNone(target)
+        event = control.execute(
+            "SELECT event_type,firm_id,detail_json FROM platform_security_events WHERE target_user_id=? ORDER BY id DESC LIMIT 1",
+            (target["id"],),
+        ).fetchone()
+        self.assertEqual(event["event_type"], "membership_created")
+        self.assertEqual(event["firm_id"], self.firm_id)
+        self.assertIn('"method": "manage.py adduser"', event["detail_json"])
+        self.assertEqual(control.execute("SELECT COUNT(*) FROM user_platform_roles WHERE user_id=?", (target["id"],)).fetchone()[0], 0)
+
     def test_platform_security_audit_is_append_only(self):
         control = self.runtime.control_connection()
         control.execute(
