@@ -37,6 +37,12 @@ class DeploymentPreflightTests(unittest.TestCase):
         self.assertEqual(errors, [])
         self.assertFalse(self.db_path.exists())
 
+    def test_warns_that_shared_database_is_not_ready_for_multi_firm_confidential_data(self):
+        _, warnings, errors = preflight.inspect_environment(self.env)
+        self.assertTrue(any("one shared COPILOT_DB" in item for item in warnings))
+        self.assertTrue(any("unrelated firms' confidential matters" in item for item in warnings))
+        self.assertEqual(errors, [])
+
     def test_rejects_short_or_placeholder_admin_token(self):
         for token in ("short", "test-token-" + "x" * 30):
             with self.subTest(token_length=len(token)):
