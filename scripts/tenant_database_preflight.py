@@ -82,7 +82,7 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
         findings.append({"code": code, "firm_id": firm_id, "detail": detail})
 
     def check_sidecars(database_path: Path, firm_id: int | None) -> bool:
-        has_symlink = False
+        unsafe_sidecar = False
         for suffix in ("-wal", "-shm", "-journal"):
             sidecar = Path(str(database_path) + suffix)
             if sidecar.is_symlink():
@@ -91,7 +91,7 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
                     firm_id,
                     f"SQLite sidecar {sidecar.name} must not be a symbolic link",
                 )
-                has_symlink = True
+                unsafe_sidecar = True
                 continue
             if not sidecar.exists() or os.name != "posix":
                 continue
@@ -103,13 +103,15 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
                         firm_id,
                         f"SQLite sidecar {sidecar.name} permissions {sidecar_mode:04o} allow group/other access",
                     )
+                    unsafe_sidecar = True
             except OSError:
                 add(
                     "database_sidecar_permissions_unreadable",
                     firm_id,
                     f"SQLite sidecar {sidecar.name} permissions could not be inspected",
                 )
-        return has_symlink
+                unsafe_sidecar = True
+        return unsafe_sidecar
 
     if os.name == "posix":
         try:
@@ -123,7 +125,7 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
         except OSError:
             add("catalog_permissions_unreadable", None, "control-plane catalog file permissions could not be inspected")
     if check_sidecars(resolved_catalog, None):
-        raise ValueError("tenant catalog has a symlinked SQLite sidecar; refusing to open catalog")
+        raise ValueError("tenant catalog has an unsafe SQLite sidecar; refusing to open catalog")
 
     requested_root = storage_root.expanduser()
     # Check the configured directory entry before resolve(), otherwise a
@@ -300,7 +302,7 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
             except OSError:
                 add("database_permissions_unreadable", firm_id, "tenant database file permissions could not be inspected")
         if check_sidecars(resolved, firm_id):
-            # A symlinked sidecar can redirect SQLite's reads; never open this tenant DB.
+            # Unsafe sidecars can redirect or expose SQLite pages; never open this tenant DB.
             continue
         try:
             with closing(_readonly(resolved)) as tenant:
