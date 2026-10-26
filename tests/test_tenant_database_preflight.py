@@ -204,7 +204,7 @@ class TenantDatabasePreflightTests(unittest.TestCase):
     @unittest.skipUnless(os.name == "posix", "POSIX symlinks are required")
     def test_catalog_sidecar_symlink_prevents_catalog_open(self):
         sidecar = Path(str(self.catalog_path) + "-wal")
-        target = Path(self.tempdir.name) / "catalog-sidecar-target"
+        target = Path(self.temp.name) / "catalog-sidecar-target"
         target.write_text("synthetic WAL sidecar", encoding="utf-8")
         sidecar.symlink_to(target)
         with self.assertRaisesRegex(ValueError, "symlinked SQLite sidecar"):
