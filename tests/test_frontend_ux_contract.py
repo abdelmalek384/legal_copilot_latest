@@ -110,6 +110,13 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("finally{t.remove()}", HTML)
         self.assertIn("if(!copied)throw new Error('copy failed')", HTML)
 
+    def test_memo_export_uses_recorded_scope_or_unknown_not_current_selector(self):
+        memo = HTML[HTML.index("const memoText="):HTML.index("const exportMemo=")]
+        self.assertIn("memoScope=typeof result.scope==='string'&&result.scope.trim()?result.scope:'unknown'", memo)
+        self.assertIn("'Search scope: '+memoScope", memo)
+        self.assertNotIn("scopeSelect.value", memo)
+        self.assertIn("Array.isArray(result.sources)?result.sources:[]", memo)
+
     def test_source_inspector_exposes_status_pin_cites_copy_and_memo_actions(self):
         self.assertIn("source_status", HTML)
         self.assertIn("s.article", HTML)
