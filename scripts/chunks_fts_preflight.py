@@ -158,8 +158,9 @@ def audit(conn: sqlite3.Connection) -> dict[str, Any]:
         add("chunks_norm_missing", 1, "External-content FTS requires the canonical chunks.norm column.")
     missing_rows = 0
     mismatched_rows = 0
+    source_norm_expression = "c.norm" if "norm" in chunk_columns else "NULL"
     for row in conn.execute(
-        "SELECT c.id, c.text, c.norm, f.rowid, f.norm "
+        "SELECT c.id, c.text, " + source_norm_expression + ", f.rowid, f.norm "
         "FROM chunks AS c LEFT JOIN chunks_fts AS f ON f.rowid=c.id"
     ):
         if row[3] is None:
