@@ -75,6 +75,11 @@ def adduser(a):
                 "INSERT INTO firm_memberships(user_id,firm_id,firm_role,status) VALUES(?,?,?,'active')",
                 (cur.lastrowid, a.firm_id, a.role),
             )
+            c.execute(
+                "INSERT INTO platform_security_events(actor_user_id,target_user_id,firm_id,event_type,detail_json) "
+                "VALUES(NULL,?,?,'membership_created',?)",
+                (cur.lastrowid, a.firm_id, json.dumps({"firm_role": a.role, "method": "manage.py adduser"}, sort_keys=True)),
+            )
             c.commit()
         except Exception as e:
             c.rollback()
