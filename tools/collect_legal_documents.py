@@ -165,6 +165,56 @@ def check_permission(doc: dict) -> set[str]:
     return validate_manifest_hosts(doc)
 
 
+def store_original(out: Path, document_id: str, extension: str, raw: bytes) -> Path:
+    """Store a source file without ever overwriting a different previously collected byte stream."""
+    digest = sha256_bytes(raw)
+    original_dir = out / "originals" / document_id
+    original_dir.mkdir(parents=True, exist_ok=True)
+    original_path = original_dir / ("original" + extension)
+
+    def same_content(path: Path) -> bool:
+        return path.is_file() and sha256_bytes(path.read_bytes()) == digest
+
+    def create_exclusive(path: Path) -> bool:
+        try:
+            with path.open("xb") as stream:
+                stream.write(raw)
+            return True
+        except FileExistsError:
+            return False
+        except Exception:
+            try:
+                path.unlink(missing_ok=True)
+            except OSError:
+                pass
+            raise
+
+    if original_path.exists():
+        if same_content(original_path):
+            return original_path
+    elif create_exclusive(original_path):
+        return original_path
+    elif same_content(original_path):
+        return original_path
+
+    stamp = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
+    stem = f"original-{stamp}-{digest[:12]}"
+    suffix = 0
+    while True:
+        filename = f"{stem}{'-' + str(suffix) if suffix else ''}{extension}"
+        candidate = original_dir / filename
+        if candidate.exists():
+            if same_content(candidate):
+                return candidate
+            suffix += 1
+            continue
+        if create_exclusive(candidate):
+            return candidate
+        if same_content(candidate):
+            return candidate
+        suffix += 1
+
+
 def download_document(client: httpx.Client, doc: dict, out: Path, max_bytes: int) -> dict:
     hosts = check_permission(doc)
     url = doc.get("direct_url", "")
@@ -220,16 +270,7 @@ def download_document(client: httpx.Client, doc: dict, out: Path, max_bytes: int
             raise ValueError("HTML content type but no recognizable HTML document")
     ext = ALLOWED_TYPES[content_type]
     doc_id = doc["document_id"]
-    original_dir = out / "originals" / doc_id
-    original_dir.mkdir(parents=True, exist_ok=True)
-    original_path = original_dir / ("original" + ext)
-    if original_path.exists():
-        existing_hash = sha256_bytes(original_path.read_bytes())
-        new_hash = sha256_bytes(raw)
-        if existing_hash != new_hash:
-            version = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-            original_path = original_dir / f"original-{version}{ext}"
-    original_path.write_bytes(raw)
+    original_path = store_original(out, doc_id, ext, raw)
     retrieved_at = dt.datetime.now(dt.timezone.utc).isoformat()
     metadata = {
         "document_id": doc_id,
