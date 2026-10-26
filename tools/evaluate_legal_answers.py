@@ -7,6 +7,7 @@ and abstention agreement against a lawyer-authored answerability label.
 """
 import argparse
 import json
+import re
 import sys
 from collections import defaultdict
 from datetime import date
@@ -69,10 +70,15 @@ def _validate_reviewed_question(row):
         raise EvaluationError(f"{qid}: only review_status={APPROVED!r} can be scored")
     if not _nonempty(row.get("reviewer_name")):
         raise EvaluationError(f"{qid}: reviewer_name is required")
-    try:
-        date.fromisoformat(row.get("review_date"))
-    except (TypeError, ValueError):
+    review_date = row.get("review_date")
+    if not isinstance(review_date, str) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", review_date):
         raise EvaluationError(f"{qid}: review_date must be ISO YYYY-MM-DD")
+    try:
+        reviewed_on = date.fromisoformat(review_date)
+    except ValueError:
+        raise EvaluationError(f"{qid}: review_date must be a real calendar date in YYYY-MM-DD form")
+    if reviewed_on > date.today():
+        raise EvaluationError(f"{qid}: review_date cannot be in the future")
     if not isinstance(row.get("answerable"), bool):
         raise EvaluationError(f"{qid}: lawyer-reviewed answerable must be true or false")
     if not _nonempty(row.get("expected_answer")):
