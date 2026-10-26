@@ -55,6 +55,50 @@ class DeploymentPreflightTests(unittest.TestCase):
         self.assertIn("Preflight failed", output.getvalue())
         self.assertFalse(self.db_path.exists())
 
+    def test_accepts_complete_separate_database_path_configuration_without_shared_warning(self):
+        root = Path(self.tempdir.name)
+        tenant_root = root / "tenants"
+        tenant_root.mkdir()
+        if os.name == "posix":
+            os.chmod(tenant_root, 0o700)
+        env = {
+            "ADMIN_TOKEN": "a" * 40,
+            "MIN_SCORE": "0.3",
+            "COPILOT_CONTROL_DB": str(root / "control" / "control.sqlite3"),
+            "COPILOT_TENANT_DB_ROOT": str(tenant_root),
+            "COPILOT_CORPUS_DB": str(root / "corpus" / "corpus.sqlite3"),
+        }
+        (root / "control").mkdir()
+        (root / "corpus").mkdir()
+        passed, warnings, errors = preflight.inspect_environment(env)
+        self.assertTrue(any("Separate control-plane" in item for item in passed))
+        self.assertFalse(any("one shared COPILOT_DB" in item for item in warnings))
+        self.assertFalse(any("shared COPILOT_DB" in item for item in warnings))
+        self.assertEqual(errors, [])
+        self.assertFalse((root / "control" / "control.sqlite3").exists())
+        self.assertFalse((root / "corpus" / "corpus.sqlite3").exists())
+
+    def test_rejects_partial_separate_database_configuration(self):
+        env = dict(self.env)
+        env.pop("COPILOT_DB")
+        env["COPILOT_CONTROL_DB"] = str(Path(self.tempdir.name) / "control.sqlite3")
+        _, _, errors = preflight.inspect_environment(env)
+        self.assertTrue(any("requires all three paths" in item for item in errors))
+
+    def test_rejects_shared_control_and_corpus_database_path(self):
+        root = Path(self.tempdir.name)
+        (root / "tenants").mkdir()
+        shared = root / "shared.sqlite3"
+        env = {
+            "ADMIN_TOKEN": "a" * 40,
+            "MIN_SCORE": "0.3",
+            "COPILOT_CONTROL_DB": str(shared),
+            "COPILOT_TENANT_DB_ROOT": str(root / "tenants"),
+            "COPILOT_CORPUS_DB": str(shared),
+        }
+        _, _, errors = preflight.inspect_environment(env)
+        self.assertTrue(any("must be different" in item for item in errors))
+
     def test_rejects_short_or_placeholder_admin_token(self):
         for token in ("short", "test-token-" + "x" * 30):
             with self.subTest(token_length=len(token)):
