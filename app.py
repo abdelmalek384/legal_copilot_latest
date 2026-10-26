@@ -446,9 +446,26 @@ def add_case(c, u, title, client="", stage="", case_number="", case_year="", cou
 
 
 def add_doc(c, case_id, name, text, document_id=None):
-    paras = [p.strip() for p in re.split(r"\n\s*\n", text) if p.strip()]
-    return add_chunks(c, [{"ref": "%s (فقرة %d)" % (name, i + 1), "text": p, "case_id": case_id, "source": "case-file", "document_id": document_id}
-                          for i, p in enumerate(paras)])
+    # PDF extraction inserts explicit page markers. Carry them into both the
+    # searchable chunk metadata and citation label, without indexing the marker.
+    page_no = None
+    paras = []
+    for block in re.split(r"\n\s*\n", text):
+        block = block.strip()
+        marker = re.fullmatch(r"\[\[PDF_PAGE:(\d+)\]\]", block)
+        if marker:
+            page_no = int(marker.group(1))
+            continue
+        if block:
+            paras.append((page_no, block))
+    rows = []
+    for i, (page, paragraph) in enumerate(paras, 1):
+        ref = (f"{name} (page {page}, paragraph {i})" if page is not None
+               else f"{name} (paragraph {i})")
+        rows.append({"ref": ref, "text": paragraph, "case_id": case_id,
+                     "source": "case-file", "document_id": document_id,
+                     "page": str(page) if page is not None else None})
+    return add_chunks(c, rows)
 
 def save_doc(c, u, cid, name, text, *, content_hash=None, content_type="text/plain", byte_size=None, extraction_status="text_extracted", ocr_used=False):
     content_hash = content_hash or hashlib.sha256(text.encode("utf-8")).hexdigest()
@@ -1256,7 +1273,8 @@ def ocr_pdf_text(data, lang=None, max_pages=30):
         for page in doc:
             pix = page.get_pixmap(dpi=160, alpha=False)
             image = Image.open(io.BytesIO(pix.tobytes("png")))
-            pages.append(pytesseract.image_to_string(image, lang=lang, timeout=30))
+            page_text = pytesseract.image_to_string(image, lang=lang, timeout=30)
+            pages.append(f"[[PDF_PAGE:{page.number + 1}]]\n\n{page_text}")
         return "\n\n".join(pages).strip()
     except HTTPException:
         raise
@@ -1270,7 +1288,11 @@ def extract(name, data):
         from pypdf import PdfReader
         reader = PdfReader(io.BytesIO(data), strict=True)
         if len(reader.pages) > 500: raise HTTPException(413, "maximum 500 PDF pages")
-        text = "\n\n".join(p.extract_text() or "" for p in reader.pages)
+        # Preserve page boundaries so later retrieval can cite a real page.
+        text = "\n\n".join(
+            f"[[PDF_PAGE:{page_no}]]\n\n{page.extract_text() or ''}"
+            for page_no, page in enumerate(reader.pages, 1)
+        )
     elif ext == "docx":
         try:
             with zipfile.ZipFile(io.BytesIO(data)) as z:
