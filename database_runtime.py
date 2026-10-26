@@ -312,7 +312,14 @@ class DatabaseRuntime:
         except Exception:
             control.rollback()
             control.execute(
-                "UPDATE firms SET status='disabled' WHERE id=? AND status='provisioning'",
+                "UPDATE firms SET status='disabled' WHERE id=? AND status IN ('provisioning','active')",
+                (firm_id,),
+            )
+            # If provisioning reached the catalog before a later step failed,
+            # disable that mapping too; never leave a failed activation routable.
+            control.execute(
+                "UPDATE tenant_database_catalog SET status='disabled',updated_at=datetime('now') "
+                "WHERE firm_id=?",
                 (firm_id,),
             )
             control.commit()
