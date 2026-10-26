@@ -45,7 +45,7 @@
 | Valid HTTPS source link | Opens the registered HTTPS URL in a new tab/window without giving the new page access to the opener. | |
 | Invalid/non-HTTPS source URL | No clickable source link is rendered. | |
 | Export memo with results | Download succeeds and includes question, scope, as-of date, answer, recorded citations, source statuses, exact passages and caveats. | |
-| Export memo with no results | Memo states that no relevant verified passage was found and warns that this does not prove no applicable law exists. | |
+| Export memo with no results | Empty-state wording matches the selected scope (verified corpus, firm documents, metadata-only, or unknown) and warns that an empty result does not prove no applicable law exists. | |
 | Save research to matter | Only the authorized conversation can be saved to a matter the user may access; saved note retains citations, scope, date and caveats. | |
 
 ## Keyboard, language, layout and assistive technology
