@@ -521,8 +521,15 @@ class DatabaseRuntime:
         """Return a firm connection only after revalidating membership and current role."""
         if not isinstance(context, FirmContext):
             raise TypeError("a verified FirmContext is required")
-        current = self.resolve_context(context.user_id, context.firm_id)
+        try:
+            current = self.resolve_context(context.user_id, context.firm_id)
+        except FirmContextError:
+            # A stale context must not leave a cached connection usable after
+            # membership or firm lifecycle state has been revoked.
+            self._tenant_router.revoke_firm_connection(context.firm_id)
+            raise
         if current.role != context.role:
+            self._tenant_router.revoke_firm_connection(context.firm_id)
             raise FirmContextError("firm role changed; resolve the current context before continuing")
         try:
             connection = self._tenant_router.connection_for_firm(current.firm_id)
