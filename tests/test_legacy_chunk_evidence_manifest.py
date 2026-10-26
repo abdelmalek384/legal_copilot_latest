@@ -22,7 +22,9 @@ class LegacyChunkEvidenceManifestTests(unittest.TestCase):
                         uploader_user_id INTEGER, sha256 TEXT
                     );
                     INSERT INTO docs(id,case_id,firm_id,sha256) VALUES
-                        (100,10,1,'doc-hash');
+                        (100,10,1,'doc-hash'),
+                        (101,11,1,'wrong-firm-doc-hash'),
+                        (102,10,2,'same-firm-wrong-case-hash');
                     CREATE TABLE legal_document_versions(
                         version_id INTEGER PRIMARY KEY, document_id TEXT,
                         original_sha256 TEXT, legal_status TEXT, review_status TEXT
@@ -40,8 +42,9 @@ class LegacyChunkEvidenceManifestTests(unittest.TestCase):
                         (2,NULL,100,NULL,'upload','missing case','PRIVATE-ORPHAN-TEXT','private-orphan-text'),
                         (3,NULL,NULL,50,'law-registry','LAW-1','LEGAL-CORPUS-CANDIDATE','legal-corpus-candidate'),
                         (4,NULL,NULL,NULL,'unknown','unknown source','UNCLASSIFIED-SECRET','unclassified-secret'),
-                        (5,11,100,NULL,'upload','cross firm','MISMATCH-SECRET','mismatch-secret'),
-                        (6,NULL,999,NULL,'upload','dangling doc','DANGLING-SECRET','dangling-secret');
+                        (5,11,102,NULL,'upload','cross case','MISMATCH-SECRET','mismatch-secret'),
+                        (6,NULL,999,NULL,'upload','dangling doc','DANGLING-SECRET','dangling-secret'),
+                        (7,11,101,NULL,'upload','document firm mismatch','FIRM-MISMATCH-SECRET','firm-mismatch-secret');
                 """)
 
             with sqlite3.connect(database) as db:
@@ -51,7 +54,7 @@ class LegacyChunkEvidenceManifestTests(unittest.TestCase):
 
             self.assertFalse(report["source_modified"])
             self.assertFalse(report["ownership_assigned"])
-            self.assertEqual(report["summary"]["chunks_seen"], 6)
+            self.assertEqual(report["summary"]["chunks_seen"], 7)
             by_id = {record["chunk_id"]: record for record in report["records"]}
             self.assertEqual(by_id[1]["classification"], "matter_linked")
             self.assertEqual(by_id[2]["classification"], "chunk_missing_case_but_document_has_case")
@@ -59,16 +62,18 @@ class LegacyChunkEvidenceManifestTests(unittest.TestCase):
             self.assertEqual(by_id[4]["classification"], "unclassified_no_case_or_document_link")
             self.assertEqual(by_id[5]["classification"], "document_case_mismatch")
             self.assertEqual(by_id[6]["classification"], "document_reference_unresolved")
+            self.assertEqual(by_id[7]["classification"], "document_firm_mismatch")
             self.assertRegex(by_id[4]["text_sha256"], r"^[0-9a-f]{64}$")
             self.assertEqual(by_id[4]["text_byte_length"], len("UNCLASSIFIED-SECRET".encode()))
             rendered = str(report)
             for secret in (
                 "MATTER-SECRET-TEXT", "PRIVATE-ORPHAN-TEXT", "LEGAL-CORPUS-CANDIDATE",
                 "UNCLASSIFIED-SECRET", "MISMATCH-SECRET", "DANGLING-SECRET",
+                "FIRM-MISMATCH-SECRET",
             ):
                 self.assertNotIn(secret, rendered)
             with sqlite3.connect(database) as db:
-                self.assertEqual(db.execute("SELECT COUNT(*) FROM chunks").fetchone()[0], 6)
+                self.assertEqual(db.execute("SELECT COUNT(*) FROM chunks").fetchone()[0], 7)
                 self.assertIsNone(db.execute(
                     "SELECT name FROM sqlite_master WHERE name='schema_migrations'"
                 ).fetchone())
