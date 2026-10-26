@@ -10,6 +10,11 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("id:'main',tabIndex:-1", HTML)
         self.assertIn("aria-label':navLabel('التنقل الرئيسي','Primary navigation')", HTML)
 
+    def test_admin_audit_export_entrypoint_is_present(self):
+        self.assertIn("/audit/security-events.csv", HTML)
+        self.assertIn("Download security audit CSV", HTML)
+        self.assertIn("تصدير سجل الأمان", HTML)
+
     def test_navigation_is_keyboard_operable_and_announces_current_page(self):
         self.assertIn("role:'button',tabIndex:0,'aria-current':PAGE===id?'page':null", HTML)
         self.assertIn("e.key==='Enter'||e.key===' '", HTML)
