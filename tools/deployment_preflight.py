@@ -24,6 +24,11 @@ def inspect_environment(env=None):
     else:
         passed.append("ADMIN_TOKEN is present and meets the basic length/placeholder check.")
 
+    if env.get("COPILOT_SECURE_COOKIES", "").strip() == "1":
+        passed.append("Secure cookies and HSTS are explicitly enabled for HTTPS/proxy deployment.")
+    else:
+        warnings.append("COPILOT_SECURE_COOKIES=1 is not set; if TLS terminates at a reverse proxy, session cookies may lack Secure and HSTS may be omitted. Set it only when the public endpoint is HTTPS.")
+
     raw_score = env.get("MIN_SCORE", "0.3")
     try:
         score = float(raw_score)
