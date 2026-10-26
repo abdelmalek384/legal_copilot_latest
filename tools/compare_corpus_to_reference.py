@@ -29,13 +29,28 @@ def textnorm(s):return re.sub(r"\s+"," ",re.sub(r"[^\w\s]|_"," ",norm(s))).strip
 def nums(s):
  s=textnorm(s);return Counter(re.findall(r"\d+",s)),Counter(w for w in re.findall(r"\w+",s.replace("ة","ه")) if w in WORDS)
 def digest(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+def extract_heading(line):
+ s=norm(line).strip()
+ m=re.match(r"^(?:المادة|مادة)\s*(.*)$",s)
+ if not m:return None,None
+ rest=m.group(1).strip()
+ n=re.match(r"^\(?\s*(\d+)\s*\)?(?:\s+(مكرر(?:ا|ة)?(?:\s*\(?[ء-ي]\s*\)?)?))?(?:\s+(.*))?$",rest,re.I)
+ if n:
+  key=n.group(1)+((" مكرر"+((" "+re.search(r"[ء-ي]",n.group(2)).group(0)) if re.search(r"[ء-ي]",n.group(2)) else "")) if n.group(2) else "")
+  return key,(n.group(3) or "").strip()
+ for ordinal in sorted(ORD,key=len,reverse=True):
+  if rest==ordinal:return str(ORD[ordinal]),""
+  if rest.startswith(ordinal+" "):return str(ORD[ordinal]),rest[len(ordinal):].strip()
+ return None,None
+
 def segment(s):
  out=[];cur=None;seen=Counter()
  for line in s.splitlines():
-  m=HEAD.match(norm(line)) if len(line)<400 else None;k=label(m.group(1)) if m else None
-  if k:
-   seen[k]+=1;cur={"key":k,"occurrence":seen[k],"heading":line.strip()[:120],"parts":[]};out.append(cur)
-   if m.group(2).strip():cur["parts"].append(m.group(2).strip())
+  key,body=extract_heading(line) if len(line)<400 else (None,None)
+  key=label(key) if key is not None else None
+  if key:
+   seen[key]+=1;cur={"key":key,"occurrence":seen[key],"heading":line.strip()[:120],"parts":[]};out.append(cur)
+   if body:cur["parts"].append(body)
   elif cur is not None:cur["parts"].append(line)
  for x in out:x["text"]="\n".join(x.pop("parts")).strip()
  return out
