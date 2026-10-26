@@ -5,6 +5,9 @@ import unittest
 from pathlib import Path
 
 from scripts.rebuild_chunks_fts_copy import rebuild_copy
+from schema_profiles import apply_profile_migrations
+
+MIGRATIONS = Path(__file__).resolve().parents[1] / "migrations"
 
 
 class RebuildChunksFtsCopyTests(unittest.TestCase):
@@ -61,6 +64,61 @@ class RebuildChunksFtsCopyTests(unittest.TestCase):
                 self.assertEqual(db.execute("SELECT COUNT(*) FROM chunks_fts").fetchone()[0], 2)
                 self.assertEqual(
                     db.execute("SELECT COUNT(*) FROM chunks_fts WHERE chunks_fts MATCH 'hello'").fetchone()[0],
+                    1,
+                )
+
+    def test_profile_database_rebuild_preserves_external_content_schema_and_triggers(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            source = root / "firm.sqlite3"
+            output = root / "firm-rebuilt.sqlite3"
+            with sqlite3.connect(source) as db:
+                apply_profile_migrations(db, "firm", MIGRATIONS)
+                db.execute("INSERT INTO cases(id,title) VALUES(1,'firm matter')")
+                db.execute(
+                    "INSERT INTO chunks(id,text,norm,case_id) VALUES(1,?,?,1)",
+                    ("source text", "canonical_profile_norm"),
+                )
+                db.execute("INSERT INTO chunks_fts(chunks_fts) VALUES('delete-all')")
+                db.commit()
+
+            report = rebuild_copy(source, output)
+
+            self.assertEqual(report["status"], "passed", report)
+            self.assertEqual(report["database_profile"], "firm")
+            self.assertFalse(report["source_modified"])
+            with sqlite3.connect(source) as db:
+                self.assertEqual(
+                    db.execute(
+                        "SELECT COUNT(*) FROM chunks_fts WHERE chunks_fts MATCH 'canonical_profile_norm'"
+                    ).fetchone()[0],
+                    0,
+                )
+            with sqlite3.connect(output) as db:
+                definition = db.execute(
+                    "SELECT sql FROM sqlite_master WHERE type='table' AND name='chunks_fts'"
+                ).fetchone()[0]
+                self.assertIn("content='chunks'", definition)
+                self.assertEqual(
+                    db.execute(
+                        "SELECT COUNT(*) FROM chunks_fts WHERE chunks_fts MATCH 'canonical_profile_norm'"
+                    ).fetchone()[0],
+                    1,
+                )
+                triggers = {
+                    row[0] for row in db.execute(
+                        "SELECT name FROM sqlite_master WHERE type='trigger'"
+                    )
+                }
+                self.assertTrue({
+                    "chunks_fts_insert", "chunks_fts_delete", "chunks_fts_update"
+                }.issubset(triggers))
+                db.execute("UPDATE chunks SET norm='updated_profile_norm' WHERE id=1")
+                db.commit()
+                self.assertEqual(
+                    db.execute(
+                        "SELECT COUNT(*) FROM chunks_fts WHERE chunks_fts MATCH 'updated_profile_norm'"
+                    ).fetchone()[0],
                     1,
                 )
 

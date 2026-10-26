@@ -149,17 +149,27 @@ def audit(conn: sqlite3.Connection) -> dict[str, Any]:
             "FTS5 index-vs-content integrity check failed on a disposable copy: "
             + internal_integrity_error[:500],
         )
+    definition = conn.execute(
+        "SELECT sql FROM sqlite_master WHERE type='table' AND name='chunks_fts'"
+    ).fetchone()
+    fts_sql = str(definition[0] or "").lower() if definition else ""
+    external_content = bool(re.search(r"\bcontent\s*=\s*['\"]chunks['\"]", fts_sql))
+    if external_content and "norm" not in chunk_columns:
+        add("chunks_norm_missing", 1, "External-content FTS requires the canonical chunks.norm column.")
     missing_rows = 0
     mismatched_rows = 0
+    source_norm_expression = "c.norm" if "norm" in chunk_columns else "NULL"
     for row in conn.execute(
-        "SELECT c.id, c.text, f.rowid, f.norm "
+        "SELECT c.id, c.text, " + source_norm_expression + ", f.rowid, f.norm "
         "FROM chunks AS c LEFT JOIN chunks_fts AS f ON f.rowid=c.id"
     ):
-        if row[2] is None:
+        if row[3] is None:
             missing_rows += 1
             continue
-        expected = " ".join(tokens(row[1] or ""))
-        if row[3] != expected:
+        # Legacy standalone indexes store the application's tokenized text.
+        # Profile-separated external-content indexes must mirror chunks.norm.
+        expected = row[2] if external_content else " ".join(tokens(row[1] or ""))
+        if row[4] != expected:
             mismatched_rows += 1
 
     extra_rows = int(conn.execute(
