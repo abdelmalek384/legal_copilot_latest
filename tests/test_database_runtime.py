@@ -460,13 +460,8 @@ class DatabaseRuntimeTests(unittest.TestCase):
                     columns["firm_id"]["dflt_value"], None,
                     f"{table}.firm_id must not default to an arbitrary firm",
                 )
-                # Current schema may use a nullable column plus a database
-                # trigger that rejects missing/mismatched ownership. Verify the
-                # actual invariant (reject the write), not one implementation detail.
-                self.assertIsNone(
-                    columns["firm_id"]["dflt_value"],
-                    f"{table}.firm_id must not default to an arbitrary firm",
-                )
+                # Ownership is enforced by database constraints/triggers; the
+                # behavioral assertion below avoids assuming a specific mechanism.
 
         with self.assertRaises(sqlite3.IntegrityError):
             db.execute("INSERT INTO cases(title) VALUES('missing firm scope')")
