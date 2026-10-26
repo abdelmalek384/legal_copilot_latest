@@ -166,6 +166,7 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 - [ ] Move remaining pre-migration compatibility work (`tenant_ownership_quarantine` creation/population, `users.firm_id`, `cases.firm_id`, `deadlines.status`, and `chunks.document_id`) into a safe ordered compatibility phase; migrations 0001–0003 currently require these prerequisites before they run.
 - [x] Add a read-only FTS5 internal index-integrity check on a disposable copy, detecting stale inverted indexes without mutating the source database (PR #388 merged; CI passed).
 - [x] Add a controlled rebuild-on-a-new-copy procedure for legacy and firm/corpus profile databases, preserving external-content schema and synchronization triggers (PR #399 merged; CI passed). [ ] Complete corpus/firm FTS reconciliation against authoritative source content and review any proposed operational replacement; migration 0008 itself still does not rebuild stale/missing indexes.
+- [x] Reject symlinked source database paths in the read-only FTS preflight before resolution/open, with regression coverage (PR #458 merged; CI run 40376020538 passed).
 - [ ] Define a supported fresh-install schema path and an upgrade path for each currently deployed legacy schema shape.
 - [ ] Test migration order, idempotency, checksum drift, interrupted migrations, and rollback/restore on representative disposable database copies.
 - [ ] Keep migrations immutable after merge; add new forward migrations for corrections.
@@ -186,6 +187,8 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 
 ### 4. Reconcile existing data safely
 - [x] Add a read-only row-level legacy chunk evidence manifest with hashes but no extracted text, human-review classifications, and CI coverage; source database remains query-only (PR #443 merged; CI run 40374261835 passed). This enables evidence review but does not itself resolve ownership.
+- [x] Prevent the legacy evidence-manifest output path from overwriting or aliasing its source database, including hard-link aliases, with regression coverage (PR #448 merged; CI run 40375268157 passed).
+- [x] Flag legacy chunks whose linked document's firm differs from the linked case's firm as a human-review ownership anomaly; no automatic reassignment (PR #456 merged; CI run 40375774137 passed).
 - [ ] Run read-only ownership preflight against a protected production-like copy and retain its report.
 - [ ] Resolve missing/unknown firm ownership, orphaned rows, unlinked documents/children, cross-firm references, and ambiguous shared-corpus chunks from trusted evidence.
 - [ ] Migrate with source/target row counts, stable hashes where applicable, foreign-key checks, FTS reconciliation, and explicit quarantine for unresolved rows.
