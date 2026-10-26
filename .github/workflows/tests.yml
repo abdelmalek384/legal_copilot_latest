@@ -136,6 +136,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_security_transport_config.py
       - name: Test deployment preflight
         run: python tests/test_deployment_preflight.py
+      - name: Test production database-mode startup gate
+        run: PYTHONPATH=. python tests/test_production_database_mode.py
       - name: Test non-database deadline reminder planner
         run: PYTHONPATH=. python tests/test_reminder_schedule.py
       - name: Run unit tests
