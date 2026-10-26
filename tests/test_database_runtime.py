@@ -1,0 +1,156 @@
+import os
+import tempfile
+import unittest
+from pathlib import Path
+
+from database_runtime import DatabaseRuntime, DatabaseRuntimeError
+from tenant_context import FirmContextError
+
+
+class DatabaseRuntimeTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.root = Path(self.temp.name)
+        self.runtime = DatabaseRuntime(
+            self.root / "control.sqlite3",
+            self.root / "tenants",
+            self.root / "corpus.sqlite3",
+        )
+        self.runtime.initialize()
+
+    def tearDown(self):
+        self.runtime.close_current_thread()
+        self.temp.cleanup()
+
+    def _identity(self, email="lawyer@example.test"):
+        return self.runtime.create_global_identity("Test Lawyer", email, "test-hash")
+
+    def test_profiles_are_separate_and_firm_databases_are_distinct(self):
+        user_id = self._identity()
+        firm_a, path_a = self.runtime.provision_firm("Firm A")
+        firm_b, path_b = self.runtime.provision_firm("Firm B")
+        self.runtime.create_firm_membership(user_id, firm_a, "admin")
+        self.runtime.create_firm_membership(user_id, firm_b, "lawyer")
+
+        context_a = self.runtime.resolve_context(user_id, firm_a)
+        context_b = self.runtime.resolve_context(user_id, firm_b)
+        db_a = self.runtime.firm_connection(context_a)
+        db_b = self.runtime.firm_connection(context_b)
+        db_a.execute("INSERT INTO cases(title,firm_id) VALUES('Only A',?)", (firm_a,))
+        db_a.commit()
+
+        self.assertNotEqual(path_a, path_b)
+        self.assertEqual(db_a.execute("SELECT title FROM cases").fetchall()[0][0], "Only A")
+        self.assertEqual(db_b.execute("SELECT COUNT(*) FROM cases").fetchone()[0], 0)
+
+        control = self.runtime.control_connection()
+        corpus = self.runtime.legal_corpus_connection()
+        self.assertEqual(
+            control.execute("SELECT profile FROM database_profile").fetchone()[0],
+            "control_plane",
+        )
+        self.assertEqual(
+            corpus.execute("SELECT profile FROM database_profile").fetchone()[0],
+            "legal_corpus",
+        )
+        self.assertEqual(
+            db_a.execute("SELECT profile FROM database_profile").fetchone()[0],
+            "firm",
+        )
+        firm_tables = {
+            row[0] for row in db_a.execute("SELECT name FROM sqlite_master WHERE type='table'")
+        }
+        corpus_tables = {
+            row[0] for row in corpus.execute("SELECT name FROM sqlite_master WHERE type='table'")
+        }
+        self.assertNotIn("firm_memberships", firm_tables)
+        self.assertNotIn("cases", corpus_tables)
+
+    def test_revoked_membership_is_denied_even_after_context_was_resolved(self):
+        user_id = self._identity()
+        firm_id, _ = self.runtime.provision_firm("Revocation Test")
+        self.runtime.create_firm_membership(user_id, firm_id, "admin")
+        old_context = self.runtime.resolve_context(user_id, firm_id)
+        control = self.runtime.control_connection()
+        control.execute(
+            "UPDATE firm_memberships SET status='revoked' WHERE user_id=? AND firm_id=?",
+            (user_id, firm_id),
+        )
+        control.commit()
+        with self.assertRaises(FirmContextError):
+            self.runtime.firm_connection(old_context)
+
+    def test_role_change_requires_context_refresh(self):
+        user_id = self._identity()
+        firm_id, _ = self.runtime.provision_firm("Role Test")
+        self.runtime.create_firm_membership(user_id, firm_id, "lawyer")
+        old_context = self.runtime.resolve_context(user_id, firm_id)
+        control = self.runtime.control_connection()
+        control.execute(
+            "UPDATE firm_memberships SET firm_role='admin' WHERE user_id=? AND firm_id=?",
+            (user_id, firm_id),
+        )
+        control.commit()
+        with self.assertRaises(FirmContextError):
+            self.runtime.firm_connection(old_context)
+
+    def test_initial_owner_bootstrap_never_grants_platform_role(self):
+        firm_id, _ = self.runtime.provision_firm("Owner Bootstrap")
+        user_id = self.runtime.create_initial_firm_owner(
+            firm_id, "First Owner", "owner@example.test", "test-hash"
+        )
+        control = self.runtime.control_connection()
+        self.assertEqual(
+            control.execute(
+                "SELECT firm_role FROM firm_memberships WHERE user_id=? AND firm_id=?",
+                (user_id, firm_id),
+            ).fetchone()[0],
+            "admin",
+        )
+        self.assertEqual(
+            control.execute(
+                "SELECT COUNT(*) FROM user_platform_roles WHERE user_id=?", (user_id,)
+            ).fetchone()[0],
+            0,
+        )
+        with self.assertRaises(DatabaseRuntimeError):
+            self.runtime.create_initial_firm_owner(
+                firm_id, "Second Owner", "second@example.test", "test-hash"
+            )
+
+    def test_runtime_refuses_ambiguous_or_overlapping_paths(self):
+        with self.assertRaises(DatabaseRuntimeError):
+            DatabaseRuntime(
+                self.root / "same.sqlite3",
+                self.root / "tenants",
+                self.root / "same.sqlite3",
+            )
+        with self.assertRaises(DatabaseRuntimeError):
+            DatabaseRuntime(
+                self.root / "tenants" / "control.sqlite3",
+                self.root / "tenants",
+                self.root / "corpus.sqlite3",
+            )
+
+    def test_from_env_requires_three_explicit_database_paths(self):
+        names = (
+            "COPILOT_CONTROL_DB",
+            "COPILOT_TENANT_DB_ROOT",
+            "COPILOT_CORPUS_DB",
+        )
+        previous = {name: os.environ.get(name) for name in names}
+        try:
+            for name in names:
+                os.environ.pop(name, None)
+            with self.assertRaises(DatabaseRuntimeError):
+                DatabaseRuntime.from_env()
+        finally:
+            for name, value in previous.items():
+                if value is None:
+                    os.environ.pop(name, None)
+                else:
+                    os.environ[name] = value
+
+
+if __name__ == "__main__":
+    unittest.main()
