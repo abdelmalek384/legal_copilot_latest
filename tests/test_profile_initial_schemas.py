@@ -87,6 +87,25 @@ class ProfileInitialSchemaTests(unittest.TestCase):
                 )
         db.close()
 
+    def test_wrong_firm_scope_is_rejected_on_every_firm_owned_table(self):
+        db = self.build("firm")
+        for table in (
+            "cases",
+            "docs",
+            "document_extraction_reviews",
+            "research_conversations",
+            "case_deletion_audit",
+        ):
+            with self.subTest(table=table):
+                with self.assertRaises(sqlite3.IntegrityError):
+                    db.execute(f'INSERT INTO "{table}"(firm_id) VALUES(999)')
+                self.assertEqual(
+                    db.execute(f'SELECT COUNT(*) FROM "{table}"').fetchone()[0],
+                    0,
+                    f"{table} accepted or retained a row for the wrong firm",
+                )
+        db.close()
+
     def test_control_plane_catalog_requires_existing_firm_and_blocks_firm_delete(self):
         db = self.build("control_plane")
         with self.assertRaises(sqlite3.IntegrityError):
