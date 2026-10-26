@@ -2,7 +2,7 @@
 
 ## Current state (do not overstate)
 
-The application currently uses one SQLite database configured by `COPILOT_DB`. Users and cases have a `firm_id`, and selected queries enforce firm scope. Related records such as notes, documents, fees, sessions, deadlines and tasks are stored in the same database and mostly relate to cases by ID. This is useful row-level isolation, but it is **not** a separate database per firm and has not had an independent security review.
+The configured fresh-install runtime now supports the separate-database architecture (PR #372): control-plane identity and membership, one SQLite database per firm, and a shared legal corpus. The runtime resolves a selected firm from the authenticated session and server-side membership/catalog, not a client-provided path. Encrypted multi-database backup/restore is implemented (PR #382), and deployment preflight validates separate-path configuration (PR #384). Explicit legacy `COPILOT_DB` compatibility remains for controlled migration/testing. Route/query isolation coverage, legacy data reconciliation, and recovery/rollback drills are incomplete; this is **not yet production-ready** and has not had an independent security review.
 
 Public registration must remain disabled. Do not onboard unrelated law firms or store their production client data on this implementation.
 

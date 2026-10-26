@@ -49,4 +49,4 @@ Explicit approval is required before:
 
 ## Current-state warning
 
-The repository's existing architecture notes state that the application still uses a shared SQLite database and application-level firm filtering. These decisions do not change runtime behavior, prove isolation, or make the system production-ready. Update the database completion tracker only when implementation work is merged and acceptance criteria are met.
+The configured separate-database runtime is now implemented and merged (PR #372): control-plane authentication/session lookup, trusted firm membership/catalog resolution, per-firm matter databases, and a shared legal corpus. Encrypted multi-database backup/restore is merged (PR #382), and deployment preflight validates the three-path configuration (PR #384). Explicit legacy `COPILOT_DB` compatibility still exists; this does not mean legacy data has been reconciled, every route/query has been proven isolated, or recovery/rollback has been rehearsed. Do not treat the system as production-ready until the remaining tracker gates pass.
