@@ -10,7 +10,7 @@ This is a planning estimate across fresh-install schema/migrations, tenant isola
 
 - [x] Add an operator-facing backup verification command (python manage.py verify-backup-tenancy) that validates encrypted multi-database bundles using a restricted temporary restore, checks database integrity, and removes temporary plaintext. Deletion is not secure erasure; this is not a witnessed recovery drill (PR #538 merged; CI passed).
 - [x] Add an append-only control-plane platform security event ledger and atomically audit CLI password resets without storing raw email/password values (PR #544 merged; CI run #1446 passed).
-- [ ] Extend platform audit coverage to firm provisioning/disablement, membership creation, initial-owner bootstrap and a bounded read-only audit CLI; PR #560 pending CI/merge.
+- [x] Extend platform audit coverage to firm provisioning/disablement, membership creation, initial-owner bootstrap and a bounded read-only audit CLI (PR #561 merged; CI passed). Membership creation now rolls back if its audit write fails; additional atomicity regression coverage is in progress.
 - [x] Verify `init-tenancy` creates one firm administrator without platform privileges on a clean install and refuses a second bootstrap when an active membership already exists (PR #549 merged; CI run #1452 passed).
 - [x] Exercise `verify-backup-tenancy` through the CLI for valid bundles and wrong-key rejection, asserting no persistent restore artifacts (PR #553 merged; CI run #1462 passed).
 - [x] Verify `init-tenancy` refuses bootstrap over disabled existing firm/identity state and preserves all existing rows (PR #555 merged; CI run #1467 passed).
