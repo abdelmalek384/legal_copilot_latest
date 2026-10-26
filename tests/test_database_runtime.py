@@ -1,5 +1,6 @@
 import os
 import sqlite3
+import stat
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -26,6 +27,24 @@ class DatabaseRuntimeTests(unittest.TestCase):
 
     def _identity(self, email="lawyer@example.test"):
         return self.runtime.create_global_identity("Test Lawyer", email, "test-hash")
+
+    def test_new_control_and_corpus_files_have_restrictive_permissions(self):
+        if os.name != "posix":
+            self.skipTest("POSIX mode bits are not portable to this platform")
+        for path in (self.runtime.paths.control_plane, self.runtime.paths.legal_corpus):
+            self.assertTrue(path.is_file())
+            self.assertEqual(stat.S_IMODE(path.stat().st_mode), 0o600)
+
+    def test_control_plane_creation_fails_closed_when_permissions_cannot_be_enforced(self):
+        control = self.root / "permission-failure" / "control.sqlite3"
+        corpus = self.root / "permission-failure" / "corpus.sqlite3"
+        runtime = DatabaseRuntime(control, self.root / "permission-failure" / "tenants", corpus)
+        with patch("database_runtime.os.chmod", side_effect=PermissionError("simulated chmod failure")):
+            with self.assertRaisesRegex(DatabaseRuntimeError, "restrictive permissions"):
+                runtime.initialize()
+        self.assertFalse(control.exists())
+        self.assertFalse(Path(str(control) + "-wal").exists())
+        self.assertFalse(Path(str(control) + "-shm").exists())
 
     def test_profiles_are_separate_and_firm_databases_are_distinct(self):
         user_id = self._identity()
