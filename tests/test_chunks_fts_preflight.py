@@ -47,6 +47,26 @@ class ChunksFtsPreflightTests(unittest.TestCase):
         self.assertEqual(codes["fts_content_mismatch"], 1)
         self.assertEqual(codes["fts_rows_orphaned"], 1)
 
+    def test_detects_corrupt_external_content_fts_index_without_mutating_source(self):
+        db = sqlite3.connect(":memory:")
+        try:
+            db.executescript("""
+                CREATE TABLE chunks(id INTEGER PRIMARY KEY, text TEXT, norm TEXT);
+                CREATE VIRTUAL TABLE chunks_fts USING fts5(norm, content='chunks', content_rowid='id');
+                INSERT INTO chunks(id,text,norm) VALUES(1,'hello world','hello world');
+                INSERT INTO chunks_fts(chunks_fts) VALUES('rebuild');
+                INSERT INTO chunks_fts(chunks_fts) VALUES('delete-all');
+            """)
+            before = db.execute("SELECT COUNT(*) FROM chunks").fetchone()[0]
+            report = audit(db)
+            codes = {item["code"] for item in report["findings"]}
+            self.assertIn("fts_internal_index_integrity_failed", codes)
+            self.assertEqual(db.execute("SELECT COUNT(*) FROM chunks").fetchone()[0], before)
+            # The source remains broken and untouched; the audit is diagnostic only.
+            self.assertEqual(db.execute("SELECT COUNT(*) FROM chunks_fts").fetchone()[0], before)
+        finally:
+            db.close()
+
     def test_missing_fts_table_is_reported(self):
         db = sqlite3.connect(":memory:")
         try:
