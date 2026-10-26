@@ -457,5 +457,46 @@ class ProfileInitialSchemaTests(unittest.TestCase):
 
 
 
+    def test_identity_event_migration_preserves_existing_platform_audit_rows(self):
+        import shutil
+        import tempfile
+
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp) / "migrations"
+            control_dir = root / "control_plane"
+            control_dir.mkdir(parents=True)
+            for migration in (ROOT / "control_plane").glob("*.sql"):
+                if migration.name != "0006_identity_created_event.sql":
+                    shutil.copyfile(migration, control_dir / migration.name)
+
+            db = sqlite3.connect(":memory:")
+            db.row_factory = sqlite3.Row
+            apply_profile_migrations(db, "control_plane", root)
+            db.execute(
+                "INSERT INTO platform_security_events(event_type,detail_json) "
+                "VALUES('password_reset_cli','{\"sessions_revoked\":true}')"
+            )
+            db.commit()
+
+            applied = apply_profile_migrations(db, "control_plane", ROOT)
+            self.assertEqual(applied, [6])
+            previous = db.execute(
+                "SELECT event_type,detail_json FROM platform_security_events"
+            ).fetchone()
+            self.assertEqual(previous["event_type"], "password_reset_cli")
+            self.assertEqual(previous["detail_json"], '{"sessions_revoked":true}')
+            db.execute(
+                "INSERT INTO platform_security_events(event_type,detail_json) "
+                "VALUES('identity_created_cli','{}')"
+            )
+            db.commit()
+            self.assertEqual(
+                db.execute("SELECT COUNT(*) FROM platform_security_events").fetchone()[0],
+                2,
+            )
+            db.close()
+
+
+
 if __name__ == "__main__":
     unittest.main()
