@@ -32,6 +32,7 @@ expected_tables = {
     "sessions",
     "legal_version_relations",
     "security_audit_events",
+    "document_extraction_reviews",
 }
 actual_tables = {
     row[0] for row in db.execute(
