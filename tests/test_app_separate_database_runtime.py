@@ -751,6 +751,34 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         finally:
             read_only.close()
 
+    def test_password_change_audit_failure_rolls_back_credential_and_sessions(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        control = self.runtime.control_connection()
+        control.execute("""
+            CREATE TRIGGER reject_web_password_audit BEFORE INSERT ON platform_security_events
+            WHEN NEW.event_type='password_changed_web'
+            BEGIN SELECT RAISE(ABORT, 'password audit unavailable'); END
+        """)
+        control.commit()
+        before_hash = control.execute("SELECT password_hash FROM users WHERE id=?", (self.user_id,)).fetchone()[0]
+        response = self._mutate(
+            "post", "/account/password",
+            json={"current_password": self.password,
+                  "new_password": "EvenLongerUniqueTestPassphrase-2026!"},
+        )
+        self.assertEqual(response.status_code, 503, response.text)
+        control = self.runtime.control_connection()
+        after_hash = control.execute("SELECT password_hash FROM users WHERE id=?", (self.user_id,)).fetchone()[0]
+        self.assertEqual(after_hash, before_hash)
+        self.assertGreater(control.execute("SELECT COUNT(*) FROM auth_sessions WHERE user_id=?", (self.user_id,)).fetchone()[0], 0)
+        self.assertEqual(control.execute(
+            "SELECT COUNT(*) FROM platform_security_events WHERE event_type='password_changed_web' AND target_user_id=?",
+            (self.user_id,),
+        ).fetchone()[0], 0)
+
     def test_password_change_revokes_sessions_across_all_firm_memberships(self):
         first_login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
@@ -783,6 +811,14 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
                 ).fetchone()[0],
                 0,
             )
+            event = self.runtime.control_connection().execute(
+                "SELECT actor_user_id,target_user_id,event_type,detail_json FROM platform_security_events "
+                "WHERE event_type='password_changed_web' AND target_user_id=? ORDER BY id DESC LIMIT 1",
+                (self.user_id,),
+            ).fetchone()
+            self.assertIsNotNone(event)
+            self.assertEqual(event["actor_user_id"], self.user_id)
+            self.assertIn('"sessions_revoked": true', event["detail_json"])
             self.assertEqual(
                 self.runtime.control_connection().execute(
                     "SELECT status FROM firm_memberships WHERE user_id=? AND firm_id=?",
