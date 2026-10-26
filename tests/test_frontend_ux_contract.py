@@ -37,6 +37,15 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("e.setAttribute(key,String(value))", HTML)
         self.assertIn("if(value!=null)e.setAttribute", HTML)
 
+    def test_corpus_coverage_metrics_have_definitions_and_catalog_drilldowns(self):
+        self.assertIn("Count of registered source records, not verified laws.", HTML)
+        self.assertIn("Instruments without a registered version record.", HTML)
+        self.assertIn("openCatalog('sources')", HTML)
+        self.assertIn("openCatalog('documents')", HTML)
+        self.assertIn("openCatalog('metadata_only_documents')", HTML)
+        self.assertIn("window.COVERAGE_QUEUE_FILTER='all_versions'", HTML)
+        self.assertIn("safeHttpsUrl(item.source_page)", HTML)
+
     def test_source_status_labels_have_plain_language_explanations_and_original_host(self):
         self.assertIn("const statusDescriptions={", HTML)
         self.assertIn("not independently verified as law", HTML)
