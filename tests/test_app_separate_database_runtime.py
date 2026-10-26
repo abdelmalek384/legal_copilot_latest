@@ -80,7 +80,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         # Every request must revalidate membership, even with a cached firm DB
         # connection and a still-valid authentication session cookie.
         denied_after_revocation = self.client.get("/cases")
-        self.assertEqual(denied_after_revocation.status_code, 401,
+        self.assertEqual(denied_after_revocation.status_code, 403,
                          denied_after_revocation.text)
         self.assertEqual(
             self.runtime.firm_connection(
