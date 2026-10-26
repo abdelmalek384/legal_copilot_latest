@@ -18,7 +18,7 @@ class TenantCatalogTests(unittest.TestCase):
         self.root = Path(self.temp.name) / "tenants"
         self.catalog = sqlite3.connect(":memory:")
         self.catalog.execute("CREATE TABLE firms(id INTEGER PRIMARY KEY, name TEXT NOT NULL)")
-        for firm_id in (3, 4, 8, 9, 10, 11, 12, 17, 21, 22, 23, 24, 30, 31, 32):
+        for firm_id in (3, 4, 8, 9, 10, 11, 12, 17, 21, 22, 23, 24, 30, 31, 32, 33):
             self.catalog.execute(
                 "INSERT INTO firms(id,name) VALUES(?,?)", (firm_id, f"Firm {firm_id}")
             )
@@ -316,10 +316,28 @@ class TenantCatalogTests(unittest.TestCase):
             """)
             db.execute("INSERT INTO database_profile(singleton,profile) VALUES(1,'firm')")
 
+        def with_noop_binding_guards(db):
+            self.initialize_tenant(db)
+            db.execute("""
+                CREATE TABLE tenant_database_binding (
+                    singleton INTEGER PRIMARY KEY CHECK(singleton=1),
+                    firm_id INTEGER NOT NULL CHECK(firm_id>0)
+                )
+            """)
+            db.executescript("""
+                CREATE TRIGGER tenant_database_binding_no_update
+                BEFORE UPDATE ON tenant_database_binding
+                BEGIN SELECT 1; END;
+                CREATE TRIGGER tenant_database_binding_no_delete
+                BEFORE DELETE ON tenant_database_binding
+                BEGIN SELECT 1; END;
+            """)
+
         for firm_id, initializer, message in (
             (30, without_profile, "missing its required firm schema profile binding"),
             (31, wrong_profile, "not bound to the firm schema profile"),
             (32, without_profile_guards, "profile binding lacks effective immutable guards"),
+            (33, with_noop_binding_guards, "firm binding lacks effective immutable guards"),
         ):
             with self.subTest(firm_id=firm_id), self.assertRaisesRegex(TenantCatalogError, message):
                 provision_tenant_database(self.catalog, firm_id, self.root, initializer)
