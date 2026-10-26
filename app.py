@@ -2031,6 +2031,13 @@ def create_user(b: UserCreateIn, u: dict = Depends(user)):
     if _separate_runtime_enabled():
         c = control_conn()
         try:
+            c.execute("BEGIN IMMEDIATE")
+            firm = c.execute(
+                "SELECT status FROM firms WHERE id=?", (u["firm_id"],)
+            ).fetchone()
+            if firm is None or firm["status"] != "active":
+                c.rollback()
+                raise HTTPException(409, "cannot create a membership for an inactive firm")
             cur = c.execute(
                 "INSERT INTO users(name,email_display,email_normalized,password_hash,status) "
                 "VALUES(?,?,?,?,'active')",
@@ -2043,6 +2050,9 @@ def create_user(b: UserCreateIn, u: dict = Depends(user)):
                 (user_id, u["firm_id"], b.role, u["id"]),
             )
             c.commit()
+        except HTTPException:
+            c.rollback()
+            raise
         except sqlite3.IntegrityError:
             c.rollback()
             raise HTTPException(409, "email already exists or membership is invalid")
@@ -2066,26 +2076,40 @@ def add_existing_user_membership(b: ExistingMembershipIn, u: dict = Depends(user
         raise HTTPException(404, "cross-firm memberships are available only in separate-database mode")
     normalized = normalize_email(b.email)
     c = control_conn()
-    identity = c.execute(
-        "SELECT id,name,status FROM users WHERE email_normalized=?", (normalized,)
-    ).fetchone()
-    if identity is None:
-        raise HTTPException(404, "global user not found; create the identity before adding memberships")
-    if identity["status"] != "active":
-        raise HTTPException(409, "disabled global identities cannot receive new memberships")
-    existing = c.execute(
-        "SELECT status FROM firm_memberships WHERE user_id=? AND firm_id=?",
-        (identity["id"], u["firm_id"]),
-    ).fetchone()
-    if existing is not None:
-        raise HTTPException(409, "membership already exists; reactivation requires a separate reviewed workflow")
+    c.execute("BEGIN IMMEDIATE")
     try:
+        firm = c.execute(
+            "SELECT status FROM firms WHERE id=?", (u["firm_id"],)
+        ).fetchone()
+        if firm is None or firm["status"] != "active":
+            c.rollback()
+            raise HTTPException(409, "cannot create a membership for an inactive firm")
+        identity = c.execute(
+            "SELECT id,name,status FROM users WHERE email_normalized=?", (normalized,)
+        ).fetchone()
+        if identity is None:
+            c.rollback()
+            raise HTTPException(404, "global user not found; create the identity before adding memberships")
+        if identity["status"] != "active":
+            c.rollback()
+            raise HTTPException(409, "disabled global identities cannot receive new memberships")
+        existing = c.execute(
+            "SELECT status FROM firm_memberships WHERE user_id=? AND firm_id=?",
+            (identity["id"], u["firm_id"]),
+        ).fetchone()
+        if existing is not None:
+            c.rollback()
+            raise HTTPException(409, "membership already exists; reactivation requires a separate reviewed workflow")
         c.execute(
             "INSERT INTO firm_memberships(user_id,firm_id,firm_role,status,created_by_user_id) "
             "VALUES(?,?,?,'active',?)",
             (identity["id"], u["firm_id"], b.role, u["id"]),
         )
         c.commit()
+    except HTTPException:
+        if c.in_transaction:
+            c.rollback()
+        raise
     except sqlite3.IntegrityError as exc:
         c.rollback()
         raise HTTPException(409, "membership could not be created; check identity and firm status") from exc
