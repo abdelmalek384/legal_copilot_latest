@@ -114,6 +114,7 @@ class FrontendUXContractTests(unittest.TestCase):
         memo = HTML[HTML.index("const memoText="):HTML.index("const exportMemo=")]
         self.assertIn("memoScope=typeof result.scope==='string'&&result.scope.trim()?result.scope:'unknown'", memo)
         self.assertIn("rawAsOf=result.requested_as_of", memo)
+        self.assertIn("/^\\d{4}-\\d{2}-\\d{2}$/", memo)
         self.assertIn("?rawAsOf:'unknown'", memo)
         self.assertIn("'Search scope: '+memoScope", memo)
         self.assertNotIn("scopeSelect.value", memo)
