@@ -114,6 +114,55 @@ class DatabaseMigrationTests(unittest.TestCase):
         ).fetchone())
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM schema_migrations").fetchone()[0], 0)
 
+    def test_interrupted_migration_keeps_prior_version_and_can_retry(self):
+        self.write(
+            "0001_create_sample.sql",
+            "CREATE TABLE sample(id INTEGER PRIMARY KEY, value TEXT); "
+            "INSERT INTO sample(value) VALUES('preserved');",
+        )
+        self.write(
+            "0002_add_status.sql",
+            "ALTER TABLE sample ADD COLUMN status TEXT; "
+            "INSERT INTO missing_table(value) VALUES('fail');",
+        )
+
+        with self.assertRaises(sqlite3.OperationalError):
+            apply_migrations(self.db, self.path)
+
+        # Each migration is its own transaction: version 1 remains committed,
+        # while the failed version's DDL and ledger entry are rolled back.
+        self.assertEqual(
+            [row[0] for row in self.db.execute(
+                "SELECT version FROM schema_migrations ORDER BY version"
+            )],
+            [1],
+        )
+        self.assertEqual(
+            self.db.execute("SELECT value FROM sample").fetchone()[0], "preserved"
+        )
+        self.assertNotIn(
+            "status",
+            [row["name"] for row in self.db.execute("PRAGMA table_info(sample)")],
+        )
+
+        # A failed, unrecorded migration can be repaired before it is applied;
+        # the already-applied migration remains immutable and is not rerun.
+        self.write(
+            "0002_add_status.sql",
+            "ALTER TABLE sample ADD COLUMN status TEXT DEFAULT 'ready';",
+        )
+        self.assertEqual(apply_migrations(self.db, self.path), [2])
+        self.assertEqual(
+            tuple(self.db.execute("SELECT value,status FROM sample").fetchone()),
+            ("preserved", "ready"),
+        )
+        self.assertEqual(
+            [row[0] for row in self.db.execute(
+                "SELECT version FROM schema_migrations ORDER BY version"
+            )],
+            [1, 2],
+        )
+
     def test_checksum_drift_is_rejected(self):
         self.write("0001_immutable.sql", "CREATE TABLE sample (id INTEGER);")
         apply_migrations(self.db, self.path)
