@@ -416,6 +416,26 @@ assert "does not establish" in discovery.json()["message"]
 assert "No source page was scraped or downloaded" in discovery.json()["warning"]
 assert c.post("/research/discover", json={"q":"valid"}, headers=O).status_code == 200
 
+# Positive metadata discovery must return catalog fields only, never legal passage text.
+metadata_source_id = "SRC-METADATA-DISCOVERY-TEST"
+metadata_document_id = "DOC-METADATA-DISCOVERY-TEST"
+db.execute("INSERT INTO legal_sources(source_id,authority,source_page) VALUES(?,?,?)",
+           (metadata_source_id, "Synthetic metadata discovery authority", "https://example.gov/synthetic"))
+db.execute("INSERT INTO legal_documents(document_id,source_id,official_title,document_type,law_number,law_year) VALUES(?,?,?,?,?,?)",
+           (metadata_document_id, metadata_source_id, "Synthetic metadata discovery fixture", "law", "MD-2026", 2026))
+db.execute("INSERT INTO legal_document_versions(document_id,version_label,source_url,legal_status,review_status) VALUES(?,?,?,?,?)",
+           (metadata_document_id, "synthetic-unreviewed", "https://example.gov/synthetic/version", "under_review", "pending_lawyer_review"))
+db.commit()
+metadata_match = c.post("/research/discover", json={"q":"Synthetic metadata discovery"}, headers=L)
+assert metadata_match.status_code == 200, metadata_match.text
+metadata_payload = metadata_match.json()
+assert metadata_payload["scope"] == "metadata_only" and metadata_payload["found"] is True
+metadata_row = next((row for row in metadata_payload["results"] if row["document_id"] == metadata_document_id), None)
+assert metadata_row is not None, metadata_payload
+assert metadata_row["status"] == "metadata_only" and metadata_row["text_available"] is False
+assert "text" not in metadata_row and "passage" not in metadata_row and "chunks" not in metadata_row
+assert "no current-law status is implied" in metadata_row["warning"]
+
 # Saving a research answer preserves the as-of date, scope, citations, and caveats in the matter note.
 assistant_message = chat_after_followup["messages"][-1]
 saved = c.post(f"/research/conversations/{chat_id}/save-to-matter",
