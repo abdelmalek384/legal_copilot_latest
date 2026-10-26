@@ -485,6 +485,58 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertFalse(result["possible_conflict"])
         self.assertFalse(result["admin_review_required"])
 
+    def test_platform_reviewer_role_guards_all_shared_corpus_review_reads(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        corpus = self.runtime.legal_corpus_connection()
+        corpus.execute(
+            "INSERT INTO legal_sources(source_id,authority,source_page) VALUES(?,?,?)",
+            ("review-read-source", "Review read test", "https://example.test/source"),
+        )
+        corpus.execute(
+            "INSERT INTO legal_documents(document_id,source_id,official_title,document_type) VALUES(?,?,?,?)",
+            ("review-read-doc", "review-read-source", "Review read document", "statute"),
+        )
+        corpus.execute(
+            "INSERT INTO legal_document_versions(version_id,document_id,version_label,source_url) VALUES(?,?,?,?)",
+            (778, "review-read-doc", "v1", "https://example.test/source/v1"),
+        )
+        corpus.commit()
+        urls = [
+            "/legal-review/queue",
+            "/legal-review/coverage",
+            "/legal-review/catalog?kind=sources",
+            "/legal-review/versions/778/events",
+        ]
+
+        for url in urls:
+            with self.subTest(url=url):
+                denied = self.client.get(url)
+                self.assertEqual(denied.status_code, 403, denied.text)
+
+        control = self.runtime.control_connection()
+        control.execute(
+            "INSERT INTO user_platform_roles(user_id,role_name) VALUES(?,?)",
+            (self.user_id, "platform_reviewer"),
+        )
+        control.commit()
+        for url in urls:
+            with self.subTest(url=url, role="platform_reviewer"):
+                allowed = self.client.get(url)
+                self.assertEqual(allowed.status_code, 200, allowed.text)
+
+        control.execute(
+            "DELETE FROM user_platform_roles WHERE user_id=? AND role_name='platform_reviewer'",
+            (self.user_id,),
+        )
+        control.commit()
+        for url in urls:
+            with self.subTest(url=url, role="revoked"):
+                denied = self.client.get(url)
+                self.assertEqual(denied.status_code, 403, denied.text)
+
     def test_search_and_ask_reject_case_ids_from_another_firm(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
