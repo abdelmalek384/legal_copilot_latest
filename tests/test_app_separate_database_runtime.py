@@ -621,6 +621,16 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(response.json()["results"], [])
         self.assertFalse(response.json()["found"])
 
+        # Metadata discovery is not the only public search path: ordinary
+        # retrieval with no case_id must also exclude other firms' matter chunks.
+        for endpoint in ("/search", "/ask"):
+            retrieved = self._mutate(
+                "post", endpoint,
+                json={"q": "PRIVATE_FIRM_ONLY_DISCOVERY_SENTINEL", "scope": "all_permitted"},
+            )
+            self.assertEqual(retrieved.status_code, 200, retrieved.text)
+            self.assertNotIn("PRIVATE_FIRM_ONLY_DISCOVERY_SENTINEL", retrieved.text)
+
     def test_search_and_ask_reject_case_ids_from_another_firm(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
