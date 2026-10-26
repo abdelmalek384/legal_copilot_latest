@@ -93,7 +93,17 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
                 )
                 unsafe_sidecar = True
                 continue
-            if not sidecar.exists() or os.name != "posix":
+            if not sidecar.exists():
+                continue
+            if not sidecar.is_file():
+                add(
+                    "database_sidecar_not_regular_file",
+                    firm_id,
+                    f"SQLite sidecar {sidecar.name} is not a regular file",
+                )
+                unsafe_sidecar = True
+                continue
+            if os.name != "posix":
                 continue
             try:
                 sidecar_mode = stat.S_IMODE(sidecar.stat().st_mode)
