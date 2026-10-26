@@ -122,6 +122,54 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             0,
         )
 
+    def test_suspending_one_membership_preserves_other_firm_access(self):
+        target_id = self.runtime.create_global_identity(
+            "Multi-firm Target", "multi-firm-target@example.test", app.hash_pw(self.password)
+        )
+        self.runtime.create_firm_membership(target_id, self.firm_a, "lawyer")
+        self.runtime.create_firm_membership(target_id, self.firm_b, "lawyer")
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+
+        disabled = self._mutate("post", f"/users/{target_id}/disable")
+        self.assertEqual(disabled.status_code, 200, disabled.text)
+        self.assertTrue(disabled.json()["membership_suspended"])
+        control = self.runtime.control_connection()
+        self.assertEqual(
+            control.execute("SELECT status FROM users WHERE id=?", (target_id,)).fetchone()["status"],
+            "active",
+        )
+        memberships = {
+            row["firm_id"]: row["status"] for row in control.execute(
+                "SELECT firm_id,status FROM firm_memberships WHERE user_id=?", (target_id,)
+            ).fetchall()
+        }
+        self.assertEqual(memberships[self.firm_a], "suspended")
+        self.assertEqual(memberships[self.firm_b], "active")
+
+        from fastapi.testclient import TestClient
+        target_client = TestClient(app.app)
+        try:
+            target_login = target_client.post(
+                "/login", json={"email": "multi-firm-target@example.test", "password": self.password}
+            )
+            self.assertEqual(target_login.status_code, 200, target_login.text)
+            denied_a = target_client.post(
+                "/session/firm", json={"firm_id": self.firm_a},
+                headers={"X-CSRF-Token": target_client.cookies.get("lc_csrf") or ""},
+            )
+            self.assertEqual(denied_a.status_code, 403, denied_a.text)
+            allowed_b = target_client.post(
+                "/session/firm", json={"firm_id": self.firm_b},
+                headers={"X-CSRF-Token": target_client.cookies.get("lc_csrf") or ""},
+            )
+            self.assertEqual(allowed_b.status_code, 200, allowed_b.text)
+            self.assertEqual(target_client.get("/cases").status_code, 200)
+        finally:
+            target_client.close()
+
     def test_firm_admin_cannot_suspend_another_firms_membership(self):
         firm_b_only_user = self.runtime.create_global_identity(
             "Firm B Only User", "firm-b-admin-isolation@example.test", app.hash_pw(self.password)
