@@ -549,6 +549,20 @@ assert coverage["metrics"]["permission_or_evidence_blocked_versions"] >= 1
 assert any(x["practice_area"] == "labour" and x["documents_with_verified_operational_text"] == 1 for x in coverage["coverage_by_practice_area"])
 assert any("not total Egyptian-law coverage" in w for w in coverage["warnings"])
 
+# Registry drill-down is platform-reviewer-only and returns shared catalog metadata, never passage text.
+assert c.get("/legal-review/catalog?kind=sources", headers=L).status_code == 403
+assert c.get("/legal-review/catalog?kind=documents", headers=B_ADMIN).status_code == 403
+catalog_source = c.get("/legal-review/catalog?kind=sources&q=COVERAGE-TEST-SOURCE", headers=A_IMPORT)
+assert catalog_source.status_code == 200, catalog_source.text
+assert any(x["source_id"] == "COVERAGE-TEST-SOURCE" and x["document_count"] == 1 for x in catalog_source.json()["items"])
+assert "does not return matter documents" in catalog_source.json()["warning"]
+catalog_metadata = c.get("/legal-review/catalog?kind=metadata_only_documents&q=COVERAGE-METADATA-DOC", headers=A_IMPORT)
+assert catalog_metadata.status_code == 200, catalog_metadata.text
+assert any(x["document_id"] == "COVERAGE-METADATA-DOC" and x["version_count"] == 0 for x in catalog_metadata.json()["items"])
+assert all("text" not in x for x in catalog_metadata.json()["items"])
+assert c.get("/legal-review/catalog?kind=unknown", headers=A_IMPORT).status_code == 422
+
+
 
 # Numeric legal claims must be supported by the text of the cited passages,
 # not merely by the existence of a syntactically valid citation.
