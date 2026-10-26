@@ -4,9 +4,11 @@
 **Estimated completion:** 28%  
 **Status:** In progress — not production-ready for confidential multi-firm matter data.
 
-This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. The checklist currently tracks 64 completed tasks and 20 remaining tasks; this count is not a readiness percentage. Update this file as database PRs merge and as acceptance criteria are completed.
+This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. The checklist currently tracks 65 completed tasks and 20 remaining tasks; this count is not a readiness percentage. Update this file as database PRs merge and as acceptance criteria are completed.
 
 ## Completed and merged
+
+- [x] Validate the trusted control-plane profile before any catalog schema write; reject unbound/wrong-profile catalogs without creating or modifying tenant-catalog tables (PR #314 merged; CI run 40274660734 passed).
 
 - [x] Require the tenant catalog initializer/resolver to verify the immutable `control_plane` profile marker and effective update/delete guards before trusting tenant mappings (PR #311 merged; CI run 40274318860 passed).
 
