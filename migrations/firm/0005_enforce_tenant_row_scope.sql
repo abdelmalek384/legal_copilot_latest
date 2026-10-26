@@ -58,3 +58,9 @@ WHEN NOT EXISTS (
  SELECT 1 FROM tenant_database_binding b WHERE b.singleton=1 AND b.firm_id=NEW.firm_id
 )
 BEGIN SELECT RAISE(ABORT, 'case deletion audit firm scope mismatch'); END;
+CREATE TRIGGER case_deletion_audit_tenant_firm_update
+BEFORE UPDATE OF firm_id ON case_deletion_audit
+WHEN NOT EXISTS (
+ SELECT 1 FROM tenant_database_binding b WHERE b.singleton=1 AND b.firm_id=NEW.firm_id
+)
+BEGIN SELECT RAISE(ABORT, 'case deletion audit firm scope does not match tenant database'); END;
