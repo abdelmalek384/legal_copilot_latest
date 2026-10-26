@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import os
 import sqlite3
+import stat
 import threading
 from dataclasses import dataclass
 from pathlib import Path
@@ -94,6 +95,52 @@ class DatabaseRuntime:
             return True
         except ValueError:
             return False
+
+    @staticmethod
+    def _validate_profile_storage(path: Path, profile: str) -> None:
+        """Revalidate control/corpus file and sidecars before every connection use."""
+        if path.is_symlink():
+            raise DatabaseRuntimeError(f"{profile} database path must not be a symlink")
+        if not path.is_file():
+            raise DatabaseRuntimeError(f"{profile} database file is missing or not a regular file")
+        if os.name == "posix":
+            try:
+                mode = stat.S_IMODE(path.stat().st_mode)
+            except OSError as exc:
+                raise DatabaseRuntimeError(
+                    f"{profile} database permissions cannot be verified"
+                ) from exc
+            if mode & 0o077:
+                raise DatabaseRuntimeError(
+                    f"{profile} database file permissions allow group/other access"
+                )
+        for suffix in ("-wal", "-shm", "-journal"):
+            sidecar = Path(str(path) + suffix)
+            if sidecar.is_symlink():
+                raise DatabaseRuntimeError(f"{profile} SQLite sidecar must not be a symlink")
+            if not sidecar.exists():
+                continue
+            if not sidecar.is_file():
+                raise DatabaseRuntimeError(f"{profile} SQLite sidecar must be a regular file")
+            if os.name == "posix":
+                try:
+                    sidecar_mode = stat.S_IMODE(sidecar.stat().st_mode)
+                except OSError as exc:
+                    raise DatabaseRuntimeError(
+                        f"{profile} SQLite sidecar permissions cannot be verified"
+                    ) from exc
+                if sidecar_mode & 0o077:
+                    raise DatabaseRuntimeError(
+                        f"{profile} SQLite sidecar permissions allow group/other access"
+                    )
+
+    def _close_local_connection(self, attribute: str) -> None:
+        connection = getattr(self._local, attribute, None)
+        if connection is not None:
+            try:
+                connection.close()
+            finally:
+                delattr(self._local, attribute)
 
     @classmethod
     def from_env(cls) -> "DatabaseRuntime":
@@ -186,6 +233,11 @@ class DatabaseRuntime:
     def control_connection(self) -> sqlite3.Connection:
         """Return the calling thread's control-plane connection."""
         self._require_initialized()
+        try:
+            self._validate_profile_storage(self.paths.control_plane, "control-plane")
+        except Exception:
+            self._close_local_connection("control")
+            raise
         connection = getattr(self._local, "control", None)
         if connection is None:
             connection = sqlite3.connect(str(self.paths.control_plane), timeout=self.timeout)
@@ -197,6 +249,11 @@ class DatabaseRuntime:
     def legal_corpus_connection(self) -> sqlite3.Connection:
         """Return the calling thread's central legal-corpus connection."""
         self._require_initialized()
+        try:
+            self._validate_profile_storage(self.paths.legal_corpus, "legal-corpus")
+        except Exception:
+            self._close_local_connection("corpus")
+            raise
         connection = getattr(self._local, "corpus", None)
         if connection is None:
             connection = sqlite3.connect(str(self.paths.legal_corpus), timeout=self.timeout)
@@ -208,6 +265,7 @@ class DatabaseRuntime:
     def _new_catalog_connection(self) -> sqlite3.Connection:
         """Return a fresh connection because the tenant router owns and closes it."""
         self._require_initialized()
+        self._validate_profile_storage(self.paths.control_plane, "control-plane")
         connection = sqlite3.connect(str(self.paths.control_plane), timeout=self.timeout)
         connection.row_factory = sqlite3.Row
         connection.execute("PRAGMA foreign_keys=ON")

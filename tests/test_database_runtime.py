@@ -46,6 +46,38 @@ class DatabaseRuntimeTests(unittest.TestCase):
         self.assertFalse(Path(str(control) + "-wal").exists())
         self.assertFalse(Path(str(control) + "-shm").exists())
 
+    def test_control_connection_is_revoked_when_database_permissions_become_unsafe(self):
+        if os.name != "posix":
+            self.skipTest("POSIX mode bits are not portable to this platform")
+        connection = self.runtime.control_connection()
+        os.chmod(self.runtime.paths.control_plane, 0o644)
+        try:
+            with self.assertRaisesRegex(DatabaseRuntimeError, "group/other access"):
+                self.runtime.control_connection()
+            with self.assertRaises(sqlite3.ProgrammingError):
+                connection.execute("SELECT 1")
+        finally:
+            os.chmod(self.runtime.paths.control_plane, 0o600)
+
+    def test_corpus_connection_is_revoked_when_sidecar_becomes_a_symlink(self):
+        if not hasattr(os, "symlink"):
+            self.skipTest("Symbolic links are not supported")
+        connection = self.runtime.legal_corpus_connection()
+        sidecar = Path(str(self.runtime.paths.legal_corpus) + "-wal")
+        target = self.root / "outside-wal"
+        target.write_bytes(b"not a database sidecar")
+        try:
+            sidecar.symlink_to(target)
+        except OSError as exc:
+            self.skipTest(f"Symbolic-link creation is unavailable: {exc}")
+        try:
+            with self.assertRaisesRegex(DatabaseRuntimeError, "sidecar must not be a symlink"):
+                self.runtime.legal_corpus_connection()
+            with self.assertRaises(sqlite3.ProgrammingError):
+                connection.execute("SELECT 1")
+        finally:
+            sidecar.unlink(missing_ok=True)
+
     def test_profiles_are_separate_and_firm_databases_are_distinct(self):
         user_id = self._identity()
         firm_a, path_a = self.runtime.provision_firm("Firm A")
