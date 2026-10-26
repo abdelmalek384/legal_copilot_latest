@@ -75,6 +75,36 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
         self.assertFalse(report["documents"][0]["collection_ready"])
         self.assertIn("source_register_does_not_allow_collection", report["documents"][0]["blockers"])
 
+    def test_future_review_dates_do_not_establish_acquisition_readiness(self):
+        manifest = {"documents": [{
+            "document_id": "LAW-FUTURE",
+            "source_id": "SRC-FUTURE",
+            "direct_url": "https://laws.example.gov/law.pdf",
+            "allowed_hosts": ["example.gov"],
+            "collection_permission": "allowed",
+            "permission_evidence": "written authorization",
+            "terms_checked_on": "9999-12-31",
+            "permission_scope_review": {
+                "status": "passed",
+                "evidence": "authorization reference",
+                "reviewed_on": "9999-12-31",
+                "approved_uses": ["collection"],
+            },
+        }]}
+        register = {"sources": [{
+            "source_id": "SRC-FUTURE",
+            "collection_permission": "allowed",
+            "commercial_reuse_permission": "unknown",
+            "permission_evidence": "written authorization",
+            "terms_checked_on": "9999-12-31",
+        }]}
+        report = MODULE.audit(manifest, register)
+        item = report["documents"][0]
+        self.assertFalse(item["collection_ready"])
+        self.assertIn("source_permission_evidence_or_terms_date_missing", item["blockers"])
+        self.assertIn("manifest_terms_checked_on_missing_or_invalid", item["blockers"])
+        self.assertIn("document_level_collection_scope_review_missing", item["blockers"])
+
     def test_direct_url_host_must_match_allowlist(self):
         manifest = {"documents": [{
             "document_id": "LAW-3",
