@@ -275,6 +275,9 @@ class TenancyCommandTests(unittest.TestCase):
         )
         env = self.env.copy()
         env["BACKUP_KEY"] = key.decode("ascii")
+        temp_root = self.root / "verification-temp"
+        temp_root.mkdir()
+        env["TMPDIR"] = str(temp_root)
         before = {path.name for path in self.root.iterdir()}
 
         result = subprocess.run(
@@ -288,6 +291,7 @@ class TenancyCommandTests(unittest.TestCase):
         self.assertFalse(report["plaintext_retained"])
         self.assertIn("not guaranteed secure erasure", report["warning"])
         self.assertEqual({path.name for path in self.root.iterdir()}, before)
+        self.assertEqual(list(temp_root.iterdir()), [], "temporary plaintext restore directory must be removed")
 
     def test_verify_backup_tenancy_cli_rejects_wrong_key_without_persistent_restore(self):
         backup_dir = self.root / "wrong-key-bundles"
@@ -298,6 +302,9 @@ class TenancyCommandTests(unittest.TestCase):
         )
         env = self.env.copy()
         env["BACKUP_KEY"] = Fernet.generate_key().decode("ascii")
+        temp_root = self.root / "wrong-key-verification-temp"
+        temp_root.mkdir()
+        env["TMPDIR"] = str(temp_root)
         before = {path.name for path in self.root.iterdir()}
         result = subprocess.run(
             [sys.executable, str(MANAGE), "verify-backup-tenancy", str(bundle)],
@@ -306,6 +313,7 @@ class TenancyCommandTests(unittest.TestCase):
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("Backup verification failed", result.stderr)
         self.assertEqual({path.name for path in self.root.iterdir()}, before)
+        self.assertEqual(list(temp_root.iterdir()), [], "failed verification must clean temporary plaintext")
 
 
 
