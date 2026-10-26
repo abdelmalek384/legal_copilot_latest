@@ -609,8 +609,12 @@ def citation_provenance(c, version_id):
     data["status_verified"] = bool(data["status_verified"])
     data["amendment_history_verified"] = bool(data["amendment_history_verified"])
     data["review_evidence"] = [dict(e) for e in c.execute(
-        "SELECT review_type,outcome,evidence_url,reviewer,reviewed_at "
-        "FROM legal_review_events WHERE version_id=? ORDER BY reviewed_at DESC,review_event_id DESC LIMIT 10",
+        "SELECT e.review_event_id,e.review_type,e.outcome,e.evidence_url,e.reviewer,e.reviewed_at "
+        "FROM legal_review_events e WHERE e.version_id=? AND e.review_event_id=("
+        "SELECT e2.review_event_id FROM legal_review_events e2 "
+        "WHERE e2.version_id=e.version_id AND e2.review_type=e.review_type "
+        "ORDER BY e2.reviewed_at DESC,e2.review_event_id DESC LIMIT 1) "
+        "ORDER BY e.reviewed_at DESC,e.review_event_id DESC",
         (version_id,)).fetchall()]
     data["relations"] = [dict(e) for e in c.execute(
         "SELECT r.relation_type,r.notes,"
