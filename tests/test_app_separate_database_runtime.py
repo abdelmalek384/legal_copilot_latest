@@ -14,11 +14,13 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.root = Path(self.temp.name)
-        self.env_names = ("COPILOT_CONTROL_DB", "COPILOT_TENANT_DB_ROOT", "COPILOT_CORPUS_DB")
+        self.env_names = ("COPILOT_CONTROL_DB", "COPILOT_TENANT_DB_ROOT", "COPILOT_CORPUS_DB", "ADMIN_TOKEN")
         self.old_env = {name: os.environ.get(name) for name in self.env_names}
         os.environ["COPILOT_CONTROL_DB"] = str(self.root / "control.sqlite3")
         os.environ["COPILOT_TENANT_DB_ROOT"] = str(self.root / "tenants")
         os.environ["COPILOT_CORPUS_DB"] = str(self.root / "corpus.sqlite3")
+        self.admin_token = "test-only-shared-corpus-import-token-2026"
+        os.environ["ADMIN_TOKEN"] = self.admin_token
         app._database_runtime = None
 
         self.runtime = DatabaseRuntime.from_env()
@@ -1159,6 +1161,76 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         control.commit()
         reviewer_queue = self.client.get("/legal-review/queue")
         self.assertEqual(reviewer_queue.status_code, 200, reviewer_queue.text)
+
+
+    def test_shared_corpus_import_requires_platform_reviewer_not_firm_admin(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        payload = [{
+            "law": "Synthetic staged law import",
+            "article": "1",
+            "text": "Synthetic passage for platform authorization regression coverage.",
+            "source": "TEST-ONLY",
+            "verified": 1,
+            "in_force": 1,
+        }]
+        headers = {"X-Admin-Token": self.admin_token}
+
+        # The initial owner is a firm administrator, not a platform reviewer.
+        denied = self._mutate("post", "/law/import", json=payload, headers=headers)
+        self.assertEqual(denied.status_code, 403, denied.text)
+        corpus = self.runtime.legal_corpus_connection()
+        self.assertEqual(
+            corpus.execute(
+                "SELECT COUNT(*) FROM legal_import_staging WHERE law=?",
+                ("Synthetic staged law import",),
+            ).fetchone()[0],
+            0,
+        )
+
+        control = self.runtime.control_connection()
+        control.execute(
+            "INSERT INTO user_platform_roles(user_id,role_name) "
+            "VALUES(?,'platform_reviewer')",
+            (self.user_id,),
+        )
+        control.commit()
+        allowed = self._mutate("post", "/law/import", json=payload, headers=headers)
+        self.assertEqual(allowed.status_code, 200, allowed.text)
+        self.assertTrue(allowed.json()["review_required"])
+        self.assertFalse(allowed.json()["search_eligible"])
+        self.assertEqual(
+            corpus.execute(
+                "SELECT COUNT(*) FROM legal_import_staging WHERE law=?",
+                ("Synthetic staged law import",),
+            ).fetchone()[0],
+            1,
+        )
+        # Caller-supplied trust flags must not bypass the reviewed-corpus workflow.
+        self.assertEqual(
+            corpus.execute(
+                "SELECT COUNT(*) FROM legal_documents WHERE official_title=?",
+                ("Synthetic staged law import",),
+            ).fetchone()[0],
+            0,
+        )
+
+        control.execute(
+            "DELETE FROM user_platform_roles WHERE user_id=? AND role_name='platform_reviewer'",
+            (self.user_id,),
+        )
+        control.commit()
+        revoked = self._mutate("post", "/law/import", json=payload, headers=headers)
+        self.assertEqual(revoked.status_code, 403, revoked.text)
+        self.assertEqual(
+            corpus.execute(
+                "SELECT COUNT(*) FROM legal_import_staging WHERE law=?",
+                ("Synthetic staged law import",),
+            ).fetchone()[0],
+            1,
+        )
 
 
 if __name__ == "__main__":
