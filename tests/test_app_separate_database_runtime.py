@@ -172,6 +172,51 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             2,
         )
 
+    def test_search_and_ask_reject_case_ids_from_another_firm(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+
+        created_case = self._mutate(
+            "post", "/cases", json={"title": "Firm A confidential search matter"}
+        )
+        self.assertEqual(created_case.status_code, 200, created_case.text)
+        case_id = created_case.json()["id"]
+        uploaded = self._mutate(
+            "post", f"/cases/{case_id}/docs",
+            json={"name": "search-private.txt", "text": "FIRM_A_ONLY_SEARCH_SENTINEL " * 12},
+        )
+        self.assertEqual(uploaded.status_code, 200, uploaded.text)
+
+        context_a = self.runtime.resolve_context(self.user_id, self.firm_a)
+        db_a = self.runtime.firm_connection(context_a)
+        self.assertEqual(
+            db_a.execute("SELECT COUNT(*) FROM docs WHERE case_id=?", (case_id,)).fetchone()[0],
+            1,
+        )
+        switched = self._mutate("post", "/session/firm", json={"firm_id": self.firm_b})
+        self.assertEqual(switched.status_code, 200, switched.text)
+
+        for endpoint in ("/search", "/ask"):
+            response = self._mutate(
+                "post", endpoint,
+                json={"q": "FIRM_A_ONLY_SEARCH_SENTINEL", "case_id": case_id,
+                      "scope": "all_permitted"},
+            )
+            self.assertEqual(response.status_code, 404, f"{endpoint}: {response.text}")
+            self.assertNotIn("FIRM_A_ONLY_SEARCH_SENTINEL", response.text)
+
+        # Cross-firm attempts cannot change the source firm's case or document.
+        self.assertEqual(
+            db_a.execute("SELECT COUNT(*) FROM cases WHERE id=?", (case_id,)).fetchone()[0],
+            1,
+        )
+        self.assertEqual(
+            db_a.execute("SELECT COUNT(*) FROM docs WHERE case_id=?", (case_id,)).fetchone()[0],
+            1,
+        )
+
     def test_child_records_and_task_actions_are_isolated_between_firms(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
