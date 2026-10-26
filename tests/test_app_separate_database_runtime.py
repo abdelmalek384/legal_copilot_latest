@@ -252,6 +252,71 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             0,
         )
 
+    def test_document_chunks_and_reviews_are_isolated_across_firms(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+
+        case = self._mutate(
+            "post", "/cases", json={"title": "Firm A document isolation"}
+        )
+        self.assertEqual(case.status_code, 200, case.text)
+        case_id = case.json()["id"]
+        created = self._mutate(
+            "post", f"/cases/{case_id}/docs",
+            json={
+                "name": "confidential-contract.txt",
+                "text": "CONFIDENTIAL-FIRM-A-DOCUMENT-SENTINEL. " * 20,
+            },
+        )
+        self.assertEqual(created.status_code, 200, created.text)
+        document_id = created.json()["document_id"]
+
+        context_a = self.runtime.resolve_context(self.user_id, self.firm_a)
+        firm_a_db = self.runtime.firm_connection(context_a)
+        self.assertEqual(
+            firm_a_db.execute(
+                "SELECT COUNT(*) FROM docs WHERE id=? AND case_id=? AND firm_id=?",
+                (document_id, case_id, self.firm_a),
+            ).fetchone()[0],
+            1,
+        )
+
+        switched = self._mutate(
+            "post", "/session/firm", json={"firm_id": self.firm_b}
+        )
+        self.assertEqual(switched.status_code, 200, switched.text)
+        chunks = self.client.get(
+            f"/cases/{case_id}/docs/{document_id}/chunks"
+        )
+        self.assertEqual(chunks.status_code, 404, chunks.text)
+        reviews = self.client.get(
+            f"/cases/{case_id}/docs/{document_id}/reviews"
+        )
+        self.assertEqual(reviews.status_code, 404, reviews.text)
+        review = self._mutate(
+            "post",
+            f"/cases/{case_id}/docs/{document_id}/chunks/1/review",
+            json={"outcome": "accepted"},
+        )
+        self.assertEqual(review.status_code, 404, review.text)
+
+        self.assertEqual(
+            firm_a_db.execute(
+                "SELECT COUNT(*) FROM document_extraction_reviews WHERE document_id=?",
+                (document_id,),
+            ).fetchone()[0],
+            0,
+        )
+        self.assertEqual(
+            firm_a_db.execute(
+                "SELECT COUNT(*) FROM docs WHERE id=? AND case_id=? AND firm_id=?",
+                (document_id, case_id, self.firm_a),
+            ).fetchone()[0],
+            1,
+        )
+
     def test_research_conversations_are_isolated_across_firms(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
