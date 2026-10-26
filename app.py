@@ -1230,13 +1230,19 @@ def legal_review_coverage(u: dict = Depends(user)):
 
 
 @app.get("/legal-review/catalog")
-def legal_review_catalog(kind: str = "documents", q: str = "", limit: int = 100, u: dict = Depends(user)):
+def legal_review_catalog(
+    kind: str = "documents", q: str = "", limit: int = 100,
+    collection_permission: str = "", commercial_reuse_permission: str = "",
+    u: dict = Depends(user),
+):
     """Read-only drill-down for the shared legal registry; never returns matter documents."""
     require_platform_legal_reviewer(u)
     if kind not in {"sources", "documents", "metadata_only_documents"}:
         raise HTTPException(422, "kind must be sources, documents, or metadata_only_documents")
     search = q.strip()[:200]
     pattern = "%" + search + "%"
+    collection_permission = collection_permission.strip()[:100]
+    commercial_reuse_permission = commercial_reuse_permission.strip()[:100]
     limit = max(1, min(limit, 200))
     c = conn()
     if kind == "sources":
@@ -1247,8 +1253,11 @@ def legal_review_catalog(kind: str = "documents", q: str = "", limit: int = 100,
             "COUNT(DISTINCT d.document_id) AS document_count "
             "FROM legal_sources s LEFT JOIN legal_documents d ON d.source_id=s.source_id "
             "WHERE (?='' OR s.source_id LIKE ? OR COALESCE(s.authority,'') LIKE ? OR COALESCE(s.source_page,'') LIKE ?) "
+            "AND (?='' OR COALESCE(s.collection_permission,'unknown')=?) "
+            "AND (?='' OR COALESCE(s.commercial_reuse_permission,'unknown')=?) "
             "GROUP BY s.source_id ORDER BY COALESCE(s.authority,''),s.source_id LIMIT ?",
-            (search, pattern, pattern, pattern, limit),
+            (search, pattern, pattern, pattern, collection_permission, collection_permission,
+             commercial_reuse_permission, commercial_reuse_permission, limit),
         ).fetchall()
         items = [dict(row) for row in rows]
     else:
@@ -1263,9 +1272,12 @@ def legal_review_catalog(kind: str = "documents", q: str = "", limit: int = 100,
             "FROM legal_documents d LEFT JOIN legal_sources s ON s.source_id=d.source_id "
             "WHERE (?='' OR d.document_id LIKE ? OR COALESCE(d.official_title,'') LIKE ? OR "
             "COALESCE(d.law_number,'') LIKE ? OR COALESCE(d.law_year,'') LIKE ? OR COALESCE(s.authority,'') LIKE ?) "
+            "AND (?='' OR COALESCE(s.collection_permission,'unknown')=?) "
+            "AND (?='' OR COALESCE(s.commercial_reuse_permission,'unknown')=?) "
             + metadata_filter +
             " ORDER BY COALESCE(d.official_title,''),d.document_id LIMIT ?",
-            (search, pattern, pattern, pattern, pattern, pattern, limit),
+            (search, pattern, pattern, pattern, pattern, pattern,
+             collection_permission, collection_permission, commercial_reuse_permission, commercial_reuse_permission, limit),
         ).fetchall()
         items = [dict(row) for row in rows]
     return {
