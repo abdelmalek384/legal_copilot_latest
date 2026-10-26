@@ -1071,6 +1071,11 @@ def _request_firm_context(request: Request):
         return None
 
 
+def _secure_cookie_transport(request):
+    """Honor HTTPS directly or an explicit TLS-terminating-proxy deployment setting."""
+    return request.url.scheme == "https" or os.environ.get("COPILOT_SECURE_COOKIES", "").strip() == "1"
+
+
 @app.middleware("http")
 async def security_headers(request: Request, call_next):
     nonce = secrets.token_urlsafe(18)
@@ -1096,7 +1101,7 @@ async def security_headers(request: Request, call_next):
     response.headers["Referrer-Policy"] = "no-referrer"
     response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
     response.headers["Content-Security-Policy"] = "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; script-src 'self' 'nonce-" + nonce + "'; style-src 'self' 'unsafe-inline'"
-    if request.url.scheme == "https":
+    if _secure_cookie_transport(request):
         response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains"
     return response
 
@@ -1241,7 +1246,7 @@ def _user_separate(
         raise HTTPException(401, "no active firm membership")
     if firm_cookie is None:
         firm_id = firms[0]["firm_id"]
-        secure = request.url.scheme == "https"
+        secure = _secure_cookie_transport(request)
         response.set_cookie("lc_firm", str(firm_id), max_age=43200, httponly=True,
                             secure=secure, samesite="lax", path="/")
     else:
@@ -1651,7 +1656,7 @@ def switch_firm(b: FirmSwitchIn, request: Request, response: Response, u: dict =
     except FirmContextError as exc:
         raise HTTPException(403, "active firm membership required") from exc
     response.set_cookie("lc_firm", str(context.firm_id), max_age=43200,
-                        httponly=True, secure=request.url.scheme == "https",
+                        httponly=True, secure=_secure_cookie_transport(request),
                         samesite="lax", path="/")
     return {"id": u["id"], "name": u["name"], "role": context.role,
             "firm_id": context.firm_id, "firms": _active_firms_for_user(u["id"]),
