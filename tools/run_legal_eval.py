@@ -14,11 +14,27 @@ import sys
 import time
 import urllib.error
 import urllib.request
+from urllib.parse import urlparse
 from pathlib import Path
 
 
 class RunnerError(RuntimeError):
     pass
+
+
+def validate_base_url(base_url, allow_remote=False):
+    parsed = urlparse(base_url)
+    if parsed.scheme not in {"http", "https"} or not parsed.hostname or parsed.username or parsed.password:
+        raise RunnerError("base URL must be an HTTP(S) origin without embedded credentials")
+    if parsed.query or parsed.fragment:
+        raise RunnerError("base URL must not contain a query string or fragment")
+    host = parsed.hostname.lower()
+    loopback = host in {"localhost", "127.0.0.1", "::1"}
+    if not loopback and not allow_remote:
+        raise RunnerError("non-local API targets require the explicit --allow-remote flag")
+    if not loopback and parsed.scheme != "https":
+        raise RunnerError("remote evaluation targets must use HTTPS")
+    return base_url.rstrip("/")
 
 
 def read_questions(path, limit=None):
@@ -128,7 +144,8 @@ def _request_json(opener, url, payload, headers=None, timeout=180):
         raise RunnerError("API returned a non-JSON response") from exc
 
 
-def run_questions(base_url, email, password, questions, out_path, sleep_seconds=3.1):
+def run_questions(base_url, email, password, questions, out_path, sleep_seconds=3.1, allow_remote=False):
+    base_url = validate_base_url(base_url, allow_remote=allow_remote)
     target = Path(out_path)
     if target.exists():
         raise RunnerError(f"output already exists: {target}; choose a new path to avoid overwriting results")
@@ -166,6 +183,7 @@ def main(argv=None):
     parser.add_argument("--limit", type=int, help="Run only the first N questions")
     parser.add_argument("--sleep-seconds", type=float, default=3.1, help="Delay between questions to respect /ask rate limits")
     parser.add_argument("--base-url", default=os.environ.get("LEGAL_EVAL_BASE_URL", "http://127.0.0.1:8000"))
+    parser.add_argument("--allow-remote", action="store_true", help="Explicitly allow a remote API; HTTPS is required")
     parser.add_argument("--email", default=os.environ.get("LEGAL_EVAL_EMAIL"))
     parser.add_argument("--password", default=os.environ.get("LEGAL_EVAL_PASSWORD"))
     args = parser.parse_args(argv)
@@ -177,7 +195,7 @@ def main(argv=None):
         return 2
     try:
         questions = read_questions(args.questions, args.limit)
-        count = run_questions(args.base_url, args.email, args.password, questions, args.out, args.sleep_seconds)
+        count = run_questions(args.base_url, args.email, args.password, questions, args.out, args.sleep_seconds, allow_remote=args.allow_remote)
     except (OSError, RunnerError) as exc:
         print(f"evaluation run failed: {exc}", file=sys.stderr)
         return 2
