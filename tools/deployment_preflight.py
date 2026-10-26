@@ -6,6 +6,7 @@ import os
 import stat
 import sys
 from pathlib import Path
+from urllib.parse import urlsplit
 
 
 def inspect_environment(env=None):
@@ -23,6 +24,22 @@ def inspect_environment(env=None):
         errors.append("ADMIN_TOKEN must be a non-placeholder secret of at least 32 characters.")
     else:
         passed.append("ADMIN_TOKEN is present and meets the basic length/placeholder check.")
+
+    public_origin = env.get("COPILOT_PUBLIC_ORIGIN", "").strip()
+    if public_origin:
+        try:
+            parsed_origin = urlsplit(public_origin)
+            valid_origin = (parsed_origin.scheme == "https" and bool(parsed_origin.netloc)
+                            and not parsed_origin.username and not parsed_origin.password
+                            and parsed_origin.path in {"", "/"} and not parsed_origin.query and not parsed_origin.fragment)
+        except ValueError:
+            valid_origin = False
+        if valid_origin:
+            passed.append("COPILOT_PUBLIC_ORIGIN is a fixed HTTPS origin suitable for reverse-proxy origin checks.")
+        else:
+            errors.append("COPILOT_PUBLIC_ORIGIN must be an HTTPS origin only, without credentials, path, query, or fragment.")
+    elif env.get("COPILOT_SECURE_COOKIES", "").strip() == "1":
+        warnings.append("COPILOT_PUBLIC_ORIGIN is unset; if the app sees internal HTTP behind a TLS proxy, browser Origin checks may reject HTTPS requests.")
 
     raw_score = env.get("MIN_SCORE", "0.3")
     try:
