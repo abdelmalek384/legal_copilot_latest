@@ -16,6 +16,30 @@ spec.loader.exec_module(app)
 
 
 class SecureCookieTransportTests(unittest.TestCase):
+    def test_trusted_host_allowlist_rejects_wildcard_all_and_url_syntax(self):
+        self.assertEqual(app._trusted_host_patterns("legal.example.com,*.example.org,127.0.0.1"),
+                         ["legal.example.com", "*.example.org", "127.0.0.1"])
+        for value in ("*", "https://legal.example.com", "legal.example.com/path", "*.127.0.0.1", "legal..example.com"):
+            with self.subTest(value=value):
+                with self.assertRaises(ValueError):
+                    app._trusted_host_patterns(value)
+
+    def test_trusted_host_middleware_accepts_allowlisted_host_and_rejects_others(self):
+        async def run(host):
+            sent = []
+            async def fake_app(scope, receive, send):
+                await send({"type": "http.response.start", "status": 204, "headers": []})
+                await send({"type": "http.response.body", "body": b""})
+            async def receive():
+                return {"type": "http.disconnect"}
+            async def send(message):
+                sent.append(message)
+            middleware = app.TrustedHostMiddleware(fake_app, allowed_hosts=app._trusted_host_patterns("legal.example.com"))
+            await middleware({"type": "http", "headers": [(b"host", host.encode("ascii"))], "method": "GET", "path": "/"}, receive, send)
+            return sent[0]["status"]
+        self.assertEqual(asyncio.run(run("legal.example.com")), 204)
+        self.assertEqual(asyncio.run(run("attacker.example")), 400)
+
     def test_streamed_body_without_content_length_is_limited(self):
         async def run_case(chunks):
             sent = []
