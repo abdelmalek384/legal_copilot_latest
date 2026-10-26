@@ -1,12 +1,16 @@
 # Database completion tracker
 
 **Last updated:** 2026-10-26  
-**Estimated completion:** 28%  
+**Estimated completion:** 36%  
 **Status:** In progress — not production-ready for confidential multi-firm matter data.
 
-This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. The checklist currently tracks 79 completed tasks and 19 remaining tasks; this count is not a readiness percentage. Update this file as database PRs merge and as acceptance criteria are completed.
+This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. This is a weighted engineering estimate, not a test-pass percentage or a count of commits. The separate-database runtime and encrypted backup/restore are now merged, but legacy-data reconciliation, exhaustive route coverage, schema-migration completion, and recovery/rollback drills remain release blockers.
 
 ## Completed and merged
+
+- [x] Wire authenticated firm membership and trusted catalog resolution into the fresh-install runtime: control-plane authentication/session lookup, per-firm matter connections, shared legal-corpus routing, and fail-closed behavior when separate configuration is incomplete (PR #372 merged; CI passed).
+- [x] Add encrypted multi-database backup/restore bundles for the control plane, shared corpus, and every cataloged firm database; validate profiles, firm bindings, SQLite integrity, catalog consistency, and manifest checksums; restore only to a new destination (PR #382 merged; CI passed).
+- [x] Update deployment preflight for the three separate-database paths, rejecting partial configuration, unsafe path overlap, symlinks, and unsafe POSIX storage permissions without creating databases (PR #384 merged; CI passed).
 
 - [x] Extend tenant preflight to audit POSIX SQLite WAL/SHM/journal sidecars, and refuse to open a catalog or tenant database when a sidecar is symlinked or has unsafe permissions (PR #362 merged; CI run 40357742798 passed).
 - [x] Extend the tenant router to reject symlinked or overly permissive SQLite sidecars and revoke cached connections when sidecars become unsafe (PR #363 merged; CI run 40357383129 passed).
@@ -147,13 +151,16 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 ### 2. Approve identity and tenant contract
 - [ ] Finish operational identity policy for invitations, initial firm-owner bootstrap, platform-role grant/revocation workflow, and session behavior after membership revocation; core decisions on multi-firm membership, global normalized email, and separate role domains are approved.
 - [ ] Complete the deployment and storage inventory before selecting production routing behavior.
-- [ ] Wire the new control-plane membership and platform-role tables into authentication, session validation, and trusted active-firm routing after remaining operational policy is settled; revoke access promptly when membership is suspended/revoked.
+- [x] Wire control-plane identity, sessions, firm memberships, and trusted active-firm routing into the separate runtime (PR #372 merged; CI passed).
+- [ ] Finish and verify invitation/bootstrap lifecycle, platform-role grant/revocation workflow, and prompt session/cache revocation across all routes after membership suspension or revocation.
 
 ### 3. Implement actual tenant storage boundaries
-- [ ] Route each firm-scoped request through an authenticated, server-validated firm membership and trusted server-side tenant catalog.
-- [ ] Replace the shared `COPILOT_DB` runtime boundary with firm-specific database selection; never trust client-supplied firm IDs, paths, or connection strings as authorization.
-- [ ] Separate firm matter data from identity/control-plane data and the shared legal corpus; classify mixed `chunks`/FTS data before splitting.
-- [ ] Enforce lifecycle behavior for provisioning, disabled tenants, unknown catalog entries, unavailable tenant DBs, and revoked memberships.
+- [x] Implement the separate-runtime request path: authenticated session plus active membership resolves a trusted catalog entry; firm matter requests use the firm database, identity uses the control plane, and verified legal-reference search uses the shared corpus (PR #372 merged; CI passed).
+- [ ] Finish route-by-route and query-by-query verification, including routes that intentionally use control-plane or corpus connections.
+- [x] Add explicit three-path configuration and a fail-closed deployment preflight for the separate runtime (PR #384 merged; CI passed). Legacy `COPILOT_DB` compatibility remains available only when explicitly configured and is not approved for unrelated firms' confidential matters.
+- [x] Define separate firm and corpus schema profiles and initialize separate databases.
+- [ ] Complete reconciliation/classification of legacy mixed `chunks`/FTS records before any legacy cutover.
+- [ ] Complete lifecycle acceptance for provisioning failures/retries, disabled tenants, unknown catalog entries, unavailable tenant databases, and revoked memberships across all API/background paths.
 
 ### 4. Reconcile existing data safely
 - [ ] Run read-only ownership preflight against a protected production-like copy and retain its report.
@@ -163,13 +170,14 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 
 ### 5. Prove tenant isolation and operational recovery
 - [ ] Complete route-by-route and SQL-query-by-query cross-firm authorization tests, including exports, audit, search, legal review, background work, and administrative paths.
-- [ ] Add per-firm backup, restore, retention, export, and deletion behavior with isolation tests.
+- [x] Implement encrypted, checksummed multi-database backup and non-destructive restore to a new directory, with two-firm isolation and tamper/wrong-key tests (PR #382 merged; CI passed).
+- [ ] Complete retention policy, tenant-specific export/deletion semantics, automated scheduling/monitoring, and operational recovery drills.
 - [ ] Rehearse deployment, restore, and rollback using representative copies; validate permissions, secrets, encryption keys, monitoring, and incident runbooks.
 - [ ] Obtain an independent security review before production use with unrelated firms' confidential matters.
 
 ## Release gate
 
-**Do not describe the database as production-grade multi-tenant isolation yet.** The application currently uses a shared SQLite database. Passing migration, preflight, and API tests improves safety but does not substitute for separate tenant storage, approved identity semantics, full data reconciliation, operational drills, and independent review.
+**Do not describe the database as production-grade multi-tenant isolation yet.** The new configured runtime now routes through a control plane, per-firm SQLite files, and a shared legal corpus, while explicit legacy `COPILOT_DB` compatibility remains. Passing CI and adding backup code do not substitute for exhaustive route/query isolation, legacy-data reconciliation, restore/rollback drills, monitoring, and the remaining approval gates.
 
 ## Progress update rules
 
