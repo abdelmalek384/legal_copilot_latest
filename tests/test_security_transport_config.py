@@ -53,6 +53,31 @@ class SecureCookieTransportTests(unittest.TestCase):
         self.assertEqual(oversized[0]["status"], 413)
         self.assertIn(b"request body exceeds", oversized[1]["body"])
 
+    def test_request_body_middleware_rejects_ambiguous_or_invalid_content_length(self):
+        async def run_case(headers):
+            sent = []
+            async def forbidden_app(scope, receive, send):
+                raise AssertionError("invalid declared length must be rejected before application")
+            async def receive():
+                return {"type": "http.disconnect"}
+            async def send(message):
+                sent.append(message)
+            middleware = app.RequestBodyLimitMiddleware(forbidden_app, max_body_bytes=5)
+            await middleware({"type": "http", "headers": headers}, receive, send)
+            return sent
+
+        for headers, expected in (
+            ([(b"content-length", b"1"), (b"content-length", b"1")], 400),
+            ([(b"content-length", b"not-a-number")], 400),
+            ([(b"content-length", b"-1")], 400),
+            ([(b"content-length", b"6")], 413),
+        ):
+            with self.subTest(headers=headers):
+                sent = asyncio.run(run_case(headers))
+                self.assertEqual(sent[0]["status"], expected)
+                body = sent[1]["body"]
+                self.assertIn(b"detail", body)
+
     def test_declared_body_size_limit_allows_upload_limit_and_rejects_oversize(self):
         request = lambda value: SimpleNamespace(headers={} if value is None else {"content-length": value})
         self.assertIsNone(app._declared_body_size_error(request(None)))
