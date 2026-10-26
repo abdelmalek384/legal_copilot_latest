@@ -42,8 +42,8 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
             questions = Path(td) / "questions.jsonl"
             results = Path(td) / "results.jsonl"
             report_path = Path(td) / "report.json"
-            questions.write_text(json.dumps(approved(), ensure_ascii=False) + "\\n", encoding="utf-8")
-            results.write_text(json.dumps(result(), ensure_ascii=False) + "\\n", encoding="utf-8")
+            questions.write_text(json.dumps(approved(), ensure_ascii=False) + "\n", encoding="utf-8")
+            results.write_text(json.dumps(result(), ensure_ascii=False) + "\n", encoding="utf-8")
             code = main([
                 "--questions", str(questions), "--results", str(results), "--out", str(report_path),
                 "--min-source-precision", "1", "--min-pin-cite-precision", "1",
@@ -59,11 +59,11 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
             questions = Path(td) / "questions.jsonl"
             results = Path(td) / "results.jsonl"
             report_path = Path(td) / "report.json"
-            questions.write_text(json.dumps(approved(), ensure_ascii=False) + "\\n", encoding="utf-8")
+            questions.write_text(json.dumps(approved(), ensure_ascii=False) + "\n", encoding="utf-8")
             r = result(sources=["LAW-10", "EXTRA"],
                        pins=[{"source_id": "LAW-10", "pin_cite": "المادة 12"},
                              {"source_id": "EXTRA", "pin_cite": "المادة 99"}])
-            results.write_text(json.dumps(r, ensure_ascii=False) + "\\n", encoding="utf-8")
+            results.write_text(json.dumps(r, ensure_ascii=False) + "\n", encoding="utf-8")
             code = main([
                 "--questions", str(questions), "--results", str(results), "--out", str(report_path),
                 "--min-source-precision", "1",
