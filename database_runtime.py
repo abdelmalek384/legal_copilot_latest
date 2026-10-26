@@ -139,8 +139,29 @@ class DatabaseRuntime:
         if path.exists() and path.is_symlink():
             raise DatabaseRuntimeError(f"{profile} database path must not be a symlink")
         path.parent.mkdir(parents=True, exist_ok=True)
-        connection = sqlite3.connect(str(path), timeout=self.timeout)
+        created = False
+        connection = None
         try:
+            # Control-plane identities and the shared legal corpus are sensitive
+            # stores too. Create new files with restrictive permissions before
+            # SQLite opens them, rather than relying on the process umask.
+            if not path.exists():
+                try:
+                    descriptor = os.open(path, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
+                except FileExistsError as exc:
+                    raise DatabaseRuntimeError(
+                        f"{profile} database path appeared during initialization"
+                    ) from exc
+                os.close(descriptor)
+                created = True
+                try:
+                    os.chmod(path, 0o600)
+                except OSError as exc:
+                    if os.name == "posix":
+                        raise DatabaseRuntimeError(
+                            f"Cannot enforce restrictive permissions on new {profile} database"
+                        ) from exc
+            connection = sqlite3.connect(str(path), timeout=self.timeout)
             connection.row_factory = sqlite3.Row
             connection.execute("PRAGMA foreign_keys=ON")
             if connection.execute("PRAGMA foreign_keys").fetchone()[0] != 1:
@@ -148,7 +169,14 @@ class DatabaseRuntime:
             apply_profile_migrations(connection, profile, self.migrations_root)
             return connection
         except Exception:
-            connection.close()
+            if connection is not None:
+                connection.close()
+            if created:
+                for candidate in (path, Path(str(path) + "-wal"), Path(str(path) + "-shm"), Path(str(path) + "-journal")):
+                    try:
+                        candidate.unlink(missing_ok=True)
+                    except OSError:
+                        pass
             raise
 
     def _require_initialized(self) -> None:
