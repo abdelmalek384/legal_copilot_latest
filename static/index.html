@@ -207,11 +207,9 @@ function sendLocalReminderSummary(d){
  (d.deadlines||[]).forEach(x=>{const day=localReminderDate(x.due);if(day&&day<=tomorrow)items.push({kind:'deadline',day})});
  (d.sessions||[]).forEach(x=>{const day=localReminderDate(x.date);if(day&&day<=tomorrow)items.push({kind:'hearing',day})});
  if(!items.length||sessionStorage.getItem('lc_local_reminder_sent_'+todayKey)==='1')return;
- sessionStorage.setItem('lc_local_reminder_sent_'+todayKey,'1');
  const overdue=items.filter(x=>x.day<todayKey).length;
  const body=LANG==='ar'?'لديك '+items.length+' مهام أو مواعيد تحتاج إلى مراجعة، منها '+overdue+' متأخرة. افتح التطبيق للمراجعة.':'You have '+items.length+' tasks or dates to review, including '+overdue+' overdue. Open the app to review.';
- const notification=new Notification(LANG==='ar'?'تذكير من المساعد القانوني':'Legal Copilot reminder',{body,tag:'lc-daily-reminder-'+todayKey});
- notification.onclick=()=>{window.focus();notification.close();openPage('calendar',calendarPage)};
+ try{const notification=new Notification(LANG==='ar'?'تذكير من المساعد القانوني':'Legal Copilot reminder',{body,tag:'lc-daily-reminder-'+todayKey});sessionStorage.setItem('lc_local_reminder_sent_'+todayKey,'1');notification.onclick=()=>{window.focus();notification.close();openPage('calendar',calendarPage)}}catch(_){};
 }
 function startLocalReminderPolling(){
  if(localStorage.getItem('lc_local_reminders_enabled')!=='1'||!('Notification' in window)||Notification.permission!=='granted'||window.__lcReminderTimer)return;
