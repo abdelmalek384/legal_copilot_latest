@@ -51,6 +51,32 @@ class CorpusAuditTests(unittest.TestCase):
             self.assertEqual(report["source_permissions"]["unknown"], 1)
             self.assertEqual(report["version_quality"]["missing_hash"], 1)
 
+    def test_reuse_permission_source_urls_hashes_and_dates_are_audited(self):
+        with tempfile.TemporaryDirectory() as td:
+            db_path = Path(td) / "evidence.db"
+            db = sqlite3.connect(db_path)
+            db.executescript("""
+            CREATE TABLE legal_sources(source_id TEXT PRIMARY KEY, collection_permission TEXT, commercial_reuse_permission TEXT, permission_evidence TEXT, terms_url TEXT);
+            CREATE TABLE legal_documents(document_id TEXT PRIMARY KEY);
+            CREATE TABLE legal_document_versions(version_id INTEGER PRIMARY KEY, source_url TEXT, original_path TEXT, original_sha256 TEXT, publication_date TEXT, effective_date TEXT, repeal_date TEXT, consolidated_as_of TEXT, legal_status TEXT, review_status TEXT, authenticity_verified INT, status_verified INT, amendment_history_verified INT);
+            CREATE TABLE legal_version_relations(relation_id INTEGER PRIMARY KEY, from_version_id INT, to_version_id INT, relation_type TEXT);
+            CREATE TABLE legal_review_events(review_event_id INTEGER PRIMARY KEY, version_id INT, review_type TEXT, outcome TEXT, evidence_url TEXT);
+            INSERT INTO legal_sources VALUES('S1','allowed','unknown',NULL,'http://terms.example.com');
+            INSERT INTO legal_document_versions VALUES(1,'http://unsafe.example.com/law','missing.pdf','not-a-hash','2024-13-40','2025-01-01','2024-12-31',NULL,'unknown','pending_source_review',0,0,0);
+            """)
+            db.commit()
+            db.close()
+            report = MODULE.audit(db_path)
+            codes = {issue["code"] for issue in report["issues"]}
+            self.assertIn("source_commercial_reuse_permission_unknown", codes)
+            self.assertIn("source_allowed_without_permission_evidence", codes)
+            self.assertIn("source_terms_url_not_https", codes)
+            self.assertIn("versions_malformed_sha256", codes)
+            self.assertIn("versions_invalid_source_url", codes)
+            self.assertIn("versions_malformed_dates", codes)
+            self.assertIn("versions_repeal_before_effective_date", codes)
+            self.assertIn("commercial_reuse_permissions", report)
+
     def test_amendment_history_flags_require_review_evidence_and_relations_are_audited(self):
         with tempfile.TemporaryDirectory() as td:
             db_path = Path(td) / "versions.db"
