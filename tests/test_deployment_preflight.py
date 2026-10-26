@@ -84,6 +84,44 @@ class DeploymentPreflightTests(unittest.TestCase):
         self.assertIn("Preflight failed", output.getvalue())
         self.assertFalse(self.db_path.exists())
 
+    def test_release_gate_requires_separate_database_paths_even_if_legacy_path_is_explicit(self):
+        passed, warnings, errors = preflight.inspect_environment(self.env, require_separate=True)
+        self.assertTrue(any("requires all three separate database paths" in item for item in errors))
+
+    def test_production_requires_separate_paths_secure_origin_hosts_and_valid_backup_key(self):
+        env = dict(self.env)
+        env.pop("COPILOT_DB", None)
+        env.update({
+            "COPILOT_ENV": "production",
+            "COPILOT_CONTROL_DB": str(Path(self.tempdir.name) / "control.sqlite3"),
+            "COPILOT_TENANT_DB_ROOT": str(Path(self.tempdir.name) / "tenants"),
+            "COPILOT_CORPUS_DB": str(Path(self.tempdir.name) / "corpus.sqlite3"),
+            "COPILOT_ALLOWED_HOSTS": "legal.example.test",
+            "COPILOT_SECURE_COOKIES": "1",
+            "COPILOT_PUBLIC_ORIGIN": "https://legal.example.test",
+            "BACKUP_KEY": "not-a-valid-fernet-key",
+        })
+        _, _, errors = preflight.inspect_environment(env)
+        self.assertTrue(any("BACKUP_KEY must be a valid Fernet key" in item for item in errors))
+        env["BACKUP_KEY"] = __import__("cryptography.fernet", fromlist=["Fernet"]).Fernet.generate_key().decode()
+        _, _, errors = preflight.inspect_environment(env)
+        self.assertEqual(errors, [])
+
+    def test_production_requires_host_and_secure_cookie_settings(self):
+        env = dict(self.env)
+        env.pop("COPILOT_DB", None)
+        env.update({
+            "COPILOT_ENV": "production",
+            "COPILOT_CONTROL_DB": str(Path(self.tempdir.name) / "control.sqlite3"),
+            "COPILOT_TENANT_DB_ROOT": str(Path(self.tempdir.name) / "tenants"),
+            "COPILOT_CORPUS_DB": str(Path(self.tempdir.name) / "corpus.sqlite3"),
+            "BACKUP_KEY": __import__("cryptography.fernet", fromlist=["Fernet"]).Fernet.generate_key().decode(),
+        })
+        _, _, errors = preflight.inspect_environment(env)
+        self.assertTrue(any("COPILOT_ALLOWED_HOSTS is required in production" in item for item in errors))
+        self.assertTrue(any("COPILOT_SECURE_COOKIES=1 is required in production" in item for item in errors))
+        self.assertTrue(any("COPILOT_PUBLIC_ORIGIN must be set" in item for item in errors))
+
     def test_accepts_complete_separate_database_path_configuration_without_shared_warning(self):
         root = Path(self.tempdir.name)
         tenant_root = root / "tenants"
