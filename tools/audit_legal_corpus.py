@@ -276,12 +276,12 @@ def render_markdown(report):
     lines += ["","## Interpretation","","- Metadata audit only, not legal verification.","- Stored verification flags are reported as stored; evidence is not independently validated.","- Never guess missing dates or permissions.",""]
     return "\n".join(lines)
 
-def main():
+def main(argv=None):
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument("--db",type=Path,required=True,help="Path to SQLite database")
     p.add_argument("--out-dir",type=Path,required=True,help="Directory for JSON and Markdown reports")
     p.add_argument("--strict",action="store_true",help="exit non-zero when high-severity metadata issues are found")
-    a=p.parse_args()
+    a=p.parse_args(argv)
     report=audit(a.db)
     a.out_dir.mkdir(parents=True,exist_ok=True)
     (a.out_dir/"legal_corpus_audit.json").write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding="utf-8")
