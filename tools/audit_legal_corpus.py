@@ -3,7 +3,7 @@
 from __future__ import annotations
 import argparse, hashlib, json, sqlite3
 from collections import Counter
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -22,6 +22,18 @@ def valid_evidence_url(value):
     try:
         parsed = urlparse(value)
         return parsed.scheme == "https" and bool(parsed.hostname) and not parsed.username and not parsed.password
+    except ValueError:
+        return False
+
+def valid_sha256(value):
+    return isinstance(value, str) and len(value) == 64 and all(ch in "0123456789abcdefABCDEF" for ch in value)
+
+def valid_iso_date(value):
+    if not isinstance(value, str) or not value.strip():
+        return False
+    try:
+        date.fromisoformat(value)
+        return True
     except ValueError:
         return False
 
@@ -65,9 +77,29 @@ def audit(db_path: Path):
                 for key,sev in (("missing_source","high"),("empty_text","high"),("unverified","medium"),("marked_in_force_but_unverified","high"),("no_article_number","medium"),("unlinked_to_version","high")):
                     if q.get(key): result["issues"].append({"severity":sev,"code":"chunks_"+key,"count":q[key]})
         if "legal_sources" in tables:
-            result["source_permissions"]=dict(db.execute("SELECT collection_permission,COUNT(*) FROM legal_sources GROUP BY collection_permission").fetchall())
-            if result["source_permissions"].get("unknown",0):
-                result["issues"].append({"severity":"high","code":"source_permission_unknown","count":result["source_permissions"]["unknown"]})
+            sc = columns(db, "legal_sources")
+            if "collection_permission" in sc:
+                result["source_permissions"] = dict(db.execute("SELECT COALESCE(collection_permission,'unknown'),COUNT(*) FROM legal_sources GROUP BY collection_permission").fetchall())
+                unresolved = sum(n for status, n in result["source_permissions"].items() if status in ("unknown", ""))
+                if unresolved:
+                    result["issues"].append({"severity":"high","code":"source_permission_unknown","count":unresolved})
+                if result["source_permissions"].get("prohibited", 0):
+                    result["issues"].append({"severity":"high","code":"source_collection_prohibited","count":result["source_permissions"]["prohibited"],"detail":"Confirm prohibited sources are not used for ingestion or retrieval."})
+            if "commercial_reuse_permission" in sc:
+                result["commercial_reuse_permissions"] = dict(db.execute("SELECT COALESCE(commercial_reuse_permission,'unknown'),COUNT(*) FROM legal_sources GROUP BY commercial_reuse_permission").fetchall())
+                unknown_commercial = sum(n for status, n in result["commercial_reuse_permissions"].items() if status.lower() in ("unknown", ""))
+                if unknown_commercial:
+                    result["issues"].append({"severity":"high","code":"source_commercial_reuse_permission_unknown","count":unknown_commercial,"detail":"Public accessibility alone does not establish commercial reuse permission."})
+            if {"source_id", "collection_permission", "permission_evidence"}.issubset(sc):
+                missing_permission_evidence = db.execute(
+                    "SELECT COUNT(*) FROM legal_sources WHERE collection_permission IN ('allowed','allowed_limited') AND (permission_evidence IS NULL OR trim(permission_evidence)='')"
+                ).fetchone()[0]
+                if missing_permission_evidence:
+                    result["issues"].append({"severity":"high","code":"source_allowed_without_permission_evidence","count":missing_permission_evidence})
+            if {"terms_url"}.issubset(sc):
+                invalid_terms = sum(not valid_evidence_url(row[0]) for row in db.execute("SELECT terms_url FROM legal_sources WHERE terms_url IS NOT NULL AND trim(terms_url)!=''").fetchall())
+                if invalid_terms:
+                    result["issues"].append({"severity":"medium","code":"source_terms_url_not_https","count":invalid_terms})
         if "legal_document_versions" in tables:
             vc=columns(db,"legal_document_versions")
             required={"source_url","original_path","original_sha256","publication_date","effective_date","repeal_date","legal_status","review_status","authenticity_verified","status_verified","amendment_history_verified"}
@@ -83,9 +115,27 @@ def audit(db_path: Path):
                   "not_verified":db.execute("SELECT COUNT(*) FROM legal_document_versions WHERE review_status!='verified' OR authenticity_verified!=1 OR status_verified!=1").fetchone()[0],
                   "amendment_history_unverified":db.execute("SELECT COUNT(*) FROM legal_document_versions WHERE amendment_history_verified!=1").fetchone()[0]
                 }
+                q["malformed_sha256"] = sum(not valid_sha256(row[0]) for row in db.execute(
+                    "SELECT original_sha256 FROM legal_document_versions WHERE original_sha256 IS NOT NULL AND trim(original_sha256)!=''"
+                ).fetchall())
+                q["invalid_source_url"] = sum(not valid_evidence_url(row[0]) for row in db.execute(
+                    "SELECT source_url FROM legal_document_versions WHERE source_url IS NOT NULL AND trim(source_url)!=''"
+                ).fetchall())
+                date_columns = [name for name in ("publication_date", "effective_date", "repeal_date", "consolidated_as_of") if name in vc]
+                malformed_dates = 0
+                repeal_before_effective = 0
+                for version in db.execute("SELECT " + ",".join(date_columns) + " FROM legal_document_versions").fetchall():
+                    values = dict(zip(date_columns, version))
+                    malformed_dates += sum(value is not None and str(value).strip() != "" and not valid_iso_date(value) for value in values.values())
+                    effective = values.get("effective_date")
+                    repeal = values.get("repeal_date")
+                    if valid_iso_date(effective) and valid_iso_date(repeal) and date.fromisoformat(repeal) < date.fromisoformat(effective):
+                        repeal_before_effective += 1
+                q["malformed_dates"] = malformed_dates
+                q["repeal_before_effective_date"] = repeal_before_effective
                 result["version_quality"]=q
                 for key in q:
-                    if q[key]: result["issues"].append({"severity":"high" if key in ("not_verified","unknown_legal_status") else "medium","code":"versions_"+key,"count":q[key]})
+                    if q[key]: result["issues"].append({"severity":"high" if key in ("not_verified","unknown_legal_status","malformed_sha256","invalid_source_url","malformed_dates","repeal_before_effective_date") else "medium","code":"versions_"+key,"count":q[key]})
 
                 # Amendment-history assertions need evidence, not just a boolean flag.
                 vc_required = {"version_id", "legal_status", "review_status", "amendment_history_verified"}
