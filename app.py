@@ -1320,10 +1320,24 @@ def require_platform_legal_reviewer(u):
         raise HTTPException(403, "platform legal reviewer only")
 
 
-def ocr_pdf_text(data, lang=None, max_pages=30):
-    """OCR a small scanned PDF when optional local OCR dependencies are installed.
+def _pdf_page_texts(extracted_text):
+    """Map page markers emitted by extract() to extracted text, excluding marker lines."""
+    matches = list(re.finditer(r"(?m)^\[\[PDF_PAGE:(\d+)\]\][ \t]*$", extracted_text or ""))
+    pages = {}
+    for index, match in enumerate(matches):
+        end = matches[index + 1].start() if index + 1 < len(matches) else len(extracted_text)
+        pages[int(match.group(1))] = extracted_text[match.end():end].strip()
+    return pages
 
-    OCR output is unverified text: callers must not treat it as authoritative law.
+
+def _extracted_text_content(text):
+    """Remove structural page markers before testing whether a PDF has readable text."""
+    return re.sub(r"(?m)^\[\[PDF_PAGE:\d+\]\][ \t]*$", "", text or "").strip()
+
+
+def ocr_pdf_text(data, lang=None, max_pages=30, existing_pages=None):
+    """OCR scanned pages only when extracted text is missing; OCR text remains unverified.
+
     Requires PyMuPDF, Pillow, pytesseract, the Tesseract binary, and matching language data.
     """
     try:
@@ -1333,16 +1347,26 @@ def ocr_pdf_text(data, lang=None, max_pages=30):
     except ImportError as exc:
         raise HTTPException(422, "scanned PDF needs optional OCR dependencies (PyMuPDF, Pillow, pytesseract, and Tesseract language data)") from exc
     lang = lang or os.environ.get("OCR_LANG", "ara+eng")
+    existing_pages = existing_pages or {}
     try:
         doc = pymupdf.open(stream=data, filetype="pdf")
-        if len(doc) > max_pages:
-            raise HTTPException(413, f"OCR is limited to {max_pages} pages per upload")
+        pages_to_ocr = [
+            page for page in doc
+            if len(str(existing_pages.get(page.number + 1, "")).strip()) < 20
+        ]
+        if (len(doc) > max_pages and not existing_pages) or len(pages_to_ocr) > max_pages:
+            raise HTTPException(413, f"OCR is limited to {max_pages} pages requiring OCR per upload")
         pages = []
         for page in doc:
-            pix = page.get_pixmap(dpi=160, alpha=False)
-            image = Image.open(io.BytesIO(pix.tobytes("png")))
-            page_text = pytesseract.image_to_string(image, lang=lang, timeout=30)
-            pages.append(f"[[PDF_PAGE:{page.number + 1}]]\n\n{page_text}")
+            page_no = page.number + 1
+            existing = str(existing_pages.get(page_no, "")).strip()
+            if len(existing) >= 20:
+                page_text = existing
+            else:
+                pix = page.get_pixmap(dpi=160, alpha=False)
+                image = Image.open(io.BytesIO(pix.tobytes("png")))
+                page_text = pytesseract.image_to_string(image, lang=lang, timeout=30).strip()
+            pages.append(f"[[PDF_PAGE:{page_no}]]\n\n{page_text}")
         return "\n\n".join(pages).strip()
     except HTTPException:
         raise
@@ -2234,18 +2258,33 @@ def upload(cid: int, file: UploadFile, u: dict = Depends(user)):
     except Exception:
         raise HTTPException(422, "unreadable file")
     ocr_used = False
-    if len(text.strip()) < 20 and name.lower().endswith(".pdf"):
-        text = ocr_pdf_text(data)
-        ocr_used = True
-    if len(text.strip()) < 20:
+    ocr_warning = None
+    if name.lower().endswith(".pdf"):
+        page_texts = _pdf_page_texts(text)
+        missing_pages = {n: value for n, value in page_texts.items() if len(value.strip()) < 20}
+        if missing_pages:
+            has_readable_pages = any(len(value.strip()) >= 20 for value in page_texts.values())
+            try:
+                text = ocr_pdf_text(data, existing_pages=page_texts)
+                ocr_used = True
+            except HTTPException as exc:
+                # Keep readable pages indexable if optional OCR libraries are absent,
+                # but make the partial extraction state explicit rather than silently
+                # presenting a mixed scanned/text PDF as fully extracted.
+                if has_readable_pages and "optional OCR dependencies" in str(exc.detail):
+                    ocr_warning = "Some pages contain no extractable text; OCR dependencies were unavailable, so those pages were not indexed."
+                else:
+                    raise
+    if len(_extracted_text_content(text)) < 20:
         raise HTTPException(422, "no readable text found; for scanned PDFs enable OCR with Arabic/English Tesseract language data")
-    extraction_status = "ocr_unverified" if ocr_used else "text_extracted"
+    extraction_status = "ocr_unverified" if ocr_used else ("partial_text_ocr_unavailable" if ocr_warning else "text_extracted")
     digest = hashlib.sha256(data).hexdigest()
     chunks, document_id = save_doc(
         c, u, cid, name, text, content_hash=digest,
         content_type=(file.content_type or ("application/pdf" if name.lower().endswith(".pdf") else "application/vnd.openxmlformats-officedocument.wordprocessingml.document")),
         byte_size=len(data), extraction_status=extraction_status, ocr_used=ocr_used)
-    return {"document_id": document_id, "sha256": digest, "chunks": chunks, "ocr_used": ocr_used, "text_status": extraction_status}
+    return {"document_id": document_id, "sha256": digest, "chunks": chunks, "ocr_used": ocr_used,
+            "text_status": extraction_status, "ocr_warning": ocr_warning}
 
 
 class ExtractionReviewIn(BaseModel):
