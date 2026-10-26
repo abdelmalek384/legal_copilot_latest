@@ -24,3 +24,23 @@ For each query, the product should:
 ## Human answer review
 
 Use [the proposed human legal-answer review rubric](legal_answer_review_rubric.md) to record evidence-based scores, critical defects, and case dispositions after an actual run. The rubric is a proposed workflow, not an approved legal standard. Do not claim answer accuracy until qualified Egyptian-law reviewers validate the source versions and review the outputs.
+
+## Technical citation/abstention release gate sample size
+
+The CLI `tools/evaluate_legal_answers.py` supports technical release thresholds for source precision, pinpoint-citation precision, abstention accuracy, citations on unanswerable cases, and invalid citation indexes. Whenever a numeric quality threshold is configured, an explicit `--min-questions` is required. The gate fails if fewer lawyer-approved questions were scored than this minimum, preventing a tiny reviewed sample from producing a misleading pass.
+
+Example (illustrative only; not an approved release policy):
+
+```bash
+python tools/evaluate_legal_answers.py \
+  --questions /secure/path/reviewed-questions.jsonl \
+  --results /secure/path/model-results.jsonl \
+  --min-questions 100 \
+  --min-source-precision 0.98 \
+  --min-pin-cite-precision 0.98 \
+  --min-abstention-accuracy 0.99 \
+  --max-invalid-citation-question-rate 0
+```
+
+The product owner and qualified Egyptian-law reviewers must approve thresholds and a representative benchmark before release use. Total sample size does not guarantee practice-area balance or temporal/source-type coverage; inspect these distributions separately. These metrics measure citation/abstention behavior only and do not certify semantic legal correctness or product readiness.
+
