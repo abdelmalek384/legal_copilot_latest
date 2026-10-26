@@ -54,6 +54,22 @@ class PlatformSecurityAuditTests(unittest.TestCase):
         self.assertIn('"sessions_revoked": true', event["detail_json"])
         self.assertTrue(control.execute("SELECT password_hash FROM users WHERE id=?", (self.user_id,)).fetchone()[0] != "old-password-hash")
 
+    def test_audit_write_failure_rolls_back_password_change_and_session_revocation(self):
+        control = self.runtime.control_connection()
+        control.execute("""
+            CREATE TRIGGER reject_platform_audit BEFORE INSERT ON platform_security_events
+            BEGIN SELECT RAISE(ABORT, 'audit unavailable'); END
+        """)
+        control.commit()
+        old_hash = control.execute("SELECT password_hash FROM users WHERE id=?", (self.user_id,)).fetchone()[0]
+        with patch("manage.read_password", return_value="NewStrongPassphrase_2026"):
+            with self.assertRaisesRegex(Exception, "audit unavailable"):
+                manage.resetpw(Namespace(email="audit-owner@example.test"))
+        control = self.runtime.control_connection()
+        self.assertEqual(control.execute("SELECT password_hash FROM users WHERE id=?", (self.user_id,)).fetchone()[0], old_hash)
+        self.assertEqual(control.execute("SELECT COUNT(*) FROM auth_sessions WHERE user_id=?", (self.user_id,)).fetchone()[0], 1)
+        self.assertEqual(control.execute("SELECT COUNT(*) FROM platform_security_events").fetchone()[0], 0)
+
     def test_platform_security_audit_is_append_only(self):
         control = self.runtime.control_connection()
         control.execute(
