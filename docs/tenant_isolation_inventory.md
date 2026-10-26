@@ -1,17 +1,17 @@
 # SEC-01 — tenant-isolation inventory and audit findings
 
-**Review date:** 2026-10-24  
+**Review date:** 2026-10-26  
 **Scope:** static review of `app.py`, current API regression tests, schema/table definitions, and the existing multi-firm isolation plan. This is an engineering inventory, not an independent penetration test or production certification.
 
 ## Executive finding
 
-The application still uses a **single shared SQLite database**. Many routes scope matter data through the authenticated user's `firm_id`, and `api_test.py` exercises cross-firm denials for matters, uploads, search/answers, users, dashboards, research conversations, extraction-review writes, and now audit records. That is useful defense-in-depth, but it does not provide database-level tenant separation.
+The application now has a separate-database runtime when all three paths (`COPILOT_CONTROL_DB`, `COPILOT_TENANT_DB_ROOT`, and `COPILOT_CORPUS_DB`) are configured: identities and memberships live in the control plane, each firm's matters live in a distinct SQLite file, and legal-reference data lives in a shared corpus database. Explicit legacy `COPILOT_DB` compatibility remains, but it is not an approved isolation boundary for unrelated firms' confidential matters. Route/query isolation still needs exhaustive review in the separate runtime.
 
-**Do not onboard unrelated firms or production confidential client material yet.** Separate tenant stores, exhaustive route/query review, backup/restore isolation, production controls, and independent security review remain release blockers.
+**Do not onboard unrelated firms or production confidential client material yet.** Exhaustive route/query review, first-deployment operational controls, restore/rollback drills, retention and monitoring policies, and independent security review remain release blockers.
 
 ## Current automated coverage
 
-The API suite uses synthetic records and two firms. Existing assertions include:
+The API suite uses synthetic records and two firms. The separate-runtime integration suite now also verifies that a guessed case ID cannot be read, modified, or deleted after switching to another firm, and that a clean separate-database install preserves firm data, corpus data, and lifecycle metadata across restart. Existing assertions include:
 - case list/detail/update/delete and membership/task boundaries;
 - dashboard tasks/deadlines and conflict checks;
 - user listing/creation/disablement and session revocation;
@@ -21,7 +21,7 @@ The API suite uses synthetic records and two firms. Existing assertions include:
 - admin-only case deletion and security audit endpoints;
 - legal-review queue/coverage/event authorization and legacy law-import gates.
 
-This PR adds explicit checks that Firm B's administrator cannot see Firm A's security events or case-deletion snapshots. The test suite's synthetic setup is not a substitute for testing the deployed environment.
+Merged PR #439 verifies Firm B cannot see Firm A's security events or case-deletion snapshots. Merged PR #465 adds database-level row-scope guards and separate-runtime cross-firm case CRUD plus fresh-install/restart tests. The test suite's synthetic setup is not a substitute for a deployment-specific review.
 
 ## Route inventory
 
