@@ -441,7 +441,7 @@ class DatabaseRuntimeTests(unittest.TestCase):
                     os.environ[name] = value
 
 
-    def test_fresh_firm_schema_requires_explicit_firm_scope_on_owned_rows(self):
+    def test_fresh_firm_schema_has_no_scope_defaults_and_rejects_unscoped_case(self):
         user_id = self._identity("explicit-scope@example.test")
         firm_id, _ = self.runtime.provision_firm("Explicit Scope Firm")
         self.runtime.create_firm_membership(user_id, firm_id, "admin")
@@ -460,8 +460,6 @@ class DatabaseRuntimeTests(unittest.TestCase):
                     columns["firm_id"]["dflt_value"], None,
                     f"{table}.firm_id must not default to an arbitrary firm",
                 )
-                # Ownership is enforced by database constraints/triggers; the
-                # behavioral assertion below avoids assuming a specific mechanism.
 
         with self.assertRaises(sqlite3.IntegrityError):
             db.execute("INSERT INTO cases(title) VALUES('missing firm scope')")
