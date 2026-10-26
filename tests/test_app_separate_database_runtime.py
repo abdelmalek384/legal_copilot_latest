@@ -53,6 +53,80 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         headers["X-CSRF-Token"] = csrf or ""
         return getattr(self.client, method)(url, headers=headers, **kwargs)
 
+    def test_web_user_creation_records_platform_membership_audit(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate(
+            "post", "/users",
+            json={"name": "Audited User", "email": "audited-user@example.test",
+                  "password": self.password, "role": "lawyer"},
+        )
+        self.assertEqual(created.status_code, 200, created.text)
+        control = self.runtime.control_connection()
+        event = control.execute(
+            "SELECT actor_user_id,target_user_id,firm_id,event_type,detail_json FROM platform_security_events "
+            "WHERE event_type='membership_created' AND target_user_id=? ORDER BY id DESC LIMIT 1",
+            (created.json()["id"],),
+        ).fetchone()
+        self.assertIsNotNone(event)
+        self.assertEqual(event["actor_user_id"], self.user_id)
+        self.assertEqual(event["firm_id"], self.firm_a)
+        self.assertIn('"method": "web"', event["detail_json"])
+
+    def test_membership_suspension_audit_failure_keeps_membership_active(self):
+        target_id = self.runtime.create_global_identity(
+            "Suspension Audit Target", "suspension-audit-target@example.test", app.hash_pw(self.password)
+        )
+        self.runtime.create_firm_membership(target_id, self.firm_a, "lawyer")
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        control = self.runtime.control_connection()
+        control.execute("""
+            CREATE TRIGGER reject_membership_suspension_audit BEFORE INSERT ON platform_security_events
+            WHEN NEW.event_type='membership_suspended'
+            BEGIN SELECT RAISE(ABORT, 'membership suspension audit unavailable'); END
+        """)
+        control.commit()
+        response = self._mutate("post", f"/users/{target_id}/disable")
+        self.assertEqual(response.status_code, 503, response.text)
+        self.assertEqual(control.execute(
+            "SELECT status FROM firm_memberships WHERE user_id=? AND firm_id=?",
+            (target_id, self.firm_a),
+        ).fetchone()["status"], "active")
+        self.assertEqual(control.execute(
+            "SELECT COUNT(*) FROM platform_security_events WHERE event_type='membership_suspended' AND target_user_id=?",
+            (target_id,),
+        ).fetchone()[0], 0)
+
+    def test_web_user_creation_audit_failure_rolls_back_identity_and_membership(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        control = self.runtime.control_connection()
+        control.execute("""
+            CREATE TRIGGER reject_membership_creation_audit BEFORE INSERT ON platform_security_events
+            WHEN NEW.event_type='membership_created'
+            BEGIN SELECT RAISE(ABORT, 'membership creation audit unavailable'); END
+        """)
+        control.commit()
+        response = self._mutate(
+            "post", "/users",
+            json={"name": "Not Created", "email": "not-created@example.test",
+                  "password": self.password, "role": "lawyer"},
+        )
+        self.assertEqual(response.status_code, 503, response.text)
+        self.assertIsNone(control.execute(
+            "SELECT id FROM users WHERE email_normalized='not-created@example.test'"
+        ).fetchone())
+        self.assertEqual(control.execute(
+            "SELECT COUNT(*) FROM platform_security_events WHERE event_type='membership_created' AND detail_json LIKE '%not-created%'"
+        ).fetchone()[0], 0)
+
     def test_membership_writers_recheck_active_firm_inside_write_transaction(self):
         target_user = self.runtime.create_global_identity(
             "Second Firm User", "second-firm-user@example.test", app.hash_pw(self.password)
@@ -150,6 +224,14 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         }
         self.assertEqual(memberships[self.firm_a], "suspended")
         self.assertEqual(memberships[self.firm_b], "active")
+        suspended_event = control.execute(
+            "SELECT actor_user_id,target_user_id,firm_id,event_type FROM platform_security_events "
+            "WHERE event_type='membership_suspended' AND target_user_id=? ORDER BY id DESC LIMIT 1",
+            (target_id,),
+        ).fetchone()
+        self.assertIsNotNone(suspended_event)
+        self.assertEqual(suspended_event["actor_user_id"], self.user_id)
+        self.assertEqual(suspended_event["firm_id"], self.firm_a)
 
         from fastapi.testclient import TestClient
         target_client = TestClient(app.app)
@@ -237,6 +319,13 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(added.json()["firm_id"], self.firm_a)
 
         control = self.runtime.control_connection()
+        created_event = control.execute(
+            "SELECT actor_user_id,target_user_id,firm_id,event_type FROM platform_security_events "
+            "WHERE event_type='membership_created' AND target_user_id=? AND firm_id=? ORDER BY id DESC LIMIT 1",
+            (existing_user_id, self.firm_a),
+        ).fetchone()
+        self.assertIsNotNone(created_event)
+        self.assertEqual(created_event["actor_user_id"], self.user_id)
         memberships = control.execute(
             "SELECT firm_id,firm_role,status FROM firm_memberships WHERE user_id=? ORDER BY firm_id",
             (existing_user_id,),
