@@ -71,14 +71,15 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
             self.assertEqual(code, 1)
             report = json.loads(report_path.read_text(encoding="utf-8"))
             self.assertFalse(report["release_gate"]["passed"])
-            self.assertEqual(report["release_gate"]["checks"][0]["actual"], 0.5)
+            source_check = next(c for c in report["release_gate"]["checks"] if c["metric"] == "source_precision")
+            self.assertEqual(source_check["actual"], 0.5)
 
     def test_quality_release_thresholds_require_explicit_minimum_sample_size(self):
         with tempfile.TemporaryDirectory() as td:
             questions = Path(td) / "questions.jsonl"
             results = Path(td) / "results.jsonl"
-            questions.write_text(json.dumps(approved(), ensure_ascii=False) + "\\n", encoding="utf-8")
-            results.write_text(json.dumps(result(), ensure_ascii=False) + "\\n", encoding="utf-8")
+            questions.write_text(json.dumps(approved(), ensure_ascii=False) + "\n", encoding="utf-8")
+            results.write_text(json.dumps(result(), ensure_ascii=False) + "\n", encoding="utf-8")
             with self.assertRaises(SystemExit) as raised:
                 main(["--questions", str(questions), "--results", str(results),
                       "--min-source-precision", "1"])
@@ -89,8 +90,8 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
             questions = Path(td) / "questions.jsonl"
             results = Path(td) / "results.jsonl"
             report_path = Path(td) / "report.json"
-            questions.write_text(json.dumps(approved(), ensure_ascii=False) + "\\n", encoding="utf-8")
-            results.write_text(json.dumps(result(), ensure_ascii=False) + "\\n", encoding="utf-8")
+            questions.write_text(json.dumps(approved(), ensure_ascii=False) + "\n", encoding="utf-8")
+            results.write_text(json.dumps(result(), ensure_ascii=False) + "\n", encoding="utf-8")
             code = main(["--questions", str(questions), "--results", str(results),
                          "--out", str(report_path), "--min-questions", "2"])
             self.assertEqual(code, 1)
