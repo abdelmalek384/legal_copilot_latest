@@ -88,6 +88,9 @@ def inspect_environment(env=None):
                 continue
             if not sidecar.exists():
                 continue
+            if not sidecar.is_file():
+                errors.append(f"SQLite sidecar {sidecar.name} is not a regular file.")
+                continue
             try:
                 sidecar_mode = stat.S_IMODE(sidecar.stat().st_mode)
                 if sidecar_mode & 0o077:
