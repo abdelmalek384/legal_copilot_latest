@@ -133,6 +133,8 @@ class ProfileInitialSchemaTests(unittest.TestCase):
                 VALUES(2,10,2,7,100,55,'accepted','raw','reviewed')""")
         with self.assertRaisesRegex(sqlite3.IntegrityError, "document extraction review scope mismatch"):
             db.execute("UPDATE document_extraction_reviews SET chunk_id=999 WHERE id=1")
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "review firm scope does not match tenant database"):
+            db.execute("UPDATE document_extraction_reviews SET firm_id=8 WHERE id=1")
         # Parent mutations must not invalidate already-valid child relationships.
         with self.assertRaisesRegex(sqlite3.IntegrityError, "document child scope mismatch"):
             db.execute("UPDATE docs SET case_id=2 WHERE id=10")
