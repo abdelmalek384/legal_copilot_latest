@@ -153,7 +153,7 @@ class DatabaseMigrationTests(unittest.TestCase):
         )
         self.assertEqual(apply_migrations(self.db, self.path), [2])
         self.assertEqual(
-            self.db.execute("SELECT value,status FROM sample").fetchone(),
+            tuple(self.db.execute("SELECT value,status FROM sample").fetchone()),
             ("preserved", "ready"),
         )
         self.assertEqual(
