@@ -21,7 +21,7 @@ The API suite uses synthetic records and two firms. The separate-runtime integra
 - admin-only case deletion and security audit endpoints;
 - legal-review queue/coverage/event authorization and legacy law-import gates.
 
-Merged PR #439 verifies Firm B cannot see Firm A's security events or case-deletion snapshots. Merged PR #465 adds database-level row-scope guards and separate-runtime cross-firm case CRUD plus fresh-install/restart tests. The test suite's synthetic setup is not a substitute for a deployment-specific review.
+Merged PR #439 verifies Firm B cannot see Firm A's security events or case-deletion snapshots. Merged PR #465 adds database-level row-scope guards and separate-runtime cross-firm case CRUD plus fresh-install/restart tests. PR #543 behaviorally verifies that wrong-firm UPDATEs abort for cases, documents, extraction reviews, research conversations, and case-deletion audit rows; PR #530 covers wrong-firm INSERT rejection for those tables. The test suite's synthetic setup is not a substitute for a deployment-specific review.
 
 ## Route inventory
 
@@ -38,7 +38,7 @@ Routes are grouped by the data boundary they should preserve. "Tested" means the
 | `POST /cases/{cid}/docs`, `POST /cases/{cid}/upload` | Parent case must be authorized; metadata, chunks, and indexes must retain firm/case linkage | Upload ownership, hashes, metadata, and cross-firm upload denial are tested. Original binaries are not retained; retention/page preview is not implemented |
 | `GET /cases/{cid}/docs/{document_id}/reviews`, `POST /cases/{cid}/docs/{document_id}/chunks/{chunk_id}/review` | Case, document, chunk, and review history must all resolve inside same authorized firm/case | Cross-firm review read/write and stale correction protections are tested; reviewer UI and page-level source verification remain outstanding |
 | `POST /conflicts` | Search only within current firm's cases; hidden same-firm cases may yield a generic warning, not details | Tests cover firm boundary and warning behavior; requires lawyer workflow validation |
-| `POST /search`, `POST /ask` | Matter-scoped context must pass case authorization; global statutory corpus is a separate read-only shared scope | Cross-firm case-scoped requests tested; audit future retrieval and cached results for tenant leakage |
+| `POST /search`, `POST /ask` | Matter-scoped context must pass case authorization; global statutory corpus is a separate read-only shared scope | Cross-firm case-scoped requests and unscoped retrieval that excludes another firm's private-document sentinel are tested (PR #542); continue auditing new retrieval paths and caches |
 | `POST /research/discover` | Must not expose unauthorized matter content or persist cross-tenant context | Scope/permission denial tests exist; test every supported scope and future connector |
 | `GET /research/conversations`, `POST /research/conversations`, `GET/PATCH/DELETE /research/conversations/{conversation_id}`, `POST /research/conversations/{conversation_id}/messages`, `POST /research/conversations/{conversation_id}/save-to-matter` | Conversation belongs to user and firm; target matter and message must be authorized | Cross-user and cross-firm read/write/export tests exist |
 | `GET /audit/case-deletions`, `GET /audit/security-events` | Admin-only, firm-filtered audit data; snapshots must not cross firm boundary | Existing role/limit tests; this PR adds Firm B no-leak assertions |
