@@ -1196,7 +1196,7 @@ def legal_review_coverage(u: dict = Depends(user)):
         "(SELECT COUNT(*) FROM legal_document_versions WHERE status_verified=0) AS missing_status_review, "
         "(SELECT COUNT(*) FROM legal_document_versions WHERE amendment_history_verified=0) AS missing_amendment_history, "
         "(SELECT COUNT(*) FROM legal_document_versions v JOIN legal_documents d ON d.document_id=v.document_id JOIN legal_sources s ON s.source_id=d.source_id "
-        " WHERE s.collection_permission<>'allowed' OR s.commercial_reuse_permission<>'allowed' "
+        " WHERE COALESCE(s.collection_permission,'unknown')<>'allowed' OR COALESCE(s.commercial_reuse_permission,'unknown')<>'allowed' "
         " OR TRIM(COALESCE(s.permission_evidence,''))='' OR TRIM(COALESCE(v.permission_evidence,''))='') AS permission_or_evidence_blocked_versions",
         (today, today)
     ).fetchone()
