@@ -68,6 +68,47 @@ def initialize_catalog(connection: sqlite3.Connection) -> None:
         raise TenantCatalogError(
             "Tenant catalog contains invalid firm ownership references; reconcile before use"
         )
+    # The catalog is an authorization-critical routing authority. A database
+    # with the right table names is not sufficient: require its immutable
+    # control-plane profile before resolving or provisioning any tenant.
+    try:
+        profile = connection.execute(
+            "SELECT profile FROM database_profile WHERE singleton=1"
+        ).fetchall()
+        profile_triggers = {
+            row[0]: row[1] for row in connection.execute(
+                "SELECT name, sql FROM sqlite_master WHERE type='trigger' "
+                "AND name IN ('database_profile_no_update','database_profile_no_delete')"
+            )
+        }
+    except sqlite3.Error as exc:
+        raise TenantCatalogError(
+            "Tenant catalog is not bound to the trusted control-plane profile"
+        ) from exc
+
+    def has_immutable_profile_guard(sql: str | None, operation: str) -> bool:
+        if not isinstance(sql, str):
+            return False
+        normalized = " ".join(sql.lower().split())
+        return (
+            f"before {operation} on database_profile" in normalized
+            and "raise(abort" in normalized
+            and "database profile binding is immutable" in normalized
+        )
+
+    if (
+        len(profile) != 1
+        or profile[0][0] != "control_plane"
+        or not has_immutable_profile_guard(
+            profile_triggers.get("database_profile_no_update"), "update"
+        )
+        or not has_immutable_profile_guard(
+            profile_triggers.get("database_profile_no_delete"), "delete"
+        )
+    ):
+        raise TenantCatalogError(
+            "Tenant catalog is not bound to the trusted control-plane profile"
+        )
     connection.commit()
 
 
