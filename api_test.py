@@ -289,10 +289,10 @@ import sys, getpass
 c.post("/users", json={"name":"Reset Test","email":"reset@x.eg","password":"old-password-Long","role":"lawyer"}, headers=A)
 reset_token = login_creds("reset@x.eg", "old-password-Long")
 assert c.get("/cases", headers=reset_token).status_code == 200
-# manage.py is a CLI script; set its arguments and patch the terminal prompt before importing it.
-sys.argv = ["manage.py", "resetpw", "reset@x.eg"]
+# Importing the CLI must be side-effect free; invoke its explicit main entry point.
 with patch("getpass.getpass", return_value="new-password-Long"):
     import manage
+    manage.main(["resetpw", "reset@x.eg"])
 assert c.get("/cases", headers=reset_token).status_code == 401
 reset_audit = db.execute("SELECT event FROM security_audit_events WHERE user_id=(SELECT id FROM users WHERE email=?) ORDER BY id DESC LIMIT 1", ("reset@x.eg",)).fetchone()
 assert reset_audit and reset_audit["event"] == "password_reset_cli_sessions_revoked"
