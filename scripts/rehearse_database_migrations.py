@@ -49,6 +49,8 @@ def _table_row_counts(conn: sqlite3.Connection) -> dict[str, int]:
 def rehearse(database: str | Path, migrations_dir: str | Path) -> dict[str, Any]:
     """Apply pending migrations to a disposable copy and report integrity checks."""
     source_path = Path(database)
+    if source_path.is_symlink():
+        raise ValueError(f"Database path must not be a symlink: {source_path}")
     if not source_path.is_file():
         raise FileNotFoundError(f"Database file not found: {source_path}")
     source_check: list[str]
