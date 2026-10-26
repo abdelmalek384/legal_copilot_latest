@@ -75,6 +75,13 @@ class ResearchInspectorTests(unittest.TestCase):
         source["provenance"]["document_type"] = "commentary"
         self.assertEqual(source_status(source, "2026-10-24"), "secondary_copy")
 
+    def test_matter_linked_source_is_never_labelled_as_verified_law(self):
+        source = valid_source()
+        source["case_id"] = 123
+        # Even malformed/mis-set corpus scope must not promote firm evidence.
+        source["scope"] = "verified_corpus"
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_USER_SUPPLIED)
+
     def test_unknown_or_missing_scope_never_inherits_verified_status(self):
         for scope in (None, "", "metadata_only", "future_scope", [], {}):
             source = valid_source()
