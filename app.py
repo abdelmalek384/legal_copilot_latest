@@ -147,16 +147,41 @@ if os.environ.get("COPILOT_ENV", "").strip().lower() in {"prod", "production"}:
     required_paths = ("COPILOT_CONTROL_DB", "COPILOT_TENANT_DB_ROOT", "COPILOT_CORPUS_DB")
     missing_paths = [name for name in required_paths if not os.environ.get(name, "").strip()]
     shared_path_set = bool(os.environ.get("COPILOT_DB", "").strip())
+    startup_errors = []
     if missing_paths or shared_path_set:
         reasons = []
         if missing_paths:
             reasons.append("missing separate paths: " + ", ".join(missing_paths))
         if shared_path_set:
             reasons.append("COPILOT_DB must be unset")
-        raise RuntimeError(
+        startup_errors.append(
             "Production requires explicit separate database paths and forbids legacy shared-database mode; "
             + "; ".join(reasons)
         )
+    if not _allowed_hosts:
+        startup_errors.append("COPILOT_ALLOWED_HOSTS is required in production.")
+    if os.environ.get("COPILOT_SECURE_COOKIES", "").strip() != "1":
+        startup_errors.append("COPILOT_SECURE_COOKIES=1 is required in production.")
+    public_origin = os.environ.get("COPILOT_PUBLIC_ORIGIN", "").strip()
+    try:
+        parsed_origin = urlsplit(public_origin)
+        if (parsed_origin.scheme != "https" or not parsed_origin.hostname or parsed_origin.username
+                or parsed_origin.password or parsed_origin.path not in ("", "/")
+                or parsed_origin.query or parsed_origin.fragment):
+            startup_errors.append("COPILOT_PUBLIC_ORIGIN must be a bare public HTTPS origin in production.")
+        _ = parsed_origin.port
+    except ValueError:
+        startup_errors.append("COPILOT_PUBLIC_ORIGIN must be a valid public HTTPS origin in production.")
+    admin_token = os.environ.get("ADMIN_TOKEN", "")
+    if len(admin_token) < 32:
+        startup_errors.append("ADMIN_TOKEN must contain at least 32 characters in production.")
+    backup_key = os.environ.get("BACKUP_KEY", "").strip()
+    try:
+        Fernet(backup_key.encode("ascii"))
+    except (ValueError, TypeError, UnicodeError):
+        startup_errors.append("BACKUP_KEY must be a valid Fernet key in production.")
+    if startup_errors:
+        raise RuntimeError("Production startup blocked: " + "; ".join(startup_errors))
 
 
 def get_database_runtime():
@@ -822,6 +847,7 @@ def search(c, q, case_id=None, k=5, firm_id=1, as_of=None, scope="all_permitted"
 def _safe_llm_endpoint(value):
     """Require HTTPS for remote model endpoints; allow plain HTTP only on loopback."""
     from urllib.parse import urlsplit
+from cryptography.fernet import Fernet
     if not isinstance(value, str) or not value.strip():
         return False
     try:
