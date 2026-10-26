@@ -197,8 +197,12 @@ class DatabaseRuntime:
         )
         firm_id = int(cursor.lastrowid)
         control.commit()
-        catalog = self._new_catalog_connection()
+        catalog = None
         try:
+            # Opening the catalog is part of provisioning too. Keep it inside
+            # the guarded block so connection failures cannot strand a firm in
+            # the permanent 'provisioning' state.
+            catalog = self._new_catalog_connection()
             path = provision_tenant_database(
                 catalog,
                 firm_id,
@@ -222,7 +226,8 @@ class DatabaseRuntime:
             control.commit()
             raise
         finally:
-            catalog.close()
+            if catalog is not None:
+                catalog.close()
 
     def _initialize_firm_database(self, connection: sqlite3.Connection) -> None:
         connection.execute("PRAGMA foreign_keys=ON")
