@@ -99,6 +99,14 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
             self.assertEqual(sample_check["actual"], 1)
             self.assertFalse(sample_check["passed"])
 
+    def test_invalid_practice_area_is_rejected_instead_of_crashing_summary(self):
+        for value in ("", "   ", None, [], {}):
+            with self.subTest(value=value):
+                q = dict(approved())
+                q["practice_area"] = value
+                with self.assertRaisesRegex(EvaluationError, "practice_area"):
+                    evaluate([q], [result()])
+
     def test_scores_citation_recall_and_abstention_without_claiming_semantic_accuracy(self):
         report = evaluate([approved()], [result()])
         self.assertEqual(report["overall"]["source_recall"], 1.0)
