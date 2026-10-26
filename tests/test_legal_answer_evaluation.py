@@ -46,7 +46,7 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
             results.write_text(json.dumps(result(), ensure_ascii=False) + "\n", encoding="utf-8")
             code = main([
                 "--questions", str(questions), "--results", str(results), "--out", str(report_path),
-                "--min-source-precision", "1", "--min-pin-cite-precision", "1",
+                "--min-questions", "1", "--min-source-precision", "1", "--min-pin-cite-precision", "1",
                 "--min-abstention-accuracy", "1", "--max-invalid-citation-question-rate", "0",
             ])
             self.assertEqual(code, 0)
@@ -66,12 +66,41 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
             results.write_text(json.dumps(r, ensure_ascii=False) + "\n", encoding="utf-8")
             code = main([
                 "--questions", str(questions), "--results", str(results), "--out", str(report_path),
-                "--min-source-precision", "1",
+                "--min-questions", "1", "--min-source-precision", "1",
             ])
             self.assertEqual(code, 1)
             report = json.loads(report_path.read_text(encoding="utf-8"))
             self.assertFalse(report["release_gate"]["passed"])
             self.assertEqual(report["release_gate"]["checks"][0]["actual"], 0.5)
+
+    def test_quality_release_thresholds_require_explicit_minimum_sample_size(self):
+        with tempfile.TemporaryDirectory() as td:
+            questions = Path(td) / "questions.jsonl"
+            results = Path(td) / "results.jsonl"
+            questions.write_text(json.dumps(approved(), ensure_ascii=False) + "\\n", encoding="utf-8")
+            results.write_text(json.dumps(result(), ensure_ascii=False) + "\\n", encoding="utf-8")
+            with self.assertRaises(SystemExit) as raised:
+                main(["--questions", str(questions), "--results", str(results),
+                      "--min-source-precision", "1"])
+            self.assertEqual(raised.exception.code, 2)
+
+    def test_release_gate_fails_when_reviewed_sample_is_too_small(self):
+        with tempfile.TemporaryDirectory() as td:
+            questions = Path(td) / "questions.jsonl"
+            results = Path(td) / "results.jsonl"
+            report_path = Path(td) / "report.json"
+            questions.write_text(json.dumps(approved(), ensure_ascii=False) + "\\n", encoding="utf-8")
+            results.write_text(json.dumps(result(), ensure_ascii=False) + "\\n", encoding="utf-8")
+            code = main(["--questions", str(questions), "--results", str(results),
+                         "--out", str(report_path), "--min-questions", "2"])
+            self.assertEqual(code, 1)
+            report = json.loads(report_path.read_text(encoding="utf-8"))
+            self.assertFalse(report["release_gate"]["passed"])
+            sample_check = next(c for c in report["release_gate"]["checks"]
+                                if c["metric"] == "questions_scored")
+            self.assertEqual(sample_check["actual"], 1)
+            self.assertFalse(sample_check["passed"])
+
 
     def test_scores_citation_recall_and_abstention_without_claiming_semantic_accuracy(self):
         report = evaluate([approved()], [result()])
