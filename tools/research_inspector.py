@@ -5,6 +5,7 @@ confidence or URL presence. Malformed metadata fails closed to review status.
 """
 from datetime import date
 from collections.abc import Mapping
+from urllib.parse import urlsplit
 
 
 STATUS_VERIFIED = "verified_operative_text"
@@ -13,6 +14,57 @@ STATUS_USER_SUPPLIED = "user_supplied_unverified"
 STATUS_METADATA_ONLY = "metadata_only"
 STATUS_REVIEW = "outdated_or_under_review"
 STATUS_NO_SOURCE = "no_relevant_verified_source"
+
+
+_REQUIRED_REVIEW_TYPES = {
+    "source_authenticity", "extraction_quality", "legal_status",
+    "amendment_history", "licensing", "lawyer_approval",
+}
+
+
+def _valid_review_evidence_url(value):
+    if not isinstance(value, str) or not value.strip():
+        return False
+    try:
+        parsed = urlsplit(value.strip())
+        if parsed.scheme != "https" or not parsed.hostname or parsed.username or parsed.password:
+            return False
+        _ = parsed.port
+        return True
+    except (TypeError, ValueError):
+        return False
+
+
+def _has_current_review_evidence(provenance):
+    records = provenance.get("review_evidence")
+    if not isinstance(records, list):
+        return False
+    latest = {}
+    for record in records:
+        if not isinstance(record, Mapping):
+            return False
+        kind = record.get("review_type")
+        if kind not in _REQUIRED_REVIEW_TYPES:
+            continue
+        event_id = record.get("review_event_id")
+        if isinstance(event_id, bool) or not isinstance(event_id, int):
+            return False
+        reviewed_at = record.get("reviewed_at")
+        if not isinstance(reviewed_at, str) or not reviewed_at.strip():
+            return False
+        previous = latest.get(kind)
+        if previous is None or (reviewed_at, event_id) > (previous.get("reviewed_at", ""), previous.get("review_event_id", -1)):
+            latest[kind] = record
+    if set(latest) != _REQUIRED_REVIEW_TYPES:
+        return False
+    for record in latest.values():
+        if record.get("outcome") != "pass":
+            return False
+        if not isinstance(record.get("reviewer"), str) or not record["reviewer"].strip():
+            return False
+        if not _valid_review_evidence_url(record.get("evidence_url")):
+            return False
+    return True
 
 
 def _calendar_date(value):
@@ -72,6 +124,8 @@ def source_status(source, as_of=None):
     if not str(provenance.get("source_permission_evidence") or "").strip():
         return STATUS_REVIEW
     if not str(provenance.get("permission_evidence") or "").strip():
+        return STATUS_REVIEW
+    if not _has_current_review_evidence(provenance):
         return STATUS_REVIEW
 
     effective = _calendar_date(provenance.get("effective_date"))
