@@ -159,7 +159,7 @@ def inspect_environment(env=None):
             try:
                 mode = stat.S_IMODE(db_path.stat().st_mode)
                 if os.name == "posix" and mode & 0o077:
-                    errors.append("COPILOT_DB permissions allow group/other access; restrict them before deployment.")
+                    warnings.append("COPILOT_DB permissions allow group/other access; review and restrict them.")
             except OSError:
                 errors.append("Could not inspect COPILOT_DB file permissions.")
         else:

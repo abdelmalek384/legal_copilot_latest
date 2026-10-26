@@ -59,6 +59,8 @@ class DeploymentPreflightTests(unittest.TestCase):
         root = Path(self.tempdir.name)
         tenant_root = root / "tenants"
         tenant_root.mkdir()
+        if os.name == "posix":
+            os.chmod(tenant_root, 0o700)
         env = {
             "ADMIN_TOKEN": "a" * 40,
             "MIN_SCORE": "0.3",
