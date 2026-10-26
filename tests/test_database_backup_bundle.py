@@ -176,6 +176,19 @@ class DatabaseBackupBundleTests(unittest.TestCase):
         control.commit()
         self.assertTrue(self.runtime.disable_firm(self.firm_b))
 
+        # Also retain an independently suspended membership in an otherwise
+        # active firm, so denial is not explained only by the disabled tenant.
+        suspended_user_id = self.runtime.create_global_identity(
+            "Suspended Member", "suspended-member@example.test", "test-password-hash"
+        )
+        self.runtime.create_firm_membership(suspended_user_id, self.firm_a, "lawyer")
+        control.execute(
+            "UPDATE firm_memberships SET status='suspended' "
+            "WHERE user_id=? AND firm_id=?",
+            (suspended_user_id, self.firm_a),
+        )
+        control.commit()
+
         bundle = create_backup_bundle(
             self.runtime, self.cipher, self.backup_dir, quiesced=True
         )
@@ -207,6 +220,14 @@ class DatabaseBackupBundleTests(unittest.TestCase):
             # Recovery must preserve denial state, not reactivate a tenant or membership.
             with self.assertRaises(FirmContextError):
                 restored_runtime.resolve_context(self.user_id, self.firm_b)
+            with self.assertRaises(FirmContextError):
+                restored_runtime.resolve_context(suspended_user_id, self.firm_a)
+
+            restored_suspension = restored_control.execute(
+                "SELECT status FROM firm_memberships WHERE user_id=? AND firm_id=?",
+                (suspended_user_id, self.firm_a),
+            ).fetchone()
+            self.assertEqual(restored_suspension["status"], "suspended")
 
             context_a = restored_runtime.resolve_context(self.user_id, self.firm_a)
             db_a = restored_runtime.firm_connection(context_a)
