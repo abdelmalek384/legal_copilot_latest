@@ -441,5 +441,31 @@ class DatabaseRuntimeTests(unittest.TestCase):
                     os.environ[name] = value
 
 
+    def test_fresh_firm_schema_has_no_scope_defaults_and_rejects_unscoped_case(self):
+        user_id = self._identity("explicit-scope@example.test")
+        firm_id, _ = self.runtime.provision_firm("Explicit Scope Firm")
+        self.runtime.create_firm_membership(user_id, firm_id, "admin")
+        context = self.runtime.resolve_context(user_id, firm_id)
+        db = self.runtime.firm_connection(context)
+
+        for table in ("cases", "docs", "document_extraction_reviews",
+                      "research_conversations", "case_deletion_audit"):
+            with self.subTest(table=table):
+                columns = {
+                    row["name"]: row
+                    for row in db.execute(f'PRAGMA table_info("{table}")')
+                }
+                self.assertIn("firm_id", columns)
+                self.assertEqual(
+                    columns["firm_id"]["dflt_value"], None,
+                    f"{table}.firm_id must not default to an arbitrary firm",
+                )
+
+        with self.assertRaises(sqlite3.IntegrityError):
+            db.execute("INSERT INTO cases(title) VALUES('missing firm scope')")
+        db.rollback()
+        self.assertEqual(db.execute("SELECT COUNT(*) FROM cases").fetchone()[0], 0)
+
+
 if __name__ == "__main__":
     unittest.main()
