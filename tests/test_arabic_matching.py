@@ -26,6 +26,14 @@ class ArabicMatchingTests(unittest.TestCase):
         terms = matched_surface_terms("شيكا شيكا شيكا", expanded_tokens("الشيك"), limit=2)
         self.assertEqual(terms, ["شيكا"])
 
+    def test_arabic_diacritics_and_tatweel_do_not_break_query_matching(self):
+        self.assertEqual(tokens("الشَّيْك"), tokens("الشـيك"))
+        self.assertEqual(tokens("الشَّيْك"), tokens("الشيك"))
+
+    def test_legal_negation_tokens_are_not_removed_as_stopwords(self):
+        self.assertIn("لا", tokens("لا يجوز"))
+        self.assertIn("لم", tokens("لم يسدد"))
+
     def test_arabic_case_search_keeps_the_surface_text_unchanged(self):
         self.assertEqual(tokens("الشيك"), ["شيك"])
         # Expansion is for retrieval only; it does not rewrite document evidence.
