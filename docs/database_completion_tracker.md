@@ -1,7 +1,7 @@
 # Database completion tracker
 
 **Last updated:** 2026-10-26  
-**Estimated completion:** 38%  
+**Estimated completion:** 40%  
 **Status:** In progress — not production-ready for confidential multi-firm matter data.
 
 This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. This is a weighted engineering estimate, not a test-pass percentage or a count of commits. The separate-database runtime and encrypted backup/restore are now merged, but legacy-data reconciliation, exhaustive route coverage, schema-migration completion, and recovery/rollback drills remain release blockers.
@@ -27,6 +27,7 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 
 - [x] Extend the read-only tenant preflight to flag POSIX control-plane and tenant database files that allow group/other access; no permissions are changed automatically (PR #344 merged; CI run 40354780649 passed).
 
+- [x] Make FTS auditing and rebuild-on-a-new-copy profile-aware: validate external-content indexes against `chunks.norm`, preserve firm/corpus FTS schema and synchronization triggers, and verify the source remains unchanged (PR #399 merged; CI passed).
 - [x] Add regression coverage that `deployment_preflight.py --strict` fails while the shared-database multi-firm safety warning remains, without creating a database file (PR #341 merged; CI run 40354404426 passed).
 
 - [x] Refuse to provision a tenant when pre-existing firm-binding trigger names conceal ineffective update/delete guards; validate the guards before marking the tenant provisioned (PR #340 merged; CI run 40354238518 passed).
@@ -145,7 +146,8 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 ### 1. Finish versioned schema migrations
 - [ ] Move remaining prerequisite table creation out of startup only after earlier migration dependencies are redesigned; `firms`, `users`, `cases`, `deadlines`, `members`, `docs`, `chunks`, legal-version/review tables, research tables, and the dynamic `document_extraction_reviews` table still participate in bootstrap ordering.
 - [ ] Move remaining pre-migration compatibility work (`tenant_ownership_quarantine` creation/population, `users.firm_id`, `cases.firm_id`, `deadlines.status`, and `chunks.document_id`) into a safe ordered compatibility phase; migrations 0001–0003 currently require these prerequisites before they run.
-- [x] Add a read-only FTS5 internal index-integrity check on a disposable copy, detecting stale inverted indexes without mutating the source database (PR #388 merged; CI passed). [ ] Add a controlled repair/rebuild procedure and full corpus/firm FTS reconciliation; migration 0008 still preserves an existing `chunks_fts` table without rebuilding stale/missing contents.
+- [x] Add a read-only FTS5 internal index-integrity check on a disposable copy, detecting stale inverted indexes without mutating the source database (PR #388 merged; CI passed).
+- [x] Add a controlled rebuild-on-a-new-copy procedure for legacy and firm/corpus profile databases, preserving external-content schema and synchronization triggers (PR #399 merged; CI passed). [ ] Complete corpus/firm FTS reconciliation against authoritative source content and review any proposed operational replacement; migration 0008 itself still does not rebuild stale/missing indexes.
 - [ ] Define a supported fresh-install schema path and an upgrade path for each currently deployed legacy schema shape.
 - [ ] Test migration order, idempotency, checksum drift, interrupted migrations, and rollback/restore on representative disposable database copies.
 - [ ] Keep migrations immutable after merge; add new forward migrations for corrections.
