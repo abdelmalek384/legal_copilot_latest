@@ -113,6 +113,8 @@ class FrontendUXContractTests(unittest.TestCase):
     def test_memo_export_uses_recorded_scope_or_unknown_not_current_selector(self):
         memo = HTML[HTML.index("const memoText="):HTML.index("const exportMemo=")]
         self.assertIn("memoScope=typeof result.scope==='string'&&result.scope.trim()?result.scope:'unknown'", memo)
+        self.assertIn("rawAsOf=result.requested_as_of", memo)
+        self.assertIn("?rawAsOf:'unknown'", memo)
         self.assertIn("'Search scope: '+memoScope", memo)
         self.assertNotIn("scopeSelect.value", memo)
         self.assertIn("Array.isArray(result.sources)?result.sources:[]", memo)
