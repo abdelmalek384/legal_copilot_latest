@@ -254,12 +254,23 @@ def _release_gate(report, args):
         "invalid_citation_question_rate": args.max_invalid_citation_question_rate,
     }
     configured = {**minimums, **maximums}
-    enabled = any(value is not None for value in configured.values()) or args.min_questions is not None
+    enabled = (any(value is not None for value in configured.values()) or args.min_questions is not None
+               or args.min_practice_areas is not None or args.min_questions_per_practice_area is not None)
     checks = []
     if args.min_questions is not None:
         actual = report["questions_scored"]
         checks.append({"metric": "questions_scored", "operator": ">=", "threshold": args.min_questions,
                        "actual": actual, "passed": actual >= args.min_questions})
+    if args.min_practice_areas is not None:
+        actual = len(report["by_practice_area"])
+        checks.append({"metric": "practice_area_count", "operator": ">=", "threshold": args.min_practice_areas,
+                       "actual": actual, "passed": actual >= args.min_practice_areas})
+    if args.min_questions_per_practice_area is not None:
+        for area, metrics in sorted(report["by_practice_area"].items()):
+            actual = metrics["questions_scored"]
+            checks.append({"metric": "questions_per_practice_area", "practice_area": area, "operator": ">=",
+                           "threshold": args.min_questions_per_practice_area, "actual": actual,
+                           "passed": actual >= args.min_questions_per_practice_area})
     for metric, threshold in minimums.items():
         if threshold is not None:
             actual = report["overall"].get(metric)
@@ -285,13 +296,22 @@ def main(argv=None):
     parser.add_argument("--max-unanswerable-citation-rate", type=float, help="Fail the technical gate if unanswerable cases contain citations above this 0..1 rate")
     parser.add_argument("--max-invalid-citation-question-rate", type=float, help="Fail the technical gate if questions with invalid citation indexes exceed this 0..1 rate")
     parser.add_argument("--min-questions", type=int, help="Fail the technical gate if fewer lawyer-approved questions are scored; required with quality thresholds")
+    parser.add_argument("--min-practice-areas", type=int, help="Fail the technical gate if fewer distinct reviewed practice areas are scored")
+    parser.add_argument("--min-questions-per-practice-area", type=int, help="Fail if any scored practice area has fewer reviewed questions than this value")
     args = parser.parse_args(argv)
-    if args.min_questions is not None and args.min_questions < 1:
-        parser.error("--min-questions must be a positive integer")
+    for name in ("min_questions", "min_practice_areas", "min_questions_per_practice_area"):
+        value = getattr(args, name)
+        if value is not None and value < 1:
+            parser.error(f"--{name.replace('_', '-')} must be a positive integer")
+    if (args.min_practice_areas is None) != (args.min_questions_per_practice_area is None):
+        parser.error("--min-practice-areas and --min-questions-per-practice-area must be configured together")
     quality_thresholds = (args.min_source_precision, args.min_pin_cite_precision, args.min_abstention_accuracy,
                           args.max_unanswerable_citation_rate, args.max_invalid_citation_question_rate)
-    if any(value is not None for value in quality_thresholds) and args.min_questions is None:
-        parser.error("quality thresholds require an explicit --min-questions sample-size gate")
+    if any(value is not None for value in quality_thresholds):
+        if args.min_questions is None:
+            parser.error("quality thresholds require an explicit --min-questions sample-size gate")
+        if args.min_practice_areas is None:
+            parser.error("quality thresholds require explicit practice-area coverage gates")
     for name in ("min_source_precision", "min_pin_cite_precision", "min_abstention_accuracy",
                  "max_unanswerable_citation_rate", "max_invalid_citation_question_rate"):
         value = getattr(args, name)
