@@ -74,9 +74,11 @@ def _validate_reviewed_question(row):
     if not isinstance(review_date, str) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", review_date):
         raise EvaluationError(f"{qid}: review_date must be ISO YYYY-MM-DD")
     try:
-        date.fromisoformat(review_date)
+        reviewed_on = date.fromisoformat(review_date)
     except ValueError:
         raise EvaluationError(f"{qid}: review_date must be a real calendar date in YYYY-MM-DD form")
+    if reviewed_on > date.today():
+        raise EvaluationError(f"{qid}: review_date cannot be in the future")
     if not isinstance(row.get("answerable"), bool):
         raise EvaluationError(f"{qid}: lawyer-reviewed answerable must be true or false")
     if not _nonempty(row.get("expected_answer")):
