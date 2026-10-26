@@ -65,6 +65,14 @@ class DatabaseRuntimeTests(unittest.TestCase):
         }
         self.assertNotIn("firm_memberships", firm_tables)
         self.assertNotIn("cases", corpus_tables)
+        self.assertEqual(
+            db_a.execute("SELECT name FROM users WHERE id=? AND firm_id=?", (user_id, firm_a)).fetchone()[0],
+            "Test Lawyer",
+        )
+        self.assertEqual(
+            db_a.execute("SELECT COUNT(*) FROM users WHERE id=?", (user_id,)).fetchone()[0],
+            1,
+        )
 
     def test_revoked_membership_is_denied_even_after_context_was_resolved(self):
         user_id = self._identity()

@@ -1,10 +1,9 @@
-"""Trusted active-firm context resolution for tenant-aware request handlers.
+"""Trusted active-firm context resolution for separate-database request handling.
 
-The caller must supply the user object returned by verified server-side session
-handling and a server-side membership lookup. Never pass raw request payloads,
-headers, paths, or client-provided database references as identity.
-This module is deliberately not wired into app routes until the membership
-schema and legacy-user reconciliation plan are approved.
+DatabaseRuntime and the application middleware use this module when explicit
+control-plane, tenant-root, and corpus paths are configured. Callers must use
+a verified server-side session and active membership lookup; never trust a raw
+request payload, header, path, or client-provided database reference as identity.
 """
 from __future__ import annotations
 

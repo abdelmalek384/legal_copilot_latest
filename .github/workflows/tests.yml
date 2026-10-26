@@ -9,6 +9,8 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      COPILOT_DB: copilot.db
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -34,6 +36,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_profile_initial_schemas.py
       - name: Test profile-separated runtime and firm isolation
         run: PYTHONPATH=. python tests/test_database_runtime.py
+      - name: Test application routing across firm and corpus databases
+        run: PYTHONPATH=. python tests/test_app_separate_database_runtime.py
       - name: Test migration history ordering guard
         run: PYTHONPATH=. python tests/test_migration_history_ordering.py
       - name: Test read-only startup DDL inventory
