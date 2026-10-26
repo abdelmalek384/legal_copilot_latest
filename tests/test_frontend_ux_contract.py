@@ -116,6 +116,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("rawAsOf=result.requested_as_of", memo)
         self.assertIn("/^\\d{4}-\\d{2}-\\d{2}$/", memo)
         self.assertIn("?rawAsOf:'unknown'", memo)
+        self.assertIn("asOf==='unknown'?'- The search as-of date was not recorded; do not infer current legal status.'", memo)
         self.assertIn("'Search scope: '+memoScope", memo)
         self.assertNotIn("scopeSelect.value", memo)
         self.assertIn("Array.isArray(result.sources)?result.sources:[]", memo)
