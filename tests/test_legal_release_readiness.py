@@ -97,5 +97,43 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         self.assertIn("central_source_record_missing", {item["code"] for item in result["blockers"]})
 
 
+    def test_report_summarizes_blockers_status_and_practice_area_without_claiming_coverage(self):
+        self.candidate["document"]["practice_areas"] = ["Labour", "Employment"]
+        self.candidate["version"]["legal_status"] = "under_review"
+        self.candidate["version"]["review_status"] = "pending_source_review"
+        self.candidate["sources"][0]["commercial_reuse_permission"] = "unknown"
+        self.register["sources"][0]["commercial_reuse_permission"] = "unknown"
+        with tempfile.TemporaryDirectory() as temp:
+            temp_root = Path(temp)
+            original = temp_root / "originals" / "law.pdf"
+            original.parent.mkdir()
+            original.write_bytes(b"synthetic original bytes")
+            self.candidate["version"]["original_path"] = "originals/law.pdf"
+            candidate_path = temp_root / "registry_candidate.json"
+            candidate_path.write_text(json.dumps(self.candidate), encoding="utf-8")
+            register_path = temp_root / "register.json"
+            register_path.write_text(json.dumps(self.register), encoding="utf-8")
+            report = MODULE.build_report([candidate_path], register_path, temp_root)
+        self.assertEqual(report["candidate_count"], 1)
+        self.assertEqual(report["blocked_count"], 1)
+        self.assertGreater(report["blocker_counts"].get("central_commercial_permission_not_allowed", 0), 0)
+        self.assertEqual(report["legal_status_counts"], {"under_review": 1})
+        self.assertEqual(report["review_status_counts"], {"pending_source_review": 1})
+        self.assertEqual(report["practice_area_coverage"]["Labour"]["candidate_count"], 1)
+        self.assertEqual(report["practice_area_coverage"]["Employment"]["blocked_count"], 1)
+        self.assertIn("not complete Egyptian-law coverage", report["warning"])
+
+    def test_report_counts_malformed_candidate_as_blocked(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            candidate_path = root / "bad.json"
+            candidate_path.write_text("{", encoding="utf-8")
+            register_path = root / "register.json"
+            register_path.write_text(json.dumps(self.register), encoding="utf-8")
+            report = MODULE.build_report([candidate_path], register_path, root)
+        self.assertEqual(report["candidate_count"], 1)
+        self.assertEqual(report["blocked_count"], 1)
+        self.assertEqual(report["blocker_counts"], {"candidate_unreadable": 1})
+
 if __name__ == "__main__":
     unittest.main()
