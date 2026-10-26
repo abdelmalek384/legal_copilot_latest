@@ -43,6 +43,29 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
         self.assertFalse(report["semantic_legal_correctness_scored"])
         self.assertEqual(report["unreviewed_questions_excluded"], 0)
 
+    def test_precision_penalizes_unexpected_sources_and_pin_citations(self):
+        pins = [
+            {"source_id": "LAW-10", "pin_cite": "المادة 12"},
+            {"source_id": "LAW-EXTRA", "pin_cite": "المادة 99"},
+        ]
+        report = evaluate([approved()], [result(sources=["LAW-10", "LAW-EXTRA"], pins=pins)])
+        row = report["results"][0]
+        self.assertEqual(row["source_precision"], 0.5)
+        self.assertEqual(row["pin_cite_precision"], 0.5)
+        self.assertEqual(row["unexpected_source_count"], 1)
+        self.assertEqual(row["unexpected_pin_cite_count"], 1)
+        self.assertEqual(report["overall"]["source_precision"], 0.5)
+        self.assertEqual(report["overall"]["pin_cite_precision"], 0.5)
+
+    def test_unanswerable_citation_rate_exposes_citations_on_abstention_cases(self):
+        q = approved("Q-ABSTAIN", answerable=False)
+        r = result("Q-ABSTAIN", abstained=True, sources=["UNEXPECTED-LAW"],
+                   pins=[{"source_id": "UNEXPECTED-LAW", "pin_cite": "المادة 1"}])
+        report = evaluate([q], [r])
+        self.assertEqual(report["overall"]["unanswerable_citation_rate"], 1.0)
+        self.assertEqual(report["overall"]["unanswerable_abstention_recall"], 1.0)
+        self.assertEqual(report["results"][0]["unexpected_source_count"], 1)
+
     def test_unreviewed_drafts_are_excluded_and_never_scored(self):
         draft = dict(approved("DRAFT"))
         draft["review_status"] = "needs_lawyer_review"
