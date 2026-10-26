@@ -586,7 +586,7 @@ def citation_provenance(c, version_id):
         "SELECT v.version_id,v.document_id,v.version_label,v.source_url,v.original_sha256,"
         "v.publication_date,v.effective_date,v.repeal_date,v.consolidated_as_of,v.gazette_issue,v.gazette_pages,"
         "v.legal_status,v.review_status,v.permission_evidence,v.authenticity_verified,v.status_verified,v.amendment_history_verified,"
-        "d.official_title,d.document_type,d.law_number,d.law_year,d.language,s.authority,s.collection_permission,s.commercial_reuse_permission,s.permission_evidence AS source_permission_evidence "
+        "d.official_title,d.document_type,d.source_id,d.law_number,d.law_year,d.language,s.authority,s.collection_permission,s.commercial_reuse_permission,s.permission_evidence AS source_permission_evidence "
         "FROM legal_document_versions v JOIN legal_documents d ON d.document_id=v.document_id JOIN legal_sources s ON s.source_id=d.source_id "
         "WHERE v.version_id=?", (version_id,)).fetchone()
     if not row:
@@ -725,6 +725,7 @@ def _search_separate(c, q, case_id, k, firm_id, as_of, scope):
                     else {"status": "firm_document", "message": "Firm document; not independent legal authority."}
                 ),
             }
+            item["source_id"] = (item.get("provenance") or {}).get("source_id")
             item["source_status"] = source_status(item, as_of)
             item["citation"] = citation_text(item, as_of)
             ranked.append(item)
@@ -775,6 +776,7 @@ def search(c, q, case_id=None, k=5, firm_id=1, as_of=None, scope="all_permitted"
                     "applies_as_of": bool(r["in_force"]) if r["document_version_id"] is None else True,
                     "provenance": citation_provenance(c, r["document_version_id"])})
     for item in out:
+        item["source_id"] = (item.get("provenance") or {}).get("source_id")
         item["source_status"] = source_status(item, as_of)
         item["citation"] = citation_text(item, as_of)
     return sorted(out, key=lambda x: -x["score"])[:k]
@@ -932,14 +934,14 @@ def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None, sc
     retrieval_query = ((conversation_context.strip() + "\n") if conversation_context else "") + q
     hits = search(c, retrieval_query, case_id, firm_id=firm_id, as_of=as_of, scope=scope)
     if not hits or (hits[0]["cos"] < MIN_SCORE and hits[0]["score"] < 1):
-        return {"found": False, "answer": None, "sources": [], "scope": scope, "message": "لم أجد مصدرا ذا صلة، ولن أخمن.", "requested_as_of": as_of or date.today().isoformat()}
+        return {"found": False, "answer": None, "abstained": True, "sources": [], "scope": scope, "message": "لم أجد مصدرا ذا صلة، ولن أخمن.", "requested_as_of": as_of or date.today().isoformat()}
     # Matter-file passages may contain confidential or privileged information. The general
     # model-processing approval is not sufficient: require a separate explicit approval
     # before any such passage can be included in a model prompt.
     if any(hit.get("case_id") is not None for hit in hits) and os.environ.get("LLM_FIRM_DATA_PROCESSING_APPROVED", "").strip() != "1":
         return {"found": True, "answer": None,
                 "message": "تم العثور على مستندات القضية، لكن إرسال محتواها إلى النموذج غير معتمد في إعدادات النشر؛ تُعرض المصادر فقط.",
-                "sources": hits, "scope": scope,
+                "sources": hits, "scope": scope, "abstained": True,
                 "not_in_force": [h["ref"] for h in hits if h["verified"] and not h.get("applies_as_of", h["in_force"])],
                 "unverified_sources": [h["ref"] for h in hits if not h["verified"]],
                 "requested_as_of": as_of or date.today().isoformat()}
@@ -962,7 +964,7 @@ def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None, sc
             ans, msg = None, "تعذر التحقق من الأرقام أو المدد من نصوص المصادر المستشهد بها، تُعرض المصادر فقط."
         elif _answer_has_uncited_claims(ans):
             ans, msg = None, "توجد عبارة قانونية بلا استشهاد مباشر، تُعرض المصادر فقط."
-    return {"found": True, "answer": ans, "message": msg, "sources": hits, "scope": scope, "not_in_force": [h["ref"] for h in hits if h["verified"] and not h.get("applies_as_of", h["in_force"])], "unverified_sources": [h["ref"] for h in hits if not h["verified"]], "requested_as_of": as_of or date.today().isoformat()}
+    return {"found": True, "answer": ans, "abstained": not bool(ans), "message": msg, "sources": hits, "scope": scope, "not_in_force": [h["ref"] for h in hits if h["verified"] and not h.get("applies_as_of", h["in_force"])], "unverified_sources": [h["ref"] for h in hits if not h["verified"]], "requested_as_of": as_of or date.today().isoformat()}
 
 
 # ---------------- API ----------------
