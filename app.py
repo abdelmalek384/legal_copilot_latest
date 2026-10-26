@@ -2149,18 +2149,38 @@ def disable_user(uid: int, u: dict = Depends(user)):
         raise HTTPException(422, "cannot disable your own account")
     if _separate_runtime_enabled():
         c = control_conn()
-        target = c.execute(
-            "SELECT id FROM firm_memberships WHERE user_id=? AND firm_id=? AND status='active'",
-            (uid, u["firm_id"]),
-        ).fetchone()
-        if not target:
-            raise HTTPException(404, "user not found")
-        c.execute(
-            "UPDATE firm_memberships SET status='suspended',updated_at=datetime('now') "
-            "WHERE user_id=? AND firm_id=? AND status='active'",
-            (uid, u["firm_id"]),
-        )
-        c.commit()
+        c.execute("BEGIN IMMEDIATE")
+        try:
+            target = c.execute(
+                "SELECT id FROM firm_memberships WHERE user_id=? AND firm_id=? AND status='active'",
+                (uid, u["firm_id"]),
+            ).fetchone()
+            if not target:
+                raise HTTPException(404, "user not found")
+            updated = c.execute(
+                "UPDATE firm_memberships SET status='suspended',updated_at=datetime('now') "
+                "WHERE user_id=? AND firm_id=? AND status='active'",
+                (uid, u["firm_id"]),
+            )
+            if updated.rowcount != 1:
+                raise HTTPException(409, "membership state changed; refresh and retry")
+            try:
+                c.execute(
+                    "INSERT INTO platform_security_events(actor_user_id,target_user_id,firm_id,event_type,detail_json) "
+                    "VALUES(?,?,?,'membership_suspended',?)",
+                    (u["id"], uid, u["firm_id"], json.dumps({"method": "web", "new_status": "suspended"}, sort_keys=True)),
+                )
+            except sqlite3.Error as exc:
+                raise HTTPException(503, "membership suspension was not committed because audit logging failed") from exc
+            c.commit()
+        except HTTPException:
+            if c.in_transaction:
+                c.rollback()
+            raise
+        except sqlite3.Error as exc:
+            if c.in_transaction:
+                c.rollback()
+            raise HTTPException(503, "membership suspension was not committed") from exc
         return {"ok": True, "membership_suspended": True}
     c = conn()
     target = c.execute("SELECT id FROM users WHERE id=? AND firm_id=?", (uid, u["firm_id"])).fetchone()
@@ -2195,6 +2215,14 @@ def create_user(b: UserCreateIn, u: dict = Depends(user)):
                 "VALUES(?,?,?,'active',?)",
                 (user_id, u["firm_id"], b.role, u["id"]),
             )
+            try:
+                c.execute(
+                    "INSERT INTO platform_security_events(actor_user_id,target_user_id,firm_id,event_type,detail_json) "
+                    "VALUES(?,?,?,'membership_created',?)",
+                    (u["id"], user_id, u["firm_id"], json.dumps({"method": "web", "firm_role": b.role}, sort_keys=True)),
+                )
+            except sqlite3.Error as exc:
+                raise HTTPException(503, "membership was not created because audit logging failed") from exc
             c.commit()
         except HTTPException:
             c.rollback()
@@ -2251,6 +2279,14 @@ def add_existing_user_membership(b: ExistingMembershipIn, u: dict = Depends(user
             "VALUES(?,?,?,'active',?)",
             (identity["id"], u["firm_id"], b.role, u["id"]),
         )
+        try:
+            c.execute(
+                "INSERT INTO platform_security_events(actor_user_id,target_user_id,firm_id,event_type,detail_json) "
+                "VALUES(?,?,?,'membership_created',?)",
+                (u["id"], identity["id"], u["firm_id"], json.dumps({"method": "web_existing_identity", "firm_role": b.role}, sort_keys=True)),
+            )
+        except sqlite3.Error as exc:
+            raise HTTPException(503, "membership was not created because audit logging failed") from exc
         c.commit()
     except HTTPException:
         if c.in_transaction:

@@ -10,6 +10,43 @@ ROOT = Path(__file__).resolve().parents[1] / "migrations"
 
 
 class PlatformSecurityAuditMigrationTests(unittest.TestCase):
+    def test_membership_suspension_event_migration_preserves_existing_audit_history(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp) / "migrations"
+            control = root / "control_plane"
+            control.mkdir(parents=True)
+            for path in sorted((ROOT / "control_plane").glob("000[1-6]_*.sql")):
+                shutil.copy(path, control / path.name)
+            db = sqlite3.connect(":memory:")
+            db.row_factory = sqlite3.Row
+            try:
+                apply_profile_migrations(db, "control_plane", root)
+                db.execute(
+                    "INSERT INTO platform_security_events(event_type,detail_json) VALUES('password_changed_web','{}')"
+                )
+                db.execute(
+                    "INSERT INTO platform_security_events(event_type,detail_json) VALUES('membership_created','{}')"
+                )
+                db.commit()
+                shutil.copy(
+                    ROOT / "control_plane" / "0007_platform_security_events_membership_suspension.sql",
+                    control / "0007_platform_security_events_membership_suspension.sql",
+                )
+                self.assertEqual(apply_profile_migrations(db, "control_plane", root), [7])
+                self.assertEqual(
+                    [row["event_type"] for row in db.execute("SELECT event_type FROM platform_security_events ORDER BY id")],
+                    ["password_changed_web", "membership_created"],
+                )
+                db.execute(
+                    "INSERT INTO platform_security_events(event_type,detail_json) VALUES('membership_suspended','{}')"
+                )
+                db.commit()
+                self.assertEqual(db.execute("SELECT COUNT(*) FROM platform_security_events").fetchone()[0], 3)
+                self.assertEqual(db.execute("PRAGMA integrity_check").fetchone()[0], "ok")
+                self.assertEqual(db.execute("PRAGMA foreign_key_check").fetchall(), [])
+            finally:
+                db.close()
+
     def test_event_vocabulary_migration_preserves_old_events_and_allows_web_password_changes(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp) / "migrations"
