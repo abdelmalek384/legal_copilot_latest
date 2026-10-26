@@ -164,10 +164,15 @@ def evaluate(question_rows, result_rows):
             "expected_source_count": len(expected_sources),
             "cited_source_count": len(actual_sources),
             "matched_expected_source_count": source_hits,
+            "unexpected_source_count": len(set(actual_sources) - set(expected_sources)),
             "source_recall": _ratio(source_hits, len(expected_sources)),
+            "source_precision": _ratio(source_hits, len(actual_sources)),
             "expected_pin_cite_count": len(expected_pins),
+            "cited_pin_cite_count": len(actual_pins),
             "matched_expected_pin_cite_count": pin_hits,
+            "unexpected_pin_cite_count": len(set(actual_pins) - set(expected_pins)),
             "pin_cite_recall": _ratio(pin_hits, len(expected_pins)),
+            "pin_cite_precision": _ratio(pin_hits, len(actual_pins)),
             "citation_present": citation_present,
         }
         rows.append(item)
@@ -183,12 +188,18 @@ def evaluate(question_rows, result_rows):
             "abstention_cases": len(abstention_cases),
             "source_recall": _ratio(sum(x["matched_expected_source_count"] for x in answerable),
                                     sum(x["expected_source_count"] for x in answerable)),
+            "source_precision": _ratio(sum(x["matched_expected_source_count"] for x in answerable),
+                                        sum(x["cited_source_count"] for x in answerable)),
             "pin_cite_recall": _ratio(sum(x["matched_expected_pin_cite_count"] for x in answerable),
                                       sum(x["expected_pin_cite_count"] for x in answerable)),
+            "pin_cite_precision": _ratio(sum(x["matched_expected_pin_cite_count"] for x in answerable),
+                                         sum(x["cited_pin_cite_count"] for x in answerable)),
             "answerable_citation_presence": _ratio(sum(x["citation_present"] for x in answerable), len(answerable)),
             "abstention_accuracy": _ratio(sum(x["abstention_correct"] for x in items), n),
             "unanswerable_abstention_recall": _ratio(sum(x["actual_abstained"] for x in abstention_cases),
                                                        len(abstention_cases)),
+            "unanswerable_citation_rate": _ratio(sum(x["citation_present"] for x in abstention_cases),
+                                                  len(abstention_cases)),
         }
 
     return {
