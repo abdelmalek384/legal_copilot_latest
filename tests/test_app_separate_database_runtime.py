@@ -381,6 +381,40 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             1,
         )
 
+    def test_dashboard_calendar_and_finance_are_isolated_between_firms(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate(
+            "post", "/cases", json={"title": "FIRM_A_PRIVATE_DASHBOARD_SENTINEL"}
+        )
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+        deadline = self._mutate(
+            "post", f"/cases/{case_id}/deadlines",
+            json={"title": "FIRM_A_PRIVATE_DEADLINE_SENTINEL", "due": "2026-11-10"},
+        )
+        self.assertEqual(deadline.status_code, 200, deadline.text)
+        fee = self._mutate(
+            "post", f"/cases/{case_id}/fees",
+            json={"title": "FIRM_A_PRIVATE_FEE_SENTINEL", "amount": 1234, "paid": 0, "due": "2026-11-10"},
+        )
+        self.assertEqual(fee.status_code, 200, fee.text)
+
+        switched = self._mutate("post", "/session/firm", json={"firm_id": self.firm_b})
+        self.assertEqual(switched.status_code, 200, switched.text)
+        dashboard = self.client.get("/dashboard")
+        self.assertEqual(dashboard.status_code, 200, dashboard.text)
+        self.assertNotIn("FIRM_A_PRIVATE", dashboard.text)
+        calendar = self.client.get("/calendar.ics")
+        self.assertEqual(calendar.status_code, 200, calendar.text)
+        self.assertNotIn("FIRM_A_PRIVATE", calendar.text)
+        finance = self.client.get("/finance/overview")
+        self.assertEqual(finance.status_code, 200, finance.text)
+        self.assertEqual(finance.json()["fee_count"], 0)
+        self.assertEqual(finance.json()["total_amount"], 0)
+
     def test_search_and_ask_reject_case_ids_from_another_firm(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
