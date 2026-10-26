@@ -54,7 +54,7 @@ class TenancyCommandTests(unittest.TestCase):
     def test_adduser_rejects_inactive_firm_without_creating_identity(self):
         control = self.runtime.control_connection()
         control.execute(
-            "UPDATE firms SET status='disabled',updated_at=datetime('now') WHERE id=?",
+            "UPDATE firms SET status='disabled' WHERE id=?",
             (self.firm_a,),
         )
         control.commit()
