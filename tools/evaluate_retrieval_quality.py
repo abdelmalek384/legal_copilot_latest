@@ -44,6 +44,15 @@ def _valid_calendar_date(value):
         return False
 
 
+def _expected_source_ids(question):
+    """Support the seed schema's expected_sources and the evaluator's explicit ID field."""
+    if "expected_source_ids" in question and "expected_sources" in question:
+        if question["expected_source_ids"] != question["expected_sources"]:
+            return None
+        return question["expected_source_ids"]
+    return question.get("expected_source_ids", question.get("expected_sources"))
+
+
 def validate_reviewed_question(question):
     """Return validation errors; no labels are inferred or generated."""
     if not isinstance(question, dict):
@@ -58,11 +67,11 @@ def validate_reviewed_question(question):
         errors.append("reviewer_name is required")
     if not _valid_calendar_date(question.get("review_date")):
         errors.append("review_date must be a real YYYY-MM-DD calendar date")
-    expected = question.get("expected_source_ids")
+    expected = _expected_source_ids(question)
     if (not isinstance(expected, list) or not expected
             or not all(_nonempty_string(x) for x in expected)):
-        errors.append("expected_source_ids must be a non-empty list of reviewed source IDs")
-    pin_cites = question.get("expected_pin_cites")
+        errors.append("expected_source_ids/expected_sources must be a non-empty list of reviewed source IDs")
+    if "expected_source_ids" in question and "expected_sources" in question and question["expected_source_ids"] != question["expected_sources"]:\n        errors.append("expected_source_ids and expected_sources conflict; keep one canonical reviewed source list")\n    pin_cites = question.get("expected_pin_cites")
     if pin_cites is not None:
         if not isinstance(pin_cites, list):
             errors.append("expected_pin_cites must be a list when supplied")
@@ -184,7 +193,7 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5)):
         recall_values = []
         reciprocal_ranks = []
         for question, run in reviewed:
-            expected = set(question["expected_source_ids"])
+            expected = set(_expected_source_ids(question))
             ranked = _unique_ids(run["retrieved_source_ids"])
             top_k = set(ranked[:k])
             recall_values.append(len(expected & top_k) / len(expected))
@@ -198,7 +207,7 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5)):
     answerable_cases = answerable_with_expected_citation = 0
     abstention_cases = abstention_correct = unsafe_unverified_uses = 0
     for question, run in reviewed:
-        expected_sources = set(question["expected_source_ids"])
+        expected_sources = set(_expected_source_ids(question))
         expected_pin_cites = question.get("expected_pin_cites") or []
         cited_expected_sources = {
             citation["source_id"]
