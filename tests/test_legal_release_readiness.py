@@ -22,7 +22,11 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         self.original_hash = hashlib.sha256(original.read_bytes()).hexdigest()
         self.source_id = "SRC-1"
         self.candidate = {
-            "document": {"document_id": "LAW-1", "source_id": self.source_id, "official_title": "Test law"},
+            "document": {"document_id": "LAW-1", "source_id": self.source_id, "official_title": "Test law",
+                         "permission_scope_review": {
+                             "status": "passed", "evidence": "AUTH-1 clauses 1-4", "reviewed_on": "2025-01-01",
+                             "approved_uses": ["collection", "indexing", "commercial_product_use", "excerpt_display"],
+                         }},
             "sources": [{
                 "source_id": self.source_id, "source_page": "https://laws.example.gov/portal",
                 "collection_permission": "allowed", "commercial_reuse_permission": "allowed",
@@ -35,10 +39,6 @@ class LegalReleaseReadinessTests(unittest.TestCase):
                 "gazette_issue": "Issue 1", "legal_status": "in_force", "review_status": "verified",
                 "authenticity_verified": 1, "status_verified": 1, "amendment_history_verified": 1,
                 "permission_evidence": "Scope checked under AUTH-1",
-            },
-            "permission_scope_review": {
-                "status": "passed", "evidence": "AUTH-1 clauses 1-4", "reviewed_on": "2025-01-01",
-                "approved_uses": ["collection", "indexing", "commercial_product_use", "excerpt_display"],
             },
             "reviews": [{
                 "review_type": review_type, "outcome": "pass", "notes": "Reviewed against evidence.",
@@ -68,6 +68,11 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         self.assertIn("version_not_verified", codes)
         self.assertIn("original_file_missing", codes)
 
+    def test_historical_version_can_pass_when_its_status_is_verified(self):
+        self.candidate["version"]["legal_status"] = "historical"
+        result = MODULE.audit_candidate(self.candidate, self.register, self.root)
+        self.assertTrue(result["ready"], result["blockers"])
+
     def test_hash_mismatch_blocks_release(self):
         self.candidate["version"]["original_sha256"] = "0" * 64
         result = MODULE.audit_candidate(self.candidate, self.register, self.root)
@@ -82,7 +87,7 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         self.assertIn("review_missing_or_duplicate", codes)
 
     def test_scope_review_must_explicitly_include_display_and_commercial_use(self):
-        self.candidate["permission_scope_review"]["approved_uses"] = ["collection", "indexing"]
+        self.candidate["document"]["permission_scope_review"]["approved_uses"] = ["collection", "indexing"]
         result = MODULE.audit_candidate(self.candidate, self.register, self.root)
         self.assertIn("document_scope_uses_incomplete", {item["code"] for item in result["blockers"]})
 
