@@ -10,19 +10,19 @@ WORDS=set("واحد واحده اثنين اثنان اثنتين ثلاثه ث�
 HEAD=re.compile(r"^\s*(?:المادة|مادة)\s*\(?\s*(.*?)\s*\)?\s*[:：\-–—]?\s*(.*)$")
 def norm(s):
  s=unicodedata.normalize("NFKC",str(s or "")).translate(DIGITS);s=DIAC.sub("",s);s=re.sub(r"[أإآٱ]","ا",s).replace("ى","ي");return re.sub(r"[\u200b-\u200f\u202a-\u202e\ufeff]","",s)
+ORD = {norm(k): v for k, v in ORD.items()}
 def label(v):
  if v is None:return None
- s=re.sub(r"^(?:المادة|مادة)\\s*","",norm(v).strip())
- s=re.sub(r"^\\(\\s*(\\d+)\\s*\\)",r"\\1",s).strip()
- b=re.search(r"\\s*(?:مكررا|مكررة|مكرر|bis)(?:\\s*\\(?\\s*([ء-ي])\\s*\\)?)?\\s*$",s,re.I)
+ s=re.sub(r"^(?:المادة|مادة)\s*","",norm(v).strip())
+ s=re.sub(r"^\(\s*(\d+)\s*\)",r"\1",s).strip()
+ b=re.search(r"\s*(?:مكررا|مكررة|مكرر|bis)(?:\s*\(?\s*([ء-ي])\s*\)?)?\s*$",s,re.I)
  letter=b.group(1) if b else None
  if b:s=s[:b.start()].strip()
- s=re.sub(r"^\\((.*?)\\)$",r"\\1",s).strip()
- s=re.sub(r"\\s+"," ",s)
+ s=re.sub(r"^\((.*?)\)$",r"\1",s).strip()
+ s=re.sub(r"\s+"," ",s)
  if s.isdigit():n=s
  else:
   n=str(ORD.get(s,s))
-  if n==s and not re.fullmatch(r"[\\u0600-\\u06ff ]+",s):return None
   if n==s:return None
  return n+(" مكرر"+((" "+letter) if letter else "") if b else "")
 def textnorm(s):return re.sub(r"\s+"," ",re.sub(r"[^\w\s]|_"," ",norm(s))).strip()
