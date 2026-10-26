@@ -108,6 +108,9 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
         self.assertEqual(login.status_code, 200, login.text)
         control = self.runtime.control_connection()
+        before_events = control.execute(
+            "SELECT COUNT(*) FROM platform_security_events WHERE event_type='membership_created'"
+        ).fetchone()[0]
         control.execute("""
             CREATE TRIGGER reject_membership_creation_audit BEFORE INSERT ON platform_security_events
             WHEN NEW.event_type='membership_created'
@@ -124,8 +127,8 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             "SELECT id FROM users WHERE email_normalized='not-created@example.test'"
         ).fetchone())
         self.assertEqual(control.execute(
-            "SELECT COUNT(*) FROM platform_security_events WHERE event_type='membership_created' AND detail_json LIKE '%not-created%'"
-        ).fetchone()[0], 0)
+            "SELECT COUNT(*) FROM platform_security_events WHERE event_type='membership_created'"
+        ).fetchone()[0], before_events)
 
     def test_membership_writers_recheck_active_firm_inside_write_transaction(self):
         target_user = self.runtime.create_global_identity(
