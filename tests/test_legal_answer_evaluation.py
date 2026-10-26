@@ -1,10 +1,12 @@
+import json
+import tempfile
 import sys
 import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from tools.evaluate_legal_answers import EvaluationError, evaluate
+from tools.evaluate_legal_answers import EvaluationError, evaluate, main
 
 
 def approved(qid="Q1", answerable=True):
@@ -35,6 +37,42 @@ def result(qid="Q1", abstained=False, sources=None, pins=None):
 
 
 class LegalAnswerEvaluationTests(unittest.TestCase):
+    def test_cli_release_gate_passes_when_thresholds_are_met(self):
+        with tempfile.TemporaryDirectory() as td:
+            questions = Path(td) / "questions.jsonl"
+            results = Path(td) / "results.jsonl"
+            report_path = Path(td) / "report.json"
+            questions.write_text(json.dumps(approved(), ensure_ascii=False) + "\\n", encoding="utf-8")
+            results.write_text(json.dumps(result(), ensure_ascii=False) + "\\n", encoding="utf-8")
+            code = main([
+                "--questions", str(questions), "--results", str(results), "--out", str(report_path),
+                "--min-source-precision", "1", "--min-pin-cite-precision", "1",
+                "--min-abstention-accuracy", "1", "--max-invalid-citation-question-rate", "0",
+            ])
+            self.assertEqual(code, 0)
+            report = json.loads(report_path.read_text(encoding="utf-8"))
+            self.assertTrue(report["release_gate"]["enabled"])
+            self.assertTrue(report["release_gate"]["passed"])
+
+    def test_cli_release_gate_fails_and_preserves_report_on_precision_failure(self):
+        with tempfile.TemporaryDirectory() as td:
+            questions = Path(td) / "questions.jsonl"
+            results = Path(td) / "results.jsonl"
+            report_path = Path(td) / "report.json"
+            questions.write_text(json.dumps(approved(), ensure_ascii=False) + "\\n", encoding="utf-8")
+            r = result(sources=["LAW-10", "EXTRA"],
+                       pins=[{"source_id": "LAW-10", "pin_cite": "المادة 12"},
+                             {"source_id": "EXTRA", "pin_cite": "المادة 99"}])
+            results.write_text(json.dumps(r, ensure_ascii=False) + "\\n", encoding="utf-8")
+            code = main([
+                "--questions", str(questions), "--results", str(results), "--out", str(report_path),
+                "--min-source-precision", "1",
+            ])
+            self.assertEqual(code, 1)
+            report = json.loads(report_path.read_text(encoding="utf-8"))
+            self.assertFalse(report["release_gate"]["passed"])
+            self.assertEqual(report["release_gate"]["checks"][0]["actual"], 0.5)
+
     def test_scores_citation_recall_and_abstention_without_claiming_semantic_accuracy(self):
         report = evaluate([approved()], [result()])
         self.assertEqual(report["overall"]["source_recall"], 1.0)
