@@ -37,22 +37,42 @@ def valid_iso_date(value):
     except ValueError:
         return False
 
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+def existing_sqlite_sidecars(db_path: Path):
+    sidecars = {}
+    for suffix in ("-wal", "-journal"):
+        path = Path(str(db_path) + suffix)
+        if path.is_file():
+            sidecars[path.name] = {"sha256": sha256_file(path), "size_bytes": path.stat().st_size}
+    return sidecars
+
 def audit(db_path: Path):
     if not db_path.exists():
         raise FileNotFoundError(f"Database not found: {db_path}")
-    db = sqlite3.connect(f"file:{db_path.resolve()}?mode=ro", uri=True)
+    db = sqlite3.connect(db_path.resolve().as_uri() + "?mode=ro", uri=True)
     db.row_factory = sqlite3.Row
     try:
+        db.execute("BEGIN")  # Pin all audit queries to one read-only SQLite snapshot.
+        sidecars = existing_sqlite_sidecars(db_path)
         tables = table_names(db)
         result = {
             "report_type":"legal_corpus_audit",
             "generated_at":datetime.now(timezone.utc).isoformat(),
             "database_path":str(db_path),
-            "database_sha256":hashlib.sha256(db_path.read_bytes()).hexdigest(),
+            "database_sha256":sha256_file(db_path),
+            "sqlite_sidecars":sidecars,
             "read_only":True, "counts":{}, "issues":[],
             "notes":["Metadata audit only; does not establish legal correctness.",
                      "Missing dates are unknown, not evidence that a law is in force.",
-                     "This audit never promotes records to verified."]
+                     "This audit never promotes records to verified.",
+                     "database_sha256 hashes the main database file; WAL/journal sidecar hashes are listed separately when present.",
+                     "Database queries run in one read-only SQLite transaction; file hashes are provenance metadata, not an atomic filesystem snapshot."]
         }
         for table in ("chunks","legal_sources","legal_documents","legal_document_versions","legal_version_relations","legal_review_events"):
             if table in tables: result["counts"][table] = count(db,table)
@@ -257,6 +277,7 @@ def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument("--db",type=Path,required=True,help="Path to SQLite database")
     p.add_argument("--out-dir",type=Path,required=True,help="Directory for JSON and Markdown reports")
+    p.add_argument("--strict",action="store_true",help="exit non-zero when high-severity metadata issues are found")
     a=p.parse_args()
     report=audit(a.db)
     a.out_dir.mkdir(parents=True,exist_ok=True)
@@ -265,5 +286,10 @@ def main():
     print(f"Audited database read-only: {a.db}")
     print(f"Issues: {report['issue_count']} ({report['issue_counts_by_severity']})")
     print(f"Reports: {a.out_dir/'legal_corpus_audit.json'} and {a.out_dir/'legal_corpus_audit.md'}")
+    high = report["issue_counts_by_severity"].get("high", 0)
+    if a.strict and high:
+        print(f"Strict audit failed: {high} high-severity issue(s) remain.")
+        return 1
+    return 0
 
-if __name__=="__main__": main()
+if __name__=="__main__": raise SystemExit(main())
