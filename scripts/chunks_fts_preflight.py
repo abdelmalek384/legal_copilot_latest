@@ -205,7 +205,10 @@ def audit(conn: sqlite3.Connection) -> dict[str, Any]:
 
 def audit_path(database: str | Path) -> dict[str, Any]:
     """Open an existing database read-only, run the audit, and close it."""
-    path = Path(database).expanduser().resolve(strict=True)
+    requested_path = Path(database).expanduser()
+    if requested_path.is_symlink():
+        raise ValueError(f"Database path must not be a symlink: {requested_path}")
+    path = requested_path.resolve(strict=True)
     if not path.is_file():
         raise FileNotFoundError(path)
     uri = path.as_uri() + "?mode=ro"
@@ -223,7 +226,7 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     try:
         report = audit_path(args.database)
-    except (OSError, sqlite3.Error) as exc:
+    except (OSError, sqlite3.Error, ValueError) as exc:
         print(json.dumps({"status": "error", "error": str(exc)}, ensure_ascii=False), file=sys.stderr)
         return 2
     print(json.dumps(report, ensure_ascii=False, indent=2))

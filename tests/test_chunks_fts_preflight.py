@@ -93,6 +93,25 @@ class ChunksFtsPreflightTests(unittest.TestCase):
         finally:
             db.close()
 
+    def test_path_audit_rejects_symlinked_database_path(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            source = root / "source.sqlite3"
+            with sqlite3.connect(source) as db:
+                db.executescript("""
+                    CREATE TABLE chunks(id INTEGER PRIMARY KEY, text TEXT);
+                    CREATE VIRTUAL TABLE chunks_fts USING fts5(norm);
+                """)
+            alias = root / "alias.sqlite3"
+            try:
+                alias.symlink_to(source)
+            except OSError:
+                self.skipTest("symlinks are unavailable in this environment")
+            with self.assertRaisesRegex(ValueError, "must not be a symlink"):
+                audit_path(alias)
+            with sqlite3.connect(source) as db:
+                self.assertEqual(db.execute("SELECT COUNT(*) FROM chunks").fetchone()[0], 0)
+
     def test_path_audit_is_read_only(self):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / "source.sqlite3"
