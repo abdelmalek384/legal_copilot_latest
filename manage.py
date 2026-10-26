@@ -358,6 +358,101 @@ def verify_tenancy_backup(a):
     print(json.dumps(report, ensure_ascii=False, sort_keys=True))
 
 
+def _change_platform_role(a, *, grant: bool):
+    """Change a platform role only when an active platform admin authorizes it."""
+    if not app._separate_runtime_enabled():
+        raise SystemExit("Platform-role changes require separate-database mode.")
+    role = getattr(a, "role", "")
+    if role not in {"platform_admin", "platform_reviewer"}:
+        raise SystemExit("Role must be platform_admin or platform_reviewer.")
+    reason = a.reason.strip() if isinstance(a.reason, str) else ""
+    if len(reason) < 8 or len(reason) > 500:
+        raise SystemExit("--reason must contain 8 to 500 characters; do not include secrets.")
+    actor_email = app.normalize_email(a.actor_email)
+    target_email = app.normalize_email(a.target_email)
+    if not actor_email or not target_email:
+        raise SystemExit("Actor and target email addresses are required.")
+    runtime = DatabaseRuntime.from_env()
+    try:
+        runtime.initialize()
+        c = runtime.control_connection()
+        c.execute("BEGIN IMMEDIATE")
+        try:
+            actor = c.execute(
+                "SELECT id,status FROM users WHERE email_normalized=?", (actor_email,)
+            ).fetchone()
+            if actor is None or actor["status"] != "active":
+                raise SystemExit("Actor must be an active global identity.")
+            authorized = c.execute(
+                "SELECT 1 FROM user_platform_roles WHERE user_id=? AND role_name='platform_admin'",
+                (actor["id"],),
+            ).fetchone()
+            if not authorized:
+                raise SystemExit("Only an active platform_admin can change platform roles.")
+            target = c.execute(
+                "SELECT id,status FROM users WHERE email_normalized=?", (target_email,)
+            ).fetchone()
+            if target is None:
+                raise SystemExit("Target global identity was not found.")
+            existing = c.execute(
+                "SELECT 1 FROM user_platform_roles WHERE user_id=? AND role_name=?",
+                (target["id"], role),
+            ).fetchone()
+            if grant:
+                if target["status"] != "active":
+                    raise SystemExit("Disabled identities cannot receive platform roles.")
+                if existing:
+                    raise SystemExit("Target already has this platform role.")
+                c.execute(
+                    "INSERT INTO user_platform_roles(user_id,role_name,granted_by_user_id) VALUES(?,?,?)",
+                    (target["id"], role, actor["id"]),
+                )
+                event_type = "platform_role_granted"
+                action = "Granted"
+            else:
+                if not existing:
+                    raise SystemExit("Target does not have this platform role.")
+                if role == "platform_admin" and target["status"] == "active":
+                    active_admins = c.execute(
+                        "SELECT COUNT(DISTINCT u.id) FROM users u JOIN user_platform_roles r ON r.user_id=u.id "
+                        "WHERE u.status='active' AND r.role_name='platform_admin'"
+                    ).fetchone()[0]
+                    if active_admins <= 1:
+                        raise SystemExit("Cannot revoke the last active platform_admin.")
+                c.execute(
+                    "DELETE FROM user_platform_roles WHERE user_id=? AND role_name=?",
+                    (target["id"], role),
+                )
+                event_type = "platform_role_revoked"
+                action = "Revoked"
+            c.execute(
+                "INSERT INTO platform_security_events(actor_user_id,target_user_id,event_type,detail_json) "
+                "VALUES(?,?,?,?)",
+                (actor["id"], target["id"], event_type,
+                 json.dumps({"role": role, "reason": reason, "method": "manage.py"}, sort_keys=True)),
+            )
+            c.commit()
+        except SystemExit:
+            if c.in_transaction:
+                c.rollback()
+            raise
+        except sqlite3.Error as exc:
+            if c.in_transaction:
+                c.rollback()
+            raise SystemExit("Platform-role change was not committed; database or audit write failed.") from exc
+        print(f"{action} {role} for user_id={target['id']}; audit event recorded.")
+    finally:
+        runtime.close_current_thread()
+
+
+def grant_platform_role(a):
+    _change_platform_role(a, grant=True)
+
+
+def revoke_platform_role(a):
+    _change_platform_role(a, grant=False)
+
+
 def platform_audit(a):
     """Print a bounded read-only view of the control-plane security audit ledger."""
     if not app._separate_runtime_enabled():
@@ -448,6 +543,18 @@ x = sp.add_parser("resetpw"); x.add_argument("email"); x.set_defaults(f=resetpw)
 sp.add_parser("genkey").set_defaults(f=lambda a: print(Fernet.generate_key().decode()))
 x = sp.add_parser("backup"); x.add_argument("dir"); x.add_argument("--keep", type=int, default=14); x.set_defaults(f=backup)
 x = sp.add_parser("backup-tenancy"); x.add_argument("dir"); x.add_argument("--keep", type=int, default=14); x.add_argument("--quiesced", action="store_true", help="Assert application writes are paused for the full bundle snapshot"); x.set_defaults(f=backup_tenancy)
+x = sp.add_parser("grant-platform-role", help="Grant a platform role; requires an active platform_admin actor")
+x.add_argument("--actor-email", required=True)
+x.add_argument("--target-email", required=True)
+x.add_argument("--role", required=True, choices=["platform_admin", "platform_reviewer"])
+x.add_argument("--reason", required=True)
+x.set_defaults(f=grant_platform_role)
+x = sp.add_parser("revoke-platform-role", help="Revoke a platform role; cannot remove the last active platform_admin")
+x.add_argument("--actor-email", required=True)
+x.add_argument("--target-email", required=True)
+x.add_argument("--role", required=True, choices=["platform_admin", "platform_reviewer"])
+x.add_argument("--reason", required=True)
+x.set_defaults(f=revoke_platform_role)
 x = sp.add_parser("platform-audit", help="Read recent platform security events on a trusted operator host")
 x.add_argument("--limit", type=int, default=50)
 x.add_argument("--firm-id", type=int)
