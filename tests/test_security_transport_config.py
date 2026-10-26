@@ -1,4 +1,5 @@
 import importlib.util
+import asyncio
 import os
 import tempfile
 import unittest
@@ -15,6 +16,43 @@ spec.loader.exec_module(app)
 
 
 class SecureCookieTransportTests(unittest.TestCase):
+    def test_streamed_body_without_content_length_is_limited(self):
+        async def run_case(chunks):
+            sent = []
+            events = list(chunks)
+
+            async def fake_app(scope, receive, send):
+                while True:
+                    message = await receive()
+                    if message["type"] == "http.disconnect":
+                        break
+                    if not message.get("more_body", False):
+                        break
+                await send({"type": "http.response.start", "status": 200, "headers": []})
+                await send({"type": "http.response.body", "body": b"ok"})
+
+            async def receive():
+                return events.pop(0) if events else {"type": "http.disconnect"}
+
+            async def send(message):
+                sent.append(message)
+
+            middleware = app.RequestBodyLimitMiddleware(fake_app, max_body_bytes=5)
+            await middleware({"type": "http", "headers": []}, receive, send)
+            return sent
+
+        small = asyncio.run(run_case([
+            {"type": "http.request", "body": b"abc", "more_body": True},
+            {"type": "http.request", "body": b"de", "more_body": False},
+        ]))
+        self.assertEqual(small[0]["status"], 200)
+        oversized = asyncio.run(run_case([
+            {"type": "http.request", "body": b"abc", "more_body": True},
+            {"type": "http.request", "body": b"def", "more_body": False},
+        ]))
+        self.assertEqual(oversized[0]["status"], 413)
+        self.assertIn(b"request body exceeds", oversized[1]["body"])
+
     def test_declared_body_size_limit_allows_upload_limit_and_rejects_oversize(self):
         request = lambda value: SimpleNamespace(headers={} if value is None else {"content-length": value})
         self.assertIsNone(app._declared_body_size_error(request(None)))
