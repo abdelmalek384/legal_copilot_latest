@@ -51,11 +51,11 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("openCatalog('sources','',{collection_permission:r.collection_permission||'unknown'", HTML)
 
     def test_corpus_registry_drilldowns_can_search_beyond_the_first_page(self):
-        self.assertIn("const openCatalog=async(kind,query='')=>", HTML)
+        self.assertIn("const openCatalog=async(kind,query='',filters={})=>", HTML)
         self.assertIn("q='+encodeURIComponent(query)", HTML)
         self.assertIn("Search title, ID, or authority", HTML)
         self.assertIn("Search source and instrument registry", HTML)
-        self.assertIn("e.key==='Enter'){e.preventDefault();openCatalog(kind,searchInput.value)", HTML)
+        self.assertIn("e.key==='Enter'){e.preventDefault();openCatalog(kind,searchInput.value,filters)", HTML)
 
     def test_source_status_labels_have_plain_language_explanations_and_original_host(self):
         self.assertIn("const statusDescriptions={", HTML)
