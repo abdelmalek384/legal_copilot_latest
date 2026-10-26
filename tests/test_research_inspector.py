@@ -159,6 +159,7 @@ class ResearchInspectorTests(unittest.TestCase):
                 result["requested_as_of"] = value
             memo = research_memo("Question", result)
             self.assertIn("As of: unknown", memo, repr(value))
+            self.assertIn("search as-of date was not recorded", memo, repr(value))
             self.assertNotIn("As of: 2026-10-26", memo, repr(value))
 
     def test_missing_memo_scope_is_not_defaulted_to_verified_corpus(self):
