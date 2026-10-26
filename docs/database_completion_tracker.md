@@ -15,6 +15,7 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 - [x] Extend migration rehearsal to hash rows in shared source/staged columns and flag same-count row rewrites or deletions for review while allowing append-only inserts; source remains unchanged (PR #430 merged; CI run 40372094006 passed).
 - [x] Add runtime regression coverage for denying non-member firm switches and revoking access after membership revocation even when a tenant connection is cached (PR #390 merged; CI passed).
 - [x] Extend separate-runtime integration tests to deny cross-firm listing, reading, renaming, messaging, saving, and deleting of research conversations while preserving the source firm's record (PR #435 merged; CI run 40372780977 passed). This covers the research-conversation route family only; other route families remain under audit.
+- [x] Verify `/search` and `/ask` reject a guessed case ID from another firm before retrieval and do not return the source firm's sentinel document (PR #446 merged; CI run 40374699211 passed). Other search/query paths and background workflows still require review.
 - [x] Extend cross-firm integration tests for document-extraction review routes: a second firm cannot list extracted chunks/reviews or submit a correction, and the source chunk remains unchanged (PR #437 merged; CI passed).
 - [x] Verify firm-scoped case-deletion audit history, security-event JSON, and CSV exports with records seeded in two firm databases; each active firm sees only its own sentinels (PR #439 merged; CI run 40373438210 passed).
 
