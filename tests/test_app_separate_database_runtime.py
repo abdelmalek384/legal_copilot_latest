@@ -282,6 +282,12 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             ).fetchone()[0],
             1,
         )
+        chunk_row = firm_a_db.execute(
+            "SELECT id FROM chunks WHERE document_id=? AND case_id=? LIMIT 1",
+            (document_id, case_id),
+        ).fetchone()
+        self.assertIsNotNone(chunk_row)
+        chunk_id = chunk_row["id"]
 
         switched = self._mutate(
             "post", "/session/firm", json={"firm_id": self.firm_b}
@@ -297,7 +303,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(reviews.status_code, 404, reviews.text)
         review = self._mutate(
             "post",
-            f"/cases/{case_id}/docs/{document_id}/chunks/1/review",
+            f"/cases/{case_id}/docs/{document_id}/chunks/{chunk_id}/review",
             json={"outcome": "accepted"},
         )
         self.assertEqual(review.status_code, 404, review.text)
