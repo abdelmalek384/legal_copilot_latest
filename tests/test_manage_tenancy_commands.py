@@ -309,5 +309,48 @@ class TenancyCommandTests(unittest.TestCase):
 
 
 
+    def test_init_tenancy_refuses_to_bootstrap_over_disabled_existing_state(self):
+        self.assertTrue(self.runtime.disable_firm(self.firm_a))
+        control = self.runtime.control_connection()
+        control.execute(
+            "UPDATE users SET status='disabled' WHERE id=?", (self.user_id,)
+        )
+        control.commit()
+        firms_before = control.execute("SELECT COUNT(*) FROM firms").fetchone()[0]
+        users_before = control.execute("SELECT COUNT(*) FROM users").fetchone()[0]
+
+        result = subprocess.run(
+            [
+                sys.executable, str(MANAGE), "init-tenancy",
+                "--firm-name", "Must Not Replace Disabled State",
+                "--owner-name", "Replacement Owner",
+                "--owner-email", "replacement-owner@example.test",
+            ],
+            cwd=ROOT,
+            env=self.env,
+            input="StrongPassphrase-2026!\n",
+            text=True,
+            capture_output=True,
+            timeout=60,
+            check=False,
+        )
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("Existing identities or firm records need explicit recovery review", result.stderr)
+        self.assertEqual(control.execute("SELECT COUNT(*) FROM firms").fetchone()[0], firms_before)
+        self.assertEqual(control.execute("SELECT COUNT(*) FROM users").fetchone()[0], users_before)
+        self.assertEqual(
+            control.execute("SELECT status FROM firms WHERE id=?", (self.firm_a,)).fetchone()[0],
+            "disabled",
+        )
+        self.assertEqual(
+            control.execute("SELECT status FROM users WHERE id=?", (self.user_id,)).fetchone()[0],
+            "disabled",
+        )
+        self.assertIsNone(control.execute(
+            "SELECT id FROM users WHERE email_normalized='replacement-owner@example.test'"
+        ).fetchone())
+
+
+
 if __name__ == "__main__":
     unittest.main()
