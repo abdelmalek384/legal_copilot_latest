@@ -179,6 +179,38 @@ class TenantDatabasePreflightTests(unittest.TestCase):
         codes = {item["code"] for item in report["findings"] if item["firm_id"] is None}
         self.assertIn("catalog_permissions_too_open", codes)
 
+    @unittest.skipUnless(os.name == "posix", "POSIX file permission bits are required")
+    def test_open_tenant_sqlite_sidecar_permissions_are_reported(self):
+        filename = self.add_tenant(26)
+        sidecar = Path(str(self.root / filename) + "-wal")
+        sidecar.write_text("synthetic WAL sidecar", encoding="utf-8")
+        os.chmod(sidecar, 0o644)
+        report = audit(self.catalog_path, self.root)
+        findings = [item for item in report["findings"] if item["firm_id"] == 26]
+        self.assertIn("database_sidecar_permissions_too_open", {item["code"] for item in findings})
+        self.assertEqual(report["tenant_databases_inspected"], 0)
+
+    @unittest.skipUnless(os.name == "posix", "POSIX symlinks are required")
+    def test_tenant_sqlite_sidecar_symlink_is_reported(self):
+        filename = self.add_tenant(27)
+        sidecar = Path(str(self.root / filename) + "-wal")
+        target = self.root / "sidecar-target"
+        target.write_text("synthetic WAL sidecar", encoding="utf-8")
+        sidecar.symlink_to(target)
+        report = audit(self.catalog_path, self.root)
+        findings = [item for item in report["findings"] if item["firm_id"] == 27]
+        self.assertIn("database_sidecar_symlink", {item["code"] for item in findings})
+        self.assertEqual(report["tenant_databases_inspected"], 0)
+
+    @unittest.skipUnless(os.name == "posix", "POSIX symlinks are required")
+    def test_catalog_sidecar_symlink_prevents_catalog_open(self):
+        sidecar = Path(str(self.catalog_path) + "-wal")
+        target = Path(self.temp.name) / "catalog-sidecar-target"
+        target.write_text("synthetic WAL sidecar", encoding="utf-8")
+        sidecar.symlink_to(target)
+        with self.assertRaisesRegex(ValueError, "unsafe SQLite sidecar"):
+            audit(self.catalog_path, self.root)
+
     def test_missing_database_is_reported(self):
         self.add_tenant(2, filename=f"tenant-2-{uuid.uuid4().hex}.sqlite3")
         (self.root / self.catalog.execute(
