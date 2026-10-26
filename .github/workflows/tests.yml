@@ -72,6 +72,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_legacy_chunk_evidence_manifest.py
       - name: Validate legal data registry and evaluation seeds
         run: python tools/validate_legal_data_foundation.py
+      - name: Test malformed legal data foundation inputs fail closed
+        run: PYTHONPATH=. python tests/test_legal_data_foundation_validator.py
       - name: Test DOCX table and header extraction
         run: PYTHONPATH=. python tests/test_docx_table_extraction.py
       - name: Test PDF OCR fallback and mixed-page extraction
