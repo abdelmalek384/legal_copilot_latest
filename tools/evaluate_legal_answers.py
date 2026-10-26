@@ -71,7 +71,7 @@ def _validate_reviewed_question(row):
     if not _nonempty(row.get("reviewer_name")):
         raise EvaluationError(f"{qid}: reviewer_name is required")
     review_date = row.get("review_date")
-    if not isinstance(review_date, str) or not re.fullmatch(r"\\d{4}-\\d{2}-\\d{2}", review_date):
+    if not isinstance(review_date, str) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", review_date):
         raise EvaluationError(f"{qid}: review_date must be ISO YYYY-MM-DD")
     try:
         date.fromisoformat(review_date)
