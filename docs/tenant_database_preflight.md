@@ -12,7 +12,7 @@ Exit codes:
 - `1`: one or more catalog, readiness, path, schema-profile, firm-binding, SQLite integrity, or foreign-key findings.
 - `2`: missing inputs or an unreadable/invalid catalog.
 
-The report is JSON and includes per-firm finding codes. The command does not create catalog tables, provision tenants, repair mappings, run migrations, or change database contents. It opens the catalog and tenant files with SQLite read-only mode.
+The report is JSON and includes per-firm finding codes. Before following any tenant database reference, the preflight validates the control-plane profile marker and effective immutable guards, the control-plane migration ledger, the `firms` table, the `tenant_database_catalog.firm_id -> firms.id` foreign key, and orphaned firm mappings. If a catalog-authority or control-plane migration-history check fails, it reports the findings and does not open tenant database files. The command does not create catalog tables, provision tenants, repair mappings, run migrations, or change database contents. It opens inspected files with SQLite read-only mode.
 
 Run it against an authorized copy or during a quiet maintenance window. The catalog and files may change after inspection, so the output is a point-in-time report rather than a lock on the inspected state.
 
