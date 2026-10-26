@@ -228,12 +228,23 @@ class DatabaseRuntimeTests(unittest.TestCase):
                 "UPDATE research_conversations SET firm_id=? WHERE id=?",
                 (firm_b, conversation_id),
             )
+        audit_id = db.execute(
+            "INSERT INTO case_deletion_audit(firm_id,case_id,actor_user_id,actor_name,"
+            "case_snapshot_json,events_snapshot_json,related_counts_json) "
+            "VALUES(?,?,?,?,?,?,?)",
+            (firm_a, case_id, user_id, "actor", "{}", "[]", "{}"),
+        ).lastrowid
         with self.assertRaisesRegex(sqlite3.IntegrityError, "case deletion audit firm scope"):
             db.execute(
                 "INSERT INTO case_deletion_audit(firm_id,case_id,actor_user_id,actor_name,"
                 "case_snapshot_json,events_snapshot_json,related_counts_json) "
                 "VALUES(?,?,?,?,?,?,?)",
                 (firm_b, case_id, user_id, "actor", "{}", "[]", "{}"),
+            )
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "case deletion audit firm scope does not match tenant database"):
+            db.execute(
+                "UPDATE case_deletion_audit SET firm_id=? WHERE id=?",
+                (firm_b, audit_id),
             )
         db.rollback()
         self.assertEqual(
