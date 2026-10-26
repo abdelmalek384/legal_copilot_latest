@@ -86,6 +86,19 @@ class LegacyChunkEvidenceManifestTests(unittest.TestCase):
             with sqlite3.connect(database) as db:
                 self.assertEqual(db.execute("SELECT text FROM chunks").fetchone()[0], "preserve-me")
 
+            symlink = Path(tmp) / "source-symlink.sqlite3"
+            try:
+                symlink.symlink_to(database)
+            except OSError:
+                pass
+            else:
+                stderr = io.StringIO()
+                with redirect_stderr(stderr):
+                    self.assertEqual(main([str(database), "--output", str(symlink)]), 2)
+                self.assertIn("output path must not be a symlink", stderr.getvalue())
+                with sqlite3.connect(database) as db:
+                    self.assertEqual(db.execute("SELECT text FROM chunks").fetchone()[0], "preserve-me")
+
             hardlink = Path(tmp) / "source-hardlink.sqlite3"
             try:
                 hardlink.hardlink_to(database)
