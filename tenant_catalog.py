@@ -81,17 +81,10 @@ def initialize_catalog(connection: sqlite3.Connection) -> None:
         raise TenantCatalogError(
             "Tenant catalog is not bound to the trusted control-plane profile"
         )
-    connection.execute("""
-        CREATE TABLE IF NOT EXISTS tenant_database_catalog (
-            firm_id INTEGER PRIMARY KEY CHECK(firm_id > 0)
-                REFERENCES firms(id) ON DELETE RESTRICT,
-            database_file TEXT UNIQUE,
-            status TEXT NOT NULL CHECK(status IN ('provisioning','provisioned','failed','disabled')),
-            created_at TEXT NOT NULL DEFAULT (datetime('now')),
-            updated_at TEXT NOT NULL DEFAULT (datetime('now')),
-            last_error_code TEXT
+    if "tenant_database_catalog" not in tables:
+        raise TenantCatalogError(
+            "Tenant catalog table must be created by control-plane migrations"
         )
-    """)
     foreign_keys = connection.execute(
         "PRAGMA foreign_key_list(tenant_database_catalog)"
     ).fetchall()
