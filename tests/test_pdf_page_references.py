@@ -78,9 +78,9 @@ class PageAwareDocumentTests(unittest.TestCase):
         with patch.object(app, "_separate_runtime_enabled", return_value=True):
             app.add_doc(db, 12, "contract.docx", "Paragraph one.\n\nParagraph two.", document_id=45)
         rows = db.execute("SELECT ref,page,text FROM chunks ORDER BY id").fetchall()
-        self.assertEqual([r[1] for r in rows], [None, None])
-        self.assertIn("paragraph 1", rows[0][0])
-        self.assertIn("paragraph 2", rows[1][0])
+        self.assertEqual([r[1] for r in rows], [None])
+        self.assertIn("chunk 1", rows[0][0])
+        self.assertEqual(rows[0][2], "Paragraph one.\n\nParagraph two.")
         db.close()
 
 
