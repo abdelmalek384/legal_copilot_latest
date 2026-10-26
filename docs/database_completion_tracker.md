@@ -1,10 +1,10 @@
 # Database completion tracker
 
 **Last updated:** 2026-10-26  
-**Estimated completion:** 52%  
+**Estimated completion:** 53%  
 **Status:** In progress — not production-ready for confidential multi-firm matter data.
 
-This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. This is a weighted engineering estimate, not a test-pass percentage or a count of commits. The separate-database runtime and encrypted backup/restore are merged, and row-scope enforcement plus fresh-install/restart and cross-firm case tests have been added. The percentage remains a weighted engineering estimate; exhaustive route/query coverage, remaining legacy bootstrap DDL, invitation/account-recovery policy, platform-role grant governance, and a witnessed operational recovery drill remain open. The latest merged tests cover cross-firm task state transitions, Unicode-canonical global email uniqueness, and missing-tenant fail-closed behavior. The latest completed route tests additionally cover conflict checks, global password-session revocation, membership-scoped suspension, and cross-firm deadline actions.
+This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. This is a weighted engineering estimate, not a test-pass percentage or a count of commits. The separate-database runtime and encrypted backup/restore are merged, and row-scope enforcement plus fresh-install/restart and cross-firm case tests have been added. The percentage remains a weighted engineering estimate; exhaustive route/query coverage, remaining legacy bootstrap DDL, invitation/account-recovery policy, platform-role grant governance, and a witnessed operational recovery drill remain open. The latest merged tests cover cross-firm task state transitions, Unicode-canonical global email uniqueness, missing-tenant fail-closed behavior, and global identity disablement revoking cached tenant access. The latest completed route tests additionally cover conflict checks, global password-session revocation, membership-scoped suspension, and cross-firm deadline actions.
 
 ## Completed and merged
 
@@ -31,6 +31,7 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 - [x] Verify deadline completion by an ID from another firm's database returns not found and leaves the source deadline unchanged (PR #493 merged; CI run 40384885120 passed).
 - [x] Verify task claim and completion by another firm's task ID are both denied, preserving the source task as open/unassigned (PR #498 merged; CI run 40385985884 passed).
 - [x] Verify a missing provisioned tenant database fails closed without recreating the file or falling back to the legacy shared database (PR #503 merged; CI run 40386709308 passed).
+- [x] Verify disabling a global identity invalidates its cached tenant connection immediately while retaining firm data and membership records (PR #509 merged; CI run 40387362059 passed).
 - [x] Verify global identity uniqueness for Unicode NFC normalization and casefold (including `Straße`/`STRASSE`) at the runtime/database boundary (PR #501 merged; CI run 40386260174 passed).
 - [x] Reject stale shared COPILOT_DB configuration when the three approved separate-database paths are configured, preventing ambiguous deployment storage intent (PR #477 merged; CI run 40381467990 passed).
 - [x] Verify clean-install shared legal-corpus FTS insert/update/delete synchronization using FTS5 external-content integrity checks against source chunks (PR #479 merged; CI run 40381954656 passed).
