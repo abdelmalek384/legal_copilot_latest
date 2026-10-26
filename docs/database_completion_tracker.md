@@ -4,9 +4,12 @@
 **Estimated completion:** 28%  
 **Status:** In progress — not production-ready for confidential multi-firm matter data.
 
-This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. The checklist currently tracks 61 completed tasks and 20 remaining tasks; this count is not a readiness percentage. Update this file as database PRs merge and as acceptance criteria are completed.
+This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. The checklist currently tracks 63 completed tasks and 20 remaining tasks; this count is not a readiness percentage. Update this file as database PRs merge and as acceptance criteria are completed.
 
 ## Completed and merged
+
+- [x] Require the SQLite membership lookup to verify that control-plane profile update/delete triggers actually abort mutation, not merely exist by name (PR #306 merged; CI run 40274062209 passed).
+- [x] Require the tenant connection router to verify effective immutable update/delete guards for the embedded firm binding (PR #307 merged; CI run 40274104449 passed).
 
 - [x] Extend the read-only tenant preflight to validate the control-plane catalog migration ledger against trusted migration files, including missing history and checksum drift (PR #301 merged; CI run 40238866669 passed).
 
