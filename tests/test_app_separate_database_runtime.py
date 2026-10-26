@@ -122,6 +122,31 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             0,
         )
 
+    def test_firm_admin_cannot_suspend_another_firms_membership(self):
+        firm_b_only_user = self.runtime.create_global_identity(
+            "Firm B Only User", "firm-b-admin-isolation@example.test", app.hash_pw(self.password)
+        )
+        self.runtime.create_firm_membership(firm_b_only_user, self.firm_b, "lawyer")
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+
+        denied = self._mutate("post", f"/users/{firm_b_only_user}/disable")
+        self.assertEqual(denied.status_code, 404, denied.text)
+        membership = self.runtime.control_connection().execute(
+            "SELECT status FROM firm_memberships WHERE user_id=? AND firm_id=?",
+            (firm_b_only_user, self.firm_b),
+        ).fetchone()
+        self.assertIsNotNone(membership)
+        self.assertEqual(membership["status"], "active")
+        self.assertEqual(
+            self.runtime.control_connection().execute(
+                "SELECT status FROM users WHERE id=?", (firm_b_only_user,)
+            ).fetchone()["status"],
+            "active",
+        )
+
     def test_user_listing_is_scoped_to_active_firm_memberships(self):
         firm_b_only_user = self.runtime.create_global_identity(
             "Firm B Only User", "firm-b-only@example.test", app.hash_pw(self.password)
