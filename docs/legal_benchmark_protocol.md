@@ -19,10 +19,11 @@ When configuring any quality threshold in `tools/evaluate_legal_answers.py`, pas
 
 ```sh
 python tools/evaluate_legal_answers.py --questions reviewed.jsonl --results model-results.jsonl \
-  --min-questions 100 --min-source-precision 0.98 --min-pin-cite-precision 0.98
+  --min-questions 100 --min-practice-areas 5 --min-questions-per-practice-area 20 \
+  --min-source-precision 0.98 --min-pin-cite-precision 0.98
 ```
 
-The value `100` and metric thresholds above are illustrative, not approved acceptance criteria. The product owner and qualified Egyptian-law reviewers must set an appropriate sample size and thresholds for a representative benchmark, including practice-area and answerability coverage. Sample size and citation/abstention metrics do not establish legal correctness.
+The values `100`, `5`, `20`, and metric thresholds above are illustrative, not approved acceptance criteria. The product owner and qualified Egyptian-law reviewers must set an appropriate sample size and thresholds for the intended release scope, including practice-area and answerability coverage. The evaluator now requires both a minimum distinct-practice-area count and a minimum question count per area when quality thresholds are enabled. Sample size and citation/abstention metrics do not establish legal correctness.
 
 ## Evaluation contract
 For each query, the product should:
