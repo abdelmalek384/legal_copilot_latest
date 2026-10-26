@@ -175,6 +175,97 @@ class TenancyCommandTests(unittest.TestCase):
         )
 
 
+    def test_init_tenancy_bootstraps_a_clean_install_without_platform_privileges(self):
+        fresh = self.root / "fresh-bootstrap"
+        fresh.mkdir()
+        env = self.env.copy()
+        env.update({
+            "COPILOT_CONTROL_DB": str(fresh / "control.sqlite3"),
+            "COPILOT_TENANT_DB_ROOT": str(fresh / "tenants"),
+            "COPILOT_CORPUS_DB": str(fresh / "corpus.sqlite3"),
+        })
+        result = subprocess.run(
+            [
+                sys.executable, str(MANAGE), "init-tenancy",
+                "--firm-name", "First Firm",
+                "--owner-name", "Initial Owner",
+                "--owner-email", "initial-owner@example.test",
+            ],
+            cwd=ROOT,
+            env=env,
+            input="StrongPassphrase-2026!\n",
+            text=True,
+            capture_output=True,
+            timeout=60,
+            check=False,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn("لم يتم منح دور إداري على مستوى المنصة", result.stdout)
+
+        runtime = DatabaseRuntime(
+            env["COPILOT_CONTROL_DB"], env["COPILOT_TENANT_DB_ROOT"], env["COPILOT_CORPUS_DB"]
+        )
+        try:
+            runtime.initialize()
+            control = runtime.control_connection()
+            owner = control.execute(
+                "SELECT id,email_normalized,status FROM users"
+            ).fetchone()
+            self.assertEqual(
+                (owner["email_normalized"], owner["status"]),
+                ("initial-owner@example.test", "active"),
+            )
+            membership = control.execute(
+                "SELECT firm_id,firm_role,status FROM firm_memberships WHERE user_id=?",
+                (owner["id"],),
+            ).fetchone()
+            self.assertEqual(
+                (membership["firm_role"], membership["status"]), ("admin", "active")
+            )
+            self.assertEqual(
+                control.execute("SELECT COUNT(*) FROM firms WHERE status='active'").fetchone()[0],
+                1,
+            )
+            self.assertEqual(
+                control.execute("SELECT COUNT(*) FROM user_platform_roles WHERE user_id=?",
+                                (owner["id"],)).fetchone()[0],
+                0,
+            )
+            context = runtime.resolve_context(owner["id"], membership["firm_id"])
+            self.assertTrue(runtime.firm_connection(context).execute(
+                "SELECT profile FROM database_profile WHERE singleton=1"
+            ).fetchone()[0] == "firm")
+        finally:
+            runtime.close_current_thread()
+
+    def test_init_tenancy_refuses_to_replace_an_existing_owner(self):
+        control = self.runtime.control_connection()
+        firms_before = control.execute("SELECT COUNT(*) FROM firms").fetchone()[0]
+        users_before = control.execute("SELECT COUNT(*) FROM users").fetchone()[0]
+        result = subprocess.run(
+            [
+                sys.executable, str(MANAGE), "init-tenancy",
+                "--firm-name", "Must Not Be Created",
+                "--owner-name", "Replacement Owner",
+                "--owner-email", "replacement-owner@example.test",
+            ],
+            cwd=ROOT,
+            env=self.env,
+            input="StrongPassphrase-2026!\n",
+            text=True,
+            capture_output=True,
+            timeout=60,
+            check=False,
+        )
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("active firm membership already exists", result.stderr)
+        self.assertEqual(control.execute("SELECT COUNT(*) FROM firms").fetchone()[0], firms_before)
+        self.assertEqual(control.execute("SELECT COUNT(*) FROM users").fetchone()[0], users_before)
+        self.assertIsNone(control.execute(
+            "SELECT id FROM users WHERE email_normalized='replacement-owner@example.test'"
+        ).fetchone())
+
+
     def test_verify_backup_tenancy_cli_reports_verified_bundle_without_persistent_restore(self):
         backup_dir = self.root / "verification-bundles"
         backup_dir.mkdir()
