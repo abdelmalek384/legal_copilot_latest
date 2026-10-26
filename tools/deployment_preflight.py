@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Read-only deployment configuration checks; never prints secret values."""
 import argparse
+import ipaddress
 import math
 import os
 import stat
