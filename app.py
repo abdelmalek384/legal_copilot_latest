@@ -141,6 +141,18 @@ def _separate_runtime_enabled():
     return not os.environ.get("COPILOT_DB", "").strip()
 
 
+# Never start production with the legacy shared-database compatibility path. The
+# explicit COPILOT_ENV switch keeps local development compatibility available.
+if os.environ.get("COPILOT_ENV", "").strip().lower() in {"prod", "production"}:
+    required_paths = ("COPILOT_CONTROL_DB", "COPILOT_TENANT_DB_ROOT", "COPILOT_CORPUS_DB")
+    missing_paths = [name for name in required_paths if not os.environ.get(name, "").strip()]
+    if missing_paths or os.environ.get("COPILOT_DB", "").strip():
+        raise RuntimeError(
+            "Production requires explicit separate database paths and forbids COPILOT_DB; "
+            "missing: " + (", ".join(missing_paths) if missing_paths else "none")
+        )
+
+
 def get_database_runtime():
     global _database_runtime
     if _database_runtime is None:
