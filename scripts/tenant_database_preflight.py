@@ -81,9 +81,10 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
     def add(code: str, firm_id: int | None, detail: str) -> None:
         findings.append({"code": code, "firm_id": firm_id, "detail": detail})
 
-    def check_sidecars(database_path: Path, firm_id: int | None) -> None:
+    def check_sidecars(database_path: Path, firm_id: int | None) -> bool:
         if os.name != "posix":
-            return
+            return False
+        has_symlink = False
         for suffix in ("-wal", "-shm", "-journal"):
             sidecar = Path(str(database_path) + suffix)
             if sidecar.is_symlink():
@@ -92,6 +93,7 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
                     firm_id,
                     f"SQLite sidecar {sidecar.name} must not be a symbolic link",
                 )
+                has_symlink = True
                 continue
             if not sidecar.exists():
                 continue
@@ -109,6 +111,7 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
                     firm_id,
                     f"SQLite sidecar {sidecar.name} permissions could not be inspected",
                 )
+        return has_symlink
 
     if os.name == "posix":
         try:
@@ -121,7 +124,8 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
                 )
         except OSError:
             add("catalog_permissions_unreadable", None, "control-plane catalog file permissions could not be inspected")
-    check_sidecars(resolved_catalog, None)
+    if check_sidecars(resolved_catalog, None):
+        raise ValueError("tenant catalog has a symlinked SQLite sidecar; refusing to open catalog")
 
     requested_root = storage_root.expanduser()
     # Check the configured directory entry before resolve(), otherwise a
@@ -297,7 +301,9 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
                     )
             except OSError:
                 add("database_permissions_unreadable", firm_id, "tenant database file permissions could not be inspected")
-        check_sidecars(resolved, firm_id)
+        if check_sidecars(resolved, firm_id):
+            # A symlinked sidecar can redirect SQLite's reads; never open this tenant DB.
+            continue
         try:
             with closing(_readonly(resolved)) as tenant:
                 tables = {
