@@ -1,4 +1,5 @@
 """Tests for catalog-backed tenant connection routing (not request authorization)."""
+import os
 import sqlite3
 import shutil
 import tempfile
@@ -84,6 +85,17 @@ class TenantSQLiteConnectionRouterTests(unittest.TestCase):
         self.assertEqual(a.execute("SELECT value FROM marker").fetchone()[0], "firm-a")
         self.assertEqual(b.execute("SELECT value FROM marker").fetchone()[0], "firm-b")
         self.assertIsNot(a, b)
+
+    @unittest.skipUnless(os.name == "posix", "POSIX file permission bits are required")
+    def test_permissive_file_mode_revokes_cached_tenant_connection(self):
+        connection = self.router.connection_for_firm(101)
+        with self._catalog() as catalog:
+            path = resolve_tenant_database(catalog, 101, self.root)
+        os.chmod(path, 0o644)
+        with self.assertRaisesRegex(TenantConnectionError, "permissions allow group/other access"):
+            self.router.connection_for_firm(101)
+        with self.assertRaisesRegex(sqlite3.ProgrammingError, "closed"):
+            connection.execute("SELECT 1")
 
     def test_rejects_tenant_database_bound_to_non_firm_profile(self):
         with self._catalog() as catalog:
