@@ -69,6 +69,9 @@ def _validate_reviewed_question(row):
         raise EvaluationError("question id must be a non-empty string")
     if row.get("review_status") != APPROVED:
         raise EvaluationError(f"{qid}: only review_status={APPROVED!r} can be scored")
+    practice_area = row.get("practice_area", "unspecified")
+    if not _nonempty(practice_area):
+        raise EvaluationError(f"{qid}: practice_area must be a non-empty string when supplied")
     if not _nonempty(row.get("reviewer_name")):
         raise EvaluationError(f"{qid}: reviewer_name is required")
     review_date = row.get("review_date")
@@ -174,7 +177,7 @@ def evaluate(question_rows, result_rows):
         citation_present = bool(actual_sources or actual_pins)
         item = {
             "id": qid,
-            "practice_area": q.get("practice_area", "unspecified"),
+            "practice_area": q.get("practice_area", "unspecified").strip(),
             "answerable": q["answerable"],
             "expected_abstain": expected_abstain,
             "actual_abstained": result_map[qid]["abstained"],
