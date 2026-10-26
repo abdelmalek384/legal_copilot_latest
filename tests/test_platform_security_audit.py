@@ -226,5 +226,43 @@ class PlatformSecurityAuditTests(unittest.TestCase):
 
 
 
+    def test_membership_creation_rolls_back_if_audit_write_fails(self):
+        target_user_id = self.runtime.create_global_identity(
+            "Membership Target", "membership-target@example.test", "test-password-hash"
+        )
+        control = self.runtime.control_connection()
+        control.execute("""
+            CREATE TRIGGER reject_membership_audit
+            BEFORE INSERT ON platform_security_events
+            WHEN NEW.event_type='membership_created'
+            BEGIN SELECT RAISE(ABORT, 'audit unavailable'); END
+        """)
+        control.commit()
+
+        with self.assertRaisesRegex(Exception, "audit unavailable"):
+            self.runtime.create_firm_membership(
+                target_user_id, self.firm_id, "lawyer", created_by_user_id=self.user_id
+            )
+
+        self.assertFalse(control.in_transaction, "failed audited mutation must leave no open transaction")
+        self.assertEqual(
+            control.execute(
+                "SELECT COUNT(*) FROM firm_memberships WHERE user_id=? AND firm_id=?",
+                (target_user_id, self.firm_id),
+            ).fetchone()[0],
+            0,
+            "membership must not persist when its audit event cannot be written",
+        )
+        self.assertEqual(
+            control.execute(
+                "SELECT COUNT(*) FROM platform_security_events "
+                "WHERE event_type='membership_created' AND target_user_id=?",
+                (target_user_id,),
+            ).fetchone()[0],
+            0,
+        )
+
+
+
 if __name__ == "__main__":
     unittest.main()
