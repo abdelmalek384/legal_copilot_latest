@@ -1006,9 +1006,38 @@ def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None, sc
 # ---------------- API ----------------
 from fastapi import Cookie, Depends, FastAPI, Header, HTTPException, UploadFile
 from fastapi.responses import FileResponse
+from starlette.middleware.trustedhost import TrustedHostMiddleware
 from pydantic import BaseModel, Field, field_validator
 
 MAX_REQUEST_BODY_BYTES = 16 * 1024 * 1024  # 15 MB upload cap plus multipart overhead
+
+
+def _trusted_host_patterns(value):
+    """Parse an explicit comma-separated host allowlist; reject broad or URL-like entries."""
+    if not isinstance(value, str) or not value.strip():
+        raise ValueError("trusted host allowlist must not be empty")
+    patterns = []
+    hostname_label = re.compile(r"^[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?$")
+    for raw in value.split(","):
+        host = raw.strip().lower()
+        if not host or host == "*" or "://" in host or "/" in host or "@" in host or ":" in host and not host.startswith("["):
+            raise ValueError("invalid trusted host pattern")
+        wildcard = host.startswith("*.")
+        candidate = host[2:] if wildcard else host
+        if "*" in candidate or not candidate or len(candidate) > 253:
+            raise ValueError("invalid trusted host pattern")
+        try:
+            ipaddress.ip_address(candidate)
+            if wildcard:
+                raise ValueError("IP addresses cannot use wildcard host patterns")
+        except ValueError as exc:
+            if wildcard and str(exc) == "IP addresses cannot use wildcard host patterns":
+                raise
+            labels = candidate.split(".")
+            if not labels or any(not hostname_label.fullmatch(label) for label in labels):
+                raise ValueError("invalid trusted host pattern") from exc
+        patterns.append(host)
+    return patterns
 
 
 class RequestBodyLimitMiddleware:
@@ -1079,6 +1108,10 @@ class RequestBodyLimitMiddleware:
 
 app = FastAPI(title="Legal Copilot MVP", docs_url=None, redoc_url=None, openapi_url=None)
 app.add_middleware(RequestBodyLimitMiddleware, max_body_bytes=MAX_REQUEST_BODY_BYTES)
+# Enforce Host-header allowlisting when the deployment explicitly configures it.
+_allowed_hosts = os.environ.get("COPILOT_ALLOWED_HOSTS", "").strip()
+if _allowed_hosts:
+    app.add_middleware(TrustedHostMiddleware, allowed_hosts=_trusted_host_patterns(_allowed_hosts))
 
 # Per-process fixed-window limits for expensive or abuse-prone endpoints.
 # Deliberately use the direct peer address; do not trust arbitrary X-Forwarded-For.
