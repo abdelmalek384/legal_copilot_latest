@@ -12,8 +12,10 @@ import argparse
 import hashlib
 from contextlib import closing
 import json
+import os
 import re
 import sqlite3
+import stat
 import sys
 from pathlib import Path
 from typing import Any
@@ -78,6 +80,18 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
 
     def add(code: str, firm_id: int | None, detail: str) -> None:
         findings.append({"code": code, "firm_id": firm_id, "detail": detail})
+
+    if os.name == "posix":
+        try:
+            catalog_mode = stat.S_IMODE(resolved_catalog.stat().st_mode)
+            if catalog_mode & 0o077:
+                add(
+                    "catalog_permissions_too_open",
+                    None,
+                    f"control-plane catalog permissions {catalog_mode:04o} allow group/other access",
+                )
+        except OSError:
+            add("catalog_permissions_unreadable", None, "control-plane catalog file permissions could not be inspected")
 
     requested_root = storage_root.expanduser()
     # Check the configured directory entry before resolve(), otherwise a
@@ -242,6 +256,17 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
         if resolved.parent != root or not resolved.is_file():
             add("database_path_escape", firm_id, "resolved database is not a regular file directly under the storage root")
             continue
+        if os.name == "posix":
+            try:
+                database_mode = stat.S_IMODE(resolved.stat().st_mode)
+                if database_mode & 0o077:
+                    add(
+                        "database_permissions_too_open",
+                        firm_id,
+                        f"tenant database permissions {database_mode:04o} allow group/other access",
+                    )
+            except OSError:
+                add("database_permissions_unreadable", firm_id, "tenant database file permissions could not be inspected")
         try:
             with closing(_readonly(resolved)) as tenant:
                 tables = {
