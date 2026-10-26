@@ -125,5 +125,44 @@ class DatabaseBackupBundleTests(unittest.TestCase):
             )
 
 
+    def test_backup_rejects_unreferenced_tenant_database_files(self):
+        rogue = self.runtime.paths.tenant_root / "tenant-999-0123456789abcdef0123456789abcdef.sqlite3"
+        rogue.write_bytes(b"unreferenced tenant data")
+
+        with self.assertRaisesRegex(DatabaseBundleError, "unreferenced database files"):
+            create_backup_bundle(
+                self.runtime, self.cipher, self.backup_dir, quiesced=True
+            )
+
+        self.assertEqual(list(self.backup_dir.glob("tenancy-*.dbbundle.enc")), [])
+
+    def test_backup_rejects_cataloged_tenant_database_replaced_by_symlink(self):
+        control = self.runtime.control_connection()
+        row = control.execute(
+            "SELECT database_file FROM tenant_database_catalog WHERE firm_id=?",
+            (self.firm_a,),
+        ).fetchone()
+        self.assertIsNotNone(row)
+        firm_a_path = self.runtime.paths.tenant_root / row["database_file"]
+        firm_b_path = next(
+            path for path in self.runtime.paths.tenant_root.glob("tenant-*.sqlite3")
+            if path != firm_a_path
+        )
+
+        self.runtime.close_current_thread()
+        firm_a_path.unlink()
+        try:
+            firm_a_path.symlink_to(firm_b_path)
+        except (OSError, NotImplementedError) as exc:
+            self.skipTest(f"symlink creation is unavailable: {exc}")
+
+        with self.assertRaisesRegex(DatabaseBundleError, "missing or is a symlink"):
+            create_backup_bundle(
+                self.runtime, self.cipher, self.backup_dir, quiesced=True
+            )
+
+        self.assertEqual(list(self.backup_dir.glob("tenancy-*.dbbundle.enc")), [])
+
+
 if __name__ == "__main__":
     unittest.main()
