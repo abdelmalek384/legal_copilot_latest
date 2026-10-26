@@ -64,6 +64,14 @@ class TenantSQLiteConnectionRouterTests(unittest.TestCase):
             db.execute("CREATE TABLE firms(id INTEGER PRIMARY KEY, name TEXT NOT NULL)")
             db.executemany("INSERT INTO firms(id,name) VALUES(?,?)",
                            [(101, "Firm A"), (202, "Firm B")])
+            db.execute("CREATE TABLE database_profile (singleton INTEGER PRIMARY KEY CHECK(singleton=1), profile TEXT NOT NULL)")
+            db.execute("INSERT INTO database_profile(singleton,profile) VALUES(1,'control_plane')")
+            db.executescript("""
+                CREATE TRIGGER database_profile_no_update BEFORE UPDATE ON database_profile
+                BEGIN SELECT RAISE(ABORT, 'database profile binding is immutable'); END;
+                CREATE TRIGGER database_profile_no_delete BEFORE DELETE ON database_profile
+                BEGIN SELECT RAISE(ABORT, 'database profile binding is immutable'); END;
+            """)
             db.commit()
             initialize_catalog(db)
 
