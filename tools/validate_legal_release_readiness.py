@@ -209,7 +209,22 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
         evidence_host = https_host(review.get("evidence_url"))
         if evidence_host is None:
             add(blockers, "review_evidence_url_invalid", f"{review_type} review needs a valid HTTPS evidence URL.")
-    return {"candidate_id": candidate_id, "ready": not blockers, "blockers": blockers}
+    practice_areas = document.get("practice_areas", document.get("practice_area", []))
+    if isinstance(practice_areas, str):
+        practice_areas = [practice_areas]
+    if not isinstance(practice_areas, list):
+        practice_areas = []
+    practice_areas = sorted({item.strip() for item in practice_areas if isinstance(item, str) and item.strip()})
+    return {
+        "candidate_id": candidate_id,
+        "title": document.get("official_title") if isinstance(document.get("official_title"), str) else None,
+        "document_type": document.get("document_type") if isinstance(document.get("document_type"), str) else None,
+        "practice_areas": practice_areas,
+        "legal_status": version.get("legal_status") if isinstance(version.get("legal_status"), str) else "unknown",
+        "review_status": version.get("review_status") if isinstance(version.get("review_status"), str) else "unknown",
+        "ready": not blockers,
+        "blockers": blockers,
+    }
 
 
 def build_report(candidate_paths: list[Path], permission_register_path: Path, root: Path = ROOT) -> dict:
@@ -228,14 +243,36 @@ def build_report(candidate_paths: list[Path], permission_register_path: Path, ro
         result = audit_candidate(candidate, register, root)
         result["candidate_file"] = str(path)
         reports.append(result)
+    blocker_counts: dict[str, int] = {}
+    status_counts: dict[str, int] = {}
+    review_counts: dict[str, int] = {}
+    practice_area_counts: dict[str, dict[str, int]] = {}
+    for item in reports:
+        status = item.get("legal_status") or "unknown"
+        review = item.get("review_status") or "unknown"
+        status_counts[status] = status_counts.get(status, 0) + 1
+        review_counts[review] = review_counts.get(review, 0) + 1
+        for blocker in item.get("blockers", []):
+            code = blocker.get("code", "unknown")
+            blocker_counts[code] = blocker_counts.get(code, 0) + 1
+        areas = item.get("practice_areas") or ["unspecified"]
+        for area in areas:
+            bucket = practice_area_counts.setdefault(area, {"candidate_count": 0, "ready_count": 0, "blocked_count": 0})
+            bucket["candidate_count"] += 1
+            bucket["ready_count"] += int(bool(item.get("ready")))
+            bucket["blocked_count"] += int(not bool(item.get("ready")))
     return {
         "schema_version": 1,
         "read_only": True,
         "candidate_count": len(reports),
         "ready_count": sum(1 for item in reports if item.get("ready")),
         "blocked_count": sum(1 for item in reports if not item.get("ready")),
+        "blocker_counts": dict(sorted(blocker_counts.items())),
+        "legal_status_counts": dict(sorted(status_counts.items())),
+        "review_status_counts": dict(sorted(review_counts.items())),
+        "practice_area_coverage": dict(sorted(practice_area_counts.items())),
         "candidates": reports,
-        "warning": "This checks recorded evidence and file integrity only; it cannot grant rights or independently certify legal correctness.",
+        "warning": "This checks recorded evidence and file integrity only; it cannot grant rights or independently certify legal correctness. Counts describe candidate records, not complete Egyptian-law coverage.",
     }
 
 
