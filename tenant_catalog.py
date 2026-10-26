@@ -184,7 +184,7 @@ def _bind_tenant_database(connection: sqlite3.Connection, firm_id: int) -> None:
         )
     ):
         raise TenantCatalogError(
-            "Firm binding lacks effective immutable guards"
+            "firm binding lacks effective immutable guards"
         )
     rows = connection.execute(
         "SELECT singleton, firm_id FROM tenant_database_binding"
