@@ -29,7 +29,7 @@ class DatabaseStartupDDLInventoryTests(unittest.TestCase):
             [item["file"] for item in report["migrations"]],
             sorted(item["file"] for item in report["migrations"]),
         )
-        self.assertEqual(len(report["migrations"]), 17)
+        self.assertEqual(len(report["migrations"]), 20)
         migration_files = {item["file"] for item in report["migrations"]}
         self.assertIn("control_plane/0001_control_plane_catalog.sql", migration_files)
         self.assertIn("firm/0001_firm_matter_foundation.sql", migration_files)

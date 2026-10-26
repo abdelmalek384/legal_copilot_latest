@@ -1,11 +1,9 @@
-"""Tenant-aware SQLite connection routing foundation.
+"""Tenant-aware SQLite connection routing for the separate-database runtime.
 
 This module is not an authentication layer. Callers MUST pass a firm ID that
 has already been resolved from the authenticated identity and an active,
-server-validated membership. Never pass a request-supplied firm ID directly.
-
-The application is not switched to this provider until the identity contract,
-shared legal-corpus boundary, and route inventory are approved and migrated.
+server-validated membership. DatabaseRuntime performs that validation before
+requesting a connection. Never pass a request-supplied firm ID directly.
 """
 from __future__ import annotations
 

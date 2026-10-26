@@ -11,6 +11,7 @@ from pathlib import Path
 
 from cryptography.fernet import Fernet
 import app
+from database_runtime import DatabaseRuntime
 
 
 def _backup_fernet():
@@ -50,6 +51,29 @@ def read_password(prompt):
 
 def adduser(a):
     pw = read_password("كلمة المرور (12 حرفا على الأقل): ")
+    if app._separate_runtime_enabled():
+        if not a.firm_id:
+            raise SystemExit("Separate-database mode requires --firm-id; firm roles do not grant platform roles.")
+        runtime = DatabaseRuntime.from_env()
+        runtime.initialize()
+        c = runtime.control_connection()
+        try:
+            c.execute("BEGIN IMMEDIATE")
+            cur = c.execute(
+                "INSERT INTO users(name,email_display,email_normalized,password_hash,status) "
+                "VALUES(?,?,?,?,'active')",
+                (a.name.strip(), a.email.strip(), app.normalize_email(a.email), app.hash_pw(pw)),
+            )
+            c.execute(
+                "INSERT INTO firm_memberships(user_id,firm_id,firm_role,status) VALUES(?,?,?,'active')",
+                (cur.lastrowid, a.firm_id, a.role),
+            )
+            c.commit()
+        except Exception as e:
+            c.rollback()
+            raise SystemExit("تعذر إنشاء الحساب أو عضوية المكتب. تحقق من البريد ورقم المكتب. التفاصيل: " + str(e))
+        print("تم إنشاء الحساب وربطه بالمكتب المحدد. صلاحيات المنصة مستقلة عن دور المكتب.")
+        return
     c = app.conn()
     try:
         c.execute("INSERT INTO users(name,email,pw,role) VALUES(?,?,?,?)",
@@ -61,8 +85,69 @@ def adduser(a):
     print("تم إنشاء الحساب. افتح التطبيق وسجّل الدخول بالبريد وكلمة المرور.")
 
 
+def init_tenancy(a):
+    """Initialize fresh profile databases and bootstrap the first firm administrator."""
+    pw = read_password("كلمة مرور مدير المكتب الأول: ")
+    runtime = DatabaseRuntime.from_env()
+    runtime.initialize()
+    control = runtime.control_connection()
+    active_memberships = control.execute(
+        "SELECT COUNT(*) FROM firm_memberships fm JOIN users u ON u.id=fm.user_id "
+        "JOIN firms f ON f.id=fm.firm_id WHERE fm.status='active' AND u.status='active' AND f.status='active'"
+    ).fetchone()[0]
+    if active_memberships:
+        raise SystemExit("An active firm membership already exists; refusing to replace the initial owner.")
+    firms = control.execute("SELECT id,name,status FROM firms WHERE status='active' ORDER BY id").fetchall()
+    if len(firms) == 0:
+        existing_users = control.execute("SELECT COUNT(*) FROM users").fetchone()[0]
+        existing_firms = control.execute("SELECT COUNT(*) FROM firms").fetchone()[0]
+        if existing_users or existing_firms:
+            raise SystemExit("Existing identities or firm records need explicit recovery review before bootstrap.")
+        firm_id, database_path = runtime.provision_firm(a.firm_name)
+    elif len(firms) == 1:
+        firm_id, database_path = int(firms[0]["id"]), None
+        memberships = control.execute(
+            "SELECT COUNT(*) FROM firm_memberships WHERE firm_id=?", (firm_id,)
+        ).fetchone()[0]
+        existing_users = control.execute("SELECT COUNT(*) FROM users").fetchone()[0]
+        if memberships or existing_users:
+            raise SystemExit("Existing identities or membership records need explicit recovery review before bootstrap.")
+    else:
+        raise SystemExit("Multiple firms already exist; choose and bootstrap an owner through a reviewed recovery procedure.")
+    try:
+        user_id = runtime.create_initial_firm_owner(
+            firm_id, a.owner_name, a.owner_email, app.hash_pw(pw)
+        )
+    except Exception as exc:
+        raise SystemExit("Firm database was prepared but initial owner creation failed; inspect the control plane before retrying: " + str(exc))
+    print("تم تهيئة قاعدة المكتب المنفصلة.")
+    print("firm_id:", firm_id)
+    print("owner_user_id:", user_id)
+    if database_path:
+        print("firm_database:", database_path)
+    print("لم يتم منح دور إداري على مستوى المنصة.")
+
+
 def resetpw(a):
     pw = read_password("كلمة المرور الجديدة: ")
+    if app._separate_runtime_enabled():
+        runtime = DatabaseRuntime.from_env()
+        runtime.initialize()
+        c = runtime.control_connection()
+        email = app.normalize_email(a.email)
+        c.execute("BEGIN IMMEDIATE")
+        account = c.execute("SELECT id FROM users WHERE email_normalized=?", (email,)).fetchone()
+        if not account:
+            c.rollback()
+            raise SystemExit("لا يوجد حساب بهذا البريد الإلكتروني.")
+        c.execute(
+            "UPDATE users SET password_hash=?,updated_at=datetime('now') WHERE id=?",
+            (app.hash_pw(pw), account["id"]),
+        )
+        c.execute("DELETE FROM auth_sessions WHERE user_id=?", (account["id"],))
+        c.commit()
+        print("تم تحديث كلمة المرور وإبطال جميع الجلسات؛ سجّل الدخول من جديد.")
+        return
     c = app.conn()
     email = a.email.strip().lower()
     c.execute("BEGIN IMMEDIATE")
@@ -79,6 +164,8 @@ def resetpw(a):
 
 
 def backup(a):
+    if app._separate_runtime_enabled():
+        raise SystemExit("Refusing single-file backup in separate-database mode. A verified multi-database backup bundle is required.")
     if a.keep < 1:
         raise SystemExit("--keep must be at least 1")
     cipher = _backup_fernet()
@@ -127,10 +214,27 @@ def backup(a):
 def importlaws(a):
     with open(a.file, encoding="utf-8") as source:
         rows = [json.loads(line) for line in source if line.strip()]
+    if app._separate_runtime_enabled():
+        runtime = DatabaseRuntime.from_env()
+        runtime.initialize()
+        c = runtime.legal_corpus_connection()
+        total = 0
+        for i in range(0, len(rows), 500):
+            batch = rows[i:i + 500]
+            c.executemany(
+                "INSERT INTO legal_import_staging(law,article,text,norm,source) VALUES(?,?,?,?,?)",
+                [(str(row["law"]), str(row["article"]), str(row["text"]), app.norm(str(row["text"])), row.get("source")) for row in batch],
+            )
+            total += len(batch)
+        c.commit()
+        print("staged for legal review:", total)
+        return
     print("imported", sum(app.import_law(app.conn(), rows[i:i + 500]) for i in range(0, len(rows), 500)))
 
 
 def restore(a):
+    if app._separate_runtime_enabled():
+        raise SystemExit("Refusing single-file restore in separate-database mode. A verified multi-database restore bundle is required.")
     cipher = _backup_fernet()
     with open(a.file, "rb") as source:
         plaintext = cipher.decrypt(source.read())
@@ -154,7 +258,8 @@ def restore(a):
 
 p = argparse.ArgumentParser()
 sp = p.add_subparsers(dest="cmd", required=True)
-x = sp.add_parser("adduser"); x.add_argument("name"); x.add_argument("email"); x.add_argument("role", choices=["admin", "lawyer", "junior"]); x.set_defaults(f=adduser)
+x = sp.add_parser("adduser"); x.add_argument("name"); x.add_argument("email"); x.add_argument("role", choices=["admin", "lawyer", "junior"]); x.add_argument("--firm-id", type=int); x.set_defaults(f=adduser)
+x = sp.add_parser("init-tenancy"); x.add_argument("--firm-name", required=True); x.add_argument("--owner-name", required=True); x.add_argument("--owner-email", required=True); x.set_defaults(f=init_tenancy)
 x = sp.add_parser("resetpw"); x.add_argument("email"); x.set_defaults(f=resetpw)
 sp.add_parser("genkey").set_defaults(f=lambda a: print(Fernet.generate_key().decode()))
 x = sp.add_parser("backup"); x.add_argument("dir"); x.add_argument("--keep", type=int, default=14); x.set_defaults(f=backup)

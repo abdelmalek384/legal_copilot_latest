@@ -150,6 +150,11 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("No relevant verified legal text was returned by this verified-corpus search.", HTML)
         self.assertNotIn("matterSelect.disabled", HTML)
 
+    def test_multi_firm_switcher_uses_server_checked_endpoint_and_platform_roles(self):
+        self.assertIn("api('/session/firm','POST'", HTML)
+        self.assertIn("Array.isArray(ME.firms)", HTML)
+        self.assertIn("ME.platform_roles", HTML)
+
     def test_focus_and_small_screen_rules_exist(self):
         self.assertIn(":focus-visible", HTML)
         self.assertIn("@media(max-width:420px)", HTML)

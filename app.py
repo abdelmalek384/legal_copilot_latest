@@ -1,12 +1,15 @@
 """Legal copilot MVP: case workspace + hybrid law search + citation-checked answers.
 Run: pip install -r requirements.txt && uvicorn app:app --reload"""
 import sqlite3, re, json, os, io, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request, zipfile
+from contextvars import ContextVar
 from collections import Counter
 from datetime import date, timedelta
 from tools.research_inspector import source_status, citation_text, research_memo
 from storage import SQLiteConnectionProvider
 from identity import normalize_email
 from db_migrations import apply_migrations
+from database_runtime import DatabaseRuntime, DatabaseRuntimeError
+from tenant_context import FirmContext, FirmContextError
 from fastapi import Request
 from fastapi.responses import JSONResponse, HTMLResponse, Response
 
@@ -121,6 +124,56 @@ _connection_provider = SQLiteConnectionProvider(DB, timeout=30)
 _t = _connection_provider._local
 _init_lock = threading.Lock()
 _schema_ready = False
+_active_firm_context = ContextVar("legal_copilot_active_firm_context", default=None)
+_database_runtime = None
+_database_runtime_lock = threading.Lock()
+
+
+def _separate_runtime_enabled():
+    separate_paths = any(os.environ.get(name, "").strip() for name in (
+        "COPILOT_CONTROL_DB", "COPILOT_TENANT_DB_ROOT", "COPILOT_CORPUS_DB"
+    ))
+    if separate_paths:
+        return True
+    # The shared-database compatibility mode is opt-in via an explicit COPILOT_DB.
+    # With no storage configuration, fail closed rather than silently booting the
+    # old shared database architecture.
+    return not os.environ.get("COPILOT_DB", "").strip()
+
+
+def get_database_runtime():
+    global _database_runtime
+    if _database_runtime is None:
+        with _database_runtime_lock:
+            if _database_runtime is None:
+                runtime = DatabaseRuntime.from_env()
+                runtime.initialize()
+                _database_runtime = runtime
+    return _database_runtime
+
+
+def control_conn():
+    """Use the global control plane in the target architecture, legacy DB otherwise."""
+    if _separate_runtime_enabled():
+        return get_database_runtime().control_connection()
+    return _legacy_conn()
+
+
+def corpus_conn():
+    """Use the shared legal corpus in the target architecture, legacy DB otherwise."""
+    if _separate_runtime_enabled():
+        return get_database_runtime().legal_corpus_connection()
+    return _legacy_conn()
+
+
+def conn():
+    """Return the authenticated firm's database; legacy mode remains test-compatible."""
+    if not _separate_runtime_enabled():
+        return _legacy_conn()
+    context = _active_firm_context.get()
+    if not isinstance(context, FirmContext):
+        raise HTTPException(401, "authenticated firm context required")
+    return get_database_runtime().firm_connection(context)
 
 
 def _ensure_legacy_firm_ownership(c):
@@ -163,12 +216,12 @@ def _ensure_legacy_firm_ownership(c):
     """)
 
 
-def conn():
-    """Return a thread-local connection and initialize the configured SQLite schema once.
+def _legacy_conn():
+    """Return the legacy shared connection only when separate database paths are unset.
 
-    The provider is a connection-lifecycle boundary only: it does not select a
-    tenant database or establish firm isolation. The application still uses the
-    single COPILOT_DB path until tenant routing is designed and implemented.
+    The profile-separated runtime is the target architecture. This compatibility
+    path exists only when COPILOT_DB is explicitly configured and none of the
+    separate-database paths is set. Unconfigured startup must fail closed.
     """
     global _schema_ready
     c = _connection_provider.connection()
@@ -331,7 +384,8 @@ def add_chunks(c, rows):
         cur = c.execute("INSERT INTO chunks(ref,article,page,text,norm,case_id,in_force,as_of,source,verified,document_id) VALUES(?,?,?,?,?,?,?,?,?,?,?)",
                         (r["ref"], r.get("article"), r.get("page"), r["text"], norm(r["text"]), r.get("case_id"),
                          int(r.get("in_force", 1)), r.get("as_of"), r.get("source"), int(r.get("verified", 0)), r.get("document_id")))
-        c.execute("INSERT INTO chunks_fts(rowid,norm) VALUES(?,?)", (cur.lastrowid, " ".join(tokens(r["text"]))))
+        if not _separate_runtime_enabled():
+            c.execute("INSERT INTO chunks_fts(rowid,norm) VALUES(?,?)", (cur.lastrowid, " ".join(tokens(r["text"]))))
     c.commit(); return len(rows)
 
 
@@ -447,7 +501,8 @@ def delete_case(c, u, cid):
         (u["firm_id"], cid, u["id"], u["name"], json.dumps(dict(case_row), ensure_ascii=False),
          json.dumps(prior_events, ensure_ascii=False), json.dumps(related_counts, ensure_ascii=False))
     )
-    c.execute("DELETE FROM chunks_fts WHERE rowid IN (SELECT id FROM chunks WHERE case_id=?)", (cid,))
+    if not _separate_runtime_enabled():
+        c.execute("DELETE FROM chunks_fts WHERE rowid IN (SELECT id FROM chunks WHERE case_id=?)", (cid,))
     for t in ("chunks", "sessions", "tasks", "events", "docs", "members", "notes", "deadlines", "fees"): c.execute("DELETE FROM %s WHERE case_id=?" % t, (cid,))
     c.execute("DELETE FROM cases WHERE id=?", (cid,)); c.commit(); return True
 
@@ -499,6 +554,123 @@ def citation_provenance(c, version_id):
     return data
 
 
+_FIRM_SEARCH_SQL = (
+    "SELECT chunks.*, bm25(chunks_fts) AS r FROM chunks_fts "
+    "JOIN chunks ON chunks.id=chunks_fts.rowid "
+    "WHERE chunks_fts MATCH ? AND chunks.case_id=? "
+    "AND chunks.case_id IN (SELECT id FROM cases WHERE firm_id=?) "
+    "ORDER BY r LIMIT 40"
+)
+
+_CORPUS_SEARCH_SQL = (
+    "SELECT chunks.*, bm25(chunks_fts) AS r FROM chunks_fts "
+    "JOIN chunks ON chunks.id=chunks_fts.rowid "
+    "WHERE chunks_fts MATCH ? AND chunks.verified=1 AND EXISTS ("
+    "SELECT 1 FROM legal_document_versions v "
+    "JOIN legal_documents d ON d.document_id=v.document_id "
+    "JOIN legal_sources s ON s.source_id=d.source_id "
+    "WHERE v.version_id=chunks.document_version_id "
+    "AND v.review_status='verified' AND v.authenticity_verified=1 "
+    "AND v.status_verified=1 AND v.amendment_history_verified=1 "
+    "AND s.collection_permission='allowed' AND s.commercial_reuse_permission='allowed' "
+    "AND TRIM(COALESCE(s.permission_evidence,''))<>'' "
+    "AND TRIM(COALESCE(v.permission_evidence,''))<>'' "
+    "AND (v.legal_status='in_force' OR (v.legal_status IN ('repealed','historical') AND v.repeal_date IS NOT NULL)) "
+    "AND v.effective_date IS NOT NULL AND v.effective_date<=? "
+    "AND (v.repeal_date IS NULL OR v.repeal_date>?)"
+    ") ORDER BY r LIMIT 40"
+)
+
+_CORPUS_EXACT_ARTICLE_SQL = (
+    "SELECT chunks.*, 0.0 AS r FROM chunks WHERE article=? AND verified=1 AND EXISTS ("
+    "SELECT 1 FROM legal_document_versions v "
+    "JOIN legal_documents d ON d.document_id=v.document_id "
+    "JOIN legal_sources s ON s.source_id=d.source_id "
+    "WHERE v.version_id=chunks.document_version_id "
+    "AND v.review_status='verified' AND v.authenticity_verified=1 "
+    "AND v.status_verified=1 AND v.amendment_history_verified=1 "
+    "AND s.collection_permission='allowed' AND s.commercial_reuse_permission='allowed' "
+    "AND TRIM(COALESCE(s.permission_evidence,''))<>'' "
+    "AND TRIM(COALESCE(v.permission_evidence,''))<>'' "
+    "AND (v.legal_status='in_force' OR (v.legal_status IN ('repealed','historical') AND v.repeal_date IS NOT NULL)) "
+    "AND v.effective_date IS NOT NULL AND v.effective_date<=? "
+    "AND (v.repeal_date IS NULL OR v.repeal_date>?)"
+    ") LIMIT 20"
+)
+
+
+def _search_separate(c, q, case_id, k, firm_id, as_of, scope):
+    expanded_qt = expanded_tokens(q)
+    if not expanded_qt:
+        return []
+    fts_query = " OR ".join('"%s"' % token.replace('"', '""') for token in expanded_qt)
+    corpus = corpus_conn()
+    qg = grams(q)
+    expanded_qg = grams(" ".join(expanded_qt))
+    article_match = re.search(r"(?:ماده|الماده|article|art)\s*\.?\s*(\d+)", norm(q))
+    rows_with_origin = []
+
+    if scope in {"all_permitted", "firm_documents"} and case_id is not None:
+        rows = c.execute(_FIRM_SEARCH_SQL, (fts_query, case_id, firm_id)).fetchall()
+        for row in rows:
+            rows_with_origin.append((dict(row), "firm", False))
+
+    if scope in {"all_permitted", "verified_corpus"}:
+        corpus_rows = corpus.execute(
+            _CORPUS_SEARCH_SQL, (fts_query, as_of, as_of)
+        ).fetchall()
+        seen = {row["id"] for row in corpus_rows}
+        if article_match:
+            for row in corpus.execute(
+                _CORPUS_EXACT_ARTICLE_SQL,
+                (article_match.group(1), as_of, as_of),
+            ).fetchall():
+                if row["id"] not in seen:
+                    corpus_rows.append(row)
+                    seen.add(row["id"])
+        for row in corpus_rows:
+            rows_with_origin.append((dict(row), "corpus", bool(article_match and str(row.get("article") or "") == article_match.group(1))))
+
+    if not rows_with_origin:
+        return []
+    ranked = []
+    for origin in ("firm", "corpus"):
+        subset = [(row, exact) for row, source, exact in rows_with_origin if source == origin]
+        if not subset:
+            continue
+        strengths = {row["id"]: max(0.0, -float(row.get("r") or 0.0)) for row, _ in subset}
+        top = max(strengths.values()) or 1.0
+        for row, exact in subset:
+            text_value = row.get("text") or ""
+            original_match = rel(qg, grams(text_value))
+            expanded_match = rel(expanded_qg, grams(text_value))
+            cosine = max(original_match, 0.85 * expanded_match)
+            strength = strengths[row["id"]]
+            version_id = row.get("document_version_id") if origin == "corpus" else None
+            item = {
+                "id": row["id"], "ref": row.get("ref"), "text": text_value,
+                "matched_terms": matched_surface_terms(text_value, expanded_qt),
+                "in_force": bool(row.get("in_force")), "verified": bool(row.get("verified")),
+                "as_of": row.get("as_of"), "source": row.get("source"),
+                "cos": round(cosine, 3), "literal_match": round(original_match, 3),
+                "expanded_match": round(expanded_match, 3),
+                "score": 0.5 * strength / top + 0.5 * cosine + (1 if exact else 0),
+                "requested_as_of": as_of, "document_version_id": version_id,
+                "article": row.get("article"), "page": row.get("page"),
+                "case_id": row.get("case_id") if origin == "firm" else None,
+                "scope": "firm_documents" if origin == "firm" else "verified_corpus",
+                "applies_as_of": bool(row.get("in_force")) if version_id is None else True,
+                "provenance": (
+                    citation_provenance(corpus, version_id) if origin == "corpus"
+                    else {"status": "firm_document", "message": "Firm document; not independent legal authority."}
+                ),
+            }
+            item["source_status"] = source_status(item, as_of)
+            item["citation"] = citation_text(item, as_of)
+            ranked.append(item)
+    return sorted(ranked, key=lambda item: -item["score"])[:k]
+
+
 def search(c, q, case_id=None, k=5, firm_id=1, as_of=None, scope="all_permitted"):
     if scope not in {"all_permitted", "verified_corpus", "firm_documents"}:
         raise ValueError("scope must be verified_corpus, firm_documents, or all_permitted")
@@ -511,6 +683,8 @@ def search(c, q, case_id=None, k=5, firm_id=1, as_of=None, scope="all_permitted"
         date.fromisoformat(as_of)
     except (TypeError, ValueError):
         raise ValueError("as_of must be an ISO date YYYY-MM-DD")
+    if _separate_runtime_enabled():
+        return _search_separate(c, q, case_id, k, firm_id, as_of, scope)
     cand, exact = {}, set()
     qt, expanded_qt = tokens(q), expanded_tokens(q)
     if expanded_qt:
@@ -757,7 +931,7 @@ def _rate_limit(request: Request):
     peer = request.client.host if request.client else "unknown"
     now = time.time()
     window_start = int(now // window_seconds) * window_seconds
-    db = conn()
+    db = control_conn()
     cursor = db.execute(
         """INSERT INTO api_rate_limit_windows(bucket,client_key,window_start,hits)
            VALUES(?,?,?,1)
@@ -780,20 +954,56 @@ def _rate_limit(request: Request):
         return max(1, int(window_start + window_seconds - now))
     return 0
 
+def _request_firm_context(request: Request):
+    """Resolve a request's selected firm before sync route handlers run in a threadpool."""
+    token = request.cookies.get("lc_session", "")
+    if not token:
+        return None
+    control = control_conn()
+    row = control.execute(
+        "SELECT s.user_id,u.status FROM auth_sessions s JOIN users u ON u.id=s.user_id "
+        "WHERE s.token_hash=? AND s.expires>?",
+        (sha(token), int(time.time())),
+    ).fetchone()
+    if row is None or row["status"] != "active":
+        return None
+    firms = _active_firms_for_user(row["user_id"])
+    if not firms:
+        return None
+    raw_firm = request.cookies.get("lc_firm")
+    if raw_firm is None:
+        firm_id = firms[0]["firm_id"]
+    else:
+        try:
+            firm_id = int(raw_firm)
+        except (TypeError, ValueError):
+            return None
+    try:
+        return get_database_runtime().resolve_context(row["user_id"], firm_id)
+    except FirmContextError:
+        return None
+
+
 @app.middleware("http")
 async def security_headers(request: Request, call_next):
     nonce = secrets.token_urlsafe(18)
     request.state.csp_nonce = nonce
-    retry_after = _rate_limit(request)
+    context_token = _active_firm_context.set(None)
     try:
-        if retry_after:
-            response = JSONResponse(status_code=429,
-                                    content={"detail": "rate limit exceeded; try again later"},
-                                    headers={"Retry-After": str(retry_after)})
-        else:
-            response = await call_next(request)
-    except OverflowError:
-        response = JSONResponse(status_code=404, content={"detail": "not found"})
+        retry_after = _rate_limit(request)
+        if not retry_after and _separate_runtime_enabled():
+            _active_firm_context.set(_request_firm_context(request))
+        try:
+            if retry_after:
+                response = JSONResponse(status_code=429,
+                                        content={"detail": "rate limit exceeded; try again later"},
+                                        headers={"Retry-After": str(retry_after)})
+            else:
+                response = await call_next(request)
+        except OverflowError:
+            response = JSONResponse(status_code=404, content={"detail": "not found"})
+    finally:
+        _active_firm_context.reset(context_token)
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.headers["X-Frame-Options"] = "DENY"
     response.headers["Referrer-Policy"] = "no-referrer"
@@ -806,6 +1016,10 @@ async def security_headers(request: Request, call_next):
 @app.exception_handler(OverflowError)
 async def integer_overflow_handler(request: Request, exc: OverflowError):
     return JSONResponse(status_code=404, content={"detail": "not found"})
+
+@app.exception_handler(DatabaseRuntimeError)
+async def database_runtime_error_handler(request: Request, exc: DatabaseRuntimeError):
+    return JSONResponse(status_code=503, content={"detail": "database runtime unavailable"})
 ROLES = r"^(lead|associate|junior)$"
 
 def validate_calendar_date(value):
@@ -828,6 +1042,10 @@ def validate_operational_deadline(value):
 
 class Q(BaseModel): q: str = Field(min_length=1, max_length=500); case_id: int | None = None; as_of: str | None = Field(default=None, pattern=r"^\d{4}-\d{2}-\d{2}$"); scope: str = Field(default="all_permitted", pattern=r"^(verified_corpus|firm_documents|all_permitted)$")
 class LoginIn(BaseModel): email: str = Field(max_length=200); password: str = Field(max_length=200)
+class FirmSwitchIn(BaseModel):
+    firm_id: int = Field(gt=0)
+
+
 class PasswordChangeIn(BaseModel):
     current_password: str = Field(min_length=1, max_length=200)
     new_password: str = Field(min_length=12, max_length=200)
@@ -905,9 +1123,71 @@ class LawRow(BaseModel):
 def sha(t): return hashlib.sha256(t.encode()).hexdigest()
 
 
-def user(request: Request, session_cookie: str = Cookie(None, alias="lc_session"),
+def _user_separate(
+    request: Request,
+    response: Response,
+    session_cookie: str | None,
+    csrf_cookie: str | None,
+    csrf_header: str | None,
+    firm_cookie: str | None,
+):
+    token = session_cookie or ""
+    if not token:
+        raise HTTPException(401, "unauthorized")
+    c = control_conn()
+    account = c.execute(
+        "SELECT s.user_id,s.expires,u.id,u.name,u.email_display,u.email_normalized,u.status "
+        "FROM auth_sessions s JOIN users u ON u.id=s.user_id "
+        "WHERE s.token_hash=? AND s.expires>?",
+        (sha(token), int(time.time())),
+    ).fetchone()
+    if not account or account["status"] != "active":
+        c.execute("DELETE FROM auth_sessions WHERE token_hash=?", (sha(token),))
+        c.commit()
+        raise HTTPException(401, "unauthorized")
+    firms = _active_firms_for_user(account["id"])
+    if not firms:
+        raise HTTPException(401, "no active firm membership")
+    if firm_cookie is None:
+        firm_id = firms[0]["firm_id"]
+        secure = request.url.scheme == "https"
+        response.set_cookie("lc_firm", str(firm_id), max_age=43200, httponly=True,
+                            secure=secure, samesite="lax", path="/")
+    else:
+        try:
+            firm_id = int(firm_cookie)
+        except (TypeError, ValueError):
+            raise HTTPException(403, "invalid firm context")
+    try:
+        context = get_database_runtime().resolve_context(account["id"], firm_id)
+    except FirmContextError as exc:
+        raise HTTPException(403, "active firm membership required") from exc
+    _active_firm_context.set(context)
+
+    if request.method not in ("GET", "HEAD", "OPTIONS"):
+        if not csrf_cookie or not csrf_header or not hmac.compare_digest(csrf_cookie, csrf_header):
+            raise HTTPException(403, "csrf check failed")
+        origin = request.headers.get("origin")
+        if origin:
+            from urllib.parse import urlsplit
+            parsed = urlsplit(origin)
+            if parsed.netloc != request.url.netloc or parsed.scheme != request.url.scheme:
+                raise HTTPException(403, "cross-origin request blocked")
+    return {
+        "id": account["id"], "name": account["name"], "email": account["email_display"],
+        "email_normalized": account["email_normalized"], "role": context.role,
+        "firm_id": context.firm_id, "active": 1, "firms": firms,
+        "platform_roles": _platform_roles_for_user(account["id"]),
+    }
+
+
+def user(request: Request, response: Response,
+         session_cookie: str = Cookie(None, alias="lc_session"),
          csrf_cookie: str = Cookie(None, alias="lc_csrf"),
-         csrf_header: str = Header(None, alias="X-CSRF-Token")):
+         csrf_header: str = Header(None, alias="X-CSRF-Token"),
+         firm_cookie: str = Cookie(None, alias="lc_firm")):
+    if _separate_runtime_enabled():
+        return _user_separate(request, response, session_cookie, csrf_cookie, csrf_header, firm_cookie)
     tok = session_cookie or ""
     if not tok:
         raise HTTPException(401, "unauthorized")
@@ -917,8 +1197,6 @@ def user(request: Request, session_cookie: str = Cookie(None, alias="lc_session"
     if not r or not r["active"] or r["firm_id"] is None:
         c.execute("DELETE FROM auth_sessions WHERE token_hash=?", (token_hash,)); c.commit()
         raise HTTPException(401, "unauthorized")
-    # Cookie-based sessions are not readable by JavaScript. Mutating requests require
-    # a matching double-submit CSRF token and, when present, a same-origin Origin.
     if request.method not in ("GET", "HEAD", "OPTIONS"):
         if not csrf_cookie or not csrf_header or not hmac.compare_digest(csrf_cookie, csrf_header):
             raise HTTPException(403, "csrf check failed")
@@ -940,7 +1218,16 @@ def require_admin(u):
 
 
 def require_platform_legal_reviewer(u):
-    """Restrict global legal-registry access to explicitly configured reviewer identities."""
+    """Authorize corpus administration through the separate platform-role domain."""
+    if _separate_runtime_enabled():
+        roles = {
+            row["role_name"] for row in control_conn().execute(
+                "SELECT role_name FROM user_platform_roles WHERE user_id=?", (u["id"],)
+            ).fetchall()
+        }
+        if not roles.intersection({"platform_reviewer", "platform_admin"}):
+            raise HTTPException(403, "platform legal reviewer only")
+        return
     if u["role"] != "admin":
         raise HTTPException(403, "platform legal reviewer only")
     allowed = {normalize_email(email) for email in os.environ.get("LEGAL_REVIEWER_EMAILS", "").split(",") if email.strip()}
@@ -1011,8 +1298,116 @@ def home(request: Request):
     return HTMLResponse(page)
 
 
+def _platform_roles_for_user(user_id: int):
+    return [row["role_name"] for row in control_conn().execute(
+        "SELECT role_name FROM user_platform_roles WHERE user_id=? ORDER BY role_name",
+        (user_id,),
+    ).fetchall()]
+
+
+def _active_firms_for_user(user_id: int):
+    rows = control_conn().execute(
+        "SELECT fm.firm_id,f.name,fm.firm_role FROM firm_memberships fm "
+        "JOIN firms f ON f.id=fm.firm_id "
+        "JOIN users u ON u.id=fm.user_id "
+        "WHERE fm.user_id=? AND fm.status='active' AND f.status='active' AND u.status='active' "
+        "ORDER BY fm.firm_id",
+        (user_id,),
+    ).fetchall()
+    return [{"firm_id": row["firm_id"], "firm_name": row["name"], "role": row["firm_role"]} for row in rows]
+
+
+def _login_separate(b: LoginIn, request: Request, response: Response):
+    k = normalize_email(b.email)
+    now = int(time.time())
+    ip = request.client.host if request.client else "unknown"
+    identifiers = (k, "ip:" + ip)
+    c = control_conn()
+    attempts = {row["email"]: row for row in c.execute(
+        "SELECT email,failures,window_start,locked_until FROM login_attempts WHERE email IN (?,?)",
+        identifiers,
+    ).fetchall()}
+    active_locks = [row["locked_until"] for row in attempts.values() if row["locked_until"] > now]
+    if active_locks:
+        raise HTTPException(429, "too many attempts, try later",
+                            headers={"Retry-After": str(max(1, max(active_locks) - now))})
+    if not _LOGIN_HASH_SLOTS.acquire(blocking=False):
+        raise HTTPException(429, "login temporarily busy; try again shortly", headers={"Retry-After": "1"})
+    try:
+        account = c.execute(
+            "SELECT id,name,email_display,password_hash,status FROM users WHERE email_normalized=?",
+            (k,),
+        ).fetchone()
+        dummy_salt = bytes.fromhex("00112233445566778899aabbccddeeff")
+        if account:
+            try:
+                valid = check_pw(b.password, account["password_hash"])
+            except (ValueError, TypeError):
+                valid = False
+        else:
+            hash_pw(b.password, dummy_salt)
+            valid = False
+    finally:
+        _LOGIN_HASH_SLOTS.release()
+
+    c.execute("BEGIN IMMEDIATE")
+    c.execute("DELETE FROM login_attempts WHERE locked_until<=? AND window_start<?", (now, now - 86400))
+    c.execute("DELETE FROM login_attempts WHERE email IN ("
+              "SELECT email FROM login_attempts ORDER BY window_start DESC, rowid DESC LIMIT -1 OFFSET 10000)")
+    attempts = {row["email"]: row for row in c.execute(
+        "SELECT email,failures,window_start,locked_until FROM login_attempts WHERE email IN (?,?)",
+        identifiers,
+    ).fetchall()}
+    active_locks = [row["locked_until"] for row in attempts.values() if row["locked_until"] > now]
+    if active_locks:
+        c.rollback()
+        raise HTTPException(429, "too many attempts, try later",
+                            headers={"Retry-After": str(max(1, max(active_locks) - now))})
+
+    memberships = _active_firms_for_user(account["id"]) if account and account["status"] == "active" and valid else []
+    if not account or account["status"] != "active" or not valid or not memberships:
+        locked = False
+        for identifier in identifiers:
+            row = attempts.get(identifier)
+            if not row or now - row["window_start"] >= 300:
+                failures, window_start = 1, now
+            else:
+                failures, window_start = row["failures"] + 1, row["window_start"]
+            threshold = 20 if identifier.startswith("ip:") else 5
+            lock_seconds = min(300, 30 * (2 ** min(4, max(0, failures - threshold))))
+            locked_until = now + lock_seconds if failures >= threshold else 0
+            locked = locked or locked_until > now
+            c.execute(
+                "INSERT INTO login_attempts(email,failures,window_start,locked_until) VALUES(?,?,?,?) "
+                "ON CONFLICT(email) DO UPDATE SET failures=excluded.failures,window_start=excluded.window_start,locked_until=excluded.locked_until",
+                (identifier, failures, window_start, locked_until),
+            )
+        c.commit()
+        raise HTTPException(429 if locked else 401,
+                            "too many attempts, try later" if locked else "bad credentials")
+
+    c.execute("DELETE FROM login_attempts WHERE email IN (?,?)", identifiers)
+    token, csrf = secrets.token_urlsafe(32), secrets.token_urlsafe(32)
+    c.execute("DELETE FROM auth_sessions WHERE expires<?", (now,))
+    c.execute("INSERT INTO auth_sessions(token_hash,user_id,expires) VALUES(?,?,?)",
+              (sha(token), account["id"], now + 43200))
+    c.commit()
+    first_firm = memberships[0]
+    secure = request.url.scheme == "https"
+    response.set_cookie("lc_session", token, max_age=43200, httponly=True, secure=secure, samesite="lax", path="/")
+    response.set_cookie("lc_csrf", csrf, max_age=43200, httponly=False, secure=secure, samesite="lax", path="/")
+    response.set_cookie("lc_firm", str(first_firm["firm_id"]), max_age=43200, httponly=True, secure=secure, samesite="lax", path="/")
+    return {
+        "id": account["id"], "name": account["name"], "role": first_firm["role"],
+        "firm_id": first_firm["firm_id"], "firms": memberships,
+        "platform_roles": _platform_roles_for_user(account["id"]),
+    }
+
+
 @app.post("/login")
 def login(b: LoginIn, request: Request, response: Response):
+    if _separate_runtime_enabled():
+        return _login_separate(b, request, response)
     k = normalize_email(b.email)
     now = int(time.time())
     ip = request.client.host if request.client else "unknown"
@@ -1091,36 +1486,76 @@ def login(b: LoginIn, request: Request, response: Response):
 
 @app.get("/session")
 def current_session(u: dict = Depends(user)):
-    return {"id": u["id"], "name": u["name"], "role": u["role"], "firm_id": u["firm_id"]}
+    result = {"id": u["id"], "name": u["name"], "role": u["role"], "firm_id": u["firm_id"]}
+    if _separate_runtime_enabled():
+        result["firms"] = _active_firms_for_user(u["id"])
+        result["platform_roles"] = _platform_roles_for_user(u["id"])
+    return result
+
+
+@app.post("/session/firm")
+def switch_firm(b: FirmSwitchIn, request: Request, response: Response, u: dict = Depends(user)):
+    if not _separate_runtime_enabled():
+        raise HTTPException(404, "firm switching is available only in separate-database mode")
+    try:
+        context = get_database_runtime().resolve_context(u["id"], b.firm_id)
+    except FirmContextError as exc:
+        raise HTTPException(403, "active firm membership required") from exc
+    response.set_cookie("lc_firm", str(context.firm_id), max_age=43200,
+                        httponly=True, secure=request.url.scheme == "https",
+                        samesite="lax", path="/")
+    return {"id": u["id"], "name": u["name"], "role": context.role,
+            "firm_id": context.firm_id, "firms": _active_firms_for_user(u["id"]),
+            "platform_roles": _platform_roles_for_user(u["id"])}
 
 
 @app.post("/logout")
 def logout(request: Request, response: Response, u: dict = Depends(user)):
     tok = request.cookies.get("lc_session", "")
-    c = conn()
+    c = control_conn()
     c.execute("DELETE FROM auth_sessions WHERE token_hash=? AND user_id=?", (sha(tok), u["id"]))
     c.commit()
-    response.delete_cookie("lc_session", path="/", httponly=True, samesite="lax", secure=request.url.scheme == "https")
-    response.delete_cookie("lc_csrf", path="/", samesite="lax", secure=request.url.scheme == "https")
+    for cookie in ("lc_session", "lc_csrf", "lc_firm"):
+        response.delete_cookie(cookie, path="/", httponly=(cookie != "lc_csrf"),
+                               samesite="lax", secure=request.url.scheme == "https")
     return {"ok": True}
 
 
 
 @app.post("/account/password")
 def change_password(b: PasswordChangeIn, request: Request, response: Response, u: dict = Depends(user)):
-    c = conn()
-    row = c.execute("SELECT pw FROM users WHERE id=? AND active=1", (u["id"],)).fetchone()
-    if not row or not check_pw(b.current_password, row["pw"]):
-        raise HTTPException(403, "current password is incorrect")
-    if check_pw(b.new_password, row["pw"]):
-        raise HTTPException(422, "new password must differ from current password")
-    c.execute("BEGIN IMMEDIATE")
-    c.execute("UPDATE users SET pw=? WHERE id=? AND active=1", (hash_pw(b.new_password), u["id"]))
-    c.execute("DELETE FROM auth_sessions WHERE user_id=?", (u["id"],))
-    c.execute("INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)", (u["firm_id"], u["id"], "password_changed_sessions_revoked"))
-    c.commit()
-    response.delete_cookie("lc_session", path="/", httponly=True, samesite="lax", secure=request.url.scheme == "https")
-    response.delete_cookie("lc_csrf", path="/", samesite="lax", secure=request.url.scheme == "https")
+    if _separate_runtime_enabled():
+        control = control_conn()
+        row = control.execute("SELECT password_hash FROM users WHERE id=? AND status='active'", (u["id"],)).fetchone()
+        if not row or not check_pw(b.current_password, row["password_hash"]):
+            raise HTTPException(403, "current password is incorrect")
+        if check_pw(b.new_password, row["password_hash"]):
+            raise HTTPException(422, "new password must differ from current password")
+        control.execute("BEGIN IMMEDIATE")
+        control.execute("UPDATE users SET password_hash=?,updated_at=datetime('now') WHERE id=? AND status='active'",
+                        (hash_pw(b.new_password), u["id"]))
+        control.execute("DELETE FROM auth_sessions WHERE user_id=?", (u["id"],))
+        control.commit()
+        audit = conn()
+        audit.execute("INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
+                      (u["firm_id"], u["id"], "password_changed_sessions_revoked"))
+        audit.commit()
+    else:
+        c = conn()
+        row = c.execute("SELECT pw FROM users WHERE id=? AND active=1", (u["id"],)).fetchone()
+        if not row or not check_pw(b.current_password, row["pw"]):
+            raise HTTPException(403, "current password is incorrect")
+        if check_pw(b.new_password, row["pw"]):
+            raise HTTPException(422, "new password must differ from current password")
+        c.execute("BEGIN IMMEDIATE")
+        c.execute("UPDATE users SET pw=? WHERE id=? AND active=1", (hash_pw(b.new_password), u["id"]))
+        c.execute("DELETE FROM auth_sessions WHERE user_id=?", (u["id"],))
+        c.execute("INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
+                  (u["firm_id"], u["id"], "password_changed_sessions_revoked"))
+        c.commit()
+    for cookie in ("lc_session", "lc_csrf", "lc_firm"):
+        response.delete_cookie(cookie, path="/", httponly=(cookie != "lc_csrf"),
+                               samesite="lax", secure=request.url.scheme == "https")
     return {"ok": True, "sessions_revoked": True, "login_required": True}
 
 
@@ -1153,7 +1588,7 @@ def conflict_check(b: Q, u: dict = Depends(user)):
 @app.get("/legal-review/queue")
 def legal_review_queue(u: dict = Depends(user)):
     require_platform_legal_reviewer(u)
-    c = conn()
+    c = corpus_conn()
     rows = c.execute(
         "SELECT v.version_id,v.document_id,v.version_label,v.source_url,v.publication_date,"
         "v.effective_date,v.repeal_date,v.legal_status,v.review_status,v.authenticity_verified,"
@@ -1175,7 +1610,7 @@ def legal_review_queue(u: dict = Depends(user)):
 def legal_review_coverage(u: dict = Depends(user)):
     """Permission-aware registry metrics; these counts do not certify legal completeness."""
     require_platform_legal_reviewer(u)
-    c = conn()
+    c = corpus_conn()
     today = date.today().isoformat()
     metrics = c.execute(
         "SELECT "
@@ -1244,7 +1679,7 @@ def legal_review_catalog(
     collection_permission = collection_permission.strip()[:100]
     commercial_reuse_permission = commercial_reuse_permission.strip()[:100]
     limit = max(1, min(limit, 200))
-    c = conn()
+    c = corpus_conn()
     if kind == "sources":
         rows = c.execute(
             "SELECT s.source_id,s.authority,s.source_page,"
@@ -1291,7 +1726,7 @@ def legal_review_catalog(
 @app.get("/legal-review/versions/{version_id}/events")
 def legal_review_events(version_id: int, u: dict = Depends(user)):
     require_platform_legal_reviewer(u)
-    c = conn()
+    c = corpus_conn()
     version = c.execute("SELECT version_id,document_id,version_label,source_url,review_status,legal_status FROM legal_document_versions WHERE version_id=?", (version_id,)).fetchone()
     if not version:
         raise HTTPException(404, "legal document version not found")
@@ -1309,7 +1744,7 @@ def create_legal_review_event(version_id: int, b: LegalReviewEventIn, u: dict = 
     evidence_url = validate_review_evidence_url(b.evidence_url)
     if b.outcome == "pass" and not evidence_url:
         raise HTTPException(422, "a passing review requires an HTTPS evidence_url")
-    c = conn()
+    c = corpus_conn()
     if not c.execute("SELECT 1 FROM legal_document_versions WHERE version_id=?", (version_id,)).fetchone():
         raise HTTPException(404, "legal document version not found")
     cur = c.execute(
@@ -1325,16 +1760,37 @@ def create_legal_review_event(version_id: int, b: LegalReviewEventIn, u: dict = 
 
 @app.get("/users")
 def users(u: dict = Depends(user)):
+    if _separate_runtime_enabled():
+        return [dict(r) for r in conn().execute(
+            "SELECT id,name,role,active FROM users WHERE firm_id=? AND active=1 ORDER BY name",
+            (u["firm_id"],)
+        )]
     return [dict(r) for r in conn().execute("SELECT id,name,role,active FROM users WHERE firm_id=? ORDER BY name", (u["firm_id"],))]
 
 
 @app.post("/users/{uid}/disable")
 def disable_user(uid: int, u: dict = Depends(user)):
     require_admin(u)
+    if uid == u["id"]:
+        raise HTTPException(422, "cannot disable your own account")
+    if _separate_runtime_enabled():
+        c = control_conn()
+        target = c.execute(
+            "SELECT id FROM firm_memberships WHERE user_id=? AND firm_id=? AND status='active'",
+            (uid, u["firm_id"]),
+        ).fetchone()
+        if not target:
+            raise HTTPException(404, "user not found")
+        c.execute(
+            "UPDATE firm_memberships SET status='suspended',updated_at=datetime('now') "
+            "WHERE user_id=? AND firm_id=? AND status='active'",
+            (uid, u["firm_id"]),
+        )
+        c.commit()
+        return {"ok": True, "membership_suspended": True}
     c = conn()
     target = c.execute("SELECT id FROM users WHERE id=? AND firm_id=?", (uid, u["firm_id"])).fetchone()
     if not target: raise HTTPException(404, "user not found")
-    if uid == u["id"]: raise HTTPException(422, "cannot disable your own account")
     c.execute("UPDATE users SET active=0 WHERE id=?", (uid,))
     c.execute("DELETE FROM auth_sessions WHERE user_id=?", (uid,))
     c.commit()
@@ -1344,6 +1800,25 @@ def disable_user(uid: int, u: dict = Depends(user)):
 @app.post("/users")
 def create_user(b: UserCreateIn, u: dict = Depends(user)):
     require_admin(u)
+    if _separate_runtime_enabled():
+        c = control_conn()
+        try:
+            cur = c.execute(
+                "INSERT INTO users(name,email_display,email_normalized,password_hash,status) "
+                "VALUES(?,?,?,?,'active')",
+                (b.name.strip(), b.email.strip(), normalize_email(b.email), hash_pw(b.password)),
+            )
+            user_id = cur.lastrowid
+            c.execute(
+                "INSERT INTO firm_memberships(user_id,firm_id,firm_role,status,created_by_user_id) "
+                "VALUES(?,?,?,'active',?)",
+                (user_id, u["firm_id"], b.role, u["id"]),
+            )
+            c.commit()
+        except sqlite3.IntegrityError:
+            c.rollback()
+            raise HTTPException(409, "email already exists or membership is invalid")
+        return {"id": user_id, "name": b.name.strip(), "role": b.role}
     c = conn()
     try:
         cur = c.execute("INSERT INTO users(name,email,pw,role,firm_id) VALUES(?,?,?,?,?)",
@@ -1519,7 +1994,7 @@ def patch_case(cid: int, b: CasePatch, u: dict = Depends(user)):
 @app.post("/cases/{cid}/members")
 def add_member(cid: int, b: MemberIn, u: dict = Depends(user)):
     c = conn(); need(c, u, cid, lead=True)
-    if not c.execute("SELECT 1 FROM users WHERE id=? AND firm_id=?", (b.user_id, u["firm_id"])).fetchone(): raise HTTPException(404, "user not found")
+    if not c.execute("SELECT 1 FROM users WHERE id=? AND firm_id=? AND active=1", (b.user_id, u["firm_id"])).fetchone(): raise HTTPException(404, "active firm member not found")
     c.execute("INSERT OR REPLACE INTO members VALUES(?,?,?)", (cid, b.user_id, b.role)); log(c, cid, u["name"], "تحديث الفريق"); c.commit(); return {"ok": True}
 
 
@@ -1705,8 +2180,9 @@ def review_document_chunk(cid: int, document_id: int, chunk_id: int, b: Extracti
         if updated.rowcount != 1:
             c.rollback()
             raise HTTPException(409, "extracted text changed during review; reload the latest text and retry")
-        c.execute("DELETE FROM chunks_fts WHERE rowid=?", (chunk_id,))
-        c.execute("INSERT INTO chunks_fts(rowid,norm) VALUES(?,?)", (chunk_id, " ".join(tokens(corrected))))
+        if not _separate_runtime_enabled():
+            c.execute("DELETE FROM chunks_fts WHERE rowid=?", (chunk_id,))
+            c.execute("INSERT INTO chunks_fts(rowid,norm) VALUES(?,?)", (chunk_id, " ".join(tokens(corrected))))
     elif b.page_reference.strip():
         c.execute("UPDATE chunks SET page=? WHERE id=? AND document_id=? AND case_id=? AND text=?",
                   (b.page_reference.strip(), chunk_id, document_id, cid, old_text))
@@ -1764,7 +2240,10 @@ def security_events(limit: int = 50, offset: int = 0, u: dict = Depends(user)):
 @app.post("/law/import")
 def law_import(rows: list[LawRow], x_admin_token: str = Header(None), u: dict = Depends(user)):
     tok = os.environ.get("ADMIN_TOKEN", "")
-    if u["role"] != "admin": raise HTTPException(403, "admin only")
+    if _separate_runtime_enabled():
+        require_platform_legal_reviewer(u)
+    elif u["role"] != "admin":
+        raise HTTPException(403, "admin only")
     if len(tok) < 32 or not hmac.compare_digest(tok, x_admin_token or ""): raise HTTPException(403, "forbidden")
     if len(rows) > 5000: raise HTTPException(413, "max 5000 rows per call")
     # Bulk legacy imports have no mandatory link to a reviewed registry version.
@@ -1775,12 +2254,29 @@ def law_import(rows: list[LawRow], x_admin_token: str = Header(None), u: dict = 
         item["verified"] = 0
         item["in_force"] = 0
         import_rows.append(item)
-    imported = import_law(conn(), import_rows)
+    if _separate_runtime_enabled():
+        require_platform_legal_reviewer(u)
+        c = corpus_conn()
+        c.executemany(
+            "INSERT INTO legal_import_staging(law,article,text,norm,source,submitted_by_user_id) "
+            "VALUES(?,?,?,?,?,?)",
+            [(str(row["law"]), str(row["article"]), str(row["text"]), norm(str(row["text"])),
+              row.get("source"), u["id"]) for row in import_rows],
+        )
+        c.commit()
+        imported = len(import_rows)
+    else:
+        imported = import_law(conn(), import_rows)
+    warning = (
+        "Bulk-imported passages remain in review staging and are not searchable until linked to a legal-document version and approved through the legal-source workflow."
+        if _separate_runtime_enabled()
+        else "Bulk-imported passages remain unverified and not in force until linked to a legal-document version and reviewed through the legal-source workflow."
+    )
     return {
         "imported": imported,
         "review_required": True,
         "search_eligible": False,
-        "warning": "Bulk-imported passages remain unverified and not in force until linked to a legal-document version and reviewed through the legal-source workflow."
+        "warning": warning,
     }
 
 
@@ -1823,7 +2319,7 @@ def discover_research_metadata(b: ResearchDiscoveryIn, u: dict = Depends(user)):
         date.fromisoformat(as_of)
     except ValueError:
         raise HTTPException(422, "invalid as_of date")
-    c = conn()
+    c = corpus_conn()
     terms = [x.strip() for x in b.q.split() if x.strip()][:8]
     if not terms:
         raise HTTPException(422, "query must contain searchable terms")

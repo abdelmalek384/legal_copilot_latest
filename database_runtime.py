@@ -1,9 +1,9 @@
-"""Profile-separated database runtime for the approved firm-per-database architecture.
+"""Profile-separated runtime for the approved firm-per-database architecture.
 
-This module is independent of app.py so the runtime boundary can be tested
-before application routes are switched over. It provides control-plane, firm,
-and shared-corpus connections. Route handlers must establish a verified
-FirmContext before requesting a firm connection.
+When explicit control-plane, tenant-root, and legal-corpus paths are configured,
+app.py routes authentication through the control plane, matter operations through
+the active firm's database, and legal-registry/search operations through the
+central corpus. Firm connections require a server-validated FirmContext.
 """
 from __future__ import annotations
 
@@ -336,6 +336,49 @@ class DatabaseRuntime:
         lookup = sqlite_membership_lookup(control)
         return resolve_firm_context({"id": user_id}, firm_id, lookup)
 
+    def _configure_firm_connection(self, connection: sqlite3.Connection, firm_id: int) -> None:
+        """Attach shared profiles and expose views scoped to this connection's firm."""
+        expected = {
+            "control": self.paths.control_plane.resolve(),
+            "corpus": self.paths.legal_corpus.resolve(),
+        }
+        attached = {
+            row["name"]: Path(row["file"]).resolve()
+            for row in connection.execute("PRAGMA database_list")
+            if row["name"] not in {"main", "temp"} and row["file"]
+        }
+        for alias, path in expected.items():
+            existing = attached.get(alias)
+            if existing is not None and existing != path:
+                raise DatabaseRuntimeError(f"Unexpected database attached as {alias}")
+            if existing is None:
+                connection.execute(f"ATTACH DATABASE ? AS {alias}", (str(path),))
+
+        # Existing matter handlers expect a firm-scoped users table. A temp
+        # context table prevents a user with multiple memberships from appearing
+        # multiple times or exposing another firm's role in joins.
+        connection.execute(
+            "CREATE TEMP TABLE IF NOT EXISTS _active_firm_context(firm_id INTEGER NOT NULL)"
+        )
+        connection.execute("DELETE FROM _active_firm_context")
+        connection.execute(
+            "INSERT INTO _active_firm_context(firm_id) VALUES(?)", (firm_id,)
+        )
+        connection.execute("""
+            CREATE TEMP VIEW IF NOT EXISTS users AS
+            SELECT u.id, u.name, u.email_display AS email, u.email_normalized,
+                   u.password_hash AS pw, fm.firm_role AS role, fm.firm_id,
+                   CASE WHEN u.status='active' AND fm.status='active' THEN 1 ELSE 0 END AS active
+            FROM control.users u
+            JOIN control.firm_memberships fm ON fm.user_id=u.id
+            JOIN _active_firm_context current_firm ON current_firm.firm_id=fm.firm_id
+        """)
+        connection.execute("""
+            CREATE TEMP VIEW IF NOT EXISTS firms AS
+            SELECT f.id, f.name, f.status, f.created_at FROM control.firms f
+            JOIN _active_firm_context current_firm ON current_firm.firm_id=f.id
+        """)
+
     def firm_connection(self, context: FirmContext) -> sqlite3.Connection:
         """Return a firm connection only after revalidating membership and current role."""
         if not isinstance(context, FirmContext):
@@ -344,8 +387,10 @@ class DatabaseRuntime:
         if current.role != context.role:
             raise FirmContextError("firm role changed; resolve the current context before continuing")
         try:
-            return self._tenant_router.connection_for_firm(current.firm_id)
-        except (TenantConnectionError, ValueError) as exc:
+            connection = self._tenant_router.connection_for_firm(current.firm_id)
+            self._configure_firm_connection(connection, current.firm_id)
+            return connection
+        except (TenantConnectionError, ValueError, sqlite3.Error) as exc:
             raise DatabaseRuntimeError(
                 "Firm database is unavailable; no shared fallback is permitted"
             ) from exc
