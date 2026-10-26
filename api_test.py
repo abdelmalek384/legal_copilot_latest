@@ -565,6 +565,12 @@ permission_filtered = c.get("/legal-review/catalog?kind=sources&collection_permi
 assert permission_filtered.status_code == 200, permission_filtered.text
 assert any(x["source_id"] == "COVERAGE-METADATA-SOURCE" for x in permission_filtered.json()["items"])
 assert all(x["source_id"] != "COVERAGE-TEST-SOURCE" for x in permission_filtered.json()["items"])
+bounded_catalog = c.get("/legal-review/catalog?kind=sources&limit=999", headers=A_IMPORT)
+assert bounded_catalog.status_code == 200, bounded_catalog.text
+assert bounded_catalog.json()["limit"] == 200 and len(bounded_catalog.json()["items"]) <= 200
+minimum_catalog = c.get("/legal-review/catalog?kind=sources&limit=0", headers=A_IMPORT)
+assert minimum_catalog.status_code == 200 and minimum_catalog.json()["limit"] == 1
+
 
 
 
