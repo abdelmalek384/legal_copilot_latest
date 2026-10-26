@@ -807,6 +807,17 @@ def _safe_llm_endpoint(value):
         return False
 
 
+class _RejectLLMRedirects(urllib.request.HTTPRedirectHandler):
+    """Never forward confidential prompts to an endpoint reached through a redirect."""
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        return None
+
+
+def _llm_open(request, timeout=120):
+    opener = urllib.request.build_opener(_RejectLLMRedirects)
+    return opener.open(request, timeout=timeout)
+
+
 def llm(prompt):
     """Call a configured OpenAI-compatible endpoint only after explicit data-processing approval.
 
@@ -822,7 +833,7 @@ def llm(prompt):
     body = json.dumps({"model": os.environ.get("LLM_MODEL", "local"), "temperature": 0,
                        "messages": [{"role": "system", "content": SYS}, {"role": "user", "content": prompt}]}).encode()
     req = urllib.request.Request(url, body, {"Content-Type": "application/json", "Authorization": "Bearer " + os.environ.get("LLM_KEY", "")})
-    return json.load(urllib.request.urlopen(req, timeout=120))["choices"][0]["message"]["content"]
+    return json.load(_llm_open(req, timeout=120))["choices"][0]["message"]["content"]
 
 
 LLM = llm
