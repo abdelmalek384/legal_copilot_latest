@@ -86,6 +86,40 @@ class DatabaseMigrationRehearsalTests(unittest.TestCase):
         with sqlite3.connect(self.database) as db:
             self.assertEqual(db.execute("SELECT COUNT(*) FROM cases").fetchone()[0], 1)
 
+
+    def test_failed_migration_only_changes_disposable_copy(self):
+        migration_dir = self.root / "failing_migrations"
+        migration_dir.mkdir()
+        (migration_dir / "0001_partial.sql").write_text(
+            "CREATE TABLE should_rollback(id INTEGER); INSERT INTO missing_table VALUES (1);",
+            encoding="utf-8",
+        )
+
+        with self.assertRaises(sqlite3.OperationalError):
+            rehearse(self.database, migration_dir)
+
+        # A failed DDL/data migration must not leak the migration ledger or
+        # partially-created schema back into the source database.
+        with sqlite3.connect(self.database) as db:
+            names = {
+                row[0] for row in db.execute(
+                    "SELECT name FROM sqlite_master WHERE type='table'"
+                )
+            }
+            self.assertNotIn("schema_migrations", names)
+            self.assertNotIn("should_rollback", names)
+            self.assertEqual(db.execute("SELECT firm_id FROM cases WHERE id=1").fetchone()[0], 1)
+            self.assertEqual(db.execute("SELECT COUNT(*) FROM docs").fetchone()[0], 1)
+
+
+    def test_symlinked_source_fails_closed(self):
+        linked_source = self.root / "linked-source.sqlite3"
+        linked_source.symlink_to(self.database)
+        with self.assertRaisesRegex(ValueError, "must not be a symlink"):
+            rehearse(linked_source, self.migrations)
+        with sqlite3.connect(self.database) as db:
+            self.assertEqual(db.execute("SELECT firm_id FROM cases WHERE id=1").fetchone()[0], 1)
+
     def test_missing_source_fails_closed(self):
         with self.assertRaises(FileNotFoundError):
             rehearse(self.root / "missing.sqlite3", self.migrations)
