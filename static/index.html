@@ -396,7 +396,7 @@ async function reviewWorkbench(){
      h('div',{className:'mut',textContent:txt('تاريخ النفاذ: ','Effective date: ')+(v.effective_date||txt('غير محدد','Unknown'))}),
      h('div',{className:'mut',textContent:txt('أحداث المراجعة: ','Review events: ')+v.event_count}),
      h('div',{className:'mut',textContent:gateText}),
-     versionUrl?h('a',{href:versionUrl,target:'_blank',rel:'noopener noreferrer',textContent:txt('فتح رابط المصدر: ','Open source URL: ')+sourceHostLabel(versionUrl)}):h('div',{className:'mut',textContent:txt('لا يوجد رابط HTTPS آمن مسجل.','No safe HTTPS source URL is recorded.'))
+     versionUrl?h('a',{href:versionUrl,target:'_blank',rel:'noopener noreferrer',textContent:txt('فتح رابط المصدر: ','Open source URL: ')+sourceHostLabel(versionUrl)}):h('div',{className:'mut',textContent:txt('لا يوجد رابط HTTPS آمن مسجل.','No safe HTTPS source URL is recorded.')})
    ),
    h('div',{style:'display:flex;gap:8px;align-items:center;flex-wrap:wrap'},
      pill((v.review_status||'—')+' · '+(v.legal_status||'—'),v.review_status==='verified'?'done':(v.review_status==='rejected'?'late':'soon')),
