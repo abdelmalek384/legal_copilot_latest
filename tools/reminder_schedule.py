@@ -1,0 +1,132 @@
+#!/usr/bin/env python3
+"""Pure, side-effect-free planner for privacy-safe case reminders.
+
+This module does not read/write a database, send email, or claim delivery.
+Callers must supply events already authorized for the intended recipient.
+"""
+from __future__ import annotations
+
+import hashlib
+import json
+from datetime import date, datetime
+from typing import Iterable, Mapping
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
+
+
+SUPPORTED_KINDS = {"task", "deadline", "session"}
+
+
+class ReminderScheduleError(ValueError):
+    """Raised when normalized reminder input is invalid."""
+
+
+def _parse_due_date(value: object, event_id: str) -> date:
+    if not isinstance(value, str):
+        raise ReminderScheduleError(f"{event_id}: due_date must be an ISO YYYY-MM-DD string")
+    try:
+        parsed = date.fromisoformat(value)
+    except ValueError as exc:
+        raise ReminderScheduleError(f"{event_id}: due_date must be a real date in YYYY-MM-DD form") from exc
+    if parsed.isoformat() != value:
+        raise ReminderScheduleError(f"{event_id}: due_date must use canonical YYYY-MM-DD form")
+    return parsed
+
+
+def _idempotency_key(recipient_id: str, kind: str, event_id: str, due_date: str, window: str) -> str:
+    material = json.dumps(
+        ["case-reminder-v1", recipient_id, kind, event_id, due_date, window],
+        ensure_ascii=False, separators=(",", ":"),
+    ).encode("utf-8")
+    return hashlib.sha256(material).hexdigest()
+
+
+def build_reminder_plan(
+    events: Iterable[Mapping[str, object]],
+    recipient_id: str,
+    now: datetime,
+    timezone_name: str,
+    already_sent: set[str] | None = None,
+    lead_days: int = 1,
+) -> dict:
+    """Return a deterministic dry-run plan for events due tomorrow, today, or overdue.
+
+    Required normalized event fields: kind (task/deadline/session), event_id,
+    due_date (YYYY-MM-DD), and is_complete (bool). now must be timezone-aware.
+    Overdue events share one idempotency window, so daily reruns do not create a
+    new key every day. A changed due date creates a new key.
+    """
+    if not isinstance(recipient_id, str) or not recipient_id.strip():
+        raise ReminderScheduleError("recipient_id must be a non-empty string")
+    if not isinstance(now, datetime) or now.tzinfo is None or now.utcoffset() is None:
+        raise ReminderScheduleError("now must be a timezone-aware datetime")
+    if type(lead_days) is not int or not 1 <= lead_days <= 30:
+        raise ReminderScheduleError("lead_days must be an integer from 1 through 30")
+    try:
+        local_zone = ZoneInfo(timezone_name)
+    except (ZoneInfoNotFoundError, TypeError) as exc:
+        raise ReminderScheduleError("timezone_name must be a valid IANA timezone") from exc
+
+    sent = set() if already_sent is None else already_sent
+    if not isinstance(sent, set) or any(not isinstance(key, str) for key in sent):
+        raise ReminderScheduleError("already_sent must be a set of idempotency-key strings")
+
+    local_now = now.astimezone(local_zone)
+    local_today = local_now.date()
+    prepared = []
+    seen = set()
+    for index, event in enumerate(events):
+        if not isinstance(event, Mapping):
+            raise ReminderScheduleError(f"event {index}: expected an object")
+        kind = event.get("kind")
+        if kind not in SUPPORTED_KINDS:
+            raise ReminderScheduleError(f"event {index}: kind must be task, deadline, or session")
+        raw_id = event.get("event_id")
+        if isinstance(raw_id, bool) or not isinstance(raw_id, (str, int)) or not str(raw_id).strip():
+            raise ReminderScheduleError(f"event {index}: event_id must be a non-empty string or integer")
+        event_id = str(raw_id).strip()
+        identity = (kind, event_id)
+        if identity in seen:
+            raise ReminderScheduleError(f"duplicate event identity: {kind}/{event_id}")
+        seen.add(identity)
+        is_complete = event.get("is_complete")
+        if not isinstance(is_complete, bool):
+            raise ReminderScheduleError(f"{kind}/{event_id}: is_complete must be true or false")
+        due = _parse_due_date(event.get("due_date"), f"{kind}/{event_id}")
+        if is_complete:
+            continue
+
+        days_until_due = (due - local_today).days
+        if days_until_due == lead_days:
+            window = "due_soon"
+        elif days_until_due == 0:
+            window = "due_today"
+        elif days_until_due < 0:
+            window = "overdue"
+        else:
+            continue
+
+        due_text = due.isoformat()
+        key = _idempotency_key(recipient_id.strip(), str(kind), event_id, due_text, window)
+        if key in sent:
+            continue
+        prepared.append({
+            "recipient_id": recipient_id.strip(),
+            "event_type": str(kind),
+            "event_id": event_id,
+            "due_date": due_text,
+            "days_until_due": days_until_due,
+            "window": window,
+            "idempotency_key": key,
+        })
+
+    prepared.sort(key=lambda item: (item["due_date"], item["event_type"], item["event_id"]))
+    return {
+        "schema_version": 1,
+        "dry_run_only": True,
+        "delivery_performed": False,
+        "timezone": timezone_name,
+        "evaluated_at_local": local_now.isoformat(),
+        "planned_count": len(prepared),
+        "reminders": prepared,
+        "warning": "A planned reminder is not a queued or delivered notification. Delivery, durable deduplication, retries, and audit persistence are not implemented by this module.",
+    }
