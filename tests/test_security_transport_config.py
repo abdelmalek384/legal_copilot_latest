@@ -1,4 +1,5 @@
 import importlib.util
+import asyncio
 import os
 import tempfile
 import unittest
@@ -15,6 +16,43 @@ spec.loader.exec_module(app)
 
 
 class SecureCookieTransportTests(unittest.TestCase):
+    def test_streamed_body_without_content_length_is_limited(self):
+        async def run_case(chunks):
+            sent = []
+            events = list(chunks)
+
+            async def fake_app(scope, receive, send):
+                while True:
+                    message = await receive()
+                    if message["type"] == "http.disconnect":
+                        break
+                    if not message.get("more_body", False):
+                        break
+                await send({"type": "http.response.start", "status": 200, "headers": []})
+                await send({"type": "http.response.body", "body": b"ok"})
+
+            async def receive():
+                return events.pop(0) if events else {"type": "http.disconnect"}
+
+            async def send(message):
+                sent.append(message)
+
+            middleware = app.RequestBodyLimitMiddleware(fake_app, max_body_bytes=5)
+            await middleware({"type": "http", "headers": []}, receive, send)
+            return sent
+
+        small = asyncio.run(run_case([
+            {"type": "http.request", "body": b"abc", "more_body": True},
+            {"type": "http.request", "body": b"de", "more_body": False},
+        ]))
+        self.assertEqual(small[0]["status"], 200)
+        oversized = asyncio.run(run_case([
+            {"type": "http.request", "body": b"abc", "more_body": True},
+            {"type": "http.request", "body": b"def", "more_body": False},
+        ]))
+        self.assertEqual(oversized[0]["status"], 413)
+        self.assertIn(b"request body exceeds", oversized[1]["body"])
+
     def test_declared_body_size_limit_allows_upload_limit_and_rejects_oversize(self):
         request = lambda value: SimpleNamespace(headers={} if value is None else {"content-length": value})
         self.assertIsNone(app._declared_body_size_error(request(None)))
@@ -26,6 +64,26 @@ class SecureCookieTransportTests(unittest.TestCase):
         for value in ("not-a-number", "-1"):
             with self.subTest(value=value):
                 self.assertEqual(app._declared_body_size_error(request(value)), (400, "invalid content-length"))
+
+    def test_llm_redirect_handler_refuses_redirect_targets(self):
+        handler = app._RejectLLMRedirects()
+        for code, target in ((301, "http://remote.example/"), (302, "https://other.example/"), (307, "http://127.0.0.1:11434/")):
+            with self.subTest(code=code, target=target):
+                self.assertIsNone(handler.redirect_request(None, None, code, "redirect", {}, target))
+
+    def test_llm_endpoint_requires_https_remotely_and_allows_loopback_http(self):
+        for url in ("https://llm.example.com/v1/chat/completions", "http://127.0.0.1:11434/v1/chat/completions", "http://[::1]:11434/v1/chat/completions", "http://localhost:11434/v1/chat/completions"):
+            with self.subTest(url=url):
+                self.assertTrue(app._safe_llm_endpoint(url))
+        for url in ("http://llm.example.com/v1/chat/completions", "http://192.168.1.20:11434/v1", "https://user:pass@llm.example.com/v1", "https://llm.example.com/v1?api_key=secret", "https://llm.example.com/v1#fragment", "https://llm.example.com:99999/v1", "file:///tmp/model"):
+            with self.subTest(url=url):
+                self.assertFalse(app._safe_llm_endpoint(url))
+
+    def test_unsafe_llm_endpoint_never_calls_network_even_with_processing_approval(self):
+        with patch.dict(os.environ, {"LLM_URL": "http://remote.example/v1", "LLM_DATA_PROCESSING_APPROVED": "1"}):
+            with patch.object(app.urllib.request, "urlopen") as open_url:
+                self.assertIsNone(app.llm("CONFIDENTIAL-SENTINEL"))
+                open_url.assert_not_called()
 
     def test_direct_https_always_marks_cookie_transport_secure(self):
         request = SimpleNamespace(url=SimpleNamespace(scheme="https", netloc="legal.example.com"))

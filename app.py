@@ -1,6 +1,6 @@
 """Legal copilot MVP: case workspace + hybrid law search + citation-checked answers.
 Run: pip install -r requirements.txt && uvicorn app:app --reload"""
-import sqlite3, re, json, os, io, csv, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request, zipfile
+import sqlite3, re, json, os, io, csv, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request, zipfile, ipaddress
 from contextvars import ContextVar
 from collections import Counter
 from datetime import date, timedelta
@@ -782,6 +782,42 @@ def search(c, q, case_id=None, k=5, firm_id=1, as_of=None, scope="all_permitted"
     return sorted(out, key=lambda x: -x["score"])[:k]
 
 
+def _safe_llm_endpoint(value):
+    """Require HTTPS for remote model endpoints; allow plain HTTP only on loopback."""
+    from urllib.parse import urlsplit
+    if not isinstance(value, str) or not value.strip():
+        return False
+    try:
+        parsed = urlsplit(value.strip())
+        host = parsed.hostname
+        # Query strings can hide API keys; credentials and fragments are never valid endpoint config.
+        if (parsed.scheme not in {"https", "http"} or not host or parsed.username or parsed.password
+                or parsed.query or parsed.fragment):
+            return False
+        _ = parsed.port  # Force invalid/out-of-range ports to raise ValueError.
+        if parsed.scheme == "https":
+            return True
+        if host.lower().rstrip(".") == "localhost":
+            return True
+        try:
+            return ipaddress.ip_address(host).is_loopback
+        except ValueError:
+            return False
+    except (TypeError, ValueError):
+        return False
+
+
+class _RejectLLMRedirects(urllib.request.HTTPRedirectHandler):
+    """Never forward confidential prompts to an endpoint reached through a redirect."""
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        return None
+
+
+def _llm_open(request, timeout=120):
+    opener = urllib.request.build_opener(_RejectLLMRedirects)
+    return opener.open(request, timeout=timeout)
+
+
 def llm(prompt):
     """Call a configured OpenAI-compatible endpoint only after explicit data-processing approval.
 
@@ -791,13 +827,13 @@ def llm(prompt):
     Unset URL or approval keeps the app in sources-only mode.
     """
     url = os.environ.get("LLM_URL")
-    if not url: return None
+    if not url or not _safe_llm_endpoint(url): return None
     if os.environ.get("LLM_DATA_PROCESSING_APPROVED", "").strip() != "1":
         return None
     body = json.dumps({"model": os.environ.get("LLM_MODEL", "local"), "temperature": 0,
                        "messages": [{"role": "system", "content": SYS}, {"role": "user", "content": prompt}]}).encode()
     req = urllib.request.Request(url, body, {"Content-Type": "application/json", "Authorization": "Bearer " + os.environ.get("LLM_KEY", "")})
-    return json.load(urllib.request.urlopen(req, timeout=120))["choices"][0]["message"]["content"]
+    return json.load(_llm_open(req, timeout=120))["choices"][0]["message"]["content"]
 
 
 LLM = llm
@@ -972,7 +1008,77 @@ from fastapi import Cookie, Depends, FastAPI, Header, HTTPException, UploadFile
 from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field, field_validator
 
+MAX_REQUEST_BODY_BYTES = 16 * 1024 * 1024  # 15 MB upload cap plus multipart overhead
+
+
+class RequestBodyLimitMiddleware:
+    """Bound HTTP request bodies, including chunked requests without Content-Length."""
+    def __init__(self, app, max_body_bytes=MAX_REQUEST_BODY_BYTES):
+        self.app = app
+        self.max_body_bytes = max_body_bytes
+
+    async def __call__(self, scope, receive, send):
+        if scope.get("type") != "http":
+            await self.app(scope, receive, send)
+            return
+
+        lengths = [value for key, value in scope.get("headers", []) if key.lower() == b"content-length"]
+        if len(lengths) > 1:
+            await self._reject(send, 400, "invalid content-length")
+            return
+        if lengths:
+            try:
+                declared = int(lengths[0].decode("ascii"))
+            except (UnicodeDecodeError, ValueError):
+                await self._reject(send, 400, "invalid content-length")
+                return
+            if declared < 0:
+                await self._reject(send, 400, "invalid content-length")
+                return
+            if declared > self.max_body_bytes:
+                await self._reject(send, 413, "request body exceeds 16 MB limit")
+                return
+
+        received = 0
+        too_large = False
+
+        async def limited_receive():
+            nonlocal received, too_large
+            if too_large:
+                return {"type": "http.disconnect"}
+            message = await receive()
+            if message.get("type") == "http.request":
+                received += len(message.get("body", b""))
+                if received > self.max_body_bytes:
+                    too_large = True
+                    return {"type": "http.disconnect"}
+            return message
+
+        async def guarded_send(message):
+            if not too_large:
+                await send(message)
+
+        try:
+            await self.app(scope, limited_receive, guarded_send)
+        except Exception:
+            if not too_large:
+                raise
+        if too_large:
+            await self._reject(send, 413, "request body exceeds 16 MB limit")
+
+    @staticmethod
+    async def _reject(send, status, detail):
+        body = json.dumps({"detail": detail}).encode("utf-8")
+        await send({"type": "http.response.start", "status": status, "headers": [
+            (b"content-type", b"application/json; charset=utf-8"),
+            (b"content-length", str(len(body)).encode("ascii")),
+            (b"cache-control", b"no-store"),
+        ]})
+        await send({"type": "http.response.body", "body": body})
+
+
 app = FastAPI(title="Legal Copilot MVP", docs_url=None, redoc_url=None, openapi_url=None)
+app.add_middleware(RequestBodyLimitMiddleware, max_body_bytes=MAX_REQUEST_BODY_BYTES)
 
 # Per-process fixed-window limits for expensive or abuse-prone endpoints.
 # Deliberately use the direct peer address; do not trust arbitrary X-Forwarded-For.
@@ -1096,9 +1202,6 @@ def _origin_matches_request(origin, request):
         return parsed.netloc.lower() == request.url.netloc.lower() and parsed.scheme == request.url.scheme
     except (TypeError, ValueError):
         return False
-
-
-MAX_REQUEST_BODY_BYTES = 16 * 1024 * 1024  # 15 MB upload cap plus multipart overhead
 
 
 def _declared_body_size_error(request):
@@ -1995,6 +2098,13 @@ def create_user(b: UserCreateIn, u: dict = Depends(user)):
     if _separate_runtime_enabled():
         c = control_conn()
         try:
+            c.execute("BEGIN IMMEDIATE")
+            firm = c.execute(
+                "SELECT status FROM firms WHERE id=?", (u["firm_id"],)
+            ).fetchone()
+            if firm is None or firm["status"] != "active":
+                c.rollback()
+                raise HTTPException(409, "cannot create a membership for an inactive firm")
             cur = c.execute(
                 "INSERT INTO users(name,email_display,email_normalized,password_hash,status) "
                 "VALUES(?,?,?,?,'active')",
@@ -2007,6 +2117,9 @@ def create_user(b: UserCreateIn, u: dict = Depends(user)):
                 (user_id, u["firm_id"], b.role, u["id"]),
             )
             c.commit()
+        except HTTPException:
+            c.rollback()
+            raise
         except sqlite3.IntegrityError:
             c.rollback()
             raise HTTPException(409, "email already exists or membership is invalid")
@@ -2030,26 +2143,40 @@ def add_existing_user_membership(b: ExistingMembershipIn, u: dict = Depends(user
         raise HTTPException(404, "cross-firm memberships are available only in separate-database mode")
     normalized = normalize_email(b.email)
     c = control_conn()
-    identity = c.execute(
-        "SELECT id,name,status FROM users WHERE email_normalized=?", (normalized,)
-    ).fetchone()
-    if identity is None:
-        raise HTTPException(404, "global user not found; create the identity before adding memberships")
-    if identity["status"] != "active":
-        raise HTTPException(409, "disabled global identities cannot receive new memberships")
-    existing = c.execute(
-        "SELECT status FROM firm_memberships WHERE user_id=? AND firm_id=?",
-        (identity["id"], u["firm_id"]),
-    ).fetchone()
-    if existing is not None:
-        raise HTTPException(409, "membership already exists; reactivation requires a separate reviewed workflow")
+    c.execute("BEGIN IMMEDIATE")
     try:
+        firm = c.execute(
+            "SELECT status FROM firms WHERE id=?", (u["firm_id"],)
+        ).fetchone()
+        if firm is None or firm["status"] != "active":
+            c.rollback()
+            raise HTTPException(409, "cannot create a membership for an inactive firm")
+        identity = c.execute(
+            "SELECT id,name,status FROM users WHERE email_normalized=?", (normalized,)
+        ).fetchone()
+        if identity is None:
+            c.rollback()
+            raise HTTPException(404, "global user not found; create the identity before adding memberships")
+        if identity["status"] != "active":
+            c.rollback()
+            raise HTTPException(409, "disabled global identities cannot receive new memberships")
+        existing = c.execute(
+            "SELECT status FROM firm_memberships WHERE user_id=? AND firm_id=?",
+            (identity["id"], u["firm_id"]),
+        ).fetchone()
+        if existing is not None:
+            c.rollback()
+            raise HTTPException(409, "membership already exists; reactivation requires a separate reviewed workflow")
         c.execute(
             "INSERT INTO firm_memberships(user_id,firm_id,firm_role,status,created_by_user_id) "
             "VALUES(?,?,?,'active',?)",
             (identity["id"], u["firm_id"], b.role, u["id"]),
         )
         c.commit()
+    except HTTPException:
+        if c.in_transaction:
+            c.rollback()
+        raise
     except sqlite3.IntegrityError as exc:
         c.rollback()
         raise HTTPException(409, "membership could not be created; check identity and firm status") from exc

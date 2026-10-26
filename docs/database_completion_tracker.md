@@ -37,6 +37,7 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 - [x] Create new control-plane and shared-corpus database files with restrictive POSIX permissions and clean up incomplete newly created files if permissions cannot be enforced (PR #415 merged; CI passed).
 - [x] Revalidate control-plane/corpus file permissions and SQLite sidecars before direct connection use, revoking unsafe cached direct connections (PR #418 merged; CI passed).
 - [x] Add a non-destructive `disable-firm` operator command that atomically disables the firm and its catalog mapping without deleting data; no re-enable path is provided (PR #419 merged; CI passed).
+- [x] Serialize `/users` and `/memberships` writes with an immediate control-plane transaction and recheck active firm state before creating identities or memberships, preventing lifecycle races (PR #425 merged; CI passed).
 - [x] Add regression coverage that `deployment_preflight.py --strict` fails while the shared-database multi-firm safety warning remains, without creating a database file (PR #341 merged; CI run 40354404426 passed).
 
 - [x] Refuse to provision a tenant when pre-existing firm-binding trigger names conceal ineffective update/delete guards; validate the guards before marking the tenant provisioned (PR #340 merged; CI run 40354238518 passed).
