@@ -9,7 +9,9 @@ shared legal-corpus boundary, and route inventory are approved and migrated.
 """
 from __future__ import annotations
 
+import os
 import sqlite3
+import stat
 import threading
 from pathlib import Path
 from typing import Callable
@@ -97,6 +99,35 @@ class TenantSQLiteConnectionRouter:
                 ) from exc
         finally:
             catalog.close()
+
+        # Check permissions before returning even a cached connection. If an
+        # operator changes the file mode after the connection was opened, revoke
+        # the cached handle rather than silently continuing with an exposed DB.
+        if os.name == "posix":
+            try:
+                database_mode = stat.S_IMODE(path.stat().st_mode)
+            except OSError as exc:
+                connections = getattr(self._local, "connections", None)
+                cached = connections.pop(trusted_firm_id, None) if connections else None
+                if cached is not None:
+                    try:
+                        cached[1].close()
+                    except sqlite3.Error:
+                        pass
+                raise TenantConnectionError(
+                    "Tenant database file permissions cannot be verified"
+                ) from exc
+            if database_mode & 0o077:
+                connections = getattr(self._local, "connections", None)
+                cached = connections.pop(trusted_firm_id, None) if connections else None
+                if cached is not None:
+                    try:
+                        cached[1].close()
+                    except sqlite3.Error:
+                        pass
+                raise TenantConnectionError(
+                    "Tenant database file permissions allow group/other access"
+                )
 
         connections = getattr(self._local, "connections", None)
         if connections is None:
