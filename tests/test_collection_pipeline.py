@@ -83,6 +83,43 @@ class CollectionPipelineTests(unittest.TestCase):
                 self.assertEqual(repeated["original_path"], result["original_path"])
                 self.assertEqual(created.read_bytes(), payload)
 
+    def test_metadata_history_preserves_prior_retrievals_and_collision_records(self):
+        first = {
+            "document_id": "TEST-LAW",
+            "retrieved_at": "2026-10-26T18:00:00.123456+00:00",
+            "sha256": "a" * 64,
+            "source_url": "https://example.gov/law.pdf",
+            "etag": '"first"',
+        }
+        second = {**first, "retrieved_at": "2026-10-26T18:01:00.123456+00:00", "sha256": "b" * 64, "etag": '"second"'}
+        with tempfile.TemporaryDirectory() as td:
+            out = Path(td)
+            current = collector.persist_metadata(out, "TEST-LAW", first)
+            collector.persist_metadata(out, "TEST-LAW", second)
+            self.assertEqual(json.loads(current.read_text(encoding="utf-8")), second)
+            history = sorted((out / "metadata" / "history" / "TEST-LAW").glob("*.json"))
+            self.assertEqual(len(history), 2)
+            self.assertEqual({json.loads(p.read_text(encoding="utf-8"))["sha256"] for p in history}, {"a" * 64, "b" * 64})
+
+            same_time_different_metadata = {**second, "etag": '"third"'}
+            collector.persist_metadata(out, "TEST-LAW", same_time_different_metadata)
+            history = sorted((out / "metadata" / "history" / "TEST-LAW").glob("*.json"))
+            self.assertEqual(len(history), 3)
+            self.assertEqual(json.loads(current.read_text(encoding="utf-8")), same_time_different_metadata)
+            self.assertEqual({json.loads(p.read_text(encoding="utf-8"))["etag"] for p in history}, {'"first"', '"second"', '"third"'})
+
+    def test_metadata_persistence_refuses_symlinked_current_pointer(self):
+        with tempfile.TemporaryDirectory() as td:
+            out = Path(td)
+            meta_dir = out / "metadata"
+            meta_dir.mkdir()
+            target = out / "outside.json"
+            target.write_text('{"sentinel":"untouched"}', encoding="utf-8")
+            (meta_dir / "TEST-LAW.json").symlink_to(target)
+            with self.assertRaises(ValueError):
+                collector.persist_metadata(out, "TEST-LAW", {"document_id": "TEST-LAW"})
+            self.assertEqual(target.read_text(encoding="utf-8"), '{"sentinel":"untouched"}')
+
     def test_permission_is_opt_in(self):
         with self.assertRaises(ValueError):
             check_permission({"collection_permission": "unknown"})
