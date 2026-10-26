@@ -46,7 +46,7 @@ class PlatformSecurityAuditTests(unittest.TestCase):
         control = self.runtime.control_connection()
         self.assertEqual(control.execute("SELECT COUNT(*) FROM auth_sessions WHERE user_id=?", (self.user_id,)).fetchone()[0], 0)
         event = control.execute(
-            "SELECT actor_user_id,target_user_id,event_type,detail_json FROM platform_security_events"
+            "SELECT actor_user_id,target_user_id,event_type,detail_json FROM platform_security_events WHERE event_type='password_reset_cli'"
         ).fetchone()
         self.assertIsNone(event["actor_user_id"])
         self.assertEqual(event["target_user_id"], self.user_id)
@@ -68,7 +68,27 @@ class PlatformSecurityAuditTests(unittest.TestCase):
         control = self.runtime.control_connection()
         self.assertEqual(control.execute("SELECT password_hash FROM users WHERE id=?", (self.user_id,)).fetchone()[0], old_hash)
         self.assertEqual(control.execute("SELECT COUNT(*) FROM auth_sessions WHERE user_id=?", (self.user_id,)).fetchone()[0], 1)
-        self.assertEqual(control.execute("SELECT COUNT(*) FROM platform_security_events").fetchone()[0], 0)
+        self.assertEqual(control.execute("SELECT COUNT(*) FROM platform_security_events WHERE event_type='password_reset_cli'").fetchone()[0], 0)
+
+    def test_firm_lifecycle_and_membership_changes_are_audited(self):
+        control = self.runtime.control_connection()
+        events = {row["event_type"] for row in control.execute("SELECT event_type FROM platform_security_events")}
+        self.assertIn("firm_provisioned", events)
+        self.assertIn("initial_owner_bootstrapped", events)
+        cursor = control.execute(
+            "INSERT INTO users(name,email_display,email_normalized,password_hash,status) "
+            "VALUES('Second User','second@example.test','second@example.test','test-hash','active')"
+        )
+        second_id = cursor.lastrowid
+        control.commit()
+        self.runtime.create_firm_membership(second_id, self.firm_id, "lawyer", created_by_user_id=self.user_id)
+        self.assertTrue(self.runtime.disable_firm(self.firm_id))
+        control = self.runtime.control_connection()
+        logged = {(row["event_type"], row["target_user_id"], row["firm_id"]) for row in control.execute(
+            "SELECT event_type,target_user_id,firm_id FROM platform_security_events"
+        )}
+        self.assertIn(("membership_created", second_id, self.firm_id), logged)
+        self.assertIn(("firm_disabled", None, self.firm_id), logged)
 
     def test_platform_security_audit_is_append_only(self):
         control = self.runtime.control_connection()
