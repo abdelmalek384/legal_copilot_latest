@@ -64,7 +64,8 @@ def build_manifest(conn: sqlite3.Connection) -> dict[str, Any]:
         }
 
     cases_by_id: dict[Any, Any] = {}
-    if "cases" in tables and {"id", "firm_id"} <= set(_columns(conn, "cases")):
+    cases_schema_available = "cases" in tables and {"id", "firm_id"} <= set(_columns(conn, "cases"))
+    if cases_schema_available:
         cases_by_id = {row["id"]: row["firm_id"] for row in conn.execute("SELECT id,firm_id FROM cases")}
 
     docs_by_id: dict[Any, dict[str, Any]] = {}
@@ -101,8 +102,10 @@ def build_manifest(conn: sqlite3.Connection) -> dict[str, Any]:
             text_value = _value(row, chunk_columns, "norm")
         text_sha256, text_bytes = _text_digest(text_value)
 
-        if case_id is not None and "cases" in tables and case_id not in cases_by_id:
+        if case_id is not None and (not cases_schema_available or case_id not in cases_by_id):
             classification = "case_reference_unresolved"
+        elif case_id is not None and cases_by_id.get(case_id) is None:
+            classification = "matter_linked_missing_firm"
         elif linked_doc is not None and case_id is not None and linked_doc.get("case_id") is not None and linked_doc["case_id"] != case_id:
             classification = "document_case_mismatch"
         elif linked_doc is not None and case_id is None and linked_doc.get("case_id") is not None:
