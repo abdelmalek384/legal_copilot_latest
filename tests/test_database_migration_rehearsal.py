@@ -111,6 +111,15 @@ class DatabaseMigrationRehearsalTests(unittest.TestCase):
             self.assertEqual(db.execute("SELECT firm_id FROM cases WHERE id=1").fetchone()[0], 1)
             self.assertEqual(db.execute("SELECT COUNT(*) FROM docs").fetchone()[0], 1)
 
+
+    def test_symlinked_source_fails_closed(self):
+        linked_source = self.root / "linked-source.sqlite3"
+        linked_source.symlink_to(self.database)
+        with self.assertRaisesRegex(ValueError, "must not be a symlink"):
+            rehearse(linked_source, self.migrations)
+        with sqlite3.connect(self.database) as db:
+            self.assertEqual(db.execute("SELECT firm_id FROM cases WHERE id=1").fetchone()[0], 1)
+
     def test_missing_source_fails_closed(self):
         with self.assertRaises(FileNotFoundError):
             rehearse(self.root / "missing.sqlite3", self.migrations)
