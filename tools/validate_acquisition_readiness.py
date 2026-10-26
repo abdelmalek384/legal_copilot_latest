@@ -24,7 +24,8 @@ def _valid_date(value: object) -> bool:
     if not isinstance(value, str):
         return False
     try:
-        return dt.date.fromisoformat(value).isoformat() == value
+        parsed = dt.date.fromisoformat(value)
+        return parsed.isoformat() == value and parsed <= dt.date.today()
     except ValueError:
         return False
 

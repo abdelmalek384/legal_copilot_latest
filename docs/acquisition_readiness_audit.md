@@ -25,8 +25,8 @@ Use `--out path/to/report.json` to preserve a report.
 - Each manifest document has a source record in the permission register.
 - The manifest's collection permission is explicitly `allowed`.
 - The source register independently records `allowed` or `allowed_limited`, with permission evidence and a valid terms-review date.
-- The manifest has its own permission evidence and valid terms-review date.
-- A document-level `permission_scope_review` is marked `passed`, includes evidence and a review date, and explicitly lists `collection` in `approved_uses`.
+- The manifest has its own permission evidence and a valid terms-review date that is not in the future.
+- A document-level `permission_scope_review` is marked `passed`, includes evidence and a valid non-future review date, and explicitly lists `collection` in `approved_uses`.
 - The direct URL is HTTPS and its hostname matches the document's explicit allowlist.
 - Commercial product use requires both source-level commercial permission and a document-level scope review explicitly listing `commercial_product_use`; collection approval alone is insufficient.
 
