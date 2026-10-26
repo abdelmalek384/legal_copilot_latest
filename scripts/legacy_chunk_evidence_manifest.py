@@ -107,6 +107,12 @@ def build_manifest(conn: sqlite3.Connection) -> dict[str, Any]:
             classification = "case_reference_unresolved"
         elif case_id is not None and cases_by_id.get(case_id) is None:
             classification = "matter_linked_missing_firm"
+        elif (
+            linked_doc is not None and case_id is not None and case_firm_id is not None
+            and linked_doc.get("firm_id") is not None
+            and linked_doc["firm_id"] != case_firm_id
+        ):
+            classification = "document_firm_mismatch"
         elif linked_doc is not None and case_id is not None and linked_doc.get("case_id") is not None and linked_doc["case_id"] != case_id:
             classification = "document_case_mismatch"
         elif linked_doc is not None and case_id is None and linked_doc.get("case_id") is not None:
