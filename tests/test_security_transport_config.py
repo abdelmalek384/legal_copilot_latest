@@ -27,6 +27,12 @@ class SecureCookieTransportTests(unittest.TestCase):
             with self.subTest(value=value):
                 self.assertEqual(app._declared_body_size_error(request(value)), (400, "invalid content-length"))
 
+    def test_llm_redirect_handler_refuses_redirect_targets(self):
+        handler = app._RejectLLMRedirects()
+        for code, target in ((301, "http://remote.example/"), (302, "https://other.example/"), (307, "http://127.0.0.1:11434/")):
+            with self.subTest(code=code, target=target):
+                self.assertIsNone(handler.redirect_request(None, None, code, "redirect", {}, target))
+
     def test_llm_endpoint_requires_https_remotely_and_allows_loopback_http(self):
         for url in ("https://llm.example.com/v1/chat/completions", "http://127.0.0.1:11434/v1/chat/completions", "http://[::1]:11434/v1/chat/completions", "http://localhost:11434/v1/chat/completions"):
             with self.subTest(url=url):
