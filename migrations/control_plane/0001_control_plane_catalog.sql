@@ -1,4 +1,4 @@
--- Control-plane catalog only. Identity and membership tables remain unapproved.
+-- Initial control-plane firm/catalog foundation. Global identity and membership tables are added by migration 0003.
 CREATE TABLE firms (
  id INTEGER PRIMARY KEY, name TEXT NOT NULL,
  status TEXT NOT NULL DEFAULT 'active' CHECK(status IN ('active','provisioning','suspended','disabled')),
