@@ -16,7 +16,7 @@ class ReminderScheduleTests(unittest.TestCase):
         ]
 
     def plan(self, **kwargs):
-        return build_reminder_plan(self.events, "user-7", self.now, "Africa/Cairo", **kwargs)
+        return build_reminder_plan(self.events, "user-7", self.now, "Africa/Cairo", "firm-1", **kwargs)
 
     def test_plans_due_soon_today_and_overdue_without_delivery(self):
         report = self.plan()
@@ -36,19 +36,19 @@ class ReminderScheduleTests(unittest.TestCase):
 
     def test_overdue_window_is_stable_across_days_but_due_date_change_changes_key(self):
         overdue = self.events[2]
-        first = build_reminder_plan([overdue], "user-7", self.now, "Africa/Cairo")
+        first = build_reminder_plan([overdue], "user-7", self.now, "Africa/Cairo", "firm-1")
         later = build_reminder_plan(
-            [overdue], "user-7", datetime(2026, 10, 30, 8, 0, tzinfo=timezone.utc), "Africa/Cairo"
+            [overdue], "user-7", datetime(2026, 10, 30, 8, 0, tzinfo=timezone.utc), "Africa/Cairo", "firm-1"
         )
         self.assertEqual(first["reminders"][0]["idempotency_key"], later["reminders"][0]["idempotency_key"])
         changed = dict(overdue, due_date="2026-10-24")
-        third = build_reminder_plan([changed], "user-7", self.now, "Africa/Cairo")
+        third = build_reminder_plan([changed], "user-7", self.now, "Africa/Cairo", "firm-1")
         self.assertNotEqual(first["reminders"][0]["idempotency_key"], third["reminders"][0]["idempotency_key"])
 
     def test_timezone_conversion_controls_local_date_across_midnight(self):
         event = [{"kind": "deadline", "event_id": "1", "due_date": "2026-10-27", "is_complete": False}]
         report = build_reminder_plan(
-            event, "user-7", datetime(2026, 10, 26, 23, 30, tzinfo=timezone.utc), "Africa/Cairo"
+            event, "user-7", datetime(2026, 10, 26, 23, 30, tzinfo=timezone.utc), "Africa/Cairo", "firm-1"
         )
         self.assertEqual(report["planned_count"], 1)
         self.assertEqual(report["reminders"][0]["window"], "due_today")
@@ -56,27 +56,33 @@ class ReminderScheduleTests(unittest.TestCase):
     def test_dst_boundary_uses_the_requested_local_timezone(self):
         event = [{"kind": "session", "event_id": "9", "due_date": "2026-03-29", "is_complete": False}]
         report = build_reminder_plan(
-            event, "user-7", datetime(2026, 3, 29, 1, 30, tzinfo=timezone.utc), "Europe/Paris"
+            event, "user-7", datetime(2026, 3, 29, 1, 30, tzinfo=timezone.utc), "Europe/Paris", "firm-1"
         )
         self.assertEqual(report["evaluated_at_local"][:10], "2026-03-29")
         self.assertEqual(report["reminders"][0]["window"], "due_today")
 
     def test_rejects_naive_time_invalid_timezone_bad_status_and_duplicate_events(self):
         with self.assertRaises(ReminderScheduleError):
-            build_reminder_plan(self.events, "user-7", datetime(2026, 10, 26), "Africa/Cairo")
+            build_reminder_plan(self.events, "user-7", datetime(2026, 10, 26), "Africa/Cairo", "firm-1")
         with self.assertRaises(ReminderScheduleError):
-            build_reminder_plan(self.events, "user-7", self.now, "Not/A_Timezone")
+            build_reminder_plan(self.events, "user-7", self.now, "Not/A_Timezone", "firm-1")
         with self.assertRaises(ReminderScheduleError):
-            build_reminder_plan([dict(self.events[0], is_complete="false")], "user-7", self.now, "Africa/Cairo")
+            build_reminder_plan([dict(self.events[0], is_complete="false")], "user-7", self.now, "Africa/Cairo", "firm-1")
         with self.assertRaises(ReminderScheduleError):
-            build_reminder_plan([self.events[0], self.events[0]], "user-7", self.now, "Africa/Cairo")
+            build_reminder_plan([self.events[0], self.events[0]], "user-7", self.now, "Africa/Cairo", "firm-1")
+
+    def test_firm_scope_is_part_of_idempotency_key(self):
+        event = [self.events[0]]
+        first = build_reminder_plan(event, "shared-user", self.now, "Africa/Cairo", "firm-1")
+        second = build_reminder_plan(event, "shared-user", self.now, "Africa/Cairo", "firm-2")
+        self.assertNotEqual(first["reminders"][0]["idempotency_key"], second["reminders"][0]["idempotency_key"])
 
     def test_rejects_noncanonical_dates_and_bad_lead_windows(self):
         event = [{"kind": "task", "event_id": "1", "due_date": "2026-1-2", "is_complete": False}]
         with self.assertRaises(ReminderScheduleError):
-            build_reminder_plan(event, "user-7", self.now, "Africa/Cairo")
+            build_reminder_plan(event, "user-7", self.now, "Africa/Cairo", "firm-1")
         with self.assertRaises(ReminderScheduleError):
-            build_reminder_plan(self.events, "user-7", self.now, "Africa/Cairo", lead_days=-1)
+            build_reminder_plan(self.events, "user-7", self.now, "Africa/Cairo", "firm-1", lead_days=-1)
 
 
 if __name__ == "__main__":
