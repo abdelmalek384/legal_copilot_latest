@@ -69,6 +69,8 @@ class ReminderScheduleTests(unittest.TestCase):
         with self.assertRaises(ReminderScheduleError):
             build_reminder_plan([dict(self.events[0], is_complete="false")], "user-7", self.now, "Africa/Cairo", "firm-1")
         with self.assertRaises(ReminderScheduleError):
+            build_reminder_plan([dict(self.events[0], kind=[])], "user-7", self.now, "Africa/Cairo", "firm-1")
+        with self.assertRaises(ReminderScheduleError):
             build_reminder_plan([self.events[0], self.events[0]], "user-7", self.now, "Africa/Cairo", "firm-1")
 
     def test_firm_scope_is_part_of_idempotency_key(self):
