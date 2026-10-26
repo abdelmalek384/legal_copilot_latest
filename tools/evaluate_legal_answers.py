@@ -111,6 +111,16 @@ def _validate_result(row):
     return sources, pins
 
 
+def _invalid_citation_indices(row):
+    qid = row.get("id")
+    value = row.get("invalid_citation_indices", [])
+    if not isinstance(value, list) or any(type(index) is not int or index < 1 for index in value):
+        raise EvaluationError(f"{qid}: invalid_citation_indices must be a list of positive integer citation indexes")
+    if len(value) != len(set(value)):
+        raise EvaluationError(f"{qid}: invalid_citation_indices contains duplicates")
+    return value
+
+
 def _ratio(numerator, denominator):
     return round(numerator / denominator, 4) if denominator else None
 
@@ -155,6 +165,7 @@ def evaluate(question_rows, result_rows):
     for qid, (expected_sources, expected_pins) in reviewed.items():
         q = question_map[qid]
         actual_sources, actual_pins = _validate_result(result_map[qid])
+        invalid_indices = _invalid_citation_indices(result_map[qid])
         source_hits = len(set(expected_sources) & set(actual_sources))
         pin_hits = len(set(expected_pins) & set(actual_pins))
         expected_abstain = not q["answerable"]
@@ -180,6 +191,8 @@ def evaluate(question_rows, result_rows):
             "pin_cite_recall": _ratio(pin_hits, len(expected_pins)),
             "pin_cite_precision": _ratio(pin_hits, len(actual_pins)),
             "citation_present": citation_present,
+            "invalid_citation_indices": invalid_indices,
+            "invalid_citation_index_count": len(invalid_indices),
         }
         rows.append(item)
         by_area[item["practice_area"]].append(item)
@@ -206,6 +219,9 @@ def evaluate(question_rows, result_rows):
                                                        len(abstention_cases)),
             "unanswerable_citation_rate": _ratio(sum(x["citation_present"] for x in abstention_cases),
                                                   len(abstention_cases)),
+            "invalid_citation_index_count": sum(x["invalid_citation_index_count"] for x in items),
+            "questions_with_invalid_citation_indices": sum(bool(x["invalid_citation_indices"]) for x in items),
+            "invalid_citation_question_rate": _ratio(sum(bool(x["invalid_citation_indices"]) for x in items), n),
         }
 
     return {
