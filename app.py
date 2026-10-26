@@ -445,11 +445,31 @@ def add_case(c, u, title, client="", stage="", case_number="", case_year="", cou
     c.execute("INSERT INTO members VALUES(?,?,'lead')", (cid, u["id"])); log(c, cid, u["name"], "فتح القضية"); c.commit(); return cid
 
 
+def _split_document_block(text, max_chars=4000):
+    """Split pathological long paragraphs into bounded searchable passages."""
+    remaining = text.strip()
+    parts = []
+    while len(remaining) > max_chars:
+        cut = max(remaining.rfind("\n", 0, max_chars + 1),
+                  remaining.rfind(" ", 0, max_chars + 1))
+        if cut < max_chars // 2:
+            cut = max_chars
+        part = remaining[:cut].strip()
+        if part:
+            parts.append(part)
+        remaining = remaining[cut:].strip()
+    if remaining:
+        parts.append(remaining)
+    return parts
+
+
 def add_doc(c, case_id, name, text, document_id=None):
     # PDF extraction inserts explicit page markers. Carry them into both the
     # searchable chunk metadata and citation label, without indexing the marker.
+    # Coalesce short paragraphs and cap long passages to avoid thousands of tiny
+    # FTS records or giant prompts from malformed/poorly structured documents.
     page_no = None
-    paras = []
+    blocks = []
     for block in re.split(r"\n\s*\n", text):
         block = block.strip()
         marker = re.fullmatch(r"\[\[PDF_PAGE:(\d+)\]\]", block)
@@ -457,12 +477,35 @@ def add_doc(c, case_id, name, text, document_id=None):
             page_no = int(marker.group(1))
             continue
         if block:
-            paras.append((page_no, block))
+            blocks.extend((page_no, part) for part in _split_document_block(block))
+    passages = []
+    current_page = None
+    current_text = ""
+    target_chars = 3000
+
+    def flush():
+        nonlocal current_text
+        if current_text:
+            passages.append((current_page, current_text))
+            current_text = ""
+
+    for page, block in blocks:
+        if current_text and page != current_page:
+            flush()
+        if current_text and len(current_text) + 2 + len(block) > target_chars:
+            flush()
+        if not current_text:
+            current_page = page
+            current_text = block
+        else:
+            current_text += "\n\n" + block
+    flush()
+
     rows = []
-    for i, (page, paragraph) in enumerate(paras, 1):
-        ref = (f"{name} (page {page}, paragraph {i})" if page is not None
-               else f"{name} (paragraph {i})")
-        rows.append({"ref": ref, "text": paragraph, "case_id": case_id,
+    for i, (page, passage) in enumerate(passages, 1):
+        ref = (f"{name} (page {page}, chunk {i})" if page is not None
+               else f"{name} (chunk {i})")
+        rows.append({"ref": ref, "text": passage, "case_id": case_id,
                      "source": "case-file", "document_id": document_id,
                      "page": str(page) if page is not None else None})
     return add_chunks(c, rows)
