@@ -16,6 +16,8 @@ jobs:
         uses: actions/checkout@v4
       - name: Test document extraction review workflow contract
         run: PYTHONPATH=. python tests/test_document_review_workflow.py
+      - name: Test security audit CSV export
+        run: PYTHONPATH=. python tests/test_security_audit_export.py
       - name: Test frontend UX and accessibility contract
         run: python tests/test_frontend_ux_contract.py
       - name: Test research inspector status, citation, and memo helpers
