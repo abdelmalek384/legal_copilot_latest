@@ -1,4 +1,5 @@
 """Tests for the read-only tenant database catalog preflight."""
+import os
 import sqlite3
 import tempfile
 import unittest
@@ -21,6 +22,8 @@ class TenantDatabasePreflightTests(unittest.TestCase):
         self.catalog = sqlite3.connect(self.catalog_path)
         self.catalog.execute("PRAGMA foreign_keys=ON")
         apply_profile_migrations(self.catalog, "control_plane", MIGRATIONS_ROOT)
+        if os.name == "posix":
+            os.chmod(self.catalog_path, 0o600)
 
     def tearDown(self):
         self.catalog.close()
@@ -56,6 +59,8 @@ class TenantDatabasePreflightTests(unittest.TestCase):
             """)
             db.commit()
             db.close()
+            if os.name == "posix":
+                os.chmod(self.root / filename, 0o600)
         return filename
 
     def test_clean_catalog_and_database_pass(self):
@@ -158,6 +163,21 @@ class TenantDatabasePreflightTests(unittest.TestCase):
         codes = {item["code"] for item in report["findings"]}
         self.assertIn("missing_catalog_firm_foreign_key", codes)
         self.assertEqual(report["tenant_databases_inspected"], 0)
+
+    @unittest.skipUnless(os.name == "posix", "POSIX file permission bits are required")
+    def test_open_tenant_database_permissions_are_reported(self):
+        filename = self.add_tenant(25)
+        os.chmod(self.root / filename, 0o644)
+        report = audit(self.catalog_path, self.root)
+        findings = [item for item in report["findings"] if item["firm_id"] == 25]
+        self.assertIn("database_permissions_too_open", {item["code"] for item in findings})
+
+    @unittest.skipUnless(os.name == "posix", "POSIX file permission bits are required")
+    def test_open_catalog_permissions_are_reported(self):
+        os.chmod(self.catalog_path, 0o644)
+        report = audit(self.catalog_path, self.root)
+        codes = {item["code"] for item in report["findings"] if item["firm_id"] is None}
+        self.assertIn("catalog_permissions_too_open", codes)
 
     def test_missing_database_is_reported(self):
         self.add_tenant(2, filename=f"tenant-2-{uuid.uuid4().hex}.sqlite3")
