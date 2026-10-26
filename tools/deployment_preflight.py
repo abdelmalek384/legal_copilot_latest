@@ -45,8 +45,8 @@ def valid_allowed_hosts(value):
             return False
         ip_candidate = candidate[1:-1] if candidate.startswith("[") and candidate.endswith("]") else candidate
         try:
-            ipaddress.ip_address(ip_candidate)
-            if host.startswith("*."):
+            parsed_ip = ipaddress.ip_address(ip_candidate)
+            if parsed_ip.version == 6 or host.startswith("*."):
                 return False
             continue
         except ValueError:
