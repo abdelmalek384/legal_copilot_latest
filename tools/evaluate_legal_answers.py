@@ -85,6 +85,9 @@ def _validate_reviewed_question(row):
         raise EvaluationError(f"{qid}: expected_answer is required, including for approved abstention cases")
     sources = _string_list(row.get("expected_sources"), "expected_sources", qid)
     pins = _pin_cites(row.get("expected_pin_cites"), "expected_pin_cites", qid)
+    unlisted_pin_sources = sorted({source_id for source_id, _ in pins} - set(sources))
+    if unlisted_pin_sources:
+        raise EvaluationError(f"{qid}: expected pin citations reference sources absent from expected_sources")
     if row["answerable"] and not sources:
         raise EvaluationError(f"{qid}: answerable questions require at least one expected source")
     if row["answerable"] and not pins:
@@ -102,6 +105,9 @@ def _validate_result(row):
         raise EvaluationError(f"{qid}: result abstained must be true or false")
     sources = _string_list(row.get("cited_sources", []), "cited_sources", qid)
     pins = _pin_cites(row.get("cited_pin_cites", []), "cited_pin_cites", qid)
+    unlisted_pin_sources = sorted({source_id for source_id, _ in pins} - set(sources))
+    if unlisted_pin_sources:
+        raise EvaluationError(f"{qid}: result pin citations reference sources absent from cited_sources")
     return sources, pins
 
 
