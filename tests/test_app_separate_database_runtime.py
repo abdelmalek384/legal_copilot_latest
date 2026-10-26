@@ -537,6 +537,33 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
                 denied = self.client.get(url)
                 self.assertEqual(denied.status_code, 403, denied.text)
 
+    def test_shared_registry_discovery_never_returns_private_firm_documents(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate(
+            "post", "/cases", json={"title": "Private matter discovery isolation"}
+        )
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+        private_doc = self._mutate(
+            "post", f"/cases/{case_id}/docs",
+            json={"name": "PRIVATE_FIRM_ONLY_DISCOVERY_SENTINEL.pdf",
+                  "text": "Confidential private firm document contents for discovery isolation test."},
+        )
+        self.assertEqual(private_doc.status_code, 200, private_doc.text)
+
+        switched = self._mutate("post", "/session/firm", json={"firm_id": self.firm_b})
+        self.assertEqual(switched.status_code, 200, switched.text)
+        response = self._mutate(
+            "post", "/research/discover", json={"q": "PRIVATE_FIRM_ONLY_DISCOVERY_SENTINEL"}
+        )
+        self.assertEqual(response.status_code, 200, response.text)
+        self.assertEqual(response.json()["scope"], "metadata_only")
+        self.assertEqual(response.json()["results"], [])
+        self.assertFalse(response.json()["found"])
+
     def test_search_and_ask_reject_case_ids_from_another_firm(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
