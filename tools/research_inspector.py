@@ -34,15 +34,16 @@ def source_status(source, as_of=None):
     if not isinstance(passage, str) or not passage.strip():
         return STATUS_METADATA_ONLY
 
+    # Matter-linked text is always user-supplied evidence, independent of corpus dates.
+    if source.get("scope") == "firm_documents" or source.get("case_id") is not None:
+        return STATUS_USER_SUPPLIED
+
     if as_of is None:
         as_of_date = date.today()
     else:
         as_of_date = _calendar_date(as_of)
         if as_of_date is None:
             return STATUS_REVIEW
-
-    if source.get("scope") == "firm_documents" or source.get("case_id") is not None:
-        return STATUS_USER_SUPPLIED
 
     # Only an explicitly selected verified-corpus scope may pass the legal-status gates.
     # Missing, malformed, or future scope values must not inherit a verified label.

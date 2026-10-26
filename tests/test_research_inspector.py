@@ -82,6 +82,14 @@ class ResearchInspectorTests(unittest.TestCase):
         source["scope"] = "verified_corpus"
         self.assertEqual(source_status(source, "2026-10-24"), STATUS_USER_SUPPLIED)
 
+    def test_matter_linked_source_status_does_not_depend_on_as_of_date(self):
+        source = valid_source()
+        source["case_id"] = 123
+        self.assertEqual(source_status(source, "2026-02-30"), STATUS_USER_SUPPLIED)
+        source = valid_source()
+        source["scope"] = "firm_documents"
+        self.assertEqual(source_status(source, "not-a-date"), STATUS_USER_SUPPLIED)
+
     def test_unknown_or_missing_scope_never_inherits_verified_status(self):
         for scope in (None, "", "metadata_only", "future_scope", [], {}):
             source = valid_source()
