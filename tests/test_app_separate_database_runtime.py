@@ -564,7 +564,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             "notes": "Synthetic authorization regression test",
         }
         endpoint = "/legal-review/versions/779/events"
-        denied = self.client.post(endpoint, json=payload)
+        denied = self._mutate("post", endpoint, json=payload)
         self.assertEqual(denied.status_code, 403, denied.text)
 
         control = self.runtime.control_connection()
@@ -573,7 +573,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             (self.user_id, "platform_reviewer"),
         )
         control.commit()
-        allowed = self.client.post(endpoint, json=payload)
+        allowed = self._mutate("post", endpoint, json=payload)
         self.assertEqual(allowed.status_code, 201, allowed.text)
         self.assertFalse(allowed.json()["status_changed"])
 
@@ -582,7 +582,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             (self.user_id,),
         )
         control.commit()
-        denied_after_revocation = self.client.post(endpoint, json=payload)
+        denied_after_revocation = self._mutate("post", endpoint, json=payload)
         self.assertEqual(denied_after_revocation.status_code, 403, denied_after_revocation.text)
         self.assertEqual(
             corpus.execute(
