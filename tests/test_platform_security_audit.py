@@ -184,6 +184,110 @@ class PlatformSecurityAuditTests(unittest.TestCase):
             control.execute("DELETE FROM platform_security_events WHERE id=1")
         control.rollback()
 
+    def test_firm_disable_is_atomically_audited_and_idempotent(self):
+        changed = self.runtime.disable_firm(self.firm_id)
+        self.assertTrue(changed)
+        control = self.runtime.control_connection()
+        firm = control.execute(
+            "SELECT status FROM firms WHERE id=?", (self.firm_id,)
+        ).fetchone()
+        catalog = control.execute(
+            "SELECT status FROM tenant_database_catalog WHERE firm_id=?", (self.firm_id,)
+        ).fetchone()
+        event = control.execute(
+            "SELECT actor_user_id,firm_id,event_type,detail_json "
+            "FROM platform_security_events WHERE event_type='firm_disabled'"
+        ).fetchone()
+        self.assertEqual(firm["status"], "disabled")
+        self.assertEqual(catalog["status"], "disabled")
+        self.assertIsNone(event["actor_user_id"])
+        self.assertEqual(event["firm_id"], self.firm_id)
+        self.assertEqual(event["event_type"], "firm_disabled")
+        self.assertEqual(
+            json.loads(event["detail_json"]),
+            {"new_status": "disabled", "previous_status": "active"},
+        )
+
+        self.assertFalse(self.runtime.disable_firm(self.firm_id))
+        self.assertEqual(
+            control.execute(
+                "SELECT COUNT(*) FROM platform_security_events WHERE firm_id=? AND event_type='firm_disabled'",
+                (self.firm_id,),
+            ).fetchone()[0],
+            1,
+            "repeated disable must not duplicate the lifecycle audit event",
+        )
+
+    def test_firm_disable_rolls_back_if_platform_audit_write_fails(self):
+        control = self.runtime.control_connection()
+        control.execute("""
+            CREATE TRIGGER reject_firm_disable_audit
+            BEFORE INSERT ON platform_security_events
+            WHEN NEW.event_type='firm_disabled'
+            BEGIN SELECT RAISE(ABORT, 'audit unavailable'); END
+        """)
+        control.commit()
+
+        with self.assertRaisesRegex(Exception, "audit unavailable"):
+            self.runtime.disable_firm(self.firm_id)
+
+        self.assertEqual(
+            control.execute("SELECT status FROM firms WHERE id=?", (self.firm_id,)).fetchone()[0],
+            "active",
+        )
+        self.assertEqual(
+            control.execute(
+                "SELECT status FROM tenant_database_catalog WHERE firm_id=?", (self.firm_id,)
+            ).fetchone()[0],
+            "provisioned",
+        )
+        self.assertEqual(
+            control.execute(
+                "SELECT COUNT(*) FROM platform_security_events WHERE firm_id=? AND event_type='firm_disabled'",
+                (self.firm_id,),
+            ).fetchone()[0],
+            0,
+        )
+
+
+
+    def test_membership_creation_rolls_back_if_audit_write_fails(self):
+        target_user_id = self.runtime.create_global_identity(
+            "Membership Target", "membership-target@example.test", "test-password-hash"
+        )
+        control = self.runtime.control_connection()
+        control.execute("""
+            CREATE TRIGGER reject_membership_audit
+            BEFORE INSERT ON platform_security_events
+            WHEN NEW.event_type='membership_created'
+            BEGIN SELECT RAISE(ABORT, 'audit unavailable'); END
+        """)
+        control.commit()
+
+        with self.assertRaisesRegex(Exception, "audit unavailable"):
+            self.runtime.create_firm_membership(
+                target_user_id, self.firm_id, "lawyer", created_by_user_id=self.user_id
+            )
+
+        self.assertFalse(control.in_transaction, "failed audited mutation must leave no open transaction")
+        self.assertEqual(
+            control.execute(
+                "SELECT COUNT(*) FROM firm_memberships WHERE user_id=? AND firm_id=?",
+                (target_user_id, self.firm_id),
+            ).fetchone()[0],
+            0,
+            "membership must not persist when its audit event cannot be written",
+        )
+        self.assertEqual(
+            control.execute(
+                "SELECT COUNT(*) FROM platform_security_events "
+                "WHERE event_type='membership_created' AND target_user_id=?",
+                (target_user_id,),
+            ).fetchone()[0],
+            0,
+        )
+
+
 
 if __name__ == "__main__":
     unittest.main()
