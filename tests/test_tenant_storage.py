@@ -119,6 +119,25 @@ class TenantSQLiteConnectionRouterTests(unittest.TestCase):
             router.connection_for_firm(202)
         router.close_current_thread()
 
+    def test_router_rejects_missing_or_ineffective_profile_guards(self):
+        with self._catalog() as catalog:
+            path = resolve_tenant_database(catalog, 101, self.root)
+        with sqlite3.connect(path) as db:
+            db.execute("DROP TRIGGER database_profile_no_update")
+            db.execute("DROP TRIGGER database_profile_no_delete")
+            db.executescript("""
+                CREATE TRIGGER database_profile_no_update
+                BEFORE UPDATE ON database_profile
+                BEGIN SELECT 1; END;
+                CREATE TRIGGER database_profile_no_delete
+                BEFORE DELETE ON database_profile
+                BEGIN SELECT 1; END;
+            """)
+        router = TenantSQLiteConnectionRouter(self._catalog, self.root)
+        with self.assertRaisesRegex(TenantConnectionError, "profile binding lacks effective immutable guards"):
+            router.connection_for_firm(101)
+        router.close_current_thread()
+
     def test_router_rejects_missing_or_ineffective_firm_binding_guards(self):
         with self._catalog() as catalog:
             path = resolve_tenant_database(catalog, 101, self.root)
