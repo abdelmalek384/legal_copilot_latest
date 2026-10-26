@@ -102,7 +102,7 @@ class ResearchInspectorTests(unittest.TestCase):
         self.assertIn("Exact passage (verbatim):\nExact quoted passage.", memo)
         self.assertIn("As of: 2026-10-24", memo)
         empty = research_memo("Question", {"answer": None, "sources": [], "requested_as_of": "2026-10-24"})
-        self.assertIn("No relevant verified passage was found", empty)
+        self.assertIn("No source records were returned; the search scope was not recorded.", empty)
         self.assertIn("not evidence that no applicable law exists", empty)
 
     def test_malformed_as_of_and_provenance_dates_fail_closed(self):
