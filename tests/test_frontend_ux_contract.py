@@ -67,12 +67,21 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("const highlightTerms=(text,question,matchedTerms)=>", HTML)
         self.assertIn("highlightTerms(s.text||'',sourceQuestion,s.matched_terms)", HTML)
 
+    def test_research_empty_state_reads_scope_from_message_result(self):
+        self.assertIn("const messageScope=(m.result&&m.result.scope)||m.scope||'unknown'", HTML)
+        self.assertIn("messageScope==='metadata_only'", HTML)
+        self.assertIn("messageScope==='firm_documents'", HTML)
+        self.assertIn("messageScope==='verified_corpus'", HTML)
+        self.assertIn("if(messageScope!=='metadata_only')actions.append", HTML)
+        self.assertIn("const messageQuestion=messages.slice(0,messageIndex).reverse().find(x=>x.role==='user')?.content||priorQuestion||''", HTML)
+        self.assertIn("api('/research/discover','POST',{q:messageQuestion}),messageQuestion", HTML)
+
     def test_research_empty_state_copy_matches_selected_scope(self):
         self.assertIn("No matching source-catalog metadata was returned; this search does not retrieve legal text.", HTML)
         self.assertIn("No relevant passage was returned from the selected matter documents.", HTML)
         self.assertIn("No relevant verified legal text was returned by this verified-corpus search.", HTML)
         self.assertIn("No source records were returned; the search scope was not recorded.", HTML)
-        self.assertIn("if(m.scope!=='metadata_only')actions.append", HTML)
+        self.assertIn("if(messageScope!=='metadata_only')actions.append", HTML)
 
     def test_research_async_status_and_toasts_are_announced(self):
         self.assertIn('id="toast" role="status" aria-live="polite" aria-atomic="true"', HTML)
