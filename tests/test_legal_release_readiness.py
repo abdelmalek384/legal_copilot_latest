@@ -104,7 +104,12 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         register_path.write_text(json.dumps(self.register), encoding="utf-8")
         matrix_path = self.root / "coverage.csv"
         matrix_path.write_text(
-            "practice_area,priority,status\\nCivil law,P0,not_started\\nLabour,P0,in_progress\\nTax,P1,not_started\\n",
+            chr(10).join([
+                "practice_area,priority,status",
+                "Civil law,P0,not_started",
+                "Labour,P0,in_progress",
+                "Tax,P1,not_started",
+            ]) + chr(10),
             encoding="utf-8",
         )
         report = MODULE.build_report([candidate_path], register_path, self.root, matrix_path)
