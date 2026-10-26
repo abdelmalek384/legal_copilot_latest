@@ -4,7 +4,8 @@ import re
 import tempfile
 from pathlib import Path
 
-os.environ["COPILOT_DB"] = os.path.join(tempfile.gettempdir(), "legal-copilot-sec01-surface-test.db")
+_TEST_DB_DIR = tempfile.TemporaryDirectory(prefix="legal-copilot-sec01-surface-")
+os.environ["COPILOT_DB"] = os.path.join(_TEST_DB_DIR.name, "surface-test.db")
 import app  # noqa: E402
 
 INVENTORY = Path(__file__).resolve().parents[1] / "docs" / "sec-01-attack-surface-inventory.md"
