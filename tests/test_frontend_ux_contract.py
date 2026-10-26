@@ -116,6 +116,9 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("'Search scope: '+memoScope", memo)
         self.assertNotIn("scopeSelect.value", memo)
         self.assertIn("Array.isArray(result.sources)?result.sources:[]", memo)
+        self.assertIn("typeof source.text==='string'&&source.text.trim()?source.text:'(No passage text recorded; metadata-only result.)'", memo)
+        self.assertIn("x&&typeof x==='object'&&!Array.isArray(x)?x:{}", memo)
+        self.assertNotIn("x.text||'(No passage text recorded; metadata-only result.)'", memo)
 
     def test_source_inspector_exposes_status_pin_cites_copy_and_memo_actions(self):
         self.assertIn("source_status", HTML)
