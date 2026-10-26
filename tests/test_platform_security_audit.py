@@ -1,3 +1,4 @@
+import json
 import os
 import tempfile
 import unittest
@@ -178,7 +179,7 @@ class PlatformSecurityAuditTests(unittest.TestCase):
         self.assertEqual(event["firm_id"], self.firm_id)
         self.assertEqual(event["event_type"], "firm_disabled")
         self.assertEqual(
-            __import__("json").loads(event["detail_json"]),
+            json.loads(event["detail_json"]),
             {"new_status": "disabled", "previous_status": "active"},
         )
 
