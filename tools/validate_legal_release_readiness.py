@@ -238,7 +238,7 @@ def summarize_coverage_matrix(path: Path) -> dict:
             if not reader.fieldnames or not required.issubset(set(reader.fieldnames)):
                 return {"available": False, "path": str(path), "error": "Coverage matrix must include practice_area, priority, and status columns."}
             rows = list(reader)
-    except (OSError, csv.Error) as exc:
+    except (OSError, csv.Error, UnicodeError) as exc:
         return {"available": False, "path": str(path), "error": f"Cannot read coverage matrix: {exc}"}
 
     status_counts: dict[str, int] = {}
