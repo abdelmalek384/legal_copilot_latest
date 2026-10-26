@@ -106,6 +106,53 @@ class ProfileInitialSchemaTests(unittest.TestCase):
                 )
         db.close()
 
+    def test_wrong_firm_updates_are_rejected_on_every_firm_owned_table(self):
+        db = self.build("firm")
+        db.execute("INSERT INTO cases(id,title,firm_id) VALUES(1,'Matter',7)")
+        db.execute("INSERT INTO docs(id,case_id,firm_id,name) VALUES(2,1,7,'matter.docx')")
+        db.execute(
+            "INSERT INTO chunks(id,case_id,document_id,text,norm) "
+            "VALUES(3,1,2,'source text','source text')"
+        )
+        db.execute(
+            "INSERT INTO document_extraction_reviews"
+            "(id,document_id,case_id,firm_id,chunk_id,reviewer_user_id,outcome,original_text,reviewed_text) "
+            "VALUES(4,2,1,7,3,1,'accepted','source text','source text')"
+        )
+        db.execute(
+            "INSERT INTO research_conversations(id,user_id,firm_id,title) "
+            "VALUES(5,1,7,'private conversation')"
+        )
+        db.execute(
+            "INSERT INTO case_deletion_audit"
+            "(id,firm_id,case_id,actor_user_id,actor_name,case_snapshot_json,events_snapshot_json,related_counts_json) "
+            "VALUES(6,7,1,1,'reviewer','{}','[]','{}')"
+        )
+        db.commit()
+
+        targets = (
+            ("cases", 1),
+            ("docs", 2),
+            ("document_extraction_reviews", 4),
+            ("research_conversations", 5),
+            ("case_deletion_audit", 6),
+        )
+        for table, row_id in targets:
+            with self.subTest(table=table):
+                with self.assertRaises(sqlite3.IntegrityError):
+                    db.execute(
+                        f'UPDATE "{table}" SET firm_id=999 WHERE id=?',
+                        (row_id,),
+                    )
+                self.assertEqual(
+                    db.execute(
+                        f'SELECT firm_id FROM "{table}" WHERE id=?', (row_id,)
+                    ).fetchone()[0],
+                    7,
+                    f"{table} retained an update that escaped the tenant binding",
+                )
+        db.close()
+
     def test_control_plane_catalog_requires_existing_firm_and_blocks_firm_delete(self):
         db = self.build("control_plane")
         with self.assertRaises(sqlite3.IntegrityError):
