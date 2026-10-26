@@ -94,6 +94,56 @@ class DatabaseRuntimeTests(unittest.TestCase):
         finally:
             os.chmod(self.runtime.paths.legal_corpus, 0o600)
 
+    def test_separate_profile_fresh_install_and_restart_preserve_data(self):
+        firm_id, _ = self.runtime.provision_firm("Restart Firm")
+        user_id = self.runtime.create_initial_firm_owner(
+            firm_id, "Restart Owner", "restart-owner@example.test", "test-hash"
+        )
+        context = self.runtime.resolve_context(user_id, firm_id)
+        firm_db = self.runtime.firm_connection(context)
+        case_id = firm_db.execute(
+            "INSERT INTO cases(title,firm_id) VALUES(?,?)",
+            ("Restart sentinel matter", firm_id),
+        ).lastrowid
+        firm_db.commit()
+        corpus = self.runtime.legal_corpus_connection()
+        corpus.execute(
+            "INSERT INTO legal_sources(source_id,authority,source_page) VALUES(?,?,?)",
+            ("restart-source", "Restart source", "https://example.test/source"),
+        )
+        corpus.commit()
+        self.runtime.close_current_thread()
+
+        restarted = DatabaseRuntime(
+            self.root / "control.sqlite3",
+            self.root / "tenants",
+            self.root / "corpus.sqlite3",
+        )
+        try:
+            restarted.initialize()
+            restarted_context = restarted.resolve_context(user_id, firm_id)
+            restarted_firm_db = restarted.firm_connection(restarted_context)
+            self.assertEqual(
+                restarted_firm_db.execute(
+                    "SELECT title FROM cases WHERE id=?", (case_id,)
+                ).fetchone()[0],
+                "Restart sentinel matter",
+            )
+            self.assertEqual(
+                restarted.legal_corpus_connection().execute(
+                    "SELECT authority FROM legal_sources WHERE source_id='restart-source'"
+                ).fetchone()[0],
+                "Restart source",
+            )
+            self.assertEqual(
+                restarted.control_connection().execute(
+                    "SELECT status FROM firms WHERE id=?", (firm_id,)
+                ).fetchone()[0],
+                "active",
+            )
+        finally:
+            restarted.close_current_thread()
+
     def test_profiles_are_separate_and_firm_databases_are_distinct(self):
         user_id = self._identity()
         firm_a, path_a = self.runtime.provision_firm("Firm A")
