@@ -96,6 +96,12 @@ def audit(db_path: Path):
                 ).fetchone()[0]
                 if missing_permission_evidence:
                     result["issues"].append({"severity":"high","code":"source_allowed_without_permission_evidence","count":missing_permission_evidence})
+            if {"commercial_reuse_permission", "permission_evidence"}.issubset(sc):
+                missing_commercial_evidence = db.execute(
+                    "SELECT COUNT(*) FROM legal_sources WHERE lower(trim(COALESCE(commercial_reuse_permission,'unknown'))) IN ('allowed','allowed_limited') AND (permission_evidence IS NULL OR trim(permission_evidence)='')"
+                ).fetchone()[0]
+                if missing_commercial_evidence:
+                    result["issues"].append({"severity":"high","code":"source_commercial_reuse_allowed_without_evidence","count":missing_commercial_evidence,"detail":"A recorded permission label is not self-authenticating; retain the evidence that supports commercial reuse."})
             if {"terms_url"}.issubset(sc):
                 invalid_terms = sum(not valid_evidence_url(row[0]) for row in db.execute("SELECT terms_url FROM legal_sources WHERE terms_url IS NOT NULL AND trim(terms_url)!=''").fetchall())
                 if invalid_terms:
