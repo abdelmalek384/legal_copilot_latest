@@ -114,8 +114,8 @@ def _validate_result(row):
 def _invalid_citation_indices(row):
     qid = row.get("id")
     value = row.get("invalid_citation_indices", [])
-    if not isinstance(value, list) or any(type(index) is not int or index < 1 for index in value):
-        raise EvaluationError(f"{qid}: invalid_citation_indices must be a list of positive integer citation indexes")
+    if not isinstance(value, list) or any(type(index) is not int or index < 0 for index in value):
+        raise EvaluationError(f"{qid}: invalid_citation_indices must be a list of non-negative integer citation indexes")
     if len(value) != len(set(value)):
         raise EvaluationError(f"{qid}: invalid_citation_indices contains duplicates")
     return value
