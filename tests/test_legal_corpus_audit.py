@@ -87,6 +87,15 @@ class CorpusAuditTests(unittest.TestCase):
             INSERT INTO legal_sources VALUES('S3','allowed','unknown',NULL,NULL,NULL,NULL);
             INSERT INTO legal_sources VALUES('S4','allowed','unknown','reviewed terms evidence','https://terms.example.com','https://source.example.com','9999-12-31');
             """)
+            digest = "a" * 64
+            db.executemany(
+                "INSERT INTO legal_document_versions VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                [
+                    (2, "https://example.gov/future", "future.pdf", digest, "2000-01-01", "9999-01-01", None, None, "in_force", "verified", 1, 1, 1),
+                    (3, "https://example.gov/repealed", "repealed.pdf", digest, "2000-01-01", "2000-01-01", "2001-01-01", None, "in_force", "verified", 1, 1, 1),
+                    (4, "https://example.gov/no-repeal-date", "no-repeal.pdf", digest, "2000-01-01", "2000-01-01", None, None, "repealed", "verified", 1, 1, 1),
+                ],
+            )
             db.commit()
             db.close()
             report = MODULE.audit(db_path)
@@ -99,6 +108,9 @@ class CorpusAuditTests(unittest.TestCase):
             self.assertIn("source_page_missing", codes)
             self.assertIn("source_permission_terms_check_date_invalid", codes)
             self.assertIn("source_permission_terms_check_date_in_future", codes)
+            self.assertIn("versions_in_force_before_effective_date", codes)
+            self.assertIn("versions_in_force_after_repeal_date", codes)
+            self.assertIn("versions_repealed_without_repeal_date", codes)
             self.assertIn("source_permission_terms_check_date_missing", codes)
             self.assertIn("versions_malformed_sha256", codes)
             self.assertIn("versions_invalid_source_url", codes)
