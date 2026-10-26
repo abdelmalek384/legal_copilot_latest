@@ -401,6 +401,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         result = response.json()
         self.assertEqual(result["matches"], [])
         self.assertFalse(result["possible_conflict"])
+        self.assertFalse(result["admin_review_required"])
 
     def test_search_and_ask_reject_case_ids_from_another_firm(self):
         login = self.client.post(
