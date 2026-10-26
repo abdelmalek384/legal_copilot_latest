@@ -1,4 +1,5 @@
 import importlib.util
+import json
 import sqlite3
 import tempfile
 import unittest
@@ -10,6 +11,25 @@ MODULE = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(MODULE)
 
 class CorpusAuditTests(unittest.TestCase):
+    def test_strict_cli_fails_on_high_severity_issues_and_supports_special_paths(self):
+        with tempfile.TemporaryDirectory() as td:
+            db_path = Path(td) / "sample ?audit.db"
+            db = sqlite3.connect(db_path)
+            db.execute("CREATE TABLE chunks(id INTEGER PRIMARY KEY, ref TEXT, article TEXT, text TEXT, source TEXT, verified INT, in_force INT, case_id INT)")
+            db.execute("INSERT INTO chunks(ref,article,text,source,verified,in_force,case_id) VALUES('law','1','text','',0,1,NULL)")
+            db.commit()
+            db.close()
+            out_dir = Path(td) / "audit output"
+            result = MODULE.main(["--db", str(db_path), "--out-dir", str(out_dir), "--strict"])
+            self.assertEqual(result, 1)
+            report = json.loads((out_dir / "legal_corpus_audit.json").read_text(encoding="utf-8"))
+            self.assertTrue(report["read_only"])
+            self.assertEqual(report["database_sha256"], MODULE.sha256_file(db_path))
+            self.assertIn("sqlite_sidecars", report)
+            db = sqlite3.connect(db_path)
+            self.assertEqual(db.execute("SELECT COUNT(*) FROM chunks").fetchone()[0], 1)
+            db.close()
+
     def test_missing_registry_is_reported_and_database_is_read_only(self):
         with tempfile.TemporaryDirectory() as td:
             db_path = Path(td) / "sample.db"
