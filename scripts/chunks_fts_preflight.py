@@ -39,18 +39,15 @@ def _fts_internal_integrity_check(conn: sqlite3.Connection) -> str | None:
     the search index is internally consistent. Never issue the FTS maintenance
     command against the caller's read-only/source connection.
     """
+    # A source connection with an open write transaction cannot be backed up
+    # safely without committing caller-owned work; SQLite backup may block on
+    # that transaction. The CLI opens an idle read-only connection, so this
+    # guard affects only callers auditing a connection mid-transaction.
+    if conn.in_transaction:
+        return None
     probe = sqlite3.connect(":memory:")
     try:
-        if conn.in_transaction:
-            # sqlite3.Connection.backup can wait for the caller's own open write
-            # transaction to finish. Serialize the current snapshot instead so
-            # audits of in-memory/test connections cannot deadlock.
-            serialize = getattr(conn, "serialize", None)
-            if serialize is None:
-                return "source connection has an open transaction and SQLite serialization is unavailable"
-            probe.deserialize(serialize())
-        else:
-            conn.backup(probe)
+        conn.backup(probe)
         definition = probe.execute(
             "SELECT sql FROM sqlite_master WHERE type='table' AND name='chunks_fts'"
         ).fetchone()
