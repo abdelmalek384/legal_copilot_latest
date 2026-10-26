@@ -52,10 +52,10 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         return getattr(self.client, method)(url, headers=headers, **kwargs)
 
     def test_membership_writers_recheck_active_firm_inside_write_transaction(self):
-        target_user = self.runtime.create_initial_firm_owner(
-            self.firm_b, "Second Firm User", "second-firm-user@example.test",
-            app.hash_pw(self.password)
+        target_user = self.runtime.create_global_identity(
+            "Second Firm User", "second-firm-user@example.test", app.hash_pw(self.password)
         )
+        self.runtime.create_firm_membership(target_user, self.firm_b, "admin")
         self.assertTrue(self.runtime.disable_firm(self.firm_a))
         admin_context = {"id": self.user_id, "firm_id": self.firm_a, "role": "admin"}
 
