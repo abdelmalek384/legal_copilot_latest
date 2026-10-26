@@ -122,6 +122,44 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             0,
         )
 
+    def test_disabling_user_suspends_only_the_active_firm_membership(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+
+        firm_c, _ = self.runtime.provision_firm("Independent Membership Firm")
+        target_id = self.runtime.create_initial_firm_owner(
+            firm_c, "Independent Member", "independent-member@example.test",
+            app.hash_pw(self.password),
+        )
+        added = self._mutate(
+            "post", "/memberships",
+            json={"email": "independent-member@example.test", "role": "lawyer"},
+        )
+        self.assertEqual(added.status_code, 201, added.text)
+        self.assertEqual(added.json()["user_id"], target_id)
+        self.assertTrue(any(row["id"] == target_id for row in self.client.get("/users").json()))
+
+        disabled = self._mutate("post", f"/users/{target_id}/disable")
+        self.assertEqual(disabled.status_code, 200, disabled.text)
+        self.assertTrue(disabled.json()["membership_suspended"])
+
+        control = self.runtime.control_connection()
+        identity = control.execute(
+            "SELECT status FROM users WHERE id=?", (target_id,)
+        ).fetchone()
+        memberships = control.execute(
+            "SELECT firm_id,status FROM firm_memberships WHERE user_id=? ORDER BY firm_id",
+            (target_id,),
+        ).fetchall()
+        self.assertEqual(identity["status"], "active")
+        self.assertEqual(
+            [(row["firm_id"], row["status"]) for row in memberships],
+            [(self.firm_a, "suspended"), (firm_c, "active")],
+        )
+        self.assertFalse(any(row["id"] == target_id for row in self.client.get("/users").json()))
+
     def test_existing_global_identity_can_join_another_firm_without_duplication(self):
         firm_c, _ = self.runtime.provision_firm("Firm C")
         existing_user_id = self.runtime.create_initial_firm_owner(
