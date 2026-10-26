@@ -22,6 +22,7 @@ class T(unittest.TestCase):
  def test_labels(self):
   self.assertEqual(label("مادة (٥)"),"5");self.assertEqual(label("المادة الأولى"),"1");self.assertEqual(label("12 مكرر"),"12 مكرر");self.assertIsNone(label("غير مفهوم"))
   self.assertEqual([(x["key"],x["occurrence"]) for x in segment(REF)[:4]],[("1",1),("2",1),("1",2),("2",2)])
+  self.assertEqual(segment("مادة (7) نص داخل العنوان") [0]["text"],"نص داخل العنوان")
  def test_differences(self):
   r=build_report(self.c,self.ref);s={(x["article"],x["occurrence"]):x["status"] for x in r["articles"]}
   self.assertEqual(s[("1",1)],"identical_after_normalization");self.assertEqual(s[("2",1)],"identical_after_normalization")
