@@ -50,6 +50,45 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         headers["X-CSRF-Token"] = csrf or ""
         return getattr(self.client, method)(url, headers=headers, **kwargs)
 
+    def test_nonmember_cannot_switch_firms_and_revoked_membership_blocks_cached_session(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+
+        unassigned_firm, _ = self.runtime.provision_firm("Unassigned Firm")
+        denied = self._mutate(
+            "post", "/session/firm", json={"firm_id": unassigned_firm}
+        )
+        self.assertEqual(denied.status_code, 403, denied.text)
+
+        switched = self._mutate(
+            "post", "/session/firm", json={"firm_id": self.firm_b}
+        )
+        self.assertEqual(switched.status_code, 200, switched.text)
+        # Prime the tenant connection cache before revoking membership.
+        self.assertEqual(self.client.get("/cases").status_code, 200)
+
+        control = self.runtime.control_connection()
+        control.execute(
+            "UPDATE firm_memberships SET status='revoked', updated_at=datetime('now') "
+            "WHERE user_id=? AND firm_id=?",
+            (self.user_id, self.firm_b),
+        )
+        control.commit()
+
+        # Every request must revalidate membership, even with a cached firm DB
+        # connection and a still-valid authentication session cookie.
+        denied_after_revocation = self.client.get("/cases")
+        self.assertEqual(denied_after_revocation.status_code, 401,
+                         denied_after_revocation.text)
+        self.assertEqual(
+            self.runtime.firm_connection(
+                self.runtime.resolve_context(self.user_id, self.firm_a)
+            ).execute("SELECT COUNT(*) FROM cases").fetchone()[0],
+            0,
+        )
+
     def test_login_firm_switch_and_shared_corpus_are_separated(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
