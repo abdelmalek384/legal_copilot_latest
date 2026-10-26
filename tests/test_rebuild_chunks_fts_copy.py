@@ -74,11 +74,6 @@ class RebuildChunksFtsCopyTests(unittest.TestCase):
             output = root / "firm-rebuilt.sqlite3"
             with sqlite3.connect(source) as db:
                 apply_profile_migrations(db, "firm", MIGRATIONS)
-                db.execute("""CREATE TABLE tenant_database_binding (
-                    singleton INTEGER PRIMARY KEY CHECK(singleton=1),
-                    firm_id INTEGER NOT NULL CHECK(firm_id>0),
-                    bound_at TEXT NOT NULL DEFAULT (datetime('now'))
-                )""")
                 db.execute("INSERT INTO tenant_database_binding(singleton,firm_id) VALUES(1,7)")
                 db.execute("INSERT INTO cases(id,title,firm_id) VALUES(1,'firm matter',7)")
                 db.execute(

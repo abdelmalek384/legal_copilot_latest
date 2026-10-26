@@ -12,20 +12,31 @@ class ProfileInitialSchemaTests(unittest.TestCase):
         db.row_factory = sqlite3.Row
         expected_versions = sorted(int(path.name.split("_", 1)[0]) for path in (ROOT / profile).glob("*.sql"))
         self.assertEqual(apply_profile_migrations(db, profile, ROOT), expected_versions)
-        # Runtime provisioning writes the immutable binding after the profile
-        # migrations have created the schema and its binding-aware triggers.
+        # Runtime provisioning supplies the firm ID only; table and immutable
+        # guards are owned by the versioned firm-profile migration.
         if profile == "firm":
-            db.execute("""
-                CREATE TABLE tenant_database_binding (
-                    singleton INTEGER PRIMARY KEY CHECK(singleton=1),
-                    firm_id INTEGER NOT NULL CHECK(firm_id>0),
-                    bound_at TEXT NOT NULL DEFAULT (datetime('now'))
-                )
-            """)
             db.execute("INSERT INTO tenant_database_binding(singleton,firm_id) VALUES(1,7)")
         self.assertEqual(db.execute("PRAGMA integrity_check").fetchone()[0], "ok")
         self.assertEqual(db.execute("PRAGMA foreign_key_check").fetchall(), [])
         return db
+
+    def test_firm_binding_schema_is_migration_managed_and_immutable(self):
+        db = self.build("firm")
+        self.assertIn(
+            "tenant_database_binding",
+            {row[0] for row in db.execute(
+                "SELECT name FROM sqlite_master WHERE type='table'"
+            )},
+        )
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "binding is immutable"):
+            db.execute("UPDATE tenant_database_binding SET firm_id=8 WHERE singleton=1")
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "binding is immutable"):
+            db.execute("DELETE FROM tenant_database_binding WHERE singleton=1")
+        self.assertEqual(
+            db.execute("SELECT firm_id FROM tenant_database_binding WHERE singleton=1").fetchone()[0],
+            7,
+        )
+        db.close()
 
     def test_profiles_have_disjoint_ownership_tables(self):
         control, firm, corpus = (self.build(p) for p in ("control_plane","firm","legal_corpus"))

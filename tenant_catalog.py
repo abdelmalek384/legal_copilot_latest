@@ -143,27 +143,42 @@ def _safe_database_path(root: Path, firm_id: int, filename: str) -> Path:
 
 def _bind_tenant_database(connection: sqlite3.Connection, firm_id: int) -> None:
     """Permanently bind a newly provisioned tenant database to one firm ID."""
-    connection.execute("""
-        CREATE TABLE IF NOT EXISTS tenant_database_binding (
-            singleton INTEGER PRIMARY KEY CHECK(singleton = 1),
-            firm_id INTEGER NOT NULL CHECK(firm_id > 0),
-            bound_at TEXT NOT NULL DEFAULT (datetime('now'))
+    schema = connection.execute(
+        "SELECT name, sql FROM sqlite_master WHERE type='table' AND name='tenant_database_binding'"
+    ).fetchone()
+    trigger_rows = {
+        row[0]: row[1]
+        for row in connection.execute(
+            "SELECT name, sql FROM sqlite_master WHERE type='trigger' "
+            "AND name IN ('tenant_database_binding_no_update','tenant_database_binding_no_delete')"
         )
-    """)
-    connection.execute("""
-        CREATE TRIGGER IF NOT EXISTS tenant_database_binding_no_update
-        BEFORE UPDATE ON tenant_database_binding
-        BEGIN
-            SELECT RAISE(ABORT, 'tenant database firm binding is immutable');
-        END
-    """)
-    connection.execute("""
-        CREATE TRIGGER IF NOT EXISTS tenant_database_binding_no_delete
-        BEFORE DELETE ON tenant_database_binding
-        BEGIN
-            SELECT RAISE(ABORT, 'tenant database firm binding is immutable');
-        END
-    """)
+    }
+
+    def has_immutable_binding_guard(sql: str | None, operation: str) -> bool:
+        if not isinstance(sql, str):
+            return False
+        normalized = " ".join(sql.lower().split())
+        return (
+            f"before {operation} on tenant_database_binding" in normalized
+            and "raise(abort" in normalized
+            and "tenant database firm binding is immutable" in normalized
+        )
+
+    if schema is None:
+        raise TenantCatalogError(
+            "Tenant database binding schema must be created by firm migrations"
+        )
+    if (
+        not has_immutable_binding_guard(
+            trigger_rows.get("tenant_database_binding_no_update"), "update"
+        )
+        or not has_immutable_binding_guard(
+            trigger_rows.get("tenant_database_binding_no_delete"), "delete"
+        )
+    ):
+        raise TenantCatalogError(
+            "firm binding lacks effective immutable guards"
+        )
     rows = connection.execute(
         "SELECT singleton, firm_id FROM tenant_database_binding"
     ).fetchall()
