@@ -622,6 +622,17 @@ _FIRM_SEARCH_SQL = (
     "ORDER BY r LIMIT 40"
 )
 
+_REQUIRED_REVIEW_EVENTS_SQL = (
+    "AND (SELECT COUNT(DISTINCT e.review_type) FROM legal_review_events e "
+    "WHERE e.version_id=v.version_id "
+    "AND e.review_type IN ('source_authenticity','extraction_quality','legal_status','amendment_history','licensing','lawyer_approval') "
+    "AND e.review_event_id=(SELECT e2.review_event_id FROM legal_review_events e2 "
+    "WHERE e2.version_id=v.version_id AND e2.review_type=e.review_type "
+    "ORDER BY e2.reviewed_at DESC, e2.review_event_id DESC LIMIT 1) "
+    "AND e.outcome='pass' AND TRIM(COALESCE(e.notes,''))<>'' "
+    "AND TRIM(COALESCE(e.reviewer,''))<>'' AND e.evidence_url LIKE 'https://%')=6 "
+)
+
 _CORPUS_SEARCH_SQL = (
     "SELECT chunks.*, bm25(chunks_fts) AS r FROM chunks_fts "
     "JOIN chunks ON chunks.id=chunks_fts.rowid "
@@ -635,7 +646,8 @@ _CORPUS_SEARCH_SQL = (
     "AND s.collection_permission='allowed' AND s.commercial_reuse_permission='allowed' "
     "AND TRIM(COALESCE(s.permission_evidence,''))<>'' "
     "AND TRIM(COALESCE(v.permission_evidence,''))<>'' "
-    "AND (v.legal_status='in_force' OR (v.legal_status IN ('repealed','historical') AND v.repeal_date IS NOT NULL)) "
+    + _REQUIRED_REVIEW_EVENTS_SQL
+    + "AND (v.legal_status='in_force' OR (v.legal_status IN ('repealed','historical') AND v.repeal_date IS NOT NULL)) "
     "AND v.effective_date IS NOT NULL AND v.effective_date<=? "
     "AND (v.repeal_date IS NULL OR v.repeal_date>?)"
     ") ORDER BY r LIMIT 40"
@@ -652,7 +664,8 @@ _CORPUS_EXACT_ARTICLE_SQL = (
     "AND s.collection_permission='allowed' AND s.commercial_reuse_permission='allowed' "
     "AND TRIM(COALESCE(s.permission_evidence,''))<>'' "
     "AND TRIM(COALESCE(v.permission_evidence,''))<>'' "
-    "AND (v.legal_status='in_force' OR (v.legal_status IN ('repealed','historical') AND v.repeal_date IS NOT NULL)) "
+    + _REQUIRED_REVIEW_EVENTS_SQL
+    + "AND (v.legal_status='in_force' OR (v.legal_status IN ('repealed','historical') AND v.repeal_date IS NOT NULL)) "
     "AND v.effective_date IS NOT NULL AND v.effective_date<=? "
     "AND (v.repeal_date IS NULL OR v.repeal_date>?)"
     ") LIMIT 20"
