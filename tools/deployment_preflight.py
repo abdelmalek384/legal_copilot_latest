@@ -61,7 +61,10 @@ def inspect_environment(env=None):
     else:
         passed.append("The COPILOT_DB parent directory exists and is writable.")
 
-    if db_path.exists():
+    if db_path.is_symlink():
+        # Do not follow a configured database symlink during deployment checks.
+        errors.append("COPILOT_DB must not be a symbolic link; configure the actual database file path.")
+    elif db_path.exists():
         if not db_path.is_file():
             errors.append("COPILOT_DB exists but is not a regular file.")
         elif not os.access(db_path, os.R_OK | os.W_OK):

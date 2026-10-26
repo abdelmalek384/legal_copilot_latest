@@ -61,6 +61,15 @@ class DeploymentPreflightTests(unittest.TestCase):
         self.assertTrue(any("relative" in item for item in warnings))
         self.assertEqual(errors, [])
 
+    def test_rejects_symlinked_database_path_without_following_target(self):
+        target = Path(self.tempdir.name) / "real-production.db"
+        target.write_text("test", encoding="utf-8")
+        self.db_path.symlink_to(target)
+        passed, warnings, errors = preflight.inspect_environment(self.env)
+        self.assertTrue(any("must not be a symbolic link" in item for item in errors))
+        self.assertFalse(any("existing COPILOT_DB file is readable" in item for item in passed))
+        self.assertFalse(any("does not exist yet" in item for item in warnings))
+
     def test_existing_database_must_be_readable_and_writable(self):
         self.db_path.write_text("test", encoding="utf-8")
         passed, warnings, errors = preflight.inspect_environment(self.env)
