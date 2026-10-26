@@ -50,6 +50,47 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         headers["X-CSRF-Token"] = csrf or ""
         return getattr(self.client, method)(url, headers=headers, **kwargs)
 
+    def test_child_records_and_task_actions_are_isolated_between_firms(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+
+        created = self._mutate("post", "/cases", json={"title": "Firm A child-record matter"})
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+        task_response = self._mutate(
+            "post", f"/cases/{case_id}/tasks", json={"title": "Firm A confidential task"}
+        )
+        self.assertEqual(task_response.status_code, 200, task_response.text)
+
+        context_a = self.runtime.resolve_context(self.user_id, self.firm_a)
+        firm_a_db = self.runtime.firm_connection(context_a)
+        task = firm_a_db.execute(
+            "SELECT id,title FROM tasks WHERE case_id=?", (case_id,)
+        ).fetchone()
+        self.assertIsNotNone(task)
+        task_id = task["id"]
+
+        switched = self._mutate(
+            "post", "/session/firm", json={"firm_id": self.firm_b}
+        )
+        self.assertEqual(switched.status_code, 200, switched.text)
+        self.assertEqual(self.client.get("/cases").json(), [])
+
+        # A child-record ID from Firm A must not resolve against Firm B's DB.
+        cross_firm_action = self._mutate("post", f"/tasks/{task_id}/done")
+        self.assertEqual(cross_firm_action.status_code, 404, cross_firm_action.text)
+        context_b = self.runtime.resolve_context(self.user_id, self.firm_b)
+        firm_b_db = self.runtime.firm_connection(context_b)
+        self.assertEqual(
+            firm_b_db.execute("SELECT COUNT(*) FROM tasks").fetchone()[0], 0
+        )
+        self.assertEqual(
+            firm_a_db.execute("SELECT title FROM tasks WHERE id=?", (task_id,)).fetchone()[0],
+            "Firm A confidential task",
+        )
+
     def test_nonmember_cannot_switch_firms_and_revoked_membership_blocks_cached_session(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
