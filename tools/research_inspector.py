@@ -89,7 +89,7 @@ def citation_text(source, as_of=None):
     """Build a citation from available metadata without inventing missing fields."""
     if not isinstance(source, Mapping):
         return "Unresolved citation — source metadata was not recorded"
-    requested_as_of = as_of or source.get("requested_as_of") or date.today().isoformat()
+    requested_as_of = as_of or source.get("requested_as_of") or "unknown"
     # Invalid dates are still shown as supplied, but must never be used to imply verified status.
     p = source.get("provenance")
     if not isinstance(p, Mapping):
