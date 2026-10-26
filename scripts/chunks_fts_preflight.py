@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sqlite3
 import sys
 from pathlib import Path
@@ -50,7 +51,14 @@ def _fts_internal_integrity_check(conn: sqlite3.Connection) -> str | None:
             probe.deserialize(serialize())
         else:
             conn.backup(probe)
-        probe.execute("INSERT INTO chunks_fts(chunks_fts, rank) VALUES('integrity-check', 1)")
+        definition = probe.execute(
+            "SELECT sql FROM sqlite_master WHERE type='table' AND name='chunks_fts'"
+        ).fetchone()
+        sql = str(definition[0] or "").lower() if definition else ""
+        if re.search(r"\bcontent\s*=", sql):
+            probe.execute("INSERT INTO chunks_fts(chunks_fts, rank) VALUES('integrity-check', 1)")
+        else:
+            probe.execute("INSERT INTO chunks_fts(chunks_fts) VALUES('integrity-check')")
         probe.commit()
         return None
     except sqlite3.Error as exc:
