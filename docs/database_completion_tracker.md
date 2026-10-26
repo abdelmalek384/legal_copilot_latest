@@ -1,10 +1,10 @@
 # Database completion tracker
 
 **Last updated:** 2026-10-26  
-**Estimated completion:** 46%  
+**Estimated completion:** 47%  
 **Status:** In progress — not production-ready for confidential multi-firm matter data.
 
-This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. This is a weighted engineering estimate, not a test-pass percentage or a count of commits. The separate-database runtime and encrypted backup/restore are merged, and row-scope enforcement plus fresh-install/restart and cross-firm case tests have been added. The percentage remains a weighted engineering estimate; exhaustive route/query coverage, remaining bootstrap DDL, operational recovery policy, and release drills remain open.
+This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. This is a weighted engineering estimate, not a test-pass percentage or a count of commits. The separate-database runtime and encrypted backup/restore are merged, and row-scope enforcement plus fresh-install/restart and cross-firm case tests have been added. The percentage remains a weighted engineering estimate; exhaustive route/query coverage, remaining legacy bootstrap DDL, identity lifecycle workflows, and a witnessed operational recovery drill remain open.
 
 ## Completed and merged
 
@@ -20,6 +20,9 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 - [x] Add a strict legal-corpus audit gate and make the read-only audit use one SQLite read snapshot while reporting main-file and existing WAL/journal sidecar hashes (PR #438 merged; CI passed).
 - [x] Verify firm-scoped case-deletion audit history, security-event JSON, and CSV exports with records seeded in two firm databases; each active firm sees only its own sentinels (PR #439 merged; CI run 40373438210 passed).
 - [x] Enforce database-bound firm IDs on inserts/updates for cases, documents, extraction reviews, research conversations, and case-deletion audit rows; add cross-firm case detail/update/delete tests and separate-profile fresh-install/restart persistence coverage (PR #465 merged; CI run 40379864878 passed).
+- [x] Extend separate-runtime route tests to reject cross-firm writes for notes, deadlines, fees, sessions, document text, case members, tasks, and uploads; assert the source tenant's records remain unchanged (PR #476 merged; CI run 40381720498 passed).
+- [x] Reject stale shared COPILOT_DB configuration when the three approved separate-database paths are configured, preventing ambiguous deployment storage intent (PR #477 merged; CI run 40381467990 passed).
+- [x] Verify clean-install shared legal-corpus FTS insert/update/delete synchronization using FTS5 external-content integrity checks against source chunks (PR #479 merged; CI run 40381954656 passed).
 
 - [x] Extend tenant preflight to audit POSIX SQLite WAL/SHM/journal sidecars, and refuse to open a catalog or tenant database when a sidecar is symlinked or has unsafe permissions (PR #362 merged; CI run 40357742798 passed).
 - [x] Extend the tenant router to reject symlinked or overly permissive SQLite sidecars and revoke cached connections when sidecars become unsafe (PR #363 merged; CI run 40357383129 passed).
@@ -166,7 +169,9 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 - [ ] Move remaining prerequisite table creation out of startup only after earlier migration dependencies are redesigned; `firms`, `users`, `cases`, `deadlines`, `members`, `docs`, `chunks`, legal-version/review tables, research tables, and the dynamic `document_extraction_reviews` table still participate in bootstrap ordering.
 - [ ] Move remaining pre-migration compatibility work (`tenant_ownership_quarantine` creation/population, `users.firm_id`, `cases.firm_id`, `deadlines.status`, and `chunks.document_id`) into a safe ordered compatibility phase; migrations 0001–0003 currently require these prerequisites before they run.
 - [x] Add a read-only FTS5 internal index-integrity check on a disposable copy, detecting stale inverted indexes without mutating the source database (PR #388 merged; CI passed).
-- [x] Add a controlled rebuild-on-a-new-copy procedure for legacy and firm/corpus profile databases, preserving external-content schema and synchronization triggers (PR #399 merged; CI passed). [ ] Complete corpus/firm FTS reconciliation against authoritative source content and review any proposed operational replacement; migration 0008 itself still does not rebuild stale/missing indexes.
+- [x] Add a controlled rebuild-on-a-new-copy procedure for legacy and firm/corpus profile databases, preserving external-content schema and synchronization triggers (PR #399 merged; CI passed).
+- [x] Verify clean-install shared legal-corpus FTS insert/update/delete synchronization and external-content integrity (PR #479 merged; CI run 40381954656 passed).
+- [ ] Reconcile FTS against authoritative source content only if an actual legacy corpus is deliberately introduced for import; migration 0008 itself still does not rebuild stale/missing indexes.
 - [x] Reject symlinked source database paths in the read-only FTS preflight before resolution/open, with regression coverage (PR #458 merged; CI run 40376020538 passed).
 - [ ] Finish removing remaining application-schema prerequisites from startup bootstrap and document the supported clean first-install path for all three profiles. No production database is deployed; legacy upgrade/cutover support is conditional on a real legacy database being explicitly introduced.
 - [ ] Test migration order, idempotency, checksum drift, interrupted migrations, and rollback/restore on representative disposable database copies.
