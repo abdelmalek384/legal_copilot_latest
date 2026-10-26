@@ -1,7 +1,7 @@
 # Database completion tracker
 
 **Last updated:** 2026-10-26  
-**Estimated completion:** 40%  
+**Estimated completion:** 41%  
 **Status:** In progress — not production-ready for confidential multi-firm matter data.
 
 This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. This is a weighted engineering estimate, not a test-pass percentage or a count of commits. The separate-database runtime and encrypted backup/restore are now merged, but legacy-data reconciliation, exhaustive route coverage, schema-migration completion, and recovery/rollback drills remain release blockers.
@@ -28,6 +28,7 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 - [x] Extend the read-only tenant preflight to flag POSIX control-plane and tenant database files that allow group/other access; no permissions are changed automatically (PR #344 merged; CI run 40354780649 passed).
 
 - [x] Make FTS auditing and rebuild-on-a-new-copy profile-aware: validate external-content indexes against `chunks.norm`, preserve firm/corpus FTS schema and synchronization triggers, and verify the source remains unchanged (PR #399 merged; CI passed).
+- [x] Add integration coverage that non-members cannot switch firms, revoked memberships block requests despite a still-valid login session/cached tenant connection, and a task ID from one firm's database cannot be acted on in another firm's database (PRs #390 and #401 merged; CI passed).
 - [x] Add regression coverage that `deployment_preflight.py --strict` fails while the shared-database multi-firm safety warning remains, without creating a database file (PR #341 merged; CI run 40354404426 passed).
 
 - [x] Refuse to provision a tenant when pre-existing firm-binding trigger names conceal ineffective update/delete guards; validate the guards before marking the tenant provisioned (PR #340 merged; CI run 40354238518 passed).
