@@ -46,6 +46,9 @@
 | Invalid/non-HTTPS source URL | No clickable source link is rendered. | |
 | Export memo with results | Download succeeds and includes question, scope, as-of date, answer, recorded citations, source statuses, exact passages and caveats. | |
 | Export memo with no results | Empty-state wording matches the selected scope (verified corpus, firm documents, metadata-only, or unknown) and warns that an empty result does not prove no applicable law exists. | |
+| Missing or malformed recorded as-of date | Memo shows `unknown`, explicitly says the search date was not recorded, and does not substitute today's date or imply current legal status. | |
+| Missing recorded search scope | Memo shows `unknown`; it does not substitute the currently selected UI scope for the historical answer. | |
+| Malformed passage payload (list/object/number) | Export does not stringify malformed values as an exact legal quotation; it uses the no-passage placeholder and conservative source status. | |
 | Save research to matter | Only the authorized conversation can be saved to a matter the user may access; saved note retains citations, scope, date and caveats. | |
 
 ## Keyboard, language, layout and assistive technology
