@@ -1,0 +1,258 @@
+#!/usr/bin/env python3
+"""Fail-closed, read-only release gate for metadata-only legal registry candidates.
+
+This gate never downloads, imports, or modifies legal content. A pass means only that
+the candidate's recorded evidence satisfies the configured structural gate; it is
+not a legal opinion or an independent confirmation that evidence is truthful.
+"""
+from __future__ import annotations
+
+import argparse
+import datetime as dt
+import hashlib
+import json
+import re
+from pathlib import Path
+from urllib.parse import urlparse
+
+ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_REGISTER = ROOT / "docs" / "source_permission_register.json"
+DEFAULT_CANDIDATES = ROOT / "data" / "candidates"
+ALLOWED = {"allowed", "allowed_limited"}
+REQUIRED_REVIEWS = {
+    "source_authenticity",
+    "extraction_quality",
+    "legal_status",
+    "amendment_history",
+    "licensing",
+    "lawyer_approval",
+}
+REQUIRED_USES = {"collection", "indexing", "commercial_product_use", "excerpt_display"}
+
+
+def valid_date(value: object) -> bool:
+    if not isinstance(value, str):
+        return False
+    try:
+        parsed = dt.date.fromisoformat(value)
+    except ValueError:
+        return False
+    return parsed.isoformat() == value and parsed <= dt.date.today()
+
+
+def https_host(value: object) -> str | None:
+    if not isinstance(value, str):
+        return None
+    try:
+        parsed = urlparse(value)
+        if parsed.scheme != "https" or not parsed.hostname or parsed.username or parsed.password:
+            return None
+        host = parsed.hostname.lower().rstrip(".")
+        return host[4:] if host.startswith("www.") else host
+    except ValueError:
+        return None
+
+
+def add(blockers: list[dict], code: str, detail: str) -> None:
+    blockers.append({"code": code, "detail": detail})
+
+
+def audit_candidate(candidate: object, permission_register: object, root: Path = ROOT) -> dict:
+    blockers: list[dict] = []
+    if not isinstance(candidate, dict):
+        add(blockers, "candidate_not_object", "Candidate root must be a JSON object.")
+        return {"candidate_id": None, "ready": False, "blockers": blockers}
+    document = candidate.get("document")
+    version = candidate.get("version")
+    sources = candidate.get("sources")
+    reviews = candidate.get("reviews")
+    if not isinstance(document, dict):
+        add(blockers, "document_missing", "Candidate must contain a document object.")
+        document = {}
+    if not isinstance(version, dict):
+        add(blockers, "version_missing", "Candidate must contain a version object.")
+        version = {}
+    if not isinstance(sources, list) or not sources or any(not isinstance(item, dict) for item in sources):
+        add(blockers, "candidate_sources_invalid", "Candidate sources must be a non-empty list of objects.")
+        sources = []
+    if not isinstance(reviews, list) or any(not isinstance(item, dict) for item in reviews):
+        add(blockers, "reviews_invalid", "Candidate reviews must be a list of objects.")
+        reviews = []
+
+    candidate_id = document.get("document_id") if isinstance(document.get("document_id"), str) else None
+    source_id = document.get("source_id")
+    source_matches = [s for s in sources if s.get("source_id") == source_id]
+    if not source_id or len(source_matches) != 1:
+        add(blockers, "document_source_link_invalid", "Document must link to exactly one candidate source.")
+        source = {}
+    else:
+        source = source_matches[0]
+
+    source_page_host = https_host(source.get("source_page"))
+    version_url_host = https_host(version.get("source_url"))
+    if source_page_host is None or version_url_host is None:
+        add(blockers, "source_url_not_https", "Candidate source page and version URL must be valid HTTPS URLs without credentials.")
+    elif source_page_host != version_url_host:
+        add(blockers, "version_source_host_mismatch", "Version URL host does not match its linked candidate source.")
+
+    if not isinstance(permission_register, dict) or not isinstance(permission_register.get("sources"), list):
+        add(blockers, "permission_register_invalid", "Central source permission register must contain a sources list.")
+        register_sources = []
+    else:
+        register_sources = [s for s in permission_register["sources"] if isinstance(s, dict)]
+
+    register_matches = []
+    if source_page_host:
+        register_matches = [s for s in register_sources if https_host(s.get("source_page")) == source_page_host]
+    if not register_matches:
+        add(blockers, "central_source_record_missing", "No central permission-register source matches the candidate source host.")
+    else:
+        for registered in register_matches:
+            if registered.get("collection_permission") not in ALLOWED:
+                add(blockers, "central_collection_permission_not_allowed",
+                    f"Central source {registered.get('source_id', '(unnamed)')} does not explicitly allow collection.")
+            if registered.get("commercial_reuse_permission") not in ALLOWED:
+                add(blockers, "central_commercial_permission_not_allowed",
+                    f"Central source {registered.get('source_id', '(unnamed)')} does not explicitly allow commercial reuse.")
+            if not isinstance(registered.get("permission_evidence"), str) or not registered["permission_evidence"].strip():
+                add(blockers, "central_permission_evidence_missing",
+                    f"Central source {registered.get('source_id', '(unnamed)')} has no permission evidence.")
+            if not valid_date(registered.get("terms_checked_on")):
+                add(blockers, "central_terms_date_invalid",
+                    f"Central source {registered.get('source_id', '(unnamed)')} needs a valid, non-future terms_checked_on date.")
+
+    for field in ("collection_permission", "commercial_reuse_permission"):
+        if source.get(field) not in ALLOWED:
+            add(blockers, f"candidate_{field}_not_allowed", f"Candidate source {field} is not explicitly allowed.")
+    if not isinstance(source.get("permission_evidence"), str) or not source["permission_evidence"].strip():
+        add(blockers, "candidate_permission_evidence_missing", "Candidate source lacks permission evidence.")
+    if not valid_date(source.get("terms_checked_on")):
+        add(blockers, "candidate_terms_date_invalid", "Candidate source needs a valid, non-future terms_checked_on date.")
+
+    scope = candidate.get("permission_scope_review")
+    if not isinstance(scope, dict) or scope.get("status") != "passed":
+        add(blockers, "document_scope_review_not_passed", "Document-level permission scope review must be passed.")
+    else:
+        if not isinstance(scope.get("evidence"), str) or not scope["evidence"].strip():
+            add(blockers, "document_scope_evidence_missing", "Document-level scope review needs evidence.")
+        if not valid_date(scope.get("reviewed_on")):
+            add(blockers, "document_scope_date_invalid", "Document-level scope review needs a valid, non-future reviewed_on date.")
+        approved_uses = scope.get("approved_uses")
+        if not isinstance(approved_uses, list) or not REQUIRED_USES.issubset(
+            {item for item in approved_uses if isinstance(item, str)}
+        ):
+            add(blockers, "document_scope_uses_incomplete",
+                "Document scope must explicitly approve collection, indexing, commercial_product_use, and excerpt_display.")
+
+    if version.get("review_status") != "verified":
+        add(blockers, "version_not_verified", "Version review_status must be verified.")
+    if version.get("legal_status") != "in_force":
+        add(blockers, "legal_status_not_in_force", "Only a reviewed in-force version can pass this release gate.")
+    for field in ("authenticity_verified", "status_verified", "amendment_history_verified"):
+        if version.get(field) not in (1, True):
+            add(blockers, f"{field}_false", f"Version field {field} must be explicitly true.")
+    for field in ("publication_date", "effective_date", "retrieved_at"):
+        if not valid_date(version.get(field)):
+            add(blockers, f"{field}_invalid", f"Version needs a valid, non-future {field} date.")
+    if valid_date(version.get("publication_date")) and valid_date(version.get("effective_date")):
+        if version["effective_date"] < version["publication_date"]:
+            add(blockers, "effective_before_publication", "Effective date precedes publication date; review the legal basis.")
+    if not isinstance(version.get("gazette_issue"), str) or not version["gazette_issue"].strip():
+        add(blockers, "gazette_issue_missing", "Official publication issue reference is required.")
+    if not isinstance(version.get("permission_evidence"), str) or not version["permission_evidence"].strip():
+        add(blockers, "version_permission_evidence_missing", "Version record needs permission evidence.")
+
+    original_path = version.get("original_path")
+    original_hash = version.get("original_sha256")
+    if not isinstance(original_path, str) or not original_path.strip() or Path(original_path).is_absolute():
+        add(blockers, "original_file_missing", "A relative path to the original source file is required.")
+    elif not isinstance(original_hash, str) or not re.fullmatch(r"[0-9a-fA-F]{64}", original_hash):
+        add(blockers, "original_hash_invalid", "Original file SHA-256 must be a 64-character hexadecimal digest.")
+    else:
+        candidate_path = (root / original_path).resolve()
+        try:
+            candidate_path.relative_to(root.resolve())
+        except ValueError:
+            add(blockers, "original_path_escapes_root", "Original file path must remain within the repository/corpus root.")
+        else:
+            if not candidate_path.is_file():
+                add(blockers, "original_file_not_found", "Recorded original file does not exist.")
+            elif hashlib.sha256(candidate_path.read_bytes()).hexdigest().lower() != original_hash.lower():
+                add(blockers, "original_hash_mismatch", "Recorded SHA-256 does not match the original file bytes.")
+
+    review_by_type: dict[str, list[dict]] = {}
+    for review in reviews:
+        review_type = review.get("review_type")
+        if isinstance(review_type, str):
+            review_by_type.setdefault(review_type, []).append(review)
+    for review_type in sorted(REQUIRED_REVIEWS):
+        entries = review_by_type.get(review_type, [])
+        if len(entries) != 1:
+            add(blockers, "review_missing_or_duplicate", f"Exactly one {review_type} review record is required.")
+            continue
+        review = entries[0]
+        if review.get("outcome") != "pass":
+            add(blockers, "review_not_passed", f"{review_type} review outcome must be pass.")
+        if not isinstance(review.get("notes"), str) or not review["notes"].strip():
+            add(blockers, "review_notes_missing", f"{review_type} review needs notes.")
+        evidence_host = https_host(review.get("evidence_url"))
+        if evidence_host is None:
+            add(blockers, "review_evidence_url_invalid", f"{review_type} review needs a valid HTTPS evidence URL.")
+    return {"candidate_id": candidate_id, "ready": not blockers, "blockers": blockers}
+
+
+def build_report(candidate_paths: list[Path], permission_register_path: Path, root: Path = ROOT) -> dict:
+    try:
+        register = json.loads(permission_register_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        return {"schema_version": 1, "error": f"Cannot read permission register: {exc}", "candidates": [], "ready_count": 0}
+    reports = []
+    for path in candidate_paths:
+        try:
+            candidate = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as exc:
+            reports.append({"candidate_file": str(path), "candidate_id": None, "ready": False,
+                            "blockers": [{"code": "candidate_unreadable", "detail": str(exc)}]})
+            continue
+        result = audit_candidate(candidate, register, root)
+        result["candidate_file"] = str(path)
+        reports.append(result)
+    return {
+        "schema_version": 1,
+        "read_only": True,
+        "candidate_count": len(reports),
+        "ready_count": sum(1 for item in reports if item.get("ready")),
+        "blocked_count": sum(1 for item in reports if not item.get("ready")),
+        "candidates": reports,
+        "warning": "This checks recorded evidence and file integrity only; it cannot grant rights or independently certify legal correctness.",
+    }
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--candidate", action="append", help="Candidate JSON path; repeat for multiple candidates.")
+    parser.add_argument("--candidates-dir", type=Path, default=DEFAULT_CANDIDATES)
+    parser.add_argument("--register", type=Path, default=DEFAULT_REGISTER)
+    parser.add_argument("--root", type=Path, default=ROOT, help="Root used to resolve original_path values.")
+    parser.add_argument("--out", type=Path, help="Optional JSON report path.")
+    parser.add_argument("--require-ready", action="store_true", help="Exit nonzero unless every candidate passes.")
+    args = parser.parse_args(argv)
+    candidate_paths = [Path(item) for item in args.candidate] if args.candidate else sorted(args.candidates_dir.glob("**/registry_candidate.json"))
+    if not candidate_paths:
+        report = {"schema_version": 1, "error": "No candidate registry JSON files found.", "candidates": [], "ready_count": 0}
+    else:
+        report = build_report(candidate_paths, args.register, args.root)
+    rendered = json.dumps(report, ensure_ascii=False, indent=2)
+    if args.out:
+        args.out.parent.mkdir(parents=True, exist_ok=True)
+        args.out.write_text(rendered + "\n", encoding="utf-8")
+    print(rendered)
+    if "error" in report:
+        return 2
+    if args.require_ready and report["blocked_count"]:
+        return 1
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
