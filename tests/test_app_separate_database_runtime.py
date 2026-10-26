@@ -206,6 +206,43 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             "Firm A protected matter",
         )
 
+    def test_child_writes_reject_a_case_id_from_another_firm(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate(
+            "post", "/cases", json={"title": "Firm A child-write boundary"}
+        )
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+
+        switched = self._mutate("post", "/session/firm", json={"firm_id": self.firm_b})
+        self.assertEqual(switched.status_code, 200, switched.text)
+        attempts = (
+            ("post", f"/cases/{case_id}/notes", {"text": "cross-firm note"}),
+            ("post", f"/cases/{case_id}/deadlines", {"title": "Cross-firm deadline", "due": "2027-01-15"}),
+            ("post", f"/cases/{case_id}/fees", {"title": "Cross-firm fee", "amount": 100, "paid": 0}),
+            ("post", f"/cases/{case_id}/sessions", {"date": "2027-01-15", "note": "cross-firm session"}),
+        )
+        for method, path, payload in attempts:
+            with self.subTest(path=path):
+                response = self._mutate(method, path, json=payload)
+                self.assertEqual(response.status_code, 404, response.text)
+
+        context_a = self.runtime.resolve_context(self.user_id, self.firm_a)
+        context_b = self.runtime.resolve_context(self.user_id, self.firm_b)
+        db_a = self.runtime.firm_connection(context_a)
+        db_b = self.runtime.firm_connection(context_b)
+        for table in ("notes", "deadlines", "fees", "sessions"):
+            with self.subTest(table=table):
+                self.assertEqual(db_a.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0], 0)
+                self.assertEqual(db_b.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0], 0)
+        self.assertEqual(
+            db_a.execute("SELECT title FROM cases WHERE id=?", (case_id,)).fetchone()[0],
+            "Firm A child-write boundary",
+        )
+
     def test_search_and_ask_reject_case_ids_from_another_firm(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
