@@ -90,8 +90,8 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             questions = Path(td) / "questions.jsonl"
             results = Path(td) / "results.jsonl"
-            questions.write_text(json.dumps(approved(), ensure_ascii=False) + "\\n", encoding="utf-8")
-            results.write_text(json.dumps(result(), ensure_ascii=False) + "\\n", encoding="utf-8")
+            questions.write_text(json.dumps(approved(), ensure_ascii=False) + "\n", encoding="utf-8")
+            results.write_text(json.dumps(result(), ensure_ascii=False) + "\n", encoding="utf-8")
             with self.assertRaises(SystemExit) as raised:
                 main(["--questions", str(questions), "--results", str(results),
                       "--min-questions", "1", "--min-source-precision", "1"])
@@ -105,8 +105,8 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
             q1 = approved("Q1")
             q2 = dict(approved("Q2"))
             q2["practice_area"] = "civil_law"
-            questions.write_text("".join(json.dumps(q, ensure_ascii=False) + "\\n" for q in (q1, q2)), encoding="utf-8")
-            results.write_text("".join(json.dumps(result(q["id"]), ensure_ascii=False) + "\\n" for q in (q1, q2)), encoding="utf-8")
+            questions.write_text("".join(json.dumps(q, ensure_ascii=False) + "\n" for q in (q1, q2)), encoding="utf-8")
+            results.write_text("".join(json.dumps(result(q["id"]), ensure_ascii=False) + "\n" for q in (q1, q2)), encoding="utf-8")
             code = main(["--questions", str(questions), "--results", str(results), "--out", str(report_path),
                          "--min-questions", "2", "--min-practice-areas", "2",
                          "--min-questions-per-practice-area", "1"])
