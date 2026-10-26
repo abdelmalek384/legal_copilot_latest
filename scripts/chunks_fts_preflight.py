@@ -30,6 +30,26 @@ def _columns(conn: sqlite3.Connection, table: str) -> set[str]:
     return {row[1] for row in conn.execute(f'PRAGMA table_info("{table}")')}
 
 
+def _fts_internal_integrity_check(conn: sqlite3.Connection) -> str | None:
+    """Run FTS5's index-vs-content integrity check on a disposable in-memory copy.
+
+    External-content FTS5 queries read text from the content table even when the
+    inverted index is stale, so comparing SELECTed FTS rows alone cannot prove
+    the search index is internally consistent. Never issue the FTS maintenance
+    command against the caller's read-only/source connection.
+    """
+    probe = sqlite3.connect(":memory:")
+    try:
+        conn.backup(probe)
+        probe.execute("INSERT INTO chunks_fts(chunks_fts, rank) VALUES('integrity-check', 1)")
+        probe.commit()
+        return None
+    except sqlite3.Error as exc:
+        return str(exc)
+    finally:
+        probe.close()
+
+
 def audit(conn: sqlite3.Connection) -> dict[str, Any]:
     """Return deterministic counts/findings without modifying the connection."""
     tables = _tables(conn)
@@ -105,6 +125,16 @@ def audit(conn: sqlite3.Connection) -> dict[str, Any]:
         }
 
     fts_count = int(conn.execute("SELECT COUNT(*) FROM chunks_fts").fetchone()[0])
+    # FTS5 external-content tables can return content-table text even when their
+    # inverted index is stale. Validate index-vs-content consistency on a copy.
+    internal_integrity_error = _fts_internal_integrity_check(conn)
+    if internal_integrity_error is not None:
+        add(
+            "fts_internal_index_integrity_failed",
+            1,
+            "FTS5 index-vs-content integrity check failed on a disposable copy: "
+            + internal_integrity_error[:500],
+        )
     missing_rows = 0
     mismatched_rows = 0
     for row in conn.execute(
