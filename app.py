@@ -567,6 +567,17 @@ def delete_case(c, u, cid):
     c.execute("DELETE FROM cases WHERE id=?", (cid,)); c.commit(); return True
 
 
+_REQUIRED_REVIEW_EVENTS_SQL = (
+    "AND (SELECT COUNT(DISTINCT e.review_type) FROM legal_review_events e "
+    "WHERE e.version_id=v.version_id "
+    "AND e.review_type IN ('source_authenticity','extraction_quality','legal_status','amendment_history','licensing','lawyer_approval') "
+    "AND e.review_event_id=(SELECT e2.review_event_id FROM legal_review_events e2 "
+    "WHERE e2.version_id=v.version_id AND e2.review_type=e.review_type "
+    "ORDER BY e2.reviewed_at DESC, e2.review_event_id DESC LIMIT 1) "
+    "AND e.outcome='pass' AND TRIM(COALESCE(e.notes,''))<>'' "
+    "AND TRIM(COALESCE(e.reviewer,''))<>'' AND e.evidence_url LIKE 'https://%')=6 "
+)
+
 SQL = ("SELECT chunks.*, bm25(chunks_fts) AS r FROM chunks_fts JOIN chunks ON chunks.id=chunks_fts.rowid "
        "WHERE chunks_fts MATCH ? AND (chunks.case_id IS NOT NULL OR (chunks.verified=1 AND (chunks.in_force=1 OR chunks.document_version_id IS NOT NULL))) AND (chunks.case_id IS NULL OR chunks.case_id IS ?) "
        "AND (chunks.case_id IS NULL OR chunks.case_id IN (SELECT id FROM cases WHERE firm_id=?)) "
@@ -621,17 +632,6 @@ _FIRM_SEARCH_SQL = (
     "WHERE chunks_fts MATCH ? AND chunks.case_id=? "
     "AND chunks.case_id IN (SELECT id FROM cases WHERE firm_id=?) "
     "ORDER BY r LIMIT 40"
-)
-
-_REQUIRED_REVIEW_EVENTS_SQL = (
-    "AND (SELECT COUNT(DISTINCT e.review_type) FROM legal_review_events e "
-    "WHERE e.version_id=v.version_id "
-    "AND e.review_type IN ('source_authenticity','extraction_quality','legal_status','amendment_history','licensing','lawyer_approval') "
-    "AND e.review_event_id=(SELECT e2.review_event_id FROM legal_review_events e2 "
-    "WHERE e2.version_id=v.version_id AND e2.review_type=e.review_type "
-    "ORDER BY e2.reviewed_at DESC, e2.review_event_id DESC LIMIT 1) "
-    "AND e.outcome='pass' AND TRIM(COALESCE(e.notes,''))<>'' "
-    "AND TRIM(COALESCE(e.reviewer,''))<>'' AND e.evidence_url LIKE 'https://%')=6 "
 )
 
 _CORPUS_SEARCH_SQL = (
