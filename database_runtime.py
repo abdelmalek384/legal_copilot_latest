@@ -418,31 +418,43 @@ class DatabaseRuntime:
         *,
         created_by_user_id: int | None = None,
     ) -> None:
-        """Create an explicit membership; firm role never grants platform privileges."""
+        """Create an explicit membership and its audit event in one transaction."""
         if role not in {"admin", "lawyer", "junior"}:
             raise ValueError("unsupported firm role")
         control = self.control_connection()
-        identity = control.execute(
-            "SELECT status FROM users WHERE id=?", (user_id,)
-        ).fetchone()
-        firm = control.execute(
-            "SELECT status FROM firms WHERE id=?", (firm_id,)
-        ).fetchone()
-        if identity is None or identity["status"] != "active":
-            raise DatabaseRuntimeError("Membership requires an active global identity")
-        if firm is None or firm["status"] != "active":
-            raise DatabaseRuntimeError("Membership requires an active firm")
-        control.execute(
-            "INSERT INTO firm_memberships(user_id,firm_id,firm_role,status,created_by_user_id) "
-            "VALUES(?,?,?,'active',?)",
-            (user_id, firm_id, role, created_by_user_id),
-        )
-        control.execute(
-            "INSERT INTO platform_security_events(actor_user_id,target_user_id,firm_id,event_type,detail_json) "
-            "VALUES(?,?,?,'membership_created',?)",
-            (created_by_user_id, user_id, firm_id, json.dumps({"firm_role": role}, sort_keys=True)),
-        )
-        control.commit()
+        control.execute("BEGIN IMMEDIATE")
+        try:
+            # Revalidate all identity and firm state after acquiring the write lock.
+            identity = control.execute(
+                "SELECT status FROM users WHERE id=?", (user_id,)
+            ).fetchone()
+            firm = control.execute(
+                "SELECT status FROM firms WHERE id=?", (firm_id,)
+            ).fetchone()
+            if identity is None or identity["status"] != "active":
+                raise DatabaseRuntimeError("Membership requires an active global identity")
+            if firm is None or firm["status"] != "active":
+                raise DatabaseRuntimeError("Membership requires an active firm")
+            if created_by_user_id is not None:
+                actor = control.execute(
+                    "SELECT status FROM users WHERE id=?", (created_by_user_id,)
+                ).fetchone()
+                if actor is None or actor["status"] != "active":
+                    raise DatabaseRuntimeError("Membership creator must be an active global identity")
+            control.execute(
+                "INSERT INTO firm_memberships(user_id,firm_id,firm_role,status,created_by_user_id) "
+                "VALUES(?,?,?,'active',?)",
+                (user_id, firm_id, role, created_by_user_id),
+            )
+            control.execute(
+                "INSERT INTO platform_security_events(actor_user_id,target_user_id,firm_id,event_type,detail_json) "
+                "VALUES(?,?,?,'membership_created',?)",
+                (created_by_user_id, user_id, firm_id, json.dumps({"firm_role": role}, sort_keys=True)),
+            )
+            control.commit()
+        except Exception:
+            control.rollback()
+            raise
 
     def create_initial_firm_owner(
         self, firm_id: int, name: str, email: str, password_hash: str
