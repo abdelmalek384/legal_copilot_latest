@@ -116,7 +116,7 @@ class LegalReleaseReadinessTests(unittest.TestCase):
             report = MODULE.build_report([candidate_path], register_path, temp_root)
         self.assertEqual(report["candidate_count"], 1)
         self.assertEqual(report["blocked_count"], 1)
-        self.assertGreater(report["blocker_counts"].get("central_commercial_reuse_not_allowed", 0), 0)
+        self.assertGreater(report["blocker_counts"].get("central_commercial_permission_not_allowed", 0), 0)
         self.assertEqual(report["legal_status_counts"], {"under_review": 1})
         self.assertEqual(report["review_status_counts"], {"pending_source_review": 1})
         self.assertEqual(report["practice_area_coverage"]["Labour"]["candidate_count"], 1)
