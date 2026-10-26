@@ -127,6 +127,21 @@ class PlatformSecurityAuditTests(unittest.TestCase):
         self.assertIn('"method": "manage.py adduser"', event["detail_json"])
         self.assertEqual(control.execute("SELECT COUNT(*) FROM user_platform_roles WHERE user_id=?", (target["id"],)).fetchone()[0], 0)
 
+    def test_platform_audit_cli_filters_and_bounds_output(self):
+        import contextlib
+        import io
+        output = io.StringIO()
+        with contextlib.redirect_stdout(output):
+            manage.platform_audit(Namespace(limit=20, event_type="firm_provisioned", firm_id=self.firm_id, target_user_id=None))
+        result = __import__("json").loads(output.getvalue())
+        self.assertEqual(result["limit"], 20)
+        self.assertEqual(len(result["items"]), 1)
+        self.assertEqual(result["items"][0]["event_type"], "firm_provisioned")
+        self.assertEqual(result["items"][0]["firm_id"], self.firm_id)
+        self.assertIn("detail", result["items"][0])
+        with self.assertRaisesRegex(SystemExit, "between 1 and 500"):
+            manage.platform_audit(Namespace(limit=501, event_type=None, firm_id=None, target_user_id=None))
+
     def test_platform_security_audit_is_append_only(self):
         control = self.runtime.control_connection()
         control.execute(
