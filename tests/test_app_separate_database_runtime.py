@@ -501,6 +501,40 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             "Firm A confidential task",
         )
 
+    def test_disabled_firm_is_denied_at_api_and_retains_its_database(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        switched = self._mutate("post", "/session/firm", json={"firm_id": self.firm_b})
+        self.assertEqual(switched.status_code, 200, switched.text)
+        created = self._mutate(
+            "post", "/cases", json={"title": "Disabled firm retained sentinel"}
+        )
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+        control = self.runtime.control_connection()
+        filename = control.execute(
+            "SELECT database_file FROM tenant_database_catalog WHERE firm_id=?",
+            (self.firm_b,),
+        ).fetchone()["database_file"]
+        database_path = self.root / "tenants" / filename
+
+        self.assertTrue(self.runtime.disable_firm(self.firm_b))
+        denied = self.client.get("/cases")
+        self.assertEqual(denied.status_code, 403, denied.text)
+        status = control.execute("SELECT status FROM firms WHERE id=?", (self.firm_b,)).fetchone()["status"]
+        self.assertEqual(status, "disabled")
+        self.assertTrue(database_path.is_file())
+
+        import sqlite3
+        read_only = sqlite3.connect(database_path.resolve().as_uri() + "?mode=ro", uri=True)
+        try:
+            row = read_only.execute("SELECT title FROM cases WHERE id=?", (case_id,)).fetchone()
+            self.assertEqual(row[0], "Disabled firm retained sentinel")
+        finally:
+            read_only.close()
+
     def test_nonmember_cannot_switch_firms_and_revoked_membership_blocks_cached_session(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
