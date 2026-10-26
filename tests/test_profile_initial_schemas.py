@@ -103,6 +103,51 @@ class ProfileInitialSchemaTests(unittest.TestCase):
         self.assertEqual(db.execute("SELECT count(*) FROM chunks_fts WHERE chunks_fts MATCH 'updatedsecretterm'").fetchone()[0], 0)
         db.close()
 
+    def test_corpus_fts_insert_update_delete_and_external_content_integrity(self):
+        db = self.build("legal_corpus")
+        db.execute(
+            "INSERT INTO legal_sources(source_id,authority,source_page) VALUES(?,?,?)",
+            ("fts-source", "Test authority", "https://example.test/source"),
+        )
+        db.execute(
+            "INSERT INTO legal_documents(document_id,source_id,official_title,document_type) "
+            "VALUES(?,?,?,?)",
+            ("fts-doc", "fts-source", "Test legal document", "statute"),
+        )
+        db.execute(
+            "INSERT INTO legal_document_versions(version_id,document_id,version_label,source_url) "
+            "VALUES(?,?,?,?)",
+            (1, "fts-doc", "initial", "https://example.test/source/version-1"),
+        )
+        db.execute(
+            "INSERT INTO chunks(id,text,norm,document_version_id) VALUES(?,?,?,?)",
+            (1, "corpus private term", "corpusinitialterm", 1),
+        )
+        self.assertEqual(
+            db.execute("SELECT COUNT(*) FROM chunks_fts WHERE chunks_fts MATCH 'corpusinitialterm'").fetchone()[0],
+            1,
+        )
+        db.execute("INSERT INTO chunks_fts(chunks_fts,rank) VALUES('integrity-check',1)")
+
+        db.execute("UPDATE chunks SET norm='corpusupdatedterm' WHERE id=1")
+        self.assertEqual(
+            db.execute("SELECT COUNT(*) FROM chunks_fts WHERE chunks_fts MATCH 'corpusinitialterm'").fetchone()[0],
+            0,
+        )
+        self.assertEqual(
+            db.execute("SELECT COUNT(*) FROM chunks_fts WHERE chunks_fts MATCH 'corpusupdatedterm'").fetchone()[0],
+            1,
+        )
+        db.execute("INSERT INTO chunks_fts(chunks_fts,rank) VALUES('integrity-check',1)")
+
+        db.execute("DELETE FROM chunks WHERE id=1")
+        self.assertEqual(
+            db.execute("SELECT COUNT(*) FROM chunks_fts WHERE chunks_fts MATCH 'corpusupdatedterm'").fetchone()[0],
+            0,
+        )
+        db.execute("INSERT INTO chunks_fts(chunks_fts,rank) VALUES('integrity-check',1)")
+        db.close()
+
     def test_two_firm_databases_do_not_share_search_content(self):
         firm_a, firm_b = self.build("firm"), self.build("firm")
         firm_a.execute("INSERT INTO cases(id,title,firm_id) VALUES(1,'A',7)")
