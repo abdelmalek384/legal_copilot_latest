@@ -50,6 +50,56 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         headers["X-CSRF-Token"] = csrf or ""
         return getattr(self.client, method)(url, headers=headers, **kwargs)
 
+    def test_existing_global_identity_can_join_another_firm_without_duplication(self):
+        firm_c, _ = self.runtime.provision_firm("Firm C")
+        existing_user_id = self.runtime.create_initial_firm_owner(
+            firm_c, "Second Firm Owner", "second-owner@example.test", app.hash_pw(self.password)
+        )
+
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        added = self._mutate(
+            "post",
+            "/memberships",
+            json={"email": " SECOND-OWNER@EXAMPLE.TEST ", "role": "lawyer"},
+        )
+        self.assertEqual(added.status_code, 201, added.text)
+        self.assertEqual(added.json()["user_id"], existing_user_id)
+        self.assertEqual(added.json()["firm_id"], self.firm_a)
+
+        control = self.runtime.control_connection()
+        memberships = control.execute(
+            "SELECT firm_id,firm_role,status FROM firm_memberships WHERE user_id=? ORDER BY firm_id",
+            (existing_user_id,),
+        ).fetchall()
+        self.assertEqual(
+            [(row["firm_id"], row["firm_role"], row["status"]) for row in memberships],
+            [(self.firm_a, "lawyer", "active"), (firm_c, "admin", "active")],
+        )
+        listed = self.client.get("/users")
+        self.assertEqual(listed.status_code, 200, listed.text)
+        self.assertTrue(any(row["id"] == existing_user_id for row in listed.json()))
+
+        duplicate = self._mutate(
+            "post", "/memberships",
+            json={"email": "second-owner@example.test", "role": "lawyer"},
+        )
+        self.assertEqual(duplicate.status_code, 409, duplicate.text)
+        missing = self._mutate(
+            "post", "/memberships",
+            json={"email": "unknown@example.test", "role": "lawyer"},
+        )
+        self.assertEqual(missing.status_code, 404, missing.text)
+        self.assertEqual(
+            control.execute(
+                "SELECT COUNT(*) FROM firm_memberships WHERE user_id=?",
+                (existing_user_id,),
+            ).fetchone()[0],
+            2,
+        )
+
     def test_child_records_and_task_actions_are_isolated_between_firms(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}

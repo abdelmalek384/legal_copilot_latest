@@ -1153,6 +1153,10 @@ class UserCreateIn(BaseModel):
     @classmethod
     def validate_user_password(cls, value):
         return validate_password_strength(value)
+
+class ExistingMembershipIn(BaseModel):
+    email: str = Field(min_length=3, max_length=200)
+    role: str = Field(pattern=r"^(lawyer|junior)$")
 class CaseIn(BaseModel):
     title: str = Field(min_length=1, max_length=200); client: str = Field("", max_length=200); stage: str = Field("", max_length=200)
     case_number: str = Field("", max_length=100); case_year: str = Field("", max_length=20)
@@ -1973,6 +1977,47 @@ def create_user(b: UserCreateIn, u: dict = Depends(user)):
         c.rollback()
         raise HTTPException(409, "email already exists")
     return {"id": cur.lastrowid, "name": b.name.strip(), "role": b.role}
+
+
+@app.post("/memberships", status_code=201)
+def add_existing_user_membership(b: ExistingMembershipIn, u: dict = Depends(user)):
+    """Add an existing global identity to the active firm without duplicating the identity."""
+    require_admin(u)
+    if not _separate_runtime_enabled():
+        raise HTTPException(404, "cross-firm memberships are available only in separate-database mode")
+    normalized = normalize_email(b.email)
+    c = control_conn()
+    identity = c.execute(
+        "SELECT id,name,status FROM users WHERE email_normalized=?", (normalized,)
+    ).fetchone()
+    if identity is None:
+        raise HTTPException(404, "global user not found; create the identity before adding memberships")
+    if identity["status"] != "active":
+        raise HTTPException(409, "disabled global identities cannot receive new memberships")
+    existing = c.execute(
+        "SELECT status FROM firm_memberships WHERE user_id=? AND firm_id=?",
+        (identity["id"], u["firm_id"]),
+    ).fetchone()
+    if existing is not None:
+        raise HTTPException(409, "membership already exists; reactivation requires a separate reviewed workflow")
+    try:
+        c.execute(
+            "INSERT INTO firm_memberships(user_id,firm_id,firm_role,status,created_by_user_id) "
+            "VALUES(?,?,?,'active',?)",
+            (identity["id"], u["firm_id"], b.role, u["id"]),
+        )
+        c.commit()
+    except sqlite3.IntegrityError as exc:
+        c.rollback()
+        raise HTTPException(409, "membership could not be created; check identity and firm status") from exc
+    return {
+        "ok": True,
+        "user_id": int(identity["id"]),
+        "name": identity["name"],
+        "email": normalized,
+        "firm_id": int(u["firm_id"]),
+        "role": b.role,
+    }
 
 
 @app.get("/dashboard")
