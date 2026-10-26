@@ -36,15 +36,6 @@ class CorpusAuditTests(unittest.TestCase):
             db = sqlite3.connect(db_path)
             db.execute("CREATE TABLE chunks(id INTEGER PRIMARY KEY, ref TEXT, article TEXT, text TEXT, source TEXT, verified INT, in_force INT, case_id INT)")
             db.execute("INSERT INTO chunks(ref,article,text,source,verified,in_force,case_id) VALUES('law - article 1','1','text','',0,1,NULL)")
-            digest = "a" * 64
-            db.executemany(
-                "INSERT INTO legal_document_versions VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                [
-                    (2, "https://example.gov/future", "future.pdf", digest, "2000-01-01", "9999-01-01", None, None, "in_force", "verified", 1, 1, 1),
-                    (3, "https://example.gov/repealed", "repealed.pdf", digest, "2000-01-01", "2000-01-01", "2001-01-01", None, "in_force", "verified", 1, 1, 1),
-                    (4, "https://example.gov/no-repeal-date", "no-repeal.pdf", digest, "2000-01-01", "2000-01-01", None, None, "repealed", "verified", 1, 1, 1),
-                ],
-            )
             db.commit()
             db.close()
             report = MODULE.audit(db_path)
@@ -96,6 +87,15 @@ class CorpusAuditTests(unittest.TestCase):
             INSERT INTO legal_sources VALUES('S3','allowed','unknown',NULL,NULL,NULL,NULL);
             INSERT INTO legal_sources VALUES('S4','allowed','unknown','reviewed terms evidence','https://terms.example.com','https://source.example.com','9999-12-31');
             """)
+            digest = "a" * 64
+            db.executemany(
+                "INSERT INTO legal_document_versions VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                [
+                    (2, "https://example.gov/future", "future.pdf", digest, "2000-01-01", "9999-01-01", None, None, "in_force", "verified", 1, 1, 1),
+                    (3, "https://example.gov/repealed", "repealed.pdf", digest, "2000-01-01", "2000-01-01", "2001-01-01", None, "in_force", "verified", 1, 1, 1),
+                    (4, "https://example.gov/no-repeal-date", "no-repeal.pdf", digest, "2000-01-01", "2000-01-01", None, None, "repealed", "verified", 1, 1, 1),
+                ],
+            )
             db.commit()
             db.close()
             report = MODULE.audit(db_path)
