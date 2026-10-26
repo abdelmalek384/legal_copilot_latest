@@ -33,6 +33,16 @@ Before starting:
 
 The --quiesced flag is an operator assertion, not an automated lock on all application writers. It does not stop the service for you.
 
+## Verify an encrypted bundle before restore
+
+1. Run verification on a trusted operator host with protected temporary storage and the correct `BACKUP_KEY` configured.
+2. Execute:
+
+       python manage.py verify-backup-tenancy /protected/backup-directory/backup-file.bundle.enc
+
+3. Confirm the command reports `"verified": true` and the expected tenant database count. Keep the encrypted bundle and its key separate.
+4. Verification temporarily materializes plaintext SQLite databases in a restricted temporary directory and removes them on exit. Deletion is **not guaranteed secure erasure**, especially on SSDs or copy-on-write filesystems. This command does not replace a witnessed restore into staging, startup, isolation checks, or rollback rehearsal.
+
 ## Restore into an isolated destination
 
 **Never restore over the configured live database paths.** Restore creates a new destination directory and validates the encrypted bundle, manifest/checksums, database profiles, firm bindings, catalog consistency, and SQLite integrity before reporting success.
@@ -70,6 +80,7 @@ For rollback, stop writes to the candidate instance first. Restore the prior app
 
 - [ ] Confirm backup completed while all writers were quiesced.
 - [ ] Confirm encrypted bundle is stored separately from BACKUP_KEY.
+- [ ] Run `python manage.py verify-backup-tenancy` and confirm the bundle validates without persistent restore artifacts.
 - [ ] Restore a representative bundle into a new isolated destination.
 - [ ] Confirm all profile, firm-binding, manifest, and SQLite integrity validations pass.
 - [ ] Run strict deployment preflight and staging startup.
