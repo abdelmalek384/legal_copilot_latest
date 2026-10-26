@@ -33,6 +33,31 @@ def valid_llm_endpoint(value):
         return False
 
 
+def valid_allowed_hosts(value):
+    if not isinstance(value, str) or not value.strip():
+        return False
+    hosts = [item.strip().lower().rstrip(".") for item in value.split(",")]
+    if any(not host or host == "*" or "://" in host or any(ch in host for ch in "/@?#") for host in hosts):
+        return False
+    for host in hosts:
+        candidate = host[2:] if host.startswith("*.") else host
+        if "*" in candidate or not candidate:
+            return False
+        ip_candidate = candidate[1:-1] if candidate.startswith("[") and candidate.endswith("]") else candidate
+        try:
+            ipaddress.ip_address(ip_candidate)
+            if host.startswith("*."):
+                return False
+            continue
+        except ValueError:
+            pass
+        labels = candidate.split(".")
+        if any(not label or len(label) > 63 or label.startswith("-") or label.endswith("-")
+               or not all(ch.isascii() and (ch.isalnum() or ch == "-") for ch in label) for label in labels):
+            return False
+    return True
+
+
 def inspect_environment(env=None):
     env = os.environ if env is None else env
     errors, warnings, passed = [], [], []
@@ -53,6 +78,15 @@ def inspect_environment(env=None):
         passed.append("Secure cookies and HSTS are explicitly enabled for HTTPS/proxy deployment.")
     else:
         warnings.append("COPILOT_SECURE_COOKIES=1 is not set; if TLS terminates at a reverse proxy, session cookies may lack Secure and HSTS may be omitted. Set it only when the public endpoint is HTTPS.")
+
+    allowed_hosts = env.get("COPILOT_ALLOWED_HOSTS", "").strip()
+    if allowed_hosts:
+        if valid_allowed_hosts(allowed_hosts):
+            passed.append("COPILOT_ALLOWED_HOSTS is a valid explicit host allowlist.")
+        else:
+            errors.append("COPILOT_ALLOWED_HOSTS must be a comma-separated hostname/IP allowlist; wildcard-all and URL syntax are forbidden.")
+    else:
+        warnings.append("COPILOT_ALLOWED_HOSTS is unset; configure the public hostname(s) to enable Host-header validation.")
 
     public_origin = env.get("COPILOT_PUBLIC_ORIGIN", "").strip()
     if public_origin:
