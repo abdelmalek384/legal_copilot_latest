@@ -16,7 +16,7 @@ class FrontendUXContractTests(unittest.TestCase):
 
     def test_language_switch_rerenders_every_primary_workspace(self):
         switch = HTML[HTML.index("function switchLanguage()"):HTML.index("\nconst languageObserver")]
-        for page in ("dash", "clients", "cases", "tasks", "calendar", "law", "review", "settings"):
+        for page in ("dash", "clients", "cases", "tasks", "calendar", "law", "coverage", "review", "settings"):
             self.assertIn("PAGE==='" + page + "'", switch)
         self.assertIn("if(!ME.id){login(AUTH_MODE)", switch)
 
