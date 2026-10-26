@@ -122,6 +122,26 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             0,
         )
 
+    def test_user_listing_is_scoped_to_active_firm_memberships(self):
+        firm_b_only_user = self.runtime.create_global_identity(
+            "Firm B Only User", "firm-b-only@example.test", app.hash_pw(self.password)
+        )
+        self.runtime.create_firm_membership(firm_b_only_user, self.firm_b, "lawyer")
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+
+        firm_a_users = self.client.get("/users")
+        self.assertEqual(firm_a_users.status_code, 200, firm_a_users.text)
+        self.assertFalse(any(row["id"] == firm_b_only_user for row in firm_a_users.json()))
+
+        switched = self._mutate("post", "/session/firm", json={"firm_id": self.firm_b})
+        self.assertEqual(switched.status_code, 200, switched.text)
+        firm_b_users = self.client.get("/users")
+        self.assertEqual(firm_b_users.status_code, 200, firm_b_users.text)
+        self.assertTrue(any(row["id"] == firm_b_only_user for row in firm_b_users.json()))
+
     def test_existing_global_identity_can_join_another_firm_without_duplication(self):
         firm_c, _ = self.runtime.provision_firm("Firm C")
         existing_user_id = self.runtime.create_initial_firm_owner(
