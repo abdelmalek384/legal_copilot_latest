@@ -1,7 +1,9 @@
 """Tests for safe tenant catalog and SQLite database provisioning."""
+import os
 import sqlite3
 import tempfile
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
 from tenant_catalog import (
@@ -18,7 +20,7 @@ class TenantCatalogTests(unittest.TestCase):
         self.root = Path(self.temp.name) / "tenants"
         self.catalog = sqlite3.connect(":memory:")
         self.catalog.execute("CREATE TABLE firms(id INTEGER PRIMARY KEY, name TEXT NOT NULL)")
-        for firm_id in (3, 4, 8, 9, 10, 11, 12, 17, 21, 22, 23, 24, 30, 31, 32, 33):
+        for firm_id in (3, 4, 8, 9, 10, 11, 12, 17, 21, 22, 23, 24, 30, 31, 32, 33, 34):
             self.catalog.execute(
                 "INSERT INTO firms(id,name) VALUES(?,?)", (firm_id, f"Firm {firm_id}")
             )
@@ -254,6 +256,17 @@ class TenantCatalogTests(unittest.TestCase):
         ).fetchone()
         self.assertEqual(row, (None, "failed", "provisioning_failed"))
         self.assertEqual(list(self.root.glob("tenant-4-*.sqlite3")), [])
+
+    @unittest.skipUnless(os.name == "posix", "POSIX file permission enforcement is required")
+    def test_posix_chmod_failure_aborts_provisioning_and_cleans_file(self):
+        with patch("tenant_catalog.os.chmod", side_effect=OSError("permission denied")):
+            with self.assertRaisesRegex(TenantCatalogError, "Cannot enforce restrictive permissions"):
+                provision_tenant_database(self.catalog, 34, self.root, self.initialize_tenant)
+        row = self.catalog.execute(
+            "SELECT database_file,status,last_error_code FROM tenant_database_catalog WHERE firm_id=34"
+        ).fetchone()
+        self.assertEqual(row, (None, "failed", "provisioning_failed"))
+        self.assertEqual(list(self.root.glob("tenant-34-*.sqlite3")), [])
 
     def test_provision_enables_foreign_key_enforcement_for_initializer(self):
         def initialize_with_invalid_reference(db):
