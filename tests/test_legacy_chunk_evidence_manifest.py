@@ -23,7 +23,8 @@ class LegacyChunkEvidenceManifestTests(unittest.TestCase):
                     );
                     INSERT INTO docs(id,case_id,firm_id,sha256) VALUES
                         (100,10,1,'doc-hash'),
-                        (101,11,1,'wrong-firm-doc-hash');
+                        (101,11,1,'wrong-firm-doc-hash'),
+                        (102,10,2,'same-firm-wrong-case-hash');
                     CREATE TABLE legal_document_versions(
                         version_id INTEGER PRIMARY KEY, document_id TEXT,
                         original_sha256 TEXT, legal_status TEXT, review_status TEXT
@@ -41,7 +42,7 @@ class LegacyChunkEvidenceManifestTests(unittest.TestCase):
                         (2,NULL,100,NULL,'upload','missing case','PRIVATE-ORPHAN-TEXT','private-orphan-text'),
                         (3,NULL,NULL,50,'law-registry','LAW-1','LEGAL-CORPUS-CANDIDATE','legal-corpus-candidate'),
                         (4,NULL,NULL,NULL,'unknown','unknown source','UNCLASSIFIED-SECRET','unclassified-secret'),
-                        (5,11,100,NULL,'upload','cross firm','MISMATCH-SECRET','mismatch-secret'),
+                        (5,11,102,NULL,'upload','cross case','MISMATCH-SECRET','mismatch-secret'),
                         (6,NULL,999,NULL,'upload','dangling doc','DANGLING-SECRET','dangling-secret'),
                         (7,11,101,NULL,'upload','document firm mismatch','FIRM-MISMATCH-SECRET','firm-mismatch-secret');
                 """)
