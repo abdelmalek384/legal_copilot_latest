@@ -167,9 +167,17 @@ def check_permission(doc: dict) -> set[str]:
 
 
 def store_original(out: Path, document_id: str, extension: str, raw: bytes) -> Path:
-    """Store a source file without ever overwriting a different previously collected byte stream."""
+    """Store a source file without overwriting prior bytes or following storage symlinks."""
+    if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]{0,127}", document_id):
+        raise ValueError("document_id is not a safe storage identifier")
     digest = sha256_bytes(raw)
-    original_dir = out / "originals" / document_id
+    originals_root = out / "originals"
+    if originals_root.is_symlink():
+        raise ValueError("originals directory must not be a symbolic link")
+    originals_root.mkdir(parents=True, exist_ok=True)
+    original_dir = originals_root / document_id
+    if original_dir.is_symlink():
+        raise ValueError("document original directory must not be a symbolic link")
     original_dir.mkdir(parents=True, exist_ok=True)
     original_path = original_dir / ("original" + extension)
 
@@ -217,7 +225,11 @@ def store_original(out: Path, document_id: str, extension: str, raw: bytes) -> P
 
 
 def _archive_metadata_version(meta_dir: Path, document_id: str, metadata: dict) -> Path:
-    history_dir = meta_dir / "history" / document_id
+    history_root = meta_dir / "history"
+    if history_root.is_symlink():
+        raise ValueError("metadata history root must not be a symbolic link")
+    history_root.mkdir(parents=True, exist_ok=True)
+    history_dir = history_root / document_id
     if history_dir.is_symlink():
         raise ValueError("metadata history directory must not be a symbolic link")
     history_dir.mkdir(parents=True, exist_ok=True)
@@ -247,6 +259,8 @@ def _archive_metadata_version(meta_dir: Path, document_id: str, metadata: dict) 
 
 def persist_metadata(out: Path, document_id: str, metadata: dict) -> Path:
     """Keep immutable retrieval records and atomically update the current metadata pointer."""
+    if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]{0,127}", document_id):
+        raise ValueError("document_id is not a safe metadata identifier")
     meta_dir = out / "metadata"
     if meta_dir.is_symlink():
         raise ValueError("metadata directory must not be a symbolic link")
