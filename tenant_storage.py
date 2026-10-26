@@ -144,6 +144,34 @@ class TenantSQLiteConnectionRouter:
                 raise TenantConnectionError(
                     "Tenant database is bound to a different firm"
                 )
+            binding_triggers = {
+                row[0]: row[1] for row in connection.execute(
+                    "SELECT name, sql FROM sqlite_master WHERE type='trigger' "
+                    "AND name IN ('tenant_database_binding_no_update','tenant_database_binding_no_delete')"
+                )
+            }
+
+            def has_immutable_binding_guard(sql: str | None, operation: str) -> bool:
+                if not isinstance(sql, str):
+                    return False
+                normalized = " ".join(sql.lower().split())
+                return (
+                    f"before {operation} on tenant_database_binding" in normalized
+                    and "raise(abort" in normalized
+                    and "tenant database firm binding is immutable" in normalized
+                )
+
+            if (
+                not has_immutable_binding_guard(
+                    binding_triggers.get("tenant_database_binding_no_update"), "update"
+                )
+                or not has_immutable_binding_guard(
+                    binding_triggers.get("tenant_database_binding_no_delete"), "delete"
+                )
+            ):
+                raise TenantConnectionError(
+                    "Tenant database firm binding lacks effective immutable guards"
+                )
         except (sqlite3.Error, TenantConnectionError) as exc:
             if connection is not None:
                 try:
