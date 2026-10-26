@@ -59,6 +59,11 @@ class TenantSQLiteConnectionRouter:
             except sqlite3.Error:
                 pass
 
+    def revoke_firm_connection(self, trusted_firm_id: int) -> None:
+        """Close this thread's cached connection after authorization is revoked."""
+        self._validate_firm_id(trusted_firm_id)
+        self._revoke_cached_connection(trusted_firm_id)
+
     @staticmethod
     def _validate_firm_id(firm_id: int) -> None:
         if isinstance(firm_id, bool) or not isinstance(firm_id, int) or firm_id <= 0:
