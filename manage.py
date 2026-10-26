@@ -216,22 +216,36 @@ def resetpw(a):
     pw = read_password("كلمة المرور الجديدة: ")
     if app._separate_runtime_enabled():
         runtime = DatabaseRuntime.from_env()
-        runtime.initialize()
-        c = runtime.control_connection()
-        email = app.normalize_email(a.email)
-        c.execute("BEGIN IMMEDIATE")
-        account = c.execute("SELECT id FROM users WHERE email_normalized=?", (email,)).fetchone()
-        if not account:
-            c.rollback()
-            raise SystemExit("لا يوجد حساب بهذا البريد الإلكتروني.")
-        c.execute(
-            "UPDATE users SET password_hash=?,updated_at=datetime('now') WHERE id=?",
-            (app.hash_pw(pw), account["id"]),
-        )
-        c.execute("DELETE FROM auth_sessions WHERE user_id=?", (account["id"],))
-        c.commit()
-        print("تم تحديث كلمة المرور وإبطال جميع الجلسات؛ سجّل الدخول من جديد.")
-        return
+        try:
+            runtime.initialize()
+            c = runtime.control_connection()
+            email = app.normalize_email(a.email)
+            c.execute("BEGIN IMMEDIATE")
+            account = c.execute("SELECT id FROM users WHERE email_normalized=?", (email,)).fetchone()
+            if not account:
+                c.rollback()
+                raise SystemExit("لا يوجد حساب بهذا البريد الإلكتروني.")
+            c.execute(
+                "UPDATE users SET password_hash=?,updated_at=datetime('now') WHERE id=?",
+                (app.hash_pw(pw), account["id"]),
+            )
+            c.execute("DELETE FROM auth_sessions WHERE user_id=?", (account["id"],))
+            c.execute(
+                "INSERT INTO platform_security_events(actor_user_id,target_user_id,event_type,detail_json) "
+                "VALUES(NULL,?,'password_reset_cli',?)",
+                (account["id"], json.dumps({"method": "manage.py resetpw", "sessions_revoked": True}, sort_keys=True)),
+            )
+            c.commit()
+            print("تم تحديث كلمة المرور وإبطال جميع الجلسات؛ سجّل الدخول من جديد.")
+            return
+        except Exception:
+            try:
+                runtime.control_connection().rollback()
+            except Exception:
+                pass
+            raise
+        finally:
+            runtime.close_current_thread()
     c = app.conn()
     email = a.email.strip().lower()
     c.execute("BEGIN IMMEDIATE")
@@ -390,4 +404,11 @@ x = sp.add_parser("restore-tenancy"); x.add_argument("file"); x.add_argument("--
 x = sp.add_parser("verify-backup-tenancy", help="Verify an encrypted tenancy bundle using temporary protected storage"); x.add_argument("file"); x.set_defaults(f=verify_tenancy_backup)
 x = sp.add_parser("importlaws"); x.add_argument("file"); x.set_defaults(f=importlaws)
 x = sp.add_parser("restore"); x.add_argument("file"); x.add_argument("out"); x.set_defaults(f=restore)
-a = p.parse_args(); a.f(a)
+def main(argv=None):
+    args = p.parse_args(argv)
+    args.f(args)
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

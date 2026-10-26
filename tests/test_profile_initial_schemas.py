@@ -45,6 +45,9 @@ class ProfileInitialSchemaTests(unittest.TestCase):
         self.assertIn("users", names(control))
         self.assertIn("firm_memberships", names(control))
         self.assertIn("user_platform_roles", names(control))
+        self.assertIn("platform_security_events", names(control))
+        event_triggers = {r[0] for r in control.execute("SELECT name FROM sqlite_master WHERE type='trigger'")}
+        self.assertTrue({"platform_security_events_no_update", "platform_security_events_no_delete"} <= event_triggers)
         self.assertNotIn("users", names(firm))
         self.assertNotIn("firm_memberships", names(firm))
         self.assertNotIn("user_platform_roles", names(firm))
