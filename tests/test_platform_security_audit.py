@@ -158,5 +158,72 @@ class PlatformSecurityAuditTests(unittest.TestCase):
         control.rollback()
 
 
+    def test_firm_disable_is_atomically_audited_and_idempotent(self):
+        changed = self.runtime.disable_firm(self.firm_id)
+        self.assertTrue(changed)
+        control = self.runtime.control_connection()
+        firm = control.execute(
+            "SELECT status FROM firms WHERE id=?", (self.firm_id,)
+        ).fetchone()
+        catalog = control.execute(
+            "SELECT status FROM tenant_database_catalog WHERE firm_id=?", (self.firm_id,)
+        ).fetchone()
+        event = control.execute(
+            "SELECT actor_user_id,firm_id,event_type,detail_json "
+            "FROM platform_security_events WHERE event_type='firm_disabled'"
+        ).fetchone()
+        self.assertEqual(firm["status"], "disabled")
+        self.assertEqual(catalog["status"], "disabled")
+        self.assertIsNone(event["actor_user_id"])
+        self.assertEqual(event["firm_id"], self.firm_id)
+        self.assertEqual(event["event_type"], "firm_disabled")
+        self.assertEqual(
+            __import__("json").loads(event["detail_json"]),
+            {"new_status": "disabled", "previous_status": "active"},
+        )
+
+        self.assertFalse(self.runtime.disable_firm(self.firm_id))
+        self.assertEqual(
+            control.execute(
+                "SELECT COUNT(*) FROM platform_security_events WHERE firm_id=? AND event_type='firm_disabled'",
+                (self.firm_id,),
+            ).fetchone()[0],
+            1,
+            "repeated disable must not duplicate the lifecycle audit event",
+        )
+
+    def test_firm_disable_rolls_back_if_platform_audit_write_fails(self):
+        control = self.runtime.control_connection()
+        control.execute("""
+            CREATE TRIGGER reject_firm_disable_audit
+            BEFORE INSERT ON platform_security_events
+            WHEN NEW.event_type='firm_disabled'
+            BEGIN SELECT RAISE(ABORT, 'audit unavailable'); END
+        """)
+        control.commit()
+
+        with self.assertRaisesRegex(Exception, "audit unavailable"):
+            self.runtime.disable_firm(self.firm_id)
+
+        self.assertEqual(
+            control.execute("SELECT status FROM firms WHERE id=?", (self.firm_id,)).fetchone()[0],
+            "active",
+        )
+        self.assertEqual(
+            control.execute(
+                "SELECT status FROM tenant_database_catalog WHERE firm_id=?", (self.firm_id,)
+            ).fetchone()[0],
+            "provisioned",
+        )
+        self.assertEqual(
+            control.execute(
+                "SELECT COUNT(*) FROM platform_security_events WHERE firm_id=? AND event_type='firm_disabled'",
+                (self.firm_id,),
+            ).fetchone()[0],
+            0,
+        )
+
+
+
 if __name__ == "__main__":
     unittest.main()
