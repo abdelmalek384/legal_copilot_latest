@@ -12,14 +12,14 @@ Each event has only:
 - due_date: canonical local calendar date in YYYY-MM-DD form;
 - is_complete: explicit boolean.
 
-The caller supplies the recipient identifier, an aware current timestamp, the IANA timezone for the recipient/firm policy, and previously sent idempotency keys. Date-only deadlines remain date-only; this helper does not calculate legal deadlines or infer a due date from a judgment or event.
+The caller supplies a firm/scope identifier, recipient identifier, an aware current timestamp, the IANA timezone for the recipient/firm policy, and previously sent idempotency keys. Scope is included in the idempotency key so a user who belongs to multiple firms cannot accidentally suppress an otherwise identical event in another firm. Date-only deadlines remain date-only; this helper does not calculate legal deadlines or infer a due date from a judgment or event.
 
 ## Planning rules
 
 - Convert the current timestamp to the configured IANA timezone before comparing calendar dates.
 - Produce a plan for items due in the configured lead window (default one day), due today, or overdue.
 - Skip completed events and suppress keys supplied in the sent-key set.
-- Generate a stable SHA-256 idempotency key from the recipient, event kind/ID, due date, and reminder window. The overdue window is stable across repeated daily runs; changing a due date creates a new key.
+- Generate a stable SHA-256 idempotency key from the firm/scope, recipient, event kind/ID, due date, and reminder window. The overdue window is stable across repeated daily runs; changing a due date creates a new key.
 - Do not include client names, matter titles, case facts, or legal strategy in the planned payload.
 - Sort the plan deterministically to make dry-run output diffable.
 
