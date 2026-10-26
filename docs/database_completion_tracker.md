@@ -1,7 +1,7 @@
 # Database completion tracker
 
 **Last updated:** 2026-10-26  
-**Estimated completion:** 49%  
+**Estimated completion:** 50%  
 **Status:** In progress — not production-ready for confidential multi-firm matter data.
 
 This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. This is a weighted engineering estimate, not a test-pass percentage or a count of commits. The separate-database runtime and encrypted backup/restore are merged, and row-scope enforcement plus fresh-install/restart and cross-firm case tests have been added. The percentage remains a weighted engineering estimate; exhaustive route/query coverage, remaining legacy bootstrap DDL, invitation/account-recovery policy, platform-role grant governance, and a witnessed operational recovery drill remain open.
@@ -24,6 +24,9 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 - [x] Verify a firm administrator cannot suspend an identity belonging only to another firm; the target identity and other-firm membership remain active (PR #482 merged; CI run 40382596457 passed).
 - [x] Verify platform legal-review authorization is distinct from firm-admin membership and that removing a platform reviewer role denies the very next request without trusting stale session claims (PR #483 merged; CI run 40382833193 passed).
 - [x] Verify dashboard, calendar export, and finance aggregates exclude another firm's case/deadline/fee sentinels after switching firm context (PR #485 merged; CI run 40383241482 passed).
+- [x] Verify conflict checks disclose neither another firm's matching matter nor a possible-conflict/admin-review signal (PR #490 merged; CI run 40384296346 passed).
+- [x] Verify a global password change revokes all sessions across firm contexts while preserving unrelated active memberships and allowing the new credential to log in (PR #491 merged; CI run 40384550589 passed).
+- [x] Verify suspending one firm's membership does not disable the global identity or its active membership in another firm (PR #492 merged; CI run 40384723859 passed).
 - [x] Verify disabling a firm denies the next API request while retaining the tenant database file and its matter data (PR #487 merged; CI run 40383552960 passed).
 - [x] Reject stale shared COPILOT_DB configuration when the three approved separate-database paths are configured, preventing ambiguous deployment storage intent (PR #477 merged; CI run 40381467990 passed).
 - [x] Verify clean-install shared legal-corpus FTS insert/update/delete synchronization using FTS5 external-content integrity checks against source chunks (PR #479 merged; CI run 40381954656 passed).
@@ -170,16 +173,17 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 ## Remaining database work
 
 ### 1. Finish versioned schema migrations
-- [ ] Move remaining prerequisite table creation out of startup only after earlier migration dependencies are redesigned; `firms`, `users`, `cases`, `deadlines`, `members`, `docs`, `chunks`, legal-version/review tables, research tables, and the dynamic `document_extraction_reviews` table still participate in bootstrap ordering.
-- [ ] Move remaining pre-migration compatibility work (`tenant_ownership_quarantine` creation/population, `users.firm_id`, `cases.firm_id`, `deadlines.status`, and `chunks.document_id`) into a safe ordered compatibility phase; migrations 0001–0003 currently require these prerequisites before they run.
+- [ ] Retire or further isolate the legacy shared-schema startup bootstrap (`firms`, `users`, `cases`, `deadlines`, `members`, `docs`, `chunks`, legal-version/review tables, research tables, and dynamic `document_extraction_reviews`). This is compatibility code for explicitly configured development/test use; strict deployment preflight rejects legacy-only deployment and the approved separate runtime uses profile migrations.
+- [ ] Keep legacy pre-migration compatibility work (`tenant_ownership_quarantine`, legacy `users.firm_id`/`cases.firm_id`, `deadlines.status`, and `chunks.document_id`) isolated to an explicitly approved legacy import/compatibility path. No production database exists to upgrade; these are not clean first-install prerequisites.
 - [x] Add a read-only FTS5 internal index-integrity check on a disposable copy, detecting stale inverted indexes without mutating the source database (PR #388 merged; CI passed).
 - [x] Add a controlled rebuild-on-a-new-copy procedure for legacy and firm/corpus profile databases, preserving external-content schema and synchronization triggers (PR #399 merged; CI passed).
 - [x] Verify clean-install shared legal-corpus FTS insert/update/delete synchronization and external-content integrity (PR #479 merged; CI run 40381954656 passed).
 - [ ] Reconcile FTS against authoritative source content only if an actual legacy corpus is deliberately introduced for import; migration 0008 itself still does not rebuild stale/missing indexes.
 - [x] Reject symlinked source database paths in the read-only FTS preflight before resolution/open, with regression coverage (PR #458 merged; CI run 40376020538 passed).
-- [ ] Finish removing remaining application-schema prerequisites from startup bootstrap and document the supported clean first-install path for all three profiles. No production database is deployed; legacy upgrade/cutover support is conditional on a real legacy database being explicitly introduced.
-- [ ] Test migration order, idempotency, checksum drift, interrupted migrations, and rollback/restore on representative disposable database copies.
-- [ ] Keep migrations immutable after merge; add new forward migrations for corrections.
+- [x] Document and test clean first installation for all three profile databases, including firm/corpus FTS synchronization and separate-runtime restart persistence (PRs #465, #479, and #488 merged; CI passed).
+- [x] Test migration ordering, idempotency, checksum drift, missing applied files, transaction rollback, and interrupted-migration retry (migration-runner tests and PR #463 merged; CI passed).
+- [ ] Complete an end-to-end backup/restore/rollback rehearsal on representative disposable copies before deployment; the operator runbook is documented but no real recovery drill has been witnessed.
+- [x] Reject migration checksum drift and missing applied migration files; corrections must be new forward migrations.
 
 ### 2. Approve identity and tenant contract
 - [ ] Finish operational identity policy for invitations, initial firm-owner bootstrap, platform-role grant/revocation workflow, and session behavior after membership revocation; core decisions on multi-firm membership, global normalized email, and separate role domains are approved.
