@@ -147,6 +147,15 @@ class ResearchInspectorTests(unittest.TestCase):
         malformed_sources = research_memo("Question", {"sources": "not-a-list"})
         self.assertIn("Source data was malformed", malformed_sources)
 
+    def test_memo_does_not_invent_as_of_date_when_missing_or_invalid(self):
+        for value in (None, "2026-02-31", "not-a-date", 20261026):
+            result = {"scope": "verified_corpus", "sources": [valid_source()]}
+            if value is not None:
+                result["requested_as_of"] = value
+            memo = research_memo("Question", result)
+            self.assertIn("As of: unknown", memo, repr(value))
+            self.assertNotIn("As of: 2026-10-26", memo, repr(value))
+
     def test_missing_memo_scope_is_not_defaulted_to_verified_corpus(self):
         memo = research_memo("Question", {"sources": []})
         self.assertIn("Search scope: unknown", memo)
