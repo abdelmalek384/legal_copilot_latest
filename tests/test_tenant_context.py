@@ -142,6 +142,26 @@ class ResolveFirmContextTests(unittest.TestCase):
             unbound.close()
 
 
+    def test_sqlite_membership_lookup_rejects_noop_profile_guards(self):
+        db = sqlite3.connect(":memory:")
+        db.execute("PRAGMA foreign_keys=ON")
+        try:
+            apply_profile_migrations(db, "control_plane", MIGRATIONS)
+            db.execute("DROP TRIGGER database_profile_no_update")
+            db.execute("DROP TRIGGER database_profile_no_delete")
+            db.executescript("""
+                CREATE TRIGGER database_profile_no_update
+                BEFORE UPDATE ON database_profile
+                BEGIN SELECT 1; END;
+                CREATE TRIGGER database_profile_no_delete
+                BEFORE DELETE ON database_profile
+                BEGIN SELECT 1; END;
+            """)
+            with self.assertRaisesRegex(ValueError, "trusted control-plane profile"):
+                sqlite_membership_lookup(db)
+        finally:
+            db.close()
+
     def test_sqlite_membership_lookup_requires_a_trusted_sqlite_connection(self):
         with self.assertRaises(TypeError):
             sqlite_membership_lookup("/client/supplied/database.sqlite3")

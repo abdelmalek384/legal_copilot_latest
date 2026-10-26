@@ -46,17 +46,28 @@ def sqlite_membership_lookup(connection: sqlite3.Connection) -> MembershipLookup
             "SELECT profile FROM database_profile WHERE singleton=1"
         ).fetchone()
         profile_triggers = {
-            row[0] for row in connection.execute(
-                "SELECT name FROM sqlite_master WHERE type='trigger' "
+            row[0]: row[1] for row in connection.execute(
+                "SELECT name, sql FROM sqlite_master WHERE type='trigger' "
                 "AND name IN ('database_profile_no_update','database_profile_no_delete')"
             )
         }
     except sqlite3.Error as exc:
         raise ValueError("SQLite connection is not bound to the trusted control-plane profile") from exc
+    def has_immutable_guard(sql: str | None, operation: str) -> bool:
+        if not isinstance(sql, str):
+            return False
+        normalized = " ".join(sql.lower().split())
+        return (
+            f"before {operation} on database_profile" in normalized
+            and "raise(abort" in normalized
+            and "database profile binding is immutable" in normalized
+        )
+
     if (
         profile is None
         or profile[0] != "control_plane"
-        or profile_triggers != {"database_profile_no_update", "database_profile_no_delete"}
+        or not has_immutable_guard(profile_triggers.get("database_profile_no_update"), "update")
+        or not has_immutable_guard(profile_triggers.get("database_profile_no_delete"), "delete")
     ):
         raise ValueError("SQLite connection is not bound to the trusted control-plane profile")
 
