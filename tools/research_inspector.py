@@ -125,7 +125,12 @@ def research_memo(question, result, scope=None):
     """Produce a plain-text research memo that preserves exact source passages and caveats."""
     if not isinstance(result, Mapping):
         result = {}
-    as_of = result.get("requested_as_of") or date.today().isoformat()
+    raw_as_of = result.get("requested_as_of")
+    try:
+        parsed_as_of = date.fromisoformat(raw_as_of) if isinstance(raw_as_of, str) else None
+        as_of = parsed_as_of.isoformat() if parsed_as_of and parsed_as_of.isoformat() == raw_as_of else "unknown"
+    except ValueError:
+        as_of = "unknown"
     scope = scope or result.get("scope")
     if not isinstance(scope, str) or not scope.strip():
         scope = "unknown"
