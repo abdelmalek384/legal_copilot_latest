@@ -7,6 +7,7 @@ and abstention agreement against a lawyer-authored answerability label.
 """
 import argparse
 import json
+import math
 import re
 import sys
 from collections import defaultdict
@@ -239,22 +240,62 @@ def evaluate(question_rows, result_rows):
     }
 
 
+def _release_gate(report, args):
+    minimums = {
+        "source_precision": args.min_source_precision,
+        "pin_cite_precision": args.min_pin_cite_precision,
+        "abstention_accuracy": args.min_abstention_accuracy,
+    }
+    maximums = {
+        "unanswerable_citation_rate": args.max_unanswerable_citation_rate,
+        "invalid_citation_question_rate": args.max_invalid_citation_question_rate,
+    }
+    configured = {**minimums, **maximums}
+    enabled = any(value is not None for value in configured.values())
+    checks = []
+    for metric, threshold in minimums.items():
+        if threshold is not None:
+            actual = report["overall"].get(metric)
+            checks.append({"metric": metric, "operator": ">=", "threshold": threshold,
+                           "actual": actual, "passed": actual is not None and actual >= threshold})
+    for metric, threshold in maximums.items():
+        if threshold is not None:
+            actual = report["overall"].get(metric)
+            checks.append({"metric": metric, "operator": "<=", "threshold": threshold,
+                           "actual": actual, "passed": actual is not None and actual <= threshold})
+    return {"enabled": enabled, "passed": all(check["passed"] for check in checks) if enabled else None,
+            "checks": checks}
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--questions", required=True, help="Lawyer-reviewed question JSONL")
     parser.add_argument("--results", required=True, help="Model output JSONL, one record per question")
     parser.add_argument("--out", help="Write report JSON here; default is stdout")
+    parser.add_argument("--min-source-precision", type=float, help="Fail the technical gate if source precision is below this 0..1 threshold")
+    parser.add_argument("--min-pin-cite-precision", type=float, help="Fail the technical gate if pinpoint-citation precision is below this 0..1 threshold")
+    parser.add_argument("--min-abstention-accuracy", type=float, help="Fail the technical gate if abstention accuracy is below this 0..1 threshold")
+    parser.add_argument("--max-unanswerable-citation-rate", type=float, help="Fail the technical gate if unanswerable cases contain citations above this 0..1 rate")
+    parser.add_argument("--max-invalid-citation-question-rate", type=float, help="Fail the technical gate if questions with invalid citation indexes exceed this 0..1 rate")
     args = parser.parse_args(argv)
+    for name in ("min_source_precision", "min_pin_cite_precision", "min_abstention_accuracy",
+                 "max_unanswerable_citation_rate", "max_invalid_citation_question_rate"):
+        value = getattr(args, name)
+        if value is not None and (not math.isfinite(value) or not 0 <= value <= 1):
+            parser.error(f"--{name.replace('_', '-')} must be a finite number between 0 and 1")
     try:
         report = evaluate(read_jsonl(args.questions), read_jsonl(args.results))
     except (OSError, EvaluationError) as exc:
         print(f"evaluation refused: {exc}", file=sys.stderr)
         return 2
+    report["release_gate"] = _release_gate(report, args)
     rendered = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
     if args.out:
         Path(args.out).write_text(rendered, encoding="utf-8")
     else:
         print(rendered, end="")
+    if report["release_gate"]["enabled"] and not report["release_gate"]["passed"]:
+        return 1
     return 0
 
 
