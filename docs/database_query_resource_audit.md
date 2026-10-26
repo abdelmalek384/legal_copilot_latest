@@ -4,6 +4,8 @@
 **Reviewed:** `app.py`, `storage.py`, `manage.py`, and the current SEC-01 architecture/ownership documents on `main`.  
 **Purpose:** Turn the known storage inventory into concrete findings and safe implementation gates.
 
+**Current-state note (2026-10-26):** This file preserves the initial, pre-separation static baseline. The findings and remediation text below describe that earlier state and are not a claim about the current runtime. Since then, the separate control-plane / per-firm database / shared-corpus runtime, versioned profile migrations, immutable firm binding, encrypted multi-database backup/restore, and extensive cross-firm regression tests have been merged. Current execution status is tracked in `docs/database_completion_tracker.md` and `docs/tenant_isolation_inventory.md`. Remaining release blockers include exhaustive route/query review, the still-supported explicit `COPILOT_DB` compatibility path, original-upload object storage and retention, invitation/account-recovery and platform-role grant governance, a witnessed staging restore/rollback drill, and independent security review. No legacy database has been deployed or used; reconciliation is conditional future work only if an external database is explicitly introduced and approved for import.
+
 ## Executive finding
 
 The application still opens one SQLite file selected by `COPILOT_DB` (default `copilot.db`). `SQLiteConnectionProvider` provides one connection per thread for that one configured path; it does not resolve an authenticated tenant or choose a database. A separate-firm production deployment is therefore **not ready**.
@@ -28,7 +30,7 @@ The schema has some firm-aware checks at the application layer, but not a consis
 9. **Original uploaded binaries are not retained by the current upload flow.** The `docs` row records metadata/hash and extracted chunks, not a recoverable original file object. Historical original-file recovery/re-extraction cannot be promised; future object storage needs tenant-scoped paths, retention, encryption and restore coverage.
 10. **Schema changes run at application startup.** `conn()` runs `CREATE TABLE` and conditional `ALTER TABLE` operations guarded by an in-process flag. This is not a versioned, per-tenant migration system and is not sufficient for a controlled multi-database rollout.
 
-## Follow-up remediation proposed (pending merge and CI)
+## Historical remediation note (baseline-era; not current branch status)
 
 The SEC-01 ownership-hardening change in the current working branch removes the startup updates that silently set NULL user/case ownership to firm 1. When an older schema lacks the ownership columns, it adds nullable columns without a default and records rows whose ownership remains NULL in `tenant_ownership_quarantine`. Login is denied and existing sessions are invalidated for accounts with NULL firm ownership. The quarantine is a review ledger, not an automatic repair mechanism.
 
@@ -67,7 +69,7 @@ This is a source-code route inventory only. It does not include every SQL statem
 | `api_rate_limit_windows` | Operational/security store | Confirm whether limits are per user, IP, firm or global; avoid tenant-key collisions |
 | Backup files, restore staging, logs, OCR outputs, exports, temporary files | Deployment-dependent | Inventory actual runtime locations and assign encryption, access, retention and deletion policy |
 
-## Required follow-up before migration
+## Original baseline follow-up checklist (historical; use the current tracker for execution)
 
 1. Implement the approved global-identity / many-to-many membership direction in fresh control-plane schemas, then define session revocation, invitation, recovery, and audit-retention semantics before wiring runtime authentication. Keep legacy identity reconciliation separately approval-gated.
 2. Inventory real deployment configuration, containers/volumes, environment variables, scheduled jobs, external workers, file/object storage, logs, exports and backup destinations.
@@ -78,7 +80,7 @@ This is a source-code route inventory only. It does not include every SQL statem
 7. Implement trusted tenant provisioning/routing only after the above decisions. Add adversarial tests for every endpoint family, including direct object IDs, bulk/search paths, research messages, document review, exports and background jobs.
 8. Require independent security review and restore/incident rehearsal before production use by unrelated firms.
 
-## Acceptance checklist
+## Original baseline acceptance checklist (historical)
 
 - [ ] Product owner approves identity and membership model.
 - [ ] Deployment and external-job inventory is verified by the deployment owner.
