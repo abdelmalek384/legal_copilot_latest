@@ -549,7 +549,7 @@ assert coverage["metrics"]["permission_or_evidence_blocked_versions"] >= 1
 # Missing permission states are unknown, not silently omitted by SQL NULL comparisons.
 blocked_before_unknown = coverage["metrics"]["permission_or_evidence_blocked_versions"]
 db.execute("INSERT INTO legal_sources(source_id,authority,source_page,collection_permission,commercial_reuse_permission,permission_evidence) VALUES(?,?,?,?,?,?)",
-           ("COVERAGE-UNKNOWN-PERMISSION-SOURCE","Unknown permission authority","https://example.org/unknown",None,None,"recorded evidence awaiting classification"))
+           ("COVERAGE-UNKNOWN-PERMISSION-SOURCE","Unknown permission authority","https://example.org/unknown","unknown","unknown","recorded evidence awaiting classification"))
 db.execute("INSERT INTO legal_documents(document_id,source_id,official_title,document_type) VALUES(?,?,?,?)",
            ("COVERAGE-UNKNOWN-PERMISSION-DOC","COVERAGE-UNKNOWN-PERMISSION-SOURCE","Unknown permission test instrument","law"))
 db.execute("INSERT INTO legal_document_versions(document_id,version_label,source_url,legal_status,review_status,permission_evidence) VALUES(?,?,?,?,?,?)",
