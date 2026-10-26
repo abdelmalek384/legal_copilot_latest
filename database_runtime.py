@@ -315,6 +315,53 @@ class DatabaseRuntime:
             if catalog is not None:
                 catalog.close()
 
+    def disable_firm(self, firm_id: int) -> bool:
+        """Disable a firm without deleting its database or membership history.
+
+        Returns True when an active firm was disabled and False when it was
+        already disabled. Provisioning/failed states require explicit recovery.
+        """
+        if isinstance(firm_id, bool) or not isinstance(firm_id, int) or firm_id <= 0:
+            raise ValueError("firm_id must be a positive integer")
+        self._require_initialized()
+        control = self.control_connection()
+        control.execute("BEGIN IMMEDIATE")
+        try:
+            firm = control.execute(
+                "SELECT status FROM firms WHERE id=?", (firm_id,)
+            ).fetchone()
+            if firm is None:
+                raise DatabaseRuntimeError("Firm does not exist")
+            if firm["status"] not in {"active", "disabled"}:
+                raise DatabaseRuntimeError(
+                    "Firm is provisioning or failed; use the provisioning recovery procedure"
+                )
+            catalog = control.execute(
+                "SELECT status FROM tenant_database_catalog WHERE firm_id=?", (firm_id,)
+            ).fetchone()
+            if catalog is None:
+                raise DatabaseRuntimeError(
+                    "Firm has no trusted tenant catalog entry; refusing lifecycle change"
+                )
+            changed = firm["status"] == "active"
+            if changed:
+                updated = control.execute(
+                    "UPDATE firms SET status='disabled' WHERE id=? AND status='active'",
+                    (firm_id,),
+                )
+                if updated.rowcount != 1:
+                    raise DatabaseRuntimeError("Firm lifecycle state changed concurrently")
+            control.execute(
+                "UPDATE tenant_database_catalog SET status='disabled',updated_at=datetime('now') "
+                "WHERE firm_id=?",
+                (firm_id,),
+            )
+            control.commit()
+            return changed
+        except Exception:
+            control.rollback()
+            raise
+
     def _initialize_firm_database(self, connection: sqlite3.Connection) -> None:
         connection.execute("PRAGMA foreign_keys=ON")
         if connection.execute("PRAGMA foreign_keys").fetchone()[0] != 1:
