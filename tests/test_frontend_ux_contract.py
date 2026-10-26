@@ -69,6 +69,8 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("messageScope==='firm_documents'", HTML)
         self.assertIn("messageScope==='verified_corpus'", HTML)
         self.assertIn("if(messageScope!=='metadata_only')actions.append", HTML)
+        self.assertIn("const messageQuestion=messages.slice(0,messageIndex).reverse().find(x=>x.role==='user')?.content||priorQuestion||''", HTML)
+        self.assertIn("api('/research/discover','POST',{q:messageQuestion}),messageQuestion", HTML)
 
     def test_research_empty_state_copy_matches_selected_scope(self):
         self.assertIn("No matching source-catalog metadata was returned; this search does not retrieve legal text.", HTML)
