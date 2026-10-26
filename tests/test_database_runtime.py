@@ -164,10 +164,19 @@ class DatabaseRuntimeTests(unittest.TestCase):
                 "INSERT INTO docs(case_id,name,firm_id) VALUES(?,?,?)",
                 (case_id, "wrong-tenant.pdf", firm_b),
             )
+        conversation_id = db.execute(
+            "INSERT INTO research_conversations(user_id,firm_id,title) VALUES(?,?,?)",
+            (user_id, firm_a, "valid tenant"),
+        ).lastrowid
         with self.assertRaisesRegex(sqlite3.IntegrityError, "research conversation firm scope"):
             db.execute(
                 "INSERT INTO research_conversations(user_id,firm_id,title) VALUES(?,?,?)",
                 (user_id, firm_b, "wrong tenant"),
+            )
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "research conversation firm scope"):
+            db.execute(
+                "UPDATE research_conversations SET firm_id=? WHERE id=?",
+                (firm_b, conversation_id),
             )
         with self.assertRaisesRegex(sqlite3.IntegrityError, "case deletion audit firm scope"):
             db.execute(
