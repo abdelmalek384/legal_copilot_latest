@@ -7,6 +7,7 @@ central corpus. Firm connections require a server-validated FirmContext.
 """
 from __future__ import annotations
 
+import json
 import os
 import sqlite3
 import stat
@@ -301,12 +302,22 @@ class DatabaseRuntime:
             )
             if updated.rowcount != 1:
                 raise DatabaseRuntimeError("Firm lifecycle state did not advance after provisioning")
+            control.execute(
+                "INSERT INTO platform_security_events(actor_user_id,firm_id,event_type,detail_json) "
+                "VALUES(NULL,?,'firm_provisioned',?)",
+                (firm_id, json.dumps({"database_file": path.name, "status": "active"}, sort_keys=True)),
+            )
             control.commit()
             return firm_id, path
         except Exception:
             control.rollback()
             control.execute(
-                "UPDATE firms SET status='disabled' WHERE id=? AND status='provisioning'",
+                "UPDATE firms SET status='disabled' WHERE id=? AND status IN ('provisioning','active')",
+                (firm_id,),
+            )
+            control.execute(
+                "UPDATE tenant_database_catalog SET status='disabled',updated_at=datetime('now') "
+                "WHERE firm_id=?",
                 (firm_id,),
             )
             control.commit()
@@ -356,6 +367,12 @@ class DatabaseRuntime:
                 "WHERE firm_id=?",
                 (firm_id,),
             )
+            if changed:
+                control.execute(
+                    "INSERT INTO platform_security_events(actor_user_id,firm_id,event_type,detail_json) "
+                    "VALUES(NULL,?,'firm_disabled',?)",
+                    (firm_id, json.dumps({"previous_status": "active", "new_status": "disabled"}, sort_keys=True)),
+                )
             control.commit()
             return changed
         except Exception:
@@ -420,6 +437,11 @@ class DatabaseRuntime:
             "VALUES(?,?,?,'active',?)",
             (user_id, firm_id, role, created_by_user_id),
         )
+        control.execute(
+            "INSERT INTO platform_security_events(actor_user_id,target_user_id,firm_id,event_type,detail_json) "
+            "VALUES(?,?,?,'membership_created',?)",
+            (created_by_user_id, user_id, firm_id, json.dumps({"firm_role": role}, sort_keys=True)),
+        )
         control.commit()
 
     def create_initial_firm_owner(
@@ -456,6 +478,11 @@ class DatabaseRuntime:
                 "INSERT INTO firm_memberships(user_id,firm_id,firm_role,status) "
                 "VALUES(?,?,'admin','active')",
                 (user_id, firm_id),
+            )
+            control.execute(
+                "INSERT INTO platform_security_events(actor_user_id,target_user_id,firm_id,event_type,detail_json) "
+                "VALUES(NULL,?,?,'initial_owner_bootstrapped',?)",
+                (user_id, firm_id, json.dumps({"firm_role": "admin", "platform_role_granted": False}, sort_keys=True)),
             )
             control.commit()
             return user_id
