@@ -110,6 +110,14 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("finally{t.remove()}", HTML)
         self.assertIn("if(!copied)throw new Error('copy failed')", HTML)
 
+    def test_memo_export_filename_does_not_invent_today_for_missing_or_invalid_date(self):
+        export_memo = HTML[HTML.index("const exportMemo="):HTML.index("const renderDiscovery=")]
+        self.assertIn("exportDate=typeof raw==='string'", export_memo)
+        self.assertIn("/^\\\\d{4}-\\\\d{2}-\\\\d{2}$/", export_memo)
+        self.assertIn("?raw:'unknown'", export_memo)
+        self.assertIn("download:'legal-research-memo-'+exportDate+'.txt'", export_memo)
+        self.assertNotIn("result.requested_as_of||new Date()", export_memo)
+
     def test_memo_export_uses_recorded_scope_or_unknown_not_current_selector(self):
         memo = HTML[HTML.index("const memoText="):HTML.index("const exportMemo=")]
         self.assertIn("memoScope=typeof result.scope==='string'&&result.scope.trim()?result.scope:'unknown'", memo)
