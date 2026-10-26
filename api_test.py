@@ -436,6 +436,11 @@ assert metadata_row["status"] == "metadata_only" and metadata_row["text_availabl
 assert "text" not in metadata_row and "passage" not in metadata_row and "chunks" not in metadata_row
 assert "no current-law status is implied" in metadata_row["warning"]
 
+# LIKE wildcards in a user query are literal characters, not a way to enumerate the registry.
+wildcard_discovery = c.post("/research/discover", json={"q":"%%__catalog_wildcard_probe__"}, headers=L)
+assert wildcard_discovery.status_code == 200, wildcard_discovery.text
+assert wildcard_discovery.json()["results"] == [], wildcard_discovery.json()
+
 # Saving a research answer preserves the as-of date, scope, citations, and caveats in the matter note.
 assistant_message = chat_after_followup["messages"][-1]
 saved = c.post(f"/research/conversations/{chat_id}/save-to-matter",
