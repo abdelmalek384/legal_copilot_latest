@@ -470,7 +470,8 @@ async function law(){
                ? (LANG==='ar'?'لم يُعثر على نص قانوني متحقق ذي صلة في بحث المجموعة القانونية.':'No relevant verified legal text was returned by this verified-corpus search.')
                : (LANG==='ar'?'لم تُسجل مصادر لهذا البحث ولم يُسجل نطاقه.':'No source records were returned; the search scope was not recorded.');
          bubble.append(pill(emptyScope,'soon'));
-         if(messageScope!=='metadata_only')actions.append(makeBtn(LANG==='ar'?'اكتشاف بيانات وصفية للمصادر':'Discover source metadata',async()=>{if(!priorQuestion.trim())return;scopeSelect.value='metadata_only';try{renderDiscovery(await api('/research/discover','POST',{q:priorQuestion}),priorQuestion)}catch(_){}},'g'));
+         const messageQuestion=messages.slice(0,messageIndex).reverse().find(x=>x.role==='user')?.content||priorQuestion||'';
+         if(messageScope!=='metadata_only')actions.append(makeBtn(LANG==='ar'?'اكتشاف بيانات وصفية للمصادر':'Discover source metadata',async()=>{if(!messageQuestion.trim())return;scopeSelect.value='metadata_only';try{renderDiscovery(await api('/research/discover','POST',{q:messageQuestion}),messageQuestion)}catch(_){}},'g'));
        }
      }
      thread.append(bubble);
