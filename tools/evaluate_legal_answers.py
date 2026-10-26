@@ -251,8 +251,12 @@ def _release_gate(report, args):
         "invalid_citation_question_rate": args.max_invalid_citation_question_rate,
     }
     configured = {**minimums, **maximums}
-    enabled = any(value is not None for value in configured.values())
+    enabled = any(value is not None for value in configured.values()) or args.min_questions is not None
     checks = []
+    if args.min_questions is not None:
+        actual = report["questions_scored"]
+        checks.append({"metric": "questions_scored", "operator": ">=", "threshold": args.min_questions,
+                       "actual": actual, "passed": actual >= args.min_questions})
     for metric, threshold in minimums.items():
         if threshold is not None:
             actual = report["overall"].get(metric)
@@ -277,7 +281,16 @@ def main(argv=None):
     parser.add_argument("--min-abstention-accuracy", type=float, help="Fail the technical gate if abstention accuracy is below this 0..1 threshold")
     parser.add_argument("--max-unanswerable-citation-rate", type=float, help="Fail the technical gate if unanswerable cases contain citations above this 0..1 rate")
     parser.add_argument("--max-invalid-citation-question-rate", type=float, help="Fail the technical gate if questions with invalid citation indexes exceed this 0..1 rate")
+    parser.add_argument("--min-questions", type=int, help="Required minimum number of lawyer-approved questions before the technical release gate can pass")
     args = parser.parse_args(argv)
+    if args.min_questions is not None and args.min_questions < 1:
+        parser.error("--min-questions must be a positive integer")
+    quality_thresholds = (
+        args.min_source_precision, args.min_pin_cite_precision, args.min_abstention_accuracy,
+        args.max_unanswerable_citation_rate, args.max_invalid_citation_question_rate,
+    )
+    if any(value is not None for value in quality_thresholds) and args.min_questions is None:
+        parser.error("quality thresholds require --min-questions; a tiny benchmark must not produce a passing release gate")
     for name in ("min_source_precision", "min_pin_cite_precision", "min_abstention_accuracy",
                  "max_unanswerable_citation_rate", "max_invalid_citation_question_rate"):
         value = getattr(args, name)
