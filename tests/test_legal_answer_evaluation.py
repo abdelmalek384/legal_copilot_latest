@@ -116,6 +116,26 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
             self.assertEqual(area_check["actual"], 1)
             self.assertFalse(area_check["passed"])
 
+    def test_practice_area_minimum_fails_when_one_area_is_under_sampled(self):
+        with tempfile.TemporaryDirectory() as td:
+            questions = Path(td) / "questions.jsonl"
+            results = Path(td) / "results.jsonl"
+            report_path = Path(td) / "report.json"
+            q1 = approved("Q1")
+            q2 = dict(approved("Q2"))
+            q2["practice_area"] = "labour_law"
+            questions.write_text("".join(json.dumps(q, ensure_ascii=False) + "\n" for q in (q1, q2)), encoding="utf-8")
+            results.write_text("".join(json.dumps(result(q["id"]), ensure_ascii=False) + "\n" for q in (q1, q2)), encoding="utf-8")
+            code = main(["--questions", str(questions), "--results", str(results), "--out", str(report_path),
+                         "--min-questions", "2", "--min-practice-areas", "2",
+                         "--min-questions-per-practice-area", "2"])
+            self.assertEqual(code, 1)
+            report = json.loads(report_path.read_text(encoding="utf-8"))
+            per_area_checks = [check for check in report["release_gate"]["checks"]
+                               if check["metric"] == "questions_per_practice_area"]
+            self.assertEqual(len(per_area_checks), 2)
+            self.assertTrue(all(check["actual"] == 1 and not check["passed"] for check in per_area_checks))
+
     def test_minimum_sample_size_gate_fails_when_too_few_questions_are_scored(self):
         with tempfile.TemporaryDirectory() as td:
             questions = Path(td) / "questions.jsonl"
