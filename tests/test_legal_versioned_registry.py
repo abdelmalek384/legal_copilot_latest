@@ -84,6 +84,11 @@ class LegalVersionedRegistryTests(unittest.TestCase):
             "UPDATE legal_document_versions SET amendment_history_verified=?,permission_evidence=? WHERE version_id=?",
             (amendment_history_verified, "https://example.gov/terms#commercial-reuse", cur.lastrowid)
         )
+        for review_type in ("source_authenticity", "extraction_quality", "legal_status", "amendment_history", "licensing", "lawyer_approval"):
+            self.db.execute(
+                "INSERT INTO legal_review_events(version_id,reviewer,review_type,outcome,notes,evidence_url) VALUES(?,?,?,?,?,?)",
+                (cur.lastrowid, "Reviewer", review_type, "pass", "Reviewed against evidence.", "https://example.gov/review"),
+            )
         self.app.add_chunks(self.db, [{"ref":"Test law - article 1","article":"1","text":text,"in_force":chunk_in_force,"verified":1,"source":"https://example.gov"}])
         chunk_id = self.db.execute("SELECT id FROM chunks WHERE ref='Test law - article 1' ORDER BY id DESC LIMIT 1").fetchone()[0]
         self.db.execute("UPDATE chunks SET document_version_id=? WHERE id=?", (cur.lastrowid, chunk_id))
@@ -121,6 +126,38 @@ class LegalVersionedRegistryTests(unittest.TestCase):
         self.db.commit()
         self.assertEqual([h["id"] for h in self.app.search(self.db, "permissiongateprobe", as_of="2026-10-23")], [chunk_id])
         self.assertIn(chunk_id, [h["id"] for h in self.app.search(self.db, "المادة 1", as_of="2026-10-23")])
+
+    def test_latest_licensing_and_lawyer_approval_events_gate_regular_and_exact_search(self):
+        chunk_id, version_id = self._make_linked_chunk(
+            "review-event-gate", "2020-01-01", text="revieweventgateprobe legal text"
+        )
+        for review_type in ("licensing", "lawyer_approval"):
+            with self.subTest(review_type=review_type):
+                self.db.execute(
+                    "DELETE FROM legal_review_events WHERE version_id=? AND review_type=?",
+                    (version_id, review_type),
+                )
+                self.db.commit()
+                self.assertEqual(self.app.search(self.db, "revieweventgateprobe", as_of="2026-10-23"), [])
+                self.assertEqual(self.app.search(self.db, "المادة 1", as_of="2026-10-23"), [])
+                self.db.execute(
+                    "INSERT INTO legal_review_events(version_id,reviewer,review_type,outcome,notes,evidence_url) VALUES(?,?,?,?,?,?)",
+                    (version_id, "Reviewer", review_type, "pass", "Reviewed against evidence.", "https://example.gov/review"),
+                )
+                self.db.commit()
+                self.assertEqual([h["id"] for h in self.app.search(self.db, "revieweventgateprobe", as_of="2026-10-23")], [chunk_id])
+                self.db.execute(
+                    "UPDATE legal_review_events SET outcome='fail' WHERE review_event_id=(SELECT MAX(review_event_id) FROM legal_review_events WHERE version_id=? AND review_type=?)",
+                    (version_id, review_type),
+                )
+                self.db.commit()
+                self.assertEqual(self.app.search(self.db, "revieweventgateprobe", as_of="2026-10-23"), [])
+                self.db.execute(
+                    "INSERT INTO legal_review_events(version_id,reviewer,review_type,outcome,notes,evidence_url) VALUES(?,?,?,?,?,?)",
+                    (version_id, "Reviewer", review_type, "pass", "Re-reviewed against evidence.", "https://example.gov/review"),
+                )
+                self.db.commit()
+                self.assertEqual([h["id"] for h in self.app.search(self.db, "revieweventgateprobe", as_of="2026-10-23")], [chunk_id])
 
     def test_amendment_history_must_be_verified_for_regular_and_exact_search(self):
         chunk_id, version_id = self._make_linked_chunk(

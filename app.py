@@ -567,6 +567,17 @@ def delete_case(c, u, cid):
     c.execute("DELETE FROM cases WHERE id=?", (cid,)); c.commit(); return True
 
 
+_REQUIRED_REVIEW_EVENTS_SQL = (
+    "AND (SELECT COUNT(DISTINCT e.review_type) FROM legal_review_events e "
+    "WHERE e.version_id=v.version_id "
+    "AND e.review_type IN ('source_authenticity','extraction_quality','legal_status','amendment_history','licensing','lawyer_approval') "
+    "AND e.review_event_id=(SELECT e2.review_event_id FROM legal_review_events e2 "
+    "WHERE e2.version_id=v.version_id AND e2.review_type=e.review_type "
+    "ORDER BY e2.reviewed_at DESC, e2.review_event_id DESC LIMIT 1) "
+    "AND e.outcome='pass' AND TRIM(COALESCE(e.notes,''))<>'' "
+    "AND TRIM(COALESCE(e.reviewer,''))<>'' AND e.evidence_url LIKE 'https://%')=6 "
+)
+
 SQL = ("SELECT chunks.*, bm25(chunks_fts) AS r FROM chunks_fts JOIN chunks ON chunks.id=chunks_fts.rowid "
        "WHERE chunks_fts MATCH ? AND (chunks.case_id IS NOT NULL OR (chunks.verified=1 AND (chunks.in_force=1 OR chunks.document_version_id IS NOT NULL))) AND (chunks.case_id IS NULL OR chunks.case_id IS ?) "
        "AND (chunks.case_id IS NULL OR chunks.case_id IN (SELECT id FROM cases WHERE firm_id=?)) "
@@ -575,7 +586,8 @@ SQL = ("SELECT chunks.*, bm25(chunks_fts) AS r FROM chunks_fts JOIN chunks ON ch
        "AND (chunks.case_id IS NOT NULL OR chunks.document_version_id IS NULL OR EXISTS ("
        "SELECT 1 FROM legal_document_versions v WHERE v.version_id=chunks.document_version_id "
        "AND v.review_status='verified' AND v.authenticity_verified=1 AND v.status_verified=1 AND v.amendment_history_verified=1 AND EXISTS (SELECT 1 FROM legal_documents d JOIN legal_sources s ON s.source_id=d.source_id WHERE d.document_id=v.document_id AND s.collection_permission='allowed' AND s.commercial_reuse_permission='allowed' AND TRIM(COALESCE(s.permission_evidence,''))<>'' AND TRIM(COALESCE(v.permission_evidence,''))<>'') AND (v.legal_status='in_force' OR (v.legal_status IN ('repealed','historical') AND v.repeal_date IS NOT NULL)) "
-       "AND v.effective_date IS NOT NULL AND v.effective_date<=? AND (v.repeal_date IS NULL OR v.repeal_date>?)"
+       + _REQUIRED_REVIEW_EVENTS_SQL
+       + "AND v.effective_date IS NOT NULL AND v.effective_date<=? AND (v.repeal_date IS NULL OR v.repeal_date>?)"
        ")) ORDER BY r LIMIT 40")
 
 def citation_provenance(c, version_id):
@@ -635,7 +647,8 @@ _CORPUS_SEARCH_SQL = (
     "AND s.collection_permission='allowed' AND s.commercial_reuse_permission='allowed' "
     "AND TRIM(COALESCE(s.permission_evidence,''))<>'' "
     "AND TRIM(COALESCE(v.permission_evidence,''))<>'' "
-    "AND (v.legal_status='in_force' OR (v.legal_status IN ('repealed','historical') AND v.repeal_date IS NOT NULL)) "
+    + _REQUIRED_REVIEW_EVENTS_SQL
+    + "AND (v.legal_status='in_force' OR (v.legal_status IN ('repealed','historical') AND v.repeal_date IS NOT NULL)) "
     "AND v.effective_date IS NOT NULL AND v.effective_date<=? "
     "AND (v.repeal_date IS NULL OR v.repeal_date>?)"
     ") ORDER BY r LIMIT 40"
@@ -652,7 +665,8 @@ _CORPUS_EXACT_ARTICLE_SQL = (
     "AND s.collection_permission='allowed' AND s.commercial_reuse_permission='allowed' "
     "AND TRIM(COALESCE(s.permission_evidence,''))<>'' "
     "AND TRIM(COALESCE(v.permission_evidence,''))<>'' "
-    "AND (v.legal_status='in_force' OR (v.legal_status IN ('repealed','historical') AND v.repeal_date IS NOT NULL)) "
+    + _REQUIRED_REVIEW_EVENTS_SQL
+    + "AND (v.legal_status='in_force' OR (v.legal_status IN ('repealed','historical') AND v.repeal_date IS NOT NULL)) "
     "AND v.effective_date IS NOT NULL AND v.effective_date<=? "
     "AND (v.repeal_date IS NULL OR v.repeal_date>?)"
     ") LIMIT 20"
@@ -759,7 +773,8 @@ def search(c, q, case_id=None, k=5, firm_id=1, as_of=None, scope="all_permitted"
                      "AND (document_version_id IS NOT NULL OR ?=1) AND (document_version_id IS NULL OR EXISTS (SELECT 1 FROM legal_document_versions v "
                      "WHERE v.version_id=chunks.document_version_id AND v.review_status='verified' "
                      "AND v.authenticity_verified=1 AND v.status_verified=1 AND v.amendment_history_verified=1 AND EXISTS (SELECT 1 FROM legal_documents d JOIN legal_sources s ON s.source_id=d.source_id WHERE d.document_id=v.document_id AND s.collection_permission='allowed' AND s.commercial_reuse_permission='allowed' AND TRIM(COALESCE(s.permission_evidence,''))<>'' AND TRIM(COALESCE(v.permission_evidence,''))<>'') AND (v.legal_status='in_force' OR (v.legal_status IN ('repealed','historical') AND v.repeal_date IS NOT NULL)) "
-                     "AND v.effective_date IS NOT NULL AND v.effective_date<=? AND (v.repeal_date IS NULL OR v.repeal_date>?)) )")
+                     + _REQUIRED_REVIEW_EVENTS_SQL
+                     + "AND v.effective_date IS NOT NULL AND v.effective_date<=? AND (v.repeal_date IS NULL OR v.repeal_date>?)) )")
         for r in c.execute(exact_sql, (am.group(1), int(allow_legacy), as_of, as_of)):
             exact.add(r["id"]); cand.setdefault(r["id"], (r, 0))
     if not cand: return []
