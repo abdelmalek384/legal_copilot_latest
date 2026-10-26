@@ -10,7 +10,6 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 
-
 def valid_llm_endpoint(value):
     """Require HTTPS remotely; plain HTTP is allowed only for loopback model services."""
     if not isinstance(value, str) or not value.strip():
@@ -32,6 +31,7 @@ def valid_llm_endpoint(value):
             return False
     except (TypeError, ValueError):
         return False
+
 
 def inspect_environment(env=None):
     env = os.environ if env is None else env
@@ -73,9 +73,9 @@ def inspect_environment(env=None):
     llm_url = env.get("LLM_URL", "").strip()
     if llm_url:
         if valid_llm_endpoint(llm_url):
-            passed.append("LLM_URL uses HTTPS or an explicitly local loopback HTTP endpoint.")
+            passed.append("LLM_URL uses HTTPS or a loopback-only HTTP endpoint and contains no URL credentials/query/fragment.")
         else:
-            errors.append("LLM_URL must use HTTPS remotely, or HTTP only for localhost/loopback; credentials, query strings, and fragments are not allowed.")
+            errors.append("LLM_URL must use HTTPS for remote endpoints or loopback HTTP for local model services; credentials, query strings, fragments, and other HTTP hosts are not allowed.")
 
     raw_score = env.get("MIN_SCORE", "0.3")
     try:

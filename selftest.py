@@ -46,12 +46,12 @@ try:
     os.environ["LLM_MODEL"] = "test-model"
     os.environ["LLM_KEY"] = "test-key"
     os.environ.pop("LLM_DATA_PROCESSING_APPROVED", None)
-    with patch("app.urllib.request.urlopen") as open_url:
+    with patch("app._llm_open") as open_url:
         assert app.llm("CONFIDENTIAL-SENTINEL") is None
         open_url.assert_not_called()
     os.environ["LLM_DATA_PROCESSING_APPROVED"] = "1"
     fake_response = io.BytesIO(json.dumps({"choices": [{"message": {"content": "test answer"}}]}).encode())
-    with patch("app.urllib.request.urlopen", return_value=fake_response) as open_url:
+    with patch("app._llm_open", return_value=fake_response) as open_url:
         assert app.llm("CONFIDENTIAL-SENTINEL") == "test answer"
         sent_request = open_url.call_args.args[0]
         assert b"CONFIDENTIAL-SENTINEL" in sent_request.data

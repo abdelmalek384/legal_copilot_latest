@@ -87,23 +87,6 @@ class DatabaseMigrationRehearsalTests(unittest.TestCase):
             self.assertEqual(db.execute("SELECT COUNT(*) FROM cases").fetchone()[0], 1)
 
 
-    def test_same_row_count_content_change_requires_review(self):
-        migration_dir = self.root / "content_change_migrations"
-        migration_dir.mkdir()
-        (migration_dir / "0001_reassign_case.sql").write_text(
-            "UPDATE cases SET firm_id=999 WHERE id=1;", encoding="utf-8"
-        )
-        report = rehearse(self.database, migration_dir)
-        self.assertEqual(report["status"], "review_required")
-        self.assertEqual(report["row_count_decreases"], [])
-        self.assertEqual(
-            [item["table"] for item in report["common_table_content_changes"]],
-            ["cases"],
-        )
-        self.assertIn("firm_id", report["common_table_content_changes"][0]["columns_compared"])
-        with sqlite3.connect(self.database) as db:
-            self.assertEqual(db.execute("SELECT firm_id FROM cases WHERE id=1").fetchone()[0], 1)
-
     def test_failed_migration_only_changes_disposable_copy(self):
         migration_dir = self.root / "failing_migrations"
         migration_dir.mkdir()

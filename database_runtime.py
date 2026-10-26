@@ -476,6 +476,10 @@ class DatabaseRuntime:
 
     def _configure_firm_connection(self, connection: sqlite3.Connection, firm_id: int) -> None:
         """Attach shared profiles and expose views scoped to this connection's firm."""
+        # These databases are attached to every matter connection. Validate them
+        # even when the tenant connection itself is already cached.
+        self._validate_profile_storage(self.paths.control_plane, "control-plane")
+        self._validate_profile_storage(self.paths.legal_corpus, "legal-corpus")
         expected = {
             "control": self.paths.control_plane.resolve(),
             "corpus": self.paths.legal_corpus.resolve(),
