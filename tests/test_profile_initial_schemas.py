@@ -12,16 +12,9 @@ class ProfileInitialSchemaTests(unittest.TestCase):
         db.row_factory = sqlite3.Row
         expected_versions = sorted(int(path.name.split("_", 1)[0]) for path in (ROOT / profile).glob("*.sql"))
         self.assertEqual(apply_profile_migrations(db, profile, ROOT), expected_versions)
-        # Runtime provisioning writes the immutable binding after the profile
-        # migrations have created the schema and its binding-aware triggers.
+        # Runtime provisioning supplies the firm ID only; table and immutable
+        # guards are owned by the versioned firm-profile migration.
         if profile == "firm":
-            db.execute("""
-                CREATE TABLE tenant_database_binding (
-                    singleton INTEGER PRIMARY KEY CHECK(singleton=1),
-                    firm_id INTEGER NOT NULL CHECK(firm_id>0),
-                    bound_at TEXT NOT NULL DEFAULT (datetime('now'))
-                )
-            """)
             db.execute("INSERT INTO tenant_database_binding(singleton,firm_id) VALUES(1,7)")
         self.assertEqual(db.execute("PRAGMA integrity_check").fetchone()[0], "ok")
         self.assertEqual(db.execute("PRAGMA foreign_key_check").fetchall(), [])
