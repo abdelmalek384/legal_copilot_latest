@@ -683,6 +683,38 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         db_b = self.runtime.firm_connection(context_b)
         self.assertEqual(db_b.execute("SELECT COUNT(*) FROM deadlines").fetchone()[0], 0)
 
+    def test_cross_firm_task_claim_and_completion_are_denied(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate("post", "/cases", json={"title": "Firm A task action matter"})
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+        created_task = self._mutate(
+            "post", f"/cases/{case_id}/tasks", json={"title": "Firm A protected task"}
+        )
+        self.assertEqual(created_task.status_code, 200, created_task.text)
+        context_a = self.runtime.resolve_context(self.user_id, self.firm_a)
+        db_a = self.runtime.firm_connection(context_a)
+        task = db_a.execute(
+            "SELECT id,status,assignee FROM tasks WHERE case_id=?", (case_id,)
+        ).fetchone()
+        task_id = task["id"]
+
+        switched = self._mutate("post", "/session/firm", json={"firm_id": self.firm_b})
+        self.assertEqual(switched.status_code, 200, switched.text)
+        self.assertEqual(self._mutate("post", f"/tasks/{task_id}/claim").status_code, 404)
+        self.assertEqual(self._mutate("post", f"/tasks/{task_id}/done").status_code, 404)
+        after = db_a.execute(
+            "SELECT status,assignee FROM tasks WHERE id=?", (task_id,)
+        ).fetchone()
+        self.assertEqual(after["status"], "open")
+        self.assertIsNone(after["assignee"])
+        context_b = self.runtime.resolve_context(self.user_id, self.firm_b)
+        db_b = self.runtime.firm_connection(context_b)
+        self.assertEqual(db_b.execute("SELECT COUNT(*) FROM tasks").fetchone()[0], 0)
+
     def test_nonmember_cannot_switch_firms_and_revoked_membership_blocks_cached_session(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
