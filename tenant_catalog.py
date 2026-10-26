@@ -279,6 +279,34 @@ def provision_tenant_database(
                 raise TenantCatalogError(
                     "New tenant database is not bound to the firm schema profile"
                 )
+            profile_triggers = {
+                row[0]: row[1] for row in tenant.execute(
+                    "SELECT name, sql FROM sqlite_master WHERE type='trigger' "
+                    "AND name IN ('database_profile_no_update','database_profile_no_delete')"
+                )
+            }
+
+            def has_immutable_profile_guard(sql: str | None, operation: str) -> bool:
+                if not isinstance(sql, str):
+                    return False
+                normalized = " ".join(sql.lower().split())
+                return (
+                    f"before {operation} on database_profile" in normalized
+                    and "raise(abort" in normalized
+                    and "database profile binding is immutable" in normalized
+                )
+
+            if (
+                not has_immutable_profile_guard(
+                    profile_triggers.get("database_profile_no_update"), "update"
+                )
+                or not has_immutable_profile_guard(
+                    profile_triggers.get("database_profile_no_delete"), "delete"
+                )
+            ):
+                raise TenantCatalogError(
+                    "New tenant database profile binding lacks effective immutable guards"
+                )
             # The catalog mapping alone is not enough: bind the file contents
             # to the same trusted firm ID so a copied/swapped database fails closed.
             _bind_tenant_database(tenant, firm_id)

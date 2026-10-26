@@ -18,7 +18,7 @@ class TenantCatalogTests(unittest.TestCase):
         self.root = Path(self.temp.name) / "tenants"
         self.catalog = sqlite3.connect(":memory:")
         self.catalog.execute("CREATE TABLE firms(id INTEGER PRIMARY KEY, name TEXT NOT NULL)")
-        for firm_id in (3, 4, 8, 9, 10, 11, 12, 17, 21, 22, 23, 24, 30, 31):
+        for firm_id in (3, 4, 8, 9, 10, 11, 12, 17, 21, 22, 23, 24, 30, 31, 32):
             self.catalog.execute(
                 "INSERT INTO firms(id,name) VALUES(?,?)", (firm_id, f"Firm {firm_id}")
             )
@@ -57,6 +57,14 @@ class TenantCatalogTests(unittest.TestCase):
             )
         """)
         db.execute("INSERT INTO database_profile(singleton,profile) VALUES(1,'firm')")
+        db.executescript("""
+            CREATE TRIGGER database_profile_no_update
+            BEFORE UPDATE ON database_profile
+            BEGIN SELECT RAISE(ABORT, 'database profile binding is immutable'); END;
+            CREATE TRIGGER database_profile_no_delete
+            BEFORE DELETE ON database_profile
+            BEGIN SELECT RAISE(ABORT, 'database profile binding is immutable'); END;
+        """)
         db.commit()
 
     def test_catalog_rejects_wrong_profile_or_noop_profile_guards(self):
@@ -294,11 +302,24 @@ class TenantCatalogTests(unittest.TestCase):
 
         def wrong_profile(db):
             self.initialize_tenant(db)
+            db.execute("DROP TRIGGER database_profile_no_update")
+            db.execute("DROP TRIGGER database_profile_no_delete")
             db.execute("UPDATE database_profile SET profile='legal_corpus' WHERE singleton=1")
+
+        def without_profile_guards(db):
+            db.execute("CREATE TABLE marker (value TEXT)")
+            db.execute("""
+                CREATE TABLE database_profile (
+                    singleton INTEGER PRIMARY KEY CHECK(singleton=1),
+                    profile TEXT NOT NULL
+                )
+            """)
+            db.execute("INSERT INTO database_profile(singleton,profile) VALUES(1,'firm')")
 
         for firm_id, initializer, message in (
             (30, without_profile, "missing its required firm schema profile binding"),
             (31, wrong_profile, "not bound to the firm schema profile"),
+            (32, without_profile_guards, "profile binding lacks effective immutable guards"),
         ):
             with self.subTest(firm_id=firm_id), self.assertRaisesRegex(TenantCatalogError, message):
                 provision_tenant_database(self.catalog, firm_id, self.root, initializer)
