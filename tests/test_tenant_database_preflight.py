@@ -44,19 +44,7 @@ class TenantDatabasePreflightTests(unittest.TestCase):
             db = sqlite3.connect(self.root / filename)
             db.execute("PRAGMA foreign_keys=ON")
             apply_profile_migrations(db, "firm", MIGRATIONS_ROOT)
-            db.execute("""
-                CREATE TABLE tenant_database_binding (
-                    singleton INTEGER PRIMARY KEY CHECK(singleton=1),
-                    firm_id INTEGER NOT NULL CHECK(firm_id>0)
-                )
-            """)
             db.execute("INSERT INTO tenant_database_binding(singleton,firm_id) VALUES(1,?)", (firm_id,))
-            db.executescript("""
-                CREATE TRIGGER tenant_database_binding_no_update BEFORE UPDATE ON tenant_database_binding
-                BEGIN SELECT RAISE(ABORT, 'tenant database firm binding is immutable'); END;
-                CREATE TRIGGER tenant_database_binding_no_delete BEFORE DELETE ON tenant_database_binding
-                BEGIN SELECT RAISE(ABORT, 'tenant database firm binding is immutable'); END;
-            """)
             db.commit()
             db.close()
             if os.name == "posix":
