@@ -250,6 +250,12 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
                 response = self._mutate(method, path, json=payload)
                 self.assertEqual(response.status_code, 404, response.text)
 
+        upload = self._mutate(
+            "post", f"/cases/{case_id}/upload",
+            files={"file": ("private.txt", b"private source text", "text/plain")},
+        )
+        self.assertEqual(upload.status_code, 404, upload.text)
+
         context_a = self.runtime.resolve_context(self.user_id, self.firm_a)
         context_b = self.runtime.resolve_context(self.user_id, self.firm_b)
         db_a = self.runtime.firm_connection(context_a)
