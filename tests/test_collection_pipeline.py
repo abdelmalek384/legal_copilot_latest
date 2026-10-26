@@ -161,6 +161,17 @@ class CollectionPipelineTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             check_permission(doc)
 
+    def test_permission_rejects_future_terms_review_date(self):
+        doc = {
+            "collection_permission": "allowed",
+            "permission_evidence": "Reviewed source terms evidence",
+            "terms_checked_on": "9999-12-31",
+            "allowed_hosts": ["example.gov"],
+            "direct_url": "https://example.gov/law.pdf",
+        }
+        with self.assertRaisesRegex(ValueError, "cannot be in the future"):
+            check_permission(doc)
+
     def test_rejects_http_and_unapproved_host(self):
         with self.assertRaises(ValueError):
             validate_public_https_url("http://example.gov/law.pdf", {"example.gov"})

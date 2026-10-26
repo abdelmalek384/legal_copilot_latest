@@ -162,7 +162,9 @@ def check_permission(doc: dict) -> set[str]:
     evidence = doc.get("permission_evidence")
     if not isinstance(evidence, str) or len(evidence.strip()) < 8:
         raise ValueError("permission_evidence must identify reviewed terms or written permission")
-    parse_date(doc.get("terms_checked_on"), "terms_checked_on")
+    terms_checked_on = parse_date(doc.get("terms_checked_on"), "terms_checked_on")
+    if terms_checked_on > dt.datetime.now(dt.timezone.utc).date():
+        raise ValueError("terms_checked_on cannot be in the future")
     return validate_manifest_hosts(doc)
 
 
