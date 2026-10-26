@@ -1,10 +1,10 @@
 # Database completion tracker
 
 **Last updated:** 2026-10-26  
-**Estimated completion:** 49%  
+**Estimated completion:** 50%  
 **Status:** In progress — not production-ready for confidential multi-firm matter data.
 
-This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. This is a weighted engineering estimate, not a test-pass percentage or a count of commits. The separate-database runtime and encrypted backup/restore are merged, and row-scope enforcement plus fresh-install/restart and cross-firm case tests have been added. The percentage remains a weighted engineering estimate; exhaustive route/query coverage, remaining legacy bootstrap DDL, invitation/account-recovery policy, platform-role grant governance, and a witnessed operational recovery drill remain open.
+This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. This is a weighted engineering estimate, not a test-pass percentage or a count of commits. The separate-database runtime and encrypted backup/restore are merged, and row-scope enforcement plus fresh-install/restart and cross-firm case tests have been added. The percentage remains a weighted engineering estimate; exhaustive route/query coverage, remaining legacy bootstrap DDL, invitation/account-recovery policy, platform-role grant governance, and a witnessed operational recovery drill remain open. The latest completed route tests additionally cover conflict checks, global password-session revocation, membership-scoped suspension, and cross-firm deadline actions.
 
 ## Completed and merged
 
@@ -25,6 +25,10 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 - [x] Verify platform legal-review authorization is distinct from firm-admin membership and that removing a platform reviewer role denies the very next request without trusting stale session claims (PR #483 merged; CI run 40382833193 passed).
 - [x] Verify dashboard, calendar export, and finance aggregates exclude another firm's case/deadline/fee sentinels after switching firm context (PR #485 merged; CI run 40383241482 passed).
 - [x] Verify disabling a firm denies the next API request while retaining the tenant database file and its matter data (PR #487 merged; CI run 40383552960 passed).
+- [x] Verify cross-firm conflict checks return no matter matches or conflict/admin-review signals for another firm's confidential opposing party (PR #490 merged; CI run 40384296346 passed).
+- [x] Verify global password changes revoke sessions across all firm memberships while preserving memberships and allowing the new credential (PR #491 merged; CI run 40384550589 passed).
+- [x] Verify suspending one firm membership leaves the global identity and its other firm's membership active, and blocks only the suspended firm's access (PR #492 merged; CI run 40384723859 passed).
+- [x] Verify deadline completion by an ID from another firm's database returns not found and leaves the source deadline unchanged (PR #493 merged; CI run 40384885120 passed).
 - [x] Reject stale shared COPILOT_DB configuration when the three approved separate-database paths are configured, preventing ambiguous deployment storage intent (PR #477 merged; CI run 40381467990 passed).
 - [x] Verify clean-install shared legal-corpus FTS insert/update/delete synchronization using FTS5 external-content integrity checks against source chunks (PR #479 merged; CI run 40381954656 passed).
 
