@@ -15,6 +15,18 @@ spec.loader.exec_module(app)
 
 
 class SecureCookieTransportTests(unittest.TestCase):
+    def test_declared_body_size_limit_allows_upload_limit_and_rejects_oversize(self):
+        request = lambda value: SimpleNamespace(headers={} if value is None else {"content-length": value})
+        self.assertIsNone(app._declared_body_size_error(request(None)))
+        self.assertIsNone(app._declared_body_size_error(request(str(app.MAX_REQUEST_BODY_BYTES))))
+        self.assertEqual(app._declared_body_size_error(request(str(app.MAX_REQUEST_BODY_BYTES + 1))), (413, "request body exceeds 16 MB limit"))
+
+    def test_declared_body_size_rejects_malformed_or_negative_lengths(self):
+        request = lambda value: SimpleNamespace(headers={"content-length": value})
+        for value in ("not-a-number", "-1"):
+            with self.subTest(value=value):
+                self.assertEqual(app._declared_body_size_error(request(value)), (400, "invalid content-length"))
+
     def test_direct_https_always_marks_cookie_transport_secure(self):
         request = SimpleNamespace(url=SimpleNamespace(scheme="https", netloc="legal.example.com"))
         with patch.dict(os.environ, {}, clear=False):
