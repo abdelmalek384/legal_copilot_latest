@@ -4,9 +4,11 @@
 **Estimated completion:** 28%  
 **Status:** In progress — not production-ready for confidential multi-firm matter data.
 
-This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. The checklist currently tracks 72 completed tasks and 19 remaining tasks; this count is not a readiness percentage. Update this file as database PRs merge and as acceptance criteria are completed.
+This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. The checklist currently tracks 73 completed tasks and 19 remaining tasks; this count is not a readiness percentage. Update this file as database PRs merge and as acceptance criteria are completed.
 
 ## Completed and merged
+
+- [x] Extend the read-only tenant preflight to flag POSIX control-plane and tenant database files that allow group/other access; no permissions are changed automatically (PR #344 merged; CI run 40354780649 passed).
 
 - [x] Add regression coverage that `deployment_preflight.py --strict` fails while the shared-database multi-firm safety warning remains, without creating a database file (PR #341 merged; CI run 40354404426 passed).
 
