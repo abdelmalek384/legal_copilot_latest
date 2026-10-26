@@ -75,6 +75,11 @@ def adduser(a):
                 "INSERT INTO firm_memberships(user_id,firm_id,firm_role,status) VALUES(?,?,?,'active')",
                 (cur.lastrowid, a.firm_id, a.role),
             )
+            c.execute(
+                "INSERT INTO platform_security_events(actor_user_id,target_user_id,firm_id,event_type,detail_json) "
+                "VALUES(NULL,?,?,'membership_created',?)",
+                (cur.lastrowid, a.firm_id, json.dumps({"firm_role": a.role, "method": "manage.py adduser"}, sort_keys=True)),
+            )
             c.commit()
         except Exception as e:
             c.rollback()
@@ -353,6 +358,49 @@ def verify_tenancy_backup(a):
     print(json.dumps(report, ensure_ascii=False, sort_keys=True))
 
 
+def platform_audit(a):
+    """Print a bounded read-only view of the control-plane security audit ledger."""
+    if not app._separate_runtime_enabled():
+        raise SystemExit("Platform audit is available only in separate-database mode.")
+    if a.limit < 1 or a.limit > 500:
+        raise SystemExit("--limit must be between 1 and 500")
+    for label in ("firm_id", "target_user_id"):
+        value = getattr(a, label, None)
+        if value is not None and (isinstance(value, bool) or not isinstance(value, int) or value <= 0):
+            raise SystemExit(f"--{label.replace('_', '-')} must be a positive integer")
+    runtime = DatabaseRuntime.from_env()
+    try:
+        runtime.initialize()
+        c = runtime.control_connection()
+        clauses, params = [], []
+        if a.event_type:
+            clauses.append("event_type=?")
+            params.append(a.event_type)
+        if a.firm_id is not None:
+            clauses.append("firm_id=?")
+            params.append(a.firm_id)
+        if a.target_user_id is not None:
+            clauses.append("target_user_id=?")
+            params.append(a.target_user_id)
+        sql = "SELECT id,actor_user_id,target_user_id,firm_id,event_type,detail_json,created_at FROM platform_security_events"
+        if clauses:
+            sql += " WHERE " + " AND ".join(clauses)
+        sql += " ORDER BY id DESC LIMIT ?"
+        params.append(a.limit)
+        items = []
+        for row in c.execute(sql, params).fetchall():
+            item = dict(row)
+            try:
+                item["detail"] = json.loads(item.pop("detail_json"))
+            except (ValueError, TypeError):
+                item["detail"] = {"unparsed": True}
+                item.pop("detail_json", None)
+            items.append(item)
+        print(json.dumps({"items": items, "limit": a.limit}, ensure_ascii=False, sort_keys=True))
+    finally:
+        runtime.close_current_thread()
+
+
 def restore_tenancy(a):
     try:
         restored = restore_backup_bundle(a.file, _backup_fernet(), a.target_root)
@@ -400,6 +448,12 @@ x = sp.add_parser("resetpw"); x.add_argument("email"); x.set_defaults(f=resetpw)
 sp.add_parser("genkey").set_defaults(f=lambda a: print(Fernet.generate_key().decode()))
 x = sp.add_parser("backup"); x.add_argument("dir"); x.add_argument("--keep", type=int, default=14); x.set_defaults(f=backup)
 x = sp.add_parser("backup-tenancy"); x.add_argument("dir"); x.add_argument("--keep", type=int, default=14); x.add_argument("--quiesced", action="store_true", help="Assert application writes are paused for the full bundle snapshot"); x.set_defaults(f=backup_tenancy)
+x = sp.add_parser("platform-audit", help="Read recent platform security events on a trusted operator host")
+x.add_argument("--limit", type=int, default=50)
+x.add_argument("--firm-id", type=int)
+x.add_argument("--target-user-id", type=int)
+x.add_argument("--event-type", choices=["password_reset_cli", "firm_provisioned", "firm_disabled", "membership_created", "initial_owner_bootstrapped", "platform_role_granted", "platform_role_revoked"])
+x.set_defaults(f=platform_audit)
 x = sp.add_parser("restore-tenancy"); x.add_argument("file"); x.add_argument("--target-root", required=True); x.set_defaults(f=restore_tenancy)
 x = sp.add_parser("verify-backup-tenancy", help="Verify an encrypted tenancy bundle using temporary protected storage"); x.add_argument("file"); x.set_defaults(f=verify_tenancy_backup)
 x = sp.add_parser("importlaws"); x.add_argument("file"); x.set_defaults(f=importlaws)
