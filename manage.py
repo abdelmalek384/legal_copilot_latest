@@ -362,8 +362,8 @@ def platform_audit(a):
     """Print a bounded read-only view of the control-plane security audit ledger."""
     if not app._separate_runtime_enabled():
         raise SystemExit("Platform audit is available only in separate-database mode.")
-    if a.limit < 1 or a.limit > 500:
-        raise SystemExit("--limit must be between 1 and 500")
+    if isinstance(a.limit, bool) or not isinstance(a.limit, int) or a.limit < 1 or a.limit > 500:
+        raise SystemExit("--limit must be an integer between 1 and 500")
     for label in ("firm_id", "target_user_id"):
         value = getattr(a, label, None)
         if value is not None and (isinstance(value, bool) or not isinstance(value, int) or value <= 0):
