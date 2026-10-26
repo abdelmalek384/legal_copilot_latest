@@ -36,7 +36,8 @@ def extract_heading(line):
  rest=m.group(1).strip()
  n=re.match(r"^\(?\s*(\d+)\s*\)?(?:\s+(مكرر(?:ا|ة)?(?:\s+\(?[ء-ي]\s*\)?)?))?(?:\s+(.*))?$",rest,re.I)
  if n:
-  key=n.group(1)+((" مكرر"+((" "+re.search(r"[ء-ي]",n.group(2)).group(0)) if re.search(r"[ء-ي]",n.group(2)) else "")) if n.group(2) else "")
+  suffix_letter=re.search(r"مكرر(?:ا|ة)?\s+\(?([ء-ي])",n.group(2)) if n.group(2) else None
+  key=n.group(1)+((" مكرر"+((" "+suffix_letter.group(1)) if suffix_letter else "")) if n.group(2) else "")
   return key,(n.group(3) or "").strip()
  for ordinal in sorted(ORD,key=len,reverse=True):
   if rest==ordinal:return str(ORD[ordinal]),""
