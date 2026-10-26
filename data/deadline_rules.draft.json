@@ -1,0 +1,11 @@
+{
+  "status": "draft_unverified",
+  "warning": "These sample periods are unverified drafts. They must not be relied on. A qualified Egyptian lawyer must confirm the applicable rule, trigger, exceptions and Official Gazette source before any rule is marked verified.",
+  "rules": [
+    {"id":"civil_commercial_appeal_40d","label_ar":"الاستئناف في المواد المدنية والتجارية","amount":40,"unit":"days","starts_from_ar":"تاريخ بدء الميعاد يحتاج إلى مراجعة محامٍ بحسب نوع الحكم","source_article":null,"verified":false,"verified_by":null,"verified_on":null},
+    {"id":"civil_cassation_60d","label_ar":"الطعن بالنقض","amount":60,"unit":"days","starts_from_ar":"تاريخ بدء الميعاد يحتاج إلى مراجعة محامٍ بحسب نوع الحكم","source_article":null,"verified":false,"verified_by":null,"verified_on":null},
+    {"id":"misdemeanor_appeal_10d","label_ar":"استئناف الحكم في الجنح","amount":10,"unit":"days","starts_from_ar":"تاريخ بدء الميعاد يحتاج إلى مراجعة محامٍ بحسب حالة الحكم","source_article":null,"verified":false,"verified_by":null,"verified_on":null},
+    {"id":"misdemeanor_opposition_3d","label_ar":"المعارضة في الحكم الغيابي في الجنح","amount":3,"unit":"days","starts_from_ar":"تاريخ الإعلان وغيره من التفاصيل يحتاج إلى مراجعة محامٍ","source_article":null,"verified":false,"verified_by":null,"verified_on":null},
+    {"id":"administrative_annulment_60d","label_ar":"دعوى إلغاء القرار الإداري","amount":60,"unit":"days","starts_from_ar":"نشر القرار أو إعلانه أو العلم به يحتاج إلى مراجعة محامٍ","source_article":null,"verified":false,"verified_by":null,"verified_on":null}
+  ]
+}
