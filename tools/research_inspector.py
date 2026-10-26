@@ -181,7 +181,7 @@ def research_memo(question, result, scope=None):
     lines.extend([
         "",
         "Limitations",
-        "- This memo reflects only the selected search scope and records available as of the stated date.",
+        ("- The search as-of date was not recorded; do not infer current legal status." if as_of == "unknown" else "- This memo reflects only the selected search scope and records available as of the stated date."),
         "- A URL, registry entry, or model-generated answer is not independent proof of authenticity or current legal status.",
         "- Missing pin-cites, publication/effective dates, amendment history, or permission evidence remain missing; do not infer them.",
         "- An empty result in any selected scope is not evidence that no applicable law exists.",
