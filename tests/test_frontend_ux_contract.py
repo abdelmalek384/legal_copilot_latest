@@ -116,6 +116,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("&&/^\\d{4}-\\d{2}-\\d{2}$/", export_memo)
         self.assertIn("?raw:'unknown'", export_memo)
         self.assertIn("download:'legal-research-memo-'+exportDate+'.txt'", export_memo)
+        self.assertNotIn("setTimeout(()=>URL.revokeObjectURL(url),1000)};document.body.append(a)", export_memo)
         self.assertNotIn("result.requested_as_of||new Date()", export_memo)
 
     def test_memo_export_uses_recorded_scope_or_unknown_not_current_selector(self):
