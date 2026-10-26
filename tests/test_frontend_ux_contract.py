@@ -113,7 +113,7 @@ class FrontendUXContractTests(unittest.TestCase):
     def test_memo_export_filename_does_not_invent_today_for_missing_or_invalid_date(self):
         export_memo = HTML[HTML.index("const exportMemo="):HTML.index("const renderDiscovery=")]
         self.assertIn("exportDate=typeof raw==='string'", export_memo)
-        self.assertIn("/^\\\\d{4}-\\\\d{2}-\\\\d{2}$/", export_memo)
+        self.assertIn("&&/^\\d{4}-\\d{2}-\\d{2}$/", export_memo)
         self.assertIn("?raw:'unknown'", export_memo)
         self.assertIn("download:'legal-research-memo-'+exportDate+'.txt'", export_memo)
         self.assertNotIn("result.requested_as_of||new Date()", export_memo)
