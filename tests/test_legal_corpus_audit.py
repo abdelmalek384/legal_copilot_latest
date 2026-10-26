@@ -62,6 +62,7 @@ class CorpusAuditTests(unittest.TestCase):
             CREATE TABLE legal_version_relations(relation_id INTEGER PRIMARY KEY, from_version_id INT, to_version_id INT, relation_type TEXT);
             CREATE TABLE legal_review_events(review_event_id INTEGER PRIMARY KEY, version_id INT, review_type TEXT, outcome TEXT, evidence_url TEXT);
             INSERT INTO legal_sources VALUES('S1','allowed','unknown',NULL,'http://terms.example.com');
+            INSERT INTO legal_sources VALUES('S2','allowed','allowed',NULL,'https://terms.example.com');
             INSERT INTO legal_document_versions VALUES(1,'http://unsafe.example.com/law','missing.pdf','not-a-hash','2024-13-40','2025-01-01','2024-12-31',NULL,'unknown','pending_source_review',0,0,0);
             """)
             db.commit()
@@ -70,6 +71,7 @@ class CorpusAuditTests(unittest.TestCase):
             codes = {issue["code"] for issue in report["issues"]}
             self.assertIn("source_commercial_reuse_permission_unknown", codes)
             self.assertIn("source_allowed_without_permission_evidence", codes)
+            self.assertIn("source_commercial_reuse_allowed_without_evidence", codes)
             self.assertIn("source_terms_url_not_https", codes)
             self.assertIn("versions_malformed_sha256", codes)
             self.assertIn("versions_invalid_source_url", codes)
