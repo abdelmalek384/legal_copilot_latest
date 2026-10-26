@@ -80,6 +80,18 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
         with self.assertRaisesRegex(EvaluationError, "cannot be in the future"):
             evaluate([q], [result()])
 
+    def test_expected_pin_citation_must_reference_expected_source(self):
+        q = dict(approved())
+        q["expected_sources"] = ["LAW-10"]
+        q["expected_pin_cites"] = [{"source_id": "LAW-OTHER", "pin_cite": "المادة 1"}]
+        with self.assertRaisesRegex(EvaluationError, "absent from expected_sources"):
+            evaluate([q], [result()])
+
+    def test_result_pin_citation_must_reference_cited_source(self):
+        r = result(sources=["LAW-10"], pins=[{"source_id": "LAW-OTHER", "pin_cite": "المادة 1"}])
+        with self.assertRaisesRegex(EvaluationError, "absent from cited_sources"):
+            evaluate([approved()], [r])
+
     def test_missing_results_and_unknown_results_are_errors(self):
         with self.assertRaisesRegex(EvaluationError, "missing results"):
             evaluate([approved()], [])
