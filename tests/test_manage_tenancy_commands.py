@@ -7,6 +7,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from cryptography.fernet import Fernet
+from database_backup import create_backup_bundle
 from database_runtime import DatabaseRuntime
 
 
@@ -262,6 +264,48 @@ class TenancyCommandTests(unittest.TestCase):
         self.assertIsNone(control.execute(
             "SELECT id FROM users WHERE email_normalized='replacement-owner@example.test'"
         ).fetchone())
+
+
+    def test_verify_backup_tenancy_cli_reports_verified_bundle_without_persistent_restore(self):
+        backup_dir = self.root / "verification-bundles"
+        backup_dir.mkdir()
+        key = Fernet.generate_key()
+        bundle = create_backup_bundle(
+            self.runtime, Fernet(key), backup_dir, quiesced=True
+        )
+        env = self.env.copy()
+        env["BACKUP_KEY"] = key.decode("ascii")
+        before = {path.name for path in self.root.iterdir()}
+
+        result = subprocess.run(
+            [sys.executable, str(MANAGE), "verify-backup-tenancy", str(bundle)],
+            cwd=ROOT, env=env, text=True, capture_output=True, timeout=60, check=False,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        report = json.loads(result.stdout)
+        self.assertTrue(report["verified"])
+        self.assertEqual(report["tenant_database_count"], 1)
+        self.assertFalse(report["plaintext_retained"])
+        self.assertIn("not guaranteed secure erasure", report["warning"])
+        self.assertEqual({path.name for path in self.root.iterdir()}, before)
+
+    def test_verify_backup_tenancy_cli_rejects_wrong_key_without_persistent_restore(self):
+        backup_dir = self.root / "wrong-key-bundles"
+        backup_dir.mkdir()
+        key = Fernet.generate_key()
+        bundle = create_backup_bundle(
+            self.runtime, Fernet(key), backup_dir, quiesced=True
+        )
+        env = self.env.copy()
+        env["BACKUP_KEY"] = Fernet.generate_key().decode("ascii")
+        before = {path.name for path in self.root.iterdir()}
+        result = subprocess.run(
+            [sys.executable, str(MANAGE), "verify-backup-tenancy", str(bundle)],
+            cwd=ROOT, env=env, text=True, capture_output=True, timeout=60, check=False,
+        )
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("Backup verification failed", result.stderr)
+        self.assertEqual({path.name for path in self.root.iterdir()}, before)
 
 
 
