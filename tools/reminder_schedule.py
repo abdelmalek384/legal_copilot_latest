@@ -32,9 +32,9 @@ def _parse_due_date(value: object, event_id: str) -> date:
     return parsed
 
 
-def _idempotency_key(recipient_id: str, kind: str, event_id: str, due_date: str, window: str) -> str:
+def _idempotency_key(scope_id: str, recipient_id: str, kind: str, event_id: str, due_date: str, window: str) -> str:
     material = json.dumps(
-        ["case-reminder-v1", recipient_id, kind, event_id, due_date, window],
+        ["case-reminder-v1", scope_id, recipient_id, kind, event_id, due_date, window],
         ensure_ascii=False, separators=(",", ":"),
     ).encode("utf-8")
     return hashlib.sha256(material).hexdigest()
@@ -45,6 +45,7 @@ def build_reminder_plan(
     recipient_id: str,
     now: datetime,
     timezone_name: str,
+    scope_id: str,
     already_sent: set[str] | None = None,
     lead_days: int = 1,
 ) -> dict:
@@ -57,6 +58,8 @@ def build_reminder_plan(
     """
     if not isinstance(recipient_id, str) or not recipient_id.strip():
         raise ReminderScheduleError("recipient_id must be a non-empty string")
+    if not isinstance(scope_id, str) or not scope_id.strip():
+        raise ReminderScheduleError("scope_id must be a non-empty firm/scope identifier")
     if not isinstance(now, datetime) or now.tzinfo is None or now.utcoffset() is None:
         raise ReminderScheduleError("now must be a timezone-aware datetime")
     if type(lead_days) is not int or not 1 <= lead_days <= 30:
@@ -106,10 +109,11 @@ def build_reminder_plan(
             continue
 
         due_text = due.isoformat()
-        key = _idempotency_key(recipient_id.strip(), str(kind), event_id, due_text, window)
+        key = _idempotency_key(scope_id.strip(), recipient_id.strip(), str(kind), event_id, due_text, window)
         if key in sent:
             continue
         prepared.append({
+            "scope_id": scope_id.strip(),
             "recipient_id": recipient_id.strip(),
             "event_type": str(kind),
             "event_id": event_id,
