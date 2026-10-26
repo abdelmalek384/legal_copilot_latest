@@ -418,13 +418,12 @@ class DatabaseRuntime:
         *,
         created_by_user_id: int | None = None,
     ) -> None:
-        """Create an explicit membership and its audit event in one transaction."""
+        """Create an explicit membership; firm role never grants platform privileges."""
         if role not in {"admin", "lawyer", "junior"}:
             raise ValueError("unsupported firm role")
         control = self.control_connection()
         control.execute("BEGIN IMMEDIATE")
         try:
-            # Revalidate all identity and firm state after acquiring the write lock.
             identity = control.execute(
                 "SELECT status FROM users WHERE id=?", (user_id,)
             ).fetchone()
@@ -435,12 +434,6 @@ class DatabaseRuntime:
                 raise DatabaseRuntimeError("Membership requires an active global identity")
             if firm is None or firm["status"] != "active":
                 raise DatabaseRuntimeError("Membership requires an active firm")
-            if created_by_user_id is not None:
-                actor = control.execute(
-                    "SELECT status FROM users WHERE id=?", (created_by_user_id,)
-                ).fetchone()
-                if actor is None or actor["status"] != "active":
-                    raise DatabaseRuntimeError("Membership creator must be an active global identity")
             control.execute(
                 "INSERT INTO firm_memberships(user_id,firm_id,firm_role,status,created_by_user_id) "
                 "VALUES(?,?,?,'active',?)",
