@@ -186,13 +186,10 @@ class TenancyCommandTests(unittest.TestCase):
         env["BACKUP_KEY"] = key.decode("ascii")
         before = {path.name for path in self.root.iterdir()}
 
-        result = self.run_manage("verify-backup-tenancy", str(bundle))
-        # run_manage uses the fixture environment; pass the key explicitly here.
-        if result.returncode != 0 and "BACKUP_KEY" in result.stderr:
-            result = subprocess.run(
-                [sys.executable, str(MANAGE), "verify-backup-tenancy", str(bundle)],
-                cwd=ROOT, env=env, text=True, capture_output=True, timeout=60, check=False,
-            )
+        result = subprocess.run(
+            [sys.executable, str(MANAGE), "verify-backup-tenancy", str(bundle)],
+            cwd=ROOT, env=env, text=True, capture_output=True, timeout=60, check=False,
+        )
         self.assertEqual(result.returncode, 0, result.stderr)
         report = json.loads(result.stdout)
         self.assertTrue(report["verified"])
