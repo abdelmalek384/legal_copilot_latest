@@ -188,6 +188,7 @@ class TenantDatabasePreflightTests(unittest.TestCase):
         report = audit(self.catalog_path, self.root)
         findings = [item for item in report["findings"] if item["firm_id"] == 26]
         self.assertIn("database_sidecar_permissions_too_open", {item["code"] for item in findings})
+        self.assertEqual(report["tenant_databases_inspected"], 0)
 
     @unittest.skipUnless(os.name == "posix", "POSIX symlinks are required")
     def test_tenant_sqlite_sidecar_symlink_is_reported(self):
