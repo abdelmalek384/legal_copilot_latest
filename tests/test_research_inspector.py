@@ -102,7 +102,7 @@ class ResearchInspectorTests(unittest.TestCase):
         self.assertIn("Exact passage (verbatim):\nExact quoted passage.", memo)
         self.assertIn("As of: 2026-10-24", memo)
         empty = research_memo("Question", {"answer": None, "sources": [], "requested_as_of": "2026-10-24"})
-        self.assertIn("No relevant verified passage was found", empty)
+        self.assertIn("No source records were returned; the search scope was not recorded.", empty)
         self.assertIn("not evidence that no applicable law exists", empty)
 
     def test_malformed_as_of_and_provenance_dates_fail_closed(self):
@@ -136,6 +136,19 @@ class ResearchInspectorTests(unittest.TestCase):
         memo = research_memo("Question", {"sources": []})
         self.assertIn("Search scope: unknown", memo)
         self.assertNotIn("Search scope: verified_corpus", memo)
+
+    def test_empty_memo_message_does_not_overstate_metadata_only_search(self):
+        metadata = research_memo("Question", {"sources": [], "scope": "metadata_only"})
+        self.assertIn("No matching source-catalog metadata was returned", metadata)
+        self.assertIn("this search did not retrieve legal text", metadata)
+        self.assertNotIn("No relevant verified passage was returned", metadata)
+
+        firm = research_memo("Question", {"sources": [], "scope": "firm_documents"})
+        self.assertIn("No relevant passage was returned from the selected matter documents", firm)
+
+        verified = research_memo("Question", {"sources": [], "scope": "verified_corpus"})
+        self.assertIn("No relevant verified passage was returned by this verified-corpus search", verified)
+        self.assertIn("not evidence that no applicable law exists", verified)
 
     def test_non_string_passages_are_not_presented_as_verbatim_text(self):
         for malformed in (["not exact source text"], {"text": "not exact source text"}, 123):

@@ -144,7 +144,14 @@ def research_memo(question, result, scope=None):
         sources = []
         lines.append("Source data was malformed; no sources were included in this memo.")
     if not sources:
-        lines.append("No relevant verified passage was found in this search scope.")
+        empty_scope_messages = {
+            "verified_corpus": "No relevant verified passage was returned by this verified-corpus search.",
+            "firm_documents": "No relevant passage was returned from the selected matter documents.",
+            "metadata_only": "No matching source-catalog metadata was returned; this search did not retrieve legal text.",
+            "all_permitted": "No relevant passage was returned by the selected combined search.",
+            "unknown": "No source records were returned; the search scope was not recorded.",
+        }
+        lines.append(empty_scope_messages.get(scope, "No source records were returned for the recorded search scope."))
     for index, source in enumerate(sources, 1):
         if not isinstance(source, Mapping):
             lines.extend([
@@ -171,6 +178,6 @@ def research_memo(question, result, scope=None):
         "- This memo reflects only the selected search scope and records available as of the stated date.",
         "- A URL, registry entry, or model-generated answer is not independent proof of authenticity or current legal status.",
         "- Missing pin-cites, publication/effective dates, amendment history, or permission evidence remain missing; do not infer them.",
-        "- If no relevant verified passage was found, this is not evidence that no applicable law exists.",
+        "- An empty result in any selected scope is not evidence that no applicable law exists.",
     ])
     return "\n".join(lines)
