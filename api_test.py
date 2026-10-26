@@ -561,6 +561,17 @@ assert catalog_metadata.status_code == 200, catalog_metadata.text
 assert any(x["document_id"] == "COVERAGE-METADATA-DOC" and x["version_count"] == 0 for x in catalog_metadata.json()["items"])
 assert all("text" not in x for x in catalog_metadata.json()["items"])
 assert c.get("/legal-review/catalog?kind=unknown", headers=A_IMPORT).status_code == 422
+permission_filtered = c.get("/legal-review/catalog?kind=sources&collection_permission=unknown&commercial_reuse_permission=unknown", headers=A_IMPORT)
+assert permission_filtered.status_code == 200, permission_filtered.text
+assert any(x["source_id"] == "COVERAGE-METADATA-SOURCE" for x in permission_filtered.json()["items"])
+assert all(x["source_id"] != "COVERAGE-TEST-SOURCE" for x in permission_filtered.json()["items"])
+bounded_catalog = c.get("/legal-review/catalog?kind=sources&limit=999", headers=A_IMPORT)
+assert bounded_catalog.status_code == 200, bounded_catalog.text
+assert bounded_catalog.json()["limit"] == 200 and len(bounded_catalog.json()["items"]) <= 200
+minimum_catalog = c.get("/legal-review/catalog?kind=sources&limit=0", headers=A_IMPORT)
+assert minimum_catalog.status_code == 200 and minimum_catalog.json()["limit"] == 1
+
+
 
 
 
