@@ -213,7 +213,7 @@ def render_markdown(report):
     if report["counts"]:
         lines += ["| Table | Rows |","|---|---:|"]+[f"| {k} | {v} |" for k,v in report["counts"].items()]
     else: lines.append("No recognized corpus tables found.")
-    for section in ("chunk_quality","source_permissions","version_quality","relation_quality"):
+    for section in ("chunk_quality","source_permissions","commercial_reuse_permissions","version_quality","relation_quality"):
         if section in report:
             lines += ["",f"## {section.replace('_',' ').title()}",""]
             lines += [f"- **{k.replace('_',' ')}:** {v}" for k,v in report[section].items()]
