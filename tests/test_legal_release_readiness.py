@@ -97,6 +97,39 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         self.assertIn("central_source_record_missing", {item["code"] for item in result["blockers"]})
 
 
+    def test_report_separates_planning_matrix_from_current_and_historical_readiness(self):
+        candidate_path = self.root / "candidate.json"
+        register_path = self.root / "register.json"
+        candidate_path.write_text(json.dumps(self.candidate), encoding="utf-8")
+        register_path.write_text(json.dumps(self.register), encoding="utf-8")
+        matrix_path = self.root / "coverage.csv"
+        matrix_path.write_text(
+            "practice_area,priority,status\\nCivil law,P0,not_started\\nLabour,P0,in_progress\\nTax,P1,not_started\\n",
+            encoding="utf-8",
+        )
+        report = MODULE.build_report([candidate_path], register_path, self.root, matrix_path)
+        self.assertEqual(report["release_ready_current_count"], 1)
+        self.assertEqual(report["release_ready_historical_count"], 0)
+        self.assertEqual(report["coverage_matrix"]["practice_area_count"], 3)
+        self.assertEqual(report["coverage_matrix"]["status_counts"], {"in_progress": 1, "not_started": 2})
+        self.assertEqual(report["coverage_matrix"]["unstarted_practice_areas"], ["Civil law", "Tax"])
+        self.assertIn("does not prove", report["coverage_matrix"]["warning"])
+
+        self.candidate["version"]["legal_status"] = "historical"
+        candidate_path.write_text(json.dumps(self.candidate), encoding="utf-8")
+        historical = MODULE.build_report([candidate_path], register_path, self.root, matrix_path)
+        self.assertEqual(historical["release_ready_current_count"], 0)
+        self.assertEqual(historical["release_ready_historical_count"], 1)
+
+    def test_missing_or_malformed_coverage_matrix_is_reported_without_promoting_coverage(self):
+        report = MODULE.summarize_coverage_matrix(self.root / "missing.csv")
+        self.assertFalse(report["available"])
+        malformed = self.root / "bad.csv"
+        malformed.write_text("practice_area,priority\\nCivil law,P0\\n", encoding="utf-8")
+        report = MODULE.summarize_coverage_matrix(malformed)
+        self.assertFalse(report["available"])
+        self.assertIn("must include", report["error"])
+
     def test_report_summarizes_blockers_status_and_practice_area_without_claiming_coverage(self):
         self.candidate["document"]["practice_areas"] = ["Labour", "Employment"]
         self.candidate["version"]["legal_status"] = "under_review"
