@@ -422,27 +422,32 @@ class DatabaseRuntime:
         if role not in {"admin", "lawyer", "junior"}:
             raise ValueError("unsupported firm role")
         control = self.control_connection()
-        identity = control.execute(
-            "SELECT status FROM users WHERE id=?", (user_id,)
-        ).fetchone()
-        firm = control.execute(
-            "SELECT status FROM firms WHERE id=?", (firm_id,)
-        ).fetchone()
-        if identity is None or identity["status"] != "active":
-            raise DatabaseRuntimeError("Membership requires an active global identity")
-        if firm is None or firm["status"] != "active":
-            raise DatabaseRuntimeError("Membership requires an active firm")
-        control.execute(
-            "INSERT INTO firm_memberships(user_id,firm_id,firm_role,status,created_by_user_id) "
-            "VALUES(?,?,?,'active',?)",
-            (user_id, firm_id, role, created_by_user_id),
-        )
-        control.execute(
-            "INSERT INTO platform_security_events(actor_user_id,target_user_id,firm_id,event_type,detail_json) "
-            "VALUES(?,?,?,'membership_created',?)",
-            (created_by_user_id, user_id, firm_id, json.dumps({"firm_role": role}, sort_keys=True)),
-        )
-        control.commit()
+        control.execute("BEGIN IMMEDIATE")
+        try:
+            identity = control.execute(
+                "SELECT status FROM users WHERE id=?", (user_id,)
+            ).fetchone()
+            firm = control.execute(
+                "SELECT status FROM firms WHERE id=?", (firm_id,)
+            ).fetchone()
+            if identity is None or identity["status"] != "active":
+                raise DatabaseRuntimeError("Membership requires an active global identity")
+            if firm is None or firm["status"] != "active":
+                raise DatabaseRuntimeError("Membership requires an active firm")
+            control.execute(
+                "INSERT INTO firm_memberships(user_id,firm_id,firm_role,status,created_by_user_id) "
+                "VALUES(?,?,?,'active',?)",
+                (user_id, firm_id, role, created_by_user_id),
+            )
+            control.execute(
+                "INSERT INTO platform_security_events(actor_user_id,target_user_id,firm_id,event_type,detail_json) "
+                "VALUES(?,?,?,'membership_created',?)",
+                (created_by_user_id, user_id, firm_id, json.dumps({"firm_role": role}, sort_keys=True)),
+            )
+            control.commit()
+        except Exception:
+            control.rollback()
+            raise
 
     def create_initial_firm_owner(
         self, firm_id: int, name: str, email: str, password_hash: str
