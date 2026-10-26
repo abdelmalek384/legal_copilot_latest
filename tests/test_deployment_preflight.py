@@ -24,6 +24,16 @@ class DeploymentPreflightTests(unittest.TestCase):
             "COPILOT_DB": str(self.db_path),
         }
 
+    def test_allowed_hosts_preflight_requires_explicit_hostnames_not_urls_or_wildcard_all(self):
+        for value in ("legal.example.com,*.example.org", "127.0.0.1", "[::1]"):
+            with self.subTest(value=value):
+                _, _, errors = preflight.inspect_environment(dict(self.env, COPILOT_ALLOWED_HOSTS=value))
+                self.assertFalse(any("COPILOT_ALLOWED_HOSTS must be" in item for item in errors))
+        for value in ("*", "https://legal.example.com", "legal.example.com/path", "*.127.0.0.1"):
+            with self.subTest(value=value):
+                _, _, errors = preflight.inspect_environment(dict(self.env, COPILOT_ALLOWED_HOSTS=value))
+                self.assertTrue(any("COPILOT_ALLOWED_HOSTS must be" in item for item in errors))
+
     def test_public_origin_must_be_a_bare_https_origin(self):
         valid = dict(self.env, COPILOT_PUBLIC_ORIGIN="https://legal.example.com")
         _, _, errors = preflight.inspect_environment(valid)
