@@ -9,6 +9,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import sqlite3
 import sys
 from pathlib import Path
@@ -33,6 +34,65 @@ def _foreign_key_violations(connection: sqlite3.Connection) -> list[dict[str, An
         {"table": str(row[0]), "rowid": row[1], "parent": str(row[2]), "fkid": int(row[3])}
         for row in connection.execute("PRAGMA foreign_key_check")
     ]
+
+
+def _profile_name(connection: sqlite3.Connection) -> str | None:
+    tables = {
+        str(row[0]) for row in connection.execute(
+            "SELECT name FROM sqlite_master WHERE type='table'"
+        )
+    }
+    if "database_profile" not in tables:
+        return None
+    row = connection.execute(
+        "SELECT profile FROM database_profile WHERE singleton=1"
+    ).fetchone()
+    if row is None or row[0] not in {"firm", "legal_corpus"}:
+        raise ValueError("Profile-marked database is not a supported firm or legal-corpus database")
+    return str(row[0])
+
+
+def _rebuild_profile_fts(connection: sqlite3.Connection) -> None:
+    """Repair external-content FTS and its sync triggers on the disposable copy."""
+    columns = {
+        str(row[1]) for row in connection.execute("PRAGMA table_info(chunks)")
+    }
+    if not {"id", "norm"} <= columns:
+        raise ValueError("Profile chunks table must contain id and norm columns")
+    existing = connection.execute(
+        "SELECT sql FROM sqlite_master WHERE type='table' AND name='chunks_fts'"
+    ).fetchone()
+    if existing is not None:
+        sql = str(existing[0] or "").lower()
+        if "using fts5" not in sql or not re.search(r"\bcontent\s*=\s*['\"]chunks['\"]", sql):
+            raise ValueError("Profile chunks_fts is not the expected external-content FTS5 table")
+    else:
+        connection.execute(
+            "CREATE VIRTUAL TABLE chunks_fts USING fts5(norm, content='chunks', content_rowid='id')"
+        )
+
+    # Recreate the known profile triggers on the copy so a successful rebuild
+    # also restores ongoing index synchronization, not just the current index.
+    for name in ("chunks_fts_insert", "chunks_fts_delete", "chunks_fts_update"):
+        connection.execute("DROP TRIGGER IF EXISTS " + name)
+    connection.execute("""
+        CREATE TRIGGER chunks_fts_insert AFTER INSERT ON chunks BEGIN
+            INSERT INTO chunks_fts(rowid,norm) VALUES(new.id,new.norm);
+        END
+    """)
+    connection.execute("""
+        CREATE TRIGGER chunks_fts_delete AFTER DELETE ON chunks BEGIN
+            INSERT INTO chunks_fts(chunks_fts,rowid,norm) VALUES('delete',old.id,old.norm);
+        END
+    """)
+    connection.execute("""
+        CREATE TRIGGER chunks_fts_update AFTER UPDATE OF norm ON chunks BEGIN
+            INSERT INTO chunks_fts(chunks_fts,rowid,norm) VALUES('delete',old.id,old.norm);
+            INSERT INTO chunks_fts(rowid,norm) VALUES(new.id,new.norm);
+        END
+    """)
+    connection.execute("INSERT INTO chunks_fts(chunks_fts) VALUES('rebuild')")
+    connection.execute("INSERT INTO chunks_fts(chunks_fts, rank) VALUES('integrity-check', 1)")
 
 
 def rebuild_copy(source: str | Path, output: str | Path) -> dict[str, Any]:
@@ -66,6 +126,7 @@ def rebuild_copy(source: str | Path, output: str | Path) -> dict[str, Any]:
         }
         if "chunks" not in source_tables:
             raise ValueError("Source database has no chunks table")
+        source_profile = _profile_name(source_connection)
         chunk_columns = {
             str(row[1]) for row in source_connection.execute("PRAGMA table_info(chunks)")
         }
@@ -76,17 +137,21 @@ def rebuild_copy(source: str | Path, output: str | Path) -> dict[str, Any]:
         source_connection.backup(target_connection)
         target_connection.commit()
 
-        # Rebuild only on the disposable copy. Dropping the virtual table also
-        # removes its FTS5 shadow tables; any rebuild error aborts the copy.
-        target_connection.execute("DROP TABLE IF EXISTS chunks_fts")
-        target_connection.execute("CREATE VIRTUAL TABLE chunks_fts USING fts5(norm)")
-        rows = target_connection.execute(
-            "SELECT id, text FROM chunks ORDER BY id"
-        ).fetchall()
-        target_connection.executemany(
-            "INSERT INTO chunks_fts(rowid, norm) VALUES(?, ?)",
-            [(int(row[0]), " ".join(tokens(row[1] or ""))) for row in rows],
-        )
+        # Profile databases use external-content FTS over chunks.norm with
+        # synchronization triggers. Legacy databases retain the original
+        # standalone index behavior. All DDL/writes target the disposable copy.
+        if source_profile in {"firm", "legal_corpus"}:
+            _rebuild_profile_fts(target_connection)
+        else:
+            target_connection.execute("DROP TABLE IF EXISTS chunks_fts")
+            target_connection.execute("CREATE VIRTUAL TABLE chunks_fts USING fts5(norm)")
+            rows = target_connection.execute(
+                "SELECT id, text FROM chunks ORDER BY id"
+            ).fetchall()
+            target_connection.executemany(
+                "INSERT INTO chunks_fts(rowid, norm) VALUES(?, ?)",
+                [(int(row[0]), " ".join(tokens(row[1] or ""))) for row in rows],
+            )
         target_connection.commit()
 
         staged_check = _quick_check(target_connection)
@@ -107,6 +172,7 @@ def rebuild_copy(source: str | Path, output: str | Path) -> dict[str, Any]:
             "source_modified": False,
             "source_path": str(source_path),
             "output_path": str(output_path),
+            "database_profile": source_profile or "legacy_unprofiled",
             "status": "passed" if checks_pass else "review_required",
             "source_quick_check": source_check,
             "staged_quick_check": staged_check,

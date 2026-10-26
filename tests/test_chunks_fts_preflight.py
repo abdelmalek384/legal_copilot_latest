@@ -47,6 +47,23 @@ class ChunksFtsPreflightTests(unittest.TestCase):
         self.assertEqual(codes["fts_content_mismatch"], 1)
         self.assertEqual(codes["fts_rows_orphaned"], 1)
 
+    def test_healthy_external_content_index_uses_canonical_norm_not_legacy_tokenization(self):
+        db = sqlite3.connect(":memory:")
+        try:
+            db.executescript("""
+                CREATE TABLE chunks(id INTEGER PRIMARY KEY, text TEXT, norm TEXT);
+                CREATE VIRTUAL TABLE chunks_fts USING fts5(norm, content='chunks', content_rowid='id');
+                INSERT INTO chunks(id,text,norm) VALUES(1,'Arabic text source','canonical_norm');
+                INSERT INTO chunks_fts(chunks_fts) VALUES('rebuild');
+            """)
+            report = audit(db)
+            codes = {item["code"] for item in report["findings"]}
+            self.assertEqual(report["status"], "no_detected_anomalies")
+            self.assertNotIn("fts_content_mismatch", codes)
+            self.assertNotIn("fts_internal_index_integrity_failed", codes)
+        finally:
+            db.close()
+
     def test_detects_corrupt_external_content_fts_index_without_mutating_source(self):
         db = sqlite3.connect(":memory:")
         try:
