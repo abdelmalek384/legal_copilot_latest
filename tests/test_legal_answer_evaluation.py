@@ -67,7 +67,7 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
             evaluate([q], [result()])
 
     def test_review_date_requires_exact_iso_calendar_date(self):
-        for value in ("20261026", "2026-1-2", "2026-W44-1", "2026-02-30"):
+        for value in ("20261026", "2026-1-2", "2026-W44-1", "2026-02-30", "9999-12-31"):
             with self.subTest(value=value):
                 q = dict(approved())
                 q["review_date"] = value
