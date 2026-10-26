@@ -159,7 +159,7 @@ class DatabaseRuntimeTests(unittest.TestCase):
             db.execute(
                 "INSERT INTO cases(title,firm_id) VALUES('Wrong tenant',?)", (firm_b,)
             )
-        with self.assertRaisesRegex(sqlite3.IntegrityError, "document firm scope"):
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "document (case/firm scope|firm scope)"):
             db.execute(
                 "INSERT INTO docs(case_id,name,firm_id) VALUES(?,?,?)",
                 (case_id, "wrong-tenant.pdf", firm_b),
