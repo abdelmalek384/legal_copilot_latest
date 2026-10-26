@@ -273,12 +273,17 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
         self.assertEqual(created.status_code, 200, created.text)
         case_id = created.json()["id"]
+        context_a_before = self.runtime.resolve_context(self.user_id, self.firm_a)
+        db_a_before = self.runtime.firm_connection(context_a_before)
+        initial_member_count = db_a_before.execute(
+            "SELECT COUNT(*) FROM members WHERE case_id=?", (case_id,)
+        ).fetchone()[0]
         switched = self._mutate("post", "/session/firm", json={"firm_id": self.firm_b})
         self.assertEqual(switched.status_code, 200, switched.text)
 
         attempts = (
             ("post", f"/cases/{case_id}/docs", {"name": "secret.txt", "text": "firm A private evidence"}),
-            ("post", f"/cases/{case_id}/members", {"user_id": self.user_id, "role": "lawyer"}),
+            ("post", f"/cases/{case_id}/members", {"user_id": self.user_id, "role": "lead"}),
             ("post", f"/cases/{case_id}/tasks", {"title": "Cross-firm task"}),
         )
         for method, path, payload in attempts:
@@ -292,7 +297,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         db_b = self.runtime.firm_connection(context_b)
         self.assertEqual(db_a.execute("SELECT COUNT(*) FROM docs WHERE case_id=?", (case_id,)).fetchone()[0], 0)
         self.assertEqual(db_a.execute("SELECT COUNT(*) FROM tasks WHERE case_id=?", (case_id,)).fetchone()[0], 0)
-        self.assertEqual(db_a.execute("SELECT COUNT(*) FROM members WHERE case_id=?", (case_id,)).fetchone()[0], 0)
+        self.assertEqual(db_a.execute("SELECT COUNT(*) FROM members WHERE case_id=?", (case_id,)).fetchone()[0], initial_member_count)
         for table in ("docs", "tasks", "members"):
             with self.subTest(table=table):
                 self.assertEqual(db_b.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0], 0)
