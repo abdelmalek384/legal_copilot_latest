@@ -1,6 +1,6 @@
 """Legal copilot MVP: case workspace + hybrid law search + citation-checked answers.
 Run: pip install -r requirements.txt && uvicorn app:app --reload"""
-import sqlite3, re, json, os, io, csv, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request, zipfile
+import sqlite3, re, json, os, io, csv, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request, zipfile, ipaddress
 from contextvars import ContextVar
 from collections import Counter
 from datetime import date, timedelta
@@ -782,6 +782,42 @@ def search(c, q, case_id=None, k=5, firm_id=1, as_of=None, scope="all_permitted"
     return sorted(out, key=lambda x: -x["score"])[:k]
 
 
+def _safe_llm_endpoint(value):
+    """Require HTTPS for remote model endpoints; allow plain HTTP only on loopback."""
+    from urllib.parse import urlsplit
+    if not isinstance(value, str) or not value.strip():
+        return False
+    try:
+        parsed = urlsplit(value.strip())
+        host = parsed.hostname
+        # Query strings can hide API keys; credentials and fragments are never valid endpoint config.
+        if (parsed.scheme not in {"https", "http"} or not host or parsed.username or parsed.password
+                or parsed.query or parsed.fragment):
+            return False
+        _ = parsed.port  # Force invalid/out-of-range ports to raise ValueError.
+        if parsed.scheme == "https":
+            return True
+        if host.lower().rstrip(".") == "localhost":
+            return True
+        try:
+            return ipaddress.ip_address(host).is_loopback
+        except ValueError:
+            return False
+    except (TypeError, ValueError):
+        return False
+
+
+class _RejectLLMRedirects(urllib.request.HTTPRedirectHandler):
+    """Never forward confidential prompts to an endpoint reached through a redirect."""
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        return None
+
+
+def _llm_open(request, timeout=120):
+    opener = urllib.request.build_opener(_RejectLLMRedirects)
+    return opener.open(request, timeout=timeout)
+
+
 def llm(prompt):
     """Call a configured OpenAI-compatible endpoint only after explicit data-processing approval.
 
@@ -791,13 +827,13 @@ def llm(prompt):
     Unset URL or approval keeps the app in sources-only mode.
     """
     url = os.environ.get("LLM_URL")
-    if not url: return None
+    if not url or not _safe_llm_endpoint(url): return None
     if os.environ.get("LLM_DATA_PROCESSING_APPROVED", "").strip() != "1":
         return None
     body = json.dumps({"model": os.environ.get("LLM_MODEL", "local"), "temperature": 0,
                        "messages": [{"role": "system", "content": SYS}, {"role": "user", "content": prompt}]}).encode()
     req = urllib.request.Request(url, body, {"Content-Type": "application/json", "Authorization": "Bearer " + os.environ.get("LLM_KEY", "")})
-    return json.load(urllib.request.urlopen(req, timeout=120))["choices"][0]["message"]["content"]
+    return json.load(_llm_open(req, timeout=120))["choices"][0]["message"]["content"]
 
 
 LLM = llm

@@ -155,6 +155,25 @@ def provision_firm_cli(a):
         runtime.close_current_thread()
 
 
+def disable_firm_cli(a):
+    """Disable firm access while retaining its database and historical data."""
+    if not app._separate_runtime_enabled():
+        raise SystemExit("Firm lifecycle commands require the separate database architecture.")
+    runtime = DatabaseRuntime.from_env()
+    try:
+        changed = runtime.disable_firm(a.firm_id)
+        print(json.dumps({
+            "status": "disabled",
+            "firm_id": a.firm_id,
+            "changed": changed,
+            "data_deleted": False,
+        }, ensure_ascii=False, sort_keys=True))
+    except (DatabaseRuntimeError, ValueError, sqlite3.Error) as exc:
+        raise SystemExit("Firm disable failed: " + str(exc)) from exc
+    finally:
+        runtime.close_current_thread()
+
+
 def addmembership_cli(a):
     """Attach an existing active global identity to a provisioned firm."""
     if not app._separate_runtime_enabled():
@@ -353,6 +372,7 @@ x = sp.add_parser("adduser"); x.add_argument("name"); x.add_argument("email"); x
 x = sp.add_parser("init-tenancy"); x.add_argument("--firm-name", required=True); x.add_argument("--owner-name", required=True); x.add_argument("--owner-email", required=True); x.set_defaults(f=init_tenancy)
 x = sp.add_parser("provision-firm"); x.add_argument("name"); x.set_defaults(f=provision_firm_cli)
 x = sp.add_parser("addmembership"); x.add_argument("email"); x.add_argument("--firm-id", type=int, required=True); x.add_argument("--role", choices=["lawyer", "junior"], required=True); x.set_defaults(f=addmembership_cli)
+x = sp.add_parser("disable-firm"); x.add_argument("firm_id", type=int); x.set_defaults(f=disable_firm_cli)
 x = sp.add_parser("resetpw"); x.add_argument("email"); x.set_defaults(f=resetpw)
 sp.add_parser("genkey").set_defaults(f=lambda a: print(Fernet.generate_key().decode()))
 x = sp.add_parser("backup"); x.add_argument("dir"); x.add_argument("--keep", type=int, default=14); x.set_defaults(f=backup)

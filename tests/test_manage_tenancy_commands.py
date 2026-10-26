@@ -87,6 +87,48 @@ class TenancyCommandTests(unittest.TestCase):
             1,
         )
 
+    def test_disable_firm_blocks_catalog_routing_without_deleting_database(self):
+        _, database_path = self.runtime.provision_firm("Firm to Disable")
+        firm_id = self.runtime.control_connection().execute(
+            "SELECT id FROM firms WHERE name='Firm to Disable'"
+        ).fetchone()[0]
+
+        result = self.run_manage("disable-firm", str(firm_id))
+        self.assertEqual(result.returncode, 0, result.stderr)
+        report = json.loads(result.stdout)
+        self.assertEqual(report["status"], "disabled")
+        self.assertTrue(report["changed"])
+        self.assertFalse(report["data_deleted"])
+        self.assertTrue(database_path.is_file())
+
+        control = self.runtime.control_connection()
+        self.assertEqual(
+            control.execute("SELECT status FROM firms WHERE id=?", (firm_id,)).fetchone()[0],
+            "disabled",
+        )
+        self.assertEqual(
+            control.execute(
+                "SELECT status FROM tenant_database_catalog WHERE firm_id=?", (firm_id,)
+            ).fetchone()[0],
+            "disabled",
+        )
+
+        repeated = self.run_manage("disable-firm", str(firm_id))
+        self.assertEqual(repeated.returncode, 0, repeated.stderr)
+        self.assertFalse(json.loads(repeated.stdout)["changed"])
+        self.assertTrue(database_path.is_file())
+
+    def test_disable_firm_rejects_unknown_firm_without_creating_catalog_rows(self):
+        result = self.run_manage("disable-firm", "999999")
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("Firm does not exist", result.stderr)
+        self.assertEqual(
+            self.runtime.control_connection().execute(
+                "SELECT COUNT(*) FROM tenant_database_catalog WHERE firm_id=999999"
+            ).fetchone()[0],
+            0,
+        )
+
     def test_provision_firm_and_attach_existing_global_identity(self):
         provisioned = self.run_manage("provision-firm", "Firm B")
         self.assertEqual(provisioned.returncode, 0, provisioned.stderr)

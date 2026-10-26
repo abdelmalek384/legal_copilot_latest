@@ -33,6 +33,16 @@ class DeploymentPreflightTests(unittest.TestCase):
                 _, _, errors = preflight.inspect_environment(dict(self.env, COPILOT_PUBLIC_ORIGIN=origin))
                 self.assertTrue(any("COPILOT_PUBLIC_ORIGIN must be an HTTPS origin" in item for item in errors))
 
+    def test_llm_url_must_use_https_or_loopback_http(self):
+        for url in ("https://llm.example.com/v1/chat/completions", "http://127.0.0.1:11434/v1", "http://localhost:11434/v1"):
+            with self.subTest(url=url):
+                _, _, errors = preflight.inspect_environment(dict(self.env, LLM_URL=url))
+                self.assertFalse(any("LLM_URL must use HTTPS" in item for item in errors))
+        for url in ("http://llm.example.com/v1", "http://192.168.1.10/v1", "https://user:pass@llm.example.com/v1", "https://llm.example.com/v1?key=x"):
+            with self.subTest(url=url):
+                _, _, errors = preflight.inspect_environment(dict(self.env, LLM_URL=url))
+                self.assertTrue(any("LLM_URL must use HTTPS" in item for item in errors))
+
     def test_rejects_unlinked_legacy_law_search_override(self):
         _, _, errors = preflight.inspect_environment(dict(self.env, ALLOW_UNLINKED_LEGACY_LAW_SEARCH="1"))
         self.assertTrue(any("ALLOW_UNLINKED_LEGACY_LAW_SEARCH" in item for item in errors))
