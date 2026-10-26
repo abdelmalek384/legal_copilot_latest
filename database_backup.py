@@ -325,6 +325,47 @@ def _safe_archive_members(archive: zipfile.ZipFile) -> set[str]:
     return names
 
 
+def verify_backup_bundle(bundle_path: str | Path, cipher: Fernet) -> dict[str, Any]:
+    """Verify an encrypted bundle in protected temporary storage, without changing live paths.
+
+    This temporarily creates plaintext SQLite files. Run only on a trusted host with
+    protected temporary storage; deletion is not guaranteed secure erasure on SSDs
+    or copy-on-write filesystems.
+    """
+    import tempfile
+
+    with tempfile.TemporaryDirectory(prefix="legal-copilot-bundle-verify-") as temp_dir:
+        temp_root = Path(temp_dir)
+        if os.name == "posix":
+            try:
+                os.chmod(temp_root, 0o700)
+            except OSError as exc:
+                raise DatabaseBundleError("Could not restrict temporary verification directory permissions") from exc
+        destination = temp_root / "verified"
+        restored = restore_backup_bundle(bundle_path, cipher, destination)
+        for label, path in (("control-plane", restored["control_plane"]),
+                             ("legal-corpus", restored["legal_corpus"])):
+            connection = _readonly(path)
+            try:
+                _integrity(connection, label)
+            finally:
+                connection.close()
+        tenant_paths = sorted(restored["tenant_root"].glob("tenant-*.sqlite3"))
+        for path in tenant_paths:
+            connection = _readonly(path)
+            try:
+                _integrity(connection, path.name)
+            finally:
+                connection.close()
+        return {
+            "verified": True,
+            "format_version": _FORMAT_VERSION,
+            "tenant_database_count": len(tenant_paths),
+            "plaintext_retained": False,
+            "warning": "Verification used temporary plaintext database files; deletion is not guaranteed secure erasure.",
+        }
+
+
 def restore_backup_bundle(
     backup_file: str | Path,
     cipher: Fernet,

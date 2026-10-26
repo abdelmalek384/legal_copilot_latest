@@ -227,6 +227,7 @@ This is a planning estimate across fresh-install schema/migrations, tenant isola
 - [ ] Complete route-by-route and SQL-query-by-query cross-firm authorization tests, including exports, audit, search, legal review, background work, and administrative paths.
 - [ ] Design firm-scoped original-upload object storage and retention; the current upload flow does not retain original binary objects, so recoverability must not be promised.
 - [x] Implement encrypted, checksummed multi-database backup and non-destructive restore to a new directory, with two-firm isolation and tamper/wrong-key tests (PR #382 merged; CI passed).
+- [ ] Add an operator-facing backup verification command that validates an encrypted tenancy bundle by restoring it into a restricted temporary directory, then removes the temporary plaintext; deletion is not secure erasure (proposed PR).
 - [ ] Complete retention policy, tenant-specific export/deletion semantics, automated scheduling/monitoring, and operational recovery drills.
 - [ ] Rehearse deployment, restore, and rollback using representative copies; validate permissions, secrets, encryption keys, monitoring, and incident runbooks.
 - [ ] Obtain an independent security review before production use with unrelated firms' confidential matters.

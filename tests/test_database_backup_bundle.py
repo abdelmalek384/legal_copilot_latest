@@ -118,6 +118,24 @@ class DatabaseBackupBundleTests(unittest.TestCase):
                 tampered_bundle, self.cipher, self.root / "tampered-restore"
             )
 
+    def test_verify_bundle_validates_all_profiles_without_retaining_plaintext(self):
+        from database_backup import verify_backup_bundle
+        bundle = create_backup_bundle(self.runtime, self.cipher, self.backup_dir, quiesced=True)
+        result = verify_backup_bundle(bundle, self.cipher)
+        self.assertTrue(result["verified"])
+        self.assertEqual(result["format_version"], 1)
+        self.assertEqual(result["tenant_database_count"], 2)
+        self.assertFalse(result["plaintext_retained"])
+        self.assertIn("not guaranteed secure erasure", result["warning"])
+
+    def test_verify_bundle_rejects_wrong_key_without_persistent_restore(self):
+        from database_backup import verify_backup_bundle
+        bundle = create_backup_bundle(self.runtime, self.cipher, self.backup_dir, quiesced=True)
+        before = {p.name for p in self.root.iterdir()}
+        with self.assertRaises(DatabaseBundleError):
+            verify_backup_bundle(bundle, Fernet(Fernet.generate_key()))
+        self.assertEqual({p.name for p in self.root.iterdir()}, before)
+
     def test_backup_rejects_tenant_root_as_output_directory(self):
         with self.assertRaises(DatabaseBundleError):
             create_backup_bundle(
