@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Read-only deployment configuration checks; never prints secret values."""
 import argparse
+import ipaddress
 import math
 import os
 import stat
@@ -8,6 +9,29 @@ import sys
 from pathlib import Path
 from urllib.parse import urlsplit
 
+
+
+def valid_llm_endpoint(value):
+    """Require HTTPS remotely; plain HTTP is allowed only for loopback model services."""
+    if not isinstance(value, str) or not value.strip():
+        return False
+    try:
+        parsed = urlsplit(value.strip())
+        host = parsed.hostname
+        if (parsed.scheme not in {"https", "http"} or not host or parsed.username or parsed.password
+                or parsed.query or parsed.fragment):
+            return False
+        _ = parsed.port
+        if parsed.scheme == "https":
+            return True
+        if host.lower().rstrip(".") == "localhost":
+            return True
+        try:
+            return ipaddress.ip_address(host).is_loopback
+        except ValueError:
+            return False
+    except (TypeError, ValueError):
+        return False
 
 def inspect_environment(env=None):
     env = os.environ if env is None else env
@@ -45,6 +69,13 @@ def inspect_environment(env=None):
             errors.append("COPILOT_PUBLIC_ORIGIN must be an HTTPS origin only, without credentials, path, query, or fragment.")
     elif env.get("COPILOT_SECURE_COOKIES", "").strip() == "1":
         warnings.append("COPILOT_PUBLIC_ORIGIN is unset; if the app sees internal HTTP behind a TLS proxy, browser Origin checks may reject HTTPS requests.")
+
+    llm_url = env.get("LLM_URL", "").strip()
+    if llm_url:
+        if valid_llm_endpoint(llm_url):
+            passed.append("LLM_URL uses HTTPS or an explicitly local loopback HTTP endpoint.")
+        else:
+            errors.append("LLM_URL must use HTTPS remotely, or HTTP only for localhost/loopback; credentials, query strings, and fragments are not allowed.")
 
     raw_score = env.get("MIN_SCORE", "0.3")
     try:
