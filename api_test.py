@@ -566,6 +566,17 @@ assert coverage["metrics"]["metadata_only_documents"] >= 1
 assert coverage["metrics"]["verified_operational_versions"] == coverage_before + 1, coverage["metrics"]
 assert coverage["metrics"]["labelled_verified_versions"] >= 2
 assert coverage["metrics"]["permission_or_evidence_blocked_versions"] >= 1
+# Missing permission states are unknown, not silently omitted by SQL NULL comparisons.
+blocked_before_unknown = coverage["metrics"]["permission_or_evidence_blocked_versions"]
+db.execute("INSERT INTO legal_sources(source_id,authority,source_page,collection_permission,commercial_reuse_permission,permission_evidence) VALUES(?,?,?,?,?,?)",
+           ("COVERAGE-UNKNOWN-PERMISSION-SOURCE","Unknown permission authority","https://example.org/unknown","unknown","unknown","recorded evidence awaiting classification"))
+db.execute("INSERT INTO legal_documents(document_id,source_id,official_title,document_type) VALUES(?,?,?,?)",
+           ("COVERAGE-UNKNOWN-PERMISSION-DOC","COVERAGE-UNKNOWN-PERMISSION-SOURCE","Unknown permission test instrument","law"))
+db.execute("INSERT INTO legal_document_versions(document_id,version_label,source_url,legal_status,review_status,permission_evidence) VALUES(?,?,?,?,?,?)",
+           ("COVERAGE-UNKNOWN-PERMISSION-DOC","pending","https://example.org/unknown/version","under_review","pending_source_review","version evidence recorded"))
+db.commit()
+coverage_unknown_permission = c.get("/legal-review/coverage", headers=A_IMPORT).json()["metrics"]
+assert coverage_unknown_permission["permission_or_evidence_blocked_versions"] == blocked_before_unknown + 1, coverage_unknown_permission
 assert any(x["practice_area"] == "labour" and x["documents_with_verified_operational_text"] == 1 for x in coverage["coverage_by_practice_area"])
 assert any("not total Egyptian-law coverage" in w for w in coverage["warnings"])
 
