@@ -144,3 +144,5 @@ jobs:
         run: python api_test.py
       - name: Run Arabic multi-case scenario tests
         run: python arabic_scenario_test.py
+      - name: Test experimental deadline calculator
+        run: PYTHONPATH=. python tests/test_deadline_calculator.py
