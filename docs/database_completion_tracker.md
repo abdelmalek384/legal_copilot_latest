@@ -12,6 +12,7 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 - [x] Add encrypted multi-database backup/restore bundles for the control plane, shared corpus, and every cataloged firm database; validate profiles, firm bindings, SQLite integrity, catalog consistency, and manifest checksums; restore only to a new destination (PR #382 merged; CI passed).
 - [x] Update deployment preflight for the three separate-database paths, rejecting partial configuration, unsafe path overlap, symlinks, and unsafe POSIX storage permissions without creating databases (PR #384 merged; CI passed).
 - [x] Verify FTS5 external-content index integrity on a disposable copy so stale inverted indexes are detected without modifying the source database (PR #388 merged; CI passed).
+- [x] Extend migration rehearsal to hash rows in shared source/staged columns and flag same-count row rewrites or deletions for review while allowing append-only inserts; source remains unchanged (PR #430 merged; CI run 40372094006 passed).
 - [x] Add runtime regression coverage for denying non-member firm switches and revoking access after membership revocation even when a tenant connection is cached (PR #390 merged; CI passed).
 
 - [x] Extend tenant preflight to audit POSIX SQLite WAL/SHM/journal sidecars, and refuse to open a catalog or tenant database when a sidecar is symlinked or has unsafe permissions (PR #362 merged; CI run 40357742798 passed).
