@@ -8,6 +8,8 @@ This is a planning estimate across fresh-install schema/migrations, tenant isola
 
 ## Completed and merged
 
+- [ ] Proposed PR: add an append-only control-plane platform security event ledger and atomically audit CLI password resets; pending CI/merge.
+
 - [x] Wire authenticated firm membership and trusted catalog resolution into the fresh-install runtime: control-plane authentication/session lookup, per-firm matter connections, shared legal-corpus routing, and fail-closed behavior when separate configuration is incomplete (PR #372 merged; CI passed).
 - [x] Add encrypted multi-database backup/restore bundles for the control plane, shared corpus, and every cataloged firm database; validate profiles, firm bindings, SQLite integrity, catalog consistency, and manifest checksums; restore only to a new destination (PR #382 merged; CI passed).
 - [x] Update deployment preflight for the three separate-database paths, rejecting partial configuration, unsafe path overlap, symlinks, and unsafe POSIX storage permissions without creating databases (PR #384 merged; CI passed).
