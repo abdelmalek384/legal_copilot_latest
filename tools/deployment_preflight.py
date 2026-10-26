@@ -80,6 +80,24 @@ def inspect_environment(env=None):
     else:
         warnings.append("COPILOT_DB does not exist yet; this check does not create or initialize it.")
 
+    if os.name == "posix":
+        for suffix in ("-wal", "-shm", "-journal"):
+            sidecar = Path(str(db_path) + suffix)
+            if sidecar.is_symlink():
+                errors.append(f"SQLite sidecar {sidecar.name} must not be a symbolic link.")
+                continue
+            if not sidecar.exists():
+                continue
+            try:
+                sidecar_mode = stat.S_IMODE(sidecar.stat().st_mode)
+                if sidecar_mode & 0o077:
+                    errors.append(
+                        f"SQLite sidecar {sidecar.name} permissions {sidecar_mode:04o} "
+                        "allow group/other access."
+                    )
+            except OSError:
+                errors.append(f"Could not inspect SQLite sidecar {sidecar.name} permissions.")
+
     return passed, warnings, errors
 
 
