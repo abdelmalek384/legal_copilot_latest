@@ -249,13 +249,15 @@ async function corpusCoverage(){
  shell(title,h('p',{className:'mut',textContent:ar?'هذه مؤشرات لسجلات المصادر والإصدارات، وليست دليلاً على اكتمال القانون المصري.':'These metrics describe registered source/version records; they do not establish complete Egyptian-law coverage.'}));
  const main=$('main');
  const catalogPanel=h('section',{className:'card'});
- const openCatalog=async kind=>{
+ const openCatalog=async(kind,query='')=>{
    const catalogTitle=kind==='sources'?(ar?'سجل المصادر':'Source registry'):kind==='metadata_only_documents'?(ar?'أدوات ببيانات وصفية فقط':'Metadata-only instruments'):(ar?'سجل الأدوات القانونية':'Instrument registry');
    const header=()=>h('div',{className:'row',style:'align-items:center'},h('h3',{textContent:catalogTitle}),btn(ar?'إغلاق':'Close',()=>catalogPanel.remove(),'g'));
-   catalogPanel.replaceChildren(header(),h('p',{className:'mut',role:'status',textContent:ar?'جارٍ تحميل السجلات…':'Loading registry records…'}));
+   const searchInput=h('input',{type:'search',value:query,placeholder:ar?'ابحث بالعنوان أو المعرف أو الجهة':'Search title, ID, or authority','aria-label':ar?'ابحث في سجل المصادر والأدوات':'Search source and instrument registry',style:'width:min(100%,420px)'});
+   const searchRow=h('div',{className:'row'},searchInput,btn(ar?'بحث':'Search',()=>openCatalog(kind,searchInput.value),'g'));
+   catalogPanel.replaceChildren(header(),searchRow,h('p',{className:'mut',role:'status',textContent:ar?'جارٍ تحميل السجلات…':'Loading registry records…'}));
    if(!main.contains(catalogPanel))main.append(catalogPanel);
    try{
-     const data=await api('/legal-review/catalog?kind='+encodeURIComponent(kind));
+     const data=await api('/legal-review/catalog?kind='+encodeURIComponent(kind)+'&q='+encodeURIComponent(query));
      const rows=data.items||[];
      const content=rows.map(item=>{
        const title=item.official_title||item.authority||item.source_id||item.document_id||'—';
@@ -266,8 +268,8 @@ async function corpusCoverage(){
        const sourceUrl=safeHttpsUrl(item.source_page);
        return h('article',{className:'src'},h('b',{textContent:title}),h('div',{className:'mut',textContent:meta}),h('div',{className:'mut',textContent:(ar?'أذونات الجمع / الاستخدام التجاري: ':'Collection / commercial-use permission: ')+permission}),sourceUrl?h('a',{href:sourceUrl,target:'_blank',rel:'noopener noreferrer',textContent:(ar?'فتح المصدر الأصلي: ':'Open registered source: ')+sourceHostLabel(sourceUrl)}):h('div',{className:'mut',textContent:ar?'لا يوجد رابط HTTPS آمن مسجل.':'No safe HTTPS source link is recorded.'}));
      });
-     catalogPanel.replaceChildren(header(),h('p',{className:'mut',textContent:data.warning||''}),h('p',{className:'mut',textContent:String(rows.length)+' '+(ar?'سجلات معروضة (بحد أقصى 100).':'records shown (maximum 100).')}),...(content.length?content:[h('p',{className:'mut',textContent:ar?'لا توجد سجلات مطابقة.':'No matching registry records.'})]));
-   }catch(_){catalogPanel.replaceChildren(header(),h('p',{className:'mut',role:'status',textContent:ar?'تعذر تحميل السجلات. أعد المحاولة.':'Could not load registry records. Please retry.'}));}
+     catalogPanel.replaceChildren(header(),searchRow,h('p',{className:'mut',textContent:data.warning||''}),h('p',{className:'mut',textContent:String(rows.length)+' '+(ar?'سجلات معروضة (بحد أقصى 100).':'records shown (maximum 100).')}),...(content.length?content:[h('p',{className:'mut',textContent:ar?'لا توجد سجلات مطابقة.':'No matching registry records.'})]));
+   }catch(_){catalogPanel.replaceChildren(header(),searchRow,h('p',{className:'mut',role:'status',textContent:ar?'تعذر تحميل السجلات. أعد المحاولة.':'Could not load registry records. Please retry.'}));}
  };
  const loading=h('div',{className:'card',role:'status',textContent:ar?'جارٍ تحميل المؤشرات…':'Loading metrics…'});
  main.append(loading);
