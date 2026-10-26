@@ -172,6 +172,133 @@ class PlatformSecurityAuditTests(unittest.TestCase):
         with self.assertRaisesRegex(SystemExit, "integer between 1 and 500"):
             manage.platform_audit(Namespace(limit=True, event_type=None, firm_id=None, target_user_id=None))
 
+    def test_platform_role_grant_and_revoke_are_authorized_and_audited(self):
+        control = self.runtime.control_connection()
+        control.execute(
+            "INSERT INTO user_platform_roles(user_id,role_name) VALUES(?,'platform_admin')",
+            (self.user_id,),
+        )
+        target_id = self.runtime.create_global_identity(
+            "Platform Target", "platform-target@example.test", "target-hash"
+        )
+        control.commit()
+        args = Namespace(
+            actor_email=" AUDIT-OWNER@example.test ", target_email="PLATFORM-TARGET@example.test",
+            role="platform_reviewer", reason="Review legal corpus access",
+        )
+        manage.grant_platform_role(args)
+        self.assertIsNotNone(control.execute(
+            "SELECT 1 FROM user_platform_roles WHERE user_id=? AND role_name='platform_reviewer'",
+            (target_id,),
+        ).fetchone())
+        granted = control.execute(
+            "SELECT actor_user_id,target_user_id,event_type,detail_json FROM platform_security_events "
+            "WHERE event_type='platform_role_granted' AND target_user_id=? ORDER BY id DESC LIMIT 1",
+            (target_id,),
+        ).fetchone()
+        self.assertEqual(granted["actor_user_id"], self.user_id)
+        self.assertIn("Review legal corpus access", granted["detail_json"])
+        manage.revoke_platform_role(args)
+        self.assertIsNone(control.execute(
+            "SELECT 1 FROM user_platform_roles WHERE user_id=? AND role_name='platform_reviewer'",
+            (target_id,),
+        ).fetchone())
+        self.assertEqual(control.execute(
+            "SELECT COUNT(*) FROM platform_security_events WHERE event_type='platform_role_revoked' AND target_user_id=?",
+            (target_id,),
+        ).fetchone()[0], 1)
+
+    def test_platform_role_change_requires_admin_and_preserves_last_admin(self):
+        target_id = self.runtime.create_global_identity(
+            "No Privilege Target", "no-privilege@example.test", "target-hash"
+        )
+        control = self.runtime.control_connection()
+        with self.assertRaisesRegex(SystemExit, "Only an active platform_admin"):
+            manage.grant_platform_role(Namespace(
+                actor_email="audit-owner@example.test", target_email="no-privilege@example.test",
+                role="platform_reviewer", reason="Review legal corpus access",
+            ))
+        control.execute(
+            "INSERT INTO user_platform_roles(user_id,role_name) VALUES(?,'platform_admin')",
+            (self.user_id,),
+        )
+        control.commit()
+        with self.assertRaisesRegex(SystemExit, "last active platform_admin"):
+            manage.revoke_platform_role(Namespace(
+                actor_email="audit-owner@example.test", target_email="audit-owner@example.test",
+                role="platform_admin", reason="Remove administrator role",
+            ))
+        self.assertIsNotNone(control.execute(
+            "SELECT 1 FROM user_platform_roles WHERE user_id=? AND role_name='platform_admin'",
+            (self.user_id,),
+        ).fetchone())
+        self.assertIsNone(control.execute(
+            "SELECT 1 FROM user_platform_roles WHERE user_id=? AND role_name='platform_reviewer'",
+            (target_id,),
+        ).fetchone())
+
+    def test_platform_role_revoke_rolls_back_if_audit_write_fails(self):
+        control = self.runtime.control_connection()
+        control.execute(
+            "INSERT INTO user_platform_roles(user_id,role_name) VALUES(?,'platform_admin')",
+            (self.user_id,),
+        )
+        target_id = self.runtime.create_global_identity(
+            "Revoke Audit Target", "revoke-audit-target@example.test", "target-hash"
+        )
+        control.execute(
+            "INSERT INTO user_platform_roles(user_id,role_name,granted_by_user_id) VALUES(?,'platform_reviewer',?)",
+            (target_id, self.user_id),
+        )
+        control.execute("""
+            CREATE TRIGGER reject_platform_role_revoke_audit BEFORE INSERT ON platform_security_events
+            WHEN NEW.event_type='platform_role_revoked'
+            BEGIN SELECT RAISE(ABORT, 'platform role revoke audit unavailable'); END
+        """)
+        control.commit()
+        with self.assertRaisesRegex(SystemExit, "audit write failed"):
+            manage.revoke_platform_role(Namespace(
+                actor_email="audit-owner@example.test", target_email="revoke-audit-target@example.test",
+                role="platform_reviewer", reason="Remove reviewer access",
+            ))
+        self.assertIsNotNone(control.execute(
+            "SELECT 1 FROM user_platform_roles WHERE user_id=? AND role_name='platform_reviewer'",
+            (target_id,),
+        ).fetchone())
+        self.assertEqual(control.execute(
+            "SELECT COUNT(*) FROM platform_security_events WHERE event_type='platform_role_revoked' AND target_user_id=?",
+            (target_id,),
+        ).fetchone()[0], 0)
+
+    def test_platform_role_grant_rolls_back_if_audit_write_fails(self):
+        control = self.runtime.control_connection()
+        control.execute(
+            "INSERT INTO user_platform_roles(user_id,role_name) VALUES(?,'platform_admin')",
+            (self.user_id,),
+        )
+        target_id = self.runtime.create_global_identity(
+            "Audit Failure Target", "audit-failure-target@example.test", "target-hash"
+        )
+        control.execute("""
+            CREATE TRIGGER reject_platform_role_audit BEFORE INSERT ON platform_security_events
+            WHEN NEW.event_type='platform_role_granted'
+            BEGIN SELECT RAISE(ABORT, 'platform role audit unavailable'); END
+        """)
+        control.commit()
+        with self.assertRaisesRegex(SystemExit, "audit write failed"):
+            manage.grant_platform_role(Namespace(
+                actor_email="audit-owner@example.test", target_email="audit-failure-target@example.test",
+                role="platform_reviewer", reason="Review legal corpus access",
+            ))
+        self.assertIsNone(control.execute(
+            "SELECT 1 FROM user_platform_roles WHERE user_id=? AND role_name='platform_reviewer'",
+            (target_id,),
+        ).fetchone())
+        self.assertEqual(control.execute(
+            "SELECT COUNT(*) FROM platform_security_events WHERE event_type='platform_role_granted' AND target_user_id=?",
+            (target_id,),
+        ).fetchone()[0], 0)
+
     def test_platform_security_audit_is_append_only(self):
         control = self.runtime.control_connection()
         control.execute(
