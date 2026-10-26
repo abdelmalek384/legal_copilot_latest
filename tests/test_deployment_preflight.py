@@ -1,5 +1,8 @@
 import importlib.util
 import os
+import io
+from contextlib import redirect_stdout
+from unittest.mock import patch
 import tempfile
 import unittest
 from pathlib import Path
@@ -42,6 +45,15 @@ class DeploymentPreflightTests(unittest.TestCase):
         self.assertTrue(any("one shared COPILOT_DB" in item for item in warnings))
         self.assertTrue(any("unrelated firms' confidential matters" in item for item in warnings))
         self.assertEqual(errors, [])
+
+    def test_strict_release_gate_fails_while_shared_database_warning_remains(self):
+        output = io.StringIO()
+        with patch.dict(os.environ, self.env, clear=True), redirect_stdout(output):
+            result = preflight.main(["--strict"])
+        self.assertEqual(result, 1)
+        self.assertIn("shared COPILOT_DB", output.getvalue())
+        self.assertIn("Preflight failed", output.getvalue())
+        self.assertFalse(self.db_path.exists())
 
     def test_rejects_short_or_placeholder_admin_token(self):
         for token in ("short", "test-token-" + "x" * 30):
