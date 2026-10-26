@@ -652,11 +652,11 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
       try{const data=await api('/cases/'+id+'/docs/'+d.document_id+'/chunks');renderChunkReview(reviewPanel,data)}
       catch(_){toggle.dataset.open='0';reviewPanel.replaceChildren()}
     });
-    const status=d.extraction_status==='ocr_unverified'?'نص OCR غير متحقق':(d.extraction_status||'حالة الاستخراج غير مسجلة');
+    const status=d.extraction_status==='ocr_unverified'?'نص OCR غير متحقق':d.extraction_status==='partial_text_ocr_unavailable'?'بعض الصفحات لم تُفهرس: OCR غير متاح':(d.extraction_status||'حالة الاستخراج غير مسجلة');
     return h('section',{className:'document-review-group'},h('div',{className:'row'},h('div',{},h('b',{textContent:d.name}),h('div',{className:'mut',textContent:fd(d.added)+' · '+status}),h('div',{className:'mut',textContent:d.sha256?'SHA-256: '+d.sha256:''})),toggle),reviewPanel)
   }):empty('لا توجد مستندات'),
    h('div',{className:'row'},f,btn('رفع وفهرسة',async()=>{if(!f.files[0])return;const x=new FormData();x.append('file',f.files[0]);
-    const csrf=csrfToken();const headers=csrf?{'X-CSRF-Token':decodeURIComponent(csrf)}:{};const r=await fetch('/cases/'+id+'/upload',{method:'POST',credentials:'same-origin',headers,body:x}),j=await r.json().catch(()=>({}));toast(r.ok?(j.ocr_used?'تمت الفهرسة عبر OCR؛ راجع النص مقابل الأصل قبل الاعتماد عليه':'تمت الفهرسة'):err(j));if(r.ok)again()})),
+    const csrf=csrfToken();const headers=csrf?{'X-CSRF-Token':decodeURIComponent(csrf)}:{};const r=await fetch('/cases/'+id+'/upload',{method:'POST',credentials:'same-origin',headers,body:x}),j=await r.json().catch(()=>({}));toast(r.ok?(j.ocr_warning?(LANG==='ar'?'تمت فهرسة الصفحات القابلة للقراءة فقط؛ OCR غير متاح لبعض الصفحات':'Only readable pages were indexed; OCR was unavailable for some pages'):(j.ocr_used?'تمت الفهرسة عبر OCR؛ راجع النص مقابل الأصل قبل الاعتماد عليه':'تمت الفهرسة')):err(j));if(r.ok)again()})),
    empty('PDF أو Word حتى 15 ميجابايت. النص المستخرج فقط هو المفهرس؛ لا تحفظ نسخة الملف الأصلي. راجع المقاطع قبل الاعتماد عليها، خصوصاً نص OCR.'))
 }if(TAB==='team'){const mu=h('select',{},...us.map(u=>new Option(u.name,u.id))),mr=h('select',{},...Object.entries(RL).reverse().map(([k,v])=>new Option(v,k)));
   body=h('div',{className:'card'},c.members.map(m=>h('div',{className:'row'},h('b',{textContent:m.name}),pill(RL[m.role],m.role==='lead'?'open':'closed'),lead&&m.user_id!==ME.id?btn('إزالة',async()=>{if(!confirm('إزالة هذا العضو من القضية؟'))return;await api('/cases/'+id+'/members/'+m.user_id,'DELETE');again()},'g'):null)),
