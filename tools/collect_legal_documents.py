@@ -18,6 +18,7 @@ import os
 import re
 import socket
 import sys
+import tempfile
 import time
 from html.parser import HTMLParser
 from pathlib import Path
@@ -166,9 +167,17 @@ def check_permission(doc: dict) -> set[str]:
 
 
 def store_original(out: Path, document_id: str, extension: str, raw: bytes) -> Path:
-    """Store a source file without ever overwriting a different previously collected byte stream."""
+    """Store a source file without overwriting prior bytes or following storage symlinks."""
+    if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]{0,127}", document_id):
+        raise ValueError("document_id is not a safe storage identifier")
     digest = sha256_bytes(raw)
-    original_dir = out / "originals" / document_id
+    originals_root = out / "originals"
+    if originals_root.is_symlink():
+        raise ValueError("originals directory must not be a symbolic link")
+    originals_root.mkdir(parents=True, exist_ok=True)
+    original_dir = originals_root / document_id
+    if original_dir.is_symlink():
+        raise ValueError("document original directory must not be a symbolic link")
     original_dir.mkdir(parents=True, exist_ok=True)
     original_path = original_dir / ("original" + extension)
 
@@ -213,6 +222,79 @@ def store_original(out: Path, document_id: str, extension: str, raw: bytes) -> P
         if same_content(candidate):
             return candidate
         suffix += 1
+
+
+def _archive_metadata_version(meta_dir: Path, document_id: str, metadata: dict) -> Path:
+    history_root = meta_dir / "history"
+    if history_root.is_symlink():
+        raise ValueError("metadata history root must not be a symbolic link")
+    history_root.mkdir(parents=True, exist_ok=True)
+    history_dir = history_root / document_id
+    if history_dir.is_symlink():
+        raise ValueError("metadata history directory must not be a symbolic link")
+    history_dir.mkdir(parents=True, exist_ok=True)
+    rendered = json.dumps(metadata, ensure_ascii=False, indent=2) + "\n"
+    retrieved_at = metadata.get("retrieved_at", "")
+    try:
+        stamp = dt.datetime.fromisoformat(retrieved_at.replace("Z", "+00:00")).strftime("%Y%m%dT%H%M%S%fZ")
+    except (TypeError, ValueError):
+        stamp = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
+    digest = metadata.get("sha256")
+    if not isinstance(digest, str) or not re.fullmatch(r"[0-9a-fA-F]{64}", digest):
+        digest = hashlib.sha256(rendered.encode("utf-8")).hexdigest()
+    stem = f"{stamp}-{digest[:12]}"
+    suffix = 0
+    while True:
+        name = f"{stem}{'-' + str(suffix) if suffix else ''}.json"
+        candidate = history_dir / name
+        try:
+            with candidate.open("x", encoding="utf-8") as stream:
+                stream.write(rendered)
+            return candidate
+        except FileExistsError:
+            if candidate.is_file() and candidate.read_text(encoding="utf-8") == rendered:
+                return candidate
+            suffix += 1
+
+
+def persist_metadata(out: Path, document_id: str, metadata: dict) -> Path:
+    """Keep immutable retrieval records and atomically update the current metadata pointer."""
+    if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]{0,127}", document_id):
+        raise ValueError("document_id is not a safe metadata identifier")
+    meta_dir = out / "metadata"
+    if meta_dir.is_symlink():
+        raise ValueError("metadata directory must not be a symbolic link")
+    meta_dir.mkdir(parents=True, exist_ok=True)
+    current_path = meta_dir / f"{document_id}.json"
+    if current_path.is_symlink():
+        raise ValueError("current metadata file must not be a symbolic link")
+    if current_path.exists():
+        try:
+            previous = json.loads(current_path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as exc:
+            raise ValueError("existing metadata is unreadable; refusing to overwrite it") from exc
+        if previous != metadata:
+            _archive_metadata_version(meta_dir, document_id, previous)
+    _archive_metadata_version(meta_dir, document_id, metadata)
+
+    rendered = json.dumps(metadata, ensure_ascii=False, indent=2) + "\n"
+    temporary_path = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            "w", encoding="utf-8", dir=meta_dir, prefix=f".{document_id}.", suffix=".tmp", delete=False
+        ) as stream:
+            temporary_path = Path(stream.name)
+            stream.write(rendered)
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.replace(temporary_path, current_path)
+    finally:
+        if temporary_path is not None:
+            try:
+                temporary_path.unlink(missing_ok=True)
+            except OSError:
+                pass
+    return current_path
 
 
 def download_document(client: httpx.Client, doc: dict, out: Path, max_bytes: int) -> dict:
@@ -307,9 +389,7 @@ def download_document(client: httpx.Client, doc: dict, out: Path, max_bytes: int
         "review_status": "pending_human_review",
         "download_host": final_host,
     }
-    meta_dir = out / "metadata"
-    meta_dir.mkdir(parents=True, exist_ok=True)
-    (meta_dir / f"{doc_id}.json").write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    persist_metadata(out, doc_id, metadata)
     return metadata
 
 
