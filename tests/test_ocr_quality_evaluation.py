@@ -39,6 +39,32 @@ class OCRQualityEvaluationTests(unittest.TestCase):
         self.assertEqual(report["by_document"]["DOC"]["pages_scored"], 2)
         self.assertEqual(report["rows_scored"], 2)
 
+    def test_critical_token_metrics_catch_missing_article_numbers_and_negation(self):
+        report = evaluate([{
+            "id": "CRITICAL-1",
+            "document_id": "DOC-CRITICAL",
+            "reference_text": "المادة ١٢ لا يجوز",
+            "ocr_text": "المادة ١٢ يجوز",
+            "critical_tokens": ["المادة ١٢", "لا يجوز"],
+        }])
+        page = report["pages"][0]
+        self.assertEqual(page["critical_tokens_expected_count"], 2)
+        self.assertEqual(page["critical_tokens_found_count"], 1)
+        self.assertEqual(page["critical_token_recall"], 0.5)
+        self.assertEqual(page["missing_critical_tokens"], ["لا يجوز"])
+        self.assertEqual(report["overall"]["critical_token_recall"], 0.5)
+        self.assertEqual(report["overall"]["pages_with_missing_critical_tokens"], 1)
+        self.assertEqual(report["by_document"]["DOC-CRITICAL"]["critical_token_page_failure_rate"], 1.0)
+
+    def test_critical_tokens_must_be_present_in_reference_and_well_formed(self):
+        base = {"id": "CRITICAL-2", "reference_text": "المادة ١٢ لا يجوز", "ocr_text": "المادة ١٢ لا يجوز"}
+        with self.assertRaisesRegex(OCREvaluationError, "must appear in reference_text"):
+            evaluate([{**base, "critical_tokens": ["المادة ١٣"]}])
+        for value in ("لا يجوز", [""], ["   "], [None], ["المادة ١٢", "المادة 12"]):
+            with self.subTest(value=value):
+                with self.assertRaisesRegex(OCREvaluationError, "critical_tokens"):
+                    evaluate([{**base, "critical_tokens": value}])
+
     def test_rejects_duplicate_ids_bad_rows_and_excessive_edit_distance(self):
         row = {"id": "A", "reference_text": "a", "ocr_text": "b"}
         with self.assertRaisesRegex(OCREvaluationError, "duplicate id"):
