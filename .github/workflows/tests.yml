@@ -148,3 +148,5 @@ jobs:
         run: PYTHONPATH=. python tests/test_deadline_calculator.py
       - name: Test platform security audit events
         run: PYTHONPATH=. python tests/test_platform_security_audit.py
+      - name: Test platform security audit migrations
+        run: PYTHONPATH=. python tests/test_platform_security_audit_migrations.py
