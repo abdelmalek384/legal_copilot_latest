@@ -4,9 +4,11 @@
 **Estimated completion:** 28%  
 **Status:** In progress — not production-ready for confidential multi-firm matter data.
 
-This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. The checklist currently tracks 70 completed tasks and 19 remaining tasks; this count is not a readiness percentage. Update this file as database PRs merge and as acceptance criteria are completed.
+This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. The checklist currently tracks 71 completed tasks and 19 remaining tasks; this count is not a readiness percentage. Update this file as database PRs merge and as acceptance criteria are completed.
 
 ## Completed and merged
+
+- [x] Refuse to provision a tenant when pre-existing firm-binding trigger names conceal ineffective update/delete guards; validate the guards before marking the tenant provisioned (PR #340 merged; CI run 40354238518 passed).
 
 - [x] Reject symbolic links for the configured `COPILOT_DB` path in deployment preflight before inspecting the target, with regression coverage (PR #337 merged; CI run 40353912360 passed).
 
