@@ -52,6 +52,15 @@ class TenantSQLiteConnectionRouter:
         self._timeout = float(timeout)
         self._local = threading.local()
 
+    def _revoke_cached_connection(self, firm_id: int) -> None:
+        connections = getattr(self._local, "connections", None)
+        cached = connections.pop(firm_id, None) if connections else None
+        if cached is not None:
+            try:
+                cached[1].close()
+            except sqlite3.Error:
+                pass
+
     @staticmethod
     def _validate_firm_id(firm_id: int) -> None:
         if isinstance(firm_id, bool) or not isinstance(firm_id, int) or firm_id <= 0:
@@ -70,13 +79,7 @@ class TenantSQLiteConnectionRouter:
         except Exception as exc:
             # A catalog-open failure is also a failed revalidation. Do not leave
             # a previously cached connection available for later reuse.
-            connections = getattr(self._local, "connections", None)
-            cached = connections.pop(trusted_firm_id, None) if connections else None
-            if cached is not None:
-                try:
-                    cached[1].close()
-                except sqlite3.Error:
-                    pass
+            self._revoke_cached_connection(trusted_firm_id)
             raise TenantConnectionError(
                 "Tenant catalog is unavailable; refusing cached tenant storage"
             ) from exc
@@ -87,13 +90,7 @@ class TenantSQLiteConnectionRouter:
             except (TenantCatalogError, sqlite3.Error) as exc:
                 # A disabled or invalid catalog entry must also revoke any
                 # connection already cached for this firm on the current thread.
-                connections = getattr(self._local, "connections", None)
-                cached = connections.pop(trusted_firm_id, None) if connections else None
-                if cached is not None:
-                    try:
-                        cached[1].close()
-                    except sqlite3.Error:
-                        pass
+                self._revoke_cached_connection(trusted_firm_id)
                 raise TenantConnectionError(
                     "Tenant database is not available through the trusted catalog"
                 ) from exc
@@ -107,26 +104,38 @@ class TenantSQLiteConnectionRouter:
             try:
                 database_mode = stat.S_IMODE(path.stat().st_mode)
             except OSError as exc:
-                connections = getattr(self._local, "connections", None)
-                cached = connections.pop(trusted_firm_id, None) if connections else None
-                if cached is not None:
-                    try:
-                        cached[1].close()
-                    except sqlite3.Error:
-                        pass
+                self._revoke_cached_connection(trusted_firm_id)
                 raise TenantConnectionError(
                     "Tenant database file permissions cannot be verified"
                 ) from exc
             if database_mode & 0o077:
-                connections = getattr(self._local, "connections", None)
-                cached = connections.pop(trusted_firm_id, None) if connections else None
-                if cached is not None:
-                    try:
-                        cached[1].close()
-                    except sqlite3.Error:
-                        pass
+                self._revoke_cached_connection(trusted_firm_id)
                 raise TenantConnectionError(
                     "Tenant database file permissions allow group/other access"
+                )
+
+        # SQLite sidecars can contain sensitive pages too. Check them before
+        # returning a cached connection or opening a new one.
+        for suffix in ("-wal", "-shm", "-journal"):
+            sidecar = Path(str(path) + suffix)
+            if sidecar.is_symlink():
+                self._revoke_cached_connection(trusted_firm_id)
+                raise TenantConnectionError(
+                    "Tenant SQLite sidecar must not be a symbolic link"
+                )
+            if not sidecar.exists() or os.name != "posix":
+                continue
+            try:
+                sidecar_mode = stat.S_IMODE(sidecar.stat().st_mode)
+            except OSError as exc:
+                self._revoke_cached_connection(trusted_firm_id)
+                raise TenantConnectionError(
+                    "Tenant SQLite sidecar permissions cannot be verified"
+                ) from exc
+            if sidecar_mode & 0o077:
+                self._revoke_cached_connection(trusted_firm_id)
+                raise TenantConnectionError(
+                    "Tenant SQLite sidecar permissions allow group/other access"
                 )
 
         connections = getattr(self._local, "connections", None)

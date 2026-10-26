@@ -97,6 +97,33 @@ class TenantSQLiteConnectionRouterTests(unittest.TestCase):
         with self.assertRaisesRegex(sqlite3.ProgrammingError, "closed"):
             connection.execute("SELECT 1")
 
+    @unittest.skipUnless(os.name == "posix", "POSIX file permission bits are required")
+    def test_permissive_sqlite_sidecar_revokes_cached_tenant_connection(self):
+        connection = self.router.connection_for_firm(101)
+        with self._catalog() as catalog:
+            path = resolve_tenant_database(catalog, 101, self.root)
+        sidecar = Path(str(path) + "-wal")
+        sidecar.write_text("synthetic WAL sidecar", encoding="utf-8")
+        os.chmod(sidecar, 0o644)
+        with self.assertRaisesRegex(TenantConnectionError, "sidecar permissions allow group/other access"):
+            self.router.connection_for_firm(101)
+        with self.assertRaisesRegex(sqlite3.ProgrammingError, "closed"):
+            connection.execute("SELECT 1")
+
+    @unittest.skipUnless(os.name == "posix", "POSIX symlinks are required")
+    def test_symlinked_sqlite_sidecar_revokes_cached_tenant_connection(self):
+        connection = self.router.connection_for_firm(101)
+        with self._catalog() as catalog:
+            path = resolve_tenant_database(catalog, 101, self.root)
+        sidecar = Path(str(path) + "-wal")
+        target = Path(self.temp.name) / "external-wal"
+        target.write_text("synthetic WAL sidecar", encoding="utf-8")
+        sidecar.symlink_to(target)
+        with self.assertRaisesRegex(TenantConnectionError, "sidecar must not be a symbolic link"):
+            self.router.connection_for_firm(101)
+        with self.assertRaisesRegex(sqlite3.ProgrammingError, "closed"):
+            connection.execute("SELECT 1")
+
     def test_rejects_tenant_database_bound_to_non_firm_profile(self):
         with self._catalog() as catalog:
             path = resolve_tenant_database(catalog, 101, self.root)
