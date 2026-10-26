@@ -24,6 +24,12 @@ This checklist is a release gate, not a certification. Completing it does not re
 ## 3. Database, uploads, and backups
 
 - [ ] Set `COPILOT_DB` to an absolute path on a persistent, access-controlled volume.
+- [ ] Run `python tools/deployment_preflight.py --strict` for the exact release environment and retain its output. The current shared-database warning is an intentional blocker; do not bypass it for a multi-firm release.
+- [ ] Before any database-per-firm rollout, run the read-only tenant preflight against an authorized protected copy and retain the JSON report:
+  ```bash
+  python scripts/tenant_database_preflight.py /absolute/path/to/control-plane.db /absolute/path/to/tenant-databases
+  ```
+  Resolve catalog-authority, migration-ledger, foreign-key, path, and file-permission findings before proceeding. A clean report still does not prove route-level tenant isolation.
 - [ ] Restrict database, WAL/SHM files, and backup directories to the application account; encrypt the underlying disk/volume.
 - [ ] Do not deploy multiple hosts with separate local SQLite databases and assume rate limits or data are shared. SQLite-backed rate limits coordinate workers only when they share the same database file; separate hosts need a shared rate-limit service and an appropriate database architecture.
 - [ ] Schedule encrypted backups outside the application host. Store the backup key separately from the backups.
