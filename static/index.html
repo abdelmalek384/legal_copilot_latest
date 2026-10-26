@@ -252,7 +252,7 @@ async function corpusCoverage(){
  const openCatalog=async(kind,query='')=>{
    const catalogTitle=kind==='sources'?(ar?'سجل المصادر':'Source registry'):kind==='metadata_only_documents'?(ar?'أدوات ببيانات وصفية فقط':'Metadata-only instruments'):(ar?'سجل الأدوات القانونية':'Instrument registry');
    const header=()=>h('div',{className:'row',style:'align-items:center'},h('h3',{textContent:catalogTitle}),btn(ar?'إغلاق':'Close',()=>catalogPanel.remove(),'g'));
-   const searchInput=h('input',{type:'search',value:query,placeholder:ar?'ابحث بالعنوان أو المعرف أو الجهة':'Search title, ID, or authority','aria-label':ar?'ابحث في سجل المصادر والأدوات':'Search source and instrument registry',style:'width:min(100%,420px)'});
+   const searchInput=h('input',{type:'search',value:query,placeholder:ar?'ابحث بالعنوان أو المعرف أو الجهة':'Search title, ID, or authority','aria-label':ar?'ابحث في سجل المصادر والأدوات':'Search source and instrument registry',onkeydown:e=>{if(e.key==='Enter'){e.preventDefault();openCatalog(kind,searchInput.value)}},style:'width:min(100%,420px)'});
    const searchRow=h('div',{className:'row'},searchInput,btn(ar?'بحث':'Search',()=>openCatalog(kind,searchInput.value),'g'));
    catalogPanel.replaceChildren(header(),searchRow,h('p',{className:'mut',role:'status',textContent:ar?'جارٍ تحميل السجلات…':'Loading registry records…'}));
    if(!main.contains(catalogPanel))main.append(catalogPanel);
