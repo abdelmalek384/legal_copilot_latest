@@ -164,5 +164,58 @@ class DatabaseBackupBundleTests(unittest.TestCase):
         self.assertEqual(list(self.backup_dir.glob("tenancy-*.dbbundle.enc")), [])
 
 
+    def test_restore_preserves_disabled_firm_and_suspended_membership(self):
+        from tenant_context import FirmContextError
+
+        control = self.runtime.control_connection()
+        control.execute(
+            "UPDATE firm_memberships SET status='suspended' "
+            "WHERE user_id=? AND firm_id=?",
+            (self.user_id, self.firm_b),
+        )
+        control.commit()
+        self.assertTrue(self.runtime.disable_firm(self.firm_b))
+
+        bundle = create_backup_bundle(
+            self.runtime, self.cipher, self.backup_dir, quiesced=True
+        )
+        target = self.root / "lifecycle-restore"
+        restored = restore_backup_bundle(bundle, self.cipher, target)
+        restored_runtime = DatabaseRuntime(
+            restored["control_plane"], restored["tenant_root"], restored["legal_corpus"]
+        )
+        try:
+            restored_runtime.initialize()
+            restored_control = restored_runtime.control_connection()
+            firm = restored_control.execute(
+                "SELECT status FROM firms WHERE id=?", (self.firm_b,)
+            ).fetchone()
+            catalog = restored_control.execute(
+                "SELECT status,database_file FROM tenant_database_catalog WHERE firm_id=?",
+                (self.firm_b,),
+            ).fetchone()
+            membership = restored_control.execute(
+                "SELECT status FROM firm_memberships WHERE user_id=? AND firm_id=?",
+                (self.user_id, self.firm_b),
+            ).fetchone()
+
+            self.assertEqual(firm["status"], "disabled")
+            self.assertEqual(catalog["status"], "disabled")
+            self.assertEqual(membership["status"], "suspended")
+            self.assertTrue((restored["tenant_root"] / catalog["database_file"]).is_file())
+
+            # Recovery must preserve denial state, not reactivate a tenant or membership.
+            with self.assertRaises(FirmContextError):
+                restored_runtime.resolve_context(self.user_id, self.firm_b)
+
+            context_a = restored_runtime.resolve_context(self.user_id, self.firm_a)
+            db_a = restored_runtime.firm_connection(context_a)
+            self.assertEqual(
+                db_a.execute("SELECT title FROM cases").fetchone()[0], "Snapshot Matter"
+            )
+        finally:
+            restored_runtime.close_current_thread()
+
+
 if __name__ == "__main__":
     unittest.main()
