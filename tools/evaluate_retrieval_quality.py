@@ -71,7 +71,9 @@ def validate_reviewed_question(question):
     if (not isinstance(expected, list) or not expected
             or not all(_nonempty_string(x) for x in expected)):
         errors.append("expected_source_ids/expected_sources must be a non-empty list of reviewed source IDs")
-    if "expected_source_ids" in question and "expected_sources" in question and question["expected_source_ids"] != question["expected_sources"]:\n        errors.append("expected_source_ids and expected_sources conflict; keep one canonical reviewed source list")\n    pin_cites = question.get("expected_pin_cites")
+    if "expected_source_ids" in question and "expected_sources" in question and question["expected_source_ids"] != question["expected_sources"]:
+        errors.append("expected_source_ids and expected_sources conflict; keep one canonical reviewed source list")
+    pin_cites = question.get("expected_pin_cites")
     if pin_cites is not None:
         if not isinstance(pin_cites, list):
             errors.append("expected_pin_cites must be a list when supplied")
