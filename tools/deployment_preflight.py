@@ -10,6 +10,8 @@ import sys
 from pathlib import Path
 from urllib.parse import urlsplit
 
+from cryptography.fernet import Fernet
+
 
 def valid_llm_endpoint(value):
     """Require HTTPS remotely; plain HTTP is allowed only for loopback model services."""
@@ -67,8 +69,10 @@ def valid_trusted_hosts(value):
     return True
 
 
-def inspect_environment(env=None):
+def inspect_environment(env=None, *, require_separate=False):
     env = os.environ if env is None else env
+    production = env.get("COPILOT_ENV", "").strip().lower() in {"prod", "production"}
+    require_separate = bool(require_separate or production)
     errors, warnings, passed = [], [], []
 
     if env.get("ALLOW_UNLINKED_LEGACY_LAW_SEARCH", "").strip() == "1":
@@ -90,12 +94,19 @@ def inspect_environment(env=None):
         else:
             errors.append("COPILOT_ALLOWED_HOSTS must be a comma-separated list of explicit hostnames or IP addresses, not URLs or wildcard-all.")
     else:
-        warnings.append("COPILOT_ALLOWED_HOSTS is unset; Host-header allowlisting is disabled.")
+        message = "COPILOT_ALLOWED_HOSTS is required in production; Host-header allowlisting must be enabled."
+        if production:
+            errors.append(message)
+        else:
+            warnings.append("COPILOT_ALLOWED_HOSTS is unset; Host-header allowlisting is disabled.")
 
     if env.get("COPILOT_SECURE_COOKIES", "").strip() == "1":
         passed.append("Secure cookies and HSTS are explicitly enabled for HTTPS/proxy deployment.")
     else:
-        warnings.append("COPILOT_SECURE_COOKIES=1 is not set; if TLS terminates at a reverse proxy, session cookies may lack Secure and HSTS may be omitted. Set it only when the public endpoint is HTTPS.")
+        if production:
+            errors.append("COPILOT_SECURE_COOKIES=1 is required in production when the public endpoint is HTTPS.")
+        else:
+            warnings.append("COPILOT_SECURE_COOKIES=1 is not set; if TLS terminates at a reverse proxy, session cookies may lack Secure and HSTS may be omitted. Set it only when the public endpoint is HTTPS.")
 
     public_origin = env.get("COPILOT_PUBLIC_ORIGIN", "").strip()
     if public_origin:
@@ -110,6 +121,8 @@ def inspect_environment(env=None):
             passed.append("COPILOT_PUBLIC_ORIGIN is a fixed HTTPS origin suitable for reverse-proxy origin checks.")
         else:
             errors.append("COPILOT_PUBLIC_ORIGIN must be an HTTPS origin only, without credentials, path, query, or fragment.")
+    elif production:
+        errors.append("COPILOT_PUBLIC_ORIGIN must be set to the public HTTPS origin in production.")
     elif env.get("COPILOT_SECURE_COOKIES", "").strip() == "1":
         warnings.append("COPILOT_PUBLIC_ORIGIN is unset; if the app sees internal HTTP behind a TLS proxy, browser Origin checks may reject HTTPS requests.")
 
@@ -177,6 +190,15 @@ def inspect_environment(env=None):
                 except OSError:
                     errors.append(f"Could not inspect SQLite sidecar {sidecar.name} permissions.")
 
+    if production:
+        backup_key = env.get("BACKUP_KEY", "").strip()
+        try:
+            Fernet(backup_key.encode("ascii"))
+        except (ValueError, TypeError, UnicodeError):
+            errors.append("BACKUP_KEY must be a valid Fernet key in production; the secret value is never printed.")
+        else:
+            passed.append("BACKUP_KEY is a valid Fernet key; its value is not printed.")
+
     if has_separate:
         missing = [name for name, value in configured.items() if not value]
         if missing:
@@ -223,6 +245,8 @@ def inspect_environment(env=None):
         if env.get("COPILOT_DB", "").strip():
             errors.append("COPILOT_DB must be unset when separate database paths are configured; remove the stale legacy path to avoid ambiguous deployment configuration.")
     else:
+        if require_separate:
+            errors.append("Production/release preflight requires all three separate database paths; shared COPILOT_DB mode is not permitted.")
         # Legacy compatibility mode is not approved for unrelated firms' confidential data.
         warnings.append(
             "This build is configured for one shared COPILOT_DB; do not store unrelated firms' "
@@ -288,8 +312,13 @@ def main(argv=None):
         action="store_true",
         help="exit non-zero if any warning remains; suitable for a release gate",
     )
+    parser.add_argument(
+        "--require-separate",
+        action="store_true",
+        help="fail unless control-plane, per-firm storage, and shared corpus paths are all configured",
+    )
     args = parser.parse_args(argv)
-    passed, warnings, errors = inspect_environment()
+    passed, warnings, errors = inspect_environment(require_separate=args.require_separate)
 
     for item in passed:
         print(f"PASS: {item}")
