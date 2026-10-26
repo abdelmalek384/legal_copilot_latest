@@ -46,6 +46,10 @@
 | Version count | Opens the version review queue without silently applying a narrower status filter. | |
 | Review-status / verification metrics | Open the matching filtered version queue. Counts and visible rows agree for the synthetic fixture set. | |
 | Catalog search | Search by source ID, instrument ID/title, law number/year, or authority. Query results remain within the selected catalog kind. | |
+| Enter-key search | Pressing Enter in the catalog search field produces the same filtered result as the Search button. | |
+| Search beyond the default limit | Find a known fixture beyond the first 100 records using the search field; the UI does not imply that unshown records do not exist. | |
+| Permission-state summary row | Activate a permission pair with mouse and keyboard; the source list contains only records matching both recorded permission values. | |
+| Search within permission-filtered sources | Search by authority/source ID while permission filters remain active; results continue to match both permission states. | |
 | More than 100 records | Use search to locate a known record beyond the default first 100; no record is implied absent solely because it is outside the initial result limit. | |
 | Permission states | Missing/unknown permission evidence remains unknown or blocked; no click or view changes permissions or legal-status fields. | |
 | Coverage by practice area | Unknown/unclassified remains explicit. No overall legal-coverage percentage is presented. | |
