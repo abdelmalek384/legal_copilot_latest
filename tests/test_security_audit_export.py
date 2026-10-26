@@ -74,6 +74,8 @@ class SecurityAuditExportTests(unittest.TestCase):
         events = [row[3] for row in rows[1:]]
         self.assertNotIn("other_firm_private_event", events)
         self.assertIn("'=HYPERLINK(\"https://example.invalid\")", events)
+        self.assertEqual(app._csv_safe_cell("  =1+1"), "'  =1+1")
+        self.assertEqual(app._csv_safe_cell("\t=1+1"), "'\t=1+1")
 
     def test_non_admin_cannot_export_and_limits_are_validated(self):
         self.client.cookies.clear()
