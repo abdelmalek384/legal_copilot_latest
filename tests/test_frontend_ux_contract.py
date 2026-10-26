@@ -110,6 +110,24 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("finally{t.remove()}", HTML)
         self.assertIn("if(!copied)throw new Error('copy failed')", HTML)
 
+    def test_memo_export_uses_recorded_scope_or_unknown_not_current_selector(self):
+        memo = HTML[HTML.index("const memoText="):HTML.index("const exportMemo=")]
+        self.assertIn("memoScope=typeof result.scope==='string'&&result.scope.trim()?result.scope:'unknown'", memo)
+        self.assertIn("rawAsOf=result.requested_as_of", memo)
+        self.assertIn("/^\\d{4}-\\d{2}-\\d{2}$/", memo)
+        self.assertIn("?rawAsOf:'unknown'", memo)
+        self.assertIn("asOf==='unknown'?'- The search as-of date was not recorded; do not infer current legal status.'", memo)
+        self.assertIn("'Search scope: '+memoScope", memo)
+        self.assertNotIn("scopeSelect.value", memo)
+        self.assertIn("Array.isArray(result.sources)?result.sources:[]", memo)
+        self.assertIn("typeof source.text==='string'&&source.text.trim()?source.text:'(No passage text recorded; metadata-only result.)'", memo)
+        self.assertIn("x&&typeof x==='object'&&!Array.isArray(x)?x:{}", memo)
+        self.assertNotIn("x.text||'(No passage text recorded; metadata-only result.)'", memo)
+        self.assertIn("firm_documents:'No relevant passage was returned from the selected matter documents.'", memo)
+        self.assertIn("metadata_only:'No matching source-catalog metadata was returned; this search did not retrieve legal text.'", memo)
+        self.assertIn("unknown:'No source records were returned; the search scope was not recorded.'", memo)
+        self.assertNotIn("No relevant verified passage was found in this search scope.", memo)
+
     def test_source_inspector_exposes_status_pin_cites_copy_and_memo_actions(self):
         self.assertIn("source_status", HTML)
         self.assertIn("s.article", HTML)

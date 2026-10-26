@@ -89,7 +89,7 @@ def citation_text(source, as_of=None):
     """Build a citation from available metadata without inventing missing fields."""
     if not isinstance(source, Mapping):
         return "Unresolved citation — source metadata was not recorded"
-    requested_as_of = as_of or source.get("requested_as_of") or date.today().isoformat()
+    requested_as_of = as_of or source.get("requested_as_of") or "unknown"
     # Invalid dates are still shown as supplied, but must never be used to imply verified status.
     p = source.get("provenance")
     if not isinstance(p, Mapping):
@@ -125,7 +125,12 @@ def research_memo(question, result, scope=None):
     """Produce a plain-text research memo that preserves exact source passages and caveats."""
     if not isinstance(result, Mapping):
         result = {}
-    as_of = result.get("requested_as_of") or date.today().isoformat()
+    raw_as_of = result.get("requested_as_of")
+    try:
+        parsed_as_of = date.fromisoformat(raw_as_of) if isinstance(raw_as_of, str) else None
+        as_of = parsed_as_of.isoformat() if parsed_as_of and parsed_as_of.isoformat() == raw_as_of else "unknown"
+    except ValueError:
+        as_of = "unknown"
     scope = scope or result.get("scope")
     if not isinstance(scope, str) or not scope.strip():
         scope = "unknown"
@@ -176,7 +181,7 @@ def research_memo(question, result, scope=None):
     lines.extend([
         "",
         "Limitations",
-        "- This memo reflects only the selected search scope and records available as of the stated date.",
+        ("- The search as-of date was not recorded; do not infer current legal status." if as_of == "unknown" else "- This memo reflects only the selected search scope and records available as of the stated date."),
         "- A URL, registry entry, or model-generated answer is not independent proof of authenticity or current legal status.",
         "- Missing pin-cites, publication/effective dates, amendment history, or permission evidence remain missing; do not infer them.",
         "- An empty result in any selected scope is not evidence that no applicable law exists.",
