@@ -122,6 +122,10 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("typeof source.text==='string'&&source.text.trim()?source.text:'(No passage text recorded; metadata-only result.)'", memo)
         self.assertIn("x&&typeof x==='object'&&!Array.isArray(x)?x:{}", memo)
         self.assertNotIn("x.text||'(No passage text recorded; metadata-only result.)'", memo)
+        self.assertIn("firm_documents:'No relevant passage was returned from the selected matter documents.'", memo)
+        self.assertIn("metadata_only:'No matching source-catalog metadata was returned; this search did not retrieve legal text.'", memo)
+        self.assertIn("unknown:'No source records were returned; the search scope was not recorded.'", memo)
+        self.assertNotIn("No relevant verified passage was found in this search scope.", memo)
 
     def test_source_inspector_exposes_status_pin_cites_copy_and_memo_actions(self):
         self.assertIn("source_status", HTML)
