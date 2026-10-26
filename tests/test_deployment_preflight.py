@@ -98,6 +98,13 @@ class DeploymentPreflightTests(unittest.TestCase):
         _, _, errors = preflight.inspect_environment(self.env)
         self.assertTrue(any("SQLite sidecar" in item and "symbolic link" in item for item in errors))
 
+    @unittest.skipUnless(os.name == "posix", "POSIX named pipes are required")
+    def test_rejects_fifo_sqlite_sidecar(self):
+        sidecar = Path(str(self.db_path) + "-wal")
+        os.mkfifo(sidecar)
+        _, _, errors = preflight.inspect_environment(self.env)
+        self.assertTrue(any("SQLite sidecar" in item and "not a regular file" in item for item in errors))
+
     def test_existing_database_must_be_readable_and_writable(self):
         self.db_path.write_text("test", encoding="utf-8")
         passed, warnings, errors = preflight.inspect_environment(self.env)
