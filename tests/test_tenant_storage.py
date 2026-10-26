@@ -30,6 +30,14 @@ class TenantSQLiteConnectionRouterTests(unittest.TestCase):
             db.execute(
                 "INSERT INTO database_profile(singleton,profile) VALUES(1,'firm')"
             )
+            db.executescript("""
+                CREATE TRIGGER database_profile_no_update
+                BEFORE UPDATE ON database_profile
+                BEGIN SELECT RAISE(ABORT, 'database profile binding is immutable'); END;
+                CREATE TRIGGER database_profile_no_delete
+                BEFORE DELETE ON database_profile
+                BEGIN SELECT RAISE(ABORT, 'database profile binding is immutable'); END;
+            """)
 
         with self._catalog() as catalog:
             provision_tenant_database(catalog, 101, self.root, initialize_tenant)
@@ -101,6 +109,21 @@ class TenantSQLiteConnectionRouterTests(unittest.TestCase):
         router = TenantSQLiteConnectionRouter(self._catalog, self.root)
         with self.assertRaisesRegex(TenantConnectionError, "bound to a different firm"):
             router.connection_for_firm(202)
+        router.close_current_thread()
+
+    def test_router_rejects_missing_or_ineffective_firm_binding_guards(self):
+        with self._catalog() as catalog:
+            path = resolve_tenant_database(catalog, 101, self.root)
+        with sqlite3.connect(path) as db:
+            db.execute("DROP TRIGGER tenant_database_binding_no_update")
+            db.executescript("""
+                CREATE TRIGGER tenant_database_binding_no_update
+                BEFORE UPDATE ON tenant_database_binding
+                BEGIN SELECT 1; END;
+            """)
+        router = TenantSQLiteConnectionRouter(self._catalog, self.root)
+        with self.assertRaisesRegex(TenantConnectionError, "lacks effective immutable guards"):
+            router.connection_for_firm(101)
         router.close_current_thread()
 
     def test_tenant_database_firm_binding_cannot_be_updated_or_deleted(self):
