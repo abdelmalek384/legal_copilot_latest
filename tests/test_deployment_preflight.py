@@ -24,6 +24,16 @@ class DeploymentPreflightTests(unittest.TestCase):
             "COPILOT_DB": str(self.db_path),
         }
 
+    def test_warns_when_secure_cookie_mode_is_not_explicitly_enabled(self):
+        _, warnings, errors = preflight.inspect_environment(self.env)
+        self.assertTrue(any("COPILOT_SECURE_COOKIES=1" in item for item in warnings))
+        self.assertEqual(errors, [])
+
+    def test_secure_cookie_mode_removes_proxy_transport_warning(self):
+        _, warnings, errors = preflight.inspect_environment(dict(self.env, COPILOT_SECURE_COOKIES="1"))
+        self.assertFalse(any("COPILOT_SECURE_COOKIES=1" in item for item in warnings))
+        self.assertEqual(errors, [])
+
     def test_rejects_unlinked_legacy_law_search_override(self):
         _, _, errors = preflight.inspect_environment(dict(self.env, ALLOW_UNLINKED_LEGACY_LAW_SEARCH="1"))
         self.assertTrue(any("ALLOW_UNLINKED_LEGACY_LAW_SEARCH" in item for item in errors))
