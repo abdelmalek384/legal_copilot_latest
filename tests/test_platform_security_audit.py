@@ -90,6 +90,33 @@ class PlatformSecurityAuditTests(unittest.TestCase):
         self.assertIn(("membership_created", second_id, self.firm_id), logged)
         self.assertIn(("firm_disabled", None, self.firm_id), logged)
 
+    def test_membership_audit_failure_rolls_back_membership_and_closes_transaction(self):
+        control = self.runtime.control_connection()
+        cursor = control.execute(
+            "INSERT INTO users(name,email_display,email_normalized,password_hash,status) "
+            "VALUES('Audit target','target@example.test','target@example.test','test-hash','active')"
+        )
+        target_id = cursor.lastrowid
+        control.execute("""
+            CREATE TRIGGER reject_membership_audit BEFORE INSERT ON platform_security_events
+            WHEN NEW.event_type='membership_created'
+            BEGIN SELECT RAISE(ABORT, 'membership audit unavailable'); END
+        """)
+        control.commit()
+        with self.assertRaisesRegex(Exception, "membership audit unavailable"):
+            self.runtime.create_firm_membership(
+                target_id, self.firm_id, "lawyer", created_by_user_id=self.user_id
+            )
+        self.assertFalse(control.in_transaction, "failed membership transaction must be rolled back")
+        self.assertEqual(control.execute(
+            "SELECT COUNT(*) FROM firm_memberships WHERE user_id=? AND firm_id=?",
+            (target_id, self.firm_id),
+        ).fetchone()[0], 0)
+        self.assertEqual(control.execute(
+            "SELECT COUNT(*) FROM platform_security_events WHERE target_user_id=? AND event_type='membership_created'",
+            (target_id,),
+        ).fetchone()[0], 0)
+
     def test_provisioning_audit_failure_leaves_firm_and_catalog_disabled(self):
         control = self.runtime.control_connection()
         control.execute("""
