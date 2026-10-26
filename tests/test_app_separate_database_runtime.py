@@ -252,6 +252,75 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             0,
         )
 
+    def test_audit_lists_and_csv_exports_are_scoped_to_active_firm(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+
+        context_a = self.runtime.resolve_context(self.user_id, self.firm_a)
+        db_a = self.runtime.firm_connection(context_a)
+        db_a.execute(
+            "INSERT INTO case_deletion_audit(firm_id,case_id,actor_user_id,actor_name,"
+            "case_snapshot_json,events_snapshot_json,related_counts_json) VALUES(?,?,?,?,?,?,?)",
+            (self.firm_a, 101, self.user_id, "Owner A", '{"title":"FIRM_A_AUDIT_SENTINEL"}', "[]", "{}"),
+        )
+        db_a.execute(
+            "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
+            (self.firm_a, self.user_id, "FIRM_A_SECURITY_SENTINEL"),
+        )
+        db_a.commit()
+
+        context_b = self.runtime.resolve_context(self.user_id, self.firm_b)
+        db_b = self.runtime.firm_connection(context_b)
+        db_b.execute(
+            "INSERT INTO case_deletion_audit(firm_id,case_id,actor_user_id,actor_name,"
+            "case_snapshot_json,events_snapshot_json,related_counts_json) VALUES(?,?,?,?,?,?,?)",
+            (self.firm_b, 202, self.user_id, "Owner B", '{"title":"FIRM_B_AUDIT_SENTINEL"}', "[]", "{}"),
+        )
+        db_b.execute(
+            "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
+            (self.firm_b, self.user_id, "FIRM_B_SECURITY_SENTINEL"),
+        )
+        db_b.commit()
+
+        audit_a = self.client.get("/audit/case-deletions")
+        self.assertEqual(audit_a.status_code, 200, audit_a.text)
+        self.assertEqual([item["firm_id"] for item in audit_a.json()["items"]], [self.firm_a])
+        self.assertIn("FIRM_A_AUDIT_SENTINEL", audit_a.text)
+        self.assertNotIn("FIRM_B_AUDIT_SENTINEL", audit_a.text)
+
+        events_a = self.client.get("/audit/security-events")
+        self.assertEqual(events_a.status_code, 200, events_a.text)
+        self.assertEqual([item["firm_id"] for item in events_a.json()["items"]], [self.firm_a])
+        csv_a = self.client.get("/audit/security-events.csv")
+        self.assertEqual(csv_a.status_code, 200, csv_a.text)
+        self.assertIn("FIRM_A_SECURITY_SENTINEL", csv_a.text)
+        self.assertNotIn("FIRM_B_SECURITY_SENTINEL", csv_a.text)
+
+        control = self.runtime.control_connection()
+        control.execute(
+            "UPDATE firm_memberships SET firm_role='admin' WHERE user_id=? AND firm_id=?",
+            (self.user_id, self.firm_b),
+        )
+        control.commit()
+        switched = self._mutate("post", "/session/firm", json={"firm_id": self.firm_b})
+        self.assertEqual(switched.status_code, 200, switched.text)
+
+        audit_b = self.client.get("/audit/case-deletions")
+        self.assertEqual(audit_b.status_code, 200, audit_b.text)
+        self.assertEqual([item["firm_id"] for item in audit_b.json()["items"]], [self.firm_b])
+        self.assertIn("FIRM_B_AUDIT_SENTINEL", audit_b.text)
+        self.assertNotIn("FIRM_A_AUDIT_SENTINEL", audit_b.text)
+
+        events_b = self.client.get("/audit/security-events")
+        self.assertEqual(events_b.status_code, 200, events_b.text)
+        self.assertEqual([item["firm_id"] for item in events_b.json()["items"]], [self.firm_b])
+        csv_b = self.client.get("/audit/security-events.csv")
+        self.assertEqual(csv_b.status_code, 200, csv_b.text)
+        self.assertIn("FIRM_B_SECURITY_SENTINEL", csv_b.text)
+        self.assertNotIn("FIRM_A_SECURITY_SENTINEL", csv_b.text)
+
     def test_document_extraction_review_routes_are_isolated_across_firms(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
