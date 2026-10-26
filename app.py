@@ -2428,7 +2428,7 @@ def case_deletion_audit(limit: int = 50, offset: int = 0, u: dict = Depends(user
 def _csv_safe_cell(value):
     """Neutralize spreadsheet formulas in exported untrusted text fields."""
     text = "" if value is None else str(value)
-    if text.startswith(("=", "+", "-", "@", "\t", "\r", "\n")):
+    if text.lstrip(" \t\r\n\ufeff").startswith(("=", "+", "-", "@")):
         return "'" + text
     return text
 
