@@ -99,6 +99,11 @@ class ResearchInspectorTests(unittest.TestCase):
                 source["scope"] = scope
             self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW, repr(scope))
 
+    def test_citation_does_not_invent_today_when_as_of_is_missing(self):
+        source = valid_source()
+        source.pop("requested_as_of")
+        self.assertIn("as of unknown", citation_text(source))
+
     def test_citation_uses_only_recorded_pin_cite_and_metadata(self):
         citation = citation_text(valid_source(), "2026-10-24")
         self.assertIn("Test instrument", citation)
