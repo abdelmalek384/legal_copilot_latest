@@ -66,6 +66,14 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
         with self.assertRaisesRegex(EvaluationError, "expected pin citation"):
             evaluate([q], [result()])
 
+    def test_review_date_requires_exact_iso_calendar_date(self):
+        for value in ("20261026", "2026-1-2", "2026-W44-1", "2026-02-30"):
+            with self.subTest(value=value):
+                q = dict(approved())
+                q["review_date"] = value
+                with self.assertRaisesRegex(EvaluationError, "review_date"):
+                    evaluate([q], [result()])
+
     def test_missing_results_and_unknown_results_are_errors(self):
         with self.assertRaisesRegex(EvaluationError, "missing results"):
             evaluate([approved()], [])
