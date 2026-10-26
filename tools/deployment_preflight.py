@@ -221,7 +221,7 @@ def inspect_environment(env=None):
             inspect_database_path("COPILOT_CORPUS_DB", corpus)
             passed.append("Separate control-plane, per-firm storage, and shared legal-corpus paths are configured.")
         if env.get("COPILOT_DB", "").strip():
-            warnings.append("COPILOT_DB is also set; separate database paths take precedence, so review stale legacy configuration.")
+            errors.append("COPILOT_DB must be unset when separate database paths are configured; remove the stale legacy path to avoid ambiguous deployment configuration.")
     else:
         # Legacy compatibility mode is not approved for unrelated firms' confidential data.
         warnings.append(
