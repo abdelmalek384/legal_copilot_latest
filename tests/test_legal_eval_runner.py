@@ -4,7 +4,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from tools.run_legal_eval import RunnerError, read_questions, result_from_response
+from tools.run_legal_eval import RunnerError, read_questions, result_from_response, validate_base_url
 
 
 class LegalEvalRunnerTests(unittest.TestCase):
@@ -37,6 +37,19 @@ class LegalEvalRunnerTests(unittest.TestCase):
     def test_no_answer_is_an_abstention(self):
         row = result_from_response({"id": "Q3", "question_ar": "سؤال"}, {"found": False, "answer": None})
         self.assertTrue(row["abstained"])
+
+    def test_remote_targets_require_explicit_opt_in_and_https(self):
+        self.assertEqual(validate_base_url("http://127.0.0.1:8000"), "http://127.0.0.1:8000")
+        self.assertEqual(validate_base_url("http://localhost:8000/path"), "http://localhost:8000/path")
+        with self.assertRaisesRegex(RunnerError, "explicit --allow-remote"):
+            validate_base_url("https://legal.example.com")
+        with self.assertRaisesRegex(RunnerError, "HTTPS"):
+            validate_base_url("http://legal.example.com", allow_remote=True)
+        self.assertEqual(validate_base_url("https://legal.example.com", allow_remote=True), "https://legal.example.com")
+        with self.assertRaisesRegex(RunnerError, "embedded credentials"):
+            validate_base_url("https://user:secret@legal.example.com", allow_remote=True)
+        with self.assertRaisesRegex(RunnerError, "query string"):
+            validate_base_url("http://127.0.0.1:8000?token=secret")
 
     def test_question_loader_rejects_duplicate_ids_and_empty_sets(self):
         import tempfile
