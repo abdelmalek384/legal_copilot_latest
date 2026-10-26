@@ -13,6 +13,17 @@ This is a small seed benchmark for retrieval/citation testing, not a legal opini
 - A passing keyword check is not proof of a legally correct answer. The intended evaluator must check citation precision, answer completeness, misleading omissions and unsupported assertions.
 - The seed set currently focuses on constitutional questions. Practice-area coverage should be expanded only after source documents are collected and versioned for the Civil Code, Penal Code, procedural codes, labour, commercial, tax, personal status, administrative, consumer protection, data protection, social insurance and other fields.
 
+## Release-gate sample size
+
+When configuring any quality threshold in `tools/evaluate_legal_answers.py`, pass an explicit `--min-questions N`. The release gate fails if fewer lawyer-approved questions are scored than this minimum, and refuses to run quality thresholds without the minimum. For example:
+
+```sh
+python tools/evaluate_legal_answers.py --questions reviewed.jsonl --results model-results.jsonl \
+  --min-questions 100 --min-source-precision 0.98 --min-pin-cite-precision 0.98
+```
+
+The value `100` and metric thresholds above are illustrative, not approved acceptance criteria. The product owner and qualified Egyptian-law reviewers must set an appropriate sample size and thresholds for a representative benchmark, including practice-area and answerability coverage. Sample size and citation/abstention metrics do not establish legal correctness.
+
 ## Evaluation contract
 For each query, the product should:
 1. Answer in Arabic when asked in Arabic.
