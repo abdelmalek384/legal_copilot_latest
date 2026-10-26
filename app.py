@@ -910,7 +910,9 @@ def _answer_has_uncited_claims(answer):
         return True
     for raw_line in answer.splitlines():
         line = raw_line.strip()
-        if not line or re.match(r"^#{1,6}\s+", line) or re.fullmatch(r"[-*_]{3,}", line):
+        if (not line or re.match(r"^#{1,6}\s+", line)
+                or re.fullmatch(r"[-*_]{3,}", line)
+                or re.fullmatch(r"\*\*[^*]{1,100}[:：]\*\*", line)):
             continue
         # A standalone label/heading is not itself a legal claim.
         if line.endswith((":", "：")) and len(line) <= 100:
