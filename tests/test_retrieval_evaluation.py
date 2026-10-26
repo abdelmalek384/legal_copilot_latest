@@ -39,6 +39,26 @@ class RetrievalEvaluationTests(unittest.TestCase):
         self.assertIsNone(result["citation_precision"])
         self.assertTrue(all("not marked" in " ".join(x["reasons"]) for x in result["excluded_cases"]))
 
+    def test_seed_schema_expected_sources_alias_is_supported_after_review(self):
+        question = reviewed_question()
+        question["expected_sources"] = question.pop("expected_source_ids")
+        run = {
+            "question_id": question["id"],
+            "retrieved_source_ids": ["LAW-A", "LAW-B"],
+            "citations": [{"source_id": "LAW-A", "pin_cite": "Article 12"}],
+            "abstained": False,
+            "used_unverified_source": False,
+        }
+        result = score_evaluation([question], [run])
+        self.assertEqual(result["reviewed_cases_scored"], 1)
+        self.assertEqual(result["metrics"]["recall_at_5"], 1.0)
+
+    def test_conflicting_expected_source_aliases_are_excluded(self):
+        question = reviewed_question(expected_sources=["LAW-X"])
+        result = score_evaluation([question], [])
+        self.assertEqual(result["reviewed_cases_scored"], 0)
+        self.assertIn("conflict", " ".join(result["excluded_cases"][0]["reasons"]))
+
     def test_recall_mrr_citation_and_pin_cite_metrics(self):
         question = reviewed_question()
         run = {
