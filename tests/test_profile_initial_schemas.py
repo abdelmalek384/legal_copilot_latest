@@ -205,7 +205,7 @@ class ProfileInitialSchemaTests(unittest.TestCase):
 
     def test_case_children_cascade(self):
         db = self.build("firm")
-        db.execute("INSERT INTO cases(id,title) VALUES(7,'test')")
+        db.execute("INSERT INTO cases(id,title,firm_id) VALUES(7,'test',7)")
         db.execute("INSERT INTO notes(case_id,text) VALUES(7,'note')")
         db.execute("DELETE FROM cases WHERE id=7")
         self.assertEqual(db.execute("SELECT count(*) FROM notes").fetchone()[0], 0)
