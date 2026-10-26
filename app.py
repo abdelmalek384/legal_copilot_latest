@@ -1229,6 +1229,53 @@ def legal_review_coverage(u: dict = Depends(user)):
     }
 
 
+@app.get("/legal-review/catalog")
+def legal_review_catalog(kind: str = "documents", q: str = "", limit: int = 100, u: dict = Depends(user)):
+    """Read-only drill-down for the shared legal registry; never returns matter documents."""
+    require_platform_legal_reviewer(u)
+    if kind not in {"sources", "documents", "metadata_only_documents"}:
+        raise HTTPException(422, "kind must be sources, documents, or metadata_only_documents")
+    search = q.strip()[:200]
+    pattern = "%" + search + "%"
+    limit = max(1, min(limit, 200))
+    c = conn()
+    if kind == "sources":
+        rows = c.execute(
+            "SELECT s.source_id,s.authority,s.source_page,"
+            "COALESCE(s.collection_permission,'unknown') AS collection_permission,"
+            "COALESCE(s.commercial_reuse_permission,'unknown') AS commercial_reuse_permission,"
+            "COUNT(DISTINCT d.document_id) AS document_count "
+            "FROM legal_sources s LEFT JOIN legal_documents d ON d.source_id=s.source_id "
+            "WHERE (?='' OR s.source_id LIKE ? OR COALESCE(s.authority,'') LIKE ? OR COALESCE(s.source_page,'') LIKE ?) "
+            "GROUP BY s.source_id ORDER BY COALESCE(s.authority,''),s.source_id LIMIT ?",
+            (search, pattern, pattern, pattern, limit),
+        ).fetchall()
+        items = [dict(row) for row in rows]
+    else:
+        metadata_filter = "AND NOT EXISTS (SELECT 1 FROM legal_document_versions v WHERE v.document_id=d.document_id)" if kind == "metadata_only_documents" else ""
+        rows = c.execute(
+            "SELECT d.document_id,d.source_id,d.official_title,d.law_number,d.law_year,d.document_type,"
+            "COALESCE(NULLIF(TRIM(d.practice_area),''),'unknown') AS practice_area,"
+            "COALESCE(s.authority,'unknown') AS authority,s.source_page,"
+            "COALESCE(s.collection_permission,'unknown') AS collection_permission,"
+            "COALESCE(s.commercial_reuse_permission,'unknown') AS commercial_reuse_permission,"
+            "(SELECT COUNT(*) FROM legal_document_versions v WHERE v.document_id=d.document_id) AS version_count "
+            "FROM legal_documents d LEFT JOIN legal_sources s ON s.source_id=d.source_id "
+            "WHERE (?='' OR d.document_id LIKE ? OR COALESCE(d.official_title,'') LIKE ? OR "
+            "COALESCE(d.law_number,'') LIKE ? OR COALESCE(d.law_year,'') LIKE ? OR COALESCE(s.authority,'') LIKE ?) "
+            + metadata_filter +
+            " ORDER BY COALESCE(d.official_title,''),d.document_id LIMIT ?",
+            (search, pattern, pattern, pattern, pattern, pattern, limit),
+        ).fetchall()
+        items = [dict(row) for row in rows]
+    return {
+        "kind": kind,
+        "items": items,
+        "limit": limit,
+        "warning": "Shared legal-registry metadata only. This endpoint does not return matter documents, fetch source pages, or establish legal completeness or correctness.",
+    }
+
+
 @app.get("/legal-review/versions/{version_id}/events")
 def legal_review_events(version_id: int, u: dict = Depends(user)):
     require_platform_legal_reviewer(u)
