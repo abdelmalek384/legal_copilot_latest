@@ -215,7 +215,7 @@ def render_markdown(report):
     if report["issues"]:
         lines.extend(["| Severity | Code | Document | Details |", "|---|---|---|---|"])
         lines.extend(
-            f"| {item['severity']} | {item['code']} | {item.get('document_id', '')} | {item['detail'].replace('|', '\\|')} |"
+            f"| {item['severity']} | {item['code']} | {item.get('document_id', '')} | {item['detail'].replace('|', '&#124;')} |"
             for item in report["issues"]
         )
     else:
