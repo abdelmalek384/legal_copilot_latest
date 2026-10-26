@@ -29,3 +29,24 @@ Do not describe Legal Copilot as legally accurate or production-ready until an E
 - `labour_law_questions_for_lawyer.csv`: the same questions as an Excel-friendly sheet with Arabic headers and blank answer columns for the reviewing lawyer.
 - Do not score model accuracy on these until an Egyptian lawyer has filled in the answers, cited primary sources, and recorded `reviewer_name` and `review_date`. After review, copy approved rows back into the JSONL and set `review_status` accordingly.
 - The date-sensitive questions test whether the system applies the correct law for events before and after the new labour law took effect; the lawyer must confirm the applicable dates from the Official Gazette.
+
+
+## Automated evidence-behavior evaluator
+
+The tool `tools/evaluate_legal_answers.py` computes source-ID recall, exact reviewed pin-citation recall, citation presence for answerable questions, and agreement with a lawyer-reviewed answerability/abstention label. It does **not** score whether the generated legal explanation is semantically correct.
+
+Only rows with `review_status: "lawyer_approved"` are scored. Each scored row must include a non-empty expected answer, named reviewer, ISO review date, explicit boolean `answerable`, and reviewed citations for answerable questions. Unreviewed drafts are reported as excluded. The evaluator refuses to run if no reviewed questions exist, if results are missing for reviewed IDs, or if result IDs are unknown.
+
+Model-output JSONL format (one record per question ID):
+
+```json
+{"id":"Q-CIVIL-001","answer":"...","abstained":false,"cited_sources":["LAW-123"],"cited_pin_cites":[{"source_id":"LAW-123","pin_cite":"المادة 163"}]}
+```
+
+Run it after a lawyer has approved the benchmark and a model-output JSONL has been collected:
+
+```bash
+python tools/evaluate_legal_answers.py --questions tests/legal_eval/reviewed_questions.jsonl --results model_outputs.jsonl --out evaluation-report.json
+```
+
+Do not turn this report into a claim of legal accuracy. A lawyer must separately review substantive correctness, source authenticity/currentness, and whether citations actually support each legal proposition.
