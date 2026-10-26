@@ -142,9 +142,70 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
                 add("invalid_catalog_migration_ledger", None, "control-plane migration ledger is malformed or unreadable")
         if "tenant_database_catalog" not in tables:
             raise ValueError("catalog is missing tenant_database_catalog")
+
+        # Validate catalog authority before reading any tenant file reference.
+        if "firms" not in tables:
+            add("missing_catalog_firms_table", None, "control-plane catalog has no firms table")
+        else:
+            try:
+                catalog_fks = catalog.execute(
+                    "PRAGMA foreign_key_list(tenant_database_catalog)"
+                ).fetchall()
+                has_firm_fk = any(
+                    row[2] == "firms" and row[3] == "firm_id" and row[4] == "id"
+                    for row in catalog_fks
+                )
+                if not has_firm_fk:
+                    add("missing_catalog_firm_foreign_key", None, "tenant catalog firm_id is not constrained to firms.id")
+                orphan_rows = catalog.execute(
+                    "SELECT t.firm_id FROM tenant_database_catalog AS t "
+                    "LEFT JOIN firms AS f ON f.id=t.firm_id "
+                    "WHERE f.id IS NULL ORDER BY t.firm_id LIMIT 20"
+                ).fetchall()
+                if orphan_rows:
+                    add("orphaned_catalog_firm_reference", None, f"tenant catalog references missing firm IDs: {[row[0] for row in orphan_rows]}")
+            except sqlite3.Error:
+                add("invalid_catalog_firm_mapping", None, "tenant catalog firm mapping could not be validated")
+
         rows = catalog.execute(
             "SELECT firm_id, database_file, status FROM tenant_database_catalog ORDER BY firm_id"
         ).fetchall()
+
+    # Any global trust failure means the catalog cannot safely authorize file
+    # access. Report it without opening tenant databases, even read-only.
+    catalog_authority_codes = {
+        "missing_catalog_profile",
+        "invalid_catalog_profile_binding",
+        "wrong_catalog_profile",
+        "mutable_catalog_profile_binding",
+        "missing_catalog_migration_ledger",
+        "incomplete_catalog_migration_history",
+        "unexpected_catalog_migration_history",
+        "catalog_migration_checksum_mismatch",
+        "invalid_catalog_migration_ledger",
+        "missing_catalog_firms_table",
+        "missing_catalog_firm_foreign_key",
+        "orphaned_catalog_firm_reference",
+        "invalid_catalog_firm_mapping",
+    }
+    if any(item["firm_id"] is None and item["code"] in catalog_authority_codes for item in findings):
+        return {
+            "mode": "read_only",
+            "catalog": str(resolved_catalog),
+            "tenant_storage_root": str(root),
+            "catalog_entries": len(rows),
+            "tenant_databases_inspected": 0,
+            "finding_count": len(findings),
+            "status": "review_required",
+            "findings": findings,
+            "limitations": [
+                "Tenant database files were not opened because catalog authority checks failed.",
+                "A clean report does not prove tenant authorization or cross-firm isolation.",
+                "This checks catalog mappings and SQLite integrity only; it does not inspect application queries, file storage, backups, or deployment configuration.",
+                "Disabled tenants are not opened. Provisioning and failed entries are reported but never repaired.",
+                "The catalog and tenant files can change after inspection; run during a quiet maintenance window for a stable snapshot.",
+            ],
+        }
 
     seen_files: dict[str, int] = {}
     inspected = 0
