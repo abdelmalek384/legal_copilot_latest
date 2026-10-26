@@ -308,6 +308,54 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             with self.subTest(table=table):
                 self.assertEqual(db_b.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0], 0)
 
+    def test_platform_reviewer_role_is_separate_and_revocation_is_immediate(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+
+        corpus = self.runtime.legal_corpus_connection()
+        corpus.execute(
+            "INSERT INTO legal_sources(source_id,authority,source_page) VALUES(?,?,?)",
+            ("platform-review-source", "Platform review test", "https://example.test/source"),
+        )
+        corpus.execute(
+            "INSERT INTO legal_documents(document_id,source_id,official_title,document_type) VALUES(?,?,?,?)",
+            ("platform-review-doc", "platform-review-source", "Review test document", "statute"),
+        )
+        corpus.execute(
+            "INSERT INTO legal_document_versions(version_id,document_id,version_label,source_url) VALUES(?,?,?,?)",
+            (777, "platform-review-doc", "v1", "https://example.test/source/v1"),
+        )
+        corpus.commit()
+        payload = {"review_type": "source_authenticity", "outcome": "pending", "notes": "test event"}
+        url = "/legal-review/versions/777/events"
+
+        # Firm-owner/admin membership does not imply a platform reviewer role.
+        denied = self._mutate("post", url, json=payload)
+        self.assertEqual(denied.status_code, 403, denied.text)
+
+        control = self.runtime.control_connection()
+        control.execute(
+            "INSERT INTO user_platform_roles(user_id,role_name) VALUES(?,?)",
+            (self.user_id, "platform_reviewer"),
+        )
+        control.commit()
+        allowed = self._mutate("post", url, json=payload)
+        self.assertEqual(allowed.status_code, 201, allowed.text)
+
+        control.execute(
+            "DELETE FROM user_platform_roles WHERE user_id=? AND role_name='platform_reviewer'",
+            (self.user_id,),
+        )
+        control.commit()
+        denied_after_revocation = self._mutate("post", url, json=payload)
+        self.assertEqual(denied_after_revocation.status_code, 403, denied_after_revocation.text)
+        self.assertEqual(
+            corpus.execute("SELECT COUNT(*) FROM legal_review_events WHERE version_id=777").fetchone()[0],
+            1,
+        )
+
     def test_search_and_ask_reject_case_ids_from_another_firm(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
