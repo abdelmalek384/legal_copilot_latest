@@ -4,6 +4,7 @@ import argparse
 import ipaddress
 import math
 import os
+import re
 import stat
 import sys
 from pathlib import Path
@@ -37,7 +38,7 @@ def valid_trusted_hosts(value):
     """Validate explicit hostnames/IPs and optional subdomain wildcards."""
     if not isinstance(value, str) or not value.strip():
         return False
-    label_pattern = __import__("re").compile(r"^[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?$")
+    label_pattern = re.compile(r"^[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?$")
     for raw in value.split(","):
         host = raw.strip().lower()
         if not host or host == "*" or "://" in host or "/" in host or "@" in host:
