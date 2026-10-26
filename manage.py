@@ -60,6 +60,12 @@ def adduser(a):
         c = runtime.control_connection()
         try:
             c.execute("BEGIN IMMEDIATE")
+            firm = c.execute(
+                "SELECT status FROM firms WHERE id=?", (a.firm_id,)
+            ).fetchone()
+            if firm is None or firm["status"] != "active":
+                c.rollback()
+                raise SystemExit("Cannot create a user membership for a missing or inactive firm.")
             cur = c.execute(
                 "INSERT INTO users(name,email_display,email_normalized,password_hash,status) "
                 "VALUES(?,?,?,?,'active')",

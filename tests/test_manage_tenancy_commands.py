@@ -51,6 +51,42 @@ class TenancyCommandTests(unittest.TestCase):
             check=False,
         )
 
+    def test_adduser_rejects_inactive_firm_without_creating_identity(self):
+        control = self.runtime.control_connection()
+        control.execute(
+            "UPDATE firms SET status='disabled',updated_at=datetime('now') WHERE id=?",
+            (self.firm_a,),
+        )
+        control.commit()
+
+        result = subprocess.run(
+            [sys.executable, str(MANAGE), "adduser", "Blocked User",
+             "blocked-user@example.test", "lawyer", "--firm-id", str(self.firm_a)],
+            cwd=ROOT,
+            env=self.env,
+            input="StrongPassphrase-2026!\n",
+            text=True,
+            capture_output=True,
+            timeout=60,
+            check=False,
+        )
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("inactive firm", result.stderr)
+        self.assertEqual(
+            control.execute(
+                "SELECT COUNT(*) FROM users WHERE email_normalized=?",
+                ("blocked-user@example.test",),
+            ).fetchone()[0],
+            0,
+        )
+        self.assertEqual(
+            control.execute(
+                "SELECT COUNT(*) FROM firm_memberships WHERE firm_id=?",
+                (self.firm_a,),
+            ).fetchone()[0],
+            1,
+        )
+
     def test_provision_firm_and_attach_existing_global_identity(self):
         provisioned = self.run_manage("provision-firm", "Firm B")
         self.assertEqual(provisioned.returncode, 0, provisioned.stderr)
