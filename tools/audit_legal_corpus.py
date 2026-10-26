@@ -189,9 +189,24 @@ def audit(db_path: Path):
                         repeal_before_effective += 1
                 q["malformed_dates"] = malformed_dates
                 q["repeal_before_effective_date"] = repeal_before_effective
+                today = datetime.now(timezone.utc).date()
+                q["in_force_before_effective_date"] = 0
+                q["in_force_after_repeal_date"] = 0
+                q["repealed_without_repeal_date"] = 0
+                if {"legal_status", "effective_date", "repeal_date"}.issubset(vc):
+                    for version in db.execute("SELECT legal_status, effective_date, repeal_date FROM legal_document_versions").fetchall():
+                        status = str(version[0] or "").strip().lower()
+                        effective = version[1]
+                        repeal = version[2]
+                        if status == "in_force" and valid_iso_date(effective) and date.fromisoformat(effective) > today:
+                            q["in_force_before_effective_date"] += 1
+                        if status == "in_force" and valid_iso_date(repeal) and date.fromisoformat(repeal) < today:
+                            q["in_force_after_repeal_date"] += 1
+                        if status == "repealed" and not valid_iso_date(repeal):
+                            q["repealed_without_repeal_date"] += 1
                 result["version_quality"]=q
                 for key in q:
-                    if q[key]: result["issues"].append({"severity":"high" if key in ("not_verified","unknown_legal_status","malformed_sha256","invalid_source_url","malformed_dates","repeal_before_effective_date") else "medium","code":"versions_"+key,"count":q[key]})
+                    if q[key]: result["issues"].append({"severity":"high" if key in ("not_verified","unknown_legal_status","malformed_sha256","invalid_source_url","malformed_dates","repeal_before_effective_date","in_force_before_effective_date","in_force_after_repeal_date","repealed_without_repeal_date") else "medium","code":"versions_"+key,"count":q[key]})
 
                 # Amendment-history assertions need evidence, not just a boolean flag.
                 vc_required = {"version_id", "legal_status", "review_status", "amendment_history_verified"}
