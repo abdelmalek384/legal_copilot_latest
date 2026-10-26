@@ -652,6 +652,37 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         finally:
             other_client.close()
 
+    def test_deadline_action_cannot_mutate_another_firms_deadline(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate("post", "/cases", json={"title": "Firm A deadline action matter"})
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+        created_deadline = self._mutate(
+            "post", f"/cases/{case_id}/deadlines",
+            json={"title": "Firm A protected deadline", "due": "2099-01-01"},
+        )
+        self.assertEqual(created_deadline.status_code, 200, created_deadline.text)
+        context_a = self.runtime.resolve_context(self.user_id, self.firm_a)
+        db_a = self.runtime.firm_connection(context_a)
+        deadline_id = db_a.execute(
+            "SELECT id FROM deadlines WHERE case_id=?", (case_id,)
+        ).fetchone()["id"]
+
+        switched = self._mutate("post", "/session/firm", json={"firm_id": self.firm_b})
+        self.assertEqual(switched.status_code, 200, switched.text)
+        denied = self._mutate("post", f"/deadlines/{deadline_id}/done")
+        self.assertEqual(denied.status_code, 404, denied.text)
+        self.assertEqual(
+            db_a.execute("SELECT status FROM deadlines WHERE id=?", (deadline_id,)).fetchone()["status"],
+            "open",
+        )
+        context_b = self.runtime.resolve_context(self.user_id, self.firm_b)
+        db_b = self.runtime.firm_connection(context_b)
+        self.assertEqual(db_b.execute("SELECT COUNT(*) FROM deadlines").fetchone()[0], 0)
+
     def test_nonmember_cannot_switch_firms_and_revoked_membership_blocks_cached_session(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
