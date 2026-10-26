@@ -434,5 +434,28 @@ class ProfileInitialSchemaTests(unittest.TestCase):
                 VALUES(2,'Second','STRASSE@example.com',?,'test-hash')""", (second,))
         db.close()
 
+    def test_platform_security_ledger_accepts_identity_creation_event_and_remains_append_only(self):
+        db = self.build("control_plane")
+        db.execute(
+            "INSERT INTO platform_security_events(event_type,detail_json) "
+            "VALUES('identity_created_cli','{}')"
+        )
+        db.commit()
+        self.assertEqual(
+            db.execute(
+                "SELECT event_type FROM platform_security_events"
+            ).fetchone()[0],
+            "identity_created_cli",
+        )
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "append-only"):
+            db.execute("UPDATE platform_security_events SET detail_json='{}' WHERE id=1")
+        db.rollback()
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "append-only"):
+            db.execute("DELETE FROM platform_security_events WHERE id=1")
+        db.rollback()
+        db.close()
+
+
+
 if __name__ == "__main__":
     unittest.main()
