@@ -11,10 +11,11 @@ Use `tools/evaluate_arabic_ocr.py` to compare OCR text with a manually corrected
 Provide one JSON object per line in UTF-8 JSONL:
 
 ```json
-{"document_id":"approved-test-scan-01","page":"1","reference_text":"Manually corrected page transcription","ocr_text":"Text returned by the OCR pipeline"}
+{"document_id":"approved-test-scan-01","page":"1","reference_text":"المادة ١٢ لا يجوز ...","ocr_text":"المادة ١٢ يجوز ...","critical_tokens":["المادة ١٢","لا يجوز"]}
 ```
 
 - Use one record per page, not one record per entire multi-page document.
+- Optionally include `critical_tokens`: exact article-number phrases, dates, monetary amounts, party names, or negation/proviso phrases that must survive OCR. Each token/phrase must occur in the human-checked reference text; the evaluator reports exact normalized token-sequence recall and missing critical tokens per page/document/overall.
 - Reference text must be manually transcribed and checked against the page image by a qualified reviewer.
 - Use only scans you are authorized to process. Do not commit client documents, privileged content, personal data, or unlicensed court materials to the public repository.
 - Keep a private mapping from opaque document IDs to source files; do not include names or case numbers in a public benchmark.
@@ -23,8 +24,8 @@ Provide one JSON object per line in UTF-8 JSONL:
 ## Run
 
 ```bash
-python tools/evaluate_arabic_ocr.py /secure/path/ocr-evaluation.jsonl --output /secure/path/ocr-report.json
-python -m unittest tests.test_evaluate_arabic_ocr
+python tools/evaluate_ocr_quality.py --input /secure/path/ocr-evaluation.jsonl --out /secure/path/ocr-report.json
+python tests/test_ocr_quality_evaluation.py
 ```
 
 The script has no third-party dependency. CER is character edit distance divided by normalized reference characters; WER is word edit distance divided by normalized reference words. Aggregate scores are micro-averaged by reference length, so long pages contribute proportionally more than short pages.
