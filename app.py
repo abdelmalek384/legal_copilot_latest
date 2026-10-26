@@ -1372,7 +1372,36 @@ def extract(name, data):
         except zipfile.BadZipFile:
             raise HTTPException(422, "invalid DOCX archive")
         import docx
-        text = "\n\n".join(p.text for p in docx.Document(io.BytesIO(data)).paragraphs)
+        from docx.oxml.table import CT_Tbl
+        from docx.oxml.text.paragraph import CT_P
+        from docx.table import Table
+        from docx.text.paragraph import Paragraph
+
+        document = docx.Document(io.BytesIO(data))
+        parts = []
+        # Walk body elements in document order so table rows remain searchable
+        # alongside the paragraphs that introduce them.
+        for element in document.element.body.iterchildren():
+            if isinstance(element, CT_P):
+                value = Paragraph(element, document).text.strip()
+                if value:
+                    parts.append(value)
+            elif isinstance(element, CT_Tbl):
+                table = Table(element, document)
+                for row in table.rows:
+                    cells = [re.sub(r"\s+", " ", cell.text).strip() for cell in row.cells]
+                    if any(cells):
+                        parts.append(" | ".join(cells))
+        # Headers/footers can contain party names, document numbers, or page
+        # labels omitted from the body. Deduplicate linked sections.
+        seen_header_footer = set()
+        for section in document.sections:
+            for label, container in (("Header", section.header), ("Footer", section.footer)):
+                value = "\n".join(p.text.strip() for p in container.paragraphs if p.text.strip())
+                if value and value not in seen_header_footer:
+                    seen_header_footer.add(value)
+                    parts.append(f"[{label}] {value}")
+        text = "\n\n".join(parts)
     else:
         raise HTTPException(415, "PDF or DOCX only")
     if len(text) > 1_000_000:

@@ -66,6 +66,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_tenant_ownership_preflight.py
       - name: Validate legal data registry and evaluation seeds
         run: python tools/validate_legal_data_foundation.py
+      - name: Test DOCX table and header extraction
+        run: PYTHONPATH=. python tests/test_docx_table_extraction.py
       - name: Test page-aware PDF retrieval citations
         run: PYTHONPATH=. python tests/test_pdf_page_references.py
       - name: Test inline legal citation coverage
