@@ -16,12 +16,15 @@ def require(condition, message):
 
 
 manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+require(isinstance(manifest, dict), "source manifest must be a JSON object")
 sources = manifest.get("sources")
 require(isinstance(sources, list) and sources, "manifest needs a non-empty sources list")
 source_ids = []
 for index, source in enumerate(sources, start=1):
-    require(source.get("id") and source.get("name") and source.get("category"),
-            f"source #{index} needs id, name, and category")
+    require(isinstance(source, dict), f"source #{index} must be a JSON object")
+    require(all(isinstance(source.get(field), str) and source[field].strip()
+                for field in ("id", "name", "category")),
+            f"source #{index} needs non-empty string id, name, and category")
     for field in ("license_status", "access_status", "priority"):
         require(source.get(field), f"{source.get('id', 'source #' + str(index))} needs {field}")
     # Group entries (e.g. books, journals, commercial databases) intentionally have no single URL.
@@ -52,8 +55,10 @@ for line_number, line in enumerate(questions_path.read_text(encoding="utf-8").sp
         question = json.loads(line)
     except json.JSONDecodeError as exc:
         raise SystemExit(f"VALIDATION FAILED: question seed line {line_number}: {exc}") from exc
+    require(isinstance(question, dict), f"question seed line {line_number} must be a JSON object")
     for field in ("id", "practice_area", "question_ar", "review_status"):
-        require(question.get(field), f"question seed line {line_number} needs {field}")
+        require(isinstance(question.get(field), str) and question[field].strip(),
+                f"question seed line {line_number} needs non-empty string {field}")
     require(question.get("expected_answer") is None,
             f"{question['id']} must not start with an invented answer")
     require(question.get("expected_sources") == [],
