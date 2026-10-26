@@ -78,6 +78,22 @@ class DatabaseRuntimeTests(unittest.TestCase):
         finally:
             sidecar.unlink(missing_ok=True)
 
+    def test_firm_connection_revalidates_attached_corpus_even_when_tenant_is_cached(self):
+        if os.name != "posix":
+            self.skipTest("POSIX mode bits are not portable to this platform")
+        user_id = self._identity()
+        firm_id, _ = self.runtime.provision_firm("Attached Corpus Validation")
+        self.runtime.create_firm_membership(user_id, firm_id, "admin")
+        context = self.runtime.resolve_context(user_id, firm_id)
+        self.runtime.firm_connection(context)
+
+        os.chmod(self.runtime.paths.legal_corpus, 0o644)
+        try:
+            with self.assertRaisesRegex(DatabaseRuntimeError, "legal-corpus database file permissions"):
+                self.runtime.firm_connection(context)
+        finally:
+            os.chmod(self.runtime.paths.legal_corpus, 0o600)
+
     def test_profiles_are_separate_and_firm_databases_are_distinct(self):
         user_id = self._identity()
         firm_a, path_a = self.runtime.provision_firm("Firm A")
