@@ -1,7 +1,7 @@
 # Database completion tracker
 
 **Last updated:** 2026-10-26  
-**Estimated completion:** 44%  
+**Estimated completion:** 45%  
 **Status:** In progress — not production-ready for confidential multi-firm matter data.
 
 This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. This is a weighted engineering estimate, not a test-pass percentage or a count of commits. The separate-database runtime and encrypted backup/restore are now merged, but legacy-data reconciliation, exhaustive route coverage, schema-migration completion, and recovery/rollback drills remain release blockers.
@@ -33,6 +33,10 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 - [x] Add management CLI commands to provision additional firm databases and attach existing active global identities to a firm; duplicate membership attempts fail (PR #410 merged; CI passed).
 - [x] Ensure a catalog connection-open failure cannot strand a new firm in `provisioning`; failed provisioning marks it disabled and leaves no tenant DB file (PR #408 merged; CI passed).
 - [x] Test that disabled global identities cannot be added to new firm memberships (PR #407 merged; CI passed).
+- [x] Reject CLI user creation when the target firm is missing or inactive, atomically preventing orphaned global identities (PR #413 merged; CI passed).
+- [x] Create new control-plane and shared-corpus database files with restrictive POSIX permissions and clean up incomplete newly created files if permissions cannot be enforced (PR #415 merged; CI passed).
+- [x] Revalidate control-plane/corpus file permissions and SQLite sidecars before direct connection use, revoking unsafe cached direct connections (PR #418 merged; CI passed).
+- [x] Add a non-destructive `disable-firm` operator command that atomically disables the firm and its catalog mapping without deleting data; no re-enable path is provided (PR #419 merged; CI passed).
 - [x] Add regression coverage that `deployment_preflight.py --strict` fails while the shared-database multi-firm safety warning remains, without creating a database file (PR #341 merged; CI run 40354404426 passed).
 
 - [x] Refuse to provision a tenant when pre-existing firm-binding trigger names conceal ineffective update/delete guards; validate the guards before marking the tenant provisioned (PR #340 merged; CI run 40354238518 passed).
@@ -169,7 +173,7 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 - [x] Add explicit three-path configuration and a fail-closed deployment preflight for the separate runtime (PR #384 merged; CI passed). Legacy `COPILOT_DB` compatibility remains available only when explicitly configured and is not approved for unrelated firms' confidential matters.
 - [x] Define separate firm and corpus schema profiles and initialize separate databases.
 - [ ] Complete reconciliation/classification of legacy mixed `chunks`/FTS records before any legacy cutover.
-- [ ] Complete lifecycle acceptance for provisioning retries/reconciliation, disabled tenants, unknown catalog entries, unavailable tenant databases, and revoked memberships across all API/background paths. Catalog connection-open failure cleanup and selected membership/revocation paths are now covered by PRs #407, #408, and #410; this is not exhaustive lifecycle coverage.
+- [ ] Complete lifecycle acceptance for provisioning retries/reconciliation, disabled tenants, unknown catalog entries, unavailable tenant databases, and revoked memberships across all API/background paths. PRs #407, #408, #410, #413, and #419 cover selected onboarding, failure-cleanup, membership, and disable paths; cached-connection revocation and attached-profile validation remain in review (PRs #420 and #422). This is not exhaustive lifecycle coverage.
 
 ### 4. Reconcile existing data safely
 - [ ] Run read-only ownership preflight against a protected production-like copy and retain its report.
