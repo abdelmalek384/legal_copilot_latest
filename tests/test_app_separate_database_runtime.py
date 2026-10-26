@@ -537,6 +537,61 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
                 denied = self.client.get(url)
                 self.assertEqual(denied.status_code, 403, denied.text)
 
+    def test_platform_reviewer_role_guards_shared_corpus_review_writes(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+
+        corpus = self.runtime.legal_corpus_connection()
+        corpus.execute(
+            "INSERT INTO legal_sources(source_id,authority,source_page) VALUES(?,?,?)",
+            ("review-write-source", "Review write test", "https://example.test/source"),
+        )
+        corpus.execute(
+            "INSERT INTO legal_documents(document_id,source_id,official_title,document_type) VALUES(?,?,?,?)",
+            ("review-write-doc", "review-write-source", "Review write document", "statute"),
+        )
+        corpus.execute(
+            "INSERT INTO legal_document_versions(version_id,document_id,version_label,source_url) VALUES(?,?,?,?)",
+            (779, "review-write-doc", "v1", "https://example.test/source/v1"),
+        )
+        corpus.commit()
+
+        payload = {
+            "review_type": "legal_status",
+            "outcome": "pending",
+            "notes": "Synthetic authorization regression test",
+        }
+        endpoint = "/legal-review/versions/779/events"
+        denied = self.client.post(endpoint, json=payload)
+        self.assertEqual(denied.status_code, 403, denied.text)
+
+        control = self.runtime.control_connection()
+        control.execute(
+            "INSERT INTO user_platform_roles(user_id,role_name) VALUES(?,?)",
+            (self.user_id, "platform_reviewer"),
+        )
+        control.commit()
+        allowed = self.client.post(endpoint, json=payload)
+        self.assertEqual(allowed.status_code, 201, allowed.text)
+        self.assertFalse(allowed.json()["status_changed"])
+
+        control.execute(
+            "DELETE FROM user_platform_roles WHERE user_id=? AND role_name='platform_reviewer'",
+            (self.user_id,),
+        )
+        control.commit()
+        denied_after_revocation = self.client.post(endpoint, json=payload)
+        self.assertEqual(denied_after_revocation.status_code, 403, denied_after_revocation.text)
+        self.assertEqual(
+            corpus.execute(
+                "SELECT COUNT(*) FROM legal_review_events WHERE version_id=779"
+            ).fetchone()[0],
+            1,
+            "revoked platform role must not append a review event",
+        )
+
     def test_shared_registry_discovery_never_returns_private_firm_documents(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
