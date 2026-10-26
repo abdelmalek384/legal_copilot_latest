@@ -51,6 +51,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("q='+encodeURIComponent(query)", HTML)
         self.assertIn("Search title, ID, or authority", HTML)
         self.assertIn("Search source and instrument registry", HTML)
+        self.assertIn("e.key==='Enter'){e.preventDefault();openCatalog(kind,searchInput.value)", HTML)
 
     def test_source_status_labels_have_plain_language_explanations_and_original_host(self):
         self.assertIn("const statusDescriptions={", HTML)
