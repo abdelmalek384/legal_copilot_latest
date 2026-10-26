@@ -486,6 +486,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertFalse(result["admin_review_required"])
 
     def test_shared_registry_discovery_never_returns_private_firm_documents(self):
+        # Query is issued with the same CSRF helper as other stateful API tests.
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
         )
