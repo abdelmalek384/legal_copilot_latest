@@ -3,8 +3,10 @@ import sqlite3
 import tempfile
 import unittest
 from pathlib import Path
+from contextlib import redirect_stderr
+import io
 
-from scripts.legacy_chunk_evidence_manifest import build_manifest
+from scripts.legacy_chunk_evidence_manifest import build_manifest, main
 
 
 class LegacyChunkEvidenceManifestTests(unittest.TestCase):
@@ -70,6 +72,44 @@ class LegacyChunkEvidenceManifestTests(unittest.TestCase):
                 self.assertIsNone(db.execute(
                     "SELECT name FROM sqlite_master WHERE name='schema_migrations'"
                 ).fetchone())
+
+    def test_output_cannot_overwrite_or_alias_source_database(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            database = Path(tmp) / "source.sqlite3"
+            with sqlite3.connect(database) as db:
+                db.execute("CREATE TABLE chunks(id INTEGER PRIMARY KEY, text TEXT)")
+                db.execute("INSERT INTO chunks(text) VALUES('preserve-me')")
+            stderr = io.StringIO()
+            with redirect_stderr(stderr):
+                self.assertEqual(main([str(database), "--output", str(database)]), 2)
+            self.assertIn("must not refer to the source database", stderr.getvalue())
+            with sqlite3.connect(database) as db:
+                self.assertEqual(db.execute("SELECT text FROM chunks").fetchone()[0], "preserve-me")
+
+            symlink = Path(tmp) / "source-symlink.sqlite3"
+            try:
+                symlink.symlink_to(database)
+            except OSError:
+                pass
+            else:
+                stderr = io.StringIO()
+                with redirect_stderr(stderr):
+                    self.assertEqual(main([str(database), "--output", str(symlink)]), 2)
+                self.assertIn("output path must not be a symlink", stderr.getvalue())
+                with sqlite3.connect(database) as db:
+                    self.assertEqual(db.execute("SELECT text FROM chunks").fetchone()[0], "preserve-me")
+
+            hardlink = Path(tmp) / "source-hardlink.sqlite3"
+            try:
+                hardlink.hardlink_to(database)
+            except OSError:
+                self.skipTest("hard links are unavailable in this environment")
+            stderr = io.StringIO()
+            with redirect_stderr(stderr):
+                self.assertEqual(main([str(database), "--output", str(hardlink)]), 2)
+            self.assertIn("must not refer to the source database", stderr.getvalue())
+            with sqlite3.connect(database) as db:
+                self.assertEqual(db.execute("SELECT text FROM chunks").fetchone()[0], "preserve-me")
 
     def test_missing_chunks_table_requires_review(self):
         with sqlite3.connect(":memory:") as db:

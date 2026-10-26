@@ -8,6 +8,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import sqlite3
 import sys
 from collections import Counter
@@ -183,6 +184,20 @@ def main(argv: list[str] | None = None) -> int:
     if args.output is not None and args.output.is_symlink():
         print(json.dumps({"status": "failed", "error": "output path must not be a symlink"}), file=sys.stderr)
         return 2
+    if args.output is not None:
+        try:
+            same_path = args.output.resolve() == args.database.resolve()
+            if args.output.exists() and args.database.exists():
+                same_path = same_path or os.path.samefile(args.output, args.database)
+        except OSError as exc:
+            print(json.dumps({"status": "failed", "error": str(exc)}), file=sys.stderr)
+            return 2
+        if same_path:
+            print(json.dumps({
+                "status": "failed",
+                "error": "output path must not refer to the source database",
+            }), file=sys.stderr)
+            return 2
     try:
         uri = args.database.resolve().as_uri() + "?mode=ro"
         conn = sqlite3.connect(uri, uri=True)
