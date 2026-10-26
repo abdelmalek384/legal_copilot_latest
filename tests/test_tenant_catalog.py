@@ -344,12 +344,8 @@ class TenantCatalogTests(unittest.TestCase):
 
         def with_noop_binding_guards(db):
             self.initialize_tenant(db)
-            db.execute("""
-                CREATE TABLE tenant_database_binding (
-                    singleton INTEGER PRIMARY KEY CHECK(singleton=1),
-                    firm_id INTEGER NOT NULL CHECK(firm_id>0)
-                )
-            """)
+            db.execute("DROP TRIGGER tenant_database_binding_no_update")
+            db.execute("DROP TRIGGER tenant_database_binding_no_delete")
             db.executescript("""
                 CREATE TRIGGER tenant_database_binding_no_update
                 BEFORE UPDATE ON tenant_database_binding
