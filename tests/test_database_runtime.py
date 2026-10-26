@@ -143,6 +143,45 @@ class DatabaseRuntimeTests(unittest.TestCase):
             1,
         )
 
+    def test_firm_row_ids_must_match_immutable_database_binding(self):
+        user_id = self._identity("scope-owner@example.test")
+        firm_a, _ = self.runtime.provision_firm("Scope Firm A")
+        firm_b, _ = self.runtime.provision_firm("Scope Firm B")
+        self.runtime.create_firm_membership(user_id, firm_a, "admin")
+        context_a = self.runtime.resolve_context(user_id, firm_a)
+        db = self.runtime.firm_connection(context_a)
+        case_id = db.execute(
+            "INSERT INTO cases(title,firm_id) VALUES('Scoped matter',?)", (firm_a,)
+        ).lastrowid
+        db.commit()
+
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "case firm scope"):
+            db.execute(
+                "INSERT INTO cases(title,firm_id) VALUES('Wrong tenant',?)", (firm_b,)
+            )
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "document firm scope"):
+            db.execute(
+                "INSERT INTO docs(case_id,name,firm_id) VALUES(?,?,?)",
+                (case_id, "wrong-tenant.pdf", firm_b),
+            )
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "research conversation firm scope"):
+            db.execute(
+                "INSERT INTO research_conversations(user_id,firm_id,title) VALUES(?,?,?)",
+                (user_id, firm_b, "wrong tenant"),
+            )
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "case deletion audit firm scope"):
+            db.execute(
+                "INSERT INTO case_deletion_audit(firm_id,case_id,actor_user_id,actor_name,"
+                "case_snapshot_json,events_snapshot_json,related_counts_json) "
+                "VALUES(?,?,?,?,?,?,?)",
+                (firm_b, case_id, user_id, "actor", "{}", "[]", "{}"),
+            )
+        db.rollback()
+        self.assertEqual(
+            db.execute("SELECT firm_id FROM cases WHERE id=?", (case_id,)).fetchone()[0],
+            firm_a,
+        )
+
     def test_catalog_connection_failure_does_not_strand_firm_in_provisioning(self):
         with patch.object(
             self.runtime,
