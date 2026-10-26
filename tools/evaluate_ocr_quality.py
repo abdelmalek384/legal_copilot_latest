@@ -31,6 +31,16 @@ def normalize_arabic(text):
     return re.sub(r"\s+", " ", text).strip()
 
 
+def _contains_token_sequence(text, phrase):
+    """Match an exact normalized token/phrase sequence, not a substring inside another word."""
+    haystack = normalize_arabic(text).split()
+    needle = normalize_arabic(phrase).split()
+    if not needle:
+        return False
+    return any(haystack[index:index + len(needle)] == needle
+               for index in range(len(haystack) - len(needle) + 1))
+
+
 def _sequence_edit_distance(reference_units, hypothesis_units):
     if len(reference_units) * len(hypothesis_units) > MAX_EDIT_CELLS:
         raise OCREvaluationError(
@@ -78,12 +88,32 @@ def _validate_rows(rows):
         seen.add(row_id)
         if not isinstance(row.get("reference_text"), str) or not isinstance(row.get("ocr_text"), str):
             raise OCREvaluationError(f"{row_id}: reference_text and ocr_text must be strings")
+        critical_tokens = row.get("critical_tokens", [])
+        if not isinstance(critical_tokens, list) or any(
+            not isinstance(token, str) or not token.strip() for token in critical_tokens
+        ):
+            raise OCREvaluationError(f"{row_id}: critical_tokens must be a list of non-empty strings")
+        critical_tokens = [token.strip() for token in critical_tokens]
+        normalized_critical_tokens = [normalize_arabic(token) for token in critical_tokens]
+        if any(not token for token in normalized_critical_tokens):
+            raise OCREvaluationError(f"{row_id}: critical_tokens cannot normalize to empty text")
+        if len(normalized_critical_tokens) != len(set(normalized_critical_tokens)):
+            raise OCREvaluationError(f"{row_id}: critical_tokens contains duplicates after normalization")
+        missing_from_reference = [
+            token for token, normalized in zip(critical_tokens, normalized_critical_tokens)
+            if not _contains_token_sequence(row["reference_text"], normalized)
+        ]
+        if missing_from_reference:
+            raise OCREvaluationError(
+                f"{row_id}: critical_tokens must appear in reference_text: {missing_from_reference}"
+            )
         clean.append({
             "id": row_id,
             "document_id": str(row.get("document_id") or "unspecified"),
             "page": row.get("page"),
             "reference_text": row["reference_text"],
             "ocr_text": row["ocr_text"],
+            "critical_tokens": critical_tokens,
         })
     if not clean:
         raise OCREvaluationError("no OCR comparison rows found")
@@ -107,6 +137,19 @@ def evaluate(rows):
             "normalized_cer": _rates(normalized_reference, normalized_hypothesis),
             "normalized_wer": _rates(normalized_reference, normalized_hypothesis, word_mode=True),
         }
+        missing_critical_tokens = [
+            token for token in row["critical_tokens"]
+            if not _contains_token_sequence(hypothesis, token)
+        ]
+        result.update({
+            "critical_tokens_expected_count": len(row["critical_tokens"]),
+            "critical_tokens_found_count": len(row["critical_tokens"]) - len(missing_critical_tokens),
+            "critical_token_recall": (
+                round((len(row["critical_tokens"]) - len(missing_critical_tokens)) / len(row["critical_tokens"]), 6)
+                if row["critical_tokens"] else None
+            ),
+            "missing_critical_tokens": missing_critical_tokens,
+        })
         page_results.append(result)
         per_document[row["document_id"]].append(result)
 
@@ -116,20 +159,40 @@ def evaluate(rows):
         return {"edits": edits, "reference_units": units,
                 "error_rate": round(edits / max(1, units), 6)}
 
+    def critical_summary(items):
+        expected = sum(item["critical_tokens_expected_count"] for item in items)
+        found = sum(item["critical_tokens_found_count"] for item in items)
+        pages_with_tokens = [item for item in items if item["critical_tokens_expected_count"] > 0]
+        pages_with_missing = sum(bool(item["missing_critical_tokens"]) for item in pages_with_tokens)
+        return {
+            "pages_with_critical_tokens": len(pages_with_tokens),
+            "critical_tokens_expected_count": expected,
+            "critical_tokens_found_count": found,
+            "critical_token_recall": round(found / expected, 6) if expected else None,
+            "pages_with_missing_critical_tokens": pages_with_missing,
+            "critical_token_page_failure_rate": (
+                round(pages_with_missing / len(pages_with_tokens), 6) if pages_with_tokens else None
+            ),
+        }
+
     return {
         "schema_version": 1,
         "evaluation_scope": "ocr_transcription_quality_only",
         "legal_correctness_scored": False,
         "rows_scored": len(page_results),
         "overall": {
-            metric: aggregate(page_results, metric)
-            for metric in ("raw_cer", "raw_wer", "normalized_cer", "normalized_wer")
+            **{
+                metric: aggregate(page_results, metric)
+                for metric in ("raw_cer", "raw_wer", "normalized_cer", "normalized_wer")
+            },
+            **critical_summary(page_results),
         },
         "by_document": {
             doc_id: {
                 "pages_scored": len(items),
                 **{metric: aggregate(items, metric)
                    for metric in ("raw_cer", "raw_wer", "normalized_cer", "normalized_wer")},
+                **critical_summary(items),
             }
             for doc_id, items in sorted(per_document.items())
         },
