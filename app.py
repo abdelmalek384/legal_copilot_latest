@@ -146,10 +146,16 @@ def _separate_runtime_enabled():
 if os.environ.get("COPILOT_ENV", "").strip().lower() in {"prod", "production"}:
     required_paths = ("COPILOT_CONTROL_DB", "COPILOT_TENANT_DB_ROOT", "COPILOT_CORPUS_DB")
     missing_paths = [name for name in required_paths if not os.environ.get(name, "").strip()]
-    if missing_paths or os.environ.get("COPILOT_DB", "").strip():
+    shared_path_set = bool(os.environ.get("COPILOT_DB", "").strip())
+    if missing_paths or shared_path_set:
+        reasons = []
+        if missing_paths:
+            reasons.append("missing separate paths: " + ", ".join(missing_paths))
+        if shared_path_set:
+            reasons.append("COPILOT_DB must be unset")
         raise RuntimeError(
-            "Production requires explicit separate database paths and forbids COPILOT_DB; "
-            "missing: " + (", ".join(missing_paths) if missing_paths else "none")
+            "Production requires explicit separate database paths and forbids legacy shared-database mode; "
+            + "; ".join(reasons)
         )
 
 
