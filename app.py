@@ -1071,6 +1071,33 @@ def _request_firm_context(request: Request):
         return None
 
 
+def _secure_cookie_transport(request):
+    """Honor HTTPS directly or an explicit TLS-terminating-proxy deployment setting."""
+    return request.url.scheme == "https" or os.environ.get("COPILOT_SECURE_COOKIES", "").strip() == "1"
+
+
+def _origin_matches_request(origin, request):
+    """Compare browser Origin to request origin or an explicit public HTTPS origin."""
+    from urllib.parse import urlsplit
+    try:
+        parsed = urlsplit(origin)
+        if (parsed.scheme not in {"http", "https"} or not parsed.netloc
+                or parsed.username or parsed.password or parsed.path not in {"", "/"}
+                or parsed.query or parsed.fragment):
+            return False
+        public_origin = os.environ.get("COPILOT_PUBLIC_ORIGIN", "").strip()
+        if public_origin:
+            expected = urlsplit(public_origin)
+            if (expected.scheme != "https" or not expected.netloc
+                    or expected.username or expected.password or expected.path not in {"", "/"}
+                    or expected.query or expected.fragment):
+                return False
+            return parsed.scheme == expected.scheme and parsed.netloc.lower() == expected.netloc.lower()
+        return parsed.netloc.lower() == request.url.netloc.lower() and parsed.scheme == request.url.scheme
+    except (TypeError, ValueError):
+        return False
+
+
 @app.middleware("http")
 async def security_headers(request: Request, call_next):
     nonce = secrets.token_urlsafe(18)
@@ -1096,7 +1123,7 @@ async def security_headers(request: Request, call_next):
     response.headers["Referrer-Policy"] = "no-referrer"
     response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
     response.headers["Content-Security-Policy"] = "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; script-src 'self' 'nonce-" + nonce + "'; style-src 'self' 'unsafe-inline'"
-    if request.url.scheme == "https":
+    if _secure_cookie_transport(request):
         response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains"
     return response
 
@@ -1241,7 +1268,7 @@ def _user_separate(
         raise HTTPException(401, "no active firm membership")
     if firm_cookie is None:
         firm_id = firms[0]["firm_id"]
-        secure = request.url.scheme == "https"
+        secure = _secure_cookie_transport(request)
         response.set_cookie("lc_firm", str(firm_id), max_age=43200, httponly=True,
                             secure=secure, samesite="lax", path="/")
     else:
@@ -1259,11 +1286,8 @@ def _user_separate(
         if not csrf_cookie or not csrf_header or not hmac.compare_digest(csrf_cookie, csrf_header):
             raise HTTPException(403, "csrf check failed")
         origin = request.headers.get("origin")
-        if origin:
-            from urllib.parse import urlsplit
-            parsed = urlsplit(origin)
-            if parsed.netloc != request.url.netloc or parsed.scheme != request.url.scheme:
-                raise HTTPException(403, "cross-origin request blocked")
+        if origin and not _origin_matches_request(origin, request):
+            raise HTTPException(403, "cross-origin request blocked")
     return {
         "id": account["id"], "name": account["name"], "email": account["email_display"],
         "email_normalized": account["email_normalized"], "role": context.role,
@@ -1292,11 +1316,8 @@ def user(request: Request, response: Response,
         if not csrf_cookie or not csrf_header or not hmac.compare_digest(csrf_cookie, csrf_header):
             raise HTTPException(403, "csrf check failed")
         origin = request.headers.get("origin")
-        if origin:
-            from urllib.parse import urlsplit
-            parsed = urlsplit(origin)
-            if parsed.netloc != request.url.netloc or parsed.scheme != request.url.scheme:
-                raise HTTPException(403, "cross-origin request blocked")
+        if origin and not _origin_matches_request(origin, request):
+            raise HTTPException(403, "cross-origin request blocked")
     return dict(r)
 
 
@@ -1542,7 +1563,7 @@ def _login_separate(b: LoginIn, request: Request, response: Response):
               (sha(token), account["id"], now + 43200))
     c.commit()
     first_firm = memberships[0]
-    secure = request.url.scheme == "https"
+    secure = _secure_cookie_transport(request)
     response.set_cookie("lc_session", token, max_age=43200, httponly=True, secure=secure, samesite="lax", path="/")
     response.set_cookie("lc_csrf", csrf, max_age=43200, httponly=False, secure=secure, samesite="lax", path="/")
     response.set_cookie("lc_firm", str(first_firm["firm_id"]), max_age=43200, httponly=True, secure=secure, samesite="lax", path="/")
@@ -1627,7 +1648,7 @@ def login(b: LoginIn, request: Request, response: Response):
     c.execute("DELETE FROM auth_sessions WHERE expires<?", (now,))
     c.execute("INSERT INTO auth_sessions VALUES(?,?,?)", (sha(tok), r["id"], now + 43200))
     c.commit()
-    secure = request.url.scheme == "https"
+    secure = _secure_cookie_transport(request)
     response.set_cookie("lc_session", tok, max_age=43200, httponly=True, secure=secure, samesite="lax", path="/")
     response.set_cookie("lc_csrf", csrf, max_age=43200, httponly=False, secure=secure, samesite="lax", path="/")
     return {"id": r["id"], "name": r["name"], "role": r["role"], "firm_id": r["firm_id"]}
@@ -1651,7 +1672,7 @@ def switch_firm(b: FirmSwitchIn, request: Request, response: Response, u: dict =
     except FirmContextError as exc:
         raise HTTPException(403, "active firm membership required") from exc
     response.set_cookie("lc_firm", str(context.firm_id), max_age=43200,
-                        httponly=True, secure=request.url.scheme == "https",
+                        httponly=True, secure=_secure_cookie_transport(request),
                         samesite="lax", path="/")
     return {"id": u["id"], "name": u["name"], "role": context.role,
             "firm_id": context.firm_id, "firms": _active_firms_for_user(u["id"]),
@@ -1666,7 +1687,7 @@ def logout(request: Request, response: Response, u: dict = Depends(user)):
     c.commit()
     for cookie in ("lc_session", "lc_csrf", "lc_firm"):
         response.delete_cookie(cookie, path="/", httponly=(cookie != "lc_csrf"),
-                               samesite="lax", secure=request.url.scheme == "https")
+                               samesite="lax", secure=_secure_cookie_transport(request))
     return {"ok": True}
 
 
@@ -1704,7 +1725,7 @@ def change_password(b: PasswordChangeIn, request: Request, response: Response, u
         c.commit()
     for cookie in ("lc_session", "lc_csrf", "lc_firm"):
         response.delete_cookie(cookie, path="/", httponly=(cookie != "lc_csrf"),
-                               samesite="lax", secure=request.url.scheme == "https")
+                               samesite="lax", secure=_secure_cookie_transport(request))
     return {"ok": True, "sessions_revoked": True, "login_required": True}
 
 

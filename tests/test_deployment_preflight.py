@@ -24,6 +24,15 @@ class DeploymentPreflightTests(unittest.TestCase):
             "COPILOT_DB": str(self.db_path),
         }
 
+    def test_public_origin_must_be_a_bare_https_origin(self):
+        valid = dict(self.env, COPILOT_PUBLIC_ORIGIN="https://legal.example.com")
+        _, _, errors = preflight.inspect_environment(valid)
+        self.assertFalse(any("COPILOT_PUBLIC_ORIGIN" in item for item in errors))
+        for origin in ("http://legal.example.com", "https://user:pass@legal.example.com", "https://legal.example.com/path", "https://legal.example.com?x=1"):
+            with self.subTest(origin=origin):
+                _, _, errors = preflight.inspect_environment(dict(self.env, COPILOT_PUBLIC_ORIGIN=origin))
+                self.assertTrue(any("COPILOT_PUBLIC_ORIGIN must be an HTTPS origin" in item for item in errors))
+
     def test_rejects_unlinked_legacy_law_search_override(self):
         _, _, errors = preflight.inspect_environment(dict(self.env, ALLOW_UNLINKED_LEGACY_LAW_SEARCH="1"))
         self.assertTrue(any("ALLOW_UNLINKED_LEGACY_LAW_SEARCH" in item for item in errors))
