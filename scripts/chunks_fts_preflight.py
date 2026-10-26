@@ -40,7 +40,16 @@ def _fts_internal_integrity_check(conn: sqlite3.Connection) -> str | None:
     """
     probe = sqlite3.connect(":memory:")
     try:
-        conn.backup(probe)
+        if conn.in_transaction:
+            # sqlite3.Connection.backup can wait for the caller's own open write
+            # transaction to finish. Serialize the current snapshot instead so
+            # audits of in-memory/test connections cannot deadlock.
+            serialize = getattr(conn, "serialize", None)
+            if serialize is None:
+                return "source connection has an open transaction and SQLite serialization is unavailable"
+            probe.deserialize(serialize())
+        else:
+            conn.backup(probe)
         probe.execute("INSERT INTO chunks_fts(chunks_fts, rank) VALUES('integrity-check', 1)")
         probe.commit()
         return None
