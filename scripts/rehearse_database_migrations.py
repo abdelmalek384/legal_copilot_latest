@@ -6,6 +6,7 @@ runs against a disposable staged copy; this tool never migrates the source.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import sqlite3
 import sys
@@ -46,6 +47,70 @@ def _table_row_counts(conn: sqlite3.Connection) -> dict[str, int]:
     return counts
 
 
+
+def _table_columns(conn: sqlite3.Connection, table: str) -> list[str]:
+    quoted = '"' + table.replace('"', '""') + '"'
+    return [str(row[1]) for row in conn.execute(f"PRAGMA table_info({quoted})")]
+
+
+def _stable_sqlite_value(value: Any) -> Any:
+    if isinstance(value, bytes):
+        return {"blob_hex": value.hex()}
+    if isinstance(value, float):
+        return {"float_hex": value.hex()}
+    return value
+
+
+def _table_content_hash(conn: sqlite3.Connection, table: str, columns: list[str]) -> str:
+    """Hash the multiset of rows in shared columns, independent of row order."""
+    quoted_table = '"' + table.replace('"', '""') + '"'
+    quoted_columns = ", ".join('"' + column.replace('"', '""') + '"' for column in columns)
+    row_hashes = []
+    for row in conn.execute(f"SELECT {quoted_columns} FROM {quoted_table}"):
+        payload = json.dumps(
+            [_stable_sqlite_value(value) for value in row],
+            ensure_ascii=False, separators=(",", ":"), sort_keys=True, allow_nan=False,
+        ).encode("utf-8")
+        row_hashes.append(hashlib.sha256(payload).hexdigest())
+    digest = hashlib.sha256()
+    for row_hash in sorted(row_hashes):
+        digest.update(row_hash.encode("ascii"))
+        digest.update(b"\\n")
+    return digest.hexdigest()
+
+
+def _common_table_content_changes(
+    source: sqlite3.Connection, staged: sqlite3.Connection,
+) -> list[dict[str, Any]]:
+    """Report data changes across columns present before and after migration."""
+    source_tables = {
+        str(row[0]) for row in source.execute(
+            "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'"
+        )
+    }
+    staged_tables = {
+        str(row[0]) for row in staged.execute(
+            "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'"
+        )
+    }
+    changes = []
+    for table in sorted((source_tables & staged_tables) - {"schema_migrations"}):
+        source_columns = _table_columns(source, table)
+        staged_columns = set(_table_columns(staged, table))
+        common_columns = [column for column in source_columns if column in staged_columns]
+        if not common_columns:
+            continue
+        source_hash = _table_content_hash(source, table, common_columns)
+        staged_hash = _table_content_hash(staged, table, common_columns)
+        if source_hash != staged_hash:
+            changes.append({
+                "table": table,
+                "columns_compared": common_columns,
+                "source_sha256": source_hash,
+                "staged_sha256": staged_hash,
+            })
+    return changes
+
 def rehearse(database: str | Path, migrations_dir: str | Path) -> dict[str, Any]:
     """Apply pending migrations to a disposable copy and report integrity checks."""
     source_path = Path(database)
@@ -57,6 +122,7 @@ def rehearse(database: str | Path, migrations_dir: str | Path) -> dict[str, Any]
     source_fk_count: int
     source_row_counts: dict[str, int]
     staged_row_counts: dict[str, int]
+    common_table_content_changes: list[dict[str, Any]]
     source = _connect_read_only(source_path)
     try:
         source_check = _quick_check(source)
@@ -78,6 +144,7 @@ def rehearse(database: str | Path, migrations_dir: str | Path) -> dict[str, Any]
                 staged_check = _quick_check(rehearsal_db)
                 staged_fk_count = _foreign_key_violation_count(rehearsal_db)
                 staged_row_counts = _table_row_counts(rehearsal_db)
+                common_table_content_changes = _common_table_content_changes(source, rehearsal_db)
                 ledger = [
                     {"version": int(row["version"]), "name": str(row["name"])}
                     for row in rehearsal_db.execute(
@@ -101,7 +168,7 @@ def rehearse(database: str | Path, migrations_dir: str | Path) -> dict[str, Any]
     checks_pass = source_check == ["ok"] and staged_check == ["ok"]
     status = (
         "passed"
-        if checks_pass and source_fk_count == 0 and staged_fk_count == 0 and not row_count_decreases
+        if checks_pass and source_fk_count == 0 and staged_fk_count == 0 and not row_count_decreases and not common_table_content_changes
         else "review_required"
     )
     return {
@@ -115,10 +182,12 @@ def rehearse(database: str | Path, migrations_dir: str | Path) -> dict[str, Any]
         "source_table_row_counts": source_row_counts,
         "staged_table_row_counts": staged_row_counts,
         "row_count_decreases": row_count_decreases,
+        "common_table_content_changes": common_table_content_changes,
         "migrations_applied": applied,
         "migration_ledger": ledger,
         "limitations": [
             "This rehearses SQLite migrations only; it does not validate application behavior or tenant isolation.",
+            "Changes to data in columns shared by source and staged tables require explicit review; schema-added columns are not treated as data changes.",
             "A clean rehearsal does not replace a verified backup, restore rehearsal, or deployment-specific rollback plan.",
             "Run against a representative, protected copy and review every reported foreign-key violation."
         ],
