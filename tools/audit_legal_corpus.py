@@ -29,7 +29,7 @@ def valid_sha256(value):
     return isinstance(value, str) and len(value) == 64 and all(ch in "0123456789abcdefABCDEF" for ch in value)
 
 def valid_iso_date(value):
-    if not isinstance(value, str) or not value.strip():
+    if not isinstance(value, str) or len(value) != 10 or value[4:5] != "-" or value[7:8] != "-":
         return False
     try:
         date.fromisoformat(value)
@@ -106,6 +106,28 @@ def audit(db_path: Path):
                 invalid_terms = sum(not valid_evidence_url(row[0]) for row in db.execute("SELECT terms_url FROM legal_sources WHERE terms_url IS NOT NULL AND trim(terms_url)!=''").fetchall())
                 if invalid_terms:
                     result["issues"].append({"severity":"medium","code":"source_terms_url_not_https","count":invalid_terms})
+            if "source_page" in sc:
+                missing_source_pages = db.execute("SELECT COUNT(*) FROM legal_sources WHERE source_page IS NULL OR trim(source_page)=''").fetchone()[0]
+                invalid_source_pages = sum(not valid_evidence_url(row[0]) for row in db.execute("SELECT source_page FROM legal_sources WHERE source_page IS NOT NULL AND trim(source_page)!=''").fetchall())
+                if missing_source_pages:
+                    result["issues"].append({"severity":"high","code":"source_page_missing","count":missing_source_pages})
+                if invalid_source_pages:
+                    result["issues"].append({"severity":"high","code":"source_page_not_https","count":invalid_source_pages})
+            if "terms_checked_on" in sc:
+                checked_columns = [name for name in ("collection_permission", "commercial_reuse_permission") if name in sc]
+                allowed_predicates = [f"lower(trim(COALESCE({name},'unknown'))) IN ('allowed','allowed_limited')" for name in checked_columns]
+                if allowed_predicates:
+                    allowed_where = " OR ".join(allowed_predicates)
+                    missing_terms_dates = db.execute(
+                        f"SELECT COUNT(*) FROM legal_sources WHERE ({allowed_where}) AND (terms_checked_on IS NULL OR trim(terms_checked_on)='')"
+                    ).fetchone()[0]
+                    invalid_terms_dates = sum(not valid_iso_date(row[0]) for row in db.execute(
+                        f"SELECT terms_checked_on FROM legal_sources WHERE ({allowed_where}) AND terms_checked_on IS NOT NULL AND trim(terms_checked_on)!=''"
+                    ).fetchall())
+                    if missing_terms_dates:
+                        result["issues"].append({"severity":"high","code":"source_permission_terms_check_date_missing","count":missing_terms_dates})
+                    if invalid_terms_dates:
+                        result["issues"].append({"severity":"high","code":"source_permission_terms_check_date_invalid","count":invalid_terms_dates})
         if "legal_document_versions" in tables:
             vc=columns(db,"legal_document_versions")
             required={"source_url","original_path","original_sha256","publication_date","effective_date","repeal_date","legal_status","review_status","authenticity_verified","status_verified","amendment_history_verified"}

@@ -56,14 +56,15 @@ class CorpusAuditTests(unittest.TestCase):
             db_path = Path(td) / "evidence.db"
             db = sqlite3.connect(db_path)
             db.executescript("""
-            CREATE TABLE legal_sources(source_id TEXT PRIMARY KEY, collection_permission TEXT, commercial_reuse_permission TEXT, permission_evidence TEXT, terms_url TEXT);
+            CREATE TABLE legal_sources(source_id TEXT PRIMARY KEY, collection_permission TEXT, commercial_reuse_permission TEXT, permission_evidence TEXT, terms_url TEXT, source_page TEXT, terms_checked_on TEXT);
             CREATE TABLE legal_documents(document_id TEXT PRIMARY KEY);
             CREATE TABLE legal_document_versions(version_id INTEGER PRIMARY KEY, source_url TEXT, original_path TEXT, original_sha256 TEXT, publication_date TEXT, effective_date TEXT, repeal_date TEXT, consolidated_as_of TEXT, legal_status TEXT, review_status TEXT, authenticity_verified INT, status_verified INT, amendment_history_verified INT);
             CREATE TABLE legal_version_relations(relation_id INTEGER PRIMARY KEY, from_version_id INT, to_version_id INT, relation_type TEXT);
             CREATE TABLE legal_review_events(review_event_id INTEGER PRIMARY KEY, version_id INT, review_type TEXT, outcome TEXT, evidence_url TEXT);
-            INSERT INTO legal_sources VALUES('S1','allowed','unknown',NULL,'http://terms.example.com');
-            INSERT INTO legal_sources VALUES('S2','allowed','allowed',NULL,'https://terms.example.com');
+            INSERT INTO legal_sources VALUES('S1','allowed','unknown',NULL,'http://terms.example.com','http://source.example.com','2024-13-01');
             INSERT INTO legal_document_versions VALUES(1,'http://unsafe.example.com/law','missing.pdf','not-a-hash','2024-13-40','2025-01-01','2024-12-31',NULL,'unknown','pending_source_review',0,0,0);
+            INSERT INTO legal_sources VALUES('S2','allowed','allowed',NULL,'https://terms.example.com','https://source.example.com','2024-01-01');
+            INSERT INTO legal_sources VALUES('S3','allowed','unknown',NULL,NULL,NULL,NULL);
             """)
             db.commit()
             db.close()
@@ -73,6 +74,10 @@ class CorpusAuditTests(unittest.TestCase):
             self.assertIn("source_allowed_without_permission_evidence", codes)
             self.assertIn("source_commercial_reuse_allowed_without_evidence", codes)
             self.assertIn("source_terms_url_not_https", codes)
+            self.assertIn("source_page_not_https", codes)
+            self.assertIn("source_page_missing", codes)
+            self.assertIn("source_permission_terms_check_date_invalid", codes)
+            self.assertIn("source_permission_terms_check_date_missing", codes)
             self.assertIn("versions_malformed_sha256", codes)
             self.assertIn("versions_invalid_source_url", codes)
             self.assertIn("versions_malformed_dates", codes)
