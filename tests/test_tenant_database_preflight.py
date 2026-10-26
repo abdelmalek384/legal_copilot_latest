@@ -126,6 +126,39 @@ class TenantDatabasePreflightTests(unittest.TestCase):
             {item["code"] for item in report["findings"] if item["firm_id"] is None},
         )
 
+    def test_catalog_authority_failure_stops_before_opening_tenant_files(self):
+        self.add_tenant(21)
+        with sqlite3.connect(self.catalog_path) as db:
+            db.execute("DROP TRIGGER database_profile_no_update")
+            db.execute("UPDATE database_profile SET profile='firm' WHERE singleton=1")
+        report = audit(self.catalog_path, self.root)
+        self.assertEqual(report["tenant_databases_inspected"], 0)
+        codes = {item["code"] for item in report["findings"]}
+        self.assertIn("wrong_catalog_profile", codes)
+        self.assertNotIn("database_unreadable", codes)
+
+    def test_missing_catalog_firm_foreign_key_is_reported_before_tenant_inspection(self):
+        self.add_tenant(22)
+        with sqlite3.connect(self.catalog_path) as db:
+            db.execute("PRAGMA foreign_keys=OFF")
+            db.execute("ALTER TABLE tenant_database_catalog RENAME TO old_tenant_catalog")
+            db.execute("""
+                CREATE TABLE tenant_database_catalog (
+                    firm_id INTEGER PRIMARY KEY,
+                    database_file TEXT,
+                    status TEXT
+                )
+            """)
+            db.execute("""
+                INSERT INTO tenant_database_catalog(firm_id, database_file, status)
+                SELECT firm_id, database_file, status FROM old_tenant_catalog
+            """)
+            db.execute("DROP TABLE old_tenant_catalog")
+        report = audit(self.catalog_path, self.root)
+        codes = {item["code"] for item in report["findings"]}
+        self.assertIn("missing_catalog_firm_foreign_key", codes)
+        self.assertEqual(report["tenant_databases_inspected"], 0)
+
     def test_missing_database_is_reported(self):
         self.add_tenant(2, filename=f"tenant-2-{uuid.uuid4().hex}.sqlite3")
         (self.root / self.catalog.execute(
