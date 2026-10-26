@@ -1,6 +1,6 @@
 """Legal copilot MVP: case workspace + hybrid law search + citation-checked answers.
 Run: pip install -r requirements.txt && uvicorn app:app --reload"""
-import sqlite3, re, json, os, io, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request, zipfile
+import sqlite3, re, json, os, io, csv, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request, zipfile
 from contextvars import ContextVar
 from collections import Counter
 from datetime import date, timedelta
@@ -2423,6 +2423,38 @@ def case_deletion_audit(limit: int = 50, offset: int = 0, u: dict = Depends(user
         "related_counts": json.loads(r["related_counts_json"]),
         "deleted_at": r["deleted_at"]
     } for r in rows], "limit": limit, "offset": offset}
+
+
+def _csv_safe_cell(value):
+    """Neutralize spreadsheet formulas in exported untrusted text fields."""
+    text = "" if value is None else str(value)
+    if text.startswith(("=", "+", "-", "@", "\t", "\r", "\n")):
+        return "'" + text
+    return text
+
+
+@app.get("/audit/security-events.csv")
+def export_security_events_csv(limit: int = 5000, offset: int = 0, u: dict = Depends(user)):
+    """Download a bounded, firm-scoped security audit export; administrator only."""
+    require_admin(u)
+    if limit < 1 or limit > 5000 or offset < 0:
+        raise HTTPException(422, "limit must be 1-5000 and offset must be non-negative")
+    rows = conn().execute(
+        "SELECT id,firm_id,user_id,event,created_at FROM security_audit_events "
+        "WHERE firm_id=? ORDER BY id DESC LIMIT ? OFFSET ?",
+        (u["firm_id"], limit, offset)
+    ).fetchall()
+    stream = io.StringIO(newline="")
+    writer = csv.writer(stream, lineterminator="\r\n")
+    writer.writerow(["id", "firm_id", "user_id", "event", "created_at"])
+    for row in rows:
+        writer.writerow([_csv_safe_cell(row[key]) for key in ("id", "firm_id", "user_id", "event", "created_at")])
+    return Response(
+        content="\ufeff" + stream.getvalue(),
+        media_type="text/csv; charset=utf-8",
+        headers={"Content-Disposition": 'attachment; filename="security-audit-events.csv"',
+                 "Cache-Control": "no-store"},
+    )
 
 
 @app.get("/audit/security-events")
