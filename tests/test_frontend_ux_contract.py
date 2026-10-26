@@ -45,6 +45,10 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("openCatalog('metadata_only_documents')", HTML)
         self.assertIn("window.COVERAGE_QUEUE_FILTER='all_versions'", HTML)
         self.assertIn("safeHttpsUrl(item.source_page)", HTML)
+        self.assertIn("filters.collection_permission", HTML)
+        self.assertIn("filters.commercial_reuse_permission", HTML)
+        self.assertIn("View sources with permission state ", HTML)
+        self.assertIn("openCatalog('sources','',{collection_permission:r.collection_permission||'unknown'", HTML)
 
     def test_corpus_registry_drilldowns_can_search_beyond_the_first_page(self):
         self.assertIn("const openCatalog=async(kind,query='')=>", HTML)
