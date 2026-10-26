@@ -1076,6 +1076,28 @@ def _secure_cookie_transport(request):
     return request.url.scheme == "https" or os.environ.get("COPILOT_SECURE_COOKIES", "").strip() == "1"
 
 
+def _origin_matches_request(origin, request):
+    """Compare browser Origin to request origin or an explicit public HTTPS origin."""
+    from urllib.parse import urlsplit
+    try:
+        parsed = urlsplit(origin)
+        if (parsed.scheme not in {"http", "https"} or not parsed.netloc
+                or parsed.username or parsed.password or parsed.path not in {"", "/"}
+                or parsed.query or parsed.fragment):
+            return False
+        public_origin = os.environ.get("COPILOT_PUBLIC_ORIGIN", "").strip()
+        if public_origin:
+            expected = urlsplit(public_origin)
+            if (expected.scheme != "https" or not expected.netloc
+                    or expected.username or expected.password or expected.path not in {"", "/"}
+                    or expected.query or expected.fragment):
+                return False
+            return parsed.scheme == expected.scheme and parsed.netloc.lower() == expected.netloc.lower()
+        return parsed.netloc.lower() == request.url.netloc.lower() and parsed.scheme == request.url.scheme
+    except (TypeError, ValueError):
+        return False
+
+
 @app.middleware("http")
 async def security_headers(request: Request, call_next):
     nonce = secrets.token_urlsafe(18)
@@ -1264,11 +1286,8 @@ def _user_separate(
         if not csrf_cookie or not csrf_header or not hmac.compare_digest(csrf_cookie, csrf_header):
             raise HTTPException(403, "csrf check failed")
         origin = request.headers.get("origin")
-        if origin:
-            from urllib.parse import urlsplit
-            parsed = urlsplit(origin)
-            if parsed.netloc != request.url.netloc or parsed.scheme != request.url.scheme:
-                raise HTTPException(403, "cross-origin request blocked")
+        if origin and not _origin_matches_request(origin, request):
+            raise HTTPException(403, "cross-origin request blocked")
     return {
         "id": account["id"], "name": account["name"], "email": account["email_display"],
         "email_normalized": account["email_normalized"], "role": context.role,
@@ -1297,11 +1316,8 @@ def user(request: Request, response: Response,
         if not csrf_cookie or not csrf_header or not hmac.compare_digest(csrf_cookie, csrf_header):
             raise HTTPException(403, "csrf check failed")
         origin = request.headers.get("origin")
-        if origin:
-            from urllib.parse import urlsplit
-            parsed = urlsplit(origin)
-            if parsed.netloc != request.url.netloc or parsed.scheme != request.url.scheme:
-                raise HTTPException(403, "cross-origin request blocked")
+        if origin and not _origin_matches_request(origin, request):
+            raise HTTPException(403, "cross-origin request blocked")
     return dict(r)
 
 
