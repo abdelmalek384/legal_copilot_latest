@@ -1026,6 +1026,15 @@ def _trusted_host_patterns(value):
         candidate = host[2:] if wildcard else host
         if "*" in candidate or not candidate or len(candidate) > 253:
             raise ValueError("invalid trusted host pattern")
+        if candidate.startswith("[") and candidate.endswith("]"):
+            try:
+                ipaddress.IPv6Address(candidate[1:-1])
+            except ValueError as exc:
+                raise ValueError("invalid trusted host pattern") from exc
+            if wildcard:
+                raise ValueError("IP addresses cannot use wildcard host patterns")
+            patterns.append(host)
+            continue
         try:
             ipaddress.ip_address(candidate)
             if wildcard:
