@@ -68,6 +68,8 @@ jobs:
         run: python tools/validate_legal_data_foundation.py
       - name: Test page-aware PDF retrieval citations
         run: PYTHONPATH=. python tests/test_pdf_page_references.py
+      - name: Test inline legal citation coverage
+        run: PYTHONPATH=. python tests/test_answer_citation_coverage.py
       - name: Test retrieval and citation evaluation harness
         run: python tests/test_retrieval_evaluation.py
       - name: Smoke-test evaluation report on unreviewed seeds
