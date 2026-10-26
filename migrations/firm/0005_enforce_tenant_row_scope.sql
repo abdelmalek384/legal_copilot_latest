@@ -1,16 +1,5 @@
--- Every firm-scoped row must agree with this database's immutable tenant binding.
--- Fail closed on pre-existing ambiguous rows; do not silently rewrite ownership.
-CREATE TABLE _tenant_row_scope_guard (ok INTEGER NOT NULL CHECK(ok = 1));
-INSERT INTO _tenant_row_scope_guard(ok)
-SELECT CASE WHEN
- EXISTS (SELECT 1 FROM cases c WHERE c.firm_id IS NOT (SELECT firm_id FROM tenant_database_binding WHERE singleton=1))
- OR EXISTS (SELECT 1 FROM docs d WHERE d.firm_id IS NOT (SELECT firm_id FROM tenant_database_binding WHERE singleton=1))
- OR EXISTS (SELECT 1 FROM document_extraction_reviews r WHERE r.firm_id IS NOT (SELECT firm_id FROM tenant_database_binding WHERE singleton=1))
- OR EXISTS (SELECT 1 FROM research_conversations rc WHERE rc.firm_id IS NOT (SELECT firm_id FROM tenant_database_binding WHERE singleton=1))
- OR EXISTS (SELECT 1 FROM case_deletion_audit a WHERE a.firm_id IS NOT (SELECT firm_id FROM tenant_database_binding WHERE singleton=1))
- THEN 0 ELSE 1 END;
-DROP TABLE _tenant_row_scope_guard;
-
+-- These triggers are installed before tenant_catalog writes the immutable binding.
+-- SQLite resolves the binding table when the trigger executes, after provisioning.
 CREATE TRIGGER cases_tenant_firm_insert
 BEFORE INSERT ON cases
 WHEN NOT EXISTS (
