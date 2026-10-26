@@ -72,6 +72,11 @@ def adduser(a):
                 (a.name.strip(), a.email.strip(), app.normalize_email(a.email), app.hash_pw(pw)),
             )
             c.execute(
+                "INSERT INTO platform_security_events(actor_user_id,target_user_id,firm_id,event_type,detail_json) "
+                "VALUES(NULL,?,?,'identity_created_cli',?)",
+                (cur.lastrowid, a.firm_id, json.dumps({"method": "manage.py adduser"}, sort_keys=True)),
+            )
+            c.execute(
                 "INSERT INTO firm_memberships(user_id,firm_id,firm_role,status) VALUES(?,?,?,'active')",
                 (cur.lastrowid, a.firm_id, a.role),
             )
