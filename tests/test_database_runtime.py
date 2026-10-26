@@ -383,6 +383,28 @@ class DatabaseRuntimeTests(unittest.TestCase):
         with self.assertRaises(FirmContextError):
             self.runtime.firm_connection(old_context)
 
+    def test_firm_role_change_closes_cached_tenant_connection(self):
+        user_id = self._identity("role-change-cache@example.test")
+        firm_id, database_path = self.runtime.provision_firm("Role Change Cache")
+        self.runtime.create_firm_membership(user_id, firm_id, "lawyer")
+        old_context = self.runtime.resolve_context(user_id, firm_id)
+        cached = self.runtime.firm_connection(old_context)
+        control = self.runtime.control_connection()
+        control.execute(
+            "UPDATE firm_memberships SET firm_role='admin' WHERE user_id=? AND firm_id=?",
+            (user_id, firm_id),
+        )
+        control.commit()
+
+        with self.assertRaises(FirmContextError):
+            self.runtime.firm_connection(old_context)
+        with self.assertRaises(sqlite3.ProgrammingError):
+            cached.execute("SELECT 1")
+        self.assertTrue(database_path.is_file())
+        refreshed = self.runtime.resolve_context(user_id, firm_id)
+        self.assertEqual(refreshed.role, "admin")
+        self.assertEqual(self.runtime.firm_connection(refreshed).execute("SELECT 1").fetchone()[0], 1)
+
     def test_initial_owner_bootstrap_never_grants_platform_role(self):
         firm_id, _ = self.runtime.provision_firm("Owner Bootstrap")
         user_id = self.runtime.create_initial_firm_owner(
