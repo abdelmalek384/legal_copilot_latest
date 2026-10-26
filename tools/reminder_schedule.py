@@ -81,7 +81,7 @@ def build_reminder_plan(
         if not isinstance(event, Mapping):
             raise ReminderScheduleError(f"event {index}: expected an object")
         kind = event.get("kind")
-        if kind not in SUPPORTED_KINDS:
+        if not isinstance(kind, str) or kind not in SUPPORTED_KINDS:
             raise ReminderScheduleError(f"event {index}: kind must be task, deadline, or session")
         raw_id = event.get("event_id")
         if isinstance(raw_id, bool) or not isinstance(raw_id, (str, int)) or not str(raw_id).strip():
