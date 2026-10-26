@@ -83,7 +83,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Export research memo", HTML)
         self.assertIn("setTimeout(()=>URL.revokeObjectURL(url),1000)", HTML)
         self.assertIn("save-to-matter", HTML)
-        self.assertIn("No relevant verified legal text found in this scope", HTML)
+        self.assertIn("No relevant verified legal text was returned by this verified-corpus search.", HTML)
         self.assertNotIn("matterSelect.disabled", HTML)
 
     def test_focus_and_small_screen_rules_exist(self):
