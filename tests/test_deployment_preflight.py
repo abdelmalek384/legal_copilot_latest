@@ -107,6 +107,25 @@ class DeploymentPreflightTests(unittest.TestCase):
         self.assertFalse((root / "control" / "control.sqlite3").exists())
         self.assertFalse((root / "corpus" / "corpus.sqlite3").exists())
 
+    def test_rejects_legacy_database_path_when_separate_paths_are_configured(self):
+        root = Path(self.tempdir.name)
+        tenant_root = root / "tenants"
+        tenant_root.mkdir()
+        if os.name == "posix":
+            os.chmod(tenant_root, 0o700)
+        (root / "control").mkdir()
+        (root / "corpus").mkdir()
+        env = {
+            "ADMIN_TOKEN": "a" * 40,
+            "MIN_SCORE": "0.3",
+            "COPILOT_CONTROL_DB": str(root / "control" / "control.sqlite3"),
+            "COPILOT_TENANT_DB_ROOT": str(tenant_root),
+            "COPILOT_CORPUS_DB": str(root / "corpus" / "corpus.sqlite3"),
+            "COPILOT_DB": str(root / "legacy.sqlite3"),
+        }
+        _, _, errors = preflight.inspect_environment(env)
+        self.assertTrue(any("COPILOT_DB must be unset" in item for item in errors))
+
     def test_rejects_partial_separate_database_configuration(self):
         env = dict(self.env)
         env.pop("COPILOT_DB")
