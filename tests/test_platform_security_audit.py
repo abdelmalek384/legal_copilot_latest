@@ -90,6 +90,28 @@ class PlatformSecurityAuditTests(unittest.TestCase):
         self.assertIn(("membership_created", second_id, self.firm_id), logged)
         self.assertIn(("firm_disabled", None, self.firm_id), logged)
 
+    def test_provisioning_audit_failure_leaves_firm_and_catalog_disabled(self):
+        control = self.runtime.control_connection()
+        control.execute("""
+            CREATE TRIGGER reject_firm_provision_audit BEFORE INSERT ON platform_security_events
+            WHEN NEW.event_type='firm_provisioned'
+            BEGIN SELECT RAISE(ABORT, 'provision audit unavailable'); END
+        """)
+        control.commit()
+        with self.assertRaisesRegex(Exception, "provision audit unavailable"):
+            self.runtime.provision_firm("Audit-failure firm")
+        control = self.runtime.control_connection()
+        firm = control.execute("SELECT id,status FROM firms WHERE name='Audit-failure firm'").fetchone()
+        self.assertIsNotNone(firm)
+        self.assertEqual(firm["status"], "disabled")
+        catalog = control.execute("SELECT status FROM tenant_database_catalog WHERE firm_id=?", (firm["id"],)).fetchone()
+        self.assertIsNotNone(catalog)
+        self.assertEqual(catalog["status"], "disabled")
+        self.assertEqual(control.execute(
+            "SELECT COUNT(*) FROM platform_security_events WHERE firm_id=? AND event_type='firm_provisioned'",
+            (firm["id"],),
+        ).fetchone()[0], 0)
+
     def test_cli_adduser_records_membership_without_granting_platform_role(self):
         with patch("manage.read_password", return_value="NewStrongPassphrase_2026"):
             manage.adduser(Namespace(name="CLI User", email="cli-user@example.test", role="lawyer", firm_id=self.firm_id))
