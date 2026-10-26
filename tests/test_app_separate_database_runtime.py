@@ -381,6 +381,28 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             1,
         )
 
+    def test_conflict_check_does_not_disclose_other_firm_matter(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate(
+            "post", "/cases",
+            json={"title": "Firm A conflict sentinel", "opposing_party": "CONFIDENTIAL_FIRM_A_OPPOSING_PARTY"},
+        )
+        self.assertEqual(created.status_code, 200, created.text)
+
+        switched = self._mutate("post", "/session/firm", json={"firm_id": self.firm_b})
+        self.assertEqual(switched.status_code, 200, switched.text)
+        response = self._mutate(
+            "post", "/conflicts", json={"q": "CONFIDENTIAL_FIRM_A_OPPOSING_PARTY"}
+        )
+        self.assertEqual(response.status_code, 200, response.text)
+        result = response.json()
+        self.assertEqual(result["matches"], [])
+        self.assertFalse(result["possible_conflict"])
+        self.assertNotIn("CONFIDENTIAL_FIRM_A_OPPOSING_PARTY", response.text)
+
     def test_search_and_ask_reject_case_ids_from_another_firm(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
