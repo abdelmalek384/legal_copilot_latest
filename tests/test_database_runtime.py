@@ -1,6 +1,8 @@
 import os
+import sqlite3
 import tempfile
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
 from database_runtime import DatabaseRuntime, DatabaseRuntimeError
@@ -72,6 +74,31 @@ class DatabaseRuntimeTests(unittest.TestCase):
         self.assertEqual(
             db_a.execute("SELECT COUNT(*) FROM users WHERE id=?", (user_id,)).fetchone()[0],
             1,
+        )
+
+    def test_catalog_connection_failure_does_not_strand_firm_in_provisioning(self):
+        with patch.object(
+            self.runtime,
+            "_new_catalog_connection",
+            side_effect=sqlite3.OperationalError("simulated catalog connection failure"),
+        ):
+            with self.assertRaisesRegex(sqlite3.OperationalError, "simulated catalog connection failure"):
+                self.runtime.provision_firm("Catalog Connection Failure")
+
+        control = self.runtime.control_connection()
+        firm = control.execute(
+            "SELECT id,status FROM firms WHERE name='Catalog Connection Failure'"
+        ).fetchone()
+        self.assertIsNotNone(firm)
+        self.assertEqual(firm["status"], "disabled")
+        self.assertEqual(
+            control.execute(
+                "SELECT COUNT(*) FROM tenant_database_catalog WHERE firm_id=?", (firm["id"],)
+            ).fetchone()[0],
+            0,
+        )
+        self.assertEqual(
+            list(self.runtime.paths.tenant_root.glob("tenant-*.sqlite3")), []
         )
 
     def test_revoked_membership_is_denied_even_after_context_was_resolved(self):
