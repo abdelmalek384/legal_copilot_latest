@@ -32,7 +32,7 @@ class SecureCookieTransportTests(unittest.TestCase):
             with self.subTest(value=value), patch.dict(os.environ, {"COPILOT_SECURE_COOKIES": value}):
                 self.assertFalse(app._secure_cookie_transport(request))
 
-    def test_security_middleware_emits_hsts_when_proxy_mode_is_explicit(self):
+    def test_explicit_proxy_mode_is_recognized_for_cookie_transport(self):
         request = SimpleNamespace(url=SimpleNamespace(scheme="http"))
         with patch.dict(os.environ, {"COPILOT_SECURE_COOKIES": "1"}):
             self.assertTrue(app._secure_cookie_transport(request))
