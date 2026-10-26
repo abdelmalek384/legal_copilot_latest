@@ -1,7 +1,7 @@
 # Database completion tracker
 
 **Last updated:** 2026-10-26  
-**Estimated completion:** 42%  
+**Estimated completion:** 44%  
 **Status:** In progress — not production-ready for confidential multi-firm matter data.
 
 This is a planning estimate across database migrations, tenant isolation, legacy-data reconciliation, operational recovery, and release validation. It is not a percentage of tests passing. This is a weighted engineering estimate, not a test-pass percentage or a count of commits. The separate-database runtime and encrypted backup/restore are now merged, but legacy-data reconciliation, exhaustive route coverage, schema-migration completion, and recovery/rollback drills remain release blockers.
@@ -30,6 +30,9 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 - [x] Make FTS auditing and rebuild-on-a-new-copy profile-aware: validate external-content indexes against `chunks.norm`, preserve firm/corpus FTS schema and synchronization triggers, and verify the source remains unchanged (PR #399 merged; CI passed).
 - [x] Add integration coverage that non-members cannot switch firms, revoked memberships block requests despite a still-valid login session/cached tenant connection, and a task ID from one firm's database cannot be acted on in another firm's database (PRs #390 and #401 merged; CI passed).
 - [x] Add a firm-admin API for attaching an existing active global identity to another firm by normalized email, without duplicating identities or silently reactivating suspended/revoked memberships (PR #405 merged; CI passed).
+- [x] Add management CLI commands to provision additional firm databases and attach existing active global identities to a firm; duplicate membership attempts fail (PR #410 merged; CI passed).
+- [x] Ensure a catalog connection-open failure cannot strand a new firm in `provisioning`; failed provisioning marks it disabled and leaves no tenant DB file (PR #408 merged; CI passed).
+- [x] Test that disabled global identities cannot be added to new firm memberships (PR #407 merged; CI passed).
 - [x] Add regression coverage that `deployment_preflight.py --strict` fails while the shared-database multi-firm safety warning remains, without creating a database file (PR #341 merged; CI run 40354404426 passed).
 
 - [x] Refuse to provision a tenant when pre-existing firm-binding trigger names conceal ineffective update/delete guards; validate the guards before marking the tenant provisioned (PR #340 merged; CI run 40354238518 passed).
@@ -166,7 +169,7 @@ This is a planning estimate across database migrations, tenant isolation, legacy
 - [x] Add explicit three-path configuration and a fail-closed deployment preflight for the separate runtime (PR #384 merged; CI passed). Legacy `COPILOT_DB` compatibility remains available only when explicitly configured and is not approved for unrelated firms' confidential matters.
 - [x] Define separate firm and corpus schema profiles and initialize separate databases.
 - [ ] Complete reconciliation/classification of legacy mixed `chunks`/FTS records before any legacy cutover.
-- [ ] Complete lifecycle acceptance for provisioning failures/retries, disabled tenants, unknown catalog entries, unavailable tenant databases, and revoked memberships across all API/background paths.
+- [ ] Complete lifecycle acceptance for provisioning retries/reconciliation, disabled tenants, unknown catalog entries, unavailable tenant databases, and revoked memberships across all API/background paths. Catalog connection-open failure cleanup and selected membership/revocation paths are now covered by PRs #407, #408, and #410; this is not exhaustive lifecycle coverage.
 
 ### 4. Reconcile existing data safely
 - [ ] Run read-only ownership preflight against a protected production-like copy and retain its report.
