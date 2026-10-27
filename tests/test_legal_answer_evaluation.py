@@ -13,6 +13,7 @@ def approved(qid="Q1", answerable=True):
     return {
         "id": qid,
         "practice_area": "civil_law",
+        "as_of_date": "2026-10-26",
         "question_ar": "سؤال قانوني",
         "expected_answer": "إجابة راجعها محامٍ.",
         "expected_sources": ["LAW-10"] if answerable else [],
@@ -39,6 +40,13 @@ def result(qid="Q1", abstained=False, sources=None, pins=None):
 
 
 class LegalAnswerEvaluationTests(unittest.TestCase):
+    def test_reviewed_question_requires_valid_non_future_as_of_date(self):
+        base = approved()
+        for value in ("tomorrow", "2026-02-30", "2999-01-01", None):
+            with self.subTest(as_of_date=value):
+                with self.assertRaises(EvaluationError):
+                    evaluate([dict(base, as_of_date=value)], [result()])
+
     def test_benchmark_scoring_requires_qualified_reviewer_and_https_evidence(self):
         base = approved()
         for key, value in (
