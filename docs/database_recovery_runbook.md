@@ -1,6 +1,6 @@
 # Separate-database backup and recovery runbook
 
-**Status:** Operational procedure to rehearse before any production use. A successful backup command is not evidence that recovery has been accepted.
+**Status:** Operational procedure to rehearse before any production use. A successful backup command is not evidence that recovery has been accepted. Use the [recovery drill evidence record template](database_recovery_drill_record_template.md) to capture the bundle identity, verification, isolated restore, tenant checks, rollback rehearsal, measurements, and independent sign-off. Store detailed logs in the approved restricted evidence store; do not put keys, tokens, client names, or matter contents in the record.
 
 ## Scope and prerequisites
 
