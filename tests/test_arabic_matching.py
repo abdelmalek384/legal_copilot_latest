@@ -12,8 +12,11 @@ class ArabicMatchingTests(unittest.TestCase):
 
     def test_delay_derivation_variants_are_query_expanded(self):
         query = expanded_tokens("التأخير")
-        self.assertIn("تأخير", query)
-        self.assertIn("تأخر", query)
+        # Retrieval tokens use the same canonical form as norm()/tokens():
+        # hamza-bearing alef variants are normalized, not preserved as separate IDs.
+        self.assertIn(tokens("تأخير")[0], query)
+        self.assertIn(tokens("تأخر")[0], query)
+        self.assertEqual(tokens("تأخير"), tokens("تاخير"))
 
     def test_matched_surface_terms_highlight_retrieved_arabic_variants(self):
         self.assertIn("شيكا", matched_surface_terms("حرر المدين شيكا للمستفيد", expanded_tokens("الشيك")))
