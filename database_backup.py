@@ -653,6 +653,25 @@ def restore_backup_bundle(
                 target = staged_root / relative
                 target.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
                 shutil.copyfile(extracted / relative, target)
+        # Restored tenant files must satisfy the runtime's concurrency
+        # contract before they are made available to the application.
+        for database_path in staged_root.rglob("*.sqlite3"):
+            connection = None
+            try:
+                connection = sqlite3.connect(str(database_path), timeout=30)
+                mode = connection.execute("PRAGMA journal_mode=WAL").fetchone()
+                if mode is None or str(mode[0]).lower() != "wal":
+                    raise DatabaseBundleError(
+                        f"Could not enable WAL on restored database {database_path.name}"
+                    )
+            except sqlite3.Error as exc:
+                raise DatabaseBundleError(
+                    f"Could not initialize restored database {database_path.name}"
+                ) from exc
+            finally:
+                if connection is not None:
+                    connection.close()
+
         for path in staged_root.rglob("*"):
             if not path.is_file():
                 continue
