@@ -50,6 +50,11 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("e.setAttribute(key,String(value))", HTML)
         self.assertIn("if(value!=null)e.setAttribute", HTML)
 
+    def test_corpus_review_navigation_matches_server_authorization(self):
+        self.assertIn("...(ME.can_review_legal?[['coverage'", HTML)
+        self.assertIn("if(!ME.can_review_legal)", HTML)
+        self.assertIn('"can_review_legal": _user_can_review_legal', Path("app.py").read_text(encoding="utf-8"))
+
     def test_corpus_coverage_metrics_have_definitions_and_catalog_drilldowns(self):
         self.assertIn("Count of registered source records, not verified laws.", HTML)
         self.assertIn("Instruments without a registered version record.", HTML)
