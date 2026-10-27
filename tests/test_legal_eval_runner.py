@@ -51,6 +51,22 @@ class LegalEvalRunnerTests(unittest.TestCase):
         with self.assertRaisesRegex(RunnerError, "query string"):
             validate_base_url("http://127.0.0.1:8000?token=secret")
 
+    def test_base_url_rejects_empty_credentials_whitespace_and_malformed_ports(self):
+        invalid_urls = (
+            "https://@legal.example.com",
+            " https://legal.example.com",
+            "https://legal.example.com ",
+            "https://legal.example.com/path with spaces",
+            "https://legal.example.com:not-a-port",
+            "https://legal.example.com:99999",
+            "https://legal.example.com:0",
+            "https://legal.example.com:",
+            "https://[malformed",
+        )
+        for value in invalid_urls:
+            with self.subTest(value=value), self.assertRaises(RunnerError):
+                validate_base_url(value, allow_remote=True)
+
     def test_question_loader_rejects_duplicate_ids_and_empty_sets(self):
         import tempfile
         with tempfile.TemporaryDirectory() as td:
