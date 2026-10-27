@@ -6,9 +6,12 @@ Callers must supply events already authorized for the intended recipient.
 """
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
-from datetime import date, datetime
+import sys
+from datetime import date, datetime, timezone
+from pathlib import Path
 from typing import Iterable, Mapping
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
@@ -134,3 +137,62 @@ def build_reminder_plan(
         "reminders": prepared,
         "warning": "A planned reminder is not a queued or delivered notification. Delivery, durable deduplication, retries, and audit persistence are not implemented by this module.",
     }
+
+
+
+def main(argv: list[str] | None = None) -> int:
+    """Run a local JSON-in/JSON-out dry-run; never reads a database or sends messages."""
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--input", type=Path, required=True,
+                        help="JSON file with events and optional already_sent idempotency keys")
+    parser.add_argument("--recipient-id", required=True)
+    parser.add_argument("--scope-id", required=True, help="Firm/scope identifier")
+    parser.add_argument("--timezone", required=True, help="IANA timezone, e.g. Africa/Cairo")
+    parser.add_argument("--now", help="Optional ISO-8601 timestamp with timezone offset")
+    parser.add_argument("--lead-days", type=int, default=1)
+    parser.add_argument("--out", type=Path, help="Optional report path; defaults to stdout")
+    args = parser.parse_args(argv)
+
+    try:
+        if args.out is not None and args.out.resolve() == args.input.resolve():
+            raise ReminderScheduleError("--out must not overwrite the input file")
+        try:
+            data = json.loads(args.input.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as exc:
+            raise ReminderScheduleError("input file is not valid JSON") from exc
+        if not isinstance(data, dict):
+            raise ReminderScheduleError("input root must be a JSON object")
+        events = data.get("events")
+        if not isinstance(events, list):
+            raise ReminderScheduleError("input must contain an events array")
+        already_sent = data.get("already_sent", [])
+        if not isinstance(already_sent, list) or any(not isinstance(key, str) for key in already_sent):
+            raise ReminderScheduleError("already_sent must be an array of idempotency-key strings")
+        if args.now is None:
+            now = datetime.now(timezone.utc)
+        else:
+            raw_now = args.now[:-1] + "+00:00" if args.now.endswith("Z") else args.now
+            try:
+                now = datetime.fromisoformat(raw_now)
+            except ValueError as exc:
+                raise ReminderScheduleError("--now must be an ISO-8601 timestamp") from exc
+            if now.tzinfo is None or now.utcoffset() is None:
+                raise ReminderScheduleError("--now must include a timezone offset")
+        report = build_reminder_plan(
+            events, args.recipient_id, now, args.timezone, args.scope_id,
+            already_sent=set(already_sent), lead_days=args.lead_days,
+        )
+        rendered = json.dumps(report, ensure_ascii=False, indent=2) + "\\n"
+        if args.out is None:
+            print(rendered, end="")
+        else:
+            args.out.parent.mkdir(parents=True, exist_ok=True)
+            args.out.write_text(rendered, encoding="utf-8")
+        return 0
+    except (OSError, ReminderScheduleError) as exc:
+        print(f"Reminder dry-run failed: {exc}", file=sys.stderr)
+        return 2
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
