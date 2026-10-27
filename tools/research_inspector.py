@@ -132,6 +132,16 @@ def source_status(source, as_of=None):
     if provenance.get("status") != "registry_linked":
         return STATUS_REVIEW
 
+    # "Verified" requires a traceable source and a hash of the original file,
+    # not only reviewer flags. Missing or malformed evidence stays under review.
+    if not isinstance(provenance.get("official_title"), str) or not provenance["official_title"].strip():
+        return STATUS_REVIEW
+    if not _valid_review_evidence_url(provenance.get("source_url")):
+        return STATUS_REVIEW
+    original_sha256 = provenance.get("original_sha256")
+    if not isinstance(original_sha256, str) or not __import__("re").fullmatch(r"[0-9a-fA-F]{64}", original_sha256):
+        return STATUS_REVIEW
+
     required_true = ("authenticity_verified", "status_verified", "amendment_history_verified")
     if provenance.get("review_status") != "verified":
         return STATUS_REVIEW
