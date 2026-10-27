@@ -34,6 +34,8 @@ Add an entry to `docs/collection_manifest.example.json` only after checking the 
   "permission_evidence": "Reference to the reviewed terms or written authorization; do not use this placeholder",
   "terms_checked_on": "2026-10-23",
   "permission_scope_review": {
+    "status": "pending",
+    "evidence": "REPLACE_WITH_REAL_AUTHORIZATION_OR_TERMS_REFERENCE",
     "reviewer_id": "REPLACE_WITH_REAL_REVIEWER_REFERENCE",
     "reviewed_on": "2026-10-23",
     "evidence_reference": "REPLACE_WITH_REAL_EVIDENCE_ID",
