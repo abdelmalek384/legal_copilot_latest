@@ -110,10 +110,10 @@ def validate_capture_record(record: object, record_path: Path) -> dict:
             errors.append(f"{field} must be an ISO date (YYYY-MM-DD) when supplied")
 
     collection = record.get("collection_permission")
-    if collection not in PERMISSION_STATES:
+    if not isinstance(collection, str) or collection not in PERMISSION_STATES:
         errors.append("collection_permission must be one of: " + ", ".join(sorted(PERMISSION_STATES)))
     commercial = record.get("commercial_reuse_permission")
-    if commercial not in COMMERCIAL_STATES:
+    if not isinstance(commercial, str) or commercial not in COMMERCIAL_STATES:
         errors.append("commercial_reuse_permission must be one of: " + ", ".join(sorted(COMMERCIAL_STATES)))
 
     expected_hash = record.get("original_sha256")
@@ -186,6 +186,9 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--record", type=Path, required=True, help="JSON sidecar record")
     args = parser.parse_args(argv)
+    if args.record.is_symlink():
+        print(json.dumps({"valid": False, "errors": ["capture record must not be a symbolic link"]}, ensure_ascii=False, indent=2))
+        return 2
     try:
         record = json.loads(args.record.read_text(encoding="utf-8"))
     except (OSError, UnicodeError, json.JSONDecodeError) as exc:
