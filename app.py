@@ -1,6 +1,6 @@
 """Legal copilot MVP: case workspace + hybrid law search + citation-checked answers.
 Run: pip install -r requirements.txt && uvicorn app:app --reload"""
-import sqlite3, re, json, os, io, csv, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request, zipfile, ipaddress
+import sqlite3, re, json, os, io, csv, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request, zipfile, ipaddress, logging
 from cryptography.fernet import Fernet
 from urllib.parse import urlsplit
 from contextvars import ContextVar
@@ -15,6 +15,8 @@ from database_runtime import DatabaseRuntime, DatabaseRuntimeError
 from tenant_context import FirmContext, FirmContextError
 from fastapi import Request
 from fastapi.responses import JSONResponse, HTMLResponse, Response
+
+logger = logging.getLogger(__name__)
 
 DB = os.environ.get("COPILOT_DB", "copilot.db")
 MIN_SCORE = float(os.environ.get("MIN_SCORE", "0.3"))
@@ -1354,10 +1356,10 @@ async def security_headers(request: Request, call_next):
     request.state.csp_nonce = nonce
     context_token = _active_firm_context.set(None)
     try:
-        retry_after = _rate_limit(request)
-        if not retry_after and _separate_runtime_enabled():
-            _active_firm_context.set(_request_firm_context(request))
         try:
+            retry_after = _rate_limit(request)
+            if not retry_after and _separate_runtime_enabled():
+                _active_firm_context.set(_request_firm_context(request))
             body_size_error = _declared_body_size_error(request)
             if body_size_error:
                 response = JSONResponse(status_code=body_size_error[0], content={"detail": body_size_error[1]})
@@ -1369,9 +1371,20 @@ async def security_headers(request: Request, call_next):
                 response = await call_next(request)
         except OverflowError:
             response = JSONResponse(status_code=404, content={"detail": "not found"})
+        except HTTPException as exc:
+            response = JSONResponse(
+                status_code=exc.status_code,
+                content={"detail": exc.detail},
+                headers=exc.headers,
+            )
+        except DatabaseRuntimeError:
+            response = JSONResponse(status_code=503, content={"detail": "database runtime unavailable"})
+        except Exception:
+            logger.exception("Unhandled application request error on %s", request.url.path)
+            response = JSONResponse(status_code=500, content={"detail": "internal server error"})
     finally:
         _active_firm_context.reset(context_token)
-    # Tenant-scoped matter, identity, and audit responses must not persist in browser or proxy caches.
+    # Tenant-scoped matter, identity, audit, and error responses must not persist in caches.
     response.headers["Cache-Control"] = "no-store"
     response.headers["Pragma"] = "no-cache"
     response.headers["Expires"] = "0"
