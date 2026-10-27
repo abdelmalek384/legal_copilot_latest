@@ -1,8 +1,10 @@
 import hashlib
+import io
 import importlib.util
 import json
 import tempfile
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -109,6 +111,24 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         self.assertIn("candidate_commercial_terms_date_invalid", codes)
         self.assertIn("central_commercial_permission_evidence_missing", codes)
         self.assertIn("central_commercial_terms_date_invalid", codes)
+
+    def test_report_output_cannot_overwrite_candidate_input(self):
+        candidate_path = self.root / "candidate.json"
+        register_path = self.root / "register.json"
+        coverage_path = self.root / "coverage.csv"
+        original_candidate = json.dumps(self.candidate, sort_keys=True)
+        candidate_path.write_text(original_candidate, encoding="utf-8")
+        register_path.write_text(json.dumps(self.register), encoding="utf-8")
+        with patch("sys.stdout", new_callable=io.StringIO):
+            result = MODULE.main([
+                "--candidate", str(candidate_path),
+                "--register", str(register_path),
+                "--coverage-matrix", str(coverage_path),
+                "--root", str(self.root),
+                "--out", str(candidate_path),
+            ])
+        self.assertEqual(result, 2)
+        self.assertEqual(candidate_path.read_text(encoding="utf-8"), original_candidate)
 
     def test_current_labour_candidate_is_blocked_not_silently_promoted(self):
         candidate = json.loads((ROOT / "data/candidates/labour_law_14_2025/registry_candidate.json").read_text(encoding="utf-8"))
