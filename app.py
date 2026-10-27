@@ -1084,10 +1084,74 @@ def _legal_quantities(text):
     return found
 
 
+def _mask_markdown_code(answer):
+    """Mask fenced and inline Markdown code so code samples cannot satisfy legal citations.
+
+    Newlines are preserved to keep line-oriented answer checks stable. Unclosed fenced
+    blocks are masked through end-of-answer rather than interpreted as legal prose.
+    """
+    if not isinstance(answer, str):
+        return ""
+    # HTML comments are not visible prose; an index hidden there must not count as a citation.
+    answer = re.sub(
+        r"<!--.*?(?:-->|$)",
+        lambda match: re.sub(r"[^\r\n]", " ", match.group(0)),
+        answer,
+        flags=re.S,
+    )
+    output = []
+    fence_char = None
+    fence_length = 0
+    for line in answer.splitlines(keepends=True):
+        stripped = line.lstrip(" \t")
+        if fence_char is not None:
+            output.append(re.sub(r"[^\r\n]", " ", line))
+            close = re.match(r"^" + re.escape(fence_char) + r"{" + str(fence_length) + r",}[ \t]*\r?\n?$", stripped)
+            if close:
+                fence_char = None
+                fence_length = 0
+            continue
+        opening = re.match(r"^(`{3,}|~{3,})(?:[^\r\n]*)?(?:\r?\n)?$", stripped)
+        if opening:
+            fence_char = opening.group(1)[0]
+            fence_length = len(opening.group(1))
+            output.append(re.sub(r"[^\r\n]", " ", line))
+            continue
+        # Inline code uses matching backtick runs; process one line at a time because
+        # Markdown inline code spans cannot cross a line break.
+        chars = list(line)
+        i = 0
+        while i < len(line):
+            if line[i] != "`" or (i > 0 and line[i - 1] == "\\"):
+                i += 1
+                continue
+            run_end = i + 1
+            while run_end < len(line) and line[run_end] == "`":
+                run_end += 1
+            run = line[i:run_end]
+            close_at = line.find(run, run_end)
+            if close_at < 0:
+                i = run_end
+                continue
+            for pos in range(i, close_at + len(run)):
+                if chars[pos] not in "\r\n":
+                    chars[pos] = " "
+            i = close_at + len(run)
+        output.append("".join(chars))
+    return "".join(output)
+
+
+def _answer_citation_indices(answer):
+    """Return citation markers present in prose, excluding Markdown code samples."""
+    visible_answer = _mask_markdown_code(answer)
+    return {int(value) for value in re.findall(r"\[(\d+)\]", visible_answer)}
+
+
 def _answer_has_unsupported_quantities(answer, hits, cited_indices):
     """Fail closed unless each numeric claim is supported by a citation on that sentence."""
     if not isinstance(answer, str) or not isinstance(hits, (list, tuple)):
         return True
+    answer = _mask_markdown_code(answer)
 
     for raw_line in answer.splitlines():
         line = raw_line.strip()
@@ -1100,15 +1164,13 @@ def _answer_has_unsupported_quantities(answer, hits, cited_indices):
 
         sentences = re.split(r"(?<=[.!?؟])\s+", line)
         for sentence in sentences:
-            sentence = re.sub(r"^(?:[-*+]\s+|\d+[.)]\s+|>\s*)", "", sentence).strip()
+            sentence = re.sub(r"^(?:[-*+]" + r"\s+|\d+[.)]\s+|>\s*)", "", sentence).strip()
             if not sentence:
                 continue
             claims = _legal_quantities(re.sub(r"\[\d+\]", " ", sentence))
             if not claims:
                 continue
 
-            # Numeric support must come from the citations attached to this claim,
-            # not from an unrelated source cited elsewhere in the answer.
             sentence_cites = {int(value) for value in re.findall(r"\[(\d+)\]", sentence)}
             if not sentence_cites or any(index < 1 or index > len(hits) for index in sentence_cites):
                 return True
@@ -1122,13 +1184,13 @@ def _answer_has_uncited_claims(answer):
     """Fail closed when a generated legal claim sentence has no inline source citation."""
     if not isinstance(answer, str) or not answer.strip():
         return True
+    answer = _mask_markdown_code(answer)
     for raw_line in answer.splitlines():
         line = raw_line.strip()
         if (not line or re.match(r"^#{1,6}\s+", line)
                 or re.fullmatch(r"[-*_]{3,}", line)
                 or re.fullmatch(r"\*\*[^*]{1,100}[:：]\*\*", line)):
             continue
-        # A standalone label/heading is not itself a legal claim.
         if line.endswith((":", "：")) and len(line) <= 100:
             continue
         sentences = re.split(r"(?<=[.!?؟])\s+", line)
@@ -1139,7 +1201,6 @@ def _answer_has_uncited_claims(answer):
             if not re.search(r"\[\d+\]", sentence):
                 return True
     return False
-
 
 def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None, scope="all_permitted"):
     # Context helps resolve follow-ups, but the current question remains explicit in the answer prompt.
@@ -1176,7 +1237,7 @@ def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None, sc
     except Exception:
         msg = "تعذر الاتصال بالنموذج."
     if ans:
-        cites = {int(x) for x in re.findall(r"\[(\d+)\]", ans)}
+        cites = _answer_citation_indices(ans)
         if not cites or not cites <= set(range(1, len(hits) + 1)):
             ans, msg = None, "فشل التحقق من الاستشهادات، تُعرض المصادر فقط."
         elif _answer_has_unsupported_quantities(ans, hits, cites):
