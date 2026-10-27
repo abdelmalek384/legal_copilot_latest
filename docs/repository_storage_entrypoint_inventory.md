@@ -1,14 +1,15 @@
-# SEC-01 — repository storage, file, backup, and job inventory
+# SEC-01 — repository storage, file, backup, and job inventory (historical baseline)
 
-**Review date:** 2026-10-24  
-**Scope:** targeted static review of the current repository's storage-related entry points beyond the main request handlers, including CLI commands, corpus tooling, backup/restore, collection outputs, and deployment guidance.  
+**Snapshot:** 2026-10-24  
+**Status:** Historical baseline; several architecture statements below predate the separate-database runtime and tenant backup/restore work. Use [the current tenant-isolation inventory](tenant_isolation_inventory.md), [database completion tracker](database_completion_tracker.md), and [recovery runbook](database_recovery_runbook.md) for current status.  
+**Scope:** preserve the initial static review of storage-related entry points beyond request handlers, including CLI commands, corpus tooling, backup/restore, collection outputs, and deployment guidance.  
 **Evidence level:** engineering inventory based on source inspection and repository searches. This is not an exhaustive SQL audit, a deployment-host inspection, a penetration test, or an independent security review.
 
 ## Executive finding
 
-The application still uses one SQLite database selected by the process-wide `COPILOT_DB` environment variable (default `copilot.db`). The connection-provider extraction in PR #115 is only a connection-lifecycle boundary. It does not route by trusted firm identity or establish per-firm database isolation.
+At the 2026-10-24 snapshot, the application used one SQLite database selected by `COPILOT_DB`. That statement is historical. The current approved runtime routes global identities/memberships through the control plane, matter data through a distinct database per firm, and legal-reference data through the shared corpus. Explicit legacy `COPILOT_DB` compatibility remains for non-production use and is rejected in production. Encrypted multi-database backup/restore and a separate-database preflight are now implemented; the witnessed recovery drill remains outstanding.
 
-This pass identifies additional non-request paths that must be accounted for before tenant migration. No tenant-routing or data-migration behavior is implemented by this document.
+The table below preserves the earlier entrypoint analysis and its original follow-ups. It is not a current statement that tenant routing or multi-database backup/restore is absent.
 
 ## Entry-point inventory
 
