@@ -75,6 +75,12 @@ class ManualCaptureRecordTests(unittest.TestCase):
         self.assertTrue(any("source_url" in error for error in result["errors"]))
         self.assertTrue(any("retrieved_at" in error for error in result["errors"]))
 
+    def test_non_calendar_iso_date_formats_are_rejected(self):
+        self.record["publication_date"] = "2026-W44-2"
+        result = validate_capture_record(self.record, self.record_path)
+        self.assertFalse(result["valid"])
+        self.assertTrue(any("publication_date" in error for error in result["errors"]))
+
     def test_non_string_permission_states_are_rejected_without_crashing(self):
         self.record["collection_permission"] = []
         self.record["commercial_reuse_permission"] = {}
