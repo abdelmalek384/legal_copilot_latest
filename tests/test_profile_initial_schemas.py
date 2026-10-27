@@ -61,6 +61,43 @@ class ProfileInitialSchemaTests(unittest.TestCase):
         self.assertNotIn("cases", names(corpus)); self.assertNotIn("tenant_database_catalog", names(corpus))
         control.close(); firm.close(); corpus.close()
 
+    def test_each_profile_excludes_all_foreign_boundary_tables(self):
+        control, firm, corpus = (self.build(p) for p in ("control_plane", "firm", "legal_corpus"))
+        names = lambda db: {
+            row[0] for row in db.execute(
+                "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'"
+            )
+        }
+        control_names, firm_names, corpus_names = names(control), names(firm), names(corpus)
+
+        # These sets are deliberate architecture boundaries, not merely a
+        # sample of tables. New profile migrations must extend the appropriate
+        # set when adding a table that belongs to another security domain.
+        identity_and_control = {
+            "firms", "users", "firm_memberships", "user_platform_roles",
+            "platform_security_events", "tenant_database_catalog",
+            "auth_sessions", "login_attempts", "api_rate_limit_windows",
+        }
+        matter_owned = {
+            "cases", "members", "tasks", "events", "notes", "deadlines", "fees",
+            "sessions", "docs", "document_extraction_reviews", "research_conversations",
+            "research_messages", "case_deletion_audit", "security_audit_events",
+        }
+        corpus_owned = {
+            "legal_sources", "legal_documents", "legal_document_versions",
+            "legal_version_relations", "legal_review_events",
+        }
+
+        self.assertFalse(identity_and_control & firm_names, sorted(identity_and_control & firm_names))
+        self.assertFalse(identity_and_control & corpus_names, sorted(identity_and_control & corpus_names))
+        self.assertFalse(matter_owned & control_names, sorted(matter_owned & control_names))
+        self.assertFalse(matter_owned & corpus_names, sorted(matter_owned & corpus_names))
+        self.assertFalse(corpus_owned & control_names, sorted(corpus_owned & control_names))
+        self.assertFalse(corpus_owned & firm_names, sorted(corpus_owned & firm_names))
+        control.close()
+        firm.close()
+        corpus.close()
+
     def test_firm_profile_installs_insert_and_update_scope_guards_for_every_owned_table(self):
         db = self.build("firm")
         expected = {
