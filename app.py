@@ -158,7 +158,7 @@ if os.environ.get("COPILOT_ENV", "").strip().lower() in {"prod", "production"}:
             "Production requires explicit separate database paths and forbids legacy shared-database mode; "
             + "; ".join(reasons)
         )
-    if not _allowed_hosts:
+    if not os.environ.get("COPILOT_ALLOWED_HOSTS", "").strip():
         startup_errors.append("COPILOT_ALLOWED_HOSTS is required in production.")
     if os.environ.get("COPILOT_SECURE_COOKIES", "").strip() != "1":
         startup_errors.append("COPILOT_SECURE_COOKIES=1 is required in production.")
