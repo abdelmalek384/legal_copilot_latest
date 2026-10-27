@@ -17,3 +17,8 @@ The report includes the database file's SHA-256, but that hash identifies the da
 - It never changes \`verified\`, \`in_force\`, permission, or review fields.
 - A count of zero issues means only that these specific metadata checks found no gaps; it is not a legal accuracy certification.
 - Keep the audit output private if it reveals client or case metadata. The report itself does not dump legal text, but it includes the local database path and aggregate counts.
+
+
+## Evidence URL validation
+
+The read-only audit accepts only well-formed HTTPS URLs without whitespace, embedded credentials, malformed or empty ports, or out-of-range ports. This is a syntax check only: it does not fetch the page or prove the evidence is genuine, relevant, authoritative, or legally sufficient.
