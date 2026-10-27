@@ -138,7 +138,7 @@ def _is_verified(rule: dict) -> bool:
     evidence_url = rule.get("review_evidence_url")
     if not isinstance(reviewer, str) or not reviewer.strip():
         return False
-    if reviewer_role not in {"egyptian_lawyer", "qualified_egyptian_counsel"}:
+    if not isinstance(reviewer_role, str) or reviewer_role not in {"egyptian_lawyer", "qualified_egyptian_counsel"}:
         return False
     if not isinstance(source, str) or not source.strip():
         return False
