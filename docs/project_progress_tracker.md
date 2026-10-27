@@ -31,6 +31,7 @@
 - **#685** — this tracker refresh; test check passed after the snapshot was authored.
 - **#686** — Markdown renderer now displays review-event and chunk/version audit metrics; test check passed.
 - **#687** — Arabic hamza test assertions aligned with canonical token normalization; test check passed. This is test-only and does not change runtime normalization.
+- **#688** — local manual-capture provenance validator and operator guide; CI is in progress. It never marks content retrieval-eligible.
 
 ### Immediate priority order
 
