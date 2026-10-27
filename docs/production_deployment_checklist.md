@@ -77,3 +77,6 @@ Also run the CI workflow and confirm all jobs pass for the exact commit being de
 ## Release decision
 
 Do not describe the product as production-ready until the unchecked items have named owners, evidence, and an explicit risk acceptance. A passing CI run alone is not a production security approval.
+
+
+- [ ] Confirm every legal release candidate has a stable safe `document_id`, non-empty `official_title` and `document_type`, and links to exactly one central source record.
