@@ -43,13 +43,15 @@ class ProductionReleaseGateTests(unittest.TestCase):
         ]
 
     def _candidate_file(self, root, name="candidate.json", source_id="SRC-1",
-                         anchors=None, effective_date="2020-01-01", repeal_date=None):
+                         anchors=None, effective_date="2020-01-01", repeal_date=None,
+                         legal_status="in_force"):
         path = root / name
         path.write_text(json.dumps({
             "document": {"source_id": source_id},
             "version": {
                 "effective_date": effective_date,
                 "repeal_date": repeal_date,
+                "legal_status": legal_status,
                 "article_identifiers": anchors if anchors is not None else ["Article 1"],
             },
         }), encoding="utf-8")
@@ -137,6 +139,22 @@ class ProductionReleaseGateTests(unittest.TestCase):
                 )
         self.assertFalse(report["ready"])
         self.assertIn("benchmark_pin_cites_not_in_ready_corpus", {b["code"] for b in report["blockers"]})
+
+    def test_historical_status_without_repeal_date_is_excluded_even_if_report_says_ready(self):
+        questions = self._approved_questions()
+        with tempfile.TemporaryDirectory() as td:
+            candidate = self._candidate_file(Path(td), legal_status="historical")
+            with (
+                patch.object(gate, "inspect_environment", return_value=(["environment okay"], [], [])),
+                patch.object(gate, "build_legal_report", return_value=self._ready_report(candidate)),
+                patch.object(gate, "read_jsonl", return_value=questions),
+            ):
+                report = gate.evaluate_release(
+                    env=self.clean_env, candidate_paths=[candidate], benchmark_path=Path("approved-benchmark.jsonl")
+                )
+        self.assertFalse(report["ready"])
+        self.assertEqual(report["benchmark"]["ready_source_count"], 0)
+        self.assertIn("benchmark_sources_not_in_ready_corpus", {b["code"] for b in report["blockers"]})
 
     def test_benchmark_source_version_must_be_active_on_question_date(self):
         questions = self._approved_questions()

@@ -32,14 +32,20 @@ REQUIRED_REVIEWS = {
 REQUIRED_USES = {"collection", "storage", "text_extraction", "indexing", "commercial_product_use", "excerpt_display"}
 
 
-def valid_date(value: object) -> bool:
+def valid_calendar_date(value: object) -> bool:
+    """Validate a real ISO calendar date without assuming it must be in the past."""
     if not isinstance(value, str):
         return False
     try:
         parsed = dt.date.fromisoformat(value)
     except ValueError:
         return False
-    return parsed.isoformat() == value and parsed <= dt.date.today()
+    return parsed.isoformat() == value
+
+
+def valid_date(value: object) -> bool:
+    """Validate an ISO calendar date that must not be in the future."""
+    return valid_calendar_date(value) and dt.date.fromisoformat(value) <= dt.date.today()
 
 
 def valid_timestamp(value: object) -> bool:
@@ -276,6 +282,22 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
     if valid_date(version.get("publication_date")) and valid_date(version.get("effective_date")):
         if version["effective_date"] < version["publication_date"]:
             add(blockers, "effective_before_publication", "Effective date precedes publication date; review the legal basis.")
+    repeal_date = version.get("repeal_date")
+    if repeal_date is not None:
+        if not valid_calendar_date(repeal_date):
+            add(blockers, "repeal_date_invalid", "A recorded repeal_date must be a real YYYY-MM-DD calendar date.")
+        elif valid_date(version.get("effective_date")) and repeal_date < version["effective_date"]:
+            add(blockers, "repeal_before_effective", "Repeal date precedes the version's effective date; review the legal timeline.")
+    if version.get("legal_status") in {"repealed", "historical"} and not valid_date(repeal_date):
+        add(blockers, "repeal_date_required_for_historical_status",
+            "A version marked repealed or historical needs a verified, valid repeal/end date; otherwise it could be treated as active indefinitely.")
+    if (
+        version.get("legal_status") == "in_force"
+        and valid_calendar_date(repeal_date)
+        and dt.date.fromisoformat(repeal_date) <= dt.date.today()
+    ):
+        add(blockers, "in_force_after_repeal_date",
+            "A version marked in_force has an end/repeal date that has already arrived; reconcile the recorded legal status.")
     if not isinstance(version.get("gazette_issue"), str) or not version["gazette_issue"].strip():
         add(blockers, "gazette_issue_missing", "Official publication issue reference is required.")
     if not isinstance(version.get("gazette_pages"), str) or not version["gazette_pages"].strip():
