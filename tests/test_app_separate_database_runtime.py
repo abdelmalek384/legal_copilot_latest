@@ -1756,5 +1756,56 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             client.close()
 
 
+    def test_failed_shared_corpus_import_rolls_back_partial_batch(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        control = self.runtime.control_connection()
+        control.execute(
+            "INSERT INTO user_platform_roles(user_id,role_name) VALUES(?,'platform_reviewer')",
+            (self.user_id,),
+        )
+        control.commit()
+
+        corpus = self.runtime.legal_corpus_connection()
+        corpus.execute("""
+            CREATE TRIGGER reject_second_staged_import
+            BEFORE INSERT ON legal_import_staging
+            WHEN NEW.law='Atomic staged import' AND NEW.article='2'
+            BEGIN SELECT RAISE(ABORT, 'staging insert unavailable'); END
+        """)
+        corpus.commit()
+        payload = [
+            {"law": "Atomic staged import", "article": "1", "text": "first batch row", "source": "TEST"},
+            {"law": "Atomic staged import", "article": "2", "text": "second batch row", "source": "TEST"},
+        ]
+        headers = {"X-Admin-Token": self.admin_token}
+        failed = self._mutate("post", "/law/import", json=payload, headers=headers)
+        self.assertEqual(failed.status_code, 503, failed.text)
+        self.assertEqual(
+            corpus.execute(
+                "SELECT COUNT(*) FROM legal_import_staging WHERE law=?",
+                ("Atomic staged import",),
+            ).fetchone()[0],
+            0,
+        )
+
+        corpus.execute("DROP TRIGGER reject_second_staged_import")
+        corpus.commit()
+        succeeding = self._mutate(
+            "post",
+            "/law/import",
+            json=[{"law": "Atomic staged import", "article": "3", "text": "successful follow-up row", "source": "TEST"}],
+            headers=headers,
+        )
+        self.assertEqual(succeeding.status_code, 200, succeeding.text)
+        rows = corpus.execute(
+            "SELECT article FROM legal_import_staging WHERE law=? ORDER BY article",
+            ("Atomic staged import",),
+        ).fetchall()
+        self.assertEqual([row["article"] for row in rows], ["3"])
+
+
 if __name__ == "__main__":
     unittest.main()
