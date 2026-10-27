@@ -1732,7 +1732,8 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
                 json={"text": "FAILED_NOTE_MUST_NOT_PERSIST"},
                 headers=headers,
             )
-            self.assertEqual(failed.status_code, 500, failed.text)
+            self.assertEqual(failed.status_code, 503, failed.text)
+            self.assertEqual(failed.headers.get("Cache-Control"), "no-store")
 
             tenant.execute("DROP TRIGGER reject_note_event")
             tenant.commit()
