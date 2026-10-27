@@ -60,6 +60,7 @@ class AcquisitionReadinessCliTests(unittest.TestCase):
                 "collection_permission": "allowed",
                 "commercial_reuse_permission": "unknown",
                 "permission_evidence": "written authorization ref AUTH-1",
+                "permission_evidence_url": "https://laws.example.gov/rights/collection",
                 "terms_checked_on": "2026-10-23",
             }]
         }
