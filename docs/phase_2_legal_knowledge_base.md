@@ -60,7 +60,7 @@ Every source/document/version must have stable identifiers and the following fie
 - **Version relations:** amends, amended by, repeals, repealed by, corrects, supersedes, implements, consolidates. Store each instrument separately and identify affected articles where established.
 - **Processing:** extraction method/version, OCR state, page/paragraph/article anchors, extraction-quality findings, missing/duplicate article labels, and original-to-text comparison status.
 - **Rights:** collection permission, storage, indexing, commercial use, model processing, display/excerpt and redistribution permissions, terms checked date, evidence reference and any limitations.
-- **Review:** source review, text transcription review, legal-status review, lawyer approval, reviewer identity/role, review date, outcome, evidence and unresolved issues.
+- **Review:** source review, text transcription review, legal-status review, lawyer approval, reviewer identity/role, review date, outcome, evidence and unresolved issues. The release gate requires every review record to name an accountable reviewer, role, and non-future review date; the lawyer-approval record must explicitly identify a qualified Egyptian lawyer/counsel. These fields improve traceability but do not independently prove identity, qualifications, or evidence authenticity.
 
 The original file is immutable. Extracted text and normalized article chunks are derivative records linked to a specific source version. Corrections create a new processing/review event; they do not silently replace the original.
 
