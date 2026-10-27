@@ -1415,6 +1415,14 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         finally:
             nonmember_client.close()
 
+        # Firm admins retain visibility across firm cases, including tasks assigned to nonmembers.
+        admin_dashboard = self.client.get("/dashboard")
+        self.assertEqual(admin_dashboard.status_code, 200, admin_dashboard.text)
+        self.assertIn("NONMEMBER_ASSIGNED_TASK_SENTINEL", admin_dashboard.text)
+        admin_calendar = self.client.get("/calendar.ics")
+        self.assertEqual(admin_calendar.status_code, 200, admin_calendar.text)
+        self.assertIn("NONMEMBER_ASSIGNED_TASK_SENTINEL", admin_calendar.text)
+
 
 if __name__ == "__main__":
     unittest.main()
