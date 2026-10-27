@@ -43,12 +43,25 @@ def list_of_objects(value: Any, label: str) -> list[dict[str, Any]]:
 
 
 def hostname(value: Any) -> str | None:
-    if not isinstance(value, str):
+    """Return a normalized host only for well-formed HTTPS URLs without userinfo."""
+    if not isinstance(value, str) or not value or value != value.strip():
+        return None
+    if any(ch.isspace() or ord(ch) < 32 for ch in value):
         return None
     try:
         parsed = urlparse(value)
-        return parsed.hostname.lower().rstrip(".") if parsed.scheme == "https" and parsed.hostname else None
-    except ValueError:
+        port = parsed.port  # Reject malformed and out-of-range ports.
+        if (
+            parsed.scheme.lower() != "https"
+            or not parsed.hostname
+            or parsed.username is not None
+            or parsed.password is not None
+            or parsed.netloc.endswith(":")
+            or (port is not None and not 1 <= port <= 65535)
+        ):
+            return None
+        return parsed.hostname.lower().rstrip(".")
+    except (ValueError, TypeError):
         return None
 
 
