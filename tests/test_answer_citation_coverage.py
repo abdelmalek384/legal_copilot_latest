@@ -37,6 +37,12 @@ class CitationCoverageTests(unittest.TestCase):
         self.assertEqual(app._answer_citation_indices("Rule [1].\n```text\n[4]\n```"), {1})
         self.assertEqual(app._answer_citation_indices("```text\n[1]"), set())
 
+    def test_citation_inside_hidden_html_comment_does_not_support_a_claim(self):
+        self.assertTrue(app._answer_has_uncited_claims(
+            "The deadline is 30 days. <!-- [1] -->"
+        ))
+        self.assertEqual(app._answer_citation_indices("Rule [2]. <!-- [1] -->"), {2})
+
     def test_citation_inside_fenced_code_does_not_support_a_claim(self):
         answer = "The deadline is 30 days.\n\n```text\n[1]\n```"
         self.assertTrue(app._answer_has_uncited_claims(answer))
