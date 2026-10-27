@@ -37,8 +37,8 @@ class LegalReleaseReadinessTests(unittest.TestCase):
             "sources": [{
                 "source_id": self.source_id, "authority": "Synthetic official authority", "source_class": "official_primary_candidate", "source_page": "https://laws.example.gov/portal",
                 "collection_permission": "allowed", "commercial_reuse_permission": "allowed",
-                "permission_evidence": "Written collection permission AUTH-1", "terms_checked_on": "2025-01-01",
-                "commercial_reuse_evidence": "Commercial license AUTH-COMM-1", "commercial_terms_checked_on": "2025-01-01",
+                "permission_evidence": "Written collection permission AUTH-1", "permission_evidence_url": "https://laws.example.gov/rights/collection", "terms_checked_on": "2025-01-01",
+                "commercial_reuse_evidence": "Commercial license AUTH-COMM-1", "commercial_reuse_evidence_url": "https://laws.example.gov/rights/commercial", "commercial_terms_checked_on": "2025-01-01",
             }],
             "version": {
                 "source_url": "https://laws.example.gov/law.pdf", "original_path": "originals/law.pdf",
@@ -74,6 +74,27 @@ class LegalReleaseReadinessTests(unittest.TestCase):
     def test_complete_synthetic_evidence_passes(self):
         result = MODULE.audit_candidate(self.candidate, self.register, self.root)
         self.assertTrue(result["ready"], result["blockers"])
+
+    def test_collection_rights_require_inspectable_evidence_url(self):
+        candidate = json.loads(json.dumps(self.candidate))
+        candidate["sources"][0].pop("permission_evidence_url")
+        result = MODULE.audit_candidate(candidate, self.register, self.root)
+        self.assertIn("candidate_permission_evidence_url_invalid", {item["code"] for item in result["blockers"]})
+
+    def test_commercial_rights_require_separate_inspectable_evidence_url(self):
+        candidate = json.loads(json.dumps(self.candidate))
+        candidate["sources"][0].pop("commercial_reuse_evidence_url")
+        result = MODULE.audit_candidate(candidate, self.register, self.root)
+        self.assertIn("candidate_commercial_permission_evidence_url_invalid", {item["code"] for item in result["blockers"]})
+
+    def test_central_permission_register_must_link_rights_evidence(self):
+        register = json.loads(json.dumps(self.register))
+        register["sources"][0].pop("permission_evidence_url")
+        register["sources"][0].pop("commercial_reuse_evidence_url")
+        result = MODULE.audit_candidate(self.candidate, register, self.root)
+        codes = {item["code"] for item in result["blockers"]}
+        self.assertIn("central_permission_evidence_url_invalid", codes)
+        self.assertIn("central_commercial_permission_evidence_url_invalid", codes)
 
     def test_retrieval_requires_timezone_aware_timestamp(self):
         candidate = json.loads(json.dumps(self.candidate))
