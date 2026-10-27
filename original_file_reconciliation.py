@@ -129,7 +129,8 @@ def reconcile_original_file_storage(
                 ))
                 continue
             rows = connection.execute(
-                "SELECT object_id,sha256,byte_size,state FROM original_file_objects ORDER BY object_id"
+                "SELECT object_id,sha256,byte_size,state,purged_at,purged_by_user_id,purge_reason "
+                "FROM original_file_objects ORDER BY object_id"
             ).fetchall()
             checked_rows += len(rows)
             for row in rows:
@@ -139,6 +140,15 @@ def reconcile_original_file_storage(
                         "invalid_object_id", tenant.firm_id, str(object_id),
                         "metadata contains a non-canonical opaque object ID",
                     ))
+                    continue
+                if row["purged_at"] is not None:
+                    if row["purged_by_user_id"] is None or not str(row["purge_reason"] or "").strip():
+                        findings.append(ReconciliationFinding(
+                            "invalid_purge_tombstone", tenant.firm_id, object_id,
+                            "purged metadata is missing its actor or reason",
+                        ))
+                    # Tombstones deliberately have no retained binary; any remaining
+                    # file will be reported as an orphan during the inventory scan.
                     continue
                 state = row["state"]
                 if state not in {"staged", "ready", "quarantined"}:
