@@ -453,6 +453,108 @@ def revoke_platform_role(a):
     _change_platform_role(a, grant=False)
 
 
+def mfa_reset_cli(a):
+    """Operator break-glass reset, authorized by a second active MFA-enabled platform admin."""
+    if not app._separate_runtime_enabled():
+        raise SystemExit("MFA recovery requires separate-database mode.")
+    reason = a.reason
+    if reason not in {"lost_device", "lost_recovery_codes", "suspected_compromise", "other"}:
+        raise SystemExit("Choose a supported non-sensitive recovery reason.")
+    actor_email = app.normalize_email(a.actor_email)
+    target_email = app.normalize_email(a.target_email)
+    if not actor_email or not target_email or actor_email == target_email:
+        raise SystemExit("Actor and target must be different valid global identities.")
+    actor_password = getpass.getpass("Platform administrator password: ")
+    actor_code = getpass.getpass("Platform administrator TOTP code: ")
+    runtime = DatabaseRuntime.from_env()
+    try:
+        runtime.initialize()
+        c = runtime.control_connection()
+        now = int(time.time())
+        c.execute("BEGIN IMMEDIATE")
+
+        def abort(message):
+            c.rollback()
+            raise SystemExit(message)
+
+        actor = c.execute(
+            "SELECT id,password_hash,status FROM users WHERE email_normalized=?", (actor_email,)
+        ).fetchone()
+        if actor is None or actor["status"] != "active" or not app.check_pw(actor_password, actor["password_hash"]):
+            abort("Break-glass actor authentication failed.")
+        authorized = c.execute(
+            "SELECT 1 FROM user_platform_roles WHERE user_id=? AND role_name='platform_admin'",
+            (actor["id"],),
+        ).fetchone()
+        if not authorized:
+            abort("Only an active platform_admin can authorize an MFA reset.")
+        target = c.execute(
+            "SELECT id,status FROM users WHERE email_normalized=?", (target_email,)
+        ).fetchone()
+        if target is None or target["status"] != "active":
+            abort("Target must be an active global identity.")
+        target_credential = c.execute(
+            "SELECT status FROM mfa_credentials WHERE user_id=?", (target["id"],)
+        ).fetchone()
+        if target_credential is None:
+            abort("Target has no MFA credential to reset.")
+        actor_credential = c.execute(
+            "SELECT status,locked_until FROM mfa_credentials WHERE user_id=?", (actor["id"],)
+        ).fetchone()
+        if actor_credential is None or actor_credential["status"] != "enabled":
+            abort("Break-glass actor must have enabled MFA.")
+        if int(actor_credential["locked_until"]) > now:
+            abort("Break-glass actor MFA is temporarily locked.")
+        try:
+            factor = app._mfa_verify_factor_in_transaction(
+                c, int(actor["id"]), code=actor_code, recovery_code=None, now=now,
+            )
+        except app.MFAConfigurationError as exc:
+            abort("MFA encryption key is unavailable or invalid.")
+        if factor != "totp":
+            app._mfa_record_failure(c, int(actor["id"]), now)
+            c.commit()
+            raise SystemExit("Break-glass actor MFA verification failed.")
+        if c.execute(
+            "SELECT 1 FROM user_platform_roles WHERE user_id=? AND role_name='platform_admin'",
+            (target["id"],),
+        ).fetchone():
+            active_admins = c.execute(
+                "SELECT COUNT(DISTINCT u.id) FROM users u JOIN user_platform_roles r ON r.user_id=u.id "
+                "WHERE u.status='active' AND r.role_name='platform_admin'"
+            ).fetchone()[0]
+            if active_admins <= 1:
+                abort("Cannot reset the last active platform administrator through this command.")
+        used_at = __import__("datetime").datetime.fromtimestamp(now, __import__("datetime").timezone.utc).isoformat(timespec="seconds")
+        c.execute(
+            "UPDATE mfa_recovery_codes SET used_at=? WHERE user_id=? AND used_at IS NULL",
+            (used_at, target["id"]),
+        )
+        c.execute("DELETE FROM mfa_credentials WHERE user_id=?", (target["id"],))
+        revoked = c.execute("DELETE FROM auth_sessions WHERE user_id=?", (target["id"],)).rowcount
+        c.execute(
+            "INSERT INTO mfa_security_events(actor_user_id,target_user_id,event_type,detail_json) VALUES(?,?,?,?)",
+            (actor["id"], target["id"], "administrator_reset",
+             json.dumps({"reason": reason, "method": "manage.py mfa-reset", "sessions_revoked": revoked},
+                        sort_keys=True, separators=(",", ":"))),
+        )
+        c.commit()
+        print(json.dumps({
+            "status": "mfa_reset",
+            "actor_user_id": int(actor["id"]),
+            "target_user_id": int(target["id"]),
+            "sessions_revoked": revoked,
+            "reason": reason,
+            "next_step": "Target must sign in and complete MFA enrollment again under the active policy.",
+        }, ensure_ascii=False, sort_keys=True))
+    except SystemExit:
+        raise
+    except (DatabaseRuntimeError, sqlite3.Error, ValueError) as exc:
+        raise SystemExit("MFA reset failed; no success is reported. Inspect the control-plane audit and database state.") from exc
+    finally:
+        runtime.close_current_thread()
+
+
 def platform_audit(a):
     """Print a bounded read-only view of the control-plane security audit ledger."""
     if not app._separate_runtime_enabled():
@@ -558,6 +660,11 @@ x.add_argument("--target-email", required=True)
 x.add_argument("--role", required=True, choices=["platform_admin", "platform_reviewer"])
 x.add_argument("--reason", required=True)
 x.set_defaults(f=revoke_platform_role)
+x = sp.add_parser("mfa-reset", help="Reset a lost authenticator using a second active MFA-enabled platform administrator")
+x.add_argument("--actor-email", required=True)
+x.add_argument("--target-email", required=True)
+x.add_argument("--reason", required=True, choices=["lost_device", "lost_recovery_codes", "suspected_compromise", "other"])
+x.set_defaults(f=mfa_reset_cli)
 x = sp.add_parser("platform-audit", help="Read recent platform security events on a trusted operator host")
 x.add_argument("--limit", type=int, default=50)
 x.add_argument("--firm-id", type=int)
