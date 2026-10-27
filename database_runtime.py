@@ -565,7 +565,7 @@ class DatabaseRuntime:
             if existing is not None and existing != path:
                 raise DatabaseRuntimeError(f"Unexpected database attached as {alias}")
             if existing is None:
-                connection.execute(f"ATTACH DATABASE ? AS {alias}", (str(path),))
+                connection.execute(f"ATTACH DATABASE ? AS {alias}", (path.as_uri() + "?mode=ro",))
 
         # Existing matter handlers expect a firm-scoped users table. A temp
         # context table prevents a user with multiple memberships from appearing
