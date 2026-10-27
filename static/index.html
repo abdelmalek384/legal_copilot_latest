@@ -171,7 +171,7 @@ function mfaChallengePage(){
    if(Boolean(code)===Boolean(recovery_code)){toast(ar?'أدخل رمزاً واحداً فقط.':'Enter exactly one code.');return}
    try{
      await api('/account/mfa/verify','POST',{code:code||null,recovery_code:recovery_code||null});
-     ME={...ME,mfa_enabled:true,mfa_required:true,mfa_verified:true,mfa_verification_required:false,mfa_enrollment_required:false};
+     ME={...ME,mfa_enabled:true,mfa_required:true,mfa_verified:true,mfa_verified_at:Math.floor(Date.now()/1000),mfa_verification_required:false,mfa_enrollment_required:false};
      sessionStorage.me=JSON.stringify(ME);PAGE='dash';dash();
    }catch(_){totp.focus()}
  }},h('label',{textContent:ar?'رمز تطبيق المصادقة':'Authenticator code'}),totp,
@@ -205,7 +205,7 @@ function mfaEnrollmentPage(reenroll=false){
        ev2.preventDefault();
        try{
          const completed=await api('/account/mfa/confirm','POST',{current_password:confirmPassword.value,code:code.value.trim()});
-         ME={...ME,mfa_enabled:true,mfa_required:true,mfa_verified:true,mfa_verification_required:false,mfa_enrollment_required:false};
+         ME={...ME,mfa_enabled:true,mfa_required:true,mfa_verified:true,mfa_verified_at:Math.floor(Date.now()/1000),mfa_verification_required:false,mfa_enrollment_required:false};
          sessionStorage.me=JSON.stringify(ME);
          card.replaceChildren(h('h2',{textContent:ar?'احفظ رموز الاسترداد':'Save your recovery codes'}),
            h('p',{className:'mut',textContent:ar?'لن يمكن عرض هذه الرموز مرة أخرى. احفظها في مكان آمن.':'These codes will not be shown again. Store them securely.'}),
