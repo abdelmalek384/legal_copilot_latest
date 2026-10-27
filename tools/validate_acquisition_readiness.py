@@ -87,16 +87,20 @@ def _scope_review_valid(document: dict) -> bool:
     if review["reviewed_on"] < document["terms_checked_on"]:
         return False
     evidence_url = review.get("evidence_url")
-    if evidence_url is not None:
-        try:
-            parsed = urlparse(evidence_url) if isinstance(evidence_url, str) else None
-            if (
-                parsed is None or parsed.scheme != "https" or not parsed.hostname
-                or parsed.username is not None or parsed.password is not None
-            ):
-                return False
-        except ValueError:
+    if not isinstance(evidence_url, str) or not evidence_url.strip():
+        return False
+    try:
+        parsed = urlparse(evidence_url)
+        port = parsed.port
+        if (
+            evidence_url != evidence_url.strip() or any(char.isspace() for char in evidence_url)
+            or parsed.scheme != "https" or not parsed.hostname
+            or parsed.username is not None or parsed.password is not None
+            or (port is not None and not 1 <= port <= 65535)
+        ):
             return False
+    except ValueError:
+        return False
     scope = review.get("scope")
     return isinstance(scope, dict) and all(scope.get(flag) is True for flag in SCOPE_FLAGS)
 
@@ -157,8 +161,12 @@ def audit(manifest: dict, register: dict) -> dict:
                 blockers.append("source_register_does_not_allow_collection")
             if not source.get("permission_evidence") or not _valid_date(source.get("terms_checked_on")):
                 blockers.append("source_permission_evidence_or_terms_date_missing")
+            if not _hostname(source.get("permission_evidence_url")):
+                blockers.append("source_permission_evidence_url_missing_or_invalid")
             if source.get("commercial_reuse_permission") not in COMMERCIAL_ALLOWED:
                 warnings.append("commercial_product_reuse_not_established")
+            elif not _hostname(source.get("commercial_reuse_evidence_url")):
+                blockers.append("source_commercial_reuse_evidence_url_missing_or_invalid")
         else:
             warnings.append("source_permission_record_unavailable")
 
