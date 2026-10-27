@@ -972,6 +972,50 @@
       "language": "ar",
       "candidate_status": "discovery_only",
       "notes": "Candidate metadata only. Verify Gazette text, amendments, and current status before use."
+    },
+    {
+      "document_id": "EG-CIVIL-SERVICE-REGULATIONS-1216-2017",
+      "official_title": "اللائحة التنفيذية لقانون الخدمة المدنية الصادرة بقرار رئيس مجلس الوزراء رقم 1216 لسنة 2017",
+      "document_type": "executive_regulations",
+      "law_number": "1216",
+      "law_year": 2017,
+      "source_id": "EG-CAOA-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Candidate located in the official CAOA laws index. Verify the exact original document, amendments, any replacement regulations, and current applicability against official publication records before use."
+    },
+    {
+      "document_id": "EG-POLITICAL-RIGHTS-45-2014",
+      "official_title": "قانون تنظيم مباشرة الحقوق السياسية — القانون رقم 45 لسنة 2014",
+      "document_type": "election_law",
+      "law_number": "45",
+      "law_year": 2014,
+      "source_id": "EG-NEA-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Candidate listed by the National Election Authority. Verify the official Gazette text, all amendments, transitional provisions, and current applicability; the index is a discovery lead only."
+    },
+    {
+      "document_id": "EG-HOUSE-REPRESENTATIVES-46-2014",
+      "official_title": "قانون مجلس النواب — القانون رقم 46 لسنة 2014",
+      "document_type": "parliament_law",
+      "law_number": "46",
+      "law_year": 2014,
+      "source_id": "EG-NEA-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Candidate listed by the National Election Authority. Verify the official Gazette text, amendments, replacement provisions, and current applicability before use."
+    },
+    {
+      "document_id": "EG-SENATE-141-2020",
+      "official_title": "قانون مجلس الشيوخ — القانون رقم 141 لسنة 2020",
+      "document_type": "senate_law",
+      "law_number": "141",
+      "law_year": 2020,
+      "source_id": "EG-NEA-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Candidate listed by the National Election Authority. Verify the official Gazette text, amendments, transitional provisions, and current applicability before use."
     }
   ]
 }
