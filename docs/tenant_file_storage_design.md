@@ -48,10 +48,12 @@ The stored digest must be computed from the original bytes, not from extracted t
 
 ### Restore and backup integration
 
-- **Not yet implemented:** include original objects in the coordinated encrypted recovery bundle or use a documented, versioned object-store snapshot tied to the database recovery point.
-- Include object keys, digests, sizes, firm binding, and counts in the manifest; verify all objects against the manifest before accepting a restore.
-- Snapshot database and object storage under one coordinated quiescence window. A database-only backup is not a complete matter-document recovery point after originals are retained.
-- Add tests for cross-firm object lookup denial, tampered/missing objects, orphaned metadata, orphaned staged objects, interrupted upload/finalization, backup/restore checksum validation, and deletion/retention behavior.
+- **Implemented in development backup format v2:** the encrypted multi-database bundle includes original object bytes under firm-scoped opaque paths, and its manifest checksums cover the database snapshots and object files.
+- Backup creation verifies each object's firm, state, byte size, and SHA-256 against tenant metadata. It fails closed for missing or tampered objects, unfinished staged metadata, and orphaned/unrecognized files in the object root.
+- Restore verifies the object inventory against the restored tenant metadata and checks byte size and SHA-256 before publishing a new restore directory. The returned restore result includes an object_storage path that must be configured as the application object root.
+- **Still required operationally:** pause application writes across all tenant databases and object storage before backup. The bundle uses an operator-supplied quiescence assertion; it does not create a distributed atomic snapshot by itself.
+- **Still not production-ready:** the local filesystem adapter is the only implementation. Production object storage/KMS, automated reconciliation after interrupted uploads, restore drills, and retention/legal-hold lifecycle acceptance remain open.
+- Existing tests cover bundle round-trip and object-byte integrity. Additional acceptance tests are still required for interrupted upload/finalization, legal-hold behavior, retention/deletion, and a documented full recovery drill.
 
 ### Access, caching, and logging
 
