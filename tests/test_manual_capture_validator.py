@@ -38,6 +38,20 @@ class ManualCaptureRecordTests(unittest.TestCase):
             "review_status": "pending_source_review",
         }
 
+    def test_claimed_verified_status_never_makes_capture_retrieval_eligible(self):
+        self.record["legal_status"] = "in_force"
+        self.record["review_status"] = "verified"
+        result = validate_capture_record(self.record, self.record_path)
+        self.assertTrue(result["valid"])
+        self.assertFalse(result["retrieval_eligible"])
+        self.assertTrue(any("never verifies legal authenticity" in warning for warning in result["warnings"]))
+
+    def test_unsupported_legal_status_is_rejected(self):
+        self.record["legal_status"] = "current_verified"
+        result = validate_capture_record(self.record, self.record_path)
+        self.assertFalse(result["valid"])
+        self.assertIn("legal_status has an unsupported value", result["errors"])
+
     def test_valid_hash_proves_integrity_only_not_retrieval_eligibility(self):
         result = validate_capture_record(self.record, self.record_path)
         self.assertTrue(result["valid"])
