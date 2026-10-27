@@ -1918,5 +1918,66 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
 
 
+    def test_failed_legal_review_event_write_rolls_back_and_returns_503(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        corpus = self.runtime.legal_corpus_connection()
+        corpus.execute(
+            "INSERT INTO legal_sources(source_id,authority,source_page) VALUES(?,?,?)",
+            ("review-rollback-source", "Review rollback test", "https://example.test/source"),
+        )
+        corpus.execute(
+            "INSERT INTO legal_documents(document_id,source_id,official_title,document_type) VALUES(?,?,?,?)",
+            ("review-rollback-doc", "review-rollback-source", "Review rollback document", "statute"),
+        )
+        corpus.execute(
+            "INSERT INTO legal_document_versions(version_id,document_id,version_label,source_url) VALUES(?,?,?,?)",
+            (780, "review-rollback-doc", "v1", "https://example.test/source/v1"),
+        )
+        corpus.commit()
+
+        control = self.runtime.control_connection()
+        control.execute(
+            "INSERT INTO user_platform_roles(user_id,role_name) VALUES(?,'platform_reviewer')",
+            (self.user_id,),
+        )
+        control.commit()
+        corpus.execute("""
+            CREATE TRIGGER reject_review_event_780
+            BEFORE INSERT ON legal_review_events
+            WHEN NEW.version_id=780
+            BEGIN SELECT RAISE(ABORT, 'review event unavailable'); END
+        """)
+        corpus.commit()
+
+        endpoint = "/legal-review/versions/780/events"
+        payload = {
+            "review_type": "legal_status",
+            "outcome": "pending",
+            "notes": "Synthetic rollback regression",
+        }
+        failed = self._mutate("post", endpoint, json=payload)
+        self.assertEqual(failed.status_code, 503, failed.text)
+        self.assertEqual(
+            corpus.execute(
+                "SELECT COUNT(*) FROM legal_review_events WHERE version_id=780"
+            ).fetchone()[0],
+            0,
+        )
+
+        corpus.execute("DROP TRIGGER reject_review_event_780")
+        corpus.commit()
+        succeeding = self._mutate("post", endpoint, json=payload)
+        self.assertEqual(succeeding.status_code, 201, succeeding.text)
+        self.assertEqual(
+            corpus.execute(
+                "SELECT COUNT(*) FROM legal_review_events WHERE version_id=780"
+            ).fetchone()[0],
+            1,
+        )
+
+
 if __name__ == "__main__":
     unittest.main()
