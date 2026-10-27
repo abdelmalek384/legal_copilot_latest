@@ -30,6 +30,8 @@ jobs:
           python-version: '3.12'
       - name: Install dependencies
         run: python -m pip install -r requirements.txt
+      - name: Test research prompt injection boundary
+        run: PYTHONPATH=. python tests/test_research_prompt_injection_boundary.py
       - name: Test security audit CSV export
         run: PYTHONPATH=. python tests/test_security_audit_export.py
       - name: Test versioned database migrations

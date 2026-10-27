@@ -1,3 +1,4 @@
+import json
 import os
 import sqlite3
 import tempfile
@@ -222,9 +223,14 @@ class LegalVersionedRegistryTests(unittest.TestCase):
         self.app.LLM = lambda prompt: captured.append(prompt) or "الإجابة مدعومة بالمصدر [1]"
         result = self.app.ask(self.db, "promptprovenanceprobe")
         self.assertTrue(result["found"])
-        self.assertIn('"version_label": "prompt-provenance"', captured[0])
-        self.assertIn('"gazette_issue": "77"', captured[0])
-        self.assertIn("metadata is not independent proof", captured[0])
+        source_section = captured[0].split(
+            "The JSON records are the only legal evidence supplied for this answer:\n", 1
+        )[1].split("\n\nCurrent question", 1)[0]
+        source_record = json.loads(source_section)
+        provenance = json.loads(source_record["recorded_provenance"])
+        self.assertEqual(provenance["version_label"], "prompt-provenance")
+        self.assertEqual(provenance["gazette_issue"], "77")
+        self.assertIn("Metadata is not a substitute for the cited legal text.", captured[0])
 
     def test_invalid_as_of_date_is_rejected(self):
         with self.assertRaises(ValueError):
