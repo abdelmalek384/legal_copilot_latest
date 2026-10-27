@@ -1563,5 +1563,98 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             nonmember_client.close()
 
 
+    def test_same_firm_nonmember_cannot_read_or_mutate_case_data(self):
+        owner_login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(owner_login.status_code, 200, owner_login.text)
+        select_firm = self._mutate("post", "/session/firm", json={"firm_id": self.firm_a})
+        self.assertEqual(select_firm.status_code, 200, select_firm.text)
+        case_response = self._mutate(
+            "post", "/cases", json={"title": "SAME_FIRM_PRIVATE_CASE_SENTINEL"}
+        )
+        self.assertEqual(case_response.status_code, 200, case_response.text)
+        case_id = case_response.json()["id"]
+        document_response = self._mutate(
+            "post",
+            f"/cases/{case_id}/docs",
+            json={"name": "private-evidence.txt", "text": "SAME_FIRM_PRIVATE_DOCUMENT_SENTINEL source text"},
+        )
+        self.assertEqual(document_response.status_code, 200, document_response.text)
+        document_id = document_response.json()["document_id"]
+
+        nonmember_id = self.runtime.create_global_identity(
+            "Same Firm Nonmember", "same-firm-nonmember@example.test", app.hash_pw(self.password)
+        )
+        self.runtime.create_firm_membership(nonmember_id, self.firm_a, "lawyer")
+        context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        tenant = self.runtime.firm_connection(context)
+        baseline = {
+            table: tenant.execute(f"SELECT COUNT(*) FROM {table} WHERE case_id=?", (case_id,)).fetchone()[0]
+            for table in ("docs", "chunks", "notes", "deadlines", "fees", "sessions", "tasks", "events")
+        }
+        case_before = tenant.execute(
+            "SELECT title,stage,status FROM cases WHERE id=?", (case_id,)
+        ).fetchone()
+
+        nonmember_client = TestClient(app.app)
+        try:
+            login = nonmember_client.post(
+                "/login",
+                json={"email": "same-firm-nonmember@example.test", "password": self.password},
+            )
+            self.assertEqual(login.status_code, 200, login.text)
+            csrf = nonmember_client.cookies.get("lc_csrf") or ""
+            headers = {"X-CSRF-Token": csrf}
+
+            reads = (
+                nonmember_client.get(f"/cases/{case_id}"),
+                nonmember_client.get(f"/cases/{case_id}/docs/{document_id}/chunks"),
+                nonmember_client.get(f"/cases/{case_id}/docs/{document_id}/reviews"),
+            )
+            for response in reads:
+                with self.subTest(method="GET", path=response.request.url.path):
+                    self.assertEqual(response.status_code, 404, response.text)
+                    self.assertNotIn("SAME_FIRM_PRIVATE", response.text)
+
+            mutations = (
+                ("patch", f"/cases/{case_id}", {"stage": "closed"}),
+                ("post", f"/cases/{case_id}/notes", {"text": "unauthorized note"}),
+                ("post", f"/cases/{case_id}/deadlines", {"title": "unauthorized deadline", "due": "2026-11-10"}),
+                ("post", f"/cases/{case_id}/fees", {"title": "unauthorized fee", "amount": 10, "paid": 0}),
+                ("post", f"/cases/{case_id}/sessions", {"date": "2026-11-10", "note": "unauthorized session"}),
+                ("post", f"/cases/{case_id}/tasks", {"title": "unauthorized task"}),
+                ("post", f"/cases/{case_id}/docs", {"name": "unauthorized.txt", "text": "unauthorized document"}),
+            )
+            for method_name, path, payload in mutations:
+                with self.subTest(method=method_name.upper(), path=path):
+                    response = getattr(nonmember_client, method_name)(
+                        path, json=payload, headers=headers
+                    )
+                    self.assertEqual(response.status_code, 404, response.text)
+
+            upload = nonmember_client.post(
+                f"/cases/{case_id}/upload",
+                headers=headers,
+                files={"file": ("unauthorized.txt", b"unauthorized upload text", "text/plain")},
+            )
+            self.assertEqual(upload.status_code, 404, upload.text)
+            deletion = nonmember_client.delete(f"/cases/{case_id}", headers=headers)
+            self.assertEqual(deletion.status_code, 404, deletion.text)
+        finally:
+            nonmember_client.close()
+
+        case_after = tenant.execute(
+            "SELECT title,stage,status FROM cases WHERE id=?", (case_id,)
+        ).fetchone()
+        self.assertEqual(tuple(case_after), tuple(case_before))
+        for table, count in baseline.items():
+            with self.subTest(table=table):
+                self.assertEqual(
+                    tenant.execute(f"SELECT COUNT(*) FROM {table} WHERE case_id=?", (case_id,)).fetchone()[0],
+                    count,
+                )
+
+
 if __name__ == "__main__":
     unittest.main()
