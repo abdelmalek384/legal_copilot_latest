@@ -6,8 +6,10 @@ Reports raw and Arabic-normalized character/word error rates, including per-docu
 """
 import argparse
 import json
+import os
 import re
 import sys
+import tempfile
 import unicodedata
 from collections import defaultdict
 from pathlib import Path
@@ -88,6 +90,8 @@ def _validate_rows(rows):
         seen.add(row_id)
         if not isinstance(row.get("reference_text"), str) or not isinstance(row.get("ocr_text"), str):
             raise OCREvaluationError(f"{row_id}: reference_text and ocr_text must be strings")
+        if not normalize_arabic(row["reference_text"]):
+            raise OCREvaluationError(f"{row_id}: reference_text must not be empty after normalization")
         critical_tokens = row.get("critical_tokens", [])
         if not isinstance(critical_tokens, list) or any(
             not isinstance(token, str) or not token.strip() for token in critical_tokens
@@ -222,16 +226,37 @@ def main(argv=None):
     parser.add_argument("--input", required=True, help="JSONL with human-checked reference_text and OCR ocr_text")
     parser.add_argument("--out", help="Write JSON report to this path; default is stdout")
     args = parser.parse_args(argv)
+    input_path = Path(args.input).expanduser()
+    output_path = Path(args.out).expanduser() if args.out else None
     try:
-        report = evaluate(read_jsonl(args.input))
+        if output_path is not None and input_path.resolve() == output_path.resolve():
+            raise OCREvaluationError("--out must not overwrite the input JSONL file")
+        report = evaluate(read_jsonl(input_path))
+        rendered = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
+        if output_path is not None:
+            # Write to a sibling temporary file and replace only after the full report is flushed.
+            if not output_path.parent.is_dir():
+                raise OCREvaluationError("output directory must already exist")
+            fd, temporary_name = tempfile.mkstemp(
+                prefix=f".{output_path.name}.", suffix=".tmp", dir=str(output_path.parent)
+            )
+            try:
+                with os.fdopen(fd, "w", encoding="utf-8", newline="\n") as handle:
+                    handle.write(rendered)
+                    handle.flush()
+                    os.fsync(handle.fileno())
+                os.replace(temporary_name, output_path)
+            except Exception:
+                try:
+                    os.unlink(temporary_name)
+                except OSError:
+                    pass
+                raise
+        else:
+            print(rendered, end="")
     except (OSError, OCREvaluationError) as exc:
         print(f"OCR evaluation refused: {exc}", file=sys.stderr)
         return 2
-    rendered = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
-    if args.out:
-        Path(args.out).write_text(rendered, encoding="utf-8")
-    else:
-        print(rendered, end="")
     return 0
 
 

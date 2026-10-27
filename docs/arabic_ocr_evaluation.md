@@ -4,7 +4,7 @@
 
 ## Purpose
 
-Use `tools/evaluate_arabic_ocr.py` to compare OCR text with a manually corrected transcription of the same page. The tool reports character error rate (CER) and word error rate (WER) per page and as a reference-length-weighted aggregate. It does not authenticate documents, determine legal status, or measure whether an answer is legally correct.
+Use the canonical `tools/evaluate_ocr_quality.py` evaluator to compare OCR text with a manually corrected transcription of the same page. The tool reports character error rate (CER) and word error rate (WER) per page and as a reference-length-weighted aggregate. It does not authenticate documents, determine legal status, or measure whether an answer is legally correct.
 
 ## Input format
 
@@ -28,7 +28,7 @@ python tools/evaluate_ocr_quality.py --input /secure/path/ocr-evaluation.jsonl -
 python tests/test_ocr_quality_evaluation.py
 ```
 
-The script has no third-party dependency. CER is character edit distance divided by normalized reference characters; WER is word edit distance divided by normalized reference words. Aggregate scores are micro-averaged by reference length, so long pages contribute proportionally more than short pages.
+The script has no third-party dependency. It rejects empty reference text, refuses to overwrite its input JSONL, and writes report files through a temporary file followed by an atomic replacement. CER is character edit distance divided by reference characters; WER is word edit distance divided by reference words. Raw and normalized scores are reported separately; aggregate scores are micro-averaged by reference length, so long pages contribute proportionally more than short pages.
 
 Normalization applies Unicode NFKC, removes Arabic diacritics and tatweel, normalizes common alef forms and alef maksura, converts Arabic and Persian digits to ASCII, and collapses whitespace. Punctuation is preserved because punctuation and numbering may be material in legal citations. Review the normalization policy before comparing results across OCR engines.
 

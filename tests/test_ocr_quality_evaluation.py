@@ -1,10 +1,14 @@
+import json
 import sys
+import tempfile
 import unittest
 from pathlib import Path
+from contextlib import redirect_stderr
+from io import StringIO
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from tools.evaluate_ocr_quality import OCREvaluationError, edit_distance, evaluate, normalize_arabic
+from tools.evaluate_ocr_quality import OCREvaluationError, edit_distance, evaluate, main, normalize_arabic
 
 
 class OCRQualityEvaluationTests(unittest.TestCase):
@@ -64,6 +68,40 @@ class OCRQualityEvaluationTests(unittest.TestCase):
             with self.subTest(value=value):
                 with self.assertRaisesRegex(OCREvaluationError, "critical_tokens"):
                     evaluate([{**base, "critical_tokens": value}])
+
+    def test_rejects_empty_reference_after_normalization(self):
+        for reference in ("", "   ", "\u064e\u0640"):
+            with self.subTest(reference=reference):
+                with self.assertRaisesRegex(OCREvaluationError, "reference_text must not be empty"):
+                    evaluate([{"id": "EMPTY", "reference_text": reference, "ocr_text": "any text"}])
+
+    def test_cli_refuses_to_overwrite_input_file(self):
+        with tempfile.TemporaryDirectory() as directory:
+            input_path = Path(directory) / "benchmark.jsonl"
+            original = json.dumps({
+                "id": "P1", "reference_text": "المادة ١٢", "ocr_text": "المادة ١٢",
+            }, ensure_ascii=False) + "\n"
+            input_path.write_text(original, encoding="utf-8")
+            errors = StringIO()
+            with redirect_stderr(errors):
+                status = main(["--input", str(input_path), "--out", str(input_path)])
+            self.assertEqual(status, 2)
+            self.assertIn("must not overwrite", errors.getvalue())
+            self.assertEqual(input_path.read_text(encoding="utf-8"), original)
+
+    def test_cli_writes_valid_json_report_atomically_to_distinct_path(self):
+        with tempfile.TemporaryDirectory() as directory:
+            input_path = Path(directory) / "benchmark.jsonl"
+            output_path = Path(directory) / "report.json"
+            input_path.write_text(json.dumps({
+                "id": "P1", "reference_text": "المادة ١٢", "ocr_text": "المادة ١٢",
+                "critical_tokens": ["المادة ١٢"],
+            }, ensure_ascii=False) + "\n", encoding="utf-8")
+            self.assertEqual(main(["--input", str(input_path), "--out", str(output_path)]), 0)
+            report = json.loads(output_path.read_text(encoding="utf-8"))
+            self.assertEqual(report["rows_scored"], 1)
+            self.assertEqual(report["overall"]["critical_token_recall"], 1.0)
+            self.assertTrue(input_path.exists())
 
     def test_rejects_duplicate_ids_bad_rows_and_excessive_edit_distance(self):
         row = {"id": "A", "reference_text": "a", "ocr_text": "b"}
