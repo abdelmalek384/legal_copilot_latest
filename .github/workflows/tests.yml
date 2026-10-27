@@ -76,6 +76,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_legal_release_readiness.py
       - name: Audit legal release candidate readiness without acquiring content
         run: python tools/validate_legal_release_readiness.py --out /tmp/legal-release-readiness.json
+      - name: Test acquisition readiness production gate
+        run: PYTHONPATH=. python tests/test_acquisition_readiness_cli.py
       - name: Test malformed legal data foundation inputs fail closed
         run: PYTHONPATH=. python tests/test_legal_data_foundation_validator.py
       - name: Test DOCX table and header extraction
