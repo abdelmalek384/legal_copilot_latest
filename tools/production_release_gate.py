@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import sys
 from pathlib import Path
 
@@ -24,6 +25,52 @@ from tools.validate_legal_release_readiness import (
 DEFAULT_BENCHMARK = ROOT / "tests" / "legal_eval" / "multi_area_questions.draft.jsonl"
 MIN_APPROVED_QUESTIONS = 94
 MIN_PRACTICE_AREAS = 10
+
+
+def _normalize_pin_cite(value: object) -> str:
+    if not isinstance(value, str):
+        return ""
+    text = value.strip().lower()
+    text = text.translate(str.maketrans("٠١٢٣٤٥٦٧٨٩", "0123456789"))
+    text = text.translate(str.maketrans("۰۱۲۳۴۵۶۷۸۹", "0123456789"))
+    text = re.sub(r"^(?:المادة|article|الفقرة|paragraph|para\.?)", "", text)
+    return re.sub(r"\s+", "", text).strip("()")
+
+
+def _ready_candidate_source_index(candidate_paths, legal_report):
+    """Map only release-ready candidate source IDs to their reviewed pinpoint anchors."""
+    ready_paths = set()
+    candidates = legal_report.get("candidates", [])
+    if isinstance(candidates, list):
+        for item in candidates:
+            if isinstance(item, dict) and item.get("ready") is True and isinstance(item.get("candidate_file"), str):
+                ready_paths.add(Path(item["candidate_file"]).resolve())
+    source_index = {}
+    for path in candidate_paths:
+        if Path(path).resolve() not in ready_paths:
+            continue
+        try:
+            candidate = json.loads(Path(path).read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        if not isinstance(candidate, dict):
+            continue
+        document = candidate.get("document")
+        version = candidate.get("version")
+        if not isinstance(document, dict) or not isinstance(version, dict):
+            continue
+        source_id = document.get("source_id")
+        anchors = version.get("article_identifiers")
+        if not isinstance(source_id, str) or not source_id.strip() or not isinstance(anchors, list):
+            continue
+        normalized = {
+            _normalize_pin_cite(anchor)
+            for anchor in anchors
+            if isinstance(anchor, str) and _normalize_pin_cite(anchor)
+        }
+        if normalized:
+            source_index.setdefault(source_id.strip(), set()).update(normalized)
+    return source_index
 
 
 def evaluate_release(
@@ -93,17 +140,35 @@ def evaluate_release(
     benchmark_report["unreviewed_count"] = len(unreviewed)
 
     invalid = []
+    unlinked_sources = []
+    unmatched_pin_cites = []
     areas = set()
+    source_index = _ready_candidate_source_index(paths, legal_report)
     for row in approved:
         try:
-            _validate_reviewed_question(row)
+            expected_sources, expected_pins = _validate_reviewed_question(row)
         except EvaluationError as exc:
             invalid.append({"id": row.get("id"), "reason": str(exc)})
+        else:
+            qid = row.get("id")
+            for source_id in expected_sources:
+                if source_id not in source_index:
+                    unlinked_sources.append({"id": qid, "source_id": source_id})
+            for source_id, pin_cite in expected_pins:
+                known_anchors = source_index.get(source_id)
+                normalized_pin = _normalize_pin_cite(pin_cite)
+                if known_anchors is not None and normalized_pin not in known_anchors:
+                    unmatched_pin_cites.append({
+                        "id": qid, "source_id": source_id, "pin_cite": pin_cite,
+                    })
         area = row.get("practice_area")
         if isinstance(area, str) and area.strip():
             areas.add(area.strip())
     benchmark_report["invalid_approved_count"] = len(invalid)
     benchmark_report["practice_area_count"] = len(areas)
+    benchmark_report["ready_source_count"] = len(source_index)
+    benchmark_report["unlinked_expected_source_count"] = len(unlinked_sources)
+    benchmark_report["unmatched_expected_pin_cite_count"] = len(unmatched_pin_cites)
     if len(questions) < MIN_APPROVED_QUESTIONS or len(approved) < MIN_APPROVED_QUESTIONS:
         blockers.append({
             "gate": "lawyer_approved_benchmark", "code": "benchmark_below_minimum",
@@ -124,6 +189,16 @@ def evaluate_release(
         blockers.append({
             "gate": "lawyer_approved_benchmark", "code": "practice_area_coverage_below_minimum",
             "required": MIN_PRACTICE_AREAS, "actual": len(areas),
+        })
+    if unlinked_sources:
+        blockers.append({
+            "gate": "lawyer_approved_benchmark", "code": "benchmark_sources_not_in_ready_corpus",
+            "count": len(unlinked_sources), "examples": unlinked_sources[:10],
+        })
+    if unmatched_pin_cites:
+        blockers.append({
+            "gate": "lawyer_approved_benchmark", "code": "benchmark_pin_cites_not_in_ready_corpus",
+            "count": len(unmatched_pin_cites), "examples": unmatched_pin_cites[:10],
         })
 
     return {
