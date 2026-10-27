@@ -26,6 +26,14 @@ from urllib.parse import urljoin, urlparse
 
 import httpx
 
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from tools.validate_acquisition_readiness import audit as audit_acquisition_readiness
+from tools.validate_source_permission_register import validate as validate_source_permission_register
+
+DEFAULT_REGISTER = ROOT / "docs" / "source_permission_register.json"
 MAX_BYTES_DEFAULT = 40 * 1024 * 1024
 ALLOWED_TYPES = {
     "application/pdf": ".pdf",
@@ -643,20 +651,49 @@ def validate_output_layout(out: Path) -> None:
             raise ValueError(f"{name} output file must not be a symbolic link")
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--manifest", type=Path, default=Path("docs/collection_manifest.example.json"))
+    parser.add_argument("--manifest", type=Path, default=ROOT / "docs" / "collection_manifest.example.json")
+    parser.add_argument("--register", type=Path, default=DEFAULT_REGISTER,
+                        help="Central source permission register; every document must pass collection and commercial-use gates.")
     parser.add_argument("--out", type=Path, default=Path("legal_corpus"))
     parser.add_argument("--max-mb", type=int, default=40)
     parser.add_argument("--delay", type=float, default=2.0, help="Minimum pause between requests (seconds)")
     parser.add_argument("--process-existing", action="store_true", help="Re-run extraction/audits for already downloaded files")
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
     if args.max_mb < 1 or args.delay < 0:
         parser.error("--max-mb must be positive and --delay cannot be negative")
     try:
         docs = load_manifest(args.manifest)
     except Exception as exc:
         print(f"Manifest error: {exc}", file=sys.stderr)
+        return 2
+    try:
+        register = json.loads(args.register.read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+        print(f"Permission register error: {exc}", file=sys.stderr)
+        return 2
+    register_errors = validate_source_permission_register(register)
+    if register_errors:
+        print(
+            "Permission register validation failed; no network requests were made.",
+            file=sys.stderr,
+        )
+        for error in register_errors:
+            print(f"ERROR: {error}", file=sys.stderr)
+        return 2
+    preflight = audit_acquisition_readiness({"documents": docs}, register)
+    blocked = [
+        item for item in preflight.get("documents", [])
+        if not item.get("collection_ready") or not item.get("commercial_product_use_ready")
+    ]
+    if blocked:
+        print(
+            "Permission preflight blocked acquisition/indexing; no network requests were made. "
+            "Every document must pass both collection and commercial product-use gates.",
+            file=sys.stderr,
+        )
+        print(json.dumps({"blocked_documents": blocked}, ensure_ascii=False, indent=2), file=sys.stderr)
         return 2
     try:
         args.out.mkdir(parents=True, exist_ok=True)

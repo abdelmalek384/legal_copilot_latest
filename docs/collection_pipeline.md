@@ -6,6 +6,7 @@ This is a controlled document retriever and review-queue generator, not a comple
 ## Safety model
 - No crawling, search-page scraping, URL guessing, login bypass, or paywall bypass.
 - Only exact direct-document URLs entered in the manifest are considered.
+- Before creating output directories or making any network request, the CLI validates the central register's schema and unique source IDs, then cross-checks every manifest entry against `docs/source_permission_register.json` (override with `--register`). Every document must pass both collection and commercial-product-use gates, including separate commercial evidence and review date. Any blocked entry stops the entire batch before network access; `--process-existing` is subject to the same gate before re-extraction/re-indexing.
 - A document is downloaded only when `collection_permission` is `allowed`, `permission_evidence` and a valid `terms_checked_on` date are present, approved source hosts are listed, and `permission_scope_review` records a reviewer, evidence reference, review date, reviewed source terms, the `direct_document_url` access method, and explicit approval for storage, text extraction, indexing, commercial product use, and excerpt display. These fields are self-reported metadata, not independent proof that rights were granted.
 - HTTPS only; redirects are revalidated; private/local network addresses and unapproved hosts are rejected.
 - Download size and content type are checked. The raw original is preserved unchanged.
