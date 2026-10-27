@@ -176,6 +176,11 @@ def validate_permission_scope_review(doc: dict) -> dict:
     review = doc.get("permission_scope_review")
     if not isinstance(review, dict):
         raise ValueError("permission_scope_review must document the approved collection scope")
+    if review.get("status") != "passed":
+        raise ValueError("permission_scope_review.status must be 'passed'")
+    evidence = review.get("evidence")
+    if not isinstance(evidence, str) or len(evidence.strip()) < 3:
+        raise ValueError("permission_scope_review.evidence must identify the reviewed authorization/terms")
     reviewer = review.get("reviewer_id")
     if not isinstance(reviewer, str) or not reviewer.strip():
         raise ValueError("permission_scope_review.reviewer_id is required")
@@ -653,9 +658,6 @@ def main() -> int:
                     "document_id": doc_id,
                     "status": "downloaded_and_extracted" if not audit["extraction_error"] else "downloaded_extraction_needs_attention",
                     "sha256": metadata["sha256"],
-                    "extracted_text_sha256": audit["extracted_text_sha256"],
-                    "extracted_text_path": audit["extracted_text_path"],
-                    "audit_path": audit["audit_path"],
                     "article_headings_detected": audit["audit"]["article_headings_detected"],
                     "numeric_article_gaps": audit["audit"]["numeric_article_gaps"],
                     "warnings": audit["audit"]["warnings"],
@@ -666,9 +668,6 @@ def main() -> int:
                     "source_id": metadata["source_id"],
                     "source_url": metadata["source_url"],
                     "original_sha256": metadata["sha256"],
-                    "extracted_text_sha256": audit["extracted_text_sha256"],
-                    "extracted_text_path": audit["extracted_text_path"],
-                    "audit_path": audit["audit_path"],
                     "review_status": "pending_human_review",
                     "legal_authenticity_verified": False,
                     "current_legal_status_verified": False,
