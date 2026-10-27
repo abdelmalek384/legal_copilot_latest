@@ -41,6 +41,11 @@ class LocalPrivateObjectStore:
         if isinstance(max_bytes, bool) or not isinstance(max_bytes, int) or max_bytes < 1:
             raise ValueError("max_bytes must be a positive integer")
         raw_root = Path(root).expanduser().absolute()
+        if raw_root.is_symlink():
+            raise ObjectStorageError("object storage root must not be a symbolic link")
+        # Resolve trusted parent aliases (for example macOS /var -> /private/var)
+        # before creating the root; the configured root itself may never be a link.
+        raw_root = raw_root.resolve()
         self._reject_symlink_components(raw_root)
         try:
             raw_root.mkdir(parents=True, mode=0o700, exist_ok=True)
