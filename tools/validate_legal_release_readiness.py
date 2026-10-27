@@ -61,6 +61,14 @@ def sha256_file(path: Path) -> str:
     return digest.hexdigest()
 
 
+def normalized_identifiers(value: object) -> list[str] | None:
+    if not isinstance(value, list) or not value:
+        return None
+    if any(not isinstance(item, str) or not item.strip() for item in value):
+        return None
+    return [item.strip() for item in value]
+
+
 def add(blockers: list[dict], code: str, detail: str) -> None:
     blockers.append({"code": code, "detail": detail})
 
@@ -172,6 +180,66 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
         add(blockers, "gazette_issue_missing", "Official publication issue reference is required.")
     if not isinstance(version.get("permission_evidence"), str) or not version["permission_evidence"].strip():
         add(blockers, "version_permission_evidence_missing", "Version record needs permission evidence.")
+
+    if version.get("text_review_status") not in {"text_checked", "lawyer_approved"}:
+        add(blockers, "text_review_status_unchecked",
+            "Extracted text must have an explicit text_checked or lawyer_approved status.")
+    if https_host(version.get("text_review_evidence_url")) is None:
+        add(blockers, "text_review_evidence_url_invalid",
+            "Text-completeness review needs an HTTPS evidence URL.")
+    text_hash = version.get("text_sha256")
+    if not isinstance(text_hash, str) or not re.fullmatch(r"[0-9a-fA-F]{64}", text_hash):
+        add(blockers, "text_hash_invalid", "Extracted-text SHA-256 must be a 64-character hexadecimal digest.")
+    extracted_text_content = None
+    text_path = version.get("extracted_text_path")
+    if not isinstance(text_path, str) or not text_path.strip() or Path(text_path).is_absolute():
+        add(blockers, "extracted_text_file_missing", "A relative path to the extracted text file is required.")
+    else:
+        extracted_path = (root / text_path).resolve()
+        try:
+            extracted_path.relative_to(root.resolve())
+        except ValueError:
+            add(blockers, "extracted_text_path_escapes_root", "Extracted text path must remain within the repository/corpus root.")
+        else:
+            if not extracted_path.is_file():
+                add(blockers, "extracted_text_file_not_found", "Recorded extracted text file does not exist.")
+            else:
+                if isinstance(text_hash, str) and re.fullmatch(r"[0-9a-fA-F]{64}", text_hash) and sha256_file(extracted_path).lower() != text_hash.lower():
+                    add(blockers, "text_hash_mismatch", "Recorded text SHA-256 does not match extracted text bytes.")
+                try:
+                    extracted_text_content = extracted_path.read_text(encoding="utf-8")
+                except UnicodeDecodeError:
+                    add(blockers, "extracted_text_encoding_invalid", "Extracted text must be valid UTF-8.")
+                else:
+                    if not extracted_text_content.strip():
+                        add(blockers, "extracted_text_empty", "Extracted text file is empty.")
+
+    actual_articles = normalized_identifiers(version.get("article_identifiers"))
+    expected_articles = normalized_identifiers(version.get("expected_article_identifiers"))
+    if actual_articles is None:
+        add(blockers, "article_identifiers_invalid", "Extracted text needs a non-empty list of article/decision pinpoint identifiers.")
+    elif len(actual_articles) != len(set(actual_articles)):
+        add(blockers, "article_identifiers_duplicated", "Extracted article/decision identifiers contain duplicates.")
+    if expected_articles is None:
+        add(blockers, "expected_article_identifiers_invalid",
+            "A non-empty reviewed list of expected article/decision identifiers is required.")
+    elif len(expected_articles) != len(set(expected_articles)):
+        add(blockers, "expected_article_identifiers_duplicated",
+            "Expected article/decision identifiers contain duplicates.")
+    if actual_articles is not None and expected_articles is not None:
+        missing_articles = sorted(set(expected_articles) - set(actual_articles))
+        unexpected_articles = sorted(set(actual_articles) - set(expected_articles))
+        if missing_articles:
+            add(blockers, "article_identifiers_missing",
+                "Extracted text is missing expected identifiers: " + ", ".join(missing_articles[:20]))
+        if unexpected_articles:
+            add(blockers, "article_identifiers_unexpected",
+                "Extracted text has identifiers absent from the reviewed expected list: " + ", ".join(unexpected_articles[:20]))
+    if extracted_text_content is not None and actual_articles is not None:
+        absent_anchors = [identifier for identifier in actual_articles if identifier not in extracted_text_content]
+        if absent_anchors:
+            add(blockers, "article_identifiers_not_in_text",
+                "Recorded article/decision anchors are absent from extracted text: " + ", ".join(absent_anchors[:20]))
 
     original_path = version.get("original_path")
     original_hash = version.get("original_sha256")
