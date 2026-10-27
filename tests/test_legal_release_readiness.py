@@ -33,7 +33,8 @@ class LegalReleaseReadinessTests(unittest.TestCase):
             "sources": [{
                 "source_id": self.source_id, "source_page": "https://laws.example.gov/portal",
                 "collection_permission": "allowed", "commercial_reuse_permission": "allowed",
-                "permission_evidence": "Written permission AUTH-1", "terms_checked_on": "2025-01-01",
+                "permission_evidence": "Written collection permission AUTH-1", "terms_checked_on": "2025-01-01",
+                "commercial_reuse_evidence": "Commercial license AUTH-COMM-1", "commercial_terms_checked_on": "2025-01-01",
             }],
             "version": {
                 "source_url": "https://laws.example.gov/law.pdf", "original_path": "originals/law.pdf",
@@ -58,7 +59,8 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         self.register = {"sources": [{
             "source_id": self.source_id, "source_page": "https://www.laws.example.gov/portal",
             "collection_permission": "allowed", "commercial_reuse_permission": "allowed",
-            "permission_evidence": "Written permission AUTH-1", "terms_checked_on": "2025-01-01",
+            "permission_evidence": "Written collection permission AUTH-1", "terms_checked_on": "2025-01-01",
+            "commercial_reuse_evidence": "Commercial license AUTH-COMM-1", "commercial_terms_checked_on": "2025-01-01",
         }]}
 
     def tearDown(self):
@@ -67,6 +69,20 @@ class LegalReleaseReadinessTests(unittest.TestCase):
     def test_complete_synthetic_evidence_passes(self):
         result = MODULE.audit_candidate(self.candidate, self.register, self.root)
         self.assertTrue(result["ready"], result["blockers"])
+
+    def test_allowed_commercial_permission_without_separate_evidence_blocks_release(self):
+        candidate = json.loads(json.dumps(self.candidate))
+        register = json.loads(json.dumps(self.register))
+        candidate["sources"][0].pop("commercial_reuse_evidence")
+        candidate["sources"][0].pop("commercial_terms_checked_on")
+        register["sources"][0].pop("commercial_reuse_evidence")
+        register["sources"][0].pop("commercial_terms_checked_on")
+        result = MODULE.audit_candidate(candidate, register, self.root)
+        codes = {item["code"] for item in result["blockers"]}
+        self.assertIn("candidate_commercial_permission_evidence_missing", codes)
+        self.assertIn("candidate_commercial_terms_date_invalid", codes)
+        self.assertIn("central_commercial_permission_evidence_missing", codes)
+        self.assertIn("central_commercial_terms_date_invalid", codes)
 
     def test_current_labour_candidate_is_blocked_not_silently_promoted(self):
         candidate = json.loads((ROOT / "data/candidates/labour_law_14_2025/registry_candidate.json").read_text(encoding="utf-8"))
