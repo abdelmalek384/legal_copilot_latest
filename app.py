@@ -1747,6 +1747,13 @@ def rollback_tenant_transaction_on_error(func):
     def wrapped(*args, **kwargs):
         try:
             return func(*args, **kwargs)
+        except sqlite3.Error as exc:
+            try:
+                conn().rollback()
+            except Exception:
+                # The request may have failed before a firm context was available.
+                pass
+            raise HTTPException(503, "database write unavailable") from exc
         except Exception:
             try:
                 conn().rollback()
