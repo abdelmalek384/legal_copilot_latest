@@ -2652,9 +2652,74 @@ def legal_review_queue(u: dict = Depends(user)):
             "warning":"This queue lists registry metadata only. It does not certify authenticity, current legal effect, or permissions."}
 
 
+LEGAL_CANDIDATE_CATALOG_PATH = Path(__file__).resolve().parent / "docs" / "phase_2_document_inventory.json"
+
+
+def _normalize_legal_practice_area(value):
+    if not isinstance(value, str) or not value.strip():
+        return "unknown"
+    normalized = " ".join(value.casefold().replace("_", " ").replace("-", " ").split())
+    aliases = {
+        "unknown": "unknown", "not assessed": "unknown", "not specified": "unknown",
+        "labour": "labour", "labor": "labour", "labour law": "labour", "labor law": "labour",
+        "labour and social insurance": "labour", "labor and social insurance": "labour",
+        "employment": "labour", "employment law": "labour",
+        "social security": "social_security", "social insurance": "social_security",
+        "constitutional law": "constitutional", "administrative law": "administrative",
+        "civil law": "civil", "criminal law": "criminal", "family law": "family",
+        "commercial law": "commercial", "tax law": "tax", "property law": "property",
+    }
+    return aliases.get(normalized, normalized.replace(" ", "_"))
+
+
+def _candidate_catalogue_practice_area_counts():
+    try:
+        data = json.loads(LEGAL_CANDIDATE_CATALOG_PATH.read_text(encoding="utf-8"))
+    except (OSError, ValueError, TypeError):
+        return {"available": False, "candidate_instrument_count": None, "practice_area_counts": {},
+                "invalid_entries": 0, "error": "candidate_catalogue_unavailable"}
+    documents = data.get("documents") if isinstance(data, dict) else None
+    if not isinstance(documents, list):
+        return {"available": False, "candidate_instrument_count": None, "practice_area_counts": {},
+                "invalid_entries": len(documents) if isinstance(documents, list) else 0,
+                "error": "candidate_catalogue_schema_invalid"}
+    counts = {}
+    seen_ids = set()
+    unique_count = 0
+    invalid_entries = 0
+    for item in documents:
+        if not isinstance(item, dict):
+            invalid_entries += 1
+            continue
+        document_id = item.get("document_id")
+        if isinstance(document_id, str) and document_id.strip():
+            if document_id in seen_ids:
+                invalid_entries += 1
+                continue
+            seen_ids.add(document_id)
+        areas = item.get("practice_areas", item.get("practice_area"))
+        if isinstance(areas, str):
+            areas = [areas]
+        if not isinstance(areas, list):
+            areas = []
+        normalized_areas = {
+            _normalize_legal_practice_area(area)
+            for area in areas if isinstance(area, str) and area.strip()
+        }
+        if not normalized_areas:
+            normalized_areas = {"unknown"}
+        unique_count += 1
+        for area in normalized_areas:
+            counts[area] = counts.get(area, 0) + 1
+    counts.setdefault("unknown", 0)
+    return {"available": True, "candidate_instrument_count": unique_count,
+            "practice_area_counts": dict(sorted(counts.items())),
+            "invalid_entries": invalid_entries, "error": None}
+
+
 @app.get("/legal-review/coverage")
 def legal_review_coverage(u: dict = Depends(user)):
-    """Permission-aware registry metrics; these counts do not certify legal completeness."""
+    """Permission-aware source, workflow, and candidate-catalogue coverage; not a completeness certification."""
     require_platform_legal_reviewer(u)
     c = corpus_conn()
     today = date.today().isoformat()
@@ -2678,33 +2743,95 @@ def legal_review_coverage(u: dict = Depends(user)):
         "(SELECT COUNT(*) FROM legal_document_versions WHERE amendment_history_verified=0) AS missing_amendment_history, "
         "(SELECT COUNT(*) FROM legal_document_versions v JOIN legal_documents d ON d.document_id=v.document_id JOIN legal_sources s ON s.source_id=d.source_id "
         " WHERE COALESCE(s.collection_permission,'unknown')<>'allowed' OR COALESCE(s.commercial_reuse_permission,'unknown')<>'allowed' "
-        " OR TRIM(COALESCE(s.permission_evidence,''))='' OR TRIM(COALESCE(v.permission_evidence,''))='') AS permission_or_evidence_blocked_versions",
+        " OR TRIM(COALESCE(s.permission_evidence,''))='' OR TRIM(COALESCE(v.permission_evidence,''))='') AS permission_or_evidence_blocked_versions, "
+        "(SELECT COUNT(*) FROM legal_document_versions WHERE (TRIM(COALESCE(original_path,''))<>'' OR TRIM(COALESCE(original_sha256,''))<>'') AND review_status<>'verified') AS uploaded_unverified_versions, "
+        "(SELECT COUNT(*) FROM legal_document_versions v WHERE NOT EXISTS (SELECT 1 FROM chunks ch WHERE ch.document_version_id=v.version_id)) AS versions_without_extracted_chunks, "
+        "(SELECT COUNT(*) FROM legal_document_versions WHERE TRIM(COALESCE(text_sha256,''))='') AS versions_missing_text_hash, "
+        "(SELECT COUNT(*) FROM legal_document_versions WHERE TRIM(COALESCE(gazette_issue,''))='' OR TRIM(COALESCE(gazette_pages,''))='' OR TRIM(COALESCE(publication_evidence_url,''))='') AS versions_missing_publication_metadata, "
+        "(SELECT COUNT(*) FROM legal_document_versions WHERE TRIM(COALESCE(effective_date,''))='') AS versions_missing_effective_date, "
+        "(SELECT COUNT(*) FROM legal_document_versions WHERE TRIM(COALESCE(original_path,''))<>'' AND TRIM(COALESCE(original_sha256,''))='') AS versions_missing_original_hash, "
+        "(SELECT COUNT(*) FROM legal_document_versions v WHERE TRIM(COALESCE(v.permission_evidence,''))='' OR EXISTS (SELECT 1 FROM legal_documents d JOIN legal_sources s ON s.source_id=d.source_id WHERE d.document_id=v.document_id AND TRIM(COALESCE(s.permission_evidence,''))='')) AS versions_missing_permission_evidence, "
+        "(SELECT COUNT(*) FROM legal_document_versions v WHERE EXISTS (SELECT 1 FROM (SELECT 'source_authenticity' AS review_type UNION ALL SELECT 'extraction_quality' UNION ALL SELECT 'legal_status' UNION ALL SELECT 'amendment_history' UNION ALL SELECT 'licensing' UNION ALL SELECT 'lawyer_approval') required WHERE NOT EXISTS (SELECT 1 FROM legal_review_events e WHERE e.version_id=v.version_id AND e.review_type=required.review_type AND e.outcome='pass' AND TRIM(COALESCE(e.evidence_url,''))<>''))) AS versions_missing_review_event_evidence",
         (today, today)
     ).fetchone()
     sources_by_permission = [dict(r) for r in c.execute(
-        "SELECT collection_permission,commercial_reuse_permission,COUNT(*) AS source_count FROM legal_sources "
-        "GROUP BY collection_permission,commercial_reuse_permission ORDER BY source_count DESC,collection_permission,commercial_reuse_permission"
+        "SELECT COALESCE(NULLIF(TRIM(collection_permission),''),'unknown') AS collection_permission,"
+        "COALESCE(NULLIF(TRIM(commercial_reuse_permission),''),'unknown') AS commercial_reuse_permission,"
+        "COALESCE(NULLIF(TRIM(source_class),''),'unknown') AS source_class,"
+        "COALESCE(NULLIF(TRIM(authority),''),'unknown') AS authority,COUNT(*) AS source_count "
+        "FROM legal_sources GROUP BY collection_permission,commercial_reuse_permission,source_class,authority "
+        "ORDER BY source_count DESC,authority,source_class"
     ).fetchall()]
-    coverage_by_practice_area = [dict(r) for r in c.execute(
-        "SELECT COALESCE(NULLIF(TRIM(d.practice_area),''),'unknown') AS practice_area,COUNT(*) AS document_count, "
-        "SUM(CASE WHEN EXISTS (SELECT 1 FROM legal_document_versions v JOIN legal_sources s ON s.source_id=d.source_id "
+    sources_by_authority = [dict(r) for r in c.execute(
+        "SELECT COALESCE(NULLIF(TRIM(authority),''),'unknown') AS authority,COUNT(*) AS source_count "
+        "FROM legal_sources GROUP BY COALESCE(NULLIF(TRIM(authority),''),'unknown') ORDER BY source_count DESC,authority"
+    ).fetchall()]
+    sources_by_class = [dict(r) for r in c.execute(
+        "SELECT COALESCE(NULLIF(TRIM(source_class),''),'unknown') AS source_class,COUNT(*) AS source_count "
+        "FROM legal_sources GROUP BY COALESCE(NULLIF(TRIM(source_class),''),'unknown') ORDER BY source_count DESC,source_class"
+    ).fetchall()]
+    sources_by_access_status = [dict(r) for r in c.execute(
+        "SELECT COALESCE(NULLIF(TRIM(access_status),''),'unknown') AS access_status,COUNT(*) AS source_count "
+        "FROM legal_sources GROUP BY COALESCE(NULLIF(TRIM(access_status),''),'unknown') ORDER BY source_count DESC,access_status"
+    ).fetchall()]
+    versions_by_review_status = [dict(r) for r in c.execute(
+        "SELECT COALESCE(NULLIF(TRIM(review_status),''),'unknown') AS review_status,COUNT(*) AS version_count "
+        "FROM legal_document_versions GROUP BY COALESCE(NULLIF(TRIM(review_status),''),'unknown') ORDER BY version_count DESC,review_status"
+    ).fetchall()]
+    versions_by_legal_status = [dict(r) for r in c.execute(
+        "SELECT COALESCE(NULLIF(TRIM(legal_status),''),'unknown') AS legal_status,COUNT(*) AS version_count "
+        "FROM legal_document_versions GROUP BY COALESCE(NULLIF(TRIM(legal_status),''),'unknown') ORDER BY version_count DESC,legal_status"
+    ).fetchall()]
+
+    catalogue = _candidate_catalogue_practice_area_counts()
+    registered_counts = {}
+    verified_counts = {}
+    for row in c.execute(
+        "SELECT d.document_id,d.practice_area,CASE WHEN EXISTS ("
+        " SELECT 1 FROM legal_document_versions v JOIN legal_sources s ON s.source_id=d.source_id "
         " WHERE v.document_id=d.document_id AND v.review_status='verified' AND v.legal_status='in_force' "
         " AND v.authenticity_verified=1 AND v.status_verified=1 AND v.amendment_history_verified=1 "
         " AND s.collection_permission='allowed' AND s.commercial_reuse_permission='allowed' "
         " AND TRIM(COALESCE(s.permission_evidence,''))<>'' AND TRIM(COALESCE(v.permission_evidence,''))<>'' "
         " AND v.effective_date IS NOT NULL AND v.effective_date<=? AND (v.repeal_date IS NULL OR v.repeal_date>?)) "
-        " THEN 1 ELSE 0 END) AS documents_with_verified_operational_text FROM legal_documents d "
-        "GROUP BY COALESCE(NULLIF(TRIM(d.practice_area),''),'unknown') ORDER BY document_count DESC,practice_area",
+        " THEN 1 ELSE 0 END AS has_verified_operational_text FROM legal_documents d",
         (today, today)
-    ).fetchall()]
+    ).fetchall():
+        area = _normalize_legal_practice_area(row["practice_area"])
+        registered_counts[area] = registered_counts.get(area, 0) + 1
+        if row["has_verified_operational_text"]:
+            verified_counts[area] = verified_counts.get(area, 0) + 1
+    areas = set(catalogue["practice_area_counts"]) | set(registered_counts) | {"unknown"}
+    coverage_by_practice_area = []
+    for area in sorted(areas, key=lambda name: (-catalogue["practice_area_counts"].get(name, 0), name)):
+        registered = registered_counts.get(area, 0)
+        coverage_by_practice_area.append({
+            "practice_area": area,
+            "candidate_instrument_count": catalogue["practice_area_counts"].get(area, 0) if catalogue["available"] else None,
+            "registered_document_count": registered,
+            "document_count": registered,
+            "documents_with_verified_operational_text": verified_counts.get(area, 0),
+            "candidate_catalogue_available": catalogue["available"],
+        })
     return {
         "as_of": today, "metrics": dict(metrics),
         "sources_by_permission": sources_by_permission,
+        "sources_by_authority": sources_by_authority,
+        "sources_by_class": sources_by_class,
+        "sources_by_access_status": sources_by_access_status,
+        "versions_by_review_status": versions_by_review_status,
+        "versions_by_legal_status": versions_by_legal_status,
+        "candidate_catalogue": {
+            "available": catalogue["available"],
+            "candidate_instrument_count": catalogue["candidate_instrument_count"],
+            "invalid_entries": catalogue["invalid_entries"],
+            "error": catalogue["error"],
+        },
         "coverage_by_practice_area": coverage_by_practice_area,
         "warnings": [
             "These are registry workflow counts, not total Egyptian-law coverage.",
             "Operative-text counts require verified legal status, authenticity, amendment history, collection permission, commercial reuse permission, evidence, and effective dates.",
-            "Practice areas remain unknown until each instrument is explicitly classified.",
+            "Candidate inventory counts are planning denominators, not evidence of law-text availability. Practice-area aliases are normalized; unknown/not-assessed items remain visible.",
             "This endpoint does not download, scrape, or contact any source."
         ]
     }
