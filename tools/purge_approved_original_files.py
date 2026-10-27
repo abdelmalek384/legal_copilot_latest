@@ -97,7 +97,7 @@ def purge_approved_requests(
             raise RuntimeError("Tenant database binding mismatch")
         requests = connection.execute(
             "SELECT id FROM original_file_deletion_requests "
-            "WHERE firm_id=? AND status='approved' ORDER BY id",
+            "WHERE firm_id=? AND status IN ('approved','purging') ORDER BY id",
             (firm_id,),
         ).fetchall()
         for request in requests:
@@ -106,6 +106,13 @@ def purge_approved_requests(
                 row, error = _inspect_request(connection, store, firm_id, request_id)
                 if error:
                     results.append({"request_id": request_id, "status": "manual_review_required", "detail": error})
+                elif operator_user_id in {
+                    int(row["requested_by_user_id"]), int(row["approved_by_user_id"])
+                }:
+                    results.append({
+                        "request_id": request_id, "status": "manual_review_required",
+                        "detail": "purge operator must be distinct from requester and approver",
+                    })
                 else:
                     results.append({
                         "request_id": request_id,
