@@ -464,6 +464,10 @@ class TenantCatalogTests(unittest.TestCase):
         self.assertEqual(
             resolve_tenant_database_for_maintenance(self.catalog, 10, self.root), path
         )
+        self.catalog.execute(
+            "INSERT INTO tenant_database_catalog(firm_id,status,last_error_code) "
+            "VALUES(9,'failed','provisioning_failed')"
+        )
         with self.assertRaises(TenantCatalogError):
             resolve_tenant_database_for_maintenance(self.catalog, 9, self.root)
 
