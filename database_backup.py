@@ -134,6 +134,12 @@ def _snapshot(source_path: Path, destination: Path, profile: str, firm_id: int |
         target = sqlite3.connect(str(destination), timeout=30)
         source.backup(target, pages=256, sleep=0.05)
         target.commit()
+        # SQLite backup copies the database header, including WAL mode. Backup
+        # archives must contain a single self-contained DB file, not transient
+        # -wal/-shm sidecars whose contents could be omitted or inconsistent.
+        journal_mode = target.execute("PRAGMA journal_mode=DELETE").fetchone()
+        if journal_mode is None or str(journal_mode[0]).lower() != "delete":
+            raise DatabaseBundleError("Could not finalize a standalone database snapshot")
     except sqlite3.Error as exc:
         raise DatabaseBundleError(f"Could not snapshot {source_path.name}") from exc
     finally:
