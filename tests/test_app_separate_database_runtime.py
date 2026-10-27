@@ -586,11 +586,12 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         source.add_paragraph("Confidential original contract text for storage verification.")
         source.save(buffer)
         original = buffer.getvalue()
-        uploaded = self._mutate(
-            "post", f"/cases/{case_id}/upload",
-            files={"file": ("original-contract.docx", original,
-                            "application/vnd.openxmlformats-officedocument.wordprocessingml.document")},
-        )
+        with patch.object(app, "_mfa_required_for_user", return_value=False):
+            uploaded = self._mutate(
+                "post", f"/cases/{case_id}/upload",
+                files={"file": ("original-contract.docx", original,
+                                "application/vnd.openxmlformats-officedocument.wordprocessingml.document")},
+            )
         self.assertEqual(uploaded.status_code, 200, uploaded.text)
         body = uploaded.json()
         self.assertTrue(body["original_file_retained"])
@@ -640,11 +641,12 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         document.save(buffer)
         os.environ["COPILOT_ENV"] = "production"
         try:
-            response = self._mutate(
-                "post", f"/cases/{case_id}/upload",
-                files={"file": ("production-gate.docx", buffer.getvalue(),
-                                "application/vnd.openxmlformats-officedocument.wordprocessingml.document")},
-            )
+            with patch.object(app, "_mfa_required_for_user", return_value=False):
+                response = self._mutate(
+                    "post", f"/cases/{case_id}/upload",
+                    files={"file": ("production-gate.docx", buffer.getvalue(),
+                                    "application/vnd.openxmlformats-officedocument.wordprocessingml.document")},
+                )
         finally:
             os.environ["COPILOT_ENV"] = "development"
         self.assertEqual(response.status_code, 503, response.text)
