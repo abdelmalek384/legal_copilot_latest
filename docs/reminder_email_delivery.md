@@ -2,7 +2,9 @@
 
 ## Status
 
-The adapter in tools/reminder_email.py is a non-database delivery component. It is disabled by default, has no scheduler or durable queue, and does not claim exactly-once delivery. Do not enable it for production until the database workstream provides an atomic idempotency claim, audit persistence, authorization checks, and operator monitoring.
+The SMTP adapter in tools/reminder_email.py is now connected to the tenant-scoped durable outbox and operator scheduler in tools/reminder_service.py. Dry-run is the default; sending requires an explicit --send flag. The outbox provides transactional idempotency, claims, attempt status, sanitized failure codes, and ambiguous-state handling. The service rechecks active membership, case access, event status, and due date immediately before sending.
+
+This is not a production-readiness certification. SMTP provider staging, external scheduler setup, monitoring/alerting, operator reconciliation, and independent security review remain required. SMTP acceptance does not prove inbox delivery, and exactly-once email delivery is not guaranteed.
 
 ## Configuration
 
