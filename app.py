@@ -2416,7 +2416,11 @@ def export_calendar(u: dict = Depends(user)):
     return Response(
         content="\r\n".join(lines) + "\r\n",
         media_type="text/calendar; charset=utf-8",
-        headers={"Content-Disposition": 'attachment; filename="legal-copilot-calendar.ics"'},
+        headers={
+            "Content-Disposition": 'attachment; filename="legal-copilot-calendar.ics"',
+            "Cache-Control": "no-store",
+            "Pragma": "no-cache",
+        },
     )
 
 
