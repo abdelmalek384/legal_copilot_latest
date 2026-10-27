@@ -55,7 +55,9 @@ class TenantSQLiteConnectionRouter:
         cached = connections.pop(firm_id, None) if connections else None
         if cached is not None:
             try:
-                cached[1].close()
+                # The cache tuple ends with the connection; the preceding
+                # fields are the trusted path and its captured file identity.
+                cached[-1].close()
             except sqlite3.Error:
                 pass
 
