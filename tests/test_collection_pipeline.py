@@ -185,7 +185,6 @@ class CollectionPipelineTests(unittest.TestCase):
             outside = root / "outside"
             outside.mkdir()
             output = root / "output"
-            output.mkdir()
             output.symlink_to(outside, target_is_directory=True)
             with self.assertRaisesRegex(ValueError, "output root"):
                 collector.validate_output_layout(output)
