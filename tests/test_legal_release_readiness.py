@@ -106,6 +106,14 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         self.assertIn("article_identifiers_duplicated", codes)
         self.assertIn("article_identifiers_unexpected", codes)
 
+
+    def test_article_anchor_must_exist_in_extracted_text(self):
+        candidate = json.loads(json.dumps(self.candidate))
+        candidate["version"]["article_identifiers"] = ["Article 1", "Article 3"]
+        candidate["version"]["expected_article_identifiers"] = ["Article 1", "Article 3"]
+        result = MODULE.audit_candidate(candidate, self.register, self.root)
+        self.assertIn("article_identifiers_not_in_text", {item["code"] for item in result["blockers"]})
+
     def test_missing_text_review_evidence_blocks_release(self):
         candidate = json.loads(json.dumps(self.candidate))
         candidate["version"]["text_review_status"] = "extracted"
