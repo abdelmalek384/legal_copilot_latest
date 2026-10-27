@@ -1106,6 +1106,12 @@ def _mask_markdown_code(answer):
     return "".join(output)
 
 
+def _answer_citation_indices(answer):
+    """Return citation markers present in prose, excluding Markdown code samples."""
+    visible_answer = _mask_markdown_code(answer)
+    return {int(value) for value in re.findall(r"\[(\d+)\]", visible_answer)}
+
+
 def _answer_has_unsupported_quantities(answer, hits, cited_indices):
     """Fail closed unless each numeric claim is supported by a citation on that sentence."""
     if not isinstance(answer, str) or not isinstance(hits, (list, tuple)):
@@ -1196,8 +1202,7 @@ def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None, sc
     except Exception:
         msg = "تعذر الاتصال بالنموذج."
     if ans:
-        visible_answer = _mask_markdown_code(ans)
-        cites = {int(x) for x in re.findall(r"\[(\d+)\]", visible_answer)}
+        cites = _answer_citation_indices(ans)
         if not cites or not cites <= set(range(1, len(hits) + 1)):
             ans, msg = None, "فشل التحقق من الاستشهادات، تُعرض المصادر فقط."
         elif _answer_has_unsupported_quantities(ans, hits, cites):
