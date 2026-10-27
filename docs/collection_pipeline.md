@@ -6,10 +6,10 @@ This is a controlled document retriever and review-queue generator, not a comple
 ## Safety model
 - No crawling, search-page scraping, URL guessing, login bypass, or paywall bypass.
 - Only exact direct-document URLs entered in the manifest are considered.
-- A document is downloaded only when `collection_permission` is `allowed`, `permission_evidence` is populated, `terms_checked_on` is a valid date, and approved source hosts are listed.
+- A document is downloaded only when `collection_permission` is `allowed`, `permission_evidence` and a valid `terms_checked_on` date are present, approved source hosts are listed, and `permission_scope_review` records a reviewer, evidence reference, review date, reviewed source terms, the `direct_document_url` access method, and explicit approval for storage, text extraction, indexing, commercial product use, and excerpt display. These fields are self-reported metadata, not independent proof that rights were granted.
 - HTTPS only; redirects are revalidated; private/local network addresses and unapproved hosts are rejected.
 - Download size and content type are checked. The raw original is preserved unchanged.
-- SHA-256, source URL, retrieval time, HTTP metadata, curator-supplied dates, and permission evidence are stored in a JSON sidecar.
+- SHA-256, source URL, retrieval time, HTTP metadata, curator-supplied dates, permission evidence, and the exact permission-scope review metadata are stored in a JSON sidecar.
 - Extracted text is separate from the original. PDFs without extractable text are flagged for OCR/manual review.
 - Article labels, duplicate labels, numeric gaps, and short extraction are reported as warnings, not silently repaired.
 - Every document stays `pending_human_review`; authenticity, current legal status, and commercial reuse are never set true automatically.
@@ -31,8 +31,23 @@ Add an entry to `docs/collection_manifest.example.json` only after checking the 
   "direct_url": "https://approved.example.gov/documents/law.pdf",
   "allowed_hosts": ["approved.example.gov"],
   "collection_permission": "allowed",
-  "permission_evidence": "Reviewed terms URL or written authorization reference",
+  "permission_evidence": "Reference to the reviewed terms or written authorization; do not use this placeholder",
   "terms_checked_on": "2026-10-23",
+  "permission_scope_review": {
+    "reviewer_id": "REPLACE_WITH_REAL_REVIEWER_REFERENCE",
+    "reviewed_on": "2026-10-23",
+    "evidence_reference": "REPLACE_WITH_REAL_EVIDENCE_ID",
+    "evidence_url": null,
+    "access_method": "direct_document_url",
+    "source_terms_reviewed": false,
+    "scope": {
+      "storage": false,
+      "text_extraction": false,
+      "indexing": false,
+      "commercial_product_use": false,
+      "excerpt_display": false
+    }
+  },
   "publication_date": null,
   "effective_date": null,
   "repeal_date": null,
@@ -45,7 +60,7 @@ Add an entry to `docs/collection_manifest.example.json` only after checking the 
   "gazette_issue": null
 }
 ```
-The example is illustrative; do not use the placeholder URL. Use `null` when a date is unknown. Do not guess effective dates from publication dates.
+The example is intentionally non-authorizing: placeholder reviewer/evidence values and false scope flags fail closed. Replace them only after a real documented review confirms each intended use. Do not use the placeholder URL. Use `null` when a date is unknown. Do not guess effective dates from publication dates.
 
 ## Run
 ```bash
