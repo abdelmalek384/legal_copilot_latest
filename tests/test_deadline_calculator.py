@@ -13,7 +13,6 @@ D = dt.date
 class DeadlineCalculatorTests(unittest.TestCase):
     def calc(self, trigger, amount, unit, **kw):
         kw.setdefault("allow_unverified", True)
-        kw.setdefault("verified_rule", False)
         return dc.compute_deadline(trigger, amount, unit, **kw)
 
     def test_day_count_and_weekend_extension(self):
@@ -37,6 +36,13 @@ class DeadlineCalculatorTests(unittest.TestCase):
         self.assertEqual(r["raw_end"], "2026-10-06")
         self.assertEqual(r["final_due"], "2026-10-07")
         self.assertTrue(r["warnings"])
+
+    def test_direct_arithmetic_cannot_claim_a_rule_was_verified(self):
+        with self.assertRaises(TypeError):
+            dc.compute_deadline(
+                D(2026, 10, 26), 60, "days",
+                verified_rule=True, allow_unverified=False,
+            )
 
     def test_unverified_rule_refused_by_default(self):
         rule = dc.load_rules()["civil_cassation_60d"]
