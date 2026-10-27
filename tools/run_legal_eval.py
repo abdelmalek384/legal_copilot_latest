@@ -142,7 +142,6 @@ def result_from_response(question, response):
     indices = _answer_citation_indices(answer)
     invalid = {index for index in indices if index < 1 or index > len(sources)}
     retrieved_source_ids = []
-    source_by_id = {}
     for hit in sources:
         if not isinstance(hit, dict):
             continue
@@ -152,7 +151,6 @@ def result_from_response(question, response):
         source_id = source_id.strip()
         if source_id not in retrieved_source_ids:
             retrieved_source_ids.append(source_id)
-        source_by_id.setdefault(source_id, hit)
 
     cited_sources = []
     cited_pins = []
