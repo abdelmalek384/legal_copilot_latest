@@ -129,7 +129,7 @@ class MFAAccountSecurityTests(unittest.TestCase):
         self.assertTrue(login.json()["mfa_verification_required"])
         replay = self.mutate(
             "post", "/account/mfa/verify",
-            json={"code": totp_code(secret, (int(time.time()) // 30 + 1) * 30)},
+            json={"code": totp_code(secret, (int(time.time()) // 30) * 30)},
         )
         self.assertEqual(replay.status_code, 401, replay.text)
         next_step = (int(time.time()) // 30 + 1) * 30
