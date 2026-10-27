@@ -151,12 +151,76 @@ const safeHttpsUrl=v=>{try{const u=new URL(v);return u.protocol==='https:'&&!u.u
 const toast=t=>{const e=$('toast');e.textContent=t;e.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>e.style.display='none',3500)};
 function csrfToken(){return document.cookie.split('; ').find(x=>x.startsWith('lc_csrf='))?.split('=').slice(1).join('=')||''}
 async function api(p,m='GET',b){const headers={};if(b!==undefined)headers['Content-Type']='application/json';const csrf=csrfToken();if(csrf)headers['X-CSRF-Token']=decodeURIComponent(csrf);const r=await fetch(p,{method:m,credentials:'same-origin',headers,body:b!==undefined?JSON.stringify(b):undefined});
- if(r.status===401&&p!=='/login'){sessionStorage.removeItem('me');ME={};login();throw new Error('auth')}
+ if(r.status===401&&p!=='/login'&&!p.startsWith('/account/mfa/')){sessionStorage.removeItem('me');ME={};login();throw new Error('auth')}
  const j=await r.json().catch(()=>({}));if(!r.ok){toast(err(j));throw new Error('api')}return j}
 function shell(title,...k){const navLabel=(ar,en)=>LANG==='ar'?ar:en;const firmOptions=Array.isArray(ME.firms)?ME.firms:[];const firmSwitch=firmOptions.length>1?h('div',{className:'firm-switch'},h('label',{textContent:navLabel('المكتب النشط','Active firm')}),h('select',{'aria-label':navLabel('اختيار المكتب النشط','Select active firm'),value:String(ME.firm_id||firmOptions[0].firm_id),onchange:async e=>{try{const result=await api('/session/firm','POST',{firm_id:Number(e.target.value)});ME={...ME,...result};sessionStorage.me=JSON.stringify(ME);dash()}catch(_){e.target.value=String(ME.firm_id||'')}}},...firmOptions.map(f=>h('option',{value:String(f.firm_id),textContent:f.firm_name+(f.role?' — '+f.role:'')})))):null;A.replaceChildren(h('div',{id:'shell'},h('a',{className:'skip-link',href:'#main',textContent:navLabel('تخطي إلى المحتوى الرئيسي','Skip to main content'),onclick:e=>{e.preventDefault();const main=$('main');if(main)main.focus()} }),h('aside',{id:'side','aria-label':navLabel('التنقل الرئيسي','Primary navigation')},h('h1',{textContent:'⚖️ '+navLabel('مساحة المكتب القانوني','Firm Workspace')}),h('div',{className:'lang-switch'},h('button',{type:'button','data-lang-switch':'1',textContent:LANG==='ar'?'English':'العربية',onclick:switchLanguage})),firmSwitch,
  [['dash',navLabel('نظرة عامة','Overview'),dash],['cases',navLabel('القضايا','Cases'),casesPage],['clients',navLabel('العملاء وتعارض المصالح','Clients & Conflicts'),clients],['tasks',navLabel('المهام','Tasks'),tasksPage],['calendar',navLabel('الأجندة والمواعيد','Calendar'),calendarPage],['law',navLabel('البحث القانوني','Legal Research'),law],...((ME.role==='admin'||(ME.platform_roles||[]).some(role=>role==='platform_admin'||role==='platform_reviewer'))?[['coverage',navLabel('تغطية المجموعة القانونية','Corpus Coverage'),corpusCoverage],['review',navLabel('مراجعة المصادر القانونية','Legal Source Review'),reviewWorkbench]]:[]),['settings',navLabel('الإعدادات والأمان','Settings & Security'),settingsPage]].map(([id,t,f])=>h('a',{className:PAGE===id?'on':'',role:'button',tabIndex:0,'aria-current':PAGE===id?'page':null,textContent:t,onclick:()=>{PAGE=id;window.CASE_ID=null;f()},onkeydown:e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();PAGE=id;window.CASE_ID=null;f()}}})),
  h('div',{className:'me'},h('div',{textContent:ME.name||''}),h('a',{textContent:navLabel('تسجيل الخروج','Sign out'),onclick:async()=>{try{await api('/logout','POST')}catch(_){}sessionStorage.removeItem('me');ME={};login()}}))),
  h('main',{id:'main',tabIndex:-1,'aria-label':title},h('h2',{textContent:title}),...k)))}
+function mfaChallengePage(){
+ PAGE='mfa_challenge';
+ const ar=LANG==='ar';
+ const card=h('section',{className:'card auth-card','aria-label':ar?'التحقق بخطوتين':'Multi-factor verification'},
+   h('h2',{textContent:ar?'التحقق من الهوية':'Verify your identity'}),
+   h('p',{className:'mut',textContent:ar?'أدخل رمز تطبيق المصادقة أو رمز استرداد غير مستخدم.':'Enter an authenticator code or an unused recovery code.'}));
+ const totp=h('input',{type:'text',inputMode:'numeric',autocomplete:'one-time-code',maxLength:6,placeholder:ar?'رمز المصادقة المكوّن من 6 أرقام':'6-digit authenticator code','aria-label':ar?'رمز المصادقة':'Authenticator code'});
+ const recovery=h('input',{type:'text',autocomplete:'off',maxLength:16,placeholder:ar?'رمز الاسترداد':'Recovery code','aria-label':ar?'رمز الاسترداد':'Recovery code'});
+ const form=h('form',{onsubmit:async ev=>{
+   ev.preventDefault();
+   const code=totp.value.trim(), recovery_code=recovery.value.trim();
+   if(Boolean(code)===Boolean(recovery_code)){toast(ar?'أدخل رمزاً واحداً فقط.':'Enter exactly one code.');return}
+   try{
+     await api('/account/mfa/verify','POST',{code:code||null,recovery_code:recovery_code||null});
+     ME={...ME,mfa_enabled:true,mfa_required:true,mfa_verified:true,mfa_verification_required:false,mfa_enrollment_required:false};
+     sessionStorage.me=JSON.stringify(ME);PAGE='dash';dash();
+   }catch(_){totp.focus()}
+ }},h('label',{textContent:ar?'رمز تطبيق المصادقة':'Authenticator code'}),totp,
+ h('label',{textContent:ar?'أو رمز الاسترداد':'Or recovery code'}),recovery,
+ h('button',{type:'submit',className:'auth-main',textContent:ar?'تحقق':'Verify'}),
+ h('button',{type:'button',className:'g',textContent:ar?'تسجيل الخروج':'Sign out',onclick:async()=>{try{await api('/logout','POST')}catch(_){}sessionStorage.removeItem('me');ME={};login()}}));
+ card.append(form);A.replaceChildren(card);
+}
+function mfaEnrollmentPage(reenroll=false){
+ PAGE='mfa_enroll';
+ const ar=LANG==='ar';
+ const card=h('section',{className:'card auth-card','aria-label':ar?'إعداد المصادقة متعددة العوامل':'Set up multi-factor authentication'},
+   h('h2',{textContent:ar?'إعداد تطبيق المصادقة':'Set up an authenticator'}),
+   h('p',{className:'mut',textContent:ar?'استخدم تطبيق مصادقة متوافقاً. سيظهر المفتاح مرة واحدة فقط.':'Use a compatible authenticator app. The secret is shown only once.'}));
+ const password=h('input',{type:'password',autocomplete:'current-password',required:true,maxLength:200,'aria-label':ar?'كلمة المرور الحالية':'Current password'});
+ const startButton=h('button',{type:'submit',className:'auth-main',textContent:ar?'إنشاء إعداد المصادقة':'Generate setup secret'});
+ const startForm=h('form',{onsubmit:async ev=>{
+   ev.preventDefault();startButton.disabled=true;
+   try{
+     const result=await api(reenroll?'/account/mfa/re-enroll':'/account/mfa/enroll','POST',{current_password:password.value});
+     card.replaceChildren(h('h2',{textContent:ar?'أضف المفتاح إلى تطبيق المصادقة':'Add the secret to your authenticator'}),
+       h('p',{className:'mut',textContent:ar?'أدخل المفتاح يدوياً أو استخدم رابط الإعداد من تطبيق متوافق.':'Enter the secret manually or use the setup URI in a compatible authenticator.'}),
+       h('label',{textContent:ar?'المفتاح السري':'Secret key'}),
+       h('pre',{className:'card',textContent:result.secret}),
+       h('label',{textContent:ar?'رابط الإعداد':'Setup URI'}),
+       h('textarea',{readOnly:true,rows:3,value:result.otpauth_uri,'aria-label':ar?'رابط إعداد تطبيق المصادقة':'Authenticator setup URI'}),
+       h('p',{className:'mut',textContent:ar?'أدخل الرمز الحالي المكوّن من 6 أرقام لتأكيد الإعداد.':'Enter the current 6-digit code to confirm enrollment.'}));
+     const code=h('input',{type:'text',inputMode:'numeric',autocomplete:'one-time-code',required:true,maxLength:6,'aria-label':ar?'رمز التأكيد':'Confirmation code'});
+     const confirmPassword=h('input',{type:'password',autocomplete:'current-password',required:true,maxLength:200,'aria-label':ar?'أعد إدخال كلمة المرور':'Re-enter current password'});
+     const confirmForm=h('form',{onsubmit:async ev2=>{
+       ev2.preventDefault();
+       try{
+         const completed=await api('/account/mfa/confirm','POST',{current_password:confirmPassword.value,code:code.value.trim()});
+         ME={...ME,mfa_enabled:true,mfa_required:true,mfa_verified:true,mfa_verification_required:false,mfa_enrollment_required:false};
+         sessionStorage.me=JSON.stringify(ME);
+         card.replaceChildren(h('h2',{textContent:ar?'احفظ رموز الاسترداد':'Save your recovery codes'}),
+           h('p',{className:'mut',textContent:ar?'لن يمكن عرض هذه الرموز مرة أخرى. احفظها في مكان آمن.':'These codes will not be shown again. Store them securely.'}),
+           h('pre',{className:'card',textContent:completed.recovery_codes.join('\n')}),
+           h('button',{type:'button',className:'auth-main',textContent:ar?'متابعة':'Continue',onclick:()=>{PAGE='dash';dash()}}));
+       }catch(_){code.focus()}
+     }},h('label',{textContent:ar?'رمز المصادقة':'Authenticator code'}),code,
+       h('label',{textContent:ar?'كلمة المرور الحالية':'Current password'}),confirmPassword,
+       h('button',{type:'submit',className:'auth-main',textContent:ar?'تأكيد وتوليد رموز الاسترداد':'Confirm and generate recovery codes'}));
+     card.append(confirmForm);
+   }catch(_){startButton.disabled=false;password.focus()}
+ }},h('label',{textContent:ar?'كلمة المرور الحالية':'Current password'}),password,startButton,
+   h('button',{type:'button',className:'g',textContent:ar?'تسجيل الخروج':'Sign out',onclick:async()=>{try{await api('/logout','POST')}catch(_){}sessionStorage.removeItem('me');ME={};login()}}));
+ card.append(startForm);A.replaceChildren(card);
+}
 let AUTH_MODE='signin';
 function login(mode='signin'){AUTH_MODE=mode;window.CASE_ID=null;let viewMode=mode;
  const title=LANG==='ar'?'المساعد القانوني':'Legal Copilot';
@@ -170,7 +234,7 @@ function login(mode='signin'){AUTH_MODE=mode;window.CASE_ID=null;let viewMode=mo
   const e=h('input',{type:'email',placeholder:LANG==='ar'?'البريد الإلكتروني':'Email address',autocomplete:'username',required:true,'aria-label':LANG==='ar'?'البريد الإلكتروني':'Email address'});
   const p=h('input',{type:'password',placeholder:LANG==='ar'?'كلمة المرور':'Password',autocomplete:'current-password',required:true,'aria-label':LANG==='ar'?'كلمة المرور':'Password'});
   const show=h('button',{type:'button',className:'g',textContent:LANG==='ar'?'إظهار':'Show',onclick:()=>{p.type=p.type==='password'?'text':'password';show.textContent=p.type==='password'?(LANG==='ar'?'إظهار':'Show'):(LANG==='ar'?'إخفاء':'Hide')}});
-  const form=h('form',{onsubmit:async ev=>{ev.preventDefault();if(!e.value.trim()||!p.value){toast(LANG==='ar'?'أدخل البريد الإلكتروني وكلمة المرور':'Enter your email and password');return}try{const r=await api('/login','POST',{email:e.value.trim().toLowerCase(),password:p.value});ME={...r};sessionStorage.me=JSON.stringify(ME);PAGE='dash';dash()}catch(_){p.focus()}}},
+  const form=h('form',{onsubmit:async ev=>{ev.preventDefault();if(!e.value.trim()||!p.value){toast(LANG==='ar'?'أدخل البريد الإلكتروني وكلمة المرور':'Enter your email and password');return}try{const r=await api('/login','POST',{email:e.value.trim().toLowerCase(),password:p.value});ME={...r};sessionStorage.me=JSON.stringify(ME);if(r.mfa_enrollment_required){mfaEnrollmentPage();return}if(r.mfa_verification_required){mfaChallengePage();return}PAGE='dash';dash()}catch(_){p.focus()}}},
     h('label',{textContent:LANG==='ar'?'البريد الإلكتروني':'Email address'}),e,
     h('label',{textContent:LANG==='ar'?'كلمة المرور':'Password'}),h('div',{className:'password-row'},p,show),
     h('button',{type:'submit',className:'auth-main',textContent:LANG==='ar'?'تسجيل الدخول':'Sign in'}));
@@ -750,5 +814,5 @@ function switchLanguage(){LANG=LANG==='ar'?'en':'ar';sessionStorage.lang=LANG;if
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){const overlays=document.querySelectorAll('.modal-backdrop');const overlay=overlays[overlays.length-1];if(overlay)overlay.remove()}});
 const languageObserver=new MutationObserver(ms=>{for(const m of ms)for(const n of m.addedNodes)if(n.nodeType===Node.ELEMENT_NODE||n.nodeType===Node.TEXT_NODE)applyLanguage(n.nodeType===Node.ELEMENT_NODE?n:n.parentElement||document.body)});
 languageObserver.observe(document.body,{childList:true,subtree:true});
-applyLanguage();api('/session').then(r=>{ME={...r};sessionStorage.me=JSON.stringify(ME);dash()}).catch(()=>login())
+applyLanguage();api('/session').then(r=>{ME={...r};sessionStorage.me=JSON.stringify(ME);if(r.mfa_enrollment_required){mfaEnrollmentPage();return}if(r.mfa_verification_required){mfaChallengePage();return}dash()}).catch(()=>login())
 </script></html>
