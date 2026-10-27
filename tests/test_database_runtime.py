@@ -344,6 +344,40 @@ class DatabaseRuntimeTests(unittest.TestCase):
             list(self.runtime.paths.tenant_root.glob("tenant-*.sqlite3")), []
         )
 
+    def test_provisioning_audit_failure_disables_firm_and_catalog_without_activating_tenant(self):
+        control = self.runtime.control_connection()
+        control.execute("""
+            CREATE TRIGGER reject_firm_provision_audit
+            BEFORE INSERT ON platform_security_events
+            WHEN NEW.event_type='firm_provisioned'
+            BEGIN SELECT RAISE(ABORT, 'simulated provisioning audit failure'); END
+        """)
+        control.commit()
+
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "simulated provisioning audit failure"):
+            self.runtime.provision_firm("Audit Failure Firm")
+
+        firm = control.execute(
+            "SELECT id,status FROM firms WHERE name='Audit Failure Firm'"
+        ).fetchone()
+        self.assertIsNotNone(firm)
+        self.assertEqual(firm["status"], "disabled")
+        catalog = control.execute(
+            "SELECT status,database_file FROM tenant_database_catalog WHERE firm_id=?",
+            (firm["id"],),
+        ).fetchone()
+        self.assertIsNotNone(catalog)
+        self.assertEqual(catalog["status"], "disabled")
+        tenant_path = self.runtime.paths.tenant_root / catalog["database_file"]
+        self.assertTrue(tenant_path.is_file(), "failed provisioning data must remain for explicit review")
+        self.assertEqual(
+            control.execute(
+                "SELECT COUNT(*) FROM platform_security_events WHERE firm_id=? AND event_type='firm_provisioned'",
+                (firm["id"],),
+            ).fetchone()[0],
+            0,
+        )
+
     def test_revoked_membership_closes_cached_firm_connection(self):
         user_id = self._identity()
         firm_id, _ = self.runtime.provision_firm("Revocation Test")
