@@ -1,0 +1,200 @@
+import hashlib
+import sqlite3
+import tempfile
+import unittest
+from pathlib import Path
+
+import app
+from cryptography.fernet import Fernet
+
+from database_backup import create_backup_bundle, restore_backup_bundle
+from database_runtime import DatabaseRuntime
+from original_file_reconciliation import TenantDatabase, reconcile_original_file_storage
+from original_file_storage import LocalPrivateObjectStore
+from tools.purge_approved_original_files import purge_approved_requests
+
+
+class PurgeApprovedOriginalFilesTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.root = Path(self.temp.name)
+        self.control_path = self.root / "control.sqlite3"
+        self.tenant_root = self.root / "tenants"
+        self.corpus_path = self.root / "corpus.sqlite3"
+        self.object_root = self.root / "objects"
+        self.object_root.mkdir()
+        self.backup_dir = self.root / "backups"
+        self.backup_dir.mkdir()
+        self.runtime = DatabaseRuntime(
+            self.control_path, self.tenant_root, self.corpus_path
+        )
+        self.runtime.initialize()
+        self.firm_id, self.tenant_path = self.runtime.provision_firm("Purge Workflow Firm")
+        self.requester_id = self.runtime.create_initial_firm_owner(
+            self.firm_id, "Deletion Requester", "deletion-requester@example.test", "test-password-hash"
+        )
+        self.approver_id = self.runtime.create_global_identity(
+            "Deletion Approver", "deletion-approver@example.test", "test-password-hash"
+        )
+        self.runtime.create_firm_membership(self.approver_id, self.firm_id, "admin")
+        self.operator_id = self.runtime.create_global_identity(
+            "Purge Operator", "purge-operator@example.test", "test-password-hash"
+        )
+        control = self.runtime.control_connection()
+        control.execute(
+            "INSERT INTO user_platform_roles(user_id,role_name) VALUES(?,'platform_admin')",
+            (self.operator_id,),
+        )
+        control.commit()
+        self.key = Fernet.generate_key()
+        self.cipher = Fernet(self.key)
+
+    def tearDown(self):
+        try:
+            self.runtime.close_current_thread()
+        except Exception:
+            pass
+        self.temp.cleanup()
+
+    def _create_approved_request(self):
+        import app
+
+        context = self.runtime.resolve_context(self.requester_id, self.firm_id)
+        firm_db = self.runtime.firm_connection(context)
+        case_id = firm_db.execute(
+            "INSERT INTO cases(title,firm_id) VALUES('Purge Workflow Matter',?)",
+            (self.firm_id,),
+        ).lastrowid
+        original = b"approved purge original bytes"
+        _, document_id = app.save_doc(
+            firm_db,
+            {"id": self.requester_id, "firm_id": self.firm_id, "name": "Deletion Requester"},
+            case_id,
+            "purge-original.txt",
+            "Extracted text for the original document",
+            content_hash=hashlib.sha256(original).hexdigest(),
+            content_type="text/plain",
+            byte_size=len(original),
+        )
+        store = LocalPrivateObjectStore(self.object_root)
+        staged = store.stage(self.firm_id, original)
+        store.finalize(self.firm_id, staged.object_id)
+        firm_db.execute(
+            "INSERT INTO original_file_objects("
+            "object_id,document_id,firm_id,storage_backend,sha256,byte_size,content_type,state"
+            ") VALUES(?,?,?,'local',?,?,?,'ready')",
+            (
+                staged.object_id, document_id, self.firm_id, staged.sha256,
+                staged.byte_size, "text/plain",
+            ),
+        )
+        cursor = firm_db.execute(
+            "INSERT INTO original_file_deletion_requests("
+            "object_id,document_id,firm_id,requested_by_user_id,request_reason"
+            ") VALUES(?,?,?,?,?)",
+            (
+                staged.object_id, document_id, self.firm_id, self.requester_id,
+                "Approved export completed; remove duplicate original",
+            ),
+        )
+        request_id = int(cursor.lastrowid)
+        firm_db.execute(
+            "UPDATE original_file_deletion_requests SET status='approved',"
+            "approved_by_user_id=?,approved_at=datetime('now'),"
+            "approval_reason='Second administrator approved after export review' "
+            "WHERE id=?",
+            (self.approver_id, request_id),
+        )
+        firm_db.commit()
+        return staged, request_id
+
+    def test_purge_retains_tombstone_and_immutable_audit_through_backup_restore(self):
+        staged, request_id = self._create_approved_request()
+        self.runtime.disable_firm(self.firm_id)
+        control = self.runtime.control_connection()
+        control.execute(
+            "UPDATE firm_memberships SET status='suspended',updated_at=datetime('now') "
+            "WHERE firm_id=?",
+            (self.firm_id,),
+        )
+        control.commit()
+        self.runtime.close_current_thread()
+
+        result = purge_approved_requests(
+            self.tenant_path,
+            self.object_root,
+            self.firm_id,
+            self.operator_id,
+            apply=True,
+        )
+
+        self.assertEqual(result["purged_count"], 1, result["results"])
+        self.assertEqual(result["results"][0]["status"], "purged")
+        self.assertFalse(
+            (self.object_root / f"firm-{self.firm_id}" / f"{staged.object_id}.blob").exists()
+        )
+
+        tenant = sqlite3.connect(self.tenant_path)
+        tenant.row_factory = sqlite3.Row
+        try:
+            metadata = tenant.execute(
+                "SELECT purged_at,purged_by_user_id,purge_reason,legal_hold "
+                "FROM original_file_objects WHERE object_id=?",
+                (staged.object_id,),
+            ).fetchone()
+            self.assertIsNotNone(metadata["purged_at"])
+            self.assertEqual(metadata["purged_by_user_id"], self.operator_id)
+            self.assertIn("Approved export completed", metadata["purge_reason"])
+            self.assertEqual(metadata["legal_hold"], 0)
+            request = tenant.execute(
+                "SELECT status,completed_by_user_id FROM original_file_deletion_requests WHERE id=?",
+                (request_id,),
+            ).fetchone()
+            self.assertEqual(request["status"], "completed")
+            self.assertEqual(request["completed_by_user_id"], self.operator_id)
+            events = tenant.execute(
+                "SELECT action,actor_user_id FROM original_file_deletion_events "
+                "WHERE request_id=? ORDER BY id",
+                (request_id,),
+            ).fetchall()
+            self.assertEqual([event["action"] for event in events], [
+                "requested", "approved", "purging", "completed"
+            ])
+            self.assertEqual(events[-1]["actor_user_id"], self.operator_id)
+            with self.assertRaises(sqlite3.IntegrityError):
+                tenant.execute(
+                    "UPDATE original_file_deletion_events SET reason='rewrite' WHERE request_id=?",
+                    (request_id,),
+                )
+            tenant.rollback()
+        finally:
+            tenant.close()
+
+        report = reconcile_original_file_storage(
+            self.object_root, [TenantDatabase(self.firm_id, self.tenant_path)]
+        )
+        self.assertTrue(report.clean, report.findings)
+
+        bundle = create_backup_bundle(
+            self.runtime, self.cipher, self.backup_dir,
+            quiesced=True, object_storage_root=self.object_root,
+        )
+        restored = restore_backup_bundle(bundle, self.cipher, self.root / "restored")
+        self.assertFalse(
+            (restored["object_storage"] / f"firm-{self.firm_id}" / f"{staged.object_id}.blob").exists()
+        )
+        restored_tenant = next((restored["tenant_root"]).glob("tenant-*.sqlite3"))
+        connection = sqlite3.connect(restored_tenant)
+        try:
+            tombstone = connection.execute(
+                "SELECT purged_at,purged_by_user_id FROM original_file_objects WHERE object_id=?",
+                (staged.object_id,),
+            ).fetchone()
+            self.assertIsNotNone(tombstone[0])
+            self.assertEqual(tombstone[1], self.operator_id)
+        finally:
+            connection.close()
+
+
+if __name__ == "__main__":
+    unittest.main()
