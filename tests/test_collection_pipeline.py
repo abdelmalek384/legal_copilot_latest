@@ -331,6 +331,16 @@ class CollectionPipelineTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "non-public address"):
                 validate_public_https_url("https://example.gov/law.pdf", {"example.gov"})
 
+    def test_source_url_rejects_empty_userinfo_as_well_as_credentials(self):
+        public_answer = (2, 1, 6, "", ("8.8.8.8", 443))
+        for url in (
+            "https://@example.gov/law.pdf",
+            "https://:@example.gov/law.pdf",
+        ):
+            with self.subTest(url=url), patch("tools.collect_legal_documents.socket.getaddrinfo", return_value=[public_answer]):
+                with self.assertRaisesRegex(ValueError, "credentials"):
+                    validate_public_https_url(url, {"example.gov"})
+
     def test_source_hostname_resolution_failure_fails_closed(self):
         with patch("tools.collect_legal_documents.socket.getaddrinfo", side_effect=OSError("no resolver")):
             with self.assertRaisesRegex(ValueError, "Cannot resolve source host"):
