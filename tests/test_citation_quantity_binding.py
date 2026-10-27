@@ -33,6 +33,23 @@ class CitationQuantityBindingTests(unittest.TestCase):
         answer = "The deadline is 30 days [99]."
         self.assertTrue(app._answer_has_unsupported_quantities(answer, self.hits, {99}))
 
+    def test_arabic_and_english_number_words_cover_common_legal_quantities(self):
+        self.assertEqual(app._legal_quantities("thirty days"), {(30, "day")})
+        self.assertEqual(app._legal_quantities("three hundred days"), {(300, "day")})
+        self.assertEqual(app._legal_quantities("ثلاثين يوما"), {(30, "day")})
+        self.assertEqual(app._legal_quantities("خمسة عشر يوما"), {(15, "day")})
+        self.assertEqual(app._legal_quantities("مائة جنيه"), {(100, "currency")})
+
+    def test_arabic_worded_quantity_is_bound_to_its_inline_source(self):
+        hits = self.hits + [{"text": "The statutory deadline is ثلاثين يوما."}]
+        self.assertFalse(app._answer_has_unsupported_quantities(
+            "The deadline is 30 days [5].", hits, {5}
+        ))
+        self.assertTrue(app._answer_has_unsupported_quantities(
+            "The deadline is 30 days [2]. Another source says ثلاثين يوما [5].",
+            hits, {2, 5}
+        ))
+
     def test_adjacent_and_arabic_percent_symbols_are_checked(self):
         self.assertFalse(app._answer_has_unsupported_quantities(
             "The tax rate is 14% [4].", self.hits, {4}

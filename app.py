@@ -965,7 +965,13 @@ _QUANTITY_NUMBER_WORDS = {
     "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10,
     "eleven": 11, "twelve": 12, "thirteen": 13, "fourteen": 14,
     "fifteen": 15, "sixteen": 16, "seventeen": 17, "eighteen": 18,
-    "nineteen": 19, "twenty": 20,
+    "nineteen": 19, "twenty": 20, "thirty": 30, "forty": 40, "fifty": 50,
+    "sixty": 60, "seventy": 70, "eighty": 80, "ninety": 90,
+    "hundred": 100, "thousand": 1000, "million": 1000000,
+    "one hundred": 100, "two hundred": 200, "three hundred": 300,
+    "four hundred": 400, "five hundred": 500, "six hundred": 600,
+    "seven hundred": 700, "eight hundred": 800, "nine hundred": 900,
+    "one thousand": 1000, "two thousand": 2000, "three thousand": 3000,
     "صفر": 0, "واحد": 1, "واحدة": 1, "واحدا": 1, "واحدةً": 1,
     "اثنان": 2, "اثنين": 2, "اثنتان": 2, "اثنتين": 2, "إثنان": 2,
     "ثلاث": 3, "ثلاثة": 3, "ثلاثةَ": 3, "أربع": 4, "أربعة": 4,
@@ -976,7 +982,19 @@ _QUANTITY_NUMBER_WORDS = {
     "أربعة عشر": 14, "أربع عشرة": 14, "خمسة عشر": 15, "خمس عشرة": 15,
     "ستة عشر": 16, "ست عشرة": 16, "سبعة عشر": 17, "سبع عشرة": 17,
     "ثمانية عشر": 18, "ثماني عشرة": 18, "تسعة عشر": 19, "تسع عشرة": 19,
-    "عشرون": 20, "عشرين": 20,
+    "عشرون": 20, "عشرين": 20, "ثلاثون": 30, "ثلاثين": 30,
+    "أربعون": 40, "أربعين": 40, "اربعون": 40, "اربعين": 40,
+    "خمسون": 50, "خمسين": 50, "ستون": 60, "ستين": 60,
+    "سبعون": 70, "سبعين": 70, "ثمانون": 80, "ثمانين": 80,
+    "تسعون": 90, "تسعين": 90,
+    "مائة": 100, "مئة": 100, "مائه": 100,
+    "مائتان": 200, "مئتان": 200, "مائتين": 200, "مئتين": 200,
+    "ثلاثمائة": 300, "ثلاثمئة": 300, "أربعمائة": 400, "أربعمئة": 400,
+    "خمسمائة": 500, "خمسمئة": 500, "ستمائة": 600, "ستمئة": 600,
+    "سبعمائة": 700, "سبعمئة": 700, "ثمانمائة": 800, "ثمانمئة": 800,
+    "تسعمائة": 900, "تسعمئة": 900,
+    "ألف": 1000, "الف": 1000, "ألفان": 2000, "الفان": 2000,
+    "ألفين": 2000, "الفين": 2000,
 }
 _QUANTITY_UNITS = {
     "year": "year", "years": "year", "yearly": "year",
@@ -986,19 +1004,24 @@ _QUANTITY_UNITS = {
     "سنة": "year", "سنه": "year", "سنوات": "year", "سنتين": "year",
     "سنتان": "year", "عام": "year", "أعوام": "year", "عامين": "year",
     "شهر": "month", "أشهر": "month", "شهور": "month", "شهرين": "month",
-    "يوم": "day", "أيام": "day", "اسبوع": "week", "أسبوع": "week",
+    "يوم": "day", "يوما": "day", "أيام": "day", "ايام": "day", "اسبوع": "week", "أسبوع": "week", "اسبوعا": "week", "أسبوعا": "week",
+    "شهرا": "month", "عاما": "year",
     "أسابيع": "week", "اسابيع": "week", "ساعة": "hour", "ساعات": "hour",
     "جنيه": "currency", "جنيهًا": "currency", "جنيهات": "currency",
     "egp": "currency", "pound": "currency", "pounds": "currency",
     "percent": "percent", "percentage": "percent", "%": "percent", "٪": "percent",
     "بالمائة": "percent", "في المئة": "percent",
 }
-_QUANTITY_NUM_RE = r"\d+(?:[.,]\d+)?|[a-z]+|[ء-ي]+"
+_QUANTITY_NUM_WORD_PATTERN = "|".join(
+    r"\s+".join(re.escape(token) for token in phrase.split())
+    for phrase in sorted(_QUANTITY_NUMBER_WORDS, key=lambda value: (len(value.split()), len(value)), reverse=True)
+)
+_QUANTITY_NUM_RE = r"\d+(?:[.,]\d+)?|(?:" + _QUANTITY_NUM_WORD_PATTERN + r")"
 _QUANTITY_UNIT_RE = "|".join(sorted((re.escape(x) for x in _QUANTITY_UNITS), key=len, reverse=True))
 
 
 def _normalize_quantity_number(raw):
-    raw = raw.strip().lower().replace(",", ".")
+    raw = " ".join(raw.strip().lower().split()).replace(",", ".")
     if raw in _QUANTITY_NUMBER_WORDS:
         return _QUANTITY_NUMBER_WORDS[raw]
     digits = raw.translate(str.maketrans("٠١٢٣٤٥٦٧٨٩", "0123456789")).translate(str.maketrans("۰۱۲۳۴۵۶۷۸۹", "0123456789"))
