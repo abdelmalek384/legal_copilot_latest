@@ -1591,7 +1591,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         tenant = self.runtime.firm_connection(context)
         baseline = {
             table: tenant.execute(f"SELECT COUNT(*) FROM {table} WHERE case_id=?", (case_id,)).fetchone()[0]
-            for table in ("cases", "docs", "chunks", "notes", "deadlines", "fees", "sessions", "tasks", "events")
+            for table in ("docs", "chunks", "notes", "deadlines", "fees", "sessions", "tasks", "events")
         }
         case_before = tenant.execute(
             "SELECT title,stage,status FROM cases WHERE id=?", (case_id,)
