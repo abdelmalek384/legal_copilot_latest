@@ -49,6 +49,18 @@ class ReminderOutboxTests(unittest.TestCase):
             enqueue_plan(self.db, self.plan, firm_id=self.firm_id, recipient_user_id=8)
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM reminder_deliveries").fetchone()[0], 0)
 
+    def test_tampered_plan_row_scope_or_idempotency_key_is_rejected(self):
+        wrong_scope = dict(self.plan)
+        wrong_scope["reminders"] = [dict(self.plan["reminders"][0], scope_id="999")]
+        with self.assertRaisesRegex(ReminderOutboxError, "scope or recipient"):
+            enqueue_plan(self.db, wrong_scope, firm_id=self.firm_id, recipient_user_id=7)
+
+        wrong_key = dict(self.plan)
+        wrong_key["reminders"] = [dict(self.plan["reminders"][0], idempotency_key="0" * 64)]
+        with self.assertRaisesRegex(ReminderOutboxError, "idempotency key does not match"):
+            enqueue_plan(self.db, wrong_key, firm_id=self.firm_id, recipient_user_id=7)
+        self.assertEqual(self.db.execute("SELECT COUNT(*) FROM reminder_deliveries").fetchone()[0], 0)
+
     def test_accepted_smtp_result_is_durable_and_not_claimed_again(self):
         enqueue_plan(self.db, self.plan, firm_id=self.firm_id, recipient_user_id=7)
         claimed = claim_next(self.db, now=self.now)
