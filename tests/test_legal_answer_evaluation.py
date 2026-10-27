@@ -46,6 +46,8 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
             ("reviewer_role", []),
             ("review_evidence_url", "http://example.gov/review"),
             ("review_evidence_url", "https://user:pass@example.gov/review"),
+            ("review_evidence_url", "https://example.gov/review?token=secret"),
+            ("review_evidence_url", "https://example.gov/review#private"),
             ("review_evidence_url", ""),
             ("review_evidence_url", None),
         ):
