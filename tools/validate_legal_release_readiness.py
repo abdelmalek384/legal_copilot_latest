@@ -484,12 +484,24 @@ def build_report(candidate_paths: list[Path], permission_register_path: Path, ro
     blocker_counts: dict[str, int] = {}
     status_counts: dict[str, int] = {}
     review_counts: dict[str, int] = {}
+    source_authority_counts: dict[str, int] = {}
+    source_class_counts: dict[str, int] = {}
+    collection_permission_counts: dict[str, int] = {}
+    commercial_permission_counts: dict[str, int] = {}
     practice_area_counts: dict[str, dict[str, int]] = {}
     for item in reports:
         status = item.get("legal_status") or "unknown"
         review = item.get("review_status") or "unknown"
+        authority = item.get("source_authority") or "unknown"
+        source_class = item.get("source_class") or "unknown"
+        collection_permission = item.get("collection_permission") or "unknown"
+        commercial_permission = item.get("commercial_reuse_permission") or "unknown"
         status_counts[status] = status_counts.get(status, 0) + 1
         review_counts[review] = review_counts.get(review, 0) + 1
+        source_authority_counts[authority] = source_authority_counts.get(authority, 0) + 1
+        source_class_counts[source_class] = source_class_counts.get(source_class, 0) + 1
+        collection_permission_counts[collection_permission] = collection_permission_counts.get(collection_permission, 0) + 1
+        commercial_permission_counts[commercial_permission] = commercial_permission_counts.get(commercial_permission, 0) + 1
         for blocker in item.get("blockers", []):
             code = blocker.get("code", "unknown")
             blocker_counts[code] = blocker_counts.get(code, 0) + 1
@@ -512,6 +524,17 @@ def build_report(candidate_paths: list[Path], permission_register_path: Path, ro
         "blocker_counts": dict(sorted(blocker_counts.items())),
         "legal_status_counts": dict(sorted(status_counts.items())),
         "review_status_counts": dict(sorted(review_counts.items())),
+        "source_authority_counts": dict(sorted(source_authority_counts.items())),
+        "source_class_counts": dict(sorted(source_class_counts.items())),
+        "collection_permission_counts": dict(sorted(collection_permission_counts.items())),
+        "commercial_reuse_permission_counts": dict(sorted(commercial_permission_counts.items())),
+        "coverage_semantics": {
+            "candidate_inventory_count": len(reports),
+            "evidence_ready_current_text_count": ready_current,
+            "evidence_ready_historical_text_count": ready_historical,
+            "unresolved_candidate_count": sum(1 for item in reports if not item.get("ready")),
+            "percentage_claims": False,
+        },
         "practice_area_coverage": dict(sorted(practice_area_counts.items())),
         "coverage_matrix": summarize_coverage_matrix(coverage_matrix_path),
         "candidates": reports,
