@@ -253,7 +253,8 @@ This is a planning estimate across fresh-install schema/migrations, tenant isola
 
 ### 5. Prove tenant isolation and operational recovery
 - [ ] Complete route-by-route and SQL-query-by-query cross-firm authorization tests, including exports, audit, search, legal review, background work, and administrative paths.
-- [ ] Design firm-scoped original-upload object storage and retention; the current upload flow does not retain original binary objects, so recoverability must not be promised.
+- [x] Draft the tenant-scoped original-file storage proposal, including blob metadata, staged upload atomicity, backup/restore integrity, retention, and acceptance gates (PR #597 merged; proposal only).
+- [ ] Approve the storage backend, key-management, download, file-limit, and retention/legal-hold decisions, then implement and test tenant-scoped original binary storage; the current upload flow still does not retain original binaries.
 - [x] Implement encrypted, checksummed multi-database backup and non-destructive restore to a new directory, with two-firm isolation and tamper/wrong-key tests (PR #382 merged; CI passed).
 - [x] Add `python manage.py verify-backup-tenancy` to validate an encrypted tenancy bundle through a restricted temporary restore, re-check all restored databases, and clean up temporary plaintext; deletion is not guaranteed secure erasure and this does not replace a witnessed recovery drill (PR #538 merged; CI run #1426 passed).
 - [ ] Complete retention policy, tenant-specific export/deletion semantics, automated scheduling/monitoring, and operational recovery drills.
