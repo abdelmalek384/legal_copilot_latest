@@ -5,7 +5,7 @@ from cryptography.fernet import Fernet
 from urllib.parse import urlsplit
 from contextvars import ContextVar
 from collections import Counter
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta, timezone
 from functools import wraps
 from tools.research_inspector import source_status, citation_text, research_memo
 from tools.mfa_primitives import (
@@ -1543,7 +1543,7 @@ def _user_separate(
         raise HTTPException(401, "unauthorized")
     c = control_conn()
     account = c.execute(
-        "SELECT s.user_id,s.expires,s.mfa_verified,u.id,u.name,u.email_display,u.email_normalized,u.status "
+        "SELECT s.user_id,s.expires,s.mfa_verified,s.mfa_verified_at,u.id,u.name,u.email_display,u.email_normalized,u.status "
         "FROM auth_sessions s JOIN users u ON u.id=s.user_id "
         "WHERE s.token_hash=? AND s.expires>?",
         (sha(token), int(time.time())),
