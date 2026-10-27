@@ -1,15 +1,16 @@
-# SEC-01 attack-surface inventory (static baseline)
+# SEC-01 attack-surface inventory (historical static baseline)
 
 **Snapshot:** 2026-10-24  
+**Status:** Historical snapshot; do not use its old architecture/status statements as current. The current route/tenant findings are in [the tenant-isolation inventory](tenant_isolation_inventory.md), the [database completion tracker](database_completion_tracker.md), and the [repository storage entrypoint inventory](repository_storage_entrypoint_inventory.md).  
 **Source:** static scan of `app.py` on `main` after PR #104 merged.  
-**Purpose:** establish a reviewable baseline for the multi-firm isolation audit. This is an inventory aid, not proof of isolation or a security certification.
+**Purpose:** preserve the initial attack-surface baseline for audit history. This is an inventory aid, not proof of isolation or a security certification.
 
 ## Findings at a glance
 
 - Found **45 FastAPI route decorators** in `app.py`.
 - Found **25 SQLite `CREATE TABLE` declarations** plus the `chunks_fts` FTS5 virtual table in `app.py`.
 - Static scan found no registered background task framework, scheduler, cron hook, or explicit thread/timer worker in `app.py`. This does **not** prove no jobs exist in deployment scripts, external services, GitHub Actions, or imported modules.
-- The application uses a shared SQLite database configured by `COPILOT_DB`; the target separate-tenant database architecture is not implemented.
+- At this snapshot, the application used a shared SQLite database configured by `COPILOT_DB`. This is historical: the current approved runtime routes through a control plane, per-firm database files, and a shared legal corpus; the legacy compatibility path is rejected in production and is not an approved isolation boundary.
 - CI now compares this documented list with registered FastAPI routes and initialized SQLite schema objects through `tests/test_security_surface_inventory.py`. Dynamic routes, indirect SQL, migration-created tables, frontend calls, reverse-proxy paths, and infrastructure jobs still require separate review.
 
 ## HTTP route inventory
