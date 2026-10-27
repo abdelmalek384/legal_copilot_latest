@@ -5,7 +5,7 @@
 ## Safety and calculation assumptions
 
 - Draft rules are refused unless a caller explicitly supplies `--allow-unverified`; output still contains an Arabic warning.
-- A rule is treated as verified only when `verified=true`, `verified_by` is non-empty, `verified_on` is a valid ISO date, and `source_article` is non-empty. These fields must only be set after qualified Egyptian-lawyer review against a reliable primary source. This metadata check is not independent proof that the review happened.
+- A rule is treated as verified only when `verified=true`, `verified_by` is non-empty, `verified_by_role` is `egyptian_lawyer` or `qualified_egyptian_counsel`, `verified_on` is a valid non-future ISO date, `source_article` is non-empty, and `review_evidence_url` is a valid HTTPS URL without embedded credentials. These fields must only be set after qualified Egyptian-lawyer review against a reliable primary source. This metadata check is not independent proof that the review happened.
 - Holiday data is explicitly incomplete. Every result warns when the deadline year is not marked complete.
 - Input validation rejects malformed rule and holiday structures, invalid calendar dates, duplicate weekday entries, invalid date ranges, and arithmetic overflow.
 - Current arithmetic excludes the trigger date, adds calendar days/months/years, clamps month-end dates, then applies manually supplied distance days and extends across configured non-working days. These are prototype conventions, not legal conclusions.

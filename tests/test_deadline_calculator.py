@@ -50,9 +50,20 @@ class DeadlineCalculatorTests(unittest.TestCase):
 
     def test_verified_requires_source_reviewer_and_valid_date(self):
         rule = dict(dc.load_rules()["civil_cassation_60d"], verified=True,
-                    verified_by="Reviewer", verified_on="2026-10-26", source_article="Article X")
+                    verified_by="Reviewer", verified_by_role="egyptian_lawyer",
+                    verified_on="2026-10-26", source_article="Article X",
+                    review_evidence_url="https://example.gov/review-record")
         self.assertTrue(dc.compute_from_rule(rule, D(2026, 10, 26))["verified_rule"])
-        for key, value in (("verified_by", " "), ("verified_on", "tomorrow"), ("source_article", "")):
+        for key, value in (
+            ("verified_by", " "), ("verified_on", "tomorrow"),
+            ("verified_on", "2999-01-01"), ("source_article", ""),
+            ("verified_by_role", "administrator"),
+            ("verified_by_role", {"role": "egyptian_lawyer"}),
+            ("verified_by_role", []),
+            ("review_evidence_url", "http://example.gov/review-record"),
+            ("review_evidence_url", "https://user:pass@example.gov/review-record"),
+            ("review_evidence_url", ""),
+        ):
             bad = dict(rule, **{key: value})
             with self.assertRaises(dc.UnverifiedRuleError):
                 dc.compute_from_rule(bad, D(2026, 10, 26))

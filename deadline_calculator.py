@@ -7,6 +7,7 @@ import datetime as dt
 import json
 import sys
 from pathlib import Path
+from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parent
 DEFAULT_RULES = ROOT / "data" / "deadline_rules.draft.json"
@@ -128,19 +129,34 @@ def load_holidays(path: Path = DEFAULT_HOLIDAYS, years=()) -> tuple[dict, set]:
 
 
 def _is_verified(rule: dict) -> bool:
+    """Require explicit counsel review metadata; this still cannot prove it is genuine."""
     if rule.get("verified") is not True:
         return False
     reviewer = rule.get("verified_by")
+    reviewer_role = rule.get("verified_by_role")
     source = rule.get("source_article")
+    evidence_url = rule.get("review_evidence_url")
     if not isinstance(reviewer, str) or not reviewer.strip():
+        return False
+    if not isinstance(reviewer_role, str) or reviewer_role not in {"egyptian_lawyer", "qualified_egyptian_counsel"}:
         return False
     if not isinstance(source, str) or not source.strip():
         return False
+    if not isinstance(evidence_url, str) or not evidence_url.strip():
+        return False
     try:
-        verified_on = dt.date.fromisoformat(rule.get("verified_on", ""))
+        parsed = urlsplit(evidence_url.strip())
+        if parsed.scheme != "https" or not parsed.hostname or parsed.username or parsed.password:
+            return False
+        _ = parsed.port
     except (TypeError, ValueError):
         return False
-    return verified_on.isoformat() == rule.get("verified_on")
+    try:
+        verified_on_text = rule.get("verified_on", "")
+        verified_on = dt.date.fromisoformat(verified_on_text)
+    except (TypeError, ValueError):
+        return False
+    return verified_on.isoformat() == verified_on_text and verified_on <= dt.date.today()
 
 
 def _compute_deadline_internal(trigger: dt.date, amount: int, unit: str, *, rule_id=None,
