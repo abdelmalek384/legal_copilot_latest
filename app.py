@@ -424,14 +424,16 @@ def rel(q, d):
     n = sum(q.values()); return sum(min(v, d.get(k, 0)) for k, v in q.items()) / n if n else 0.0
 
 
-def add_chunks(c, rows):
+def add_chunks(c, rows, *, commit=True):
     for r in rows:
         cur = c.execute("INSERT INTO chunks(ref,article,page,text,norm,case_id,in_force,as_of,source,verified,document_id) VALUES(?,?,?,?,?,?,?,?,?,?,?)",
                         (r["ref"], r.get("article"), r.get("page"), r["text"], norm(r["text"]), r.get("case_id"),
                          int(r.get("in_force", 1)), r.get("as_of"), r.get("source"), int(r.get("verified", 0)), r.get("document_id")))
         if not _separate_runtime_enabled():
             c.execute("INSERT INTO chunks_fts(rowid,norm) VALUES(?,?)", (cur.lastrowid, " ".join(tokens(r["text"]))))
-    c.commit(); return len(rows)
+    if commit:
+        c.commit()
+    return len(rows)
 
 
 def import_law(c, rows):
@@ -508,7 +510,7 @@ def _split_document_block(text, max_chars=4000):
     return parts
 
 
-def add_doc(c, case_id, name, text, document_id=None):
+def add_doc(c, case_id, name, text, document_id=None, *, commit=True):
     # PDF extraction inserts explicit page markers. Carry them into both the
     # searchable chunk metadata and citation label, without indexing the marker.
     # Coalesce short paragraphs and cap long passages to avoid thousands of tiny
@@ -553,19 +555,38 @@ def add_doc(c, case_id, name, text, document_id=None):
         rows.append({"ref": ref, "text": passage, "case_id": case_id,
                      "source": "case-file", "document_id": document_id,
                      "page": str(page) if page is not None else None})
-    return add_chunks(c, rows)
+    return add_chunks(c, rows, commit=commit)
 
 def save_doc(c, u, cid, name, text, *, content_hash=None, content_type="text/plain", byte_size=None, extraction_status="text_extracted", ocr_used=False):
     content_hash = content_hash or hashlib.sha256(text.encode("utf-8")).hexdigest()
     byte_size = len(text.encode("utf-8")) if byte_size is None else byte_size
-    cur = c.execute(
-        "INSERT INTO docs(case_id,name,added,firm_id,uploader_user_id,sha256,content_type,byte_size,extraction_status,ocr_used) "
-        "VALUES(?,?,datetime('now'),?,?,?,?,?,?,?)",
-        (cid, name, u["firm_id"], u["id"], content_hash, content_type, byte_size, extraction_status, int(ocr_used)))
-    document_id = cur.lastrowid
-    n = add_doc(c, cid, name, text, document_id=document_id)
-    log(c, cid, u["name"], "إضافة مستند: " + name); c.commit()
-    return n, document_id
+    # Chunk insertion and its audit event must commit with the document metadata.
+    # add_chunks can be used by corpus imports that own their own commit, so disable
+    # its normal commit while this savepoint is active.
+    savepoint = "save_document_atomically"
+    c.execute(f"SAVEPOINT {savepoint}")
+    try:
+        cur = c.execute(
+            "INSERT INTO docs(case_id,name,added,firm_id,uploader_user_id,sha256,content_type,byte_size,extraction_status,ocr_used) "
+            "VALUES(?,?,datetime('now'),?,?,?,?,?,?,?)",
+            (cid, name, u["firm_id"], u["id"], content_hash, content_type, byte_size, extraction_status, int(ocr_used)))
+        document_id = cur.lastrowid
+        n = add_doc(c, cid, name, text, document_id=document_id, commit=False)
+        log(c, cid, u["name"], "إضافة مستند: " + name)
+        c.execute(f"RELEASE SAVEPOINT {savepoint}")
+        c.commit()
+        return n, document_id
+    except Exception as exc:
+        try:
+            c.execute(f"ROLLBACK TO SAVEPOINT {savepoint}")
+            c.execute(f"RELEASE SAVEPOINT {savepoint}")
+        except sqlite3.Error:
+            # The savepoint may already have been released if the commit failed.
+            pass
+        c.rollback()
+        if isinstance(exc, sqlite3.Error):
+            raise HTTPException(503, "document persistence unavailable") from exc
+        raise
 
 
 def add_task(c, u, cid, title, assignee, due):
