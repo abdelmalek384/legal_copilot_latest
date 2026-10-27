@@ -29,6 +29,7 @@ def _read_only(path: Path) -> sqlite3.Connection:
 def inspect_firm_offboarding(
     control_db: str | Path,
     tenant_root: str | Path,
+    corpus_db: str | Path,
     object_root: str | Path,
     firm_id: int,
 ) -> dict:
@@ -45,12 +46,15 @@ def inspect_firm_offboarding(
     object_resolved = object_root_path.resolve()
     tenant_resolved = tenant_root_path.resolve()
     control_resolved = control_path.resolve()
+    corpus_resolved = Path(corpus_db).expanduser().resolve()
     if (
         object_resolved == tenant_resolved
         or object_resolved in tenant_resolved.parents
         or tenant_resolved in object_resolved.parents
         or object_resolved == control_resolved
         or object_resolved in control_resolved.parents
+        or object_resolved == corpus_resolved
+        or object_resolved in corpus_resolved.parents
     ):
         raise ValueError("object storage must be separate from database paths")
 
@@ -174,6 +178,7 @@ def main() -> int:
     required = {
         "COPILOT_CONTROL_DB": os.environ.get("COPILOT_CONTROL_DB", "").strip(),
         "COPILOT_TENANT_DB_ROOT": os.environ.get("COPILOT_TENANT_DB_ROOT", "").strip(),
+        "COPILOT_CORPUS_DB": os.environ.get("COPILOT_CORPUS_DB", "").strip(),
         "COPILOT_OBJECT_STORAGE_ROOT": os.environ.get("COPILOT_OBJECT_STORAGE_ROOT", "").strip(),
     }
     missing = [key for key, value in required.items() if not value]
@@ -183,6 +188,7 @@ def main() -> int:
         report = inspect_firm_offboarding(
             required["COPILOT_CONTROL_DB"],
             required["COPILOT_TENANT_DB_ROOT"],
+            required["COPILOT_CORPUS_DB"],
             required["COPILOT_OBJECT_STORAGE_ROOT"],
             args.firm_id,
         )
