@@ -16,8 +16,15 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 
-PERMISSION_STATES = {"unknown", "permission_pending", "allowed", "not_allowed"}
-COMMERCIAL_STATES = {"unknown", "allowed", "restricted", "prohibited"}
+PERMISSION_STATES = {
+    "unknown", "permission_pending", "allowed", "allowed_limited", "prohibited",
+    "not_allowed_without_explicit_exception_or_license",
+}
+COMMERCIAL_STATES = {
+    "unknown", "allowed", "allowed_limited", "prohibited", "restricted",
+    "not_allowed_without_explicit_exception_or_license",
+    "prior_written_permission_required_per_published_terms",
+}
 
 
 def _https_url(value: object) -> bool:
