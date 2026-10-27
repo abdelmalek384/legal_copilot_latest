@@ -181,7 +181,7 @@ class DatabaseBackupBundleTests(unittest.TestCase):
         bundle = create_backup_bundle(self.runtime, self.cipher, self.backup_dir, quiesced=True)
         result = verify_backup_bundle(bundle, self.cipher)
         self.assertTrue(result["verified"])
-        self.assertEqual(result["format_version"], 1)
+        self.assertEqual(result["format_version"], 2)
         self.assertEqual(result["tenant_database_count"], 2)
         self.assertFalse(result["plaintext_retained"])
         self.assertIn("not guaranteed secure erasure", result["warning"])
