@@ -42,6 +42,20 @@ def valid_date(value: object) -> bool:
     return parsed.isoformat() == value and parsed <= dt.date.today()
 
 
+def valid_timestamp(value: object) -> bool:
+    """Require an ISO-8601 timestamp with an explicit timezone, not a date-only placeholder."""
+    if not isinstance(value, str) or not value.strip() or value.strip() != value:
+        return False
+    candidate = value[:-1] + "+00:00" if value.endswith("Z") else value
+    try:
+        parsed = dt.datetime.fromisoformat(candidate)
+    except ValueError:
+        return False
+    if parsed.tzinfo is None or parsed.utcoffset() is None:
+        return False
+    return parsed <= dt.datetime.now(dt.timezone.utc).astimezone(parsed.tzinfo)
+
+
 def https_host(value: object) -> str | None:
     if not isinstance(value, str):
         return None
@@ -153,10 +167,20 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
         register_sources = [s for s in permission_register["sources"] if isinstance(s, dict)]
 
     register_matches = []
-    if source_page_host:
-        register_matches = [s for s in register_sources if https_host(s.get("source_page")) == source_page_host]
+    if source_page_host and isinstance(source_id, str) and source_id.strip():
+        register_matches = [
+            item for item in register_sources
+            if item.get("source_id") == source_id
+            and https_host(item.get("source_page")) == source_page_host
+        ]
     if not register_matches:
-        add(blockers, "central_source_record_missing", "No central permission-register source matches the candidate source host.")
+        same_host = [item for item in register_sources if source_page_host and https_host(item.get("source_page")) == source_page_host]
+        if same_host:
+            add(blockers, "central_source_id_mismatch",
+                "A source shares this hostname but its permission-register source_id does not match the candidate; permission cannot transfer by hostname alone.")
+        else:
+            add(blockers, "central_source_record_missing",
+                "No central permission-register source matches both the candidate source_id and source host.")
     else:
         for registered in register_matches:
             if registered.get("collection_permission") not in ALLOWED:
@@ -219,14 +243,22 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
     for field in ("authenticity_verified", "status_verified", "amendment_history_verified"):
         if version.get(field) not in (1, True):
             add(blockers, f"{field}_false", f"Version field {field} must be explicitly true.")
-    for field in ("publication_date", "effective_date", "retrieved_at"):
+    for field in ("publication_date", "effective_date"):
         if not valid_date(version.get(field)):
             add(blockers, f"{field}_invalid", f"Version needs a valid, non-future {field} date.")
+    if not valid_timestamp(version.get("retrieved_at")):
+        add(blockers, "retrieved_at_invalid",
+            "Version needs a timezone-aware ISO-8601 retrieval timestamp; a date-only value is insufficient.")
     if valid_date(version.get("publication_date")) and valid_date(version.get("effective_date")):
         if version["effective_date"] < version["publication_date"]:
             add(blockers, "effective_before_publication", "Effective date precedes publication date; review the legal basis.")
     if not isinstance(version.get("gazette_issue"), str) or not version["gazette_issue"].strip():
         add(blockers, "gazette_issue_missing", "Official publication issue reference is required.")
+    if not isinstance(version.get("gazette_pages"), str) or not version["gazette_pages"].strip():
+        add(blockers, "gazette_pages_missing", "Official publication page range or decision pinpoint is required.")
+    if https_host(version.get("publication_evidence_url")) is None:
+        add(blockers, "publication_evidence_url_invalid",
+            "Publication date and Gazette metadata need a traceable HTTPS evidence URL.")
     if not isinstance(version.get("permission_evidence"), str) or not version["permission_evidence"].strip():
         add(blockers, "version_permission_evidence_missing", "Version record needs permission evidence.")
 
@@ -353,6 +385,14 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
         "candidate_id": candidate_id,
         "title": document.get("official_title") if isinstance(document.get("official_title"), str) else None,
         "document_type": document.get("document_type") if isinstance(document.get("document_type"), str) else None,
+        "source_id": source.get("source_id") if isinstance(source.get("source_id"), str) else None,
+        "source_authority": source.get("authority") if isinstance(source.get("authority"), str) else "unknown",
+        "source_class": source.get("source_class") if isinstance(source.get("source_class"), str) else "unknown",
+        "collection_permission": source.get("collection_permission") if isinstance(source.get("collection_permission"), str) else "unknown",
+        "commercial_reuse_permission": source.get("commercial_reuse_permission") if isinstance(source.get("commercial_reuse_permission"), str) else "unknown",
+        "retrieved_at": version.get("retrieved_at") if isinstance(version.get("retrieved_at"), str) else None,
+        "gazette_issue": version.get("gazette_issue") if isinstance(version.get("gazette_issue"), str) else None,
+        "gazette_pages": version.get("gazette_pages") if isinstance(version.get("gazette_pages"), str) else None,
         "practice_areas": practice_areas,
         "legal_status": version.get("legal_status") if isinstance(version.get("legal_status"), str) else "unknown",
         "review_status": version.get("review_status") if isinstance(version.get("review_status"), str) else "unknown",
