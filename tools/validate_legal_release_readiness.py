@@ -206,6 +206,19 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
             add(blockers, "review_not_passed", f"{review_type} review outcome must be pass.")
         if not isinstance(review.get("notes"), str) or not review["notes"].strip():
             add(blockers, "review_notes_missing", f"{review_type} review needs notes.")
+        reviewer_id = review.get("reviewer_id")
+        if not isinstance(reviewer_id, str) or not reviewer_id.strip():
+            add(blockers, "reviewer_identity_missing", f"{review_type} review needs a traceable reviewer_id.")
+        reviewer_role = review.get("reviewer_role")
+        if not isinstance(reviewer_role, str) or not reviewer_role.strip():
+            add(blockers, "reviewer_role_missing", f"{review_type} review needs a reviewer_role.")
+        elif review_type == "lawyer_approval" and reviewer_role not in {
+            "egyptian_lawyer", "qualified_egyptian_counsel"
+        }:
+            add(blockers, "lawyer_qualification_not_established",
+                "lawyer_approval must identify a qualified Egyptian lawyer/counsel role.")
+        if not valid_date(review.get("reviewed_on")):
+            add(blockers, "review_date_invalid", f"{review_type} review needs a valid, non-future reviewed_on date.")
         evidence_host = https_host(review.get("evidence_url"))
         if evidence_host is None:
             add(blockers, "review_evidence_url_invalid", f"{review_type} review needs a valid HTTPS evidence URL.")
