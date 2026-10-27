@@ -205,6 +205,12 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         result = MODULE.audit_candidate(candidate, self.register, self.root)
         self.assertIn("repeal_before_effective", {item["code"] for item in result["blockers"]})
 
+    def test_future_scheduled_repeal_date_is_valid_for_current_in_force_status(self):
+        candidate = json.loads(json.dumps(self.candidate))
+        candidate["version"]["repeal_date"] = "2099-06-01"
+        result = MODULE.audit_candidate(candidate, self.register, self.root)
+        self.assertNotIn("repeal_date_invalid", {item["code"] for item in result["blockers"]})
+
     def test_hash_mismatch_blocks_release(self):
         self.candidate["version"]["original_sha256"] = "0" * 64
         result = MODULE.audit_candidate(self.candidate, self.register, self.root)
