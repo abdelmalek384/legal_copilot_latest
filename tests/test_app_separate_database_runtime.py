@@ -1,6 +1,7 @@
 import os
 import tempfile
 import unittest
+from datetime import date, timedelta
 from pathlib import Path
 
 from fastapi import HTTPException
@@ -1369,6 +1370,50 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             ).fetchone()[0],
             1,
         )
+
+
+    def test_assigned_tasks_do_not_bypass_case_membership_in_dashboard_or_calendar(self):
+        owner_login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(owner_login.status_code, 200, owner_login.text)
+        case_response = self._mutate(
+            "post", "/cases", json={"title": "NONMEMBER_CASE_TITLE_SENTINEL"}
+        )
+        self.assertEqual(case_response.status_code, 200, case_response.text)
+        case_id = case_response.json()["id"]
+
+        nonmember_id = self.runtime.create_global_identity(
+            "Case Nonmember", "case-nonmember@example.test", app.hash_pw(self.password)
+        )
+        self.runtime.create_firm_membership(nonmember_id, self.firm_a, "lawyer")
+        due = (date.today() + timedelta(days=10)).isoformat()
+        context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        tenant = self.runtime.firm_connection(context)
+        tenant.execute(
+            "INSERT INTO tasks(case_id,title,assignee,due,status,created_by) VALUES(?,?,?,?,?,?)",
+            (case_id, "NONMEMBER_ASSIGNED_TASK_SENTINEL", nonmember_id, due, "open", self.user_id),
+        )
+        tenant.commit()
+
+        nonmember_client = TestClient(app.app)
+        try:
+            login = nonmember_client.post(
+                "/login",
+                json={"email": "case-nonmember@example.test", "password": self.password},
+            )
+            self.assertEqual(login.status_code, 200, login.text)
+            dashboard = nonmember_client.get("/dashboard")
+            self.assertEqual(dashboard.status_code, 200, dashboard.text)
+            self.assertNotIn("NONMEMBER_ASSIGNED_TASK_SENTINEL", dashboard.text)
+            self.assertNotIn("NONMEMBER_CASE_TITLE_SENTINEL", dashboard.text)
+
+            calendar = nonmember_client.get("/calendar.ics")
+            self.assertEqual(calendar.status_code, 200, calendar.text)
+            self.assertNotIn("NONMEMBER_ASSIGNED_TASK_SENTINEL", calendar.text)
+            self.assertNotIn("NONMEMBER_CASE_TITLE_SENTINEL", calendar.text)
+        finally:
+            nonmember_client.close()
 
 
 if __name__ == "__main__":
