@@ -1,10 +1,41 @@
 # Legal Copilot — Project Progress Tracker
 
-**Last updated:** 2026-10-27 (refreshed through PR #575; backup verification, deadline arithmetic prototype, and platform audit foundations merged; legal permission, lawyer approval, representative OCR benchmark, manual UI QA, and production release gates remain outstanding)  
+**Last updated:** 2026-10-27 (current workstream snapshot added through PR #684; legacy 20-deliverable tally retained for historical continuity but is not a current overall project percentage)  
 **Tracking method:** deliverable-level checklist, not an estimate of engineering hours. A task is “complete” only when its change is merged and its acceptance criteria are met. Open PRs are in progress, not complete.
 
 ## Overall status
 
+## Current workstream snapshot — 2026-10-27
+
+**Important:** These percentages are rough, reviewable workstream estimates—not a claim that the product is market-ready. They measure visible engineering/evidence progress and are not directly additive. The legacy 7/20 tally below is not refreshed to include every recent workstream and must not be quoted as the current overall project completion percentage.
+
+| Workstream | Estimate | Status | Evidence / next gate |
+|---|---:|---|---|
+| Verified Egyptian legal knowledge | 15% | **Blocked / lagging** | Source registry and permission gates exist; PR #684 documents the staged verification roadmap. Still requires permission-cleared primary texts, provenance/hash records, amendment/currentness review, and qualified Egyptian-lawyer sign-off. |
+| Research retrieval, citations, evaluation | 65% | **Progressing** | Open PRs #668, #670, #675, #677, #678, and #680 address citation parsing/report preservation, future-effective retrieval, retrieved-source citation scoring, abstention metrics, and source-status consistency. They remain incomplete until merged and reviewed; real lawyer-labelled runs are still needed. |
+| Legal corpus auditability | 70% | **Progressing** | Open PRs #681–#683 add read-only checks for evidence behind verification flags, review-event integrity, and chunk/version consistency. These audits report contradictions; they do not authenticate sources or repair records. |
+| Security and tenant isolation | 70% | **Progressing; release-gated** | Multiple security/control-plane safeguards have merged; open PR #671 concerns private tenant-namespaced original-file storage and belongs to the database/storage workstream. Independent security review, full route/job isolation validation, and witnessed recovery testing remain release gates. |
+| Test stability and release readiness | 60% | **At risk / validation needed** | The supplied handoff reported 85/88 scripts passing and three failures (Arabic matching, tenant-storage test, and separate-database dashboard HTTP 500). Those results came from a user-supplied report and have not been independently reproduced here; rerun against the current commit before treating them as current. |
+| UI, accessibility, manual QA | 40% | **Lagging / unverified** | Existing checklists and prior UI fixes exist, but full manual RTL/LTR, keyboard, screen-reader, browser and lawyer-workflow evidence is still outstanding. |
+| Production / paid pilot readiness | 35% | **Blocked by prerequisites** | Do not launch or market legal verification, deadline correctness, paid workflows, or broad coverage until corpus rights/review, evaluation, security, recovery, and manual QA gates pass. |
+
+### Current open work requiring review
+
+- **#684** — phased roadmap for verified Egyptian legal knowledge; CI was in progress at the last check.
+- **#682** — read-only review-event integrity audit; its test check passed.
+- **#683** — read-only chunk-to-version consistency audit; its test check passed.
+- **#681** — evidence-backed verification flags audit; recheck latest CI before review.
+- **#680, #678, #677, #675, #670, #668** — research/evaluation improvements; check current CI and merge status before counting as complete.
+- **#667** — earlier tracker refresh PR; verify whether it is still useful after this snapshot and avoid conflicting tracker edits.
+- **#671** — original-file storage adapter; separate database/storage workstream, not modified by this snapshot.
+
+### Immediate priority order
+
+1. Review/merge only after CI and diff review; do not treat open PRs as completed.
+2. Finish the non-DB legal-source roadmap and instrument-level checklists; keep actual legal content blocked until source rights and qualified review are evidenced.
+3. Run the current test suite and record exact command, commit SHA, pass/fail totals, and each failure.
+4. Complete real lawyer-labelled retrieval evaluation and manual UI/accessibility QA.
+5. Keep DB/storage migrations and irreversible tenant-data actions with the database workstream owner; require explicit approval for risky production actions.
 - **Completed and merged:** 7 of 20 tracked deliverables (**35.0%**).
 - **In progress:** 8 of 20 deliverables (**40.0%**).
 - **Not started, blocked, or awaiting validation:** 5 of 20 (**25.0%**).
