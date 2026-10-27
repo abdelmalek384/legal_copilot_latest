@@ -1979,9 +1979,12 @@ def _login_separate(b: LoginIn, request: Request, response: Response):
 
     c.execute("DELETE FROM login_attempts WHERE email IN (?,?)", identifiers)
     token, csrf = secrets.token_urlsafe(32), secrets.token_urlsafe(32)
+    mfa_enabled = _mfa_is_enabled(int(account["id"]), c)
+    mfa_required = _mfa_required_for_user(int(account["id"]), c)
+    mfa_verified = not mfa_required
     c.execute("DELETE FROM auth_sessions WHERE expires<?", (now,))
-    c.execute("INSERT INTO auth_sessions(token_hash,user_id,expires) VALUES(?,?,?)",
-              (sha(token), account["id"], now + 43200))
+    c.execute("INSERT INTO auth_sessions(token_hash,user_id,expires,mfa_verified) VALUES(?,?,?,?)",
+              (sha(token), account["id"], now + 43200, int(mfa_verified)))
     c.commit()
     first_firm = memberships[0]
     secure = _secure_cookie_transport(request)
@@ -1992,6 +1995,10 @@ def _login_separate(b: LoginIn, request: Request, response: Response):
         "id": account["id"], "name": account["name"], "role": first_firm["role"],
         "firm_id": first_firm["firm_id"], "firms": memberships,
         "platform_roles": _platform_roles_for_user(account["id"]),
+        "mfa_enabled": mfa_enabled, "mfa_required": mfa_required,
+        "mfa_verified": mfa_verified,
+        "mfa_enrollment_required": mfa_required and not mfa_enabled,
+        "mfa_verification_required": mfa_enabled and not mfa_verified,
     }
 
 
