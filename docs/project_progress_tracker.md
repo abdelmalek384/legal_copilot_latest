@@ -1,6 +1,6 @@
 # Legal Copilot — Project Progress Tracker
 
-**Last updated:** 2026-10-27 (refreshed through merged PR #669. PR #663 and #669 are merged; #666, #668, #670, and #672 remain open with passing CI. PR #668's latest full CI passed on commit e64f4893 and its runner output is directly compatible with the scorer. PR #673's latest full CI passed on commit fd71f084. PR #675 adds exact-article future-effective-date regression coverage and has passing CI. PR #676 gates case-scoped and follow-up LLM prompts on firm-data approval and has passing CI. PR #677's latest full CI passed on commit 9bedcad1, with unsupported-source citations and invalid citation indices scored conservatively. PR #674 was closed as superseded. The 20-deliverable counts below are not an overall product-readiness percentage.)  
+**Last updated:** 2026-10-27 (refreshed through merged PR #669. PR #663 and #669 are merged; #666, #668, #670, and #672 remain open with passing CI. PR #668's latest full CI passed on commit e64f4893 and its runner output is directly compatible with the scorer. PR #673's latest full CI passed on commit fd71f084. PR #675 adds exact-article future-effective-date regression coverage and has passing CI. PR #676 gates case-scoped and follow-up LLM prompts on firm-data approval and has passing CI. PR #677's latest full CI passed on commit 9bedcad1, with unsupported-source citations and invalid citation indices scored conservatively. PR #678 adds false-abstention and strict decision metrics; latest full CI passed on commit 2ecf7d76. PR #674 was closed as superseded. The 20-deliverable counts below are not an overall product-readiness percentage.)  
 **Tracking method:** deliverable-level checklist, not an estimate of engineering hours. A task is “complete” only when its change is merged and its acceptance criteria are met. Open PRs are in progress, not complete.
 
 ## Overall status
@@ -9,7 +9,7 @@
 - **In progress:** 8 of 20 deliverables (**40.0%**).
 - **Not started, blocked, or awaiting validation:** 5 of 20 (**25.0%**).
 - **Current workstream status (not merged deliverables):**
-  - Research evaluation: PR #666 (remote API URL validation), #668 (citation parsing and scorer-compatible runner output), #670 (preserve evaluation reports), and #677 (reject unsupported citations and score invalid indices) have passing CI and await merge.
+  - Research evaluation: PR #666 (remote API URL validation), #668 (citation parsing and scorer-compatible runner output), #670 (preserve evaluation reports), #677 (reject unsupported citations and score invalid indices), and #678 (measure false abstentions and strict evidence decisions) have passing CI and await merge. PR #678 is stacked on #677 to avoid duplicating its changes.
   - MFA regression: PR #672 fixes a flaky TOTP replay test; its CI passed.
   - Temporal retrieval safety: PR #675 checks that exact-article search excludes a future-effective version before its effective date; CI passed.
   - LLM privacy gate: PR #676 requires separate firm-data approval for case-scoped prompts, follow-up context, and matter-file passages; CI passed.
@@ -30,7 +30,7 @@ These are working implementation estimates for the individual workstreams, not c
 
 | Workstream | Estimated completion | Progress | Lagging or blocked |
 |---|---:|---|---|
-| Research citations and evaluation | 88% | Citation parsing, runner-to-scorer output, source-index validation, report preservation, retrieval metrics, and temporal exact-article tests are implemented in open PRs with passing CI. | Needs representative lawyer-reviewed Egyptian-law questions and real evaluation runs before quality claims. |
+| Research citations and evaluation | 90% | Citation parsing, runner-to-scorer output, source-index validation, report preservation, retrieval metrics, temporal exact-article tests, and strict abstention metrics are implemented in open PRs with passing CI. | Needs representative lawyer-reviewed Egyptian-law questions and real evaluation runs before quality claims. |
 | Official source discovery | 85% | 84 instrument-level discovery candidates, 11 catalog source entries, cross-register consistency test, and currentness candidates. | Candidate metadata is not a verified corpus; source terms and item-level authenticity/currentness remain unresolved. |
 | Legal source rights and lawyer review | 30% | Acquisition gate remains fail-closed; Article 141 framework distinguishes underlying official texts from collections/databases. | No blanket permission inferred; no qualified review approving specific source/use scope yet. |
 | LLM privacy and firm-data processing | 80% | Separate approval gate covers case-scoped prompts, follow-up context, and retrieved matter passages; CI passed on PR #676. | Provider terms, deployment configuration, and independent privacy/security review still need confirmation. |
