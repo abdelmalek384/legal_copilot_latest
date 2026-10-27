@@ -13,6 +13,22 @@ SPEC.loader.exec_module(MODULE)
 
 
 class LegalCorpusInventoryTests(unittest.TestCase):
+    def test_hostname_ignores_malformed_https_urls(self):
+        self.assertEqual(MODULE.hostname("https://www.example.gov/law"), "www.example.gov")
+        for value in (
+            " https://example.gov/law",
+            "https://example.gov/path with spaces",
+            "https://user:secret@example.gov/law",
+            "https://@example.gov/law",
+            "https://example.gov:not-a-port/law",
+            "https://example.gov:99999/law",
+            "https://example.gov:0/law",
+            "https://example.gov:/law",
+            "https://[malformed/law",
+        ):
+            with self.subTest(value=value):
+                self.assertIsNone(MODULE.hostname(value))
+
     def test_repository_inventory_does_not_claim_corpus_verification(self):
         report = MODULE.build_report(MODULE.DEFAULTS)
         self.assertTrue(report["read_only"])
