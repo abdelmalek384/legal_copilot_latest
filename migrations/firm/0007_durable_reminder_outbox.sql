@@ -30,7 +30,7 @@ CREATE INDEX idx_reminder_deliveries_recipient
 -- Append-only outcome records preserve delivery attempts without message bodies or secrets.
 CREATE TABLE reminder_delivery_attempts (
     id INTEGER PRIMARY KEY,
-    delivery_id INTEGER NOT NULL REFERENCES reminder_deliveries(id) ON DELETE CASCADE,
+    delivery_id INTEGER NOT NULL REFERENCES reminder_deliveries(id) ON DELETE RESTRICT,
     attempt_number INTEGER NOT NULL CHECK(attempt_number > 0),
     smtp_attempts INTEGER NOT NULL DEFAULT 0 CHECK(smtp_attempts BETWEEN 0 AND 5),
     status TEXT NOT NULL CHECK(status IN ('accepted_by_smtp','failed','ambiguous')),
@@ -42,3 +42,10 @@ CREATE TABLE reminder_delivery_attempts (
 );
 CREATE INDEX idx_reminder_attempts_delivery
     ON reminder_delivery_attempts(delivery_id,attempt_number);
+
+CREATE TRIGGER reminder_delivery_attempts_no_update
+BEFORE UPDATE ON reminder_delivery_attempts
+BEGIN SELECT RAISE(ABORT, 'reminder delivery attempts are append-only'); END;
+CREATE TRIGGER reminder_delivery_attempts_no_delete
+BEFORE DELETE ON reminder_delivery_attempts
+BEGIN SELECT RAISE(ABORT, 'reminder delivery attempts are append-only'); END;
