@@ -25,6 +25,8 @@ COMMERCIAL_STATES = {
     "not_allowed_without_explicit_exception_or_license",
     "prior_written_permission_required_per_published_terms",
 }
+LEGAL_STATUSES = {"unknown", "under_review", "not_yet_in_force", "in_force", "partially_repealed", "repealed", "historical"}
+REVIEW_STATUSES = {"pending_source_review", "pending_lawyer_review", "verified", "rejected"}
 
 
 def _https_url(value: object) -> bool:
@@ -122,6 +124,11 @@ def validate_capture_record(record: object, record_path: Path) -> dict:
     commercial = record.get("commercial_reuse_permission")
     if not isinstance(commercial, str) or commercial not in COMMERCIAL_STATES:
         errors.append("commercial_reuse_permission must be one of: " + ", ".join(sorted(COMMERCIAL_STATES)))
+
+    if "legal_status" in record and record["legal_status"] not in LEGAL_STATUSES:
+        errors.append("legal_status has an unsupported value")
+    if "review_status" in record and record["review_status"] not in REVIEW_STATUSES:
+        errors.append("review_status has an unsupported value")
 
     expected_hash = record.get("original_sha256")
     if not isinstance(expected_hash, str) or not re.fullmatch(r"[0-9a-fA-F]{64}", expected_hash):
