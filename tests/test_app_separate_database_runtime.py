@@ -1698,5 +1698,62 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertFalse(tenant.in_transaction)
 
 
+    def test_failed_matter_write_rolls_back_before_connection_is_reused(self):
+        client = TestClient(app.app, raise_server_exceptions=False)
+        try:
+            login = client.post(
+                "/login", json={"email": "OWNER@example.test", "password": self.password}
+            )
+            self.assertEqual(login.status_code, 200, login.text)
+            csrf = client.cookies.get("lc_csrf") or ""
+            headers = {"X-CSRF-Token": csrf}
+            switched = client.post(
+                "/session/firm", json={"firm_id": self.firm_a}, headers=headers
+            )
+            self.assertEqual(switched.status_code, 200, switched.text)
+            case_response = client.post(
+                "/cases", json={"title": "Failed Write Rollback Case"}, headers=headers
+            )
+            self.assertEqual(case_response.status_code, 200, case_response.text)
+            case_id = case_response.json()["id"]
+
+            context = self.runtime.resolve_context(self.user_id, self.firm_a)
+            tenant = self.runtime.firm_connection(context)
+            tenant.execute("""
+                CREATE TRIGGER reject_note_event
+                BEFORE INSERT ON events
+                WHEN NEW.text LIKE '%إضافة ملاحظة%'
+                BEGIN SELECT RAISE(ABORT, 'note audit unavailable'); END
+            """)
+            tenant.commit()
+
+            failed = client.post(
+                f"/cases/{case_id}/notes",
+                json={"text": "FAILED_NOTE_MUST_NOT_PERSIST"},
+                headers=headers,
+            )
+            self.assertEqual(failed.status_code, 500, failed.text)
+
+            tenant.execute("DROP TRIGGER reject_note_event")
+            tenant.commit()
+            succeeding = client.post(
+                f"/cases/{case_id}/notes",
+                json={"text": "successful follow-up note"},
+                headers=headers,
+            )
+            self.assertEqual(succeeding.status_code, 200, succeeding.text)
+
+            rows = tenant.execute(
+                "SELECT text FROM notes WHERE case_id=? ORDER BY id", (case_id,)
+            ).fetchall()
+            self.assertEqual([row["text"] for row in rows], ["successful follow-up note"])
+            events = tenant.execute(
+                "SELECT text FROM events WHERE case_id=? ORDER BY id", (case_id,)
+            ).fetchall()
+            self.assertFalse(any("FAILED_NOTE_MUST_NOT_PERSIST" in row["text"] for row in events))
+        finally:
+            client.close()
+
+
 if __name__ == "__main__":
     unittest.main()
