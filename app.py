@@ -1761,6 +1761,7 @@ def rollback_tenant_transaction_on_error(func):
                 # The request may have failed before a firm context was available.
                 pass
             raise
+    wrapped._rollback_transaction_domain = "tenant"
     return wrapped
 
 
@@ -1782,6 +1783,7 @@ def rollback_corpus_transaction_on_error(func):
             except Exception:
                 pass
             raise
+    wrapped._rollback_transaction_domain = "corpus"
     return wrapped
 
 
