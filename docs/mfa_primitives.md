@@ -55,6 +55,7 @@ Run:
 
     PYTHONPATH=. python tests/test_mfa_primitives.py
     PYTHONPATH=. python tests/test_mfa_account_security.py
+    PYTHONPATH=. python tests/test_mfa_break_glass_cli.py
     python tools/deployment_preflight.py --strict
 
 The automated integration tests use temporary databases and synthetic accounts; they do not validate a production secret manager, real browser-based authenticator setup, or an independent security review. Before production, rehearse first-admin enrollment, lost-device recovery, key rotation/backup restoration, and emergency administrator recovery. Keep the release gate open until an independent security review passes.
