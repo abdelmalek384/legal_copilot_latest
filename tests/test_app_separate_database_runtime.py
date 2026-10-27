@@ -742,6 +742,17 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
         self.assertEqual([event["actor_user_id"] for event in hold_events], [self.user_id, self.user_id])
         self.assertTrue(all(event["occurred_at"] for event in hold_events))
+        history_response = self.client.get(
+            f"/cases/{case_id}/docs/{document_id}/original/legal-hold/events"
+        )
+        self.assertEqual(history_response.status_code, 200, history_response.text)
+        self.assertEqual(
+            [event["reason"] for event in history_response.json()["events"]],
+            [
+                "Preserve original evidence for pending proceedings",
+                "The preservation instruction has been withdrawn",
+            ],
+        )
         with self.assertRaises(sqlite3.IntegrityError):
             firm_db.execute(
                 "UPDATE original_file_hold_events SET reason='rewritten history' WHERE id=?",
@@ -759,6 +770,10 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(switched.status_code, 200, switched.text)
         denied = self.client.get(f"/cases/{case_id}/docs/{document_id}/original")
         self.assertEqual(denied.status_code, 404, denied.text)
+        denied_history = self.client.get(
+            f"/cases/{case_id}/docs/{document_id}/original/legal-hold/events"
+        )
+        self.assertEqual(denied_history.status_code, 404, denied_history.text)
 
     def test_original_file_storage_fails_closed_in_production_until_backend_is_available(self):
         login = self.client.post(
