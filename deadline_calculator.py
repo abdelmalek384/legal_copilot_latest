@@ -101,8 +101,8 @@ def _is_verified(rule: dict) -> bool:
     return verified_on.isoformat() == rule.get("verified_on")
 
 
-def compute_deadline(trigger: dt.date, amount: int, unit: str, *, rule_id=None,
-                     verified_rule=False, allow_unverified=False,
+def _compute_deadline_internal(trigger: dt.date, amount: int, unit: str, *, rule_id=None,
+                               verified_rule=False, allow_unverified=False,
                      non_working_weekdays=WEEKEND_DEFAULT, holidays=None,
                      complete_holiday_years=frozenset(), distance_days=0,
                      extend_if_non_working=True, today=None) -> dict:
@@ -170,10 +170,25 @@ def compute_deadline(trigger: dt.date, amount: int, unit: str, *, rule_id=None,
     }
 
 
+
+def compute_deadline(trigger: dt.date, amount: int, unit: str, *, rule_id=None,
+                     allow_unverified=False, non_working_weekdays=WEEKEND_DEFAULT,
+                     holidays=None, complete_holiday_years=frozenset(), distance_days=0,
+                     extend_if_non_working=True, today=None) -> dict:
+    """Calculate raw arithmetic only; verified status is derived from a reviewed rule."""
+    return _compute_deadline_internal(
+        trigger, amount, unit, rule_id=rule_id, verified_rule=False,
+        allow_unverified=allow_unverified, non_working_weekdays=non_working_weekdays,
+        holidays=holidays, complete_holiday_years=complete_holiday_years,
+        distance_days=distance_days, extend_if_non_working=extend_if_non_working, today=today,
+    )
+
+
+
 def compute_from_rule(rule: dict, trigger: dt.date, **kwargs) -> dict:
     verified = _is_verified(rule)
-    return compute_deadline(trigger, rule["amount"], rule["unit"], rule_id=rule["id"],
-                            verified_rule=verified, **kwargs)
+    return _compute_deadline_internal(trigger, rule["amount"], rule["unit"], rule_id=rule["id"],
+                                      verified_rule=verified, **kwargs)
 
 
 def main(argv=None) -> int:
