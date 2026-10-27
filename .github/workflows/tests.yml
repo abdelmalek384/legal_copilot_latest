@@ -140,6 +140,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_production_database_mode.py
       - name: Test non-database deadline reminder planner
         run: PYTHONPATH=. python tests/test_reminder_schedule.py
+      - name: Test privacy-safe reminder email adapter
+        run: PYTHONPATH=. python tests/test_reminder_email.py
       - name: Run unit tests
         run: python selftest.py
       - name: Run API tests
