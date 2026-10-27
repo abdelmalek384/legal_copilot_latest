@@ -1,4 +1,5 @@
 """Extraction limits are enforced incrementally for PDF and DOCX inputs."""
+import hashlib
 import io
 import unittest
 from unittest.mock import patch
@@ -43,7 +44,7 @@ class DocumentExtractionBudgetTests(unittest.TestCase):
     def test_docx_extraction_stops_at_text_budget(self):
         import docx
         document = docx.Document()
-        document.add_paragraph("X" * 1_000_001)
+        document.add_paragraph("".join(hashlib.sha256(str(i).encode()).hexdigest() for i in range(30_000)))
         stream = io.BytesIO()
         document.save(stream)
         with self.assertRaises(app.HTTPException) as caught:
