@@ -3682,7 +3682,8 @@ def upload(cid: int, file: UploadFile, u: dict = Depends(user)):
         else:
             # Keep the metadata/chunk transaction open while publishing the staged
             # object. The download route cannot see the object until this commits.
-            c.execute("BEGIN IMMEDIATE")
+            if not c.in_transaction:
+                c.execute("BEGIN IMMEDIATE")
             chunks, document_id = save_doc(
                 c, u, cid, name, text, content_hash=digest, content_type=content_type,
                 byte_size=len(data), extraction_status=extraction_status, ocr_used=ocr_used,
