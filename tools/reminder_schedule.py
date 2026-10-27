@@ -131,6 +131,8 @@ def build_reminder_plan(
         "schema_version": 1,
         "dry_run_only": True,
         "delivery_performed": False,
+        "scope_id": scope_id.strip(),
+        "recipient_id": recipient_id.strip(),
         "timezone": timezone_name,
         "evaluated_at_local": local_now.isoformat(),
         "planned_count": len(prepared),
