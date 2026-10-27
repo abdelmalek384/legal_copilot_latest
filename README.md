@@ -26,6 +26,8 @@ python tools/seed_legal_candidates.py --apply
 
 Before any authorized acquisition, review [the acquisition-readiness audit](docs/acquisition_readiness_audit.md) and run its read-only preflight against the candidate manifest and source permission register. A manifest entry marked pending is not permission to download, and collection readiness is not commercial reuse permission. Any permission marked allowed must link to inspectable HTTPS rights evidence; commercial reuse needs separate evidence and a separate review date.
 
+For a read-only snapshot of the source registers, acquisition queue, candidate counts, and cross-register inconsistencies, run `python tools/report_legal_corpus_inventory.py` (see [inventory report guide](docs/legal_corpus_artifact_inventory.md)). This counts planning metadata only; it does not count candidate entries as collected or verified legal documents.
+
 See [the bootstrap guide](docs/legal_corpus_bootstrap.md), [candidate instrument catalogue](docs/legal_document_candidates.json), and [source permission register](docs/source_permission_register.json). Do not collect or commercially reuse a source unless the applicable permission has been established and documented.
 
 ## Arabic handling
