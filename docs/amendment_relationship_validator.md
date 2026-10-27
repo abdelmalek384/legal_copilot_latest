@@ -21,6 +21,8 @@ An optional JSON report can be written with `--out path/to/report.json`.
 ## Checks
 
 - Relationship IDs are present and unique.
+- Duplicate source/target/type/provision edges are warnings so accidental duplicate records can be reviewed.
+- Directed cycles in non-base instrument relationships are warnings for manual review, not automatic proof of legal invalidity; cross-amendment relationships can require contextual legal analysis.
 - Inventory entries must be objects with non-empty, unique document IDs; duplicate or missing IDs are errors.
 - Every source instrument is present in the document inventory.
 - Non-base relationships point to a known target instrument; base-instrument records have a null target.

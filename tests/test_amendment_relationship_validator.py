@@ -76,6 +76,45 @@ class AmendmentRelationshipValidatorTests(unittest.TestCase):
         self.assertIn("duplicate_relationship_id", codes)
         self.assertIn("missing_relationship_id", codes)
 
+    def test_duplicate_relationship_edges_are_warned(self):
+        base = {
+            "source_instrument_id": "LAW-A",
+            "target_instrument_id": "LAW-B",
+            "relationship_type": "amends_specified_provisions",
+            "status": "under_review",
+            "source_url": "https://gazette.example.gov/law.pdf",
+            "required_evidence": ["Official Gazette text"],
+            "affected_provisions": ["Article 3"],
+        }
+        report = MODULE.validate(
+            {"relationships": [
+                {**base, "relationship_id": "REL-1"},
+                {**base, "relationship_id": "REL-2"},
+            ]},
+            {"documents": [{"document_id": "LAW-A"}, {"document_id": "LAW-B"}]},
+        )
+        self.assertTrue(any(item["code"] == "duplicate_relationship_edge" for item in report["warnings"]))
+
+    def test_relationship_cycles_are_warned_without_claiming_legal_invalidity(self):
+        base = {
+            "relationship_type": "amends_specified_provisions",
+            "status": "under_review",
+            "source_url": "https://gazette.example.gov/law.pdf",
+            "required_evidence": ["Official Gazette text"],
+            "affected_provisions": ["Article 3"],
+        }
+        report = MODULE.validate(
+            {"relationships": [
+                {**base, "relationship_id": "REL-A-B", "source_instrument_id": "LAW-A", "target_instrument_id": "LAW-B"},
+                {**base, "relationship_id": "REL-B-A", "source_instrument_id": "LAW-B", "target_instrument_id": "LAW-A"},
+            ]},
+            {"documents": [{"document_id": "LAW-A"}, {"document_id": "LAW-B"}]},
+        )
+        cycles = [item for item in report["warnings"] if item["code"] == "relationship_graph_cycle_detected"]
+        self.assertEqual(len(cycles), 1)
+        self.assertIn("manual review", cycles[0]["detail"])
+        self.assertEqual(report["error_count"], 0)
+
     def test_https_source_url_with_embedded_credentials_is_rejected(self):
         report = MODULE.validate(
             {"relationships": [{
