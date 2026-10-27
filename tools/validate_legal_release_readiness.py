@@ -424,6 +424,23 @@ def build_report(candidate_paths: list[Path], permission_register_path: Path, ro
         result = audit_candidate(candidate, register, root)
         result["candidate_file"] = str(path)
         reports.append(result)
+    indices_by_candidate_id: dict[str, list[int]] = {}
+    for index, item in enumerate(reports):
+        candidate_id = item.get("candidate_id")
+        if isinstance(candidate_id, str) and candidate_id:
+            indices_by_candidate_id.setdefault(candidate_id, []).append(index)
+    for candidate_id, indices in indices_by_candidate_id.items():
+        if len(indices) < 2:
+            continue
+        for index in indices:
+            item = reports[index]
+            if not any(blocker.get("code") == "document_id_duplicate" for blocker in item.get("blockers", [])):
+                item.setdefault("blockers", []).append({
+                    "code": "document_id_duplicate",
+                    "detail": f"Document ID {candidate_id!r} appears in multiple candidate files.",
+                })
+            item["ready"] = False
+
     blocker_counts: dict[str, int] = {}
     status_counts: dict[str, int] = {}
     review_counts: dict[str, int] = {}
