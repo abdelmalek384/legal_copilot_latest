@@ -6,7 +6,7 @@ This prevents a cited duration or amount in one part of an answer from being tre
 
 ## Limitations
 
-- This is a narrow lexical check for quantities and units covered by the application's quantity vocabulary; it is not a semantic proof that a source supports every legal proposition.
+- This is a narrow lexical check for quantities and units covered by the application's vocabulary, including common English/Arabic number words and percentage symbols; it is not exhaustive for compound numerals, OCR variants, or every legal proposition.
 - It does not verify that the cited source is legally relevant to the claim, that all exceptions were retrieved, or that a statutory interpretation is correct.
 - The legal corpus still needs complete provenance, permitted reuse, version/effective-date review, and qualified Egyptian-lawyer approval before any source is labelled verified.
 - If citation or quantity validation fails, the application should abstain from generating the answer and show the retrieved sources instead.
