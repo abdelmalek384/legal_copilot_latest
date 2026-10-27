@@ -748,6 +748,12 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
                 (hold_events[0]["id"],),
             )
         firm_db.rollback()
+        with self.assertRaises(sqlite3.IntegrityError):
+            firm_db.execute(
+                "DELETE FROM original_file_hold_events WHERE id=?",
+                (hold_events[0]["id"],),
+            )
+        firm_db.rollback()
 
         switched = self._mutate("post", "/session/firm", json={"firm_id": self.firm_b})
         self.assertEqual(switched.status_code, 200, switched.text)
