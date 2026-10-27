@@ -12,11 +12,13 @@ python tools/validate_acquisition_readiness.py
 
 The default command writes a JSON report to stdout and exits successfully when the audit completes, even if documents are blocked. This is deliberate: the current example manifest is a planning artifact, and its pending entries should be reported rather than silently promoted.
 
-To use the command as a fail-closed gate in an explicitly authorized batch:
+To use the command as the production release gate, require both collection readiness and source-level commercial product-use permission:
 
 ```bash
 python tools/validate_acquisition_readiness.py --manifest path/to/authorized_manifest.json --register docs/source_permission_register.json --require-ready
 ```
+
+`--require-ready` exits nonzero unless every manifest document is both collection-ready and commercially cleared. If a document may be collected for a non-commercial research purpose only, `--require-collection-ready` checks collection permission alone; it is not sufficient for production use in the commercial Legal Copilot product.
 
 Use `--out path/to/report.json` to preserve a report.
 
@@ -28,7 +30,7 @@ Use `--out path/to/report.json` to preserve a report.
 - The manifest has its own permission evidence and a valid terms-review date that is not in the future.
 - A document-level `permission_scope_review` is marked `passed` and records a reviewer, evidence reference, valid review date not earlier than the terms-check date, reviewed source terms, and the `direct_document_url` method. It must explicitly approve storage, text extraction, indexing, commercial product use, and excerpt display. Optional evidence URLs must be HTTPS and contain no credentials.
 - The direct URL is HTTPS and its hostname matches the document's explicit allowlist.
-- Commercial product use requires both source-level commercial permission and a complete document-level scope review. Collection permission or a status flag alone is insufficient.
+- Commercial product use requires both source-level commercial permission and a complete document-level scope review. Collection permission or a status flag alone is insufficient. The production `--require-ready` switch enforces both gates; `--require-collection-ready` intentionally checks only the narrower collection gate.
 
 ## Limits
 

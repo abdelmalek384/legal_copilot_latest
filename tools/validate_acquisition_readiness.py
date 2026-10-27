@@ -208,13 +208,20 @@ def audit(manifest: dict, register: dict) -> dict:
     }
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--manifest", type=Path, default=DEFAULT_MANIFEST)
     parser.add_argument("--register", type=Path, default=DEFAULT_REGISTER)
     parser.add_argument("--out", type=Path, help="Optional path for a JSON report")
-    parser.add_argument("--require-ready", action="store_true", help="Exit non-zero if any document is not collection-ready")
-    args = parser.parse_args()
+    parser.add_argument(
+        "--require-ready", action="store_true",
+        help="Production gate: exit non-zero unless every document is collection-ready and commercially cleared",
+    )
+    parser.add_argument(
+        "--require-collection-ready", action="store_true",
+        help="Check collection readiness only; this does not authorize commercial product use",
+    )
+    args = parser.parse_args(argv)
 
     try:
         manifest = json.loads(args.manifest.read_text(encoding="utf-8"))
@@ -230,7 +237,12 @@ def main() -> int:
     print(rendered)
     if report.get("schema_error"):
         return 2
-    if args.require_ready and report["collection_ready_count"] != report["documents_checked"]:
+    if args.require_collection_ready and report["collection_ready_count"] != report["documents_checked"]:
+        return 1
+    if args.require_ready and (
+        report["collection_ready_count"] != report["documents_checked"]
+        or report["commercial_product_use_ready_count"] != report["documents_checked"]
+    ):
         return 1
     return 0
 
