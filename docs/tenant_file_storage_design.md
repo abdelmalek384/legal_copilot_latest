@@ -74,11 +74,11 @@ The stored digest must be computed from the original bytes, not from extracted t
 - Audit upload, read/download, retention change, legal-hold change, deletion, and restore actions without recording document content, secrets, or raw storage paths in general logs.
 - Use restrictive filesystem permissions in local/staging environments and verify sidecar/temp-object handling.
 
-## Decisions required before implementation
+## Policy decisions and remaining implementation
 
 These are product/security decisions, not safe to infer from the database architecture alone:
 
-1. **Retention:** the interim default remains no automatic permanent deletion. Firm admins can now set a hold after verifying original bytes and release it with a mandatory reason; database triggers validate transition metadata and insert both the security audit event and immutable hold-history event in the same transaction. The event ledger retains action, reason, actor, and timestamp, and rejects update/delete attempts. Metadata deletion and quarantine transitions are blocked while held. Authorized object deletion/purge, retention schedules, and firm offboarding behavior remain unimplemented.
+1. **Retention:** the interim default remains no automatic permanent deletion. Firm admins can now set a hold after verifying original bytes and release it with a mandatory reason; database triggers validate transition metadata and insert both the security audit event and immutable hold-history event in the same transaction. The event ledger retains action, reason, actor, and timestamp, and rejects update/delete attempts. Metadata deletion and quarantine transitions are blocked while held. `tools/firm_offboarding_preflight.py` now provides a read-only gate that requires disabled firm/catalog state, no active memberships, clean database integrity, verified original bytes, and no active legal holds or unresolved staged/quarantined objects. A clear result is not authorization to delete. Authorized object deletion/purge, retention schedules, and the actual firm offboarding workflow remain unimplemented.
 2. **Production backend:** private S3-compatible object storage is the approved direction, with the provider kept configurable. Only the local development adapter exists; production fails closed.
 3. **Key management:** managed KMS with firm-scoped access controls is the approved direction, but provider configuration, encryption policy, rotation and recovery integration remain unimplemented. Do not reuse the backup key.
 4. **Download behavior:** approved default is case-authorized, audited downloads with no public URLs. The initial endpoint implements this for ready originals; role-specific policy review remains.
