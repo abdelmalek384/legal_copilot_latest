@@ -34,6 +34,11 @@ class MFAPrimitivesTests(unittest.TestCase):
         self.assertEqual(query["period"], ["30"])
         self.assertEqual(query["algorithm"], ["SHA1"])
 
+    def test_totp_matches_rfc6238_sha1_reference_vector(self):
+        # RFC 6238's 20-byte SHA-1 secret, encoded as Base32; six-digit truncation of 94287082.
+        secret = "GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ"
+        self.assertEqual(verify_totp(secret, "287082", now=59, window=0), 1)
+
     def test_totp_accepts_current_step_and_rejects_replay_step(self):
         secret = generate_totp_secret()
         now = 1_800_000_000
