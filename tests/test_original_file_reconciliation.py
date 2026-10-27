@@ -105,6 +105,19 @@ class OriginalFileReconciliationTests(unittest.TestCase):
         )
         self.assertFalse(any(f.code == "missing_object" for f in report.findings))
 
+    def test_flags_matching_staged_upload_for_manual_recovery(self):
+        self._create_database(rows=[(self.object_id, self.payload, "staged")])
+        directory = self.objects / "firm-7"
+        directory.mkdir()
+        (directory / f"{self.object_id}.staged").write_bytes(self.payload)
+
+        report = self._reconcile()
+
+        self.assertIn(
+            "staged_upload_requires_review",
+            {finding.code for finding in report.findings},
+        )
+
     def test_refuses_database_firm_binding_mismatch(self):
         self._create_database(firm_id=99)
 
