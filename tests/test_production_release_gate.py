@@ -28,6 +28,7 @@ class ProductionReleaseGateTests(unittest.TestCase):
             {
                 "id": f"Q-{i:03d}",
                 "practice_area": areas[i % len(areas)],
+                "as_of_date": today,
                 "review_status": "lawyer_approved",
                 "reviewer_name": "Qualified Egyptian counsel",
                 "reviewer_role": "qualified_egyptian_counsel",
