@@ -125,9 +125,9 @@ def validate_capture_record(record: object, record_path: Path) -> dict:
     if not isinstance(commercial, str) or commercial not in COMMERCIAL_STATES:
         errors.append("commercial_reuse_permission must be one of: " + ", ".join(sorted(COMMERCIAL_STATES)))
 
-    if "legal_status" in record and record["legal_status"] not in LEGAL_STATUSES:
+    if "legal_status" in record and (not isinstance(record["legal_status"], str) or record["legal_status"] not in LEGAL_STATUSES):
         errors.append("legal_status has an unsupported value")
-    if "review_status" in record and record["review_status"] not in REVIEW_STATUSES:
+    if "review_status" in record and (not isinstance(record["review_status"], str) or record["review_status"] not in REVIEW_STATUSES):
         errors.append("review_status has an unsupported value")
 
     expected_hash = record.get("original_sha256")
