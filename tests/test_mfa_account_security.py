@@ -94,7 +94,7 @@ class MFAAccountSecurityTests(unittest.TestCase):
         return secret
 
     def confirm(self, secret):
-        next_step = (int(time.time()) // 30 + 1) * 30
+        current_step = (int(time.time()) // 30) * 30
         response = self.mutate(
             "post", "/account/mfa/confirm",
             json={"current_password": self.password, "code": totp_code(secret, current_step)},
