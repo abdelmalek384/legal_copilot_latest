@@ -14,7 +14,7 @@ Publicly reachable does not mean licensed for commercial republication, extracti
 
 - The repository's source registry and authorized-acquisition workflow are discovery/planning artifacts, not a verified corpus.
 - Existing source-to-release checks require rights scope, original-file hash integrity, legal status, and passed source/extraction/amendment/licensing/lawyer-review evidence. Keep those checks as hard release gates.
-- A GitHub search did not find a command named `record_manual_capture`. Before relying on it, inspect the current CLI and document the actual supported invocation or implement and test a separate reviewed change. Do not invent command arguments.
+- The repository has a local-only `tools/validate_manual_capture_record.py` sidecar validator (being added in PR #688), not a `record_manual_capture` acquisition command. Its supported invocation is `python tools/validate_manual_capture_record.py --record path/to/capture.json`. It validates metadata and original-file hash/path integrity only; it does not capture/download a source, establish legal authenticity, grant reuse rights, or make content retrieval-eligible. Confirm the validator is merged into the target branch before relying on it.
 - The proposed comparison file `law_rows_ar.jsonl` (reported elsewhere as 311 rows) and an independently captured, permission-cleared Gazette text have not been verified as present in the repository in this task. Labour Law 14/2025 reconciliation is therefore **blocked pending artifacts**, not completed.
 - No source is labelled lawyer-approved merely because two web copies agree or an extraction test passes.
 
@@ -42,7 +42,7 @@ Keep original-source facts, extracted/transcribed text, reviewer findings, and m
 - [ ] Keep the existing lawyer source/data-rights opinion checklist; record outreach attempts and unanswered questions without treating silence as approval.
 - [ ] For every candidate source, record exact source URL, access/terms URL, terms-check date, intended uses (download, storage, extraction, indexing, retrieval, display, commercial use), permission evidence, and unresolved restrictions.
 - [ ] Quarantine candidates whose permitted use is unknown or too narrow for the planned use.
-- [ ] Confirm the repository's actual CLI and manifest schema for manual capture, source records, review events, and release checks before writing operator instructions.
+- [ ] Confirm the actual CLI and manifest schema for source records, review events, and release checks before writing operator instructions; distinguish the manual-capture sidecar validator from any acquisition command.
 - [ ] Name the qualified reviewer role and preserve an append-only record of review outcome, date, scope, and evidence.
 - **Exit criteria:** a reviewer can trace a proposed item from discovery to rights decision and explain why it is allowed, blocked, or awaiting evidence.
 
