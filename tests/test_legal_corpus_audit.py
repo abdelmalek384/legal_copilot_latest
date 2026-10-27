@@ -11,6 +11,22 @@ MODULE = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(MODULE)
 
 class CorpusAuditTests(unittest.TestCase):
+    def test_evidence_url_validator_rejects_malformed_https_urls(self):
+        self.assertTrue(MODULE.valid_evidence_url("https://example.gov/evidence"))
+        for value in (
+            " https://example.gov/evidence",
+            "https://example.gov/evidence ",
+            "https://example.gov/path with spaces",
+            "https://user:pass@example.gov/evidence",
+            "https://@example.gov/evidence",
+            "https://example.gov:not-a-port/evidence",
+            "https://example.gov:99999/evidence",
+            "https://example.gov:0/evidence",
+            "https://example.gov:/evidence",
+        ):
+            with self.subTest(value=value):
+                self.assertFalse(MODULE.valid_evidence_url(value), value)
+
     def test_strict_cli_fails_on_high_severity_issues_and_supports_special_paths(self):
         with tempfile.TemporaryDirectory() as td:
             db_path = Path(td) / "sample ?audit.db"

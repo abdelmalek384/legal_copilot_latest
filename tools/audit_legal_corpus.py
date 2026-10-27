@@ -17,12 +17,23 @@ def count(db, table):
     return db.execute(f'SELECT COUNT(*) FROM "{table}"').fetchone()[0]
 
 def valid_evidence_url(value):
-    if not isinstance(value, str):
+    """Check URL shape only; an HTTPS URL is not proof that its content is authoritative."""
+    if not isinstance(value, str) or not value or value != value.strip():
+        return False
+    if any(ch.isspace() or ord(ch) < 32 for ch in value):
         return False
     try:
         parsed = urlparse(value)
-        return parsed.scheme == "https" and bool(parsed.hostname) and not parsed.username and not parsed.password
-    except ValueError:
+        port = parsed.port  # Forces urllib to reject malformed and out-of-range ports.
+        return (
+            parsed.scheme.lower() == "https"
+            and bool(parsed.hostname)
+            and parsed.username is None
+            and parsed.password is None
+            and not parsed.netloc.endswith(":")
+            and (port is None or 1 <= port <= 65535)
+        )
+    except (ValueError, TypeError):
         return False
 
 def valid_sha256(value):

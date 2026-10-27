@@ -109,7 +109,20 @@ class LegalSourceReviewQueueTests(unittest.TestCase):
             self.assertNotIn("review_evidence_missing:legal_status", reasons)
 
     def test_evidence_url_validator_rejects_credentials_and_non_https(self):
-        for value in ("http://example.gov/evidence", "https://user:secret@example.gov/evidence", "", None, "not a url"):
+        for value in (
+            "http://example.gov/evidence",
+            "https://user:secret@example.gov/evidence",
+            "https://@example.gov/evidence",
+            " https://example.gov/evidence",
+            "https://example.gov/path with spaces",
+            "https://example.gov:not-a-port/evidence",
+            "https://example.gov:99999/evidence",
+            "https://example.gov:0/evidence",
+            "https://example.gov:/evidence",
+            "",
+            None,
+            "not a url",
+        ):
             with self.subTest(value=value):
                 self.assertFalse(MODULE.valid_evidence_url(value))
         self.assertTrue(MODULE.valid_evidence_url("https://example.gov/evidence"))
