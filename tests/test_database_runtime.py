@@ -47,6 +47,22 @@ class DatabaseRuntimeTests(unittest.TestCase):
                 "Unicode Normalization Duplicate", "e\u0301@example.test", "other-hash"
             )
 
+    def test_all_database_profiles_use_wal_for_concurrent_readers_and_writers(self):
+        for path in (self.runtime.paths.control_plane, self.runtime.paths.legal_corpus):
+            connection = sqlite3.connect(str(path))
+            try:
+                self.assertEqual(connection.execute("PRAGMA journal_mode").fetchone()[0].lower(), "wal")
+            finally:
+                connection.close()
+
+        firm_id, _ = self.runtime.provision_firm("WAL Concurrency Firm")
+        context = self.runtime.resolve_context(
+            self.runtime.create_initial_firm_owner(firm_id, "WAL Owner", "wal-owner@example.test", "test-hash"),
+            firm_id,
+        )
+        tenant = self.runtime.firm_connection(context)
+        self.assertEqual(tenant.execute("PRAGMA journal_mode").fetchone()[0].lower(), "wal")
+
     def test_new_control_and_corpus_files_have_restrictive_permissions(self):
         if os.name != "posix":
             self.skipTest("POSIX mode bits are not portable to this platform")
