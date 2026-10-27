@@ -11,7 +11,7 @@ import hashlib
 import json
 import re
 import sys
-from datetime import date, datetime
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from urllib.parse import urlsplit
 
@@ -117,6 +117,14 @@ def validate_capture_record(record: object, record_path: Path) -> dict:
         value = record.get(field)
         if value not in (None, "") and not _iso_date(value):
             errors.append(f"{field} must be an ISO date (YYYY-MM-DD) when supplied")
+    retrieved_at = record.get("retrieved_at")
+    if _iso_datetime_with_timezone(retrieved_at):
+        parsed_retrieved_at = datetime.fromisoformat(retrieved_at.strip().replace("Z", "+00:00"))
+        if parsed_retrieved_at.astimezone(timezone.utc) > datetime.now(timezone.utc) + timedelta(minutes=5):
+            errors.append("retrieved_at must not be in the future")
+    terms_checked_on = record.get("terms_checked_on")
+    if _iso_date(terms_checked_on) and date.fromisoformat(terms_checked_on) > date.today():
+        errors.append("terms_checked_on must not be in the future")
 
     collection = record.get("collection_permission")
     if not isinstance(collection, str) or collection not in PERMISSION_STATES:
