@@ -199,6 +199,27 @@ def inspect_environment(env=None, *, require_separate=False):
         else:
             passed.append("BACKUP_KEY is a valid Fernet key; its value is not printed.")
 
+    mfa_mode = env.get("MFA_ENFORCEMENT", "optional").strip().lower()
+    if mfa_mode not in {"optional", "admins_required", "all_required"}:
+        errors.append("MFA_ENFORCEMENT must be optional, admins_required, or all_required.")
+    elif production and mfa_mode == "optional":
+        errors.append("MFA_ENFORCEMENT must require MFA for administrators in production.")
+    else:
+        passed.append("MFA_ENFORCEMENT uses an explicitly supported policy.")
+    if production or mfa_mode in {"admins_required", "all_required"}:
+        mfa_key = env.get("MFA_ENCRYPTION_KEY", "").strip()
+        try:
+            Fernet(mfa_key.encode("ascii"))
+        except (ValueError, TypeError, UnicodeError):
+            errors.append("MFA_ENCRYPTION_KEY must be a valid dedicated Fernet key when MFA is required; the secret value is never printed.")
+        else:
+            if mfa_key == env.get("BACKUP_KEY", "").strip():
+                errors.append("MFA_ENCRYPTION_KEY must be separate from BACKUP_KEY.")
+            else:
+                passed.append("MFA_ENCRYPTION_KEY is a valid dedicated Fernet key; its value is not printed.")
+    elif not env.get("MFA_ENCRYPTION_KEY", "").strip():
+        warnings.append("MFA_ENCRYPTION_KEY is unset; MFA enrollment will remain unavailable until a dedicated key is configured.")
+
     if has_separate:
         missing = [name for name, value in configured.items() if not value]
         if missing:
