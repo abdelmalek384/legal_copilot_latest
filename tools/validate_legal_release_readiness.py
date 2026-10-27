@@ -29,7 +29,7 @@ REQUIRED_REVIEWS = {
     "licensing",
     "lawyer_approval",
 }
-REQUIRED_USES = {"collection", "indexing", "commercial_product_use", "excerpt_display"}
+REQUIRED_USES = {"collection", "storage", "text_extraction", "indexing", "commercial_product_use", "excerpt_display"}
 
 
 def valid_date(value: object) -> bool:
