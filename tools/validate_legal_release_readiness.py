@@ -145,6 +145,9 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
         add(blockers, "official_title_missing", "Document needs a non-empty official_title.")
     if not isinstance(document.get("document_type"), str) or not document["document_type"].strip():
         add(blockers, "document_type_missing", "Document needs a non-empty document_type.")
+    release_priority = document.get("release_priority")
+    if release_priority not in {"P0", "P1", "P2", "P3"}:
+        add(blockers, "release_priority_missing", "Document needs an explicit release_priority of P0, P1, P2, or P3.")
     source_id = document.get("source_id")
     source_matches = [s for s in sources if s.get("source_id") == source_id]
     if not isinstance(source_id, str) or not source_id.strip() or len(source_matches) != 1:
@@ -385,10 +388,13 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
     if not isinstance(practice_areas, list):
         practice_areas = []
     practice_areas = sorted({item.strip() for item in practice_areas if isinstance(item, str) and item.strip()})
+    if not practice_areas:
+        add(blockers, "practice_areas_missing", "Document needs at least one explicit practice-area classification.")
     return {
         "candidate_id": candidate_id,
         "title": document.get("official_title") if isinstance(document.get("official_title"), str) else None,
         "document_type": document.get("document_type") if isinstance(document.get("document_type"), str) else None,
+        "release_priority": release_priority if release_priority in {"P0", "P1", "P2", "P3"} else "unspecified",
         "source_id": source.get("source_id") if isinstance(source.get("source_id"), str) else None,
         "source_authority": source.get("authority") if isinstance(source.get("authority"), str) else "unknown",
         "source_class": source.get("source_class") if isinstance(source.get("source_class"), str) else "unknown",
@@ -490,6 +496,7 @@ def build_report(candidate_paths: list[Path], permission_register_path: Path, ro
     review_counts: dict[str, int] = {}
     source_authority_counts: dict[str, int] = {}
     source_class_counts: dict[str, int] = {}
+    release_priority_counts: dict[str, int] = {}
     collection_permission_counts: dict[str, int] = {}
     commercial_permission_counts: dict[str, int] = {}
     practice_area_counts: dict[str, dict[str, int]] = {}
@@ -498,12 +505,14 @@ def build_report(candidate_paths: list[Path], permission_register_path: Path, ro
         review = item.get("review_status") or "unknown"
         authority = item.get("source_authority") or "unknown"
         source_class = item.get("source_class") or "unknown"
+        release_priority = item.get("release_priority") or "unspecified"
         collection_permission = item.get("collection_permission") or "unknown"
         commercial_permission = item.get("commercial_reuse_permission") or "unknown"
         status_counts[status] = status_counts.get(status, 0) + 1
         review_counts[review] = review_counts.get(review, 0) + 1
         source_authority_counts[authority] = source_authority_counts.get(authority, 0) + 1
         source_class_counts[source_class] = source_class_counts.get(source_class, 0) + 1
+        release_priority_counts[release_priority] = release_priority_counts.get(release_priority, 0) + 1
         collection_permission_counts[collection_permission] = collection_permission_counts.get(collection_permission, 0) + 1
         commercial_permission_counts[commercial_permission] = commercial_permission_counts.get(commercial_permission, 0) + 1
         for blocker in item.get("blockers", []):
@@ -530,6 +539,7 @@ def build_report(candidate_paths: list[Path], permission_register_path: Path, ro
         "review_status_counts": dict(sorted(review_counts.items())),
         "source_authority_counts": dict(sorted(source_authority_counts.items())),
         "source_class_counts": dict(sorted(source_class_counts.items())),
+        "release_priority_counts": dict(sorted(release_priority_counts.items())),
         "collection_permission_counts": dict(sorted(collection_permission_counts.items())),
         "commercial_reuse_permission_counts": dict(sorted(commercial_permission_counts.items())),
         "coverage_semantics": {
