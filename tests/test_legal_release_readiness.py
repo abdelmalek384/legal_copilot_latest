@@ -64,8 +64,8 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         self.register = {"sources": [{
             "source_id": self.source_id, "authority": "Synthetic official authority", "source_page": "https://www.laws.example.gov/portal",
             "collection_permission": "allowed", "commercial_reuse_permission": "allowed",
-            "permission_evidence": "Written collection permission AUTH-1", "terms_checked_on": "2025-01-01",
-            "commercial_reuse_evidence": "Commercial license AUTH-COMM-1", "commercial_terms_checked_on": "2025-01-01",
+            "permission_evidence": "Written collection permission AUTH-1", "permission_evidence_url": "https://laws.example.gov/rights/collection", "terms_checked_on": "2025-01-01",
+            "commercial_reuse_evidence": "Commercial license AUTH-COMM-1", "commercial_reuse_evidence_url": "https://laws.example.gov/rights/commercial", "commercial_terms_checked_on": "2025-01-01",
         }]}
 
     def tearDown(self):
