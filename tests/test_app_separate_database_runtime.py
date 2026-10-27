@@ -3,6 +3,7 @@ import tempfile
 import unittest
 from datetime import date, timedelta
 from pathlib import Path
+from unittest.mock import patch
 
 from fastapi import HTTPException
 from fastapi.testclient import TestClient
@@ -516,6 +517,26 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         for table in ("docs", "tasks", "members"):
             with self.subTest(table=table):
                 self.assertEqual(db_b.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0], 0)
+
+    def test_legacy_review_capability_respects_email_allowlist(self):
+        previous = os.environ.get("LEGAL_REVIEWER_EMAILS")
+        os.environ["LEGAL_REVIEWER_EMAILS"] = "reviewer@example.test"
+        try:
+            with patch.object(app, "_separate_runtime_enabled", return_value=False):
+                self.assertTrue(app._user_can_review_legal({
+                    "id": 10, "role": "admin", "email": "REVIEWER@example.test"
+                }))
+                self.assertFalse(app._user_can_review_legal({
+                    "id": 11, "role": "admin", "email": "other@example.test"
+                }))
+                self.assertFalse(app._user_can_review_legal({
+                    "id": 12, "role": "member", "email": "reviewer@example.test"
+                }))
+        finally:
+            if previous is None:
+                os.environ.pop("LEGAL_REVIEWER_EMAILS", None)
+            else:
+                os.environ["LEGAL_REVIEWER_EMAILS"] = previous
 
     def test_platform_reviewer_role_is_separate_and_revocation_is_immediate(self):
         login = self.client.post(
