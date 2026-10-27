@@ -66,6 +66,8 @@ def inspect_firm_offboarding(
     object_count = 0
     purged_tombstone_count = 0
     active_holds = 0
+    pending_deletion_request_count = 0
+    inflight_purge_count = 0
 
     control = _read_only(control_path)
     try:
@@ -134,6 +136,27 @@ def inspect_firm_offboarding(
                 findings.append({
                     "code": "quarantined_originals_require_review", "count": quarantined_count
                 })
+            if "original_file_deletion_requests" not in tables:
+                findings.append({"code": "original_file_deletion_workflow_schema_missing"})
+            else:
+                pending_deletion_request_count = int(tenant.execute(
+                    "SELECT COUNT(*) FROM original_file_deletion_requests "
+                    "WHERE status='requested'"
+                ).fetchone()[0])
+                inflight_purge_count = int(tenant.execute(
+                    "SELECT COUNT(*) FROM original_file_deletion_requests "
+                    "WHERE status='purging'"
+                ).fetchone()[0])
+                if pending_deletion_request_count:
+                    findings.append({
+                        "code": "deletion_requests_awaiting_second_admin", 
+                        "count": pending_deletion_request_count,
+                    })
+                if inflight_purge_count:
+                    findings.append({
+                        "code": "inflight_purge_requires_manual_review",
+                        "count": inflight_purge_count,
+                    })
     finally:
         tenant.close()
 
@@ -162,6 +185,8 @@ def inspect_firm_offboarding(
         "original_object_count": object_count,
         "purged_tombstone_count": purged_tombstone_count,
         "active_legal_hold_count": active_holds,
+        "pending_deletion_request_count": pending_deletion_request_count,
+        "inflight_purge_count": inflight_purge_count,
         "findings": findings,
         "purge_preflight_clear": not findings,
         "mutations_performed": 0,
