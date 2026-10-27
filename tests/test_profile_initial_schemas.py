@@ -223,7 +223,9 @@ class ProfileInitialSchemaTests(unittest.TestCase):
         with self.assertRaisesRegex(sqlite3.IntegrityError, "legal hold"):
             db.execute("DELETE FROM original_file_objects WHERE object_id=?", ("a" * 32,))
         self.assertEqual(
-            db.execute("SELECT state,legal_hold FROM original_file_objects WHERE object_id=?", ("a" * 32,)).fetchone(),
+            tuple(db.execute(
+                "SELECT state,legal_hold FROM original_file_objects WHERE object_id=?", ("a" * 32,)
+            ).fetchone()),
             ("ready", 1),
         )
         db.close()
