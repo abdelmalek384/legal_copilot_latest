@@ -35,13 +35,15 @@ EXPLICIT_PERMISSION_STATES = {"allowed", "allowed_limited", "prohibited",
 
 
 def _https_url(value: object) -> bool:
-    if not isinstance(value, str) or not value.strip():
+    if not isinstance(value, str) or not value or value != value.strip() or any(char.isspace() for char in value):
         return False
     try:
-        parsed = urlparse(value.strip())
+        parsed = urlparse(value)
+        port = parsed.port
         return (
             parsed.scheme == "https"
             and bool(parsed.hostname)
+            and (port is None or 1 <= port <= 65535)
             and parsed.username is None
             and parsed.password is None
             and not any(ord(char) < 32 for char in value)

@@ -69,9 +69,17 @@ class SourcePermissionRegisterTests(unittest.TestCase):
     def test_credentials_in_source_urls_are_rejected(self):
         import json
         data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
-        data["sources"][0]["source_page"] = "https://user:secret@example.gov/law"
-        errors = MODULE.validate(data)
-        self.assertTrue(any("source_page must be an HTTPS URL without credentials" in error for error in errors))
+        for url in (
+            "https://user:secret@example.gov/law",
+            " https://example.gov/law",
+            "https://example.gov/law file",
+            "https://example.gov:99999/law",
+        ):
+            data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+            data["sources"][0]["source_page"] = url
+            errors = MODULE.validate(data)
+            with self.subTest(url=url):
+                self.assertTrue(any("source_page must be an HTTPS URL without credentials" in error for error in errors))
 
     def test_invalid_or_future_permission_review_dates_are_rejected(self):
         import json

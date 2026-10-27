@@ -170,6 +170,9 @@ class LegalReleaseReadinessTests(unittest.TestCase):
             "https://@laws.example.gov/portal",
             "https://user@laws.example.gov/portal",
             "https://user:password@laws.example.gov/portal",
+            " https://laws.example.gov/portal",
+            "https://laws.example.gov/portal with-space",
+            "https://laws.example.gov:99999/portal",
         ):
             with self.subTest(url=url):
                 self.assertIsNone(MODULE.https_host(url))

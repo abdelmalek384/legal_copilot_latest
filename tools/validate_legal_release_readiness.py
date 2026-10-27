@@ -45,9 +45,16 @@ def valid_date(value: object) -> bool:
 def https_host(value: object) -> str | None:
     if not isinstance(value, str):
         return None
+    if value != value.strip() or any(char.isspace() for char in value):
+        return None
     try:
         parsed = urlparse(value)
-        if parsed.scheme != "https" or not parsed.hostname or parsed.username is not None or parsed.password is not None:
+        port = parsed.port
+        if (
+            parsed.scheme != "https" or not parsed.hostname
+            or parsed.username is not None or parsed.password is not None
+            or (port is not None and not 1 <= port <= 65535)
+        ):
             return None
         host = parsed.hostname.lower().rstrip(".")
         return host[4:] if host.startswith("www.") else host

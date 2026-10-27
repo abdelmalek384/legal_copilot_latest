@@ -165,6 +165,15 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
         self.assertIn("document_level_collection_scope_review_missing",
                       report["documents"][0]["blockers"])
 
+    def test_acquisition_audit_rejects_whitespace_and_invalid_ports(self):
+        for url in (
+            " https://laws.example.gov/law.pdf",
+            "https://laws.example.gov/law file.pdf",
+            "https://laws.example.gov:99999/law.pdf",
+        ):
+            with self.subTest(url=url):
+                self.assertIsNone(MODULE._hostname(url))
+
     def test_direct_url_host_must_match_allowlist(self):
         manifest = {"documents": [{
             "document_id": "LAW-3",

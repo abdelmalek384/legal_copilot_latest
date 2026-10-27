@@ -89,9 +89,15 @@ def parse_date(value: str, field: str) -> dt.date:
 
 
 def validate_public_https_url(url: str, allowed_hosts: set[str]) -> str:
-    parsed = urlparse(url)
-    if parsed.scheme != "https" or not parsed.hostname:
-        raise ValueError("Only absolute HTTPS URLs are allowed")
+    if not isinstance(url, str) or not url or url != url.strip() or any(char.isspace() for char in url):
+        raise ValueError("HTTPS URL must not contain whitespace")
+    try:
+        parsed = urlparse(url)
+        port = parsed.port
+    except ValueError as exc:
+        raise ValueError("Only valid absolute HTTPS URLs are allowed") from exc
+    if parsed.scheme != "https" or not parsed.hostname or (port is not None and not 1 <= port <= 65535):
+        raise ValueError("Only absolute HTTPS URLs with a valid port are allowed")
     if parsed.username is not None or parsed.password is not None:
         raise ValueError("URLs containing credentials are not allowed")
     host = parsed.hostname.lower().rstrip(".")
@@ -155,9 +161,15 @@ def validate_manifest_hosts(doc: dict) -> set[str]:
             raise ValueError("allowed_hosts contains an invalid hostname")
         normalized.add(host)
     direct_url = doc.get("direct_url", "")
-    parsed = urlparse(direct_url)
-    if parsed.scheme != "https" or not parsed.hostname:
-        raise ValueError("direct_url must be an absolute HTTPS URL")
+    if not isinstance(direct_url, str) or not direct_url or direct_url != direct_url.strip() or any(char.isspace() for char in direct_url):
+        raise ValueError("direct_url must not contain whitespace")
+    try:
+        parsed = urlparse(direct_url)
+        port = parsed.port
+    except ValueError as exc:
+        raise ValueError("direct_url must be a valid absolute HTTPS URL") from exc
+    if parsed.scheme != "https" or not parsed.hostname or (port is not None and not 1 <= port <= 65535):
+        raise ValueError("direct_url must be an absolute HTTPS URL with a valid port")
     if parsed.username is not None or parsed.password is not None:
         raise ValueError("direct_url must not contain credentials")
     url_host = parsed.hostname.lower().rstrip(".")
