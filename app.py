@@ -1616,6 +1616,7 @@ def _user_separate(
         "firm_id": context.firm_id, "active": 1, "firms": firms,
         "platform_roles": _platform_roles_for_user(account["id"]),
         "mfa_enabled": mfa_enabled, "mfa_required": mfa_required,
+        "mfa_policy_required": _mfa_policy_requires_user(int(account["id"]), c),
         "mfa_verified": mfa_verified, "mfa_verified_at": int(account["mfa_verified_at"] or 0),
         "mfa_enrollment_required": enrollment_required,
         "mfa_verification_required": verification_required,
@@ -1892,14 +1893,17 @@ def _mfa_user_is_privileged(user_id: int, control=None) -> bool:
     return firm_admin is not None or platform_admin is not None
 
 
-def _mfa_required_for_user(user_id: int, control=None) -> bool:
+def _mfa_policy_requires_user(user_id: int, control=None) -> bool:
     db = control or control_conn()
-    if _mfa_is_enabled(user_id, db):
-        return True
     mode = _mfa_enforcement_mode()
     if mode == "all_required":
         return True
     return mode == "admins_required" and _mfa_user_is_privileged(user_id, db)
+
+
+def _mfa_required_for_user(user_id: int, control=None) -> bool:
+    db = control or control_conn()
+    return _mfa_is_enabled(user_id, db) or _mfa_policy_requires_user(user_id, db)
 
 
 def _record_mfa_event(control, actor_user_id: int, event_type: str, detail: dict | None = None) -> None:
@@ -2072,6 +2076,7 @@ def _login_separate(b: LoginIn, request: Request, response: Response):
         "firm_id": first_firm["firm_id"], "firms": memberships,
         "platform_roles": _platform_roles_for_user(account["id"]),
         "mfa_enabled": mfa_enabled, "mfa_required": mfa_required,
+        "mfa_policy_required": _mfa_policy_requires_user(int(account["id"]), c),
         "mfa_verified": mfa_verified, "mfa_verified_at": now if mfa_verified else 0,
         "mfa_enrollment_required": mfa_required and not mfa_enabled,
         "mfa_verification_required": mfa_enabled and not mfa_verified,
@@ -2164,7 +2169,7 @@ def current_session(u: dict = Depends(user)):
     if _separate_runtime_enabled():
         result["firms"] = _active_firms_for_user(u["id"])
         result["platform_roles"] = _platform_roles_for_user(u["id"])
-        for field in ("mfa_enabled", "mfa_required", "mfa_verified", "mfa_verified_at",
+        for field in ("mfa_enabled", "mfa_required", "mfa_policy_required", "mfa_verified", "mfa_verified_at",
                       "mfa_enrollment_required", "mfa_verification_required"):
             result[field] = u.get(field, False if field != "mfa_verified_at" else 0)
     return result
