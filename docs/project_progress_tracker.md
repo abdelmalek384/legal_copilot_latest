@@ -1,6 +1,6 @@
 # Legal Copilot — Project Progress Tracker
 
-**Last updated:** 2026-10-27 (refreshed through merged PR #662; PRs #663 and #666 have passing CI and remain open pending merge. The 20-deliverable counts below are not an overall product-readiness percentage.)  
+**Last updated:** 2026-10-27 (refreshed through merged PR #662; PRs #663, #666, and #668 have passing CI and remain open pending merge. The 20-deliverable counts below are not an overall product-readiness percentage.)  
 **Tracking method:** deliverable-level checklist, not an estimate of engineering hours. A task is “complete” only when its change is merged and its acceptance criteria are met. Open PRs are in progress, not complete.
 
 ## Overall status
