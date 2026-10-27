@@ -42,6 +42,9 @@ class LegalReleaseReadinessTests(unittest.TestCase):
             },
             "reviews": [{
                 "review_type": review_type, "outcome": "pass", "notes": "Reviewed against evidence.",
+                "reviewer_id": "reviewer-test-01",
+                "reviewer_role": "qualified_egyptian_counsel" if review_type == "lawyer_approval" else "legal_researcher",
+                "reviewed_on": "2025-01-03",
                 "evidence_url": "https://laws.example.gov/evidence",
             } for review_type in sorted(MODULE.REQUIRED_REVIEWS)],
         }
@@ -96,6 +99,25 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         result = MODULE.audit_candidate(self.candidate, self.register, self.root)
         self.assertIn("central_source_record_missing", {item["code"] for item in result["blockers"]})
 
+
+
+    def test_review_requires_attribution_date_and_qualified_lawyer_role(self):
+        candidate = json.loads(json.dumps(self.candidate))
+        lawyer_review = next(r for r in candidate["reviews"] if r["review_type"] == "lawyer_approval")
+        lawyer_review.pop("reviewer_id")
+        lawyer_review["reviewer_role"] = "legal_researcher"
+        lawyer_review.pop("reviewed_on")
+        result = MODULE.audit_candidate(candidate, self.register, self.root)
+        codes = {item["code"] for item in result["blockers"]}
+        self.assertIn("reviewer_identity_missing", codes)
+        self.assertIn("lawyer_qualification_not_established", codes)
+        self.assertIn("review_date_invalid", codes)
+
+    def test_future_review_date_is_rejected(self):
+        candidate = json.loads(json.dumps(self.candidate))
+        candidate["reviews"][0]["reviewed_on"] = "2999-01-01"
+        result = MODULE.audit_candidate(candidate, self.register, self.root)
+        self.assertIn("review_date_invalid", {item["code"] for item in result["blockers"]})
 
     def test_report_summarizes_blockers_status_and_practice_area_without_claiming_coverage(self):
         self.candidate["document"]["practice_areas"] = ["Labour", "Employment"]
