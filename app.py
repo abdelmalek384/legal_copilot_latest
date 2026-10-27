@@ -1349,6 +1349,10 @@ async def security_headers(request: Request, call_next):
             response = JSONResponse(status_code=404, content={"detail": "not found"})
     finally:
         _active_firm_context.reset(context_token)
+    # Tenant-scoped matter, identity, and audit responses must not persist in browser or proxy caches.
+    response.headers["Cache-Control"] = "no-store"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "0"
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.headers["X-Frame-Options"] = "DENY"
     response.headers["Referrer-Policy"] = "no-referrer"
