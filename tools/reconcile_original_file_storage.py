@@ -37,9 +37,29 @@ def main() -> int:
     args = parser.parse_args()
     if not args.object_root:
         parser.error("set COPILOT_OBJECT_STORAGE_ROOT or pass --object-root")
+    if os.environ.get("COPILOT_ENV", "").strip().lower() in {"prod", "production"}:
+        parser.error("local filesystem reconciliation is disabled in production mode")
+    if os.environ.get("COPILOT_OBJECT_STORAGE_BACKEND", "local").strip().lower() != "local":
+        parser.error("this command supports only the local development storage backend")
 
     try:
         runtime = DatabaseRuntime.from_env()
+        object_root = Path(args.object_root).expanduser()
+        if object_root.is_symlink():
+            raise RuntimeError("Configured object storage root must not be a symlink")
+        object_resolved = object_root.resolve()
+        tenant_root = runtime.paths.tenant_root.resolve()
+        control_path = runtime.paths.control_plane.resolve()
+        corpus_path = runtime.paths.legal_corpus.resolve()
+        if (
+            object_resolved == tenant_root
+            or object_resolved in tenant_root.parents
+            or tenant_root in object_resolved.parents
+        ):
+            raise RuntimeError("Object storage must be separate from the tenant database root")
+        for label, database_path in (("control-plane", control_path), ("legal-corpus", corpus_path)):
+            if object_resolved == database_path or object_resolved in database_path.parents:
+                raise RuntimeError(f"Object storage must not contain the {label} database")
         control = _read_only(runtime.paths.control_plane)
         try:
             active_firms = {
