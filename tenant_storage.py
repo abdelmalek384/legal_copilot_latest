@@ -55,7 +55,9 @@ class TenantSQLiteConnectionRouter:
         cached = connections.pop(firm_id, None) if connections else None
         if cached is not None:
             try:
-                cached[1].close()
+                # The cache tuple ends with the connection; the preceding
+                # fields are the trusted path and its captured file identity.
+                cached[-1].close()
             except sqlite3.Error:
                 pass
 
@@ -100,17 +102,25 @@ class TenantSQLiteConnectionRouter:
         finally:
             catalog.close()
 
+        # Capture the identity of the catalog-resolved file. A same-path file
+        # replacement must revoke a cached handle rather than leave this process
+        # reading/writing an unlinked database belonging to a previous inode.
+        try:
+            metadata = path.stat()
+            if not stat.S_ISREG(metadata.st_mode):
+                raise TenantConnectionError("Tenant database path is not a regular file")
+            file_identity = (metadata.st_dev, metadata.st_ino)
+        except OSError as exc:
+            self._revoke_cached_connection(trusted_firm_id)
+            raise TenantConnectionError(
+                "Tenant database file identity cannot be verified"
+            ) from exc
+
         # Check permissions before returning even a cached connection. If an
         # operator changes the file mode after the connection was opened, revoke
         # the cached handle rather than silently continuing with an exposed DB.
         if os.name == "posix":
-            try:
-                database_mode = stat.S_IMODE(path.stat().st_mode)
-            except OSError as exc:
-                self._revoke_cached_connection(trusted_firm_id)
-                raise TenantConnectionError(
-                    "Tenant database file permissions cannot be verified"
-                ) from exc
+            database_mode = stat.S_IMODE(metadata.st_mode)
             if database_mode & 0o077:
                 self._revoke_cached_connection(trusted_firm_id)
                 raise TenantConnectionError(
@@ -155,11 +165,15 @@ class TenantSQLiteConnectionRouter:
 
         cached = connections.get(trusted_firm_id)
         if cached is not None:
-            cached_path, connection = cached
+            cached_path, cached_identity, connection = cached
             if cached_path == path:
+                if cached_identity != file_identity:
+                    self._revoke_cached_connection(trusted_firm_id)
+                    raise TenantConnectionError(
+                        "Tenant database file was replaced while a connection was cached"
+                    )
                 return connection
-            connection.close()
-            del connections[trusted_firm_id]
+            self._revoke_cached_connection(trusted_firm_id)
 
         connection = None
         try:
@@ -262,7 +276,22 @@ class TenantSQLiteConnectionRouter:
                 "Tenant database is unavailable; refusing fallback to shared storage"
             ) from exc
 
-        connections[trusted_firm_id] = (path, connection)
+        # Close the validation/open race: if the catalog path was replaced
+        # while SQLite opened it, never cache the handle.
+        try:
+            current = path.stat()
+        except OSError as exc:
+            connection.close()
+            raise TenantConnectionError(
+                "Tenant database file identity cannot be verified after opening"
+            ) from exc
+        if (not stat.S_ISREG(current.st_mode)
+                or (current.st_dev, current.st_ino) != file_identity):
+            connection.close()
+            raise TenantConnectionError(
+                "Tenant database file changed while opening; refusing cached connection"
+            )
+        connections[trusted_firm_id] = (path, file_identity, connection)
         return connection
 
     def close_current_thread(self) -> None:
@@ -271,7 +300,8 @@ class TenantSQLiteConnectionRouter:
         if connections is None:
             return
         errors = []
-        for _, connection in connections.values():
+        for cached in connections.values():
+            connection = cached[-1]
             try:
                 connection.close()
             except sqlite3.Error as exc:

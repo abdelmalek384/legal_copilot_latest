@@ -135,13 +135,28 @@ class DatabaseRuntime:
                         f"{profile} SQLite sidecar permissions allow group/other access"
                     )
 
+    @staticmethod
+    def _file_identity(path: Path) -> tuple[int, int]:
+        """Return the device/inode identity of the database currently at a trusted path."""
+        try:
+            metadata = path.stat()
+        except OSError as exc:
+            raise DatabaseRuntimeError("Database file identity cannot be verified") from exc
+        if not stat.S_ISREG(metadata.st_mode):
+            raise DatabaseRuntimeError("Database path is not a regular file")
+        return metadata.st_dev, metadata.st_ino
+
     def _close_local_connection(self, attribute: str) -> None:
         connection = getattr(self._local, attribute, None)
-        if connection is not None:
-            try:
+        try:
+            if connection is not None:
                 connection.close()
-            finally:
+        finally:
+            if hasattr(self._local, attribute):
                 delattr(self._local, attribute)
+            identity_attribute = attribute + "_identity"
+            if hasattr(self._local, identity_attribute):
+                delattr(self._local, identity_attribute)
 
     @classmethod
     def from_env(cls) -> "DatabaseRuntime":
@@ -231,37 +246,61 @@ class DatabaseRuntime:
         if not self._initialized:
             self.initialize()
 
+    def _cached_profile_connection(self, attribute: str, path: Path, profile: str) -> sqlite3.Connection:
+        """Return a cached connection only while its backing file identity is unchanged.
+
+        Replacing a SQLite file at the same path must not leave a process writing to
+        an unlinked old database while operators believe it is using the replacement.
+        Fail closed on replacement; a process restart is required after repair.
+        """
+        try:
+            self._validate_profile_storage(path, profile)
+            current_identity = self._file_identity(path)
+        except Exception:
+            self._close_local_connection(attribute)
+            raise
+
+        connection = getattr(self._local, attribute, None)
+        if connection is not None:
+            cached_identity = getattr(self._local, attribute + "_identity", None)
+            if cached_identity != current_identity:
+                self._close_local_connection(attribute)
+                raise DatabaseRuntimeError(
+                    f"{profile} database file was replaced while a connection was cached; restart the application"
+                )
+            return connection
+
+        connection = None
+        try:
+            connection = sqlite3.connect(str(path), timeout=self.timeout)
+            connection.row_factory = sqlite3.Row
+            connection.execute("PRAGMA foreign_keys=ON")
+            if connection.execute("PRAGMA foreign_keys").fetchone()[0] != 1:
+                raise DatabaseRuntimeError(f"Foreign-key enforcement failed for {profile}")
+            # Check again to close the validation/open race. Never retain a handle
+            # if the path changed while SQLite was opening the file.
+            if self._file_identity(path) != current_identity:
+                raise DatabaseRuntimeError(
+                    f"{profile} database file changed while opening; restart the application"
+                )
+            self._local.__setattr__(attribute, connection)
+            self._local.__setattr__(attribute + "_identity", current_identity)
+            return connection
+        except Exception:
+            if connection is not None:
+                connection.close()
+            self._close_local_connection(attribute)
+            raise
+
     def control_connection(self) -> sqlite3.Connection:
         """Return the calling thread's control-plane connection."""
         self._require_initialized()
-        try:
-            self._validate_profile_storage(self.paths.control_plane, "control-plane")
-        except Exception:
-            self._close_local_connection("control")
-            raise
-        connection = getattr(self._local, "control", None)
-        if connection is None:
-            connection = sqlite3.connect(str(self.paths.control_plane), timeout=self.timeout)
-            connection.row_factory = sqlite3.Row
-            connection.execute("PRAGMA foreign_keys=ON")
-            self._local.control = connection
-        return connection
+        return self._cached_profile_connection("control", self.paths.control_plane, "control-plane")
 
     def legal_corpus_connection(self) -> sqlite3.Connection:
         """Return the calling thread's central legal-corpus connection."""
         self._require_initialized()
-        try:
-            self._validate_profile_storage(self.paths.legal_corpus, "legal-corpus")
-        except Exception:
-            self._close_local_connection("corpus")
-            raise
-        connection = getattr(self._local, "corpus", None)
-        if connection is None:
-            connection = sqlite3.connect(str(self.paths.legal_corpus), timeout=self.timeout)
-            connection.row_factory = sqlite3.Row
-            connection.execute("PRAGMA foreign_keys=ON")
-            self._local.corpus = connection
-        return connection
+        return self._cached_profile_connection("corpus", self.paths.legal_corpus, "legal-corpus")
 
     def _new_catalog_connection(self) -> sqlite3.Connection:
         """Return a fresh connection because the tenant router owns and closes it."""

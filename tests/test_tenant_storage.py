@@ -86,6 +86,23 @@ class TenantSQLiteConnectionRouterTests(unittest.TestCase):
         self.assertEqual(b.execute("SELECT value FROM marker").fetchone()[0], "firm-b")
         self.assertIsNot(a, b)
 
+    def test_same_path_database_replacement_revokes_cached_tenant_connection(self):
+        connection = self.router.connection_for_firm(101)
+        with self._catalog() as catalog:
+            path = resolve_tenant_database(catalog, 101, self.root)
+        replacement = self.root / "replacement-tenant.sqlite3"
+        with sqlite3.connect(replacement) as db:
+            db.execute("CREATE TABLE replacement_sentinel(value TEXT)")
+            db.execute("INSERT INTO replacement_sentinel VALUES('not firm 101')")
+        if os.name == "posix":
+            os.chmod(replacement, 0o600)
+        os.replace(replacement, path)
+
+        with self.assertRaisesRegex(TenantConnectionError, "database file was replaced"):
+            self.router.connection_for_firm(101)
+        with self.assertRaisesRegex(sqlite3.ProgrammingError, "closed"):
+            connection.execute("SELECT 1")
+
     @unittest.skipUnless(os.name == "posix", "POSIX file permission bits are required")
     def test_permissive_file_mode_revokes_cached_tenant_connection(self):
         connection = self.router.connection_for_firm(101)

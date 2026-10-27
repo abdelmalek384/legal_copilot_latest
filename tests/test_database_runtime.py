@@ -78,6 +78,36 @@ class DatabaseRuntimeTests(unittest.TestCase):
         finally:
             os.chmod(self.runtime.paths.control_plane, 0o600)
 
+    def test_control_connection_is_revoked_when_database_file_is_replaced(self):
+        connection = self.runtime.control_connection()
+        replacement = self.root / "replacement-control.sqlite3"
+        with sqlite3.connect(replacement) as db:
+            db.execute("CREATE TABLE replacement_sentinel(value TEXT)")
+            db.execute("INSERT INTO replacement_sentinel VALUES('not the configured control plane')")
+        if os.name == "posix":
+            os.chmod(replacement, 0o600)
+        os.replace(replacement, self.runtime.paths.control_plane)
+
+        with self.assertRaisesRegex(DatabaseRuntimeError, "control-plane database file was replaced"):
+            self.runtime.control_connection()
+        with self.assertRaises(sqlite3.ProgrammingError):
+            connection.execute("SELECT 1")
+
+    def test_corpus_connection_is_revoked_when_database_file_is_replaced(self):
+        connection = self.runtime.legal_corpus_connection()
+        replacement = self.root / "replacement-corpus.sqlite3"
+        with sqlite3.connect(replacement) as db:
+            db.execute("CREATE TABLE replacement_sentinel(value TEXT)")
+            db.execute("INSERT INTO replacement_sentinel VALUES('not the configured legal corpus')")
+        if os.name == "posix":
+            os.chmod(replacement, 0o600)
+        os.replace(replacement, self.runtime.paths.legal_corpus)
+
+        with self.assertRaisesRegex(DatabaseRuntimeError, "legal-corpus database file was replaced"):
+            self.runtime.legal_corpus_connection()
+        with self.assertRaises(sqlite3.ProgrammingError):
+            connection.execute("SELECT 1")
+
     def test_corpus_connection_is_revoked_when_sidecar_becomes_a_symlink(self):
         if not hasattr(os, "symlink"):
             self.skipTest("Symbolic links are not supported")
