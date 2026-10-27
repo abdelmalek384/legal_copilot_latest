@@ -33,7 +33,10 @@ class OriginalFileReconciliationTests(unittest.TestCase):
                 object_id TEXT PRIMARY KEY,
                 sha256 TEXT NOT NULL,
                 byte_size INTEGER NOT NULL,
-                state TEXT NOT NULL
+                state TEXT NOT NULL,
+                purged_at TEXT,
+                purged_by_user_id INTEGER,
+                purge_reason TEXT
             );
         """)
         connection.execute(
@@ -79,6 +82,36 @@ class OriginalFileReconciliationTests(unittest.TestCase):
 
         self.assertIn("object_integrity_mismatch", codes)
         self.assertIn("missing_object", codes)
+
+    def test_valid_purge_tombstone_does_not_require_retained_bytes(self):
+        self._create_database(rows=[(self.object_id, self.payload, "ready")])
+        connection = sqlite3.connect(self.db)
+        connection.execute(
+            "UPDATE original_file_objects SET purged_at='2026-10-27 12:00:00',"
+            "purged_by_user_id=99,purge_reason='Approved evidence retention purge' "
+            "WHERE object_id=?",
+            (self.object_id,),
+        )
+        connection.commit()
+        connection.close()
+
+        report = self._reconcile()
+
+        self.assertTrue(report.clean, report.findings)
+
+    def test_invalid_purge_tombstone_is_reported(self):
+        self._create_database(rows=[(self.object_id, self.payload, "ready")])
+        connection = sqlite3.connect(self.db)
+        connection.execute(
+            "UPDATE original_file_objects SET purged_at='2026-10-27 12:00:00' WHERE object_id=?",
+            (self.object_id,),
+        )
+        connection.commit()
+        connection.close()
+
+        report = self._reconcile()
+
+        self.assertIn("invalid_purge_tombstone", {finding.code for finding in report.findings})
 
     def test_reports_orphaned_file_without_deleting_it(self):
         directory = self.objects / "firm-7"
