@@ -25,7 +25,7 @@ Do not reuse `BACKUP_KEY` for document encryption. The production backend and ke
 
 ### Tenant database metadata
 
-Migration `migrations/firm/0010_original_file_objects.sql` adds the per-firm `original_file_objects` table, firm-binding triggers, digest/size/state metadata, and a legal-hold deletion guard. Remaining schema work includes audited hold lifecycle transitions, uploader metadata, and retention/deletion lifecycle fields.
+Migration `migrations/firm/0010_original_file_objects.sql` adds the per-firm `original_file_objects` table, firm-binding triggers, digest/size/state metadata, and a legal-hold deletion guard. Migration `migrations/firm/0011_original_file_hold_lifecycle.sql` adds mandatory release reasons, transition guards, immutable active-hold metadata, and database-triggered audit events. Uploader metadata and full retention/deletion lifecycle fields remain outstanding.
 
 - Opaque `blob_id` / object ID.
 - Storage backend and opaque storage key.
@@ -52,8 +52,8 @@ The stored digest must be computed from the original bytes, not from extracted t
 - Backup creation verifies each object's firm, state, byte size, and SHA-256 against tenant metadata. It fails closed for missing or tampered objects, unfinished staged metadata, and orphaned/unrecognized files in the object root.
 - Restore verifies the object inventory against the restored tenant metadata and checks byte size and SHA-256 before publishing a new restore directory. The returned restore result includes an object_storage path that must be configured as the application object root.
 - **Still required operationally:** pause application writes across all tenant databases and object storage before backup. The bundle uses an operator-supplied quiescence assertion; it does not create a distributed atomic snapshot by itself.
-- **Still not production-ready:** the local filesystem adapter is the only implementation. Production object storage/KMS, automated reconciliation after interrupted uploads, restore drills, and retention/legal-hold lifecycle acceptance remain open.
-- Existing tests cover bundle round-trip and object-byte integrity. Additional acceptance tests are still required for interrupted upload/finalization, legal-hold behavior, retention/deletion, and a documented full recovery drill.
+- **Still not production-ready:** the local filesystem adapter is the only implementation. Production object storage/KMS, automated reconciliation after interrupted uploads, restore drills, and production retention/legal-hold acceptance remain open. The firm-admin hold/release workflow is implemented and covered by integration tests in this branch.
+- Existing tests cover bundle round-trip, object-byte integrity, firm-admin hold/release authorization, mandatory reasons, deletion blocking while held, and atomic audit events. Additional acceptance tests are still required for interrupted upload/finalization, retention/deletion, and a documented full recovery drill.
 
 ### Access, caching, and logging
 
@@ -67,7 +67,7 @@ The stored digest must be computed from the original bytes, not from extracted t
 
 These are product/security decisions, not safe to infer from the database architecture alone:
 
-1. **Retention:** the interim approved default is no automatic permanent deletion; explicit authorized deletion plus legal-hold override. Implemented hold metadata currently blocks metadata deletion but does not yet implement the complete audited hold/release/purge workflow or firm offboarding behavior.
+1. **Retention:** the interim default remains no automatic permanent deletion. Firm admins can now set a hold after verifying original bytes and release it with a mandatory reason; database triggers validate transition metadata and insert the audit event in the same transaction. Metadata deletion and quarantine transitions are blocked while held. Authorized object deletion/purge, retention schedules, and firm offboarding behavior remain unimplemented.
 2. **Production backend:** private S3-compatible object storage is the approved direction, with the provider kept configurable. Only the local development adapter exists; production fails closed.
 3. **Key management:** managed KMS with firm-scoped access controls is the approved direction, but provider configuration, encryption policy, rotation and recovery integration remain unimplemented. Do not reuse the backup key.
 4. **Download behavior:** approved default is case-authorized, audited downloads with no public URLs. The initial endpoint implements this for ready originals; role-specific policy review remains.
@@ -82,7 +82,7 @@ Do not enable original-binary retention for confidential matter data until:
 - Tenant storage namespaces and path/object authorization have regression tests.
 - Upload failure and crash-window reconciliation tests pass.
 - Encrypted backup/restore includes originals and verifies their digests.
-- Retention, deletion, legal-hold, and offboarding behavior is implemented and tested.
+- Legal-hold set/release behavior and deletion blocking while held are tested; complete retention, object deletion/purge, and offboarding behavior are still required.
 - The witnessed staging recovery drill and independent security review are complete.
 
-This is an initial end-to-end development implementation, not release completion. Do not enable it for confidential production matter data until the production object-store/KMS adapter, audited retention and legal-hold lifecycle, object/database reconciliation, coordinated encrypted backup/restore, failure/crash-window tests, witnessed recovery drill, and independent security review are complete.
+This is an initial end-to-end development implementation, not release completion. Do not enable it for confidential production matter data until the production object-store/KMS adapter, complete retention/deletion/offboarding lifecycle, object/database reconciliation, coordinated encrypted backup/restore, failure/crash-window tests, witnessed recovery drill, and independent security review are complete.
