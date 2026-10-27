@@ -1433,6 +1433,9 @@ class Q(BaseModel): q: str = Field(min_length=1, max_length=500); case_id: int |
 class LoginIn(BaseModel): email: str = Field(max_length=200); password: str = Field(max_length=200)
 class MFAEnrollIn(BaseModel):
     current_password: str = Field(min_length=1, max_length=200)
+class MFAConfirmIn(BaseModel):
+    current_password: str = Field(min_length=1, max_length=200)
+    code: str = Field(min_length=1, max_length=32)
 class MFACodeIn(BaseModel):
     code: str = Field(min_length=1, max_length=32)
 class MFAVerifyIn(BaseModel):
@@ -1906,6 +1909,78 @@ def _record_mfa_event(control, actor_user_id: int, event_type: str, detail: dict
         (actor_user_id, actor_user_id, event_type,
          json.dumps(detail or {}, sort_keys=True, separators=(",", ":"))),
     )
+
+
+def _mfa_record_failure(control, user_id: int, now: int, event_type: str = "verification_failed") -> int:
+    row = control.execute(
+        "SELECT failed_attempts,locked_until FROM mfa_credentials WHERE user_id=?",
+        (user_id,),
+    ).fetchone()
+    if row is None:
+        _record_mfa_event(control, user_id, event_type)
+        return 0
+    failures = int(row["failed_attempts"]) + 1
+    locked_until = max(int(row["locked_until"]), now + 300 if failures >= 5 else 0)
+    control.execute(
+        "UPDATE mfa_credentials SET failed_attempts=?,locked_until=?,updated_at=datetime('now') WHERE user_id=?",
+        (failures, locked_until, user_id),
+    )
+    _record_mfa_event(control, user_id, event_type, {"failed_attempts": failures, "locked": locked_until > now})
+    return locked_until
+
+
+def _mfa_verify_factor_in_transaction(
+    control, user_id: int, *, code: str | None, recovery_code: str | None, now: int,
+) -> str | None:
+    """Verify and atomically consume a TOTP step or one-time recovery code."""
+    if bool(code) == bool(recovery_code):
+        return None
+    credential = control.execute(
+        "SELECT secret_ciphertext,status,last_accepted_step,failed_attempts,locked_until "
+        "FROM mfa_credentials WHERE user_id=?",
+        (user_id,),
+    ).fetchone()
+    if credential is None or credential["status"] != "enabled":
+        return None
+    if int(credential["locked_until"]) > now:
+        return "locked"
+    if code:
+        secret = decrypt_totp_secret(credential["secret_ciphertext"])
+        step = verify_totp(
+            secret, code, now=now, window=1,
+            last_accepted_step=credential["last_accepted_step"],
+        )
+        if step is None:
+            return None
+        control.execute(
+            "UPDATE mfa_credentials SET last_accepted_step=?,failed_attempts=0,locked_until=0,"
+            "updated_at=datetime('now') WHERE user_id=?",
+            (step, user_id),
+        )
+        return "totp"
+    candidates = control.execute(
+        "SELECT id,code_hash FROM mfa_recovery_codes WHERE user_id=? AND used_at IS NULL ORDER BY id",
+        (user_id,),
+    ).fetchall()
+    matched_id = None
+    for candidate in candidates:
+        if verify_recovery_code(recovery_code or "", candidate["code_hash"]):
+            matched_id = candidate["id"]
+            break
+    if matched_id is None:
+        return None
+    used_at = datetime.fromtimestamp(now, timezone.utc).isoformat(timespec="seconds")
+    consumed = control.execute(
+        "UPDATE mfa_recovery_codes SET used_at=? WHERE id=? AND user_id=? AND used_at IS NULL",
+        (used_at, matched_id, user_id),
+    )
+    if consumed.rowcount != 1:
+        return None
+    control.execute(
+        "UPDATE mfa_credentials SET failed_attempts=0,locked_until=0,updated_at=datetime('now') WHERE user_id=?",
+        (user_id,),
+    )
+    return "recovery"
 
 
 def _login_separate(b: LoginIn, request: Request, response: Response):
