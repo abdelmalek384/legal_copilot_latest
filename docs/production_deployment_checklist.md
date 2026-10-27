@@ -36,7 +36,7 @@ This checklist is a release gate, not a certification. Completing it does not re
 
 ## 4. Legal-data safety
 
-- [ ] Confirm acquisition rights and commercial reuse permission for every corpus source; a URL or public availability is not sufficient.
+- [ ] Confirm acquisition rights and commercial reuse permission for every corpus source; a URL or public availability is not sufficient. Record separate `commercial_reuse_evidence` and `commercial_terms_checked_on` fields before marking commercial reuse allowed.
 - [ ] Keep candidate/unreviewed instruments ineligible for legal retrieval. Do not mark a text verified or in force without documented source and legal review.
 - [ ] Keep ALLOW_UNLINKED_LEGACY_LAW_SEARCH unset in production. Unlinked legacy-law chunks are excluded by default; the explicit =1 override is a temporary migration/testing escape hatch only and must not be used for client-facing legal answers without documented review and risk approval.
 - [ ] Validate article-level extraction against the authoritative Gazette or an authorized official copy; preserve source hash, retrieval date, version and reviewer evidence.
