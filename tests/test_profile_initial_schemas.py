@@ -217,7 +217,8 @@ class ProfileInitialSchemaTests(unittest.TestCase):
         with self.assertRaisesRegex(sqlite3.IntegrityError, "different firm"):
             db.execute("UPDATE original_file_objects SET firm_id=8 WHERE object_id=?", ("a" * 32,))
         db.execute(
-            "UPDATE original_file_objects SET legal_hold=1,hold_reason='active litigation' WHERE object_id=?",
+            "UPDATE original_file_objects SET legal_hold=1,hold_reason='active litigation',"
+            "hold_set_by=42,hold_set_at=datetime('now') WHERE object_id=?",
             ("a" * 32,),
         )
         with self.assertRaisesRegex(sqlite3.IntegrityError, "legal hold"):
