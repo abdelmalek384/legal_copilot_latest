@@ -108,6 +108,12 @@ def validate(data: object) -> list[str]:
             errors.append(f"{label}.collection_permission has unsupported value")
         if commercial not in COMMERCIAL_STATES:
             errors.append(f"{label}.commercial_reuse_permission has unsupported value")
+        if commercial in {"allowed", "allowed_limited"}:
+            commercial_evidence = source.get("commercial_reuse_evidence")
+            if not isinstance(commercial_evidence, str) or not commercial_evidence.strip():
+                errors.append(f"{label} commercial reuse permission requires separate commercial_reuse_evidence")
+            if not _valid_review_date(source.get("commercial_terms_checked_on")):
+                errors.append(f"{label} commercial reuse permission requires a valid commercial_terms_checked_on date")
 
         checked_on = source.get("terms_checked_on")
         evidence = source.get("permission_evidence")

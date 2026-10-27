@@ -51,6 +51,21 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         self.assertTrue(any("permission_evidence" in error for error in errors))
         self.assertTrue(any("terms_checked_on" in error for error in errors))
 
+    def test_allowed_commercial_reuse_requires_its_own_evidence_and_date(self):
+        import json
+        data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        source = data["sources"][0]
+        source["commercial_reuse_permission"] = "allowed"
+        source["permission_evidence"] = "Collection permission evidence"
+        source["terms_checked_on"] = "2026-10-23"
+        errors = MODULE.validate(data)
+        self.assertTrue(any("separate commercial_reuse_evidence" in error for error in errors))
+        self.assertTrue(any("commercial_terms_checked_on date" in error for error in errors))
+
+        source["commercial_reuse_evidence"] = "Written commercial license AUTH-COMM-1"
+        source["commercial_terms_checked_on"] = "2026-10-23"
+        self.assertEqual(MODULE.validate(data), [])
+
     def test_credentials_in_source_urls_are_rejected(self):
         import json
         data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))

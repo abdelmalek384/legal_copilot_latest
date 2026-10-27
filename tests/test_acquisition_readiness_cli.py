@@ -90,8 +90,23 @@ class AcquisitionReadinessCliTests(unittest.TestCase):
         self.assertEqual(report["commercial_product_use_ready_count"], 0)
         self.assertEqual(code, 0)
 
-    def test_production_gate_passes_only_when_both_permissions_are_allowed(self):
+    def test_production_gate_blocks_allowed_label_without_separate_commercial_evidence(self):
         self.register_payload["sources"][0]["commercial_reuse_permission"] = "allowed"
+        self.register.write_text(json.dumps(self.register_payload), encoding="utf-8")
+        code, report = self.run_cli("--require-ready")
+        self.assertEqual(report["collection_ready_count"], 1)
+        self.assertEqual(report["commercial_product_use_ready_count"], 0)
+        self.assertEqual(code, 1)
+        self.assertIn(
+            "commercial_permission_evidence_or_date_missing",
+            report["documents"][0]["warnings"],
+        )
+
+    def test_production_gate_passes_only_when_both_permissions_and_evidence_are_allowed(self):
+        source = self.register_payload["sources"][0]
+        source["commercial_reuse_permission"] = "allowed"
+        source["commercial_reuse_evidence"] = "Written commercial license AUTH-COMM-1"
+        source["commercial_terms_checked_on"] = "2026-10-23"
         self.register.write_text(json.dumps(self.register_payload), encoding="utf-8")
         code, report = self.run_cli("--require-ready")
         self.assertEqual(report["collection_ready_count"], 1)
