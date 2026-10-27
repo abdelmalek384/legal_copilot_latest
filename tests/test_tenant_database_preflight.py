@@ -230,6 +230,44 @@ class TenantDatabasePreflightTests(unittest.TestCase):
         self.assertIn("tenant_not_ready", codes)
 
 
+    def test_active_firm_without_provisioned_catalog_entry_is_reported(self):
+        self.catalog.execute("INSERT INTO firms(id,name,status) VALUES(40,'Missing Catalog Firm','active')")
+        self.catalog.commit()
+        report = audit(self.catalog_path, self.root)
+        findings = [item for item in report["findings"] if item["firm_id"] == 40]
+        self.assertIn("active_firm_catalog_mismatch", {item["code"] for item in findings})
+
+    def test_disabled_firm_with_provisioned_catalog_entry_is_reported(self):
+        self.add_tenant(41)
+        self.catalog.execute("UPDATE firms SET status='disabled' WHERE id=41")
+        self.catalog.commit()
+        report = audit(self.catalog_path, self.root)
+        findings = [item for item in report["findings"] if item["firm_id"] == 41]
+        self.assertIn("disabled_firm_catalog_mismatch", {item["code"] for item in findings})
+
+    def test_unreferenced_tenant_database_file_is_reported(self):
+        filename = self.add_tenant(42)
+        self.catalog.execute("DELETE FROM tenant_database_catalog WHERE firm_id=42")
+        self.catalog.commit()
+        report = audit(self.catalog_path, self.root)
+        self.assertIn(
+            "unreferenced_database_file",
+            {item["code"] for item in report["findings"]},
+        )
+        self.assertIn(
+            "active_firm_catalog_mismatch",
+            {item["code"] for item in report["findings"] if item["firm_id"] == 42},
+        )
+        self.assertTrue((self.root / filename).is_file(), "read-only audit must not delete orphaned files")
+
+    def test_stale_provisioning_firm_is_reported(self):
+        self.add_tenant(43, status="provisioning")
+        self.catalog.execute("UPDATE firms SET status='provisioning' WHERE id=43")
+        self.catalog.commit()
+        report = audit(self.catalog_path, self.root)
+        findings = [item for item in report["findings"] if item["firm_id"] == 43]
+        self.assertIn("firm_stuck_provisioning", {item["code"] for item in findings})
+
     def test_wrong_profile_and_embedded_firm_binding_are_reported(self):
         self.add_tenant(6)
         filename = self.catalog.execute(
