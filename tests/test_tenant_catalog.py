@@ -461,6 +461,7 @@ class TenantCatalogTests(unittest.TestCase):
         self.catalog.execute(
             "UPDATE tenant_database_catalog SET status='disabled' WHERE firm_id=10"
         )
+        self.catalog.commit()
         self.assertEqual(
             resolve_tenant_database_for_maintenance(self.catalog, 10, self.root), path
         )
