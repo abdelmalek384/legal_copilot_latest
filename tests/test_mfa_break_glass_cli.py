@@ -58,6 +58,7 @@ class MFABreakGlassCLITests(unittest.TestCase):
             "INSERT INTO user_platform_roles(user_id,role_name,granted_by_user_id) VALUES(?,'platform_admin',?)",
             (self.actor_id, self.actor_id),
         )
+        c.commit()
         self.runtime.create_firm_membership(self.target_id, self.firm_id, "admin")
         self.actor_secret = generate_totp_secret()
         target_secret = generate_totp_secret()
