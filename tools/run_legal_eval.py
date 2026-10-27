@@ -76,11 +76,70 @@ def _pin_cite(hit):
     return None
 
 
+def _mask_markdown_code(answer):
+    """Mask Markdown code and hidden HTML comments before extracting citation markers."""
+    if not isinstance(answer, str):
+        return ""
+    answer = re.sub(
+        r"<!--.*?(?:-->|$)",
+        lambda match: re.sub(r"[^\r\n]", " ", match.group(0)),
+        answer,
+        flags=re.S,
+    )
+    output = []
+    fence_char = None
+    fence_length = 0
+    for line in answer.splitlines(keepends=True):
+        stripped = line.lstrip(" \t")
+        if fence_char is not None:
+            output.append(re.sub(r"[^\r\n]", " ", line))
+            close = re.match(
+                r"^" + re.escape(fence_char) + r"{" + str(fence_length) + r",}[ \t]*\r?\n?$",
+                stripped,
+            )
+            if close:
+                fence_char = None
+                fence_length = 0
+            continue
+        opening = re.match(r"^(\u0060{3,}|~{3,})(?:[^\r\n]*)?(?:\r?\n)?$", stripped)
+        if opening:
+            fence_char = opening.group(1)[0]
+            fence_length = len(opening.group(1))
+            output.append(re.sub(r"[^\r\n]", " ", line))
+            continue
+        chars = list(line)
+        i = 0
+        while i < len(line):
+            if line[i] != "\u0060" or (i > 0 and line[i - 1] == "\\"):
+                i += 1
+                continue
+            run_end = i + 1
+            while run_end < len(line) and line[run_end] == "\u0060":
+                run_end += 1
+            run = line[i:run_end]
+            close_at = line.find(run, run_end)
+            if close_at < 0:
+                i = run_end
+                continue
+            for pos in range(i, close_at + len(run)):
+                if chars[pos] not in "\r\n":
+                    chars[pos] = " "
+            i = close_at + len(run)
+        output.append("".join(chars))
+    return "".join(output)
+
+
+def _answer_citation_indices(answer):
+    """Return citation indices in visible prose only."""
+    visible_answer = _mask_markdown_code(answer)
+    return sorted({int(value) for value in re.findall(r"\[(\d+)\]", visible_answer)})
+
+
 def result_from_response(question, response):
     answer = response.get("answer")
     answer = answer if isinstance(answer, str) and answer.strip() else None
     sources = response.get("sources") if isinstance(response.get("sources"), list) else []
-    indices = sorted({int(x) for x in re.findall(r"\[(\d+)\]", answer or "")})
+    indices = _answer_citation_indices(answer)
     invalid = [index for index in indices if index < 1 or index > len(sources)]
     valid_indices = [index for index in indices if 1 <= index <= len(sources)]
     cited_sources = []
