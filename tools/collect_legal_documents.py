@@ -92,7 +92,7 @@ def validate_public_https_url(url: str, allowed_hosts: set[str]) -> str:
     parsed = urlparse(url)
     if parsed.scheme != "https" or not parsed.hostname:
         raise ValueError("Only absolute HTTPS URLs are allowed")
-    if parsed.username or parsed.password:
+    if parsed.username is not None or parsed.password is not None:
         raise ValueError("URLs containing credentials are not allowed")
     host = parsed.hostname.lower().rstrip(".")
     if not any(host == h or host.endswith("." + h) for h in allowed_hosts):
