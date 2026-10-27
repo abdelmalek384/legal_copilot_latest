@@ -626,6 +626,8 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             "/login", json={"email": "OWNER@example.test", "password": self.password}
         )
         self.assertEqual(login.status_code, 200, login.text)
+        self.assertFalse(login.json()["can_review_legal"])
+        self.assertFalse(self.client.get("/session").json()["can_review_legal"])
         corpus = self.runtime.legal_corpus_connection()
         corpus.execute(
             "INSERT INTO legal_sources(source_id,authority,source_page) VALUES(?,?,?)",
@@ -658,6 +660,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             (self.user_id, "platform_reviewer"),
         )
         control.commit()
+        self.assertTrue(self.client.get("/session").json()["can_review_legal"])
         for url in urls:
             with self.subTest(url=url, role="platform_reviewer"):
                 allowed = self.client.get(url)
@@ -668,6 +671,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             (self.user_id,),
         )
         control.commit()
+        self.assertFalse(self.client.get("/session").json()["can_review_legal"])
         for url in urls:
             with self.subTest(url=url, role="revoked"):
                 denied = self.client.get(url)
