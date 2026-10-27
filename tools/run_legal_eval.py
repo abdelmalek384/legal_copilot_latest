@@ -23,16 +23,35 @@ class RunnerError(RuntimeError):
 
 
 def validate_base_url(base_url, allow_remote=False):
-    parsed = urlparse(base_url)
-    if parsed.scheme not in {"http", "https"} or not parsed.hostname or parsed.username or parsed.password:
-        raise RunnerError("base URL must be an HTTP(S) origin without embedded credentials")
+    if (
+        not isinstance(base_url, str)
+        or not base_url
+        or base_url != base_url.strip()
+        or any(ch.isspace() or ord(ch) < 32 for ch in base_url)
+    ):
+        raise RunnerError("base URL must not contain whitespace and must be a valid HTTP(S) URL")
+    try:
+        parsed = urlparse(base_url)
+        port = parsed.port  # Accessing .port rejects non-numeric and out-of-range ports.
+        host = parsed.hostname
+    except (ValueError, TypeError) as exc:
+        raise RunnerError("base URL must be a well-formed HTTP(S) URL with a valid port") from exc
+    if parsed.username is not None or parsed.password is not None:
+        raise RunnerError("base URL must not contain embedded credentials")
+    if (
+        parsed.scheme.lower() not in {"http", "https"}
+        or not host
+        or parsed.netloc.endswith(":")
+        or (port is not None and not 1 <= port <= 65535)
+    ):
+        raise RunnerError("base URL must be a valid HTTP(S) URL with a valid port")
     if parsed.query or parsed.fragment:
         raise RunnerError("base URL must not contain a query string or fragment")
-    host = parsed.hostname.lower()
+    host = host.lower()
     loopback = host in {"localhost", "127.0.0.1", "::1"}
     if not loopback and not allow_remote:
         raise RunnerError("non-local API targets require the explicit --allow-remote flag")
-    if not loopback and parsed.scheme != "https":
+    if not loopback and parsed.scheme.lower() != "https":
         raise RunnerError("remote evaluation targets must use HTTPS")
     return base_url.rstrip("/")
 
