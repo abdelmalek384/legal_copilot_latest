@@ -35,6 +35,15 @@ class DeploymentPreflightTests(unittest.TestCase):
                 _, _, errors = preflight.inspect_environment(dict(self.env, COPILOT_ALLOWED_HOSTS=value))
                 self.assertTrue(any("COPILOT_ALLOWED_HOSTS must be" in item for item in errors))
 
+    def test_production_requires_explicit_host_allowlist(self):
+        production = dict(self.env, COPILOT_ENV="production")
+        _, _, errors = preflight.inspect_environment(production)
+        self.assertTrue(any("COPILOT_ALLOWED_HOSTS is required in production" in item for item in errors))
+
+        configured = dict(production, COPILOT_ALLOWED_HOSTS="legal.example.com,*.example.org")
+        _, _, errors = preflight.inspect_environment(configured)
+        self.assertFalse(any("COPILOT_ALLOWED_HOSTS" in item for item in errors))
+
     def test_public_origin_must_be_a_bare_https_origin(self):
         valid = dict(self.env, COPILOT_PUBLIC_ORIGIN="https://legal.example.com")
         _, _, errors = preflight.inspect_environment(valid)

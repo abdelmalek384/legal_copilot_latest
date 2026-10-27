@@ -5,6 +5,8 @@ on:
   pull_request:
     paths:
       - "tools/collect_legal_documents.py"
+      - "app.py"
+      - "tests/test_trusted_host_middleware.py"
       - "tools/deployment_preflight.py"
       - "tests/test_deployment_preflight.py"
       - "static/index.html"
@@ -33,6 +35,8 @@ on:
     branches: [main]
     paths:
       - "tools/collect_legal_documents.py"
+      - "app.py"
+      - "tests/test_trusted_host_middleware.py"
       - "tools/deployment_preflight.py"
       - "tests/test_deployment_preflight.py"
       - "static/index.html"
@@ -104,6 +108,9 @@ jobs:
 
       - name: Test deployment preflight
         run: python tests/test_deployment_preflight.py
+
+      - name: Test runtime Host-header middleware
+        run: python tests/test_trusted_host_middleware.py
 
       - name: Test deadline calculator
         run: python tests/test_deadline_calculator.py
