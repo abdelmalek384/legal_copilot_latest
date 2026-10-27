@@ -1616,7 +1616,8 @@ def _user_separate(
         "firm_id": context.firm_id, "active": 1, "firms": firms,
         "platform_roles": _platform_roles_for_user(account["id"]),
         "mfa_enabled": mfa_enabled, "mfa_required": mfa_required,
-        "mfa_verified": mfa_verified, "mfa_enrollment_required": enrollment_required,
+        "mfa_verified": mfa_verified, "mfa_verified_at": int(account["mfa_verified_at"] or 0),
+        "mfa_enrollment_required": enrollment_required,
         "mfa_verification_required": verification_required,
     }
 
@@ -2163,6 +2164,9 @@ def current_session(u: dict = Depends(user)):
     if _separate_runtime_enabled():
         result["firms"] = _active_firms_for_user(u["id"])
         result["platform_roles"] = _platform_roles_for_user(u["id"])
+        for field in ("mfa_enabled", "mfa_required", "mfa_verified", "mfa_verified_at",
+                      "mfa_enrollment_required", "mfa_verification_required"):
+            result[field] = u.get(field, False if field != "mfa_verified_at" else 0)
     return result
 
 
