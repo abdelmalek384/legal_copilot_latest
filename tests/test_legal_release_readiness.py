@@ -112,6 +112,24 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         self.assertIn("central_commercial_permission_evidence_missing", codes)
         self.assertIn("central_commercial_terms_date_invalid", codes)
 
+    def test_report_separates_candidate_coverage_from_verified_text_and_permission_states(self):
+        candidate_path = self.root / "registry_candidate.json"
+        register_path = self.root / "permission_register.json"
+        coverage_path = self.root / "coverage.csv"
+        candidate_path.write_text(json.dumps(self.candidate), encoding="utf-8")
+        register_path.write_text(json.dumps(self.register), encoding="utf-8")
+        coverage_path.write_text("practice_area,priority,status\\nLabour,P0,not_started\\n", encoding="utf-8")
+        report = MODULE.build_report(
+            [candidate_path], register_path, self.root, coverage_matrix_path=coverage_path
+        )
+        self.assertEqual(report["source_authority_counts"], {"Synthetic official authority": 1})
+        self.assertEqual(report["collection_permission_counts"], {"allowed": 1})
+        self.assertEqual(report["commercial_reuse_permission_counts"], {"allowed": 1})
+        self.assertEqual(report["coverage_semantics"]["candidate_inventory_count"], 1)
+        self.assertEqual(report["coverage_semantics"]["evidence_ready_current_text_count"], 1)
+        self.assertFalse(report["coverage_semantics"]["percentage_claims"])
+        self.assertEqual(report["candidates"][0]["gazette_pages"], "1-10")
+
     def test_report_output_cannot_overwrite_candidate_input(self):
         candidate_path = self.root / "candidate.json"
         register_path = self.root / "register.json"
