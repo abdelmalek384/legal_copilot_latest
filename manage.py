@@ -541,6 +541,9 @@ x = sp.add_parser("addmembership"); x.add_argument("email"); x.add_argument("--f
 x = sp.add_parser("disable-firm"); x.add_argument("firm_id", type=int); x.set_defaults(f=disable_firm_cli)
 x = sp.add_parser("resetpw"); x.add_argument("email"); x.set_defaults(f=resetpw)
 sp.add_parser("genkey").set_defaults(f=lambda a: print(Fernet.generate_key().decode()))
+sp.add_parser("gen-mfa-key", help="Generate a dedicated MFA secret-encryption key; never reuse BACKUP_KEY").set_defaults(
+    f=lambda a: print(Fernet.generate_key().decode())
+)
 x = sp.add_parser("backup"); x.add_argument("dir"); x.add_argument("--keep", type=int, default=14); x.set_defaults(f=backup)
 x = sp.add_parser("backup-tenancy"); x.add_argument("dir"); x.add_argument("--keep", type=int, default=14); x.add_argument("--quiesced", action="store_true", help="Assert application writes are paused for the full bundle snapshot"); x.set_defaults(f=backup_tenancy)
 x = sp.add_parser("grant-platform-role", help="Grant a platform role; requires an active platform_admin actor")
