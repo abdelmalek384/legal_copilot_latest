@@ -1,6 +1,6 @@
 # Legal Copilot — Project Progress Tracker
 
-**Last updated:** 2026-10-27 (refreshed through merged PR #669. PR #663 and #669 are merged; #666, #668, #670, and #672 remain open with passing CI. PR #673 expands the official source map and candidate catalog; its prior revision passed CI, and its latest metadata/test additions have passed structural checks but need a fresh full CI run after PR #672 is merged. PR #674 was closed as superseded. The 20-deliverable counts below are not an overall product-readiness percentage.)  
+**Last updated:** 2026-10-27 (refreshed through merged PR #669. PR #663 and #669 are merged; #666, #668, #670, and #672 remain open with passing CI. PR #673 expands the official source map and candidate catalog; its latest full CI passed on commit 67c440a4 after the current metadata, regression-test, and reuse-framework updates. PR #674 was closed as superseded. The 20-deliverable counts below are not an overall product-readiness percentage.)  
 **Tracking method:** deliverable-level checklist, not an estimate of engineering hours. A task is “complete” only when its change is merged and its acceptance criteria are met. Open PRs are in progress, not complete.
 
 ## Overall status
