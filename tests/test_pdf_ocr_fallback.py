@@ -77,5 +77,24 @@ class PdfOcrFallbackTests(unittest.TestCase):
         self.assertEqual(caught.exception.status_code, 413)
 
 
+    def test_ocr_output_obeys_one_megabyte_extraction_budget(self):
+        fake_pymupdf = types.SimpleNamespace(open=lambda **kwargs: FakePdfDoc(1))
+        fake_pytesseract = types.SimpleNamespace(
+            image_to_string=MagicMock(return_value="X" * 1_000_001)
+        )
+        fake_image = types.SimpleNamespace(open=lambda value: object())
+        fake_pil = types.ModuleType("PIL")
+        fake_pil.Image = fake_image
+        with patch.dict(sys.modules, {
+            "pymupdf": fake_pymupdf,
+            "pytesseract": fake_pytesseract,
+            "PIL": fake_pil,
+        }):
+            with self.assertRaises(app.HTTPException) as caught:
+                app.ocr_pdf_text(b"pdf")
+        self.assertEqual(caught.exception.status_code, 413)
+        self.assertIn("1 MB", caught.exception.detail)
+
+
 if __name__ == "__main__":
     unittest.main()
