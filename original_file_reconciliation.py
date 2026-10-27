@@ -6,13 +6,13 @@ A reviewer must resolve findings under an application-wide write quiescence wind
 from __future__ import annotations
 
 import hashlib
+import os
 import re
 import sqlite3
 import stat
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable, Mapping
-from urllib.parse import quote
 
 _OBJECT_ID = re.compile(r"^[0-9a-f]{32}$")
 _FIRM_DIR = re.compile(r"^firm-([1-9][0-9]*)$")
@@ -59,9 +59,7 @@ def _read_only_connection(path: Path) -> sqlite3.Connection:
 def _hash_file(path: Path) -> tuple[str, int]:
     digest = hashlib.sha256()
     size = 0
-    flags = 0
     try:
-        import os
         flags = os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0)
         fd = os.open(path, flags)
         metadata = os.fstat(fd)
@@ -223,6 +221,11 @@ def reconcile_original_file_storage(
                 findings.append(ReconciliationFinding(
                     "unexpected_staged_copy", firm_id, object_id,
                     "staged bytes remain although metadata is not in staged state",
+                ))
+            if suffix == "staged" and state == "staged":
+                findings.append(ReconciliationFinding(
+                    "staged_upload_requires_review", firm_id, object_id,
+                    "staged bytes and staged metadata remain; verify whether upload finalization was interrupted",
                 ))
             if suffix == "blob" and state == "staged":
                 findings.append(ReconciliationFinding(
