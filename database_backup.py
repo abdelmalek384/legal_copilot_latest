@@ -639,8 +639,8 @@ def restore_backup_bundle(
         _validate_original_object_inventory(extracted, files, tenant_records)
 
         staged_root = stage / "restored"
-        staged_root.mkdir()
-        (staged_root / "tenants").mkdir()
+        staged_root.mkdir(mode=0o700)
+        (staged_root / "tenants").mkdir(mode=0o700)
         (staged_root / "objects").mkdir(mode=0o700)
         shutil.copyfile(control_file, staged_root / "control_plane.sqlite3")
         shutil.copyfile(corpus_file, staged_root / "legal_corpus.sqlite3")
