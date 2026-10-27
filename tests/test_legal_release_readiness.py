@@ -1,8 +1,10 @@
 import hashlib
+import io
 import importlib.util
 import json
 import tempfile
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -27,25 +29,27 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         self.source_id = "SRC-1"
         self.candidate = {
             "document": {"document_id": "LAW-1", "source_id": self.source_id, "official_title": "Test law", "document_type": "statute",
+                         "release_priority": "P0", "practice_areas": ["Labour and social insurance"],
                          "permission_scope_review": {
                              "status": "passed", "evidence": "AUTH-1 clauses 1-4", "reviewed_on": "2025-01-01",
                              "approved_uses": ["collection", "storage", "text_extraction", "indexing", "commercial_product_use", "excerpt_display"],
                          }},
             "sources": [{
-                "source_id": self.source_id, "source_page": "https://laws.example.gov/portal",
+                "source_id": self.source_id, "authority": "Synthetic official authority", "source_class": "official_primary_candidate", "source_page": "https://laws.example.gov/portal",
                 "collection_permission": "allowed", "commercial_reuse_permission": "allowed",
                 "permission_evidence": "Written collection permission AUTH-1", "terms_checked_on": "2025-01-01",
                 "commercial_reuse_evidence": "Commercial license AUTH-COMM-1", "commercial_terms_checked_on": "2025-01-01",
             }],
             "version": {
                 "source_url": "https://laws.example.gov/law.pdf", "original_path": "originals/law.pdf",
-                "original_sha256": self.original_hash, "retrieved_at": "2025-01-02",
+                "original_sha256": self.original_hash, "retrieved_at": "2025-01-02T12:00:00Z",
                 "extracted_text_path": "extracted/law.txt", "text_sha256": self.text_hash,
                 "text_review_status": "text_checked", "text_review_evidence_url": "https://laws.example.gov/text-review",
                 "article_identifiers": ["Article 1", "Article 2"],
                 "expected_article_identifiers": ["Article 1", "Article 2"],
                 "publication_date": "2024-12-01", "effective_date": "2025-01-01",
-                "gazette_issue": "Issue 1", "legal_status": "in_force", "review_status": "verified",
+                "gazette_issue": "Issue 1", "gazette_pages": "1-10",
+                "publication_evidence_url": "https://laws.example.gov/gazette/issue-1", "legal_status": "in_force", "review_status": "verified",
                 "authenticity_verified": 1, "status_verified": 1, "amendment_history_verified": 1,
                 "permission_evidence": "Scope checked under AUTH-1",
             },
@@ -58,7 +62,7 @@ class LegalReleaseReadinessTests(unittest.TestCase):
             } for review_type in sorted(MODULE.REQUIRED_REVIEWS)],
         }
         self.register = {"sources": [{
-            "source_id": self.source_id, "source_page": "https://www.laws.example.gov/portal",
+            "source_id": self.source_id, "authority": "Synthetic official authority", "source_page": "https://www.laws.example.gov/portal",
             "collection_permission": "allowed", "commercial_reuse_permission": "allowed",
             "permission_evidence": "Written collection permission AUTH-1", "terms_checked_on": "2025-01-01",
             "commercial_reuse_evidence": "Commercial license AUTH-COMM-1", "commercial_terms_checked_on": "2025-01-01",
@@ -70,6 +74,31 @@ class LegalReleaseReadinessTests(unittest.TestCase):
     def test_complete_synthetic_evidence_passes(self):
         result = MODULE.audit_candidate(self.candidate, self.register, self.root)
         self.assertTrue(result["ready"], result["blockers"])
+
+    def test_retrieval_requires_timezone_aware_timestamp(self):
+        candidate = json.loads(json.dumps(self.candidate))
+        candidate["version"]["retrieved_at"] = "2025-01-02"
+        result = MODULE.audit_candidate(candidate, self.register, self.root)
+        self.assertIn("retrieved_at_invalid", {item["code"] for item in result["blockers"]})
+        candidate["version"]["retrieved_at"] = "2025-01-02T12:00:00"
+        result = MODULE.audit_candidate(candidate, self.register, self.root)
+        self.assertIn("retrieved_at_invalid", {item["code"] for item in result["blockers"]})
+
+    def test_gazette_pinpoint_and_publication_evidence_are_required(self):
+        candidate = json.loads(json.dumps(self.candidate))
+        candidate["version"].pop("gazette_pages")
+        candidate["version"].pop("publication_evidence_url")
+        result = MODULE.audit_candidate(candidate, self.register, self.root)
+        codes = {item["code"] for item in result["blockers"]}
+        self.assertIn("gazette_pages_missing", codes)
+        self.assertIn("publication_evidence_url_invalid", codes)
+
+    def test_permission_cannot_transfer_between_source_ids_on_same_host(self):
+        candidate = json.loads(json.dumps(self.candidate))
+        register = json.loads(json.dumps(self.register))
+        register["sources"][0]["source_id"] = "DIFFERENT-SOURCE"
+        result = MODULE.audit_candidate(candidate, register, self.root)
+        self.assertIn("central_source_id_mismatch", {item["code"] for item in result["blockers"]})
 
     def test_allowed_commercial_permission_without_separate_evidence_blocks_release(self):
         candidate = json.loads(json.dumps(self.candidate))
@@ -84,6 +113,43 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         self.assertIn("candidate_commercial_terms_date_invalid", codes)
         self.assertIn("central_commercial_permission_evidence_missing", codes)
         self.assertIn("central_commercial_terms_date_invalid", codes)
+
+    def test_report_separates_candidate_coverage_from_verified_text_and_permission_states(self):
+        candidate_path = self.root / "registry_candidate.json"
+        register_path = self.root / "permission_register.json"
+        coverage_path = self.root / "coverage.csv"
+        candidate_path.write_text(json.dumps(self.candidate), encoding="utf-8")
+        register_path.write_text(json.dumps(self.register), encoding="utf-8")
+        coverage_path.write_text("practice_area,priority,status\\nLabour,P0,not_started\\n", encoding="utf-8")
+        report = MODULE.build_report(
+            [candidate_path], register_path, self.root, coverage_matrix_path=coverage_path
+        )
+        self.assertEqual(report["source_authority_counts"], {"Synthetic official authority": 1})
+        self.assertEqual(report["release_priority_counts"], {"P0": 1})
+        self.assertEqual(report["collection_permission_counts"], {"allowed": 1})
+        self.assertEqual(report["commercial_reuse_permission_counts"], {"allowed": 1})
+        self.assertEqual(report["coverage_semantics"]["candidate_inventory_count"], 1)
+        self.assertEqual(report["coverage_semantics"]["evidence_ready_current_text_count"], 1)
+        self.assertFalse(report["coverage_semantics"]["percentage_claims"])
+        self.assertEqual(report["candidates"][0]["gazette_pages"], "1-10")
+
+    def test_report_output_cannot_overwrite_candidate_input(self):
+        candidate_path = self.root / "candidate.json"
+        register_path = self.root / "register.json"
+        coverage_path = self.root / "coverage.csv"
+        original_candidate = json.dumps(self.candidate, sort_keys=True)
+        candidate_path.write_text(original_candidate, encoding="utf-8")
+        register_path.write_text(json.dumps(self.register), encoding="utf-8")
+        with patch("sys.stdout", new_callable=io.StringIO):
+            result = MODULE.main([
+                "--candidate", str(candidate_path),
+                "--register", str(register_path),
+                "--coverage-matrix", str(coverage_path),
+                "--root", str(self.root),
+                "--out", str(candidate_path),
+            ])
+        self.assertEqual(result, 2)
+        self.assertEqual(candidate_path.read_text(encoding="utf-8"), original_candidate)
 
     def test_current_labour_candidate_is_blocked_not_silently_promoted(self):
         candidate = json.loads((ROOT / "data/candidates/labour_law_14_2025/registry_candidate.json").read_text(encoding="utf-8"))

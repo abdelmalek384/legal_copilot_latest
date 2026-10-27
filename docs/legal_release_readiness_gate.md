@@ -17,6 +17,15 @@ The gate checks that both identifier lists are well-formed, contain no duplicate
 
 Each review record also needs a passing outcome, notes, HTTPS evidence URL, reviewer_id, reviewer_role, and a valid non-future reviewed_on date. The lawyer_approval review must use reviewer_role egyptian_lawyer or qualified_egyptian_counsel. These fields improve auditability but do not independently establish identity, qualifications, or evidence authenticity.
 
+## Provenance and report semantics
+
+- retrieved_at must be a timezone-aware ISO-8601 timestamp; a date-only value does not identify when the source was retrieved.
+- publication_date and effective_date remain separate date fields. The candidate must include gazette_issue, gazette_pages (or an exact decision pinpoint), and a publication_evidence_url that identifies the publication metadata being relied upon.
+- The candidate source_id must match the central permission-register source_id as well as the normalized HTTPS hostname. Permission from another record on the same host cannot be borrowed.
+- Each instrument report includes source authority/class, collection and commercial-reuse permission states, retrieval timestamp, Gazette pinpoint, and machine-readable blockers. Aggregate counts are separated by authority, source class, collection permission, commercial reuse permission, legal status, and review status.
+- Candidate inventory counts, evidence-ready current text, and evidence-ready historical text are reported separately. The report deliberately makes no overall legal-coverage percentage claim; planning-matrix status is not verified text coverage.
+- Report output is refused if it would overwrite a candidate JSON, permission register, coverage matrix, or files under originals/ or extracted/.
+
 ## Run
 
     python tools/validate_legal_release_readiness.py --out reports/legal-release-readiness.json

@@ -43,7 +43,11 @@
     "document_type": "legislation",
     "law_number": "14",
     "law_year": 2025,
-    "language": "ar"
+    "language": "ar",
+    "release_priority": "P0",
+    "practice_areas": [
+      "Labour and social insurance"
+    ]
   },
   "version": {
     "version_label": "supplied-secondary-text-candidate-2026-10-22",

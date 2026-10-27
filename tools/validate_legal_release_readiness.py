@@ -42,6 +42,20 @@ def valid_date(value: object) -> bool:
     return parsed.isoformat() == value and parsed <= dt.date.today()
 
 
+def valid_timestamp(value: object) -> bool:
+    """Require an ISO-8601 timestamp with an explicit timezone, not a date-only placeholder."""
+    if not isinstance(value, str) or not value.strip() or value.strip() != value:
+        return False
+    candidate = value[:-1] + "+00:00" if value.endswith("Z") else value
+    try:
+        parsed = dt.datetime.fromisoformat(candidate)
+    except ValueError:
+        return False
+    if parsed.tzinfo is None or parsed.utcoffset() is None:
+        return False
+    return parsed <= dt.datetime.now(dt.timezone.utc).astimezone(parsed.tzinfo)
+
+
 def https_host(value: object) -> str | None:
     if not isinstance(value, str):
         return None
@@ -138,6 +152,9 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
         add(blockers, "official_title_missing", "Document needs a non-empty official_title.")
     if not isinstance(document.get("document_type"), str) or not document["document_type"].strip():
         add(blockers, "document_type_missing", "Document needs a non-empty document_type.")
+    release_priority = document.get("release_priority")
+    if release_priority not in {"P0", "P1", "P2", "P3"}:
+        add(blockers, "release_priority_missing", "Document needs an explicit release_priority of P0, P1, P2, or P3.")
     source_id = document.get("source_id")
     source_matches = [s for s in sources if s.get("source_id") == source_id]
     if not isinstance(source_id, str) or not source_id.strip() or len(source_matches) != 1:
@@ -160,10 +177,20 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
         register_sources = [s for s in permission_register["sources"] if isinstance(s, dict)]
 
     register_matches = []
-    if source_page_host:
-        register_matches = [s for s in register_sources if https_host(s.get("source_page")) == source_page_host]
+    if source_page_host and isinstance(source_id, str) and source_id.strip():
+        register_matches = [
+            item for item in register_sources
+            if item.get("source_id") == source_id
+            and https_host(item.get("source_page")) == source_page_host
+        ]
     if not register_matches:
-        add(blockers, "central_source_record_missing", "No central permission-register source matches the candidate source host.")
+        same_host = [item for item in register_sources if source_page_host and https_host(item.get("source_page")) == source_page_host]
+        if same_host:
+            add(blockers, "central_source_id_mismatch",
+                "A source shares this hostname but its permission-register source_id does not match the candidate; permission cannot transfer by hostname alone.")
+        else:
+            add(blockers, "central_source_record_missing",
+                "No central permission-register source matches both the candidate source_id and source host.")
     else:
         for registered in register_matches:
             if registered.get("collection_permission") not in ALLOWED:
@@ -189,6 +216,10 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
     for field in ("collection_permission", "commercial_reuse_permission"):
         if source.get(field) not in ALLOWED:
             add(blockers, f"candidate_{field}_not_allowed", f"Candidate source {field} is not explicitly allowed.")
+    if not isinstance(source.get("authority"), str) or not source["authority"].strip():
+        add(blockers, "candidate_source_authority_missing", "Candidate source needs a named issuing authority or repository owner.")
+    if not isinstance(source.get("source_class"), str) or not source["source_class"].strip():
+        add(blockers, "candidate_source_class_missing", "Candidate source must be classified as primary, official copy, secondary, user-supplied, or another explicit provenance class.")
     if not isinstance(source.get("permission_evidence"), str) or not source["permission_evidence"].strip():
         add(blockers, "candidate_permission_evidence_missing", "Candidate source lacks collection permission evidence.")
     if not valid_date(source.get("terms_checked_on")):
@@ -226,14 +257,22 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
     for field in ("authenticity_verified", "status_verified", "amendment_history_verified"):
         if version.get(field) not in (1, True):
             add(blockers, f"{field}_false", f"Version field {field} must be explicitly true.")
-    for field in ("publication_date", "effective_date", "retrieved_at"):
+    for field in ("publication_date", "effective_date"):
         if not valid_date(version.get(field)):
             add(blockers, f"{field}_invalid", f"Version needs a valid, non-future {field} date.")
+    if not valid_timestamp(version.get("retrieved_at")):
+        add(blockers, "retrieved_at_invalid",
+            "Version needs a timezone-aware ISO-8601 retrieval timestamp; a date-only value is insufficient.")
     if valid_date(version.get("publication_date")) and valid_date(version.get("effective_date")):
         if version["effective_date"] < version["publication_date"]:
             add(blockers, "effective_before_publication", "Effective date precedes publication date; review the legal basis.")
     if not isinstance(version.get("gazette_issue"), str) or not version["gazette_issue"].strip():
         add(blockers, "gazette_issue_missing", "Official publication issue reference is required.")
+    if not isinstance(version.get("gazette_pages"), str) or not version["gazette_pages"].strip():
+        add(blockers, "gazette_pages_missing", "Official publication page range or decision pinpoint is required.")
+    if https_host(version.get("publication_evidence_url")) is None:
+        add(blockers, "publication_evidence_url_invalid",
+            "Publication date and Gazette metadata need a traceable HTTPS evidence URL.")
     if not isinstance(version.get("permission_evidence"), str) or not version["permission_evidence"].strip():
         add(blockers, "version_permission_evidence_missing", "Version record needs permission evidence.")
 
@@ -356,10 +395,21 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
     if not isinstance(practice_areas, list):
         practice_areas = []
     practice_areas = sorted({item.strip() for item in practice_areas if isinstance(item, str) and item.strip()})
+    if not practice_areas:
+        add(blockers, "practice_areas_missing", "Document needs at least one explicit practice-area classification.")
     return {
         "candidate_id": candidate_id,
         "title": document.get("official_title") if isinstance(document.get("official_title"), str) else None,
         "document_type": document.get("document_type") if isinstance(document.get("document_type"), str) else None,
+        "release_priority": release_priority if release_priority in {"P0", "P1", "P2", "P3"} else "unspecified",
+        "source_id": source.get("source_id") if isinstance(source.get("source_id"), str) else None,
+        "source_authority": source.get("authority") if isinstance(source.get("authority"), str) else "unknown",
+        "source_class": source.get("source_class") if isinstance(source.get("source_class"), str) else "unknown",
+        "collection_permission": source.get("collection_permission") if isinstance(source.get("collection_permission"), str) else "unknown",
+        "commercial_reuse_permission": source.get("commercial_reuse_permission") if isinstance(source.get("commercial_reuse_permission"), str) else "unknown",
+        "retrieved_at": version.get("retrieved_at") if isinstance(version.get("retrieved_at"), str) else None,
+        "gazette_issue": version.get("gazette_issue") if isinstance(version.get("gazette_issue"), str) else None,
+        "gazette_pages": version.get("gazette_pages") if isinstance(version.get("gazette_pages"), str) else None,
         "practice_areas": practice_areas,
         "legal_status": version.get("legal_status") if isinstance(version.get("legal_status"), str) else "unknown",
         "review_status": version.get("review_status") if isinstance(version.get("review_status"), str) else "unknown",
@@ -451,12 +501,27 @@ def build_report(candidate_paths: list[Path], permission_register_path: Path, ro
     blocker_counts: dict[str, int] = {}
     status_counts: dict[str, int] = {}
     review_counts: dict[str, int] = {}
+    source_authority_counts: dict[str, int] = {}
+    source_class_counts: dict[str, int] = {}
+    release_priority_counts: dict[str, int] = {}
+    collection_permission_counts: dict[str, int] = {}
+    commercial_permission_counts: dict[str, int] = {}
     practice_area_counts: dict[str, dict[str, int]] = {}
     for item in reports:
         status = item.get("legal_status") or "unknown"
         review = item.get("review_status") or "unknown"
+        authority = item.get("source_authority") or "unknown"
+        source_class = item.get("source_class") or "unknown"
+        release_priority = item.get("release_priority") or "unspecified"
+        collection_permission = item.get("collection_permission") or "unknown"
+        commercial_permission = item.get("commercial_reuse_permission") or "unknown"
         status_counts[status] = status_counts.get(status, 0) + 1
         review_counts[review] = review_counts.get(review, 0) + 1
+        source_authority_counts[authority] = source_authority_counts.get(authority, 0) + 1
+        source_class_counts[source_class] = source_class_counts.get(source_class, 0) + 1
+        release_priority_counts[release_priority] = release_priority_counts.get(release_priority, 0) + 1
+        collection_permission_counts[collection_permission] = collection_permission_counts.get(collection_permission, 0) + 1
+        commercial_permission_counts[commercial_permission] = commercial_permission_counts.get(commercial_permission, 0) + 1
         for blocker in item.get("blockers", []):
             code = blocker.get("code", "unknown")
             blocker_counts[code] = blocker_counts.get(code, 0) + 1
@@ -479,6 +544,18 @@ def build_report(candidate_paths: list[Path], permission_register_path: Path, ro
         "blocker_counts": dict(sorted(blocker_counts.items())),
         "legal_status_counts": dict(sorted(status_counts.items())),
         "review_status_counts": dict(sorted(review_counts.items())),
+        "source_authority_counts": dict(sorted(source_authority_counts.items())),
+        "source_class_counts": dict(sorted(source_class_counts.items())),
+        "release_priority_counts": dict(sorted(release_priority_counts.items())),
+        "collection_permission_counts": dict(sorted(collection_permission_counts.items())),
+        "commercial_reuse_permission_counts": dict(sorted(commercial_permission_counts.items())),
+        "coverage_semantics": {
+            "candidate_inventory_count": len(reports),
+            "evidence_ready_current_text_count": ready_current,
+            "evidence_ready_historical_text_count": ready_historical,
+            "unresolved_candidate_count": sum(1 for item in reports if not item.get("ready")),
+            "percentage_claims": False,
+        },
         "practice_area_coverage": dict(sorted(practice_area_counts.items())),
         "coverage_matrix": summarize_coverage_matrix(coverage_matrix_path),
         "candidates": reports,
@@ -504,6 +581,25 @@ def main(argv: list[str] | None = None) -> int:
         report = build_report(candidate_paths, args.register, args.root, args.coverage_matrix)
     rendered = json.dumps(report, ensure_ascii=False, indent=2)
     if args.out:
+        destination = args.out.resolve()
+        protected_files = {path.resolve() for path in candidate_paths}
+        protected_files.update({args.register.resolve(), args.coverage_matrix.resolve()})
+        protected_directories = {
+            args.candidates_dir.resolve(),
+            (args.root.resolve() / "originals"),
+            (args.root.resolve() / "extracted"),
+        }
+        if destination in protected_files or any(
+            destination == directory or directory in destination.parents
+            for directory in protected_directories
+        ):
+            error_report = {
+                "schema_version": 1,
+                "error": "Report output must not overwrite candidate/register/coverage inputs or original/extracted corpus artifacts.",
+                "read_only": True,
+            }
+            print(json.dumps(error_report, ensure_ascii=False, indent=2))
+            return 2
         args.out.parent.mkdir(parents=True, exist_ok=True)
         args.out.write_text(rendered + "\n", encoding="utf-8")
     print(rendered)
