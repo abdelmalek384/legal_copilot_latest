@@ -3762,6 +3762,103 @@ def download_original_document(cid: int, document_id: int, u: dict = Depends(use
     )
 
 
+class OriginalFileHoldIn(BaseModel):
+    reason: str = Field(min_length=1, max_length=2000)
+
+
+@app.post("/cases/{cid}/docs/{document_id}/original/legal-hold")
+@rollback_tenant_transaction_on_error
+def set_original_document_legal_hold(
+    cid: int, document_id: int, body: OriginalFileHoldIn, u: dict = Depends(user)
+):
+    """Set a firm-admin legal hold after verifying the retained original bytes."""
+    if not _separate_runtime_enabled():
+        raise HTTPException(404, "original-file storage is available only in separate-database mode")
+    c = conn()
+    need(c, u, cid)
+    require_admin(u)
+    reason = body.reason.strip()
+    if not reason:
+        raise HTTPException(422, "a non-empty legal hold reason is required")
+    row = c.execute(
+        "SELECT o.object_id,o.sha256,o.byte_size,o.legal_hold,o.state "
+        "FROM docs d JOIN original_file_objects o ON o.document_id=d.id "
+        "WHERE d.id=? AND d.case_id=? AND d.firm_id=? AND o.firm_id=?",
+        (document_id, cid, u["firm_id"], u["firm_id"]),
+    ).fetchone()
+    if row is None:
+        raise HTTPException(404, "original document not found")
+    if row["legal_hold"]:
+        raise HTTPException(409, "original document already has a legal hold")
+    if row["state"] not in {"ready", "quarantined"}:
+        raise HTTPException(409, "original document is not in a holdable state")
+    store = _original_file_store()
+    try:
+        verified = store.verify(
+            u["firm_id"], row["object_id"],
+            expected_sha256=row["sha256"], expected_size=int(row["byte_size"]),
+        )
+    except (ObjectStorageError, ValueError) as exc:
+        raise HTTPException(503, "original document integrity could not be verified") from exc
+    if not verified:
+        logger.error("Original document integrity verification failed before legal hold")
+        raise HTTPException(503, "original document integrity could not be verified")
+    updated = c.execute(
+        "UPDATE original_file_objects SET legal_hold=1,hold_reason=?,hold_set_by=?,"
+        "hold_set_at=datetime('now'),hold_released_by=NULL,hold_released_at=NULL,"
+        "hold_release_reason=NULL,updated_at=datetime('now') "
+        "WHERE object_id=? AND firm_id=? AND legal_hold=0",
+        (reason, u["id"], row["object_id"], u["firm_id"]),
+    )
+    if updated.rowcount != 1:
+        raise HTTPException(409, "original document hold state changed; reload and retry")
+    c.commit()
+    return {"document_id": document_id, "legal_hold": True, "hold_set_at": c.execute(
+        "SELECT hold_set_at FROM original_file_objects WHERE object_id=? AND firm_id=?",
+        (row["object_id"], u["firm_id"]),
+    ).fetchone()["hold_set_at"]}
+
+
+@app.post("/cases/{cid}/docs/{document_id}/original/legal-hold/release")
+@rollback_tenant_transaction_on_error
+def release_original_document_legal_hold(
+    cid: int, document_id: int, body: OriginalFileHoldIn, u: dict = Depends(user)
+):
+    """Release a hold with a mandatory reason; SQLite atomically records the audit event."""
+    if not _separate_runtime_enabled():
+        raise HTTPException(404, "original-file storage is available only in separate-database mode")
+    c = conn()
+    need(c, u, cid)
+    require_admin(u)
+    reason = body.reason.strip()
+    if not reason:
+        raise HTTPException(422, "a non-empty legal hold release reason is required")
+    row = c.execute(
+        "SELECT o.object_id,o.legal_hold FROM docs d "
+        "JOIN original_file_objects o ON o.document_id=d.id "
+        "WHERE d.id=? AND d.case_id=? AND d.firm_id=? AND o.firm_id=?",
+        (document_id, cid, u["firm_id"], u["firm_id"]),
+    ).fetchone()
+    if row is None:
+        raise HTTPException(404, "original document not found")
+    if not row["legal_hold"]:
+        raise HTTPException(409, "original document does not have an active legal hold")
+    updated = c.execute(
+        "UPDATE original_file_objects SET legal_hold=0,hold_released_by=?,"
+        "hold_released_at=datetime('now'),hold_release_reason=?,updated_at=datetime('now') "
+        "WHERE object_id=? AND firm_id=? AND legal_hold=1",
+        (u["id"], reason, row["object_id"], u["firm_id"]),
+    )
+    if updated.rowcount != 1:
+        raise HTTPException(409, "original document hold state changed; reload and retry")
+    c.commit()
+    released_at = c.execute(
+        "SELECT hold_released_at FROM original_file_objects WHERE object_id=? AND firm_id=?",
+        (row["object_id"], u["firm_id"]),
+    ).fetchone()["hold_released_at"]
+    return {"document_id": document_id, "legal_hold": False, "hold_released_at": released_at}
+
+
 class ExtractionReviewIn(BaseModel):
     outcome: str = Field(pattern=r"^(accepted|corrected|needs_recheck)$")
     corrected_text: str | None = Field(default=None, max_length=20000)
