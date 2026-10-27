@@ -17,7 +17,12 @@ import app as app_module
 
 class TrustedHostMiddlewareTests(unittest.IsolatedAsyncioTestCase):
     async def test_actual_asgi_app_rejects_unlisted_host(self):
-        self.assertIn("legal.example.test", app_module.TRUSTED_HOSTS)
+        host_middleware = [
+            middleware for middleware in app_module.app.user_middleware
+            if middleware.cls.__name__ == "TrustedHostMiddleware"
+        ]
+        self.assertEqual(len(host_middleware), 1)
+        self.assertEqual(host_middleware[0].options.get("allowed_hosts"), ["legal.example.test"])
         transport = httpx.ASGITransport(app=app_module.app)
         async with httpx.AsyncClient(transport=transport, base_url="http://legal.example.test") as client:
             allowed = await client.get(
