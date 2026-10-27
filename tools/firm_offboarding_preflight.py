@@ -64,6 +64,7 @@ def inspect_firm_offboarding(
     catalog_status = None
     active_memberships = None
     object_count = 0
+    purged_tombstone_count = 0
     active_holds = 0
 
     control = _read_only(control_path)
@@ -159,7 +160,7 @@ def inspect_firm_offboarding(
         "catalog_status": catalog_status,
         "active_memberships": active_memberships,
         "original_object_count": object_count,
-        "purged_tombstone_count": purged_tombstone_count if "purged_tombstone_count" in locals() else 0,
+        "purged_tombstone_count": purged_tombstone_count,
         "active_legal_hold_count": active_holds,
         "findings": findings,
         "purge_preflight_clear": not findings,
