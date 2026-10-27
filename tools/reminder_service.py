@@ -259,7 +259,7 @@ def run_scheduler(
             if denial:
                 finish_attempt(
                     tenant, int(delivery["id"]), result_status="failed",
-                    error_code=denial, now=now,
+                    error_code=denial, smtp_attempts=0, now=now,
                 )
                 summary["skipped_unauthorized_or_stale"] += 1
                 summary["failed"] += 1
@@ -273,13 +273,17 @@ def run_scheduler(
                 payload, recipient, app_url or "", smtp_config, enabled=True,
             )
             if outcome["status"] == "accepted_by_smtp":
-                finish_attempt(tenant, int(delivery["id"]), result_status="accepted_by_smtp", now=now)
+                finish_attempt(
+                    tenant, int(delivery["id"]), result_status="accepted_by_smtp",
+                    smtp_attempts=int(outcome.get("attempts", 1)), now=now,
+                )
                 summary["smtp_accepted"] += 1
             else:
                 status = "ambiguous" if outcome.get("error_code") == "smtp_connection_failure" else "failed"
                 finish_attempt(
                     tenant, int(delivery["id"]), result_status=status,
-                    error_code=outcome.get("error_code") or "smtp_delivery_failure", now=now,
+                    error_code=outcome.get("error_code") or "smtp_delivery_failure",
+                    smtp_attempts=int(outcome.get("attempts", 1)), now=now,
                 )
                 if status == "ambiguous":
                     summary["ambiguous"] += 1
