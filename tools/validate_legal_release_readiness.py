@@ -75,6 +75,33 @@ def add(blockers: list[dict], code: str, detail: str) -> None:
     blockers.append({"code": code, "detail": detail})
 
 
+def resolve_corpus_artifact(root: Path, value: object, expected_directory: str) -> tuple[Path | None, str | None]:
+    """Resolve a corpus artifact only from its expected relative directory, without symlinks."""
+    if not isinstance(value, str) or not value or value.strip() != value or "\\" in value:
+        return None, "invalid"
+    relative = Path(value)
+    if (
+        relative.is_absolute()
+        or not relative.parts
+        or relative.parts[0] != expected_directory
+        or ".." in relative.parts
+        or relative.as_posix() != value
+    ):
+        return None, "invalid"
+    root_resolved = root.resolve()
+    cursor = root
+    for part in relative.parts:
+        cursor = cursor / part
+        if cursor.is_symlink():
+            return None, "symlink"
+    resolved = cursor.resolve()
+    try:
+        resolved.relative_to(root_resolved)
+    except ValueError:
+        return None, "escapes"
+    return resolved, None
+
+
 def audit_candidate(candidate: object, permission_register: object, root: Path = ROOT) -> dict:
     blockers: list[dict] = []
     if not isinstance(candidate, dict):
