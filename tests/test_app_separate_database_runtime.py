@@ -626,6 +626,82 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             (self.firm_a, self.user_id, f"original_document_download:{document_id}"),
         ).fetchone())
 
+        # A case member who is not a firm admin must not be able to change legal holds.
+        member_id = self.runtime.create_global_identity(
+            "Original File Junior", "original-file-junior@example.test", app.hash_pw(self.password)
+        )
+        self.runtime.create_firm_membership(member_id, self.firm_a, "lawyer")
+        added_member = self._mutate(
+            "post", f"/cases/{case_id}/members", json={"user_id": member_id, "role": "junior"}
+        )
+        self.assertEqual(added_member.status_code, 200, added_member.text)
+        member_client = TestClient(app.app)
+        try:
+            member_login = member_client.post(
+                "/login", json={"email": "original-file-junior@example.test", "password": self.password}
+            )
+            self.assertEqual(member_login.status_code, 200, member_login.text)
+            member_csrf = member_client.cookies.get("lc_csrf") or ""
+            denied_hold = member_client.post(
+                f"/cases/{case_id}/docs/{document_id}/original/legal-hold",
+                json={"reason": "unauthorized hold attempt"},
+                headers={"X-CSRF-Token": member_csrf},
+            )
+            self.assertEqual(denied_hold.status_code, 403, denied_hold.text)
+        finally:
+            member_client.close()
+
+        held = self._mutate(
+            "post",
+            f"/cases/{case_id}/docs/{document_id}/original/legal-hold",
+            json={"reason": "Preserve original evidence for pending proceedings"},
+        )
+        self.assertEqual(held.status_code, 200, held.text)
+        self.assertTrue(held.json()["legal_hold"])
+        firm_db.commit()
+        hold_metadata = firm_db.execute(
+            "SELECT legal_hold,hold_reason,hold_set_by,hold_set_at FROM original_file_objects WHERE document_id=?",
+            (document_id,),
+        ).fetchone()
+        self.assertEqual(hold_metadata["legal_hold"], 1)
+        self.assertEqual(hold_metadata["hold_reason"], "Preserve original evidence for pending proceedings")
+        self.assertEqual(hold_metadata["hold_set_by"], self.user_id)
+        self.assertTrue(hold_metadata["hold_set_at"])
+
+        with self.assertRaises(sqlite3.IntegrityError):
+            firm_db.execute(
+                "DELETE FROM original_file_objects WHERE document_id=?", (document_id,)
+            )
+        firm_db.rollback()
+
+        released = self._mutate(
+            "post",
+            f"/cases/{case_id}/docs/{document_id}/original/legal-hold/release",
+            json={"reason": "The preservation instruction has been withdrawn"},
+        )
+        self.assertEqual(released.status_code, 200, released.text)
+        self.assertFalse(released.json()["legal_hold"])
+        firm_db.commit()
+        release_metadata = firm_db.execute(
+            "SELECT legal_hold,hold_released_by,hold_released_at,hold_release_reason "
+            "FROM original_file_objects WHERE document_id=?",
+            (document_id,),
+        ).fetchone()
+        self.assertEqual(release_metadata["legal_hold"], 0)
+        self.assertEqual(release_metadata["hold_released_by"], self.user_id)
+        self.assertTrue(release_metadata["hold_released_at"])
+        self.assertEqual(
+            release_metadata["hold_release_reason"], "The preservation instruction has been withdrawn"
+        )
+        for event in (
+            f"original_document_legal_hold_set:{document_id}",
+            f"original_document_legal_hold_released:{document_id}",
+        ):
+            self.assertTrue(firm_db.execute(
+                "SELECT 1 FROM security_audit_events WHERE firm_id=? AND user_id=? AND event=?",
+                (self.firm_a, self.user_id, event),
+            ).fetchone(), event)
+
         switched = self._mutate("post", "/session/firm", json={"firm_id": self.firm_b})
         self.assertEqual(switched.status_code, 200, switched.text)
         denied = self.client.get(f"/cases/{case_id}/docs/{document_id}/original")
