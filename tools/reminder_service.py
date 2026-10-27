@@ -342,6 +342,14 @@ def main(argv: list[str] | None = None) -> int:
             result.update(retry_summary)
         output = json.dumps(result, ensure_ascii=False, sort_keys=True, indent=2)
         if args.out:
+            destination = args.out.resolve()
+            tenant_root = runtime.paths.tenant_root.resolve()
+            protected_files = {
+                runtime.paths.control_plane.resolve(),
+                runtime.paths.legal_corpus.resolve(),
+            }
+            if destination in protected_files or destination == tenant_root or tenant_root in destination.parents:
+                raise ReminderOutboxError("report output must not overwrite or reside inside database storage")
             args.out.write_text(output + "\n", encoding="utf-8")
         else:
             print(output)
