@@ -22,7 +22,7 @@ This checklist is a release gate, not a certification. Completing it does not re
 - [ ] Use unique administrator credentials, a strong password, and least-privilege role assignment.
 - [ ] Establish a documented process for administrator offboarding, password reset, and secret rotation.
 - [ ] Verify MFA enrollment and recovery-code handling with a test administrator; confirm recovery codes are shown once and stored only as salted hashes.
-- [ ] Rehearse lost-authenticator recovery, recovery-code rotation, required-admin MFA enforcement, and the two-person break-glass procedure. Do not permit an administrator to disable MFA while policy requires it.
+- [ ] Rehearse lost-authenticator recovery, recovery-code rotation, required-admin MFA enforcement, and the two-admin MFA reset command. Document and approve a separate offline two-person procedure for the last-platform-admin case before production. Do not permit an administrator to disable MFA while policy requires it.
 
 ## 3. Database, uploads, and backups
 
