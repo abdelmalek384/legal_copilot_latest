@@ -775,6 +775,112 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
         self.assertEqual(denied_history.status_code, 404, denied_history.text)
 
+    def test_original_file_deletion_requires_distinct_admin_and_legal_hold_cancels_it(self):
+        import hashlib
+        from original_file_storage import LocalPrivateObjectStore
+
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate("post", "/cases", json={"title": "Deletion Workflow Matter"})
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+
+        context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        firm_db = self.runtime.firm_connection(context)
+        original = b"original evidence for deletion workflow"
+        _, document_id = app.save_doc(
+            firm_db,
+            {"id": self.user_id, "firm_id": self.firm_a, "name": "First Owner"},
+            case_id,
+            "deletion-workflow.txt",
+            "Extracted evidence text",
+            content_hash=hashlib.sha256(original).hexdigest(),
+            content_type="text/plain",
+            byte_size=len(original),
+        )
+        store = LocalPrivateObjectStore(self.root / "objects")
+        staged = store.stage(self.firm_a, original)
+        store.finalize(self.firm_a, staged.object_id)
+        firm_db.execute(
+            "INSERT INTO original_file_objects("
+            "object_id,document_id,firm_id,storage_backend,sha256,byte_size,content_type,state"
+            ") VALUES(?,?,?,'local',?,?,?,'ready')",
+            (
+                staged.object_id, document_id, self.firm_a, staged.sha256,
+                staged.byte_size, "text/plain",
+            ),
+        )
+        firm_db.commit()
+
+        requested = self._mutate(
+            "post",
+            f"/cases/{case_id}/docs/{document_id}/original/deletion-requests",
+            json={"reason": "Remove a duplicate original after export review"},
+        )
+        self.assertEqual(requested.status_code, 200, requested.text)
+        request_id = requested.json()["request_id"]
+
+        same_admin_approval = self._mutate(
+            "post",
+            f"/cases/{case_id}/docs/{document_id}/original/deletion-requests/{request_id}/approve",
+            json={"reason": "Attempted self-approval"},
+        )
+        self.assertEqual(same_admin_approval.status_code, 403, same_admin_approval.text)
+
+        second_id = self.runtime.create_global_identity(
+            "Second Firm Admin", "second-deletion-admin@example.test", app.hash_pw(self.password)
+        )
+        self.runtime.create_firm_membership(second_id, self.firm_a, "admin")
+        second_client = TestClient(app.app)
+        try:
+            second_login = second_client.post(
+                "/login",
+                json={"email": "second-deletion-admin@example.test", "password": self.password},
+            )
+            self.assertEqual(second_login.status_code, 200, second_login.text)
+            approved = second_client.post(
+                f"/cases/{case_id}/docs/{document_id}/original/deletion-requests/{request_id}/approve",
+                json={"reason": "Second admin confirms approved export and deletion"},
+                headers={"X-CSRF-Token": second_client.cookies.get("lc_csrf") or ""},
+            )
+            self.assertEqual(approved.status_code, 200, approved.text)
+        finally:
+            second_client.close()
+
+        # A new legal hold supersedes a pending approved purge and appends an audit event.
+        held = self._mutate(
+            "post",
+            f"/cases/{case_id}/docs/{document_id}/original/legal-hold",
+            json={"reason": "Preserve evidence for newly identified litigation"},
+        )
+        self.assertEqual(held.status_code, 200, held.text)
+        listed = self.client.get(
+            f"/cases/{case_id}/docs/{document_id}/original/deletion-requests"
+        )
+        self.assertEqual(listed.status_code, 200, listed.text)
+        request_record = listed.json()["requests"][0]
+        self.assertEqual(request_record["status"], "cancelled")
+        self.assertEqual(
+            [event["action"] for event in request_record["events"]],
+            ["requested", "approved", "cancelled"],
+        )
+        self.assertEqual(
+            request_record["events"][-1]["reason"], "Automatically cancelled by legal hold"
+        )
+
+        under_hold = self._mutate(
+            "post",
+            f"/cases/{case_id}/docs/{document_id}/original/deletion-requests",
+            json={"reason": "Must be rejected while held"},
+        )
+        self.assertEqual(under_hold.status_code, 409, under_hold.text)
+        self.assertTrue(store.verify(
+            self.firm_a, staged.object_id,
+            expected_sha256=staged.sha256, expected_size=staged.byte_size,
+        ))
+
     def test_original_file_storage_fails_closed_in_production_until_backend_is_available(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
