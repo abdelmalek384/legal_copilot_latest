@@ -27,7 +27,7 @@ An optional JSON report can be written with `--out path/to/report.json`.
 - Every source instrument is present in the document inventory.
 - Non-base relationships point to a known target instrument; base-instrument records have a null target.
 - Relationship types are from the controlled vocabulary. Malformed non-string type/status values are reported instead of crashing the audit.
-- Each record has a direct HTTPS evidence URL and a non-empty evidence checklist.
+- Each record has a direct, syntactically valid HTTPS evidence URL and a non-empty evidence checklist. URL checks reject whitespace, embedded credentials, malformed or out-of-range ports, and malformed URL structures; they do not establish that the evidence is genuine or legally sufficient.
 - Effective dates must be real calendar dates in `YYYY-MM-DD` format or an explicit unknown sentinel; impossible dates and malformed strings are errors.
 - Unreviewed status, missing provision mapping, and unknown effective dates are reported explicitly.
 - A `reviewed_confirmed` relationship is structurally rejected unless it carries a `confirmation_evidence` object with Gazette issue, real publication date, page range, review date, reviewer role, and review basis.
