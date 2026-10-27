@@ -38,7 +38,7 @@ class DocumentExtractionBudgetTests(unittest.TestCase):
         FakeReader.pages = [FakePage("Readable legal text")]
         with patch("pypdf.PdfReader", FakeReader):
             result = app.extract("small.pdf", b"fake PDF")
-        self.assertEqual(result, "[[PDF_PAGE:1]]\\n\\nReadable legal text")
+        self.assertEqual(result, "[[PDF_PAGE:1]]\n\nReadable legal text")
 
     def test_docx_extraction_stops_at_text_budget(self):
         import docx
