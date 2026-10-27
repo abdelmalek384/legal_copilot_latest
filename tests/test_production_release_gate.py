@@ -144,8 +144,8 @@ class ProductionReleaseGateTests(unittest.TestCase):
         questions = self._approved_questions()
         with tempfile.TemporaryDirectory() as td:
             candidate = self._candidate_file(Path(td), legal_status="historical")
-            with patch.object(gate, "inspect_environment", return_value=(["environment okay"], [], [])), \\
-                 patch.object(gate, "build_legal_report", return_value=self._ready_report(candidate)), \\
+            with patch.object(gate, "inspect_environment", return_value=(["environment okay"], [], [])), \
+                 patch.object(gate, "build_legal_report", return_value=self._ready_report(candidate)), \
                  patch.object(gate, "read_jsonl", return_value=questions):
                 report = gate.evaluate_release(
                     env=self.clean_env, candidate_paths=[candidate], benchmark_path=Path("approved-benchmark.jsonl")
