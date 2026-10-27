@@ -2168,8 +2168,10 @@ def login(b: LoginIn, request: Request, response: Response):
     secure = _secure_cookie_transport(request)
     response.set_cookie("lc_session", tok, max_age=43200, httponly=True, secure=secure, samesite="lax", path="/")
     response.set_cookie("lc_csrf", csrf, max_age=43200, httponly=False, secure=secure, samesite="lax", path="/")
-    legacy_user = {"id": r["id"], "name": r["name"], "role": r["role"], "firm_id": r["firm_id"], "email": r["email"]}
-    legacy_user["can_review_legal"] = _user_can_review_legal(legacy_user)
+    legacy_user = {"id": r["id"], "name": r["name"], "role": r["role"], "firm_id": r["firm_id"]}
+    legacy_user["can_review_legal"] = _user_can_review_legal(
+        {"id": r["id"], "name": r["name"], "role": r["role"], "firm_id": r["firm_id"], "email": r["email"]}
+    )
     return legacy_user
 
 
@@ -2199,8 +2201,10 @@ def switch_firm(b: FirmSwitchIn, request: Request, response: Response, u: dict =
                         samesite="lax", path="/")
     switched_user = {"id": u["id"], "name": u["name"], "role": context.role,
                      "firm_id": context.firm_id, "firms": _active_firms_for_user(u["id"]),
-                     "platform_roles": _platform_roles_for_user(u["id"]), "email": u.get("email")}
-    switched_user["can_review_legal"] = _user_can_review_legal(switched_user)
+                     "platform_roles": _platform_roles_for_user(u["id"])}
+    switched_user["can_review_legal"] = _user_can_review_legal(
+        {"id": u["id"], "role": context.role, "email": u.get("email")}
+    )
     return switched_user
 
 
