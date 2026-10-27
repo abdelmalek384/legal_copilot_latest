@@ -97,7 +97,7 @@ class MFAAccountSecurityTests(unittest.TestCase):
         next_step = (int(time.time()) // 30 + 1) * 30
         response = self.mutate(
             "post", "/account/mfa/confirm",
-            json={"current_password": self.password, "code": totp_code(secret, next_step)},
+            json={"current_password": self.password, "code": totp_code(secret, current_step)},
         )
         self.assertEqual(response.status_code, 200, response.text)
         return response.json()["recovery_codes"]
@@ -132,7 +132,7 @@ class MFAAccountSecurityTests(unittest.TestCase):
             json={"code": totp_code(secret, (int(time.time()) // 30 + 1) * 30)},
         )
         self.assertEqual(replay.status_code, 401, replay.text)
-        next_step = (int(time.time()) // 30 + 2) * 30
+        next_step = (int(time.time()) // 30 + 1) * 30
         accepted = self.mutate(
             "post", "/account/mfa/verify",
             json={"code": totp_code(secret, next_step)},
