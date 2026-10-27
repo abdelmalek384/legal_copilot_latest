@@ -60,6 +60,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_rebuild_chunks_fts_copy.py
       - name: Test SEC-01 runtime route and schema inventory
         run: PYTHONPATH=. python tests/test_security_surface_inventory.py
+      - name: Test tenant route inventory completeness
+        run: PYTHONPATH=. python tests/test_tenant_route_inventory_coverage.py
       - name: Test encrypted restore safety
         run: PYTHONPATH=. python tests/test_backup_restore_safety.py
       - name: Test read-only tenant database preflight
