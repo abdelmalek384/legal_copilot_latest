@@ -21,6 +21,8 @@ def approved(qid="Q1", answerable=True):
         "must_abstain_if_unverified": not answerable,
         "review_status": "lawyer_approved",
         "reviewer_name": "Egyptian counsel",
+        "reviewer_role": "egyptian_lawyer",
+        "review_evidence_url": "https://example.gov/review-record",
         "review_date": "2026-10-26",
     }
 
@@ -37,6 +39,23 @@ def result(qid="Q1", abstained=False, sources=None, pins=None):
 
 
 class LegalAnswerEvaluationTests(unittest.TestCase):
+    def test_benchmark_scoring_requires_qualified_reviewer_and_https_evidence(self):
+        base = approved()
+        for key, value in (
+            ("reviewer_role", "administrator"),
+            ("reviewer_role", []),
+            ("review_evidence_url", "http://example.gov/review"),
+            ("review_evidence_url", "https://user:pass@example.gov/review"),
+            ("review_evidence_url", "https://example.gov/review?token=secret"),
+            ("review_evidence_url", "https://example.gov/review#private"),
+            ("review_evidence_url", ""),
+            ("review_evidence_url", None),
+        ):
+            with self.subTest(key=key, value=value):
+                bad = dict(base, **{key: value})
+                with self.assertRaises(EvaluationError):
+                    evaluate([bad], [result()])
+
     def test_cli_release_gate_passes_when_thresholds_are_met(self):
         with tempfile.TemporaryDirectory() as td:
             questions = Path(td) / "questions.jsonl"
