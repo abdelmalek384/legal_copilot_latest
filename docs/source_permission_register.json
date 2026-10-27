@@ -180,6 +180,95 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
       "required_next_action": "Confirm the production portal domain and terms, request permission for intended uses, and verify every instrument against the Official Gazette before indexing."
+    },
+    {
+      "source_id": "EG-MINISTRY-LABOUR-LAWS",
+      "authority": "Ministry of Labour, Arab Republic of Egypt",
+      "source_page": "https://www.labour.gov.eg/en/laws-and-legislations/",
+      "material_types": [
+        "labour legislation",
+        "ministerial decisions",
+        "labour-related legislation indexes"
+      ],
+      "access_status": "official legislation index located",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": null,
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Identify exact direct document URLs, review current terms, and establish permission scope for local storage, text extraction, indexing, display, commercial use, and redistribution before acquisition."
+    },
+    {
+      "source_id": "EG-MIFT-LEGISLATION",
+      "authority": "Ministry of Investment and Foreign Trade, Arab Republic of Egypt",
+      "source_page": "https://www.mift.gov.eg/legislation/index",
+      "material_types": [
+        "investment legislation",
+        "foreign trade legislation",
+        "ministerial decisions"
+      ],
+      "access_status": "official legislation portal located",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": null,
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Identify exact direct instrument URLs, inspect current terms, and document storage, extraction, indexing, display, and commercial-use rights before acquisition."
+    },
+    {
+      "source_id": "EG-CAOA-LAWS",
+      "authority": "Central Agency for Organization and Administration, Arab Republic of Egypt",
+      "source_page": "https://www.caoa.gov.eg/WebForms/laws.aspx",
+      "material_types": [
+        "civil service laws",
+        "executive regulations",
+        "administrative-law references"
+      ],
+      "access_status": "official laws and settled-principles index located",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": null,
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Use as a discovery index; identify exact instruments and applicable versions, then review terms and document intended-use permission before acquiring or reusing content."
+    },
+    {
+      "source_id": "EG-NEA-LAWS",
+      "authority": "National Election Authority, Arab Republic of Egypt",
+      "source_page": "https://www.election.eg/digital-library-laws",
+      "material_types": [
+        "constitution",
+        "election legislation",
+        "parliament and senate legislation"
+      ],
+      "access_status": "official digital law library located",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": null,
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Identify exact instrument and amendment URLs, verify legal version against official publication records, and review terms before collection, indexing, display, or commercial use."
+    },
+    {
+      "source_id": "EG-MPA-PARLIAMENT-REGULATIONS",
+      "authority": "Ministry of Parliamentary Affairs, Arab Republic of Egypt",
+      "source_page": "https://mpa.gov.eg/e/parliament/regulations",
+      "material_types": [
+        "House of Representatives regulations",
+        "parliamentary procedural legislation"
+      ],
+      "access_status": "official parliamentary-regulations index located",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": null,
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Identify exact instrument files and amendment history, review terms, and document intended-use permission before acquisition or product use."
     }
   ]
 }
