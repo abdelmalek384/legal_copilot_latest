@@ -102,7 +102,7 @@ def _validate_reviewed_question(row):
     if not isinstance(reviewer_role, str) or reviewer_role not in {"egyptian_lawyer", "qualified_egyptian_counsel"}:
         raise EvaluationError(f"{qid}: reviewer_role must identify qualified Egyptian counsel")
     if not _valid_review_evidence_url(row.get("review_evidence_url")):
-        raise EvaluationError(f"{qid}: review_evidence_url must be a valid HTTPS URL without embedded credentials")
+        raise EvaluationError(f"{qid}: review_evidence_url must be HTTPS without credentials, query strings, or fragments")
     review_date = row.get("review_date")
     if not isinstance(review_date, str) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", review_date):
         raise EvaluationError(f"{qid}: review_date must be ISO YYYY-MM-DD")
