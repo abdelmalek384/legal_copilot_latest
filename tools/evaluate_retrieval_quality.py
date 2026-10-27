@@ -286,6 +286,13 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5)):
     }
 
 
+def _write_report(path, rendered):
+    """Create a new report without ever overwriting prior evaluation evidence."""
+    target = Path(path)
+    with target.open("x", encoding="utf-8", newline="\\n") as handle:
+        handle.write(rendered)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--questions", type=Path, default=DEFAULT_QUESTIONS)
@@ -293,10 +300,15 @@ def main():
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
     result = score_evaluation(_load_jsonl(args.questions), _load_jsonl(args.runs))
-    rendered = json.dumps(result, ensure_ascii=False, indent=2) + "\n"
+    rendered = json.dumps(result, ensure_ascii=False, indent=2) + "\\n"
     if args.output:
-        args.output.write_text(rendered, encoding="utf-8")
+        try:
+            _write_report(args.output, rendered)
+        except FileExistsError:
+            print(f"evaluation report refused: output already exists: {args.output}; choose a new path to preserve prior results", file=sys.stderr)
+            return 2
     print(rendered, end="")
+    return 0
 
 
 if __name__ == "__main__":
