@@ -103,6 +103,10 @@ class AcquisitionReadinessCliTests(unittest.TestCase):
             "commercial_permission_evidence_or_date_missing",
             report["documents"][0]["warnings"],
         )
+        self.assertIn(
+            "source_commercial_reuse_evidence_url_missing_or_invalid",
+            report["documents"][0]["warnings"],
+        )
 
     def test_production_gate_passes_only_when_both_permissions_and_evidence_are_allowed(self):
         source = self.register_payload["sources"][0]
