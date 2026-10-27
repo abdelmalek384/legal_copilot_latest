@@ -56,7 +56,7 @@ def load_rules(path: Path = DEFAULT_RULES) -> dict:
             raise DeadlineError("rule label_ar must be a non-empty string")
         if isinstance(rule["amount"], bool) or not isinstance(rule["amount"], int) or not 1 <= rule["amount"] <= 3650:
             raise DeadlineError("rule period must be a positive integer no greater than 3650")
-        if rule["unit"] not in UNITS:
+        if not isinstance(rule["unit"], str) or rule["unit"] not in UNITS:
             raise DeadlineError("rule unit must be days, months, or years")
         if "verified" in rule and not isinstance(rule["verified"], bool):
             raise DeadlineError("rule verified field must be boolean")
@@ -121,9 +121,9 @@ def load_holidays(path: Path = DEFAULT_HOLIDAYS, years=()) -> tuple[dict, set]:
             raise
         raise DeadlineError("invalid holiday date or year") from exc
 
-    complete = set(complete_raw)
-    if any(isinstance(y, bool) or not isinstance(y, int) or not 1900 <= y <= 2200 for y in complete):
+    if any(isinstance(y, bool) or not isinstance(y, int) or not 1900 <= y <= 2200 for y in complete_raw):
         raise DeadlineError("complete_years contains an invalid year")
+    complete = set(complete_raw)
     return holidays, complete
 
 
