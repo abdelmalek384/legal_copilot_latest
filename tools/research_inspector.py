@@ -67,6 +67,8 @@ def _has_current_review_evidence(provenance):
         if not isinstance(record, Mapping):
             return False
         kind = record.get("review_type")
+        if not isinstance(kind, str):
+            return False
         if kind not in _REQUIRED_REVIEW_TYPES:
             continue
         event_id = record.get("review_event_id")
@@ -128,7 +130,10 @@ def source_status(source, as_of=None):
     provenance = source.get("provenance")
     if not isinstance(provenance, Mapping):
         return STATUS_REVIEW
-    if provenance.get("document_type") in {"secondary", "commentary", "guide", "summary"} or source.get("source_type") == "secondary_copy":
+    document_type = provenance.get("document_type")
+    if not isinstance(document_type, str) or not document_type.strip():
+        return STATUS_REVIEW
+    if document_type in {"secondary", "commentary", "guide", "summary"} or source.get("source_type") == "secondary_copy":
         return STATUS_SECONDARY
     if provenance.get("status") != "registry_linked":
         return STATUS_REVIEW
