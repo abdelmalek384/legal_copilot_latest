@@ -24,7 +24,7 @@ To seed source and document-candidate metadata into the local SQLite registry (n
 python tools/seed_legal_candidates.py --apply
 ```
 
-Before any authorized acquisition, review [the acquisition-readiness audit](docs/acquisition_readiness_audit.md) and run its read-only preflight against the candidate manifest and source permission register. A manifest entry marked pending is not permission to download, and collection readiness is not commercial reuse permission. Any permission marked allowed must link to inspectable HTTPS rights evidence; commercial reuse needs separate evidence and a separate review date.
+Before any authorized acquisition, review [the acquisition-readiness audit](docs/acquisition_readiness_audit.md) and run its read-only preflight against the candidate manifest and source permission register. For the narrow distinction between copyright in official legal documents and rights in a portal/database/collection, also read [the legal-text reuse framework](docs/legal_text_reuse_framework.md); it does not itself grant permission or override the acquisition gate. A manifest entry marked pending is not permission to download, and collection readiness is not commercial reuse permission. Any permission marked allowed must link to inspectable HTTPS rights evidence; commercial reuse needs separate evidence and a separate review date.
 
 For a read-only snapshot of the source registers, acquisition queue, candidate counts, and cross-register inconsistencies, run `python tools/report_legal_corpus_inventory.py` (see [inventory report guide](docs/legal_corpus_artifact_inventory.md)). This counts planning metadata only; it does not count candidate entries as collected or verified legal documents.
 
