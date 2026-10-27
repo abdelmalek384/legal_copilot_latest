@@ -336,6 +336,10 @@ class CollectionPipelineTests(unittest.TestCase):
         for url in (
             "https://@example.gov/law.pdf",
             "https://:@example.gov/law.pdf",
+            " https://example.gov/law.pdf",
+            "https://example.gov/law file.pdf",
+            "https://example.gov:99999/law.pdf",
+            "https://example.gov:0/law.pdf",
         ):
             with self.subTest(url=url), patch("tools.collect_legal_documents.socket.getaddrinfo", return_value=[public_answer]):
                 with self.assertRaisesRegex(ValueError, "credentials"):
