@@ -72,7 +72,7 @@ class ResearchPromptInjectionBoundaryTests(unittest.TestCase):
             result = app.ask(object(), "Question?")
         self.assertIsNone(result["answer"])
         self.assertTrue(result["abstained"])
-        self.assertIn("citation", result["message"])
+        self.assertIn("الاستشهادات", result["message"])
 
 
 if __name__ == "__main__":
