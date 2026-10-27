@@ -1114,23 +1114,23 @@ def _answer_has_unsupported_quantities(answer, hits, cited_indices):
 
     for raw_line in answer.splitlines():
         line = raw_line.strip()
-        if (not line or re.match(r"^#{1,6}\\s+", line)
+        if (not line or re.match(r"^#{1,6}\s+", line)
                 or re.fullmatch(r"[-*_]{3,}", line)
-                or re.fullmatch(r"\\*\\*[^*]{1,100}[:：]\\*\\*", line)):
+                or re.fullmatch(r"\*\*[^*]{1,100}[:：]\*\*", line)):
             continue
         if line.endswith((":", "：")) and len(line) <= 100:
             continue
 
-        sentences = re.split(r"(?<=[.!?؟])\\s+", line)
+        sentences = re.split(r"(?<=[.!?؟])\s+", line)
         for sentence in sentences:
-            sentence = re.sub(r"^(?:[-*+]" + r"\\s+|\\d+[.)]\\s+|>\\s*)", "", sentence).strip()
+            sentence = re.sub(r"^(?:[-*+]" + r"\s+|\d+[.)]\s+|>\s*)", "", sentence).strip()
             if not sentence:
                 continue
-            claims = _legal_quantities(re.sub(r"\\[\\d+\\]", " ", sentence))
+            claims = _legal_quantities(re.sub(r"\[\d+\]", " ", sentence))
             if not claims:
                 continue
 
-            sentence_cites = {int(value) for value in re.findall(r"\\[(\\d+)\\]", sentence)}
+            sentence_cites = {int(value) for value in re.findall(r"\[(\d+)\]", sentence)}
             if not sentence_cites or any(index < 1 or index > len(hits) for index in sentence_cites):
                 return True
             evidence = " ".join(str(hits[index - 1].get("text") or "") for index in sentence_cites)
@@ -1146,18 +1146,18 @@ def _answer_has_uncited_claims(answer):
     answer = _mask_markdown_code(answer)
     for raw_line in answer.splitlines():
         line = raw_line.strip()
-        if (not line or re.match(r"^#{1,6}\\s+", line)
+        if (not line or re.match(r"^#{1,6}\s+", line)
                 or re.fullmatch(r"[-*_]{3,}", line)
-                or re.fullmatch(r"\\*\\*[^*]{1,100}[:：]\\*\\*", line)):
+                or re.fullmatch(r"\*\*[^*]{1,100}[:：]\*\*", line)):
             continue
         if line.endswith((":", "：")) and len(line) <= 100:
             continue
-        sentences = re.split(r"(?<=[.!?؟])\\s+", line)
+        sentences = re.split(r"(?<=[.!?؟])\s+", line)
         for sentence in sentences:
-            sentence = re.sub(r"^(?:[-*+]\\s+|\\d+[.)]\\s+|>\\s*)", "", sentence).strip()
+            sentence = re.sub(r"^(?:[-*+]\s+|\d+[.)]\s+|>\s*)", "", sentence).strip()
             if not sentence:
                 continue
-            if not re.search(r"\\[\\d+\\]", sentence):
+            if not re.search(r"\[\d+\]", sentence):
                 return True
     return False
 
