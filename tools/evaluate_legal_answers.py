@@ -69,7 +69,8 @@ def _valid_review_evidence_url(value):
         return False
     try:
         parsed = urlsplit(value)
-        if parsed.scheme != "https" or not parsed.hostname or parsed.username is not None or parsed.password is not None:
+        if (parsed.scheme != "https" or not parsed.hostname or parsed.username is not None
+                or parsed.password is not None or parsed.query or parsed.fragment):
             return False
         _ = parsed.port
         return True
