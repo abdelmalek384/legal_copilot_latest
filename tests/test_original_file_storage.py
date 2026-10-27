@@ -24,7 +24,15 @@ class LocalPrivateObjectStoreTests(unittest.TestCase):
         final_path = self.root / "firm-7" / (staged.object_id + ".blob")
         self.assertTrue(staged_path.exists())
         self.assertFalse(final_path.exists())
+        self.assertEqual(self.store.object_presence(7, staged.object_id), (True, False))
+        self.assertTrue(self.store.verify_staged(
+            7, staged.object_id, expected_sha256=staged.sha256, expected_size=len(payload)
+        ))
+        self.assertFalse(self.store.verify_staged(
+            7, staged.object_id, expected_sha256="0" * 64, expected_size=len(payload)
+        ))
         self.store.finalize(7, staged.object_id)
+        self.assertEqual(self.store.object_presence(7, staged.object_id), (False, True))
         self.assertFalse(staged_path.exists())
         with self.store.open(7, staged.object_id) as handle:
             self.assertEqual(handle.read(), payload)
