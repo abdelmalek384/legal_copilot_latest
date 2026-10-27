@@ -1752,7 +1752,7 @@ def extract(name, data):
         if len(reader.pages) > 500: raise HTTPException(413, "maximum 500 PDF pages")
         # Preserve page boundaries so later retrieval can cite a real page.
         for page_no, page in enumerate(reader.pages, 1):
-            append_part(f"[[PDF_PAGE:{page_no}]]\\n\\n{page.extract_text() or ''}")
+            append_part(f"[[PDF_PAGE:{page_no}]]\n\n{page.extract_text() or ''}")
     elif ext == "docx":
         try:
             with zipfile.ZipFile(io.BytesIO(data)) as z:
@@ -1780,7 +1780,7 @@ def extract(name, data):
             elif isinstance(element, CT_Tbl):
                 table = Table(element, document)
                 for row in table.rows:
-                    cells = [re.sub(r"\\s+", " ", cell.text).strip() for cell in row.cells]
+                    cells = [re.sub(r"\s+", " ", cell.text).strip() for cell in row.cells]
                     if any(cells):
                         append_part(" | ".join(cells))
         # Headers/footers can contain party names, document numbers, or page
@@ -1788,13 +1788,13 @@ def extract(name, data):
         seen_header_footer = set()
         for section in document.sections:
             for label, container in (("Header", section.header), ("Footer", section.footer)):
-                value = "\\n".join(p.text.strip() for p in container.paragraphs if p.text.strip())
+                value = "\n".join(p.text.strip() for p in container.paragraphs if p.text.strip())
                 if value and value not in seen_header_footer:
                     seen_header_footer.add(value)
                     append_part(f"[{label}] {value}")
     else:
         raise HTTPException(415, "PDF or DOCX only")
-    return "\\n\\n".join(parts)
+    return "\n\n".join(parts)
 
 def rollback_tenant_transaction_on_error(func):
     """Roll back uncommitted firm-database writes when a route fails."""
