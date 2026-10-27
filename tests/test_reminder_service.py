@@ -9,7 +9,7 @@ from database_runtime import DatabaseRuntime
 from tools.reminder_email import SMTPConfig
 from tools.reminder_outbox import enqueue_plan
 from tools.reminder_schedule import build_reminder_plan
-from tools.reminder_service import outbox_status, run_scheduler
+from tools.reminder_service import outbox_health, outbox_status, run_scheduler
 
 
 class ReminderServiceTests(unittest.TestCase):
@@ -74,6 +74,57 @@ class ReminderServiceTests(unittest.TestCase):
         self.assertEqual(before, after)
         self.assertNotIn("reminder-user@example.test", str(report))
         self.assertNotIn("Private matter title", str(report))
+
+    def _enqueue_due_task(self):
+        plan = build_reminder_plan(
+            [{"kind": "task", "event_id": str(self.task_id), "due_date": "2026-10-27", "is_complete": False}],
+            str(self.user_id), self.now, "Africa/Cairo", str(self.firm_id),
+        )
+        enqueue_plan(self.tenant, plan, firm_id=self.firm_id, recipient_user_id=self.user_id)
+
+    def test_health_check_is_read_only_and_healthy_for_empty_outbox(self):
+        before = self.tenant.execute("SELECT COUNT(*) FROM reminder_deliveries").fetchone()[0]
+        report = outbox_health(self.runtime, now=self.now)
+        after = self.tenant.execute("SELECT COUNT(*) FROM reminder_deliveries").fetchone()[0]
+        self.assertTrue(report["healthy"], report)
+        self.assertEqual(report["mode"], "health_check")
+        self.assertEqual(report["firms_scanned"], 1)
+        self.assertEqual(report["totals"]["stale_queued"], 0)
+        self.assertEqual(before, after)
+
+    def test_health_check_blocks_stale_queued_reminders(self):
+        self._enqueue_due_task()
+        self.tenant.execute(
+            "UPDATE reminder_deliveries SET created_at=?",
+            ("2026-10-26 06:00:00",),
+        )
+        self.tenant.commit()
+        report = outbox_health(self.runtime, now=self.now, stale_queued_minutes=60)
+        self.assertFalse(report["healthy"])
+        self.assertEqual(report["totals"]["stale_queued"], 1)
+        self.assertIn("stale_queued_reminders", {item["code"] for item in report["blocking_findings"]})
+
+    def test_health_check_blocks_ambiguous_and_expired_sending_rows(self):
+        self._enqueue_due_task()
+        self.tenant.execute(
+            "UPDATE reminder_deliveries SET status='ambiguous',last_error_code='smtp_connection_failure'"
+        )
+        self.tenant.commit()
+        report = outbox_health(self.runtime, now=self.now)
+        self.assertFalse(report["healthy"])
+        self.assertEqual(report["totals"]["ambiguous"], 1)
+        self.assertIn("reminders_ambiguous", {item["code"] for item in report["blocking_findings"]})
+
+    def test_health_check_blocks_expired_lease_and_sending_row_without_lease(self):
+        self._enqueue_due_task()
+        self.tenant.execute(
+            "UPDATE reminder_deliveries SET status='sending',lease_until=?",
+            ("2026-10-26T07:00:00+00:00",),
+        )
+        self.tenant.commit()
+        report = outbox_health(self.runtime, now=self.now)
+        self.assertFalse(report["healthy"])
+        self.assertEqual(report["totals"]["expired_sending_leases"], 1)
 
     def test_send_mode_queues_atomically_rechecks_authorization_and_records_acceptance(self):
         with patch(
