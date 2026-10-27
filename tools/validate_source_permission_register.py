@@ -97,6 +97,12 @@ def validate(data: object) -> list[str]:
             errors.append(f"{label}.source_page must be an HTTPS URL without credentials")
         if "terms_url" in source and source["terms_url"] is not None and not _https_url(source["terms_url"]):
             errors.append(f"{label}.terms_url must be an HTTPS URL or null")
+        for field in ("permission_evidence_url", "commercial_reuse_evidence_url"):
+            if source.get(field) is not None and not _https_url(source.get(field)):
+                errors.append(f"{label}.{field} must be an HTTPS URL without credentials or null")
+        if source.get("collection_permission") in {"allowed", "allowed_limited"}:
+            if not _https_url(source.get("permission_evidence_url")):
+                errors.append(f"{label} allowed collection requires permission_evidence_url linking to inspectable rights evidence")
 
         material_types = source.get("material_types")
         if not isinstance(material_types, list) or not material_types or any(
@@ -116,6 +122,8 @@ def validate(data: object) -> list[str]:
                 errors.append(f"{label} commercial reuse permission requires separate commercial_reuse_evidence")
             if not _valid_review_date(source.get("commercial_terms_checked_on")):
                 errors.append(f"{label} commercial reuse permission requires a valid commercial_terms_checked_on date")
+            if not _https_url(source.get("commercial_reuse_evidence_url")):
+                errors.append(f"{label} allowed commercial reuse requires commercial_reuse_evidence_url linking to separate inspectable rights evidence")
 
         checked_on = source.get("terms_checked_on")
         evidence = source.get("permission_evidence")
