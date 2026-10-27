@@ -144,6 +144,12 @@ class DatabaseBackupBundleTests(unittest.TestCase):
         self.assertTrue(restored_object.is_file())
         self.assertEqual(restored_object.read_bytes(), original)
 
+        from tools.run_database_recovery_drill import run_recovery_drill
+        drill = run_recovery_drill(bundle, self.cipher, self.root)
+        self.assertTrue(drill["verified"], drill["findings"])
+        self.assertEqual(drill["object_file_count"], 1)
+        self.assertEqual(drill["active_firm_routing_checks"], 2)
+
         restored_runtime = DatabaseRuntime(
             restored["control_plane"], restored["tenant_root"], restored["legal_corpus"]
         )
