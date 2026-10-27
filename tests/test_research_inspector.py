@@ -68,6 +68,17 @@ class ResearchInspectorTests(unittest.TestCase):
             candidate["provenance"][key] = value
             self.assertEqual(source_status(candidate, "2026-10-24"), STATUS_REVIEW, key)
 
+    def test_malformed_review_type_and_document_type_fail_closed_without_crashing(self):
+        for value in ([], {}, 7, None):
+            source = valid_source()
+            source["provenance"]["review_evidence"][0]["review_type"] = value
+            self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW, repr(value))
+
+        for value in ([], {}, 7, None, " "):
+            source = valid_source()
+            source["provenance"]["document_type"] = value
+            self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW, repr(value))
+
     def test_verified_status_requires_https_source_and_original_file_hash(self):
         source = valid_source()
         source["provenance"].pop("original_sha256")
