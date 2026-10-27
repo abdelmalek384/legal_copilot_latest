@@ -35,6 +35,8 @@ Use `--out path/to/report.json` to preserve a report.
 
 ## Limits
 
+The final release gate accepts only normalized relative artifact paths under `originals/` and `extracted/`, rejects traversal and symlinks, and verifies each recorded SHA-256 against the exact bytes. A matching hash alone does not prove legal authenticity or completeness.
+
 The audit is a preflight consistency check, not a legal opinion and not a permission grant. It cannot independently determine whether evidence actually covers the exact document, acquisition method, storage, extraction/OCR, indexing, commercial use, excerpt display, or redistribution. The `permission_scope_review` record must be completed by a human reviewer who compares the written authorization or applicable terms against each intended use; do not set it to `passed` merely to silence a blocker. Its required fields now match the collection pipeline's runtime gate so a manifest cannot be reported ready under a weaker scope-review contract than the downloader enforces.
 
 The audit does not download files, crawl sites, change status fields, verify legal authenticity, infer commencement dates, establish amendment history, or mark a document current law. Legal-status review and qualified Egyptian-lawyer approval remain separate release gates.
