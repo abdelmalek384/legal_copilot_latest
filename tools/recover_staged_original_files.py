@@ -230,7 +230,10 @@ def main() -> int:
         print(f"staged-object recovery could not safely complete: {exc}", file=sys.stderr)
         return 2
 
-    unresolved = any(item["status"] == "manual_review_required" for item in findings)
+    unresolved = any(
+        item["status"] in {"manual_review_required", "skipped_concurrent_change"}
+        for item in findings
+    )
     candidates = any(item["status"] == "recoverable_candidate" for item in findings)
     payload = {
         "apply": args.apply,
