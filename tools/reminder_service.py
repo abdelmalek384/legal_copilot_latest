@@ -311,6 +311,7 @@ def outbox_status(runtime: DatabaseRuntime) -> dict:
                 if item["status"] in counts:
                     counts[item["status"]] = int(item["total"])
         except ReminderOutboxError:
+            report["warnings"].append(f"firm_{firm_id}: reminder outbox schema unavailable; apply the firm migration")
             continue
         except sqlite3.Error:
             report["warnings"].append(f"firm_{firm_id}: outbox status unavailable")
