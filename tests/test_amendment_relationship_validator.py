@@ -130,6 +130,35 @@ class AmendmentRelationshipValidatorTests(unittest.TestCase):
         )
         self.assertTrue(any(item["code"] == "missing_or_invalid_https_source_url" for item in report["errors"]))
 
+    def test_malformed_https_source_urls_are_rejected_without_crashing(self):
+        bad_urls = (
+            " https://gazette.example.gov/law.pdf",
+            "https://gazette.example.gov/path with spaces",
+            "https://@gazette.example.gov/law.pdf",
+            "https://gazette.example.gov:not-a-port/law.pdf",
+            "https://gazette.example.gov:99999/law.pdf",
+            "https://gazette.example.gov:0/law.pdf",
+            "https://gazette.example.gov:/law.pdf",
+            "https://[malformed/law.pdf",
+        )
+        for index, url in enumerate(bad_urls):
+            with self.subTest(url=url):
+                report = MODULE.validate(
+                    {"relationships": [{
+                        "relationship_id": f"REL-BAD-URL-{index}",
+                        "source_instrument_id": "LAW-A",
+                        "target_instrument_id": None,
+                        "relationship_type": "base_instrument",
+                        "status": "under_review",
+                        "source_url": url,
+                        "required_evidence": ["Original Gazette text"],
+                    }]},
+                    {"documents": [{"document_id": "LAW-A"}]},
+                )
+                self.assertTrue(
+                    any(item["code"] == "missing_or_invalid_https_source_url" for item in report["errors"])
+                )
+
     def test_effective_date_must_be_a_real_iso_calendar_date(self):
         base = {
             "relationship_id": "REL-DATE",
