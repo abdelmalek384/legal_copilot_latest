@@ -73,6 +73,11 @@ def adduser(a):
                 (a.name.strip(), a.email.strip(), app.normalize_email(a.email), app.hash_pw(pw)),
             )
             c.execute(
+                "INSERT INTO platform_security_events(actor_user_id,target_user_id,firm_id,event_type,detail_json) "
+                "VALUES(NULL,?,?,'identity_created_cli',?)",
+                (cur.lastrowid, a.firm_id, json.dumps({"method": "manage.py adduser"}, sort_keys=True)),
+            )
+            c.execute(
                 "INSERT INTO firm_memberships(user_id,firm_id,firm_role,status) VALUES(?,?,?,'active')",
                 (cur.lastrowid, a.firm_id, a.role),
             )
@@ -670,7 +675,7 @@ x = sp.add_parser("platform-audit", help="Read recent platform security events o
 x.add_argument("--limit", type=int, default=50)
 x.add_argument("--firm-id", type=int)
 x.add_argument("--target-user-id", type=int)
-x.add_argument("--event-type", choices=["password_reset_cli", "firm_provisioned", "firm_disabled", "membership_created", "initial_owner_bootstrapped", "platform_role_granted", "platform_role_revoked"])
+x.add_argument("--event-type", choices=["password_reset_cli", "identity_created_cli", "password_changed_web", "firm_provisioned", "firm_disabled", "membership_created", "membership_suspended", "initial_owner_bootstrapped", "platform_role_granted", "platform_role_revoked"])
 x.set_defaults(f=platform_audit)
 x = sp.add_parser("restore-tenancy"); x.add_argument("file"); x.add_argument("--target-root", required=True); x.set_defaults(f=restore_tenancy)
 x = sp.add_parser("verify-backup-tenancy", help="Verify an encrypted tenancy bundle using temporary protected storage"); x.add_argument("file"); x.set_defaults(f=verify_tenancy_backup)
