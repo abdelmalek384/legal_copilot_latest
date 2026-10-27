@@ -6,6 +6,7 @@ from urllib.parse import urlsplit
 from contextvars import ContextVar
 from collections import Counter
 from datetime import date, timedelta
+from functools import wraps
 from tools.research_inspector import source_status, citation_text, research_memo
 from storage import SQLiteConnectionProvider
 from identity import normalize_email
@@ -1740,6 +1741,29 @@ def extract(name, data):
     return text
 
 
+def rollback_tenant_transaction_on_error(func):
+    """Roll back uncommitted firm-database writes when a route fails."""
+    @wraps(func)
+    def wrapped(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except sqlite3.Error as exc:
+            try:
+                conn().rollback()
+            except Exception:
+                # The request may have failed before a firm context was available.
+                pass
+            raise HTTPException(503, "database write unavailable") from exc
+        except Exception:
+            try:
+                conn().rollback()
+            except Exception:
+                # The request may have failed before a firm context was available.
+                pass
+            raise
+    return wrapped
+
+
 @app.get("/")
 def home(request: Request):
     with open(os.path.join(os.path.dirname(__file__), "static", "index.html"), encoding="utf-8") as f:
@@ -2539,6 +2563,7 @@ def cases(u: dict = Depends(user)):
 
 
 @app.post("/cases")
+@rollback_tenant_transaction_on_error
 def new_case(b: CaseIn, u: dict = Depends(user)):
     return {"id": add_case(conn(), u, b.title, b.client, b.stage, b.case_number, b.case_year, b.court, b.circuit, b.opposing_party)}
 
@@ -2563,6 +2588,7 @@ def case(cid: int, u: dict = Depends(user)):
 
 
 @app.patch("/cases/{cid}")
+@rollback_tenant_transaction_on_error
 def patch_case(cid: int, b: CasePatch, u: dict = Depends(user)):
     c = conn(); need(c, u, cid, lead=True)
     for f in ("stage", "status", "case_number", "case_year", "court", "circuit", "opposing_party"):
@@ -2572,6 +2598,7 @@ def patch_case(cid: int, b: CasePatch, u: dict = Depends(user)):
 
 
 @app.post("/cases/{cid}/members")
+@rollback_tenant_transaction_on_error
 def add_member(cid: int, b: MemberIn, u: dict = Depends(user)):
     c = conn(); need(c, u, cid, lead=True)
     if not c.execute("SELECT 1 FROM users WHERE id=? AND firm_id=? AND active=1", (b.user_id, u["firm_id"])).fetchone(): raise HTTPException(404, "active firm member not found")
@@ -2579,6 +2606,7 @@ def add_member(cid: int, b: MemberIn, u: dict = Depends(user)):
 
 
 @app.delete("/cases/{cid}/members/{uid}")
+@rollback_tenant_transaction_on_error
 def remove_member(cid: int, uid: int, u: dict = Depends(user)):
     c = conn(); need(c, u, cid, lead=True)
     target = c.execute("SELECT id FROM users WHERE id=? AND firm_id=?", (uid, u["firm_id"])).fetchone()
@@ -2590,6 +2618,7 @@ def remove_member(cid: int, uid: int, u: dict = Depends(user)):
 
 
 @app.post("/cases/{cid}/tasks")
+@rollback_tenant_transaction_on_error
 def new_task(cid: int, b: TaskIn, u: dict = Depends(user)):
     c = conn(); need(c, u, cid)
     if b.assignee and not c.execute("SELECT 1 FROM members WHERE case_id=? AND user_id=?", (cid, b.assignee)).fetchone():
@@ -2598,6 +2627,7 @@ def new_task(cid: int, b: TaskIn, u: dict = Depends(user)):
 
 
 @app.post("/tasks/{tid}/claim")
+@rollback_tenant_transaction_on_error
 def claim_task(tid: int, u: dict = Depends(user)):
     c = conn()
     task = c.execute(
@@ -2624,6 +2654,7 @@ def claim_task(tid: int, u: dict = Depends(user)):
 
 
 @app.post("/tasks/{tid}/done")
+@rollback_tenant_transaction_on_error
 def finish(tid: int, u: dict = Depends(user)):
     c = conn(); t = c.execute("SELECT * FROM tasks WHERE id=?", (tid,)).fetchone()
     if not t: raise HTTPException(404, "task not found")
@@ -2631,11 +2662,13 @@ def finish(tid: int, u: dict = Depends(user)):
 
 
 @app.post("/cases/{cid}/sessions")
+@rollback_tenant_transaction_on_error
 def new_session(cid: int, b: SessIn, u: dict = Depends(user)):
     c = conn(); need(c, u, cid); add_session(c, u, cid, b.date, b.note); return {"ok": True}
 
 
 @app.post("/cases/{cid}/notes")
+@rollback_tenant_transaction_on_error
 def new_note(cid: int, b: NoteIn, u: dict = Depends(user)):
     c = conn(); need(c, u, cid)
     c.execute("INSERT INTO notes(case_id,created_by,text) VALUES(?,?,?)", (cid, u["id"], b.text.strip()))
@@ -2644,6 +2677,7 @@ def new_note(cid: int, b: NoteIn, u: dict = Depends(user)):
 
 
 @app.post("/cases/{cid}/deadlines")
+@rollback_tenant_transaction_on_error
 def new_deadline(cid: int, b: DeadlineIn, u: dict = Depends(user)):
     c = conn(); need(c, u, cid)
     c.execute("INSERT INTO deadlines(case_id,title,due,note,created_by) VALUES(?,?,?,?,?)",
@@ -2653,6 +2687,7 @@ def new_deadline(cid: int, b: DeadlineIn, u: dict = Depends(user)):
 
 
 @app.post("/deadlines/{did}/done")
+@rollback_tenant_transaction_on_error
 def deadline_done(did: int, u: dict = Depends(user)):
     c = conn()
     row = c.execute("SELECT d.case_id FROM deadlines d JOIN cases cs ON cs.id=d.case_id WHERE d.id=? AND cs.firm_id=?",
@@ -2665,6 +2700,7 @@ def deadline_done(did: int, u: dict = Depends(user)):
 
 
 @app.post("/cases/{cid}/fees")
+@rollback_tenant_transaction_on_error
 def new_fee(cid: int, b: FeeIn, u: dict = Depends(user)):
     c = conn(); need(c, u, cid)
     if b.paid > b.amount: raise HTTPException(422, "paid amount cannot exceed total")
@@ -2675,6 +2711,7 @@ def new_fee(cid: int, b: FeeIn, u: dict = Depends(user)):
 
 
 @app.post("/cases/{cid}/docs")
+@rollback_tenant_transaction_on_error
 def doc(cid: int, b: DocIn, u: dict = Depends(user)):
     c = conn(); need(c, u, cid)
     chunks, document_id = save_doc(c, u, cid, b.name, b.text)
@@ -2683,6 +2720,7 @@ def doc(cid: int, b: DocIn, u: dict = Depends(user)):
 
 
 @app.post("/cases/{cid}/upload")
+@rollback_tenant_transaction_on_error
 def upload(cid: int, file: UploadFile, u: dict = Depends(user)):
     c = conn(); need(c, u, cid); data = file.file.read(15_000_001)
     if len(data) > 15_000_000: raise HTTPException(413, "max 15 MB")
@@ -2788,6 +2826,7 @@ def list_document_chunks(cid: int, document_id: int, u: dict = Depends(user)):
 
 
 @app.post("/cases/{cid}/docs/{document_id}/chunks/{chunk_id}/review", status_code=201)
+@rollback_tenant_transaction_on_error
 def review_document_chunk(cid: int, document_id: int, chunk_id: int, b: ExtractionReviewIn, u: dict = Depends(user)):
     c = conn(); need(c, u, cid)
     doc = c.execute("SELECT id FROM docs WHERE id=? AND case_id=? AND firm_id=?", (document_id, cid, u["firm_id"])).fetchone()
@@ -2838,6 +2877,7 @@ def review_document_chunk(cid: int, document_id: int, chunk_id: int, b: Extracti
 
 
 @app.delete("/cases/{cid}")
+@rollback_tenant_transaction_on_error
 def rm_case(cid: int, u: dict = Depends(user)):
     if not delete_case(conn(), u, cid): raise HTTPException(404, "case not found")
     return {"deleted": True}
@@ -3027,6 +3067,7 @@ class ResearchSaveToMatterIn(BaseModel):
 
 
 @app.post("/research/conversations/{conversation_id}/save-to-matter", status_code=201)
+@rollback_tenant_transaction_on_error
 def save_research_to_matter(conversation_id: int, b: ResearchSaveToMatterIn, u: dict = Depends(user)):
     c = conn()
     _owned_research_conversation(c, u, conversation_id)
@@ -3064,6 +3105,7 @@ def list_research_conversations(u: dict = Depends(user)):
 
 
 @app.post("/research/conversations")
+@rollback_tenant_transaction_on_error
 def create_research_conversation(u: dict = Depends(user)):
     c = conn()
     cur = c.execute("INSERT INTO research_conversations(user_id,firm_id,title) VALUES(?,?,?)",
@@ -3095,6 +3137,7 @@ class ResearchConversationPatchIn(BaseModel):
 
 
 @app.patch("/research/conversations/{conversation_id}")
+@rollback_tenant_transaction_on_error
 def rename_research_conversation(conversation_id: int, b: ResearchConversationPatchIn, u: dict = Depends(user)):
     c = conn()
     _owned_research_conversation(c, u, conversation_id)
@@ -3113,6 +3156,7 @@ def rename_research_conversation(conversation_id: int, b: ResearchConversationPa
 
 
 @app.delete("/research/conversations/{conversation_id}")
+@rollback_tenant_transaction_on_error
 def delete_research_conversation(conversation_id: int, u: dict = Depends(user)):
     c = conn()
     _owned_research_conversation(c, u, conversation_id)
@@ -3137,6 +3181,7 @@ class ResearchMessageIn(BaseModel):
 
 
 @app.post("/research/conversations/{conversation_id}/messages")
+@rollback_tenant_transaction_on_error
 def send_research_message(conversation_id: int, b: ResearchMessageIn, u: dict = Depends(user)):
     c = conn(); conversation = _owned_research_conversation(c, u, conversation_id)
     need(c, u, b.case_id)
