@@ -26,12 +26,12 @@ Use `--out path/to/report.json` to preserve a report.
 - The manifest's collection permission is explicitly `allowed`.
 - The source register independently records `allowed` or `allowed_limited`, with permission evidence and a valid terms-review date.
 - The manifest has its own permission evidence and a valid terms-review date that is not in the future.
-- A document-level `permission_scope_review` is marked `passed`, includes evidence and a valid non-future review date, and explicitly lists `collection` in `approved_uses`.
+- A document-level `permission_scope_review` is marked `passed` and records a reviewer, evidence reference, valid review date not earlier than the terms-check date, reviewed source terms, and the `direct_document_url` method. It must explicitly approve storage, text extraction, indexing, commercial product use, and excerpt display. Optional evidence URLs must be HTTPS and contain no credentials.
 - The direct URL is HTTPS and its hostname matches the document's explicit allowlist.
-- Commercial product use requires both source-level commercial permission and a document-level scope review explicitly listing `commercial_product_use`; collection approval alone is insufficient.
+- Commercial product use requires both source-level commercial permission and a complete document-level scope review. Collection permission or a status flag alone is insufficient.
 
 ## Limits
 
-The audit is a preflight consistency check, not a legal opinion and not a permission grant. It cannot independently determine whether evidence actually covers the exact document, acquisition method, storage, extraction/OCR, indexing, commercial use, excerpt display, or redistribution. The `permission_scope_review` record must be completed by a human reviewer who compares the written authorization or applicable terms against each intended use; do not set it to `passed` merely to silence a blocker.
+The audit is a preflight consistency check, not a legal opinion and not a permission grant. It cannot independently determine whether evidence actually covers the exact document, acquisition method, storage, extraction/OCR, indexing, commercial use, excerpt display, or redistribution. The `permission_scope_review` record must be completed by a human reviewer who compares the written authorization or applicable terms against each intended use; do not set it to `passed` merely to silence a blocker. Its required fields now match the collection pipeline's runtime gate so a manifest cannot be reported ready under a weaker scope-review contract than the downloader enforces.
 
 The audit does not download files, crawl sites, change status fields, verify legal authenticity, infer commencement dates, establish amendment history, or mark a document current law. Legal-status review and qualified Egyptian-lawyer approval remain separate release gates.
