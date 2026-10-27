@@ -82,6 +82,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_legal_data_foundation_validator.py
       - name: Test DOCX table and header extraction
         run: PYTHONPATH=. python tests/test_docx_table_extraction.py
+      - name: Test incremental document extraction limits
+        run: PYTHONPATH=. python tests/test_document_extraction_budget.py
       - name: Test PDF OCR fallback and mixed-page extraction
         run: PYTHONPATH=. python tests/test_pdf_ocr_fallback.py
       - name: Test page-aware PDF retrieval citations
