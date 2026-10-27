@@ -31,6 +31,29 @@ class CitationCoverageTests(unittest.TestCase):
         self.assertTrue(app._answer_has_uncited_claims(""))
         self.assertTrue(app._answer_has_uncited_claims(None))
 
+    def test_citation_inside_fenced_code_does_not_support_a_claim(self):
+        answer = "The deadline is 30 days.\\n\\n\`\`\`text\\n[1]\\n\`\`\`"
+        self.assertTrue(app._answer_has_uncited_claims(answer))
+
+    def test_uncited_code_sample_does_not_invalidate_cited_prose(self):
+        answer = "The rule is stated in the source [1].\\n\\n\`\`\`python\\nprint('example')\\n\`\`\`"
+        self.assertFalse(app._answer_has_uncited_claims(answer))
+
+    def test_inline_code_citation_does_not_support_adjacent_claim(self):
+        self.assertTrue(app._answer_has_uncited_claims(
+            "The court may dismiss the claim. \`[1]\`"
+        ))
+
+    def test_unclosed_fenced_code_cannot_supply_citation(self):
+        self.assertTrue(app._answer_has_uncited_claims(
+            "The deadline is 30 days.\\n\`\`\`text\\n[1]"
+        ))
+
+    def test_numeric_claim_inside_code_is_not_treated_as_a_legal_claim(self):
+        hits = [{"text": "This source does not mention any deadline."}]
+        answer = "The applicable rule is in source [1].\\n\`\`\`text\\nDeadline: 30 days [1].\\n\`\`\`"
+        self.assertFalse(app._answer_has_unsupported_quantities(answer, hits, {1}))
+
 
 if __name__ == "__main__":
     unittest.main()
