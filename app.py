@@ -2,6 +2,7 @@
 Run: pip install -r requirements.txt && uvicorn app:app --reload"""
 import sqlite3, re, json, os, io, csv, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request, zipfile, ipaddress
 from cryptography.fernet import Fernet
+from urllib.parse import urlsplit
 from contextvars import ContextVar
 from collections import Counter
 from datetime import date, timedelta
