@@ -18,7 +18,7 @@ def passed_scope_review(reviewed_on="2026-10-23", **overrides):
         "reviewer_id": "test-reviewer-001",
         "reviewed_on": reviewed_on,
         "evidence_reference": "AUTH-1",
-        "evidence_url": None,
+        "evidence_url": "https://laws.example.gov/rights/authorization",
         "access_method": "direct_document_url",
         "source_terms_reviewed": True,
         "scope": {
@@ -59,6 +59,7 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
             "collection_permission": "allowed",
             "commercial_reuse_permission": "unknown",
             "permission_evidence": "written authorization ref AUTH-1",
+            "permission_evidence_url": "https://laws.example.gov/rights/collection",
             "terms_checked_on": "2026-10-23",
         }]}
         report = MODULE.audit(manifest, register)
@@ -104,6 +105,7 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
             "collection_permission": "allowed",
             "commercial_reuse_permission": "unknown",
             "permission_evidence": "written authorization",
+            "permission_evidence_url": "https://laws.example.gov/rights/collection",
             "terms_checked_on": "9999-12-31",
         }]}
         report = MODULE.audit(manifest, register)
@@ -132,6 +134,8 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
                 "collection_permission": "allowed",
                 "commercial_reuse_permission": "allowed",
                 "permission_evidence": "authorization",
+                "permission_evidence_url": "https://laws.example.gov/rights/collection",
+                "commercial_reuse_evidence_url": "https://laws.example.gov/rights/commercial",
                 "terms_checked_on": "2026-10-23",
             }]}
             with self.subTest(flag=flag):
@@ -158,6 +162,8 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
             "collection_permission": "allowed",
             "commercial_reuse_permission": "allowed",
             "permission_evidence": "authorization",
+            "permission_evidence_url": "https://laws.example.gov/rights/collection",
+            "commercial_reuse_evidence_url": "https://laws.example.gov/rights/commercial",
             "terms_checked_on": "2026-10-23",
         }]}
         report = MODULE.audit(manifest, register)
@@ -190,6 +196,8 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
             "collection_permission": "allowed",
             "commercial_reuse_permission": "allowed",
             "permission_evidence": "written authorization",
+            "permission_evidence_url": "https://laws.example.gov/rights/collection",
+            "commercial_reuse_evidence_url": "https://laws.example.gov/rights/commercial",
             "terms_checked_on": "2026-10-23",
         }]}
         report = MODULE.audit(manifest, register)
