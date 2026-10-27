@@ -38,7 +38,7 @@ def _normalize_pin_cite(value: object) -> str:
 
 
 def _ready_candidate_source_index(candidate_paths, legal_report):
-    """Map only release-ready candidate source IDs to their reviewed pinpoint anchors."""
+    """Map only release-ready candidate source IDs to versioned pinpoint anchors."""
     ready_paths = set()
     candidates = legal_report.get("candidates", [])
     if isinstance(candidates, list):
@@ -61,7 +61,14 @@ def _ready_candidate_source_index(candidate_paths, legal_report):
             continue
         source_id = document.get("source_id")
         anchors = version.get("article_identifiers")
-        if not isinstance(source_id, str) or not source_id.strip() or not isinstance(anchors, list):
+        effective_date = version.get("effective_date")
+        repeal_date = version.get("repeal_date")
+        if (not isinstance(source_id, str) or not source_id.strip()
+                or not isinstance(anchors, list)):
+            continue
+        effective = _parse_iso_date(effective_date)
+        repeal = None if repeal_date is None else _parse_iso_date(repeal_date)
+        if effective is None or (repeal_date is not None and repeal is None):
             continue
         normalized = {
             _normalize_pin_cite(anchor)
@@ -69,8 +76,32 @@ def _ready_candidate_source_index(candidate_paths, legal_report):
             if isinstance(anchor, str) and _normalize_pin_cite(anchor)
         }
         if normalized:
-            source_index.setdefault(source_id.strip(), set()).update(normalized)
+            source_index.setdefault(source_id.strip(), []).append({
+                "effective_date": effective,
+                "repeal_date": repeal,
+                "anchors": normalized,
+            })
     return source_index
+
+
+def _parse_iso_date(value):
+    if not isinstance(value, str):
+        return None
+    try:
+        parsed = date.fromisoformat(value)
+    except ValueError:
+        return None
+    return parsed if parsed.isoformat() == value else None
+
+
+def _active_source_versions(source_id, as_of_date, source_index):
+    active = []
+    for version in source_index.get(source_id, []):
+        effective = version["effective_date"]
+        repeal = version["repeal_date"]
+        if effective <= as_of_date and (repeal is None or repeal > as_of_date):
+            active.append(version)
+    return active
 
 
 def evaluate_release(
