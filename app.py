@@ -1064,6 +1064,13 @@ def _mask_markdown_code(answer):
     """
     if not isinstance(answer, str):
         return ""
+    # HTML comments are not visible prose; an index hidden there must not count as a citation.
+    answer = re.sub(
+        r"<!--.*?(?:-->|$)",
+        lambda match: re.sub(r"[^\\r\\n]", " ", match.group(0)),
+        answer,
+        flags=re.S,
+    )
     output = []
     fence_char = None
     fence_length = 0
