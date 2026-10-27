@@ -1840,5 +1840,83 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         })
 
 
+    def test_same_firm_research_conversations_are_private_to_their_owner(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate("post", "/research/conversations")
+        self.assertEqual(created.status_code, 200, created.text)
+        conversation_id = created.json()["id"]
+        renamed = self._mutate(
+            "patch",
+            f"/research/conversations/{conversation_id}",
+            json={"title": "SAME_FIRM_PRIVATE_RESEARCH_SENTINEL"},
+        )
+        self.assertEqual(renamed.status_code, 200, renamed.text)
+
+        nonmember_id = self.runtime.create_global_identity(
+            "Research Colleague", "research-colleague@example.test", app.hash_pw(self.password)
+        )
+        self.runtime.create_firm_membership(nonmember_id, self.firm_a, "lawyer")
+        context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        tenant = self.runtime.firm_connection(context)
+
+        nonmember_client = TestClient(app.app)
+        try:
+            nonmember_login = nonmember_client.post(
+                "/login",
+                json={"email": "research-colleague@example.test", "password": self.password},
+            )
+            self.assertEqual(nonmember_login.status_code, 200, nonmember_login.text)
+            csrf = nonmember_client.cookies.get("lc_csrf") or ""
+            headers = {"X-CSRF-Token": csrf}
+
+            listing = nonmember_client.get("/research/conversations")
+            self.assertEqual(listing.status_code, 200, listing.text)
+            self.assertNotIn("SAME_FIRM_PRIVATE_RESEARCH_SENTINEL", listing.text)
+            detail = nonmember_client.get(f"/research/conversations/{conversation_id}")
+            self.assertEqual(detail.status_code, 404, detail.text)
+            rename_attempt = nonmember_client.patch(
+                f"/research/conversations/{conversation_id}",
+                json={"title": "UNAUTHORIZED_RESEARCH_RENAME"},
+                headers=headers,
+            )
+            self.assertEqual(rename_attempt.status_code, 404, rename_attempt.text)
+            message_attempt = nonmember_client.post(
+                f"/research/conversations/{conversation_id}/messages",
+                json={"message": "UNAUTHORIZED_RESEARCH_MESSAGE", "scope": "verified_corpus"},
+                headers=headers,
+            )
+            self.assertEqual(message_attempt.status_code, 404, message_attempt.text)
+            save_attempt = nonmember_client.post(
+                f"/research/conversations/{conversation_id}/save-to-matter",
+                json={"case_id": 1, "message_id": 1},
+                headers=headers,
+            )
+            self.assertEqual(save_attempt.status_code, 404, save_attempt.text)
+            delete_attempt = nonmember_client.delete(
+                f"/research/conversations/{conversation_id}", headers=headers
+            )
+            self.assertEqual(delete_attempt.status_code, 404, delete_attempt.text)
+        finally:
+            nonmember_client.close()
+
+        row = tenant.execute(
+            "SELECT title,user_id,firm_id FROM research_conversations WHERE id=?",
+            (conversation_id,),
+        ).fetchone()
+        self.assertEqual(row["title"], "SAME_FIRM_PRIVATE_RESEARCH_SENTINEL")
+        self.assertEqual(row["user_id"], self.user_id)
+        self.assertEqual(row["firm_id"], self.firm_a)
+        self.assertEqual(
+            tenant.execute(
+                "SELECT COUNT(*) FROM research_messages WHERE conversation_id=?",
+                (conversation_id,),
+            ).fetchone()[0],
+            0,
+        )
+
+
 if __name__ == "__main__":
     unittest.main()
