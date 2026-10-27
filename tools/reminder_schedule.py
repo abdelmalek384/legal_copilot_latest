@@ -189,7 +189,7 @@ def main(argv: list[str] | None = None) -> int:
             args.out.parent.mkdir(parents=True, exist_ok=True)
             args.out.write_text(rendered, encoding="utf-8")
         return 0
-    except (OSError, ReminderScheduleError) as exc:
+    except (OSError, UnicodeError, ReminderScheduleError) as exc:
         print(f"Reminder dry-run failed: {exc}", file=sys.stderr)
         return 2
 
