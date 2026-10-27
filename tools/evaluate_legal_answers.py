@@ -13,6 +13,7 @@ import sys
 from collections import defaultdict
 from datetime import date
 from pathlib import Path
+from urllib.parse import urlsplit
 
 APPROVED = "lawyer_approved"
 
@@ -63,6 +64,19 @@ def _pin_cites(value, label, question_id):
     return pairs
 
 
+def _valid_review_evidence_url(value):
+    if not isinstance(value, str) or not value.strip() or value != value.strip() or any(ch.isspace() for ch in value):
+        return False
+    try:
+        parsed = urlsplit(value)
+        if parsed.scheme != "https" or not parsed.hostname or parsed.username is not None or parsed.password is not None:
+            return False
+        _ = parsed.port
+        return True
+    except ValueError:
+        return False
+
+
 def _validate_reviewed_question(row):
     qid = row.get("id")
     if not _nonempty(qid):
@@ -74,6 +88,11 @@ def _validate_reviewed_question(row):
         raise EvaluationError(f"{qid}: practice_area must be a non-empty string when supplied")
     if not _nonempty(row.get("reviewer_name")):
         raise EvaluationError(f"{qid}: reviewer_name is required")
+    reviewer_role = row.get("reviewer_role")
+    if not isinstance(reviewer_role, str) or reviewer_role not in {"egyptian_lawyer", "qualified_egyptian_counsel"}:
+        raise EvaluationError(f"{qid}: reviewer_role must identify qualified Egyptian counsel")
+    if not _valid_review_evidence_url(row.get("review_evidence_url")):
+        raise EvaluationError(f"{qid}: review_evidence_url must be a valid HTTPS URL without embedded credentials")
     review_date = row.get("review_date")
     if not isinstance(review_date, str) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", review_date):
         raise EvaluationError(f"{qid}: review_date must be ISO YYYY-MM-DD")
