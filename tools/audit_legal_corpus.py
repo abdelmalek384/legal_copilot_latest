@@ -298,7 +298,7 @@ def render_markdown(report):
     if report.get("sqlite_sidecars"):
         lines += ["", "## SQLite sidecars", "", "| File | Size (bytes) | SHA-256 |", "|---|---:|---|"]
         lines += [f"| {name} | {meta['size_bytes']} | {meta['sha256']} |" for name, meta in sorted(report["sqlite_sidecars"].items())]
-    for section in ("chunk_quality","source_permissions","commercial_reuse_permissions","version_quality","relation_quality"):
+    for section in ("chunk_quality","source_permissions","commercial_reuse_permissions","version_quality","review_event_quality","chunk_version_consistency","relation_quality"):
         if section in report:
             lines += ["",f"## {section.replace('_',' ').title()}",""]
             lines += [f"- **{k.replace('_',' ')}:** {v}" for k,v in report[section].items()]
