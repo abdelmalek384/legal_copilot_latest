@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""Evaluate Arabic OCR output against manually corrected page text.
+"""Legacy OCR evaluator retained for compatibility; prefer tools/evaluate_ocr_quality.py.
+
+This older command does not implement the canonical evaluator schema or critical-token metrics.
 
 Input is JSONL with one page per record:
   {"document_id":"scan-01","page":"1","reference_text":"...","ocr_text":"..."}
