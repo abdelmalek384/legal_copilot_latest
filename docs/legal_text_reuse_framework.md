@@ -36,6 +36,20 @@ Article 141 is a potential legal basis for using the underlying official documen
 
 The current acquisition gate deliberately requires explicit evidence and human scope review before a source is marked ready for collection or commercial product use. Do not weaken that gate or mark permissions as approved based on this document alone. A qualified Egyptian-law reviewer should determine whether Article 141 and any other applicable law support a documented statutory-rights basis for a specific direct official document and intended use. If that workflow is later supported by code, it should record the legal basis, exact scope, reviewer, evidence URL, review date, and limitations separately from written permission.
 
+## Minimum evidence record for a direct official document
+
+Before an item moves beyond discovery, record these fields in the authorized acquisition workflow:
+
+- Stable candidate/document ID and issuing authority.
+- Direct official document URL, distinct from the general portal/index URL.
+- Retrieval timestamp, original filename, byte size, and SHA-256 of the exact original file.
+- Gazette issue, publication date, page range, law/decision number, and any later amending or commencement instrument.
+- Whether the item is the underlying official document or includes a third-party translation, annotation, summary, headnote, or compilation.
+- Rights-review basis and scope, reviewer identity/role, evidence URL, review date, and separate decisions for storage, extraction, indexing, display, commercial use, and redistribution.
+- Authenticity, extraction quality, effective date, repeal date, amendment history, and lawyer-review status as independent fields.
+
+Do not populate a missing field from assumption. Use an explicit unknown/pending state and keep the item out of verified retrieval until the applicable release gate passes.
+
 ## Review checklist
 
 - [ ] Confirm the current Arabic text of Law No. 82 of 2002 and amendments relevant to Article 141.
