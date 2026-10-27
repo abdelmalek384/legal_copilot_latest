@@ -622,8 +622,11 @@ def delete_case(c, u, cid):
     serializes the authorization check and deletion against other writers in
     this tenant database.
     """
+    # The shared per-tenant connection may still have a read transaction
+    # opened by request authorization/context checks. Those checks are read-only;
+    # reset that transaction before taking the deletion's explicit write lock.
     if c.in_transaction:
-        raise RuntimeError("case deletion requires a clean tenant connection")
+        c.rollback()
     c.execute("BEGIN IMMEDIATE")
     try:
         if not is_lead(c, u, cid):
