@@ -32,20 +32,20 @@ class LegalReleaseReadinessTests(unittest.TestCase):
                              "approved_uses": ["collection", "storage", "text_extraction", "indexing", "commercial_product_use", "excerpt_display"],
                          }},
             "sources": [{
-                "source_id": self.source_id, "source_page": "https://laws.example.gov/portal",
+                "source_id": self.source_id, "authority": "Synthetic official authority", "source_class": "official_primary_candidate", "source_page": "https://laws.example.gov/portal",
                 "collection_permission": "allowed", "commercial_reuse_permission": "allowed",
                 "permission_evidence": "Written collection permission AUTH-1", "terms_checked_on": "2025-01-01",
                 "commercial_reuse_evidence": "Commercial license AUTH-COMM-1", "commercial_terms_checked_on": "2025-01-01",
             }],
             "version": {
                 "source_url": "https://laws.example.gov/law.pdf", "original_path": "originals/law.pdf",
-                "original_sha256": self.original_hash, "retrieved_at": "2025-01-02",
+                "original_sha256": self.original_hash, "retrieved_at": "2025-01-02T12:00:00Z",
                 "extracted_text_path": "extracted/law.txt", "text_sha256": self.text_hash,
                 "text_review_status": "text_checked", "text_review_evidence_url": "https://laws.example.gov/text-review",
                 "article_identifiers": ["Article 1", "Article 2"],
                 "expected_article_identifiers": ["Article 1", "Article 2"],
                 "publication_date": "2024-12-01", "effective_date": "2025-01-01",
-                "gazette_issue": "Issue 1", "legal_status": "in_force", "review_status": "verified",
+                "gazette_issue": "Issue 1", "gazette_pages": "1-10",\n                "publication_evidence_url": "https://laws.example.gov/gazette/issue-1", "legal_status": "in_force", "review_status": "verified",
                 "authenticity_verified": 1, "status_verified": 1, "amendment_history_verified": 1,
                 "permission_evidence": "Scope checked under AUTH-1",
             },
@@ -58,7 +58,7 @@ class LegalReleaseReadinessTests(unittest.TestCase):
             } for review_type in sorted(MODULE.REQUIRED_REVIEWS)],
         }
         self.register = {"sources": [{
-            "source_id": self.source_id, "source_page": "https://www.laws.example.gov/portal",
+            "source_id": self.source_id, "authority": "Synthetic official authority", "source_page": "https://www.laws.example.gov/portal",
             "collection_permission": "allowed", "commercial_reuse_permission": "allowed",
             "permission_evidence": "Written collection permission AUTH-1", "terms_checked_on": "2025-01-01",
             "commercial_reuse_evidence": "Commercial license AUTH-COMM-1", "commercial_terms_checked_on": "2025-01-01",
@@ -70,6 +70,31 @@ class LegalReleaseReadinessTests(unittest.TestCase):
     def test_complete_synthetic_evidence_passes(self):
         result = MODULE.audit_candidate(self.candidate, self.register, self.root)
         self.assertTrue(result["ready"], result["blockers"])
+
+    def test_retrieval_requires_timezone_aware_timestamp(self):
+        candidate = json.loads(json.dumps(self.candidate))
+        candidate["version"]["retrieved_at"] = "2025-01-02"
+        result = MODULE.audit_candidate(candidate, self.register, self.root)
+        self.assertIn("retrieved_at_invalid", {item["code"] for item in result["blockers"]})
+        candidate["version"]["retrieved_at"] = "2025-01-02T12:00:00"
+        result = MODULE.audit_candidate(candidate, self.register, self.root)
+        self.assertIn("retrieved_at_invalid", {item["code"] for item in result["blockers"]})
+
+    def test_gazette_pinpoint_and_publication_evidence_are_required(self):
+        candidate = json.loads(json.dumps(self.candidate))
+        candidate["version"].pop("gazette_pages")
+        candidate["version"].pop("publication_evidence_url")
+        result = MODULE.audit_candidate(candidate, self.register, self.root)
+        codes = {item["code"] for item in result["blockers"]}
+        self.assertIn("gazette_pages_missing", codes)
+        self.assertIn("publication_evidence_url_invalid", codes)
+
+    def test_permission_cannot_transfer_between_source_ids_on_same_host(self):
+        candidate = json.loads(json.dumps(self.candidate))
+        register = json.loads(json.dumps(self.register))
+        register["sources"][0]["source_id"] = "DIFFERENT-SOURCE"
+        result = MODULE.audit_candidate(candidate, register, self.root)
+        self.assertIn("central_source_id_mismatch", {item["code"] for item in result["blockers"]})
 
     def test_allowed_commercial_permission_without_separate_evidence_blocks_release(self):
         candidate = json.loads(json.dumps(self.candidate))
