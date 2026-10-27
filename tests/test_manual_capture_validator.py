@@ -89,6 +89,21 @@ class ManualCaptureRecordTests(unittest.TestCase):
         self.assertTrue(any("collection_permission" in error for error in result["errors"]))
         self.assertTrue(any("commercial_reuse_permission" in error for error in result["errors"]))
 
+    def test_limited_or_permission-required_states_never_pass_unrestricted_gates(self):
+        self.record.update({
+            "collection_permission": "allowed_limited",
+            "commercial_reuse_permission": "prior_written_permission_required_per_published_terms",
+            "terms_url": "https://example.gov/terms",
+            "terms_checked_on": "2026-10-27",
+            "collection_permission_evidence_url": "https://example.gov/permission/limited",
+            "commercial_reuse_evidence_url": "https://example.gov/permission/request-required",
+        })
+        result = validate_capture_record(self.record, self.record_path)
+        self.assertTrue(result["valid"])
+        self.assertFalse(result["collection_ready"])
+        self.assertFalse(result["commercial_product_use_ready"])
+        self.assertFalse(result["retrieval_eligible"])
+
     def test_permission_gates_need_terms_and_separate_evidence(self):
         self.record.update({
             "collection_permission": "allowed",
