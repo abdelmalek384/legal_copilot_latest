@@ -3747,6 +3747,12 @@ def download_original_document(cid: int, document_id: int, u: dict = Depends(use
         c.commit()
     except sqlite3.Error as exc:
         c.rollback()
+        # Record only SQLite's stable error classification, never SQL parameters or document data.
+        logger.error(
+            "Original document audit write failed (sqlite_errorname=%s, exception=%s)",
+            getattr(exc, "sqlite_errorname", "unknown"),
+            type(exc).__name__,
+        )
         raise HTTPException(503, "download was not released because audit logging failed") from exc
     return Response(
         content=data,
