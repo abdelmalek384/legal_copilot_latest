@@ -50,6 +50,7 @@ Routes are grouped by the data boundary they should preserve. "Tested" means the
 ## Additional route-level coverage
 
 A separate CI regression gate (PR #657, merged 2026-10-27) requires every registered non-public FastAPI route to include the shared `app.user` dependency. Only `GET /` and `POST /login` are explicitly public. This catches routes that omit the normal authenticated identity/firm-context dependency; it does **not** prove that each authenticated handler performs the correct role, case-membership, ownership, or query-level checks.
+PR #661 adds a successful-path integration test for case-detail identity hydration: case members, task assignees, and note authors are resolved through the temporary firm-scoped `users` view backed by control-plane identities. PR #660 injects a late provisioning audit failure and verifies the firm/catalog are disabled, no success event persists, and the tenant file is preserved for explicit review. These are targeted regressions, not exhaustive query or lifecycle coverage.
 
 The route coverage regression test compares every `@app` HTTP route in `app.py` with this inventory. Each route must be represented explicitly so new routes cannot silently bypass the review record. This is an inventory completeness check, not proof that every authorization branch has been tested.
 
