@@ -20,7 +20,8 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         original = self.root / "originals" / "law.pdf"
         original.write_bytes(b"synthetic original bytes")
         self.original_hash = hashlib.sha256(original.read_bytes()).hexdigest()
-        extracted = self.root / "originals" / "law.txt"
+        (self.root / "extracted").mkdir()
+        extracted = self.root / "extracted" / "law.txt"
         extracted.write_text("Article 1\\nArticle 2", encoding="utf-8")
         self.text_hash = hashlib.sha256(extracted.read_bytes()).hexdigest()
         self.source_id = "SRC-1"
@@ -39,7 +40,7 @@ class LegalReleaseReadinessTests(unittest.TestCase):
             "version": {
                 "source_url": "https://laws.example.gov/law.pdf", "original_path": "originals/law.pdf",
                 "original_sha256": self.original_hash, "retrieved_at": "2025-01-02",
-                "extracted_text_path": "originals/law.txt", "text_sha256": self.text_hash,
+                "extracted_text_path": "extracted/law.txt", "text_sha256": self.text_hash,
                 "text_review_status": "text_checked", "text_review_evidence_url": "https://laws.example.gov/text-review",
                 "article_identifiers": ["Article 1", "Article 2"],
                 "expected_article_identifiers": ["Article 1", "Article 2"],
@@ -168,6 +169,35 @@ class LegalReleaseReadinessTests(unittest.TestCase):
             result = MODULE.audit_candidate(candidate, self.register, self.root)
             with self.subTest(use=use):
                 self.assertIn("document_scope_uses_incomplete", {item["code"] for item in result["blockers"]})
+
+    def test_original_and_extracted_paths_must_use_designated_relative_directories(self):
+        cases = [
+            ("original_path", str(self.root / "originals" / "law.pdf"), "original_path_invalid"),
+            ("original_path", "originals/../originals/law.pdf", "original_path_invalid"),
+            ("extracted_text_path", "originals/law.txt", "extracted_text_path_invalid"),
+            ("extracted_text_path", "../extracted/law.txt", "extracted_text_path_invalid"),
+        ]
+        for field, value, expected_code in cases:
+            candidate = json.loads(json.dumps(self.candidate))
+            candidate["version"][field] = value
+            result = MODULE.audit_candidate(candidate, self.register, self.root)
+            with self.subTest(field=field, value=value):
+                self.assertIn(expected_code, {item["code"] for item in result["blockers"]})
+
+    def test_release_gate_rejects_symlinked_original_and_extracted_text(self):
+        original_link = self.root / "originals" / "linked.pdf"
+        original_link.symlink_to(self.root / "originals" / "law.pdf")
+        candidate = json.loads(json.dumps(self.candidate))
+        candidate["version"]["original_path"] = "originals/linked.pdf"
+        result = MODULE.audit_candidate(candidate, self.register, self.root)
+        self.assertIn("original_path_symlinked", {item["code"] for item in result["blockers"]})
+
+        extracted_link = self.root / "extracted" / "linked.txt"
+        extracted_link.symlink_to(self.root / "extracted" / "law.txt")
+        candidate = json.loads(json.dumps(self.candidate))
+        candidate["version"]["extracted_text_path"] = "extracted/linked.txt"
+        result = MODULE.audit_candidate(candidate, self.register, self.root)
+        self.assertIn("extracted_text_path_symlinked", {item["code"] for item in result["blockers"]})
 
     def test_unmatched_central_source_fails_closed(self):
         self.register["sources"][0]["source_page"] = "https://other.example.gov"

@@ -75,6 +75,33 @@ def add(blockers: list[dict], code: str, detail: str) -> None:
     blockers.append({"code": code, "detail": detail})
 
 
+def resolve_corpus_artifact(root: Path, value: object, expected_directory: str) -> tuple[Path | None, str | None]:
+    """Resolve a corpus artifact only from its expected relative directory, without symlinks."""
+    if not isinstance(value, str) or not value or value.strip() != value or "\\" in value:
+        return None, "invalid"
+    relative = Path(value)
+    if (
+        relative.is_absolute()
+        or not relative.parts
+        or relative.parts[0] != expected_directory
+        or ".." in relative.parts
+        or relative.as_posix() != value
+    ):
+        return None, "invalid"
+    root_resolved = root.resolve()
+    cursor = root
+    for part in relative.parts:
+        cursor = cursor / part
+        if cursor.is_symlink():
+            return None, "symlink"
+    resolved = cursor.resolve()
+    try:
+        resolved.relative_to(root_resolved)
+    except ValueError:
+        return None, "escapes"
+    return resolved, None
+
+
 def audit_candidate(candidate: object, permission_register: object, root: Path = ROOT) -> dict:
     blockers: list[dict] = []
     if not isinstance(candidate, dict):
@@ -208,15 +235,17 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
         add(blockers, "text_hash_invalid", "Extracted-text SHA-256 must be a 64-character hexadecimal digest.")
     extracted_text_content = None
     text_path = version.get("extracted_text_path")
-    if not isinstance(text_path, str) or not text_path.strip() or Path(text_path).is_absolute():
+    if not isinstance(text_path, str) or not text_path.strip():
         add(blockers, "extracted_text_file_missing", "A relative path to the extracted text file is required.")
     else:
-        extracted_path = (root / text_path).resolve()
-        try:
-            extracted_path.relative_to(root.resolve())
-        except ValueError:
+        extracted_path, path_error = resolve_corpus_artifact(root, text_path, "extracted")
+        if path_error == "invalid":
+            add(blockers, "extracted_text_path_invalid", "Extracted text path must be a normalized relative path inside extracted/.")
+        elif path_error == "symlink":
+            add(blockers, "extracted_text_path_symlinked", "Extracted text path must not traverse symbolic links.")
+        elif path_error == "escapes":
             add(blockers, "extracted_text_path_escapes_root", "Extracted text path must remain within the repository/corpus root.")
-        else:
+        elif extracted_path is not None:
             if not extracted_path.is_file():
                 add(blockers, "extracted_text_file_not_found", "Recorded extracted text file does not exist.")
             else:
@@ -259,17 +288,19 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
 
     original_path = version.get("original_path")
     original_hash = version.get("original_sha256")
-    if not isinstance(original_path, str) or not original_path.strip() or Path(original_path).is_absolute():
+    if not isinstance(original_path, str) or not original_path.strip():
         add(blockers, "original_file_missing", "A relative path to the original source file is required.")
     elif not isinstance(original_hash, str) or not re.fullmatch(r"[0-9a-fA-F]{64}", original_hash):
         add(blockers, "original_hash_invalid", "Original file SHA-256 must be a 64-character hexadecimal digest.")
     else:
-        candidate_path = (root / original_path).resolve()
-        try:
-            candidate_path.relative_to(root.resolve())
-        except ValueError:
+        candidate_path, path_error = resolve_corpus_artifact(root, original_path, "originals")
+        if path_error == "invalid":
+            add(blockers, "original_path_invalid", "Original path must be a normalized relative path inside originals/.")
+        elif path_error == "symlink":
+            add(blockers, "original_path_symlinked", "Original file path must not traverse symbolic links.")
+        elif path_error == "escapes":
             add(blockers, "original_path_escapes_root", "Original file path must remain within the repository/corpus root.")
-        else:
+        elif candidate_path is not None:
             if not candidate_path.is_file():
                 add(blockers, "original_file_not_found", "Recorded original file does not exist.")
             elif sha256_file(candidate_path).lower() != original_hash.lower():
