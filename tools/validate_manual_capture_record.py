@@ -17,7 +17,7 @@ from urllib.parse import urlsplit
 
 
 PERMISSION_STATES = {
-    "unknown", "permission_pending", "allowed", "allowed_limited", "prohibited",
+    "unknown", "permission_pending", "allowed", "allowed_limited", "not_allowed", "prohibited",
     "not_allowed_without_explicit_exception_or_license",
 }
 COMMERCIAL_STATES = {
