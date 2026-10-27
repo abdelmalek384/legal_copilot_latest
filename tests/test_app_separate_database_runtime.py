@@ -599,6 +599,9 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
 
         context = self.runtime.resolve_context(self.user_id, self.firm_a)
         firm_db = self.runtime.firm_connection(context)
+        # Keep a read snapshot open while another request writes its audit event.
+        # WAL must allow the download/audit write to complete without blocking.
+        firm_db.execute("BEGIN")
         metadata = firm_db.execute(
             "SELECT object_id,sha256,byte_size,state FROM original_file_objects WHERE document_id=? AND firm_id=?",
             (document_id, self.firm_a),
@@ -615,6 +618,8 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(downloaded.content, original)
         self.assertEqual(downloaded.headers["content-type"], "application/octet-stream")
         self.assertEqual(downloaded.headers["cache-control"], "no-store")
+        # End the older snapshot before checking the newly committed audit row.
+        firm_db.commit()
         self.assertTrue(firm_db.execute(
             "SELECT 1 FROM security_audit_events WHERE firm_id=? AND user_id=? AND event=?",
             (self.firm_a, self.user_id, f"original_document_download:{document_id}"),
