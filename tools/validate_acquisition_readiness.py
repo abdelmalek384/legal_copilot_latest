@@ -166,7 +166,7 @@ def audit(manifest: dict, register: dict) -> dict:
             if source.get("commercial_reuse_permission") not in COMMERCIAL_ALLOWED:
                 warnings.append("commercial_product_reuse_not_established")
             elif not _hostname(source.get("commercial_reuse_evidence_url")):
-                blockers.append("source_commercial_reuse_evidence_url_missing_or_invalid")
+                warnings.append("source_commercial_reuse_evidence_url_missing_or_invalid")
         else:
             warnings.append("source_permission_record_unavailable")
 
@@ -191,6 +191,7 @@ def audit(manifest: dict, register: dict) -> dict:
             and isinstance(source.get("commercial_reuse_evidence"), str)
             and bool(source["commercial_reuse_evidence"].strip())
             and _valid_date(source.get("commercial_terms_checked_on"))
+            and _hostname(source.get("commercial_reuse_evidence_url")) is not None
         )
         commercial_source_ready = (
             source is not None
@@ -202,6 +203,8 @@ def audit(manifest: dict, register: dict) -> dict:
             warnings.append("commercial_product_reuse_not_established")
         elif source is not None and not commercial_evidence_valid:
             warnings.append("commercial_permission_evidence_or_date_missing")
+            if not _hostname(source.get("commercial_reuse_evidence_url")):
+                warnings.append("source_commercial_reuse_evidence_url_missing_or_invalid")
         results.append({
             "document_id": document_id,
             "source_id": source_id,
