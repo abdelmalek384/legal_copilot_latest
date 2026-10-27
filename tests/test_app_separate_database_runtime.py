@@ -1377,6 +1377,8 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             "/login", json={"email": "OWNER@example.test", "password": self.password}
         )
         self.assertEqual(owner_login.status_code, 200, owner_login.text)
+        select_firm = self._mutate("post", "/session/firm", json={"firm_id": self.firm_a})
+        self.assertEqual(select_firm.status_code, 200, select_firm.text)
         case_response = self._mutate(
             "post", "/cases", json={"title": "NONMEMBER_CASE_TITLE_SENTINEL"}
         )
@@ -1390,6 +1392,10 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         due = (date.today() + timedelta(days=10)).isoformat()
         context = self.runtime.resolve_context(self.user_id, self.firm_a)
         tenant = self.runtime.firm_connection(context)
+        self.assertEqual(
+            tenant.execute("SELECT title FROM cases WHERE id=?", (case_id,)).fetchone()["title"],
+            "NONMEMBER_CASE_TITLE_SENTINEL",
+        )
         tenant.execute(
             "INSERT INTO tasks(case_id,title,assignee,due,status,created_by) VALUES(?,?,?,?,?,?)",
             (case_id, "NONMEMBER_ASSIGNED_TASK_SENTINEL", nonmember_id, due, "open", self.user_id),
