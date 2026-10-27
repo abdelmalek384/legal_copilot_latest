@@ -183,6 +183,8 @@ class DatabaseBackupBundleTests(unittest.TestCase):
         self.assertTrue(result["verified"])
         self.assertEqual(result["format_version"], 2)
         self.assertEqual(result["tenant_database_count"], 2)
+        self.assertEqual(result["original_object_count"], 0)
+        self.assertTrue(result["original_objects_verified"])
         self.assertFalse(result["plaintext_retained"])
         self.assertIn("not guaranteed secure erasure", result["warning"])
 
