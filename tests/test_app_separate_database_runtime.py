@@ -1490,5 +1490,78 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
                 self.assertEqual(response.headers.get("Expires"), "0")
 
 
+    def test_nonmember_cannot_infer_finance_deadline_or_hearing_data(self):
+        owner_login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(owner_login.status_code, 200, owner_login.text)
+        select_firm = self._mutate("post", "/session/firm", json={"firm_id": self.firm_a})
+        self.assertEqual(select_firm.status_code, 200, select_firm.text)
+        case_response = self._mutate(
+            "post", "/cases", json={"title": "NONMEMBER_FINANCIAL_CASE_SENTINEL"}
+        )
+        self.assertEqual(case_response.status_code, 200, case_response.text)
+        case_id = case_response.json()["id"]
+
+        nonmember_id = self.runtime.create_global_identity(
+            "Finance Nonmember", "finance-nonmember@example.test", app.hash_pw(self.password)
+        )
+        self.runtime.create_firm_membership(nonmember_id, self.firm_a, "lawyer")
+        due = (date.today() + timedelta(days=10)).isoformat()
+        context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        tenant = self.runtime.firm_connection(context)
+        self.assertEqual(
+            tenant.execute("SELECT title FROM cases WHERE id=?", (case_id,)).fetchone()["title"],
+            "NONMEMBER_FINANCIAL_CASE_SENTINEL",
+        )
+        tenant.execute(
+            "INSERT INTO fees(case_id,title,amount,paid,due,note,created_by) VALUES(?,?,?,?,?,?,?)",
+            (case_id, "NONMEMBER_FEE_SENTINEL", 9876.50, 0, due, "", self.user_id),
+        )
+        tenant.execute(
+            "INSERT INTO deadlines(case_id,title,due,note,created_by,status) VALUES(?,?,?,?,?,'open')",
+            (case_id, "NONMEMBER_DEADLINE_SENTINEL", due, "", self.user_id),
+        )
+        tenant.execute(
+            "INSERT INTO sessions(case_id,date,note,done) VALUES(?,?,?,0)",
+            (case_id, due, "NONMEMBER_HEARING_SENTINEL",),
+        )
+        tenant.commit()
+
+        nonmember_client = TestClient(app.app)
+        try:
+            login = nonmember_client.post(
+                "/login",
+                json={"email": "finance-nonmember@example.test", "password": self.password},
+            )
+            self.assertEqual(login.status_code, 200, login.text)
+
+            dashboard = nonmember_client.get("/dashboard")
+            self.assertEqual(dashboard.status_code, 200, dashboard.text)
+            for sentinel in (
+                "NONMEMBER_FINANCIAL_CASE_SENTINEL",
+                "NONMEMBER_DEADLINE_SENTINEL",
+                "NONMEMBER_HEARING_SENTINEL",
+            ):
+                self.assertNotIn(sentinel, dashboard.text)
+
+            calendar = nonmember_client.get("/calendar.ics")
+            self.assertEqual(calendar.status_code, 200, calendar.text)
+            for sentinel in (
+                "NONMEMBER_FINANCIAL_CASE_SENTINEL",
+                "NONMEMBER_DEADLINE_SENTINEL",
+                "NONMEMBER_HEARING_SENTINEL",
+            ):
+                self.assertNotIn(sentinel, calendar.text)
+
+            finance = nonmember_client.get("/finance/overview")
+            self.assertEqual(finance.status_code, 200, finance.text)
+            self.assertEqual(finance.json()["fee_count"], 0)
+            self.assertEqual(finance.json()["total_amount"], 0)
+            self.assertEqual(finance.json()["outstanding_amount"], 0)
+        finally:
+            nonmember_client.close()
+
+
 if __name__ == "__main__":
     unittest.main()
