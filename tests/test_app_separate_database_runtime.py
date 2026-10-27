@@ -444,6 +444,48 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             "related matter history must remain intact after failed deletion",
         )
 
+    def test_case_detail_hydrates_identity_names_from_control_plane_view(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate("post", "/cases", json={"title": "Identity Hydration Matter"})
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+
+        member_id = self.runtime.create_global_identity(
+            "Matter Associate", "matter-associate@example.test", app.hash_pw(self.password)
+        )
+        self.runtime.create_firm_membership(member_id, self.firm_a, "lawyer")
+        added = self._mutate(
+            "post", f"/cases/{case_id}/members", json={"user_id": member_id, "role": "associate"}
+        )
+        self.assertEqual(added.status_code, 200, added.text)
+        task = self._mutate(
+            "post", f"/cases/{case_id}/tasks", json={"title": "Assigned to associate", "assignee": member_id}
+        )
+        self.assertEqual(task.status_code, 200, task.text)
+        note = self._mutate(
+            "post", f"/cases/{case_id}/notes", json={"text": "Identity hydration note"}
+        )
+        self.assertEqual(note.status_code, 200, note.text)
+
+        detail = self.client.get(f"/cases/{case_id}")
+        self.assertEqual(detail.status_code, 200, detail.text)
+        body = detail.json()
+        self.assertTrue(any(
+            row["user_id"] == member_id and row["name"] == "Matter Associate"
+            for row in body["members"]
+        ))
+        self.assertTrue(any(
+            row["assignee"] == member_id and row["assignee_name"] == "Matter Associate"
+            for row in body["tasks"]
+        ))
+        self.assertTrue(any(
+            row["author"] == "First Owner" and row["text"] == "Identity hydration note"
+            for row in body["notes"]
+        ))
+
     def test_case_detail_update_and_delete_are_isolated_between_firms(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
