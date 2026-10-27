@@ -3,7 +3,7 @@
 These functions label recorded metadata; they never infer legal validity from model
 confidence or URL presence. Malformed metadata fails closed to review status.
 """
-from datetime import date
+from datetime import date, datetime, timedelta, timezone
 from collections.abc import Mapping
 from urllib.parse import urlsplit
 
@@ -35,6 +35,28 @@ def _valid_review_evidence_url(value):
         return False
 
 
+def _parse_reviewed_at(value):
+    """Parse a review timestamp conservatively; naive SQLite UTC timestamps remain supported."""
+    if not isinstance(value, str) or not value.strip():
+        return None
+    raw = value.strip()
+    if raw.endswith("Z"):
+        raw = raw[:-1] + "+00:00"
+    try:
+        parsed = datetime.fromisoformat(raw)
+    except ValueError:
+        return None
+    if parsed.tzinfo is None or parsed.utcoffset() is None:
+        # Existing SQLite datetime('now') values are naive UTC timestamps.
+        parsed = parsed.replace(tzinfo=timezone.utc)
+    else:
+        parsed = parsed.astimezone(timezone.utc)
+    # Permit small clock skew but never accept obviously future-dated review evidence.
+    if parsed > datetime.now(timezone.utc) + timedelta(minutes=5):
+        return None
+    return parsed
+
+
 def _has_current_review_evidence(provenance):
     records = provenance.get("review_evidence")
     if not isinstance(records, list):
@@ -47,17 +69,17 @@ def _has_current_review_evidence(provenance):
         if kind not in _REQUIRED_REVIEW_TYPES:
             continue
         event_id = record.get("review_event_id")
-        if isinstance(event_id, bool) or not isinstance(event_id, int):
+        if isinstance(event_id, bool) or not isinstance(event_id, int) or event_id <= 0:
             return False
-        reviewed_at = record.get("reviewed_at")
-        if not isinstance(reviewed_at, str) or not reviewed_at.strip():
+        reviewed_at = _parse_reviewed_at(record.get("reviewed_at"))
+        if reviewed_at is None:
             return False
         previous = latest.get(kind)
-        if previous is None or (reviewed_at, event_id) > (previous.get("reviewed_at", ""), previous.get("review_event_id", -1)):
-            latest[kind] = record
+        if previous is None or (reviewed_at, event_id) > (previous[0], previous[1]):
+            latest[kind] = (reviewed_at, event_id, record)
     if set(latest) != _REQUIRED_REVIEW_TYPES:
         return False
-    for record in latest.values():
+    for _, _, record in latest.values():
         if record.get("outcome") != "pass":
             return False
         if not isinstance(record.get("reviewer"), str) or not record["reviewer"].strip():
