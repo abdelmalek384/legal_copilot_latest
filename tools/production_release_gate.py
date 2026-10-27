@@ -7,6 +7,7 @@ import json
 import os
 import re
 import sys
+from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -182,15 +183,31 @@ def evaluate_release(
             invalid.append({"id": row.get("id"), "reason": str(exc)})
         else:
             qid = row.get("id")
+            as_of_date = _parse_iso_date(row.get("as_of_date"))
+            active_versions = {}
             for source_id in expected_sources:
-                if source_id not in source_index:
-                    unlinked_sources.append({"id": qid, "source_id": source_id})
+                versions = _active_source_versions(source_id, as_of_date, source_index)
+                if not versions:
+                    unlinked_sources.append({
+                        "id": qid, "source_id": source_id, "as_of_date": row.get("as_of_date"),
+                        "reason": "no_version_active_on_as_of_date",
+                    })
+                elif len(versions) > 1:
+                    unlinked_sources.append({
+                        "id": qid, "source_id": source_id, "as_of_date": row.get("as_of_date"),
+                        "reason": "overlapping_active_versions",
+                    })
+                else:
+                    active_versions[source_id] = versions[0]
             for source_id, pin_cite in expected_pins:
-                known_anchors = source_index.get(source_id)
+                version = active_versions.get(source_id)
+                if version is None:
+                    continue
                 normalized_pin = _normalize_pin_cite(pin_cite)
-                if known_anchors is not None and normalized_pin not in known_anchors:
+                if normalized_pin not in version["anchors"]:
                     unmatched_pin_cites.append({
                         "id": qid, "source_id": source_id, "pin_cite": pin_cite,
+                        "as_of_date": row.get("as_of_date"),
                     })
         area = row.get("practice_area")
         if isinstance(area, str) and area.strip():
