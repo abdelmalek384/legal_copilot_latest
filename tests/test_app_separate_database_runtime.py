@@ -456,7 +456,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         member_id = self.runtime.create_global_identity(
             "Matter Associate", "matter-associate@example.test", app.hash_pw(self.password)
         )
-        self.runtime.create_firm_membership(member_id, self.firm_a, "associate")
+        self.runtime.create_firm_membership(member_id, self.firm_a, "lawyer")
         added = self._mutate(
             "post", f"/cases/{case_id}/members", json={"user_id": member_id, "role": "associate"}
         )
