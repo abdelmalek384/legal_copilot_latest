@@ -235,7 +235,8 @@ def main(argv=None):
         rendered = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
         if output_path is not None:
             # Write to a sibling temporary file and replace only after the full report is flushed.
-            output_path.parent.mkdir(parents=False, exist_ok=True) if not output_path.parent.exists() else None
+            if not output_path.parent.is_dir():
+                raise OCREvaluationError("output directory must already exist")
             fd, temporary_name = tempfile.mkstemp(
                 prefix=f".{output_path.name}.", suffix=".tmp", dir=str(output_path.parent)
             )
