@@ -2377,8 +2377,14 @@ def add_existing_user_membership(b: ExistingMembershipIn, u: dict = Depends(user
 @app.get("/dashboard")
 def dashboard(u: dict = Depends(user)):
     c = conn()
-    t = c.execute("SELECT t.id,t.title,t.due,cs.title AS case_title FROM tasks t JOIN cases cs ON cs.id=t.case_id "
-                  "WHERE t.assignee=? AND t.status='open' AND cs.status='open' AND cs.firm_id=? ORDER BY t.due IS NULL, t.due", (u["id"], u["firm_id"]))
+    t = c.execute(
+        "SELECT t.id,t.title,t.due,cs.title AS case_title FROM tasks t "
+        "JOIN cases cs ON cs.id=t.case_id "
+        "WHERE t.assignee=? AND t.status='open' AND cs.status='open' AND cs.firm_id=? "
+        "AND (?='admin' OR t.case_id IN (SELECT case_id FROM members WHERE user_id=?)) "
+        "ORDER BY t.due IS NULL, t.due, t.id",
+        (u["id"], u["firm_id"], u["role"], u["id"]),
+    )
     d = c.execute("SELECT d.id,d.title,d.due,d.status,cs.title AS case_title FROM deadlines d JOIN cases cs ON cs.id=d.case_id "
                   "WHERE cs.firm_id=? AND cs.status='open' AND d.status='open' AND d.due<=date('now','+30 day') "
                   "AND (?='admin' OR d.case_id IN (SELECT case_id FROM members WHERE user_id=?)) ORDER BY d.due",
@@ -2426,8 +2432,9 @@ def export_calendar(u: dict = Depends(user)):
         "SELECT t.id,t.title,t.due,t.case_id,cs.title AS case_title FROM tasks t "
         "JOIN cases cs ON cs.id=t.case_id WHERE t.assignee=? AND t.status='open' "
         "AND cs.status='open' AND cs.firm_id=? AND t.due>=? AND t.due<=? "
+        "AND (?='admin' OR t.case_id IN (SELECT case_id FROM members WHERE user_id=?)) "
         "ORDER BY t.due,t.id LIMIT 500",
-        (u["id"], u["firm_id"], today, horizon),
+        (u["id"], u["firm_id"], today, horizon, u["role"], u["id"]),
     ).fetchall()
     for item in tasks:
         events.extend(_ics_event("task", item["id"], u["firm_id"], item["case_id"], item["due"],
@@ -2460,7 +2467,11 @@ def export_calendar(u: dict = Depends(user)):
     return Response(
         content="\r\n".join(lines) + "\r\n",
         media_type="text/calendar; charset=utf-8",
-        headers={"Content-Disposition": 'attachment; filename="legal-copilot-calendar.ics"'},
+        headers={
+            "Content-Disposition": 'attachment; filename="legal-copilot-calendar.ics"',
+            "Cache-Control": "no-store",
+            "Pragma": "no-cache",
+        },
     )
 
 
