@@ -5,6 +5,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from tools.run_legal_eval import RunnerError, read_questions, result_from_response, validate_base_url
+from tools.evaluate_retrieval_quality import score_evaluation
 
 
 class LegalEvalRunnerTests(unittest.TestCase):
@@ -30,6 +31,41 @@ class LegalEvalRunnerTests(unittest.TestCase):
         self.assertEqual(row["citation_marker_count"], 2)
         self.assertFalse(row["abstained"])
         self.assertEqual(row["invalid_citation_indices"], [2])
+
+    def test_runner_row_can_be_scored_without_manual_schema_conversion(self):
+        question = {
+            "id": "Q-SCORABLE",
+            "question_ar": "سؤال اختباري",
+            "practice_area": "civil_law",
+            "review_status": "lawyer_reviewed",
+            "reviewer_name": "Reviewer A",
+            "review_date": "2026-10-24",
+            "expected_source_ids": ["EG-LAW-10"],
+            "expected_pin_cites": [{"source_id": "EG-LAW-10", "pin_cite": "المادة 12"}],
+            "answerable": True,
+            "must_abstain_if_unverified": True,
+        }
+        row = result_from_response(
+            question,
+            {
+                "found": True,
+                "answer": "القاعدة القانونية [1].",
+                "abstained": False,
+                "scope": "verified_corpus",
+                "sources": [{
+                    "source_id": "EG-LAW-10",
+                    "article": "12",
+                    "source_status": "verified_operative_text",
+                }],
+            },
+        )
+
+        report = score_evaluation([question], [row])
+
+        self.assertEqual(report["reviewed_cases_scored"], 1)
+        self.assertEqual(report["citation_precision"], 1.0)
+        self.assertEqual(report["citation_coverage"], 1.0)
+        self.assertEqual(report["expected_pin_cite_recall"], 1.0)
 
     def test_records_invalid_citation_indices_without_inventing_sources(self):
         q = {"id": "Q2", "question_ar": "سؤال"}
