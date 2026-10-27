@@ -112,6 +112,17 @@
       "terms_url": null,
       "terms_checked_on": null,
       "permission_evidence": null
+    },
+    {
+      "source_id": "EG-MINISTRY-OF-JUSTICE",
+      "authority": "Ministry of Justice, Arab Republic of Egypt",
+      "source_page": "https://moj.gov.eg/",
+      "access_status": "official Gazette document endpoint located",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": null
     }
   ],
   "documents": [
@@ -179,7 +190,7 @@
       "source_id": "EG-AMIRI-PRESS",
       "language": "ar",
       "candidate_status": "discovery_only",
-      "notes": "Do not assume current applicability; check any replacement legislation and commencement date before use."
+      "notes": "Law 174/2025 contains a repeal clause for Law 150/1950, but Law 160/2026 amended its commencement provision to 1 October 2027. Do not label Law 150/1950 repealed before the replacement law's commencement; verify the official Gazette texts, any intervening amendments, and legal status with a qualified reviewer."
     },
     {
       "document_id": "EG-COMMERCIAL-17-1999",
@@ -1016,6 +1027,28 @@
       "language": "ar",
       "candidate_status": "discovery_only",
       "notes": "Candidate listed by the National Election Authority. Verify the official Gazette text, amendments, transitional provisions, and current applicability before use."
+    },
+    {
+      "document_id": "EG-CRIMINAL-PROCEDURE-174-2025",
+      "official_title": "قانون الإجراءات الجنائية — القانون رقم 174 لسنة 2025",
+      "document_type": "criminal_procedure_code",
+      "law_number": "174",
+      "law_year": 2025,
+      "source_id": "EG-MINISTRY-OF-JUSTICE",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official Ministry of Justice Gazette PDF located. The commencement clause was amended by Law 160/2026; official Amiri Press publication reports commencement on 1 October 2027. Keep this instrument unverified and not in force until the exact Gazette text, amendment, and effective-date chain are reviewed."
+    },
+    {
+      "document_id": "EG-CRIMINAL-PROCEDURE-COMMENCEMENT-AMENDMENT-160-2026",
+      "official_title": "قانون رقم 160 لسنة 2026 بتعديل بعض أحكام القانون رقم 174 لسنة 2025 بإصدار قانون الإجراءات الجنائية",
+      "document_type": "amending_law",
+      "law_number": "160",
+      "law_year": 2026,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official Amiri Press publication states this law amends the commencement wording in Law 174/2025. Verify the exact Gazette issue, publication date, amendment wording, and legal effect against the official Gazette before treating the commencement date as verified."
     }
   ]
 }
