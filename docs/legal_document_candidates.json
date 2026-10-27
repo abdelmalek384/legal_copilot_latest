@@ -57,6 +57,61 @@
       "terms_url": null,
       "terms_checked_on": null,
       "permission_evidence": null
+    },
+    {
+      "source_id": "EG-MINISTRY-LABOUR-LAWS",
+      "authority": "Ministry of Labour, Arab Republic of Egypt",
+      "source_page": "https://www.labour.gov.eg/en/laws-and-legislations/",
+      "access_status": "official legislation index located",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": null
+    },
+    {
+      "source_id": "EG-MIFT-LEGISLATION",
+      "authority": "Ministry of Investment and Foreign Trade, Arab Republic of Egypt",
+      "source_page": "https://www.mift.gov.eg/legislation/index",
+      "access_status": "official legislation portal located",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": null
+    },
+    {
+      "source_id": "EG-CAOA-LAWS",
+      "authority": "Central Agency for Organization and Administration, Arab Republic of Egypt",
+      "source_page": "https://www.caoa.gov.eg/WebForms/laws.aspx",
+      "access_status": "official laws and settled-principles index located",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": null
+    },
+    {
+      "source_id": "EG-NEA-LAWS",
+      "authority": "National Election Authority, Arab Republic of Egypt",
+      "source_page": "https://www.election.eg/digital-library-laws",
+      "access_status": "official digital law library located",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": null
+    },
+    {
+      "source_id": "EG-MPA-PARLIAMENT-REGULATIONS",
+      "authority": "Ministry of Parliamentary Affairs, Arab Republic of Egypt",
+      "source_page": "https://mpa.gov.eg/e/parliament/regulations",
+      "access_status": "official parliamentary-regulations index located",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": null
     }
   ],
   "documents": [
