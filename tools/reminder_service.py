@@ -15,6 +15,7 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Mapping
+from urllib.parse import urlsplit
 
 from database_runtime import DatabaseRuntime, DatabaseRuntimeError
 from tools.reminder_email import ReminderEmailError, SMTPConfig, send_reminder_email
@@ -179,6 +180,23 @@ def run_scheduler(
     app_url: str | None = None,
     max_send: int = 100,
 ) -> dict:
+    if send:
+        if smtp_config is None:
+            raise ReminderEmailError("SMTP configuration is required when delivery is enabled")
+        if not isinstance(app_url, str):
+            raise ReminderEmailError("COPILOT_PUBLIC_ORIGIN must be a clean HTTPS URL")
+        try:
+            parsed_url = urlsplit(app_url)
+            valid_url = (
+                parsed_url.scheme == "https" and bool(parsed_url.netloc)
+                and not parsed_url.username and not parsed_url.password
+                and parsed_url.path in {"", "/"} and not parsed_url.query and not parsed_url.fragment
+            )
+        except ValueError:
+            valid_url = False
+        if not valid_url:
+            raise ReminderEmailError("COPILOT_PUBLIC_ORIGIN must be an HTTPS origin without credentials, path, query, or fragment")
+
     control = runtime.control_connection()
     summary = {
         "mode": "send" if send else "dry_run",
