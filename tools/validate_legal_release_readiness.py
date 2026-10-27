@@ -190,6 +190,7 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
     text_hash = version.get("text_sha256")
     if not isinstance(text_hash, str) or not re.fullmatch(r"[0-9a-fA-F]{64}", text_hash):
         add(blockers, "text_hash_invalid", "Extracted-text SHA-256 must be a 64-character hexadecimal digest.")
+    extracted_text_content = None
     text_path = version.get("extracted_text_path")
     if not isinstance(text_path, str) or not text_path.strip() or Path(text_path).is_absolute():
         add(blockers, "extracted_text_file_missing", "A relative path to the extracted text file is required.")
@@ -202,8 +203,16 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
         else:
             if not extracted_path.is_file():
                 add(blockers, "extracted_text_file_not_found", "Recorded extracted text file does not exist.")
-            elif isinstance(text_hash, str) and re.fullmatch(r"[0-9a-fA-F]{64}", text_hash) and sha256_file(extracted_path).lower() != text_hash.lower():
-                add(blockers, "text_hash_mismatch", "Recorded text SHA-256 does not match extracted text bytes.")
+            else:
+                if isinstance(text_hash, str) and re.fullmatch(r"[0-9a-fA-F]{64}", text_hash) and sha256_file(extracted_path).lower() != text_hash.lower():
+                    add(blockers, "text_hash_mismatch", "Recorded text SHA-256 does not match extracted text bytes.")
+                try:
+                    extracted_text_content = extracted_path.read_text(encoding="utf-8")
+                except UnicodeDecodeError:
+                    add(blockers, "extracted_text_encoding_invalid", "Extracted text must be valid UTF-8.")
+                else:
+                    if not extracted_text_content.strip():
+                        add(blockers, "extracted_text_empty", "Extracted text file is empty.")
 
     actual_articles = normalized_identifiers(version.get("article_identifiers"))
     expected_articles = normalized_identifiers(version.get("expected_article_identifiers"))
@@ -226,6 +235,11 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
         if unexpected_articles:
             add(blockers, "article_identifiers_unexpected",
                 "Extracted text has identifiers absent from the reviewed expected list: " + ", ".join(unexpected_articles[:20]))
+    if extracted_text_content is not None and actual_articles is not None:
+        absent_anchors = [identifier for identifier in actual_articles if identifier not in extracted_text_content]
+        if absent_anchors:
+            add(blockers, "article_identifiers_not_in_text",
+                "Recorded article/decision anchors are absent from extracted text: " + ", ".join(absent_anchors[:20]))
 
     original_path = version.get("original_path")
     original_hash = version.get("original_sha256")
