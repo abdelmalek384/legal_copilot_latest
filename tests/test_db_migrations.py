@@ -346,7 +346,7 @@ class DatabaseMigrationTests(unittest.TestCase):
         self.assertEqual(source_columns, {
             "source_id", "authority", "source_page", "access_status",
             "collection_permission", "commercial_reuse_permission", "terms_url",
-            "terms_checked_on", "permission_evidence", "created_at",
+            "terms_checked_on", "permission_evidence", "created_at", "source_class",
         })
         fts_sql = self.db.execute(
             "SELECT sql FROM sqlite_master WHERE type='table' AND name='chunks_fts'"
