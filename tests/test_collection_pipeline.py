@@ -105,6 +105,69 @@ class CollectionPipelineTests(unittest.TestCase):
                 self.assertEqual(repeated["original_path"], result["original_path"])
                 self.assertEqual(created.read_bytes(), payload)
 
+    def test_extraction_artifacts_are_content_addressed_and_prior_versions_are_preserved(self):
+        with tempfile.TemporaryDirectory() as td:
+            out = Path(td)
+            original_dir = out / "originals" / "TEST-LAW"
+            original_dir.mkdir(parents=True)
+            versions = []
+            for index, raw in enumerate((b"Article 1\nOriginal text version one.", b"Article 1\nOriginal text version two.")):
+                original = original_dir / ("original.txt" if index == 0 else f"original-version-{index}.txt")
+                original.write_bytes(raw)
+                metadata = {
+                    "document_id": "TEST-LAW",
+                    "source_id": "TEST-SOURCE",
+                    "original_path": str(original.relative_to(out)),
+                    "http_content_type": "text/plain",
+                    "sha256": collector.sha256_bytes(raw),
+                }
+                result = collector.process_document(out, metadata)
+                versions.append(result)
+            self.assertNotEqual(versions[0]["extracted_text_path"], versions[1]["extracted_text_path"])
+            self.assertNotEqual(versions[0]["audit_path"], versions[1]["audit_path"])
+            for version in versions:
+                self.assertTrue((out / version["extracted_text_path"]).is_file())
+                self.assertTrue((out / version["audit_path"]).is_file())
+                self.assertEqual(version["review_status"], "pending_human_review")
+                self.assertFalse(version["legal_authenticity_verified"])
+
+    def test_process_existing_rejects_traversal_and_original_hash_mismatch(self):
+        with tempfile.TemporaryDirectory() as td:
+            out = Path(td)
+            original_dir = out / "originals" / "TEST-LAW"
+            original_dir.mkdir(parents=True)
+            original = original_dir / "original.txt"
+            original.write_text("safe text", encoding="utf-8")
+            base = {
+                "document_id": "TEST-LAW",
+                "source_id": "TEST-SOURCE",
+                "original_path": "originals/TEST-LAW/original.txt",
+                "http_content_type": "text/plain",
+                "sha256": collector.sha256_bytes(b"safe text"),
+            }
+            with self.assertRaisesRegex(ValueError, "stay inside"):
+                collector.process_document(out, {**base, "original_path": "../../outside.txt"})
+            with self.assertRaisesRegex(ValueError, "does not match metadata"):
+                collector.process_document(out, {**base, "sha256": "0" * 64})
+
+    def test_process_existing_rejects_symlinked_original(self):
+        with tempfile.TemporaryDirectory() as td:
+            out = Path(td)
+            original_dir = out / "originals" / "TEST-LAW"
+            original_dir.mkdir(parents=True)
+            outside = out / "outside.txt"
+            outside.write_text("external text", encoding="utf-8")
+            (original_dir / "original.txt").symlink_to(outside)
+            metadata = {
+                "document_id": "TEST-LAW",
+                "source_id": "TEST-SOURCE",
+                "original_path": "originals/TEST-LAW/original.txt",
+                "http_content_type": "text/plain",
+                "sha256": collector.sha256_bytes(b"external text"),
+            }
+            with self.assertRaisesRegex(ValueError, "symbolic links"):
+                collector.process_document(out, metadata)
+
     def test_metadata_history_preserves_prior_retrievals_and_collision_records(self):
         first = {
             "document_id": "TEST-LAW",

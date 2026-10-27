@@ -78,10 +78,12 @@ python tools/collect_legal_documents.py --manifest docs/collection_manifest.exam
 ## Output
 - `originals/<document_id>/`: preserved original bytes.
 - `metadata/<document_id>.json`: provenance, hash, dates, permission evidence and review flags.
-- `extracted/<document_id>.txt`: searchable text, separate from original.
-- `audits/<document_id>.json`: article gap/duplicate and extraction diagnostics.
+- `extracted/<document_id>/<original-sha256>-<extracted-sha256>.txt`: immutable searchable text, separate from original.
+- `audits/<document_id>/<original-sha256>-<extracted-sha256>-<audit-sha256>.json`: immutable article-gap/duplicate and extraction diagnostics.
 - `review_queue.jsonl`: items awaiting human source/legal review.
 - `collection_report.jsonl`: per-document outcomes.
+
+Reprocessing a document does not overwrite earlier extracted text or audit records. Each artifact is content-addressed and records the source original hash. Before reading existing metadata, the processor validates the document ID, requires the original path to remain inside `originals/<document_id>/`, rejects symlinks, and checks the original bytes against the recorded SHA-256. Tampered or stale sidecars fail closed instead of being used to read arbitrary files.
 
 ## Next steps
 1. Populate document entries with confirmed lawful direct downloads, starting with foundational statutes and procedural laws.

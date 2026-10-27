@@ -523,32 +523,100 @@ def article_audit(text: str) -> dict:
     }
 
 
+def _validated_original_path(out: Path, metadata: dict) -> Path:
+    """Resolve only a regular original inside originals/<document_id>; never trust sidecar paths."""
+    doc_id = metadata.get("document_id")
+    if not isinstance(doc_id, str) or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]{0,127}", doc_id):
+        raise ValueError("metadata contains an unsafe document_id")
+    relative = metadata.get("original_path")
+    if not isinstance(relative, str):
+        raise ValueError("metadata original_path must be a relative path")
+    path = Path(relative)
+    if path.is_absolute() or len(path.parts) != 3 or path.parts[0] != "originals" or path.parts[1] != doc_id:
+        raise ValueError("metadata original_path must stay inside originals/<document_id>")
+    if not path.parts[2].startswith("original"):
+        raise ValueError("metadata original_path must name a preserved original")
+    content_type = metadata.get("http_content_type")
+    if content_type not in ALLOWED_TYPES:
+        raise ValueError("metadata contains an unsupported original content type")
+    if path.suffix.lower() != ALLOWED_TYPES[content_type]:
+        raise ValueError("metadata original_path extension does not match its content type")
+
+    originals_root = out / "originals"
+    document_dir = originals_root / doc_id
+    original = out / path
+    if originals_root.is_symlink() or document_dir.is_symlink() or original.is_symlink():
+        raise ValueError("original path must not traverse symbolic links")
+    if not original.is_file():
+        raise ValueError("metadata original_path does not identify a regular file")
+    expected_hash = metadata.get("sha256")
+    if not isinstance(expected_hash, str) or not re.fullmatch(r"[0-9a-f]{64}", expected_hash):
+        raise ValueError("metadata sha256 must be a lowercase SHA-256 digest")
+    if sha256_file(original) != expected_hash:
+        raise ValueError("preserved original SHA-256 does not match metadata")
+    return original
+
+
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def _write_immutable(path: Path, payload: bytes, root: Path, document_id: str) -> Path:
+    """Write content-addressed output without replacing existing artifacts or following symlinks."""
+    root.mkdir(parents=True, exist_ok=True)
+    if root.is_symlink():
+        raise ValueError(f"{root.name} output root must not be a symbolic link")
+    directory = root / document_id
+    if directory.is_symlink():
+        raise ValueError(f"{root.name} document directory must not be a symbolic link")
+    directory.mkdir(parents=True, exist_ok=True)
+    if path.parent != directory:
+        raise ValueError("immutable output path escaped its document directory")
+    if path.is_symlink():
+        raise ValueError("immutable output file must not be a symbolic link")
+    try:
+        with path.open("xb") as stream:
+            stream.write(payload)
+        return path
+    except FileExistsError:
+        if path.is_file() and path.read_bytes() == payload:
+            return path
+        raise ValueError(f"refusing to overwrite different immutable artifact: {path.name}")
+
+
 def process_document(out: Path, metadata: dict) -> dict:
-    original = out / metadata["original_path"]
-    text, error = extract_text(original, metadata["http_content_type"])
+    original = _validated_original_path(out, metadata)
     doc_id = metadata["document_id"]
-    extracted_dir = out / "extracted"
-    extracted_dir.mkdir(parents=True, exist_ok=True)
-    text_path = extracted_dir / f"{doc_id}.txt"
-    text_path.write_text(text, encoding="utf-8")
+    text, error = extract_text(original, metadata["http_content_type"])
+    text_bytes = text.encode("utf-8")
+    text_hash = sha256_bytes(text_bytes)
+    original_hash = metadata["sha256"]
+    text_path = out / "extracted" / doc_id / f"{original_hash}-{text_hash}.txt"
+    _write_immutable(text_path, text_bytes, out / "extracted", doc_id)
     audit = article_audit(text)
     audit_record = {
         "document_id": doc_id,
         "source_id": metadata["source_id"],
-        "original_sha256": metadata["sha256"],
+        "original_path": metadata["original_path"],
+        "original_sha256": original_hash,
         "extracted_text_path": str(text_path.relative_to(out)),
-        "extracted_text_sha256": sha256_bytes(text.encode("utf-8")),
+        "extracted_text_sha256": text_hash,
         "extraction_error": error,
         "audit": audit,
         "review_status": "pending_human_review",
         "legal_authenticity_verified": False,
         "current_legal_status_verified": False,
     }
-    audit_dir = out / "audits"
-    audit_dir.mkdir(parents=True, exist_ok=True)
-    (audit_dir / f"{doc_id}.json").write_text(json.dumps(audit_record, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    rendered_audit = (json.dumps(audit_record, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
+    audit_hash = sha256_bytes(rendered_audit)
+    audit_path = out / "audits" / doc_id / f"{original_hash}-{text_hash}-{audit_hash}.json"
+    _write_immutable(audit_path, rendered_audit, out / "audits", doc_id)
+    audit_record["audit_path"] = str(audit_path.relative_to(out))
     return audit_record
-
 
 def append_jsonl(path: Path, record: dict):
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -590,6 +658,9 @@ def main() -> int:
                     "document_id": doc_id,
                     "status": "downloaded_and_extracted" if not audit["extraction_error"] else "downloaded_extraction_needs_attention",
                     "sha256": metadata["sha256"],
+                    "extracted_text_sha256": audit["extracted_text_sha256"],
+                    "extracted_text_path": audit["extracted_text_path"],
+                    "audit_path": audit["audit_path"],
                     "article_headings_detected": audit["audit"]["article_headings_detected"],
                     "numeric_article_gaps": audit["audit"]["numeric_article_gaps"],
                     "warnings": audit["audit"]["warnings"],
@@ -600,6 +671,9 @@ def main() -> int:
                     "source_id": metadata["source_id"],
                     "source_url": metadata["source_url"],
                     "original_sha256": metadata["sha256"],
+                    "extracted_text_sha256": audit["extracted_text_sha256"],
+                    "extracted_text_path": audit["extracted_text_path"],
+                    "audit_path": audit["audit_path"],
                     "review_status": "pending_human_review",
                     "legal_authenticity_verified": False,
                     "current_legal_status_verified": False,
