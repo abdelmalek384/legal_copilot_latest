@@ -186,25 +186,55 @@ class LocalPrivateObjectStore:
         except OSError as exc:
             raise ObjectStorageError("object is unavailable") from exc
 
-    def verify(self, firm_id: int, object_id: str, *, expected_sha256: str, expected_size: int) -> bool:
-        """Verify finalized bytes against database metadata without changing them."""
+    def object_presence(self, firm_id: int, object_id: str) -> tuple[bool, bool]:
+        """Return (staged, finalized) presence after rejecting unsafe object paths."""
+        staged, final = self._paths(firm_id, object_id)
+        presence = []
+        for path in (staged, final):
+            if path.is_symlink():
+                raise ObjectStorageError("stored objects must not be symbolic links")
+            if path.exists() and not path.is_file():
+                raise ObjectStorageError("stored object is not a regular file")
+            presence.append(path.is_file())
+        return presence[0], presence[1]
+
+    @staticmethod
+    def _verify_path(path: Path, *, expected_sha256: str, expected_size: int) -> bool:
         if not isinstance(expected_sha256, str) or not re.fullmatch(r"[0-9a-f]{64}", expected_sha256):
             raise ValueError("expected_sha256 must be a lowercase SHA-256 digest")
         if isinstance(expected_size, bool) or not isinstance(expected_size, int) or expected_size < 0:
             raise ValueError("expected_size must be a non-negative integer")
         digest = hashlib.sha256()
         size = 0
+        flags = os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0)
         try:
-            with self.open(firm_id, object_id) as handle:
+            fd = os.open(path, flags)
+            metadata = os.fstat(fd)
+            if not stat.S_ISREG(metadata.st_mode):
+                os.close(fd)
+                return False
+            with os.fdopen(fd, "rb", closefd=True) as handle:
                 while True:
                     block = handle.read(1024 * 1024)
                     if not block:
                         break
                     size += len(block)
                     digest.update(block)
-        except ObjectStorageError:
+        except OSError:
             return False
         return size == expected_size and digest.hexdigest() == expected_sha256
+
+    def verify(self, firm_id: int, object_id: str, *, expected_sha256: str, expected_size: int) -> bool:
+        """Verify finalized bytes against database metadata without changing them."""
+        _, final = self._paths(firm_id, object_id)
+        return self._verify_path(final, expected_sha256=expected_sha256, expected_size=expected_size)
+
+    def verify_staged(
+        self, firm_id: int, object_id: str, *, expected_sha256: str, expected_size: int
+    ) -> bool:
+        """Verify staged bytes against database metadata without publishing them."""
+        staged, _ = self._paths(firm_id, object_id)
+        return self._verify_path(staged, expected_sha256=expected_sha256, expected_size=expected_size)
 
     def delete(self, firm_id: int, object_id: str) -> bool:
         """Delete a staged or finalized object; callers must enforce hold policy."""
