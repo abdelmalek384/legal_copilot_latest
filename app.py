@@ -1026,13 +1026,37 @@ def _legal_quantities(text):
 
 
 def _answer_has_unsupported_quantities(answer, hits, cited_indices):
-    """Fail closed when a duration, monetary amount, or percentage lacks support in cited passage text."""
-    claims = _legal_quantities(re.sub(r"\[\d+\]", " ", answer))
-    if not claims:
-        return False
-    evidence = " ".join(str(hits[index - 1].get("text") or "") for index in cited_indices)
-    supported = _legal_quantities(evidence)
-    return not claims.issubset(supported)
+    """Fail closed unless each numeric claim is supported by a citation on that sentence."""
+    if not isinstance(answer, str) or not isinstance(hits, (list, tuple)):
+        return True
+
+    for raw_line in answer.splitlines():
+        line = raw_line.strip()
+        if (not line or re.match(r"^#{1,6}\s+", line)
+                or re.fullmatch(r"[-*_]{3,}", line)
+                or re.fullmatch(r"\*\*[^*]{1,100}[:：]\*\*", line)):
+            continue
+        if line.endswith((":", "：")) and len(line) <= 100:
+            continue
+
+        sentences = re.split(r"(?<=[.!?؟])\s+", line)
+        for sentence in sentences:
+            sentence = re.sub(r"^(?:[-*+]\s+|\d+[.)]\s+|>\s*)", "", sentence).strip()
+            if not sentence:
+                continue
+            claims = _legal_quantities(re.sub(r"\[\d+\]", " ", sentence))
+            if not claims:
+                continue
+
+            # Numeric support must come from the citations attached to this claim,
+            # not from an unrelated source cited elsewhere in the answer.
+            sentence_cites = {int(value) for value in re.findall(r"\[(\d+)\]", sentence)}
+            if not sentence_cites or any(index < 1 or index > len(hits) for index in sentence_cites):
+                return True
+            evidence = " ".join(str(hits[index - 1].get("text") or "") for index in sentence_cites)
+            if not claims.issubset(_legal_quantities(evidence)):
+                return True
+    return False
 
 
 def _answer_has_uncited_claims(answer):
