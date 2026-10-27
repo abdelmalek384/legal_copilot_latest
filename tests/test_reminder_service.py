@@ -9,7 +9,7 @@ from database_runtime import DatabaseRuntime
 from tools.reminder_email import SMTPConfig
 from tools.reminder_outbox import enqueue_plan
 from tools.reminder_schedule import build_reminder_plan
-from tools.reminder_service import run_scheduler
+from tools.reminder_service import outbox_status, run_scheduler
 
 
 class ReminderServiceTests(unittest.TestCase):
@@ -59,6 +59,21 @@ class ReminderServiceTests(unittest.TestCase):
         self.assertEqual(
             self.tenant.execute("SELECT COUNT(*) FROM reminder_deliveries").fetchone()[0], 0
         )
+
+    def test_status_report_is_read_only_and_contains_only_counts(self):
+        plan = build_reminder_plan(
+            [{"kind": "task", "event_id": str(self.task_id), "due_date": "2026-10-27", "is_complete": False}],
+            str(self.user_id), self.now, "Africa/Cairo", str(self.firm_id),
+        )
+        enqueue_plan(self.tenant, plan, firm_id=self.firm_id, recipient_user_id=self.user_id)
+        before = self.tenant.execute("SELECT status,COUNT(*) FROM reminder_deliveries GROUP BY status").fetchall()
+        report = outbox_status(self.runtime)
+        after = self.tenant.execute("SELECT status,COUNT(*) FROM reminder_deliveries GROUP BY status").fetchall()
+        self.assertEqual(report["mode"], "status")
+        self.assertEqual(report["totals"]["queued"], 1)
+        self.assertEqual(before, after)
+        self.assertNotIn("reminder-user@example.test", str(report))
+        self.assertNotIn("Private matter title", str(report))
 
     def test_send_mode_queues_atomically_rechecks_authorization_and_records_acceptance(self):
         with patch(
