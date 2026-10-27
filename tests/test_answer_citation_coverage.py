@@ -1,5 +1,6 @@
 """Fail-closed checks for inline citation coverage in generated legal answers."""
 import unittest
+from unittest.mock import patch
 import app
 
 
@@ -53,6 +54,33 @@ class CitationCoverageTests(unittest.TestCase):
         self.assertTrue(app._answer_has_uncited_claims(
             "The deadline is 30 days.\n```text\n[1]"
         ))
+
+    def test_ask_rejects_answer_citing_only_a_code_block(self):
+        hit = {
+            "cos": 1.0, "score": 1, "ref": "LAW-1", "text": "A source passage.",
+            "verified": True, "in_force": True, "applies_as_of": True, "case_id": None,
+            "provenance": {},
+        }
+        with patch.object(app, "search", return_value=[hit]), patch.object(
+            app, "LLM", return_value="The deadline is 30 days.\n```text\n[1]\n```"
+        ):
+            result = app.ask(None, "What is the deadline?", scope="verified_corpus")
+        self.assertIsNone(result["answer"])
+        self.assertTrue(result["abstained"])
+        self.assertIn("استشهادات", result["message"])
+
+    def test_ask_accepts_prose_citation_but_ignores_invalid_code_citation(self):
+        hit = {
+            "cos": 1.0, "score": 1, "ref": "LAW-1", "text": "A source passage.",
+            "verified": True, "in_force": True, "applies_as_of": True, "case_id": None,
+            "provenance": {},
+        }
+        with patch.object(app, "search", return_value=[hit]), patch.object(
+            app, "LLM", return_value="The rule is stated in the source [1].\n```text\n[99]\n```"
+        ):
+            result = app.ask(None, "What is the rule?", scope="verified_corpus")
+        self.assertEqual(result["answer"], "The rule is stated in the source [1].\n```text\n[99]\n```")
+        self.assertFalse(result["abstained"])
 
     def test_numeric_claim_inside_code_is_not_treated_as_a_legal_claim(self):
         hits = [{"text": "This source does not mention any deadline."}]
