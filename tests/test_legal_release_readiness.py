@@ -28,7 +28,7 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         self.text_hash = hashlib.sha256(extracted.read_bytes()).hexdigest()
         self.source_id = "SRC-1"
         self.candidate = {
-            "document": {"document_id": "LAW-1", "source_id": self.source_id, "official_title": "Test law", "document_type": "statute",
+            "document": {"document_id": "LAW-1", "source_id": self.source_id, "official_title": "Test law", "document_type": "statute",\n                         "release_priority": "P0", "practice_areas": ["Labour and social insurance"],
                          "permission_scope_review": {
                              "status": "passed", "evidence": "AUTH-1 clauses 1-4", "reviewed_on": "2025-01-01",
                              "approved_uses": ["collection", "storage", "text_extraction", "indexing", "commercial_product_use", "excerpt_display"],
@@ -124,6 +124,7 @@ class LegalReleaseReadinessTests(unittest.TestCase):
             [candidate_path], register_path, self.root, coverage_matrix_path=coverage_path
         )
         self.assertEqual(report["source_authority_counts"], {"Synthetic official authority": 1})
+        self.assertEqual(report["release_priority_counts"], {"P0": 1})
         self.assertEqual(report["collection_permission_counts"], {"allowed": 1})
         self.assertEqual(report["commercial_reuse_permission_counts"], {"allowed": 1})
         self.assertEqual(report["coverage_semantics"]["candidate_inventory_count"], 1)
