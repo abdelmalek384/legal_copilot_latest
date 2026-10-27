@@ -289,7 +289,7 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5)):
 def _write_report(path, rendered):
     """Create a new report without ever overwriting prior evaluation evidence."""
     target = Path(path)
-    with target.open("x", encoding="utf-8", newline="\\n") as handle:
+    with target.open("x", encoding="utf-8", newline="\n") as handle:
         handle.write(rendered)
 
 
@@ -300,7 +300,7 @@ def main():
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
     result = score_evaluation(_load_jsonl(args.questions), _load_jsonl(args.runs))
-    rendered = json.dumps(result, ensure_ascii=False, indent=2) + "\\n"
+    rendered = json.dumps(result, ensure_ascii=False, indent=2) + "\n"
     if args.output:
         try:
             _write_report(args.output, rendered)
