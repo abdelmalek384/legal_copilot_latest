@@ -1,6 +1,7 @@
 """Legal copilot MVP: case workspace + hybrid law search + citation-checked answers.
 Run: pip install -r requirements.txt && uvicorn app:app --reload"""
 import sqlite3, re, json, os, io, csv, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request, zipfile, ipaddress
+from cryptography.fernet import Fernet
 from contextvars import ContextVar
 from collections import Counter
 from datetime import date, timedelta
@@ -847,7 +848,6 @@ def search(c, q, case_id=None, k=5, firm_id=1, as_of=None, scope="all_permitted"
 def _safe_llm_endpoint(value):
     """Require HTTPS for remote model endpoints; allow plain HTTP only on loopback."""
     from urllib.parse import urlsplit
-from cryptography.fernet import Fernet
     if not isinstance(value, str) or not value.strip():
         return False
     try:
