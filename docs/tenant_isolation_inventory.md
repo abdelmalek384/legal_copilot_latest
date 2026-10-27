@@ -49,6 +49,8 @@ Routes are grouped by the data boundary they should preserve. "Tested" means the
 
 ## Additional route-level coverage
 
+A separate CI regression gate (PR #657, merged 2026-10-27) requires every registered non-public FastAPI route to include the shared `app.user` dependency. Only `GET /` and `POST /login` are explicitly public. This catches routes that omit the normal authenticated identity/firm-context dependency; it does **not** prove that each authenticated handler performs the correct role, case-membership, ownership, or query-level checks.
+
 The route coverage regression test compares every `@app` HTTP route in `app.py` with this inventory. Each route must be represented explicitly so new routes cannot silently bypass the review record. This is an inventory completeness check, not proof that every authorization branch has been tested.
 
 | Route(s) | Boundary / expected authorization | Current coverage and remaining concern |
