@@ -1410,6 +1410,8 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
 
             calendar = nonmember_client.get("/calendar.ics")
             self.assertEqual(calendar.status_code, 200, calendar.text)
+            self.assertEqual(calendar.headers.get("Cache-Control"), "no-store")
+            self.assertEqual(calendar.headers.get("Pragma"), "no-cache")
             self.assertNotIn("NONMEMBER_ASSIGNED_TASK_SENTINEL", calendar.text)
             self.assertNotIn("NONMEMBER_CASE_TITLE_SENTINEL", calendar.text)
         finally:
