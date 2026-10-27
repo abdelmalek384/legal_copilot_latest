@@ -2,7 +2,11 @@
 
 ## Status and boundary
 
-The planner in tools/reminder_schedule.py and SMTP adapter in tools/reminder_email.py are non-database components. They do not query SQLite, authorize users, persist sent records, or guarantee deduplication. The email adapter is disabled by default. Neither a planned reminder nor SMTP acceptance means the user received or read an email.
+The project now includes a tenant-local durable outbox (tools/reminder_outbox.py) and an operator-run scheduler (tools/reminder_service.py) in addition to the pure planner and SMTP adapter. Dry-run is the default and performs no outbox writes or email delivery. Sending requires the explicit --send flag and validated SMTP/public-origin configuration.
+
+The scheduler resolves each firm through the trusted control-plane catalog, plans only for active memberships, limits task/deadline reminders to the assigned/creating user (or authorized firm admin) with case access, and limits court-session reminders to explicit case members. It rechecks recipient membership, case access, event state, and due date immediately before sending. Each firm's outbox resides in that firm's database; unique idempotency keys and transactional claims suppress duplicate scheduler claims. Expired in-flight leases become ambiguous rather than being silently resent.
+
+SMTP acceptance is not proof of inbox delivery. A timeout may leave provider acceptance ambiguous; the scheduler records connection-failure outcomes as ambiguous and requires operator reconciliation rather than automatically retrying that outbox row. The SMTP adapter still performs bounded retries for transient errors within a single claimed delivery, so a provider timeout may still be ambiguous. Do not claim exactly-once email delivery.
 
 ## Normalized input
 
@@ -35,14 +39,27 @@ The input root must be an object with an events array and optional already_sent 
 
 The SMTP adapter in docs/reminder_email_delivery.md supports TLS-protected SMTP with a timeout, generic message content, disabled-by-default delivery, bounded retries for likely transient failures, and sanitized error codes. Status accepted_by_smtp means only that the SMTP server accepted the submission; it is not proof of inbox delivery. A timeout may leave acceptance ambiguous and retries may duplicate a message.
 
-## Integration requirements before real delivery
+## Operator-run scheduler
 
-1. The authenticated request/scheduler must prove recipient authorization and filter firm-scoped events before planning or sending.
-2. The database-focused workstream must provide an atomic idempotency claim and durable queued/sent/failed states before production scheduling. Do not add schema or migration changes in this non-database workstream.
-3. Connect the adapter only after the durable claim, then persist attempts, SMTP acceptance, timestamps, provider identifiers if available, and sanitized failures.
-4. Notification content should remain generic and link back to the authenticated application.
-5. Monitor failed delivery, retry exhaustion, scheduler lag, and stale unsent records; reconcile ambiguous timeouts before manual retries.
-6. Test two-firm isolation and concurrent scheduler runs against the actual persistence adapter before claiming deduplication is production-safe.
+Dry-run (no writes and no email):
+
+    python tools/reminder_service.py --timezone Africa/Cairo
+
+The command requires the three explicit database paths and inspects active firms through the trusted catalog. It prints only sanitized counts/warnings, not case titles or recipient email addresses.
+
+Explicitly send queued reminders after SMTP and public-origin configuration has been approved:
+
+    python tools/reminder_service.py --send --timezone Africa/Cairo --max-send 100
+
+Required SMTP variables are documented in docs/reminder_email_delivery.md. COPILOT_PUBLIC_ORIGIN must be an HTTPS origin without a path, query, fragment, or credentials. Use a restricted service account and external scheduler. The command processes up to --max-send queued reminders per firm. A failed row can be explicitly requeued by idempotency key with --send --retry-failed-key KEY; ambiguous rows are not automatically retried and must be reconciled first.
+
+## Remaining integration/release requirements
+
+1. Configure and validate the real SMTP provider in staging; no live email was sent by automated tests.
+2. Test two-firm isolation and concurrent scheduler runs against the persistence adapter before claiming deduplication is production-safe.
+3. Add monitoring for failed, ambiguous, expired-lease, and stale queued records; define operator reconciliation and escalation ownership.
+4. Schedule the command with a service manager/cron and alert on nonzero exit codes and missed runs.
+5. Keep messages generic and links routed back to the authenticated app. Never treat SMTP acceptance as inbox delivery or as legal advice.
 
 ## Operator checks
 
