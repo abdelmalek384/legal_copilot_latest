@@ -171,14 +171,22 @@ def audit(manifest: dict, register: dict) -> dict:
             blockers.append("document_level_collection_scope_review_missing")
 
         collection_ready = not blockers
-        product_use_ready = (
-            collection_ready
-            and scope_review_valid
-            and source is not None
-            and source.get("commercial_reuse_permission") in COMMERCIAL_ALLOWED
+        commercial_evidence_valid = (
+            source is not None
+            and isinstance(source.get("commercial_reuse_evidence"), str)
+            and bool(source["commercial_reuse_evidence"].strip())
+            and _valid_date(source.get("commercial_terms_checked_on"))
         )
-        if not product_use_ready and source is not None and source.get("commercial_reuse_permission") not in COMMERCIAL_ALLOWED:
+        commercial_source_ready = (
+            source is not None
+            and source.get("commercial_reuse_permission") in COMMERCIAL_ALLOWED
+            and commercial_evidence_valid
+        )
+        product_use_ready = collection_ready and scope_review_valid and commercial_source_ready
+        if source is not None and source.get("commercial_reuse_permission") not in COMMERCIAL_ALLOWED:
             warnings.append("commercial_product_reuse_not_established")
+        elif source is not None and not commercial_evidence_valid:
+            warnings.append("commercial_permission_evidence_or_date_missing")
         results.append({
             "document_id": document_id,
             "source_id": source_id,
