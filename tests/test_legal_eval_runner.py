@@ -34,6 +34,35 @@ class LegalEvalRunnerTests(unittest.TestCase):
         self.assertEqual(row["cited_sources"], [])
         self.assertTrue(row["abstained"] is False)
 
+    def test_citations_inside_fenced_inline_code_and_html_comments_are_ignored(self):
+        response = {
+            "answer": "No visible citation.\n\n\x60\x60\x60text\n[2]\n\x60\x60\x60\nInline \x60[3]\x60 <!-- [4] -->",
+            "sources": [
+                {"source_id": "LAW-1"},
+                {"source_id": "LAW-2"},
+                {"source_id": "LAW-3"},
+                {"source_id": "LAW-4"},
+            ],
+        }
+        row = result_from_response({"id": "Q-CODE", "question_ar": "سؤال"}, response)
+        self.assertEqual(row["cited_sources"], [])
+        self.assertEqual(row["invalid_citation_indices"], [])
+
+    def test_visible_prose_citations_count_but_unclosed_fence_does_not(self):
+        response = {
+            "answer": "Claim supported [1].\n~~~text\n[2]\n~~~\n\x60[3]\x60 <!-- [4] -->\n\x60\x60\x60python\n[5]",
+            "sources": [
+                {"source_id": "LAW-1"},
+                {"source_id": "LAW-2"},
+                {"source_id": "LAW-3"},
+                {"source_id": "LAW-4"},
+                {"source_id": "LAW-5"},
+            ],
+        }
+        row = result_from_response({"id": "Q-VISIBLE", "question_ar": "سؤال"}, response)
+        self.assertEqual(row["cited_sources"], ["LAW-1"])
+        self.assertEqual(row["invalid_citation_indices"], [])
+
     def test_no_answer_is_an_abstention(self):
         row = result_from_response({"id": "Q3", "question_ar": "سؤال"}, {"found": False, "answer": None})
         self.assertTrue(row["abstained"])
