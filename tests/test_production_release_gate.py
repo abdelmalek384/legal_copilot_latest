@@ -28,6 +28,8 @@ class ProductionReleaseGateTests(unittest.TestCase):
                 "practice_area": areas[i % len(areas)],
                 "review_status": "lawyer_approved",
                 "reviewer_name": "Qualified Egyptian counsel",
+                "reviewer_role": "qualified_egyptian_counsel",
+                "review_evidence_url": "https://example.gov/review-record",
                 "review_date": today,
                 "answerable": True,
                 "expected_answer": "Reviewed expected answer.",
