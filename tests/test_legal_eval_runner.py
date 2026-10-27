@@ -97,6 +97,15 @@ class LegalEvalRunnerTests(unittest.TestCase):
         self.assertEqual(row["citations"], [{"source_id": "LAW-UNVERIFIED"}])
         self.assertTrue(row["used_unverified_source"])
 
+    def test_missing_source_status_is_treated_as_unverified(self):
+        row = result_from_response(
+            {"id": "Q-STATUS-MISSING", "question_ar": "سؤال"},
+            {"answer": "قاعدة [1].", "sources": [{"source_id": "LAW-1"}]},
+        )
+        self.assertEqual(row["retrieved_source_ids"], ["LAW-1"])
+        self.assertEqual(row["citations"], [{"source_id": "LAW-1"}])
+        self.assertTrue(row["used_unverified_source"])
+
     def test_citations_inside_fenced_inline_code_and_html_comments_are_ignored(self):
         response = {
             "answer": "No visible citation.\n\n\x60\x60\x60text\n[2]\n\x60\x60\x60\nInline \x60[3]\x60 <!-- [4] -->",
