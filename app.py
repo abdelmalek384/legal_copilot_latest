@@ -3886,6 +3886,147 @@ def list_original_document_legal_hold_events(
     return {"document_id": document_id, "events": [dict(event) for event in events]}
 
 
+class OriginalFileDeletionRequestIn(BaseModel):
+    reason: str = Field(min_length=1, max_length=2000)
+
+
+@app.post("/cases/{cid}/docs/{document_id}/original/deletion-requests")
+@rollback_tenant_transaction_on_error
+def request_original_document_deletion(
+    cid: int, document_id: int, body: OriginalFileDeletionRequestIn, u: dict = Depends(user)
+):
+    """Request deletion; a different firm admin must approve before any purge can occur."""
+    if not _separate_runtime_enabled():
+        raise HTTPException(404, "original-file storage is available only in separate-database mode")
+    c = conn()
+    need(c, u, cid)
+    require_admin(u)
+    reason = body.reason.strip()
+    if not reason:
+        raise HTTPException(422, "a non-empty deletion reason is required")
+    row = c.execute(
+        "SELECT o.object_id,o.state,o.legal_hold,o.purged_at "
+        "FROM docs d JOIN original_file_objects o ON o.document_id=d.id "
+        "WHERE d.id=? AND d.case_id=? AND d.firm_id=? AND o.firm_id=?",
+        (document_id, cid, u["firm_id"], u["firm_id"]),
+    ).fetchone()
+    if row is None:
+        raise HTTPException(404, "original document not found")
+    if row["purged_at"] is not None:
+        raise HTTPException(409, "original document has already been purged")
+    if row["legal_hold"]:
+        raise HTTPException(409, "original document is under legal hold")
+    if row["state"] != "ready":
+        raise HTTPException(409, "only verified ready originals may be requested for deletion")
+    try:
+        cursor = c.execute(
+            "INSERT INTO original_file_deletion_requests("
+            "object_id,document_id,firm_id,requested_by_user_id,request_reason"
+            ") VALUES(?,?,?,?,?)",
+            (row["object_id"], document_id, u["firm_id"], u["id"], reason),
+        )
+        c.commit()
+    except sqlite3.IntegrityError as exc:
+        c.rollback()
+        raise HTTPException(409, "a deletion request already exists or the original is not eligible") from exc
+    return {"document_id": document_id, "request_id": int(cursor.lastrowid), "status": "requested"}
+
+
+@app.post("/cases/{cid}/docs/{document_id}/original/deletion-requests/{request_id}/approve")
+@rollback_tenant_transaction_on_error
+def approve_original_document_deletion(
+    cid: int, document_id: int, request_id: int,
+    body: OriginalFileDeletionRequestIn, u: dict = Depends(user)
+):
+    """Approve a deletion request with a distinct admin and a verified original."""
+    if not _separate_runtime_enabled():
+        raise HTTPException(404, "original-file storage is available only in separate-database mode")
+    c = conn()
+    need(c, u, cid)
+    require_admin(u)
+    reason = body.reason.strip()
+    if not reason:
+        raise HTTPException(422, "a non-empty approval reason is required")
+    row = c.execute(
+        "SELECT r.status,r.requested_by_user_id,r.object_id,"
+        "o.sha256,o.byte_size,o.legal_hold,o.state,o.purged_at "
+        "FROM docs d JOIN original_file_objects o ON o.document_id=d.id "
+        "JOIN original_file_deletion_requests r ON r.object_id=o.object_id "
+        "WHERE d.id=? AND d.case_id=? AND d.firm_id=? AND o.firm_id=? "
+        "AND r.id=? AND r.firm_id=?",
+        (document_id, cid, u["firm_id"], u["firm_id"], request_id, u["firm_id"]),
+    ).fetchone()
+    if row is None:
+        raise HTTPException(404, "deletion request not found")
+    if row["status"] != "requested":
+        raise HTTPException(409, "deletion request is not awaiting approval")
+    if int(row["requested_by_user_id"]) == int(u["id"]):
+        raise HTTPException(403, "a different firm admin must approve this request")
+    if row["legal_hold"] or row["purged_at"] is not None or row["state"] != "ready":
+        raise HTTPException(409, "original document is held or no longer eligible for deletion")
+    store = _original_file_store()
+    try:
+        staged_exists, final_exists = store.object_presence(u["firm_id"], row["object_id"])
+        verified = (
+            not staged_exists and final_exists
+            and store.verify(
+                u["firm_id"], row["object_id"],
+                expected_sha256=row["sha256"], expected_size=int(row["byte_size"]),
+            )
+        )
+    except (ObjectStorageError, ValueError) as exc:
+        raise HTTPException(503, "original document integrity could not be verified") from exc
+    if not verified:
+        raise HTTPException(503, "original document integrity could not be verified")
+    updated = c.execute(
+        "UPDATE original_file_deletion_requests SET status='approved',"
+        "approved_by_user_id=?,approved_at=datetime('now'),approval_reason=? "
+        "WHERE id=? AND firm_id=? AND status='requested'",
+        (u["id"], reason, request_id, u["firm_id"]),
+    )
+    if updated.rowcount != 1:
+        raise HTTPException(409, "deletion request changed; reload and retry")
+    c.commit()
+    return {"document_id": document_id, "request_id": request_id, "status": "approved"}
+
+
+@app.get("/cases/{cid}/docs/{document_id}/original/deletion-requests")
+def list_original_document_deletion_requests(
+    cid: int, document_id: int, u: dict = Depends(user)
+):
+    """Expose the firm-scoped deletion decision and immutable audit history to firm admins."""
+    if not _separate_runtime_enabled():
+        raise HTTPException(404, "original-file storage is available only in separate-database mode")
+    c = conn()
+    need(c, u, cid)
+    require_admin(u)
+    row = c.execute(
+        "SELECT o.object_id FROM docs d JOIN original_file_objects o ON o.document_id=d.id "
+        "WHERE d.id=? AND d.case_id=? AND d.firm_id=? AND o.firm_id=?",
+        (document_id, cid, u["firm_id"], u["firm_id"]),
+    ).fetchone()
+    if row is None:
+        raise HTTPException(404, "original document not found")
+    requests = c.execute(
+        "SELECT id,status,request_reason,requested_by_user_id,requested_at,"
+        "approved_by_user_id,approved_at,approval_reason,purge_started_by_user_id,"
+        "purge_started_at,completed_by_user_id,completed_at,cancelled_by_user_id,"
+        "cancelled_at,cancellation_reason "
+        "FROM original_file_deletion_requests WHERE object_id=? AND firm_id=? ORDER BY id DESC",
+        (row["object_id"], u["firm_id"]),
+    ).fetchall()
+    result = []
+    for request_row in requests:
+        item = dict(request_row)
+        item["events"] = [dict(event) for event in c.execute(
+            "SELECT action,reason,actor_user_id,occurred_at FROM original_file_deletion_events "
+            "WHERE request_id=? AND firm_id=? ORDER BY id",
+            (request_row["id"], u["firm_id"]),
+        ).fetchall()]
+        result.append(item)
+    return {"document_id": document_id, "requests": result}
+
+
 class ExtractionReviewIn(BaseModel):
     outcome: str = Field(pattern=r"^(accepted|corrected|needs_recheck)$")
     corrected_text: str | None = Field(default=None, max_length=20000)
