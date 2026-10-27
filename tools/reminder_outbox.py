@@ -7,10 +7,11 @@ Callers must supply a plan produced for an authorized user in the selected firm 
 from __future__ import annotations
 
 import hashlib
+import json
 import re
 import sqlite3
 from datetime import datetime, timedelta, timezone
-from typing import Mapping, Sequence
+from typing import Mapping
 
 
 class ReminderOutboxError(ValueError):
@@ -89,6 +90,15 @@ def enqueue_plan(
             raise ReminderOutboxError(f"reminder {index} has an invalid due date") from exc
         if not isinstance(window, str) or window not in _WINDOWS:
             raise ReminderOutboxError(f"reminder {index} has an unsupported window")
+        if item.get("scope_id") != str(firm_id) or item.get("recipient_id") != str(recipient_user_id):
+            raise ReminderOutboxError(f"reminder {index} scope or recipient does not match the trusted firm/user")
+        key_material = json.dumps(
+            ["case-reminder-v1", str(firm_id), str(recipient_user_id), kind,
+             event_id.strip(), due_date, window],
+            ensure_ascii=False, separators=(",", ":"),
+        ).encode("utf-8")
+        if key != hashlib.sha256(key_material).hexdigest():
+            raise ReminderOutboxError(f"reminder {index} idempotency key does not match its event identity")
         if key in seen:
             raise ReminderOutboxError("plan contains duplicate idempotency keys")
         seen.add(key)
