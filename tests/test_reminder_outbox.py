@@ -79,6 +79,14 @@ class ReminderOutboxTests(unittest.TestCase):
         self.assertEqual(attempt["status"], "accepted_by_smtp")
         self.assertEqual(attempt["smtp_attempts"], 1)
         self.assertEqual(attempt["provider_message_id"], "smtp-accepted-123")
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "append-only"):
+            self.db.execute(
+                "UPDATE reminder_delivery_attempts SET status='failed' WHERE id=?", (attempt["id"],)
+            )
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "append-only"):
+            self.db.execute("DELETE FROM reminder_delivery_attempts WHERE id=?", (attempt["id"],))
+        self.db.rollback()
+        self.assertEqual(self.db.execute("SELECT COUNT(*) FROM reminder_delivery_attempts").fetchone()[0], 1)
         self.assertIsNone(claim_next(self.db, now=self.now + timedelta(minutes=5)))
 
     def test_expired_sender_lease_becomes_ambiguous_never_automatically_requeued(self):
