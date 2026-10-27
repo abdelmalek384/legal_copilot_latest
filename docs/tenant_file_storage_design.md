@@ -1,6 +1,6 @@
 # Tenant-scoped original document storage — design proposal
 
-**Status:** Proposal only. Original upload binaries are currently not retained by the ingestion flow. Do not treat this document as an approved retention policy or as implemented storage.
+**Status:** Partially implemented in PR #671; not production-ready. The branch adds a local development adapter, firm-scoped metadata migration, upload retention and audited authorized downloads in separate-database mode. This is not a production object-store/KMS integration, and restore/retention acceptance gates remain open. Do not treat it as production-ready or as a complete retention policy.
 
 ## Goal and security boundary
 
@@ -17,7 +17,7 @@ The approved database architecture remains:
 
 ### Storage adapter and key namespace
 
-Introduce a storage adapter with a small interface: stage an object, finalize it, open it for an authorized read, delete/quarantine it, and verify its digest. The adapter receives a trusted firm context resolved by the application; it must not accept a tenant ID or storage path from request payloads.
+The initial adapter interface is implemented in `original_file_storage.py`: stage an object, finalize it, open it for an authorized read, delete it, and verify its digest. The local adapter is development-only and uses restrictive permissions, opaque IDs, symlink rejection, size limits, and non-overwriting finalization. The adapter receives a trusted firm context resolved by the application; it must not accept a tenant ID or storage path from request payloads.
 
 For local development, use a dedicated storage root separate from the database root. Derive each firm's namespace from the trusted catalog binding and an opaque generated object ID. For production, use a private encrypted volume or private object-storage bucket with server-side encryption/KMS, least-privilege service access, and no public object URLs. Keep original filenames as metadata only; never use them as path components.
 
@@ -25,7 +25,7 @@ Do not reuse `BACKUP_KEY` for document encryption. The production backend and ke
 
 ### Tenant database metadata
 
-Add a migration-managed per-firm blob metadata table (or equivalent schema) with fields such as:
+Migration `migrations/firm/0010_original_file_objects.sql` adds the per-firm `original_file_objects` table, firm-binding triggers, digest/size/state metadata, and a legal-hold deletion guard. Remaining schema work includes audited hold lifecycle transitions, uploader metadata, and retention/deletion lifecycle fields.
 
 - Opaque `blob_id` / object ID.
 - Storage backend and opaque storage key.
@@ -42,13 +42,13 @@ The stored digest must be computed from the original bytes, not from extracted t
 2. Enforce request size and allowed media-type limits before extraction. Treat the submitted filename as untrusted display metadata.
 3. Stream bytes to a temporary object inside the same firm's storage namespace; compute SHA-256 and byte size while writing.
 4. Validate the staged object and perform extraction against the staged original. Preserve page markers and extraction provenance separately from the binary.
-5. In one tenant-database transaction, write document metadata, blob metadata, chunks/FTS rows, and the required case event. Finalize/rename the object atomically where the backend supports it.
+5. The current separate-database upload path stages the original, writes document/blob metadata, chunks/FTS rows and the case event in a tenant transaction, finalizes the object, then marks metadata ready before commit. This narrows the failure window but cannot provide cross-system atomicity.
 6. If database persistence or object finalization fails, roll back the transaction and delete/quarantine staged/final objects as appropriate. Because a filesystem/object store cannot participate in SQLite's transaction, use an explicit staging state plus a reconciliation job/report for crash windows; never claim perfect cross-system atomicity.
-7. Make the object visible to download/review endpoints only after the metadata state is finalized. Require case authorization on every read and never return raw storage paths.
+7. The current download endpoint requires case authorization, serves only ready metadata, verifies size and SHA-256, audits before release, and sends no-store headers. Raw storage paths are not returned.
 
 ### Restore and backup integration
 
-- Include original objects in the coordinated encrypted recovery bundle or use a documented, versioned object-store snapshot tied to the database recovery point.
+- **Not yet implemented:** include original objects in the coordinated encrypted recovery bundle or use a documented, versioned object-store snapshot tied to the database recovery point.
 - Include object keys, digests, sizes, firm binding, and counts in the manifest; verify all objects against the manifest before accepting a restore.
 - Snapshot database and object storage under one coordinated quiescence window. A database-only backup is not a complete matter-document recovery point after originals are retained.
 - Add tests for cross-firm object lookup denial, tampered/missing objects, orphaned metadata, orphaned staged objects, interrupted upload/finalization, backup/restore checksum validation, and deletion/retention behavior.
@@ -65,12 +65,12 @@ The stored digest must be computed from the original bytes, not from extracted t
 
 These are product/security decisions, not safe to infer from the database architecture alone:
 
-1. **Retention:** how long originals and derived previews are retained; what happens on case closure, firm offboarding, user deletion, and legal hold; who can authorize permanent purge.
-2. **Production backend:** encrypted local volume versus private object storage, and the target deployment platform.
-3. **Key management:** provider KMS/managed encryption versus application-level envelope encryption; rotation and recovery requirements. Do not reuse the backup key.
-4. **Download behavior:** whether all case members can download originals, whether previews are allowed, and whether downloads require an additional audit event.
-5. **Limits and allowed formats:** maximum upload size, MIME/type allowlist, archive handling, malware scanning, and OCR/page-count limits.
-6. **Recovery objectives:** whether object storage must meet the same RPO/RTO as the database and what consistency guarantees the deployment can provide.
+1. **Retention:** the interim approved default is no automatic permanent deletion; explicit authorized deletion plus legal-hold override. Implemented hold metadata currently blocks metadata deletion but does not yet implement the complete audited hold/release/purge workflow or firm offboarding behavior.
+2. **Production backend:** private S3-compatible object storage is the approved direction, with the provider kept configurable. Only the local development adapter exists; production fails closed.
+3. **Key management:** managed KMS with firm-scoped access controls is the approved direction, but provider configuration, encryption policy, rotation and recovery integration remain unimplemented. Do not reuse the backup key.
+4. **Download behavior:** approved default is case-authorized, audited downloads with no public URLs. The initial endpoint implements this for ready originals; role-specific policy review remains.
+5. **Limits and allowed formats:** the current adapter/upload flow enforces a 15 MB cap; a comprehensive media-type allowlist, malware scanning and robust archive/page-count defenses remain open.
+6. **Recovery objectives:** originals must be recoverable consistently with firm DB metadata; coordinated backup/restore and measured RPO/RTO remain open.
 
 ## Acceptance gates
 
@@ -83,4 +83,4 @@ Do not enable original-binary retention for confidential matter data until:
 - Retention, deletion, legal-hold, and offboarding behavior is implemented and tested.
 - The witnessed staging recovery drill and independent security review are complete.
 
-This proposal narrows the design, but it does not implement storage, approve retention periods, or close the current production-readiness blocker.
+This is an initial end-to-end development implementation, not release completion. Do not enable it for confidential production matter data until the production object-store/KMS adapter, audited retention and legal-hold lifecycle, object/database reconciliation, coordinated encrypted backup/restore, failure/crash-window tests, witnessed recovery drill, and independent security review are complete.
