@@ -12,7 +12,7 @@ import json
 import os
 import sqlite3
 import sys
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Mapping
 from urllib.parse import urlsplit
@@ -326,6 +326,118 @@ def outbox_status(runtime: DatabaseRuntime) -> dict:
     return report
 
 
+
+def outbox_health(
+    runtime: DatabaseRuntime,
+    *,
+    now: datetime | None = None,
+    stale_queued_minutes: int = 60,
+) -> dict:
+    """Read-only health snapshot; never claims SMTP acceptance means inbox delivery."""
+    current = now or datetime.now(timezone.utc)
+    if not isinstance(current, datetime) or current.tzinfo is None or current.utcoffset() is None:
+        raise ReminderScheduleError("health-check timestamp must be timezone-aware")
+    if type(stale_queued_minutes) is not int or not 1 <= stale_queued_minutes <= 10080:
+        raise ReminderScheduleError("stale_queued_minutes must be between 1 and 10080")
+    current = current.astimezone(timezone.utc)
+    now_text = current.isoformat(timespec="seconds")
+    stale_before = (current - timedelta(minutes=stale_queued_minutes)).strftime("%Y-%m-%d %H:%M:%S")
+    control = runtime.control_connection()
+    firm_rows = control.execute(
+        "SELECT id FROM firms WHERE status='active' ORDER BY id"
+    ).fetchall()
+    report = {
+        "mode": "health_check",
+        "healthy": True,
+        "as_of": now_text,
+        "stale_queued_threshold_minutes": stale_queued_minutes,
+        "active_firms": len(firm_rows),
+        "firms_scanned": 0,
+        "firms": [],
+        "totals": {
+            "queued": 0, "sending": 0, "accepted_by_smtp": 0, "failed": 0, "ambiguous": 0,
+            "stale_queued": 0, "expired_sending_leases": 0, "sending_without_lease": 0,
+        },
+        "warnings": [],
+        "blocking_findings": [],
+        "limitations": [
+            "SMTP acceptance is not proof of inbox delivery.",
+            "Ambiguous deliveries require operator reconciliation and are never auto-retried.",
+            "This is a read-only queue-health check, not a provider inbox-delivery or application-availability check.",
+        ],
+    }
+    for row in firm_rows:
+        firm_id = int(row["id"])
+        try:
+            tenant = runtime._tenant_router.connection_for_firm(firm_id)
+            counts = {status: 0 for status in (
+                "queued", "sending", "accepted_by_smtp", "failed", "ambiguous"
+            )}
+            for item in tenant.execute(
+                "SELECT status,COUNT(*) AS total FROM reminder_deliveries GROUP BY status"
+            ).fetchall():
+                if item["status"] in counts:
+                    counts[item["status"]] = int(item["total"])
+            stale_queued = int(tenant.execute(
+                "SELECT COUNT(*) FROM reminder_deliveries WHERE status='queued' "
+                "AND julianday(created_at)<=julianday(?)",
+                (stale_before,),
+            ).fetchone()[0])
+            expired_leases = int(tenant.execute(
+                "SELECT COUNT(*) FROM reminder_deliveries WHERE status='sending' "
+                "AND lease_until IS NOT NULL AND julianday(lease_until)<=julianday(?)",
+                (now_text,),
+            ).fetchone()[0])
+            missing_leases = int(tenant.execute(
+                "SELECT COUNT(*) FROM reminder_deliveries WHERE status='sending' AND lease_until IS NULL"
+            ).fetchone()[0])
+        except ReminderOutboxError:
+            report["warnings"].append(f"firm_{firm_id}: reminder outbox schema unavailable")
+            report["healthy"] = False
+            continue
+        except sqlite3.Error:
+            report["warnings"].append(f"firm_{firm_id}: outbox health unavailable")
+            report["healthy"] = False
+            continue
+        except Exception:
+            report["warnings"].append(f"firm_{firm_id}: tenant database unavailable; skipped")
+            report["healthy"] = False
+            continue
+
+        firm_health = {
+            "firm_id": firm_id,
+            "counts": counts,
+            "stale_queued": stale_queued,
+            "expired_sending_leases": expired_leases,
+            "sending_without_lease": missing_leases,
+        }
+        report["firms_scanned"] += 1
+        report["firms"].append(firm_health)
+        for status, count in counts.items():
+            report["totals"][status] += count
+        report["totals"]["stale_queued"] += stale_queued
+        report["totals"]["expired_sending_leases"] += expired_leases
+        report["totals"]["sending_without_lease"] += missing_leases
+
+        for status in ("failed", "ambiguous"):
+            if counts[status]:
+                report["blocking_findings"].append({
+                    "firm_id": firm_id, "code": f"reminders_{status}", "count": counts[status],
+                })
+        for code, count in (
+            ("stale_queued_reminders", stale_queued),
+            ("expired_sending_leases", expired_leases),
+            ("sending_rows_without_lease", missing_leases),
+        ):
+            if count:
+                report["blocking_findings"].append({
+                    "firm_id": firm_id, "code": code, "count": count,
+                })
+    if report["blocking_findings"] or report["warnings"]:
+        report["healthy"] = False
+    return report
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     mode = parser.add_mutually_exclusive_group()
@@ -333,9 +445,13 @@ def main(argv: list[str] | None = None) -> int:
                       help="explicitly enable SMTP delivery; otherwise this is a read-only dry run")
     mode.add_argument("--status", action="store_true",
                       help="show read-only per-firm outbox counts without scheduling or delivery")
+    mode.add_argument("--health-check", action="store_true",
+                      help="read-only health check; exit 1 when failed/ambiguous or stale work needs attention")
     parser.add_argument("--timezone", default="Africa/Cairo", help="IANA timezone (default: Africa/Cairo)")
     parser.add_argument("--now", help="optional ISO timestamp with timezone offset")
     parser.add_argument("--lead-days", type=int, default=1)
+    parser.add_argument("--stale-queued-minutes", type=int, default=60,
+                        help="health-check threshold for queued rows older than this many minutes")
     parser.add_argument("--max-send", type=int, default=100, help="maximum queued messages to claim per firm")
     parser.add_argument("--retry-failed-key", help="explicitly requeue one failed idempotency key in each firm")
     parser.add_argument("--out", type=Path, help="write sanitized JSON summary to this path")
@@ -347,6 +463,8 @@ def main(argv: list[str] | None = None) -> int:
             raise ReminderOutboxError("--retry-failed-key requires --send")
         if type(args.lead_days) is not int or not 1 <= args.lead_days <= 30:
             raise ReminderScheduleError("--lead-days must be between 1 and 30")
+        if type(args.stale_queued_minutes) is not int or not 1 <= args.stale_queued_minutes <= 10080:
+            raise ReminderScheduleError("--stale-queued-minutes must be between 1 and 10080")
         if type(args.max_send) is not int or not 1 <= args.max_send <= 1000:
             raise ReminderOutboxError("--max-send must be between 1 and 1000")
         if args.send:
@@ -359,6 +477,21 @@ def main(argv: list[str] | None = None) -> int:
 
         runtime = DatabaseRuntime.from_env()
         runtime.initialize()
+        if args.health_check:
+            result = outbox_health(
+                runtime, now=now, stale_queued_minutes=args.stale_queued_minutes
+            )
+            output = json.dumps(result, ensure_ascii=False, sort_keys=True, indent=2)
+            if args.out:
+                destination = args.out.resolve()
+                tenant_root = runtime.paths.tenant_root.resolve()
+                protected_files = {runtime.paths.control_plane.resolve(), runtime.paths.legal_corpus.resolve()}
+                if destination in protected_files or destination == tenant_root or tenant_root in destination.parents:
+                    raise ReminderOutboxError("report output must not overwrite or reside inside database storage")
+                args.out.write_text(output + "\\n", encoding="utf-8")
+            else:
+                print(output)
+            return 0 if result["healthy"] else 1
         if args.status:
             result = outbox_status(runtime)
             output = json.dumps(result, ensure_ascii=False, sort_keys=True, indent=2)
