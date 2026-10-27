@@ -127,6 +127,41 @@ class DatabaseRuntimeTests(unittest.TestCase):
         finally:
             sidecar.unlink(missing_ok=True)
 
+    def test_firm_connection_attaches_control_and_corpus_read_only(self):
+        user_id = self._identity("readonly-attachment@example.test")
+        firm_id, _ = self.runtime.provision_firm("Read-only Attachments")
+        self.runtime.create_firm_membership(user_id, firm_id, "admin")
+        context = self.runtime.resolve_context(user_id, firm_id)
+        tenant = self.runtime.firm_connection(context)
+
+        control = self.runtime.control_connection()
+        corpus = self.runtime.legal_corpus_connection()
+        corpus.execute(
+            "INSERT INTO legal_sources(source_id,authority,source_page) VALUES(?,?,?)",
+            ("readonly-attachment-source", "Original Authority", "https://example.test/source"),
+        )
+        corpus.commit()
+
+        with self.assertRaisesRegex(sqlite3.OperationalError, "readonly database"):
+            tenant.execute("UPDATE control.users SET status='disabled' WHERE id=?", (user_id,))
+        with self.assertRaisesRegex(sqlite3.OperationalError, "readonly database"):
+            tenant.execute(
+                "UPDATE corpus.legal_sources SET authority='Tampered' WHERE source_id=?",
+                ("readonly-attachment-source",),
+            )
+
+        self.assertEqual(
+            control.execute("SELECT status FROM users WHERE id=?", (user_id,)).fetchone()["status"],
+            "active",
+        )
+        self.assertEqual(
+            corpus.execute(
+                "SELECT authority FROM legal_sources WHERE source_id=?",
+                ("readonly-attachment-source",),
+            ).fetchone()["authority"],
+            "Original Authority",
+        )
+
     def test_firm_connection_revalidates_attached_corpus_even_when_tenant_is_cached(self):
         if os.name != "posix":
             self.skipTest("POSIX mode bits are not portable to this platform")
