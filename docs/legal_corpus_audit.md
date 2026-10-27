@@ -21,4 +21,4 @@ The report includes the database file's SHA-256, but that hash identifies the da
 
 ## Evidence URL validation
 
-The read-only audit accepts only well-formed HTTPS URLs without whitespace, embedded credentials, malformed or empty ports, or out-of-range ports. This is a syntax check only: it does not fetch the page or prove the evidence is genuine, relevant, authoritative, or legally sufficient.
+The read-only audit accepts only well-formed HTTPS URLs without whitespace, embedded credentials, malformed or empty ports, or out-of-range ports. This is a syntax check only: it does not fetch the page or prove the evidence is genuine, relevant, authoritative, or legally sufficient. It also audits review-event integrity: reviewer identity, review type/outcome, timestamp validity and future dates, passing-event evidence URLs, and links to existing version records. A malformed event is reported, never repaired automatically.
