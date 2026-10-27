@@ -51,6 +51,7 @@ Both boolean fields are required explicitly; malformed source-ID lists, citation
 - **Citation coverage:** fraction of answerable reviewed cases that emit at least one citation to an expected source. This prevents a run with no citations from looking healthy simply because its remaining citations are all correct.
 - **Answerable abstention rate:** fraction of answerable reviewed cases where the system abstains; `answerable_response_rate` is its complement.
 - **Strict decision accuracy:** fraction of reviewed cases where an answerable case receives a non-abstaining answer without unverified sources, or an unanswerable case is abstained on without using unverified sources. This is a benchmark decision metric, not a legal-correctness guarantee.
+- **Source-status evidence:** when `source_summary` is supplied, cited source IDs must appear there and a non-verified status cannot be paired with `used_unverified_source: false`. For legacy run records with citations but no status summary, strict decision scoring fails closed and reports `source_status_evidence_missing_count`.
 - **Pin-cite accuracy (precision):** fraction of emitted citation records that match a reviewer-labelled source ID and exact pin-cite, scored only for questions with expected pin-cites.
 - **Expected pin-cite recall:** fraction of distinct reviewer-expected source-ID/pin-cite pairs that were emitted exactly. A missing citation counts against recall.
 - **Abstention compliance:** among reviewed unanswerable cases, fraction where the system abstained and did not use an unverified source.
