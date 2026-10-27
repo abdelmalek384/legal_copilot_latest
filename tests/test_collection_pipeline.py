@@ -12,6 +12,25 @@ import tools.collect_legal_documents as collector
 from tools.collect_legal_documents import article_audit, check_permission, download_document, load_manifest, validate_public_https_url
 
 
+def approved_scope_review(**overrides):
+    review = {
+        "reviewer_id": "test-reviewer-001",
+        "reviewed_on": "2026-10-26",
+        "evidence_reference": "TEST-TERMS-REVIEW-001",
+        "access_method": "direct_document_url",
+        "source_terms_reviewed": True,
+        "scope": {
+            "storage": True,
+            "text_extraction": True,
+            "indexing": True,
+            "commercial_product_use": True,
+            "excerpt_display": True,
+        },
+    }
+    review.update(overrides)
+    return review
+
+
 class CollectionPipelineTests(unittest.TestCase):
     def test_download_never_overwrites_existing_original_or_version_collision(self):
         class FakeResponse:
@@ -58,6 +77,7 @@ class CollectionPipelineTests(unittest.TestCase):
             "collection_permission": "allowed",
             "permission_evidence": "Reviewed source terms evidence",
             "terms_checked_on": "2026-10-26",
+            "permission_scope_review": approved_scope_review(),
         }
         with tempfile.TemporaryDirectory() as td:
             out = Path(td)
@@ -171,6 +191,8 @@ class CollectionPipelineTests(unittest.TestCase):
             "permission_evidence": "",
             "terms_checked_on": "2026-10-23",
             "allowed_hosts": ["example.gov"],
+            "direct_url": "https://example.gov/law.pdf",
+            "permission_scope_review": approved_scope_review(),
         }
         with self.assertRaises(ValueError):
             check_permission(doc)
@@ -182,9 +204,62 @@ class CollectionPipelineTests(unittest.TestCase):
             "terms_checked_on": "9999-12-31",
             "allowed_hosts": ["example.gov"],
             "direct_url": "https://example.gov/law.pdf",
+            "permission_scope_review": approved_scope_review(),
         }
         with self.assertRaisesRegex(ValueError, "cannot be in the future"):
             check_permission(doc)
+
+    def test_permission_scope_review_is_mandatory(self):
+        doc = {
+            "collection_permission": "allowed",
+            "permission_evidence": "Reviewed source terms evidence",
+            "terms_checked_on": "2026-10-26",
+            "allowed_hosts": ["example.gov"],
+            "direct_url": "https://example.gov/law.pdf",
+        }
+        with self.assertRaisesRegex(ValueError, "permission_scope_review"):
+            check_permission(doc)
+
+    def test_permission_scope_requires_each_intended_product_use(self):
+        for flag in ("storage", "text_extraction", "indexing", "commercial_product_use", "excerpt_display"):
+            scope = approved_scope_review()["scope"]
+            scope[flag] = False
+            doc = {
+                "collection_permission": "allowed",
+                "permission_evidence": "Reviewed source terms evidence",
+                "terms_checked_on": "2026-10-26",
+                "allowed_hosts": ["example.gov"],
+                "direct_url": "https://example.gov/law.pdf",
+                "permission_scope_review": approved_scope_review(scope=scope),
+            }
+            with self.subTest(flag=flag), self.assertRaisesRegex(ValueError, flag):
+                check_permission(doc)
+
+    def test_permission_scope_rejects_unreviewed_terms_and_unsupported_access_method(self):
+        for overrides, expected in (
+            ({"source_terms_reviewed": False}, "source_terms_reviewed"),
+            ({"access_method": "website_scraping"}, "access_method"),
+            ({"reviewer_id": ""}, "reviewer_id"),
+            ({"evidence_reference": ""}, "evidence_reference"),
+        ):
+            doc = {
+                "collection_permission": "allowed",
+                "permission_evidence": "Reviewed source terms evidence",
+                "terms_checked_on": "2026-10-26",
+                "allowed_hosts": ["example.gov"],
+                "direct_url": "https://example.gov/law.pdf",
+                "permission_scope_review": approved_scope_review(**overrides),
+            }
+            with self.subTest(expected=expected), self.assertRaisesRegex(ValueError, expected):
+                check_permission(doc)
+
+    def test_manifest_host_validation_rejects_credentials_in_direct_url(self):
+        doc = {
+            "allowed_hosts": ["example.gov"],
+            "direct_url": "https://user:secret@example.gov/law.pdf",
+        }
+        with self.assertRaisesRegex(ValueError, "credentials"):
+            collector.validate_manifest_hosts(doc)
 
     def test_rejects_http_and_unapproved_host(self):
         with self.assertRaises(ValueError):

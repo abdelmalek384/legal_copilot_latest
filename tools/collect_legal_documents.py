@@ -150,10 +150,69 @@ def validate_manifest_hosts(doc: dict) -> set[str]:
     parsed = urlparse(direct_url)
     if parsed.scheme != "https" or not parsed.hostname:
         raise ValueError("direct_url must be an absolute HTTPS URL")
+    if parsed.username is not None or parsed.password is not None:
+        raise ValueError("direct_url must not contain credentials")
     url_host = parsed.hostname.lower().rstrip(".")
     if not any(url_host == h or url_host.endswith("." + h) for h in normalized):
         raise ValueError("direct_url host must match an explicitly allowed host")
     return normalized
+
+
+PERMISSION_SCOPE_FLAGS = (
+    "storage",
+    "text_extraction",
+    "indexing",
+    "commercial_product_use",
+    "excerpt_display",
+)
+
+
+def validate_permission_scope_review(doc: dict) -> dict:
+    """Require explicit, use-specific review before any collection can run.
+
+    This checks recorded metadata only; it cannot prove the reviewer or evidence
+    is genuine. Production release still requires independent legal review.
+    """
+    review = doc.get("permission_scope_review")
+    if not isinstance(review, dict):
+        raise ValueError("permission_scope_review must document the approved collection scope")
+    reviewer = review.get("reviewer_id")
+    if not isinstance(reviewer, str) or not reviewer.strip():
+        raise ValueError("permission_scope_review.reviewer_id is required")
+    evidence_ref = review.get("evidence_reference")
+    if not isinstance(evidence_ref, str) or len(evidence_ref.strip()) < 3:
+        raise ValueError("permission_scope_review.evidence_reference must identify the reviewed evidence")
+    if review.get("access_method") != "direct_document_url":
+        raise ValueError("permission_scope_review.access_method must explicitly authorize direct_document_url retrieval")
+    if review.get("source_terms_reviewed") is not True:
+        raise ValueError("permission_scope_review.source_terms_reviewed must be true")
+    reviewed_on = parse_date(review.get("reviewed_on"), "permission_scope_review.reviewed_on")
+    today = dt.datetime.now(dt.timezone.utc).date()
+    if reviewed_on > today:
+        raise ValueError("permission_scope_review.reviewed_on cannot be in the future")
+    terms_checked_on = parse_date(doc.get("terms_checked_on"), "terms_checked_on")
+    if terms_checked_on > today:
+        raise ValueError("terms_checked_on cannot be in the future")
+    if reviewed_on < terms_checked_on:
+        raise ValueError("permission_scope_review.reviewed_on cannot precede terms_checked_on")
+    evidence_url = review.get("evidence_url")
+    if evidence_url is not None:
+        parsed_evidence = urlparse(evidence_url) if isinstance(evidence_url, str) else None
+        if (
+            parsed_evidence is None
+            or parsed_evidence.scheme != "https"
+            or not parsed_evidence.hostname
+            or parsed_evidence.username is not None
+            or parsed_evidence.password is not None
+        ):
+            raise ValueError("permission_scope_review.evidence_url must be HTTPS without credentials or null")
+    scope = review.get("scope")
+    if not isinstance(scope, dict):
+        raise ValueError("permission_scope_review.scope must be an object")
+    for flag in PERMISSION_SCOPE_FLAGS:
+        if scope.get(flag) is not True:
+            raise ValueError(f"permission_scope_review.scope.{flag} must be explicitly true")
+    return review
 
 
 def check_permission(doc: dict) -> set[str]:
@@ -162,9 +221,7 @@ def check_permission(doc: dict) -> set[str]:
     evidence = doc.get("permission_evidence")
     if not isinstance(evidence, str) or len(evidence.strip()) < 8:
         raise ValueError("permission_evidence must identify reviewed terms or written permission")
-    terms_checked_on = parse_date(doc.get("terms_checked_on"), "terms_checked_on")
-    if terms_checked_on > dt.datetime.now(dt.timezone.utc).date():
-        raise ValueError("terms_checked_on cannot be in the future")
+    validate_permission_scope_review(doc)
     return validate_manifest_hosts(doc)
 
 
@@ -384,6 +441,7 @@ def download_document(client: httpx.Client, doc: dict, out: Path, max_bytes: int
         "gazette_issue": doc.get("gazette_issue"),
         "permission_evidence": doc["permission_evidence"],
         "terms_checked_on": doc["terms_checked_on"],
+        "permission_scope_review": doc["permission_scope_review"],
         "collection_permission": "allowed",
         "legal_authenticity_verified": False,
         "current_legal_status_verified": False,
