@@ -2072,7 +2072,7 @@ def _login_separate(b: LoginIn, request: Request, response: Response):
         "firm_id": first_firm["firm_id"], "firms": memberships,
         "platform_roles": _platform_roles_for_user(account["id"]),
         "mfa_enabled": mfa_enabled, "mfa_required": mfa_required,
-        "mfa_verified": mfa_verified,
+        "mfa_verified": mfa_verified, "mfa_verified_at": now if mfa_verified else 0,
         "mfa_enrollment_required": mfa_required and not mfa_enabled,
         "mfa_verification_required": mfa_enabled and not mfa_verified,
     }
