@@ -87,13 +87,22 @@ def _validate_reviewed_question(row):
     practice_area = row.get("practice_area", "unspecified")
     if not _nonempty(practice_area):
         raise EvaluationError(f"{qid}: practice_area must be a non-empty string when supplied")
+    as_of_text = row.get("as_of_date")
+    if not isinstance(as_of_text, str) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", as_of_text):
+        raise EvaluationError(f"{qid}: as_of_date must be ISO YYYY-MM-DD")
+    try:
+        as_of_date = date.fromisoformat(as_of_text)
+    except ValueError:
+        raise EvaluationError(f"{qid}: as_of_date must be a real calendar date")
+    if as_of_date.isoformat() != as_of_text or as_of_date > date.today():
+        raise EvaluationError(f"{qid}: as_of_date must be a valid non-future date")
     if not _nonempty(row.get("reviewer_name")):
         raise EvaluationError(f"{qid}: reviewer_name is required")
     reviewer_role = row.get("reviewer_role")
     if not isinstance(reviewer_role, str) or reviewer_role not in {"egyptian_lawyer", "qualified_egyptian_counsel"}:
         raise EvaluationError(f"{qid}: reviewer_role must identify qualified Egyptian counsel")
     if not _valid_review_evidence_url(row.get("review_evidence_url")):
-        raise EvaluationError(f"{qid}: review_evidence_url must be a valid HTTPS URL without embedded credentials")
+        raise EvaluationError(f"{qid}: review_evidence_url must be HTTPS without credentials, query strings, or fragments")
     review_date = row.get("review_date")
     if not isinstance(review_date, str) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", review_date):
         raise EvaluationError(f"{qid}: review_date must be ISO YYYY-MM-DD")
