@@ -97,6 +97,28 @@ class ReminderEmailTests(unittest.TestCase):
             SMTPConfig("smtp.example.test", 587, "notices@example.test", "user", "password",
                        security=[]).validated()
 
+
+    def test_permanent_smtp_failure_is_not_retried_and_attempts_are_bounded(self):
+        calls = []
+        def sender(config, message):
+            calls.append(1)
+            raise smtplib.SMTPResponseException(550, b"private provider response")
+        result = send_reminder_email(
+            self.reminder, "user@example.test", "https://legal.example.test", self.config,
+            enabled=True, max_attempts=5, send_once=sender, sleep=self.sleeper,
+        )
+        self.assertEqual(result["status"], "failed")
+        self.assertEqual(result["error_code"], "smtp_permanent_failure")
+        self.assertEqual(result["attempts"], 1)
+        self.assertEqual(len(calls), 1)
+        self.assertNotIn("private provider response", str(result))
+        for attempts in (0, 6, True):
+            with self.subTest(attempts=attempts), self.assertRaises(ReminderEmailError):
+                send_reminder_email(
+                    self.reminder, "user@example.test", "https://legal.example.test", self.config,
+                    enabled=True, max_attempts=attempts, send_once=lambda *args: None,
+                )
+
     def test_invalid_date_and_unsupported_window_rejected(self):
         for reminder in (dict(self.reminder, due_date="2026-02-30"),
                          dict(self.reminder, window="immediate"),
