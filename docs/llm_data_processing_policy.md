@@ -38,7 +38,7 @@ This gate is a minimum safeguard, not a production-readiness certification. Shar
 
 ## Separate gate for matter-file content
 
-The separate firm-data gate applies both when the caller explicitly associates a research request with a case and when retrieval returns matter-file passages. This prevents a case-scoped question from being sent merely because retrieval happened to return only public-law passages. Without the flag, the application returns sources only.
+The separate firm-data gate applies when the caller explicitly associates a research request with a case, when prior user-question context is included in a follow-up, or when retrieval returns matter-file passages. Conversation history can itself contain confidential facts, even when the latest retrieval returns only public-law passages. Without the flag, the application returns sources only.
 
 The general model-processing switch does not automatically authorize sending client/matter file passages to an endpoint. The research path now checks whether any retrieved hit belongs to a case. If so, it requires `LLM_FIRM_DATA_PROCESSING_APPROVED=1` before calling the model. Without it, the answer is withheld and the sources-only result is returned. The switch is a deployment-level attestation, not per-client consent or automated redaction. Keep it unset unless the provider, data classes, client/firm permissions, retention, access, region, and contractual terms have been specifically reviewed. This does not make confidential case-file research production-safe; tenant isolation and an independent security review remain required.
 
