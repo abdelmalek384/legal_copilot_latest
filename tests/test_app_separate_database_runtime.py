@@ -16,11 +16,16 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.root = Path(self.temp.name)
-        self.env_names = ("COPILOT_CONTROL_DB", "COPILOT_TENANT_DB_ROOT", "COPILOT_CORPUS_DB", "ADMIN_TOKEN")
+        self.env_names = ("COPILOT_CONTROL_DB", "COPILOT_TENANT_DB_ROOT", "COPILOT_CORPUS_DB",
+                          "COPILOT_OBJECT_STORAGE_ROOT", "COPILOT_OBJECT_STORAGE_BACKEND",
+                          "COPILOT_ENV", "ADMIN_TOKEN")
         self.old_env = {name: os.environ.get(name) for name in self.env_names}
         os.environ["COPILOT_CONTROL_DB"] = str(self.root / "control.sqlite3")
         os.environ["COPILOT_TENANT_DB_ROOT"] = str(self.root / "tenants")
         os.environ["COPILOT_CORPUS_DB"] = str(self.root / "corpus.sqlite3")
+        os.environ["COPILOT_OBJECT_STORAGE_ROOT"] = str(self.root / "objects")
+        os.environ["COPILOT_OBJECT_STORAGE_BACKEND"] = "local"
+        os.environ["COPILOT_ENV"] = "development"
         self.admin_token = "test-only-shared-corpus-import-token-2026"
         os.environ["ADMIN_TOKEN"] = self.admin_token
         app._database_runtime = None
@@ -562,6 +567,92 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             db_a.execute("SELECT title FROM cases WHERE id=?", (case_id,)).fetchone()[0],
             "Firm A child-write boundary",
         )
+
+    def test_original_file_upload_download_integrity_and_cross_firm_denial(self):
+        import hashlib
+        import io
+        from docx import Document
+
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate("post", "/cases", json={"title": "Original File Test"})
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+
+        buffer = io.BytesIO()
+        source = Document()
+        source.add_paragraph("Confidential original contract text for storage verification.")
+        source.save(buffer)
+        original = buffer.getvalue()
+        uploaded = self._mutate(
+            "post", f"/cases/{case_id}/upload",
+            files={"file": ("original-contract.docx", original,
+                            "application/vnd.openxmlformats-officedocument.wordprocessingml.document")},
+        )
+        self.assertEqual(uploaded.status_code, 200, uploaded.text)
+        body = uploaded.json()
+        self.assertTrue(body["original_file_retained"])
+        document_id = body["document_id"]
+
+        context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        firm_db = self.runtime.firm_connection(context)
+        metadata = firm_db.execute(
+            "SELECT object_id,sha256,byte_size,state FROM original_file_objects WHERE document_id=? AND firm_id=?",
+            (document_id, self.firm_a),
+        ).fetchone()
+        self.assertIsNotNone(metadata)
+        self.assertEqual(metadata["state"], "ready")
+        self.assertEqual(metadata["sha256"], hashlib.sha256(original).hexdigest())
+        self.assertEqual(metadata["byte_size"], len(original))
+        self.assertTrue((self.root / "objects" / f"firm-{self.firm_a}" /
+                         (metadata["object_id"] + ".blob")).is_file())
+
+        downloaded = self.client.get(f"/cases/{case_id}/docs/{document_id}/original")
+        self.assertEqual(downloaded.status_code, 200, downloaded.text)
+        self.assertEqual(downloaded.content, original)
+        self.assertEqual(downloaded.headers["content-type"], "application/octet-stream")
+        self.assertEqual(downloaded.headers["cache-control"], "no-store")
+        self.assertTrue(firm_db.execute(
+            "SELECT 1 FROM security_audit_events WHERE firm_id=? AND user_id=? AND event=?",
+            (self.firm_a, self.user_id, f"original_document_download:{document_id}"),
+        ).fetchone())
+
+        switched = self._mutate("post", "/session/firm", json={"firm_id": self.firm_b})
+        self.assertEqual(switched.status_code, 200, switched.text)
+        denied = self.client.get(f"/cases/{case_id}/docs/{document_id}/original")
+        self.assertEqual(denied.status_code, 404, denied.text)
+
+    def test_original_file_storage_fails_closed_in_production_until_backend_is_available(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate("post", "/cases", json={"title": "Production Storage Gate"})
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+        from docx import Document
+        import io
+        buffer = io.BytesIO()
+        document = Document()
+        document.add_paragraph("Production gate test content")
+        document.save(buffer)
+        os.environ["COPILOT_ENV"] = "production"
+        try:
+            response = self._mutate(
+                "post", f"/cases/{case_id}/upload",
+                files={"file": ("production-gate.docx", buffer.getvalue(),
+                                "application/vnd.openxmlformats-officedocument.wordprocessingml.document")},
+            )
+        finally:
+            os.environ["COPILOT_ENV"] = "development"
+        self.assertEqual(response.status_code, 503, response.text)
+        context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        firm_db = self.runtime.firm_connection(context)
+        self.assertEqual(firm_db.execute(
+            "SELECT COUNT(*) FROM docs WHERE case_id=?", (case_id,)
+        ).fetchone()[0], 0)
 
     def test_cross_firm_document_and_membership_writes_are_denied(self):
         login = self.client.post(
