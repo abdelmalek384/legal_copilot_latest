@@ -89,6 +89,14 @@ class ManualCaptureRecordTests(unittest.TestCase):
         self.assertTrue(any("source_url" in error for error in result["errors"]))
         self.assertTrue(any("retrieved_at" in error for error in result["errors"]))
 
+    def test_future_retrieval_and_terms_review_dates_are_rejected(self):
+        self.record["retrieved_at"] = "2999-01-01T00:00:00Z"
+        self.record["terms_checked_on"] = "2999-01-01"
+        result = validate_capture_record(self.record, self.record_path)
+        self.assertFalse(result["valid"])
+        self.assertIn("retrieved_at must not be in the future", result["errors"])
+        self.assertIn("terms_checked_on must not be in the future", result["errors"])
+
     def test_non_calendar_iso_date_formats_are_rejected(self):
         self.record["publication_date"] = "2026-W44-2"
         result = validate_capture_record(self.record, self.record_path)
