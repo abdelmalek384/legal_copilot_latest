@@ -14,6 +14,8 @@ from tools.collect_legal_documents import article_audit, check_permission, downl
 
 def approved_scope_review(**overrides):
     review = {
+        "status": "passed",
+        "evidence": "TEST-TERMS-REVIEW-001",
         "reviewer_id": "test-reviewer-001",
         "reviewed_on": "2026-10-26",
         "evidence_reference": "TEST-TERMS-REVIEW-001",
