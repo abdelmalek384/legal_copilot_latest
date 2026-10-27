@@ -75,6 +75,10 @@ class ReminderOutboxTests(unittest.TestCase):
         self.assertEqual(row["provider_message_id"], "smtp-accepted-123")
         self.assertIsNotNone(row["accepted_at"])
         self.assertIsNone(row["lease_until"])
+        attempt = self.db.execute("SELECT * FROM reminder_delivery_attempts").fetchone()
+        self.assertEqual(attempt["status"], "accepted_by_smtp")
+        self.assertEqual(attempt["smtp_attempts"], 1)
+        self.assertEqual(attempt["provider_message_id"], "smtp-accepted-123")
         self.assertIsNone(claim_next(self.db, now=self.now + timedelta(minutes=5)))
 
     def test_expired_sender_lease_becomes_ambiguous_never_automatically_requeued(self):
@@ -98,6 +102,11 @@ class ReminderOutboxTests(unittest.TestCase):
         self.assertEqual(second["id"], claimed["id"])
         self.assertEqual(second["attempt_count"], 2)
         finish_attempt(self.db, second["id"], result_status="failed", error_code="smtp_permanent_failure")
+        attempts = self.db.execute(
+            "SELECT attempt_number,status FROM reminder_delivery_attempts ORDER BY attempt_number"
+        ).fetchall()
+        self.assertEqual([(row["attempt_number"], row["status"]) for row in attempts],
+                         [(1, "failed"), (2, "failed")])
         with self.assertRaisesRegex(ReminderOutboxError, "in-flight"):
             finish_attempt(self.db, second["id"], result_status="accepted_by_smtp")
 
