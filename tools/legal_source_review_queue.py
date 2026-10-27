@@ -13,13 +13,23 @@ def cols(db, table):
     return {r[1] for r in db.execute(f'PRAGMA table_info("{table}")')}
 
 def valid_evidence_url(value):
-    """Evidence links must be HTTPS URLs without embedded credentials."""
-    if not isinstance(value, str):
+    """Check URL shape only; a valid link does not establish evidence authenticity."""
+    if not isinstance(value, str) or not value or value != value.strip():
+        return False
+    if any(ch.isspace() or ord(ch) < 32 for ch in value):
         return False
     try:
         parsed = urlparse(value)
-        return parsed.scheme == "https" and bool(parsed.hostname) and not parsed.username and not parsed.password
-    except ValueError:
+        port = parsed.port  # Forces urllib to reject malformed and out-of-range ports.
+        return (
+            parsed.scheme.lower() == "https"
+            and bool(parsed.hostname)
+            and parsed.username is None
+            and parsed.password is None
+            and not parsed.netloc.endswith(":")
+            and (port is None or 1 <= port <= 65535)
+        )
+    except (ValueError, TypeError):
         return False
 
 def commercial_reuse_issue(value):
