@@ -604,6 +604,49 @@ def platform_audit(a):
         runtime.close_current_thread()
 
 
+def mfa_audit(a):
+    """Read a bounded, sanitized view of append-only MFA security events."""
+    if not app._separate_runtime_enabled():
+        raise SystemExit("MFA audit is available only in separate-database mode.")
+    if isinstance(a.limit, bool) or not isinstance(a.limit, int) or not 1 <= a.limit <= 500:
+        raise SystemExit("--limit must be an integer between 1 and 500")
+    if a.target_user_id is not None and (
+        isinstance(a.target_user_id, bool) or not isinstance(a.target_user_id, int) or a.target_user_id <= 0
+    ):
+        raise SystemExit("--target-user-id must be a positive integer")
+    runtime = DatabaseRuntime.from_env()
+    try:
+        runtime.initialize()
+        control = runtime.control_connection()
+        clauses, params = [], []
+        if a.target_user_id is not None:
+            clauses.append("target_user_id=?")
+            params.append(a.target_user_id)
+        if a.event_type:
+            clauses.append("event_type=?")
+            params.append(a.event_type)
+        query = (
+            "SELECT id,actor_user_id,target_user_id,event_type,detail_json,created_at "
+            "FROM mfa_security_events"
+        )
+        if clauses:
+            query += " WHERE " + " AND ".join(clauses)
+        query += " ORDER BY id DESC LIMIT ?"
+        params.append(a.limit)
+        items = []
+        for row in control.execute(query, params).fetchall():
+            item = dict(row)
+            try:
+                item["detail"] = json.loads(item.pop("detail_json"))
+            except (ValueError, TypeError):
+                item.pop("detail_json", None)
+                item["detail"] = {"unparsed": True}
+            items.append(item)
+        print(json.dumps({"items": items, "limit": a.limit}, ensure_ascii=False, sort_keys=True))
+    finally:
+        runtime.close_current_thread()
+
+
 def restore_tenancy(a):
     try:
         restored = restore_backup_bundle(a.file, _backup_fernet(), a.target_root)
@@ -671,6 +714,11 @@ x.add_argument("--actor-email", required=True)
 x.add_argument("--target-email", required=True)
 x.add_argument("--reason", required=True, choices=["lost_device", "lost_recovery_codes", "suspected_compromise", "other"])
 x.set_defaults(f=mfa_reset_cli)
+x = sp.add_parser("mfa-audit", help="Read sanitized MFA security events on a trusted operator host")
+x.add_argument("--limit", type=int, default=50)
+x.add_argument("--target-user-id", type=int)
+x.add_argument("--event-type", choices=["enrollment_started", "enrollment_completed", "login_verified", "recovery_code_used", "recovery_codes_rotated", "mfa_disabled", "administrator_reset", "verification_failed", "enrollment_failed"])
+x.set_defaults(f=mfa_audit)
 x = sp.add_parser("platform-audit", help="Read recent platform security events on a trusted operator host")
 x.add_argument("--limit", type=int, default=50)
 x.add_argument("--firm-id", type=int)
