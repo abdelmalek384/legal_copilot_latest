@@ -390,6 +390,7 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         self.assertIn("does not prove", report["coverage_matrix"]["warning"])
 
         self.candidate["version"]["legal_status"] = "historical"
+        self.candidate["version"]["repeal_date"] = "2025-06-01"
         candidate_path.write_text(json.dumps(self.candidate), encoding="utf-8")
         historical = MODULE.build_report([candidate_path], register_path, self.root, matrix_path)
         self.assertEqual(historical["release_ready_current_count"], 0)
