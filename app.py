@@ -1211,7 +1211,7 @@ def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None, sc
     # Matter-file passages may contain confidential or privileged information. The general
     # model-processing approval is not sufficient: require a separate explicit approval
     # before any such passage can be included in a model prompt.
-    if (case_id is not None or any(hit.get("case_id") is not None for hit in hits)) and os.environ.get("LLM_FIRM_DATA_PROCESSING_APPROVED", "").strip() != "1":
+    if (case_id is not None or conversation_context or any(hit.get("case_id") is not None for hit in hits)) and os.environ.get("LLM_FIRM_DATA_PROCESSING_APPROVED", "").strip() != "1":
         return {"found": True, "answer": None,
                 "message": "تم ربط البحث بملف قضية أو استرجاع مستندات قضية، لكن إرسال بيانات مرتبطة بالقضية إلى النموذج غير معتمد في إعدادات النشر؛ تُعرض المصادر فقط.",
                 "sources": hits, "scope": scope, "abstained": True,
