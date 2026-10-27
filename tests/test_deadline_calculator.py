@@ -1,6 +1,7 @@
 import datetime as dt
 import json
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -39,10 +40,8 @@ class DeadlineCalculatorTests(unittest.TestCase):
 
     def test_direct_arithmetic_cannot_claim_a_rule_was_verified(self):
         with self.assertRaises(TypeError):
-            dc.compute_deadline(
-                D(2026, 10, 26), 60, "days",
-                verified_rule=True, allow_unverified=False,
-            )
+            dc.compute_deadline(D(2026, 10, 26), 60, "days",
+                                verified_rule=True, allow_unverified=False)
 
     def test_unverified_rule_refused_by_default(self):
         rule = dc.load_rules()["civil_cassation_60d"]
@@ -72,14 +71,16 @@ class DeadlineCalculatorTests(unittest.TestCase):
             dc.load_rules(Path("missing-rules-file.json"))
 
     def test_cli_refuses_unverified_draft_and_warns_when_overridden(self):
-        import contextlib, io
+        import contextlib
+        import io
         err = io.StringIO()
         with contextlib.redirect_stderr(err):
             self.assertEqual(dc.main(["--rule", "civil_cassation_60d", "--from", "2026-10-26"]), 2)
         self.assertIn("refusing", err.getvalue())
         out = io.StringIO()
         with contextlib.redirect_stdout(out):
-            self.assertEqual(dc.main(["--rule", "civil_cassation_60d", "--from", "2026-10-26", "--allow-unverified", "--json"]), 0)
+            self.assertEqual(dc.main(["--rule", "civil_cassation_60d", "--from", "2026-10-26",
+                                      "--allow-unverified", "--json"]), 0)
         result = json.loads(out.getvalue())
         self.assertFalse(result["verified_rule"])
         self.assertTrue(result["warnings"])
@@ -91,6 +92,44 @@ class DeadlineCalculatorTests(unittest.TestCase):
                 self.calc(D(2026, 10, 26), value, "days")
         with self.assertRaises(dc.DeadlineError):
             self.calc(D(2026, 10, 26), 3, "weeks")
+
+    def test_fixed_holidays_validated_even_without_requested_years(self):
+        for month, day in ((13, 1), (2, 30), (0, 1)):
+            with self.subTest(month=month, day=day), tempfile.TemporaryDirectory() as tmp:
+                p = Path(tmp) / "holidays.json"
+                p.write_text(json.dumps({"fixed_holidays": [
+                    {"month": month, "day": day, "name_ar": "عطلة"}
+                ]}), encoding="utf-8")
+                with self.assertRaises(dc.DeadlineError):
+                    dc.load_holidays(p)
+
+    def test_holiday_file_rejects_wrong_collection_types_and_blank_names(self):
+        cases = [
+            {"fixed_holidays": "not-a-list"},
+            {"dated_holidays": [{"date": "2026-01-01", "name_ar": " "}]},
+            {"dated_holidays": [{"date": "2026-02-30", "name_ar": "عطلة"}]},
+            {"complete_years": "2026"},
+        ]
+        with tempfile.TemporaryDirectory() as tmp:
+            p = Path(tmp) / "holidays.json"
+            for data in cases:
+                with self.subTest(data=data):
+                    p.write_text(json.dumps(data), encoding="utf-8")
+                    with self.assertRaises(dc.DeadlineError):
+                        dc.load_holidays(p)
+
+    def test_calculation_rejects_malformed_holiday_mapping_and_years(self):
+        for holidays, years in (({"2026-01-01": "holiday"}, set()),
+                                ({D(2026, 1, 1): " "}, set()),
+                                ({}, {"2026"})):
+            with self.subTest(holidays=holidays, years=years):
+                with self.assertRaises(dc.DeadlineError):
+                    self.calc(D(2026, 1, 1), 3, "days", holidays=holidays,
+                              complete_holiday_years=years)
+
+    def test_date_overflow_returns_domain_error(self):
+        with self.assertRaises(dc.DeadlineError):
+            self.calc(D(9999, 12, 31), 1, "days")
 
 
 if __name__ == "__main__":
