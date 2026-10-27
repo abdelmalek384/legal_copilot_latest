@@ -3859,6 +3859,33 @@ def release_original_document_legal_hold(
     return {"document_id": document_id, "legal_hold": False, "hold_released_at": released_at}
 
 
+@app.get("/cases/{cid}/docs/{document_id}/original/legal-hold/events")
+def list_original_document_legal_hold_events(
+    cid: int, document_id: int, u: dict = Depends(user)
+):
+    """Return immutable hold history to firm admins for the authorized matter."""
+    if not _separate_runtime_enabled():
+        raise HTTPException(404, "original-file storage is available only in separate-database mode")
+    c = conn()
+    need(c, u, cid)
+    require_admin(u)
+    row = c.execute(
+        "SELECT o.object_id FROM docs d "
+        "JOIN original_file_objects o ON o.document_id=d.id "
+        "WHERE d.id=? AND d.case_id=? AND d.firm_id=? AND o.firm_id=?",
+        (document_id, cid, u["firm_id"], u["firm_id"]),
+    ).fetchone()
+    if row is None:
+        raise HTTPException(404, "original document not found")
+    events = c.execute(
+        "SELECT action,reason,actor_user_id,occurred_at "
+        "FROM original_file_hold_events "
+        "WHERE object_id=? AND document_id=? AND firm_id=? ORDER BY id",
+        (row["object_id"], document_id, u["firm_id"]),
+    ).fetchall()
+    return {"document_id": document_id, "events": [dict(event) for event in events]}
+
+
 class ExtractionReviewIn(BaseModel):
     outcome: str = Field(pattern=r"^(accepted|corrected|needs_recheck)$")
     corrected_text: str | None = Field(default=None, max_length=20000)
