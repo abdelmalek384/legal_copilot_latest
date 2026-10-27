@@ -256,6 +256,51 @@ def audit(db_path: Path):
                                 "count":q["amendment_history_flag_without_evidence"],
                                 "detail":"The flag is set but no passing amendment-history review event with an evidence URL exists."
                             })
+                # Verification flags are claims; require corresponding passing review events with direct HTTPS evidence.
+                verification_flags = {"authenticity_verified", "status_verified", "review_status"}
+                if verification_flags.issubset(vc):
+                    needs_auth = db.execute(
+                        "SELECT version_id FROM legal_document_versions WHERE authenticity_verified=1"
+                    ).fetchall()
+                    needs_status = db.execute(
+                        "SELECT version_id FROM legal_document_versions WHERE status_verified=1"
+                    ).fetchall()
+                    needs_lawyer = db.execute(
+                        "SELECT version_id FROM legal_document_versions WHERE review_status='verified'"
+                    ).fetchall()
+                    event_cols = columns(db, "legal_review_events") if "legal_review_events" in tables else set()
+                    required_event_cols = {"version_id", "review_type", "outcome", "evidence_url"}
+                    if required_event_cols.issubset(event_cols):
+                        def has_passing_evidence(version_id, review_type):
+                            events = db.execute(
+                                "SELECT evidence_url FROM legal_review_events WHERE version_id=? AND review_type=? AND outcome='pass'",
+                                (version_id, review_type),
+                            ).fetchall()
+                            return any(valid_evidence_url(event[0]) for event in events)
+                        q["authenticity_flag_without_evidence"] = sum(
+                            not has_passing_evidence(row["version_id"], "source_authenticity") for row in needs_auth
+                        )
+                        q["status_flag_without_evidence"] = sum(
+                            not has_passing_evidence(row["version_id"], "legal_status") for row in needs_status
+                        )
+                        q["verified_status_without_lawyer_approval_event"] = sum(
+                            not has_passing_evidence(row["version_id"], "lawyer_approval") for row in needs_lawyer
+                        )
+                        for key in ("authenticity_flag_without_evidence", "status_flag_without_evidence", "verified_status_without_lawyer_approval_event"):
+                            if q[key]:
+                                result["issues"].append({
+                                    "severity": "high",
+                                    "code": "versions_" + key,
+                                    "count": q[key],
+                                    "detail": "A stored verification flag needs a matching passing review event with a valid HTTPS evidence URL; the audit never promotes a version."
+                                })
+                    elif needs_auth or needs_status or needs_lawyer:
+                        result["issues"].append({
+                            "severity": "high",
+                            "code": "verification_event_schema_incomplete",
+                            "count": len(needs_auth) + len(needs_status) + len(needs_lawyer),
+                            "detail": "Verification flags exist but review-event fields needed to audit their evidence are unavailable."
+                        })
                 result["version_quality"] = q
         if "legal_version_relations" in tables:
             relc = columns(db, "legal_version_relations")
