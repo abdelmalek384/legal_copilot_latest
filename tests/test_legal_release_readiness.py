@@ -152,6 +152,15 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         result = MODULE.audit_candidate(self.candidate, self.register, self.root)
         self.assertIn("document_scope_uses_incomplete", {item["code"] for item in result["blockers"]})
 
+    def test_https_url_validation_rejects_all_userinfo(self):
+        for url in (
+            "https://@laws.example.gov/portal",
+            "https://user@laws.example.gov/portal",
+            "https://user:password@laws.example.gov/portal",
+        ):
+            with self.subTest(url=url):
+                self.assertIsNone(MODULE.https_host(url))
+
     def test_unmatched_central_source_fails_closed(self):
         self.register["sources"][0]["source_page"] = "https://other.example.gov"
         result = MODULE.audit_candidate(self.candidate, self.register, self.root)
