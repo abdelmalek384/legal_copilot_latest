@@ -80,7 +80,7 @@ class OCRQualityEvaluationTests(unittest.TestCase):
             input_path = Path(directory) / "benchmark.jsonl"
             original = json.dumps({
                 "id": "P1", "reference_text": "المادة ١٢", "ocr_text": "المادة ١٢",
-            }, ensure_ascii=False) + "\\n"
+            }, ensure_ascii=False) + "\n"
             input_path.write_text(original, encoding="utf-8")
             errors = StringIO()
             with redirect_stderr(errors):
@@ -96,7 +96,7 @@ class OCRQualityEvaluationTests(unittest.TestCase):
             input_path.write_text(json.dumps({
                 "id": "P1", "reference_text": "المادة ١٢", "ocr_text": "المادة ١٢",
                 "critical_tokens": ["المادة ١٢"],
-            }, ensure_ascii=False) + "\\n", encoding="utf-8")
+            }, ensure_ascii=False) + "\n", encoding="utf-8")
             self.assertEqual(main(["--input", str(input_path), "--out", str(output_path)]), 0)
             report = json.loads(output_path.read_text(encoding="utf-8"))
             self.assertEqual(report["rows_scored"], 1)
