@@ -26,7 +26,7 @@ Use this sidecar to preserve provenance for an original file obtained through a 
 - `document_id`, `official_title`, `source_authority`
 - `source_url`, `retrieved_at` (ISO-8601 with explicit timezone), `acquisition_method`
 - `original_file` (relative path inside the sidecar directory), `original_sha256`
-- `collection_permission`: `unknown`, `permission_pending`, `allowed`, `allowed_limited`, `prohibited`, or `not_allowed_without_explicit_exception_or_license`
+- `collection_permission`: `unknown`, `permission_pending`, `allowed`, `allowed_limited`, `not_allowed`, `prohibited`, or `not_allowed_without_explicit_exception_or_license`
 - `commercial_reuse_permission`: `unknown`, `allowed`, `allowed_limited`, `restricted`, `prohibited`, `not_allowed_without_explicit_exception_or_license`, or `prior_written_permission_required_per_published_terms`
 
 Optional evidence fields:
