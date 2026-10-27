@@ -1979,5 +1979,24 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
 
 
+    def test_unhandled_errors_return_generic_non_cacheable_responses(self):
+        original_rate_limit = app._rate_limit
+        client = TestClient(app.app, raise_server_exceptions=False)
+        def fail_rate_limit(_request):
+            raise RuntimeError("SENSITIVE_ERROR_SENTINEL")
+        app._rate_limit = fail_rate_limit
+        try:
+            response = client.get("/")
+            self.assertEqual(response.status_code, 500)
+            self.assertEqual(response.json(), {"detail": "internal server error"})
+            self.assertNotIn("SENSITIVE_ERROR_SENTINEL", response.text)
+            self.assertEqual(response.headers.get("Cache-Control"), "no-store")
+            self.assertEqual(response.headers.get("Pragma"), "no-cache")
+            self.assertEqual(response.headers.get("Expires"), "0")
+        finally:
+            app._rate_limit = original_rate_limit
+            client.close()
+
+
 if __name__ == "__main__":
     unittest.main()
