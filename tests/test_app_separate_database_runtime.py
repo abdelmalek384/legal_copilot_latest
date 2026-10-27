@@ -601,7 +601,8 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         firm_db = self.runtime.firm_connection(context)
         # Keep a read snapshot open while another request writes its audit event.
         # WAL must allow the download/audit write to complete without blocking.
-        firm_db.execute("BEGIN")
+        if not firm_db.in_transaction:
+            firm_db.execute("BEGIN")
         metadata = firm_db.execute(
             "SELECT object_id,sha256,byte_size,state FROM original_file_objects WHERE document_id=? AND firm_id=?",
             (document_id, self.firm_a),
