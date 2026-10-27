@@ -47,6 +47,23 @@ Routes are grouped by the data boundary they should preserve. "Tested" means the
 | `GET /legal-review/queue`, `GET /legal-review/coverage`, `GET/POST /legal-review/versions/{version_id}/events` | Shared legal registry is global; authorization uses the separate platform-role domain in the approved runtime | Separate-runtime mode checks live `user_platform_roles` for `platform_reviewer` or `platform_admin`; PR #532 verifies revocation blocks review-event writes, PR #589 adds rollback-on-error protection, and PR #605 injects a persistence failure to prove event rollback. The legacy compatibility path still uses `LEGAL_REVIEWER_EMAILS` allowlisting and is not the approved multi-firm boundary |
 | No background worker/scheduled-job route identified in the current `app.py` | Any future OCR, indexing, cleanup, export, backup, and restore job must preserve tenant scope from trusted job metadata | No separate worker implementation was identified in the reviewed application file; re-inventory if one is added |
 
+## Additional route-level coverage
+
+The route coverage regression test compares every `@app` HTTP route in `app.py` with this inventory. Each route must be represented explicitly so new routes cannot silently bypass the review record. This is an inventory completeness check, not proof that every authorization branch has been tested.
+
+| Route(s) | Boundary / expected authorization | Current coverage and remaining concern |
+|---|---|---|
+
+| `POST /session/firm` | Trusted firm-context switch; membership and role must be re-resolved server-side and the session must not retain revoked-firm authority | Existing tests cover denied nonmember switches and immediate revocation; retain CSRF/Origin protections and verify context/cache invalidation on every switch path |
+| `POST /account/mfa/enroll`, `POST /account/mfa/confirm`, `POST /account/mfa/verify`, `POST /account/mfa/recovery-codes/rotate`, `POST /account/mfa/re-enroll`, `POST /account/mfa/disable` | Account-bound MFA secrets, challenges, and recovery codes; authorization must follow the authenticated global identity, not a caller-selected firm | Dedicated MFA tests cover enrollment, verification, recovery, enforcement, and break-glass flows; review identity disablement/session revocation alongside MFA changes |
+| `GET /legal-review/catalog` | Shared-corpus metadata only; live platform reviewer authorization; must never return firm matter documents | Read-only metadata filters and platform-role authorization are implemented; add/retain explicit cross-firm sentinel checks when catalog queries change |
+| `GET /legal-review/versions/{version_id}/events`, `POST /legal-review/versions/{version_id}/events` | Global legal-corpus review history; platform role must be checked live and failed writes must roll back | Reviewer read/write and revocation tests exist; injected persistence-failure tests verify no partial event remains |
+| `POST /memberships` | Control-plane identity and firm-membership lifecycle; caller must be authorized for the target active firm and target identity must be globally active | Audit/rollback and cross-firm administrator restrictions are tested; invitations and account-recovery semantics remain policy gates |
+| `POST /tasks/{tid}/claim` | Task must resolve within the active tenant and authorized case membership before any assignment change | Cross-firm claim/completion and same-firm membership denial tests exist; verify denied operations preserve assignee and task state |
+| `GET /cases/{cid}/docs/{document_id}/chunks` | Document, case, chunks, and review state must resolve within the same authorized firm | Cross-firm document review tests cover reads/writes; original binary storage and page-level provenance remain separate open work |
+| `GET /audit/security-events.csv` | Firm-filtered sensitive audit export; admin-only and non-cacheable | CSV export tests cover role and firm scope; export filters and row caps must remain server-controlled |
+| `GET /research/conversations/{conversation_id}`, `PATCH /research/conversations/{conversation_id}` | Conversation is private to its owner within the active firm; child access must inherit authorized parent scope | Cross-user and cross-firm tests cover detail, rename, messaging, export-to-matter, and deletion; denied writes must leave source state unchanged |
+
 ## Data-table and storage inventory
 
 | Table / resource | Classification | Required isolation rule / gap |
