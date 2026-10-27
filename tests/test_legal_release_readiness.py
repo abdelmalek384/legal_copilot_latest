@@ -20,6 +20,9 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         original = self.root / "originals" / "law.pdf"
         original.write_bytes(b"synthetic original bytes")
         self.original_hash = hashlib.sha256(original.read_bytes()).hexdigest()
+        extracted = self.root / "originals" / "law.txt"
+        extracted.write_text("Article 1\\nArticle 2", encoding="utf-8")
+        self.text_hash = hashlib.sha256(extracted.read_bytes()).hexdigest()
         self.source_id = "SRC-1"
         self.candidate = {
             "document": {"document_id": "LAW-1", "source_id": self.source_id, "official_title": "Test law",
@@ -35,6 +38,10 @@ class LegalReleaseReadinessTests(unittest.TestCase):
             "version": {
                 "source_url": "https://laws.example.gov/law.pdf", "original_path": "originals/law.pdf",
                 "original_sha256": self.original_hash, "retrieved_at": "2025-01-02",
+                "extracted_text_path": "originals/law.txt", "text_sha256": self.text_hash,
+                "text_review_status": "text_checked", "text_review_evidence_url": "https://laws.example.gov/text-review",
+                "article_identifiers": ["Article 1", "Article 2"],
+                "expected_article_identifiers": ["Article 1", "Article 2"],
                 "publication_date": "2024-12-01", "effective_date": "2025-01-01",
                 "gazette_issue": "Issue 1", "legal_status": "in_force", "review_status": "verified",
                 "authenticity_verified": 1, "status_verified": 1, "amendment_history_verified": 1,
@@ -80,6 +87,33 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         self.candidate["version"]["original_sha256"] = "0" * 64
         result = MODULE.audit_candidate(self.candidate, self.register, self.root)
         self.assertIn("original_hash_mismatch", {item["code"] for item in result["blockers"]})
+
+
+    def test_text_hash_and_article_completeness_are_required(self):
+        candidate = json.loads(json.dumps(self.candidate))
+        candidate["version"]["text_sha256"] = "0" * 64
+        candidate["version"]["article_identifiers"] = ["Article 1"]
+        result = MODULE.audit_candidate(candidate, self.register, self.root)
+        codes = {item["code"] for item in result["blockers"]}
+        self.assertIn("text_hash_mismatch", codes)
+        self.assertIn("article_identifiers_missing", codes)
+
+    def test_duplicate_and_unexpected_article_identifiers_block_release(self):
+        candidate = json.loads(json.dumps(self.candidate))
+        candidate["version"]["article_identifiers"] = ["Article 1", "Article 1", "Annex A"]
+        result = MODULE.audit_candidate(candidate, self.register, self.root)
+        codes = {item["code"] for item in result["blockers"]}
+        self.assertIn("article_identifiers_duplicated", codes)
+        self.assertIn("article_identifiers_unexpected", codes)
+
+    def test_missing_text_review_evidence_blocks_release(self):
+        candidate = json.loads(json.dumps(self.candidate))
+        candidate["version"]["text_review_status"] = "extracted"
+        candidate["version"]["text_review_evidence_url"] = None
+        result = MODULE.audit_candidate(candidate, self.register, self.root)
+        codes = {item["code"] for item in result["blockers"]}
+        self.assertIn("text_review_status_unchecked", codes)
+        self.assertIn("text_review_evidence_url_invalid", codes)
 
     def test_future_terms_date_and_missing_legal_review_block_release(self):
         self.candidate["sources"][0]["terms_checked_on"] = "2999-01-01"
