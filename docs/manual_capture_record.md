@@ -24,13 +24,13 @@ Use this sidecar to preserve provenance for an original file obtained through a 
 ## Required fields
 
 - `document_id`, `official_title`, `source_authority`
-- `source_url`, `retrieved_at` (ISO-8601 with explicit timezone), `acquisition_method`
+- `source_url`, `retrieved_at` (ISO-8601 with explicit timezone; future timestamps are rejected), `acquisition_method`
 - `original_file` (relative path inside the sidecar directory), `original_sha256`
 - `collection_permission`: `unknown`, `permission_pending`, `allowed`, `allowed_limited`, `not_allowed`, `prohibited`, or `not_allowed_without_explicit_exception_or_license`
 - `commercial_reuse_permission`: `unknown`, `allowed`, `allowed_limited`, `restricted`, `prohibited`, `not_allowed_without_explicit_exception_or_license`, or `prior_written_permission_required_per_published_terms`
 
 Optional evidence fields:
-- `terms_url`, `terms_checked_on`
+- `terms_url`, `terms_checked_on` (must not be future-dated)
 - `collection_permission_evidence_url`, `commercial_reuse_evidence_url`
 - `publication_date`, `effective_date`, `repeal_date`, `gazette_issue`, `gazette_pages`
 - `legal_status`: `unknown`, `under_review`, `not_yet_in_force`, `in_force`, `partially_repealed`, `repealed`, or `historical`
