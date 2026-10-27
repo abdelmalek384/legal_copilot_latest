@@ -402,6 +402,48 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             2,
         )
 
+    def test_case_delete_audit_failure_rolls_back_entire_deletion(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate(
+            "post", "/cases", json={"title": "Deletion rollback sentinel"}
+        )
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+
+        context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        tenant_db = self.runtime.firm_connection(context)
+        tenant_db.execute("""
+            CREATE TRIGGER reject_case_deletion_audit
+            BEFORE INSERT ON case_deletion_audit
+            BEGIN SELECT RAISE(ABORT, 'injected audit persistence failure'); END
+        """)
+        tenant_db.commit()
+
+        response = self._mutate("delete", f"/cases/{case_id}")
+        self.assertEqual(response.status_code, 503, response.text)
+        self.assertIsNotNone(
+            tenant_db.execute(
+                "SELECT id FROM cases WHERE id=? AND firm_id=?", (case_id, self.firm_a)
+            ).fetchone(),
+            "a case must not be deleted if its required audit snapshot cannot persist",
+        )
+        self.assertEqual(
+            tenant_db.execute(
+                "SELECT COUNT(*) FROM case_deletion_audit WHERE case_id=? AND firm_id=?",
+                (case_id, self.firm_a),
+            ).fetchone()[0],
+            0,
+        )
+        self.assertIsNotNone(
+            tenant_db.execute(
+                "SELECT id FROM events WHERE case_id=?", (case_id,)
+            ).fetchone(),
+            "related matter history must remain intact after failed deletion",
+        )
+
     def test_case_detail_update_and_delete_are_isolated_between_firms(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
