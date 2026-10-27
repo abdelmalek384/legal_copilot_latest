@@ -58,6 +58,8 @@ class DeadlineCalculatorTests(unittest.TestCase):
             ("verified_by", " "), ("verified_on", "tomorrow"),
             ("verified_on", "2999-01-01"), ("source_article", ""),
             ("verified_by_role", "administrator"),
+            ("verified_by_role", {"role": "egyptian_lawyer"}),
+            ("verified_by_role", []),
             ("review_evidence_url", "http://example.gov/review-record"),
             ("review_evidence_url", "https://user:pass@example.gov/review-record"),
             ("review_evidence_url", ""),
