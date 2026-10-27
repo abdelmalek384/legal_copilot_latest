@@ -2058,8 +2058,8 @@ def _login_separate(b: LoginIn, request: Request, response: Response):
     mfa_required = _mfa_required_for_user(int(account["id"]), c)
     mfa_verified = not mfa_required
     c.execute("DELETE FROM auth_sessions WHERE expires<?", (now,))
-    c.execute("INSERT INTO auth_sessions(token_hash,user_id,expires,mfa_verified) VALUES(?,?,?,?)",
-              (sha(token), account["id"], now + 43200, int(mfa_verified)))
+    c.execute("INSERT INTO auth_sessions(token_hash,user_id,expires,mfa_verified,mfa_verified_at) VALUES(?,?,?,?,?)",
+              (sha(token), account["id"], now + 43200, int(mfa_verified), now if mfa_verified else 0))
     c.commit()
     first_firm = memberships[0]
     secure = _secure_cookie_transport(request)
