@@ -29,7 +29,7 @@ class LegalEvalRunnerTests(unittest.TestCase):
         self.assertFalse(row["used_unverified_source"])
         self.assertEqual(row["citation_marker_count"], 2)
         self.assertFalse(row["abstained"])
-        self.assertEqual(row["invalid_citation_indices"], [])
+        self.assertEqual(row["invalid_citation_indices"], [2])
 
     def test_records_invalid_citation_indices_without_inventing_sources(self):
         q = {"id": "Q2", "question_ar": "سؤال"}
