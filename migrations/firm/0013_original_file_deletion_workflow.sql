@@ -118,16 +118,36 @@ BEGIN
     SELECT RAISE(ABORT, 'original file is held, purged, or not ready for deletion');
 END;
 
-CREATE TRIGGER original_file_hold_block_pending_deletion
+CREATE TRIGGER original_file_hold_blocks_purged_object
+BEFORE UPDATE OF legal_hold ON original_file_objects
+WHEN NEW.legal_hold=1 AND NEW.purged_at IS NOT NULL
+BEGIN
+    SELECT RAISE(ABORT, 'a purged original cannot be placed under legal hold');
+END;
+
+CREATE TRIGGER original_file_hold_blocks_inflight_purge
 BEFORE UPDATE OF legal_hold ON original_file_objects
 WHEN NEW.legal_hold=1
  AND EXISTS (
     SELECT 1 FROM original_file_deletion_requests r
     WHERE r.object_id=NEW.object_id AND r.firm_id=NEW.firm_id
-      AND r.status IN ('approved','purging')
+      AND r.status='purging'
  )
 BEGIN
-    SELECT RAISE(ABORT, 'approved deletion must be cancelled before setting a legal hold');
+    SELECT RAISE(ABORT, 'an in-flight purge must finish or roll back before setting a legal hold');
+END;
+
+CREATE TRIGGER original_file_hold_cancels_pending_deletion
+AFTER UPDATE OF legal_hold ON original_file_objects
+WHEN OLD.legal_hold=0 AND NEW.legal_hold=1
+BEGIN
+    UPDATE original_file_deletion_requests
+       SET status='cancelled',
+           cancelled_by_user_id=NEW.hold_set_by,
+           cancelled_at=NEW.hold_set_at,
+           cancellation_reason='Automatically cancelled by legal hold'
+     WHERE object_id=NEW.object_id AND firm_id=NEW.firm_id
+       AND status IN ('requested','approved');
 END;
 
 CREATE TRIGGER original_file_purge_metadata_guard
