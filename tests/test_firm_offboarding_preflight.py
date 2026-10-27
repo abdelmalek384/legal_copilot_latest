@@ -95,7 +95,7 @@ class FirmOffboardingPreflightTests(unittest.TestCase):
             ") VALUES(?,?,?,'local',?,?,?,'ready',1,?,?,datetime('now'))",
             (
                 staged.object_id, document_id, self.firm_id, staged.sha256, staged.byte_size,
-                "text/plain", self.user_id, "Preserve pending matter",
+                "text/plain", "Preserve pending matter", self.user_id,
             ),
         )
         firm_db.commit()
