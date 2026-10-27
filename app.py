@@ -5,9 +5,14 @@ from cryptography.fernet import Fernet
 from urllib.parse import urlsplit
 from contextvars import ContextVar
 from collections import Counter
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta, timezone
 from functools import wraps
 from tools.research_inspector import source_status, citation_text, research_memo
+from tools.mfa_primitives import (
+    MFAPrimitivesError, build_totp_uri, generate_recovery_codes,
+    generate_totp_secret, hash_recovery_code, verify_recovery_code, verify_totp,
+)
+from tools.mfa_crypto import MFAConfigurationError, encrypt_totp_secret, decrypt_totp_secret
 from storage import SQLiteConnectionProvider
 from identity import normalize_email
 from db_migrations import apply_migrations
@@ -1426,6 +1431,20 @@ def validate_operational_deadline(value):
 
 class Q(BaseModel): q: str = Field(min_length=1, max_length=500); case_id: int | None = None; as_of: str | None = Field(default=None, pattern=r"^\d{4}-\d{2}-\d{2}$"); scope: str = Field(default="all_permitted", pattern=r"^(verified_corpus|firm_documents|all_permitted)$")
 class LoginIn(BaseModel): email: str = Field(max_length=200); password: str = Field(max_length=200)
+class MFAEnrollIn(BaseModel):
+    current_password: str = Field(min_length=1, max_length=200)
+class MFAConfirmIn(BaseModel):
+    current_password: str = Field(min_length=1, max_length=200)
+    code: str = Field(min_length=1, max_length=32)
+class MFACodeIn(BaseModel):
+    code: str = Field(min_length=1, max_length=32)
+class MFAVerifyIn(BaseModel):
+    code: str | None = Field(None, max_length=32)
+    recovery_code: str | None = Field(None, max_length=32)
+class MFAChangeIn(BaseModel):
+    current_password: str = Field(min_length=1, max_length=200)
+    code: str | None = Field(None, max_length=32)
+    recovery_code: str | None = Field(None, max_length=32)
 class FirmSwitchIn(BaseModel):
     firm_id: int = Field(gt=0)
 
@@ -1524,7 +1543,7 @@ def _user_separate(
         raise HTTPException(401, "unauthorized")
     c = control_conn()
     account = c.execute(
-        "SELECT s.user_id,s.expires,u.id,u.name,u.email_display,u.email_normalized,u.status "
+        "SELECT s.user_id,s.expires,s.mfa_verified,s.mfa_verified_at,u.id,u.name,u.email_display,u.email_normalized,u.status "
         "FROM auth_sessions s JOIN users u ON u.id=s.user_id "
         "WHERE s.token_hash=? AND s.expires>?",
         (sha(token), int(time.time())),
@@ -1582,11 +1601,25 @@ def _user_separate(
         origin = request.headers.get("origin")
         if origin and not _origin_matches_request(origin, request):
             raise HTTPException(403, "cross-origin request blocked")
+    mfa_enabled = _mfa_is_enabled(int(account["id"]), c)
+    mfa_required = _mfa_required_for_user(int(account["id"]), c)
+    mfa_verified = bool(account["mfa_verified"])
+    enrollment_required = mfa_required and not mfa_enabled
+    verification_required = mfa_enabled and not mfa_verified
+    if enrollment_required or verification_required:
+        allowed_paths = {"/session", "/account/mfa/enroll", "/account/mfa/confirm", "/account/mfa/verify", "/logout"}
+        if request.url.path not in allowed_paths:
+            raise HTTPException(403, "MFA verification or enrollment required")
     return {
         "id": account["id"], "name": account["name"], "email": account["email_display"],
         "email_normalized": account["email_normalized"], "role": context.role,
         "firm_id": context.firm_id, "active": 1, "firms": firms,
         "platform_roles": _platform_roles_for_user(account["id"]),
+        "mfa_enabled": mfa_enabled, "mfa_required": mfa_required,
+        "mfa_policy_required": _mfa_policy_requires_user(int(account["id"]), c),
+        "mfa_verified": mfa_verified, "mfa_verified_at": int(account["mfa_verified_at"] or 0),
+        "mfa_enrollment_required": enrollment_required,
+        "mfa_verification_required": verification_required,
     }
 
 
@@ -1827,6 +1860,134 @@ def _active_firms_for_user(user_id: int):
     return [{"firm_id": row["firm_id"], "firm_name": row["name"], "role": row["firm_role"]} for row in rows]
 
 
+def _mfa_enforcement_mode() -> str:
+    """Return a fail-closed MFA policy; production cannot silently use optional mode."""
+    mode = os.environ.get("MFA_ENFORCEMENT", "optional").strip().lower()
+    if mode not in {"optional", "admins_required", "all_required"}:
+        mode = "admins_required"
+    if os.environ.get("COPILOT_ENV", "").strip().lower() in {"prod", "production"} and mode == "optional":
+        mode = "admins_required"
+    return mode
+
+
+def _mfa_is_enabled(user_id: int, control=None) -> bool:
+    db = control or control_conn()
+    row = db.execute(
+        "SELECT 1 FROM mfa_credentials WHERE user_id=? AND status='enabled'",
+        (user_id,),
+    ).fetchone()
+    return row is not None
+
+
+def _mfa_user_is_privileged(user_id: int, control=None) -> bool:
+    db = control or control_conn()
+    firm_admin = db.execute(
+        "SELECT 1 FROM firm_memberships WHERE user_id=? AND status='active' AND firm_role='admin' LIMIT 1",
+        (user_id,),
+    ).fetchone()
+    platform_admin = db.execute(
+        "SELECT 1 FROM user_platform_roles WHERE user_id=? "
+        "AND role_name IN ('platform_admin','platform_reviewer') LIMIT 1",
+        (user_id,),
+    ).fetchone()
+    return firm_admin is not None or platform_admin is not None
+
+
+def _mfa_policy_requires_user(user_id: int, control=None) -> bool:
+    db = control or control_conn()
+    mode = _mfa_enforcement_mode()
+    if mode == "all_required":
+        return True
+    return mode == "admins_required" and _mfa_user_is_privileged(user_id, db)
+
+
+def _mfa_required_for_user(user_id: int, control=None) -> bool:
+    db = control or control_conn()
+    return _mfa_is_enabled(user_id, db) or _mfa_policy_requires_user(user_id, db)
+
+
+def _record_mfa_event(control, actor_user_id: int, event_type: str, detail: dict | None = None) -> None:
+    """Append an MFA audit event; never pass secrets, codes, or token material."""
+    control.execute(
+        "INSERT INTO mfa_security_events(actor_user_id,target_user_id,event_type,detail_json) "
+        "VALUES(?,?,?,?)",
+        (actor_user_id, actor_user_id, event_type,
+         json.dumps(detail or {}, sort_keys=True, separators=(",", ":"))),
+    )
+
+
+def _mfa_record_failure(control, user_id: int, now: int, event_type: str = "verification_failed") -> int:
+    row = control.execute(
+        "SELECT failed_attempts,locked_until FROM mfa_credentials WHERE user_id=?",
+        (user_id,),
+    ).fetchone()
+    if row is None:
+        _record_mfa_event(control, user_id, event_type)
+        return 0
+    failures = int(row["failed_attempts"]) + 1
+    locked_until = max(int(row["locked_until"]), now + 300 if failures >= 5 else 0)
+    control.execute(
+        "UPDATE mfa_credentials SET failed_attempts=?,locked_until=?,updated_at=datetime('now') WHERE user_id=?",
+        (failures, locked_until, user_id),
+    )
+    _record_mfa_event(control, user_id, event_type, {"failed_attempts": failures, "locked": locked_until > now})
+    return locked_until
+
+
+def _mfa_verify_factor_in_transaction(
+    control, user_id: int, *, code: str | None, recovery_code: str | None, now: int,
+) -> str | None:
+    """Verify and atomically consume a TOTP step or one-time recovery code."""
+    if bool(code) == bool(recovery_code):
+        return None
+    credential = control.execute(
+        "SELECT secret_ciphertext,status,last_accepted_step,failed_attempts,locked_until "
+        "FROM mfa_credentials WHERE user_id=?",
+        (user_id,),
+    ).fetchone()
+    if credential is None or credential["status"] != "enabled":
+        return None
+    if int(credential["locked_until"]) > now:
+        return "locked"
+    if code:
+        secret = decrypt_totp_secret(credential["secret_ciphertext"])
+        step = verify_totp(
+            secret, code, now=now, window=1,
+            last_accepted_step=credential["last_accepted_step"],
+        )
+        if step is None:
+            return None
+        control.execute(
+            "UPDATE mfa_credentials SET last_accepted_step=?,failed_attempts=0,locked_until=0,"
+            "updated_at=datetime('now') WHERE user_id=?",
+            (step, user_id),
+        )
+        return "totp"
+    candidates = control.execute(
+        "SELECT id,code_hash FROM mfa_recovery_codes WHERE user_id=? AND used_at IS NULL ORDER BY id",
+        (user_id,),
+    ).fetchall()
+    matched_id = None
+    for candidate in candidates:
+        if verify_recovery_code(recovery_code or "", candidate["code_hash"]):
+            matched_id = candidate["id"]
+            break
+    if matched_id is None:
+        return None
+    used_at = datetime.fromtimestamp(now, timezone.utc).isoformat(timespec="seconds")
+    consumed = control.execute(
+        "UPDATE mfa_recovery_codes SET used_at=? WHERE id=? AND user_id=? AND used_at IS NULL",
+        (used_at, matched_id, user_id),
+    )
+    if consumed.rowcount != 1:
+        return None
+    control.execute(
+        "UPDATE mfa_credentials SET failed_attempts=0,locked_until=0,updated_at=datetime('now') WHERE user_id=?",
+        (user_id,),
+    )
+    return "recovery"
+
+
 def _login_separate(b: LoginIn, request: Request, response: Response):
     k = normalize_email(b.email)
     now = int(time.time())
@@ -1898,9 +2059,12 @@ def _login_separate(b: LoginIn, request: Request, response: Response):
 
     c.execute("DELETE FROM login_attempts WHERE email IN (?,?)", identifiers)
     token, csrf = secrets.token_urlsafe(32), secrets.token_urlsafe(32)
+    mfa_enabled = _mfa_is_enabled(int(account["id"]), c)
+    mfa_required = _mfa_required_for_user(int(account["id"]), c)
+    mfa_verified = not mfa_required
     c.execute("DELETE FROM auth_sessions WHERE expires<?", (now,))
-    c.execute("INSERT INTO auth_sessions(token_hash,user_id,expires) VALUES(?,?,?)",
-              (sha(token), account["id"], now + 43200))
+    c.execute("INSERT INTO auth_sessions(token_hash,user_id,expires,mfa_verified,mfa_verified_at) VALUES(?,?,?,?,?)",
+              (sha(token), account["id"], now + 43200, int(mfa_verified), now if mfa_verified else 0))
     c.commit()
     first_firm = memberships[0]
     secure = _secure_cookie_transport(request)
@@ -1911,6 +2075,11 @@ def _login_separate(b: LoginIn, request: Request, response: Response):
         "id": account["id"], "name": account["name"], "role": first_firm["role"],
         "firm_id": first_firm["firm_id"], "firms": memberships,
         "platform_roles": _platform_roles_for_user(account["id"]),
+        "mfa_enabled": mfa_enabled, "mfa_required": mfa_required,
+        "mfa_policy_required": _mfa_policy_requires_user(int(account["id"]), c),
+        "mfa_verified": mfa_verified, "mfa_verified_at": now if mfa_verified else 0,
+        "mfa_enrollment_required": mfa_required and not mfa_enabled,
+        "mfa_verification_required": mfa_enabled and not mfa_verified,
     }
 
 
@@ -2000,6 +2169,9 @@ def current_session(u: dict = Depends(user)):
     if _separate_runtime_enabled():
         result["firms"] = _active_firms_for_user(u["id"])
         result["platform_roles"] = _platform_roles_for_user(u["id"])
+        for field in ("mfa_enabled", "mfa_required", "mfa_policy_required", "mfa_verified", "mfa_verified_at",
+                      "mfa_enrollment_required", "mfa_verification_required"):
+            result[field] = u.get(field, False if field != "mfa_verified_at" else 0)
     return result
 
 
@@ -2030,6 +2202,334 @@ def logout(request: Request, response: Response, u: dict = Depends(user)):
                                samesite="lax", secure=_secure_cookie_transport(request))
     return {"ok": True}
 
+
+
+def _mfa_check_current_password(control, user_id: int, password: str) -> None:
+    account = control.execute(
+        "SELECT password_hash,status FROM users WHERE id=?", (user_id,)
+    ).fetchone()
+    if account is None or account["status"] != "active" or not check_pw(password, account["password_hash"]):
+        raise HTTPException(403, "current password is incorrect")
+
+
+def _mfa_insert_recovery_codes(control, user_id: int, codes: dict, now: int) -> None:
+    used_at = datetime.fromtimestamp(now, timezone.utc).isoformat(timespec="seconds")
+    control.execute(
+        "UPDATE mfa_recovery_codes SET used_at=? WHERE user_id=? AND used_at IS NULL",
+        (used_at, user_id),
+    )
+    for encoded_hash in codes["hashes"]:
+        control.execute(
+            "INSERT INTO mfa_recovery_codes(user_id,code_hash) VALUES(?,?)",
+            (user_id, encoded_hash),
+        )
+
+
+def _mfa_enrollment_response(response: Response, secret: str, account_name: str, expires_in: int = 600) -> dict:
+    response.headers["Cache-Control"] = "no-store"
+    response.headers["Pragma"] = "no-cache"
+    return {
+        "secret": secret,
+        "otpauth_uri": build_totp_uri(secret, account_name),
+        "expires_in_seconds": expires_in,
+        "warning": "This secret is shown only during enrollment. Store it in your authenticator; never share it.",
+    }
+
+
+@app.post("/account/mfa/enroll")
+def mfa_enroll(b: MFAEnrollIn, response: Response, u: dict = Depends(user)):
+    if not _separate_runtime_enabled():
+        raise HTTPException(404, "MFA is available only in separate-database mode")
+    control = control_conn()
+    _mfa_check_current_password(control, int(u["id"]), b.current_password)
+    now = int(time.time())
+    current = control.execute(
+        "SELECT status,locked_until FROM mfa_credentials WHERE user_id=?", (u["id"],)
+    ).fetchone()
+    if current is not None and current["status"] == "enabled":
+        raise HTTPException(409, "MFA is already enabled; use recovery or recovery-code rotation")
+    if current is not None and int(current["locked_until"]) > now:
+        raise HTTPException(429, "MFA enrollment is temporarily locked")
+    try:
+        secret = generate_totp_secret()
+        ciphertext = encrypt_totp_secret(secret)
+    except (MFAConfigurationError, MFAPrimitivesError) as exc:
+        raise HTTPException(503, "MFA encryption or setup is not configured") from exc
+    expires = now + 600
+    control.execute("BEGIN IMMEDIATE")
+    try:
+        current = control.execute(
+            "SELECT status,locked_until FROM mfa_credentials WHERE user_id=?", (u["id"],)
+        ).fetchone()
+        if current is not None and current["status"] == "enabled":
+            raise HTTPException(409, "MFA is already enabled")
+        if current is not None and int(current["locked_until"]) > now:
+            raise HTTPException(429, "MFA enrollment is temporarily locked")
+        control.execute(
+            "INSERT INTO mfa_credentials(user_id,secret_ciphertext,status,enrollment_expires,failed_attempts,locked_until,updated_at) "
+            "VALUES(?,?,'pending',?,0,0,datetime('now')) "
+            "ON CONFLICT(user_id) DO UPDATE SET secret_ciphertext=excluded.secret_ciphertext,status='pending',"
+            "enrollment_expires=excluded.enrollment_expires,last_accepted_step=NULL,failed_attempts=0,"
+            "locked_until=0,enabled_at=NULL,updated_at=datetime('now')",
+            (u["id"], ciphertext, expires),
+        )
+        _record_mfa_event(control, int(u["id"]), "enrollment_started", {"expires_in_seconds": 600})
+        control.commit()
+    except Exception:
+        control.rollback()
+        raise
+    return _mfa_enrollment_response(response, secret, u.get("email") or u.get("email_normalized") or str(u["id"]))
+
+
+@app.post("/account/mfa/confirm")
+def mfa_confirm(b: MFAConfirmIn, request: Request, response: Response, u: dict = Depends(user)):
+    if not _separate_runtime_enabled():
+        raise HTTPException(404, "MFA is available only in separate-database mode")
+    control = control_conn()
+    _mfa_check_current_password(control, int(u["id"]), b.current_password)
+    now = int(time.time())
+    control.execute("BEGIN IMMEDIATE")
+    try:
+        credential = control.execute(
+            "SELECT secret_ciphertext,status,enrollment_expires,failed_attempts,locked_until "
+            "FROM mfa_credentials WHERE user_id=?", (u["id"],)
+        ).fetchone()
+        if credential is None or credential["status"] != "pending":
+            raise HTTPException(409, "no pending MFA enrollment exists")
+        if credential["enrollment_expires"] is None or int(credential["enrollment_expires"]) < now:
+            raise HTTPException(410, "MFA enrollment expired; start enrollment again")
+        if int(credential["locked_until"]) > now:
+            raise HTTPException(429, "MFA enrollment is temporarily locked")
+        secret = decrypt_totp_secret(credential["secret_ciphertext"])
+        step = verify_totp(secret, b.code, now=now, window=1)
+        if step is None:
+            locked_until = _mfa_record_failure(control, int(u["id"]), now, "enrollment_failed")
+            control.commit()
+            raise HTTPException(429 if locked_until > now else 401,
+                                "invalid authenticator code")
+        recovery = generate_recovery_codes()
+        control.execute(
+            "UPDATE mfa_credentials SET status='enabled',enrollment_expires=NULL,last_accepted_step=?,"
+            "failed_attempts=0,locked_until=0,enabled_at=datetime('now'),updated_at=datetime('now') "
+            "WHERE user_id=? AND status='pending'",
+            (step, u["id"]),
+        )
+        _mfa_insert_recovery_codes(control, int(u["id"]), recovery, now)
+        token = request.cookies.get("lc_session", "")
+        session_update = control.execute(
+            "UPDATE auth_sessions SET mfa_verified=1,mfa_verified_at=? "
+            "WHERE token_hash=? AND user_id=? AND expires>?",
+            (now, sha(token), u["id"], now),
+        )
+        if session_update.rowcount != 1:
+            raise HTTPException(401, "session expired; sign in again")
+        _record_mfa_event(control, int(u["id"]), "enrollment_completed",
+                          {"recovery_codes_issued": len(recovery["codes"])})
+        control.commit()
+    except HTTPException:
+        if control.in_transaction:
+            control.rollback()
+        raise
+    except (MFAConfigurationError, MFAPrimitivesError) as exc:
+        control.rollback()
+        raise HTTPException(503, "MFA configuration or enrollment data is invalid") from exc
+    except Exception:
+        control.rollback()
+        raise
+    response.headers["Cache-Control"] = "no-store"
+    response.headers["Pragma"] = "no-cache"
+    return {
+        "mfa_enabled": True,
+        "recovery_codes": recovery["codes"],
+        "recovery_codes_remaining": len(recovery["codes"]),
+        "warning": "Recovery codes are shown once. Store them securely; only salted hashes are retained.",
+    }
+
+
+@app.post("/account/mfa/verify")
+def mfa_verify(b: MFAVerifyIn, request: Request, response: Response, u: dict = Depends(user)):
+    if not _separate_runtime_enabled():
+        raise HTTPException(404, "MFA is available only in separate-database mode")
+    if bool(b.code) == bool(b.recovery_code):
+        raise HTTPException(422, "provide exactly one authenticator code or recovery code")
+    control = control_conn()
+    now = int(time.time())
+    token = request.cookies.get("lc_session", "")
+    control.execute("BEGIN IMMEDIATE")
+    try:
+        credential = control.execute(
+            "SELECT status,locked_until FROM mfa_credentials WHERE user_id=?", (u["id"],)
+        ).fetchone()
+        if credential is None or credential["status"] != "enabled":
+            raise HTTPException(409, "MFA is not enabled for this account")
+        if int(credential["locked_until"]) > now:
+            raise HTTPException(429, "MFA verification is temporarily locked",
+                                headers={"Retry-After": str(max(1, int(credential["locked_until"]) - now))})
+        try:
+            factor = _mfa_verify_factor_in_transaction(
+                control, int(u["id"]), code=b.code, recovery_code=b.recovery_code, now=now,
+            )
+        except MFAConfigurationError as exc:
+            raise HTTPException(503, "MFA encryption key is unavailable or invalid") from exc
+        if factor in (None, "locked"):
+            locked_until = _mfa_record_failure(control, int(u["id"]), now)
+            control.commit()
+            raise HTTPException(429 if locked_until > now else 401,
+                                "invalid authenticator or recovery code")
+        updated = control.execute(
+            "UPDATE auth_sessions SET mfa_verified=1,mfa_verified_at=? "
+            "WHERE token_hash=? AND user_id=? AND expires>?",
+            (now, sha(token), u["id"], now),
+        )
+        if updated.rowcount != 1:
+            raise HTTPException(401, "session expired; sign in again")
+        event_type = "recovery_code_used" if factor == "recovery" else "login_verified"
+        _record_mfa_event(control, int(u["id"]), event_type, {"factor": factor})
+        remaining = control.execute(
+            "SELECT COUNT(*) FROM mfa_recovery_codes WHERE user_id=? AND used_at IS NULL",
+            (u["id"],),
+        ).fetchone()[0]
+        control.commit()
+    except HTTPException:
+        if control.in_transaction:
+            control.rollback()
+        raise
+    except Exception:
+        control.rollback()
+        raise
+    response.headers["Cache-Control"] = "no-store"
+    return {"mfa_verified": True, "factor": factor, "recovery_codes_remaining": int(remaining)}
+
+
+@app.post("/account/mfa/recovery-codes/rotate")
+def mfa_rotate_recovery_codes(b: MFAChangeIn, response: Response, u: dict = Depends(user)):
+    if not _separate_runtime_enabled():
+        raise HTTPException(404, "MFA is available only in separate-database mode")
+    if not b.code or b.recovery_code:
+        raise HTTPException(422, "provide the current authenticator code to rotate recovery codes")
+    control = control_conn()
+    _mfa_check_current_password(control, int(u["id"]), b.current_password)
+    now = int(time.time())
+    recovery = generate_recovery_codes()
+    control.execute("BEGIN IMMEDIATE")
+    try:
+        credential = control.execute(
+            "SELECT status,locked_until FROM mfa_credentials WHERE user_id=?", (u["id"],)
+        ).fetchone()
+        if credential is None or credential["status"] != "enabled":
+            raise HTTPException(409, "MFA is not enabled for this account")
+        if int(credential["locked_until"]) > now:
+            raise HTTPException(429, "MFA verification is temporarily locked")
+        factor = _mfa_verify_factor_in_transaction(
+            control, int(u["id"]), code=b.code, recovery_code=None, now=now,
+        )
+        if factor != "totp":
+            locked_until = _mfa_record_failure(control, int(u["id"]), now)
+            control.commit()
+            raise HTTPException(429 if locked_until > now else 401, "invalid authenticator code")
+        _mfa_insert_recovery_codes(control, int(u["id"]), recovery, now)
+        _record_mfa_event(control, int(u["id"]), "recovery_codes_rotated",
+                          {"recovery_codes_issued": len(recovery["codes"])})
+        control.commit()
+    except HTTPException:
+        if control.in_transaction:
+            control.rollback()
+        raise
+    except Exception:
+        control.rollback()
+        raise
+    response.headers["Cache-Control"] = "no-store"
+    return {"recovery_codes": recovery["codes"], "recovery_codes_remaining": len(recovery["codes"]),
+            "warning": "Recovery codes are shown once; prior unused codes were invalidated."}
+
+
+@app.post("/account/mfa/re-enroll")
+def mfa_reenroll(b: MFAEnrollIn, response: Response, u: dict = Depends(user)):
+    if not _separate_runtime_enabled():
+        raise HTTPException(404, "MFA is available only in separate-database mode")
+    now = int(time.time())
+    if not u.get("mfa_verified") or int(u.get("mfa_verified_at") or 0) < now - 600:
+        raise HTTPException(403, "recent MFA verification is required to replace an authenticator")
+    control = control_conn()
+    _mfa_check_current_password(control, int(u["id"]), b.current_password)
+    if not _mfa_is_enabled(int(u["id"]), control):
+        raise HTTPException(409, "MFA is not enabled; use enrollment instead")
+    try:
+        secret = generate_totp_secret()
+        ciphertext = encrypt_totp_secret(secret)
+    except (MFAConfigurationError, MFAPrimitivesError) as exc:
+        raise HTTPException(503, "MFA encryption or setup is not configured") from exc
+    control.execute("BEGIN IMMEDIATE")
+    try:
+        current = control.execute(
+            "SELECT status FROM mfa_credentials WHERE user_id=?", (u["id"],)
+        ).fetchone()
+        if current is None or current["status"] != "enabled":
+            raise HTTPException(409, "MFA state changed; sign in again")
+        control.execute(
+            "UPDATE mfa_credentials SET secret_ciphertext=?,status='pending',enrollment_expires=?,"
+            "last_accepted_step=NULL,failed_attempts=0,locked_until=0,enabled_at=NULL,updated_at=datetime('now') "
+            "WHERE user_id=? AND status='enabled'",
+            (ciphertext, now + 600, u["id"]),
+        )
+        _record_mfa_event(control, int(u["id"]), "enrollment_started",
+                          {"method": "recent_mfa_recovery", "expires_in_seconds": 600})
+        control.commit()
+    except Exception:
+        control.rollback()
+        raise
+    return _mfa_enrollment_response(response, secret, u.get("email") or u.get("email_normalized") or str(u["id"]))
+
+
+@app.post("/account/mfa/disable")
+def mfa_disable(b: MFAChangeIn, request: Request, u: dict = Depends(user)):
+    if not _separate_runtime_enabled():
+        raise HTTPException(404, "MFA is available only in separate-database mode")
+    mode = _mfa_enforcement_mode()
+    if mode == "all_required" or (mode == "admins_required" and _mfa_user_is_privileged(int(u["id"]))):
+        raise HTTPException(403, "MFA cannot be disabled under the active enforcement policy")
+    if bool(b.code) == bool(b.recovery_code):
+        raise HTTPException(422, "provide exactly one authenticator code or recovery code")
+    control = control_conn()
+    _mfa_check_current_password(control, int(u["id"]), b.current_password)
+    now = int(time.time())
+    control.execute("BEGIN IMMEDIATE")
+    try:
+        credential = control.execute(
+            "SELECT status,locked_until FROM mfa_credentials WHERE user_id=?", (u["id"],)
+        ).fetchone()
+        if credential is None or credential["status"] != "enabled":
+            raise HTTPException(409, "MFA is not enabled for this account")
+        if int(credential["locked_until"]) > now:
+            raise HTTPException(429, "MFA verification is temporarily locked")
+        factor = _mfa_verify_factor_in_transaction(
+            control, int(u["id"]), code=b.code, recovery_code=b.recovery_code, now=now,
+        )
+        if factor != "totp" and factor != "recovery":
+            locked_until = _mfa_record_failure(control, int(u["id"]), now)
+            control.commit()
+            raise HTTPException(429 if locked_until > now else 401,
+                                "invalid authenticator or recovery code")
+        used_at = datetime.fromtimestamp(now, timezone.utc).isoformat(timespec="seconds")
+        control.execute(
+            "UPDATE mfa_recovery_codes SET used_at=? WHERE user_id=? AND used_at IS NULL",
+            (used_at, u["id"]),
+        )
+        control.execute("DELETE FROM mfa_credentials WHERE user_id=?", (u["id"],))
+        control.execute(
+            "UPDATE auth_sessions SET mfa_verified=1,mfa_verified_at=? WHERE user_id=? AND expires>?",
+            (now, u["id"], now),
+        )
+        _record_mfa_event(control, int(u["id"]), "mfa_disabled", {"factor": factor})
+        control.commit()
+    except HTTPException:
+        if control.in_transaction:
+            control.rollback()
+        raise
+    except Exception:
+        control.rollback()
+        raise
+    return {"mfa_enabled": False, "message": "MFA disabled for this account."}
 
 
 @app.post("/account/password")

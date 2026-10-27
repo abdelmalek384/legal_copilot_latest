@@ -1,10 +1,10 @@
--- Extend the platform audit event vocabulary without mutating applied migration 0005.
--- Preserve every existing event and its stable ID while allowing self-service credential changes.
+-- Extend the platform audit event vocabulary for per-firm membership suspension.
+-- Preserve existing event IDs and records; no membership state is changed by this migration.
 DROP TRIGGER platform_security_events_no_update;
 DROP TRIGGER platform_security_events_no_delete;
 DROP INDEX idx_platform_security_events_created;
 DROP INDEX idx_platform_security_events_target;
-ALTER TABLE platform_security_events RENAME TO platform_security_events_v5;
+ALTER TABLE platform_security_events RENAME TO platform_security_events_v7;
 CREATE TABLE platform_security_events (
  id INTEGER PRIMARY KEY,
  actor_user_id INTEGER REFERENCES users(id) ON DELETE RESTRICT,
@@ -12,10 +12,12 @@ CREATE TABLE platform_security_events (
  firm_id INTEGER REFERENCES firms(id) ON DELETE RESTRICT,
  event_type TEXT NOT NULL CHECK(event_type IN (
    'password_reset_cli',
+   'identity_created_cli',
    'password_changed_web',
    'firm_provisioned',
    'firm_disabled',
    'membership_created',
+   'membership_suspended',
    'initial_owner_bootstrapped',
    'platform_role_granted',
    'platform_role_revoked'
@@ -25,8 +27,8 @@ CREATE TABLE platform_security_events (
 );
 INSERT INTO platform_security_events(id,actor_user_id,target_user_id,firm_id,event_type,detail_json,created_at)
 SELECT id,actor_user_id,target_user_id,firm_id,event_type,detail_json,created_at
-FROM platform_security_events_v5;
-DROP TABLE platform_security_events_v5;
+FROM platform_security_events_v7;
+DROP TABLE platform_security_events_v7;
 CREATE INDEX idx_platform_security_events_created ON platform_security_events(created_at,id);
 CREATE INDEX idx_platform_security_events_target ON platform_security_events(target_user_id,created_at);
 CREATE TRIGGER platform_security_events_no_update

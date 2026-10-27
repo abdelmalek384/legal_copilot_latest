@@ -17,10 +17,13 @@ This checklist is a release gate, not a certification. Completing it does not re
 
 - [ ] Set ADMIN_TOKEN to a randomly generated secret of at least 32 characters using the deployment secret manager. Never put it in source control, images, tickets, or logs.
 - [ ] Keep LLM_KEY and any other credentials in the secret manager; do not expose them to the browser.
+- [ ] Generate MFA_ENCRYPTION_KEY with python manage.py gen-mfa-key and store it in the secret manager. Never reuse BACKUP_KEY or another application credential. Keep the same key available for restore of the control-plane database; loss of this key prevents decryption of enrolled TOTP secrets.
+- [ ] Set MFA_ENFORCEMENT=admins_required or all_required in production. Production preflight rejects optional enforcement and rejects a missing/invalid MFA key.
 - [ ] Keep LLM_DATA_PROCESSING_APPROVED unset until the exact configured endpoint/model and its data-handling terms have been reviewed and approved for the intended data class. Set it to 1 only with documented approval; the setting is an operator attestation, not a technical privacy guarantee.
 - [ ] Use unique administrator credentials, a strong password, and least-privilege role assignment.
 - [ ] Establish a documented process for administrator offboarding, password reset, and secret rotation.
-- [ ] Until 2FA and self-service recovery are implemented and reviewed, document this limitation and apply compensating controls to administrator access.
+- [ ] Verify MFA enrollment and recovery-code handling with a test administrator; confirm recovery codes are shown once and stored only as salted hashes.
+- [ ] Rehearse lost-authenticator recovery, recovery-code rotation, required-admin MFA enforcement, and the two-admin MFA reset command. Document and approve a separate offline two-person procedure for the last-platform-admin case before production. Do not permit an administrator to disable MFA while policy requires it.
 
 ## 3. Database, uploads, and backups
 
@@ -64,7 +67,7 @@ Also run the CI workflow and confirm all jobs pass for the exact commit being de
 
 - [ ] Test tenant isolation with at least two independent firms and users.
 - [ ] Test login throttling, session expiry/revocation, CSRF, upload limits, rate limits, and admin-only routes.
-- [ ] Test backup restore and verify that deleted-case audit snapshots remain firm-scoped and admin-only.
+- [ ] Test backup restore and verify that deleted-case audit snapshots remain firm-scoped and admin-only. Confirm the separately managed MFA_ENCRYPTION_KEY is available before testing TOTP-secret restoration.
 - [ ] Test degraded LLM behavior, timeout handling, and source-only fallback.
 - [ ] Conduct an independent security assessment and remediate high/critical findings before storing client-confidential matters.
 

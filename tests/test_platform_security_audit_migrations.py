@@ -15,7 +15,7 @@ class PlatformSecurityAuditMigrationTests(unittest.TestCase):
             root = Path(temp) / "migrations"
             control = root / "control_plane"
             control.mkdir(parents=True)
-            for path in sorted((ROOT / "control_plane").glob("000[1-6]_*.sql")):
+            for path in sorted((ROOT / "control_plane").glob("000[1-7]_*.sql")):
                 shutil.copy(path, control / path.name)
             db = sqlite3.connect(":memory:")
             db.row_factory = sqlite3.Row
@@ -29,10 +29,10 @@ class PlatformSecurityAuditMigrationTests(unittest.TestCase):
                 )
                 db.commit()
                 shutil.copy(
-                    ROOT / "control_plane" / "0007_platform_security_events_membership_suspension.sql",
-                    control / "0007_platform_security_events_membership_suspension.sql",
+                    ROOT / "control_plane" / "0008_platform_security_events_membership_suspension.sql",
+                    control / "0008_platform_security_events_membership_suspension.sql",
                 )
-                self.assertEqual(apply_profile_migrations(db, "control_plane", root), [7])
+                self.assertEqual(apply_profile_migrations(db, "control_plane", root), [8])
                 self.assertEqual(
                     [row["event_type"] for row in db.execute("SELECT event_type FROM platform_security_events ORDER BY id")],
                     ["password_changed_web", "membership_created"],
@@ -63,10 +63,10 @@ class PlatformSecurityAuditMigrationTests(unittest.TestCase):
                 )
                 db.commit()
                 shutil.copy(
-                    ROOT / "control_plane" / "0006_platform_security_events_web_password_change.sql",
-                    control / "0006_platform_security_events_web_password_change.sql",
+                    ROOT / "control_plane" / "0007_platform_security_events_web_password_change.sql",
+                    control / "0007_platform_security_events_web_password_change.sql",
                 )
-                self.assertEqual(apply_profile_migrations(db, "control_plane", root), [6])
+                self.assertEqual(apply_profile_migrations(db, "control_plane", root), [7])
                 existing = db.execute(
                     "SELECT id,event_type,detail_json FROM platform_security_events"
                 ).fetchone()

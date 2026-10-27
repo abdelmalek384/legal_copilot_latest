@@ -465,8 +465,10 @@ class ProfileInitialSchemaTests(unittest.TestCase):
             root = Path(temp) / "migrations"
             control_dir = root / "control_plane"
             control_dir.mkdir(parents=True)
+            # Build a pre-0006 database. Later migrations must not be marked
+            # applied before the identity-event migration they depend on.
             for migration in (ROOT / "control_plane").glob("*.sql"):
-                if migration.name != "0006_identity_created_event.sql":
+                if int(migration.name.split("_", 1)[0]) <= 5:
                     shutil.copyfile(migration, control_dir / migration.name)
 
             db = sqlite3.connect(":memory:")
@@ -479,7 +481,7 @@ class ProfileInitialSchemaTests(unittest.TestCase):
             db.commit()
 
             applied = apply_profile_migrations(db, "control_plane", ROOT)
-            self.assertEqual(applied, [6])
+            self.assertEqual(applied, [6, 7, 8, 9])
             previous = db.execute(
                 "SELECT event_type,detail_json FROM platform_security_events"
             ).fetchone()

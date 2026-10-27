@@ -6,6 +6,7 @@ from unittest.mock import patch
 import tempfile
 import unittest
 from pathlib import Path
+from cryptography.fernet import Fernet
 
 MODULE_PATH = Path(__file__).resolve().parents[1] / "tools" / "deployment_preflight.py"
 SPEC = importlib.util.spec_from_file_location("deployment_preflight", MODULE_PATH)
@@ -100,10 +101,13 @@ class DeploymentPreflightTests(unittest.TestCase):
             "COPILOT_SECURE_COOKIES": "1",
             "COPILOT_PUBLIC_ORIGIN": "https://legal.example.test",
             "BACKUP_KEY": "not-a-valid-fernet-key",
+            "MFA_ENFORCEMENT": "admins_required",
+            "MFA_ENCRYPTION_KEY": Fernet.generate_key().decode(),
         })
         _, _, errors = preflight.inspect_environment(env)
         self.assertTrue(any("BACKUP_KEY must be a valid Fernet key" in item for item in errors))
-        env["BACKUP_KEY"] = __import__("cryptography.fernet", fromlist=["Fernet"]).Fernet.generate_key().decode()
+        env["BACKUP_KEY"] = Fernet.generate_key().decode()
+        env["MFA_ENCRYPTION_KEY"] = Fernet.generate_key().decode()
         _, _, errors = preflight.inspect_environment(env)
         self.assertEqual(errors, [])
 
