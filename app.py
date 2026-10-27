@@ -1615,6 +1615,7 @@ def _user_separate(
         "email_normalized": account["email_normalized"], "role": context.role,
         "firm_id": context.firm_id, "active": 1, "firms": firms,
         "platform_roles": _platform_roles_for_user(account["id"]),
+        "can_review_legal": _user_can_review_legal({"id": account["id"], "role": first_firm["role"], "email": account["email_display"]}),
         "mfa_enabled": mfa_enabled, "mfa_required": mfa_required,
         "mfa_policy_required": _mfa_policy_requires_user(int(account["id"]), c),
         "mfa_verified": mfa_verified, "mfa_verified_at": int(account["mfa_verified_at"] or 0),
@@ -1656,21 +1657,28 @@ def require_admin(u):
     if u["role"] != "admin": raise HTTPException(403, "admin only")
 
 
-def require_platform_legal_reviewer(u):
-    """Authorize corpus administration through the separate platform-role domain."""
+def _user_can_review_legal(u: dict) -> bool:
+    """Mirror the backend's actual corpus-review authorization for UI navigation."""
     if _separate_runtime_enabled():
         roles = {
             row["role_name"] for row in control_conn().execute(
                 "SELECT role_name FROM user_platform_roles WHERE user_id=?", (u["id"],)
             ).fetchall()
         }
-        if not roles.intersection({"platform_reviewer", "platform_admin"}):
-            raise HTTPException(403, "platform legal reviewer only")
-        return
-    if u["role"] != "admin":
-        raise HTTPException(403, "platform legal reviewer only")
-    allowed = {normalize_email(email) for email in os.environ.get("LEGAL_REVIEWER_EMAILS", "").split(",") if email.strip()}
-    if not allowed or normalize_email(u.get("email") or "") not in allowed:
+        return bool(roles.intersection({"platform_reviewer", "platform_admin"}))
+    if u.get("role") != "admin":
+        return False
+    allowed = {
+        normalize_email(email)
+        for email in os.environ.get("LEGAL_REVIEWER_EMAILS", "").split(",")
+        if email.strip()
+    }
+    return normalize_email(u.get("email") or "") in allowed
+
+
+def require_platform_legal_reviewer(u):
+    """Authorize corpus administration through the separate platform-role domain."""
+    if not _user_can_review_legal(u):
         raise HTTPException(403, "platform legal reviewer only")
 
 
@@ -2160,12 +2168,15 @@ def login(b: LoginIn, request: Request, response: Response):
     secure = _secure_cookie_transport(request)
     response.set_cookie("lc_session", tok, max_age=43200, httponly=True, secure=secure, samesite="lax", path="/")
     response.set_cookie("lc_csrf", csrf, max_age=43200, httponly=False, secure=secure, samesite="lax", path="/")
-    return {"id": r["id"], "name": r["name"], "role": r["role"], "firm_id": r["firm_id"]}
+    legacy_user = {"id": r["id"], "name": r["name"], "role": r["role"], "firm_id": r["firm_id"], "email": r["email"]}
+    legacy_user["can_review_legal"] = _user_can_review_legal(legacy_user)
+    return legacy_user
 
 
 @app.get("/session")
 def current_session(u: dict = Depends(user)):
-    result = {"id": u["id"], "name": u["name"], "role": u["role"], "firm_id": u["firm_id"]}
+    result = {"id": u["id"], "name": u["name"], "role": u["role"], "firm_id": u["firm_id"],
+              "can_review_legal": _user_can_review_legal(u)}
     if _separate_runtime_enabled():
         result["firms"] = _active_firms_for_user(u["id"])
         result["platform_roles"] = _platform_roles_for_user(u["id"])
@@ -2186,9 +2197,11 @@ def switch_firm(b: FirmSwitchIn, request: Request, response: Response, u: dict =
     response.set_cookie("lc_firm", str(context.firm_id), max_age=43200,
                         httponly=True, secure=_secure_cookie_transport(request),
                         samesite="lax", path="/")
-    return {"id": u["id"], "name": u["name"], "role": context.role,
-            "firm_id": context.firm_id, "firms": _active_firms_for_user(u["id"]),
-            "platform_roles": _platform_roles_for_user(u["id"])}
+    switched_user = {"id": u["id"], "name": u["name"], "role": context.role,
+                     "firm_id": context.firm_id, "firms": _active_firms_for_user(u["id"]),
+                     "platform_roles": _platform_roles_for_user(u["id"]), "email": u.get("email")}
+    switched_user["can_review_legal"] = _user_can_review_legal(switched_user)
+    return switched_user
 
 
 @app.post("/logout")
