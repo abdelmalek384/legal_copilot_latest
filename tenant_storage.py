@@ -300,7 +300,8 @@ class TenantSQLiteConnectionRouter:
         if connections is None:
             return
         errors = []
-        for _, connection in connections.values():
+        for cached in connections.values():
+            connection = cached[-1]
             try:
                 connection.close()
             except sqlite3.Error as exc:
