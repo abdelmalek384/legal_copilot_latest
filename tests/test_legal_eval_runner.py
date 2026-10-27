@@ -16,13 +16,18 @@ class LegalEvalRunnerTests(unittest.TestCase):
             "abstained": False,
             "scope": "verified_corpus",
             "sources": [
-                {"source_id": "EG-LAW-10", "article": "12", "citation": "القانون 10 المادة 12", "source_status": "verified"},
+                {"source_id": "EG-LAW-10", "article": "12", "citation": "القانون 10 المادة 12", "source_status": "verified_operative_text"},
                 {"source_id": None, "article": "4", "citation": "Legacy source", "source_status": "outdated_or_under_review"},
             ],
         }
         row = result_from_response(q, response)
         self.assertEqual(row["cited_sources"], ["EG-LAW-10"])
         self.assertEqual(row["cited_pin_cites"], [{"source_id": "EG-LAW-10", "pin_cite": "المادة 12"}])
+        self.assertEqual(row["question_id"], "Q1")
+        self.assertEqual(row["retrieved_source_ids"], ["EG-LAW-10"])
+        self.assertEqual(row["citations"], [{"source_id": "EG-LAW-10", "pin_cite": "المادة 12"}])
+        self.assertFalse(row["used_unverified_source"])
+        self.assertEqual(row["citation_marker_count"], 2)
         self.assertFalse(row["abstained"])
         self.assertEqual(row["invalid_citation_indices"], [])
 
@@ -31,8 +36,30 @@ class LegalEvalRunnerTests(unittest.TestCase):
         response = {"found": True, "answer": "قاعدة [3].", "sources": [{"ref": "legacy"}]}
         row = result_from_response(q, response)
         self.assertEqual(row["invalid_citation_indices"], [3])
+        self.assertEqual(row["retrieved_source_ids"], [])
+        self.assertEqual(row["citations"], [])
         self.assertEqual(row["cited_sources"], [])
         self.assertTrue(row["abstained"] is False)
+
+    def test_missing_source_id_for_visible_citation_is_reported_invalid(self):
+        q = {"id": "Q-MISSING-ID", "question_ar": "سؤال"}
+        response = {"answer": "قاعدة [1].", "sources": [{"article": "12"}]}
+        row = result_from_response(q, response)
+        self.assertEqual(row["invalid_citation_indices"], [1])
+        self.assertEqual(row["citations"], [])
+        self.assertEqual(row["retrieved_source_ids"], [])
+        self.assertFalse(row["used_unverified_source"])
+
+    def test_cited_unverified_source_is_marked_for_evaluation(self):
+        q = {"id": "Q-UNVERIFIED", "question_ar": "سؤال"}
+        response = {
+            "answer": "قاعدة [1].",
+            "sources": [{"source_id": "LAW-UNVERIFIED", "source_status": "outdated_or_under_review"}],
+        }
+        row = result_from_response(q, response)
+        self.assertEqual(row["retrieved_source_ids"], ["LAW-UNVERIFIED"])
+        self.assertEqual(row["citations"], [{"source_id": "LAW-UNVERIFIED"}])
+        self.assertTrue(row["used_unverified_source"])
 
     def test_citations_inside_fenced_inline_code_and_html_comments_are_ignored(self):
         response = {
