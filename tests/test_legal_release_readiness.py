@@ -182,10 +182,28 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         self.assertIn("version_not_verified", codes)
         self.assertIn("original_file_missing", codes)
 
-    def test_historical_version_can_pass_when_its_status_is_verified(self):
+    def test_historical_version_can_pass_when_its_status_and_end_date_are_verified(self):
         self.candidate["version"]["legal_status"] = "historical"
+        self.candidate["version"]["repeal_date"] = "2025-06-01"
         result = MODULE.audit_candidate(self.candidate, self.register, self.root)
         self.assertTrue(result["ready"], result["blockers"])
+
+    def test_repealed_or_historical_version_without_end_date_is_blocked(self):
+        for status in ("repealed", "historical"):
+            candidate = json.loads(json.dumps(self.candidate))
+            candidate["version"]["legal_status"] = status
+            candidate["version"].pop("repeal_date", None)
+            result = MODULE.audit_candidate(candidate, self.register, self.root)
+            self.assertIn(
+                "repeal_date_required_for_historical_status",
+                {item["code"] for item in result["blockers"]},
+            )
+
+    def test_repeal_date_before_effective_date_is_blocked(self):
+        candidate = json.loads(json.dumps(self.candidate))
+        candidate["version"]["repeal_date"] = "2024-06-01"
+        result = MODULE.audit_candidate(candidate, self.register, self.root)
+        self.assertIn("repeal_before_effective", {item["code"] for item in result["blockers"]})
 
     def test_hash_mismatch_blocks_release(self):
         self.candidate["version"]["original_sha256"] = "0" * 64
