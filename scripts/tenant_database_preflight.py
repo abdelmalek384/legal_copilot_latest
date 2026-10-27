@@ -228,6 +228,63 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
         rows = catalog.execute(
             "SELECT firm_id, database_file, status FROM tenant_database_catalog ORDER BY firm_id"
         ).fetchall()
+        firm_statuses = {
+            int(row[0]): str(row[1])
+            for row in catalog.execute("SELECT id,status FROM firms").fetchall()
+        }
+
+    catalog_by_firm = {int(row[0]): (row[1], str(row[2])) for row in rows}
+    for firm_id, firm_status in firm_statuses.items():
+        catalog_entry = catalog_by_firm.get(firm_id)
+        if firm_status == "active":
+            if catalog_entry is None or catalog_entry[1] != "provisioned":
+                add(
+                    "active_firm_catalog_mismatch",
+                    firm_id,
+                    "active firm does not have a provisioned tenant database catalog entry",
+                )
+        elif firm_status == "provisioning":
+            add(
+                "firm_stuck_provisioning",
+                firm_id,
+                "firm lifecycle remains in provisioning; operator review is required",
+            )
+        elif firm_status == "disabled":
+            if catalog_entry is None:
+                # A catalog connection failure can disable a newly created firm
+                # before a catalog row exists. Surface it for operator review
+                # without misclassifying it as an active-access violation.
+                add(
+                    "disabled_firm_without_catalog",
+                    firm_id,
+                    "disabled firm has no tenant catalog entry; verify this is a failed fresh provisioning attempt",
+                )
+            elif catalog_entry[1] not in {"disabled", "failed"}:
+                add(
+                    "disabled_firm_catalog_mismatch",
+                    firm_id,
+                    "disabled firm has a tenant catalog entry that is not disabled/failed",
+                )
+        else:
+            add(
+                "unknown_firm_lifecycle_status",
+                firm_id,
+                f"firm has unrecognized lifecycle status {firm_status!r}",
+            )
+
+    for firm_id, _filename, _status in rows:
+        if firm_id not in firm_statuses:
+            add("catalog_firm_missing", firm_id, "tenant catalog references a firm row that does not exist")
+
+    catalog_referenced_files = set()
+    for firm_id, filename, _status in rows:
+        if not isinstance(filename, str) or Path(filename).name != filename:
+            continue
+        match = _FILENAME.fullmatch(filename)
+        if match and int(match.group("firm_id")) == firm_id:
+            # Include disabled catalog rows: their data is intentionally retained
+            # and must not be mislabeled as an orphan merely because it is not opened.
+            catalog_referenced_files.add(filename)
 
     # Any global trust failure means the catalog cannot safely authorize file
     # access. Report it without opening tenant databases, even read-only.
@@ -405,6 +462,11 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
                 inspected += 1
         except sqlite3.Error:
             add("database_unreadable", firm_id, "SQLite could not open or inspect the database read-only")
+
+    for path in sorted(root.glob("tenant-*.sqlite3")):
+        if path.name not in catalog_referenced_files:
+            code = "unreferenced_database_symlink" if path.is_symlink() else "unreferenced_database_file"
+            add(code, None, "tenant database file is not referenced by the trusted catalog")
 
     return {
         "mode": "read_only",
