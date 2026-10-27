@@ -8,7 +8,7 @@ python tools/audit_legal_corpus.py --db copilot.db --out-dir audit_out
 
 The tool opens SQLite in read-only mode and writes \`legal_corpus_audit.json\` and \`legal_corpus_audit.md\`. It reports row counts, missing provenance, missing original files and hashes, unknown legal status, missing dates, unverified sources, and chunks not linked to a legal version.
 
-The report includes the database file's SHA-256, but that hash identifies the database snapshot, not the authenticity of any law inside it. A passing amendment-history review counts as evidence-backed only when its event contains a valid HTTPS URL without embedded credentials; this checks URL shape, not whether the source is official or its contents are correct.
+The report includes the database file's SHA-256, but that hash identifies the database snapshot, not the authenticity of any law inside it. Global legal chunks marked `verified` or `in_force` are cross-checked against their linked legal version. Missing, unreviewed, non-operative, future-effective, or repealed version records trigger high-severity findings; the audit does not change chunk or version flags. A passing amendment-history review counts as evidence-backed only when its event contains a valid HTTPS URL without embedded credentials; this checks URL shape, not whether the source is official or its contents are correct.
 
 ## Safety
 
