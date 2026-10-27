@@ -257,7 +257,8 @@ def _validate_original_object_inventory(
             if "original_file_objects" not in tables:
                 continue
             rows = db.execute(
-                "SELECT object_id,firm_id,sha256,byte_size,state FROM original_file_objects"
+                "SELECT object_id,firm_id,sha256,byte_size,state,purged_at,"
+                "purged_by_user_id,purge_reason FROM original_file_objects"
             ).fetchall()
             for row in rows:
                 object_id = row["object_id"]
@@ -265,6 +266,10 @@ def _validate_original_object_inventory(
                     raise DatabaseBundleError(f"Original-object metadata is invalid for firm {firm_id}")
                 if row["state"] not in {"ready", "quarantined"}:
                     raise DatabaseBundleError(f"Firm {firm_id} has unfinished original-object metadata")
+                if row["purged_at"] is not None:
+                    if row["purged_by_user_id"] is None or not str(row["purge_reason"] or "").strip():
+                        raise DatabaseBundleError(f"Firm {firm_id} has an invalid purge tombstone")
+                    continue
                 object_relative = f"objects/firm-{firm_id}/{object_id}.blob"
                 if files.get(object_relative) is None:
                     raise DatabaseBundleError(f"Backup omits original object for firm {firm_id}")
