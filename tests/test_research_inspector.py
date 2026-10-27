@@ -223,6 +223,18 @@ class ResearchInspectorTests(unittest.TestCase):
             self.assertIn("(No passage text recorded; metadata-only result.)", memo)
             self.assertNotIn("not exact source text", memo)
 
+    def test_malformed_or_future_review_timestamps_fail_closed(self):
+        for value in ("not-a-date", "2026-02-30T12:00:00Z", "2999-01-01T00:00:00Z"):
+            source = valid_source()
+            source["provenance"]["review_evidence"][0]["reviewed_at"] = value
+            self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW, value)
+
+    def test_review_event_ids_must_be_positive_integers(self):
+        for value in (0, -1, True, 1.5):
+            source = valid_source()
+            source["provenance"]["review_evidence"][0]["review_event_id"] = value
+            self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW, repr(value))
+
     def test_boolean_verification_flags_do_not_accept_float_one(self):
         source = valid_source()
         source["provenance"]["status_verified"] = 1.0
