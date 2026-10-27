@@ -1196,7 +1196,8 @@ def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None, sc
     except Exception:
         msg = "تعذر الاتصال بالنموذج."
     if ans:
-        cites = {int(x) for x in re.findall(r"\[(\d+)\]", ans)}
+        visible_answer = _mask_markdown_code(ans)
+        cites = {int(x) for x in re.findall(r"\[(\d+)\]", visible_answer)}
         if not cites or not cites <= set(range(1, len(hits) + 1)):
             ans, msg = None, "فشل التحقق من الاستشهادات، تُعرض المصادر فقط."
         elif _answer_has_unsupported_quantities(ans, hits, cites):
