@@ -22,7 +22,7 @@ def passed_scope_review():
         "reviewer_id": "test-reviewer-001",
         "reviewed_on": "2026-10-23",
         "evidence_reference": "AUTH-1",
-        "evidence_url": None,
+        "evidence_url": "https://laws.example.gov/rights/authorization",
         "access_method": "direct_document_url",
         "source_terms_reviewed": True,
         "scope": {
@@ -49,6 +49,7 @@ class AcquisitionReadinessCliTests(unittest.TestCase):
                 "allowed_hosts": ["example.gov"],
                 "collection_permission": "allowed",
                 "permission_evidence": "written authorization ref AUTH-1",
+                "permission_evidence_url": "https://laws.example.gov/rights/collection",
                 "terms_checked_on": "2026-10-23",
                 "permission_scope_review": passed_scope_review(),
             }]
@@ -59,6 +60,7 @@ class AcquisitionReadinessCliTests(unittest.TestCase):
                 "collection_permission": "allowed",
                 "commercial_reuse_permission": "unknown",
                 "permission_evidence": "written authorization ref AUTH-1",
+                "permission_evidence_url": "https://laws.example.gov/rights/collection",
                 "terms_checked_on": "2026-10-23",
             }]
         }
@@ -101,11 +103,16 @@ class AcquisitionReadinessCliTests(unittest.TestCase):
             "commercial_permission_evidence_or_date_missing",
             report["documents"][0]["warnings"],
         )
+        self.assertIn(
+            "source_commercial_reuse_evidence_url_missing_or_invalid",
+            report["documents"][0]["warnings"],
+        )
 
     def test_production_gate_passes_only_when_both_permissions_and_evidence_are_allowed(self):
         source = self.register_payload["sources"][0]
         source["commercial_reuse_permission"] = "allowed"
         source["commercial_reuse_evidence"] = "Written commercial license AUTH-COMM-1"
+        source["commercial_reuse_evidence_url"] = "https://laws.example.gov/rights/commercial"
         source["commercial_terms_checked_on"] = "2026-10-23"
         self.register.write_text(json.dumps(self.register_payload), encoding="utf-8")
         code, report = self.run_cli("--require-ready")

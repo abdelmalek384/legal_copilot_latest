@@ -196,10 +196,16 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
             if registered.get("collection_permission") not in ALLOWED:
                 add(blockers, "central_collection_permission_not_allowed",
                     f"Central source {registered.get('source_id', '(unnamed)')} does not explicitly allow collection.")
+            elif https_host(registered.get("permission_evidence_url")) is None:
+                add(blockers, "central_permission_evidence_url_invalid",
+                    f"Central source {registered.get('source_id', '(unnamed)')} needs a direct HTTPS URL to inspectable collection-rights evidence.")
             if registered.get("commercial_reuse_permission") not in ALLOWED:
                 add(blockers, "central_commercial_permission_not_allowed",
                     f"Central source {registered.get('source_id', '(unnamed)')} does not explicitly allow commercial reuse.")
             else:
+                if https_host(registered.get("commercial_reuse_evidence_url")) is None:
+                    add(blockers, "central_commercial_permission_evidence_url_invalid",
+                        f"Central source {registered.get('source_id', '(unnamed)')} needs a separate HTTPS URL to inspectable commercial-rights evidence.")
                 if not isinstance(registered.get("commercial_reuse_evidence"), str) or not registered["commercial_reuse_evidence"].strip():
                     add(blockers, "central_commercial_permission_evidence_missing",
                         f"Central source {registered.get('source_id', '(unnamed)')} lacks separate commercial reuse evidence.")
@@ -222,9 +228,13 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
         add(blockers, "candidate_source_class_missing", "Candidate source must be classified as primary, official copy, secondary, user-supplied, or another explicit provenance class.")
     if not isinstance(source.get("permission_evidence"), str) or not source["permission_evidence"].strip():
         add(blockers, "candidate_permission_evidence_missing", "Candidate source lacks collection permission evidence.")
+    if source.get("collection_permission") in ALLOWED and https_host(source.get("permission_evidence_url")) is None:
+        add(blockers, "candidate_permission_evidence_url_invalid", "Candidate source needs a direct HTTPS URL to inspectable collection-rights evidence.")
     if not valid_date(source.get("terms_checked_on")):
         add(blockers, "candidate_terms_date_invalid", "Candidate source needs a valid, non-future terms_checked_on date.")
     if source.get("commercial_reuse_permission") in ALLOWED:
+        if https_host(source.get("commercial_reuse_evidence_url")) is None:
+            add(blockers, "candidate_commercial_permission_evidence_url_invalid", "Candidate source needs a separate HTTPS URL to inspectable commercial-rights evidence.")
         if not isinstance(source.get("commercial_reuse_evidence"), str) or not source["commercial_reuse_evidence"].strip():
             add(blockers, "candidate_commercial_permission_evidence_missing",
                 "Candidate source needs separate commercial_reuse_evidence; collection evidence is not sufficient.")

@@ -18,7 +18,7 @@ def passed_scope_review(reviewed_on="2026-10-23", **overrides):
         "reviewer_id": "test-reviewer-001",
         "reviewed_on": reviewed_on,
         "evidence_reference": "AUTH-1",
-        "evidence_url": None,
+        "evidence_url": "https://laws.example.gov/rights/authorization",
         "access_method": "direct_document_url",
         "source_terms_reviewed": True,
         "scope": {
@@ -59,6 +59,7 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
             "collection_permission": "allowed",
             "commercial_reuse_permission": "unknown",
             "permission_evidence": "written authorization ref AUTH-1",
+            "permission_evidence_url": "https://laws.example.gov/rights/collection",
             "terms_checked_on": "2026-10-23",
         }]}
         report = MODULE.audit(manifest, register)
@@ -104,6 +105,7 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
             "collection_permission": "allowed",
             "commercial_reuse_permission": "unknown",
             "permission_evidence": "written authorization",
+            "permission_evidence_url": "https://laws.example.gov/rights/collection",
             "terms_checked_on": "9999-12-31",
         }]}
         report = MODULE.audit(manifest, register)
@@ -132,6 +134,8 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
                 "collection_permission": "allowed",
                 "commercial_reuse_permission": "allowed",
                 "permission_evidence": "authorization",
+                "permission_evidence_url": "https://laws.example.gov/rights/collection",
+                "commercial_reuse_evidence_url": "https://laws.example.gov/rights/commercial",
                 "terms_checked_on": "2026-10-23",
             }]}
             with self.subTest(flag=flag):
@@ -139,6 +143,31 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
                 self.assertFalse(report["documents"][0]["collection_ready"])
                 self.assertIn("document_level_collection_scope_review_missing",
                               report["documents"][0]["blockers"])
+
+    def test_scope_review_requires_direct_evidence_url(self):
+        review = passed_scope_review(evidence_url=None)
+        manifest = {"documents": [{
+            "document_id": "LAW-NO-EVIDENCE-URL",
+            "source_id": "SRC-NO-EVIDENCE-URL",
+            "direct_url": "https://laws.example.gov/law.pdf",
+            "allowed_hosts": ["example.gov"],
+            "collection_permission": "allowed",
+            "permission_evidence": "authorization",
+            "terms_checked_on": "2026-10-23",
+            "permission_scope_review": review,
+        }]}
+        register = {"sources": [{
+            "source_id": "SRC-NO-EVIDENCE-URL",
+            "collection_permission": "allowed",
+            "commercial_reuse_permission": "unknown",
+            "permission_evidence": "authorization",
+            "permission_evidence_url": "https://laws.example.gov/rights/collection",
+            "terms_checked_on": "2026-10-23",
+        }]}
+        report = MODULE.audit(manifest, register)
+        self.assertFalse(report["documents"][0]["collection_ready"])
+        self.assertIn("document_level_collection_scope_review_missing",
+                      report["documents"][0]["blockers"])
 
     def test_scope_review_cannot_predate_terms_review_or_use_credential_url(self):
         review = passed_scope_review(reviewed_on="2026-10-22")
@@ -158,6 +187,8 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
             "collection_permission": "allowed",
             "commercial_reuse_permission": "allowed",
             "permission_evidence": "authorization",
+            "permission_evidence_url": "https://laws.example.gov/rights/collection",
+            "commercial_reuse_evidence_url": "https://laws.example.gov/rights/commercial",
             "terms_checked_on": "2026-10-23",
         }]}
         report = MODULE.audit(manifest, register)
@@ -190,6 +221,8 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
             "collection_permission": "allowed",
             "commercial_reuse_permission": "allowed",
             "permission_evidence": "written authorization",
+            "permission_evidence_url": "https://laws.example.gov/rights/collection",
+            "commercial_reuse_evidence_url": "https://laws.example.gov/rights/commercial",
             "terms_checked_on": "2026-10-23",
         }]}
         report = MODULE.audit(manifest, register)

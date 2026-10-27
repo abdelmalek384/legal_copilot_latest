@@ -5,6 +5,7 @@ The read-only gate in tools/validate_legal_release_readiness.py is a structural 
 ## Required extracted-text evidence
 
 In addition to source permission, original-file hash, version metadata, and the required review records, each candidate version must provide:
+- Source-level collection permission must link to direct HTTPS rights evidence; commercial reuse must have a separate direct HTTPS evidence URL and a valid terms-review date. Narrative labels or license IDs without an inspectable evidence link do not satisfy this gate.
 
 - extracted_text_path: a relative path confined to the configured corpus/repository root.
 - text_sha256: SHA-256 of the exact UTF-8 extracted-text file bytes.
