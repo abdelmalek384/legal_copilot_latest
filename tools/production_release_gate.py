@@ -69,7 +69,15 @@ def _ready_candidate_source_index(candidate_paths, legal_report):
             continue
         effective = _parse_iso_date(effective_date)
         repeal = None if repeal_date is None else _parse_iso_date(repeal_date)
-        if effective is None or (repeal_date is not None and repeal is None):
+        legal_status = version.get("legal_status")
+        if (
+            effective is None
+            or (repeal_date is not None and repeal is None)
+            or (legal_status in {"repealed", "historical"} and repeal is None)
+            or (repeal is not None and repeal < effective)
+        ):
+            # Fail closed: a version with an incomplete or contradictory end date
+            # must not be treated as active for benchmark/source coverage.
             continue
         normalized = {
             _normalize_pin_cite(anchor)
@@ -80,6 +88,7 @@ def _ready_candidate_source_index(candidate_paths, legal_report):
             source_index.setdefault(source_id.strip(), []).append({
                 "effective_date": effective,
                 "repeal_date": repeal,
+                "legal_status": legal_status,
                 "anchors": normalized,
             })
     return source_index
