@@ -8,6 +8,7 @@ not a legal opinion or an independent confirmation that evidence is truthful.
 from __future__ import annotations
 
 import argparse
+import csv
 import datetime as dt
 import hashlib
 import json
@@ -18,6 +19,7 @@ from urllib.parse import urlparse
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_REGISTER = ROOT / "docs" / "source_permission_register.json"
 DEFAULT_CANDIDATES = ROOT / "data" / "candidates"
+DEFAULT_COVERAGE_MATRIX = ROOT / "docs" / "legal_coverage_matrix.csv"
 ALLOWED = {"allowed", "allowed_limited"}
 REQUIRED_REVIEWS = {
     "source_authenticity",
@@ -322,7 +324,54 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
     }
 
 
-def build_report(candidate_paths: list[Path], permission_register_path: Path, root: Path = ROOT) -> dict:
+def summarize_coverage_matrix(path: Path) -> dict:
+    """Summarize planning status separately from evidence-backed candidate readiness."""
+    try:
+        with path.open("r", encoding="utf-8-sig", newline="") as handle:
+            reader = csv.DictReader(handle)
+            required = {"practice_area", "priority", "status"}
+            if not reader.fieldnames or not required.issubset(set(reader.fieldnames)):
+                return {
+                    "available": False,
+                    "path": str(path),
+                    "error": "Coverage matrix must include practice_area, priority, and status columns.",
+                }
+            rows = list(reader)
+    except (OSError, csv.Error, UnicodeError) as exc:
+        return {"available": False, "path": str(path), "error": f"Cannot read coverage matrix: {exc}"}
+
+    status_counts: dict[str, int] = {}
+    priority_counts: dict[str, int] = {}
+    areas_by_status: dict[str, list[str]] = {}
+    malformed_rows = 0
+    seen_areas: set[str] = set()
+    for row in rows:
+        area = (row.get("practice_area") or "").strip()
+        priority = (row.get("priority") or "unspecified").strip() or "unspecified"
+        status = (row.get("status") or "unknown").strip() or "unknown"
+        if not area or area in seen_areas:
+            malformed_rows += 1
+            continue
+        seen_areas.add(area)
+        status_counts[status] = status_counts.get(status, 0) + 1
+        priority_counts[priority] = priority_counts.get(priority, 0) + 1
+        areas_by_status.setdefault(status, []).append(area)
+    return {
+        "available": True,
+        "planning_only": True,
+        "path": str(path),
+        "practice_area_count": len(seen_areas),
+        "status_counts": dict(sorted(status_counts.items())),
+        "priority_counts": dict(sorted(priority_counts.items())),
+        "practice_areas_by_status": {key: sorted(value) for key, value in sorted(areas_by_status.items())},
+        "unstarted_practice_areas": sorted(areas_by_status.get("not_started", [])),
+        "malformed_or_duplicate_rows": malformed_rows,
+        "warning": "This matrix records planned coverage only; it does not prove that sources exist, are licensed, or have verified current text.",
+    }
+
+
+def build_report(candidate_paths: list[Path], permission_register_path: Path, root: Path = ROOT,
+                 coverage_matrix_path: Path = DEFAULT_COVERAGE_MATRIX) -> dict:
     try:
         register = json.loads(permission_register_path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
@@ -356,18 +405,23 @@ def build_report(candidate_paths: list[Path], permission_register_path: Path, ro
             bucket["candidate_count"] += 1
             bucket["ready_count"] += int(bool(item.get("ready")))
             bucket["blocked_count"] += int(not bool(item.get("ready")))
+    ready_current = sum(1 for item in reports if item.get("ready") and item.get("legal_status") == "in_force")
+    ready_historical = sum(1 for item in reports if item.get("ready") and item.get("legal_status") in {"historical", "repealed"})
     return {
         "schema_version": 1,
         "read_only": True,
         "candidate_count": len(reports),
         "ready_count": sum(1 for item in reports if item.get("ready")),
         "blocked_count": sum(1 for item in reports if not item.get("ready")),
+        "release_ready_current_count": ready_current,
+        "release_ready_historical_count": ready_historical,
         "blocker_counts": dict(sorted(blocker_counts.items())),
         "legal_status_counts": dict(sorted(status_counts.items())),
         "review_status_counts": dict(sorted(review_counts.items())),
         "practice_area_coverage": dict(sorted(practice_area_counts.items())),
+        "coverage_matrix": summarize_coverage_matrix(coverage_matrix_path),
         "candidates": reports,
-        "warning": "This checks recorded evidence and file integrity only; it cannot grant rights or independently certify legal correctness. Counts describe candidate records, not complete Egyptian-law coverage.",
+        "warning": "This checks recorded evidence and file integrity only; it cannot grant rights or independently certify legal correctness. Candidate counts are not complete Egyptian-law coverage; the coverage matrix is planning metadata, not proof of available, licensed, verified current text.",
     }
 
 
@@ -376,6 +430,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--candidate", action="append", help="Candidate JSON path; repeat for multiple candidates.")
     parser.add_argument("--candidates-dir", type=Path, default=DEFAULT_CANDIDATES)
     parser.add_argument("--register", type=Path, default=DEFAULT_REGISTER)
+    parser.add_argument("--coverage-matrix", type=Path, default=DEFAULT_COVERAGE_MATRIX,
+                        help="Planning-only coverage matrix CSV; kept separate from verified candidate counts.")
     parser.add_argument("--root", type=Path, default=ROOT, help="Root used to resolve original_path values.")
     parser.add_argument("--out", type=Path, help="Optional JSON report path.")
     parser.add_argument("--require-ready", action="store_true", help="Exit nonzero unless every candidate passes.")
@@ -384,7 +440,7 @@ def main(argv: list[str] | None = None) -> int:
     if not candidate_paths:
         report = {"schema_version": 1, "error": "No candidate registry JSON files found.", "candidates": [], "ready_count": 0}
     else:
-        report = build_report(candidate_paths, args.register, args.root)
+        report = build_report(candidate_paths, args.register, args.root, args.coverage_matrix)
     rendered = json.dumps(report, ensure_ascii=False, indent=2)
     if args.out:
         args.out.parent.mkdir(parents=True, exist_ok=True)
