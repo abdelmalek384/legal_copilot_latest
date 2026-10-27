@@ -113,6 +113,10 @@ class ReminderServiceTests(unittest.TestCase):
         row = self.tenant.execute("SELECT status,last_error_code FROM reminder_deliveries").fetchone()
         self.assertEqual(row["status"], "failed")
         self.assertEqual(row["last_error_code"], "event_no_longer_eligible")
+        attempt = self.tenant.execute("SELECT * FROM reminder_delivery_attempts").fetchone()
+        self.assertEqual(attempt["status"], "failed")
+        self.assertEqual(attempt["smtp_attempts"], 0)
+        self.assertEqual(attempt["error_code"], "event_no_longer_eligible")
 
 
 if __name__ == "__main__":
