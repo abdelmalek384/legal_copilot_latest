@@ -76,6 +76,8 @@ jobs:
         run: python tools/validate_legal_data_foundation.py
       - name: Test fail-closed legal release readiness gate
         run: PYTHONPATH=. python tests/test_legal_release_readiness.py
+      - name: Test aggregate production release gate
+        run: PYTHONPATH=. python tests/test_production_release_gate.py
       - name: Audit legal release candidate readiness without acquiring content
         run: python tools/validate_legal_release_readiness.py --out /tmp/legal-release-readiness.json
       - name: Test acquisition readiness production gate
