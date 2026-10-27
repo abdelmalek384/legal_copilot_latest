@@ -9,6 +9,7 @@ class CitationQuantityBindingTests(unittest.TestCase):
             {"text": "The statutory deadline is 30 days."},
             {"text": "This passage discusses procedure but states no duration or fee."},
             {"text": "The filing fee is 500 pounds."},
+            {"text": "The applicable tax rate is 14%."},
         ]
 
     def test_quantity_is_supported_by_its_own_inline_citation(self):
@@ -31,6 +32,21 @@ class CitationQuantityBindingTests(unittest.TestCase):
     def test_out_of_range_citation_cannot_support_quantity(self):
         answer = "The deadline is 30 days [99]."
         self.assertTrue(app._answer_has_unsupported_quantities(answer, self.hits, {99}))
+
+    def test_adjacent_and_arabic_percent_symbols_are_checked(self):
+        self.assertFalse(app._answer_has_unsupported_quantities(
+            "The tax rate is 14% [4].", self.hits, {4}
+        ))
+        self.assertFalse(app._answer_has_unsupported_quantities(
+            "The tax rate is ١٤٪ [4].", self.hits, {4}
+        ))
+        self.assertTrue(app._answer_has_unsupported_quantities(
+            "The tax rate is 14% [2]. Another point cites the rate [4].",
+            self.hits, {2, 4}
+        ))
+        self.assertTrue(app._answer_has_unsupported_quantities(
+            "The tax rate is 14٪ [2].", self.hits, {2}
+        ))
 
     def test_non_numeric_claim_does_not_need_quantity_support(self):
         answer = "The source discusses the legal procedure [2]."
