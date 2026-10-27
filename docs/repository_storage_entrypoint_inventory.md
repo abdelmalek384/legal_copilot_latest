@@ -1,20 +1,21 @@
-# SEC-01 — repository storage, file, backup, and job inventory
+# SEC-01 — repository storage, file, backup, and job inventory (historical baseline)
 
-**Review date:** 2026-10-24  
-**Scope:** targeted static review of the current repository's storage-related entry points beyond the main request handlers, including CLI commands, corpus tooling, backup/restore, collection outputs, and deployment guidance.  
+**Snapshot:** 2026-10-24  
+**Status:** Historical baseline; several architecture statements below predate the separate-database runtime and tenant backup/restore work. Use [the current tenant-isolation inventory](tenant_isolation_inventory.md), [database completion tracker](database_completion_tracker.md), and [recovery runbook](database_recovery_runbook.md) for current status.  
+**Scope:** preserve the initial static review of storage-related entry points beyond request handlers, including CLI commands, corpus tooling, backup/restore, collection outputs, and deployment guidance.  
 **Evidence level:** engineering inventory based on source inspection and repository searches. This is not an exhaustive SQL audit, a deployment-host inspection, a penetration test, or an independent security review.
 
 ## Executive finding
 
-The application still uses one SQLite database selected by the process-wide `COPILOT_DB` environment variable (default `copilot.db`). The connection-provider extraction in PR #115 is only a connection-lifecycle boundary. It does not route by trusted firm identity or establish per-firm database isolation.
+At the 2026-10-24 snapshot, the application used one SQLite database selected by `COPILOT_DB`. That statement is historical. The current approved runtime routes global identities/memberships through the control plane, matter data through a distinct database per firm, and legal-reference data through the shared corpus. Explicit legacy `COPILOT_DB` compatibility remains for non-production use and is rejected in production. Encrypted multi-database backup/restore and a separate-database preflight are now implemented; the witnessed recovery drill remains outstanding.
 
-This pass identifies additional non-request paths that must be accounted for before tenant migration. No tenant-routing or data-migration behavior is implemented by this document.
+The table below preserves the earlier entrypoint analysis and its original follow-ups. It is not a current statement that tenant routing or multi-database backup/restore is absent.
 
 ## Entry-point inventory
 
 | Entry point | Observed behavior | Tenant/isolation implications | Follow-up |
 |---|---|---|---|
-| `app.py: DB / conn()` | Uses one configured SQLite path; schema setup and inline migrations run through the app connection path. | All firms and shared legal corpus currently coexist in one database. | Keep tenant database selection server-side; move schema changes to versioned migrations before multi-database provisioning. |
+| `app.py: DB / conn()` | Historical snapshot used one configured SQLite path. Current separate runtime resolves control-plane, per-firm tenant, and shared-corpus connections; legacy `COPILOT_DB` remains only as a non-production compatibility path. | Only the configured separate runtime is the approved multi-firm boundary; legacy mode is rejected in production. | Keep strict production preflight and continue route/query isolation testing. |
 | `manage.py adduser` | Creates a user through `app.conn()`; command accepts a role but no firm selector. | User creation is tied to the single configured database and does not provision a firm boundary. | Redesign onboarding only after deciding whether identities are global or firm-specific and how initial firm membership is trusted. |
 | `manage.py resetpw` | Finds an account by email, updates its password, revokes that user's sessions, and writes a security audit event through `app.conn()`. | Assumes email identifies one account in the shared database; implications change if users can belong to multiple firms. | Specify global identity, membership, session revocation, and firm audit semantics before moving identity tables. |
 | `manage.py backup` | Uses SQLite's backup API, unique temporary staging files, snapshot validation, encrypted staged output, cleanup, and retention after successful output creation. Regression tests cover sequential backups and restore safety. | Produces a whole configured-database backup, not a firm-specific backup. Concurrent retention behavior and operational restore drills remain unverified. | Keep current single-database backup for existing deployments; design per-firm backup/restore only after routing and storage boundaries exist, then test concurrent runs and restore on disposable targets. |
