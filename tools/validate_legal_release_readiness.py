@@ -47,7 +47,7 @@ def https_host(value: object) -> str | None:
         return None
     try:
         parsed = urlparse(value)
-        if parsed.scheme != "https" or not parsed.hostname or parsed.username or parsed.password:
+        if parsed.scheme != "https" or not parsed.hostname or parsed.username is not None or parsed.password is not None:
             return None
         host = parsed.hostname.lower().rstrip(".")
         return host[4:] if host.startswith("www.") else host
