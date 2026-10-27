@@ -21,13 +21,16 @@
 
 ### Current open work requiring review
 
-- **#684** — phased roadmap for verified Egyptian legal knowledge; CI was in progress at the last check.
+- **#684** — phased roadmap for verified Egyptian legal knowledge; test check passed.
 - **#682** — read-only review-event integrity audit; its test check passed.
 - **#683** — read-only chunk-to-version consistency audit; its test check passed.
 - **#681** — evidence-backed verification flags audit; recheck latest CI before review.
 - **#680, #678, #677, #675, #670, #668** — research/evaluation improvements; check current CI and merge status before counting as complete.
 - **#667** — earlier tracker refresh PR; verify whether it is still useful after this snapshot and avoid conflicting tracker edits.
 - **#671** — original-file storage adapter; separate database/storage workstream, not modified by this snapshot.
+- **#685** — this tracker refresh; test check passed after the snapshot was authored.
+- **#686** — Markdown renderer now displays review-event and chunk/version audit metrics; test check passed.
+- **#687** — Arabic hamza test assertions aligned with canonical token normalization; test check passed. This is test-only and does not change runtime normalization.
 
 ### Immediate priority order
 
