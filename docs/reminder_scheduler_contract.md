@@ -23,6 +23,14 @@ The caller supplies a firm/scope identifier, recipient identifier, aware current
 - Do not include client names, matter titles, case facts, or legal strategy in the plan or email.
 - Sort plans deterministically.
 
+## Local dry-run CLI
+
+Run a plan from a JSON input file without connecting to SQLite or sending any message:
+
+    python tools/reminder_schedule.py --input events.json --recipient-id user-123 --scope-id firm-456 --timezone Africa/Cairo --now 2026-10-26T08:00:00+00:00 --out /tmp/reminder-plan.json
+
+The input root must be an object with an events array and optional already_sent array of idempotency-key strings. Use the exact event fields documented above. The command always returns a dry-run report, refuses to overwrite its input file, and reports delivery_performed=false. The already_sent list is only supplied input, not durable deduplication storage.
+
 ## Email adapter
 
 The SMTP adapter in docs/reminder_email_delivery.md supports TLS-protected SMTP with a timeout, generic message content, disabled-by-default delivery, bounded retries for likely transient failures, and sanitized error codes. Status accepted_by_smtp means only that the SMTP server accepted the submission; it is not proof of inbox delivery. A timeout may leave acceptance ambiguous and retries may duplicate a message.
