@@ -2,7 +2,7 @@
 
 Administrators see a **Legal Source Review** item in the application navigation. The page reads `GET /legal-review/queue` to list registered legal-document versions, current recorded status fields, source metadata, effective dates, and review-event counts. A reviewer can select a version, inspect its existing review events, and append a new event through the API documented in [Evidence-backed legal review events](evidence_backed_legal_review_events.md).
 
-The interface supports searching the loaded list, opening a registered source URL in a separate tab, viewing event history, and recording review type, outcome, evidence URL, and notes. A passing outcome requires an HTTPS evidence URL; the server rejects embedded URL credentials.
+The interface supports searching the loaded list, opening a registered source URL in a separate tab, viewing event history, and recording review type, outcome, evidence URL, and notes. A passing outcome requires a syntactically valid HTTPS evidence URL. The server rejects embedded credentials, whitespace, malformed ports, and invalid port ranges. This is URL-shape validation only; it does not prove the linked evidence is authentic or relevant.
 
 ## Boundaries
 
