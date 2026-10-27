@@ -60,6 +60,8 @@ class MFAPrimitivesTests(unittest.TestCase):
     def test_totp_rejects_bad_secret_and_bad_parameters(self):
         with self.assertRaises(MFAPrimitivesError):
             verify_totp("not base32!", "123456", now=100)
+        with self.assertRaises(MFAPrimitivesError):
+            verify_totp("MY", "123456", now=100)
         secret = generate_totp_secret()
         for window in (-1, 3, True):
             with self.subTest(window=window), self.assertRaises(MFAPrimitivesError):
