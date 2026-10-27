@@ -33,10 +33,13 @@ def _valid_date(value: object) -> bool:
 def _hostname(value: object) -> str | None:
     if not isinstance(value, str):
         return None
-    parsed = urlparse(value)
-    if parsed.scheme != "https" or not parsed.hostname or parsed.username or parsed.password:
+    try:
+        parsed = urlparse(value)
+        if parsed.scheme != "https" or not parsed.hostname or parsed.username is not None or parsed.password is not None:
+            return None
+        return parsed.hostname.lower().rstrip(".")
+    except ValueError:
         return None
-    return parsed.hostname.lower().rstrip(".")
 
 
 def _host_matches(host: str | None, allowed_hosts: object) -> bool:
@@ -78,11 +81,14 @@ def _scope_review_valid(document: dict) -> bool:
         return False
     evidence_url = review.get("evidence_url")
     if evidence_url is not None:
-        parsed = urlparse(evidence_url) if isinstance(evidence_url, str) else None
-        if (
-            parsed is None or parsed.scheme != "https" or not parsed.hostname
-            or parsed.username is not None or parsed.password is not None
-        ):
+        try:
+            parsed = urlparse(evidence_url) if isinstance(evidence_url, str) else None
+            if (
+                parsed is None or parsed.scheme != "https" or not parsed.hostname
+                or parsed.username is not None or parsed.password is not None
+            ):
+                return False
+        except ValueError:
             return False
     scope = review.get("scope")
     return isinstance(scope, dict) and all(scope.get(flag) is True for flag in SCOPE_FLAGS)
