@@ -1656,5 +1656,47 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
                 )
 
 
+    def test_document_persistence_rolls_back_metadata_chunks_and_event_together(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        select_firm = self._mutate("post", "/session/firm", json={"firm_id": self.firm_a})
+        self.assertEqual(select_firm.status_code, 200, select_firm.text)
+        case_response = self._mutate(
+            "post", "/cases", json={"title": "Document Atomicity Case"}
+        )
+        self.assertEqual(case_response.status_code, 200, case_response.text)
+        case_id = case_response.json()["id"]
+
+        context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        tenant = self.runtime.firm_connection(context)
+        before = {
+            table: tenant.execute(f"SELECT COUNT(*) FROM {table} WHERE case_id=?", (case_id,)).fetchone()[0]
+            for table in ("docs", "chunks", "events")
+        }
+        tenant.execute("""
+            CREATE TRIGGER reject_document_audit_event
+            BEFORE INSERT ON events
+            WHEN NEW.text LIKE '%إضافة مستند:%'
+            BEGIN SELECT RAISE(ABORT, 'document audit unavailable'); END
+        """)
+        tenant.commit()
+
+        response = self._mutate(
+            "post",
+            f"/cases/{case_id}/docs",
+            json={"name": "atomicity-test.txt", "text": "DOCUMENT_ATOMICITY_SENTINEL extracted source text"},
+        )
+        self.assertEqual(response.status_code, 503, response.text)
+        for table, count in before.items():
+            with self.subTest(table=table):
+                self.assertEqual(
+                    tenant.execute(f"SELECT COUNT(*) FROM {table} WHERE case_id=?", (case_id,)).fetchone()[0],
+                    count,
+                )
+        self.assertFalse(tenant.in_transaction)
+
+
 if __name__ == "__main__":
     unittest.main()
