@@ -1022,6 +1022,13 @@ def _legal_quantities(text):
         unit = _QUANTITY_UNITS.get(match.group("unit").lower())
         if number is not None and unit:
             found.add((number, unit))
+    # Percent signs are commonly attached directly to the numeral (e.g. 14% / ١٤٪).
+    # The general number-unit pattern intentionally requires whitespace for word units.
+    adjacent_percent = re.compile(r"(?<![\w])(?P<number>\d+(?:[.,]\d+)?)\s*(?P<unit>%|٪)(?![\w])")
+    for match in adjacent_percent.finditer(text):
+        number = _normalize_quantity_number(match.group("number"))
+        if number is not None:
+            found.add((number, "percent"))
     return found
 
 
