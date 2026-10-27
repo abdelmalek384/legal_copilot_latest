@@ -25,6 +25,7 @@ def valid_source():
             "law_year": 2020,
             "version_label": "consolidated-2025",
             "source_url": "https://example.gov/law",
+            "original_sha256": "a" * 64,
             "review_status": "verified",
             "legal_status": "in_force",
             "authenticity_verified": True,
@@ -66,6 +67,25 @@ class ResearchInspectorTests(unittest.TestCase):
             candidate = valid_source()
             candidate["provenance"][key] = value
             self.assertEqual(source_status(candidate, "2026-10-24"), STATUS_REVIEW, key)
+
+    def test_verified_status_requires_https_source_and_original_file_hash(self):
+        source = valid_source()
+        source["provenance"].pop("original_sha256")
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
+        for value in ("not-a-hash", "a" * 63, "g" * 64, None):
+            source = valid_source()
+            source["provenance"]["original_sha256"] = value
+            self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW, repr(value))
+
+        for value in ("http://example.gov/law", "javascript:alert(1)", "", None):
+            source = valid_source()
+            source["provenance"]["source_url"] = value
+            self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW, repr(value))
+
+        source = valid_source()
+        source["provenance"]["official_title"] = " "
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
 
     def test_all_latest_review_types_are_required_for_verified_status(self):
         source = valid_source()
