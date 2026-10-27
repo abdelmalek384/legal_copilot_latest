@@ -360,5 +360,93 @@ class TenancyCommandTests(unittest.TestCase):
 
 
 
+    def test_adduser_atomically_audits_identity_and_membership_creation(self):
+        result = subprocess.run(
+            [
+                sys.executable, str(MANAGE), "adduser", "Audited User",
+                "audited-user@example.test", "lawyer", "--firm-id", str(self.firm_a),
+            ],
+            cwd=ROOT,
+            env=self.env,
+            input="StrongPassphrase-2026!\n",
+            text=True,
+            capture_output=True,
+            timeout=60,
+            check=False,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        control = self.runtime.control_connection()
+        user = control.execute(
+            "SELECT id FROM users WHERE email_normalized='audited-user@example.test'"
+        ).fetchone()
+        self.assertIsNotNone(user)
+        membership = control.execute(
+            "SELECT status,firm_role FROM firm_memberships WHERE user_id=? AND firm_id=?",
+            (user["id"], self.firm_a),
+        ).fetchone()
+        self.assertEqual((membership["status"], membership["firm_role"]), ("active", "lawyer"))
+        events = control.execute(
+            "SELECT event_type,detail_json FROM platform_security_events "
+            "WHERE target_user_id=? ORDER BY id",
+            (user["id"],),
+        ).fetchall()
+        self.assertEqual(
+            [event["event_type"] for event in events],
+            ["identity_created_cli", "membership_created"],
+        )
+        self.assertEqual(json.loads(events[0]["detail_json"]), {"method": "manage.py adduser"})
+        self.assertEqual(
+            json.loads(events[1]["detail_json"]),
+            {"firm_role": "lawyer", "method": "manage.py adduser"},
+        )
+
+    def test_adduser_rolls_back_identity_and_membership_if_audit_fails(self):
+        control = self.runtime.control_connection()
+        control.execute("""
+            CREATE TRIGGER reject_adduser_membership_audit
+            BEFORE INSERT ON platform_security_events
+            WHEN NEW.event_type='membership_created'
+            BEGIN SELECT RAISE(ABORT, 'audit unavailable'); END
+        """)
+        control.commit()
+        result = subprocess.run(
+            [
+                sys.executable, str(MANAGE), "adduser", "Unaudited User",
+                "unaudited-user@example.test", "lawyer", "--firm-id", str(self.firm_a),
+            ],
+            cwd=ROOT,
+            env=self.env,
+            input="StrongPassphrase-2026!\n",
+            text=True,
+            capture_output=True,
+            timeout=60,
+            check=False,
+        )
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("audit unavailable", result.stderr)
+        self.assertEqual(
+            control.execute(
+                "SELECT COUNT(*) FROM users WHERE email_normalized='unaudited-user@example.test'"
+            ).fetchone()[0],
+            0,
+        )
+        self.assertEqual(
+            control.execute(
+                "SELECT COUNT(*) FROM firm_memberships WHERE user_id IN "
+                "(SELECT id FROM users WHERE email_normalized='unaudited-user@example.test')"
+            ).fetchone()[0],
+            0,
+        )
+        self.assertEqual(
+            control.execute(
+                "SELECT COUNT(*) FROM platform_security_events "
+                "WHERE event_type IN ('identity_created_cli','membership_created') "
+                "AND detail_json LIKE '%manage.py adduser%'"
+            ).fetchone()[0],
+            0,
+        )
+
+
+
 if __name__ == "__main__":
     unittest.main()

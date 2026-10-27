@@ -20,7 +20,8 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         original = self.root / "originals" / "law.pdf"
         original.write_bytes(b"synthetic original bytes")
         self.original_hash = hashlib.sha256(original.read_bytes()).hexdigest()
-        extracted = self.root / "originals" / "law.txt"
+        (self.root / "extracted").mkdir()
+        extracted = self.root / "extracted" / "law.txt"
         extracted.write_text("Article 1\\nArticle 2", encoding="utf-8")
         self.text_hash = hashlib.sha256(extracted.read_bytes()).hexdigest()
         self.source_id = "SRC-1"
@@ -28,7 +29,7 @@ class LegalReleaseReadinessTests(unittest.TestCase):
             "document": {"document_id": "LAW-1", "source_id": self.source_id, "official_title": "Test law",
                          "permission_scope_review": {
                              "status": "passed", "evidence": "AUTH-1 clauses 1-4", "reviewed_on": "2025-01-01",
-                             "approved_uses": ["collection", "indexing", "commercial_product_use", "excerpt_display"],
+                             "approved_uses": ["collection", "storage", "text_extraction", "indexing", "commercial_product_use", "excerpt_display"],
                          }},
             "sources": [{
                 "source_id": self.source_id, "source_page": "https://laws.example.gov/portal",
@@ -39,7 +40,7 @@ class LegalReleaseReadinessTests(unittest.TestCase):
             "version": {
                 "source_url": "https://laws.example.gov/law.pdf", "original_path": "originals/law.pdf",
                 "original_sha256": self.original_hash, "retrieved_at": "2025-01-02",
-                "extracted_text_path": "originals/law.txt", "text_sha256": self.text_hash,
+                "extracted_text_path": "extracted/law.txt", "text_sha256": self.text_hash,
                 "text_review_status": "text_checked", "text_review_evidence_url": "https://laws.example.gov/text-review",
                 "article_identifiers": ["Article 1", "Article 2"],
                 "expected_article_identifiers": ["Article 1", "Article 2"],
@@ -152,6 +153,52 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         result = MODULE.audit_candidate(self.candidate, self.register, self.root)
         self.assertIn("document_scope_uses_incomplete", {item["code"] for item in result["blockers"]})
 
+    def test_https_url_validation_rejects_all_userinfo(self):
+        for url in (
+            "https://@laws.example.gov/portal",
+            "https://user@laws.example.gov/portal",
+            "https://user:password@laws.example.gov/portal",
+        ):
+            with self.subTest(url=url):
+                self.assertIsNone(MODULE.https_host(url))
+
+    def test_scope_review_must_explicitly_approve_storage_and_text_extraction(self):
+        for use in ("storage", "text_extraction"):
+            candidate = json.loads(json.dumps(self.candidate))
+            candidate["document"]["permission_scope_review"]["approved_uses"].remove(use)
+            result = MODULE.audit_candidate(candidate, self.register, self.root)
+            with self.subTest(use=use):
+                self.assertIn("document_scope_uses_incomplete", {item["code"] for item in result["blockers"]})
+
+    def test_original_and_extracted_paths_must_use_designated_relative_directories(self):
+        cases = [
+            ("original_path", str(self.root / "originals" / "law.pdf"), "original_path_invalid"),
+            ("original_path", "originals/../originals/law.pdf", "original_path_invalid"),
+            ("extracted_text_path", "originals/law.txt", "extracted_text_path_invalid"),
+            ("extracted_text_path", "../extracted/law.txt", "extracted_text_path_invalid"),
+        ]
+        for field, value, expected_code in cases:
+            candidate = json.loads(json.dumps(self.candidate))
+            candidate["version"][field] = value
+            result = MODULE.audit_candidate(candidate, self.register, self.root)
+            with self.subTest(field=field, value=value):
+                self.assertIn(expected_code, {item["code"] for item in result["blockers"]})
+
+    def test_release_gate_rejects_symlinked_original_and_extracted_text(self):
+        original_link = self.root / "originals" / "linked.pdf"
+        original_link.symlink_to(self.root / "originals" / "law.pdf")
+        candidate = json.loads(json.dumps(self.candidate))
+        candidate["version"]["original_path"] = "originals/linked.pdf"
+        result = MODULE.audit_candidate(candidate, self.register, self.root)
+        self.assertIn("original_path_symlinked", {item["code"] for item in result["blockers"]})
+
+        extracted_link = self.root / "extracted" / "linked.txt"
+        extracted_link.symlink_to(self.root / "extracted" / "law.txt")
+        candidate = json.loads(json.dumps(self.candidate))
+        candidate["version"]["extracted_text_path"] = "extracted/linked.txt"
+        result = MODULE.audit_candidate(candidate, self.register, self.root)
+        self.assertIn("extracted_text_path_symlinked", {item["code"] for item in result["blockers"]})
+
     def test_unmatched_central_source_fails_closed(self):
         self.register["sources"][0]["source_page"] = "https://other.example.gov"
         result = MODULE.audit_candidate(self.candidate, self.register, self.root)
@@ -176,6 +223,44 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         candidate["reviews"][0]["reviewed_on"] = "2999-01-01"
         result = MODULE.audit_candidate(candidate, self.register, self.root)
         self.assertIn("review_date_invalid", {item["code"] for item in result["blockers"]})
+
+    def test_report_separates_planning_matrix_from_current_and_historical_readiness(self):
+        candidate_path = self.root / "candidate.json"
+        register_path = self.root / "register.json"
+        candidate_path.write_text(json.dumps(self.candidate), encoding="utf-8")
+        register_path.write_text(json.dumps(self.register), encoding="utf-8")
+        matrix_path = self.root / "coverage.csv"
+        matrix_path.write_text(
+            chr(10).join([
+                "practice_area,priority,status",
+                "Civil law,P0,not_started",
+                "Labour,P0,in_progress",
+                "Tax,P1,not_started",
+            ]) + chr(10),
+            encoding="utf-8",
+        )
+        report = MODULE.build_report([candidate_path], register_path, self.root, matrix_path)
+        self.assertEqual(report["release_ready_current_count"], 1)
+        self.assertEqual(report["release_ready_historical_count"], 0)
+        self.assertEqual(report["coverage_matrix"]["practice_area_count"], 3)
+        self.assertEqual(report["coverage_matrix"]["status_counts"], {"in_progress": 1, "not_started": 2})
+        self.assertEqual(report["coverage_matrix"]["unstarted_practice_areas"], ["Civil law", "Tax"])
+        self.assertIn("does not prove", report["coverage_matrix"]["warning"])
+
+        self.candidate["version"]["legal_status"] = "historical"
+        candidate_path.write_text(json.dumps(self.candidate), encoding="utf-8")
+        historical = MODULE.build_report([candidate_path], register_path, self.root, matrix_path)
+        self.assertEqual(historical["release_ready_current_count"], 0)
+        self.assertEqual(historical["release_ready_historical_count"], 1)
+
+    def test_missing_or_malformed_coverage_matrix_is_reported_without_promoting_coverage(self):
+        report = MODULE.summarize_coverage_matrix(self.root / "missing.csv")
+        self.assertFalse(report["available"])
+        malformed = self.root / "bad.csv"
+        malformed.write_text("practice_area,priority" + chr(10) + "Civil law,P0" + chr(10), encoding="utf-8")
+        report = MODULE.summarize_coverage_matrix(malformed)
+        self.assertFalse(report["available"])
+        self.assertIn("must include", report["error"])
 
     def test_report_summarizes_blockers_status_and_practice_area_without_claiming_coverage(self):
         self.candidate["document"]["practice_areas"] = ["Labour", "Employment"]

@@ -6,6 +6,7 @@ This is a controlled document retriever and review-queue generator, not a comple
 ## Safety model
 - No crawling, search-page scraping, URL guessing, login bypass, or paywall bypass.
 - Only exact direct-document URLs entered in the manifest are considered.
+- Before creating output directories or making any network request, the CLI validates the central register's schema and unique source IDs, then cross-checks every manifest entry against `docs/source_permission_register.json` (override with `--register`). Every document must pass both collection and commercial-product-use gates, including separate commercial evidence and review date. Any blocked entry stops the entire batch before network access; `--process-existing` is subject to the same gate before re-extraction/re-indexing.
 - A document is downloaded only when `collection_permission` is `allowed`, `permission_evidence` and a valid `terms_checked_on` date are present, approved source hosts are listed, and `permission_scope_review` records a reviewer, evidence reference, review date, reviewed source terms, the `direct_document_url` access method, and explicit approval for storage, text extraction, indexing, commercial product use, and excerpt display. These fields are self-reported metadata, not independent proof that rights were granted.
 - HTTPS only; redirects are revalidated; private/local network addresses and unapproved hosts are rejected.
 - Download size and content type are checked. The raw original is preserved unchanged.
@@ -83,7 +84,7 @@ python tools/collect_legal_documents.py --manifest docs/collection_manifest.exam
 - `review_queue.jsonl`: items awaiting human source/legal review.
 - `collection_report.jsonl`: per-document outcomes.
 
-Reprocessing a document does not overwrite earlier extracted text or audit records. Each artifact is content-addressed and records the source original hash. Before reading existing metadata, the processor validates the document ID, requires the original path to remain inside `originals/<document_id>/`, rejects symlinks, and checks the original bytes against the recorded SHA-256. Tampered or stale sidecars fail closed instead of being used to read arbitrary files.
+Reprocessing a document does not overwrite earlier extracted text or audit records. Each artifact is content-addressed and records the source original hash. Before reading existing metadata, the processor validates the document ID, requires the original path to remain inside `originals/<document_id>/`, rejects symlinks, and checks the original bytes against the recorded SHA-256. Tampered or stale sidecars fail closed instead of being used to read arbitrary files. The collector also rejects symlinked output roots, storage directories, metadata sidecars, and JSONL report/queue files before acquisition, and opens append-only logs without following a symlink target.
 
 ## Next steps
 1. Populate document entries with confirmed lawful direct downloads, starting with foundational statutes and procedural laws.

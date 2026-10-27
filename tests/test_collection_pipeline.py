@@ -1,3 +1,5 @@
+import contextlib
+import io
 import json
 import tempfile
 import unittest
@@ -167,6 +169,94 @@ class CollectionPipelineTests(unittest.TestCase):
             }
             with self.assertRaisesRegex(ValueError, "symbolic links"):
                 collector.process_document(out, metadata)
+
+    def test_jsonl_append_refuses_symlink_targets(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            target = root / "outside.jsonl"
+            target.write_text("sentinel\\n", encoding="utf-8")
+            link = root / "review_queue.jsonl"
+            link.symlink_to(target)
+            with self.assertRaisesRegex(ValueError, "symbolic links"):
+                collector.append_jsonl(link, {"private": "should not be written"})
+            self.assertEqual(target.read_text(encoding="utf-8"), "sentinel\\n")
+
+    def test_output_layout_rejects_symlinked_roots_directories_and_report_files(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            outside = root / "outside"
+            outside.mkdir()
+            output = root / "output"
+            output.symlink_to(outside, target_is_directory=True)
+            with self.assertRaisesRegex(ValueError, "output root"):
+                collector.validate_output_layout(output)
+
+            output.unlink()
+            output.mkdir()
+            (output / "metadata").symlink_to(outside, target_is_directory=True)
+            with self.assertRaisesRegex(ValueError, "metadata output directory"):
+                collector.validate_output_layout(output)
+
+            (output / "metadata").unlink()
+            (output / "collection_report.jsonl").symlink_to(root / "sentinel.jsonl")
+            with self.assertRaisesRegex(ValueError, "collection_report.jsonl"):
+                collector.validate_output_layout(output)
+
+    def test_collector_blocks_before_network_when_central_commercial_rights_are_missing(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            manifest_path = root / "manifest.json"
+            register_path = root / "register.json"
+            out = root / "corpus"
+            manifest_path.write_text(json.dumps({"documents": [{
+                "document_id": "LAW-1",
+                "source_id": "SRC-1",
+                "title": "Test law",
+                "direct_url": "https://example.gov/law.pdf",
+                "allowed_hosts": ["example.gov"],
+                "collection_permission": "allowed",
+                "permission_evidence": "Collection permission AUTH-1",
+                "terms_checked_on": "2026-10-26",
+                "permission_scope_review": approved_scope_review(),
+            }]}), encoding="utf-8")
+            base_source = {
+                "source_id": "SRC-1",
+                "authority": "Example authority",
+                "source_page": "https://example.gov/",
+                "material_types": ["law"],
+                "access_status": "public",
+                "collection_permission": "allowed",
+                "permission_evidence": "Collection permission AUTH-1",
+                "terms_checked_on": "2026-10-26",
+                "required_next_action": "review",
+            }
+            for commercial in (
+                {"commercial_reuse_permission": "unknown"},
+                {"commercial_reuse_permission": "allowed"},
+                {
+                    "commercial_reuse_permission": "allowed",
+                    "commercial_reuse_evidence": "Commercial license AUTH-COMM-1",
+                    "commercial_terms_checked_on": "2099-01-01",
+                },
+            ):
+                register_path.write_text(json.dumps({
+                    "schema_version": "1.0",
+                    "assessment_date": "2026-10-26",
+                    "sources": [{**base_source, **commercial}],
+                }), encoding="utf-8")
+                args = [
+                    "collect_legal_documents.py",
+                    "--manifest", str(manifest_path),
+                    "--register", str(register_path),
+                    "--out", str(out),
+                ]
+                errors = io.StringIO()
+                with patch.object(sys, "argv", args), patch.object(collector.httpx, "Client") as client, contextlib.redirect_stderr(errors):
+                    code = collector.main()
+                self.assertEqual(code, 2)
+                client.assert_not_called()
+                self.assertIn("no network requests were made", errors.getvalue())
+                self.assertFalse(out.exists())
 
     def test_metadata_history_preserves_prior_retrievals_and_collision_records(self):
         first = {
