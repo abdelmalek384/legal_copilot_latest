@@ -29,5 +29,50 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         data["sources"].append(dict(data["sources"][0]))
         self.assertTrue(any("duplicate source_id" in error for error in MODULE.validate(data)))
 
+
+    def test_commercial_reuse_state_is_validated_independently(self):
+        import json
+        data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        data["sources"][0]["commercial_reuse_permission"] = "public_means_free"
+        errors = MODULE.validate(data)
+        self.assertTrue(any("commercial_reuse_permission has unsupported value" in error for error in errors))
+
+    def test_explicit_restrictive_commercial_state_requires_evidence_and_date(self):
+        item = {
+            "source_id": "S1", "authority": "Example", "source_page": "https://example.gov/",
+            "material_types": ["law"], "access_status": "public",
+            "collection_permission": "unknown",
+            "commercial_reuse_permission": "prior_written_permission_required_per_published_terms",
+            "terms_url": "https://example.gov/terms",
+            "permission_evidence": None, "terms_checked_on": None,
+            "required_next_action": "Review terms",
+        }
+        errors = MODULE.validate({"schema_version": "1.0", "assessment_date": "2026-10-27", "sources": [item]})
+        self.assertTrue(any("permission_evidence" in error for error in errors))
+        self.assertTrue(any("terms_checked_on" in error for error in errors))
+
+    def test_credentials_in_source_urls_are_rejected(self):
+        import json
+        data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        data["sources"][0]["source_page"] = "https://user:secret@example.gov/law"
+        errors = MODULE.validate(data)
+        self.assertTrue(any("source_page must be an HTTPS URL without credentials" in error for error in errors))
+
+    def test_invalid_or_future_permission_review_dates_are_rejected(self):
+        import json
+        data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        data["sources"][2]["terms_checked_on"] = "2099-01-01"
+        errors = MODULE.validate(data)
+        self.assertTrue(any("valid terms_checked_on date" in error for error in errors))
+
+    def test_empty_material_types_and_invalid_assessment_date_are_rejected(self):
+        import json
+        data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        data["sources"][0]["material_types"] = []
+        data["assessment_date"] = "2026-02-31"
+        errors = MODULE.validate(data)
+        self.assertTrue(any("material_types must be a non-empty list" in error for error in errors))
+        self.assertTrue(any("assessment_date must be a valid ISO date" in error for error in errors))
+
 if __name__ == "__main__":
     unittest.main()
