@@ -11,6 +11,7 @@ from tenant_catalog import (
     initialize_catalog,
     provision_tenant_database,
     resolve_tenant_database,
+    resolve_tenant_database_for_maintenance,
 )
 
 
@@ -454,6 +455,17 @@ class TenantCatalogTests(unittest.TestCase):
         with self.assertRaises(TenantCatalogError):
             resolve_tenant_database(self.catalog, 10, self.root)
 
+
+    def test_maintenance_resolution_allows_disabled_tenant_but_not_failed_tenant(self):
+        path = provision_tenant_database(self.catalog, 10, self.root, self.initialize_tenant)
+        self.catalog.execute(
+            "UPDATE tenant_database_catalog SET status='disabled' WHERE firm_id=10"
+        )
+        self.assertEqual(
+            resolve_tenant_database_for_maintenance(self.catalog, 10, self.root), path
+        )
+        with self.assertRaises(TenantCatalogError):
+            resolve_tenant_database_for_maintenance(self.catalog, 9, self.root)
 
     def test_symlinked_storage_root_is_rejected_before_provisioning(self):
         real_root = Path(self.temp.name) / "real-tenants"
