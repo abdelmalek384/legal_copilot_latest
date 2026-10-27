@@ -1764,6 +1764,27 @@ def rollback_tenant_transaction_on_error(func):
     return wrapped
 
 
+def rollback_corpus_transaction_on_error(func):
+    """Roll back uncommitted shared-corpus writes when a route fails."""
+    @wraps(func)
+    def wrapped(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except sqlite3.Error as exc:
+            try:
+                corpus_conn().rollback()
+            except Exception:
+                pass
+            raise HTTPException(503, "shared corpus write unavailable") from exc
+        except Exception:
+            try:
+                corpus_conn().rollback()
+            except Exception:
+                pass
+            raise
+    return wrapped
+
+
 @app.get("/")
 def home(request: Request):
     with open(os.path.join(os.path.dirname(__file__), "static", "index.html"), encoding="utf-8") as f:
@@ -2231,6 +2252,7 @@ def legal_review_events(version_id: int, u: dict = Depends(user)):
 
 
 @app.post("/legal-review/versions/{version_id}/events", status_code=201)
+@rollback_corpus_transaction_on_error
 def create_legal_review_event(version_id: int, b: LegalReviewEventIn, u: dict = Depends(user)):
     require_platform_legal_reviewer(u)
     evidence_url = validate_review_evidence_url(b.evidence_url)
@@ -2948,6 +2970,7 @@ def security_events(limit: int = 50, offset: int = 0, u: dict = Depends(user)):
 
 
 @app.post("/law/import")
+@rollback_corpus_transaction_on_error
 def law_import(rows: list[LawRow], x_admin_token: str = Header(None), u: dict = Depends(user)):
     tok = os.environ.get("ADMIN_TOKEN", "")
     if _separate_runtime_enabled():
