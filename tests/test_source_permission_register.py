@@ -64,7 +64,30 @@ class SourcePermissionRegisterTests(unittest.TestCase):
 
         source["commercial_reuse_evidence"] = "Written commercial license AUTH-COMM-1"
         source["commercial_terms_checked_on"] = "2026-10-23"
+        source["commercial_reuse_evidence_url"] = "https://example.gov/licenses/commercial"
         self.assertEqual(MODULE.validate(data), [])
+
+    def test_allowed_collection_requires_direct_https_evidence_url(self):
+        import json
+        data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        source = data["sources"][0]
+        source["collection_permission"] = "allowed"
+        source["permission_evidence"] = "Permission letter"
+        source["terms_checked_on"] = "2026-10-23"
+        errors = MODULE.validate(data)
+        self.assertTrue(any("permission_evidence_url" in error for error in errors))
+        source["permission_evidence_url"] = "https://example.gov/rights/collection"
+        self.assertFalse(any("allowed collection requires permission_evidence_url" in error for error in MODULE.validate(data)))
+
+    def test_invalid_rights_evidence_urls_are_rejected(self):
+        import json
+        data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        source = data["sources"][0]
+        source["permission_evidence_url"] = "https://user:secret@example.gov/permission"
+        source["commercial_reuse_evidence_url"] = "http://example.gov/license"
+        errors = MODULE.validate(data)
+        self.assertTrue(any("permission_evidence_url must be an HTTPS URL" in error for error in errors))
+        self.assertTrue(any("commercial_reuse_evidence_url must be an HTTPS URL" in error for error in errors))
 
     def test_credentials_in_source_urls_are_rejected(self):
         import json
