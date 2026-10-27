@@ -1807,5 +1807,38 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual([row["article"] for row in rows], ["3"])
 
 
+    def test_tenant_and_corpus_mutation_routes_declare_rollback_guards(self):
+        mutation_methods = {"POST", "PUT", "PATCH", "DELETE"}
+        tenant_prefixes = ("/cases", "/tasks", "/deadlines", "/research/conversations")
+        corpus_write_paths = {
+            "/law/import",
+            "/legal-review/versions/{version_id}/events",
+        }
+        seen_tenant = set()
+        seen_corpus = set()
+        for route in app.app.routes:
+            path = getattr(route, "path", "")
+            methods = set(getattr(route, "methods", set())) & mutation_methods
+            if not methods:
+                continue
+            domain = getattr(route.endpoint, "_rollback_transaction_domain", None)
+            if path.startswith(tenant_prefixes):
+                seen_tenant.update((method, path) for method in methods)
+                with self.subTest(methods=sorted(methods), path=path):
+                    self.assertEqual(domain, "tenant")
+            if path in corpus_write_paths:
+                seen_corpus.update((method, path) for method in methods)
+                with self.subTest(methods=sorted(methods), path=path):
+                    self.assertEqual(domain, "corpus")
+
+        self.assertTrue(seen_tenant, "expected to inspect tenant mutation routes")
+        self.assertIn(("POST", "/cases"), seen_tenant)
+        self.assertIn(("POST", "/research/conversations"), seen_tenant)
+        self.assertEqual(seen_corpus, {
+            ("POST", "/law/import"),
+            ("POST", "/legal-review/versions/{version_id}/events"),
+        })
+
+
 if __name__ == "__main__":
     unittest.main()
