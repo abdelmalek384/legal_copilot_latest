@@ -1,5 +1,5 @@
--- Extend the platform audit event vocabulary for per-firm membership suspension.
--- Preserve existing event IDs and records; no membership state is changed by this migration.
+-- Extend the platform audit event vocabulary without mutating applied migration 0005.
+-- Preserve every existing event and its stable ID while allowing self-service credential changes.
 DROP TRIGGER platform_security_events_no_update;
 DROP TRIGGER platform_security_events_no_delete;
 DROP INDEX idx_platform_security_events_created;
@@ -12,11 +12,11 @@ CREATE TABLE platform_security_events (
  firm_id INTEGER REFERENCES firms(id) ON DELETE RESTRICT,
  event_type TEXT NOT NULL CHECK(event_type IN (
    'password_reset_cli',
+   'identity_created_cli',
    'password_changed_web',
    'firm_provisioned',
    'firm_disabled',
    'membership_created',
-   'membership_suspended',
    'initial_owner_bootstrapped',
    'platform_role_granted',
    'platform_role_revoked'
