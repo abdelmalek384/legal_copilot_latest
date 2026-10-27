@@ -27,6 +27,8 @@ Use `--out path/to/report.json` to preserve a report.
 - Each manifest document has a source record in the permission register.
 - The manifest's collection permission is explicitly `allowed`.
 - The source register independently records `allowed` or `allowed_limited`, with collection permission evidence and a valid terms-review date.
+- Both the source register and document-level scope review link to inspectable HTTPS evidence; a prose note or reference label alone is not treated as a direct evidence link.
+- Commercial reuse, when claimed as allowed, has its own separate HTTPS evidence URL and review date.
 - The manifest has its own permission evidence and a valid terms-review date that is not in the future.
 - A document-level `permission_scope_review` is marked `passed` and records a reviewer, evidence reference, valid review date not earlier than the terms-check date, reviewed source terms, and the `direct_document_url` method. It must explicitly approve storage, text extraction, indexing, commercial product use, and excerpt display. Optional evidence URLs must be HTTPS and contain no credentials.
 - The direct URL is HTTPS and its hostname matches the document's explicit allowlist.
