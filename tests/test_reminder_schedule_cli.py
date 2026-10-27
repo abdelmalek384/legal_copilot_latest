@@ -76,7 +76,7 @@ class ReminderScheduleCliTests(unittest.TestCase):
 
 
     def test_invalid_utf8_input_fails_cleanly(self):
-        self.input_path.write_bytes(b"\\xff")
+        self.input_path.write_bytes(b"\xff")
         errors = io.StringIO()
         with contextlib.redirect_stderr(errors):
             code = main(self.args)
