@@ -615,31 +615,56 @@ def upcoming(c, u, days=14):
 
 
 def delete_case(c, u, cid):
-    if not is_lead(c, u, cid): return False
-    case_row = c.execute(
-        "SELECT id,title,client,stage,status,created_by,firm_id,case_number,case_year,court,circuit,opposing_party "
-        "FROM cases WHERE id=? AND firm_id=?", (cid, u["firm_id"])
-    ).fetchone()
-    if not case_row: return False
-    # Preserve an immutable audit snapshot before deleting the case and its event history.
-    prior_events = [dict(r) for r in c.execute(
-        "SELECT who,at,text FROM events WHERE case_id=? ORDER BY id", (cid,)
-    ).fetchall()]
-    related_counts = {}
-    for table in ("chunks", "sessions", "tasks", "docs", "members", "notes", "deadlines", "fees"):
-        related_counts[table] = c.execute(
-            "SELECT COUNT(*) FROM %s WHERE case_id=?" % table, (cid,)
-        ).fetchone()[0]
-    c.execute(
-        "INSERT INTO case_deletion_audit(firm_id,case_id,actor_user_id,actor_name,"
-        "case_snapshot_json,events_snapshot_json,related_counts_json) VALUES(?,?,?,?,?,?,?)",
-        (u["firm_id"], cid, u["id"], u["name"], json.dumps(dict(case_row), ensure_ascii=False),
-         json.dumps(prior_events, ensure_ascii=False), json.dumps(related_counts, ensure_ascii=False))
-    )
-    if not _separate_runtime_enabled():
-        c.execute("DELETE FROM chunks_fts WHERE rowid IN (SELECT id FROM chunks WHERE case_id=?)", (cid,))
-    for t in ("chunks", "sessions", "tasks", "events", "docs", "members", "notes", "deadlines", "fees"): c.execute("DELETE FROM %s WHERE case_id=?" % t, (cid,))
-    c.execute("DELETE FROM cases WHERE id=?", (cid,)); c.commit(); return True
+    """Delete a matter only after authorization is rechecked under a write lock.
+
+    SQLite's deferred read path otherwise permits membership to be revoked
+    between the lead check and the destructive writes. BEGIN IMMEDIATE
+    serializes the authorization check and deletion against other writers in
+    this tenant database.
+    """
+    if c.in_transaction:
+        raise RuntimeError("case deletion requires a clean tenant connection")
+    c.execute("BEGIN IMMEDIATE")
+    try:
+        if not is_lead(c, u, cid):
+            c.rollback()
+            return False
+        case_row = c.execute(
+            "SELECT id,title,client,stage,status,created_by,firm_id,case_number,case_year,court,circuit,opposing_party "
+            "FROM cases WHERE id=? AND firm_id=?", (cid, u["firm_id"])
+        ).fetchone()
+        if not case_row:
+            c.rollback()
+            return False
+        # Preserve an immutable audit snapshot before deleting the case and its event history.
+        prior_events = [dict(r) for r in c.execute(
+            "SELECT who,at,text FROM events WHERE case_id=? ORDER BY id", (cid,)
+        ).fetchall()]
+        related_counts = {}
+        for table in ("chunks", "sessions", "tasks", "docs", "members", "notes", "deadlines", "fees"):
+            related_counts[table] = c.execute(
+                "SELECT COUNT(*) FROM %s WHERE case_id=?" % table, (cid,)
+            ).fetchone()[0]
+        c.execute(
+            "INSERT INTO case_deletion_audit(firm_id,case_id,actor_user_id,actor_name,"
+            "case_snapshot_json,events_snapshot_json,related_counts_json) VALUES(?,?,?,?,?,?,?)",
+            (u["firm_id"], cid, u["id"], u["name"], json.dumps(dict(case_row), ensure_ascii=False),
+             json.dumps(prior_events, ensure_ascii=False), json.dumps(related_counts, ensure_ascii=False))
+        )
+        if not _separate_runtime_enabled():
+            c.execute("DELETE FROM chunks_fts WHERE rowid IN (SELECT id FROM chunks WHERE case_id=?)", (cid,))
+        for table in ("chunks", "sessions", "tasks", "events", "docs", "members", "notes", "deadlines", "fees"):
+            c.execute("DELETE FROM %s WHERE case_id=?" % table, (cid,))
+        deleted = c.execute(
+            "DELETE FROM cases WHERE id=? AND firm_id=?", (cid, u["firm_id"])
+        )
+        if deleted.rowcount != 1:
+            raise RuntimeError("case changed during deletion; refusing partial cleanup")
+        c.commit()
+        return True
+    except Exception:
+        c.rollback()
+        raise
 
 
 _REQUIRED_REVIEW_EVENTS_SQL = (
