@@ -28,7 +28,7 @@ class LegalReleaseReadinessTests(unittest.TestCase):
             "document": {"document_id": "LAW-1", "source_id": self.source_id, "official_title": "Test law",
                          "permission_scope_review": {
                              "status": "passed", "evidence": "AUTH-1 clauses 1-4", "reviewed_on": "2025-01-01",
-                             "approved_uses": ["collection", "indexing", "commercial_product_use", "excerpt_display"],
+                             "approved_uses": ["collection", "storage", "text_extraction", "indexing", "commercial_product_use", "excerpt_display"],
                          }},
             "sources": [{
                 "source_id": self.source_id, "source_page": "https://laws.example.gov/portal",
@@ -160,6 +160,14 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         ):
             with self.subTest(url=url):
                 self.assertIsNone(MODULE.https_host(url))
+
+    def test_scope_review_must_explicitly_approve_storage_and_text_extraction(self):
+        for use in ("storage", "text_extraction"):
+            candidate = json.loads(json.dumps(self.candidate))
+            candidate["document"]["permission_scope_review"]["approved_uses"].remove(use)
+            result = MODULE.audit_candidate(candidate, self.register, self.root)
+            with self.subTest(use=use):
+                self.assertIn("document_scope_uses_incomplete", {item["code"] for item in result["blockers"]})
 
     def test_unmatched_central_source_fails_closed(self):
         self.register["sources"][0]["source_page"] = "https://other.example.gov"
