@@ -32,9 +32,9 @@ class CitationCoverageTests(unittest.TestCase):
         self.assertTrue(app._answer_has_uncited_claims(None))
 
     def test_citation_index_parser_ignores_code_and_keeps_prose_markers(self):
-        self.assertEqual(app._answer_citation_indices("Rule [2]. \`[3]\`"), {2})
-        self.assertEqual(app._answer_citation_indices("Rule [1].\\n\`\`\`text\\n[4]\\n\`\`\`"), {1})
-        self.assertEqual(app._answer_citation_indices("\`\`\`text\\n[1]"), set())
+        self.assertEqual(app._answer_citation_indices("Rule [2]. `[3]`"), {2})
+        self.assertEqual(app._answer_citation_indices("Rule [1].\n```text\n[4]\n```"), {1})
+        self.assertEqual(app._answer_citation_indices("```text\n[1]"), set())
 
     def test_citation_inside_fenced_code_does_not_support_a_claim(self):
         answer = "The deadline is 30 days.\n\n```text\n[1]\n```"
