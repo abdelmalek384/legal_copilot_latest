@@ -23,9 +23,12 @@ def _decode_secret(secret: object) -> bytes:
         raise MFAPrimitivesError("TOTP secret must be a valid Base32 string")
     normalized = secret.strip().upper().rstrip("=")
     try:
-        return base64.b32decode(normalized + "=" * ((8 - len(normalized) % 8) % 8), casefold=False)
+        decoded = base64.b32decode(normalized + "=" * ((8 - len(normalized) % 8) % 8), casefold=False)
     except (ValueError, base64.binascii.Error) as exc:
         raise MFAPrimitivesError("TOTP secret must be a valid Base32 string") from exc
+    if len(decoded) != 20:
+        raise MFAPrimitivesError("TOTP secret must encode exactly 160 bits")
+    return decoded
 
 
 def generate_totp_secret() -> str:
@@ -97,7 +100,7 @@ def hash_recovery_code(code: str) -> str:
 def verify_recovery_code(code: str, encoded_hash: str) -> bool:
     """Verify one hash; caller must consume a matching code atomically."""
     normalized = _normalize_recovery_code(code)
-    if normalized is None or not isinstance(encoded_hash, str):
+    if normalized is None or not isinstance(encoded_hash, str) or len(encoded_hash) > 256:
         return False
     parts = encoded_hash.split("$")
     if len(parts) != 6 or parts[0] != "scrypt":
