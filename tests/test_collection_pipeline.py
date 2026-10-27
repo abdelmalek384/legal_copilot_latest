@@ -236,7 +236,7 @@ class CollectionPipelineTests(unittest.TestCase):
                 {
                     "commercial_reuse_permission": "allowed",
                     "commercial_reuse_evidence": "Commercial license AUTH-COMM-1",
-                    "commercial_terms_checked_on": "2026-10-26",
+                    "commercial_terms_checked_on": "2099-01-01",
                 },
             ):
                 register_path.write_text(json.dumps({
