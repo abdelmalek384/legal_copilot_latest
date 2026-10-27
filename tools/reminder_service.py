@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sqlite3
 import sys
 from datetime import datetime, timezone
@@ -289,7 +290,7 @@ def main(argv: list[str] | None = None) -> int:
             raise ReminderOutboxError("--max-send must be between 1 and 1000")
         if args.send:
             smtp_config = SMTPConfig.from_env()
-            app_url = __import__("os").environ.get("COPILOT_PUBLIC_ORIGIN", "").strip()
+            app_url = os.environ.get("COPILOT_PUBLIC_ORIGIN", "").strip()
             if not app_url:
                 raise ReminderEmailError("COPILOT_PUBLIC_ORIGIN must be configured before sending reminders")
         else:
@@ -297,6 +298,7 @@ def main(argv: list[str] | None = None) -> int:
 
         runtime = DatabaseRuntime.from_env()
         runtime.initialize()
+        retry_summary = None
         if args.retry_failed_key:
             if not args.send:
                 raise ReminderOutboxError("--retry-failed-key requires --send and explicit delivery configuration")
@@ -308,13 +310,14 @@ def main(argv: list[str] | None = None) -> int:
                     requeued += int(retry_failed(tenant, args.retry_failed_key, now=now))
                 except ReminderOutboxError:
                     continue
-            result = {"mode": "retry_failed", "requeued": requeued,
-                      "warning": "Only failed rows are requeued; ambiguous rows require reconciliation."}
-        else:
-            result = run_scheduler(
-                runtime, now=now, timezone_name=args.timezone, lead_days=args.lead_days,
-                send=args.send, smtp_config=smtp_config, app_url=app_url, max_send=args.max_send,
-            )
+            retry_summary = {"requested_retry_requeued": requeued}
+
+        result = run_scheduler(
+            runtime, now=now, timezone_name=args.timezone, lead_days=args.lead_days,
+            send=args.send, smtp_config=smtp_config, app_url=app_url, max_send=args.max_send,
+        )
+        if retry_summary:
+            result.update(retry_summary)
         output = json.dumps(result, ensure_ascii=False, sort_keys=True, indent=2)
         if args.out:
             args.out.write_text(output + "\n", encoding="utf-8")
