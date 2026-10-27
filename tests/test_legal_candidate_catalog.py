@@ -11,6 +11,15 @@ MODULE=importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(MODULE)
 
 class CandidateCatalogTests(unittest.TestCase):
+    def test_every_candidate_source_has_a_permission_register_record(self):
+        import json
+        catalog = MODULE.load_catalog()
+        register_path = ROOT / "docs" / "source_permission_register.json"
+        register = json.loads(register_path.read_text(encoding="utf-8"))
+        registered_ids = {item["source_id"] for item in register["sources"]}
+        candidate_ids = {item["source_id"] for item in catalog["sources"]}
+        self.assertEqual(candidate_ids - registered_ids, set())
+
     def test_catalog_validates_and_every_document_has_known_source(self):
         data=MODULE.load_catalog()
         known={s["source_id"] for s in data["sources"]}
