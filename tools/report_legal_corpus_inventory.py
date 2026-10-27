@@ -14,6 +14,7 @@ from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULTS = {
@@ -41,6 +42,16 @@ def list_of_objects(value: Any, label: str) -> list[dict[str, Any]]:
     return value
 
 
+def hostname(value: Any) -> str | None:
+    if not isinstance(value, str):
+        return None
+    try:
+        parsed = urlparse(value)
+        return parsed.hostname.lower().rstrip(".") if parsed.scheme == "https" and parsed.hostname else None
+    except ValueError:
+        return None
+
+
 def counts(values: list[Any]) -> dict[str, int]:
     return dict(sorted(Counter(str(v or "unknown") for v in values).items()))
 
@@ -66,7 +77,8 @@ def build_report(paths: dict[str, Path]) -> dict[str, Any]:
 
     permission_ids = {str(s.get("source_id")) for s in permission_sources if s.get("source_id")}
     candidate_source_ids = {str(s.get("source_id")) for s in candidate_sources if s.get("source_id")}
-    manifest_source_ids = {str(s.get("id")) for s in manifest_sources if s.get("id")}
+    manifest_source_hosts = {hostname(s.get("url")) for s in manifest_sources if hostname(s.get("url"))}
+    permission_source_hosts = {hostname(s.get("source_page")) for s in permission_sources if hostname(s.get("source_page"))}
     document_source_ids = {str(d.get("source_id")) for d in documents if d.get("source_id")}
     document_ids = {str(d.get("document_id")) for d in documents if d.get("document_id")}
 
@@ -87,7 +99,7 @@ def build_report(paths: dict[str, Path]) -> dict[str, Any]:
     issues: list[dict[str, Any]] = []
     for label, ids in (
         ("candidate_sources_missing_permission_register", candidate_source_ids - permission_ids),
-        ("manifest_sources_missing_permission_register", manifest_source_ids - permission_ids),
+        ("manifest_source_hosts_missing_permission_register", manifest_source_hosts - permission_source_hosts),
         ("documents_reference_unknown_candidate_source", document_source_ids - candidate_source_ids),
         ("candidate_documents_missing_from_acquisition_queue", document_ids - queue_document_ids),
         ("queue_references_unknown_candidate_document", queue_document_ids - document_ids),
@@ -108,7 +120,7 @@ def build_report(paths: dict[str, Path]) -> dict[str, Any]:
         "scope": "Repository metadata registers only; this is not a filesystem or database scan.",
         "corpus_claims": {
             "candidate_catalogue_is_legal_corpus": False,
-            "legal_text_files_verified_by_this_report": 0,
+            "legal_text_files_inspected_by_this_report": 0,
             "authenticity_or_currentness_certified": False,
             "permission_or_commercial_reuse_granted": False,
             "lawyer_review_inferred": False,
