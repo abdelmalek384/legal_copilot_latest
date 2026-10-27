@@ -111,6 +111,12 @@ def validate_run_record(run):
                 continue
             if "pin_cite" in citation and not _nonempty_string(citation.get("pin_cite")):
                 errors.append(f"citations[{index}].pin_cite must be a non-empty string when supplied")
+    if "invalid_citation_indices" in run:
+        invalid_indices = run["invalid_citation_indices"]
+        if not isinstance(invalid_indices, list) or any(type(index) is not int or index < 1 for index in invalid_indices):
+            errors.append("invalid_citation_indices must be a list of positive integers when supplied")
+        elif len(set(invalid_indices)) != len(invalid_indices):
+            errors.append("invalid_citation_indices must not contain duplicates")
     for field in ("abstained", "used_unverified_source"):
         if not isinstance(run.get(field), bool):
             errors.append(field + " must be an explicit boolean")
@@ -205,6 +211,8 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5)):
         metrics[f"mrr_at_{k}"] = round(sum(reciprocal_ranks) / len(reciprocal_ranks), 4) if reviewed else None
 
     citation_total = citation_correct = pin_cite_total = pin_cite_correct = 0
+    invalid_citation_index_count = 0
+    invalid_citation_index_records = []
     expected_pin_cite_total = expected_pin_cite_correct = 0
     answerable_cases = answerable_with_expected_citation = 0
     citations_outside_retrieval = []
@@ -212,6 +220,13 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5)):
     for question, run in reviewed:
         expected_sources = set(_expected_source_ids(question))
         expected_pin_cites = question.get("expected_pin_cites") or []
+        invalid_indices = run.get("invalid_citation_indices", [])
+        invalid_citation_index_count += len(invalid_indices)
+        if invalid_indices:
+            invalid_citation_index_records.append({
+                "question_id": question["id"],
+                "indices": list(invalid_indices),
+            })
         retrieved_source_ids = set(_unique_ids(run["retrieved_source_ids"]))
         cited_expected_sources = {
             citation["source_id"].strip()
@@ -271,9 +286,12 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5)):
         "duplicate_question_ids": duplicate_question_ids,
         "duplicate_run_question_ids": duplicate_run_ids,
         "metrics": metrics,
-        "citation_precision": round(citation_correct / citation_total, 4) if citation_total else None,
+        "citation_precision": round(citation_correct / (citation_total + invalid_citation_index_count), 4) if citation_total + invalid_citation_index_count else None,
         "citation_correct": citation_correct,
-        "citation_count": citation_total,
+        "citation_count": citation_total + invalid_citation_index_count,
+        "source_citation_count": citation_total,
+        "invalid_citation_index_count": invalid_citation_index_count,
+        "invalid_citation_index_records": invalid_citation_index_records,
         "citations_outside_retrieval": citations_outside_retrieval,
         "citations_outside_retrieval_count": len(citations_outside_retrieval),
         "citation_coverage": round(answerable_with_expected_citation / answerable_cases, 4) if answerable_cases else None,
@@ -297,6 +315,7 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5)):
             "Pin-cite precision (pin_cite_accuracy) is scored only where reviewed expected_pin_cites are provided; expected_pin_cite_recall measures how many reviewed expected citation pairs were returned.",
             "Citation coverage measures the share of answerable reviewed cases that cite at least one expected source; it complements citation precision so answers with no citations are not silently omitted from the coverage view.",
             "Citations whose source IDs were not present in the retrieved source set count as incorrect and are listed; they do not contribute to citation coverage or expected pin-cite recall.",
+            "Invalid visible citation indices are counted as incorrect citation markers and reported separately; they cannot improve citation precision.",
         ],
     }
 
