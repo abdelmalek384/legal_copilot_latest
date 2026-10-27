@@ -183,6 +183,7 @@ def finish_attempt(
     result_status: str,
     error_code: str | None = None,
     provider_message_id: str | None = None,
+    smtp_attempts: int = 1,
     now: datetime | None = None,
 ) -> None:
     """Persist the adapter outcome without storing message bodies or provider text."""
@@ -190,6 +191,8 @@ def finish_attempt(
         raise ReminderOutboxError("delivery_id must be a positive integer")
     if result_status not in {"accepted_by_smtp", "failed", "ambiguous"}:
         raise ReminderOutboxError("result_status is invalid")
+    if type(smtp_attempts) is not int or not 0 <= smtp_attempts <= 5:
+        raise ReminderOutboxError("smtp_attempts must be an integer from 0 through 5")
     if error_code is not None and (not isinstance(error_code, str) or not _ERROR_RE.fullmatch(error_code)):
         raise ReminderOutboxError("error_code must be a sanitized lowercase code")
     if provider_message_id is not None and (
@@ -202,15 +205,25 @@ def finish_attempt(
     connection.execute("BEGIN IMMEDIATE")
     try:
         row = connection.execute(
-            "SELECT status FROM reminder_deliveries WHERE id=?", (delivery_id,)
+            "SELECT status,attempt_count,last_attempt_at FROM reminder_deliveries WHERE id=?",
+            (delivery_id,),
         ).fetchone()
         if row is None or row["status"] != "sending":
             raise ReminderOutboxError("only an in-flight reminder can be completed")
-        connection.execute(
+        changed = connection.execute(
             "UPDATE reminder_deliveries SET status=?,last_error_code=?,provider_message_id=?,"
             "accepted_at=CASE WHEN ?='accepted_by_smtp' THEN ? ELSE accepted_at END,"
             "lease_until=NULL,next_attempt_at=NULL,updated_at=? WHERE id=? AND status='sending'",
             (result_status, error_code, provider_message_id, result_status, current, current, delivery_id),
+        )
+        if changed.rowcount != 1:
+            raise ReminderOutboxError("in-flight reminder changed during completion")
+        connection.execute(
+            "INSERT INTO reminder_delivery_attempts "
+            "(delivery_id,attempt_number,smtp_attempts,status,error_code,provider_message_id,attempted_at,finished_at) "
+            "VALUES(?,?,?,?,?,?,?,?)",
+            (delivery_id, row["attempt_count"], smtp_attempts, result_status, error_code,
+             provider_message_id, row["last_attempt_at"] or current, current),
         )
         connection.commit()
     except Exception:
