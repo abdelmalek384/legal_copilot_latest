@@ -25,7 +25,7 @@ Do not reuse `BACKUP_KEY` for document encryption. The production backend and ke
 
 ### Tenant database metadata
 
-Migration `migrations/firm/0010_original_file_objects.sql` adds the per-firm `original_file_objects` table, firm-binding triggers, digest/size/state metadata, and a legal-hold deletion guard. Migration `migrations/firm/0011_original_file_hold_lifecycle.sql` adds mandatory release reasons, transition guards, immutable active-hold metadata, and database-triggered audit events. Migration `migrations/firm/0012_original_file_hold_event_ledger.sql` adds an immutable per-firm event ledger preserving each set/release reason, actor, and timestamp. Uploader metadata and full retention/deletion lifecycle fields remain outstanding.
+Migration `migrations/firm/0010_original_file_objects.sql` adds the per-firm `original_file_objects` table, firm-binding triggers, digest/size/state metadata, and a legal-hold deletion guard. Migration `migrations/firm/0011_original_file_hold_lifecycle.sql` adds mandatory release reasons, transition guards, immutable active-hold metadata, and database-triggered audit events. Migration `migrations/firm/0012_original_file_hold_event_ledger.sql` adds an immutable per-firm event ledger preserving each set/release reason, actor, and timestamp. A firm-admin-only history endpoint exposes these records for an authorized matter. Uploader metadata and full retention/deletion lifecycle fields remain outstanding.
 
 - Opaque `blob_id` / object ID.
 - Storage backend and opaque storage key.
