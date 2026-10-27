@@ -40,7 +40,8 @@ def main() -> int:
 
     try:
         runtime = DatabaseRuntime.from_env()
-        with _read_only(runtime.paths.control_plane) as control:
+        control = _read_only(runtime.paths.control_plane)
+        try:
             active_firms = {
                 int(row["id"]) for row in control.execute(
                     "SELECT id FROM firms WHERE status='active' ORDER BY id"
@@ -61,6 +62,8 @@ def main() -> int:
             for firm_id in sorted(provisioned):
                 path = resolve_tenant_database(control, firm_id, runtime.paths.tenant_root)
                 tenants.append(TenantDatabase(firm_id=firm_id, path=path))
+        finally:
+            control.close()
 
         report = reconcile_original_file_storage(args.object_root, tenants)
     except (RuntimeError, ValueError, sqlite3.Error, TenantCatalogError) as exc:
