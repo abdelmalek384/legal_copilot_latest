@@ -728,7 +728,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             ).fetchone(), event)
 
         hold_events = firm_db.execute(
-            "SELECT action,reason,actor_user_id,occurred_at FROM original_file_hold_events "
+            "SELECT id,action,reason,actor_user_id,occurred_at FROM original_file_hold_events "
             "WHERE firm_id=? AND document_id=? ORDER BY id",
             (self.firm_a, document_id),
         ).fetchall()
