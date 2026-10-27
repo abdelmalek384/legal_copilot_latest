@@ -46,7 +46,7 @@ CREATE TABLE mfa_security_events (
     target_user_id INTEGER REFERENCES users(id) ON DELETE RESTRICT,
     event_type TEXT NOT NULL CHECK(event_type IN (
         'enrollment_started','enrollment_completed','login_verified',
-        'recovery_code_used','recovery_codes_rotated','mfa_disabled',
+        'recovery_code_used','recovery_codes_rotated','mfa_disabled','administrator_reset',
         'verification_failed','enrollment_failed'
     )),
     detail_json TEXT NOT NULL DEFAULT '{}',
