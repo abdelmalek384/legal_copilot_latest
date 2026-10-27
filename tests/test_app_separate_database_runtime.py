@@ -727,6 +727,28 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
                 (self.firm_a, self.user_id, event),
             ).fetchone(), event)
 
+        hold_events = firm_db.execute(
+            "SELECT action,reason,actor_user_id,occurred_at FROM original_file_hold_events "
+            "WHERE firm_id=? AND document_id=? ORDER BY id",
+            (self.firm_a, document_id),
+        ).fetchall()
+        self.assertEqual([event["action"] for event in hold_events], ["set", "release"])
+        self.assertEqual(
+            [event["reason"] for event in hold_events],
+            [
+                "Preserve original evidence for pending proceedings",
+                "The preservation instruction has been withdrawn",
+            ],
+        )
+        self.assertEqual([event["actor_user_id"] for event in hold_events], [self.user_id, self.user_id])
+        self.assertTrue(all(event["occurred_at"] for event in hold_events))
+        with self.assertRaises(sqlite3.IntegrityError):
+            firm_db.execute(
+                "UPDATE original_file_hold_events SET reason='rewritten history' WHERE id=?",
+                (hold_events[0]["id"],),
+            )
+        firm_db.rollback()
+
         switched = self._mutate("post", "/session/firm", json={"firm_id": self.firm_b})
         self.assertEqual(switched.status_code, 200, switched.text)
         denied = self.client.get(f"/cases/{case_id}/docs/{document_id}/original")
