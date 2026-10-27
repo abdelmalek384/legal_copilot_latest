@@ -50,3 +50,6 @@ python tools/evaluate_legal_answers.py --questions tests/legal_eval/reviewed_que
 ```
 
 Do not turn this report into a claim of legal accuracy. A lawyer must separately review substantive correctness, source authenticity/currentness, and whether citations actually support each legal proposition.
+
+
+The evaluation runner validates the API base URL before sending requests. It rejects whitespace, embedded credentials (including empty userinfo), malformed URL structures, and invalid ports. Remote targets still require explicit `--allow-remote` opt-in and HTTPS. These checks validate URL syntax and target policy; they do not establish that a remote service is trusted.
