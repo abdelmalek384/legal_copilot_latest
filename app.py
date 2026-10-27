@@ -8,6 +8,11 @@ from collections import Counter
 from datetime import date, timedelta
 from functools import wraps
 from tools.research_inspector import source_status, citation_text, research_memo
+from tools.mfa_primitives import (
+    MFAPrimitivesError, build_totp_uri, generate_recovery_codes,
+    generate_totp_secret, hash_recovery_code, verify_recovery_code, verify_totp,
+)
+from tools.mfa_crypto import MFAConfigurationError, encrypt_totp_secret, decrypt_totp_secret
 from storage import SQLiteConnectionProvider
 from identity import normalize_email
 from db_migrations import apply_migrations
@@ -1426,6 +1431,17 @@ def validate_operational_deadline(value):
 
 class Q(BaseModel): q: str = Field(min_length=1, max_length=500); case_id: int | None = None; as_of: str | None = Field(default=None, pattern=r"^\d{4}-\d{2}-\d{2}$"); scope: str = Field(default="all_permitted", pattern=r"^(verified_corpus|firm_documents|all_permitted)$")
 class LoginIn(BaseModel): email: str = Field(max_length=200); password: str = Field(max_length=200)
+class MFAEnrollIn(BaseModel):
+    current_password: str = Field(min_length=1, max_length=200)
+class MFACodeIn(BaseModel):
+    code: str = Field(min_length=1, max_length=32)
+class MFAVerifyIn(BaseModel):
+    code: str | None = Field(None, max_length=32)
+    recovery_code: str | None = Field(None, max_length=32)
+class MFAChangeIn(BaseModel):
+    current_password: str = Field(min_length=1, max_length=200)
+    code: str | None = Field(None, max_length=32)
+    recovery_code: str | None = Field(None, max_length=32)
 class FirmSwitchIn(BaseModel):
     firm_id: int = Field(gt=0)
 
@@ -1524,7 +1540,7 @@ def _user_separate(
         raise HTTPException(401, "unauthorized")
     c = control_conn()
     account = c.execute(
-        "SELECT s.user_id,s.expires,u.id,u.name,u.email_display,u.email_normalized,u.status "
+        "SELECT s.user_id,s.expires,s.mfa_verified,u.id,u.name,u.email_display,u.email_normalized,u.status "
         "FROM auth_sessions s JOIN users u ON u.id=s.user_id "
         "WHERE s.token_hash=? AND s.expires>?",
         (sha(token), int(time.time())),
@@ -1582,11 +1598,23 @@ def _user_separate(
         origin = request.headers.get("origin")
         if origin and not _origin_matches_request(origin, request):
             raise HTTPException(403, "cross-origin request blocked")
+    mfa_enabled = _mfa_is_enabled(int(account["id"]), c)
+    mfa_required = _mfa_required_for_user(int(account["id"]), c)
+    mfa_verified = bool(account["mfa_verified"])
+    enrollment_required = mfa_required and not mfa_enabled
+    verification_required = mfa_enabled and not mfa_verified
+    if enrollment_required or verification_required:
+        allowed_paths = {"/session", "/account/mfa/enroll", "/account/mfa/confirm", "/account/mfa/verify", "/logout"}
+        if request.url.path not in allowed_paths:
+            raise HTTPException(403, "MFA verification or enrollment required")
     return {
         "id": account["id"], "name": account["name"], "email": account["email_display"],
         "email_normalized": account["email_normalized"], "role": context.role,
         "firm_id": context.firm_id, "active": 1, "firms": firms,
         "platform_roles": _platform_roles_for_user(account["id"]),
+        "mfa_enabled": mfa_enabled, "mfa_required": mfa_required,
+        "mfa_verified": mfa_verified, "mfa_enrollment_required": enrollment_required,
+        "mfa_verification_required": verification_required,
     }
 
 
@@ -1825,6 +1853,59 @@ def _active_firms_for_user(user_id: int):
         (user_id,),
     ).fetchall()
     return [{"firm_id": row["firm_id"], "firm_name": row["name"], "role": row["firm_role"]} for row in rows]
+
+
+def _mfa_enforcement_mode() -> str:
+    """Return a fail-closed MFA policy; production cannot silently use optional mode."""
+    mode = os.environ.get("MFA_ENFORCEMENT", "optional").strip().lower()
+    if mode not in {"optional", "admins_required", "all_required"}:
+        mode = "admins_required"
+    if os.environ.get("COPILOT_ENV", "").strip().lower() in {"prod", "production"} and mode == "optional":
+        mode = "admins_required"
+    return mode
+
+
+def _mfa_is_enabled(user_id: int, control=None) -> bool:
+    db = control or control_conn()
+    row = db.execute(
+        "SELECT 1 FROM mfa_credentials WHERE user_id=? AND status='enabled'",
+        (user_id,),
+    ).fetchone()
+    return row is not None
+
+
+def _mfa_user_is_privileged(user_id: int, control=None) -> bool:
+    db = control or control_conn()
+    firm_admin = db.execute(
+        "SELECT 1 FROM firm_memberships WHERE user_id=? AND status='active' AND firm_role='admin' LIMIT 1",
+        (user_id,),
+    ).fetchone()
+    platform_admin = db.execute(
+        "SELECT 1 FROM user_platform_roles WHERE user_id=? "
+        "AND role_name IN ('platform_admin','platform_reviewer') LIMIT 1",
+        (user_id,),
+    ).fetchone()
+    return firm_admin is not None or platform_admin is not None
+
+
+def _mfa_required_for_user(user_id: int, control=None) -> bool:
+    db = control or control_conn()
+    if _mfa_is_enabled(user_id, db):
+        return True
+    mode = _mfa_enforcement_mode()
+    if mode == "all_required":
+        return True
+    return mode == "admins_required" and _mfa_user_is_privileged(user_id, db)
+
+
+def _record_mfa_event(control, actor_user_id: int, event_type: str, detail: dict | None = None) -> None:
+    """Append an MFA audit event; never pass secrets, codes, or token material."""
+    control.execute(
+        "INSERT INTO mfa_security_events(actor_user_id,target_user_id,event_type,detail_json) "
+        "VALUES(?,?,?,?)",
+        (actor_user_id, actor_user_id, event_type,
+         json.dumps(detail or {}, sort_keys=True, separators=(",", ":"))),
+    )
 
 
 def _login_separate(b: LoginIn, request: Request, response: Response):
