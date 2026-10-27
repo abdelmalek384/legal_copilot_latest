@@ -144,6 +144,31 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
                 self.assertIn("document_level_collection_scope_review_missing",
                               report["documents"][0]["blockers"])
 
+    def test_scope_review_requires_direct_evidence_url(self):
+        review = passed_scope_review(evidence_url=None)
+        manifest = {"documents": [{
+            "document_id": "LAW-NO-EVIDENCE-URL",
+            "source_id": "SRC-NO-EVIDENCE-URL",
+            "direct_url": "https://laws.example.gov/law.pdf",
+            "allowed_hosts": ["example.gov"],
+            "collection_permission": "allowed",
+            "permission_evidence": "authorization",
+            "terms_checked_on": "2026-10-23",
+            "permission_scope_review": review,
+        }]}
+        register = {"sources": [{
+            "source_id": "SRC-NO-EVIDENCE-URL",
+            "collection_permission": "allowed",
+            "commercial_reuse_permission": "unknown",
+            "permission_evidence": "authorization",
+            "permission_evidence_url": "https://laws.example.gov/rights/collection",
+            "terms_checked_on": "2026-10-23",
+        }]}
+        report = MODULE.audit(manifest, register)
+        self.assertFalse(report["documents"][0]["collection_ready"])
+        self.assertIn("document_level_collection_scope_review_missing",
+                      report["documents"][0]["blockers"])
+
     def test_scope_review_cannot_predate_terms_review_or_use_credential_url(self):
         review = passed_scope_review(reviewed_on="2026-10-22")
         review["evidence_url"] = "https://user:secret@example.gov/terms"
