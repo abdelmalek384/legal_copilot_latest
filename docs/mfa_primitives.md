@@ -33,6 +33,22 @@ The login response and GET /session indicate whether the client must enroll or c
 - Security events are append-only and record factor/outcome metadata only. They must never contain TOTP values, recovery codes, secret-bearing URIs, or passwords.
 - SMTP/account email is not used as a substitute for MFA recovery.
 
+## Administrator recovery and audit
+
+For an ordinary lost-device recovery, a second active platform administrator can reset the target through the trusted operator host:
+
+    python manage.py mfa-reset --actor-email operator@example.test --target-email locked-out@example.test --reason lost_device
+
+The command prompts for the actor's current password and TOTP code. It refuses self-reset, requires an active MFA-enabled platform administrator, revokes all target sessions, invalidates outstanding recovery codes, removes the target's encrypted authenticator credential, and writes an append-only MFA audit event. The target must sign in and enroll again under the active policy. Allowed reason codes are deliberately bounded; do not pass free-form client or secret data.
+
+Inspect MFA events on the trusted operator host with:
+
+    python manage.py mfa-audit --target-user-id 123 --limit 50
+
+The report contains only actor/target IDs, event types, timestamps, and sanitized metadata. It never includes secrets or recovery-code values.
+
+If the last active platform administrator is locked out and no second MFA-enabled platform administrator exists, this command intentionally refuses to bypass the policy. Do not improvise direct SQL edits. Treat this as a break-glass release blocker until the organization designates and rehearses a two-person offline recovery procedure with a verified encrypted backup, a controlled maintenance window, an approved recovery record, and independent post-recovery review.
+
 ## Validation
 
 Run:
