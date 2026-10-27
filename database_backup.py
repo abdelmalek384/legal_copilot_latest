@@ -505,6 +505,8 @@ def verify_backup_bundle(bundle_path: str | Path, cipher: Fernet) -> dict[str, A
             "verified": True,
             "format_version": _FORMAT_VERSION,
             "tenant_database_count": len(tenant_paths),
+            "original_object_count": len(list(restored["object_storage"].rglob("*.blob"))),
+            "original_objects_verified": True,
             "plaintext_retained": False,
             "warning": "Verification used temporary plaintext database files; deletion is not guaranteed secure erasure.",
         }
