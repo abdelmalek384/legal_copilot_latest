@@ -283,7 +283,7 @@ class DatabaseMigrationTests(unittest.TestCase):
             CREATE TABLE research_messages(conversation_id INTEGER, id INTEGER);
         """)
         migrations = Path(__file__).resolve().parents[1] / "migrations"
-        self.assertEqual(apply_migrations(self.db, migrations), [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+        self.assertEqual(apply_migrations(self.db, migrations), [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])
         indexes = {
             row[0] for row in self.db.execute(
                 "SELECT name FROM sqlite_master WHERE type='index'"
@@ -306,7 +306,13 @@ class DatabaseMigrationTests(unittest.TestCase):
             "idx_legal_review_events_version",
             "idx_research_conversations_owner",
             "idx_research_messages_conversation",
+            "idx_legal_sources_source_class",
+            "idx_legal_versions_review_legal_status",
         } <= indexes)
+        source_columns = {row["name"] for row in self.db.execute("PRAGMA table_info(legal_sources)")}
+        version_columns = {row["name"] for row in self.db.execute("PRAGMA table_info(legal_document_versions)")}
+        self.assertTrue({"source_class"} <= source_columns)
+        self.assertTrue({"text_sha256", "publication_evidence_url"} <= version_columns)
         relation_columns = {
             row["name"] for row in self.db.execute("PRAGMA table_info(legal_version_relations)")
         }
@@ -340,7 +346,7 @@ class DatabaseMigrationTests(unittest.TestCase):
         self.assertEqual(source_columns, {
             "source_id", "authority", "source_page", "access_status",
             "collection_permission", "commercial_reuse_permission", "terms_url",
-            "terms_checked_on", "permission_evidence", "created_at",
+            "terms_checked_on", "permission_evidence", "created_at", "source_class",
         })
         fts_sql = self.db.execute(
             "SELECT sql FROM sqlite_master WHERE type='table' AND name='chunks_fts'"

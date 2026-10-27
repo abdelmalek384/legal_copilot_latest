@@ -1,6 +1,7 @@
 """Legal copilot MVP: case workspace + hybrid law search + citation-checked answers.
 Run: pip install -r requirements.txt && uvicorn app:app --reload"""
 import sqlite3, re, json, os, io, csv, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request, zipfile, ipaddress, logging
+from pathlib import Path
 from cryptography.fernet import Fernet
 from urllib.parse import urlsplit
 from contextvars import ContextVar
@@ -1676,6 +1677,7 @@ def _user_separate(
         "email_normalized": account["email_normalized"], "role": context.role,
         "firm_id": context.firm_id, "active": 1, "firms": firms,
         "platform_roles": _platform_roles_for_user(account["id"]),
+        "can_review_legal": _user_can_review_legal({"id": account["id"], "role": context.role, "email": account["email_display"]}),
         "mfa_enabled": mfa_enabled, "mfa_required": mfa_required,
         "mfa_policy_required": _mfa_policy_requires_user(int(account["id"]), c),
         "mfa_verified": mfa_verified, "mfa_verified_at": int(account["mfa_verified_at"] or 0),
@@ -1717,21 +1719,28 @@ def require_admin(u):
     if u["role"] != "admin": raise HTTPException(403, "admin only")
 
 
-def require_platform_legal_reviewer(u):
-    """Authorize corpus administration through the separate platform-role domain."""
+def _user_can_review_legal(u: dict) -> bool:
+    """Mirror the backend's actual corpus-review authorization for UI navigation."""
     if _separate_runtime_enabled():
         roles = {
             row["role_name"] for row in control_conn().execute(
                 "SELECT role_name FROM user_platform_roles WHERE user_id=?", (u["id"],)
             ).fetchall()
         }
-        if not roles.intersection({"platform_reviewer", "platform_admin"}):
-            raise HTTPException(403, "platform legal reviewer only")
-        return
-    if u["role"] != "admin":
-        raise HTTPException(403, "platform legal reviewer only")
-    allowed = {normalize_email(email) for email in os.environ.get("LEGAL_REVIEWER_EMAILS", "").split(",") if email.strip()}
-    if not allowed or normalize_email(u.get("email") or "") not in allowed:
+        return bool(roles.intersection({"platform_reviewer", "platform_admin"}))
+    if u.get("role") != "admin":
+        return False
+    allowed = {
+        normalize_email(email)
+        for email in os.environ.get("LEGAL_REVIEWER_EMAILS", "").split(",")
+        if email.strip()
+    }
+    return normalize_email(u.get("email") or "") in allowed
+
+
+def require_platform_legal_reviewer(u):
+    """Authorize corpus administration through the separate platform-role domain."""
+    if not _user_can_review_legal(u):
         raise HTTPException(403, "platform legal reviewer only")
 
 
@@ -2152,6 +2161,7 @@ def _login_separate(b: LoginIn, request: Request, response: Response):
         "id": account["id"], "name": account["name"], "role": first_firm["role"],
         "firm_id": first_firm["firm_id"], "firms": memberships,
         "platform_roles": _platform_roles_for_user(account["id"]),
+        "can_review_legal": _user_can_review_legal({"id": account["id"], "role": first_firm["role"], "email": account["email_display"]}),
         "mfa_enabled": mfa_enabled, "mfa_required": mfa_required,
         "mfa_policy_required": _mfa_policy_requires_user(int(account["id"]), c),
         "mfa_verified": mfa_verified, "mfa_verified_at": now if mfa_verified else 0,
@@ -2237,12 +2247,17 @@ def login(b: LoginIn, request: Request, response: Response):
     secure = _secure_cookie_transport(request)
     response.set_cookie("lc_session", tok, max_age=43200, httponly=True, secure=secure, samesite="lax", path="/")
     response.set_cookie("lc_csrf", csrf, max_age=43200, httponly=False, secure=secure, samesite="lax", path="/")
-    return {"id": r["id"], "name": r["name"], "role": r["role"], "firm_id": r["firm_id"]}
+    legacy_user = {"id": r["id"], "name": r["name"], "role": r["role"], "firm_id": r["firm_id"]}
+    legacy_user["can_review_legal"] = _user_can_review_legal(
+        {"id": r["id"], "name": r["name"], "role": r["role"], "firm_id": r["firm_id"], "email": r["email"]}
+    )
+    return legacy_user
 
 
 @app.get("/session")
 def current_session(u: dict = Depends(user)):
-    result = {"id": u["id"], "name": u["name"], "role": u["role"], "firm_id": u["firm_id"]}
+    result = {"id": u["id"], "name": u["name"], "role": u["role"], "firm_id": u["firm_id"],
+              "can_review_legal": _user_can_review_legal(u)}
     if _separate_runtime_enabled():
         result["firms"] = _active_firms_for_user(u["id"])
         result["platform_roles"] = _platform_roles_for_user(u["id"])
@@ -2263,9 +2278,13 @@ def switch_firm(b: FirmSwitchIn, request: Request, response: Response, u: dict =
     response.set_cookie("lc_firm", str(context.firm_id), max_age=43200,
                         httponly=True, secure=_secure_cookie_transport(request),
                         samesite="lax", path="/")
-    return {"id": u["id"], "name": u["name"], "role": context.role,
-            "firm_id": context.firm_id, "firms": _active_firms_for_user(u["id"]),
-            "platform_roles": _platform_roles_for_user(u["id"])}
+    switched_user = {"id": u["id"], "name": u["name"], "role": context.role,
+                     "firm_id": context.firm_id, "firms": _active_firms_for_user(u["id"]),
+                     "platform_roles": _platform_roles_for_user(u["id"])}
+    switched_user["can_review_legal"] = _user_can_review_legal(
+        {"id": u["id"], "role": context.role, "email": u.get("email")}
+    )
+    return switched_user
 
 
 @app.post("/logout")
@@ -2711,9 +2730,74 @@ def legal_review_queue(u: dict = Depends(user)):
             "warning":"This queue lists registry metadata only. It does not certify authenticity, current legal effect, or permissions."}
 
 
+LEGAL_CANDIDATE_CATALOG_PATH = Path(__file__).resolve().parent / "docs" / "phase_2_document_inventory.json"
+
+
+def _normalize_legal_practice_area(value):
+    if not isinstance(value, str) or not value.strip():
+        return "unknown"
+    normalized = " ".join(value.casefold().replace("_", " ").replace("-", " ").split())
+    aliases = {
+        "unknown": "unknown", "not assessed": "unknown", "not specified": "unknown",
+        "labour": "labour", "labor": "labour", "labour law": "labour", "labor law": "labour",
+        "labour and social insurance": "labour", "labor and social insurance": "labour",
+        "employment": "labour", "employment law": "labour",
+        "social security": "social_security", "social insurance": "social_security",
+        "constitutional law": "constitutional", "administrative law": "administrative",
+        "civil law": "civil", "criminal law": "criminal", "family law": "family",
+        "commercial law": "commercial", "tax law": "tax", "property law": "property",
+    }
+    return aliases.get(normalized, normalized.replace(" ", "_"))
+
+
+def _candidate_catalogue_practice_area_counts():
+    try:
+        data = json.loads(LEGAL_CANDIDATE_CATALOG_PATH.read_text(encoding="utf-8"))
+    except (OSError, ValueError, TypeError):
+        return {"available": False, "candidate_instrument_count": None, "practice_area_counts": {},
+                "invalid_entries": 0, "error": "candidate_catalogue_unavailable"}
+    documents = data.get("documents") if isinstance(data, dict) else None
+    if not isinstance(documents, list):
+        return {"available": False, "candidate_instrument_count": None, "practice_area_counts": {},
+                "invalid_entries": len(documents) if isinstance(documents, list) else 0,
+                "error": "candidate_catalogue_schema_invalid"}
+    counts = {}
+    seen_ids = set()
+    unique_count = 0
+    invalid_entries = 0
+    for item in documents:
+        if not isinstance(item, dict):
+            invalid_entries += 1
+            continue
+        document_id = item.get("document_id")
+        if isinstance(document_id, str) and document_id.strip():
+            if document_id in seen_ids:
+                invalid_entries += 1
+                continue
+            seen_ids.add(document_id)
+        areas = item.get("practice_areas", item.get("practice_area"))
+        if isinstance(areas, str):
+            areas = [areas]
+        if not isinstance(areas, list):
+            areas = []
+        normalized_areas = {
+            _normalize_legal_practice_area(area)
+            for area in areas if isinstance(area, str) and area.strip()
+        }
+        if not normalized_areas:
+            normalized_areas = {"unknown"}
+        unique_count += 1
+        for area in normalized_areas:
+            counts[area] = counts.get(area, 0) + 1
+    counts.setdefault("unknown", 0)
+    return {"available": True, "candidate_instrument_count": unique_count,
+            "practice_area_counts": dict(sorted(counts.items())),
+            "invalid_entries": invalid_entries, "error": None}
+
+
 @app.get("/legal-review/coverage")
 def legal_review_coverage(u: dict = Depends(user)):
-    """Permission-aware registry metrics; these counts do not certify legal completeness."""
+    """Permission-aware source, workflow, and candidate-catalogue coverage; not a completeness certification."""
     require_platform_legal_reviewer(u)
     c = corpus_conn()
     today = date.today().isoformat()
@@ -2737,33 +2821,95 @@ def legal_review_coverage(u: dict = Depends(user)):
         "(SELECT COUNT(*) FROM legal_document_versions WHERE amendment_history_verified=0) AS missing_amendment_history, "
         "(SELECT COUNT(*) FROM legal_document_versions v JOIN legal_documents d ON d.document_id=v.document_id JOIN legal_sources s ON s.source_id=d.source_id "
         " WHERE COALESCE(s.collection_permission,'unknown')<>'allowed' OR COALESCE(s.commercial_reuse_permission,'unknown')<>'allowed' "
-        " OR TRIM(COALESCE(s.permission_evidence,''))='' OR TRIM(COALESCE(v.permission_evidence,''))='') AS permission_or_evidence_blocked_versions",
+        " OR TRIM(COALESCE(s.permission_evidence,''))='' OR TRIM(COALESCE(v.permission_evidence,''))='') AS permission_or_evidence_blocked_versions, "
+        "(SELECT COUNT(*) FROM legal_document_versions WHERE (TRIM(COALESCE(original_path,''))<>'' OR TRIM(COALESCE(original_sha256,''))<>'') AND review_status<>'verified') AS uploaded_unverified_versions, "
+        "(SELECT COUNT(*) FROM legal_document_versions v WHERE NOT EXISTS (SELECT 1 FROM chunks ch WHERE ch.document_version_id=v.version_id)) AS versions_without_extracted_chunks, "
+        "(SELECT COUNT(*) FROM legal_document_versions WHERE TRIM(COALESCE(text_sha256,''))='') AS versions_missing_text_hash, "
+        "(SELECT COUNT(*) FROM legal_document_versions WHERE TRIM(COALESCE(gazette_issue,''))='' OR TRIM(COALESCE(gazette_pages,''))='' OR TRIM(COALESCE(publication_evidence_url,''))='') AS versions_missing_publication_metadata, "
+        "(SELECT COUNT(*) FROM legal_document_versions WHERE TRIM(COALESCE(effective_date,''))='') AS versions_missing_effective_date, "
+        "(SELECT COUNT(*) FROM legal_document_versions WHERE TRIM(COALESCE(original_path,''))<>'' AND TRIM(COALESCE(original_sha256,''))='') AS versions_missing_original_hash, "
+        "(SELECT COUNT(*) FROM legal_document_versions v WHERE TRIM(COALESCE(v.permission_evidence,''))='' OR EXISTS (SELECT 1 FROM legal_documents d JOIN legal_sources s ON s.source_id=d.source_id WHERE d.document_id=v.document_id AND TRIM(COALESCE(s.permission_evidence,''))='')) AS versions_missing_permission_evidence, "
+        "(SELECT COUNT(*) FROM legal_document_versions v WHERE EXISTS (SELECT 1 FROM (SELECT 'source_authenticity' AS review_type UNION ALL SELECT 'extraction_quality' UNION ALL SELECT 'legal_status' UNION ALL SELECT 'amendment_history' UNION ALL SELECT 'licensing' UNION ALL SELECT 'lawyer_approval') required WHERE NOT EXISTS (SELECT 1 FROM legal_review_events e WHERE e.version_id=v.version_id AND e.review_type=required.review_type AND e.outcome='pass' AND TRIM(COALESCE(e.evidence_url,''))<>''))) AS versions_missing_review_event_evidence",
         (today, today)
     ).fetchone()
     sources_by_permission = [dict(r) for r in c.execute(
-        "SELECT collection_permission,commercial_reuse_permission,COUNT(*) AS source_count FROM legal_sources "
-        "GROUP BY collection_permission,commercial_reuse_permission ORDER BY source_count DESC,collection_permission,commercial_reuse_permission"
+        "SELECT COALESCE(NULLIF(TRIM(collection_permission),''),'unknown') AS collection_permission,"
+        "COALESCE(NULLIF(TRIM(commercial_reuse_permission),''),'unknown') AS commercial_reuse_permission,"
+        "COALESCE(NULLIF(TRIM(source_class),''),'unknown') AS source_class,"
+        "COALESCE(NULLIF(TRIM(authority),''),'unknown') AS authority,COUNT(*) AS source_count "
+        "FROM legal_sources GROUP BY collection_permission,commercial_reuse_permission,source_class,authority "
+        "ORDER BY source_count DESC,authority,source_class"
     ).fetchall()]
-    coverage_by_practice_area = [dict(r) for r in c.execute(
-        "SELECT COALESCE(NULLIF(TRIM(d.practice_area),''),'unknown') AS practice_area,COUNT(*) AS document_count, "
-        "SUM(CASE WHEN EXISTS (SELECT 1 FROM legal_document_versions v JOIN legal_sources s ON s.source_id=d.source_id "
+    sources_by_authority = [dict(r) for r in c.execute(
+        "SELECT COALESCE(NULLIF(TRIM(authority),''),'unknown') AS authority,COUNT(*) AS source_count "
+        "FROM legal_sources GROUP BY COALESCE(NULLIF(TRIM(authority),''),'unknown') ORDER BY source_count DESC,authority"
+    ).fetchall()]
+    sources_by_class = [dict(r) for r in c.execute(
+        "SELECT COALESCE(NULLIF(TRIM(source_class),''),'unknown') AS source_class,COUNT(*) AS source_count "
+        "FROM legal_sources GROUP BY COALESCE(NULLIF(TRIM(source_class),''),'unknown') ORDER BY source_count DESC,source_class"
+    ).fetchall()]
+    sources_by_access_status = [dict(r) for r in c.execute(
+        "SELECT COALESCE(NULLIF(TRIM(access_status),''),'unknown') AS access_status,COUNT(*) AS source_count "
+        "FROM legal_sources GROUP BY COALESCE(NULLIF(TRIM(access_status),''),'unknown') ORDER BY source_count DESC,access_status"
+    ).fetchall()]
+    versions_by_review_status = [dict(r) for r in c.execute(
+        "SELECT COALESCE(NULLIF(TRIM(review_status),''),'unknown') AS review_status,COUNT(*) AS version_count "
+        "FROM legal_document_versions GROUP BY COALESCE(NULLIF(TRIM(review_status),''),'unknown') ORDER BY version_count DESC,review_status"
+    ).fetchall()]
+    versions_by_legal_status = [dict(r) for r in c.execute(
+        "SELECT COALESCE(NULLIF(TRIM(legal_status),''),'unknown') AS legal_status,COUNT(*) AS version_count "
+        "FROM legal_document_versions GROUP BY COALESCE(NULLIF(TRIM(legal_status),''),'unknown') ORDER BY version_count DESC,legal_status"
+    ).fetchall()]
+
+    catalogue = _candidate_catalogue_practice_area_counts()
+    registered_counts = {}
+    verified_counts = {}
+    for row in c.execute(
+        "SELECT d.document_id,d.practice_area,CASE WHEN EXISTS ("
+        " SELECT 1 FROM legal_document_versions v JOIN legal_sources s ON s.source_id=d.source_id "
         " WHERE v.document_id=d.document_id AND v.review_status='verified' AND v.legal_status='in_force' "
         " AND v.authenticity_verified=1 AND v.status_verified=1 AND v.amendment_history_verified=1 "
         " AND s.collection_permission='allowed' AND s.commercial_reuse_permission='allowed' "
         " AND TRIM(COALESCE(s.permission_evidence,''))<>'' AND TRIM(COALESCE(v.permission_evidence,''))<>'' "
         " AND v.effective_date IS NOT NULL AND v.effective_date<=? AND (v.repeal_date IS NULL OR v.repeal_date>?)) "
-        " THEN 1 ELSE 0 END) AS documents_with_verified_operational_text FROM legal_documents d "
-        "GROUP BY COALESCE(NULLIF(TRIM(d.practice_area),''),'unknown') ORDER BY document_count DESC,practice_area",
+        " THEN 1 ELSE 0 END AS has_verified_operational_text FROM legal_documents d",
         (today, today)
-    ).fetchall()]
+    ).fetchall():
+        area = _normalize_legal_practice_area(row["practice_area"])
+        registered_counts[area] = registered_counts.get(area, 0) + 1
+        if row["has_verified_operational_text"]:
+            verified_counts[area] = verified_counts.get(area, 0) + 1
+    areas = set(catalogue["practice_area_counts"]) | set(registered_counts) | {"unknown"}
+    coverage_by_practice_area = []
+    for area in sorted(areas, key=lambda name: (-catalogue["practice_area_counts"].get(name, 0), name)):
+        registered = registered_counts.get(area, 0)
+        coverage_by_practice_area.append({
+            "practice_area": area,
+            "candidate_instrument_count": catalogue["practice_area_counts"].get(area, 0) if catalogue["available"] else None,
+            "registered_document_count": registered,
+            "document_count": registered,
+            "documents_with_verified_operational_text": verified_counts.get(area, 0),
+            "candidate_catalogue_available": catalogue["available"],
+        })
     return {
         "as_of": today, "metrics": dict(metrics),
         "sources_by_permission": sources_by_permission,
+        "sources_by_authority": sources_by_authority,
+        "sources_by_class": sources_by_class,
+        "sources_by_access_status": sources_by_access_status,
+        "versions_by_review_status": versions_by_review_status,
+        "versions_by_legal_status": versions_by_legal_status,
+        "candidate_catalogue": {
+            "available": catalogue["available"],
+            "candidate_instrument_count": catalogue["candidate_instrument_count"],
+            "invalid_entries": catalogue["invalid_entries"],
+            "error": catalogue["error"],
+        },
         "coverage_by_practice_area": coverage_by_practice_area,
         "warnings": [
             "These are registry workflow counts, not total Egyptian-law coverage.",
             "Operative-text counts require verified legal status, authenticity, amendment history, collection permission, commercial reuse permission, evidence, and effective dates.",
-            "Practice areas remain unknown until each instrument is explicitly classified.",
+            "Candidate inventory counts are planning denominators, not evidence of law-text availability. Practice-area aliases are normalized; unknown/not-assessed items remain visible.",
             "This endpoint does not download, scrape, or contact any source."
         ]
     }

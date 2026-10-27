@@ -3,6 +3,7 @@ import tempfile
 import unittest
 from datetime import date, timedelta
 from pathlib import Path
+from unittest.mock import patch
 
 from fastapi import HTTPException
 from fastapi.testclient import TestClient
@@ -517,6 +518,26 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             with self.subTest(table=table):
                 self.assertEqual(db_b.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0], 0)
 
+    def test_legacy_review_capability_respects_email_allowlist(self):
+        previous = os.environ.get("LEGAL_REVIEWER_EMAILS")
+        os.environ["LEGAL_REVIEWER_EMAILS"] = "reviewer@example.test"
+        try:
+            with patch.object(app, "_separate_runtime_enabled", return_value=False):
+                self.assertTrue(app._user_can_review_legal({
+                    "id": 10, "role": "admin", "email": "REVIEWER@example.test"
+                }))
+                self.assertFalse(app._user_can_review_legal({
+                    "id": 11, "role": "admin", "email": "other@example.test"
+                }))
+                self.assertFalse(app._user_can_review_legal({
+                    "id": 12, "role": "member", "email": "reviewer@example.test"
+                }))
+        finally:
+            if previous is None:
+                os.environ.pop("LEGAL_REVIEWER_EMAILS", None)
+            else:
+                os.environ["LEGAL_REVIEWER_EMAILS"] = previous
+
     def test_platform_reviewer_role_is_separate_and_revocation_is_immediate(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
@@ -626,6 +647,8 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             "/login", json={"email": "OWNER@example.test", "password": self.password}
         )
         self.assertEqual(login.status_code, 200, login.text)
+        self.assertFalse(login.json()["can_review_legal"])
+        self.assertFalse(self.client.get("/session").json()["can_review_legal"])
         corpus = self.runtime.legal_corpus_connection()
         corpus.execute(
             "INSERT INTO legal_sources(source_id,authority,source_page) VALUES(?,?,?)",
@@ -658,6 +681,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             (self.user_id, "platform_reviewer"),
         )
         control.commit()
+        self.assertTrue(self.client.get("/session").json()["can_review_legal"])
         for url in urls:
             with self.subTest(url=url, role="platform_reviewer"):
                 allowed = self.client.get(url)
@@ -668,6 +692,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             (self.user_id,),
         )
         control.commit()
+        self.assertFalse(self.client.get("/session").json()["can_review_legal"])
         for url in urls:
             with self.subTest(url=url, role="revoked"):
                 denied = self.client.get(url)

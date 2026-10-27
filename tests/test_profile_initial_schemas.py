@@ -59,6 +59,11 @@ class ProfileInitialSchemaTests(unittest.TestCase):
         self.assertNotIn("legal_sources", names(firm))
         self.assertIn("legal_sources", names(corpus)); self.assertIn("chunks_fts", names(corpus))
         self.assertNotIn("cases", names(corpus)); self.assertNotIn("tenant_database_catalog", names(corpus))
+        source_columns = {row["name"] for row in corpus.execute("PRAGMA table_info(legal_sources)")}
+        version_columns = {row["name"] for row in corpus.execute("PRAGMA table_info(legal_document_versions)")}
+        self.assertIn("source_class", source_columns)
+        self.assertIn("text_sha256", version_columns)
+        self.assertIn("publication_evidence_url", version_columns)
         control.close(); firm.close(); corpus.close()
 
     def test_each_profile_excludes_all_foreign_boundary_tables(self):
