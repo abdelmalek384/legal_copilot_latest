@@ -391,6 +391,31 @@ def provision_tenant_database(
         raise
 
 
+def resolve_tenant_database_for_maintenance(
+    catalog: sqlite3.Connection, firm_id: int, storage_root: str | Path
+) -> Path:
+    """Resolve a provisioned or disabled tenant database for read-only maintenance.
+
+    Unlike request-time routing, this helper permits disabled catalog entries so
+    backup/offboarding checks can inspect retained data. It never permits a
+    provisioning/failed entry or accepts a caller-supplied database filename.
+    """
+    if isinstance(firm_id, bool) or not isinstance(firm_id, int) or firm_id <= 0:
+        raise ValueError("firm_id must be a positive integer")
+    root = _storage_root_path(storage_root)
+    initialize_catalog(catalog)
+    row = catalog.execute(
+        "SELECT database_file, status FROM tenant_database_catalog WHERE firm_id=?",
+        (firm_id,),
+    ).fetchone()
+    if row is None or row[1] not in {"provisioned", "disabled"} or not row[0]:
+        raise TenantCatalogError("Tenant database is not available for maintenance")
+    path = _safe_database_path(root, firm_id, row[0])
+    if not path.is_file():
+        raise TenantCatalogError("Tenant database is missing")
+    return path
+
+
 def resolve_tenant_database(
     catalog: sqlite3.Connection, firm_id: int, storage_root: str | Path
 ) -> Path:
