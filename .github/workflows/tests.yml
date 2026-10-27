@@ -146,6 +146,10 @@ jobs:
         run: PYTHONPATH=. python tests/test_reminder_schedule_cli.py
       - name: Test privacy-safe reminder email adapter
         run: PYTHONPATH=. python tests/test_reminder_email.py
+      - name: Test durable tenant-local reminder outbox
+        run: PYTHONPATH=. python tests/test_reminder_outbox.py
+      - name: Test tenant-scoped reminder scheduler and authorization
+        run: PYTHONPATH=. python tests/test_reminder_service.py
       - name: Test database-independent MFA primitives
         run: PYTHONPATH=. python tests/test_mfa_primitives.py
       - name: Run unit tests
