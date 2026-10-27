@@ -108,7 +108,8 @@ class DeadlineCalculatorTests(unittest.TestCase):
             {"fixed_holidays": "not-a-list"},
             {"dated_holidays": [{"date": "2026-01-01", "name_ar": " "}]},
             {"dated_holidays": [{"date": "2026-02-30", "name_ar": "عطلة"}]},
-            {"complete_years": "2026"},\n            {"complete_years": [{"year": 2026}]},
+            {"complete_years": "2026"},
+            {"complete_years": [{"year": 2026}]},
         ]
         with tempfile.TemporaryDirectory() as tmp:
             p = Path(tmp) / "holidays.json"
