@@ -26,7 +26,7 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         self.text_hash = hashlib.sha256(extracted.read_bytes()).hexdigest()
         self.source_id = "SRC-1"
         self.candidate = {
-            "document": {"document_id": "LAW-1", "source_id": self.source_id, "official_title": "Test law",
+            "document": {"document_id": "LAW-1", "source_id": self.source_id, "official_title": "Test law", "document_type": "statute",
                          "permission_scope_review": {
                              "status": "passed", "evidence": "AUTH-1 clauses 1-4", "reviewed_on": "2025-01-01",
                              "approved_uses": ["collection", "storage", "text_extraction", "indexing", "commercial_product_use", "excerpt_display"],
@@ -152,6 +152,18 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         self.candidate["document"]["permission_scope_review"]["approved_uses"] = ["collection", "indexing"]
         result = MODULE.audit_candidate(self.candidate, self.register, self.root)
         self.assertIn("document_scope_uses_incomplete", {item["code"] for item in result["blockers"]})
+
+    def test_document_identity_requires_safe_id_title_and_type(self):
+        for mutate, expected in (
+            (lambda item: item["document"].update({"document_id": "../LAW-1"}), "document_id_invalid"),
+            (lambda item: item["document"].pop("official_title"), "official_title_missing"),
+            (lambda item: item["document"].pop("document_type"), "document_type_missing"),
+        ):
+            candidate = json.loads(json.dumps(self.candidate))
+            mutate(candidate)
+            result = MODULE.audit_candidate(candidate, self.register, self.root)
+            with self.subTest(expected=expected):
+                self.assertIn(expected, {item["code"] for item in result["blockers"]})
 
     def test_https_url_validation_rejects_all_userinfo(self):
         for url in (
