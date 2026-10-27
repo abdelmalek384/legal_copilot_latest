@@ -247,7 +247,63 @@ function login(mode='signin'){AUTH_MODE=mode;window.CASE_ID=null;let viewMode=mo
  }
  A.replaceChildren(card);
 }
-async function settingsPage(){PAGE='settings';const isAdmin=ME.role==='admin';const users=isAdmin?await api('/users').catch(()=>[]):[];const langBtn=btn(LANG==='ar'?'English':'العربية',switchLanguage,'g');const items=[h('div',{className:'card'},h('h3',{textContent:LANG==='ar'?'تفضيلات اللغة':'Language preferences'}),h('p',{className:'mut',textContent:LANG==='ar'?'اختر لغة الواجهة. سيتم حفظ اختيارك في هذا المتصفح.':'Choose the interface language. Your choice is saved in this browser.'}),langBtn,h('p',{className:'mut',textContent:LANG==='ar'?'اتجاه الصفحة يتغير تلقائيا مع اللغة.':'Page direction follows the selected language.'}))];const currentPassword=h('input',{type:'password',autocomplete:'current-password',placeholder:LANG==='ar'?'كلمة المرور الحالية':'Current password',required:true,maxLength:200});
+function mfaRecoveryCodesPage(title,codes,returnPage){
+ const ar=LANG==='ar';
+ const card=h('section',{className:'card auth-card','aria-label':title},
+   h('h2',{textContent:title}),
+   h('p',{className:'mut',textContent:ar?'هذه الرموز لن تظهر مرة أخرى. احفظها في مكان آمن.':'These codes will not be shown again. Store them securely.'}),
+   h('pre',{className:'card',textContent:codes.join('\n')}),
+   h('button',{type:'button',className:'auth-main',textContent:ar?'تم الحفظ':'I have saved them',onclick:returnPage}));
+ A.replaceChildren(card);
+}
+function mfaRecoveryRotationPage(){
+ PAGE='mfa_recovery_rotate';const ar=LANG==='ar';
+ const card=h('section',{className:'card auth-card'},h('h2',{textContent:ar?'تدوير رموز الاسترداد':'Rotate recovery codes'}),
+   h('p',{className:'mut',textContent:ar?'أدخل كلمة المرور الحالية ورمز تطبيق المصادقة. ستُلغى الرموز القديمة.':'Enter your current password and authenticator code. Existing recovery codes will be invalidated.'}));
+ const password=h('input',{type:'password',autocomplete:'current-password',required:true,maxLength:200});
+ const code=h('input',{type:'text',inputMode:'numeric',autocomplete:'one-time-code',required:true,maxLength:6});
+ const form=h('form',{onsubmit:async ev=>{ev.preventDefault();try{
+   const result=await api('/account/mfa/recovery-codes/rotate','POST',{current_password:password.value,code:code.value.trim()});
+   mfaRecoveryCodesPage(ar?'رموز الاسترداد الجديدة':'New recovery codes',result.recovery_codes,()=>{PAGE='settings';settingsPage()});
+ }catch(_){code.focus()}}},h('label',{textContent:ar?'كلمة المرور الحالية':'Current password'}),password,
+ h('label',{textContent:ar?'رمز المصادقة':'Authenticator code'}),code,
+ h('button',{type:'submit',className:'auth-main',textContent:ar?'توليد رموز جديدة':'Generate new codes'}),
+ h('button',{type:'button',className:'g',textContent:ar?'إلغاء':'Cancel',onclick:()=>{PAGE='settings';settingsPage()}}));
+ card.append(form);A.replaceChildren(card);
+}
+function mfaDisablePage(){
+ PAGE='mfa_disable';const ar=LANG==='ar';
+ const card=h('section',{className:'card auth-card'},h('h2',{textContent:ar?'إيقاف المصادقة متعددة العوامل':'Disable multi-factor authentication'}),
+   h('p',{className:'mut',textContent:ar?'يتطلب ذلك كلمة المرور الحالية ورمزاً واحداً صالحاً. قد تمنع سياسة المكتب إيقاف المصادقة.':'This requires your current password and one valid factor. Firm policy may prohibit disabling MFA.'}));
+ const password=h('input',{type:'password',autocomplete:'current-password',required:true,maxLength:200});
+ const code=h('input',{type:'text',inputMode:'numeric',autocomplete:'one-time-code',maxLength:6});
+ const recovery=h('input',{type:'text',autocomplete:'off',maxLength:16});
+ const form=h('form',{onsubmit:async ev=>{ev.preventDefault();const c=code.value.trim(),r=recovery.value.trim();if(Boolean(c)===Boolean(r)){toast(ar?'أدخل رمزاً واحداً فقط.':'Enter exactly one code.');return}try{
+   await api('/account/mfa/disable','POST',{current_password:password.value,code:c||null,recovery_code:r||null});
+   ME={...ME,mfa_enabled:false,mfa_required:false,mfa_policy_required:false,mfa_verified:true,mfa_verified_at:Math.floor(Date.now()/1000),mfa_enrollment_required:false,mfa_verification_required:false};
+   sessionStorage.me=JSON.stringify(ME);toast(ar?'تم إيقاف المصادقة.':'MFA disabled.');PAGE='settings';settingsPage();
+ }catch(_){password.focus()}}},h('label',{textContent:ar?'كلمة المرور الحالية':'Current password'}),password,
+ h('label',{textContent:ar?'رمز المصادقة':'Authenticator code'}),code,
+ h('label',{textContent:ar?'أو رمز استرداد':'Or recovery code'}),recovery,
+ h('button',{type:'submit',className:'auth-main',textContent:ar?'إيقاف المصادقة':'Disable MFA'}),
+ h('button',{type:'button',className:'g',textContent:ar?'إلغاء':'Cancel',onclick:()=>{PAGE='settings';settingsPage()}}));
+ card.append(form);A.replaceChildren(card);
+}
+function mfaSettingsCard(){
+ const ar=LANG==='ar';
+ const card=h('div',{className:'card'},h('h3',{textContent:ar?'المصادقة متعددة العوامل':'Multi-factor authentication'}),
+   h('p',{className:'mut',textContent:ME.mfa_enabled?(ar?'المصادقة مفعّلة لهذا الحساب.':'MFA is enabled for this account.'):(ME.mfa_policy_required?(ar?'يلزم إعداد المصادقة قبل استخدام مساحة العمل.':'MFA setup is required before using the workspace.'):(ar?'يمكنك تفعيل المصادقة لزيادة أمان الحساب.':'You can enable MFA to strengthen account security.'))}));
+ if(!ME.mfa_enabled){
+   card.append(btn(ar?'إعداد تطبيق المصادقة':'Set up authenticator',()=>mfaEnrollmentPage(),'primary'));
+ }else{
+   card.append(btn(ar?'تدوير رموز الاسترداد':'Rotate recovery codes',mfaRecoveryRotationPage,'g'));
+   card.append(btn(ar?'استبدال تطبيق المصادقة':'Replace authenticator',()=>mfaEnrollmentPage(true),'g'));
+   if(!ME.mfa_policy_required)card.append(btn(ar?'إيقاف المصادقة':'Disable MFA',mfaDisablePage,'g'));
+   else card.append(h('p',{className:'mut',textContent:ar?'تمنع سياسة الأمان إيقاف المصادقة لهذا الحساب.':'Security policy prevents disabling MFA for this account.'}));
+ }
+ return card;
+}
+async function settingsPage(){PAGE='settings';const isAdmin=ME.role==='admin';const users=isAdmin?await api('/users').catch(()=>[]):[];const langBtn=btn(LANG==='ar'?'English':'العربية',switchLanguage,'g');const items=[h('div',{className:'card'},h('h3',{textContent:LANG==='ar'?'تفضيلات اللغة':'Language preferences'}),h('p',{className:'mut',textContent:LANG==='ar'?'اختر لغة الواجهة. سيتم حفظ اختيارك في هذا المتصفح.':'Choose the interface language. Your choice is saved in this browser.'}),langBtn,h('p',{className:'mut',textContent:LANG==='ar'?'اتجاه الصفحة يتغير تلقائيا مع اللغة.':'Page direction follows the selected language.'}))];if(Array.isArray(ME.firms))items.push(mfaSettingsCard());const currentPassword=h('input',{type:'password',autocomplete:'current-password',placeholder:LANG==='ar'?'كلمة المرور الحالية':'Current password',required:true,maxLength:200});
 const newPassword=h('input',{type:'password',autocomplete:'new-password',placeholder:LANG==='ar'?'كلمة مرور جديدة (12 حرفا على الأقل)':'New password (at least 12 characters)',required:true,minLength:12,maxLength:200});
 const confirmPassword=h('input',{type:'password',autocomplete:'new-password',placeholder:LANG==='ar'?'تأكيد كلمة المرور الجديدة':'Confirm new password',required:true,minLength:12,maxLength:200});
 const passwordSubmit=h('button',{type:'submit',className:'primary',textContent:LANG==='ar'?'تغيير كلمة المرور':'Change password'});
