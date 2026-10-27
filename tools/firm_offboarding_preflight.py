@@ -117,16 +117,18 @@ def inspect_firm_offboarding(
             findings.append({"code": "original_file_schema_missing"})
         else:
             rows = tenant.execute(
-                "SELECT object_id,state,legal_hold FROM original_file_objects ORDER BY object_id"
+                "SELECT object_id,state,legal_hold,purged_at FROM original_file_objects ORDER BY object_id"
             ).fetchall()
-            object_count = len(rows)
-            active_holds = sum(1 for row in rows if int(row["legal_hold"]) == 1)
+            active_rows = [row for row in rows if row["purged_at"] is None]
+            object_count = len(active_rows)
+            purged_tombstone_count = len(rows) - len(active_rows)
+            active_holds = sum(1 for row in active_rows if int(row["legal_hold"]) == 1)
             if active_holds:
                 findings.append({"code": "active_legal_holds_remain", "count": active_holds})
-            staged_count = sum(1 for row in rows if row["state"] == "staged")
+            staged_count = sum(1 for row in active_rows if row["state"] == "staged")
             if staged_count:
                 findings.append({"code": "staged_uploads_require_review", "count": staged_count})
-            quarantined_count = sum(1 for row in rows if row["state"] == "quarantined")
+            quarantined_count = sum(1 for row in active_rows if row["state"] == "quarantined")
             if quarantined_count:
                 findings.append({
                     "code": "quarantined_originals_require_review", "count": quarantined_count
@@ -157,6 +159,7 @@ def inspect_firm_offboarding(
         "catalog_status": catalog_status,
         "active_memberships": active_memberships,
         "original_object_count": object_count,
+        "purged_tombstone_count": purged_tombstone_count if "purged_tombstone_count" in locals() else 0,
         "active_legal_hold_count": active_holds,
         "findings": findings,
         "purge_preflight_clear": not findings,
