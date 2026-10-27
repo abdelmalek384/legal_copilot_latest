@@ -10,6 +10,7 @@ The prompt instructs the model to use those records only as evidence and to igno
 - Never include another firm's data in the retrieval set; tenant authorization must be enforced before prompt construction.
 - Keep firm-document model processing disabled unless the deployment operator has explicitly approved the exact model endpoint and data-processing terms.
 - Continue to validate citations, legal quantities, and uncited claims after generation. If validation fails, show sources only.
+- A verified-source label requires a traceable HTTPS source URL, an original-file SHA-256, a non-empty official title, valid review evidence, and the existing legal-status and permission gates.
 - Do not treat provenance metadata or a model-generated answer as proof that a legal source is authentic, current, or legally reusable.
 - Before production, evaluate adversarial Arabic and English passages against the actual configured local model and record results.
 
