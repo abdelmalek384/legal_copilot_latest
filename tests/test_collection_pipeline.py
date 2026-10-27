@@ -14,6 +14,8 @@ from tools.collect_legal_documents import article_audit, check_permission, downl
 
 def approved_scope_review(**overrides):
     review = {
+        "status": "passed",
+        "evidence": "TEST-TERMS-REVIEW-001",
         "reviewer_id": "test-reviewer-001",
         "reviewed_on": "2026-10-26",
         "evidence_reference": "TEST-TERMS-REVIEW-001",
@@ -109,7 +111,7 @@ class CollectionPipelineTests(unittest.TestCase):
             original_dir = out / "originals" / "TEST-LAW"
             original_dir.mkdir(parents=True)
             versions = []
-            for index, raw in enumerate((b"Article 1\\nOriginal text version one.", b"Article 1\\nOriginal text version two.")):
+            for index, raw in enumerate((b"Article 1\nOriginal text version one.", b"Article 1\nOriginal text version two.")):
                 original = original_dir / ("original.txt" if index == 0 else f"original-version-{index}.txt")
                 original.write_bytes(raw)
                 metadata = {
