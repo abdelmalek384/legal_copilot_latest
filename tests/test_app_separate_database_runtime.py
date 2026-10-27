@@ -652,6 +652,30 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         finally:
             member_client.close()
 
+        # A failed audit insert must abort the hold state change atomically.
+        firm_db.execute("""
+            CREATE TRIGGER reject_original_hold_audit
+            BEFORE INSERT ON security_audit_events
+            WHEN NEW.event LIKE 'original_document_legal_hold_set:%'
+            BEGIN SELECT RAISE(ABORT, 'hold audit unavailable'); END
+        """)
+        firm_db.commit()
+        failed_hold = self._mutate(
+            "post",
+            f"/cases/{case_id}/docs/{document_id}/original/legal-hold",
+            json={"reason": "This hold must roll back"},
+        )
+        self.assertEqual(failed_hold.status_code, 503, failed_hold.text)
+        firm_db.commit()
+        self.assertEqual(
+            firm_db.execute(
+                "SELECT legal_hold FROM original_file_objects WHERE document_id=?", (document_id,)
+            ).fetchone()["legal_hold"],
+            0,
+        )
+        firm_db.execute("DROP TRIGGER reject_original_hold_audit")
+        firm_db.commit()
+
         held = self._mutate(
             "post",
             f"/cases/{case_id}/docs/{document_id}/original/legal-hold",
