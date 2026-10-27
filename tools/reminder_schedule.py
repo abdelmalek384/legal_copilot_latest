@@ -182,7 +182,7 @@ def main(argv: list[str] | None = None) -> int:
             events, args.recipient_id, now, args.timezone, args.scope_id,
             already_sent=set(already_sent), lead_days=args.lead_days,
         )
-        rendered = json.dumps(report, ensure_ascii=False, indent=2) + "\\n"
+        rendered = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
         if args.out is None:
             print(rendered, end="")
         else:
