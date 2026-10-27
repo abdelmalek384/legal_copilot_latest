@@ -159,6 +159,19 @@ class DatabaseBackupBundleTests(unittest.TestCase):
         self.assertEqual(metadata["byte_size"], len(original))
         restored_runtime.close_current_thread()
 
+    def test_recovery_drill_restores_and_exercises_active_firm_routing(self):
+        from tools.run_database_recovery_drill import run_recovery_drill
+
+        bundle = create_backup_bundle(
+            self.runtime, self.cipher, self.backup_dir, quiesced=True
+        )
+        report = run_recovery_drill(bundle, self.cipher, self.root)
+
+        self.assertTrue(report["verified"], report["findings"])
+        self.assertGreaterEqual(report["database_count"], 4)
+        self.assertEqual(report["active_firm_routing_checks"], 2)
+        self.assertFalse(report["plaintext_retained"])
+
     def test_restore_refuses_existing_target_and_wrong_encryption_key(self):
         bundle = create_backup_bundle(
             self.runtime, self.cipher, self.backup_dir, quiesced=True
