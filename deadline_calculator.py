@@ -28,10 +28,15 @@ class UnverifiedRuleError(DeadlineError):
 
 
 def add_months(day: dt.date, months: int) -> dt.date:
+    if isinstance(months, bool) or not isinstance(months, int):
+        raise DeadlineError("months must be an integer")
     index = day.year * 12 + day.month - 1 + months
     year, month0 = divmod(index, 12)
     month = month0 + 1
-    return dt.date(year, month, min(day.day, calendar.monthrange(year, month)[1]))
+    try:
+        return dt.date(year, month, min(day.day, calendar.monthrange(year, month)[1]))
+    except (ValueError, OverflowError) as exc:
+        raise DeadlineError("month arithmetic produced a date outside the supported range") from exc
 
 
 def load_rules(path: Path = DEFAULT_RULES) -> dict:
@@ -47,10 +52,14 @@ def load_rules(path: Path = DEFAULT_RULES) -> dict:
             raise DeadlineError("each rule must include id, label_ar, amount, and unit")
         if not isinstance(rule["id"], str) or not rule["id"].strip() or rule["id"] in result:
             raise DeadlineError("rule IDs must be unique non-empty strings")
+        if not isinstance(rule["label_ar"], str) or not rule["label_ar"].strip():
+            raise DeadlineError("rule label_ar must be a non-empty string")
         if isinstance(rule["amount"], bool) or not isinstance(rule["amount"], int) or not 1 <= rule["amount"] <= 3650:
             raise DeadlineError("rule period must be a positive integer no greater than 3650")
-        if rule["unit"] not in UNITS:
+        if not isinstance(rule["unit"], str) or rule["unit"] not in UNITS:
             raise DeadlineError("rule unit must be days, months, or years")
+        if "verified" in rule and not isinstance(rule["verified"], bool):
+            raise DeadlineError("rule verified field must be boolean")
         result[rule["id"]] = rule
     return result
 
@@ -58,31 +67,64 @@ def load_rules(path: Path = DEFAULT_RULES) -> dict:
 def load_holidays(path: Path = DEFAULT_HOLIDAYS, years=()) -> tuple[dict, set]:
     try:
         data = json.loads(Path(path).read_text(encoding="utf-8"))
-        if not isinstance(data, dict) or not isinstance(data.get("fixed_holidays", []), list):
-            raise DeadlineError("holiday file must contain a fixed_holidays array")
-        holidays = {}
-        for item in data.get("fixed_holidays", []):
-            month, day, name = item["month"], item["day"], item["name_ar"]
-            if isinstance(month, bool) or isinstance(day, bool) or not isinstance(month, int) or not isinstance(day, int) or not isinstance(name, str) or not name.strip():
-                raise DeadlineError("invalid fixed holiday entry")
+    except (OSError, ValueError) as exc:
+        raise DeadlineError("could not read valid holiday data") from exc
+    if not isinstance(data, dict):
+        raise DeadlineError("holiday file must be a JSON object")
+    fixed = data.get("fixed_holidays", [])
+    dated = data.get("dated_holidays", [])
+    complete_raw = data.get("complete_years", [])
+    if not isinstance(fixed, list) or not isinstance(dated, list) or not isinstance(complete_raw, list):
+        raise DeadlineError("holiday arrays and complete_years must be lists")
+
+    # Validate fixed dates even when no target years were supplied.
+    for item in fixed:
+        if not isinstance(item, dict):
+            raise DeadlineError("invalid fixed holiday entry")
+        month, day, name = item.get("month"), item.get("day"), item.get("name_ar")
+        if (isinstance(month, bool) or not isinstance(month, int) or
+                isinstance(day, bool) or not isinstance(day, int) or
+                not isinstance(name, str) or not name.strip()):
+            raise DeadlineError("invalid fixed holiday entry")
+        if not 1 <= month <= 12 or not 1 <= day <= 31:
+            raise DeadlineError("invalid fixed holiday date")
+        # Use leap year 2000 to validate month/day combinations including Feb 29.
+        try:
+            dt.date(2000, month, day)
+        except ValueError as exc:
+            raise DeadlineError("invalid fixed holiday date") from exc
+
+    holidays = {}
+    try:
+        for item in fixed:
             for year in years:
                 try:
-                    holidays[dt.date(year, month, day)] = name
+                    holidays[dt.date(year, item["month"], item["day"])] = item["name_ar"]
                 except ValueError:
-                    if month != 2 or day != 29:
-                        raise DeadlineError("invalid fixed holiday date")
-        for item in data.get("dated_holidays", []):
-            if not isinstance(item, dict) or not isinstance(item.get("name_ar"), str):
+                    # February 29 is valid only in leap years.
+                    if not (item["month"] == 2 and item["day"] == 29):
+                        raise
+        for item in dated:
+            if not isinstance(item, dict):
                 raise DeadlineError("invalid dated holiday entry")
-            holidays[dt.date.fromisoformat(item["date"])] = item["name_ar"]
-        complete = set(data.get("complete_years", []))
-        if any(isinstance(y, bool) or not isinstance(y, int) or not 1900 <= y <= 2200 for y in complete):
-            raise DeadlineError("complete_holiday_years contains an invalid year")
-        return holidays, complete
-    except (OSError, ValueError, KeyError, TypeError) as exc:
+            name, date_text = item.get("name_ar"), item.get("date")
+            if not isinstance(name, str) or not name.strip() or not isinstance(date_text, str):
+                raise DeadlineError("invalid dated holiday entry")
+            parsed = dt.date.fromisoformat(date_text)
+            if parsed.isoformat() != date_text:
+                raise DeadlineError("holiday date must use YYYY-MM-DD")
+            if parsed in holidays and holidays[parsed] != name:
+                raise DeadlineError("conflicting names for the same holiday date")
+            holidays[parsed] = name
+    except (ValueError, TypeError, KeyError) as exc:
         if isinstance(exc, DeadlineError):
             raise
-        raise DeadlineError("could not read valid holiday data") from exc
+        raise DeadlineError("invalid holiday date or year") from exc
+
+    if any(isinstance(y, bool) or not isinstance(y, int) or not 1900 <= y <= 2200 for y in complete_raw):
+        raise DeadlineError("complete_years contains an invalid year")
+    complete = set(complete_raw)
+    return holidays, complete
 
 
 def _is_verified(rule: dict) -> bool:
@@ -103,9 +145,9 @@ def _is_verified(rule: dict) -> bool:
 
 def _compute_deadline_internal(trigger: dt.date, amount: int, unit: str, *, rule_id=None,
                                verified_rule=False, allow_unverified=False,
-                     non_working_weekdays=WEEKEND_DEFAULT, holidays=None,
-                     complete_holiday_years=frozenset(), distance_days=0,
-                     extend_if_non_working=True, today=None) -> dict:
+                               non_working_weekdays=WEEKEND_DEFAULT, holidays=None,
+                               complete_holiday_years=frozenset(), distance_days=0,
+                               extend_if_non_working=True, today=None) -> dict:
     if isinstance(trigger, dt.datetime) or not isinstance(trigger, dt.date):
         raise DeadlineError("trigger must be a date, not a datetime")
     if today is not None and (isinstance(today, dt.datetime) or not isinstance(today, dt.date)):
@@ -128,17 +170,30 @@ def _compute_deadline_internal(trigger: dt.date, amount: int, unit: str, *, rule
         raise DeadlineError("weekday numbers must not repeat")
     if not verified_rule and not allow_unverified:
         raise UnverifiedRuleError("rule is unverified; refusing to calculate without explicit override")
+    if holidays is not None and not isinstance(holidays, dict):
+        raise DeadlineError("holidays must be a date-to-name mapping")
     holidays = holidays or {}
+    for day, name in holidays.items():
+        if not isinstance(day, dt.date) or isinstance(day, dt.datetime) or not isinstance(name, str) or not name.strip():
+            raise DeadlineError("invalid holiday mapping entry")
+    if not isinstance(complete_holiday_years, (set, frozenset, list, tuple)):
+        raise DeadlineError("complete holiday years must be a collection of years")
+    if any(isinstance(y, bool) or not isinstance(y, int) or not 1900 <= y <= 2200 for y in complete_holiday_years):
+        raise DeadlineError("complete holiday years contains an invalid year")
+
     warnings = []
     if not verified_rule:
         warnings.append("القاعدة مسودة غير معتمدة؛ لا تعتمد على النتيجة.")
-    if unit == "days":
-        raw_end = trigger + dt.timedelta(days=amount)
-    elif unit == "months":
-        raw_end = add_months(trigger, amount)
-    else:
-        raw_end = add_months(trigger, amount * 12)
-    end = raw_end + dt.timedelta(days=distance_days)
+    try:
+        if unit == "days":
+            raw_end = trigger + dt.timedelta(days=amount)
+        elif unit == "months":
+            raw_end = add_months(trigger, amount)
+        else:
+            raw_end = add_months(trigger, amount * 12)
+        end = raw_end + dt.timedelta(days=distance_days)
+    except (OverflowError, ValueError) as exc:
+        raise DeadlineError("calculated date is outside the supported range") from exc
     steps = [f"تاريخ الواقعة: {trigger.isoformat()} ({WEEKDAYS_AR[trigger.weekday()]})؛ لا يُحسب يوم الواقعة وفق اصطلاح المسودة.",
              f"نهاية المدة الحسابية قبل الإضافات: {raw_end.isoformat()}."]
     if distance_days:
@@ -170,7 +225,6 @@ def _compute_deadline_internal(trigger: dt.date, amount: int, unit: str, *, rule
     }
 
 
-
 def compute_deadline(trigger: dt.date, amount: int, unit: str, *, rule_id=None,
                      allow_unverified=False, non_working_weekdays=WEEKEND_DEFAULT,
                      holidays=None, complete_holiday_years=frozenset(), distance_days=0,
@@ -184,8 +238,9 @@ def compute_deadline(trigger: dt.date, amount: int, unit: str, *, rule_id=None,
     )
 
 
-
 def compute_from_rule(rule: dict, trigger: dt.date, **kwargs) -> dict:
+    if not isinstance(rule, dict) or not all(k in rule for k in ("id", "amount", "unit")):
+        raise DeadlineError("rule must be an object with id, amount, and unit")
     verified = _is_verified(rule)
     return _compute_deadline_internal(trigger, rule["amount"], rule["unit"], rule_id=rule["id"],
                                       verified_rule=verified, **kwargs)
