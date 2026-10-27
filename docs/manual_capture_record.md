@@ -33,7 +33,9 @@ Optional evidence fields:
 - `terms_url`, `terms_checked_on`
 - `collection_permission_evidence_url`, `commercial_reuse_evidence_url`
 - `publication_date`, `effective_date`, `repeal_date`, `gazette_issue`, `gazette_pages`
-- `legal_status`, `review_status`, `notes`
+- `legal_status`: `unknown`, `under_review`, `not_yet_in_force`, `in_force`, `partially_repealed`, `repealed`, or `historical`
+- `review_status`: `pending_source_review`, `pending_lawyer_review`, `verified`, or `rejected`
+- `notes`
 
 Use distinct evidence URLs for collection permission and commercial reuse permission when they have different scopes. Do not reuse an unrelated URL merely to make a gate pass. Limited, prohibited, or permission-required states are recorded but never treated as unrestricted permission by this validator.
 
@@ -68,4 +70,4 @@ This is a schema example only, not a real source or permission decision. Replace
 }
 ```
 
-The example intentionally starts with unknown permissions and legal status. The validator always reports `retrieval_eligible: false`; it is a provenance check, not the legal release gate.
+The example intentionally starts with unknown permissions and legal status. Even if a sidecar claims `review_status: verified`, the validator treats that as an unverified assertion and always reports `retrieval_eligible: false`; it is a provenance check, not the legal release gate.
