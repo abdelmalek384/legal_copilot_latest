@@ -560,6 +560,25 @@ def main(argv: list[str] | None = None) -> int:
         report = build_report(candidate_paths, args.register, args.root, args.coverage_matrix)
     rendered = json.dumps(report, ensure_ascii=False, indent=2)
     if args.out:
+        destination = args.out.resolve()
+        protected_files = {path.resolve() for path in candidate_paths}
+        protected_files.update({args.register.resolve(), args.coverage_matrix.resolve()})
+        protected_directories = {
+            args.candidates_dir.resolve(),
+            (args.root.resolve() / "originals"),
+            (args.root.resolve() / "extracted"),
+        }
+        if destination in protected_files or any(
+            destination == directory or directory in destination.parents
+            for directory in protected_directories
+        ):
+            error_report = {
+                "schema_version": 1,
+                "error": "Report output must not overwrite candidate/register/coverage inputs or original/extracted corpus artifacts.",
+                "read_only": True,
+            }
+            print(json.dumps(error_report, ensure_ascii=False, indent=2))
+            return 2
         args.out.parent.mkdir(parents=True, exist_ok=True)
         args.out.write_text(rendered + "\n", encoding="utf-8")
     print(rendered)
