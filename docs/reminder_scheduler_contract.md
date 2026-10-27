@@ -1,4 +1,4 @@
-# Deadline reminder scheduler contract (non-database foundation)
+# Deadline reminder scheduler contract
 
 ## Status and boundary
 
@@ -16,7 +16,7 @@ Each event has only:
 - due_date: canonical local calendar date in YYYY-MM-DD form;
 - is_complete: explicit boolean.
 
-The caller supplies a firm/scope identifier, recipient identifier, aware current timestamp, IANA timezone, and previously sent idempotency keys. Scope is included in the idempotency key. Date-only deadlines remain date-only; this helper does not calculate legal deadlines or infer due dates from judgments.
+The pure planner accepts a firm/scope identifier, recipient identifier, aware current timestamp, IANA timezone, and optional previously sent keys. The integrated scheduler supplies the trusted firm/user scope and persists generated keys in the firm-local outbox. Date-only deadlines remain date-only; the helper does not calculate legal deadlines or infer due dates from judgments.
 
 ## Planning rules
 
@@ -65,5 +65,7 @@ Required SMTP variables are documented in docs/reminder_email_delivery.md. COPIL
 
     PYTHONPATH=. python tests/test_reminder_schedule.py
     PYTHONPATH=. python tests/test_reminder_email.py
+    PYTHONPATH=. python tests/test_reminder_outbox.py
+    PYTHONPATH=. python tests/test_reminder_service.py
 
-These tests use local/fake inputs and do not send live email. The reminder system is not production-ready until authorization, persistence, monitoring, real-provider staging tests, and concurrent deduplication tests are complete.
+Automated tests use synthetic tenant databases and fake SMTP senders; they do not send live email. The integrated authorization and persistence paths are covered by regression tests, but the service is not production-ready until real-provider staging, scheduler monitoring, operator reconciliation, and independent review are complete.
