@@ -229,7 +229,7 @@ This is a planning estimate across fresh-install schema/migrations, tenant isola
 
 ### 2. Approve identity and tenant contract
 - [ ] Approve and implement invitation/account-recovery policy, including email delivery, token expiry, role eligibility, and recovery assurance (see [identity lifecycle proposal](identity_lifecycle_policy_proposal.md)); also finish initial firm-owner/session lifecycle policy and approve the [first platform-admin bootstrap procedure](first_platform_admin_bootstrap_proposal.md).
-- [ ] Complete the deployment and storage inventory before selecting production routing behavior.
+- [x] Complete the initial deployment and storage entrypoint inventories (see `tenant_isolation_inventory.md` and `repository_storage_entrypoint_inventory.md`); production storage backend, key-management, and retention decisions remain open.
 - [x] Wire control-plane identity, sessions, firm memberships, and trusted active-firm routing into the separate runtime (PR #372 merged; CI passed).
 - [ ] Finish and verify invitation/bootstrap lifecycle and prompt session/cache revocation across all routes after membership suspension or revocation; platform-role grant/revocation commands have targeted authorization/audit tests (PR #570).
 
