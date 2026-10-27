@@ -130,6 +130,13 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
             if registered.get("commercial_reuse_permission") not in ALLOWED:
                 add(blockers, "central_commercial_permission_not_allowed",
                     f"Central source {registered.get('source_id', '(unnamed)')} does not explicitly allow commercial reuse.")
+            else:
+                if not isinstance(registered.get("commercial_reuse_evidence"), str) or not registered["commercial_reuse_evidence"].strip():
+                    add(blockers, "central_commercial_permission_evidence_missing",
+                        f"Central source {registered.get('source_id', '(unnamed)')} lacks separate commercial reuse evidence.")
+                if not valid_date(registered.get("commercial_terms_checked_on")):
+                    add(blockers, "central_commercial_terms_date_invalid",
+                        f"Central source {registered.get('source_id', '(unnamed)')} lacks a valid commercial terms review date.")
             if not isinstance(registered.get("permission_evidence"), str) or not registered["permission_evidence"].strip():
                 add(blockers, "central_permission_evidence_missing",
                     f"Central source {registered.get('source_id', '(unnamed)')} has no permission evidence.")
@@ -141,9 +148,16 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
         if source.get(field) not in ALLOWED:
             add(blockers, f"candidate_{field}_not_allowed", f"Candidate source {field} is not explicitly allowed.")
     if not isinstance(source.get("permission_evidence"), str) or not source["permission_evidence"].strip():
-        add(blockers, "candidate_permission_evidence_missing", "Candidate source lacks permission evidence.")
+        add(blockers, "candidate_permission_evidence_missing", "Candidate source lacks collection permission evidence.")
     if not valid_date(source.get("terms_checked_on")):
         add(blockers, "candidate_terms_date_invalid", "Candidate source needs a valid, non-future terms_checked_on date.")
+    if source.get("commercial_reuse_permission") in ALLOWED:
+        if not isinstance(source.get("commercial_reuse_evidence"), str) or not source["commercial_reuse_evidence"].strip():
+            add(blockers, "candidate_commercial_permission_evidence_missing",
+                "Candidate source needs separate commercial_reuse_evidence; collection evidence is not sufficient.")
+        if not valid_date(source.get("commercial_terms_checked_on")):
+            add(blockers, "candidate_commercial_terms_date_invalid",
+                "Candidate source needs a valid, non-future commercial_terms_checked_on date.")
 
     scope = document.get("permission_scope_review")
     if not isinstance(scope, dict) or scope.get("status") != "passed":
