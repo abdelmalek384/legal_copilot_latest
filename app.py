@@ -15,6 +15,7 @@ from tools.mfa_primitives import (
 )
 from tools.mfa_crypto import MFAConfigurationError, encrypt_totp_secret, decrypt_totp_secret
 from storage import SQLiteConnectionProvider
+from original_file_storage import LocalPrivateObjectStore, ObjectStorageError, StagedObject
 from identity import normalize_email
 from db_migrations import apply_migrations
 from database_runtime import DatabaseRuntime, DatabaseRuntimeError
@@ -566,7 +567,7 @@ def add_doc(c, case_id, name, text, document_id=None, *, commit=True):
                      "page": str(page) if page is not None else None})
     return add_chunks(c, rows, commit=commit)
 
-def save_doc(c, u, cid, name, text, *, content_hash=None, content_type="text/plain", byte_size=None, extraction_status="text_extracted", ocr_used=False):
+def save_doc(c, u, cid, name, text, *, content_hash=None, content_type="text/plain", byte_size=None, extraction_status="text_extracted", ocr_used=False, original_file: StagedObject | None = None, commit=True):
     content_hash = content_hash or hashlib.sha256(text.encode("utf-8")).hexdigest()
     byte_size = len(text.encode("utf-8")) if byte_size is None else byte_size
     # Chunk insertion and its audit event must commit with the document metadata.
@@ -581,9 +582,17 @@ def save_doc(c, u, cid, name, text, *, content_hash=None, content_type="text/pla
             (cid, name, u["firm_id"], u["id"], content_hash, content_type, byte_size, extraction_status, int(ocr_used)))
         document_id = cur.lastrowid
         n = add_doc(c, cid, name, text, document_id=document_id, commit=False)
+        if original_file is not None:
+            c.execute(
+                "INSERT INTO original_file_objects(object_id,document_id,firm_id,storage_backend,sha256,byte_size,content_type,state) "
+                "VALUES(?,?,?,'local',?,?,?,'staged')",
+                (original_file.object_id, document_id, u["firm_id"], original_file.sha256,
+                 original_file.byte_size, content_type or "application/octet-stream"),
+            )
         log(c, cid, u["name"], "إضافة مستند: " + name)
         c.execute(f"RELEASE SAVEPOINT {savepoint}")
-        c.commit()
+        if commit:
+            c.commit()
         return n, document_id
     except Exception as exc:
         try:
@@ -596,6 +605,48 @@ def save_doc(c, u, cid, name, text, *, content_hash=None, content_type="text/pla
         if isinstance(exc, sqlite3.Error):
             raise HTTPException(503, "document persistence unavailable") from exc
         raise
+
+
+def _original_file_store():
+    """Build the reviewed local development adapter; production must use a reviewed backend."""
+    if os.environ.get("COPILOT_ENV", "").strip().lower() in {"prod", "production"}:
+        raise HTTPException(503, "production original-file storage backend is not configured")
+    backend = os.environ.get("COPILOT_OBJECT_STORAGE_BACKEND", "local").strip().lower()
+    if backend != "local":
+        raise HTTPException(503, "configured original-file storage backend is not available")
+    tenant_root_value = os.environ.get("COPILOT_TENANT_DB_ROOT", "").strip()
+    if not tenant_root_value:
+        raise HTTPException(503, "tenant storage root is required for original-file storage")
+    tenant_root = Path(tenant_root_value).expanduser().absolute()
+    configured_root = os.environ.get("COPILOT_OBJECT_STORAGE_ROOT", "").strip()
+    object_root = Path(configured_root).expanduser().absolute() if configured_root else tenant_root.parent / "objects"
+    try:
+        tenant_resolved = tenant_root.resolve()
+        object_resolved = object_root.resolve()
+        if (object_resolved == tenant_resolved or object_resolved in tenant_resolved.parents
+                or tenant_resolved in object_resolved.parents):
+            raise HTTPException(503, "object storage must be separate from the tenant database root")
+        for key in ("COPILOT_CONTROL_DB", "COPILOT_CORPUS_DB"):
+            db_value = os.environ.get(key, "").strip()
+            if not db_value:
+                continue
+            db_path = Path(db_value).expanduser().absolute().resolve()
+            if object_resolved == db_path or object_resolved in db_path.parents:
+                raise HTTPException(503, "object storage must not contain control-plane or corpus databases")
+        return LocalPrivateObjectStore(object_root, max_bytes=15_000_000)
+    except ObjectStorageError as exc:
+        raise HTTPException(503, "original-file storage is unavailable") from exc
+
+
+def _cleanup_original_file(store, object_id):
+    if store is None or object_id is None:
+        return
+    try:
+        store.delete(_active_firm_context.get().firm_id, object_id)
+    except Exception:
+        # Keep cleanup failures non-sensitive in logs; reconciliation must inspect
+        # staged/orphan objects before confidential originals are enabled in production.
+        logger.error("Could not clean up a staged original-file object after upload failure")
 
 
 def add_task(c, u, cid, title, assignee, due):
@@ -3585,44 +3636,115 @@ def upload(cid: int, file: UploadFile, u: dict = Depends(user)):
     if len(data) > 15_000_000: raise HTTPException(413, "max 15 MB")
     raw_name = (file.filename or "doc").replace("\\", "/").split("/")[-1]
     name = "".join(ch for ch in raw_name if ord(ch) >= 32 and ch not in "\x7f").strip()[:200] or "doc"
+    store = _original_file_store() if _separate_runtime_enabled() else None
+    staged = None
+    if store is not None:
+        try:
+            staged = store.stage(u["firm_id"], data)
+        except ObjectStorageError as exc:
+            raise HTTPException(503, "original-file storage is unavailable") from exc
     try:
-        text = extract(name, data)
-    except HTTPException:
-        raise
-    except Exception:
-        raise HTTPException(422, "unreadable file")
-    ocr_used = False
-    ocr_warning = None
-    if name.lower().endswith(".pdf"):
-        page_texts = _pdf_page_texts(text)
-        missing_pages = {n: value for n, value in page_texts.items() if len(value.strip()) < 20}
-        if missing_pages:
-            has_readable_pages = any(len(value.strip()) >= 20 for value in page_texts.values())
-            try:
-                text = ocr_pdf_text(data, existing_pages=page_texts)
+        try:
+            text = extract(name, data)
+        except HTTPException:
+            raise
+        except Exception as exc:
+            raise HTTPException(422, "unreadable file") from exc
+        ocr_used = False
+        ocr_warning = None
+        if name.lower().endswith(".pdf"):
+            page_texts = _pdf_page_texts(text)
+            missing_pages = {n: value for n, value in page_texts.items() if len(value.strip()) < 20}
+            if missing_pages:
+                has_readable_pages = any(len(value.strip()) >= 20 for value in page_texts.values())
+                try:
+                    text = ocr_pdf_text(data, existing_pages=page_texts)
+                    ocr_used = True
+                except HTTPException as exc:
+                    if has_readable_pages and "optional OCR dependencies" in str(exc.detail):
+                        ocr_warning = "Some pages contain no extractable text; OCR dependencies were unavailable, so those pages were not indexed."
+                    else:
+                        raise
+            elif len(_extracted_text_content(text)) < 20:
+                text = ocr_pdf_text(data)
                 ocr_used = True
-            except HTTPException as exc:
-                # Keep readable pages indexable if optional OCR libraries are absent,
-                # but make the partial extraction state explicit rather than silently
-                # presenting a mixed scanned/text PDF as fully extracted.
-                if has_readable_pages and "optional OCR dependencies" in str(exc.detail):
-                    ocr_warning = "Some pages contain no extractable text; OCR dependencies were unavailable, so those pages were not indexed."
-                else:
-                    raise
-        elif len(_extracted_text_content(text)) < 20:
-            # Compatibility path for empty extraction results without page markers.
-            text = ocr_pdf_text(data)
-            ocr_used = True
-    if len(_extracted_text_content(text)) < 20:
-        raise HTTPException(422, "no readable text found; for scanned PDFs enable OCR with Arabic/English Tesseract language data")
-    extraction_status = "ocr_unverified" if ocr_used else ("partial_text_ocr_unavailable" if ocr_warning else "text_extracted")
-    digest = hashlib.sha256(data).hexdigest()
-    chunks, document_id = save_doc(
-        c, u, cid, name, text, content_hash=digest,
-        content_type=(file.content_type or ("application/pdf" if name.lower().endswith(".pdf") else "application/vnd.openxmlformats-officedocument.wordprocessingml.document")),
-        byte_size=len(data), extraction_status=extraction_status, ocr_used=ocr_used)
-    return {"document_id": document_id, "sha256": digest, "chunks": chunks, "ocr_used": ocr_used,
-            "text_status": extraction_status, "ocr_warning": ocr_warning}
+        if len(_extracted_text_content(text)) < 20:
+            raise HTTPException(422, "no readable text found; for scanned PDFs enable OCR with Arabic/English Tesseract language data")
+        extraction_status = "ocr_unverified" if ocr_used else ("partial_text_ocr_unavailable" if ocr_warning else "text_extracted")
+        digest = hashlib.sha256(data).hexdigest()
+        content_type = file.content_type or ("application/pdf" if name.lower().endswith(".pdf") else "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
+        if staged is None:
+            chunks, document_id = save_doc(
+                c, u, cid, name, text, content_hash=digest, content_type=content_type,
+                byte_size=len(data), extraction_status=extraction_status, ocr_used=ocr_used)
+        else:
+            # Keep the metadata/chunk transaction open while publishing the staged
+            # object. The download route cannot see the object until this commits.
+            c.execute("BEGIN IMMEDIATE")
+            chunks, document_id = save_doc(
+                c, u, cid, name, text, content_hash=digest, content_type=content_type,
+                byte_size=len(data), extraction_status=extraction_status, ocr_used=ocr_used,
+                original_file=staged, commit=False)
+            store.finalize(u["firm_id"], staged.object_id)
+            updated = c.execute(
+                "UPDATE original_file_objects SET state='ready',updated_at=datetime('now') "
+                "WHERE object_id=? AND firm_id=? AND state='staged'",
+                (staged.object_id, u["firm_id"]),
+            )
+            if updated.rowcount != 1:
+                raise RuntimeError("original file metadata state changed during upload")
+            c.commit()
+        return {"document_id": document_id, "sha256": digest, "chunks": chunks, "ocr_used": ocr_used,
+                "text_status": extraction_status, "ocr_warning": ocr_warning,
+                "original_file_retained": staged is not None}
+    except Exception:
+        if c.in_transaction:
+            c.rollback()
+        if staged is not None:
+            _cleanup_original_file(store, staged.object_id)
+        raise
+
+
+@app.get("/cases/{cid}/docs/{document_id}/original")
+def download_original_document(cid: int, document_id: int, u: dict = Depends(user)):
+    """Return a verified original only to a user authorized for its matter."""
+    if not _separate_runtime_enabled():
+        raise HTTPException(404, "original-file storage is available only in separate-database mode")
+    c = conn()
+    need(c, u, cid)
+    row = c.execute(
+        "SELECT d.id,o.object_id,o.sha256,o.byte_size,o.legal_hold "
+        "FROM docs d JOIN original_file_objects o ON o.document_id=d.id "
+        "WHERE d.id=? AND d.case_id=? AND d.firm_id=? AND o.firm_id=? AND o.state='ready'",
+        (document_id, cid, u["firm_id"], u["firm_id"]),
+    ).fetchone()
+    if row is None:
+        raise HTTPException(404, "original document not found")
+    store = _original_file_store()
+    try:
+        with store.open(u["firm_id"], row["object_id"]) as handle:
+            data = handle.read(15_000_001)
+    except ObjectStorageError as exc:
+        raise HTTPException(503, "original document is unavailable") from exc
+    if (len(data) != int(row["byte_size"]) or len(data) > 15_000_000
+            or hashlib.sha256(data).hexdigest() != row["sha256"]):
+        logger.error("Original document integrity verification failed")
+        raise HTTPException(503, "original document failed integrity verification")
+    try:
+        c.execute(
+            "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
+            (u["firm_id"], u["id"], "original_document_download:" + str(document_id)),
+        )
+        c.commit()
+    except sqlite3.Error as exc:
+        c.rollback()
+        raise HTTPException(503, "download was not released because audit logging failed") from exc
+    return Response(
+        content=data,
+        media_type="application/octet-stream",
+        headers={"Content-Disposition": 'attachment; filename="original-document"',
+                 "Cache-Control": "no-store", "Pragma": "no-cache"},
+    )
 
 
 class ExtractionReviewIn(BaseModel):
