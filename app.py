@@ -3724,7 +3724,8 @@ def download_original_document(cid: int, document_id: int, u: dict = Depends(use
     row = c.execute(
         "SELECT d.id,o.object_id,o.sha256,o.byte_size,o.legal_hold "
         "FROM docs d JOIN original_file_objects o ON o.document_id=d.id "
-        "WHERE d.id=? AND d.case_id=? AND d.firm_id=? AND o.firm_id=? AND o.state='ready'",
+        "WHERE d.id=? AND d.case_id=? AND d.firm_id=? AND o.firm_id=? "
+        "AND o.state='ready' AND o.purged_at IS NULL",
         (document_id, cid, u["firm_id"], u["firm_id"]),
     ).fetchone()
     if row is None:
@@ -3781,13 +3782,15 @@ def set_original_document_legal_hold(
     if not reason:
         raise HTTPException(422, "a non-empty legal hold reason is required")
     row = c.execute(
-        "SELECT o.object_id,o.sha256,o.byte_size,o.legal_hold,o.state "
+        "SELECT o.object_id,o.sha256,o.byte_size,o.legal_hold,o.state,o.purged_at "
         "FROM docs d JOIN original_file_objects o ON o.document_id=d.id "
         "WHERE d.id=? AND d.case_id=? AND d.firm_id=? AND o.firm_id=?",
         (document_id, cid, u["firm_id"], u["firm_id"]),
     ).fetchone()
     if row is None:
         raise HTTPException(404, "original document not found")
+    if row["purged_at"] is not None:
+        raise HTTPException(409, "original document has already been purged")
     if row["legal_hold"]:
         raise HTTPException(409, "original document already has a legal hold")
     if row["state"] not in {"ready", "quarantined"}:
