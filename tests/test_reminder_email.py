@@ -82,6 +82,21 @@ class ReminderEmailTests(unittest.TestCase):
                 send_reminder_email(self.reminder, "user@example.test", url,
                                     self.config, enabled=True, send_once=lambda *args: None)
 
+
+    def test_unhashable_payload_values_fail_with_domain_error(self):
+        for reminder in (dict(self.reminder, event_type=[]), dict(self.reminder, window={})):
+            with self.subTest(reminder=reminder), self.assertRaises(ReminderEmailError):
+                send_reminder_email(reminder, "user@example.test", "https://legal.example.test",
+                                    self.config, enabled=True, send_once=lambda *args: None)
+        with self.assertRaises(ReminderEmailError):
+            send_reminder_email(self.reminder, "user@example.test", "https://[invalid",
+                                self.config, enabled=True, send_once=lambda *args: None)
+        with self.assertRaises(ReminderEmailError):
+            SMTPConfig([], 587, "notices@example.test", "user", "password").validated()
+        with self.assertRaises(ReminderEmailError):
+            SMTPConfig("smtp.example.test", 587, "notices@example.test", "user", "password",
+                       security=[]).validated()
+
     def test_invalid_date_and_unsupported_window_rejected(self):
         for reminder in (dict(self.reminder, due_date="2026-02-30"),
                          dict(self.reminder, window="immediate"),
