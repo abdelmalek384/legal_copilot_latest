@@ -41,7 +41,7 @@ One JSON object per question in `runs.example.jsonl`:
 }
 ```
 
-Both boolean fields are required explicitly; malformed source-ID lists, citation objects, booleans, or dates are reported and excluded rather than interpreted as zero-quality results. This is a schema example, not a real result. Do not copy placeholder IDs into the measured dataset.
+The API runner now emits this scoring schema directly (`question_id`, `retrieved_source_ids`, `citations`, `abstained`, and `used_unverified_source`) while retaining its diagnostic fields (`answer`, `source_summary`, `invalid_citation_indices`, and `requested_as_of`). A visible citation whose source has no stable ID is listed as invalid. Missing or non-verified source status is treated conservatively as unverified. The example is not a real result; do not copy placeholder IDs into the measured dataset.
 
 ## Metrics
 
@@ -66,7 +66,7 @@ python tests/test_retrieval_evaluation.py
 For a reviewed dataset and a real run file:
 
 ```bash
-python tools/evaluate_retrieval_quality.py --questions path/to/reviewed_questions.jsonl --runs path/to/real_runs.jsonl --output evaluation-report.json
+python tools/evaluate_retrieval_quality.py --questions path/to/reviewed_questions.jsonl --runs path/to/runner_output.jsonl --output evaluation-report.json
 ```
 
 ## Release gates
