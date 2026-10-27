@@ -75,6 +75,14 @@ class ManualCaptureRecordTests(unittest.TestCase):
         self.assertTrue(any("source_url" in error for error in result["errors"]))
         self.assertTrue(any("retrieved_at" in error for error in result["errors"]))
 
+    def test_non_string_permission_states_are_rejected_without_crashing(self):
+        self.record["collection_permission"] = []
+        self.record["commercial_reuse_permission"] = {}
+        result = validate_capture_record(self.record, self.record_path)
+        self.assertFalse(result["valid"])
+        self.assertTrue(any("collection_permission" in error for error in result["errors"]))
+        self.assertTrue(any("commercial_reuse_permission" in error for error in result["errors"]))
+
     def test_permission_gates_need_terms_and_separate_evidence(self):
         self.record.update({
             "collection_permission": "allowed",
