@@ -306,7 +306,13 @@ class DatabaseMigrationTests(unittest.TestCase):
             "idx_legal_review_events_version",
             "idx_research_conversations_owner",
             "idx_research_messages_conversation",
+            "idx_legal_sources_source_class",
+            "idx_legal_versions_review_legal_status",
         } <= indexes)
+        source_columns = {row["name"] for row in self.db.execute("PRAGMA table_info(legal_sources)")}
+        version_columns = {row["name"] for row in self.db.execute("PRAGMA table_info(legal_document_versions)")}
+        self.assertTrue({"source_class"} <= source_columns)
+        self.assertTrue({"text_sha256", "publication_evidence_url"} <= version_columns)
         relation_columns = {
             row["name"] for row in self.db.execute("PRAGMA table_info(legal_version_relations)")
         }
