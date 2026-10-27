@@ -1470,5 +1470,25 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertIn("NONMEMBER_ASSIGNED_TASK_SENTINEL", admin_case.text)
 
 
+    def test_application_responses_are_not_cacheable(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+
+        responses = (
+            self.client.get("/cases"),
+            self.client.get("/audit/security-events"),
+            self.client.get("/calendar.ics"),
+            self.client.get("/cases/999999"),
+        )
+        self.assertEqual([response.status_code for response in responses], [200, 200, 200, 404])
+        for response in responses:
+            with self.subTest(path=response.request.url.path, status=response.status_code):
+                self.assertEqual(response.headers.get("Cache-Control"), "no-store")
+                self.assertEqual(response.headers.get("Pragma"), "no-cache")
+                self.assertEqual(response.headers.get("Expires"), "0")
+
+
 if __name__ == "__main__":
     unittest.main()
