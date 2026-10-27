@@ -11,5 +11,5 @@ PDF page markers are retained for page-aware citations. DOCX paragraphs and tabl
 - A single parser call may still allocate memory before returning an individual page or paragraph. Incremental output accounting is not a full parser sandbox.
 - Keep document parsing libraries patched and run parsing in a process/container with CPU, memory, and wall-clock limits in production.
 - Do not accept macro-enabled DOCM or arbitrary ZIP/XML files through this endpoint.
-- OCR has separate page and image-processing costs; keep OCR bounded and treat OCR text as unverified until reviewed.
+- OCR has separate page and image-processing costs; OCR output is also capped incrementally at 1,000,000 characters. Keep OCR bounded and treat OCR text as unverified until reviewed.
 - A successful extraction only means text was extracted, not that it is complete, authentic, or legally accurate.
