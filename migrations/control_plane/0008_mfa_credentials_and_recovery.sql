@@ -2,6 +2,8 @@
 -- TOTP secrets are encrypted by the application with a dedicated MFA_ENCRYPTION_KEY.
 ALTER TABLE auth_sessions
     ADD COLUMN mfa_verified INTEGER NOT NULL DEFAULT 1 CHECK(mfa_verified IN (0,1));
+ALTER TABLE auth_sessions
+    ADD COLUMN mfa_verified_at INTEGER NOT NULL DEFAULT 0 CHECK(mfa_verified_at >= 0);
 
 -- Existing privileged sessions must pass MFA again when enforcement is enabled.
 UPDATE auth_sessions SET mfa_verified=0
