@@ -1,5 +1,6 @@
 import io
 import json
+import sqlite3
 import tempfile
 import unittest
 import zipfile
@@ -64,6 +65,22 @@ class DatabaseBackupBundleTests(unittest.TestCase):
         self.assertEqual(restored["root"], target)
         self.assertTrue(restored["control_plane"].is_file())
         self.assertTrue(restored["legal_corpus"].is_file())
+
+        # Restore itself, before runtime initialization, must establish the
+        # concurrency mode expected by the application for every database.
+        restored_databases = [
+            restored["control_plane"],
+            restored["legal_corpus"],
+            *sorted(restored["tenant_root"].glob("tenant-*.sqlite3")),
+        ]
+        self.assertGreaterEqual(len(restored_databases), 4)
+        for database_path in restored_databases:
+            connection = sqlite3.connect(database_path)
+            try:
+                journal_mode = connection.execute("PRAGMA journal_mode").fetchone()[0]
+                self.assertEqual(str(journal_mode).lower(), "wal", database_path.name)
+            finally:
+                connection.close()
 
         restored_runtime = DatabaseRuntime(
             restored["control_plane"], restored["tenant_root"], restored["legal_corpus"]
