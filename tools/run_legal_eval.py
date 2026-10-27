@@ -140,33 +140,65 @@ def result_from_response(question, response):
     answer = answer if isinstance(answer, str) and answer.strip() else None
     sources = response.get("sources") if isinstance(response.get("sources"), list) else []
     indices = _answer_citation_indices(answer)
-    invalid = [index for index in indices if index < 1 or index > len(sources)]
-    valid_indices = [index for index in indices if 1 <= index <= len(sources)]
-    cited_sources = []
-    cited_pins = []
-    for index in valid_indices:
-        hit = sources[index - 1]
+    invalid = {index for index in indices if index < 1 or index > len(sources)}
+    retrieved_source_ids = []
+    source_by_id = {}
+    for hit in sources:
         if not isinstance(hit, dict):
             continue
         source_id = hit.get("source_id")
         if not isinstance(source_id, str) or not source_id.strip():
             continue
         source_id = source_id.strip()
+        if source_id not in retrieved_source_ids:
+            retrieved_source_ids.append(source_id)
+        source_by_id.setdefault(source_id, hit)
+
+    cited_sources = []
+    cited_pins = []
+    citations = []
+    used_unverified_source = False
+    for index in indices:
+        if index < 1 or index > len(sources):
+            continue
+        hit = sources[index - 1]
+        if not isinstance(hit, dict):
+            invalid.add(index)
+            continue
+        source_id = hit.get("source_id")
+        if not isinstance(source_id, str) or not source_id.strip():
+            invalid.add(index)
+            continue
+        source_id = source_id.strip()
         if source_id not in cited_sources:
             cited_sources.append(source_id)
+        citation = {"source_id": source_id}
         pin = _pin_cite(hit)
         if pin:
+            citation["pin_cite"] = pin
             item = {"source_id": source_id, "pin_cite": pin}
             if item not in cited_pins:
                 cited_pins.append(item)
+        if citation not in citations:
+            citations.append(citation)
+        # Only the explicit, current verified-corpus status counts as verified.
+        # Missing/unknown status is conservatively treated as unverified.
+        if hit.get("source_status") != "verified_operative_text":
+            used_unverified_source = True
+
     requested_as_of = question.get("as_of_date")
     return {
         "id": question["id"],
+        "question_id": question["id"],
         "answer": answer,
         "abstained": bool(response.get("abstained", answer is None)),
+        "retrieved_source_ids": retrieved_source_ids,
+        "citations": citations,
+        "used_unverified_source": used_unverified_source,
+        "citation_marker_count": len(indices),
         "cited_sources": cited_sources,
         "cited_pin_cites": cited_pins,
-        "invalid_citation_indices": invalid,
+        "invalid_citation_indices": sorted(invalid),
         "found": bool(response.get("found")),
         "scope": response.get("scope", "verified_corpus"),
         "requested_as_of": response.get("requested_as_of") or requested_as_of,
@@ -181,7 +213,6 @@ def result_from_response(question, response):
             for hit in sources if isinstance(hit, dict)
         ],
     }
-
 
 def _request_json(opener, url, payload, headers=None, timeout=180):
     request_headers = {"Content-Type": "application/json", "Accept": "application/json"}
