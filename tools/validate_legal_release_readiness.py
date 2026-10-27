@@ -206,6 +206,10 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
     for field in ("collection_permission", "commercial_reuse_permission"):
         if source.get(field) not in ALLOWED:
             add(blockers, f"candidate_{field}_not_allowed", f"Candidate source {field} is not explicitly allowed.")
+    if not isinstance(source.get("authority"), str) or not source["authority"].strip():
+        add(blockers, "candidate_source_authority_missing", "Candidate source needs a named issuing authority or repository owner.")
+    if not isinstance(source.get("source_class"), str) or not source["source_class"].strip():
+        add(blockers, "candidate_source_class_missing", "Candidate source must be classified as primary, official copy, secondary, user-supplied, or another explicit provenance class.")
     if not isinstance(source.get("permission_evidence"), str) or not source["permission_evidence"].strip():
         add(blockers, "candidate_permission_evidence_missing", "Candidate source lacks collection permission evidence.")
     if not valid_date(source.get("terms_checked_on")):
