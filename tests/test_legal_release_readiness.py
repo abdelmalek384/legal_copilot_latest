@@ -236,6 +236,22 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         result = MODULE.audit_candidate(candidate, self.register, self.root)
         self.assertIn("review_date_invalid", {item["code"] for item in result["blockers"]})
 
+    def test_duplicate_document_ids_block_all_duplicate_candidates(self):
+        candidate_a = self.root / "candidate-a.json"
+        candidate_b = self.root / "candidate-b.json"
+        register_path = self.root / "register.json"
+        candidate_a.write_text(json.dumps(self.candidate), encoding="utf-8")
+        candidate_b.write_text(json.dumps(self.candidate), encoding="utf-8")
+        register_path.write_text(json.dumps(self.register), encoding="utf-8")
+        report = MODULE.build_report([candidate_a, candidate_b], register_path, self.root)
+        self.assertEqual(report["candidate_count"], 2)
+        self.assertEqual(report["ready_count"], 0)
+        self.assertEqual(report["blocker_counts"]["document_id_duplicate"], 2)
+        self.assertTrue(all(
+            "document_id_duplicate" in {blocker["code"] for blocker in item["blockers"]}
+            for item in report["candidates"]
+        ))
+
     def test_report_separates_planning_matrix_from_current_and_historical_readiness(self):
         candidate_path = self.root / "candidate.json"
         register_path = self.root / "register.json"
