@@ -11,6 +11,28 @@ MODULE = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(MODULE)
 
 
+def passed_scope_review(reviewed_on="2026-10-23", **overrides):
+    review = {
+        "status": "passed",
+        "evidence": "AUTH-1 section 2",
+        "reviewer_id": "test-reviewer-001",
+        "reviewed_on": reviewed_on,
+        "evidence_reference": "AUTH-1",
+        "evidence_url": None,
+        "access_method": "direct_document_url",
+        "source_terms_reviewed": True,
+        "scope": {
+            "storage": True,
+            "text_extraction": True,
+            "indexing": True,
+            "commercial_product_use": True,
+            "excerpt_display": True,
+        },
+    }
+    review.update(overrides)
+    return review
+
+
 class AcquisitionReadinessAuditTests(unittest.TestCase):
     def test_committed_manifest_is_not_collection_ready(self):
         manifest = json.loads((ROOT / "docs" / "collection_manifest.example.json").read_text(encoding="utf-8"))
@@ -30,12 +52,7 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
             "collection_permission": "allowed",
             "permission_evidence": "written authorization ref AUTH-1",
             "terms_checked_on": "2026-10-23",
-            "permission_scope_review": {
-                "status": "passed",
-                "evidence": "AUTH-1 section 2",
-                "reviewed_on": "2026-10-23",
-                "approved_uses": ["collection"],
-            },
+            "permission_scope_review": passed_scope_review(),
         }]}
         register = {"sources": [{
             "source_id": "SRC-1",
@@ -47,7 +64,6 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
         report = MODULE.audit(manifest, register)
         self.assertTrue(report["documents"][0]["collection_ready"])
         self.assertFalse(report["documents"][0]["commercial_product_use_ready"])
-        self.assertIn("document_level_commercial_scope_review_missing", report["documents"][0]["warnings"])
         self.assertIn("commercial_product_reuse_not_established", report["documents"][0]["warnings"])
 
     def test_manifest_permission_cannot_override_source_register(self):
@@ -59,10 +75,7 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
             "collection_permission": "allowed",
             "permission_evidence": "claim",
             "terms_checked_on": "2026-10-23",
-            "permission_scope_review": {
-                "status": "passed", "evidence": "claim", "reviewed_on": "2026-10-23",
-                "approved_uses": ["collection"],
-            },
+            "permission_scope_review": passed_scope_review(evidence="claim"),
         }]}
         register = {"sources": [{
             "source_id": "SRC-2",
@@ -84,12 +97,7 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
             "collection_permission": "allowed",
             "permission_evidence": "written authorization",
             "terms_checked_on": "9999-12-31",
-            "permission_scope_review": {
-                "status": "passed",
-                "evidence": "authorization reference",
-                "reviewed_on": "9999-12-31",
-                "approved_uses": ["collection"],
-            },
+            "permission_scope_review": passed_scope_review(reviewed_on="9999-12-31"),
         }]}
         register = {"sources": [{
             "source_id": "SRC-FUTURE",
@@ -105,6 +113,58 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
         self.assertIn("manifest_terms_checked_on_missing_or_invalid", item["blockers"])
         self.assertIn("document_level_collection_scope_review_missing", item["blockers"])
 
+    def test_scope_review_must_explicitly_approve_each_use(self):
+        for flag in ("storage", "text_extraction", "indexing", "commercial_product_use", "excerpt_display"):
+            review = passed_scope_review()
+            review["scope"][flag] = False
+            manifest = {"documents": [{
+                "document_id": "LAW-SCOPE",
+                "source_id": "SRC-SCOPE",
+                "direct_url": "https://laws.example.gov/law.pdf",
+                "allowed_hosts": ["example.gov"],
+                "collection_permission": "allowed",
+                "permission_evidence": "authorization",
+                "terms_checked_on": "2026-10-23",
+                "permission_scope_review": review,
+            }]}
+            register = {"sources": [{
+                "source_id": "SRC-SCOPE",
+                "collection_permission": "allowed",
+                "commercial_reuse_permission": "allowed",
+                "permission_evidence": "authorization",
+                "terms_checked_on": "2026-10-23",
+            }]}
+            with self.subTest(flag=flag):
+                report = MODULE.audit(manifest, register)
+                self.assertFalse(report["documents"][0]["collection_ready"])
+                self.assertIn("document_level_collection_scope_review_missing",
+                              report["documents"][0]["blockers"])
+
+    def test_scope_review_cannot_predate_terms_review_or_use_credential_url(self):
+        review = passed_scope_review(reviewed_on="2026-10-22")
+        review["evidence_url"] = "https://user:secret@example.gov/terms"
+        manifest = {"documents": [{
+            "document_id": "LAW-SCOPE-DATE",
+            "source_id": "SRC-SCOPE-DATE",
+            "direct_url": "https://laws.example.gov/law.pdf",
+            "allowed_hosts": ["example.gov"],
+            "collection_permission": "allowed",
+            "permission_evidence": "authorization",
+            "terms_checked_on": "2026-10-23",
+            "permission_scope_review": review,
+        }]}
+        register = {"sources": [{
+            "source_id": "SRC-SCOPE-DATE",
+            "collection_permission": "allowed",
+            "commercial_reuse_permission": "allowed",
+            "permission_evidence": "authorization",
+            "terms_checked_on": "2026-10-23",
+        }]}
+        report = MODULE.audit(manifest, register)
+        self.assertFalse(report["documents"][0]["collection_ready"])
+        self.assertIn("document_level_collection_scope_review_missing",
+                      report["documents"][0]["blockers"])
+
     def test_direct_url_host_must_match_allowlist(self):
         manifest = {"documents": [{
             "document_id": "LAW-3",
@@ -114,10 +174,7 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
             "collection_permission": "allowed",
             "permission_evidence": "written authorization",
             "terms_checked_on": "2026-10-23",
-            "permission_scope_review": {
-                "status": "passed", "evidence": "written authorization", "reviewed_on": "2026-10-23",
-                "approved_uses": ["collection", "commercial_product_use"],
-            },
+            "permission_scope_review": passed_scope_review(evidence="written authorization"),
         }]}
         register = {"sources": [{
             "source_id": "SRC-3",

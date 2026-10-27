@@ -33,10 +33,13 @@ def _valid_date(value: object) -> bool:
 def _hostname(value: object) -> str | None:
     if not isinstance(value, str):
         return None
-    parsed = urlparse(value)
-    if parsed.scheme != "https" or not parsed.hostname or parsed.username or parsed.password:
+    try:
+        parsed = urlparse(value)
+        if parsed.scheme != "https" or not parsed.hostname or parsed.username is not None or parsed.password is not None:
+            return None
+        return parsed.hostname.lower().rstrip(".")
+    except ValueError:
         return None
-    return parsed.hostname.lower().rstrip(".")
 
 
 def _host_matches(host: str | None, allowed_hosts: object) -> bool:
@@ -50,16 +53,45 @@ def _host_matches(host: str | None, allowed_hosts: object) -> bool:
     return any(host == item or host.endswith("." + item) for item in normalized)
 
 
+SCOPE_FLAGS = (
+    "storage",
+    "text_extraction",
+    "indexing",
+    "commercial_product_use",
+    "excerpt_display",
+)
+
+
 def _scope_review_valid(document: dict) -> bool:
+    """Match the acquisition pipeline's exact fail-closed permission review contract."""
     review = document.get("permission_scope_review")
-    return (
-        isinstance(review, dict)
-        and review.get("status") == "passed"
-        and isinstance(review.get("evidence"), str)
-        and bool(review["evidence"].strip())
-        and _valid_date(review.get("reviewed_on"))
-        and isinstance(review.get("approved_uses"), list)
-    )
+    if not isinstance(review, dict) or review.get("status") != "passed":
+        return False
+    if not isinstance(review.get("evidence"), str) or len(review["evidence"].strip()) < 3:
+        return False
+    if not isinstance(review.get("reviewer_id"), str) or not review["reviewer_id"].strip():
+        return False
+    if not isinstance(review.get("evidence_reference"), str) or len(review["evidence_reference"].strip()) < 3:
+        return False
+    if review.get("access_method") != "direct_document_url" or review.get("source_terms_reviewed") is not True:
+        return False
+    if not _valid_date(review.get("reviewed_on")) or not _valid_date(document.get("terms_checked_on")):
+        return False
+    if review["reviewed_on"] < document["terms_checked_on"]:
+        return False
+    evidence_url = review.get("evidence_url")
+    if evidence_url is not None:
+        try:
+            parsed = urlparse(evidence_url) if isinstance(evidence_url, str) else None
+            if (
+                parsed is None or parsed.scheme != "https" or not parsed.hostname
+                or parsed.username is not None or parsed.password is not None
+            ):
+                return False
+        except ValueError:
+            return False
+    scope = review.get("scope")
+    return isinstance(scope, dict) and all(scope.get(flag) is True for flag in SCOPE_FLAGS)
 
 
 def audit(manifest: dict, register: dict) -> dict:
@@ -134,21 +166,19 @@ def audit(manifest: dict, register: dict) -> dict:
         if not _host_matches(host, document.get("allowed_hosts")):
             blockers.append("direct_url_host_not_in_allowlist")
 
-        scope_review = document.get("permission_scope_review")
         scope_review_valid = _scope_review_valid(document)
-        if not scope_review_valid or "collection" not in scope_review.get("approved_uses", []):
+        if not scope_review_valid:
             blockers.append("document_level_collection_scope_review_missing")
-        if not scope_review_valid or "commercial_product_use" not in scope_review.get("approved_uses", []):
-            warnings.append("document_level_commercial_scope_review_missing")
 
         collection_ready = not blockers
         product_use_ready = (
             collection_ready
             and scope_review_valid
-            and "commercial_product_use" in scope_review.get("approved_uses", [])
             and source is not None
             and source.get("commercial_reuse_permission") in COMMERCIAL_ALLOWED
         )
+        if not product_use_ready and source is not None and source.get("commercial_reuse_permission") not in COMMERCIAL_ALLOWED:
+            warnings.append("commercial_product_reuse_not_established")
         results.append({
             "document_id": document_id,
             "source_id": source_id,

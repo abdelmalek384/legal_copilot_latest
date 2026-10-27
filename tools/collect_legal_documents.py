@@ -176,6 +176,11 @@ def validate_permission_scope_review(doc: dict) -> dict:
     review = doc.get("permission_scope_review")
     if not isinstance(review, dict):
         raise ValueError("permission_scope_review must document the approved collection scope")
+    if review.get("status") != "passed":
+        raise ValueError("permission_scope_review.status must be 'passed'")
+    evidence = review.get("evidence")
+    if not isinstance(evidence, str) or len(evidence.strip()) < 3:
+        raise ValueError("permission_scope_review.evidence must identify the reviewed authorization/terms")
     reviewer = review.get("reviewer_id")
     if not isinstance(reviewer, str) or not reviewer.strip():
         raise ValueError("permission_scope_review.reviewer_id is required")
