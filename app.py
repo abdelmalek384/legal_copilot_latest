@@ -638,11 +638,11 @@ def _original_file_store():
         raise HTTPException(503, "original-file storage is unavailable") from exc
 
 
-def _cleanup_original_file(store, object_id):
-    if store is None or object_id is None:
+def _cleanup_original_file(store, firm_id, object_id):
+    if store is None or firm_id is None or object_id is None:
         return
     try:
-        store.delete(_active_firm_context.get().firm_id, object_id)
+        store.delete(int(firm_id), object_id)
     except Exception:
         # Keep cleanup failures non-sensitive in logs; reconciliation must inspect
         # staged/orphan objects before confidential originals are enabled in production.
@@ -3701,7 +3701,7 @@ def upload(cid: int, file: UploadFile, u: dict = Depends(user)):
         if c.in_transaction:
             c.rollback()
         if staged is not None:
-            _cleanup_original_file(store, staged.object_id)
+            _cleanup_original_file(store, u["firm_id"], staged.object_id)
         raise
 
 
