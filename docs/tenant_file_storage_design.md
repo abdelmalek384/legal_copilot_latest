@@ -46,6 +46,14 @@ The stored digest must be computed from the original bytes, not from extracted t
 6. If database persistence or object finalization fails, roll back the transaction and delete/quarantine staged/final objects as appropriate. Because a filesystem/object store cannot participate in SQLite's transaction, use an explicit staging state plus a reconciliation job/report for crash windows; never claim perfect cross-system atomicity.
 7. The current download endpoint requires case authorization, serves only ready metadata, verifies size and SHA-256, audits before release, and sends no-store headers. Raw storage paths are not returned.
 
+### Reconciliation and interrupted-upload recovery
+
+- `original_file_reconciliation.py` performs a read-only inventory comparison between trusted tenant-database paths, `original_file_objects` metadata, and firm-scoped local object files.
+- `tools/reconcile_original_file_storage.py` is the operator entry point. It resolves tenant database paths through the control-plane catalog, checks database firm bindings, hashes object bytes, and reports missing/corrupt objects, orphaned objects, unsafe symlinks, unknown namespaces, and interrupted staged/finalization windows.
+- The command exits `0` + " when clean, `1` when findings exist, and `2` when it cannot safely complete. `--json` emits machine-readable findings. It does not delete or repair files.
+- Run only with appropriate access to all firm databases and object storage. A production operator should quiesce writes first so a concurrent upload does not create transient findings. Review and resolve findings manually; do not auto-delete orphaned objects because they may be evidence under retention or legal hold.
+- Example: `COPILOT_CONTROL_DB=... COPILOT_TENANT_DB_ROOT=... COPILOT_CORPUS_DB=... COPILOT_OBJECT_STORAGE_ROOT=... python tools/reconcile_original_file_storage.py --json`.
+
 ### Restore and backup integration
 
 - **Implemented in development backup format v2:** the encrypted multi-database bundle includes original object bytes under firm-scoped opaque paths, and its manifest checksums cover the database snapshots and object files.
