@@ -10,6 +10,8 @@ This is a planning estimate across fresh-install schema/migrations, tenant isola
 
 ## Completed and merged
 
+- [x] Make firm-scoped case deletion serialize its lead-authorization check, case snapshot, dependent-row cleanup, and immutable audit record in one transaction; injected audit-write failure preserves the case and history (PR #653 merged; both CI workflows passed).
+
 - [x] Make the tenant-isolation inventory cover every registered FastAPI route and enforce completeness in CI (PR #649 merged; CI passed). This prevents undocumented routes from escaping review but does not prove every SQL query or authorization branch is correct.
 - [x] Strengthen fresh-schema profile-boundary tests so control-plane, firm-matter, and legal-corpus databases reject tables owned by other security domains (PR #650 merged; CI passed).
 
