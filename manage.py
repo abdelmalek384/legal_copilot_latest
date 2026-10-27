@@ -7,6 +7,7 @@ import os
 import sqlite3
 import tempfile
 import time
+from datetime import datetime, timezone
 from pathlib import Path
 
 from cryptography.fernet import Fernet
@@ -525,7 +526,7 @@ def mfa_reset_cli(a):
             ).fetchone()[0]
             if active_admins <= 1:
                 abort("Cannot reset the last active platform administrator through this command.")
-        used_at = __import__("datetime").datetime.fromtimestamp(now, __import__("datetime").timezone.utc).isoformat(timespec="seconds")
+        used_at = datetime.fromtimestamp(now, timezone.utc).isoformat(timespec="seconds")
         c.execute(
             "UPDATE mfa_recovery_codes SET used_at=? WHERE user_id=? AND used_at IS NULL",
             (used_at, target["id"]),
