@@ -636,6 +636,8 @@ def _original_file_store():
         return LocalPrivateObjectStore(object_root, max_bytes=15_000_000)
     except ObjectStorageError as exc:
         raise HTTPException(503, "original-file storage is unavailable") from exc
+    except OSError as exc:
+        raise HTTPException(503, "original-file storage path cannot be verified") from exc
 
 
 def _cleanup_original_file(store, firm_id, object_id):
@@ -3697,6 +3699,12 @@ def upload(cid: int, file: UploadFile, u: dict = Depends(user)):
         return {"document_id": document_id, "sha256": digest, "chunks": chunks, "ocr_used": ocr_used,
                 "text_status": extraction_status, "ocr_warning": ocr_warning,
                 "original_file_retained": staged is not None}
+    except ObjectStorageError as exc:
+        if c.in_transaction:
+            c.rollback()
+        if staged is not None:
+            _cleanup_original_file(store, u["firm_id"], staged.object_id)
+        raise HTTPException(503, "original-file storage is unavailable") from exc
     except Exception:
         if c.in_transaction:
             c.rollback()
