@@ -5,6 +5,7 @@ confidence or URL presence. Malformed metadata fails closed to review status.
 """
 from datetime import date, datetime, timedelta, timezone
 from collections.abc import Mapping
+import re
 from urllib.parse import urlsplit
 
 
@@ -139,7 +140,7 @@ def source_status(source, as_of=None):
     if not _valid_review_evidence_url(provenance.get("source_url")):
         return STATUS_REVIEW
     original_sha256 = provenance.get("original_sha256")
-    if not isinstance(original_sha256, str) or not __import__("re").fullmatch(r"[0-9a-fA-F]{64}", original_sha256):
+    if not isinstance(original_sha256, str) or not re.fullmatch(r"[0-9a-fA-F]{64}", original_sha256):
         return STATUS_REVIEW
 
     required_true = ("authenticity_verified", "status_verified", "amendment_history_verified")
