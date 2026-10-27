@@ -74,6 +74,15 @@ class ReminderScheduleCliTests(unittest.TestCase):
         self.assertEqual(code, 2)
         self.assertIn("timezone offset", errors.getvalue())
 
+
+    def test_invalid_utf8_input_fails_cleanly(self):
+        self.input_path.write_bytes(b"\\xff")
+        errors = io.StringIO()
+        with contextlib.redirect_stderr(errors):
+            code = main(self.args)
+        self.assertEqual(code, 2)
+        self.assertIn("failed", errors.getvalue())
+
     def test_bad_events_and_already_sent_fail_closed(self):
         for payload in ({"events": "not-list"}, {"events": [], "already_sent": [7]}):
             self.input_path.write_text(json.dumps(payload), encoding="utf-8")
