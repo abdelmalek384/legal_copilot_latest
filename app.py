@@ -1729,16 +1729,30 @@ def ocr_pdf_text(data, lang=None, max_pages=30, existing_pages=None):
 
 
 def extract(name, data):
+    # Enforce the text budget while extracting, not after joining every page,
+    # paragraph, and table into one potentially huge in-memory string.
+    max_chars = 1_000_000
+    parts = []
+    total_chars = 0
+
+    def append_part(value):
+        nonlocal total_chars
+        if not value:
+            return
+        added = len(value) + (2 if parts else 0)
+        if total_chars + added > max_chars:
+            raise HTTPException(413, "extracted text exceeds 1 MB")
+        parts.append(value)
+        total_chars += added
+
     ext = name.lower().rsplit(".", 1)[-1]
     if ext == "pdf":
         from pypdf import PdfReader
         reader = PdfReader(io.BytesIO(data), strict=True)
         if len(reader.pages) > 500: raise HTTPException(413, "maximum 500 PDF pages")
         # Preserve page boundaries so later retrieval can cite a real page.
-        text = "\n\n".join(
-            f"[[PDF_PAGE:{page_no}]]\n\n{page.extract_text() or ''}"
-            for page_no, page in enumerate(reader.pages, 1)
-        )
+        for page_no, page in enumerate(reader.pages, 1):
+            append_part(f"[[PDF_PAGE:{page_no}]]\n\n{page.extract_text() or ''}")
     elif ext == "docx":
         try:
             with zipfile.ZipFile(io.BytesIO(data)) as z:
@@ -1756,20 +1770,19 @@ def extract(name, data):
         from docx.text.paragraph import Paragraph
 
         document = docx.Document(io.BytesIO(data))
-        parts = []
         # Walk body elements in document order so table rows remain searchable
         # alongside the paragraphs that introduce them.
         for element in document.element.body.iterchildren():
             if isinstance(element, CT_P):
                 value = Paragraph(element, document).text.strip()
                 if value:
-                    parts.append(value)
+                    append_part(value)
             elif isinstance(element, CT_Tbl):
                 table = Table(element, document)
                 for row in table.rows:
                     cells = [re.sub(r"\s+", " ", cell.text).strip() for cell in row.cells]
                     if any(cells):
-                        parts.append(" | ".join(cells))
+                        append_part(" | ".join(cells))
         # Headers/footers can contain party names, document numbers, or page
         # labels omitted from the body. Deduplicate linked sections.
         seen_header_footer = set()
@@ -1778,14 +1791,10 @@ def extract(name, data):
                 value = "\n".join(p.text.strip() for p in container.paragraphs if p.text.strip())
                 if value and value not in seen_header_footer:
                     seen_header_footer.add(value)
-                    parts.append(f"[{label}] {value}")
-        text = "\n\n".join(parts)
+                    append_part(f"[{label}] {value}")
     else:
         raise HTTPException(415, "PDF or DOCX only")
-    if len(text) > 1_000_000:
-        raise HTTPException(413, "extracted text exceeds 1 MB")
-    return text
-
+    return "\n\n".join(parts)
 
 def rollback_tenant_transaction_on_error(func):
     """Roll back uncommitted firm-database writes when a route fails."""
