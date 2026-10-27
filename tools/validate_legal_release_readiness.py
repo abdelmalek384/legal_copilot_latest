@@ -125,10 +125,16 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
         reviews = []
 
     candidate_id = document.get("document_id") if isinstance(document.get("document_id"), str) else None
+    if not isinstance(candidate_id, str) or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]{0,127}", candidate_id):
+        add(blockers, "document_id_invalid", "Document needs a stable ASCII document_id using letters, numbers, underscore, or hyphen.")
+    if not isinstance(document.get("official_title"), str) or not document["official_title"].strip():
+        add(blockers, "official_title_missing", "Document needs a non-empty official_title.")
+    if not isinstance(document.get("document_type"), str) or not document["document_type"].strip():
+        add(blockers, "document_type_missing", "Document needs a non-empty document_type.")
     source_id = document.get("source_id")
     source_matches = [s for s in sources if s.get("source_id") == source_id]
-    if not source_id or len(source_matches) != 1:
-        add(blockers, "document_source_link_invalid", "Document must link to exactly one candidate source.")
+    if not isinstance(source_id, str) or not source_id.strip() or len(source_matches) != 1:
+        add(blockers, "document_source_link_invalid", "Document must link to exactly one candidate source by non-empty source_id.")
         source = {}
     else:
         source = source_matches[0]
