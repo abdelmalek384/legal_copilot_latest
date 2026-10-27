@@ -336,14 +336,22 @@ class CollectionPipelineTests(unittest.TestCase):
         for url in (
             "https://@example.gov/law.pdf",
             "https://:@example.gov/law.pdf",
+        ):
+            with self.subTest(url=url), patch("tools.collect_legal_documents.socket.getaddrinfo", return_value=[public_answer]):
+                with self.assertRaisesRegex(ValueError, "credentials"):
+                    validate_public_https_url(url, {"example.gov"})
+
+    def test_source_url_rejects_whitespace_and_invalid_ports(self):
+        for url in (
             " https://example.gov/law.pdf",
             "https://example.gov/law file.pdf",
             "https://example.gov:99999/law.pdf",
             "https://example.gov:0/law.pdf",
         ):
-            with self.subTest(url=url), patch("tools.collect_legal_documents.socket.getaddrinfo", return_value=[public_answer]):
-                with self.assertRaisesRegex(ValueError, "credentials"):
+            with self.subTest(url=url), patch("tools.collect_legal_documents.socket.getaddrinfo") as resolver:
+                with self.assertRaises(ValueError):
                     validate_public_https_url(url, {"example.gov"})
+                resolver.assert_not_called()
 
     def test_source_hostname_resolution_failure_fails_closed(self):
         with patch("tools.collect_legal_documents.socket.getaddrinfo", side_effect=OSError("no resolver")):
