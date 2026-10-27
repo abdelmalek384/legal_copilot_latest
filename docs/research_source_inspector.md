@@ -40,6 +40,6 @@ Each source-status label is accompanied by a plain-language explanation in the U
 
 ## Validation and limitations
 
-Automated tests cover conservative status gates, citation formatting, memo caveats, search-scope separation, metadata-only empty states, matter saving, frontend controls, and highlighting of the actual source-word forms matched by curated Arabic query expansion. CI is the source of truth for test status. Citation validation ignores Markdown fenced and inline code when checking citation indices, per-sentence citations, and numeric claims; a citation shown only inside a code sample cannot satisfy the prose citation requirement. Manual browser review, screen-reader checks, lawyer validation, and a production security review remain separate requirements.
+Automated tests cover conservative status gates, citation formatting, memo caveats, search-scope separation, metadata-only empty states, matter saving, frontend controls, and highlighting of the actual source-word forms matched by curated Arabic query expansion. CI is the source of truth for test status. Citation validation ignores Markdown fenced/inline code and hidden HTML comments when checking citation indices, per-sentence citations, and numeric claims; a citation shown only inside non-visible content cannot satisfy the prose citation requirement. Manual browser review, screen-reader checks, lawyer validation, and a production security review remain separate requirements.
 
 The corpus remains incomplete. Missing metadata, page numbers, legal text, or written permission are not inferred.
