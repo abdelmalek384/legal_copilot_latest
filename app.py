@@ -1497,6 +1497,24 @@ def _user_separate(
     firms = _active_firms_for_user(account["id"])
     if not firms:
         raise HTTPException(401, "no active firm membership")
+
+    def firm_switch_identity_without_current_context():
+        # A suspended/revoked selected membership must block firm data routes, but
+        # must not trap a multi-firm user in a dead context when another membership
+        # remains active. Only the explicit switch endpoint may use this fallback.
+        if request.method != "POST" or request.url.path != "/session/firm":
+            return None
+        if not csrf_cookie or not csrf_header or not hmac.compare_digest(csrf_cookie, csrf_header):
+            raise HTTPException(403, "csrf check failed")
+        origin = request.headers.get("origin")
+        if origin and not _origin_matches_request(origin, request):
+            raise HTTPException(403, "cross-origin request blocked")
+        return {
+            "id": account["id"], "name": account["name"], "email": account["email_display"],
+            "email_normalized": account["email_normalized"], "role": None, "firm_id": None,
+            "active": 1, "firms": firms, "platform_roles": _platform_roles_for_user(account["id"]),
+        }
+
     if firm_cookie is None:
         firm_id = firms[0]["firm_id"]
         secure = _secure_cookie_transport(request)
@@ -1506,10 +1524,16 @@ def _user_separate(
         try:
             firm_id = int(firm_cookie)
         except (TypeError, ValueError):
+            fallback_user = firm_switch_identity_without_current_context()
+            if fallback_user is not None:
+                return fallback_user
             raise HTTPException(403, "invalid firm context")
     try:
         context = get_database_runtime().resolve_context(account["id"], firm_id)
     except FirmContextError as exc:
+        fallback_user = firm_switch_identity_without_current_context()
+        if fallback_user is not None:
+            return fallback_user
         raise HTTPException(403, "active firm membership required") from exc
     _active_firm_context.set(context)
 

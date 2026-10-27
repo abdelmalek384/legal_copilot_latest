@@ -201,6 +201,47 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             0,
         )
 
+    def test_existing_session_loses_suspended_firm_access_immediately(self):
+        target_id = self.runtime.create_global_identity(
+            "Existing Session Target", "existing-session-target@example.test", app.hash_pw(self.password)
+        )
+        self.runtime.create_firm_membership(target_id, self.firm_a, "lawyer")
+        self.runtime.create_firm_membership(target_id, self.firm_b, "lawyer")
+        target_client = TestClient(app.app)
+        try:
+            target_login = target_client.post(
+                "/login",
+                json={"email": "existing-session-target@example.test", "password": self.password},
+            )
+            self.assertEqual(target_login.status_code, 200, target_login.text)
+            csrf = target_client.cookies.get("lc_csrf") or ""
+            selected_a = target_client.post(
+                "/session/firm", json={"firm_id": self.firm_a},
+                headers={"X-CSRF-Token": csrf},
+            )
+            self.assertEqual(selected_a.status_code, 200, selected_a.text)
+            self.assertEqual(target_client.get("/cases").status_code, 200)
+
+            owner_login = self.client.post(
+                "/login", json={"email": "owner@example.test", "password": self.password},
+            )
+            self.assertEqual(owner_login.status_code, 200, owner_login.text)
+            suspended = self._mutate("post", f"/users/{target_id}/disable")
+            self.assertEqual(suspended.status_code, 200, suspended.text)
+
+            # Keep the same authenticated session and cached firm connection:
+            # the next request must re-check membership instead of trusting cache.
+            denied_a = target_client.get("/cases")
+            self.assertEqual(denied_a.status_code, 403, denied_a.text)
+            selected_b = target_client.post(
+                "/session/firm", json={"firm_id": self.firm_b},
+                headers={"X-CSRF-Token": csrf},
+            )
+            self.assertEqual(selected_b.status_code, 200, selected_b.text)
+            self.assertEqual(target_client.get("/cases").status_code, 200)
+        finally:
+            target_client.close()
+
     def test_suspending_one_membership_preserves_other_firm_access(self):
         target_id = self.runtime.create_global_identity(
             "Multi-firm Target", "multi-firm-target@example.test", app.hash_pw(self.password)
