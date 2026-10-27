@@ -215,6 +215,74 @@ def validate(relationships_doc: dict, inventory_doc: dict) -> dict:
                     "A confirmed relationship must record a verified effective date; publication date alone is not a substitute.",
                 )
 
+    # Build a metadata-only directed graph to flag duplicate edges and cycles for review.
+    # These are warnings, not legal conclusions: cross-amendments can be legally complex.
+    adjacency: dict[str, list[tuple[str, str]]] = {}
+    seen_edges: dict[tuple[str, str, str, str], str] = {}
+    cycle_signatures: set[frozenset[str]] = set()
+    for item in relationships:
+        if not isinstance(item, dict):
+            continue
+        source_id = item.get("source_instrument_id")
+        target_id = item.get("target_instrument_id")
+        relation_type = item.get("relationship_type")
+        rid = item.get("relationship_id")
+        if (
+            relation_type not in KNOWN_RELATIONSHIP_TYPES
+            or relation_type == "base_instrument"
+            or not isinstance(source_id, str)
+            or source_id not in document_ids
+            or not isinstance(target_id, str)
+            or target_id not in document_ids
+        ):
+            continue
+
+        affected = item.get("affected_provision", item.get("affected_provisions"))
+        affected_key = json.dumps(affected, ensure_ascii=False, sort_keys=True, default=str)
+        edge_key = (source_id, target_id, relation_type, affected_key)
+        if edge_key in seen_edges:
+            add(
+                "warning",
+                "duplicate_relationship_edge",
+                rid if isinstance(rid, str) else None,
+                f"Relationship duplicates edge {seen_edges[edge_key]!r} for the same source, target, type, and affected-provision metadata.",
+            )
+        else:
+            seen_edges[edge_key] = rid if isinstance(rid, str) else "(missing relationship ID)"
+        adjacency.setdefault(source_id, []).append(
+            (target_id, rid if isinstance(rid, str) else "(missing relationship ID)")
+        )
+
+    visited: set[str] = set()
+    active: list[str] = []
+    active_set: set[str] = set()
+
+    def visit(node: str) -> None:
+        visited.add(node)
+        active.append(node)
+        active_set.add(node)
+        for target, _relationship_id in sorted(adjacency.get(node, [])):
+            if target in active_set:
+                cycle_start = active.index(target)
+                cycle_nodes = active[cycle_start:] + [target]
+                signature = frozenset(cycle_nodes)
+                if signature not in cycle_signatures:
+                    cycle_signatures.add(signature)
+                    add(
+                        "warning",
+                        "relationship_graph_cycle_detected",
+                        None,
+                        "Directed instrument relationship cycle needs manual review: " + " -> ".join(cycle_nodes) + ".",
+                    )
+            elif target not in visited:
+                visit(target)
+        active.pop()
+        active_set.remove(node)
+
+    for node in sorted(adjacency):
+        if node not in visited:
+            visit(node)
+
     return {
         "schema_version": "1.0",
         "audit_type": "read_only_amendment_relationship_integrity",
