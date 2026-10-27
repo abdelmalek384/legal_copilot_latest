@@ -22,7 +22,7 @@ class TrustedHostMiddlewareTests(unittest.IsolatedAsyncioTestCase):
             if middleware.cls.__name__ == "TrustedHostMiddleware"
         ]
         self.assertEqual(len(host_middleware), 1)
-        self.assertEqual(host_middleware[0].options.get("allowed_hosts"), ["legal.example.test"])
+        self.assertEqual(host_middleware[0].kwargs.get("allowed_hosts"), ["legal.example.test"])
         transport = httpx.ASGITransport(app=app_module.app)
         async with httpx.AsyncClient(transport=transport, base_url="http://legal.example.test") as client:
             allowed = await client.get(
