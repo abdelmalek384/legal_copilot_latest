@@ -48,16 +48,16 @@ class SMTPConfig:
                    timeout).validated()
 
     def validated(self) -> "SMTPConfig":
-        if not self.host or any(ch in self.host for ch in "\r\n"):
+        if not isinstance(self.host, str) or not self.host.strip() or any(ch in self.host for ch in "\r\n"):
             raise ReminderEmailError("SMTP host is invalid")
         if type(self.port) is not int or not 1 <= self.port <= 65535:
             raise ReminderEmailError("SMTP port must be between 1 and 65535")
-        if self.security not in {"starttls", "ssl"}:
+        if not isinstance(self.security, str) or self.security not in {"starttls", "ssl"}:
             raise ReminderEmailError("SMTP security must be starttls or ssl")
         if isinstance(self.timeout_seconds, bool) or not isinstance(self.timeout_seconds, (int, float)) or not 1 <= self.timeout_seconds <= 60:
             raise ReminderEmailError("SMTP timeout must be between 1 and 60 seconds")
         _validate_email(self.sender, "sender")
-        if not self.username or not self.password:
+        if not isinstance(self.username, str) or not self.username.strip() or not isinstance(self.password, str) or not self.password:
             raise ReminderEmailError("SMTP username and password must be configured")
         return self
 
@@ -75,7 +75,7 @@ def _safe_message(reminder: Mapping[str, object], recipient: str, app_url: str, 
     if not isinstance(reminder, Mapping):
         raise ReminderEmailError("reminder must be an object")
     kind, due_date, window = reminder.get("event_type"), reminder.get("due_date"), reminder.get("window")
-    if kind not in {"task", "deadline", "session"}:
+    if not isinstance(kind, str) or kind not in {"task", "deadline", "session"}:
         raise ReminderEmailError("reminder event_type is unsupported")
     if not isinstance(due_date, str) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", due_date):
         raise ReminderEmailError("reminder due_date must use YYYY-MM-DD form")
@@ -84,11 +84,14 @@ def _safe_message(reminder: Mapping[str, object], recipient: str, app_url: str, 
             raise ValueError
     except ValueError as exc:
         raise ReminderEmailError("reminder due_date must be a real calendar date") from exc
-    if window not in {"due_soon", "due_today", "overdue"}:
+    if not isinstance(window, str) or window not in {"due_soon", "due_today", "overdue"}:
         raise ReminderEmailError("reminder window is unsupported")
     if not isinstance(app_url, str):
         raise ReminderEmailError("application URL must be HTTPS")
-    parsed = urlsplit(app_url)
+    try:
+        parsed = urlsplit(app_url)
+    except ValueError as exc:
+        raise ReminderEmailError("application URL must be a valid HTTPS base URL") from exc
     if parsed.scheme != "https" or not parsed.netloc or parsed.username or parsed.password or parsed.query or parsed.fragment:
         raise ReminderEmailError("application URL must be a clean HTTPS base URL without credentials, query, or fragment")
     recipient = _validate_email(recipient, "recipient")
