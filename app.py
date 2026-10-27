@@ -1742,6 +1742,8 @@ def ocr_pdf_text(data, lang=None, max_pages=30, existing_pages=None):
         if (len(doc) > max_pages and not existing_pages) or len(pages_to_ocr) > max_pages:
             raise HTTPException(413, f"OCR is limited to {max_pages} pages requiring OCR per upload")
         pages = []
+        total_chars = 0
+        max_chars = 1_000_000
         for page in doc:
             page_no = page.number + 1
             existing = str(existing_pages.get(page_no, "")).strip()
@@ -1751,7 +1753,12 @@ def ocr_pdf_text(data, lang=None, max_pages=30, existing_pages=None):
                 pix = page.get_pixmap(dpi=160, alpha=False)
                 image = Image.open(io.BytesIO(pix.tobytes("png")))
                 page_text = pytesseract.image_to_string(image, lang=lang, timeout=30).strip()
-            pages.append(f"[[PDF_PAGE:{page_no}]]\n\n{page_text}")
+            block = f"[[PDF_PAGE:{page_no}]]\n\n{page_text}"
+            added = len(block) + (2 if pages else 0)
+            if total_chars + added > max_chars:
+                raise HTTPException(413, "OCR text exceeds 1 MB extraction limit")
+            pages.append(block)
+            total_chars += added
         return "\n\n".join(pages).strip()
     except HTTPException:
         raise
