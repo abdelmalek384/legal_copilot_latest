@@ -228,7 +228,8 @@ def validate(relationships_doc: dict, inventory_doc: dict) -> dict:
         relation_type = item.get("relationship_type")
         rid = item.get("relationship_id")
         if (
-            relation_type not in KNOWN_RELATIONSHIP_TYPES
+            not isinstance(relation_type, str)
+            or relation_type not in KNOWN_RELATIONSHIP_TYPES
             or relation_type == "base_instrument"
             or not isinstance(source_id, str)
             or source_id not in document_ids
