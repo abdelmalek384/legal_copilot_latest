@@ -620,8 +620,27 @@ def process_document(out: Path, metadata: dict) -> dict:
 
 def append_jsonl(path: Path, record: dict):
     path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("a", encoding="utf-8") as handle:
+    if path.parent.is_symlink() or path.is_symlink():
+        raise ValueError("JSONL output path must not traverse symbolic links")
+    flags = os.O_WRONLY | os.O_CREAT | os.O_APPEND | getattr(os, "O_NOFOLLOW", 0)
+    try:
+        descriptor = os.open(path, flags, 0o600)
+    except OSError as exc:
+        raise ValueError(f"cannot safely open JSONL output: {exc}") from exc
+    with os.fdopen(descriptor, "a", encoding="utf-8") as handle:
         handle.write(json.dumps(record, ensure_ascii=False) + "\n")
+
+
+def validate_output_layout(out: Path) -> None:
+    """Reject pre-existing symlink targets before the collector makes network requests."""
+    if out.is_symlink():
+        raise ValueError("output root must not be a symbolic link")
+    for name in ("originals", "metadata", "extracted", "audits"):
+        if (out / name).is_symlink():
+            raise ValueError(f"{name} output directory must not be a symbolic link")
+    for name in ("collection_report.jsonl", "review_queue.jsonl"):
+        if (out / name).is_symlink():
+            raise ValueError(f"{name} output file must not be a symbolic link")
 
 
 def main() -> int:
@@ -639,7 +658,12 @@ def main() -> int:
     except Exception as exc:
         print(f"Manifest error: {exc}", file=sys.stderr)
         return 2
-    args.out.mkdir(parents=True, exist_ok=True)
+    try:
+        args.out.mkdir(parents=True, exist_ok=True)
+        validate_output_layout(args.out)
+    except (OSError, ValueError) as exc:
+        print(f"Output path error: {exc}", file=sys.stderr)
+        return 2
     report_path = args.out / "collection_report.jsonl"
     review_path = args.out / "review_queue.jsonl"
     results = []
@@ -650,6 +674,8 @@ def main() -> int:
             metadata_path = args.out / "metadata" / f"{doc_id}.json"
             try:
                 if args.process_existing and metadata_path.exists():
+                    if metadata_path.is_symlink():
+                        raise ValueError("existing metadata sidecar must not be a symbolic link")
                     metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
                 else:
                     metadata = download_document(client, doc, args.out, args.max_mb * 1024 * 1024)
