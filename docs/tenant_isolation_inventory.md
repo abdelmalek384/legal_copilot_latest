@@ -1,17 +1,17 @@
 # SEC-01 — tenant-isolation inventory and audit findings
 
-**Review date:** 2026-10-26  
+**Review date:** 2026-10-27  
 **Scope:** static review of `app.py`, current API regression tests, schema/table definitions, and the existing multi-firm isolation plan. This is an engineering inventory, not an independent penetration test or production certification.
 
 ## Executive finding
 
-The application now has a separate-database runtime when all three paths (`COPILOT_CONTROL_DB`, `COPILOT_TENANT_DB_ROOT`, and `COPILOT_CORPUS_DB`) are configured: identities and memberships live in the control plane, each firm's matters live in a distinct SQLite file, and legal-reference data lives in a shared corpus database. Explicit legacy `COPILOT_DB` compatibility remains, but it is not an approved isolation boundary for unrelated firms' confidential matters. Route/query isolation still needs exhaustive review in the separate runtime.
+The application has a separate-database runtime when all three paths (`COPILOT_CONTROL_DB`, `COPILOT_TENANT_DB_ROOT`, and `COPILOT_CORPUS_DB`) are configured: identities and memberships live in the control plane, each firm's matters live in a distinct SQLite file, and legal-reference data lives in a shared corpus database. Explicit legacy `COPILOT_DB` compatibility remains, but it is not an approved isolation boundary for unrelated firms' confidential matters. A further route review found and closed an intra-firm disclosure path where assigned tasks could reveal a nonmember's case title through dashboard/calendar output (PR #573). Application responses now receive central no-store cache directives (PR #576). Route/query isolation still needs exhaustive review in the separate runtime.
 
 **Do not onboard unrelated firms or production confidential client material yet.** Exhaustive route/query review, first-deployment operational controls, restore/rollback drills, retention and monitoring policies, and independent security review remain release blockers.
 
 ## Current automated coverage
 
-The API suite uses synthetic records and two firms. The separate-runtime integration suite now also verifies that a guessed case ID cannot be read, modified, or deleted after switching to another firm, and that a clean separate-database install preserves firm data, corpus data, and lifecycle metadata across restart. Existing assertions include:
+The API suite uses synthetic records and two firms. The separate-runtime integration suite now also verifies that a guessed case ID cannot be read, modified, or deleted after switching to another firm, that assigned tasks do not bypass case-membership authorization in dashboard/calendar responses, and that a clean separate-database install preserves firm data, corpus data, and lifecycle metadata across restart. A shared response middleware sets `Cache-Control: no-store`, `Pragma: no-cache`, and `Expires: 0` for normal and error responses. Existing assertions include:
 - case list/detail/update/delete and membership/task boundaries;
 - dashboard tasks/deadlines and conflict checks;
 - user listing/creation/disablement and session revocation;
@@ -32,16 +32,17 @@ Routes are grouped by the data boundary they should preserve. "Tested" means the
 | `GET /` | Public shell only; no matter content | Security headers/CSP are asserted; browser/manual QA remains |
 | `POST /login`, `GET /session`, `POST /logout`, `POST /account/password` | Auth/session belongs to one user; disabled, expired, or revoked sessions must stop working | API tests cover malformed credentials, CSRF, expiry, password change/reset revocation and concurrent login; production browser/cookie policy still needs review |
 | `GET /users`, `POST /users`, `POST /users/{uid}/disable` | User records scoped to authenticated firm; administration is role-gated | Cross-firm listing and admin/disable tests exist; review uniqueness and account lifecycle in production |
-| `GET /dashboard`, `GET /cases`, `POST /cases`, `GET /cases/{cid}`, `PATCH /cases/{cid}`, `DELETE /cases/{cid}` | Case must belong to same firm; non-admin access must respect case membership | Cross-firm list/detail/update/delete and dashboard tests exist; route/query audit should be repeated after every new endpoint |
+| `GET /dashboard`, `GET /cases`, `POST /cases`, `GET /cases/{cid}`, `PATCH /cases/{cid}`, `DELETE /cases/{cid}` | Case must belong to same firm; non-admin access must respect case membership | Cross-firm list/detail/update/delete tests exist. Assigned-task dashboard results now also require case membership for non-admins (PR #573); continue query-by-query review |
 | `POST /cases/{cid}/members`, `DELETE /cases/{cid}/members/{uid}` | Both case and target user must be in the same firm; only authorized case lead/admin may manage membership | Role/membership tests exist; add further guessed-ID permutations as the route changes |
 | `POST /cases/{cid}/tasks`, `POST /tasks/{tid}/done`, `POST /cases/{cid}/sessions`, `POST /cases/{cid}/notes`, `POST /cases/{cid}/deadlines`, `POST /deadlines/{did}/done`, `POST /cases/{cid}/fees` | Parent case and referenced user/task/deadline must be firm- and membership-scoped | Several role and guessed-ID tests exist; coverage is not exhaustive for every child table and mutation |
 | `POST /cases/{cid}/docs`, `POST /cases/{cid}/upload` | Parent case must be authorized; metadata, chunks, and indexes must retain firm/case linkage | Upload ownership, hashes, metadata, and cross-firm upload denial are tested. Original binaries are not retained; retention/page preview is not implemented |
 | `GET /cases/{cid}/docs/{document_id}/reviews`, `POST /cases/{cid}/docs/{document_id}/chunks/{chunk_id}/review` | Case, document, chunk, and review history must all resolve inside same authorized firm/case | Cross-firm review read/write and stale correction protections are tested; reviewer UI and page-level source verification remain outstanding |
+| `GET /calendar.ics`, `GET /finance/overview` | Calendar and aggregate finance output must stay within the active firm's permitted cases; exports contain sensitive matter metadata | Calendar task queries now enforce case membership for non-admins, and the shared middleware makes all responses non-cacheable (PRs #573 and #576). Finance aggregation already filters by firm and case membership; expand tests to cover every role/branch |
 | `POST /conflicts` | Search only within current firm's cases; hidden same-firm cases may yield a generic warning, not details | Tests cover firm boundary and warning behavior; requires lawyer workflow validation |
 | `POST /search`, `POST /ask` | Matter-scoped context must pass case authorization; global statutory corpus is a separate read-only shared scope | Cross-firm case-scoped requests and unscoped retrieval that excludes another firm's private-document sentinel are tested (PR #542); continue auditing new retrieval paths and caches |
 | `POST /research/discover` | Must not expose unauthorized matter content or persist cross-tenant context | Scope/permission denial tests exist; test every supported scope and future connector |
 | `GET /research/conversations`, `POST /research/conversations`, `GET/PATCH/DELETE /research/conversations/{conversation_id}`, `POST /research/conversations/{conversation_id}/messages`, `POST /research/conversations/{conversation_id}/save-to-matter` | Conversation belongs to user and firm; target matter and message must be authorized | Cross-user and cross-firm read/write/export tests exist |
-| `GET /audit/case-deletions`, `GET /audit/security-events` | Admin-only, firm-filtered audit data; snapshots must not cross firm boundary | Existing role/limit tests; this PR adds Firm B no-leak assertions |
+| `GET /audit/case-deletions`, `GET /audit/security-events` | Admin-only, firm-filtered audit data; snapshots must not cross firm boundary | Existing role/limit tests and Firm B no-leak assertions; shared middleware now makes JSON and error responses non-cacheable (PR #576) |
 | `POST /law/import` | Shared law content is global; in separate-runtime mode import requires a live `platform_reviewer` or `platform_admin` role plus the protected import token; caller flags cannot mark law verified/current | PR #539 verifies a firm admin is denied even with the token, imports remain in review staging, caller trust flags do not promote them, and role revocation immediately blocks writes. Explicit legacy `COPILOT_DB` mode retains its older admin/allowlist path and is not an approved multi-firm isolation boundary |
 | `GET /legal-review/queue`, `GET /legal-review/coverage`, `GET/POST /legal-review/versions/{version_id}/events` | Shared legal registry is global; authorization uses the separate platform-role domain in the approved runtime | Separate-runtime mode checks live `user_platform_roles` for `platform_reviewer` or `platform_admin`; PR #532 verifies review-event writes stop immediately after role revocation. The legacy compatibility path still uses `LEGAL_REVIEWER_EMAILS` allowlisting and is not the approved multi-firm boundary |
 | No background worker/scheduled-job route identified in the current `app.py` | Any future OCR, indexing, cleanup, export, backup, and restore job must preserve tenant scope from trusted job metadata | No separate worker implementation was identified in the reviewed application file; re-inventory if one is added |
@@ -61,13 +62,12 @@ Routes are grouped by the data boundary they should preserve. "Tested" means the
 
 ## Release blockers
 
-1. **Shared database:** target tenant database/storage isolation architecture is not implemented.
-2. **Global reviewer privilege:** API access now requires the deployment-configured `LEGAL_REVIEWER_EMAILS` allowlist in addition to the admin role. Production must configure and protect this allowlist; it is not a full independent identity provider or approval workflow.
-3. **Incomplete inventory:** static route/table inventory is now recorded, but SQL query-by-query, UI, export, deployment, and operational path review still needs a second pass.
-4. **Backups and restore:** no cross-tenant backup/restore isolation test or restore drill has been demonstrated.
-5. **File retention:** original upload binaries and secure page previews are not available, so extraction corrections cannot be independently compared to retained original pages.
-6. **Independent review:** no independent security assessment is recorded.
-7. **Production hardening:** verify HTTPS/cookie flags, CSRF policy, secret handling, rate limits, structured security logging, encrypted backups, retention/deletion, incident response, and rollback in the deployment environment.
+1. **Operational readiness:** the separate-database runtime and encrypted multi-database backup/restore are implemented and tested, but the witnessed staging restore/rollback drill, startup-after-restore verification, and reviewer signoff remain outstanding.
+2. **Platform reviewer lifecycle:** separate platform roles now guard shared-corpus review/import in the approved runtime. First platform-admin bootstrap still needs an explicitly approved out-of-band procedure; the legacy `LEGAL_REVIEWER_EMAILS` path is compatibility-only and is not the approved multi-firm boundary.
+3. **Incomplete inventory:** static route/table inventory is recorded, and additional regressions now cover task membership scope and non-cacheable responses, but SQL query-by-query, UI, export, deployment, and operational path review still needs a second pass.
+4. **File storage and retention:** original upload binaries and secure page previews are not retained, so extraction corrections cannot be independently compared to original pages; tenant-scoped encrypted object storage and retention/deletion controls remain design/implementation work.
+5. **Independent review:** no independent security assessment is recorded.
+6. **Production hardening:** verify HTTPS/cookie flags, CSRF policy, secret handling, rate limits, structured security logging, encrypted backups, retention/deletion, incident response, and rollback in the deployment environment.
 
 ## Recommended next sequence
 
