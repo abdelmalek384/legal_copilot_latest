@@ -40,10 +40,24 @@ KNOWN_STATES = {
 
 
 def _https_url(value: object) -> bool:
-    if not isinstance(value, str):
+    """Validate URL syntax only; the audit does not verify evidence authenticity."""
+    if not isinstance(value, str) or not value or value != value.strip():
         return False
-    parsed = urlparse(value)
-    return parsed.scheme == "https" and bool(parsed.hostname) and not parsed.username and not parsed.password
+    if any(ch.isspace() or ord(ch) < 32 for ch in value):
+        return False
+    try:
+        parsed = urlparse(value)
+        port = parsed.port  # Forces urllib to reject malformed and out-of-range ports.
+        return (
+            parsed.scheme.lower() == "https"
+            and bool(parsed.hostname)
+            and parsed.username is None
+            and parsed.password is None
+            and not parsed.netloc.endswith(":")
+            and (port is None or 1 <= port <= 65535)
+        )
+    except (ValueError, TypeError):
+        return False
 
 
 def validate(relationships_doc: dict, inventory_doc: dict) -> dict:
