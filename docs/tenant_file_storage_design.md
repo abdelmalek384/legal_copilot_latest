@@ -50,7 +50,8 @@ The stored digest must be computed from the original bytes, not from extracted t
 
 - `original_file_reconciliation.py` performs a read-only inventory comparison between trusted tenant-database paths, `original_file_objects` metadata, and firm-scoped local object files.
 - `tools/reconcile_original_file_storage.py` is the operator entry point. It resolves tenant database paths through the control-plane catalog, checks database firm bindings, hashes object bytes, and reports missing/corrupt objects, orphaned objects, unsafe symlinks, unknown namespaces, and interrupted staged/finalization windows.
-- The command exits `0` + " when clean, `1` when findings exist, and `2` when it cannot safely complete. `--json` emits machine-readable findings. It does not delete or repair files.
+- The command exits `0` when clean, `1` when findings exist, and `2` when it cannot safely complete. `--json` emits machine-readable findings. It does not delete or repair files.
+- `tools/recover_staged_original_files.py` adds a separate, conservative recovery operation for upload crash windows. It only advances metadata to `ready` when exactly one staged/final object exists and its bytes match the recorded digest and size. By default it is a dry run; mutations require both `--apply --quiesced`. It never deletes orphaned, duplicate, or corrupt objects, and is disabled in production mode.
 - Run only with appropriate access to all firm databases and object storage. A production operator should quiesce writes first so a concurrent upload does not create transient findings. Review and resolve findings manually; do not auto-delete orphaned objects because they may be evidence under retention or legal hold.
 - Example: `COPILOT_CONTROL_DB=... COPILOT_TENANT_DB_ROOT=... COPILOT_CORPUS_DB=... COPILOT_OBJECT_STORAGE_ROOT=... python tools/reconcile_original_file_storage.py --json`.
 
