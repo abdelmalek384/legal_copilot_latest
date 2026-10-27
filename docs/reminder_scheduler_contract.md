@@ -47,6 +47,12 @@ Dry-run (no writes and no email):
 
 The command requires the three explicit database paths and inspects active firms through the trusted catalog. It prints only sanitized counts/warnings, not case titles or recipient email addresses.
 
+Read-only operational status for queued, in-flight, SMTP-accepted, failed, and ambiguous rows:
+
+    python tools/reminder_service.py --status
+
+The status report contains per-firm counts only and does not modify the outbox.
+
 Explicitly send queued reminders after SMTP and public-origin configuration has been approved:
 
     python tools/reminder_service.py --send --timezone Africa/Cairo --max-send 100
