@@ -29,6 +29,33 @@ class TenantRouteInventoryCoverageTests(unittest.TestCase):
             + "\n".join(f"- {route}" for route in missing),
         )
 
+    def test_every_non_public_route_requires_authenticated_user_dependency(self):
+        # Only the landing page and credential-entry endpoint are intentionally
+        # public. All other routes must resolve the current identity through the
+        # shared user dependency before accessing tenant or platform data.
+        public_routes = {("GET", "/"), ("POST", "/login")}
+
+        def has_user_dependency(dependant):
+            if getattr(dependant, "call", None) is app.user:
+                return True
+            return any(has_user_dependency(child) for child in getattr(dependant, "dependencies", ()))
+
+        unprotected = []
+        for route in app.app.routes:
+            path = getattr(route, "path", None)
+            methods = getattr(route, "methods", None) or set()
+            dependant = getattr(route, "dependant", None)
+            if not path or dependant is None or path in {"/openapi.json", "/docs", "/docs/oauth2-redirect", "/redoc"}:
+                continue
+            for method in methods - {"HEAD", "OPTIONS"}:
+                if (method, path) not in public_routes and not has_user_dependency(dependant):
+                    unprotected.append(f"{method} {path}")
+        self.assertFalse(
+            unprotected,
+            "New routes must authenticate through app.user or be explicitly reviewed as public:\\n"
+            + "\\n".join(sorted(unprotected)),
+        )
+
     def test_inventory_declares_its_scope_limitations(self):
         inventory = (ROOT / "docs" / "tenant_isolation_inventory.md").read_text(encoding="utf-8")
         self.assertIn("not proof that every authorization branch has been tested", inventory)
