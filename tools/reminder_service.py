@@ -292,10 +292,46 @@ def run_scheduler(
     return summary
 
 
+def outbox_status(runtime: DatabaseRuntime) -> dict:
+    """Read-only operational counts for each active firm's reminder outbox."""
+    control = runtime.control_connection()
+    report = {"mode": "status", "firms_scanned": 0, "firms": [],
+              "totals": {"queued": 0, "sending": 0, "accepted_by_smtp": 0,
+                         "failed": 0, "ambiguous": 0},
+              "warnings": ["SMTP acceptance is not inbox delivery.",
+                           "Ambiguous records require operator reconciliation; they are not auto-retried."]}
+    for row in control.execute("SELECT id FROM firms WHERE status='active' ORDER BY id").fetchall():
+        firm_id = int(row["id"])
+        try:
+            tenant = runtime._tenant_router.connection_for_firm(firm_id)
+            counts = {status: 0 for status in report["totals"]}
+            for item in tenant.execute(
+                "SELECT status,COUNT(*) AS total FROM reminder_deliveries GROUP BY status"
+            ).fetchall():
+                if item["status"] in counts:
+                    counts[item["status"]] = int(item["total"])
+        except ReminderOutboxError:
+            continue
+        except sqlite3.Error:
+            report["warnings"].append(f"firm_{firm_id}: outbox status unavailable")
+            continue
+        except Exception:
+            report["warnings"].append(f"firm_{firm_id}: tenant database unavailable; skipped")
+            continue
+        report["firms_scanned"] += 1
+        report["firms"].append({"firm_id": firm_id, "counts": counts})
+        for status, count in counts.items():
+            report["totals"][status] += count
+    return report
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--send", action="store_true",
-                        help="explicitly enable SMTP delivery; otherwise this is a read-only dry run")
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--send", action="store_true",
+                      help="explicitly enable SMTP delivery; otherwise this is a read-only dry run")
+    mode.add_argument("--status", action="store_true",
+                      help="show read-only per-firm outbox counts without scheduling or delivery")
     parser.add_argument("--timezone", default="Africa/Cairo", help="IANA timezone (default: Africa/Cairo)")
     parser.add_argument("--now", help="optional ISO timestamp with timezone offset")
     parser.add_argument("--lead-days", type=int, default=1)
@@ -306,6 +342,8 @@ def main(argv: list[str] | None = None) -> int:
     runtime = None
     try:
         now = _parse_now(args.now)
+        if args.retry_failed_key and (not args.send or args.status):
+            raise ReminderOutboxError("--retry-failed-key requires --send")
         if type(args.lead_days) is not int or not 1 <= args.lead_days <= 30:
             raise ReminderScheduleError("--lead-days must be between 1 and 30")
         if type(args.max_send) is not int or not 1 <= args.max_send <= 1000:
@@ -320,6 +358,19 @@ def main(argv: list[str] | None = None) -> int:
 
         runtime = DatabaseRuntime.from_env()
         runtime.initialize()
+        if args.status:
+            result = outbox_status(runtime)
+            output = json.dumps(result, ensure_ascii=False, sort_keys=True, indent=2)
+            if args.out:
+                destination = args.out.resolve()
+                tenant_root = runtime.paths.tenant_root.resolve()
+                protected_files = {runtime.paths.control_plane.resolve(), runtime.paths.legal_corpus.resolve()}
+                if destination in protected_files or destination == tenant_root or tenant_root in destination.parents:
+                    raise ReminderOutboxError("report output must not overwrite or reside inside database storage")
+                args.out.write_text(output + "\\n", encoding="utf-8")
+            else:
+                print(output)
+            return 0
         retry_summary = None
         if args.retry_failed_key:
             if not args.send:
