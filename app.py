@@ -3981,15 +3981,19 @@ def approve_original_document_deletion(
         raise HTTPException(503, "original document integrity could not be verified") from exc
     if not verified:
         raise HTTPException(503, "original document integrity could not be verified")
-    updated = c.execute(
-        "UPDATE original_file_deletion_requests SET status='approved',"
-        "approved_by_user_id=?,approved_at=datetime('now'),approval_reason=? "
-        "WHERE id=? AND firm_id=? AND status='requested'",
-        (u["id"], reason, request_id, u["firm_id"]),
-    )
-    if updated.rowcount != 1:
-        raise HTTPException(409, "deletion request changed; reload and retry")
-    c.commit()
+    try:
+        updated = c.execute(
+            "UPDATE original_file_deletion_requests SET status='approved',"
+            "approved_by_user_id=?,approved_at=datetime('now'),approval_reason=? "
+            "WHERE id=? AND firm_id=? AND status='requested'",
+            (u["id"], reason, request_id, u["firm_id"]),
+        )
+        if updated.rowcount != 1:
+            raise HTTPException(409, "deletion request changed; reload and retry")
+        c.commit()
+    except sqlite3.IntegrityError as exc:
+        c.rollback()
+        raise HTTPException(409, "deletion request is no longer eligible for approval") from exc
     return {"document_id": document_id, "request_id": request_id, "status": "approved"}
 
 
