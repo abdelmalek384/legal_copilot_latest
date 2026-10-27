@@ -1661,14 +1661,24 @@ def validate_review_evidence_url(value):
         return None
     from urllib.parse import urlsplit
     try:
-        parsed = urlsplit(value.strip())
-        if parsed.scheme != "https" or not parsed.hostname or parsed.username or parsed.password:
+        if not isinstance(value, str) or value != value.strip() or any(ch.isspace() for ch in value):
             raise ValueError
         if any(ord(ch) < 32 for ch in value):
             raise ValueError
+        parsed = urlsplit(value)
+        port = parsed.port  # Accessing .port rejects non-numeric and out-of-range ports.
+        if (
+            parsed.scheme.lower() != "https"
+            or not parsed.hostname
+            or parsed.username is not None
+            or parsed.password is not None
+            or parsed.netloc.endswith(":")
+            or (port is not None and not 1 <= port <= 65535)
+        ):
+            raise ValueError
     except (ValueError, TypeError):
-        raise HTTPException(422, "evidence_url must be an HTTPS URL without embedded credentials")
-    return value.strip()
+        raise HTTPException(422, "evidence_url must be a valid HTTPS URL without whitespace or embedded credentials")
+    return value
 
 
 
