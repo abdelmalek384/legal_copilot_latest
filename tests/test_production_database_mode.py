@@ -87,11 +87,48 @@ class ProductionDatabaseModeTests(unittest.TestCase):
                 [
                     sys.executable, "-c",
                     "from fastapi.testclient import TestClient; import app; "
+                    "from database_runtime import DatabaseRuntime; "
+                    "runtime = DatabaseRuntime.from_env(); runtime.initialize(); "
                     "client = TestClient(app.app); client.__enter__(); client.__exit__(None, None, None)",
                 ],
                 env=env, capture_output=True, text=True, timeout=60,
             )
             self.assertEqual(result.returncode, 0, result.stderr)
+
+    def test_production_startup_refuses_unprovisioned_database_profiles(self):
+        with __import__("tempfile").TemporaryDirectory() as temp:
+            acceptance_path = self._write_acceptance_manifest(
+                Path(temp) / "database-acceptance.json"
+            )
+            env = os.environ.copy()
+            for key in ("COPILOT_DB",):
+                env.pop(key, None)
+            env.update({
+                "COPILOT_ENV": "production",
+                "COPILOT_DATABASE_ACCEPTANCE_FILE": str(acceptance_path),
+                "COPILOT_CONTROL_DB": os.path.join(temp, "missing-control.sqlite3"),
+                "COPILOT_TENANT_DB_ROOT": os.path.join(temp, "missing-tenants"),
+                "COPILOT_CORPUS_DB": os.path.join(temp, "missing-corpus.sqlite3"),
+                "COPILOT_ALLOWED_HOSTS": "legal.example.test",
+                "COPILOT_SECURE_COOKIES": "1",
+                "COPILOT_PUBLIC_ORIGIN": "https://legal.example.test",
+                "ADMIN_TOKEN": "A" * 48,
+            })
+            from cryptography.fernet import Fernet
+            env["BACKUP_KEY"] = Fernet.generate_key().decode("ascii")
+            result = subprocess.run(
+                [
+                    sys.executable, "-c",
+                    "from fastapi.testclient import TestClient; import app; "
+                    "client = TestClient(app.app); client.__enter__()",
+                ],
+                env=env, capture_output=True, text=True, timeout=60,
+            )
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn(
+            "Production database profiles must be provisioned and validated before application startup",
+            result.stderr,
+        )
 
     def test_profile_initialization_failure_blocks_asgi_startup(self):
         with __import__("tempfile").TemporaryDirectory() as temp:
