@@ -2432,5 +2432,89 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             client.close()
 
 
+    def test_case_member_removal_requires_case_lead_and_clears_task_assignment(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate(
+            "post", "/cases", json={"title": "Membership removal authorization matter"}
+        )
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+
+        member_id = self.runtime.create_global_identity(
+            "Removal Target", "removal-target@example.test", app.hash_pw(self.password)
+        )
+        self.runtime.create_firm_membership(member_id, self.firm_a, "lawyer")
+        added = self._mutate(
+            "post", f"/cases/{case_id}/members",
+            json={"user_id": member_id, "role": "associate"},
+        )
+        self.assertEqual(added.status_code, 200, added.text)
+        task = self._mutate(
+            "post", f"/cases/{case_id}/tasks",
+            json={"title": "Assigned task must be cleared", "assignee": member_id},
+        )
+        self.assertEqual(task.status_code, 200, task.text)
+
+        context_a = self.runtime.resolve_context(self.user_id, self.firm_a)
+        firm_a_db = self.runtime.firm_connection(context_a)
+        task_id = firm_a_db.execute(
+            "SELECT id FROM tasks WHERE case_id=? AND assignee=?",
+            (case_id, member_id),
+        ).fetchone()["id"]
+
+        # A same-firm case member is not a case lead and cannot remove another member.
+        member_client = TestClient(app.app)
+        try:
+            member_login = member_client.post(
+                "/login",
+                json={"email": "removal-target@example.test", "password": self.password},
+            )
+            self.assertEqual(member_login.status_code, 200, member_login.text)
+            csrf = member_client.cookies.get("lc_csrf")
+            denied = member_client.delete(
+                f"/cases/{case_id}/members/{self.user_id}",
+                headers={"X-CSRF-Token": csrf or ""},
+            )
+            self.assertEqual(denied.status_code, 404, denied.text)
+        finally:
+            member_client.close()
+
+        # A firm switch must not resolve or mutate the original firm's membership.
+        switched = self._mutate("post", "/session/firm", json={"firm_id": self.firm_b})
+        self.assertEqual(switched.status_code, 200, switched.text)
+        cross_firm = self._mutate("delete", f"/cases/{case_id}/members/{member_id}")
+        self.assertEqual(cross_firm.status_code, 404, cross_firm.text)
+        self.assertEqual(
+            firm_a_db.execute(
+                "SELECT COUNT(*) FROM members WHERE case_id=? AND user_id=?",
+                (case_id, member_id),
+            ).fetchone()[0],
+            1,
+        )
+        self.assertEqual(
+            firm_a_db.execute("SELECT assignee FROM tasks WHERE id=?", (task_id,)).fetchone()[0],
+            member_id,
+        )
+
+        switched_back = self._mutate("post", "/session/firm", json={"firm_id": self.firm_a})
+        self.assertEqual(switched_back.status_code, 200, switched_back.text)
+        removed = self._mutate("delete", f"/cases/{case_id}/members/{member_id}")
+        self.assertEqual(removed.status_code, 200, removed.text)
+        self.assertEqual(
+            firm_a_db.execute(
+                "SELECT COUNT(*) FROM members WHERE case_id=? AND user_id=?",
+                (case_id, member_id),
+            ).fetchone()[0],
+            0,
+        )
+        self.assertIsNone(
+            firm_a_db.execute("SELECT assignee FROM tasks WHERE id=?", (task_id,)).fetchone()[0],
+            "removing a case member must clear their task assignments atomically",
+        )
+
+
 if __name__ == "__main__":
     unittest.main()
