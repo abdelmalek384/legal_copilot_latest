@@ -12,7 +12,7 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
 
     def test_cards_have_primary_pinpoints_and_secondary_cross_checks(self):
         self.assertEqual(self.data["instrument"]["document_id"], "EG-LABOUR-LAW-14-2025")
-        self.assertGreaterEqual(len(self.data["cards"]), 9)
+        self.assertGreaterEqual(len(self.data["cards"]), 12)
         ids = set()
         for card in self.data["cards"]:
             with self.subTest(card=card.get("card_id")):
