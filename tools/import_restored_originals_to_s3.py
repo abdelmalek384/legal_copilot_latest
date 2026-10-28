@@ -149,12 +149,22 @@ def main() -> int:
                         ):
                             raise RuntimeError("Target S3 object conflicts with restored original metadata")
                         action = "already_verified"
+                    elif staged_exists:
+                        if not store.verify_staged(
+                            firm_id, object_id, expected_sha256=digest, expected_size=size
+                        ):
+                            raise RuntimeError("Target S3 staged object conflicts with restored original metadata")
+                        action = "staged_recovery_candidate"
+                        if args.apply:
+                            store.finalize(firm_id, object_id)
+                            if not store.verify(firm_id, object_id, expected_sha256=digest, expected_size=size):
+                                store.delete(firm_id, object_id)
+                                raise RuntimeError("Recovered final S3 object failed integrity verification")
+                            action = "imported"
                     else:
-                        if staged_exists:
-                            raise RuntimeError("Target S3 has a staged object requiring manual reconciliation")
                         action = "would_import"
                         if args.apply:
-                            staged = store.stage_with_id(firm_id, object_id, source.read_bytes())
+                            store.stage_with_id(firm_id, object_id, source.read_bytes())
                             if not store.verify_staged(
                                 firm_id, object_id, expected_sha256=digest, expected_size=size
                             ):
