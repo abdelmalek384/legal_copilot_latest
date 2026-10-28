@@ -162,6 +162,18 @@ class DatabaseReleaseAcceptanceTests(unittest.TestCase):
             {item["code"] for item in malformed["blockers"]},
         )
 
+    @unittest.skipUnless(hasattr(os, "mkfifo"), "FIFO creation is unavailable on this platform")
+    def test_loader_rejects_fifo_manifest_without_blocking(self):
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "acceptance.fifo"
+            os.mkfifo(path)
+            report = load_acceptance_manifest(path, now=self.now)
+        self.assertFalse(report["ready"])
+        self.assertIn(
+            ("manifest", "manifest_not_regular_file"),
+            {(item["gate"], item["code"]) for item in report["blockers"]},
+        )
+
     def test_loader_rejects_symlinked_acceptance_manifest(self):
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
