@@ -413,3 +413,61 @@ if __name__ == "__main__":
                 self.assertTrue(card["limitations"])
                 self.assertFalse(self.data["instrument"]["search_eligible"])
 
+    def test_collective_agreement_cards_201_to_214_have_pinpoints(self):
+        cards = {card["card_id"]: card for card in self.data["cards"]}
+        expected = {
+            "EG-LABOUR-14-2025-ART-201-COLLECTIVE-AGREEMENT-ARABIC-LANGUAGE": ("المادة 201", 78, 76),
+            "EG-LABOUR-14-2025-ART-202-COLLECTIVE-AGREEMENT-RENEWAL-TIMELINE": ("المادة 202", 78, 76),
+            "EG-LABOUR-14-2025-ART-203-COLLECTIVE-AGREEMENT-FILING-AND-OBJECTION": ("المادة 203", 78, 76),
+            "EG-LABOUR-14-2025-ART-204-COLLECTIVE-AGREEMENT-REGISTRATION-COURT-CHALLENGE": ("المادة 204", 78, 76),
+            "EG-LABOUR-14-2025-ART-205-COLLECTIVE-AGREEMENT-WORKPLACE-DISPLAY": ("المادة 205", 78, 76),
+            "EG-LABOUR-14-2025-ART-206-COLLECTIVE-AGREEMENT-JOINING-AFTER-REGISTRATION": ("المادة 206", 79, 77),
+            "EG-LABOUR-14-2025-ART-207-COLLECTIVE-AGREEMENT-REGISTER-UPDATES": ("المادة 207", 79, 77),
+            "EG-LABOUR-14-2025-ART-208-COLLECTIVE-AGREEMENT-GOOD-FAITH-IMPLEMENTATION": ("المادة 208", 79, 77),
+            "EG-LABOUR-14-2025-ART-209-COLLECTIVE-AGREEMENT-UNFORESEEN-HARDSHIP": ("المادة 209", 79, 77),
+            "EG-LABOUR-14-2025-ART-210-COLLECTIVE-AGREEMENT-ENFORCEMENT-AND-COMPENSATION": ("المادة 210", 79, 77),
+            "EG-LABOUR-14-2025-ART-211-COLLECTIVE-AGREEMENT-UNION-REPRESENTATIVE-ACTIONS": ("المادة 211", 79, 77),
+            "EG-LABOUR-14-2025-ART-212-COLLECTIVE-AGREEMENT-DISPUTE-PROCEDURES": ("المادة 212", 79, 77),
+            "EG-LABOUR-14-2025-ART-213-COLLECTIVE-LABOUR-DISPUTE-SCOPE": ("المادة 213", 80, 78),
+            "EG-LABOUR-14-2025-ART-214-COLLECTIVE-DISPUTE-CONCILIATION-THRESHOLD": ("المادة 214", 80, 78),
+        }
+        self.assertEqual(len(self.data["cards"]), 172)
+        for card_id, (article, printed_page, pdf_index) in expected.items():
+            with self.subTest(card_id=card_id):
+                card = cards[card_id]
+                self.assertEqual(card["pinpoint"]["article"], article)
+                self.assertEqual(card["pinpoint"]["official_gazette_printed_page"], printed_page)
+                self.assertEqual(card["pinpoint"]["pdf_page_index_zero_based"], pdf_index)
+                self.assertTrue(card["limitations"])
+                self.assertFalse(self.data["instrument"]["search_eligible"])
+
+    def test_collective_dispute_resolution_cards_215_to_230_have_pinpoints(self):
+        cards = {card["card_id"]: card for card in self.data["cards"]}
+        expected = {
+            "EG-LABOUR-14-2025-ART-215-COLLECTIVE-DISPUTE-CONCILIATION-HEARING": ("المادة 215", 80, 78),
+            "EG-LABOUR-14-2025-ART-216-COLLECTIVE-DISPUTE-CONCILIATION-SETTLEMENT": ("المادة 216", 80, 78),
+            "EG-LABOUR-14-2025-ART-217-COLLECTIVE-DISPUTE-REFERRAL-TO-MEDIATION-ARBITRATION": ("المادة 217", 80, 78),
+            "EG-LABOUR-14-2025-ART-218-LABOUR-MEDIATION-ARBITRATION-CENTRE": ("المادة 218", 81, 79),
+            "EG-LABOUR-14-2025-ART-219-LABOUR-MEDIATOR-AND-ARBITRATOR-LISTS": ("المادة 219", 81, 79),
+            "EG-LABOUR-14-2025-ART-220-JUDICIAL-MEMBERS-MEDIATION-ARBITRATION": ("المادة 220", 81, 79),
+            "EG-LABOUR-14-2025-ART-221-LABOUR-MEDIATOR-ELIGIBILITY": ("المادة 221", 81, 79),
+            "EG-LABOUR-14-2025-ART-222-LABOUR-MEDIATOR-SELECTION-DEADLINE": ("المادة 222", 81, 79),
+            "EG-LABOUR-14-2025-ART-223-LABOUR-MEDIATOR-TASK-AND-DURATION": ("المادة 223", 82, 80),
+            "EG-LABOUR-14-2025-ART-224-LABOUR-MEDIATOR-REPLACEMENT": ("المادة 224", 82, 80),
+            "EG-LABOUR-14-2025-ART-225-LABOUR-MEDIATION-RECOMMENDATIONS-AND-REPORT": ("المادة 225", 82, 80),
+            "EG-LABOUR-14-2025-ART-226-LABOUR-ARBITRATOR-ELIGIBILITY": ("المادة 226", 82, 80),
+            "EG-LABOUR-14-2025-ART-227-LABOUR-ARBITRATION-TRIBUNAL-COMPOSITION": ("المادة 227", 82, 80),
+            "EG-LABOUR-14-2025-ART-228-LABOUR-ARBITRATION-SUBMISSION": ("المادة 228", 82, 80),
+            "EG-LABOUR-14-2025-ART-229-LABOUR-ARBITRAL-AWARD-RULES-AND-DEADLINE": ("المادة 229", 83, 81),
+            "EG-LABOUR-14-2025-ART-230-LABOUR-ARBITRAL-AWARD-REVIEW": ("المادة 230", 83, 81),
+        }
+        self.assertEqual(len(self.data["cards"]), 172)
+        for card_id, (article, printed_page, pdf_index) in expected.items():
+            with self.subTest(card_id=card_id):
+                card = cards[card_id]
+                self.assertEqual(card["pinpoint"]["article"], article)
+                self.assertEqual(card["pinpoint"]["official_gazette_printed_page"], printed_page)
+                self.assertEqual(card["pinpoint"]["pdf_page_index_zero_based"], pdf_index)
+                self.assertTrue(card["limitations"])
+                self.assertFalse(self.data["instrument"]["search_eligible"])
+
