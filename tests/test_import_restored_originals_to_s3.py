@@ -189,6 +189,16 @@ class RestoredOriginalS3ImporterTests(unittest.TestCase):
         self.assertEqual(self.store.final, {})
         self.assertEqual(self._restored_storage_backend(), "local")
 
+    def test_oversized_restored_object_is_rejected_before_upload(self):
+        source = self.restore_root / "objects" / f"firm-{self.firm_id}" / f"{self.object_id}.blob"
+        source.write_bytes(b"x" * (15_000_000 + 1))
+        code, report = self._run_import(apply=True)
+        self.assertEqual(code, 2)
+        self.assertIn("exceeds the configured size limit", report["stderr"])
+        self.assertEqual(self.store.staged, {})
+        self.assertEqual(self.store.final, {})
+        self.assertEqual(self._restored_storage_backend(), "local")
+
     def test_conflicting_existing_s3_object_fails_closed(self):
         key = (self.firm_id, self.object_id)
         self.store.final[key] = b"unexpected target bytes"
