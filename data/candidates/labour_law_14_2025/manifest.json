@@ -83,6 +83,21 @@
     "legal_status": "under_review",
     "lawyer_review_status": "pending",
     "search_eligible": false,
-    "notes": "Indexed content supports the promulgation metadata and selected provisions, but this is not a page-level comparison of the Gazette scan, does not establish reuse permission, and does not verify the complete amendment/repeal chain. Do not import article chunks or mark the instrument fully verified from this record."
+    "notes": "Indexed content supports the promulgation metadata and selected provisions, but this is not a page-level comparison of the Gazette scan, does not establish reuse permission, and does not verify the complete amendment/repeal chain. Do not import article chunks or mark the instrument fully verified from this record.",
+    "egyptian_official_document_copyright_basis": {
+      "statute": "Egyptian Intellectual Property Rights Law No. 82 of 2002, Article 141",
+      "evidence_url": "https://www.wipo.int/wipolex/en/legislation/details/22066",
+      "observed_rule": "Article 141 excludes official documents including laws, regulations, resolutions, decisions and court decisions from copyright protection; it also says collections may be protected where selection/arrangement or personal effort is creative.",
+      "assessment": "Preliminary legal-source research note only. This supports treating the text of the enacted law separately from a portal's PDF scan, metadata, database compilation, and access terms.",
+      "does_not_resolve": [
+        "website or repository contractual terms",
+        "systematic retrieval restrictions",
+        "access controls or subscription conditions",
+        "rights in creative database arrangement or editorial material",
+        "permission to redistribute the source file or portal metadata"
+      ],
+      "review_status": "pending_qualified_legal_review",
+      "permission_status_unchanged": "unknown"
+    }
   }
 }
