@@ -129,12 +129,19 @@ def reconcile_original_file_storage(
                 ))
                 continue
             rows = connection.execute(
-                "SELECT object_id,sha256,byte_size,state,purged_at,purged_by_user_id,purge_reason "
+                "SELECT object_id,storage_backend,sha256,byte_size,state,purged_at,purged_by_user_id,purge_reason "
                 "FROM original_file_objects ORDER BY object_id"
             ).fetchall()
             checked_rows += len(rows)
             for row in rows:
                 object_id = row["object_id"]
+                if row["storage_backend"] != "local":
+                    findings.append(ReconciliationFinding(
+                        "backend_mismatch", tenant.firm_id,
+                        str(object_id) if isinstance(object_id, str) else None,
+                        "metadata does not identify the local filesystem backend",
+                    ))
+                    continue
                 if not isinstance(object_id, str) or not _OBJECT_ID.fullmatch(object_id):
                     findings.append(ReconciliationFinding(
                         "invalid_object_id", tenant.firm_id, str(object_id),
