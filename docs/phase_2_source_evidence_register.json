@@ -424,9 +424,30 @@
           "provisions": [
             "القانون المرافق، المواد 4-6"
           ]
+        },
+        {
+          "pdf_page_index_zero_based": 50,
+          "printed_page_label": "52",
+          "provisions": [
+            "القانون المرافق، المادتان 117 و121"
+          ]
+        },
+        {
+          "pdf_page_index_zero_based": 52,
+          "printed_page_label": "54",
+          "provisions": [
+            "القانون المرافق، المادة 124"
+          ]
+        },
+        {
+          "pdf_page_index_zero_based": 53,
+          "printed_page_label": "55",
+          "provisions": [
+            "القانون المرافق، المادة 124"
+          ]
         }
       ],
-      "notes": "Targeted PDF text extraction was reviewed for the listed pages. The original file was not downloaded, hashed, or visually inspected. This does not establish a complete article-by-article match, amendment history, current status, or permission for systematic retrieval/commercial use."
+      "notes": "Targeted PDF text extraction was reviewed for the listed pages. The original file was not downloaded, hashed, or visually inspected. This does not establish a complete article-by-article match, amendment history, current status, or permission for systematic retrieval/commercial use. Additional targeted pages reviewed: printed page 52 (Articles 117 and 121), and printed pages 54-55 (Article 124)."
     }
   ],
   "document_records_to_create_from_batch": [
