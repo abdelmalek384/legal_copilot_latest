@@ -126,6 +126,17 @@ class TenantFleetMigrationTests(unittest.TestCase):
                 self.migrations_root,
             )
 
+    def test_preflight_refuses_firm_and_catalog_lifecycle_mismatch(self):
+        control = self.runtime.control_connection()
+        control.execute("UPDATE firms SET status='disabled' WHERE id=?", (self.firm_id,))
+        control.commit()
+        with self.assertRaisesRegex(FleetMigrationError, "conflicts with provisioned catalog state"):
+            build_plan(
+                self.runtime.paths.control_plane,
+                self.runtime.paths.tenant_root,
+                self.migrations_root,
+            )
+
     def test_preflight_refuses_missing_provisioned_tenant_database(self):
         self.tenant_path.unlink()
         with self.assertRaisesRegex(FleetMigrationError, "missing or unsafe"):
