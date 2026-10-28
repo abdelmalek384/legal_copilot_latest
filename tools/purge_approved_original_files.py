@@ -87,6 +87,10 @@ def purge_approved_requests(
     The authority checks live here as well as in the CLI so an internal caller cannot
     bypass disabled-firm, active-platform-admin, or clean-preflight requirements.
     """
+    if os.environ.get("COPILOT_ENV", "").strip().lower() in {"prod", "production"}:
+        raise RuntimeError("local filesystem purge is disabled in production mode")
+    if os.environ.get("COPILOT_OBJECT_STORAGE_BACKEND", "local").strip().lower() != "local":
+        raise RuntimeError("this purge operation supports only the local development storage backend")
     if isinstance(firm_id, bool) or not isinstance(firm_id, int) or firm_id <= 0:
         raise ValueError("firm_id must be a positive integer")
     if (isinstance(operator_user_id, bool) or not isinstance(operator_user_id, int)
