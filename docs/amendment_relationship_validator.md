@@ -38,3 +38,14 @@ An optional JSON report can be written with `--out path/to/report.json`.
 This is a data-integrity check, not legal verification. It cannot prove that a URL is official, that the document is authentic or complete, or that an amendment has the asserted effect. It does not decide commencement, repeal, transitional provisions, or current status.
 
 Do not mark a relationship `reviewed_confirmed` simply to suppress a warning. The structural gate requires a `confirmation_evidence` object with these fields: `gazette_issue`, `gazette_publication_date` (real `YYYY-MM-DD`), `gazette_page_range`, `reviewed_on` (real `YYYY-MM-DD`), `reviewer_role`, and `review_basis`. A confirmed non-base edge also needs an explicit `affected_provision` or `affected_provisions` value and a known `instrument_effective_date`. These fields are an auditable record of review, not proof that the review was correct. Confirmation still requires the official instrument, exact article or schedule mapping, commencement and transitional analysis, later-amendment search, and qualified Egyptian-lawyer review. Until then, preserve uncertainty and do not use the relationship alone to construct current law.
+
+
+## Additional evidence gate for `reviewed_confirmed`
+
+A relationship marked `reviewed_confirmed` must now include an inspectable `confirmation_evidence` record with:
+
+- Gazette issue and page range, publication date, and a review date that is not in the future and does not precede publication.
+- A stable reviewer ID, the explicit `qualified_egyptian_lawyer` role, and a substantive review basis.
+- A valid HTTPS evidence URL without embedded credentials and a 64-character hexadecimal SHA-256 digest for the reviewed evidence artifact.
+
+These are metadata and traceability gates only. The validator does not fetch the evidence, recompute the referenced artifact hash, independently authenticate the source, verify the reviewer’s licence, or determine legal effect. A passing record still requires trusted human verification before it can support a current-law claim.
