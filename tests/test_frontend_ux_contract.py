@@ -33,6 +33,15 @@ class FrontendUXContractTests(unittest.TestCase):
             self.assertIn("PAGE==='" + page + "'", switch)
         self.assertIn("if(!ME.id){login(AUTH_MODE)", switch)
 
+    def test_document_review_workflow_labels_follow_selected_language(self):
+        self.assertIn("uiText('اعتماد النص المستخرج','Accept extracted text')", HTML)
+        self.assertIn("uiText('يحتاج إعادة فحص','Needs recheck')", HTML)
+        self.assertIn("uiText('حفظ التصحيح','Save correction')", HTML)
+        self.assertIn("uiText('النص المستخرج — للقراءة فقط','Extracted text — read only')", HTML)
+        self.assertIn("uiText('نص OCR غير متحقق','OCR text not verified')", HTML)
+        self.assertIn("uiText('جارٍ تحميل المقاطع…','Loading text chunks…')", HTML)
+        self.assertIn("uiText('PDF أو Word حتى 15 ميجابايت. النص المستخرج فقط هو المفهرس؛ لا تحفظ نسخة الملف الأصلي. راجع المقاطع قبل الاعتماد عليها، خصوصاً نص OCR.','PDF or Word up to 15 MB. Only extracted text is indexed; the original file is not retained. Review chunks before relying on them, especially OCR text.')", HTML)
+
     def test_case_detail_inputs_and_validation_follow_selected_language(self):
         self.assertIn("uiText('رقم القضية','Case number')", HTML)
         self.assertIn("uiText('مهمة جديدة','New task')", HTML)

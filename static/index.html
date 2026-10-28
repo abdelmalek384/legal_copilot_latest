@@ -752,56 +752,56 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
   const renderChunkReview=(container,data)=>{
    container.replaceChildren();
    container.append(h('div',{className:'mut',textContent:data.warning||''}));
-   if(!data.chunks||!data.chunks.length){container.append(empty('لا توجد مقاطع نصية قابلة للمراجعة'));return}
+   if(!data.chunks||!data.chunks.length){container.append(empty(uiText('لا توجد مقاطع نصية قابلة للمراجعة','No text chunks are available for review')));return}
    data.chunks.forEach((chunk,index)=>{
     const card=h('article',{className:'card extraction-review-card'});
-    card.append(h('div',{className:'row'},h('b',{textContent:(index+1)+'. '+(chunk.ref||('مقطع '+chunk.id))}),pill(chunk.latest_review?statusText(chunk.latest_review.outcome):'بانتظار المراجعة',chunk.latest_review&&chunk.latest_review.outcome!=='needs_recheck'?'done':'soon')));
-    if(chunk.page)card.append(h('p',{className:'mut',textContent:'رقم الصفحة المستخرج: '+chunk.page+' — ليس تحققاً مستقلاً من الأصل'}));
-    const original=h('textarea',{value:chunk.text||'',rows:5,style:'width:100%;direction:rtl',readOnly:true,'aria-label':'النص المستخرج الأصلي'});
-    card.append(h('label',{},h('span',{className:'mut',textContent:'النص المستخرج — للقراءة فقط'}),original));
-    const corrected=h('textarea',{value:chunk.text||'',rows:5,style:'width:100%;direction:rtl',maxLength:20000,'aria-label':'النص المصحح'});
+    card.append(h('div',{className:'row'},h('b',{textContent:(index+1)+'. '+(chunk.ref||(uiText('مقطع ','Chunk ')+chunk.id))}),pill(chunk.latest_review?statusText(chunk.latest_review.outcome):uiText('بانتظار المراجعة','Pending review'),chunk.latest_review&&chunk.latest_review.outcome!=='needs_recheck'?'done':'soon')));
+    if(chunk.page)card.append(h('p',{className:'mut',textContent:uiText('رقم الصفحة المستخرج: ','Extracted page number: ')+chunk.page+' — '+uiText('ليس تحققاً مستقلاً من الأصل','not independently verified against the original')}));
+    const original=h('textarea',{value:chunk.text||'',rows:5,style:'width:100%;direction:rtl',readOnly:true,'aria-label':uiText('النص المستخرج الأصلي','Original extracted text')});
+    card.append(h('label',{},h('span',{className:'mut',textContent:uiText('النص المستخرج — للقراءة فقط','Extracted text — read only')}),original));
+    const corrected=h('textarea',{value:chunk.text||'',rows:5,style:'width:100%;direction:rtl',maxLength:20000,'aria-label':uiText('النص المصحح','Corrected text')});
     const pageRef=h('input',{value:chunk.page||'',placeholder:uiText('مرجع الصفحة (اختياري)','Page reference (optional)'),maxLength:100});
     const note=h('input',{placeholder:uiText('ملاحظة المراجع (اختياري)','Reviewer note (optional)'),maxLength:2000,style:'width:100%'});
     const actions=h('div',{className:'row'});
-    actions.append(btn('اعتماد النص المستخرج',async()=>{
+    actions.append(btn(uiText('اعتماد النص المستخرج','Accept extracted text'),async()=>{
       await api('/cases/'+id+'/docs/'+data.document_id+'/chunks/'+chunk.id+'/review','POST',{outcome:'accepted',expected_text_sha256:chunk.text_sha256,page_reference:pageRef.value.trim(),note:note.value.trim()});
-      toast('تم تسجيل مراجعة النص');const latest=await api('/cases/'+id+'/docs/'+data.document_id+'/chunks');renderChunkReview(container,latest)
+      toast(uiText('تم تسجيل مراجعة النص','Text review recorded'));const latest=await api('/cases/'+id+'/docs/'+data.document_id+'/chunks');renderChunkReview(container,latest)
     },'g'));
-    actions.append(btn('يحتاج إعادة فحص',async()=>{
+    actions.append(btn(uiText('يحتاج إعادة فحص','Needs recheck'),async()=>{
       await api('/cases/'+id+'/docs/'+data.document_id+'/chunks/'+chunk.id+'/review','POST',{outcome:'needs_recheck',expected_text_sha256:chunk.text_sha256,page_reference:pageRef.value.trim(),note:note.value.trim()});
-      toast('تم وضع المقطع لإعادة الفحص');const latest=await api('/cases/'+id+'/docs/'+data.document_id+'/chunks');renderChunkReview(container,latest)
+      toast(uiText('تم وضع المقطع لإعادة الفحص','Chunk flagged for recheck'));const latest=await api('/cases/'+id+'/docs/'+data.document_id+'/chunks');renderChunkReview(container,latest)
     }));
     if((chunk.text||'').length<=20000){
-      actions.append(btn('حفظ التصحيح',async()=>{
-        if(!corrected.value.trim()){toast('أدخل النص المصحح');corrected.focus();return}
-        if(corrected.value===chunk.text){toast('لم يتغير النص');return}
-        if(!confirm('سيتم استبدال النص المفهرس بنسخة التصحيح مع حفظ سجل المراجعة. هل تريد المتابعة؟'))return;
+      actions.append(btn(uiText('حفظ التصحيح','Save correction'),async()=>{
+        if(!corrected.value.trim()){toast(uiText('أدخل النص المصحح','Enter corrected text'));corrected.focus();return}
+        if(corrected.value===chunk.text){toast(uiText('لم يتغير النص','No changes to the text'));return}
+        if(!confirm(uiText('سيتم استبدال النص المفهرس بنسخة التصحيح مع حفظ سجل المراجعة. هل تريد المتابعة؟','This replaces the indexed text with the corrected version and preserves the review log. Continue?')))return;
         await api('/cases/'+id+'/docs/'+data.document_id+'/chunks/'+chunk.id+'/review','POST',{outcome:'corrected',corrected_text:corrected.value,expected_text_sha256:chunk.text_sha256,page_reference:pageRef.value.trim(),note:note.value.trim()});
-        toast('تم حفظ التصحيح وإعادة فهرسة المقطع');const latest=await api('/cases/'+id+'/docs/'+data.document_id+'/chunks');renderChunkReview(container,latest)
+        toast(uiText('تم حفظ التصحيح وإعادة فهرسة المقطع','Correction saved and chunk re-indexed'));const latest=await api('/cases/'+id+'/docs/'+data.document_id+'/chunks');renderChunkReview(container,latest)
       },'g'));
-      card.append(h('label',{},h('span',{className:'mut',textContent:'النص المصحح — لا تحفظه إلا بعد مقارنته بالملف الأصلي'}),corrected));
+      card.append(h('label',{},h('span',{className:'mut',textContent:uiText('النص المصحح — لا تحفظه إلا بعد مقارنته بالملف الأصلي','Corrected text — save only after comparing it with the original file')}),corrected));
     }else{
-      card.append(h('p',{className:'mut',textContent:'هذا المقطع أطول من حد التصحيح البالغ 20,000 حرف؛ أعد تقسيم المستند أو علّمه لإعادة الفحص.'}));
+      card.append(h('p',{className:'mut',textContent:uiText('هذا المقطع أطول من حد التصحيح البالغ 20,000 حرف؛ أعد تقسيم المستند أو علّمه لإعادة الفحص.','This chunk exceeds the 20,000-character correction limit; split it or flag it for recheck.')}));
     }
-    card.append(h('label',{},h('span',{className:'mut',textContent:'مرجع الصفحة'}),pageRef),h('label',{},h('span',{className:'mut',textContent:'ملاحظة المراجع'}),note),actions);
-    if(chunk.latest_review)card.append(h('p',{className:'mut',textContent:'آخر مراجعة: '+chunk.latest_review.created_at+' · '+statusText(chunk.latest_review.outcome)+(chunk.latest_review.note?' · '+chunk.latest_review.note:'')}));
+    card.append(h('label',{},h('span',{className:'mut',textContent:uiText('مرجع الصفحة','Page reference')}),pageRef),h('label',{},h('span',{className:'mut',textContent:uiText('ملاحظة المراجع','Reviewer note')}),note),actions);
+    if(chunk.latest_review)card.append(h('p',{className:'mut',textContent:uiText('آخر مراجعة: ','Last review: ')+chunk.latest_review.created_at+' · '+statusText(chunk.latest_review.outcome)+(chunk.latest_review.note?' · '+chunk.latest_review.note:'')}));
     container.append(card);
    });
   };
   body=h('div',{className:'card'},c.docs.length?c.docs.map(d=>{
     const reviewPanel=h('div',{});
-    const toggle=btn('مراجعة النص المستخرج',async()=>{
+    const toggle=btn(uiText('مراجعة النص المستخرج','Review extracted text'),async()=>{
       if(toggle.dataset.open==='1'){toggle.dataset.open='0';reviewPanel.replaceChildren();return}
-      toggle.dataset.open='1';reviewPanel.append(h('p',{className:'mut',textContent:'جارٍ تحميل المقاطع…'}));
+      toggle.dataset.open='1';reviewPanel.append(h('p',{className:'mut',textContent:uiText('جارٍ تحميل المقاطع…','Loading text chunks…')}));
       try{const data=await api('/cases/'+id+'/docs/'+d.document_id+'/chunks');renderChunkReview(reviewPanel,data)}
       catch(_){toggle.dataset.open='0';reviewPanel.replaceChildren()}
     });
-    const status=d.extraction_status==='ocr_unverified'?'نص OCR غير متحقق':d.extraction_status==='partial_text_ocr_unavailable'?'بعض الصفحات لم تُفهرس: OCR غير متاح':(d.extraction_status||'حالة الاستخراج غير مسجلة');
+    const status=d.extraction_status==='ocr_unverified'?uiText('نص OCR غير متحقق','OCR text not verified'):d.extraction_status==='partial_text_ocr_unavailable'?uiText('بعض الصفحات لم تُفهرس: OCR غير متاح','Some pages were not indexed: OCR unavailable'):(d.extraction_status||uiText('حالة الاستخراج غير مسجلة','Extraction status not recorded'));
     return h('section',{className:'document-review-group'},h('div',{className:'row'},h('div',{},h('b',{textContent:d.name}),h('div',{className:'mut',textContent:fd(d.added)+' · '+status}),h('div',{className:'mut',textContent:d.sha256?'SHA-256: '+d.sha256:''})),toggle),reviewPanel)
-  }):empty('لا توجد مستندات'),
-   h('div',{className:'row'},f,btn('رفع وفهرسة',async()=>{if(!f.files[0])return;const x=new FormData();x.append('file',f.files[0]);
-    const csrf=csrfToken();const headers=csrf?{'X-CSRF-Token':decodeURIComponent(csrf)}:{};const r=await fetch('/cases/'+id+'/upload',{method:'POST',credentials:'same-origin',headers,body:x}),j=await r.json().catch(()=>({}));toast(r.ok?(j.ocr_warning?(LANG==='ar'?'تمت فهرسة الصفحات القابلة للقراءة فقط؛ OCR غير متاح لبعض الصفحات':'Only readable pages were indexed; OCR was unavailable for some pages'):(j.ocr_used?'تمت الفهرسة عبر OCR؛ راجع النص مقابل الأصل قبل الاعتماد عليه':'تمت الفهرسة')):err(j));if(r.ok)again()})),
-   empty('PDF أو Word حتى 15 ميجابايت. النص المستخرج فقط هو المفهرس؛ لا تحفظ نسخة الملف الأصلي. راجع المقاطع قبل الاعتماد عليها، خصوصاً نص OCR.'))
+  }):empty(uiText('لا توجد مستندات','No documents')),
+   h('div',{className:'row'},f,btn(uiText('رفع وفهرسة','Upload and index'),async()=>{if(!f.files[0])return;const x=new FormData();x.append('file',f.files[0]);
+    const csrf=csrfToken();const headers=csrf?{'X-CSRF-Token':decodeURIComponent(csrf)}:{};const r=await fetch('/cases/'+id+'/upload',{method:'POST',credentials:'same-origin',headers,body:x}),j=await r.json().catch(()=>({}));toast(r.ok?(j.ocr_warning?(LANG==='ar'?'تمت فهرسة الصفحات القابلة للقراءة فقط؛ OCR غير متاح لبعض الصفحات':'Only readable pages were indexed; OCR was unavailable for some pages'):(j.ocr_used?uiText('تمت الفهرسة عبر OCR؛ راجع النص مقابل الأصل قبل الاعتماد عليه','Indexed with OCR; compare against the original before relying on it'):uiText('تمت الفهرسة','Indexed'))):err(j));if(r.ok)again()})),
+   empty(uiText('PDF أو Word حتى 15 ميجابايت. النص المستخرج فقط هو المفهرس؛ لا تحفظ نسخة الملف الأصلي. راجع المقاطع قبل الاعتماد عليها، خصوصاً نص OCR.','PDF or Word up to 15 MB. Only extracted text is indexed; the original file is not retained. Review chunks before relying on them, especially OCR text.')))
 }if(TAB==='team'){const mu=h('select',{},...us.map(u=>new Option(u.name,u.id))),mr=h('select',{},...Object.entries(RL).reverse().map(([k,v])=>new Option(v,k)));
   body=h('div',{className:'card'},c.members.map(m=>h('div',{className:'row'},h('b',{textContent:m.name}),pill(RL[m.role],m.role==='lead'?'open':'closed'),lead&&m.user_id!==ME.id?btn('إزالة',async()=>{if(!confirm('إزالة هذا العضو من القضية؟'))return;await api('/cases/'+id+'/members/'+m.user_id,'DELETE');again()},'g'):null)),
    lead&&h('div',{className:'row'},mu,mr,btn('إضافة / تحديث',async()=>{await api('/cases/'+id+'/members','POST',{user_id:+mu.value,role:mr.value});again()})))}
