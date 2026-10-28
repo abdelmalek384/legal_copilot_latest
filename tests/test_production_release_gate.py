@@ -1,5 +1,6 @@
 import datetime as dt
 import json
+import os
 import tempfile
 import unittest
 from pathlib import Path
@@ -157,20 +158,39 @@ class ProductionReleaseGateTests(unittest.TestCase):
             acceptance_path.write_text(
                 json.dumps(self._database_acceptance_manifest()), encoding="utf-8"
             )
+            release_env = {
+                **self.clean_env,
+                "COPILOT_DATABASE_ACCEPTANCE_FILE": str(acceptance_path),
+            }
             with patch.object(gate, "inspect_environment", return_value=(["environment okay"], [], [])), \
                  patch.object(gate, "build_legal_report", return_value=self._ready_report(candidate)), \
                  patch.object(gate, "read_jsonl", return_value=questions):
                 report = gate.evaluate_release(
-                    env=self.clean_env,
+                    env=release_env,
                     candidate_paths=[candidate],
                     benchmark_path=Path("approved-benchmark.jsonl"),
                     reviewer_registry=self._reviewer_registry(),
-                    database_acceptance_path=acceptance_path,
                 )
         self.assertTrue(report["ready"], report["blockers"])
         self.assertEqual(report["benchmark"]["approved_count"], gate.MIN_APPROVED_QUESTIONS)
         self.assertEqual(report["benchmark"]["practice_area_count"], gate.MIN_PRACTICE_AREAS)
         self.assertEqual(report["benchmark"]["ready_source_count"], 1)
+
+    def test_release_report_cannot_overwrite_environment_configured_acceptance_manifest(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            manifest_path = root / "database-acceptance.json"
+            manifest_path.write_text("{}", encoding="utf-8")
+            reviewer_path = root / "reviewers.json"
+            reviewer_path.write_text(json.dumps(self._reviewer_registry()), encoding="utf-8")
+            with patch.dict(os.environ, {"COPILOT_DATABASE_ACCEPTANCE_FILE": str(manifest_path)}), \
+                 patch.object(gate, "evaluate_release", return_value={"ready": True}):
+                result = gate.main([
+                    "--reviewer-registry", str(reviewer_path),
+                    "--out", str(manifest_path),
+                ])
+                self.assertEqual(result, 2)
+                self.assertEqual(manifest_path.read_text(encoding="utf-8"), "{}")
 
     def test_missing_database_operational_acceptance_blocks_otherwise_ready_release(self):
         questions = self._approved_questions()
