@@ -9,7 +9,7 @@ class TestLabourDecisionPublicTextCrosswalk(unittest.TestCase):
     def test_working_time_and_holiday_decisions_keep_evidence_gates(self):
         data = json.loads(DATA.read_text(encoding="utf-8"))
         records = {item["document_id"]: item for item in data["decisions"]}
-        self.assertEqual(set(records), {"EG-LABOUR-DECISION-290-2025", "EG-LABOUR-DECISION-291-2025", "EG-LABOUR-DECISION-292-2025", "EG-LABOUR-DECISION-294-2025"})
+        self.assertEqual(set(records), {"EG-LABOUR-DECISION-49-2026", "EG-LABOUR-WORK-REGULATION-RULES-2026", "EG-LABOUR-DECISION-187-2025", "EG-LABOUR-DECISION-214-2025", "EG-LABOUR-DECISION-290-2025", "EG-LABOUR-DECISION-291-2025", "EG-LABOUR-DECISION-292-2025", "EG-LABOUR-DECISION-294-2025"})
         self.assertFalse(data["search_eligible"])
         for item in records.values():
             self.assertEqual(item["reuse_rights"], "unknown")
