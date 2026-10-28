@@ -89,3 +89,6 @@ Further targeted extracted-text review on 2026-10-28 covered printed page 52 (Ar
 
 
 Further targeted extracted-text review on 2026-10-28 covered printed page 55 for Article 129 (paid holidays and compensation if work is required on those days). The specific ministerial or cabinet decision designating a holiday must be verified for each query.
+
+
+Further targeted extracted-text review on 2026-10-28 covered printed page 71 (Article 173: termination due to illness) and page 72 (Article 171: retirement age and fixed-term contracts). These remain provisional summaries pending review of connected laws and case-specific conditions.
