@@ -95,38 +95,127 @@ def _pin_cite(hit):
     return None
 
 
+def _mask_markdown_code(answer):
+    """Mask Markdown code and hidden HTML comments before extracting citation markers."""
+    if not isinstance(answer, str):
+        return ""
+    answer = re.sub(
+        r"<!--.*?(?:-->|$)",
+        lambda match: re.sub(r"[^\r\n]", " ", match.group(0)),
+        answer,
+        flags=re.S,
+    )
+    output = []
+    fence_char = None
+    fence_length = 0
+    for line in answer.splitlines(keepends=True):
+        stripped = line.lstrip(" \t")
+        if fence_char is not None:
+            output.append(re.sub(r"[^\r\n]", " ", line))
+            close = re.match(
+                r"^" + re.escape(fence_char) + r"{" + str(fence_length) + r",}[ \t]*\r?\n?$",
+                stripped,
+            )
+            if close:
+                fence_char = None
+                fence_length = 0
+            continue
+        opening = re.match(r"^(\u0060{3,}|~{3,})(?:[^\r\n]*)?(?:\r?\n)?$", stripped)
+        if opening:
+            fence_char = opening.group(1)[0]
+            fence_length = len(opening.group(1))
+            output.append(re.sub(r"[^\r\n]", " ", line))
+            continue
+        chars = list(line)
+        i = 0
+        while i < len(line):
+            if line[i] != "\u0060" or (i > 0 and line[i - 1] == "\\"):
+                i += 1
+                continue
+            run_end = i + 1
+            while run_end < len(line) and line[run_end] == "\u0060":
+                run_end += 1
+            run = line[i:run_end]
+            close_at = line.find(run, run_end)
+            if close_at < 0:
+                i = run_end
+                continue
+            for pos in range(i, close_at + len(run)):
+                if chars[pos] not in "\r\n":
+                    chars[pos] = " "
+            i = close_at + len(run)
+        output.append("".join(chars))
+    return "".join(output)
+
+
+def _answer_citation_indices(answer):
+    """Return citation indices in visible prose only."""
+    visible_answer = _mask_markdown_code(answer)
+    return sorted({int(value) for value in re.findall(r"\[(\d+)\]", visible_answer)})
+
+
 def result_from_response(question, response):
     answer = response.get("answer")
     answer = answer if isinstance(answer, str) and answer.strip() else None
     sources = response.get("sources") if isinstance(response.get("sources"), list) else []
-    indices = sorted({int(x) for x in re.findall(r"\[(\d+)\]", answer or "")})
-    invalid = [index for index in indices if index < 1 or index > len(sources)]
-    valid_indices = [index for index in indices if 1 <= index <= len(sources)]
-    cited_sources = []
-    cited_pins = []
-    for index in valid_indices:
-        hit = sources[index - 1]
+    indices = _answer_citation_indices(answer)
+    invalid = {index for index in indices if index < 1 or index > len(sources)}
+    retrieved_source_ids = []
+    for hit in sources:
         if not isinstance(hit, dict):
             continue
         source_id = hit.get("source_id")
         if not isinstance(source_id, str) or not source_id.strip():
             continue
         source_id = source_id.strip()
+        if source_id not in retrieved_source_ids:
+            retrieved_source_ids.append(source_id)
+
+    cited_sources = []
+    cited_pins = []
+    citations = []
+    used_unverified_source = False
+    for index in indices:
+        if index < 1 or index > len(sources):
+            continue
+        hit = sources[index - 1]
+        if not isinstance(hit, dict):
+            invalid.add(index)
+            continue
+        source_id = hit.get("source_id")
+        if not isinstance(source_id, str) or not source_id.strip():
+            invalid.add(index)
+            continue
+        source_id = source_id.strip()
         if source_id not in cited_sources:
             cited_sources.append(source_id)
+        citation = {"source_id": source_id}
         pin = _pin_cite(hit)
         if pin:
+            citation["pin_cite"] = pin
             item = {"source_id": source_id, "pin_cite": pin}
             if item not in cited_pins:
                 cited_pins.append(item)
+        if citation not in citations:
+            citations.append(citation)
+        # Only the explicit, current verified-corpus status counts as verified.
+        # Missing/unknown status is conservatively treated as unverified.
+        if hit.get("source_status") != "verified_operative_text":
+            used_unverified_source = True
+
     requested_as_of = question.get("as_of_date")
     return {
         "id": question["id"],
+        "question_id": question["id"],
         "answer": answer,
         "abstained": bool(response.get("abstained", answer is None)),
+        "retrieved_source_ids": retrieved_source_ids,
+        "citations": citations,
+        "used_unverified_source": used_unverified_source,
+        "citation_marker_count": len(indices),
         "cited_sources": cited_sources,
         "cited_pin_cites": cited_pins,
-        "invalid_citation_indices": invalid,
+        "invalid_citation_indices": sorted(invalid),
         "found": bool(response.get("found")),
         "scope": response.get("scope", "verified_corpus"),
         "requested_as_of": response.get("requested_as_of") or requested_as_of,
@@ -141,7 +230,6 @@ def result_from_response(question, response):
             for hit in sources if isinstance(hit, dict)
         ],
     }
-
 
 def _request_json(opener, url, payload, headers=None, timeout=180):
     request_headers = {"Content-Type": "application/json", "Accept": "application/json"}
