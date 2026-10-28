@@ -103,7 +103,8 @@
         "pdf_page_index_zero_based": 67,
         "printed_page_label": "69",
         "provisions": [
-          "القانون المرافق، المادة 165"
+          "القانون المرافق، المادة 165",
+          "القانون المرافق، المادتان 164 و165"
         ],
         "basis": "PDF text extraction lines 1662-1677"
       },
@@ -111,7 +112,8 @@
         "pdf_page_index_zero_based": 68,
         "printed_page_label": "70",
         "provisions": [
-          "القانون المرافق، المادة 165"
+          "القانون المرافق، المادة 165",
+          "القانون المرافق، المادتان 165 و166"
         ],
         "basis": "PDF text extraction lines 1667-1677"
       },
@@ -716,6 +718,46 @@
         "gazette_issue": "18 (تابع)",
         "printed_page": "71",
         "pdf_page_index_zero_based": 69,
+        "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf"
+      }
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-164",
+      "provision_ref": "القانون المرافق، المادة 164",
+      "topic": "notice_period_compensation",
+      "summary_ar": "إذا أنهى صاحب العمل عقد العمل غير محدد المدة دون إخطار أو قبل انقضاء مهلة الإخطار، تلزمه المادة 164 بأداء مبلغ يعادل أجر العامل عن مدة الإخطار أو الجزء المتبقي منها، مع احتساب المدة ضمن خدمة العامل واستمرار الالتزامات المترتبة عليها وفق النص.",
+      "source_refs": [
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "basis": "government-hosted Gazette PDF; targeted text extraction reviewed; printed page 69"
+        }
+      ],
+      "confidence": "provisional_source_text_observed",
+      "human_review": "pending",
+      "page_pinpoint": {
+        "gazette_issue": "18 (تابع)",
+        "printed_page": "69",
+        "pdf_page_index_zero_based": 67,
+        "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf"
+      }
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-166",
+      "provision_ref": "القانون المرافق، المادة 166",
+      "topic": "absence_deemed_resignation",
+      "summary_ar": "تعتبر المادة 166 العامل مستقيلاً إذا تغيب دون مبرر مشروع أكثر من عشرين يوماً متقطعة خلال السنة الواحدة أو أكثر من عشرة أيام متتالية، بشرط الإنذار بخطاب موصى عليه بعلم الوصول بعد الغياب عشرة أيام في الحالة الأولى وخمسة أيام في الحالة الثانية. يجب التحقق من المبرر والإجراءات والإخطار والوقائع قبل تطبيق الحكم.",
+      "source_refs": [
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "basis": "government-hosted Gazette PDF; targeted text extraction reviewed; printed page 70"
+        }
+      ],
+      "confidence": "provisional_source_text_observed",
+      "human_review": "pending",
+      "page_pinpoint": {
+        "gazette_issue": "18 (تابع)",
+        "printed_page": "70",
+        "pdf_page_index_zero_based": 68,
         "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf"
       }
     }
