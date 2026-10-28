@@ -30,10 +30,10 @@ No written permission was requested or obtained in this review. Keep collection,
 
 The supplied file was parsed and its article numbering/counts inspected. The accessible Manshurat PDF text was checked at the promulgation provisions and sampled at the beginning and end of the accompanying law. The title, Gazette issue/date, promulgation clauses, Article 12 repeal clause, Article 13 commencement clause, and sampled opening/closing article text are consistent with those visible text extracts.
 
-Supplemental review on 2026-10-28 located a government-hosted copy of the Official Gazette PDF at the Egyptian Tax Authority portal. Extracted text was reviewed for printed pages 2, 5, and 12, covering promulgation Article 1, promulgation Articles 12–13, and accompanying-law Articles 4–6. The PDF file itself was not downloaded, hashed, or visually inspected. Therefore, no claim is made that all 311 rows have been matched verbatim to the Gazette. The following remain outstanding:
+Supplemental review on 2026-10-28 located a government-hosted copy of the Official Gazette PDF at the Egyptian Tax Authority portal. Extracted text was reviewed for printed pages 2, 5, 12, and 43, covering promulgation Article 1, promulgation Articles 12–13, accompanying-law Articles 4–6, and accompanying-law Articles 89–90. The PDF file itself was not downloaded, hashed, or visually inspected. Therefore, no claim is made that all 311 rows have been matched verbatim to the Gazette. The following remain outstanding:
 - page-by-page and article-by-article comparison of all 13 promulgation provisions and all 298 law articles;
 - exact wording, numbering, paragraph boundaries, omissions, insertions, and duplicates;
-- full page-by-page and article-by-article comparison beyond the three targeted pages;
+- full page-by-page and article-by-article comparison beyond the four targeted pages;
 - visual scan integrity, exact PDF hash, and any corrigenda.
 
 ## 3. Commencement, repeals, and subsequent instruments
