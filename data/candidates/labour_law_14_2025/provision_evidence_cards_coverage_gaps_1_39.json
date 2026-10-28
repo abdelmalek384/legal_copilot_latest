@@ -1,0 +1,663 @@
+{
+  "record_id": "EG-LABOUR-14-2025-COVERAGE-GAPS-1-39",
+  "created_on": "2026-10-28",
+  "status": "supplemental provisional cards; not yet merged into the primary 294-card JSON because the repository connector did not return the oversized canonical file content",
+  "instrument": {
+    "title": "Law No. 14 of 2025 promulgating the Labour Law",
+    "authenticity_verified": false,
+    "currentness_verified": false,
+    "amendment_history_verified": false,
+    "egyptian_lawyer_review": "not reviewed",
+    "collection_permission": "unknown",
+    "commercial_reuse_permission": "unknown",
+    "search_eligible": false
+  },
+  "cards": [
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-1-COVERAGE-GAP-DEFINED-TERMS",
+      "question": "ما أهم التعريفات التي يضعها قانون العمل؟",
+      "provisional_answer_ar": "تتضمن المادة الأولى تعريفات اصطلاحية لأغراض القانون، منها العامل وصاحب العمل والأجر وأنواع العمل والعمل الليلي والعمالة غير المنتظمة والتحرش والتنمر والمنشأة وموقع العمل والمهنة والجهة الإدارية المختصة. يجب الرجوع إلى التعريف الحرفي الكامل عند تفسير مصطلح محدد.",
+      "pinpoint": {
+        "part": "مواد الإصدار والأحكام العامة",
+        "article": "المادة 1",
+        "official_gazette_printed_page": 4,
+        "pdf_page_index_zero_based": 2
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 1؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 1؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "secondary transcription",
+          "supports": "Text cross-check only; not primary authority"
+        }
+      ],
+      "limitations": [
+        "تفسير مصطلح اعتماداً على ملخص بدلاً من التعريف الحرفي الكامل",
+        "رقم الصفحة مستنتج من تسلسل النص وليس فحصاً بصرياً مستقلاً",
+        "التعديلات والقرارات التنفيذية الحالية غير مكتملة المراجعة",
+        "لا توجد مراجعة محامٍ مصري مسجلة"
+      ],
+      "review_state": "provisional_text_extract_crosschecked",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "تفسير مصطلح اعتماداً على ملخص بدلاً من التعريف الحرفي الكامل"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-2-COVERAGE-GAP-TIME-CALCULATION-DEFAULTS",
+      "question": "كيف يحسب الشهر والسنة ما لم يوجد اتفاق مخالف؟",
+      "provisional_answer_ar": "تعتبر المادة الثانية السنة 365 يوماً والشهر ثلاثين يوماً ما لم يتم الاتفاق على خلاف ذلك. يلزم فحص النص الخاص وطبيعة الميعاد وأي قواعد إجرائية قبل حساب ميعاد قضية.",
+      "pinpoint": {
+        "part": "مواد الإصدار والأحكام العامة",
+        "article": "المادة 2",
+        "official_gazette_printed_page": 7,
+        "pdf_page_index_zero_based": 5
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 2؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 2؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "secondary transcription",
+          "supports": "Text cross-check only; not primary authority"
+        }
+      ],
+      "limitations": [
+        "حساب ميعاد فعلي دون فحص النص الخاص والاتفاق وقواعد احتساب المواعيد",
+        "رقم الصفحة مستنتج من تسلسل النص وليس فحصاً بصرياً مستقلاً",
+        "التعديلات والقرارات التنفيذية الحالية غير مكتملة المراجعة",
+        "لا توجد مراجعة محامٍ مصري مسجلة"
+      ],
+      "review_state": "provisional_text_extract_crosschecked",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "حساب ميعاد فعلي دون فحص النص الخاص والاتفاق وقواعد احتساب المواعيد"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-3-COVERAGE-GAP-GENERAL-LAW-STATUS",
+      "question": "ما موقع قانون العمل في تنظيم علاقات العمل؟",
+      "provisional_answer_ar": "تقرر المادة الثالثة أن قانون العمل هو القانون العام الذي يحكم علاقات العمل. ولا يعني ذلك استبعاد القوانين الخاصة أو النصوص المكملة دون فحصها.",
+      "pinpoint": {
+        "part": "مواد الإصدار والأحكام العامة",
+        "article": "المادة 3",
+        "official_gazette_printed_page": 7,
+        "pdf_page_index_zero_based": 5
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 3؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 3؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "secondary transcription",
+          "supports": "Text cross-check only; not primary authority"
+        }
+      ],
+      "limitations": [
+        "القول باستبعاد كل قانون خاص دون فحص النصوص الخاصة",
+        "رقم الصفحة مستنتج من تسلسل النص وليس فحصاً بصرياً مستقلاً",
+        "التعديلات والقرارات التنفيذية الحالية غير مكتملة المراجعة",
+        "لا توجد مراجعة محامٍ مصري مسجلة"
+      ],
+      "review_state": "provisional_text_extract_crosschecked",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "القول باستبعاد كل قانون خاص دون فحص النصوص الخاصة"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-14-COVERAGE-GAP-PENALTY-PROCEEDS-ALLOCATION",
+      "question": "كيف توزع حصيلة المبالغ المحكوم بها عن مخالفات القانون؟",
+      "provisional_answer_ar": "تخصص المادة 14 ثلث المبالغ المحكوم بها للوزارة المختصة للخدمات الاجتماعية والصحية والثقافية وتطوير التدريب المهني للفئات الأولى بالرعاية، خصوصاً العمالة غير المنتظمة، وفق قرار الوزير؛ وتؤول بقية الحصيلة للخزانة العامة.",
+      "pinpoint": {
+        "part": "مواد الإصدار والأحكام العامة",
+        "article": "المادة 14",
+        "official_gazette_printed_page": 10,
+        "pdf_page_index_zero_based": 8
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 14؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 14؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "secondary transcription",
+          "supports": "Text cross-check only; not primary authority"
+        }
+      ],
+      "limitations": [
+        "تحديد وجه صرف أو مستفيد دون قرار التوزيع الساري",
+        "رقم الصفحة مستنتج من تسلسل النص وليس فحصاً بصرياً مستقلاً",
+        "التعديلات والقرارات التنفيذية الحالية غير مكتملة المراجعة",
+        "لا توجد مراجعة محامٍ مصري مسجلة"
+      ],
+      "review_state": "provisional_text_extract_crosschecked",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "تحديد وجه صرف أو مستفيد دون قرار التوزيع الساري"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-15-COVERAGE-GAP-NONCASH-FEES",
+      "question": "كيف تحصل الرسوم ومقابل الخدمات المنصوص عليها في القانون؟",
+      "provisional_answer_ar": "تحيل المادة 15 تحصيل الرسوم ومقابل الخدمات إلى قانون تنظيم استخدام وسائل الدفع غير النقدي رقم 18 لسنة 2019. يلزم مراجعة التشريع المحال إليه والقرار المنظم للخدمة.",
+      "pinpoint": {
+        "part": "مواد الإصدار والأحكام العامة",
+        "article": "المادة 15",
+        "official_gazette_printed_page": 10,
+        "pdf_page_index_zero_based": 8
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 15؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 15؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "secondary transcription",
+          "supports": "Text cross-check only; not primary authority"
+        }
+      ],
+      "limitations": [
+        "تحديد وسيلة دفع أو إعفاء دون مراجعة القانون والقرار المختص",
+        "رقم الصفحة مستنتج من تسلسل النص وليس فحصاً بصرياً مستقلاً",
+        "التعديلات والقرارات التنفيذية الحالية غير مكتملة المراجعة",
+        "لا توجد مراجعة محامٍ مصري مسجلة"
+      ],
+      "review_state": "provisional_text_extract_crosschecked",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "تحديد وسيلة دفع أو إعفاء دون مراجعة القانون والقرار المختص"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-17-COVERAGE-GAP-VOCATIONAL-GUIDANCE",
+      "question": "من يتولى التوجيه المهني والتصنيف المهني الوطني؟",
+      "provisional_answer_ar": "تسند المادة 17 للجهة الإدارية التوجيه المهني للراغبين في التدريب وإعداد التصنيف المهني الوطني بالتنسيق مع الجهات المعنية وتحديثه وفق معايير الجودة والتغيرات التقنية والمناخية. التفاصيل والجهات المستفيدة تحدد بقرار وزاري.",
+      "pinpoint": {
+        "part": "الكتاب الثاني — التدريب والتشغيل",
+        "article": "المادة 17",
+        "official_gazette_printed_page": 11,
+        "pdf_page_index_zero_based": 9
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 17؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 17؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "secondary transcription",
+          "supports": "Text cross-check only; not primary authority"
+        }
+      ],
+      "limitations": [
+        "تحديد تصنيف أو شروط مستفيد دون التصنيف والقرار الحالي",
+        "رقم الصفحة مستنتج من تسلسل النص وليس فحصاً بصرياً مستقلاً",
+        "التعديلات والقرارات التنفيذية الحالية غير مكتملة المراجعة",
+        "لا توجد مراجعة محامٍ مصري مسجلة"
+      ],
+      "review_state": "provisional_text_extract_crosschecked",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "تحديد تصنيف أو شروط مستفيد دون التصنيف والقرار الحالي"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-18-COVERAGE-GAP-SKILLS-COUNCIL",
+      "question": "ما المجلس الأعلى لتنمية مهارات الموارد البشرية؟",
+      "provisional_answer_ar": "تنشئ المادة 18 مجلساً أعلى برئاسة الوزير المختص وعضوية جهات حكومية وممثلي أصحاب الأعمال والنقابات وخبراء، لوضع سياسات تنمية المهارات والتدريب والتأهيل وربط التعليم باحتياجات سوق العمل. يصدر قرار من رئيس مجلس الوزراء بتنظيمه.",
+      "pinpoint": {
+        "part": "الكتاب الثاني — التدريب والتشغيل",
+        "article": "المادة 18",
+        "official_gazette_printed_page": 12,
+        "pdf_page_index_zero_based": 10
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 18؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 18؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "secondary transcription",
+          "supports": "Text cross-check only; not primary authority"
+        }
+      ],
+      "limitations": [
+        "تحديد التشكيل أو الإجراء الحالي دون قرار التشكيل",
+        "رقم الصفحة مستنتج من تسلسل النص وليس فحصاً بصرياً مستقلاً",
+        "التعديلات والقرارات التنفيذية الحالية غير مكتملة المراجعة",
+        "لا توجد مراجعة محامٍ مصري مسجلة"
+      ],
+      "review_state": "provisional_text_extract_crosschecked",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "تحديد التشكيل أو الإجراء الحالي دون قرار التشكيل"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-19-COVERAGE-GAP-LOCAL-SKILLS-COUNCILS",
+      "question": "هل يجوز تشكيل مجالس تنفيذية محلية لتنمية المهارات؟",
+      "provisional_answer_ar": "تجيز المادة 19 للمجلس الأعلى تشكيل مجالس تنفيذية في المحافظات أو المناطق الجغرافية بتمثيل متوازن لأصحاب الأعمال والنقابات والجهات الحكومية لمتابعة الخطط والتوصيات. وجود مجلس محلي واختصاصاته يتطلب قرار تشكيل.",
+      "pinpoint": {
+        "part": "الكتاب الثاني — التدريب والتشغيل",
+        "article": "المادة 19",
+        "official_gazette_printed_page": 12,
+        "pdf_page_index_zero_based": 10
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 19؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 19؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "secondary transcription",
+          "supports": "Text cross-check only; not primary authority"
+        }
+      ],
+      "limitations": [
+        "افتراض وجود مجلس محلي أو تحديد اختصاصاته دون قرار",
+        "رقم الصفحة مستنتج من تسلسل النص وليس فحصاً بصرياً مستقلاً",
+        "التعديلات والقرارات التنفيذية الحالية غير مكتملة المراجعة",
+        "لا توجد مراجعة محامٍ مصري مسجلة"
+      ],
+      "review_state": "provisional_text_extract_crosschecked",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "افتراض وجود مجلس محلي أو تحديد اختصاصاته دون قرار"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-20-COVERAGE-GAP-TRAINING-FUND-FUNCTIONS",
+      "question": "ما اختصاصات صندوق تمويل التدريب والتأهيل؟",
+      "provisional_answer_ar": "تسند المادة 20 للصندوق تمويل تنمية المهارات والتدريب المهني والتقني ومراكز التدريب والبرامج وربط التعليم باحتياجات السوق ووضع قواعد التمويل ومتابعة المشروعات. ينظم قرار رئيس مجلس الوزراء مجلس الإدارة والنظام الأساسي والموارد.",
+      "pinpoint": {
+        "part": "الكتاب الثاني — التدريب والتشغيل",
+        "article": "المادة 20",
+        "official_gazette_printed_page": 12,
+        "pdf_page_index_zero_based": 10
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 20؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 20؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "secondary transcription",
+          "supports": "Text cross-check only; not primary authority"
+        }
+      ],
+      "limitations": [
+        "تقرير أهلية تمويل دون قواعد التمويل والقرارات",
+        "رقم الصفحة مستنتج من تسلسل النص وليس فحصاً بصرياً مستقلاً",
+        "التعديلات والقرارات التنفيذية الحالية غير مكتملة المراجعة",
+        "لا توجد مراجعة محامٍ مصري مسجلة"
+      ],
+      "review_state": "provisional_text_extract_crosschecked",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "تقرير أهلية تمويل دون قواعد التمويل والقرارات"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-21-COVERAGE-GAP-TRAINING-FUND-REVENUE",
+      "question": "ما موارد صندوق تمويل التدريب والتأهيل؟",
+      "provisional_answer_ar": "تحدد المادة 21 موارد منها مساهمة سنوية بنسبة 0.25% من الحد الأدنى للأجر التأميني في المنشآت التي يعمل بها ثلاثون عاملاً فأكثر، بحد أدنى وأقصى لكل عامل، مع إمكان الإعفاء وفق قرار وزاري عند تحقق شروط التدريب، إضافة إلى التبرعات وعوائد الاستثمار. يلزم فحص القرار الحالي وطريقة الحساب.",
+      "pinpoint": {
+        "part": "الكتاب الثاني — التدريب والتشغيل",
+        "article": "المادة 21",
+        "official_gazette_printed_page": 13,
+        "pdf_page_index_zero_based": 11
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 21؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 21؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "secondary transcription",
+          "supports": "Text cross-check only; not primary authority"
+        }
+      ],
+      "limitations": [
+        "حساب اشتراك أو إعفاء دون عدد العمال والقرار الساري",
+        "رقم الصفحة مستنتج من تسلسل النص وليس فحصاً بصرياً مستقلاً",
+        "التعديلات والقرارات التنفيذية الحالية غير مكتملة المراجعة",
+        "لا توجد مراجعة محامٍ مصري مسجلة"
+      ],
+      "review_state": "provisional_text_extract_crosschecked",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "حساب اشتراك أو إعفاء دون عدد العمال والقرار الساري"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-24-COVERAGE-GAP-TRAINING-PROGRAMME-APPROVAL",
+      "question": "ما البيانات المطلوبة لاعتماد البرامج التدريبية؟",
+      "provisional_answer_ar": "توجب المادة 24 على الجهات المحددة إخطار الوزارة بالبرامج لاعتمادها، مع بيانات شروط المتدربين وكفاية المحتوى والساعات ومستويات المدربين والمهارات المكتسبة. تحدد الإجراءات والمواعيد بقرار وزاري بالتنسيق مع هيئة إتقان.",
+      "pinpoint": {
+        "part": "الكتاب الثاني — التدريب والتشغيل",
+        "article": "المادة 24",
+        "official_gazette_printed_page": 15,
+        "pdf_page_index_zero_based": 13
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 24؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 24؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "secondary transcription",
+          "supports": "Text cross-check only; not primary authority"
+        }
+      ],
+      "limitations": [
+        "تقرير اعتماد برنامج أو إعفاء دون نوع الجهة والقرار التنفيذي",
+        "رقم الصفحة مستنتج من تسلسل النص وليس فحصاً بصرياً مستقلاً",
+        "التعديلات والقرارات التنفيذية الحالية غير مكتملة المراجعة",
+        "لا توجد مراجعة محامٍ مصري مسجلة"
+      ],
+      "review_state": "provisional_text_extract_crosschecked",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "تقرير اعتماد برنامج أو إعفاء دون نوع الجهة والقرار التنفيذي"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-26-COVERAGE-GAP-TRAINING-CERTIFICATE",
+      "question": "ما الشهادة التي تمنح للمتدرب بعد إتمام البرنامج؟",
+      "provisional_answer_ar": "تلزم المادة 26 الجهة التي تزاول التدريب بمنح المتدرب شهادة تفيد اجتيازه البرنامج والمستوى الذي بلغه، وتترك البيانات الأخرى وقواعد الاعتماد والرسم إلى قرار الوزير. يلزم التحقق من القرار والسجل والبرنامج.",
+      "pinpoint": {
+        "part": "الكتاب الثاني — التدريب والتشغيل",
+        "article": "المادة 26",
+        "official_gazette_printed_page": 15,
+        "pdf_page_index_zero_based": 13
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 26؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 26؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "secondary transcription",
+          "supports": "Text cross-check only; not primary authority"
+        }
+      ],
+      "limitations": [
+        "تحديد صلاحية شهادة أو رسم دون القرار والسجل",
+        "رقم الصفحة مستنتج من تسلسل النص وليس فحصاً بصرياً مستقلاً",
+        "التعديلات والقرارات التنفيذية الحالية غير مكتملة المراجعة",
+        "لا توجد مراجعة محامٍ مصري مسجلة"
+      ],
+      "review_state": "provisional_text_extract_crosschecked",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "تحديد صلاحية شهادة أو رسم دون القرار والسجل"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-35-COVERAGE-GAP-WORKER-REGISTRATION-CERTIFICATE",
+      "question": "ما واجب المنشأة بشأن شهادة قيد العامل؟",
+      "provisional_answer_ar": "تلزم المادة 35 المنشآت بإعادة شهادة قيد العامل للجهة الإدارية خلال 45 يوماً من تاريخ استلام العمل بعد استيفاء بياناتها، وتدوين رقم الشهادة وتاريخها في سجل العمال. يلزم إثبات تاريخ بدء العمل والشهادة والسجل.",
+      "pinpoint": {
+        "part": "الكتاب الثاني — التدريب والتشغيل",
+        "article": "المادة 35",
+        "official_gazette_printed_page": 18,
+        "pdf_page_index_zero_based": 16
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 35؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 35؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "secondary transcription",
+          "supports": "Text cross-check only; not primary authority"
+        }
+      ],
+      "limitations": [
+        "حساب مهلة الإعادة دون تاريخ بدء العمل والشهادة",
+        "رقم الصفحة مستنتج من تسلسل النص وليس فحصاً بصرياً مستقلاً",
+        "التعديلات والقرارات التنفيذية الحالية غير مكتملة المراجعة",
+        "لا توجد مراجعة محامٍ مصري مسجلة"
+      ],
+      "review_state": "provisional_text_extract_crosschecked",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "حساب مهلة الإعادة دون تاريخ بدء العمل والشهادة"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-38-COVERAGE-GAP-LABOUR-MARKET-DATA",
+      "question": "ما واجب المنشآت في تقديم بيانات سوق العمل؟",
+      "provisional_answer_ar": "تلزم المادة 38 المنشآت بتقديم بيانات تحديث قواعد بيانات العمالة ونظام معلومات سوق العمل خلال 30 يوماً من طلبها والتعاون في استيفاء الاستمارات. يلزم إثبات الطلب وتاريخه ونطاق البيانات المطلوبة.",
+      "pinpoint": {
+        "part": "الكتاب الثاني — التدريب والتشغيل",
+        "article": "المادة 38",
+        "official_gazette_printed_page": 19,
+        "pdf_page_index_zero_based": 17
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 38؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 38؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "secondary transcription",
+          "supports": "Text cross-check only; not primary authority"
+        }
+      ],
+      "limitations": [
+        "حساب مهلة أو تقرير عدم امتثال دون الطلب وتاريخه",
+        "رقم الصفحة مستنتج من تسلسل النص وليس فحصاً بصرياً مستقلاً",
+        "التعديلات والقرارات التنفيذية الحالية غير مكتملة المراجعة",
+        "لا توجد مراجعة محامٍ مصري مسجلة"
+      ],
+      "review_state": "provisional_text_extract_crosschecked",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "حساب مهلة أو تقرير عدم امتثال دون الطلب وتاريخه"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-39-COVERAGE-GAP-RECRUITMENT-EXCEPTIONS",
+      "question": "ما الاستثناءات من أحكام التشغيل في الداخل والخارج؟",
+      "provisional_answer_ar": "تستثني المادة 39 الأعمال العرضية وما في حكمها والوظائف الرئيسية التي يعد شاغلوها وكلاء مفوضين عن صاحب العمل، مع جواز مد نطاق الفصل بقرار وزاري. لا يكفي المسمى الوظيفي وحده لإثبات الاستثناء.",
+      "pinpoint": {
+        "part": "الكتاب الثاني — التدريب والتشغيل",
+        "article": "المادة 39",
+        "official_gazette_printed_page": 19,
+        "pdf_page_index_zero_based": 17
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 39؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 39؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "secondary transcription",
+          "supports": "Text cross-check only; not primary authority"
+        }
+      ],
+      "limitations": [
+        "اعتبار وظيفة مستثناة دون طبيعة العمل والقرار الساري",
+        "رقم الصفحة مستنتج من تسلسل النص وليس فحصاً بصرياً مستقلاً",
+        "التعديلات والقرارات التنفيذية الحالية غير مكتملة المراجعة",
+        "لا توجد مراجعة محامٍ مصري مسجلة"
+      ],
+      "review_state": "provisional_text_extract_crosschecked",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "اعتبار وظيفة مستثناة دون طبيعة العمل والقرار الساري"
+    }
+  ],
+  "source_method_note": "Supplemental coverage-gap file for Articles 1–3, 14–15, 17–21, 24, 26, 35, 38–39. Article wording cross-checked against a publicly accessible secondary transcription while retaining official publisher and government Gazette links. All Gazette page numbers are inferred pinpoints. No original PDF hash or legal currentness/reuse clearance is claimed."
+}
