@@ -19,6 +19,7 @@ This is a planning estimate across fresh-install schema/migrations, tenant isola
 - [x] Verify lost-authenticator replacement rejects stale MFA verification even with the correct password, and preserves the enabled credential on denial (PR #812 merged; Tests #2837 passed).
 - [x] Add behavioral checks that firm lawyers are denied both JSON and CSV security-audit exports, and that untrusted event text is neutralized against spreadsheet-formula injection (PR #808 merged; Tests #2815 passed).
 - [x] Extend stale-session membership-revocation tests to cover case-deletion audit listings and JSON/CSV security-audit exports while the old cookie and tenant connection remain cached (PR #810 merged; Tests #2829 passed).
+- [x] Add same-firm nonmember denial tests for extraction-review listing, chunk retrieval, and review mutation; assert denied writes leave extracted text unchanged and create no review record (PR #816 merged; Tests #2854 passed).
 
 - [x] Validate encrypted backup input before decryption: reject symlinks, non-regular files/FIFOs, and oversized encrypted inputs using a bounded no-follow read; regression tests assert rejected restore inputs do not create a target (PR #799 merged; Tests #2670 passed).
 
