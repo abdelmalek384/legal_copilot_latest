@@ -8,8 +8,10 @@ immutable: checksum drift is an error, not an implicit re-run.
 from __future__ import annotations
 
 import hashlib
+import os
 import re
 import sqlite3
+import stat
 from pathlib import Path
 from typing import Iterable
 
@@ -20,13 +22,41 @@ class MigrationError(RuntimeError):
     """Raised when migration files or recorded migration history are unsafe."""
 
 
+def _read_regular_migration(path: Path) -> str:
+    """Read executable migration SQL without following links or blocking on special files."""
+    if path.is_symlink():
+        raise MigrationError(f"Migration file must not be a symlink: {path.name}")
+
+    # O_NONBLOCK prevents a malicious or accidental FIFO from hanging startup;
+    # O_NOFOLLOW closes the symlink race on platforms that support it. fstat
+    # validates the opened object itself, not merely the path checked above.
+    flags = os.O_RDONLY | getattr(os, "O_NONBLOCK", 0) | getattr(os, "O_NOFOLLOW", 0)
+    descriptor = None
+    try:
+        descriptor = os.open(path, flags)
+        metadata = os.fstat(descriptor)
+        if not stat.S_ISREG(metadata.st_mode):
+            raise MigrationError(f"Migration file must be a regular file: {path.name}")
+        if metadata.st_size > 5_000_000:
+            raise MigrationError(f"Migration file exceeds the 5 MB safety limit: {path.name}")
+        stream = os.fdopen(descriptor, "r", encoding="utf-8")
+        descriptor = None  # ownership transferred to the stream
+        with stream:
+            return stream.read()
+    except MigrationError:
+        raise
+    except (OSError, UnicodeError) as exc:
+        raise MigrationError(f"Migration file could not be read safely: {path.name}") from exc
+    finally:
+        if descriptor is not None:
+            os.close(descriptor)
+
+
 def _migration_files(directory: Path) -> list[tuple[int, str, Path, str]]:
     found: list[tuple[int, str, Path, str]] = []
     versions: set[int] = set()
     for path in sorted(directory.glob("*.sql")):
-        # Migration SQL is executable schema input; never follow a symlink.
-        if path.is_symlink():
-            raise MigrationError(f"Migration file must not be a symlink: {path.name}")
+        # Migration SQL is executable schema input; reject links and all special files.
         if path.resolve().parent != directory.resolve():
             raise MigrationError(f"Migration file escapes its directory: {path.name}")
         match = _MIGRATION_NAME.fullmatch(path.name)
@@ -36,7 +66,7 @@ def _migration_files(directory: Path) -> list[tuple[int, str, Path, str]]:
         if version in versions:
             raise MigrationError(f"Duplicate migration version: {version}")
         versions.add(version)
-        sql = path.read_text(encoding="utf-8")
+        sql = _read_regular_migration(path)
         if not sql.strip():
             raise MigrationError(f"Empty migration: {path.name}")
         found.append((version, path.name, path, sql))
