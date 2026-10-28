@@ -4,7 +4,7 @@
   "created_on": "2026-10-28",
   "cards_count": 19,
   "search_eligible": false,
-  "source_method_note": "Supplemental split file created because the primary card inventory exceeded the GitHub Contents API readable size. Public transcription used as fallback; no access controls bypassed. Primary source links retained. Pinpoints inferred, not visually verified. Some article text remains deliberately incomplete rather than fabricated.",
+  "source_method_note": "Supplemental split file created because the primary card inventory exceeded the GitHub Contents API readable size. Public transcription used as fallback; no access controls bypassed. Primary source links retained. Pinpoints inferred, not visually verified. Some article text remains deliberately incomplete rather than fabricated. Updated Articles 258–265 and 270–274 using visible article text from the public Wikisource transcription. This resolves the earlier pinpoints-only status for these cards at the transcription level, but not official page verification or currentness.",
   "cards": [
     {
       "card_id": "EG-LABOUR-14-2025-ART-256-OSH-INSPECTION-UNIT",
@@ -92,8 +92,8 @@
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-258-OSH-IMMINENT-DANGER-REMOVAL",
-      "question": "ما الإجراء المطلوب عند وجود خطر داهم في مكان العمل؟",
-      "provisional_answer_ar": "يلزم قراءة المادة 258 مع المادة السابقة والقرارات المنفذة لتحديد المخاطب بالإجراء والمهل وحدود الإغلاق أو الإيقاف. النص الكامل لم يطابق بعد؛ لا تستخدم البطاقة وحدها لاتخاذ قرار تشغيلي.",
+      "question": "ما صلاحيات مفتشي السلامة والصحة المهنية؟",
+      "provisional_answer_ar": "تمنح المادة 258 مفتشي السلامة والصحة المهنية وتأمين بيئة العمل حق التفتيش على المنشآت للتحقق من توافر اشتراطات السلامة والصحة المهنية وفق القانون والقرارات المنفذة له.",
       "pinpoint": {
         "article": "المادة 258",
         "official_gazette_printed_page": 87,
@@ -122,20 +122,20 @@
       ],
       "limitations": [
         "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
-        "المواد 258–265 و270–274 بطاقات pinpoint فقط ولا تحتوي نصاً موضوعياً موثقاً بالكامل",
         "القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة",
         "لا توجد مراجعة محامٍ مصري مسجلة",
-        "حقوق إعادة الاستخدام التجاري غير محسومة"
+        "حقوق إعادة الاستخدام التجاري غير محسومة",
+        "النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية"
       ],
-      "review_state": "pinpoint_only_text_review_required",
+      "review_state": "provisional_secondary_crosscheck",
       "search_eligible": false,
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "authoritative advice or final compliance decision until full official text and applicable decisions are verified"
+      "not_usable_for": "authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified"
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-259-OSH-ACCIDENT-AND-OCCUPATIONAL-DISEASE-REPORTING",
-      "question": "ما واجب الإبلاغ عن الحوادث والأمراض المهنية؟",
-      "provisional_answer_ar": "لا تتوافر هنا مطابقة كاملة للمادة 259. يجب استخراج نصها والقرارات المنفذة لتحديد الجهات والنماذج ومواعيد الإبلاغ قبل تقديم إجابة تشغيلية.",
+      "question": "متى يجب إنشاء أجهزة ولجان السلامة المهنية والتدريب؟",
+      "provisional_answer_ar": "يحدد الوزير المختص المنشآت التي تلتزم بإنشاء أجهزة وظيفية ولجان للسلامة المهنية. وتبحث اللجان ظروف العمل وأسباب الحوادث والإصابات وتضع تدابير منعها، وتكون قراراتها ملزمة. ويشمل التدريب أعضاء الأجهزة واللجان والمسؤولين عن الإدارة والإنتاج بحسب المسؤولية وطبيعة العمل.",
       "pinpoint": {
         "article": "المادة 259",
         "official_gazette_printed_page": 88,
@@ -164,20 +164,20 @@
       ],
       "limitations": [
         "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
-        "المواد 258–265 و270–274 بطاقات pinpoint فقط ولا تحتوي نصاً موضوعياً موثقاً بالكامل",
         "القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة",
         "لا توجد مراجعة محامٍ مصري مسجلة",
-        "حقوق إعادة الاستخدام التجاري غير محسومة"
+        "حقوق إعادة الاستخدام التجاري غير محسومة",
+        "النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية"
       ],
-      "review_state": "pinpoint_only_text_review_required",
+      "review_state": "provisional_secondary_crosscheck",
       "search_eligible": false,
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "authoritative advice or final compliance decision until full official text and applicable decisions are verified"
+      "not_usable_for": "authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified"
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-260-OSH-HEALTH-AND-ACCIDENT-STATISTICS",
-      "question": "ما الإحصاءات المتعلقة بالأمراض والحوادث؟",
-      "provisional_answer_ar": "مصدر ثانوي يشير إلى اختصاص مكاتب السلامة والصحة المهنية باستلام إحصائية نصف سنوية بموجب القرار 260/2025. يلزم التحقق من نص المادة والقرار الرسمي ونماذج الإحصاء ومواعيدها.",
+      "question": "ما مواعيد الإحصاءات والإبلاغ عن الحوادث والأمراض المهنية؟",
+      "provisional_answer_ar": "المنشأة التي يعمل بها 30 عاملاً فأكثر تقدم إحصائية نصف سنوية عن الأمراض والحوادث والإصابات خلال النصف الأول من شهري يوليو ويناير على الأكثر. وتُخطر المنشآت الخاضعة للكتاب الجهة الإدارية بكل حادث جسيم أو ظهور أعراض مرض مهني خلال 24 ساعة، وتقدم البيانات إلكترونياً وفق القرار الوزاري.",
       "pinpoint": {
         "article": "المادة 260",
         "official_gazette_printed_page": 88,
@@ -206,20 +206,20 @@
       ],
       "limitations": [
         "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
-        "المواد 258–265 و270–274 بطاقات pinpoint فقط ولا تحتوي نصاً موضوعياً موثقاً بالكامل",
         "القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة",
         "لا توجد مراجعة محامٍ مصري مسجلة",
-        "حقوق إعادة الاستخدام التجاري غير محسومة"
+        "حقوق إعادة الاستخدام التجاري غير محسومة",
+        "النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية"
       ],
-      "review_state": "pinpoint_only_text_review_required",
+      "review_state": "provisional_secondary_crosscheck",
       "search_eligible": false,
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "authoritative advice or final compliance decision until full official text and applicable decisions are verified"
+      "not_usable_for": "authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified"
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-261-OSH-STATUTORY-REGISTERS",
-      "question": "ما السجلات المطلوبة للسلامة والصحة المهنية؟",
-      "provisional_answer_ar": "لا يُستنتج محتوى المادة 261 من إحالتها في المادة العقابية وحدها. يجب مراجعة نصها الكامل والقرارات الوزارية لتحديد السجل والبيانات ومدة الاحتفاظ.",
+      "question": "من يجوز له تقديم التدريب المتخصص في السلامة والصحة المهنية؟",
+      "provisional_answer_ar": "تتولى الوزارة المختصة والمركز القومي لدراسات السلامة والصحة المهنية والجهات المرخص لها التدريب الأساسي والمتقدم والنوعي والتخصصي للأخصائيين والفنيين وأعضاء اللجان. ويحدد قرار الوزير الترخيص وشروطه ومدته ورسومه التي لا تتجاوز 50 ألف جنيه وحالات الإعفاء.",
       "pinpoint": {
         "article": "المادة 261",
         "official_gazette_printed_page": 88,
@@ -248,20 +248,20 @@
       ],
       "limitations": [
         "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
-        "المواد 258–265 و270–274 بطاقات pinpoint فقط ولا تحتوي نصاً موضوعياً موثقاً بالكامل",
         "القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة",
         "لا توجد مراجعة محامٍ مصري مسجلة",
-        "حقوق إعادة الاستخدام التجاري غير محسومة"
+        "حقوق إعادة الاستخدام التجاري غير محسومة",
+        "النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية"
       ],
-      "review_state": "pinpoint_only_text_review_required",
+      "review_state": "provisional_secondary_crosscheck",
       "search_eligible": false,
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "authoritative advice or final compliance decision until full official text and applicable decisions are verified"
+      "not_usable_for": "authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified"
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-262-OSH-PROTECTIVE-MEASURES-IMPLEMENTATION",
-      "question": "ما الالتزامات الوقائية المرتبطة بالمادة 262؟",
-      "provisional_answer_ar": "تذكر المادة 296 المادة 262 ضمن المواد المعاقب على مخالفتها، لكن قائمة العقوبات لا تكشف مضمون الالتزام. يلزم مطابقة المادة 262 والقرارات المنفذة.",
+      "question": "هل يلزم ترخيص لممارسة الاستشارات في السلامة والصحة المهنية؟",
+      "provisional_answer_ar": "تشترط المادة 262 الحصول على ترخيص من الوزارة المختصة لمزاولة الخبرة والاستشارات في السلامة والصحة المهنية. ويحدد قرار الوزير شروط الترخيص وإجراءاته ومدته والقيد بالسجل والرسوم التي لا تتجاوز 50 ألف جنيه وحالات الإعفاء.",
       "pinpoint": {
         "article": "المادة 262",
         "official_gazette_printed_page": 88,
@@ -290,20 +290,20 @@
       ],
       "limitations": [
         "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
-        "المواد 258–265 و270–274 بطاقات pinpoint فقط ولا تحتوي نصاً موضوعياً موثقاً بالكامل",
         "القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة",
         "لا توجد مراجعة محامٍ مصري مسجلة",
-        "حقوق إعادة الاستخدام التجاري غير محسومة"
+        "حقوق إعادة الاستخدام التجاري غير محسومة",
+        "النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية"
       ],
-      "review_state": "pinpoint_only_text_review_required",
+      "review_state": "provisional_secondary_crosscheck",
       "search_eligible": false,
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "authoritative advice or final compliance decision until full official text and applicable decisions are verified"
+      "not_usable_for": "authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified"
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-263-OSH-TRAINING-AND-AWARENESS",
-      "question": "ما متطلبات تدريب العاملين وتوعيتهم بمخاطر العمل؟",
-      "provisional_answer_ar": "المادة 267 تنص صراحة على تدريب العامل وإحاطته بالمخاطر وتوفير معدات الوقاية دون تحميله تكلفتها. لا تنسب هذا النص للمادة 263؛ يلزم مطابقة نص المادة 263 منفردة.",
+      "question": "ما اختصاص المركز القومي لدراسات السلامة والصحة المهنية؟",
+      "provisional_answer_ar": "يعد المركز القومي، بالاشتراك مع الوزارة المختصة، الخطط المركزية للبحوث والدراسات في السلامة والصحة المهنية بناءً على التحليل الإحصائي لإصابات العمل، ويتابع تنفيذها بالتنسيق مع الأجهزة المعنية وفق قواعد يحددها قرار الوزير.",
       "pinpoint": {
         "article": "المادة 263",
         "official_gazette_printed_page": 88,
@@ -332,20 +332,20 @@
       ],
       "limitations": [
         "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
-        "المواد 258–265 و270–274 بطاقات pinpoint فقط ولا تحتوي نصاً موضوعياً موثقاً بالكامل",
         "القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة",
         "لا توجد مراجعة محامٍ مصري مسجلة",
-        "حقوق إعادة الاستخدام التجاري غير محسومة"
+        "حقوق إعادة الاستخدام التجاري غير محسومة",
+        "النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية"
       ],
-      "review_state": "pinpoint_only_text_review_required",
+      "review_state": "provisional_secondary_crosscheck",
       "search_eligible": false,
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "authoritative advice or final compliance decision until full official text and applicable decisions are verified"
+      "not_usable_for": "authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified"
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-264-OSH-WORKPLACE-SAFETY-OBLIGATIONS",
-      "question": "ما الالتزامات العامة للمنشأة في السلامة المهنية؟",
-      "provisional_answer_ar": "نص المادة 264 لم يُطابق كاملاً في هذه المرحلة. لا تستنتج محتواها من عنوان الباب أو المواد المجاورة؛ يلزم الرجوع إلى النص الكامل.",
+      "question": "ما المجلس الأعلى للسلامة والصحة المهنية وما اختصاصه؟",
+      "provisional_answer_ar": "تنشئ المادة 264 المجلس الأعلى للسلامة والصحة المهنية برئاسة الوزير المختص، وعضوية ممثلين عن الجهات المعنية وممثلين متساوين لمنظمات أصحاب الأعمال والمنظمات النقابية الأكثر تمثيلاً وخبراء. ويتولى رسم السياسة العامة واقتراح تنفيذها؛ ويصدر رئيس مجلس الوزراء قرار تشكيله واختصاصاته ونظام عمله.",
       "pinpoint": {
         "article": "المادة 264",
         "official_gazette_printed_page": 88,
@@ -374,20 +374,20 @@
       ],
       "limitations": [
         "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
-        "المواد 258–265 و270–274 بطاقات pinpoint فقط ولا تحتوي نصاً موضوعياً موثقاً بالكامل",
         "القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة",
         "لا توجد مراجعة محامٍ مصري مسجلة",
-        "حقوق إعادة الاستخدام التجاري غير محسومة"
+        "حقوق إعادة الاستخدام التجاري غير محسومة",
+        "النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية"
       ],
-      "review_state": "pinpoint_only_text_review_required",
+      "review_state": "provisional_secondary_crosscheck",
       "search_eligible": false,
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "authoritative advice or final compliance decision until full official text and applicable decisions are verified"
+      "not_usable_for": "authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified"
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-265-OSH-WORKER-HEALTH-PROTECTION",
-      "question": "ما واجبات حماية صحة العامل في هذا الجزء من القانون؟",
-      "provisional_answer_ar": "نص المادة 265 والقرارات المرتبطة بها لم تُطابق كاملاً. لا تنسب التزاماً طبياً أو صحياً محدداً قبل فحص النص الرسمي.",
+      "question": "كيف تُشكل اللجان الفرعية للمجلس الأعلى بالمحافظات؟",
+      "provisional_answer_ar": "توجب المادة 265 تشكيل لجنة فرعية في كل محافظة برئاسة المحافظ، تضم الجهات المعنية وممثلي النقابات وأصحاب الأعمال بالتساوي وخبراء. ويصدر الوزير المختص قرار تشكيلها واختصاصاتها ونظام عملها.",
       "pinpoint": {
         "article": "المادة 265",
         "official_gazette_printed_page": 88,
@@ -416,15 +416,15 @@
       ],
       "limitations": [
         "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
-        "المواد 258–265 و270–274 بطاقات pinpoint فقط ولا تحتوي نصاً موضوعياً موثقاً بالكامل",
         "القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة",
         "لا توجد مراجعة محامٍ مصري مسجلة",
-        "حقوق إعادة الاستخدام التجاري غير محسومة"
+        "حقوق إعادة الاستخدام التجاري غير محسومة",
+        "النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية"
       ],
-      "review_state": "pinpoint_only_text_review_required",
+      "review_state": "provisional_secondary_crosscheck",
       "search_eligible": false,
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "authoritative advice or final compliance decision until full official text and applicable decisions are verified"
+      "not_usable_for": "authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified"
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-266-PRE-EMPLOYMENT-MEDICAL-AND-CAPABILITY-EXAMS",
@@ -596,8 +596,8 @@
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-270-SOCIAL-HEALTH-CARE-OBLIGATIONS",
-      "question": "ما الالتزامات الاجتماعية أو الصحية الإضافية على المنشأة؟",
-      "provisional_answer_ar": "لا يُستنتج مضمون المادة 270 من الإحالة العقابية. يلزم مطابقة النص الكامل والقرارات الوزارية قبل تحديد التزام على المنشأة.",
+      "question": "ما واجب المنشأة في الإسعاف والعلاج الأولي؟",
+      "provisional_answer_ar": "تلزم المادة 270 المنشأة بتوفير وسائل الإسعاف الأولية. وإذا تجاوز عدد العمال في المكان الواحد أو البلد الواحد أو ضمن دائرة نصف قطرها 15 كم خمسين عاملاً، وجب توفير ممرض مؤهل أو أكثر بكل وردية وطبيب لعيادتهم ومكان مناسب وأدوية العلاج مجاناً. وتتحمل المنشأة نفقات العلاج والإقامة والأدوية عند العلاج بالمستشفى الحكومي أو الخيري وفق القرار المختص.",
       "pinpoint": {
         "article": "المادة 270",
         "official_gazette_printed_page": 90,
@@ -626,20 +626,20 @@
       ],
       "limitations": [
         "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
-        "المواد 258–265 و270–274 بطاقات pinpoint فقط ولا تحتوي نصاً موضوعياً موثقاً بالكامل",
         "القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة",
         "لا توجد مراجعة محامٍ مصري مسجلة",
-        "حقوق إعادة الاستخدام التجاري غير محسومة"
+        "حقوق إعادة الاستخدام التجاري غير محسومة",
+        "النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية"
       ],
-      "review_state": "pinpoint_only_text_review_required",
+      "review_state": "provisional_secondary_crosscheck",
       "search_eligible": false,
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "authoritative advice or final compliance decision until full official text and applicable decisions are verified"
+      "not_usable_for": "authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified"
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-271-WORKPLACE-MEALS-AND-NUTRITION",
-      "question": "ما القواعد المتعلقة بوجبات العاملين؟",
-      "provisional_answer_ar": "مصدر ثانوي يشير إلى اختصاص مكاتب السلامة والصحة المهنية باعتماد نظام الوجبات المتفق عليه بموجب القرار 260/2025. يلزم مراجعة نص المادة والقرار الرسمي وأي اتفاق نافذ.",
+      "question": "ما التزامات النقل والسكن والتغذية للعمال في المناطق البعيدة؟",
+      "provisional_answer_ar": "تلزم المادة 271 من يستخدم عمالاً في أماكن لا تصل إليها وسائل المواصلات العادية بتوفير انتقال مناسب على نفقته، ومن يستخدمهم في مناطق بعيدة عن العمران بتوفير تغذية مناسبة ومساكن ملائمة مع تخصيص بعضها للمتزوجين. تحدد القرارات المناطق والمواصفات وأصناف الطعام والكميات والمقابل؛ ولا يجوز استبدال الوجبات المستحقة بمقابل نقدي.",
       "pinpoint": {
         "article": "المادة 271",
         "official_gazette_printed_page": 90,
@@ -668,20 +668,20 @@
       ],
       "limitations": [
         "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
-        "المواد 258–265 و270–274 بطاقات pinpoint فقط ولا تحتوي نصاً موضوعياً موثقاً بالكامل",
         "القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة",
         "لا توجد مراجعة محامٍ مصري مسجلة",
-        "حقوق إعادة الاستخدام التجاري غير محسومة"
+        "حقوق إعادة الاستخدام التجاري غير محسومة",
+        "النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية"
       ],
-      "review_state": "pinpoint_only_text_review_required",
+      "review_state": "provisional_secondary_crosscheck",
       "search_eligible": false,
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "authoritative advice or final compliance decision until full official text and applicable decisions are verified"
+      "not_usable_for": "authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified"
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-272-WORKPLACE-SOCIAL-SERVICE-FACILITIES",
-      "question": "ما المرافق أو الخدمات الاجتماعية التي يجب توفيرها؟",
-      "provisional_answer_ar": "محتوى المادة 272 يجب أخذه من نصها الكامل والقرارات المنفذة، لا من قائمة العقوبات التي تحيل إليها. نطاق التطبيق والاستثناءات لم يتحققا بعد.",
+      "question": "متى يجب على المنشأة تقديم خدمات اجتماعية وثقافية؟",
+      "provisional_answer_ar": "تلتزم المنشأة التي يبلغ عدد عمالها 50 فأكثر بتقديم الخدمات الاجتماعية والثقافية اللازمة بالاشتراك مع المنظمة النقابية، دون تحميل العامل التزامات. ويحدد الوزير بالتشاور مع منظمات أصحاب الأعمال والعمال الحد الأدنى لهذه الخدمات.",
       "pinpoint": {
         "article": "المادة 272",
         "official_gazette_printed_page": 90,
@@ -710,20 +710,20 @@
       ],
       "limitations": [
         "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
-        "المواد 258–265 و270–274 بطاقات pinpoint فقط ولا تحتوي نصاً موضوعياً موثقاً بالكامل",
         "القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة",
         "لا توجد مراجعة محامٍ مصري مسجلة",
-        "حقوق إعادة الاستخدام التجاري غير محسومة"
+        "حقوق إعادة الاستخدام التجاري غير محسومة",
+        "النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية"
       ],
-      "review_state": "pinpoint_only_text_review_required",
+      "review_state": "provisional_secondary_crosscheck",
       "search_eligible": false,
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "authoritative advice or final compliance decision until full official text and applicable decisions are verified"
+      "not_usable_for": "authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified"
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-273-SOCIAL-HEALTH-IMPLEMENTING-DECISIONS",
-      "question": "كيف تُحدد التفاصيل التنفيذية للخدمات الصحية والاجتماعية؟",
-      "provisional_answer_ar": "القرارات التنفيذية ذات الصلة، ومنها القرار الخاص بالفحوص واللياقة المشار إليه في المادة 266، يجب فحصها منفردة. نص المادة 273 لم يُطابق كاملاً في هذه المرحلة.",
+      "question": "ما غرض صندوق الخدمات الاجتماعية والصحية والثقافية؟",
+      "provisional_answer_ar": "يتمتع الصندوق بالشخصية الاعتبارية ويهدف إلى النهوض بالمستوى الاجتماعي والصحي والثقافي للعاملين في منشآت القطاع العام وقطاع الأعمال العام والقطاع الخاص. وينظم قرار رئيس مجلس الوزراء تشكيل مجلس إدارته واختصاصاته ونظامه الأساسي وموارده وموازنته ورقابته. وتشير المادة إلى اشتراكات سنوية للمنشآت التي يبلغ عدد عمالها 20 فأكثر؛ يجب التحقق من النص الكامل والقرارات الحالية قبل حساب المستحقات.",
       "pinpoint": {
         "article": "المادة 273",
         "official_gazette_printed_page": 90,
@@ -752,20 +752,20 @@
       ],
       "limitations": [
         "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
-        "المواد 258–265 و270–274 بطاقات pinpoint فقط ولا تحتوي نصاً موضوعياً موثقاً بالكامل",
         "القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة",
         "لا توجد مراجعة محامٍ مصري مسجلة",
-        "حقوق إعادة الاستخدام التجاري غير محسومة"
+        "حقوق إعادة الاستخدام التجاري غير محسومة",
+        "النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية"
       ],
-      "review_state": "pinpoint_only_text_review_required",
+      "review_state": "provisional_secondary_crosscheck",
       "search_eligible": false,
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "authoritative advice or final compliance decision until full official text and applicable decisions are verified"
+      "not_usable_for": "authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified"
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-274-SOCIAL-HEALTH-CHAPTER-BOUNDARY",
-      "question": "ما مضمون المادة 274 قبل بدء كتاب تفتيش العمل؟",
-      "provisional_answer_ar": "المادة 274 تسبق الكتاب الخامس الخاص بتفتيش العمل والعقوبات، لكن نصها الموضوعي لم يُطابق كاملاً. لا تستخدم المعلومة البنيوية لإثبات التزام قانوني.",
+      "question": "ما الميزة أو الإعفاء المتعلق بالخدمات التي تقدمها المنشأة؟",
+      "provisional_answer_ar": "تحتاج المادة 274 إلى مراجعة النص الكامل؛ المادة 273 تشير إلى إمكان خصم قيمة الخدمات المقدمة أو 70% من المبلغ السنوي المستحق للصندوق، أيهما أقل، عند تقديم خدمات المادة 274 أو ميزة أفضل. لا تحسب الخصم دون مطابقة نص المادة 274 والقرارات الحالية.",
       "pinpoint": {
         "article": "المادة 274",
         "official_gazette_printed_page": 90,
@@ -794,15 +794,15 @@
       ],
       "limitations": [
         "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
-        "المواد 258–265 و270–274 بطاقات pinpoint فقط ولا تحتوي نصاً موضوعياً موثقاً بالكامل",
         "القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة",
         "لا توجد مراجعة محامٍ مصري مسجلة",
-        "حقوق إعادة الاستخدام التجاري غير محسومة"
+        "حقوق إعادة الاستخدام التجاري غير محسومة",
+        "النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية"
       ],
-      "review_state": "pinpoint_only_text_review_required",
+      "review_state": "provisional_secondary_crosscheck",
       "search_eligible": false,
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "authoritative advice or final compliance decision until full official text and applicable decisions are verified"
+      "not_usable_for": "authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified"
     }
   ]
 }
