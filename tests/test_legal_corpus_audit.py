@@ -134,6 +134,39 @@ class CorpusAuditTests(unittest.TestCase):
             self.assertIn("versions_repeal_before_effective_date", codes)
             self.assertIn("commercial_reuse_permissions", report)
 
+    def test_verification_flags_require_matching_passing_review_events(self):
+        with tempfile.TemporaryDirectory() as td:
+            db_path = Path(td) / "verification-events.db"
+            db = sqlite3.connect(db_path)
+            db.executescript("""
+            CREATE TABLE legal_document_versions(
+              version_id INTEGER PRIMARY KEY, source_url TEXT, original_path TEXT, original_sha256 TEXT,
+              publication_date TEXT, effective_date TEXT, repeal_date TEXT, legal_status TEXT,
+              review_status TEXT, authenticity_verified INT, status_verified INT, amendment_history_verified INT
+            );
+            CREATE TABLE legal_review_events(
+              review_event_id INTEGER PRIMARY KEY, version_id INT, review_type TEXT, outcome TEXT, evidence_url TEXT
+            );
+            INSERT INTO legal_document_versions VALUES
+              (1,'https://example.gov/a',NULL,NULL,'2020-01-01','2020-01-01',NULL,'in_force','verified',1,1,0),
+              (2,'https://example.gov/b',NULL,NULL,'2021-01-01','2021-01-01',NULL,'in_force','verified',1,1,0);
+            INSERT INTO legal_review_events VALUES
+              (1,2,'source_authenticity','pass','https://example.gov/evidence/authenticity'),
+              (2,2,'legal_status','pass','https://example.gov/evidence/status'),
+              (3,2,'lawyer_approval','pass','https://example.gov/evidence/lawyer-review');
+            """)
+            db.commit()
+            db.close()
+
+            report = MODULE.audit(db_path)
+            codes = {issue["code"] for issue in report["issues"]}
+            self.assertIn("versions_authenticity_flag_without_evidence", codes)
+            self.assertIn("versions_status_flag_without_evidence", codes)
+            self.assertIn("versions_verified_status_without_lawyer_approval_event", codes)
+            self.assertEqual(report["version_quality"]["authenticity_flag_without_evidence"], 1)
+            self.assertEqual(report["version_quality"]["status_flag_without_evidence"], 1)
+            self.assertEqual(report["version_quality"]["verified_status_without_lawyer_approval_event"], 1)
+
     def test_amendment_history_flags_require_review_evidence_and_relations_are_audited(self):
         with tempfile.TemporaryDirectory() as td:
             db_path = Path(td) / "versions.db"
