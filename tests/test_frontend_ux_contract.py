@@ -33,6 +33,14 @@ class FrontendUXContractTests(unittest.TestCase):
             self.assertIn("PAGE==='" + page + "'", switch)
         self.assertIn("if(!ME.id){login(AUTH_MODE)", switch)
 
+    def test_new_case_and_client_views_follow_selected_language(self):
+        self.assertIn("uiText('عنوان القضية','Case title')", HTML)
+        self.assertIn("uiText('حفظ القضية','Save case')", HTML)
+        self.assertIn("uiText('العملاء','Clients')", HTML)
+        self.assertIn("uiText('فحص أولي لتعارض المصالح','Preliminary conflict check')", HTML)
+        self.assertIn("uiText('أدخل حرفين على الأقل','Enter at least two characters')", HTML)
+        self.assertIn("uiText('بدون مرحلة','No stage')", HTML)
+
     def test_modal_escape_and_reduced_motion_support(self):
         self.assertIn("document.addEventListener('keydown'", HTML)
         self.assertIn("e.key==='Escape'", HTML)
