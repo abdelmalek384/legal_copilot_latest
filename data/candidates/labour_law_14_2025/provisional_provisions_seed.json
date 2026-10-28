@@ -1332,6 +1332,72 @@
         "printed_page": null,
         "pdf_page_index_zero_based": null
       }
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-168",
+      "provision_ref": "القانون المرافق، المادة 168",
+      "topic": "employee_termination_for_employer_breach_or_assault",
+      "summary_ar": "تجيز المادة للعامل إنهاء العقد إذا أخل صاحب العمل بالتزام جوهري ناشئ عن القانون أو عقد العمل أو لائحة المنشأة، أو وقع اعتداء على العامل أو أحد ذويه من صاحب العمل أو ممثله. ويُعامل الإنهاء في هذه الحالات باعتباره إنهاءً من جانب صاحب العمل بغير مبرر مشروع. يجب توثيق الإخلال أو الاعتداء وفحص الحقوق والتعويضات المرتبطة.",
+      "source_refs": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "retrieved_on": "2026-10-28",
+          "basis": "Official General Authority for Amiri Press electronic text page; Article 168 text observed in indexed official-source result. No Gazette-scan page-level comparison claimed."
+        }
+      ],
+      "confidence": "provisional_official_text_observed",
+      "human_review": "pending",
+      "page_pinpoint": {
+        "source_type": "official_text_page",
+        "source_url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+        "pinpoint": "مادة (168)",
+        "printed_page": null,
+        "pdf_page_index_zero_based": null
+      }
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-169",
+      "provision_ref": "القانون المرافق، المادة 169",
+      "topic": "termination_on_death_and_funeral_payment",
+      "summary_ar": "تنظم المادة أثر وفاة العامل أو صاحب العمل على انتهاء العقد؛ فلا ينتهي عقد صاحب العمل بوفاته إلا إذا ارتبط العقد بشخصه أو بنشاط ينقطع بوفاته. وإذا توفي العامل وهو في الخدمة، يستحق أهله مبلغًا يعادل أجر شهرين وفق آخر أجر لمواجهة نفقات الجنازة، بحد أدنى ألف جنيه، مع ترتيب المستحق وفق النص. يجب التحقق من شروط الاستحقاق والأحكام التأمينية ذات الصلة.",
+      "source_refs": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "retrieved_on": "2026-10-28",
+          "basis": "Official General Authority for Amiri Press electronic text page; Article 169 text observed in indexed official-source result. No Gazette-scan page-level comparison claimed."
+        }
+      ],
+      "confidence": "provisional_official_text_observed",
+      "human_review": "pending",
+      "page_pinpoint": {
+        "source_type": "official_text_page",
+        "source_url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+        "pinpoint": "مادة (169)",
+        "printed_page": null,
+        "pdf_page_index_zero_based": null
+      }
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-174",
+      "provision_ref": "القانون المرافق، المادة 174",
+      "topic": "termination_after_final_criminal_judgment",
+      "summary_ar": "تجيز المادة لصاحب العمل إنهاء عقد العمل، ولو كان محدد المدة أو مبرمًا لإنجاز عمل معين، إذا صدر حكم نهائي على العامل بعقوبة جناية أو بعقوبة مقيدة للحرية في جريمة ماسة بالشرف أو الأمانة، ما لم تأمر المحكمة بوقف تنفيذ العقوبة. يلزم التحقق من نهائية الحكم وطبيعة الجريمة والعقوبة وما إذا كان التنفيذ موقوفًا.",
+      "source_refs": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "retrieved_on": "2026-10-28",
+          "basis": "Official General Authority for Amiri Press electronic text page; Article 174 text observed in indexed official-source result. No Gazette-scan page-level comparison claimed."
+        }
+      ],
+      "confidence": "provisional_official_text_observed",
+      "human_review": "pending",
+      "page_pinpoint": {
+        "source_type": "official_text_page",
+        "source_url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+        "pinpoint": "مادة (174)",
+        "printed_page": null,
+        "pdf_page_index_zero_based": null
+      }
     }
   ]
 }
