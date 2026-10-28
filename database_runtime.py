@@ -401,13 +401,27 @@ class DatabaseRuntime:
                 "SELECT status FROM firms WHERE id=?", (firm_id,)
             ).fetchone()
             catalog_state = control.execute(
-                "SELECT status FROM tenant_database_catalog WHERE firm_id=?", (firm_id,)
+                "SELECT status,database_file FROM tenant_database_catalog WHERE firm_id=?", (firm_id,)
             ).fetchone()
             if firm is None or firm["status"] != "disabled":
                 raise DatabaseRuntimeError("Only a disabled firm can enter provisioning recovery")
-            if catalog_state is None or catalog_state["status"] != "failed":
+            if (
+                catalog_state is None
+                or catalog_state["status"] != "failed"
+                or catalog_state["database_file"] is not None
+            ):
                 raise DatabaseRuntimeError(
-                    "Firm does not have a failed provisioning catalog entry; refusing implicit recovery"
+                    "Firm does not have a clean failed provisioning catalog entry; refusing implicit recovery"
+                )
+            existing_memberships = control.execute(
+                "SELECT COUNT(*) FROM firm_memberships WHERE firm_id=?", (firm_id,)
+            ).fetchone()[0]
+            existing_invitations = control.execute(
+                "SELECT COUNT(*) FROM identity_invitations WHERE firm_id=?", (firm_id,)
+            ).fetchone()[0]
+            if existing_memberships or existing_invitations:
+                raise DatabaseRuntimeError(
+                    "Failed provisioning recovery requires no existing memberships or invitations"
                 )
             changed = control.execute(
                 "UPDATE firms SET status='provisioning' WHERE id=? AND status='disabled'",
