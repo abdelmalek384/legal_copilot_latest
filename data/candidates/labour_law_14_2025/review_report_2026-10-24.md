@@ -83,3 +83,6 @@ Further targeted extracted-text review on 2026-10-28 covered printed pages 68–
 
 
 Further targeted extracted-text review on 2026-10-28 covered printed pages 61–62 (Article 141) and 63–64 (Article 148). These additions document disciplinary procedure and dismissal conditions while preserving pending legal-status, amendment-history, permission and lawyer-review flags.
+
+
+Further targeted extracted-text review on 2026-10-28 covered printed pages 52–53 for Article 120 (weekly rest). This extends the provisional knowledge seed without changing pending legal-status, amendment-history, permission or lawyer-review flags.
