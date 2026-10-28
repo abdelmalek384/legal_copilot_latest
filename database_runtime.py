@@ -364,9 +364,19 @@ class DatabaseRuntime:
             # initializer rejected its database. Only a still-provisioning or
             # already-provisioned mapping is disabled here; overwriting failed
             # would erase the operator's recovery signal.
+            # Preserve a clean failed state after schema initialization fails so a
+            # later operator-approved retry remains possible. A provisioned database
+            # whose final audit/activation transaction failed is different: retain its
+            # trusted filename for maintenance, but disable request-time routing.
+            control.execute(
+                "UPDATE tenant_database_catalog SET status='failed',database_file=NULL,"
+                "updated_at=datetime('now'),last_error_code=COALESCE(last_error_code,"
+                "'provisioning_recovery_failed') WHERE firm_id=? AND status='provisioning'",
+                (firm_id,),
+            )
             control.execute(
                 "UPDATE tenant_database_catalog SET status='disabled',updated_at=datetime('now') "
-                "WHERE firm_id=? AND status IN ('provisioning','provisioned')",
+                "WHERE firm_id=? AND status='provisioned'",
                 (firm_id,),
             )
             control.commit()
