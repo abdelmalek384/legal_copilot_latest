@@ -119,18 +119,18 @@ def _sql_text(
         return "{unresolved:" + name + "}", False, False
     if isinstance(node, ast.BinOp) and isinstance(node.op, ast.Add):
         left, left_dynamic, left_resolved = _sql_text(
-            node.left, assignments=assignments, globals_=globals_, seen=seen
+            node.left, assignments=assignments, globals_=globals_, seen=seen, mutated_names=mutated_names
         )
         right, right_dynamic, right_resolved = _sql_text(
-            node.right, assignments=assignments, globals_=globals_, seen=seen
+            node.right, assignments=assignments, globals_=globals_, seen=seen, mutated_names=mutated_names
         )
         return left + right, left_dynamic or right_dynamic, left_resolved and right_resolved
     if isinstance(node, ast.BinOp) and isinstance(node.op, ast.Mod):
         left, left_dynamic, left_resolved = _sql_text(
-            node.left, assignments=assignments, globals_=globals_, seen=seen
+            node.left, assignments=assignments, globals_=globals_, seen=seen, mutated_names=mutated_names
         )
         right, _, right_resolved = _sql_text(
-            node.right, assignments=assignments, globals_=globals_, seen=seen
+            node.right, assignments=assignments, globals_=globals_, seen=seen, mutated_names=mutated_names
         )
         if isinstance(node.left, ast.Constant) and isinstance(node.left.value, str):
             template = re.sub(r"%[sdif]", "{dynamic}", left)
@@ -138,10 +138,10 @@ def _sql_text(
         return left + " {dynamic} " + right, True, left_resolved and right_resolved
     if isinstance(node, ast.IfExp):
         body, body_dynamic, body_resolved = _sql_text(
-            node.body, assignments=assignments, globals_=globals_, seen=seen
+            node.body, assignments=assignments, globals_=globals_, seen=seen, mutated_names=mutated_names
         )
         other, other_dynamic, other_resolved = _sql_text(
-            node.orelse, assignments=assignments, globals_=globals_, seen=seen
+            node.orelse, assignments=assignments, globals_=globals_, seen=seen, mutated_names=mutated_names
         )
         if body_resolved and other_resolved:
             return body + "{choice}" + other, body_dynamic or other_dynamic, True
