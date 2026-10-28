@@ -17,6 +17,21 @@ from database_runtime import DatabaseRuntime, DatabaseRuntimeError
 from database_backup import DatabaseBundleError, create_backup_bundle, restore_backup_bundle, verify_backup_bundle
 
 
+def _require_profile_separated_runtime(operation: str) -> None:
+    """Forbid CLI writes through the shared compatibility database."""
+    required = ("COPILOT_CONTROL_DB", "COPILOT_TENANT_DB_ROOT", "COPILOT_CORPUS_DB")
+    missing = [name for name in required if not os.environ.get(name, "").strip()]
+    if os.environ.get("COPILOT_DB", "").strip() or missing:
+        details = []
+        if os.environ.get("COPILOT_DB", "").strip():
+            details.append("COPILOT_DB must be unset")
+        if missing:
+            details.append("missing " + ", ".join(missing))
+        raise SystemExit(
+            f"{operation} requires the profile-separated database runtime: " + "; ".join(details)
+        )
+
+
 def _backup_fernet():
     key = os.environ.get("BACKUP_KEY")
     if not key:
@@ -53,55 +68,50 @@ def read_password(prompt):
 
 
 def adduser(a):
+    _require_profile_separated_runtime("adduser")
+    if not a.firm_id:
+        raise SystemExit("Separate-database mode requires --firm-id; firm roles do not grant platform roles.")
     pw = read_password("كلمة المرور (12 حرفا على الأقل): ")
-    if app._separate_runtime_enabled():
-        if not a.firm_id:
-            raise SystemExit("Separate-database mode requires --firm-id; firm roles do not grant platform roles.")
-        runtime = DatabaseRuntime.from_env()
+    runtime = DatabaseRuntime.from_env()
+    try:
         runtime.initialize()
         c = runtime.control_connection()
-        try:
-            c.execute("BEGIN IMMEDIATE")
-            firm = c.execute(
-                "SELECT status FROM firms WHERE id=?", (a.firm_id,)
-            ).fetchone()
-            if firm is None or firm["status"] != "active":
-                c.rollback()
-                raise SystemExit("Cannot create a user membership for a missing or inactive firm.")
-            cur = c.execute(
-                "INSERT INTO users(name,email_display,email_normalized,password_hash,status) "
-                "VALUES(?,?,?,?,'active')",
-                (a.name.strip(), a.email.strip(), app.normalize_email(a.email), app.hash_pw(pw)),
-            )
-            c.execute(
-                "INSERT INTO platform_security_events(actor_user_id,target_user_id,firm_id,event_type,detail_json) "
-                "VALUES(NULL,?,?,'identity_created_cli',?)",
-                (cur.lastrowid, a.firm_id, json.dumps({"method": "manage.py adduser"}, sort_keys=True)),
-            )
-            c.execute(
-                "INSERT INTO firm_memberships(user_id,firm_id,firm_role,status) VALUES(?,?,?,'active')",
-                (cur.lastrowid, a.firm_id, a.role),
-            )
-            c.execute(
-                "INSERT INTO platform_security_events(actor_user_id,target_user_id,firm_id,event_type,detail_json) "
-                "VALUES(NULL,?,?,'membership_created',?)",
-                (cur.lastrowid, a.firm_id, json.dumps({"firm_role": a.role, "method": "manage.py adduser"}, sort_keys=True)),
-            )
-            c.commit()
-        except Exception as e:
+        c.execute("BEGIN IMMEDIATE")
+        firm = c.execute("SELECT status FROM firms WHERE id=?", (a.firm_id,)).fetchone()
+        if firm is None or firm["status"] != "active":
             c.rollback()
-            raise SystemExit("تعذر إنشاء الحساب أو عضوية المكتب. تحقق من البريد ورقم المكتب. التفاصيل: " + str(e))
-        print("تم إنشاء الحساب وربطه بالمكتب المحدد. صلاحيات المنصة مستقلة عن دور المكتب.")
-        return
-    c = app.conn()
-    try:
-        c.execute("INSERT INTO users(name,email,pw,role) VALUES(?,?,?,?)",
-                  (a.name.strip(), a.email.strip().lower(), app.hash_pw(pw), a.role))
+            raise SystemExit("Cannot create a user membership for a missing or inactive firm.")
+        cur = c.execute(
+            "INSERT INTO users(name,email_display,email_normalized,password_hash,status) "
+            "VALUES(?,?,?,?,'active')",
+            (a.name.strip(), a.email.strip(), app.normalize_email(a.email), app.hash_pw(pw)),
+        )
+        c.execute(
+            "INSERT INTO platform_security_events(actor_user_id,target_user_id,firm_id,event_type,detail_json) "
+            "VALUES(NULL,?,?,'identity_created_cli',?)",
+            (cur.lastrowid, a.firm_id, json.dumps({"method": "manage.py adduser"}, sort_keys=True)),
+        )
+        c.execute(
+            "INSERT INTO firm_memberships(user_id,firm_id,firm_role,status) VALUES(?,?,?,'active')",
+            (cur.lastrowid, a.firm_id, a.role),
+        )
+        c.execute(
+            "INSERT INTO platform_security_events(actor_user_id,target_user_id,firm_id,event_type,detail_json) "
+            "VALUES(NULL,?,?,'membership_created',?)",
+            (cur.lastrowid, a.firm_id, json.dumps({"firm_role": a.role, "method": "manage.py adduser"}, sort_keys=True)),
+        )
         c.commit()
+        print("تم إنشاء الحساب وربطه بالمكتب المحدد. صلاحيات المنصة مستقلة عن دور المكتب.")
+    except SystemExit:
+        raise
     except Exception as e:
-        c.rollback()
-        raise SystemExit("تعذر إنشاء الحساب. تحقق من أن البريد الإلكتروني غير مستخدم بالفعل. التفاصيل: " + str(e))
-    print("تم إنشاء الحساب. افتح التطبيق وسجّل الدخول بالبريد وكلمة المرور.")
+        try:
+            runtime.control_connection().rollback()
+        except Exception:
+            pass
+        raise SystemExit("تعذر إنشاء الحساب أو عضوية المكتب. تحقق من البريد ورقم المكتب. التفاصيل: " + str(e))
+    finally:
+        runtime.close_current_thread()
 
 
 def init_tenancy(a):
@@ -316,66 +326,51 @@ def _is_privileged_identity(control, user_id: int) -> bool:
 
 
 def resetpw(a):
-    if app._separate_runtime_enabled():
-        runtime = DatabaseRuntime.from_env()
+    _require_profile_separated_runtime("resetpw")
+    runtime = DatabaseRuntime.from_env()
+    try:
+        runtime.initialize()
+        c = runtime.control_connection()
+        email = app.normalize_email(a.email)
+        account = c.execute(
+            "SELECT id,status FROM users WHERE email_normalized=?", (email,)
+        ).fetchone()
+        if not account:
+            raise SystemExit("لا يوجد حساب بهذا البريد الإلكتروني.")
+        if _is_privileged_identity(c, int(account["id"])):
+            raise SystemExit(
+                "Privileged identities require the MFA-authorized resetpw-assisted procedure."
+            )
+        pw = read_password("كلمة المرور الجديدة: ")
+        c.execute("BEGIN IMMEDIATE")
+        current = c.execute(
+            "SELECT id,status FROM users WHERE id=?", (account["id"],)
+        ).fetchone()
+        if current is None or current["status"] != "active" or _is_privileged_identity(c, int(account["id"])):
+            c.rollback()
+            raise SystemExit("Identity state changed; no password reset was performed.")
+        c.execute(
+            "UPDATE users SET password_hash=?,updated_at=datetime('now') WHERE id=? AND status='active'",
+            (app.hash_pw(pw), account["id"]),
+        )
+        revoked = c.execute("DELETE FROM auth_sessions WHERE user_id=?", (account["id"],)).rowcount
+        c.execute(
+            "INSERT INTO platform_security_events(actor_user_id,target_user_id,event_type,detail_json) "
+            "VALUES(NULL,?,'password_reset_cli',?)",
+            (account["id"], json.dumps({"method": "manage.py resetpw", "sessions_revoked": revoked}, sort_keys=True)),
+        )
+        c.commit()
+        print("تم تحديث كلمة المرور وإبطال جميع الجلسات؛ سجّل الدخول من جديد.")
+    except SystemExit:
+        raise
+    except Exception as exc:
         try:
-            runtime.initialize()
-            c = runtime.control_connection()
-            email = app.normalize_email(a.email)
-            account = c.execute(
-                "SELECT id,status FROM users WHERE email_normalized=?", (email,)
-            ).fetchone()
-            if not account:
-                raise SystemExit("لا يوجد حساب بهذا البريد الإلكتروني.")
-            if _is_privileged_identity(c, int(account["id"])):
-                raise SystemExit(
-                    "Privileged identities require the MFA-authorized resetpw-assisted procedure."
-                )
-            pw = read_password("كلمة المرور الجديدة: ")
-            c.execute("BEGIN IMMEDIATE")
-            current = c.execute(
-                "SELECT id,status FROM users WHERE id=?", (account["id"],)
-            ).fetchone()
-            if current is None or current["status"] != "active" or _is_privileged_identity(c, int(account["id"])):
-                c.rollback()
-                raise SystemExit("Identity state changed; no password reset was performed.")
-            c.execute(
-                "UPDATE users SET password_hash=?,updated_at=datetime('now') WHERE id=? AND status='active'",
-                (app.hash_pw(pw), account["id"]),
-            )
-            revoked = c.execute("DELETE FROM auth_sessions WHERE user_id=?", (account["id"],)).rowcount
-            c.execute(
-                "INSERT INTO platform_security_events(actor_user_id,target_user_id,event_type,detail_json) "
-                "VALUES(NULL,?,'password_reset_cli',?)",
-                (account["id"], json.dumps({"method": "manage.py resetpw", "sessions_revoked": revoked}, sort_keys=True)),
-            )
-            c.commit()
-            print("تم تحديث كلمة المرور وإبطال جميع الجلسات؛ سجّل الدخول من جديد.")
-            return
-        except SystemExit:
-            raise
-        except Exception as exc:
-            try:
-                runtime.control_connection().rollback()
-            except Exception:
-                pass
-            raise SystemExit("Password reset failed; no success is reported.") from exc
-        finally:
-            runtime.close_current_thread()
-    pw = read_password("كلمة المرور الجديدة: ")
-    c = app.conn()
-    email = a.email.strip().lower()
-    c.execute("BEGIN IMMEDIATE")
-    account = c.execute("SELECT id,firm_id FROM users WHERE email=?", (email,)).fetchone()
-    if not account:
-        c.rollback()
-        raise SystemExit("لا يوجد حساب بهذا البريد الإلكتروني.")
-    c.execute("UPDATE users SET pw=? WHERE id=?", (app.hash_pw(pw), account["id"]))
-    c.execute("DELETE FROM auth_sessions WHERE user_id=?", (account["id"],))
-    c.execute("INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
-              (account["firm_id"], account["id"], "password_reset_cli_sessions_revoked"))
-    c.commit()
-    print("تم تحديث كلمة المرور؛ سجّل الدخول من جديد.")
+            runtime.control_connection().rollback()
+        except Exception:
+            pass
+        raise SystemExit("Password reset failed; no success is reported.") from exc
+    finally:
+        runtime.close_current_thread()
 
 
 def resetpw_assisted_cli(a):
@@ -592,10 +587,11 @@ def backup(a):
 
 
 def importlaws(a):
+    _require_profile_separated_runtime("importlaws")
     with open(a.file, encoding="utf-8") as source:
         rows = [json.loads(line) for line in source if line.strip()]
-    if app._separate_runtime_enabled():
-        runtime = DatabaseRuntime.from_env()
+    runtime = DatabaseRuntime.from_env()
+    try:
         runtime.initialize()
         c = runtime.legal_corpus_connection()
         total = 0
@@ -608,8 +604,14 @@ def importlaws(a):
             total += len(batch)
         c.commit()
         print("staged for legal review:", total)
-        return
-    print("imported", sum(app.import_law(app.conn(), rows[i:i + 500]) for i in range(0, len(rows), 500)))
+    except Exception as exc:
+        try:
+            runtime.legal_corpus_connection().rollback()
+        except Exception:
+            pass
+        raise SystemExit("Legal import staging failed; no success is reported.") from exc
+    finally:
+        runtime.close_current_thread()
 
 
 def backup_tenancy(a):
