@@ -602,6 +602,56 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             (self.firm_a, self.user_id, f"original_document_download:{document_id}"),
         ).fetchone())
 
+        # A same-firm user without case membership must not read the original
+        # binary or inspect/change its hold/deletion lifecycle.
+        nonmember_id = self.runtime.create_global_identity(
+            "Original File Nonmember", "original-file-nonmember@example.test", app.hash_pw(self.password)
+        )
+        self.runtime.create_firm_membership(nonmember_id, self.firm_a, "lawyer")
+        nonmember_client = TestClient(app.app)
+        try:
+            nonmember_login = nonmember_client.post(
+                "/login",
+                json={"email": "original-file-nonmember@example.test", "password": self.password},
+            )
+            self.assertEqual(nonmember_login.status_code, 200, nonmember_login.text)
+            nonmember_csrf = nonmember_client.cookies.get("lc_csrf") or ""
+            original_base = f"/cases/{case_id}/docs/{document_id}/original"
+            denied_attempts = [
+                ("get", original_base, None),
+                ("post", original_base + "/legal-hold", {"reason": "unauthorized hold"}),
+                ("post", original_base + "/legal-hold/release", {"reason": "unauthorized release"}),
+                ("get", original_base + "/legal-hold/events", None),
+                ("post", original_base + "/deletion-requests", {"reason": "unauthorized deletion"}),
+                ("get", original_base + "/deletion-requests", None),
+                ("post", original_base + "/deletion-requests/1/approve", {"reason": "unauthorized approval"}),
+            ]
+            for method, url, payload in denied_attempts:
+                with self.subTest(method=method, url=url):
+                    kwargs = {}
+                    if payload is not None:
+                        kwargs["json"] = payload
+                    if method == "post":
+                        kwargs["headers"] = {"X-CSRF-Token": nonmember_csrf}
+                    response = getattr(nonmember_client, method)(url, **kwargs)
+                    self.assertEqual(response.status_code, 404, response.text)
+        finally:
+            nonmember_client.close()
+        firm_db.commit()
+        unchanged = firm_db.execute(
+            "SELECT legal_hold,state FROM original_file_objects WHERE document_id=? AND firm_id=?",
+            (document_id, self.firm_a),
+        ).fetchone()
+        self.assertEqual(unchanged["legal_hold"], 0)
+        self.assertEqual(unchanged["state"], "ready")
+        self.assertEqual(
+            firm_db.execute(
+                "SELECT COUNT(*) FROM original_file_deletion_requests WHERE document_id=? AND firm_id=?",
+                (document_id, self.firm_a),
+            ).fetchone()[0],
+            0,
+        )
+
         # A case member who is not a firm admin must not be able to change legal holds.
         member_id = self.runtime.create_global_identity(
             "Original File Junior", "original-file-junior@example.test", app.hash_pw(self.password)
