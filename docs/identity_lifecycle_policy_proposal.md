@@ -1,6 +1,6 @@
 # Invitation and account-recovery policy — proposal
 
-**Status:** Proposal only. No invitation-email or self-service account-recovery workflow is implemented by this document. Approve the policy and delivery provider before adding routes or token tables.
+**Status:** Recommended defaults were approved on 2026-10-27. A first implementation is under review in draft PR #690; it is not merged or release-ready. SMTP delivery remains deployment-configured, and the exact provider must be reviewed before production use.
 
 ## Identity model constraints
 
@@ -58,4 +58,4 @@ Before enabling invitations or self-service recovery:
 - Confirm tokens and personal data are absent from application logs and platform audit details.
 - Obtain independent security review of the chosen email/identity provider integration.
 
-This proposal does not implement invitation or recovery behavior and does not close the identity-lifecycle release blocker.
+Draft PR #690 implements migration-managed token ledgers, SMTP delivery, firm-admin invitations, token-bound acceptance, generic recovery requests, session-revoking password resets, and regression tests. Until the PR is merged with passing CI and the deployment email provider is reviewed, this document does not establish release readiness; initial platform-admin bootstrap and broader lifecycle acceptance remain separate blockers.
