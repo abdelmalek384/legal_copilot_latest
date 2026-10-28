@@ -157,15 +157,18 @@ class ProductionReleaseGateTests(unittest.TestCase):
             acceptance_path.write_text(
                 json.dumps(self._database_acceptance_manifest()), encoding="utf-8"
             )
+            release_env = {
+                **self.clean_env,
+                "COPILOT_DATABASE_ACCEPTANCE_FILE": str(acceptance_path),
+            }
             with patch.object(gate, "inspect_environment", return_value=(["environment okay"], [], [])), \
                  patch.object(gate, "build_legal_report", return_value=self._ready_report(candidate)), \
                  patch.object(gate, "read_jsonl", return_value=questions):
                 report = gate.evaluate_release(
-                    env=self.clean_env,
+                    env=release_env,
                     candidate_paths=[candidate],
                     benchmark_path=Path("approved-benchmark.jsonl"),
                     reviewer_registry=self._reviewer_registry(),
-                    database_acceptance_path=acceptance_path,
                 )
         self.assertTrue(report["ready"], report["blockers"])
         self.assertEqual(report["benchmark"]["approved_count"], gate.MIN_APPROVED_QUESTIONS)
