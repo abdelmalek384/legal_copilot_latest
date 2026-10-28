@@ -83,6 +83,22 @@ class ProductionDatabaseModeTests(unittest.TestCase):
                 "ADMIN_TOKEN": "A" * 48,
                 "BACKUP_KEY": Fernet.generate_key().decode("ascii"),
             })
+            # Production runtime is attach-only: provision empty synthetic profiles
+            # through the development bootstrap path before testing production startup.
+            bootstrap_env = dict(env)
+            bootstrap_env["COPILOT_ENV"] = "development"
+            bootstrap = subprocess.run(
+                [
+                    sys.executable, "-c",
+                    "from database_runtime import DatabaseRuntime; "
+                    "runtime = DatabaseRuntime.from_env(); runtime.initialize()",
+                ],
+                env=bootstrap_env, capture_output=True, text=True, timeout=60,
+            )
+            self.assertEqual(bootstrap.returncode, 0, bootstrap.stderr)
+            tenant_root = Path(env["COPILOT_TENANT_DB_ROOT"])
+            if os.name == "posix":
+                os.chmod(tenant_root, 0o700)
             result = subprocess.run(
                 [
                     sys.executable, "-c",

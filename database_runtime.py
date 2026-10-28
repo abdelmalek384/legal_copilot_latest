@@ -7,6 +7,7 @@ central corpus. Firm connections require a server-validated FirmContext.
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import re
@@ -14,9 +15,11 @@ import sqlite3
 import stat
 import threading
 import time
+from contextlib import closing
 from dataclasses import dataclass
 from pathlib import Path
 
+from db_migrations import MigrationError, _migration_files
 from schema_profiles import apply_profile_migrations
 from tenant_catalog import TenantCatalogError, initialize_catalog, provision_tenant_database
 from tenant_context import (
@@ -137,6 +140,100 @@ class DatabaseRuntime:
                         f"{profile} SQLite sidecar permissions allow group/other access"
                     )
 
+    def _validate_preprovisioned_profile(self, path: Path, profile: str) -> None:
+        """Require an exact, healthy migration state before production startup."""
+        directory = self.migrations_root / profile
+        if directory.is_symlink() or not directory.is_dir():
+            raise DatabaseRuntimeError(
+                f"Production {profile} migration directory is missing or unsafe"
+            )
+        try:
+            expected = {
+                version: (name, hashlib.sha256(sql.encode("utf-8")).hexdigest())
+                for version, name, _migration_path, sql in _migration_files(directory)
+            }
+        except (MigrationError, OSError) as exc:
+            raise DatabaseRuntimeError(
+                f"Production {profile} migration inventory is unsafe"
+            ) from exc
+        if not expected:
+            raise DatabaseRuntimeError(
+                f"Production {profile} migration inventory must not be empty"
+            )
+
+        connection = None
+        try:
+            uri = path.resolve().as_uri() + "?mode=ro"
+            connection = sqlite3.connect(uri, uri=True, timeout=self.timeout)
+            tables = {
+                row[0] for row in connection.execute(
+                    "SELECT name FROM sqlite_master WHERE type='table'"
+                )
+            }
+            if not {"database_profile", "schema_migrations"}.issubset(tables):
+                raise DatabaseRuntimeError(
+                    f"Production {profile} database is not pre-provisioned"
+                )
+            marker = connection.execute(
+                "SELECT profile FROM database_profile WHERE singleton=1"
+            ).fetchall()
+            if len(marker) != 1 or marker[0][0] != profile:
+                raise DatabaseRuntimeError(
+                    f"Production database is not bound to the {profile} profile"
+                )
+
+            triggers = {
+                row[0]: row[1] for row in connection.execute(
+                    "SELECT name,sql FROM sqlite_master WHERE type='trigger' "
+                    "AND name IN ('database_profile_no_update','database_profile_no_delete')"
+                )
+            }
+            for operation in ("update", "delete"):
+                sql = triggers.get(f"database_profile_no_{operation}")
+                normalized = " ".join(sql.lower().split()) if isinstance(sql, str) else ""
+                if (
+                    f"before {operation} on database_profile" not in normalized
+                    or "raise(abort" not in normalized
+                    or "database profile binding is immutable" not in normalized
+                ):
+                    raise DatabaseRuntimeError(
+                        f"Production {profile} database lacks immutable profile guards"
+                    )
+
+            recorded = {
+                int(row[0]): (str(row[1]), str(row[2]))
+                for row in connection.execute(
+                    "SELECT version,name,checksum_sha256 FROM schema_migrations"
+                )
+            }
+            if recorded != expected:
+                raise DatabaseRuntimeError(
+                    f"Production {profile} migration history is pending, missing, or drifted"
+                )
+            journal = connection.execute("PRAGMA journal_mode").fetchone()
+            if journal is None or str(journal[0]).lower() != "wal":
+                raise DatabaseRuntimeError(
+                    f"Production {profile} database must already use WAL mode"
+                )
+            integrity = connection.execute("PRAGMA quick_check").fetchall()
+            if len(integrity) != 1 or integrity[0][0] != "ok":
+                raise DatabaseRuntimeError(
+                    f"Production {profile} database failed SQLite quick_check"
+                )
+            if connection.execute("PRAGMA foreign_key_check").fetchall():
+                raise DatabaseRuntimeError(
+                    f"Production {profile} database has foreign-key violations"
+                )
+        except DatabaseRuntimeError:
+            raise
+        except (sqlite3.Error, OSError, ValueError) as exc:
+            raise DatabaseRuntimeError(
+                f"Production {profile} database could not be validated read-only"
+            ) from exc
+        finally:
+            if connection is not None:
+                connection.close()
+
     @staticmethod
     def _file_identity(path: Path) -> tuple[int, int]:
         """Return the device/inode identity of the database currently at a trusted path."""
@@ -184,9 +281,76 @@ class DatabaseRuntime:
         with self._initialize_lock:
             if self._initialized:
                 return
-            self.paths.tenant_root.mkdir(parents=True, exist_ok=True)
-            if self.paths.tenant_root.is_symlink():
-                raise DatabaseRuntimeError("Tenant storage root must not be a symlink")
+            production = os.environ.get("COPILOT_ENV", "").strip().lower() in {
+                "prod", "production"
+            }
+            if production:
+                # Production startup is not a provisioning command. Validate all
+                # persistent storage before touching either database so a missing
+                # corpus/control file cannot cause partial startup or silent recreation.
+                if self.paths.tenant_root.is_symlink() or not self.paths.tenant_root.is_dir():
+                    raise DatabaseRuntimeError(
+                        "Production tenant storage root must already exist and must not be a symlink"
+                    )
+                if os.name == "posix":
+                    try:
+                        root_mode = stat.S_IMODE(self.paths.tenant_root.stat().st_mode)
+                    except OSError as exc:
+                        raise DatabaseRuntimeError(
+                            "Production tenant storage root permissions cannot be verified"
+                        ) from exc
+                    if root_mode & 0o077:
+                        raise DatabaseRuntimeError(
+                            "Production tenant storage root permissions allow group/other access"
+                        )
+                self._validate_profile_storage(self.paths.control_plane, "control-plane")
+                self._validate_profile_storage(self.paths.legal_corpus, "legal-corpus")
+                self._validate_preprovisioned_profile(self.paths.control_plane, "control_plane")
+                self._validate_preprovisioned_profile(self.paths.legal_corpus, "legal_corpus")
+                # The app must not start with tenant databases that still need
+                # migrations or catalog lifecycle states that require recovery.
+                # Reject orphaned database files too; a tenant-root file not bound
+                # by the control-plane catalog must never be silently ignored.
+                try:
+                    control_uri = self.paths.control_plane.resolve().as_uri() + "?mode=ro"
+                    with closing(sqlite3.connect(control_uri, uri=True, timeout=self.timeout)) as control:
+                        referenced_files = {
+                            row[0] for row in control.execute(
+                                "SELECT database_file FROM tenant_database_catalog "
+                                "WHERE database_file IS NOT NULL"
+                            )
+                        }
+                except sqlite3.Error as exc:
+                    raise DatabaseRuntimeError(
+                        "Production tenant catalog could not be inspected read-only"
+                    ) from exc
+                actual_files = {
+                    entry.name for entry in self.paths.tenant_root.iterdir()
+                    if entry.name.startswith("tenant-") and entry.name.endswith(".sqlite3")
+                }
+                if actual_files != referenced_files:
+                    raise DatabaseRuntimeError(
+                        "Production tenant storage contains missing or unreferenced database files"
+                    )
+
+                from tools.migrate_tenant_fleet import FleetMigrationError, build_plan
+
+                try:
+                    fleet_plan = build_plan(
+                        self.paths.control_plane, self.paths.tenant_root, self.migrations_root
+                    )
+                except FleetMigrationError as exc:
+                    raise DatabaseRuntimeError(
+                        "Production tenant database fleet failed read-only preflight"
+                    ) from exc
+                if fleet_plan["pending_migration_count"] or fleet_plan["skipped"]:
+                    raise DatabaseRuntimeError(
+                        "Production tenant database fleet has pending migrations or unresolved lifecycle states"
+                    )
+            else:
+                self.paths.tenant_root.mkdir(parents=True, exist_ok=True)
+                if self.paths.tenant_root.is_symlink():
+                    raise DatabaseRuntimeError("Tenant storage root must not be a symlink")
 
             control = self._open_profile_database(self.paths.control_plane, "control_plane")
             try:
