@@ -143,11 +143,14 @@ class S3PrivateObjectStore:
         key = self._key(firm_id, object_id, "blob")
         try:
             response = self.client.get_object(Bucket=self.bucket, Key=key)
+            body = response.get("Body")
             if (response.get("ServerSideEncryption") != "aws:kms"
                     or not isinstance(response.get("SSEKMSKeyId"), str)
                     or not response["SSEKMSKeyId"].strip()):
+                close = getattr(body, "close", None)
+                if callable(close):
+                    close()
                 raise ObjectStorageError("stored object is not protected by KMS encryption")
-            body = response.get("Body")
             if body is None:
                 raise ObjectStorageError("object-storage response has no body")
             return body
@@ -171,11 +174,14 @@ class S3PrivateObjectStore:
         size = 0
         try:
             response = self.client.get_object(Bucket=self.bucket, Key=key)
+            body = response.get("Body")
             if (response.get("ServerSideEncryption") != "aws:kms"
                     or not isinstance(response.get("SSEKMSKeyId"), str)
                     or not response["SSEKMSKeyId"].strip()):
+                close = getattr(body, "close", None)
+                if callable(close):
+                    close()
                 return False
-            body = response.get("Body")
             if body is None:
                 return False
             try:
