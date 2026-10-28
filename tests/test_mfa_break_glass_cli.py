@@ -146,7 +146,15 @@ class MFABreakGlassCLITests(unittest.TestCase):
         with patch("getpass.getpass", side_effect=[
             self.actor_password, _code(self.actor_secret, now), new_password
         ]), contextlib.redirect_stdout(output):
-            manage.resetpw_assisted_cli(args)
+            manage.main([
+                "resetpw-assisted",
+                "--actor-email", args.actor_email,
+                "--target-user-id", str(args.target_user_id),
+                "--reason", args.reason,
+                "--operator-reference", args.operator_reference,
+                "--change-reference", args.change_reference,
+                "--confirm-reset",
+            ])
 
         c = self.runtime.control_connection()
         self.assertEqual(c.execute(
