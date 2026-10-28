@@ -101,7 +101,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             (target_id,),
         ).fetchone()[0], 0)
 
-    def test_web_user_creation_audit_failure_rolls_back_identity_and_membership(self):
+    def test_direct_user_creation_cannot_bypass_invitation_even_if_audit_ledger_is_unavailable(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
         )
@@ -121,7 +121,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             json={"name": "Not Created", "email": "not-created@example.test",
                   "password": self.password, "role": "lawyer"},
         )
-        self.assertEqual(response.status_code, 503, response.text)
+        self.assertEqual(response.status_code, 410, response.text)
         self.assertIsNone(control.execute(
             "SELECT id FROM users WHERE email_normalized='not-created@example.test'"
         ).fetchone())
@@ -147,7 +147,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
                 ),
                 admin_context,
             )
-        self.assertEqual(create_error.exception.status_code, 409)
+        self.assertEqual(create_error.exception.status_code, 410)
 
         with self.assertRaises(HTTPException) as membership_error:
             app.add_existing_user_membership(
