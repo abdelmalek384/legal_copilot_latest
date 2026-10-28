@@ -358,22 +358,29 @@ async function tasksPage(){PAGE='tasks';const d=await api('/dashboard'),q=h('inp
 async function calendarPage(){PAGE='calendar';const d=await api('/dashboard'),items=[];(d.tasks||[]).filter(x=>x.due).forEach(x=>items.push({kind:'task',title:x.title,date:x.due,meta:x.case_title||'',id:x.id}));(d.deadlines||[]).forEach(x=>items.push({kind:'deadline',title:x.title,date:x.due,meta:x.case_title||'',id:x.id}));(d.sessions||[]).forEach(x=>items.push({kind:'session',title:x.title||x.note||uiText('جلسة','Hearing'),date:x.date,meta:x.case_title||x.note||'',id:x.id}));items.sort((a,b)=>(a.date||'').localeCompare(b.date||''));const q=h('input',{placeholder:uiText('ابحث بالعنوان أو اسم القضية','Search title or case name')}),kind=h('select',{},new Option(uiText('كل العناصر','All items'),''),new Option(uiText('الجلسات','Hearings'),'session'),new Option(uiText('المواعيد القانونية','Legal deadlines'),'deadline'),new Option(uiText('المهام','Tasks'),'task')),list=h('div',{className:'card'}),info=h('p',{className:'mut',textContent:uiText('تعرض هذه الأجندة الجلسات التي يعيدها النظام، والمواعيد المفتوحة خلال 30 يوماً، ومهامك المسندة ذات تاريخ استحقاق. تحقق من الملف والمصدر القانوني قبل الاعتماد على أي ميعاد طعن.','This agenda combines hearings returned by the system, open deadlines within 30 days, and assigned tasks with due dates. Verify the case file and legal source before relying on any appeal deadline.')});const draw=()=>{const rows=items.filter(x=>(!kind.value||x.kind===kind.value)&&(x.title+' '+x.meta).toLocaleLowerCase().includes(q.value.trim().toLocaleLowerCase()));list.replaceChildren(info,...(rows.length?rows.map(x=>{const label=x.kind==='session'?uiText('جلسة','Hearing'):x.kind==='deadline'?uiText('موعد قانوني','Legal deadline'):uiText('مهمة','Task');const action=x.kind==='task'?btn(uiText('إنجاز','Complete'),async()=>{await api('/tasks/'+x.id+'/done','POST');calendarPage()},'g'):x.kind==='deadline'?btn(uiText('إنجاز','Complete'),async()=>{await api('/deadlines/'+x.id+'/done','POST');calendarPage()},'g'):null;return h('div',{className:'workspace-list-item'},h('div',{className:'item-main'},h('b',{textContent:x.title}),h('div',{className:'item-meta',textContent:label+' · '+(x.meta||'')}),pill(fd(x.date),x.date<today?'late':x.date===today?'soon':'open')),h('div',{style:'display:flex;align-items:center;gap:8px;flex-wrap:wrap'},h('b',{textContent:fd(x.date)}),action))}):[empty(uiText('لا توجد عناصر مطابقة في نطاق العرض الحالي.','No matching items in the current view.'))]))};q.oninput=kind.onchange=draw;shell(uiText('الأجندة والمواعيد','Calendar & deadlines'),h('p',{className:'workspace-subtitle',textContent:uiText('عرض موحد للمهام والجلسات والمواعيد المسجلة.','A unified view of assigned tasks, hearings and recorded deadlines.')}),h('div',{className:'workspace-actions'},btn(uiText('تصدير إلى التقويم','Export to calendar'),()=>{window.location.href='/calendar.ics'},'g')),h('div',{className:'filter-bar'},q,kind),list);draw()}
 const caseRow=c=>h('div',{className:'row',style:'cursor:pointer',onclick:()=>{TAB='sum';view(c.id)}},h('div',{},h('b',{textContent:c.title}),h('div',{className:'mut',textContent:c.stage||uiText('بدون مرحلة','No stage')})),
  h('div',{style:'display:flex;gap:10px;align-items:center'},prog(c),h('span',{className:'mut',textContent:c.done_tasks+'/'+(c.done_tasks+c.open_tasks)+' '+uiText('مهام','tasks')}),pill(c.status==='open'?uiText('مفتوحة','Open'):uiText('مغلقة','Closed'),c.status==='open'?'open':'closed')));
+function closeModal(overlay){
+ if(!overlay)return;
+ const opener=overlay.__focusReturn;
+ overlay.remove();
+ if(opener&&opener.isConnected&&typeof opener.focus==='function')opener.focus();
+}
 async function newCase(){
  const fields=[['title',uiText('عنوان القضية','Case title'),true],['client',uiText('اسم العميل (اختياري)','Client name (optional)'),false],['case_number',uiText('رقم القضية (اختياري)','Case number (optional)'),false],['case_year',uiText('سنة القضية (اختياري)','Case year (optional)'),false],['court',uiText('المحكمة (اختياري)','Court (optional)'),false],['circuit',uiText('الدائرة (اختياري)','Circuit (optional)'),false],['opposing_party',uiText('الخصم (اختياري)','Opposing party (optional)'),false]];
  const inputs={};fields.forEach(([k,label,required])=>inputs[k]=h('input',{name:k,placeholder:label,required,style:'width:100%'}));
- const cancel=btn(uiText('إلغاء','Cancel'),()=>overlay.remove(),'g');
+ const cancel=btn(uiText('إلغاء','Cancel'),()=>closeModal(overlay),'g');
  const save=btn(uiText('حفظ القضية','Save case'),async()=>{
    if(!inputs.title.value.trim()){toast(uiText('أدخل عنوان القضية','Enter a case title'));inputs.title.focus();return}
    save.disabled=true;
-   try{const data={};fields.forEach(([k])=>data[k]=inputs[k].value.trim());const r=await api('/cases','POST',data);overlay.remove();TAB='sum';view(r.id)}
+   try{const data={};fields.forEach(([k])=>data[k]=inputs[k].value.trim());const r=await api('/cases','POST',data);closeModal(overlay);TAB='sum';view(r.id)}
    catch(_){save.disabled=false}
  });
  const form=h('form',{onsubmit:e=>{e.preventDefault();save.click()}},
    h('div',{className:'grid'},fields.map(([k,label])=>h('label',{style:'display:block'},h('span',{className:'mut',textContent:label+(k==='title'?' *':'')}),inputs[k]))),
    h('div',{className:'row'},cancel,save));
- const overlay=h('div',{className:'modal-backdrop',onclick:e=>{if(e.target===overlay)overlay.remove()}},
+ const opener=document.activeElement;
+ const overlay=h('div',{className:'modal-backdrop',onclick:e=>{if(e.target===overlay)closeModal(overlay)}},
    h('section',{className:'modal card',role:'dialog','aria-modal':true,'aria-label':uiText('قضية جديدة','New case')},h('h2',{textContent:uiText('قضية جديدة','New case')}),form));
- A.append(overlay);inputs.title.focus()
+ overlay.__focusReturn=opener;A.append(overlay);inputs.title.focus()
 }
 async function clients(){
  const cs=await api('/cases'),g={};cs.forEach(c=>(g[c.client||uiText('بدون عميل','No client')]??=[]).push(c));
@@ -869,7 +876,17 @@ function applyLanguage(root=document.body){
  document.querySelectorAll('[data-lang-switch]').forEach(b=>b.textContent=LANG==='ar'?'English':'العربية');
 }
 function switchLanguage(){LANG=LANG==='ar'?'en':'ar';sessionStorage.lang=LANG;if(!ME.id){login(AUTH_MODE);setTimeout(()=>applyLanguage(),0);return}if(window.CASE_ID){view(window.CASE_ID)}else if(PAGE==='dash')dash();else if(PAGE==='clients')clients();else if(PAGE==='cases')casesPage();else if(PAGE==='tasks')tasksPage();else if(PAGE==='calendar')calendarPage();else if(PAGE==='law')law();else if(PAGE==='coverage')corpusCoverage();else if(PAGE==='review')reviewWorkbench();else if(PAGE==='settings')settingsPage();else dash();setTimeout(()=>applyLanguage(),0)}
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){const overlays=document.querySelectorAll('.modal-backdrop');const overlay=overlays[overlays.length-1];if(overlay)overlay.remove()}});
+document.addEventListener('keydown',e=>{
+ const overlays=document.querySelectorAll('.modal-backdrop'),overlay=overlays[overlays.length-1];
+ if(!overlay)return;
+ if(e.key==='Escape'){closeModal(overlay);return}
+ if(e.key!=='Tab')return;
+ const focusables=Array.from(overlay.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])')).filter(el=>el.getClientRects().length>0&&el.getAttribute('aria-hidden')!=='true');
+ if(!focusables.length){e.preventDefault();return}
+ const first=focusables[0],last=focusables[focusables.length-1];
+ if(e.shiftKey&&(document.activeElement===first||!overlay.contains(document.activeElement))){e.preventDefault();last.focus()}
+ else if(!e.shiftKey&&(document.activeElement===last||!overlay.contains(document.activeElement))){e.preventDefault();first.focus()}
+});
 const languageObserver=new MutationObserver(ms=>{for(const m of ms)for(const n of m.addedNodes)if(n.nodeType===Node.ELEMENT_NODE||n.nodeType===Node.TEXT_NODE)applyLanguage(n.nodeType===Node.ELEMENT_NODE?n:n.parentElement||document.body)});
 languageObserver.observe(document.body,{childList:true,subtree:true});
 applyLanguage();api('/session').then(r=>{ME={...r};sessionStorage.me=JSON.stringify(ME);if(r.mfa_enrollment_required){mfaEnrollmentPage();return}if(r.mfa_verification_required){mfaChallengePage();return}dash()}).catch(()=>login())
