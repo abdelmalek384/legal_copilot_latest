@@ -34,6 +34,9 @@ def reviewer_registry():
         "reviewer_id": "reviewer-a",
         "display_name": "Egyptian counsel",
         "status": "approved",
+        "professional_role": "qualified_egyptian_counsel",
+        "jurisdiction": "Egypt",
+        "practice_areas": ["civil_law", "labour_law"],
         "qualification_basis": "Synthetic test fixture: Egyptian counsel qualification checked",
         "evidence_reference": "private-test-reference",
         "verified_by": "test-operator",
@@ -68,6 +71,12 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
         q = dict(approved())
         q["reviewer_id"] = "not-in-registry"
         with self.assertRaisesRegex(EvaluationError, "approved reviewer registry"):
+            score([q], [result()])
+
+    def test_benchmark_rejects_reviewer_outside_approved_practice_area(self):
+        q = dict(approved())
+        q["practice_area"] = "criminal_law"
+        with self.assertRaisesRegex(EvaluationError, "not approved for this practice_area"):
             score([q], [result()])
 
     def test_reviewed_question_requires_valid_non_future_as_of_date(self):

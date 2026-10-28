@@ -139,6 +139,15 @@ def validate_reviewer_registry(registry):
         for field in ("display_name", "qualification_basis", "evidence_reference", "verified_by"):
             if not isinstance(entry.get(field), str) or not entry[field].strip():
                 row_errors.append(f"missing or empty {field}")
+        if entry.get("professional_role") not in {"egyptian_lawyer", "qualified_egyptian_counsel"}:
+            row_errors.append("professional_role must identify Egyptian legal counsel")
+        if entry.get("jurisdiction") != "Egypt":
+            row_errors.append("jurisdiction must be Egypt")
+        practice_areas = entry.get("practice_areas")
+        if (not isinstance(practice_areas, list) or not practice_areas
+                or any(not isinstance(area, str) or not area.strip() for area in practice_areas)
+                or len(practice_areas) != len(set(practice_areas))):
+            row_errors.append("practice_areas must be a non-empty list of unique non-empty strings")
         if not _valid_iso_date(entry.get("verified_on")):
             row_errors.append("verified_on must be a real ISO date that is not in the future")
         if row_errors:
@@ -155,6 +164,11 @@ def validate_reviewer_registry(registry):
         and isinstance(entry.get("qualification_basis"), str) and entry["qualification_basis"].strip()
         and isinstance(entry.get("evidence_reference"), str) and entry["evidence_reference"].strip()
         and isinstance(entry.get("verified_by"), str) and entry["verified_by"].strip()
+        and entry.get("professional_role") in {"egyptian_lawyer", "qualified_egyptian_counsel"}
+        and entry.get("jurisdiction") == "Egypt"
+        and isinstance(entry.get("practice_areas"), list) and bool(entry["practice_areas"])
+        and all(isinstance(area, str) and area.strip() for area in entry["practice_areas"])
+        and len(entry["practice_areas"]) == len(set(entry["practice_areas"]))
         and _valid_iso_date(entry.get("verified_on"))
     }
     return approved, errors
@@ -176,6 +190,8 @@ def summarize_reviews(records, reviewer_registry):
             errors.append("reviewer_id is not present in the valid approved reviewer registry")
         elif record.get("reviewer_name") != reviewer.get("display_name"):
             errors.append("reviewer_name does not match the approved registry display_name")
+        elif record.get("practice_area") not in reviewer.get("practice_areas", []):
+            errors.append("reviewer is not approved for this practice_area")
         if errors:
             invalid.append({"record": assessment_id, "record_index": index, "errors": errors})
             continue
