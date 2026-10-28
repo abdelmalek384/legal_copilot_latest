@@ -166,6 +166,11 @@ def _sql_text(
                 ]
                 if all(item[2] for item in parts):
                     return node.func.value.value.join(item[0] for item in parts), any(item[1] for item in parts), True
+            # Joining a runtime-built list is dynamic SQL, but the surrounding
+            # expression is understood. Keep it visible for manual review rather
+            # than misclassifying the entire SQL statement as unresolved.
+            if node.args:
+                return "{dynamic_join}", True, True
         return "{unresolved:call}", False, False
     return "{unresolved:expression}", False, False
 
@@ -178,11 +183,43 @@ def _assignments_for(node: ast.AST) -> dict[str, list[ast.AST]]:
         elif isinstance(item, ast.AnnAssign):
             targets, value = [item.target], item.value
         else:
-            continue
+            targets, value = [], None
         for target in targets:
             if isinstance(target, ast.Name) and value is not None:
                 assignments.setdefault(target.id, []).append(value)
+        # Resolve finite loop domains, for example table names in a literal tuple.
+        # This is a static inventory aid and never executes the loop.
+        if isinstance(item, (ast.For, ast.AsyncFor)) and isinstance(item.target, ast.Name):
+            iterable = item.iter
+            if isinstance(iterable, (ast.List, ast.Tuple)) and all(
+                isinstance(element, ast.Constant) and isinstance(element.value, str)
+                for element in iterable.elts
+            ):
+                assignments.setdefault(item.target.id, []).extend(iterable.elts)
     return assignments
+
+
+def _lambda_parameter_values(node: ast.AST) -> dict[str, list[ast.AST]]:
+    """Resolve literal arguments passed to locally assigned lambdas, for SQL inventory."""
+    result: dict[str, list[ast.AST]] = {}
+    lambdas: dict[str, ast.Lambda] = {}
+    for item in ast.walk(node):
+        if not isinstance(item, ast.Assign) or not isinstance(item.value, ast.Lambda):
+            continue
+        for target in item.targets:
+            if isinstance(target, ast.Name):
+                lambdas[target.id] = item.value
+    if not lambdas:
+        return result
+    for item in ast.walk(node):
+        if not isinstance(item, ast.Call) or not isinstance(item.func, ast.Name):
+            continue
+        lambda_node = lambdas.get(item.func.id)
+        if lambda_node is None:
+            continue
+        for parameter, argument in zip(lambda_node.args.args, item.args):
+            result.setdefault(parameter.arg, []).append(argument)
+    return result
 
 
 def _mutated_sql_names(node: ast.AST) -> set[str]:
@@ -243,6 +280,8 @@ def audit_source(source: str) -> dict[str, Any]:
             visited.add(name)
             node = functions[name]
             local_assignments = _assignments_for(node)
+            for parameter, values in _lambda_parameter_values(node).items():
+                local_assignments.setdefault(parameter, []).extend(values)
             mutated_sql_names = _mutated_sql_names(node)
             for call in (item for item in ast.walk(node) if isinstance(item, ast.Call)):
                 called = _call_name(call.func)
