@@ -145,6 +145,33 @@ class DatabaseRuntimeTests(unittest.TestCase):
                 "SELECT name FROM sqlite_master WHERE type='table' AND name='pending_tenant_test'"
             ).fetchone())
 
+    def test_production_runtime_refuses_unreferenced_tenant_database_files(self):
+        base = self.root / "production-orphan"
+        migrations_root = base / "migrations"
+        shutil.copytree(Path(__file__).resolve().parents[1] / "migrations", migrations_root)
+        control = base / "control.sqlite3"
+        tenant_root = base / "tenants"
+        corpus = base / "corpus.sqlite3"
+        development_runtime = DatabaseRuntime(
+            control, tenant_root, corpus, migrations_root=migrations_root
+        )
+        with patch.dict(os.environ, {"COPILOT_ENV": "development"}):
+            development_runtime.initialize()
+            firm_id, _ = development_runtime.provision_firm("Cataloged Firm")
+        development_runtime.close_current_thread()
+        if os.name == "posix":
+            os.chmod(tenant_root, 0o700)
+        orphan = tenant_root / f"tenant-{firm_id + 100}-{'a' * 32}.sqlite3"
+        orphan.write_bytes(b"unreferenced synthetic file")
+        if os.name == "posix":
+            os.chmod(orphan, 0o600)
+        runtime = DatabaseRuntime(
+            control, tenant_root, corpus, migrations_root=migrations_root
+        )
+        with patch.dict(os.environ, {"COPILOT_ENV": "production"}):
+            with self.assertRaisesRegex(DatabaseRuntimeError, "unreferenced database files"):
+                runtime.initialize()
+
     def test_production_runtime_requires_private_tenant_root(self):
         base = self.root / "production-open-root"
         tenant_root = base / "tenants"
