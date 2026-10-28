@@ -52,6 +52,7 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
             "collection_permission": "allowed",
             "permission_evidence": "written authorization ref AUTH-1",
             "terms_checked_on": "2026-10-23",
+            "terms_url": "https://laws.example.gov/terms",
             "permission_scope_review": passed_scope_review(),
         }]}
         register = {"sources": [{
@@ -61,6 +62,7 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
             "permission_evidence": "written authorization ref AUTH-1",
             "permission_evidence_url": "https://laws.example.gov/rights/collection",
             "terms_checked_on": "2026-10-23",
+            "terms_url": "https://laws.example.gov/terms",
         }]}
         report = MODULE.audit(manifest, register)
         self.assertTrue(report["documents"][0]["collection_ready"])
@@ -76,6 +78,7 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
             "collection_permission": "allowed",
             "permission_evidence": "claim",
             "terms_checked_on": "2026-10-23",
+            "terms_url": "https://laws.example.gov/terms",
             "permission_scope_review": passed_scope_review(evidence="claim"),
         }]}
         register = {"sources": [{
@@ -84,6 +87,7 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
             "commercial_reuse_permission": "unknown",
             "permission_evidence": None,
             "terms_checked_on": None,
+            "terms_url": "https://laws.example.gov/terms",
         }]}
         report = MODULE.audit(manifest, register)
         self.assertFalse(report["documents"][0]["collection_ready"])
@@ -98,6 +102,7 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
             "collection_permission": "allowed",
             "permission_evidence": "written authorization",
             "terms_checked_on": "9999-12-31",
+            "terms_url": "https://laws.example.gov/terms",
             "permission_scope_review": passed_scope_review(reviewed_on="9999-12-31"),
         }]}
         register = {"sources": [{
@@ -107,6 +112,7 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
             "permission_evidence": "written authorization",
             "permission_evidence_url": "https://laws.example.gov/rights/collection",
             "terms_checked_on": "9999-12-31",
+            "terms_url": "https://laws.example.gov/terms",
         }]}
         report = MODULE.audit(manifest, register)
         item = report["documents"][0]
@@ -114,6 +120,78 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
         self.assertIn("source_permission_evidence_or_terms_date_missing", item["blockers"])
         self.assertIn("manifest_terms_checked_on_missing_or_invalid", item["blockers"])
         self.assertIn("document_level_collection_scope_review_missing", item["blockers"])
+
+    def test_missing_or_credentialed_terms_urls_block_collection_readiness(self):
+        base_manifest = {"documents": [{
+            "document_id": "LAW-TERMS-URL",
+            "source_id": "SRC-TERMS-URL",
+            "direct_url": "https://laws.example.gov/law.pdf",
+            "allowed_hosts": ["example.gov"],
+            "collection_permission": "allowed",
+            "permission_evidence": "written authorization",
+            "terms_checked_on": "2026-10-23",
+            "terms_url": "https://laws.example.gov/terms",
+            "permission_scope_review": passed_scope_review(),
+        }]}
+        base_source = {
+            "source_id": "SRC-TERMS-URL",
+            "collection_permission": "allowed",
+            "commercial_reuse_permission": "unknown",
+            "permission_evidence": "written authorization",
+            "permission_evidence_url": "https://laws.example.gov/rights/collection",
+            "terms_checked_on": "2026-10-23",
+            "terms_url": "https://laws.example.gov/terms",
+        }
+        cases = (
+            ("manifest_missing", None, "https://laws.example.gov/terms", "manifest_terms_url_missing_or_invalid"),
+            ("manifest_credentialed", "https://user:secret@laws.example.gov/terms", "https://laws.example.gov/terms", "manifest_terms_url_missing_or_invalid"),
+            ("source_missing", "https://laws.example.gov/terms", None, "source_terms_url_missing_or_invalid"),
+            ("source_credentialed", "https://laws.example.gov/terms", "https://user:secret@laws.example.gov/terms", "source_terms_url_missing_or_invalid"),
+        )
+        for label, manifest_terms, source_terms, expected_blocker in cases:
+            with self.subTest(label=label):
+                manifest = json.loads(json.dumps(base_manifest))
+                source = dict(base_source)
+                manifest["documents"][0]["terms_url"] = manifest_terms
+                source["terms_url"] = source_terms
+                report = MODULE.audit(manifest, {"sources": [source]})
+                item = report["documents"][0]
+                self.assertFalse(item["collection_ready"])
+                self.assertIn(expected_blocker, item["blockers"])
+
+    def test_stale_terms_and_scope_reviews_block_acquisition_readiness(self):
+        old_date = "2025-01-01"
+        manifest = {"documents": [{
+            "document_id": "LAW-STALE",
+            "source_id": "SRC-STALE",
+            "direct_url": "https://laws.example.gov/law.pdf",
+            "allowed_hosts": ["example.gov"],
+            "collection_permission": "allowed",
+            "permission_evidence": "written authorization",
+            "terms_checked_on": old_date,
+            "terms_url": "https://laws.example.gov/terms",
+            "permission_scope_review": passed_scope_review(reviewed_on="2025-01-02"),
+        }]}
+        register = {"sources": [{
+            "source_id": "SRC-STALE",
+            "collection_permission": "allowed",
+            "commercial_reuse_permission": "allowed",
+            "permission_evidence": "written authorization",
+            "permission_evidence_url": "https://laws.example.gov/rights/collection",
+            "terms_checked_on": old_date,
+            "terms_url": "https://laws.example.gov/terms",
+            "commercial_reuse_evidence": "commercial authorization",
+            "commercial_reuse_evidence_url": "https://laws.example.gov/rights/commercial",
+            "commercial_terms_checked_on": old_date,
+        }]}
+        report = MODULE.audit(manifest, register)
+        item = report["documents"][0]
+        self.assertFalse(item["collection_ready"])
+        self.assertFalse(item["commercial_product_use_ready"])
+        self.assertIn("source_terms_review_stale", item["blockers"])
+        self.assertIn("manifest_terms_review_stale", item["blockers"])
+        self.assertIn("document_level_scope_review_stale", item["blockers"])
+        self.assertIn("commercial_terms_review_stale", item["warnings"])
 
     def test_scope_review_must_explicitly_approve_each_use(self):
         for flag in ("storage", "text_extraction", "indexing", "commercial_product_use", "excerpt_display"):
@@ -127,6 +205,7 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
                 "collection_permission": "allowed",
                 "permission_evidence": "authorization",
                 "terms_checked_on": "2026-10-23",
+                "terms_url": "https://laws.example.gov/terms",
                 "permission_scope_review": review,
             }]}
             register = {"sources": [{
@@ -137,6 +216,7 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
                 "permission_evidence_url": "https://laws.example.gov/rights/collection",
                 "commercial_reuse_evidence_url": "https://laws.example.gov/rights/commercial",
                 "terms_checked_on": "2026-10-23",
+                "terms_url": "https://laws.example.gov/terms",
             }]}
             with self.subTest(flag=flag):
                 report = MODULE.audit(manifest, register)
@@ -154,6 +234,7 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
             "collection_permission": "allowed",
             "permission_evidence": "authorization",
             "terms_checked_on": "2026-10-23",
+            "terms_url": "https://laws.example.gov/terms",
             "permission_scope_review": review,
         }]}
         register = {"sources": [{
@@ -163,6 +244,7 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
             "permission_evidence": "authorization",
             "permission_evidence_url": "https://laws.example.gov/rights/collection",
             "terms_checked_on": "2026-10-23",
+            "terms_url": "https://laws.example.gov/terms",
         }]}
         report = MODULE.audit(manifest, register)
         self.assertFalse(report["documents"][0]["collection_ready"])
@@ -180,6 +262,7 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
             "collection_permission": "allowed",
             "permission_evidence": "authorization",
             "terms_checked_on": "2026-10-23",
+            "terms_url": "https://laws.example.gov/terms",
             "permission_scope_review": review,
         }]}
         register = {"sources": [{
@@ -190,6 +273,7 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
             "permission_evidence_url": "https://laws.example.gov/rights/collection",
             "commercial_reuse_evidence_url": "https://laws.example.gov/rights/commercial",
             "terms_checked_on": "2026-10-23",
+            "terms_url": "https://laws.example.gov/terms",
         }]}
         report = MODULE.audit(manifest, register)
         self.assertFalse(report["documents"][0]["collection_ready"])
@@ -214,6 +298,7 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
             "collection_permission": "allowed",
             "permission_evidence": "written authorization",
             "terms_checked_on": "2026-10-23",
+            "terms_url": "https://laws.example.gov/terms",
             "permission_scope_review": passed_scope_review(evidence="written authorization"),
         }]}
         register = {"sources": [{
@@ -224,6 +309,7 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
             "permission_evidence_url": "https://laws.example.gov/rights/collection",
             "commercial_reuse_evidence_url": "https://laws.example.gov/rights/commercial",
             "terms_checked_on": "2026-10-23",
+            "terms_url": "https://laws.example.gov/terms",
         }]}
         report = MODULE.audit(manifest, register)
         self.assertIn("direct_url_host_not_in_allowlist", report["documents"][0]["blockers"])

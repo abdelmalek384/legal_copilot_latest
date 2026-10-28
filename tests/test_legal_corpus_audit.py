@@ -134,6 +134,98 @@ class CorpusAuditTests(unittest.TestCase):
             self.assertIn("versions_repeal_before_effective_date", codes)
             self.assertIn("commercial_reuse_permissions", report)
 
+    def test_verification_flags_require_matching_passing_review_events(self):
+        with tempfile.TemporaryDirectory() as td:
+            db_path = Path(td) / "verification-events.db"
+            db = sqlite3.connect(db_path)
+            db.executescript("""
+            CREATE TABLE legal_document_versions(
+              version_id INTEGER PRIMARY KEY, source_url TEXT, original_path TEXT, original_sha256 TEXT,
+              publication_date TEXT, effective_date TEXT, repeal_date TEXT, legal_status TEXT,
+              review_status TEXT, authenticity_verified INT, status_verified INT, amendment_history_verified INT
+            );
+            CREATE TABLE legal_review_events(
+              review_event_id INTEGER PRIMARY KEY, version_id INT, review_type TEXT, outcome TEXT, evidence_url TEXT
+            );
+            INSERT INTO legal_document_versions VALUES
+              (1,'https://example.gov/a',NULL,NULL,'2020-01-01','2020-01-01',NULL,'in_force','verified',1,1,0),
+              (2,'https://example.gov/b',NULL,NULL,'2021-01-01','2021-01-01',NULL,'in_force','verified',1,1,0);
+            INSERT INTO legal_review_events VALUES
+              (1,2,'source_authenticity','pass','https://example.gov/evidence/authenticity'),
+              (2,2,'legal_status','pass','https://example.gov/evidence/status'),
+              (3,2,'lawyer_approval','pass','https://example.gov/evidence/lawyer-review');
+            """)
+            db.commit()
+            db.close()
+
+            report = MODULE.audit(db_path)
+            codes = {issue["code"] for issue in report["issues"]}
+            self.assertIn("versions_authenticity_flag_without_evidence", codes)
+            self.assertIn("versions_status_flag_without_evidence", codes)
+            self.assertIn("versions_verified_status_without_lawyer_approval_event", codes)
+            self.assertEqual(report["version_quality"]["authenticity_flag_without_evidence"], 1)
+            self.assertEqual(report["version_quality"]["status_flag_without_evidence"], 1)
+            self.assertEqual(report["version_quality"]["verified_status_without_lawyer_approval_event"], 1)
+
+    def test_review_event_integrity_checks_dates_reviewers_evidence_and_version_links(self):
+        with tempfile.TemporaryDirectory() as td:
+            db_path = Path(td) / "review-event-integrity.db"
+            db = sqlite3.connect(db_path)
+            db.executescript("""
+            CREATE TABLE legal_document_versions(version_id INTEGER PRIMARY KEY);
+            CREATE TABLE legal_review_events(
+              review_event_id INTEGER PRIMARY KEY, version_id INT, reviewer TEXT,
+              review_type TEXT, outcome TEXT, evidence_url TEXT, reviewed_at TEXT
+            );
+            INSERT INTO legal_document_versions VALUES(1);
+            INSERT INTO legal_review_events VALUES
+              (1,1,'Reviewer','source_authenticity','pass','https://example.gov/evidence','2026-01-01T12:00:00Z'),
+              (2,1,'   ','unknown','pass','http://unsafe.example/evidence','not-a-date'),
+              (3,99,'Reviewer','legal_status','pass',NULL,'2999-01-01T00:00:00Z');
+            """)
+            db.commit()
+            db.close()
+            report = MODULE.audit(db_path)
+            codes = {issue["code"] for issue in report["issues"]}
+            self.assertIn("review_events_reviewer_missing", codes)
+            self.assertIn("review_events_invalid_review_type", codes)
+            self.assertIn("review_events_reviewed_at_invalid", codes)
+            self.assertIn("review_events_reviewed_at_in_future", codes)
+            self.assertIn("review_events_passing_event_without_valid_evidence", codes)
+            self.assertIn("review_events_orphan_version", codes)
+            self.assertEqual(report["review_event_quality"]["reviewer_missing"], 1)
+            self.assertEqual(report["review_event_quality"]["orphan_version"], 1)
+
+    def test_chunk_flags_must_match_linked_legal_version(self):
+        with tempfile.TemporaryDirectory() as td:
+            db_path = Path(td) / "chunk-version-consistency.db"
+            db = sqlite3.connect(db_path)
+            db.executescript("""
+            CREATE TABLE chunks(
+              id INTEGER PRIMARY KEY, ref TEXT, article TEXT, text TEXT, source TEXT,
+              verified INT, in_force INT, case_id INT, document_version_id INT
+            );
+            CREATE TABLE legal_document_versions(
+              version_id INTEGER PRIMARY KEY, review_status TEXT, authenticity_verified INT,
+              status_verified INT, legal_status TEXT, effective_date TEXT, repeal_date TEXT
+            );
+            INSERT INTO legal_document_versions VALUES
+              (1,'pending_source_review',0,0,'unknown','2020-01-01',NULL),
+              (2,'verified',1,1,'in_force','9999-01-01',NULL);
+            INSERT INTO chunks VALUES
+              (1,'law','1','text','https://example.gov/law',1,1,NULL,1),
+              (2,'law','2','text','https://example.gov/law',0,1,NULL,2),
+              (3,'law','3','text','https://example.gov/law',1,0,NULL,999);
+            """)
+            db.commit()
+            db.close()
+            report = MODULE.audit(db_path)
+            codes = {issue["code"] for issue in report["issues"]}
+            self.assertIn("chunks_verified_without_verified_version", codes)
+            self.assertIn("chunks_in_force_conflicting_with_version", codes)
+            self.assertEqual(report["chunk_version_consistency"]["verified_chunks_without_verified_version"], 2)
+            self.assertEqual(report["chunk_version_consistency"]["in_force_chunks_conflicting_with_version"], 2)
+
     def test_amendment_history_flags_require_review_evidence_and_relations_are_audited(self):
         with tempfile.TemporaryDirectory() as td:
             db_path = Path(td) / "versions.db"
@@ -172,6 +264,25 @@ class CorpusAuditTests(unittest.TestCase):
             self.assertIn("relations_touching_unreviewed_amendment_history", codes)
             self.assertEqual(report["version_quality"]["amendment_history_flag_without_evidence"], 1)
             self.assertEqual(report["relation_quality"]["relations_touching_unreviewed_amendment_history"], 1)
+
+    def test_markdown_renders_new_review_and_chunk_version_metrics(self):
+        report = {
+            "generated_at": "2026-10-27T00:00:00Z",
+            "database_sha256": "a" * 64,
+            "counts": {},
+            "review_event_quality": {"reviewer_missing": 0, "orphan_version": 2},
+            "chunk_version_consistency": {
+                "verified_chunks_without_verified_version": 0,
+                "in_force_chunks_conflicting_with_version": 3,
+            },
+            "issues": [],
+        }
+        markdown = MODULE.render_markdown(report)
+        self.assertIn("## Review Event Quality", markdown)
+        self.assertIn("reviewer missing", markdown)
+        self.assertIn("orphan version", markdown)
+        self.assertIn("## Chunk Version Consistency", markdown)
+        self.assertIn("in force chunks conflicting with version", markdown)
 
 if __name__ == "__main__":
     unittest.main()

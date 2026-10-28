@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "inventory_id": "EG-PHASE2-LEGAL-DOCUMENT-INVENTORY",
-  "prepared_on": "2026-10-23",
+  "prepared_on": "2026-10-28",
   "purpose": "Structured discovery inventory for Phase 2. Entries are research leads, not collected files, verified current law, permission to collect, or lawyer-approved legal advice.",
   "policy": {
     "default_collection_permission": "unknown",
@@ -26,13 +26,6 @@
       "source_class": "official_government_copy_candidate",
       "permission": "unknown",
       "next_action": "Confirm exact version against Gazette and review terms for intended use."
-    },
-    "EG-MINISTRY-OF-LABOUR": {
-      "authority": "Ministry of Labour, Egypt",
-      "source_url": "https://www.labour.gov.eg/",
-      "source_class": "official_government_supporting_source",
-      "permission": "unknown",
-      "next_action": "Verify live source, terms, document provenance and Gazette correspondence."
     },
     "EG-MINISTRY-OF-JUSTICE": {
       "authority": "Ministry of Justice, Egypt",
@@ -103,6 +96,13 @@
       "source_class": "official_regulator_discovery_index",
       "permission": "unknown",
       "next_action": "Review terms and obtain authorization for storage, download, OCR, indexing, commercial use, excerpt display and redistribution; verify every instrument against the original Official Gazette before legal use."
+    },
+    "EG-MINISTRY-LABOUR-LAWS": {
+      "authority": "Ministry of Labour, Arab Republic of Egypt",
+      "source_url": "https://www.labour.gov.eg/en/laws-and-legislations/",
+      "source_class": "official_government_supporting_source",
+      "permission": "unknown",
+      "next_action": "Use the canonical central permission-register source ID; pin exact document URLs, review current terms, and establish intended-use permission before acquisition."
     }
   },
   "documents": [
@@ -361,7 +361,7 @@
         "amending instruments",
         "transition rules"
       ],
-      "notes": "The repository has an exact candidate URL in docs/collection_manifest.example.json; rights and legal-status review remain separate. Public-source discovery found an official Amiri Press text page and Ministry of Labour index. Neither establishes collection permission or completes amendment/status review. Verify Gazette issue/pages and commencement/implementing instruments.",
+      "notes": "The repository has an exact candidate URL in docs/collection_manifest.example.json; rights and legal-status review remain separate. Public-source discovery found an official Amiri Press text page and Ministry of Labour index. Neither establishes collection permission or completes amendment/status review. Verify Gazette issue/pages and commencement/implementing instruments. Review of the Ministry of Labour laws-and-legislations index on 2026-10-28 found a listed entry for Law 14/2025 but no separately identified full executive-regulations entry in the retrieved index. This is an index observation only; it does not prove that regulations were not issued or published elsewhere.",
       "source_urls": [
         {
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
@@ -394,6 +394,21 @@
           "document_id": "EG-LABOUR-DECISION-271-2025",
           "relationship": "implements_or_supports",
           "relationship_status": "candidate_pending_text_review"
+        },
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "relationship": "implements_or_supports",
+          "relationship_status": "official_ministry_report_pending_exact_instrument_and_Gazette_verification"
+        },
+        {
+          "document_id": "EG-LABOUR-DECISION-49-2026",
+          "relationship": "implements_or_supports",
+          "relationship_status": "official_ministry_announcement_pending_decision_text_and_Gazette_verification"
+        },
+        {
+          "document_id": "EG-LABOUR-DECISION-294-2025",
+          "relationship": "implements_or_supports",
+          "relationship_status": "official_ministry_reference_pending_decision_text_and_Gazette_verification"
         }
       ]
     },
@@ -1052,6 +1067,11 @@
           "url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc",
           "source_role": "Egyptian Proceedings issue metadata candidate",
           "status": "metadata_discovered_pdf_listed_not_downloaded"
+        },
+        {
+          "url": "https://sis.gov.eg/ar/%D8%A7%D9%84%D9%85%D8%B1%D9%83%D8%B2-%D8%A7%D9%84%D8%A5%D8%B9%D9%84%D8%A7%D9%85%D9%8A/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D9%8A%D8%B9%D8%AA%D9%85%D8%AF-%D9%85%D8%B9%D8%A7%D9%8A%D9%8A%D8%B1-%D9%85%D9%86%D8%AD-%D8%AA%D8%B1%D8%AE%D9%8A%D8%B5-%D9%85%D8%B1%D8%A7%D9%83%D8%B2-%D8%A7%D9%84%D8%AA%D8%AF%D8%B1%D9%8A%D8%A8-%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A-%D8%A7%D9%84%D8%AE%D8%A7%D8%B5%D8%A9-%D9%84%D8%AA%D8%AF%D8%B1%D9%8A%D8%A8-%D9%85%D8%B3%D8%A7%D8%B9%D8%AF%D9%8A-%D8%A7%D9%84%D8%AE%D8%AF%D9%85%D8%A7%D8%AA-%D8%A7%D9%84%D8%B5%D8%AD%D9%8A%D8%A9/",
+          "source_role": "official State Information Service report attributing standards to Ministry of Labour; supporting discovery evidence only",
+          "status": "discovered_not_downloaded"
         }
       ],
       "source_status": "discovery_only",
@@ -1063,9 +1083,12 @@
         "exact title/date and page range",
         "enabling legal provision",
         "amendments/repeal/subsequent decisions",
-        "lawyer review"
+        "lawyer review",
+        "exact standards text and legal form (including whether a separate instrument number exists)",
+        "publication/effective date and official publication reference for the standards",
+        "scope of Ministerial Decision 264/2025 and its relationship to Labour Law 14/2025"
       ],
-      "notes": "Metadata indicates a decision regulating training operations and development of training levels; verify exact title and whether/how it implements Labour Law 14/2025. No PDF acquired; no legal-status or reuse-permission review completed."
+      "notes": "Metadata indicates a decision regulating training operations and development of training levels; verify exact title and whether/how it implements Labour Law 14/2025. No PDF acquired; no legal-status or reuse-permission review completed. A State Information Service report dated 2026-09-04 says the Minister of Labour approved standards for private vocational training centres training health-services assistants under Labour Law 14/2025 and Ministerial Decision 264/2025. This is a follow-up lead, not the standards text or proof of a separate instrument; exact legal form, publication, currentness and rights remain unverified."
     },
     {
       "document_id": "EG-LABOUR-DECISION-271-2025",
@@ -1933,6 +1956,102 @@
         "qualified Egyptian tax-lawyer review"
       ],
       "notes": "Official tax authority index lists this decision under the 2026 tax-dispute renewal. Verify issuing authority, official publication, application process and deadlines."
+    },
+    {
+      "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+      "official_title_ar": "القواعد العامة للائحة تنظيم العمل بالقطاع الخاص (العنوان كما ورد في إعلان وزارة العمل؛ الاسم الرسمي ورقم الأداة قيد التحقق)",
+      "practice_areas": [
+        "labour"
+      ],
+      "document_type": "reported_implementing_rules",
+      "instrument_number": null,
+      "instrument_year": 2026,
+      "source_id": "EG-MINISTRY-LABOUR-LAWS",
+      "source_status": "official_index_discovered_primary_text_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "exact legal instrument title and number",
+        "official Gazette issue, publication date and page range",
+        "official text and commencement/effective-date clause",
+        "scope and relationship to Labour Law 14/2025",
+        "later amendments, replacement or repeal",
+        "qualified Egyptian labour-lawyer review",
+        "source-specific collection and commercial reuse terms"
+      ],
+      "notes": "Discovery-only candidate. The Ministry of Labour reported publication/launch of general rules for private-sector work regulations in late August/early September 2026. The available announcement does not by itself establish the exact instrument number, official Gazette text/pages, commencement, currentness, or rights to copy/store/index/display the text. Do not download or promote this record; verify the underlying instrument and terms first.",
+      "source_urls": [
+        {
+          "url": "https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D9%8A%D8%B9%D9%84%D9%86-%D9%86%D8%B5-%D8%A7%D9%84%D9%82%D9%88%D8%A7%D8%B9%D8%AF-%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D8%A9-%D9%84%D9%84%D8%A7%D8%A6%D8%AD%D8%A9-%D8%AA%D9%86%D8%B8%D9%8A%D9%85-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A8%D8%A7%D9%84%D9%82%D8%B7%D8%A7%D8%B9-%D8%A7%D9%84%D8%AE%D8%A7%D8%B5/",
+          "source_role": "official Ministry of Labour announcement; discovery evidence only",
+          "status": "discovered_not_downloaded"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-49-2026",
+      "official_title_ar": "قرار وزير العمل رقم 49 لسنة 2026 بشأن تحديد الأعمال الخطرة والصعبة والمناطق النائية التي يستحق العاملون فيها زيادة الإجازة السنوية سبعة أيام",
+      "practice_areas": [
+        "labour"
+      ],
+      "document_type": "ministerial_decision",
+      "instrument_number": 49,
+      "instrument_year": 2026,
+      "source_id": "EG-MINISTRY-LABOUR-LAWS",
+      "source_status": "official_index_discovered_primary_text_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "official decision text and signature/publication details",
+        "Official Gazette issue, publication date and page range",
+        "effective/commencement date",
+        "exact scope of hazardous/difficult work and remote-area schedules",
+        "later amendments, replacement or repeal",
+        "qualified Egyptian labour-lawyer review",
+        "source-specific collection and commercial reuse terms"
+      ],
+      "notes": "Discovery-only candidate. The Ministry of Labour announced on 2026-03-26 that Ministerial Decision 49/2026 identifies hazardous/difficult work and remote areas entitling covered workers to seven additional annual-leave days, under Labour Law 14/2025. The announcement is not the decision text or Gazette evidence; do not infer full scope, commencement, currentness, or reuse rights until the instrument is obtained and reviewed.",
+      "source_urls": [
+        {
+          "url": "https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%84%D8%AA%D8%AD%D9%82%D9%82-%D8%A7%D9%84%D8%AA%D9%88%D8%A7%D8%B2%D9%86-%D8%A8%D9%8A%D9%86-%D9%85%D8%AA%D8%B7%D9%84%D8%A8%D8%A7%D8%AA-%D8%A7%D9%84%D8%A5%D9%86%D8%AA%D8%A7%D8%AC-%D9%88%D8%B5%D9%88%D9%86-%D8%AD%D9%82%D9%88%D9%82-%D8%A7%D9%84%D9%82%D9%88%D9%89-%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D9%84%D8%A9-%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D9%8A%D8%B5%D8%AF%D8%B1-%D9%82%D8%B1%D8%A7%D8%B1-%D8%A7-%D9%88%D8%B2%D8%A7%D8%B1%D9%8A-%D8%A7-%D8%A8%D8%AA%D8%AD%D8%AF%D9%8A%D8%AF-%D8%A7%D9%84%D8%A3%D8%B9%D9%85%D8%A7%D9%84-%D8%A7%D9%84%D8%AE%D8%B7%D8%B1%D8%A9-%D9%88%D8%A7%D9%84%D9%85%D9%86%D8%A7%D8%B7%D9%82-%D8%A7%D9%84%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D8%A7%D9%84%D8%AA%D9%8A-%D8%AA-%D8%B2%D8%A7%D8%AF-%D9%81%D9%8A%D9%87%D8%A7-%D8%A7%D9%84%D8%A5%D8%AC%D8%A7%D8%B2%D8%A7%D8%AA-%D8%A7%D9%84%D8%B3%D9%86%D9%88%D9%8A%D8%A9-7-%D8%A3%D9%8A%D8%A7%D9%85-%D9%84%D9%84%D8%B9%D8%A7%D9%85%D9%84%D9%8A%D9%86/",
+          "source_role": "official Ministry of Labour announcement; discovery evidence only",
+          "status": "discovered_not_downloaded"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-294-2025",
+      "official_title_ar": "قرار وزير العمل رقم 294 لسنة 2025 بشأن تحديد العطلات والأعياد والمناسبات التي تعتبر إجازة بأجر كامل للعمال",
+      "practice_areas": [
+        "labour"
+      ],
+      "document_type": "ministerial_decision",
+      "instrument_number": 294,
+      "instrument_year": 2025,
+      "source_id": "EG-MINISTRY-LABOUR-LAWS",
+      "source_status": "official_index_discovered_primary_text_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "complete official decision text and exact title",
+        "Official Gazette issue, publication date and page range",
+        "complete holiday/occasion list and any exclusions",
+        "effective date and relation to Labour Law 14/2025 article 129",
+        "later amendments, replacement or repeal",
+        "qualified Egyptian labour-lawyer review",
+        "source-specific collection and commercial reuse terms"
+      ],
+      "notes": "Discovery-only candidate. A Ministry of Labour announcement dated 2026-01-05 cites Decision 294/2025 as identifying paid holidays and occasions for covered private-sector workers. This confirms a current official reference to the decision but does not supply its complete text, Gazette pages, amendment history, or reuse rights. Keep legal status and permission unknown pending primary-text verification.",
+      "source_urls": [
+        {
+          "url": "https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A7%D9%84%D8%A3%D8%B1%D8%A8%D8%B9%D8%A7%D8%A1-%D8%A7%D9%84%D9%85%D9%82%D8%A8%D9%84-%D8%A5%D8%AC%D8%A7%D8%B2%D8%A9-%D9%85%D8%AF%D9%81%D9%88%D8%B9%D8%A9-%D8%A7%D9%84%D8%A3%D8%AC%D8%B1-%D9%84%D9%84%D8%B9%D8%A7%D9%85%D9%84%D9%8A%D9%86-%D8%A8%D8%A7%D9%84%D9%82%D8%B7%D8%A7%D8%B9-%D8%A7%D9%84%D8%AE%D8%A7%D8%B5-%D8%A8%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%A9-%D8%B9%D9%8A%D8%AF-%D8%A7%D9%84%D9%85%D9%8A%D9%84%D8%A7%D8%AF-%D8%A7%D9%84%D9%85%D8%AC%D9%8A%D8%AF-%D8%AC%D8%A8%D8%B1%D8%A7%D9%86-%D9%88%D8%AD%D8%AF%D8%A9-%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D9%8A%D9%86-%D9%88%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A7%D9%84%D9%85%D8%B4%D8%AA%D8%B1%D9%83-%D8%A3%D8%B3%D8%A7%D8%B3-%D9%82%D9%88%D8%A9-%D8%A7%D9%84%D9%88%D8%B7%D9%86/",
+          "source_role": "official Ministry announcement citing Decision 294/2025; discovery evidence only",
+          "status": "discovered_not_downloaded"
+        }
+      ]
     }
   ],
   "next_actions": [
@@ -1970,6 +2089,36 @@
       "owner": "legal researcher",
       "status": "not_started",
       "blocking": true
+    },
+    {
+      "id": "ACT-LABOUR-RULES-2026-VERIFY",
+      "action": "Verify the exact instrument number/title, Official Gazette issue/pages, commencement and relationship to Labour Law 14/2025 for the general private-sector work-regulation rules reported by the Ministry of Labour in 2026; keep permission and legal status unknown until independently reviewed.",
+      "owner": "legal corpus lead",
+      "status": "not_started"
+    },
+    {
+      "id": "ACT-LABOUR-DECISION-264-2026-STANDARDS-VERIFY",
+      "action": "Retrieve the official text/publication reference for the 2026 standards reported under Labour Decision 264/2025; establish whether they are a separate instrument, record exact title/number and effective date, and keep legal status and reuse permission unresolved until reviewed.",
+      "owner": "legal corpus lead",
+      "status": "not_started"
+    },
+    {
+      "id": "ACT-LABOUR-DECISION-49-2026-VERIFY",
+      "action": "Obtain and verify the full official text, Gazette issue/pages, effective date and any later amendments/repeal for Ministerial Decision 49/2026; keep permission and legal status unknown until evidence and qualified review are complete.",
+      "owner": "legal corpus lead",
+      "status": "not_started"
+    },
+    {
+      "id": "ACT-LABOUR-DECISION-294-2025-VERIFY",
+      "action": "Obtain and verify the complete official text, Gazette issue/pages, scope and amendments/repeal history of Ministerial Decision 294/2025 on paid holidays; keep legal status and reuse permission unknown until evidence and lawyer review are complete.",
+      "owner": "legal corpus lead",
+      "status": "not_started"
+    },
+    {
+      "id": "ACT-LABOUR-LAW-14-2025-EXEC-REGS-VERIFY",
+      "action": "Independently determine whether the full executive regulations for Labour Law 14/2025 have been issued; search official Gazette/ministerial publication and record exact number, publication/effective date, source text and amendment history. The Ministry index snapshot did not show a separate entry, which is not proof of non-existence.",
+      "owner": "legal corpus lead",
+      "status": "not_started"
     }
   ],
   "research_log": {

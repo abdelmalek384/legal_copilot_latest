@@ -2,9 +2,9 @@
 Case folders with Egyptian case metadata, internal notes, legal deadlines separate from court sessions, fee tracking, team management, session tracking, hybrid law search (SQLite FTS5 + Arabic-normalized trigram similarity + exact article lookup),
 and answers that must cite numbered sources. If nothing relevant is found, or the model's citations fail the check, it shows sources only.
 
-Mac quick start: double-click `start_mac.command`; it creates a virtual environment, installs dependencies, initializes separate control-plane, firm, and shared-corpus databases under `./data`, prompts to create the first firm administrator if needed, and starts the app locally. Manual run: set `COPILOT_CONTROL_DB`, `COPILOT_TENANT_DB_ROOT`, and `COPILOT_CORPUS_DB` to three distinct paths, then run `uvicorn app:app --host 127.0.0.1 --port 8000` and open http://127.0.0.1:8000. The app fails closed if neither the separate paths nor an explicit legacy `COPILOT_DB` path is configured.
+Mac quick start: double-click `start_mac.command`; it creates a virtual environment, installs dependencies, initializes separate control-plane, firm, and shared-corpus databases under `./data`, prompts to create the first firm administrator if needed, and starts the app locally. Manual run: follow the initialization and first-owner bootstrap steps under [Setup and security](#setup-and-security), set `COPILOT_CONTROL_DB`, `COPILOT_TENANT_DB_ROOT`, and `COPILOT_CORPUS_DB` to three distinct paths, then run `python -m uvicorn app:app --host 127.0.0.1 --port 8000` and open http://127.0.0.1:8000. The app fails closed if neither the separate paths nor an explicit legacy `COPILOT_DB` path is configured.
 Load law: POST a JSON list of {law, article, text, as_of, in_force, source} to /law/import (see sample_law.jsonl: FICTIONAL test text only).
-Model: set LLM_URL (OpenAI-compatible /chat/completions, e.g. vLLM, Ollama, or a hosted provider), LLM_MODEL, and LLM_KEY. The app does not choose or bundle a model. LLM_URL alone is not enough to send prompts: explicitly set LLM_DATA_PROCESSING_APPROVED=1 only after reviewing the endpoint, data-processing terms, retention, and whether matter data may be sent. Matter-file passages additionally require `LLM_FIRM_DATA_PROCESSING_APPROVED=1`; otherwise those requests return sources only. These are deployment attestations, not consent or privacy guarantees. See [LLM data-processing policy](docs/llm_data_processing_policy.md).
+Model: set LLM_URL (OpenAI-compatible /chat/completions, e.g. vLLM, Ollama, or a hosted provider), LLM_MODEL, and LLM_KEY. The app does not choose or bundle a model. LLM_URL alone is not enough to send prompts: explicitly set LLM_DATA_PROCESSING_APPROVED=1 only after reviewing the endpoint, data-processing terms, retention, and whether matter data may be sent. Case-scoped research, follow-up conversation context, and matter-file passages additionally require `LLM_FIRM_DATA_PROCESSING_APPROVED=1`; otherwise those requests return sources only. These are deployment attestations, not consent or privacy guarantees. See [LLM data-processing policy](docs/llm_data_processing_policy.md).
 
 Not included yet: a complete verified official law/ruling corpus, production-ready reminder operations (a tenant-scoped durable outbox and dry-run-by-default operator scheduler now exist, but SMTP provider staging, external scheduling/monitoring, and operator reconciliation remain release gates; see docs/reminder_scheduler_contract.md), WhatsApp/SMS delivery, embedding-model semantic search, and a complete end-to-end amendment/consolidation workflow.
 
@@ -24,7 +24,7 @@ To seed source and document-candidate metadata into the local SQLite registry (n
 python tools/seed_legal_candidates.py --apply
 ```
 
-Before any authorized acquisition, review [the acquisition-readiness audit](docs/acquisition_readiness_audit.md) and run its read-only preflight against the candidate manifest and source permission register. A manifest entry marked pending is not permission to download, and collection readiness is not commercial reuse permission. Any permission marked allowed must link to inspectable HTTPS rights evidence; commercial reuse needs separate evidence and a separate review date.
+Before any authorized acquisition, review [the acquisition-readiness audit](docs/acquisition_readiness_audit.md) and run its read-only preflight against the candidate manifest and source permission register. For the narrow distinction between copyright in official legal documents and rights in a portal/database/collection, also read [the legal-text reuse framework](docs/legal_text_reuse_framework.md); it does not itself grant permission or override the acquisition gate. A manifest entry marked pending is not permission to download, and collection readiness is not commercial reuse permission. Any permission marked allowed must link to inspectable HTTPS rights evidence; commercial reuse needs separate evidence and a separate review date.
 
 For a read-only snapshot of the source registers, acquisition queue, candidate counts, and cross-register inconsistencies, run `python tools/report_legal_corpus_inventory.py` (see [inventory report guide](docs/legal_corpus_artifact_inventory.md)). This counts planning metadata only; it does not count candidate entries as collected or verified legal documents.
 
@@ -38,30 +38,58 @@ embedding model such as bge-m3 or multilingual-e5, stored in pgvector), and MIN_
 
 ## Setup and security
 
-Before deploying for real client matters, use the [production deployment checklist](docs/production_deployment_checklist.md). It is a release gate, not a substitute for an independent security review or legal validation.
+For a fresh installation, use the separate-database architecture. Do not follow old single-file database instructions for a fresh install.
 
-Run the read-only deployment configuration preflight as the application OS account before release:
+### Mac quick start
+
+Run `./start_mac.command` from the repository folder (or double-click it in Finder). The script creates a virtual environment, installs dependencies, initializes separate control-plane, per-firm, and shared-legal-corpus databases, and prompts for the first firm and owner if no active membership exists.
+
+### Manual local setup
+
 ```bash
-python tools/deployment_preflight.py --strict
-```
-It checks basic secret configuration, `MIN_SCORE`, and SQLite path/access settings. It does not test TLS, proxy configuration, legal corpus validity, or certify deployment security.
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
 
-Before any production launch, also run the [aggregate production release gate](docs/production_release_gate.md):
+mkdir -p data/tenants
+export COPILOT_CONTROL_DB="$PWD/data/control_plane.sqlite3"
+export COPILOT_TENANT_DB_ROOT="$PWD/data/tenants"
+export COPILOT_CORPUS_DB="$PWD/data/legal_corpus.sqlite3"
+
+python -c "from database_runtime import DatabaseRuntime; DatabaseRuntime.from_env().initialize()"
+python manage.py init-tenancy --firm-name "Example Firm" --owner-name "First Owner" --owner-email owner@example.com
+python -m uvicorn app:app --host 127.0.0.1 --port 8000
+```
+
+Open http://127.0.0.1:8000 on the same machine. The three database paths must remain distinct. Do not set `COPILOT_DB` for a fresh install; it is legacy compatibility mode. Do not expose the development server directly to the internet.
+
+### Production and model-processing gates
+
+Before any real-client deployment, follow the [production deployment checklist](docs/production_deployment_checklist.md), run `python tools/deployment_preflight.py --strict`, and review the [aggregate production release gate](docs/production_release_gate.md). These checks are necessary but not a substitute for independent security review, witnessed recovery testing, or legal validation.
+
+A model endpoint must not receive prompts until its data-processing terms, retention, access controls, and matter-data suitability have been reviewed and `LLM_DATA_PROCESSING_APPROVED=1` is set. Case-scoped prompts, prior-question follow-up context, and matter-file passages additionally require `LLM_FIRM_DATA_PROCESSING_APPROVED=1`. These flags are deployment attestations, not client consent or a guarantee of provider compliance. See [LLM data-processing policy](docs/llm_data_processing_policy.md).
+
+### Backup and restore
+
+Fresh separate-database installs must use encrypted tenancy bundles, not the legacy single-file `backup` / `restore` commands.
+
 ```bash
-PYTHONPATH=. python tools/production_release_gate.py --out reports/production-release-gate.json
+python manage.py genkey
+# Store the generated key in a protected secret store, not in the repository.
+read -rsp "BACKUP_KEY: " BACKUP_KEY; echo
+export BACKUP_KEY
+python manage.py backup-tenancy /safe/backup/path --quiesced --keep 14
+python manage.py verify-backup-tenancy /safe/backup/path/backup-file.enc
+python manage.py restore-tenancy /safe/backup/path/backup-file.enc --target-root /new/restore/directory
+unset BACKUP_KEY
 ```
-The gate combines strict deployment configuration, legal-corpus permission/integrity/review evidence, and the lawyer-approved multi-area benchmark. It is expected to block release while the corpus candidates or benchmark remain unreviewed; do not change draft review markers merely to obtain a pass.
-1. `pip install -r requirements.txt`, then `python selftest.py && python api_test.py`.
-2. Create the first account: `python manage.py adduser "Name" name@firm.eg admin` (roles: admin, lawyer, junior; password min 12 characters). When typing the password in the terminal, characters do not appear on screen; this is normal. Press Enter after typing it. If you need to change a forgotten password later, run `python manage.py resetpw name@firm.eg`.
-3. Set `ADMIN_TOKEN` to a randomly generated secret of at least 32 characters in the server environment (never commit it or print it in logs). `/law/import` requires both a valid signed-in admin account and the `X-Admin-Token` header. Rotate the secret immediately if exposed. Optional: `LLM_URL` / `LLM_MODEL` / `LLM_KEY`.
-4. Run `uvicorn app:app` only behind an HTTPS reverse proxy (Caddy or nginx).
-5. Backups: `python manage.py genkey` once (store the key OFF the server), then daily via cron:
-   `BACKUP_KEY=... python manage.py backup /safe/path --keep 14`. Restore: `python manage.py restore FILE OUT.db`. Test a restore.
-6. Encrypt the server disk (LUKS or your host's volume encryption). The database itself is not encrypted, so disk encryption is what protects it at rest.
 
-Permissions: admin sees all cases; a lawyer sees only cases they belong to; only a case's lead (or admin) can edit status, manage the team, or delete.
-Uploads: PDF/DOCX up to 15 MB. Text-based PDFs and DOCX files are extracted locally; scanned PDFs may use optional local OCR when the OCR dependencies and Arabic/English Tesseract language data are installed. Original uploads are not retained by this workflow; extracted text is stored. OCR output remains unverified until checked against the original.
-Not yet done: independent security review, production acceptance of MFA and account recovery (TOTP enrollment and recovery codes are implemented but the last-platform-admin offline recovery drill remains open), email-based password reset, audit export, production reminder operations, embeddings, a formal conflict-check workflow, and production acceptance of the separate-database cutover. Fresh-install mode routes firm data to per-firm databases and legal-registry data to a shared corpus. Encrypted multi-database bundles are available through `python manage.py backup-tenancy DIR --quiesced` and `python manage.py restore-tenancy FILE --target-root NEW_DIRECTORY`; stop application writes for the full backup window, configure `BACKUP_KEY`, and restore only to a new directory. Rollback rehearsal and end-to-end recovery acceptance are still required before production use. Optional local OCR exists, but Arabic OCR quality has not yet been validated on a representative Egyptian court-scan benchmark. Admins can reset passwords manually with `python manage.py resetpw EMAIL`; there is no self-service email reset.
+Keep application writes paused for the full backup snapshot window. Verify a bundle before recovery, restore only to a new target directory, and complete a witnessed restore/rollback drill before production. For non-interactive deployments, inject the key from the deployment's protected secret manager. Never place real keys in tickets, chat, or source control. The commands above are operator examples; replace paths and the key placeholder with values from your deployment's protected secret store.
+
+### Account and privilege operations
+
+The first firm owner is created with `init-tenancy` during fresh setup. Platform roles are distinct from firm roles. Use the reviewed account-lifecycle and privileged-role procedures; do not treat a firm administrator as a platform administrator, and do not use an ad-hoc SQL edit to recover an account. See the current CLI help (`python manage.py --help`) and production checklist before operator actions.
 
 ## Loading law data
 1. Download PDFs plus their .json metadata (see download_egypt_laws.py), then: `python tools/import_laws.py egypt_laws out` (needs pymupdf; PDFs with a broken text layer are OCR'd, which needs tesseract; the run is resumable).

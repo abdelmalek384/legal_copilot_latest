@@ -15,6 +15,11 @@ from datetime import date
 from pathlib import Path
 from urllib.parse import urlsplit
 
+try:
+    from tools.evaluate_legal_answer_reviews import validate_reviewer_registry
+except ModuleNotFoundError:  # supports direct execution as python tools/evaluate_legal_answers.py
+    from evaluate_legal_answer_reviews import validate_reviewer_registry
+
 APPROVED = "lawyer_approved"
 
 
@@ -78,7 +83,7 @@ def _valid_review_evidence_url(value):
         return False
 
 
-def _validate_reviewed_question(row):
+def _validate_reviewed_question(row, approved_reviewers):
     qid = row.get("id")
     if not _nonempty(qid):
         raise EvaluationError("question id must be a non-empty string")
@@ -98,6 +103,14 @@ def _validate_reviewed_question(row):
         raise EvaluationError(f"{qid}: as_of_date must be a valid non-future date")
     if not _nonempty(row.get("reviewer_name")):
         raise EvaluationError(f"{qid}: reviewer_name is required")
+    reviewer_id = row.get("reviewer_id")
+    reviewer = approved_reviewers.get(reviewer_id) if isinstance(reviewer_id, str) else None
+    if reviewer is None:
+        raise EvaluationError(f"{qid}: reviewer_id must match a valid approved reviewer registry entry")
+    if row.get("reviewer_name") != reviewer.get("display_name"):
+        raise EvaluationError(f"{qid}: reviewer_name must match the approved reviewer registry display_name")
+    if row.get("practice_area") not in reviewer.get("practice_areas", []):
+        raise EvaluationError(f"{qid}: reviewer is not approved for this practice_area")
     reviewer_role = row.get("reviewer_role")
     if not isinstance(reviewer_role, str) or reviewer_role not in {"egyptian_lawyer", "qualified_egyptian_counsel"}:
         raise EvaluationError(f"{qid}: reviewer_role must identify qualified Egyptian counsel")
@@ -158,7 +171,7 @@ def _ratio(numerator, denominator):
     return round(numerator / denominator, 4) if denominator else None
 
 
-def evaluate(question_rows, result_rows):
+def evaluate(question_rows, result_rows, reviewer_registry):
     question_map = {}
     for row in question_rows:
         qid = row.get("id")
@@ -177,13 +190,21 @@ def evaluate(question_rows, result_rows):
             raise EvaluationError(f"duplicate result id: {qid}")
         result_map[qid] = row
 
+    approved_reviewers, registry_errors = validate_reviewer_registry(reviewer_registry)
+    if registry_errors:
+        raise EvaluationError("reviewer registry contains invalid entries: " + "; ".join(
+            f"{item.get('record')}: {', '.join(item.get('errors', []))}" for item in registry_errors
+        ))
+    if not approved_reviewers:
+        raise EvaluationError("reviewer registry has no valid approved reviewers")
+
     reviewed = {}
     excluded = []
     for qid, row in question_map.items():
         if row.get("review_status") != APPROVED:
             excluded.append(qid)
             continue
-        reviewed[qid] = _validate_reviewed_question(row)
+        reviewed[qid] = _validate_reviewed_question(row, approved_reviewers)
     if not reviewed:
         raise EvaluationError(f"no questions with review_status={APPROVED!r}; drafts are not scoreable")
     unknown = sorted(set(result_map) - set(question_map))
@@ -318,6 +339,7 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--questions", required=True, help="Lawyer-reviewed question JSONL")
     parser.add_argument("--results", required=True, help="Model output JSONL, one record per question")
+    parser.add_argument("--reviewer-registry", required=True, help="Private JSON registry of verified reviewer qualification checks")
     parser.add_argument("--out", help="Write report JSON here; default is stdout")
     parser.add_argument("--min-source-precision", type=float, help="Fail the technical gate if source precision is below this 0..1 threshold")
     parser.add_argument("--min-pin-cite-precision", type=float, help="Fail the technical gate if pinpoint-citation precision is below this 0..1 threshold")
@@ -328,6 +350,10 @@ def main(argv=None):
     parser.add_argument("--min-practice-areas", type=int, help="Fail the technical gate if fewer distinct reviewed practice areas are scored")
     parser.add_argument("--min-questions-per-practice-area", type=int, help="Fail if any scored practice area has fewer reviewed questions than this value")
     args = parser.parse_args(argv)
+    try:
+        reviewer_registry = json.loads(Path(args.reviewer_registry).read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        parser.error(f"invalid reviewer registry: {exc}")
     for name in ("min_questions", "min_practice_areas", "min_questions_per_practice_area"):
         value = getattr(args, name)
         if value is not None and value < 1:
@@ -347,7 +373,7 @@ def main(argv=None):
         if value is not None and (not math.isfinite(value) or not 0 <= value <= 1):
             parser.error(f"--{name.replace('_', '-')} must be a finite number between 0 and 1")
     try:
-        report = evaluate(read_jsonl(args.questions), read_jsonl(args.results))
+        report = evaluate(read_jsonl(args.questions), read_jsonl(args.results), reviewer_registry)
     except (OSError, EvaluationError) as exc:
         print(f"evaluation refused: {exc}", file=sys.stderr)
         return 2

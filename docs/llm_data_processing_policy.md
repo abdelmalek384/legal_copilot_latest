@@ -38,4 +38,14 @@ This gate is a minimum safeguard, not a production-readiness certification. Shar
 
 ## Separate gate for matter-file content
 
+The separate firm-data gate applies when the caller explicitly associates a research request with a case, when prior user-question context is included in a follow-up, or when retrieval returns matter-file passages. Conversation history can itself contain confidential facts, even when the latest retrieval returns only public-law passages. Without the flag, the application returns sources only.
+
 The general model-processing switch does not automatically authorize sending client/matter file passages to an endpoint. The research path now checks whether any retrieved hit belongs to a case. If so, it requires `LLM_FIRM_DATA_PROCESSING_APPROVED=1` before calling the model. Without it, the answer is withheld and the sources-only result is returned. The switch is a deployment-level attestation, not per-client consent or automated redaction. Keep it unset unless the provider, data classes, client/firm permissions, retention, access, region, and contractual terms have been specifically reviewed. This does not make confidential case-file research production-safe; tenant isolation and an independent security review remain required.
+
+## Approved default privacy posture
+
+The product-owner's approved default is **no cross-firm training or fine-tuning on customer data**. Matter documents, extracted text, prompts, conversations, client identifiers, and firm-specific outputs must not be used to train, fine-tune, or improve a model shared with other firms. They must not be exposed across firms through retrieval, memory, caches, logs, evaluation datasets, or provider-side reuse.
+
+The application itself does not train or fine-tune its configured model from uploaded documents. Model inference may still require transmitting the question and selected context to the configured endpoint. Before enabling any endpoint, verify the actual provider/model, processing region, retention/deletion behavior, subprocessors, incident terms, and contractual prohibition on provider training/use for model improvement. If these conditions cannot be verified, keep model calls disabled or use a genuinely controlled local/self-hosted endpoint that has been reviewed. Do not infer that an OpenAI-compatible API is local or privacy-preserving from its URL format alone.
+
+Using firm data for a firm-specific feature such as authorized retrieval, search, or explicitly scoped matter context is not model training. Any future proposal to use real customer data for cross-firm training or evaluation requires a separate opt-in decision, documented lawful basis and client/firm authorization where required, minimization/de-identification review, provider/contract review, and an auditable opt-out/deletion process. It is not permitted by default. Public legal materials and synthetic test fixtures may be used subject to source rights and review.

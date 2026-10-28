@@ -18,6 +18,18 @@ The current frontend is a single-file, right-to-left Arabic-first application wi
 
 These are interaction patterns and product directions, not a claim that our application has equivalent data coverage, citation validation, security certifications, or workflow completeness.
 
+## Follow-up work merged — 2026-10-28
+
+The following follow-up PRs passed their recorded Tests and non-database safety workflows before merge:
+
+- **#700:** Arabic/English labels for case creation and the client/conflict-check view.
+- **#701:** Arabic/English case-detail input placeholders, validation feedback, and fee formatting.
+- **#702:** Arabic/English document-review actions, OCR warnings, review labels, and correction feedback.
+- **#703:** Arabic/English case tabs, team roles, summary labels, and locale-aware activity timestamps.
+- **#704:** keyboard focus trapping inside the case-creation modal and focus restoration when dismissed.
+
+These are frontend implementation and automated contract-test improvements, not proof of visual quality or accessibility conformance. Manual browser, screen-reader, responsive, and lawyer workflow QA remains outstanding.
+
 ## Remaining gaps to address in follow-up PRs
 1. **Navigation and information architecture:** add dedicated, real routes for saved research, documents, tasks/deadlines, and account/team administration only where backend support exists; clearly mark unavailable functionality rather than showing dead controls.
 2. **Research trust UX:** show legal-source provenance, verification state, effective date, and warning states beside each citation; make citation-to-source inspection one click; distinguish current law from historical/unverified material.

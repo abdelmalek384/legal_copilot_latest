@@ -18,7 +18,7 @@ Record these fields for every reviewed answer:
 - Exact answer text shown to the user.
 - Run/model identifier and configuration sufficient to reproduce the run, without recording secrets.
 - Retrieved source IDs and versions, cited source IDs, article/paragraph/page pin-cites, and source hashes or stable evidence references where available.
-- Reviewer name/role and review date.
+- Stable reviewer ID matched to a separately maintained approved qualification registry, reviewer name/role, and review date.
 - Per-dimension score, concise evidence-based rationale, and any critical defect.
 - Final disposition: pass_for_this_case, needs_revision, unsafe, or not_scored_insufficient_evidence.
 

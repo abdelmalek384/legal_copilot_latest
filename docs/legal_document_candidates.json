@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_on": "2026-10-23",
+  "generated_on": "2026-10-27",
   "purpose": "Seed discovery candidates into the local registry. These are metadata leads, not downloaded legal texts, verified current law, or permission to collect/reuse content.",
   "sources": [
     {
@@ -52,6 +52,72 @@
       "authority": "Egyptian Tax Authority and Income Tax Authority portals",
       "source_page": "https://portal.eta.gov.eg/ar/content/qwanyn-aldrybt-ly-alqymt-almdaft",
       "access_status": "official_tax_legislation_indexes_located",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": null
+    },
+    {
+      "source_id": "EG-MINISTRY-LABOUR-LAWS",
+      "authority": "Ministry of Labour, Arab Republic of Egypt",
+      "source_page": "https://www.labour.gov.eg/en/laws-and-legislations/",
+      "access_status": "official legislation index located",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": null
+    },
+    {
+      "source_id": "EG-MIFT-LEGISLATION",
+      "authority": "Ministry of Investment and Foreign Trade, Arab Republic of Egypt",
+      "source_page": "https://www.mift.gov.eg/legislation/index",
+      "access_status": "official legislation portal located",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": null
+    },
+    {
+      "source_id": "EG-CAOA-LAWS",
+      "authority": "Central Agency for Organization and Administration, Arab Republic of Egypt",
+      "source_page": "https://www.caoa.gov.eg/WebForms/laws.aspx",
+      "access_status": "official laws and settled-principles index located",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": null
+    },
+    {
+      "source_id": "EG-NEA-LAWS",
+      "authority": "National Election Authority, Arab Republic of Egypt",
+      "source_page": "https://www.election.eg/digital-library-laws",
+      "access_status": "official digital law library located",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": null
+    },
+    {
+      "source_id": "EG-MPA-PARLIAMENT-REGULATIONS",
+      "authority": "Ministry of Parliamentary Affairs, Arab Republic of Egypt",
+      "source_page": "https://mpa.gov.eg/e/parliament/regulations",
+      "access_status": "official parliamentary-regulations index located",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": null
+    },
+    {
+      "source_id": "EG-MINISTRY-OF-JUSTICE",
+      "authority": "Ministry of Justice, Arab Republic of Egypt",
+      "source_page": "https://moj.gov.eg/",
+      "access_status": "official Gazette document endpoint located",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
@@ -124,7 +190,7 @@
       "source_id": "EG-AMIRI-PRESS",
       "language": "ar",
       "candidate_status": "discovery_only",
-      "notes": "Do not assume current applicability; check any replacement legislation and commencement date before use."
+      "notes": "Law 174/2025 contains a repeal clause for Law 150/1950, but Law 160/2026 amended its commencement provision to 1 October 2027. Do not label Law 150/1950 repealed before the replacement law's commencement; verify the official Gazette texts, any intervening amendments, and legal status with a qualified reviewer."
     },
     {
       "document_id": "EG-COMMERCIAL-17-1999",
@@ -917,6 +983,72 @@
       "language": "ar",
       "candidate_status": "discovery_only",
       "notes": "Candidate metadata only. Verify Gazette text, amendments, and current status before use."
+    },
+    {
+      "document_id": "EG-CIVIL-SERVICE-REGULATIONS-1216-2017",
+      "official_title": "اللائحة التنفيذية لقانون الخدمة المدنية الصادرة بقرار رئيس مجلس الوزراء رقم 1216 لسنة 2017",
+      "document_type": "executive_regulations",
+      "law_number": "1216",
+      "law_year": 2017,
+      "source_id": "EG-CAOA-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Candidate located in the official CAOA laws index. Verify the exact original document, amendments, any replacement regulations, and current applicability against official publication records before use."
+    },
+    {
+      "document_id": "EG-POLITICAL-RIGHTS-45-2014",
+      "official_title": "قانون تنظيم مباشرة الحقوق السياسية — القانون رقم 45 لسنة 2014",
+      "document_type": "election_law",
+      "law_number": "45",
+      "law_year": 2014,
+      "source_id": "EG-NEA-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Candidate listed by the National Election Authority. Verify the official Gazette text, all amendments, transitional provisions, and current applicability; the index is a discovery lead only."
+    },
+    {
+      "document_id": "EG-HOUSE-REPRESENTATIVES-46-2014",
+      "official_title": "قانون مجلس النواب — القانون رقم 46 لسنة 2014",
+      "document_type": "parliament_law",
+      "law_number": "46",
+      "law_year": 2014,
+      "source_id": "EG-NEA-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Candidate listed by the National Election Authority. Verify the official Gazette text, amendments, replacement provisions, and current applicability before use."
+    },
+    {
+      "document_id": "EG-SENATE-141-2020",
+      "official_title": "قانون مجلس الشيوخ — القانون رقم 141 لسنة 2020",
+      "document_type": "senate_law",
+      "law_number": "141",
+      "law_year": 2020,
+      "source_id": "EG-NEA-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Candidate listed by the National Election Authority. Verify the official Gazette text, amendments, transitional provisions, and current applicability before use."
+    },
+    {
+      "document_id": "EG-CRIMINAL-PROCEDURE-174-2025",
+      "official_title": "قانون الإجراءات الجنائية — القانون رقم 174 لسنة 2025",
+      "document_type": "criminal_procedure_code",
+      "law_number": "174",
+      "law_year": 2025,
+      "source_id": "EG-MINISTRY-OF-JUSTICE",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official Ministry of Justice Gazette PDF located. The commencement clause was amended by Law 160/2026; official Amiri Press publication reports commencement on 1 October 2027. Keep this instrument unverified and not in force until the exact Gazette text, amendment, and effective-date chain are reviewed."
+    },
+    {
+      "document_id": "EG-CRIMINAL-PROCEDURE-COMMENCEMENT-AMENDMENT-160-2026",
+      "official_title": "قانون رقم 160 لسنة 2026 بتعديل بعض أحكام القانون رقم 174 لسنة 2025 بإصدار قانون الإجراءات الجنائية",
+      "document_type": "amending_law",
+      "law_number": "160",
+      "law_year": 2026,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official Amiri Press publication states this law amends the commencement wording in Law 174/2025. Verify the exact Gazette issue, publication date, amendment wording, and legal effect against the official Gazette before treating the commencement date as verified."
     }
   ]
 }

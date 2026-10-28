@@ -44,7 +44,7 @@ def load_jsonl(path):
 def validate_review(record):
     """Return schema/evidence errors without inventing or repairing labels."""
     errors = []
-    for field in ("assessment_id", "case_id", "practice_area", "reviewer_name", "review_date", "disposition"):
+    for field in ("assessment_id", "case_id", "practice_area", "reviewer_id", "reviewer_name", "review_date", "disposition"):
         if not isinstance(record.get(field), str) or not record[field].strip():
             errors.append(f"missing or empty {field}")
     disposition = record.get("disposition")
@@ -101,8 +101,82 @@ def validate_review(record):
     return errors
 
 
-def summarize_reviews(records):
-    """Summarize valid assessments; repeated case IDs are allowed for independent reviews."""
+def _valid_iso_date(value):
+    if not isinstance(value, str):
+        return False
+    try:
+        parsed = date.fromisoformat(value)
+        return parsed.isoformat() == value and parsed <= date.today()
+    except ValueError:
+        return False
+
+
+def validate_reviewer_registry(registry):
+    """Return approved reviewer identities and auditable registry errors.
+
+    A registry entry is an administrative assertion that must be checked by a
+    trusted operator against private credential evidence; this function cannot
+    independently verify a professional license or identity.
+    """
+    errors = []
+    if not isinstance(registry, dict) or not isinstance(registry.get("reviewers"), list):
+        return {}, [{"record": "registry", "errors": ["reviewer registry must contain a reviewers list"]}]
+    entries = {}
+    duplicates = set()
+    for index, entry in enumerate(registry["reviewers"], start=1):
+        if not isinstance(entry, dict):
+            errors.append({"record": f"reviewer-row-{index}", "errors": ["reviewer entry must be an object"]})
+            continue
+        reviewer_id = entry.get("reviewer_id")
+        row_errors = []
+        if not isinstance(reviewer_id, str) or not reviewer_id.strip():
+            row_errors.append("missing or empty reviewer_id")
+        elif reviewer_id in entries:
+            duplicates.add(reviewer_id)
+        status = entry.get("status")
+        if status not in {"approved", "pending", "suspended", "rejected"}:
+            row_errors.append("status must be approved, pending, suspended, or rejected")
+        for field in ("display_name", "qualification_basis", "evidence_reference", "verified_by"):
+            if not isinstance(entry.get(field), str) or not entry[field].strip():
+                row_errors.append(f"missing or empty {field}")
+        if entry.get("professional_role") not in {"egyptian_lawyer", "qualified_egyptian_counsel"}:
+            row_errors.append("professional_role must identify Egyptian legal counsel")
+        if entry.get("jurisdiction") != "Egypt":
+            row_errors.append("jurisdiction must be Egypt")
+        practice_areas = entry.get("practice_areas")
+        if (not isinstance(practice_areas, list) or not practice_areas
+                or any(not isinstance(area, str) or not area.strip() for area in practice_areas)
+                or len(practice_areas) != len(set(practice_areas))):
+            row_errors.append("practice_areas must be a non-empty list of unique non-empty strings")
+        if not _valid_iso_date(entry.get("verified_on")):
+            row_errors.append("verified_on must be a real ISO date that is not in the future")
+        if row_errors:
+            errors.append({"record": reviewer_id or f"reviewer-row-{index}", "errors": row_errors})
+        if isinstance(reviewer_id, str) and reviewer_id.strip():
+            entries[reviewer_id] = entry
+    for reviewer_id in sorted(duplicates):
+        errors.append({"record": reviewer_id, "errors": ["duplicate reviewer_id; all duplicate entries are excluded"]})
+    approved = {
+        reviewer_id: entry for reviewer_id, entry in entries.items()
+        if reviewer_id not in duplicates
+        and entry.get("status") == "approved"
+        and isinstance(entry.get("display_name"), str) and entry["display_name"].strip()
+        and isinstance(entry.get("qualification_basis"), str) and entry["qualification_basis"].strip()
+        and isinstance(entry.get("evidence_reference"), str) and entry["evidence_reference"].strip()
+        and isinstance(entry.get("verified_by"), str) and entry["verified_by"].strip()
+        and entry.get("professional_role") in {"egyptian_lawyer", "qualified_egyptian_counsel"}
+        and entry.get("jurisdiction") == "Egypt"
+        and isinstance(entry.get("practice_areas"), list) and bool(entry["practice_areas"])
+        and all(isinstance(area, str) and area.strip() for area in entry["practice_areas"])
+        and len(entry["practice_areas"]) == len(set(entry["practice_areas"]))
+        and _valid_iso_date(entry.get("verified_on"))
+    }
+    return approved, errors
+
+
+def summarize_reviews(records, reviewer_registry):
+    """Summarize assessments only when reviewer identity is approved in the registry."""
+    approved_reviewers, registry_errors = validate_reviewer_registry(reviewer_registry)
     valid, invalid, seen = [], [], set()
     for index, record in enumerate(records, start=1):
         if not isinstance(record, dict):
@@ -110,6 +184,14 @@ def summarize_reviews(records):
             continue
         errors = validate_review(record)
         assessment_id = record.get("assessment_id", f"line-{index}")
+        reviewer_id = record.get("reviewer_id")
+        reviewer = approved_reviewers.get(reviewer_id) if isinstance(reviewer_id, str) else None
+        if reviewer is None:
+            errors.append("reviewer_id is not present in the valid approved reviewer registry")
+        elif record.get("reviewer_name") != reviewer.get("display_name"):
+            errors.append("reviewer_name does not match the approved registry display_name")
+        elif record.get("practice_area") not in reviewer.get("practice_areas", []):
+            errors.append("reviewer is not approved for this practice_area")
         if errors:
             invalid.append({"record": assessment_id, "record_index": index, "errors": errors})
             continue
@@ -149,6 +231,8 @@ def summarize_reviews(records):
     return {
         "valid_assessments": len(valid),
         "invalid_assessments_excluded": len(invalid),
+        "approved_reviewers_available": len(approved_reviewers),
+        "reviewer_registry_errors": registry_errors,
         "invalid_records": invalid,
         "disposition_counts": {name: counts.get(name, 0) for name in sorted(DISPOSITIONS)},
         "practice_area_counts": dict(sorted(practice_areas.items())),
@@ -168,9 +252,14 @@ def summarize_reviews(records):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("reviews", type=Path, help="UTF-8 JSONL containing human review records")
+    parser.add_argument("--reviewer-registry", type=Path, required=True, help="Private JSON registry of reviewer qualification checks")
     parser.add_argument("--output", type=Path, help="Optional path for the JSON report")
     args = parser.parse_args()
-    report = summarize_reviews(load_jsonl(args.reviews))
+    try:
+        registry = json.loads(args.reviewer_registry.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        parser.error(f"invalid reviewer registry: {exc}")
+    report = summarize_reviews(load_jsonl(args.reviews), registry)
     rendered = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
     if args.output:
         args.output.write_text(rendered, encoding="utf-8")

@@ -181,6 +181,13 @@ class LegalVersionedRegistryTests(unittest.TestCase):
         hits = self.app.search(self.db, "futureprobe", as_of="2027-10-01")
         self.assertEqual([h["id"] for h in hits], [chunk_id])
 
+        # Exact article lookup must apply the same effective-date gate as normal
+        # retrieval; otherwise a future law could appear to answer a numbered
+        # article question before the law enters into force.
+        self.assertEqual(self.app.search(self.db, "المادة 1", as_of="2026-10-23"), [])
+        exact_hits = self.app.search(self.db, "المادة 1", as_of="2027-10-01")
+        self.assertIn(chunk_id, [h["id"] for h in exact_hits])
+
     def test_repealed_version_is_excluded_on_and_after_repeal_date(self):
         chunk_id, _ = self._make_linked_chunk("repealed", "2020-01-01", repeal_date="2026-01-01", text="repealprobe law text")
         self.assertEqual(self.app.search(self.db, "repealprobe", as_of="2026-01-01"), [])

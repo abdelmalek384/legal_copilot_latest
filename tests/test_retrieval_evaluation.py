@@ -7,7 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from tools.evaluate_retrieval_quality import DEFAULT_QUESTIONS, _load_jsonl, score_evaluation, validate_reviewed_question
+from tools.evaluate_retrieval_quality import DEFAULT_QUESTIONS, _load_jsonl, _write_report, score_evaluation, validate_reviewed_question
 
 
 def reviewed_question(**overrides):
@@ -30,6 +30,15 @@ def reviewed_question(**overrides):
 
 
 class RetrievalEvaluationTests(unittest.TestCase):
+    def test_report_writer_creates_new_file_and_never_overwrites_existing_evidence(self):
+        with tempfile.TemporaryDirectory() as td:
+            report = Path(td) / "evaluation-report.json"
+            _write_report(report, "first report\n")
+            self.assertEqual(report.read_text(encoding="utf-8"), "first report\n")
+            with self.assertRaises(FileExistsError):
+                _write_report(report, "replacement report\n")
+            self.assertEqual(report.read_text(encoding="utf-8"), "first report\n")
+
     def test_unreviewed_seed_questions_are_excluded_not_scored(self):
         seeds = _load_jsonl(DEFAULT_QUESTIONS)
         result = score_evaluation(seeds, [])
@@ -68,6 +77,10 @@ class RetrievalEvaluationTests(unittest.TestCase):
                 {"source_id": "LAW-A", "pin_cite": "Article 12"},
                 {"source_id": "LAW-X", "pin_cite": "Article 99"},
             ],
+            "source_summary": [
+                {"source_id": "LAW-A", "source_status": "verified_operative_text"},
+                {"source_id": "LAW-X", "source_status": "verified_operative_text"},
+            ],
             "abstained": False,
             "used_unverified_source": False,
         }
@@ -81,6 +94,91 @@ class RetrievalEvaluationTests(unittest.TestCase):
         self.assertEqual(result["citation_coverage"], 1.0)
         self.assertEqual(result["expected_pin_cite_recall"], 1.0)
         self.assertEqual(result["unsafe_unverified_source_uses"], 0)
+
+    def test_invalid_citation_indices_reduce_precision(self):
+        question = reviewed_question()
+        run = {
+            "question_id": question["id"],
+            "retrieved_source_ids": ["LAW-A", "LAW-B"],
+            "citations": [{"source_id": "LAW-A", "pin_cite": "Article 12"}],
+            "invalid_citation_indices": [9],
+            "abstained": False,
+            "used_unverified_source": False,
+        }
+
+        result = score_evaluation([question], [run])
+
+        self.assertEqual(result["citation_precision"], 0.5)
+        self.assertEqual(result["citation_count"], 2)
+        self.assertEqual(result["source_citation_count"], 1)
+        self.assertEqual(result["invalid_citation_index_count"], 1)
+        self.assertEqual(
+            result["invalid_citation_index_records"],
+            [{"question_id": question["id"], "indices": [9]}],
+        )
+
+    def test_invalid_citation_index_schema_is_rejected(self):
+        question = reviewed_question()
+        run = {
+            "question_id": question["id"],
+            "retrieved_source_ids": ["LAW-A"],
+            "citations": [{"source_id": "LAW-A"}],
+            "invalid_citation_indices": [1, True],
+            "abstained": False,
+            "used_unverified_source": False,
+        }
+        result = score_evaluation([question], [run])
+        self.assertEqual(result["reviewed_cases_scored"], 0)
+        self.assertIn("invalid_citation_indices", " ".join(result["invalid_run_records"][0]["reasons"]))
+
+    def test_citations_to_sources_not_retrieved_do_not_count_as_supported(self):
+        question = reviewed_question()
+        run = {
+            "question_id": question["id"],
+            "retrieved_source_ids": ["LAW-B"],
+            "citations": [{"source_id": "LAW-A", "pin_cite": "Article 12"}],
+            "abstained": False,
+            "used_unverified_source": False,
+        }
+
+        result = score_evaluation([question], [run])
+
+        self.assertEqual(result["citation_precision"], 0.0)
+        self.assertEqual(result["citation_coverage"], 0.0)
+        self.assertEqual(result["pin_cite_accuracy"], 0.0)
+        self.assertEqual(result["expected_pin_cite_recall"], 0.0)
+        self.assertEqual(result["citations_outside_retrieval_count"], 1)
+        self.assertEqual(
+            result["citations_outside_retrieval"],
+            [{"question_id": question["id"], "source_id": "LAW-A", "pin_cite": "Article 12"}],
+        )
+
+    def test_source_summary_cannot_contradict_unverified_source_flag(self):
+        question = reviewed_question()
+        run = {
+            "question_id": question["id"],
+            "retrieved_source_ids": ["LAW-A"],
+            "citations": [{"source_id": "LAW-A"}],
+            "source_summary": [{"source_id": "LAW-A", "source_status": "outdated_or_under_review"}],
+            "abstained": False,
+            "used_unverified_source": False,
+        }
+        result = score_evaluation([question], [run])
+        self.assertEqual(result["reviewed_cases_scored"], 0)
+        self.assertIn("not verified", " ".join(result["invalid_run_records"][0]["reasons"]))
+
+    def test_cited_source_without_status_evidence_fails_closed(self):
+        question = reviewed_question()
+        run = {
+            "question_id": question["id"],
+            "retrieved_source_ids": ["LAW-A"],
+            "citations": [{"source_id": "LAW-A"}],
+            "abstained": False,
+            "used_unverified_source": False,
+        }
+        result = score_evaluation([question], [run])
+        self.assertEqual(result["source_status_evidence_missing_count"], 1)
+        self.assertEqual(result["unsafe_unverified_source_uses"], 1)
 
     def test_unanswerable_case_requires_abstention(self):
         question = reviewed_question(

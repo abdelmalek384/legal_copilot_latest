@@ -26,8 +26,9 @@ Use `--out path/to/report.json` to preserve a report.
 
 - Each manifest document has a source record in the permission register.
 - The manifest's collection permission is explicitly `allowed`.
-- The source register independently records `allowed` or `allowed_limited`, with collection permission evidence and a valid terms-review date.
+- The source register independently records `allowed` or `allowed_limited`, with collection permission evidence and a valid terms-review date. Source terms, commercial terms, and document-level scope reviews must be within the internal 180-day freshness window; stale reviews block readiness and must be refreshed. This is a conservative project policy, not a legal rule.
 - Both the source register and document-level scope review link to inspectable HTTPS evidence; a prose note or reference label alone is not treated as a direct evidence link.
+- Both the source register and manifest must record the actual source-terms URL as valid HTTPS without embedded credentials, separately from the permission-evidence URL. A review date without the reviewed terms location is insufficient.
 - Commercial reuse, when claimed as allowed, has its own separate HTTPS evidence URL and review date.
 - The manifest has its own permission evidence and a valid terms-review date that is not in the future.
 - A document-level `permission_scope_review` is marked `passed` and records a reviewer, evidence reference, valid review date not earlier than the terms-check date, reviewed source terms, and the `direct_document_url` method. It must explicitly approve storage, text extraction, indexing, commercial product use, and excerpt display. The scope-review evidence URL is required, must be HTTPS, and must not contain credentials.
@@ -38,6 +39,8 @@ Use `--out path/to/report.json` to preserve a report.
 ## Limits
 
 The final release gate accepts only normalized relative artifact paths under `originals/` and `extracted/`, rejects traversal and symlinks, and verifies each recorded SHA-256 against the exact bytes. It also requires unique stable `document_id` values across the entire candidate registry; duplicate IDs block every conflicting candidate. A matching hash alone does not prove legal authenticity or completeness.
+
+For the distinction between copyright in the underlying official legal text and rights in a portal, database, compilation, or collection, see [the Egyptian official legal-text reuse review framework](legal_text_reuse_framework.md). That framework is a research aid, not a permission grant; keep rights unknown until the specific source and intended use have been reviewed.
 
 The audit is a preflight consistency check, not a legal opinion and not a permission grant. It cannot independently determine whether evidence actually covers the exact document, acquisition method, storage, extraction/OCR, indexing, commercial use, excerpt display, or redistribution. The `permission_scope_review` record must be completed by a human reviewer who compares the written authorization or applicable terms against each intended use; do not set it to `passed` merely to silence a blocker. Its required fields now match the collection pipeline's runtime gate so a manifest cannot be reported ready under a weaker scope-review contract than the downloader enforces.
 

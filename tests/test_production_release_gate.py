@@ -17,6 +17,24 @@ class ProductionReleaseGateTests(unittest.TestCase):
             "candidates": [{"ready": True, "blockers": []}],
         }
 
+    def _reviewer_registry(self):
+        return {"reviewers": [{
+            "reviewer_id": "reviewer-test",
+            "display_name": "Qualified Egyptian counsel",
+            "status": "approved",
+            "professional_role": "qualified_egyptian_counsel",
+            "jurisdiction": "Egypt",
+            "practice_areas": [
+                "rent_and_tenancy", "personal_status", "civil_procedure", "civil_law",
+                "criminal_procedure", "commercial_law", "tax_law", "social_insurance",
+                "real_estate", "data_protection",
+            ],
+            "qualification_basis": "Synthetic fixture: counsel qualification checked",
+            "evidence_reference": "private-test-reference",
+            "verified_by": "test-operator",
+            "verified_on": dt.date.today().isoformat(),
+        }]}
+
     def _approved_questions(self):
         today = dt.date.today().isoformat()
         areas = [
@@ -30,6 +48,7 @@ class ProductionReleaseGateTests(unittest.TestCase):
                 "practice_area": areas[i % len(areas)],
                 "as_of_date": today,
                 "review_status": "lawyer_approved",
+                "reviewer_id": "reviewer-test",
                 "reviewer_name": "Qualified Egyptian counsel",
                 "reviewer_role": "qualified_egyptian_counsel",
                 "review_evidence_url": "https://example.gov/review-record",
@@ -77,7 +96,7 @@ class ProductionReleaseGateTests(unittest.TestCase):
             report = gate.evaluate_release(
                 env=self.clean_env,
                 candidate_paths=[Path("candidate.json")],
-                benchmark_path=gate.DEFAULT_BENCHMARK,
+                benchmark_path=gate.DEFAULT_BENCHMARK, reviewer_registry=self._reviewer_registry(),
             )
         self.assertFalse(report["ready"])
         self.assertEqual(report["benchmark"]["question_count"], 94)
@@ -104,7 +123,7 @@ class ProductionReleaseGateTests(unittest.TestCase):
                 report = gate.evaluate_release(
                     env=self.clean_env,
                     candidate_paths=[candidate],
-                    benchmark_path=Path("approved-benchmark.jsonl"),
+                    benchmark_path=Path("approved-benchmark.jsonl"), reviewer_registry=self._reviewer_registry(),
                 )
         self.assertTrue(report["ready"], report["blockers"])
         self.assertEqual(report["benchmark"]["approved_count"], gate.MIN_APPROVED_QUESTIONS)
@@ -121,7 +140,7 @@ class ProductionReleaseGateTests(unittest.TestCase):
                  patch.object(gate, "build_legal_report", return_value=self._ready_report(candidate)), \
                  patch.object(gate, "read_jsonl", return_value=questions):
                 report = gate.evaluate_release(
-                    env=self.clean_env, candidate_paths=[candidate], benchmark_path=Path("approved-benchmark.jsonl")
+                    env=self.clean_env, candidate_paths=[candidate], benchmark_path=Path("approved-benchmark.jsonl"), reviewer_registry=self._reviewer_registry()
                 )
         self.assertFalse(report["ready"])
         self.assertIn("benchmark_sources_not_in_ready_corpus", {b["code"] for b in report["blockers"]})
@@ -135,7 +154,7 @@ class ProductionReleaseGateTests(unittest.TestCase):
                  patch.object(gate, "build_legal_report", return_value=self._ready_report(candidate)), \
                  patch.object(gate, "read_jsonl", return_value=questions):
                 report = gate.evaluate_release(
-                    env=self.clean_env, candidate_paths=[candidate], benchmark_path=Path("approved-benchmark.jsonl")
+                    env=self.clean_env, candidate_paths=[candidate], benchmark_path=Path("approved-benchmark.jsonl"), reviewer_registry=self._reviewer_registry()
                 )
         self.assertFalse(report["ready"])
         self.assertIn("benchmark_pin_cites_not_in_ready_corpus", {b["code"] for b in report["blockers"]})
@@ -150,7 +169,7 @@ class ProductionReleaseGateTests(unittest.TestCase):
                 patch.object(gate, "read_jsonl", return_value=questions),
             ):
                 report = gate.evaluate_release(
-                    env=self.clean_env, candidate_paths=[candidate], benchmark_path=Path("approved-benchmark.jsonl")
+                    env=self.clean_env, candidate_paths=[candidate], benchmark_path=Path("approved-benchmark.jsonl"), reviewer_registry=self._reviewer_registry()
                 )
         self.assertFalse(report["ready"])
         self.assertEqual(report["benchmark"]["ready_source_count"], 0)
@@ -164,7 +183,7 @@ class ProductionReleaseGateTests(unittest.TestCase):
                  patch.object(gate, "build_legal_report", return_value=self._ready_report(candidate)), \
                  patch.object(gate, "read_jsonl", return_value=questions):
                 report = gate.evaluate_release(
-                    env=self.clean_env, candidate_paths=[candidate], benchmark_path=Path("approved-benchmark.jsonl")
+                    env=self.clean_env, candidate_paths=[candidate], benchmark_path=Path("approved-benchmark.jsonl"), reviewer_registry=self._reviewer_registry()
                 )
         self.assertFalse(report["ready"])
         self.assertIn("benchmark_sources_not_in_ready_corpus", {b["code"] for b in report["blockers"]})
@@ -179,7 +198,7 @@ class ProductionReleaseGateTests(unittest.TestCase):
                  patch.object(gate, "build_legal_report", return_value=self._ready_report_many([first, second])), \
                  patch.object(gate, "read_jsonl", return_value=questions):
                 report = gate.evaluate_release(
-                    env=self.clean_env, candidate_paths=[first, second], benchmark_path=Path("approved-benchmark.jsonl")
+                    env=self.clean_env, candidate_paths=[first, second], benchmark_path=Path("approved-benchmark.jsonl"), reviewer_registry=self._reviewer_registry()
                 )
         self.assertFalse(report["ready"])
         self.assertIn("benchmark_sources_not_in_ready_corpus", {b["code"] for b in report["blockers"]})
@@ -194,7 +213,7 @@ class ProductionReleaseGateTests(unittest.TestCase):
                  patch.object(gate, "build_legal_report", return_value=self._ready_report(candidate)), \
                  patch.object(gate, "read_jsonl", return_value=questions):
                 report = gate.evaluate_release(
-                    env=self.clean_env, candidate_paths=[candidate], benchmark_path=Path("approved-benchmark.jsonl")
+                    env=self.clean_env, candidate_paths=[candidate], benchmark_path=Path("approved-benchmark.jsonl"), reviewer_registry=self._reviewer_registry()
                 )
         self.assertFalse(report["ready"])
         self.assertEqual(report["benchmark"]["invalid_approved_count"], 1)
@@ -208,7 +227,7 @@ class ProductionReleaseGateTests(unittest.TestCase):
                  patch.object(gate, "build_legal_report", return_value=self._ready_report(candidate)), \
                  patch.object(gate, "read_jsonl", return_value=questions):
                 report = gate.evaluate_release(
-                    env=self.clean_env, candidate_paths=[candidate], benchmark_path=Path("approved-benchmark.jsonl")
+                    env=self.clean_env, candidate_paths=[candidate], benchmark_path=Path("approved-benchmark.jsonl"), reviewer_registry=self._reviewer_registry()
                 )
         self.assertFalse(report["ready"])
         self.assertIn("environment_errors", {blocker["code"] for blocker in report["blockers"]})

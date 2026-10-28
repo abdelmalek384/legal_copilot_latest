@@ -5,7 +5,7 @@ This directory is a scaffold for a lawyer-reviewed benchmark. The seed questions
 ## Workflow
 1. Select questions from practice_questions.seed.jsonl.
 2. Retrieve primary legal texts and judgments lawfully; preserve original files and hashes.
-3. Have an Egyptian lawyer fill in expected_answer, expected_sources, relevant date, legal-status notes, reviewer and review date. For scoring, expected_sources must be a non-empty list of stable source-ID strings; also set expected_pin_cites, an explicit answerable boolean, and review_status, reviewer_name, and review_date.
+3. Have an Egyptian lawyer fill in expected_answer, expected_sources, relevant date, legal-status notes, reviewer and review date. For scoring, expected_sources must be a non-empty list of stable source-ID strings; also set expected_pin_cites, an explicit answerable boolean, and review_status, reviewer_id, reviewer_name, and review_date. The reviewer ID/name must match the private approved reviewer registry used by the evaluator.
 4. Require primary-source citations for binding-law claims. Add judgments for questions about judicial interpretation.
 5. Include amended/repealed provisions, ambiguous facts, plausible but wrong citations, and cases where the correct response is "insufficient verified sources".
 6. Score separately: retrieval recall, citation precision, citation support, citation completeness, temporal correctness, issue spotting, Arabic robustness, and abstention when evidence is insufficient.
@@ -46,7 +46,10 @@ Model-output JSONL format (one record per question ID):
 Run it after a lawyer has approved the benchmark and a model-output JSONL has been collected:
 
 ```bash
-python tools/evaluate_legal_answers.py --questions tests/legal_eval/reviewed_questions.jsonl --results model_outputs.jsonl --out evaluation-report.json
+python tools/evaluate_legal_answers.py --questions tests/legal_eval/reviewed_questions.jsonl --results model_outputs.jsonl --reviewer-registry /secure/private/reviewer-registry.json --out evaluation-report.json
 ```
 
-Do not turn this report into a claim of legal accuracy. A lawyer must separately review substantive correctness, source authenticity/currentness, and whether citations actually support each legal proposition.
+Do not turn this report into a claim of legal accuracy. A lawyer must separately review substantive correctness, source authenticity/currentness, and whether citations actually support each legal proposition. Keep the real reviewer registry and credential evidence in private controlled storage; the registry is an accountable human assertion, not independent proof of a license.
+
+
+The evaluation runner validates the API base URL before sending requests. It rejects whitespace, embedded credentials (including empty userinfo), malformed URL structures, and invalid ports. Remote targets still require explicit `--allow-remote` opt-in and HTTPS. These checks validate URL syntax and target policy; they do not establish that a remote service is trusted.

@@ -48,6 +48,17 @@ def valid_iso_date(value):
     except ValueError:
         return False
 
+def parse_reviewed_at(value):
+    if not isinstance(value, str) or not value.strip():
+        return None
+    try:
+        parsed = datetime.fromisoformat(value.strip().replace("Z", "+00:00"))
+        if parsed.tzinfo is None:
+            parsed = parsed.replace(tzinfo=timezone.utc)
+        return parsed.astimezone(timezone.utc)
+    except ValueError:
+        return None
+
 def sha256_file(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as stream:
@@ -87,6 +98,35 @@ def audit(db_path: Path):
         }
         for table in ("chunks","legal_sources","legal_documents","legal_document_versions","legal_version_relations","legal_review_events"):
             if table in tables: result["counts"][table] = count(db,table)
+        if "legal_review_events" in tables:
+            event_cols = columns(db, "legal_review_events")
+            event_required = {"review_event_id", "version_id", "reviewer", "review_type", "outcome", "evidence_url", "reviewed_at"}
+            if event_required - event_cols:
+                result["issues"].append({"severity": "high", "code": "review_event_columns_missing", "detail": str(sorted(event_required - event_cols))})
+            else:
+                events = db.execute("SELECT review_event_id, version_id, reviewer, review_type, outcome, evidence_url, reviewed_at FROM legal_review_events").fetchall()
+                allowed_types = {"source_authenticity", "extraction_quality", "legal_status", "amendment_history", "licensing", "lawyer_approval"}
+                allowed_outcomes = {"pending", "pass", "fail", "needs_correction"}
+                quality = {"reviewer_missing": 0, "invalid_review_type": 0, "invalid_review_outcome": 0, "reviewed_at_invalid": 0, "reviewed_at_in_future": 0, "passing_event_without_valid_evidence": 0, "orphan_version": 0}
+                now = datetime.now(timezone.utc)
+                version_ids = None
+                if "legal_document_versions" in tables and "version_id" in columns(db, "legal_document_versions"):
+                    version_ids = {row[0] for row in db.execute("SELECT version_id FROM legal_document_versions")}
+                for event in events:
+                    quality["reviewer_missing"] += int(not isinstance(event["reviewer"], str) or not event["reviewer"].strip())
+                    quality["invalid_review_type"] += int(event["review_type"] not in allowed_types)
+                    quality["invalid_review_outcome"] += int(event["outcome"] not in allowed_outcomes)
+                    reviewed_at = parse_reviewed_at(event["reviewed_at"])
+                    quality["reviewed_at_invalid"] += int(reviewed_at is None)
+                    quality["reviewed_at_in_future"] += int(reviewed_at is not None and reviewed_at > now)
+                    if event["outcome"] == "pass" and not valid_evidence_url(event["evidence_url"]):
+                        quality["passing_event_without_valid_evidence"] += 1
+                    if version_ids is not None and event["version_id"] not in version_ids:
+                        quality["orphan_version"] += 1
+                result["review_event_quality"] = quality
+                for key, value in quality.items():
+                    if value:
+                        result["issues"].append({"severity": "high", "code": "review_events_" + key, "count": value, "detail": "Review events are audit evidence; malformed, future-dated, unsupported, or orphaned events must be corrected before relying on them."})
         missing = sorted(REGISTRY_TABLES-tables)
         if missing:
             result["issues"].append({"severity":"high","code":"registry_tables_missing","detail":", ".join(missing)})
@@ -256,7 +296,102 @@ def audit(db_path: Path):
                                 "count":q["amendment_history_flag_without_evidence"],
                                 "detail":"The flag is set but no passing amendment-history review event with an evidence URL exists."
                             })
+                # Verification flags are claims; require corresponding passing review events with direct HTTPS evidence.
+                verification_flags = {"authenticity_verified", "status_verified", "review_status"}
+                if verification_flags.issubset(vc):
+                    needs_auth = db.execute(
+                        "SELECT version_id FROM legal_document_versions WHERE authenticity_verified=1"
+                    ).fetchall()
+                    needs_status = db.execute(
+                        "SELECT version_id FROM legal_document_versions WHERE status_verified=1"
+                    ).fetchall()
+                    needs_lawyer = db.execute(
+                        "SELECT version_id FROM legal_document_versions WHERE review_status='verified'"
+                    ).fetchall()
+                    event_cols = columns(db, "legal_review_events") if "legal_review_events" in tables else set()
+                    required_event_cols = {"version_id", "review_type", "outcome", "evidence_url"}
+                    if required_event_cols.issubset(event_cols):
+                        def has_passing_evidence(version_id, review_type):
+                            events = db.execute(
+                                "SELECT evidence_url FROM legal_review_events WHERE version_id=? AND review_type=? AND outcome='pass'",
+                                (version_id, review_type),
+                            ).fetchall()
+                            return any(valid_evidence_url(event[0]) for event in events)
+                        q["authenticity_flag_without_evidence"] = sum(
+                            not has_passing_evidence(row["version_id"], "source_authenticity") for row in needs_auth
+                        )
+                        q["status_flag_without_evidence"] = sum(
+                            not has_passing_evidence(row["version_id"], "legal_status") for row in needs_status
+                        )
+                        q["verified_status_without_lawyer_approval_event"] = sum(
+                            not has_passing_evidence(row["version_id"], "lawyer_approval") for row in needs_lawyer
+                        )
+                        for key in ("authenticity_flag_without_evidence", "status_flag_without_evidence", "verified_status_without_lawyer_approval_event"):
+                            if q[key]:
+                                result["issues"].append({
+                                    "severity": "high",
+                                    "code": "versions_" + key,
+                                    "count": q[key],
+                                    "detail": "A stored verification flag needs a matching passing review event with a valid HTTPS evidence URL; the audit never promotes a version."
+                                })
+                    elif needs_auth or needs_status or needs_lawyer:
+                        result["issues"].append({
+                            "severity": "high",
+                            "code": "verification_event_schema_incomplete",
+                            "count": len(needs_auth) + len(needs_status) + len(needs_lawyer),
+                            "detail": "Verification flags exist but review-event fields needed to audit their evidence are unavailable."
+                        })
                 result["version_quality"] = q
+        if "chunks" in tables and "legal_document_versions" in tables:
+            cc = columns(db, "chunks")
+            vc = columns(db, "legal_document_versions")
+            chunk_required = {"id", "case_id", "document_version_id", "verified", "in_force"}
+            version_required = {"version_id", "review_status", "authenticity_verified", "status_verified", "legal_status", "effective_date", "repeal_date"}
+            if chunk_required.issubset(cc) and version_required.issubset(vc):
+                today = datetime.now(timezone.utc).date()
+                mismatch_verified = 0
+                mismatch_in_force = 0
+                linked_rows = db.execute(
+                    "SELECT c.verified, c.in_force, c.document_version_id, v.version_id, "
+                    "v.review_status, v.authenticity_verified, v.status_verified, v.legal_status, "
+                    "v.effective_date, v.repeal_date "
+                    "FROM chunks c LEFT JOIN legal_document_versions v ON v.version_id=c.document_version_id "
+                    "WHERE c.case_id IS NULL AND (COALESCE(c.verified,0)=1 OR COALESCE(c.in_force,0)=1)"
+                ).fetchall()
+                for row in linked_rows:
+                    version_missing = row["version_id"] is None
+                    if row["verified"] == 1 and (
+                        version_missing or row["review_status"] != "verified"
+                        or row["authenticity_verified"] != 1 or row["status_verified"] != 1
+                    ):
+                        mismatch_verified += 1
+                    effective = row["effective_date"]
+                    repeal = row["repeal_date"]
+                    invalid_timing = (
+                        valid_iso_date(effective) and date.fromisoformat(effective) > today
+                    ) or (
+                        valid_iso_date(repeal) and date.fromisoformat(repeal) < today
+                    )
+                    if row["in_force"] == 1 and (
+                        version_missing or row["legal_status"] != "in_force" or invalid_timing
+                    ):
+                        mismatch_in_force += 1
+                result["chunk_version_consistency"] = {
+                    "verified_chunks_without_verified_version": mismatch_verified,
+                    "in_force_chunks_conflicting_with_version": mismatch_in_force,
+                }
+                if mismatch_verified:
+                    result["issues"].append({
+                        "severity": "high", "code": "chunks_verified_without_verified_version",
+                        "count": mismatch_verified,
+                        "detail": "A global corpus chunk marked verified must link to a version with verified review, authenticity, and legal-status flags."
+                    })
+                if mismatch_in_force:
+                    result["issues"].append({
+                        "severity": "high", "code": "chunks_in_force_conflicting_with_version",
+                        "count": mismatch_in_force,
+                        "detail": "A global corpus chunk marked in force must link to a version currently labelled in force and outside known effective/repeal dates."
+                    })
         if "legal_version_relations" in tables:
             relc = columns(db, "legal_version_relations")
             if {"from_version_id", "to_version_id", "relation_type"}.issubset(relc) and "legal_document_versions" in tables:
@@ -298,7 +433,7 @@ def render_markdown(report):
     if report.get("sqlite_sidecars"):
         lines += ["", "## SQLite sidecars", "", "| File | Size (bytes) | SHA-256 |", "|---|---:|---|"]
         lines += [f"| {name} | {meta['size_bytes']} | {meta['sha256']} |" for name, meta in sorted(report["sqlite_sidecars"].items())]
-    for section in ("chunk_quality","source_permissions","commercial_reuse_permissions","version_quality","relation_quality"):
+    for section in ("chunk_quality","source_permissions","commercial_reuse_permissions","version_quality","review_event_quality","chunk_version_consistency","relation_quality"):
         if section in report:
             lines += ["",f"## {section.replace('_',' ').title()}",""]
             lines += [f"- **{k.replace('_',' ')}:** {v}" for k,v in report[section].items()]

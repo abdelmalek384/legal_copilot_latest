@@ -33,6 +33,48 @@ class FrontendUXContractTests(unittest.TestCase):
             self.assertIn("PAGE==='" + page + "'", switch)
         self.assertIn("if(!ME.id){login(AUTH_MODE)", switch)
 
+    def test_case_tabs_summary_team_and_activity_follow_selected_language(self):
+        self.assertIn("uiText('الملخص','Overview')", HTML)
+        self.assertIn("uiText('الحالة: ','Status: ')", HTML)
+        self.assertIn("uiText('جلسة','Hearing')", HTML)
+        self.assertIn("uiText(RL[m.role]||m.role,m.role==='lead'?'Lead':m.role==='associate'?'Associate':'Junior')", HTML)
+        self.assertIn("uiText('إزالة هذا العضو من القضية؟','Remove this member from the case?')", HTML)
+        self.assertIn("toLocaleString(LANG==='ar'?'ar-EG':'en-US'", HTML)
+
+    def test_document_review_workflow_labels_follow_selected_language(self):
+        self.assertIn("uiText('اعتماد النص المستخرج','Accept extracted text')", HTML)
+        self.assertIn("uiText('يحتاج إعادة فحص','Needs recheck')", HTML)
+        self.assertIn("uiText('حفظ التصحيح','Save correction')", HTML)
+        self.assertIn("uiText('النص المستخرج — للقراءة فقط','Extracted text — read only')", HTML)
+        self.assertIn("uiText('نص OCR غير متحقق','OCR text not verified')", HTML)
+        self.assertIn("uiText('جارٍ تحميل المقاطع…','Loading text chunks…')", HTML)
+        self.assertIn("uiText('PDF أو Word حتى 15 ميجابايت. النص المستخرج فقط هو المفهرس؛ لا تحفظ نسخة الملف الأصلي. راجع المقاطع قبل الاعتماد عليها، خصوصاً نص OCR.','PDF or Word up to 15 MB. Only extracted text is indexed; the original file is not retained. Review chunks before relying on them, especially OCR text.')", HTML)
+
+    def test_case_detail_inputs_and_validation_follow_selected_language(self):
+        self.assertIn("uiText('رقم القضية','Case number')", HTML)
+        self.assertIn("uiText('مهمة جديدة','New task')", HTML)
+        self.assertIn("uiText('ملاحظة (المحكمة، الدائرة، الغرض)','Note (court, circuit, purpose)')", HTML)
+        self.assertIn("uiText('نوع الموعد (استئناف، طعن، تقديم مستند...)','Deadline type (appeal, challenge, filing...)')", HTML)
+        self.assertIn("uiText('وصف الأتعاب','Fee description')", HTML)
+        self.assertIn("uiText('الإجمالي ','Total ')", HTML)
+        self.assertIn("uiText('أدخل نوع الموعد وتاريخه','Enter the deadline type and date')", HTML)
+
+    def test_new_case_and_client_views_follow_selected_language(self):
+        self.assertIn("uiText('عنوان القضية','Case title')", HTML)
+        self.assertIn("uiText('حفظ القضية','Save case')", HTML)
+        self.assertIn("uiText('العملاء','Clients')", HTML)
+        self.assertIn("uiText('فحص أولي لتعارض المصالح','Preliminary conflict check')", HTML)
+        self.assertIn("uiText('أدخل حرفين على الأقل','Enter at least two characters')", HTML)
+        self.assertIn("uiText('بدون مرحلة','No stage')", HTML)
+
+    def test_modal_traps_keyboard_focus_and_restores_opener(self):
+        self.assertIn("function closeModal(overlay)", HTML)
+        self.assertIn("overlay.__focusReturn=opener", HTML)
+        self.assertIn("if(e.key!=='Tab')return", HTML)
+        self.assertIn("focusables[focusables.length-1]", HTML)
+        self.assertIn("last.focus()", HTML)
+        self.assertIn("if(opener&&opener.isConnected&&typeof opener.focus==='function')opener.focus()", HTML)
+
     def test_modal_escape_and_reduced_motion_support(self):
         self.assertIn("document.addEventListener('keydown'", HTML)
         self.assertIn("e.key==='Escape'", HTML)
