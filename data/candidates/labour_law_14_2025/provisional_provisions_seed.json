@@ -760,6 +760,69 @@
         "pdf_page_index_zero_based": 68,
         "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf"
       }
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-91",
+      "provision_ref": "القانون المرافق، المادة 91",
+      "topic": "limits_on_assignment_and_job_changes",
+      "summary_ar": "لا يجوز لصاحب العمل مخالفة شروط عقد العمل الفردي أو اتفاقية العمل الجماعية أو تكليف العامل بعمل غير المتفق عليه، إلا مؤقتًا عند الضرورة لمنع حادث أو إصلاح آثاره أو في حالة القوة القاهرة. ويجوز التكليف بعمل غير متفق عليه إذا لم يختلف عنه اختلافًا جوهريًا، ولا يجوز في جميع الأحوال المساس بحقوق العامل.",
+      "source_refs": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "basis": "Official General Authority for Amiri Press electronic text page; Article 91 text observed in indexed official-source result. No Gazette-scan page-level comparison claimed."
+        }
+      ],
+      "confidence": "provisional_official_text_observed",
+      "human_review": "pending",
+      "page_pinpoint": {
+        "source_type": "official_text_page",
+        "source_url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+        "pinpoint": "مادة (91)",
+        "printed_page": null,
+        "pdf_page_index_zero_based": null
+      }
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-92",
+      "provision_ref": "القانون المرافق، المادة 92",
+      "topic": "worker_file_privacy_and_retention",
+      "summary_ar": "يلتزم صاحب العمل بإنشاء ملف ورقي أو إلكتروني لكل عامل يتضمن بيانات خدمته ومستنداته المحددة في المادة، ولا يجوز الاطلاع على هذه البيانات إلا لمن رُخّص له قانونًا بذلك. ويُحتفظ بالملف خمس سنوات على الأقل من انتهاء علاقة العمل، ويستمر الاحتفاظ به عند وجود نزاع قضائي حتى الفصل فيه بحكم بات.",
+      "source_refs": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "basis": "Official General Authority for Amiri Press electronic text page; Article 92 text observed in indexed official-source result. No Gazette-scan page-level comparison claimed."
+        }
+      ],
+      "confidence": "provisional_official_text_observed",
+      "human_review": "pending",
+      "page_pinpoint": {
+        "source_type": "official_text_page",
+        "source_url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+        "pinpoint": "مادة (92)",
+        "printed_page": null,
+        "pdf_page_index_zero_based": null
+      }
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-128",
+      "provision_ref": "القانون المرافق، المادة 128",
+      "topic": "casual_leave_and_new_child_leave",
+      "summary_ar": "تجيز المادة للعامل الانقطاع لسبب عارض مدة لا تتجاوز سبعة أيام خلال السنة وبحد أقصى يومين في المرة الواحدة، وتُحسب الإجازة العارضة من الإجازة السنوية. كما تمنح العامل الذي يولد له مولود إجازة طارئة مدفوعة الأجر يوم الولادة لا تُخصم من رصيد الإجازة السنوية، بحد أقصى ثلاث مرات طوال مدة الخدمة.",
+      "source_refs": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "basis": "Official General Authority for Amiri Press electronic text page; Article 128 text observed in indexed official-source result. No Gazette-scan page-level comparison claimed."
+        }
+      ],
+      "confidence": "provisional_official_text_observed",
+      "human_review": "pending",
+      "page_pinpoint": {
+        "source_type": "official_text_page",
+        "source_url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+        "pinpoint": "مادة (128)",
+        "printed_page": null,
+        "pdf_page_index_zero_based": null
+      }
     }
   ]
 }
