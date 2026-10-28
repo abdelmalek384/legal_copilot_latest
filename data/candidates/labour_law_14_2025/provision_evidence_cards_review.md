@@ -930,7 +930,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** Which legal forms may conduct training operations, and what exceptions does Article 22 list?
 
-**Pinpoint:** القانون المرافق, المادة 22, printed Gazette page 19 (PDF page index 16).
+**Pinpoint:** القانون المرافق, المادة 22, printed Gazette page 19 (PDF page index 17).
 
 **Provisional summary (Arabic):**
 
@@ -959,7 +959,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** What licensing framework does Article 23 establish for training operations?
 
-**Pinpoint:** القانون المرافق, المادة 23, printed Gazette page 19 (PDF page index 16).
+**Pinpoint:** القانون المرافق, المادة 23, printed Gazette page 19 (PDF page index 17).
 
 **Provisional summary (Arabic):**
 
