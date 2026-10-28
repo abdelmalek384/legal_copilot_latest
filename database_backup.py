@@ -297,7 +297,7 @@ def _copy_s3_original_objects(
 def _scan_s3_original_object_inventory(store: S3PrivateObjectStore) -> set[str]:
     found: set[str] = set()
     for key in store.list_object_keys():
-        match = re.fullmatch(r"firms/([1-9][0-9]*)/originals/([0-9a-f]{32})\\.(staged|blob)", key)
+        match = re.fullmatch(r"firms/([1-9][0-9]*)/originals/([0-9a-f]{32})\.(staged|blob)", key)
         if not match or match.group(3) != "blob":
             raise DatabaseBundleError("S3 original-object storage contains staged or unexpected objects")
         found.add(f"firm-{match.group(1)}/{match.group(2)}.blob")
