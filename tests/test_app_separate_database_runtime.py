@@ -62,6 +62,42 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         headers["X-CSRF-Token"] = csrf or ""
         return getattr(self.client, method)(url, headers=headers, **kwargs)
 
+    def test_security_audit_exports_require_firm_admin(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        control = self.runtime.control_connection()
+        control.execute(
+            "UPDATE firm_memberships SET firm_role='lawyer' WHERE user_id=? AND firm_id=?",
+            (self.user_id, self.firm_a),
+        )
+        control.commit()
+        for method, path in (
+            ("get", "/audit/security-events"),
+            ("get", "/audit/security-events.csv"),
+        ):
+            response = getattr(self.client, method)(path)
+            self.assertEqual(response.status_code, 403, f"{path}: {response.text}")
+
+    def test_security_audit_csv_neutralizes_spreadsheet_formulas(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        control = self.runtime.firm_connection(
+            self.runtime.resolve_context(self.user_id, self.firm_a)
+        )
+        control.execute(
+            "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
+            (self.firm_a, self.user_id, " =HYPERLINK(\"https://attacker.invalid\",\"open\")"),
+        )
+        control.commit()
+        response = self.client.get("/audit/security-events.csv")
+        self.assertEqual(response.status_code, 200, response.text)
+        self.assertIn("' =HYPERLINK", response.text)
+        self.assertNotIn("\r\n =HYPERLINK", response.text)
+
     def test_direct_user_creation_is_disabled_in_separate_runtime(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
