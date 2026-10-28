@@ -199,6 +199,24 @@ def inspect_environment(env=None, *, require_separate=False):
         else:
             passed.append("BACKUP_KEY is a valid Fernet key; its value is not printed.")
 
+    # Original matter binaries are confidential tenant data. A local filesystem
+    # adapter is useful for development but is not a production storage boundary.
+    # Keep this allowlist empty until a KMS-backed remote adapter is implemented
+    # end-to-end, including backup, restore, reconciliation, and purge acceptance.
+    production_object_storage_backends = frozenset()
+    object_storage_backend = env.get("COPILOT_OBJECT_STORAGE_BACKEND", "local").strip().lower()
+    if production or require_separate:
+        if object_storage_backend not in production_object_storage_backends:
+            errors.append(
+                "Production/release preflight is blocked: no production object-storage/KMS "
+                "backend is implemented and verified end-to-end; the local filesystem "
+                "adapter is development-only."
+            )
+    elif object_storage_backend != "local":
+        warnings.append(
+            "A non-local object-storage backend is configured but is not supported by this build."
+        )
+
     mfa_mode = env.get("MFA_ENFORCEMENT", "optional").strip().lower()
     if mfa_mode not in {"optional", "admins_required", "all_required"}:
         errors.append("MFA_ENFORCEMENT must be optional, admins_required, or all_required.")
