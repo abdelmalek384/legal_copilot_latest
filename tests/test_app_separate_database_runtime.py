@@ -2589,5 +2589,121 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertNotIn("CaseXA1000XContract", response.text)
 
 
+    def test_research_save_to_matter_requires_case_membership_and_rolls_back_audit_failure(self):
+        owner_login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(owner_login.status_code, 200, owner_login.text)
+        created_case = self._mutate(
+            "post", "/cases", json={"title": "Research memo membership boundary matter"}
+        )
+        self.assertEqual(created_case.status_code, 200, created_case.text)
+        case_id = created_case.json()["id"]
+
+        researcher_id = self.runtime.create_global_identity(
+            "Researcher Without Matter Access",
+            "researcher-without-matter-access@example.test",
+            app.hash_pw(self.password),
+        )
+        self.runtime.create_firm_membership(researcher_id, self.firm_a, "lawyer")
+        researcher = TestClient(app.app)
+        try:
+            login = researcher.post(
+                "/login",
+                json={"email": "researcher-without-matter-access@example.test", "password": self.password},
+            )
+            self.assertEqual(login.status_code, 200, login.text)
+            csrf = researcher.cookies.get("lc_csrf") or ""
+            headers = {"X-CSRF-Token": csrf}
+
+            created_conversation = researcher.post(
+                "/research/conversations", headers=headers
+            )
+            self.assertEqual(created_conversation.status_code, 200, created_conversation.text)
+            conversation_id = created_conversation.json()["id"]
+            context = self.runtime.resolve_context(researcher_id, self.firm_a)
+            tenant = self.runtime.firm_connection(context)
+            message_json = json.dumps({
+                "answer": "RESEARCH_MEMO_PRIVATE_ANSWER_SENTINEL",
+                "requested_as_of": "2026-10-28",
+                "scope": "verified_corpus",
+                "sources": [],
+            })
+            message_id = tenant.execute(
+                "INSERT INTO research_messages(conversation_id,role,content,message_json) "
+                "VALUES(?,?,?,?)",
+                (conversation_id, "assistant", "RESEARCH_MEMO_PRIVATE_ANSWER_SENTINEL", message_json),
+            ).lastrowid
+            tenant.commit()
+
+            notes_before = tenant.execute(
+                "SELECT COUNT(*) FROM notes WHERE case_id=?", (case_id,)
+            ).fetchone()[0]
+            events_before = tenant.execute(
+                "SELECT COUNT(*) FROM events WHERE case_id=?", (case_id,)
+            ).fetchone()[0]
+            denied = researcher.post(
+                f"/research/conversations/{conversation_id}/save-to-matter",
+                json={"case_id": case_id, "message_id": message_id},
+                headers=headers,
+            )
+            self.assertEqual(denied.status_code, 404, denied.text)
+            tenant.commit()
+            self.assertEqual(
+                tenant.execute("SELECT COUNT(*) FROM notes WHERE case_id=?", (case_id,)).fetchone()[0],
+                notes_before,
+            )
+            self.assertEqual(
+                tenant.execute("SELECT COUNT(*) FROM events WHERE case_id=?", (case_id,)).fetchone()[0],
+                events_before,
+            )
+
+            # Grant explicit case membership, then prove the note and audit event
+            # remain atomic if the event write fails.
+            added = self._mutate(
+                "post", f"/cases/{case_id}/members",
+                json={"user_id": researcher_id, "role": "associate"},
+            )
+            self.assertEqual(added.status_code, 200, added.text)
+            with patch.object(app, "log", side_effect=RuntimeError("injected research memo audit failure")):
+                failed = researcher.post(
+                    f"/research/conversations/{conversation_id}/save-to-matter",
+                    json={"case_id": case_id, "message_id": message_id},
+                    headers=headers,
+                )
+            self.assertEqual(failed.status_code, 500, failed.text)
+            tenant.commit()
+            self.assertEqual(
+                tenant.execute("SELECT COUNT(*) FROM notes WHERE case_id=?", (case_id,)).fetchone()[0],
+                notes_before,
+            )
+            self.assertEqual(
+                tenant.execute("SELECT COUNT(*) FROM events WHERE case_id=?", (case_id,)).fetchone()[0],
+                events_before,
+            )
+
+            saved = researcher.post(
+                f"/research/conversations/{conversation_id}/save-to-matter",
+                json={"case_id": case_id, "message_id": message_id},
+                headers=headers,
+            )
+            self.assertEqual(saved.status_code, 201, saved.text)
+            tenant.commit()
+            self.assertEqual(
+                tenant.execute("SELECT COUNT(*) FROM notes WHERE case_id=?", (case_id,)).fetchone()[0],
+                notes_before + 1,
+            )
+            self.assertEqual(
+                tenant.execute("SELECT COUNT(*) FROM events WHERE case_id=?", (case_id,)).fetchone()[0],
+                events_before + 1,
+            )
+            note = tenant.execute(
+                "SELECT text FROM notes WHERE id=?", (saved.json()["note_id"],)
+            ).fetchone()
+            self.assertIn("RESEARCH_MEMO_PRIVATE_ANSWER_SENTINEL", note["text"])
+        finally:
+            researcher.close()
+
+
 if __name__ == "__main__":
     unittest.main()
