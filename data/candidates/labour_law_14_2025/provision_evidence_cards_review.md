@@ -14,7 +14,7 @@
 - Collection permission: `unknown`; commercial reuse: `unknown`.
 - Authoritative search eligibility: `false`.
 
-Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF has not been downloaded, hashed, or visually inspected; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording. Additional cards for accompanying-law Articles 4–9 were prepared from text extraction of the government-hosted Official Gazette PDF on 2026-10-28. The PDF has not been downloaded, hashed, or visually inspected; page pinpointing is provisional and all cards remain non-authoritative. Additional cards for accompanying-law Articles 10–12 were prepared from the government-hosted Official Gazette PDF text extraction on 2026-10-28. Page references are based on the extracted page labels; the PDF has not been downloaded, hashed, or visually inspected. Cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 16, 22, 23, 25 and 27 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; these cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 28–31 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 32–34 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 36–37 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshot checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 40–43 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 44–48 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 49–54 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 126 and 127 were added from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 55. The original PDF remains undownloaded and unhashed, and both cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 121 and 122 were prepared from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 53. Article 121 was cross-checked against a secondary English translation, and Article 122 against a secondary legal text copy. The original PDF remains undownloaded and unhashed; both cards remain provisional and non-authoritative. An additional card for accompanying-law Article 123 was added from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 53. It is cross-checked against a secondary English translation, but the implementing ministerial decision has not been identified and reviewed in this task. The original PDF remains undownloaded and unhashed; the card is provisional and non-authoritative. Additional provisional cards for accompanying-law Articles 117–120 and 124–125 were added on 2026-10-28 from indexed official Amiri Press / government-hosted Gazette text leads, cross-checked against a secondary transcription. Gazette printed-page pinpoints are provisional (52 for Articles 117–120; 54 for Articles 124–125); the original PDF remains undownloaded, unhashed, and not visually inspected. These additions do not establish currentness, completeness, reuse rights, or lawyer approval. Additional provisional cards for accompanying-law Articles 128–130 were added on 2026-10-28 using indexed text from the government-hosted Official Gazette PDF (printed page 56; provisional pinpoint) and a secondary transcription cross-check. The official publisher page is recorded as a source lead but was not directly opened in this round. The Gazette PDF remains undownloaded, unhashed, and not visually inspected; cards remain non-authoritative. Additional provisional cards for accompanying-law Articles 131–132 were added on 2026-10-28 from indexed government-hosted Gazette text with a secondary transcription cross-check. Printed-page pinpoints are provisional; the source PDF remains undownloaded, unhashed, and not visually inspected. The sick-leave card distinguishes the general medical-authority rule from the special industrial-establishment tiers; implementing decisions and related social-insurance rules remain unresolved.
+Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF has not been downloaded, hashed, or visually inspected; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording. Additional cards for accompanying-law Articles 4–9 were prepared from text extraction of the government-hosted Official Gazette PDF on 2026-10-28. The PDF has not been downloaded, hashed, or visually inspected; page pinpointing is provisional and all cards remain non-authoritative. Additional cards for accompanying-law Articles 10–12 were prepared from the government-hosted Official Gazette PDF text extraction on 2026-10-28. Page references are based on the extracted page labels; the PDF has not been downloaded, hashed, or visually inspected. Cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 16, 22, 23, 25 and 27 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; these cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 28–31 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 32–34 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 36–37 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshot checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 40–43 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 44–48 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 49–54 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 126 and 127 were added from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 55. The original PDF remains undownloaded and unhashed, and both cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 121 and 122 were prepared from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 53. Article 121 was cross-checked against a secondary English translation, and Article 122 against a secondary legal text copy. The original PDF remains undownloaded and unhashed; both cards remain provisional and non-authoritative. An additional card for accompanying-law Article 123 was added from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 53. It is cross-checked against a secondary English translation, but the implementing ministerial decision has not been identified and reviewed in this task. The original PDF remains undownloaded and unhashed; the card is provisional and non-authoritative. Additional provisional cards for accompanying-law Articles 117–120 and 124–125 were added on 2026-10-28 from indexed official Amiri Press / government-hosted Gazette text leads, cross-checked against a secondary transcription. Gazette printed-page pinpoints are provisional (52 for Articles 117–120; 54 for Articles 124–125); the original PDF remains undownloaded, unhashed, and not visually inspected. These additions do not establish currentness, completeness, reuse rights, or lawyer approval. Additional provisional cards for accompanying-law Articles 128–130 were added on 2026-10-28 using indexed text from the government-hosted Official Gazette PDF (printed page 56; provisional pinpoint) and a secondary transcription cross-check. The official publisher page is recorded as a source lead but was not directly opened in this round. The Gazette PDF remains undownloaded, unhashed, and not visually inspected; cards remain non-authoritative. Additional provisional cards for accompanying-law Articles 131–132 were added on 2026-10-28 from indexed government-hosted Gazette text with a secondary transcription cross-check. Printed-page pinpoints are provisional; the source PDF remains undownloaded, unhashed, and not visually inspected. The sick-leave card distinguishes the general medical-authority rule from the special industrial-establishment tiers; implementing decisions and related social-insurance rules remain unresolved. PAGE-LEVEL VISUAL CHECK UPDATE (2026-10-28): the official Gazette PDF at the ETA portal is accessible through the web PDF viewer (110 pages) and rendered page images were visually checked for printed Gazette pages 52–57. The article-to-page mapping is: Arts. 117–120 p.52; 121–122 p.53; 123–124 p.54; 125–127 p.55; 128–130 p.56; 131–132 p.57. This corrects the prior provisional page assignments for Article 125 (p.55, not p.54) and Article 131 (p.57, not p.56). PDF page indices are printed page minus 2. The source binary still could not be downloaded in the runtime, so no SHA-256 is claimed; only the listed pages were visually checked, not the entire instrument or amendment history.
 
 ## Provision cards
 
@@ -172,7 +172,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Primary-source leads:**
 
 - [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; النص الرسمي القابل للبحث؛ مراجعة موضعية لا تمثل فحصاً بصرياً للصفحة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 52؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; Official Gazette PDF, visually checked via browser PDF rendering for printed page 52 (PDF page index 50) on 2026-10-28; the file binary was not downloaded and no SHA-256 was computed. This is a page-level check, not a full article-by-article/currentness review. (checked 2026-10-28).
 
 **Cross-checks:**
 
@@ -181,6 +181,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Limitations:**
 - قد توجد قرارات وزارية أو استثناءات خاصة تؤثر في الحد العام
 - لا توجد مراجعة محامٍ مسجلة أو شهادة اكتمال للتشريعات المنفذة
+- PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -199,7 +200,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Primary-source leads:**
 
 - [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; النص الرسمي القابل للبحث؛ تم فحص استخراج النص لهذه المادة، لا صورة الصفحة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 54؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; Official Gazette PDF, visually checked via browser PDF rendering for printed page 54 (PDF page index 52) on 2026-10-28; the file binary was not downloaded and no SHA-256 was computed. This is a page-level check, not a full article-by-article/currentness review. (checked 2026-10-28).
 
 **Cross-checks:**
 
@@ -217,6 +218,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لا توجد مراجعة محامٍ مسجلة ولا تحقق شامل من القرارات اللاحقة
 - Decision 49/2026 is a relevant implementation candidate, but its full decision text, Gazette publication, schedules, effective date, and currentness remain unverified.
 - Official Gazette issue metadata now identifies Decision 49/2026 in the supplement to issue 64 dated 2026-03-18; the operative schedules, page range, effective date, and eligibility criteria still need authorized review.
+- PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -263,7 +265,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Primary-source leads:**
 
 - [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; النص الرسمي القابل للبحث؛ يلزم التحقق الموضعي عند التطبيق (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 56؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; Official Gazette PDF, visually checked via browser PDF rendering for printed page 56 (PDF page index 54) on 2026-10-28; the file binary was not downloaded and no SHA-256 was computed. This is a page-level check, not a full article-by-article/currentness review. (checked 2026-10-28).
 
 **Cross-checks:**
 
@@ -280,6 +282,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم يُثبت الوضع الحالي أو التعديلات أو الشروط التنفيذية للقرار 294/2025
 - لا توجد مراجعة محامٍ مسجلة
 - Official Gazette issue metadata now identifies Decision 294/2025 in the supplement to Egyptian Gazette issue 291 dated 2025-12-25; exact page range and operative text still need an authorized review.
+- PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -298,7 +301,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Primary-source leads:**
 
 - [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; النص الرسمي القابل للبحث؛ مراجعة موضعية مطلوبة عند التطبيق (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 52؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً. يعرض النص المستخرج المواد 118–120. (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; Official Gazette PDF, visually checked via browser PDF rendering for printed page 52 (PDF page index 50) on 2026-10-28; the file binary was not downloaded and no SHA-256 was computed. This is a page-level check, not a full article-by-article/currentness review. (checked 2026-10-28).
 
 **Cross-checks:**
 
@@ -307,6 +310,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Limitations:**
 - تتضمن المواد استثناءات وقرارات وزارية محتملة
 - لا توجد مراجعة محامٍ مسجلة ولا تحقق شامل من القرارات التنفيذية الحالية
+- PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -325,7 +329,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Primary-source leads:**
 
 - [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; النص الرسمي القابل للبحث؛ مراجعة موضعية مطلوبة عند التطبيق (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 55؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً. يعرض النص المستخرج المادة 125. (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; Official Gazette PDF, visually checked via browser PDF rendering for printed page 55 (PDF page index 53) on 2026-10-28; the file binary was not downloaded and no SHA-256 was computed. This is a page-level check, not a full article-by-article/currentness review. (checked 2026-10-28).
 
 **Cross-checks:**
 
@@ -335,6 +339,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - يجب قراءة المادة 124 معها لتحديد مقدار الاستحقاق السنوي للفئة المعنية
 - قد تؤثر القرارات المنفذة والتعديلات والوقائع الخاصة في النتيجة
 - لا توجد مراجعة محامٍ مسجلة
+- PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -381,7 +386,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Primary-source leads:**
 
 - [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; النص الرسمي القابل للبحث؛ مراجعة موضعية مطلوبة عند التطبيق (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 56؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً. يعرض النص المستخرج المادة 128. (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; Official Gazette PDF, visually checked via browser PDF rendering for printed page 56 (PDF page index 54) on 2026-10-28; the file binary was not downloaded and no SHA-256 was computed. This is a page-level check, not a full article-by-article/currentness review. (checked 2026-10-28).
 
 **Cross-checks:**
 
@@ -390,6 +395,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Limitations:**
 - يجب فحص أحكام الإجازة السنوية ذات الصلة والوقائع الخاصة
 - لا توجد مراجعة محامٍ مسجلة ولا تحقق شامل من أي تعديل لاحق
+- PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -408,7 +414,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Primary-source leads:**
 
 - [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; النص الرسمي القابل للبحث؛ مراجعة موضعية مطلوبة عند التطبيق (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 56؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً. يعرض النص المستخرج المادة 130. (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; Official Gazette PDF, visually checked via browser PDF rendering for printed page 56 (PDF page index 54) on 2026-10-28; the file binary was not downloaded and no SHA-256 was computed. This is a page-level check, not a full article-by-article/currentness review. (checked 2026-10-28).
 
 **Cross-checks:**
 
@@ -417,6 +423,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Limitations:**
 - تتوقف الأهلية على مدة الخدمة المتصلة وعدم الاستفادة السابقة
 - لا توجد مراجعة محامٍ مسجلة ولا تحقق شامل من أي تعديل لاحق
+- PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -426,7 +433,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** How does Article 131 frame sick-leave entitlement and wage compensation?
 
-**Pinpoint:** القانون المرافق, المادة 131, printed Gazette page 56 (PDF page index 54).
+**Pinpoint:** القانون المرافق, المادة 131, printed Gazette page 57 (PDF page index 55).
 
 **Provisional summary (Arabic):**
 
@@ -435,7 +442,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Primary-source leads:**
 
 - [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; النص الرسمي القابل للبحث؛ مراجعة موضعية مطلوبة عند التطبيق (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 56؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً. يعرض النص المستخرج بداية المادة 131؛ التفاصيل المتعلقة بالمنشآت الصناعية والقواعد الخاصة تحتاج إلى مراجعة النص الكامل. (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; Official Gazette PDF, visually checked via browser PDF rendering for printed page 57 (PDF page index 55) on 2026-10-28; the file binary was not downloaded and no SHA-256 was computed. This is a page-level check, not a full article-by-article/currentness review. (checked 2026-10-28).
 
 **Cross-checks:**
 
@@ -445,6 +452,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - قانون التأمينات والقواعد الطبية ذات الصلة لازمة لتحديد النسبة والمدة
 - قد توجد أحكام خاصة لبعض المنشآت أو الحالات
 - لا توجد مراجعة محامٍ مسجلة
+- PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -1692,7 +1700,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Primary-source leads:**
 
 - [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; النص الرسمي القابل للبحث؛ مراجعة موضعية للمادة مطلوبة عند التطبيق (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 55؛ يظهر نص المادة 126، ولم يُنزّل الملف الأصلي أو يُفحص بصرياً (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; Official Gazette PDF, visually checked via browser PDF rendering for printed page 55 (PDF page index 53) on 2026-10-28; the file binary was not downloaded and no SHA-256 was computed. This is a page-level check, not a full article-by-article/currentness review. (checked 2026-10-28).
 
 **Cross-checks:**
 
@@ -1702,6 +1710,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - تتوقف النتيجة على إثبات القيد التعليمي وموعد الامتحان والإخطار الفعلي
 - لم تُراجع القرارات المنفذة أو التعديلات اللاحقة بصورة شاملة
 - لا توجد مراجعة محامٍ مسجلة
+- PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -1720,7 +1729,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Primary-source leads:**
 
 - [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; النص الرسمي القابل للبحث؛ مراجعة موضعية للمادة مطلوبة عند التطبيق (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 55؛ يظهر نص المادة 127، ولم يُنزّل الملف الأصلي أو يُفحص بصرياً (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; Official Gazette PDF, visually checked via browser PDF rendering for printed page 55 (PDF page index 53) on 2026-10-28; the file binary was not downloaded and no SHA-256 was computed. This is a page-level check, not a full article-by-article/currentness review. (checked 2026-10-28).
 
 **Cross-checks:**
 
@@ -1730,6 +1739,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - تطبيق الحكم يتطلب إثبات العمل لدى الغير خلال الإجازة وتحديد ما دُفع عنها
 - لم تُراجع التعديلات أو اللوائح ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مسجلة
+- PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -1748,7 +1758,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Primary-source leads:**
 
 - [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; النص الرسمي القابل للبحث؛ يلزم فحص موضع المادة قبل التطبيق (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 53؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; Official Gazette PDF, visually checked via browser PDF rendering for printed page 53 (PDF page index 51) on 2026-10-28; the file binary was not downloaded and no SHA-256 was computed. This is a page-level check, not a full article-by-article/currentness review. (checked 2026-10-28).
 
 **Cross-checks:**
 
@@ -1758,6 +1768,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - تتعلق القاعدة باستثناءات العمل غير العادي أو الظروف الاستثنائية وليست إذناً عاماً بتجاوز ساعات العمل
 - قد تؤثر القرارات الوزارية المنفذة والوقائع والتعديلات اللاحقة في التطبيق
 - لا توجد مراجعة محامٍ مسجلة
+- PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -1776,7 +1787,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Primary-source leads:**
 
 - [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; النص الرسمي القابل للبحث؛ يلزم فحص موضع المادة قبل التطبيق (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 53؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; Official Gazette PDF, visually checked via browser PDF rendering for printed page 53 (PDF page index 51) on 2026-10-28; the file binary was not downloaded and no SHA-256 was computed. This is a page-level check, not a full article-by-article/currentness review. (checked 2026-10-28).
 
 **Cross-checks:**
 
@@ -1784,8 +1795,8 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Limitations:**
 - يلزم التحقق من تعليمات الجهة الإدارية ذات الصلة وإثبات تاريخ تنفيذ الجدول أو تعديله
-- لم يُفحص الملف الأصلي بصرياً ولم تكتمل مقارنة القانون مادةً بمادة
 - لا توجد مراجعة محامٍ مسجلة
+- PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -1795,7 +1806,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** Which worker categories does Article 123 exclude from specified working-hour and rest rules?
 
-**Pinpoint:** القانون المرافق, المادة 123, printed Gazette page 53 (PDF page index 51).
+**Pinpoint:** القانون المرافق, المادة 123, printed Gazette page 54 (PDF page index 52).
 
 **Provisional summary (Arabic):**
 
@@ -1804,7 +1815,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Primary-source leads:**
 
 - [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; النص الرسمي القابل للبحث؛ يلزم فحص موضع المادة والقرار الوزاري ذي الصلة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 53؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; Official Gazette PDF, visually checked via browser PDF rendering for printed page 54 (PDF page index 52) on 2026-10-28; the file binary was not downloaded and no SHA-256 was computed. This is a page-level check, not a full article-by-article/currentness review. (checked 2026-10-28).
 
 **Cross-checks:**
 
@@ -1813,7 +1824,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Limitations:**
 - يلزم العثور على القرار الوزاري المحدد للحد الأقصى للساعات للفئات الواردة في المادة ومراجعته مستقلاً
 - لا يُفهم الاستثناء على أنه إعفاء شامل من جميع حقوق العمل أو أجر العمل الإضافي
-- لم يُفحص ملف الجريدة الأصلي بصرياً ولا توجد مراجعة محامٍ مسجلة
+- PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -1832,7 +1843,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Primary-source leads:**
 
 - [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مصدر النص الرسمي القابل للبحث؛ لم يُتحقق من النسخة الكاملة بصرياً في هذا العمل (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_searchable_text; نتيجة بحث نصية من ملف الجريدة الرسمية للمادة 117؛ لم يُنزّل الملف الأصلي أو يُحسب تجزئته أو يُفحص بصرياً (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_searchable_text; Official Gazette PDF, visually checked via browser PDF rendering for printed page 52 (PDF page index 50) on 2026-10-28; the file binary was not downloaded and no SHA-256 was computed. This is a page-level check, not a full article-by-article/currentness review. (checked 2026-10-28).
 
 **Cross-checks:**
 
@@ -1842,6 +1853,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - يجب تحديد انطباق قانون تشغيل العمال في المنشآت الصناعية وأي قرار وزاري خاص قبل التطبيق
 - لم تُراجع جميع القرارات الوزارية أو الأحكام القضائية ذات الصلة أو التعديلات اللاحقة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -1860,7 +1872,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Primary-source leads:**
 
 - [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مصدر النص الرسمي القابل للبحث؛ لم يُتحقق من النسخة الكاملة بصرياً في هذا العمل (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_searchable_text; نتيجة بحث نصية من ملف الجريدة الرسمية للمادة 118؛ لم يُنزّل الملف الأصلي أو يُحسب تجزئته أو يُفحص بصرياً (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_searchable_text; Official Gazette PDF, visually checked via browser PDF rendering for printed page 52 (PDF page index 50) on 2026-10-28; the file binary was not downloaded and no SHA-256 was computed. This is a page-level check, not a full article-by-article/currentness review. (checked 2026-10-28).
 
 **Cross-checks:**
 
@@ -1870,6 +1882,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - وجود استثناء يتطلب تحديد القرار الوزاري والفئة المهنية المنطبقة
 - لم تُراجع جميع القرارات الوزارية أو الأحكام القضائية ذات الصلة أو التعديلات اللاحقة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -1888,7 +1901,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Primary-source leads:**
 
 - [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مصدر النص الرسمي القابل للبحث؛ لم يُتحقق من النسخة الكاملة بصرياً في هذا العمل (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_searchable_text; نتيجة بحث نصية من ملف الجريدة الرسمية للمادة 119؛ لم يُنزّل الملف الأصلي أو يُحسب تجزئته أو يُفحص بصرياً (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_searchable_text; Official Gazette PDF, visually checked via browser PDF rendering for printed page 52 (PDF page index 50) on 2026-10-28; the file binary was not downloaded and no SHA-256 was computed. This is a page-level check, not a full article-by-article/currentness review. (checked 2026-10-28).
 
 **Cross-checks:**
 
@@ -1898,6 +1911,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - يلزم التحقق من طبيعة العمل والقرار الوزاري المحدد للاستثناء
 - لم تُراجع جميع القرارات الوزارية أو الأحكام القضائية ذات الصلة أو التعديلات اللاحقة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -1916,7 +1930,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Primary-source leads:**
 
 - [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مصدر النص الرسمي القابل للبحث؛ لم يُتحقق من النسخة الكاملة بصرياً في هذا العمل (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_searchable_text; نتيجة بحث نصية من ملف الجريدة الرسمية للمادة 120؛ لم يُنزّل الملف الأصلي أو يُحسب تجزئته أو يُفحص بصرياً (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_searchable_text; Official Gazette PDF, visually checked via browser PDF rendering for printed page 52 (PDF page index 50) on 2026-10-28; the file binary was not downloaded and no SHA-256 was computed. This is a page-level check, not a full article-by-article/currentness review. (checked 2026-10-28).
 
 **Cross-checks:**
 
@@ -1926,6 +1940,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - الاستثناء ليس عاماً؛ يجب فحص مكان العمل وظروفه ولائحة المنشأة والقرارات ذات الصلة
 - لم تُراجع جميع القرارات الوزارية أو الأحكام القضائية ذات الصلة أو التعديلات اللاحقة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -1944,7 +1959,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Primary-source leads:**
 
 - [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مصدر النص الرسمي القابل للبحث؛ لم يُتحقق من النسخة الكاملة بصرياً في هذا العمل (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_searchable_text; نتيجة بحث نصية من ملف الجريدة الرسمية للمادة 124؛ لم يُنزّل الملف الأصلي أو يُحسب تجزئته أو يُفحص بصرياً (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_searchable_text; Official Gazette PDF, visually checked via browser PDF rendering for printed page 54 (PDF page index 52) on 2026-10-28; the file binary was not downloaded and no SHA-256 was computed. This is a page-level check, not a full article-by-article/currentness review. (checked 2026-10-28).
 
 **Cross-checks:**
 
@@ -1954,6 +1969,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - يلزم التحقق من مدة الخدمة والفئة القانونية والقرار الوزاري الذي يحدد الأعمال أو المناطق المستحقة للزيادة
 - لم تُراجع جميع القرارات الوزارية أو الأحكام القضائية ذات الصلة أو التعديلات اللاحقة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -1963,7 +1979,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** من يحدد موعد الإجازة السنوية وما القيود على تجزئتها وتسوية رصيدها؟
 
-**Pinpoint:** القانون المرافق, المادة 125, printed Gazette page 54 (PDF page index 52).
+**Pinpoint:** القانون المرافق, المادة 125, printed Gazette page 55 (PDF page index 53).
 
 **Provisional summary (Arabic):**
 
@@ -1972,7 +1988,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Primary-source leads:**
 
 - [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مصدر النص الرسمي القابل للبحث؛ لم يُتحقق من النسخة الكاملة بصرياً في هذا العمل (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_searchable_text; نتيجة بحث نصية من ملف الجريدة الرسمية للمادة 125؛ لم يُنزّل الملف الأصلي أو يُحسب تجزئته أو يُفحص بصرياً (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_searchable_text; Official Gazette PDF, visually checked via browser PDF rendering for printed page 55 (PDF page index 53) on 2026-10-28; the file binary was not downloaded and no SHA-256 was computed. This is a page-level check, not a full article-by-article/currentness review. (checked 2026-10-28).
 
 **Cross-checks:**
 
@@ -1982,6 +1998,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - تطبيق الأثر المالي يتطلب مراجعة سجل الإجازات والأجر وسبب انتهاء الخدمة وأي أحكام أو قرارات ذات صلة
 - لم تُراجع جميع القرارات الوزارية أو الأحكام القضائية ذات الصلة أو التعديلات اللاحقة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -2000,7 +2017,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Primary-source leads:**
 
 - [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع الناشر الرسمي للنص؛ تعذر فتح الصفحة مباشرة في هذه الجولة، ويجب فحص موضع المادة في النسخة الكاملة قبل الاعتماد (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_searchable_text; نتيجة نصية مفهرسة للمادة 128 في الصفحة المطبوعة 56؛ لم يُنزّل الملف الأصلي أو يُحسب SHA-256 أو يُفحص بصرياً (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_searchable_text; Official Gazette PDF, visually checked via browser PDF rendering for printed page 56 (PDF page index 54) on 2026-10-28; the file binary was not downloaded and no SHA-256 was computed. This is a page-level check, not a full article-by-article/currentness review. (checked 2026-10-28).
 
 **Cross-checks:**
 
@@ -2010,6 +2027,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - تتطلب الحالة التحقق من سجل الإجازات وعدد مرات الاستفادة وظروف الواقعة
 - لم تُراجع جميع القرارات المنفذة أو التعديلات اللاحقة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -2028,7 +2046,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Primary-source leads:**
 
 - [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع الناشر الرسمي للنص؛ تعذر فتح الصفحة مباشرة في هذه الجولة، ويجب فحص موضع المادة في النسخة الكاملة قبل الاعتماد (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_searchable_text; نتيجة نصية مفهرسة للمادة 129 في الصفحة المطبوعة 56؛ لم يُنزّل الملف الأصلي أو يُحسب SHA-256 أو يُفحص بصرياً (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_searchable_text; Official Gazette PDF, visually checked via browser PDF rendering for printed page 56 (PDF page index 54) on 2026-10-28; the file binary was not downloaded and no SHA-256 was computed. This is a page-level check, not a full article-by-article/currentness review. (checked 2026-10-28).
 
 **Cross-checks:**
 
@@ -2038,6 +2056,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - يلزم تحديد اليوم بقرار الوزير المختص، والتحقق من الأجر وسجل الطلب الكتابي والقرارات اللاحقة
 - لم تُراجع جميع القرارات المنفذة أو التعديلات اللاحقة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -2047,7 +2066,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** ما الإطار العام للإجازة المرضية وما القواعد الخاصة ببعض المنشآت الصناعية؟
 
-**Pinpoint:** القانون المرافق, المادة 131, printed Gazette page 56 (PDF page index 54).
+**Pinpoint:** القانون المرافق, المادة 131, printed Gazette page 57 (PDF page index 55).
 
 **Provisional summary (Arabic):**
 
@@ -2056,7 +2075,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Primary-source leads:**
 
 - [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مصدر الناشر الرسمي مسجل؛ يلزم فحص موضع المادة مباشرة قبل الاعتماد (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_searchable_text; النص المفهرس يعرض القاعدة العامة للإجازة المرضية والتعويض، والشرائح الخاصة ببعض المنشآت الصناعية، وخصم تعويض التأمين الاجتماعي؛ لم يُنزّل الملف الأصلي أو يُحسب SHA-256 أو يُفحص بصرياً (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_searchable_text; Official Gazette PDF, visually checked via browser PDF rendering for printed page 57 (PDF page index 55) on 2026-10-28; the file binary was not downloaded and no SHA-256 was computed. This is a page-level check, not a full article-by-article/currentness review. (checked 2026-10-28).
 
 **Cross-checks:**
 
@@ -2066,6 +2085,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - تطبيق شرائح الأجر الخاصة مشروط بنطاق المنشآت الصناعية المحددة قانوناً، ولا يغني عن مراجعة قانون التأمينات والجهة الطبية والقرارات ذات الصلة.
 - لم تُراجع التعديلات والقرارات التنفيذية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -2084,7 +2104,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Primary-source leads:**
 
 - [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مصدر الناشر الرسمي مسجل؛ يلزم فحص موضع المادة مباشرة قبل الاعتماد (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_searchable_text; النص المفهرس للمادة 132 يقرر سقف ثلاثة أشهر ويُحيل تحديد الأمراض والجهة الطبية إلى قرار الوزير المختص؛ لم يُنزّل الملف الأصلي أو يُحسب SHA-256 أو يُفحص بصرياً (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_searchable_text; Official Gazette PDF, visually checked via browser PDF rendering for printed page 57 (PDF page index 55) on 2026-10-28; the file binary was not downloaded and no SHA-256 was computed. This is a page-level check, not a full article-by-article/currentness review. (checked 2026-10-28).
 
 **Cross-checks:**
 
@@ -2094,6 +2114,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - يتطلب التطبيق تحديد المرض المشمول والقرار الوزاري والجهة الطبية صاحبة الاختصاص، ولم تُراجع تلك القرارات هنا.
 - لم تُراجع التعديلات والقرارات التنفيذية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
