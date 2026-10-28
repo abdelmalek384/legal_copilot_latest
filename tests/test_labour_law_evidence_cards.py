@@ -342,3 +342,29 @@ if __name__ == "__main__":
                 self.assertTrue(card["limitations"])
                 self.assertIn("portal.eta.gov.eg", " ".join(s["url"] for s in card["primary_evidence"]))
 
+    def test_procedural_cards_176_to_187_have_pinpoints(self):
+        cards = {card["card_id"]: card for card in self.data["cards"]}
+        expected = {
+            "EG-LABOUR-14-2025-ART-176-SPECIALIZED-LABOUR-COURTS": ("المادة 176", 73, 71),
+            "EG-LABOUR-14-2025-ART-177-LABOUR-COURT-SUBJECT-MATTER-JURISDICTION": ("المادة 177", 73, 71),
+            "EG-LABOUR-14-2025-ART-178-LABOUR-COURT-CHAMBER-COMPOSITION": ("المادة 178", 73, 71),
+            "EG-LABOUR-14-2025-ART-179-URGENT-MATTERS-LABOUR-COURT-JUDGE": ("المادة 179", 73, 71),
+            "EG-LABOUR-14-2025-ART-180-CHALLENGE-URGENT-ORDERS": ("المادة 180", 73, 71),
+            "EG-LABOUR-14-2025-ART-181-LABOUR-COURT-CRIMINAL-JURISDICTION": ("المادة 181", 74, 72),
+            "EG-LABOUR-14-2025-ART-182-CASSATION-LIMITS-LABOUR-CRIMINAL-CASES": ("المادة 182", 74, 72),
+            "EG-LABOUR-14-2025-ART-183-LABOUR-JUDGMENT-ENFORCEMENT-DISPUTES": ("المادة 183", 74, 72),
+            "EG-LABOUR-14-2025-ART-184-LABOUR-COURT-REGISTRY-ENFORCEMENT-OFFICE": ("المادة 184", 74, 72),
+            "EG-LABOUR-14-2025-ART-185-LABOUR-COURT-LEGAL-AID-OFFICE": ("المادة 185", 74, 72),
+            "EG-LABOUR-14-2025-ART-186-COURT-OF-CASSATION-LABOUR-CHAMBERS": ("المادة 186", 75, 73),
+            "EG-LABOUR-14-2025-ART-187-LABOUR-JUDGMENT-APPEAL-PROCEDURE": ("المادة 187", 75, 73),
+        }
+        self.assertEqual(len(self.data["cards"]), 129)
+        for card_id, (article, printed_page, pdf_index) in expected.items():
+            with self.subTest(card_id=card_id):
+                card = cards[card_id]
+                self.assertEqual(card["pinpoint"]["article"], article)
+                self.assertEqual(card["pinpoint"]["official_gazette_printed_page"], printed_page)
+                self.assertEqual(card["pinpoint"]["pdf_page_index_zero_based"], pdf_index)
+                self.assertTrue(card["limitations"])
+                self.assertFalse(self.data["instrument"]["search_eligible"])
+
