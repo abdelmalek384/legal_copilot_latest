@@ -225,6 +225,7 @@ def main() -> int:
             store = S3PrivateObjectStore(
                 boto3.client("s3", region_name=region, endpoint_url=endpoint),
                 bucket=bucket, kms_key_id=kms_key_id,
+                kms_client=boto3.client("kms", region_name=region),
             )
             control_path = runtime.paths.control_plane
 
