@@ -56,6 +56,10 @@ def lookup():
         self.assertEqual(report["routes_with_dynamic_sql"], [
             {"route": "GET /lookup (lookup)", "call_count": 1}
         ])
+        site = report["routes"][0]["dynamic_sql_sites"][0]
+        self.assertEqual(site["function"], "read_table")
+        self.assertIn("{dynamic}", site["sql_template"])
+        self.assertGreater(site["line"], 0)
 
     def test_flags_direct_sqlite_open_in_route_call_graph(self):
         source = '''
