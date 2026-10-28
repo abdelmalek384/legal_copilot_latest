@@ -4,7 +4,7 @@
   "created_on": "2026-10-28",
   "cards_count": 24,
   "search_eligible": false,
-  "source_method_note": "Split supplement for the labour inspection and penalties book. Public Wikisource/Law Hub transcriptions used as fallback; primary official links retained. Pinpoints inferred, not visually verified. Arts. 281–295 deliberately left as indexing-only cards rather than inventing offences or penalties. Articles 281–287, 289, 292, 294 and 295 were upgraded from placeholders to provisional summaries using visible public transcription text. Articles 288, 290, 291 and 293 remain explicitly blocked because the accessible transcription contains editorial placeholders or truncated/uncertain text at those provisions. No attempt was made to reconstruct missing penalty clauses by guesswork.",
+  "source_method_note": "Split supplement for the labour inspection and penalties book. Public Wikisource/Law Hub transcriptions used as fallback; primary official links retained. Pinpoints inferred, not visually verified. Arts. 281–295 deliberately left as indexing-only cards rather than inventing offences or penalties. Articles 281–287, 289, 292, 294 and 295 were upgraded from placeholders to provisional summaries using visible public transcription text. Articles 288, 290, 291 and 293 remain explicitly blocked because the accessible transcription contains editorial placeholders or truncated/uncertain text at those provisions. No attempt was made to reconstruct missing penalty clauses by guesswork. Recovered Articles 288, 289, 290, 291, 293 and 294 from separate per-article pages on Fahm Qanun, whose displayed source attribution points to the official SIS rights-studies site. This replaces the earlier block on Articles 288, 290, 291 and 293. Article 289 is the employer fine for breaches of Articles 62–66; Article 291 is the unlicensed recruitment / improper collection offence. Keep them provisional until comparison with the Gazette image and legal review.",
   "cards": [
     {
       "card_id": "EG-LABOUR-14-2025-ART-275-LABOUR-INSPECTOR-JUDICIAL-POLICE-STATUS",
@@ -606,8 +606,8 @@
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-288-LABOUR-OFFENCE-PENALTY-ARTICLE-288",
-      "question": "ما العقوبة المنصوص عليها في المادة 288؟",
-      "provisional_answer_ar": "تعذر توثيق النص الموضوعي من النسخة العامة المستخدمة؛ ظهر بها نص محرر أو مبتور في هذا الموضع. لا يُستنتج مضمون الجريمة أو العقوبة من هذا المصدر. يلزم بديل نصي كامل مستقل أو مطابقة صورة الجريدة الرسمية.",
+      "question": "ما الغرامة على مخالفة المواد المحددة بالمادة 288؟",
+      "provisional_answer_ar": "تقرر المادة 288 غرامة من 500 إلى 5,000 جنيه لمخالفة المواد 27 و53 و60 و117 و118 و119 و123 و124 و132 والفقرة الثانية من 135 والفقرة الأولى من 254 والقرارات المنفذة. وتمتد ذات العقوبة إلى المواد 12 و29 و54–59 و89–94 و110–116 و120 و121 و125 و126 و128 و129 و131 والفقرة الثانية من 138 و156 و159 و162 و164 و173. تتعدد الغرامة بتعدد العمال وتضاعف عند العود.",
       "pinpoint": {
         "article": "المادة 288",
         "official_gazette_printed_page": 92,
@@ -640,21 +640,20 @@
       ],
       "limitations": [
         "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
-        "المواد 281–295 بطاقات فهرسة فقط ولا تتضمن نصاً عقابياً موضوعياً موثقاً",
         "القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة",
         "لا توجد مراجعة محامٍ مصري مسجلة",
         "حقوق إعادة الاستخدام التجاري غير محسومة",
-        "النسخة الثانوية العامة تحتوي نصاً غير مكتمل/محرراً في هذا الموضع؛ لا يجوز استخدامها لإثبات العقوبة"
+        "تم التحقق من نص بديل عام مستقل؛ المطابقة مع صورة الجريدة الرسمية ما زالت مطلوبة"
       ],
-      "review_state": "source_conflict_transcription_corrupted",
+      "review_state": "provisional_secondary_crosscheck",
       "search_eligible": false,
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "any substantive statement about offence elements or penalties until a clean full text is obtained"
+      "not_usable_for": "authoritative criminal penalty determination until official Gazette text, currentness and lawyer review are verified"
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-289-LABOUR-OFFENCE-PENALTY-ARTICLE-289",
-      "question": "ما عقوبة التشغيل غير المرخص أو تحصيل مبالغ غير مستحقة من العامل؟",
-      "provisional_answer_ar": "تعاقب المادة 289 بالحبس وغرامة من 20,000 إلى 100,000 جنيه أو بإحدى العقوبتين على تشغيل العمالة داخل البلاد أو خارجها دون الترخيص المطلوب أو بترخيص مبني على بيانات غير صحيحة، أو تحصيل مبالغ دون وجه حق من أجر العامل أو مستحقاته، أو تقديم بيانات/عقود عمل خارجية وهمية أو غير صحيحة. ويُحكم برد المبالغ غير المستحقة، ويجوز إغلاق المنشأة، ويكون الإغلاق وجوبياً في حالة الإدانة عن الفعل الأول.",
+      "question": "ما غرامة مخالفة أحكام تشغيل الأطفال المحددة بالمادة 289؟",
+      "provisional_answer_ar": "تعاقب المادة 289 صاحب العمل أو ممثله بغرامة من 2,000 إلى 10,000 جنيه لمخالفة المواد 63 و64 و66 والقرارات المنفذة، وتتعدد بتعدد العمال، وتضاعف عند العود مع غلق المنشأة مدة لا تجاوز ستة أشهر. وتمتد ذات العقوبة إلى مخالفة المادتين 62 و65.",
       "pinpoint": {
         "article": "المادة 289",
         "official_gazette_printed_page": 92,
@@ -690,7 +689,8 @@
         "القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة",
         "لا توجد مراجعة محامٍ مصري مسجلة",
         "حقوق إعادة الاستخدام التجاري غير محسومة",
-        "النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية"
+        "النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية",
+        "تم التحقق من نص بديل عام مستقل؛ المطابقة مع صورة الجريدة الرسمية ما زالت مطلوبة"
       ],
       "review_state": "provisional_secondary_crosscheck",
       "search_eligible": false,
@@ -699,8 +699,8 @@
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-290-LABOUR-OFFENCE-PENALTY-ARTICLE-290",
-      "question": "ما العقوبة المنصوص عليها في المادة 290؟",
-      "provisional_answer_ar": "تعذر توثيق النص الموضوعي من النسخة العامة المستخدمة؛ ظهر بها نص محرر أو مبتور في هذا الموضع. لا يُستنتج مضمون الجريمة أو العقوبة من هذا المصدر. يلزم بديل نصي كامل مستقل أو مطابقة صورة الجريدة الرسمية.",
+      "question": "ما غرامة مخالفة المادتين 33 و37؟",
+      "provisional_answer_ar": "تقرر المادة 290 غرامة من 500 إلى 1,000 جنيه لمخالفة المادتين 33 و37 والقرارات المنفذة، وتتعدد بتعدد العمال وتضاعف عند العود. وتمتد ذات العقوبة إلى مخالفة المادتين 35 و205.",
       "pinpoint": {
         "article": "المادة 290",
         "official_gazette_printed_page": 92,
@@ -733,21 +733,20 @@
       ],
       "limitations": [
         "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
-        "المواد 281–295 بطاقات فهرسة فقط ولا تتضمن نصاً عقابياً موضوعياً موثقاً",
         "القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة",
         "لا توجد مراجعة محامٍ مصري مسجلة",
         "حقوق إعادة الاستخدام التجاري غير محسومة",
-        "النسخة الثانوية العامة تحتوي نصاً غير مكتمل/محرراً في هذا الموضع؛ لا يجوز استخدامها لإثبات العقوبة"
+        "تم التحقق من نص بديل عام مستقل؛ المطابقة مع صورة الجريدة الرسمية ما زالت مطلوبة"
       ],
-      "review_state": "source_conflict_transcription_corrupted",
+      "review_state": "provisional_secondary_crosscheck",
       "search_eligible": false,
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "any substantive statement about offence elements or penalties until a clean full text is obtained"
+      "not_usable_for": "authoritative criminal penalty determination until official Gazette text, currentness and lawyer review are verified"
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-291-LABOUR-OFFENCE-PENALTY-ARTICLE-291",
-      "question": "ما العقوبة المنصوص عليها في المادة 291؟",
-      "provisional_answer_ar": "تعذر توثيق النص الموضوعي من النسخة العامة المستخدمة؛ ظهر بها نص محرر أو مبتور في هذا الموضع. لا يُستنتج مضمون الجريمة أو العقوبة من هذا المصدر. يلزم بديل نصي كامل مستقل أو مطابقة صورة الجريدة الرسمية.",
+      "question": "ما عقوبة تشغيل العمالة دون ترخيص أو تحصيل مبالغ غير مستحقة؟",
+      "provisional_answer_ar": "تعاقب المادة 291 بالحبس وغرامة من 20,000 إلى 100,000 جنيه أو بإحدى العقوبتين على إلحاق العمالة دون الترخيص المطلوب أو بترخيص مبني على بيانات غير صحيحة، أو تحصيل مبالغ دون وجه حق من أجر العامل أو مستحقاته، أو تقديم بيانات غير صحيحة أو عقود عمل وهمية عن العمل بالخارج. ويُحكم برد المبالغ غير المستحقة؛ ويجوز إغلاق المنشأة، ويكون الإغلاق وجوبياً في الجريمة الأولى.",
       "pinpoint": {
         "article": "المادة 291",
         "official_gazette_printed_page": 92,
@@ -780,16 +779,15 @@
       ],
       "limitations": [
         "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
-        "المواد 281–295 بطاقات فهرسة فقط ولا تتضمن نصاً عقابياً موضوعياً موثقاً",
         "القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة",
         "لا توجد مراجعة محامٍ مصري مسجلة",
         "حقوق إعادة الاستخدام التجاري غير محسومة",
-        "النسخة الثانوية العامة تحتوي نصاً غير مكتمل/محرراً في هذا الموضع؛ لا يجوز استخدامها لإثبات العقوبة"
+        "تم التحقق من نص بديل عام مستقل؛ المطابقة مع صورة الجريدة الرسمية ما زالت مطلوبة"
       ],
-      "review_state": "source_conflict_transcription_corrupted",
+      "review_state": "provisional_secondary_crosscheck",
       "search_eligible": false,
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "any substantive statement about offence elements or penalties until a clean full text is obtained"
+      "not_usable_for": "authoritative criminal penalty determination until official Gazette text, currentness and lawyer review are verified"
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-292-LABOUR-OFFENCE-PENALTY-ARTICLE-292",
@@ -839,8 +837,8 @@
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-293-LABOUR-OFFENCE-PENALTY-ARTICLE-293",
-      "question": "ما العقوبة المنصوص عليها في المادة 293؟",
-      "provisional_answer_ar": "تعذر توثيق النص الموضوعي من النسخة العامة المستخدمة؛ ظهر بها نص محرر أو مبتور في هذا الموضع. لا يُستنتج مضمون الجريمة أو العقوبة من هذا المصدر. يلزم بديل نصي كامل مستقل أو مطابقة صورة الجريدة الرسمية.",
+      "question": "ما غرامة مخالفة المواد 70 و71 و72 و74؟",
+      "provisional_answer_ar": "تقرر المادة 293 غرامة من 20,000 إلى 100,000 جنيه لمخالفة المواد 70 و71 و72 و74 والقرارات المنفذة، وتتعدد بتعدد العمال وتضاعف في حالة العود.",
       "pinpoint": {
         "article": "المادة 293",
         "official_gazette_printed_page": 92,
@@ -873,21 +871,20 @@
       ],
       "limitations": [
         "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
-        "المواد 281–295 بطاقات فهرسة فقط ولا تتضمن نصاً عقابياً موضوعياً موثقاً",
         "القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة",
         "لا توجد مراجعة محامٍ مصري مسجلة",
         "حقوق إعادة الاستخدام التجاري غير محسومة",
-        "النسخة الثانوية العامة تحتوي نصاً غير مكتمل/محرراً في هذا الموضع؛ لا يجوز استخدامها لإثبات العقوبة"
+        "تم التحقق من نص بديل عام مستقل؛ المطابقة مع صورة الجريدة الرسمية ما زالت مطلوبة"
       ],
-      "review_state": "source_conflict_transcription_corrupted",
+      "review_state": "provisional_secondary_crosscheck",
       "search_eligible": false,
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "any substantive statement about offence elements or penalties until a clean full text is obtained"
+      "not_usable_for": "authoritative criminal penalty determination until official Gazette text, currentness and lawyer review are verified"
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-294-LABOUR-OFFENCE-PENALTY-ARTICLE-294",
-      "question": "ما غرامة مخالفة المواد 104 و141–145 و152 و189؟",
-      "provisional_answer_ar": "تقرر المادة 294 غرامة من 1,000 إلى 20,000 جنيه لمخالفة المواد 104 و141 و142 و143 و144 والفقرة الثانية من 145 و152 و189، وتضاعف في حالة العود.",
+      "question": "ما غرامة مخالفة المواد 140–145 و151 و152 و198؟",
+      "provisional_answer_ar": "تقرر المادة 294 غرامة من 1,000 إلى 20,000 جنيه لمخالفة المواد 140 و141 و142 و143 و144 و145 والفقرة الثانية من المادة 151 و152 و198، وتضاعف في حالة العود.",
       "pinpoint": {
         "article": "المادة 294",
         "official_gazette_printed_page": 92,
@@ -923,7 +920,8 @@
         "القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة",
         "لا توجد مراجعة محامٍ مصري مسجلة",
         "حقوق إعادة الاستخدام التجاري غير محسومة",
-        "النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية"
+        "النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية",
+        "تم التحقق من نص بديل عام مستقل؛ المطابقة مع صورة الجريدة الرسمية ما زالت مطلوبة"
       ],
       "review_state": "provisional_secondary_crosscheck",
       "search_eligible": false,
