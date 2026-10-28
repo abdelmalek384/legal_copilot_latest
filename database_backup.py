@@ -35,8 +35,8 @@ _OBJECT_ID = re.compile(r"^[0-9a-f]{32}\.blob$")
 _FIRM_OBJECT_DIR = re.compile(r"^firm-[1-9][0-9]*$")
 _MAX_ARCHIVE_BYTES = 8 * 1024 * 1024 * 1024
 _MAX_ENTRIES = 2048
-# Fernet adds a 57-byte envelope before URL-safe base64 encoding.
-_MAX_ENCRYPTED_BUNDLE_BYTES = ((_MAX_ARCHIVE_BYTES + 57 + 2) // 3) * 4
+# Fernet adds a 57-byte envelope and up to 16 bytes of block padding before base64 encoding.
+_MAX_ENCRYPTED_BUNDLE_BYTES = ((_MAX_ARCHIVE_BYTES + 73 + 2) // 3) * 4
 
 
 def _readonly(path: Path) -> sqlite3.Connection:
