@@ -309,3 +309,34 @@ The benchmark scorer and production release gate now require reviewer IDs/names 
 6. Leave DB/tenant/storage and production data actions to the assigned database workstream.
 
 Overall readiness stays at 42% ± 8%. Reviewer/source controls are more accountable, but source permissions, verified legal content, lawyer-labelled evidence, manual QA, and independent release review remain unresolved.
+
+
+## Latest checkpoint — 2026-10-28 (after PRs #715–#716)
+
+Percentages are rough, non-additive estimates; they are not measures of legal accuracy.
+
+| Workstream | Estimate | Current state |
+|---|---:|---|
+| Overall product readiness | 42% ± 8 percentage points | Unchanged. Still not market-ready. |
+| Verified Egyptian legal corpus | 6% | Critical blocker: primary artifacts, rights scope, effective dates/amendments, and Egyptian-lawyer sign-off remain incomplete. |
+| Research evaluation and citation integrity | 82% | Reviewer scope is checked against declared practice areas in human assessment and benchmark scoring; real counsel-reviewed benchmark runs are still absent. |
+| Amendment/repeal provenance safeguards | 80% | Confirmed edges require traceable HTTPS evidence, SHA-256 metadata, reviewer ID/role, and non-future chronology. Validator does not authenticate evidence or legal effect. |
+| Source provenance/acquisition safeguards | 85% | Terms freshness and source-terms URLs are checked; source-specific reuse rights remain unknown without evidence. |
+| UI/UX implementation | 55% | Bilingual workflows and keyboard focus handling implemented; manual RTL/LTR, screen-reader, responsive, and lawyer-workflow QA remains outstanding. |
+| Database/tenant isolation | 65% estimate | Remains assigned to the other AI; no database or tenant-storage changes made in this workstream. |
+
+### Newly merged
+
+- **#715 — reviewer practice-area scope:** reviewer registry entries must identify Egyptian legal counsel, Egypt jurisdiction, and explicit practice-area scope. Out-of-scope human assessments and benchmark questions are rejected. Full Tests passed on the PR head and post-merge main commit 741fa46f540bc204a32e8f720ae9518e02da8271.
+- **#716 — traceable amendment confirmation:** a reviewed-confirmed relationship requires an HTTPS evidence URL, a 64-character SHA-256 digest, reviewer ID, the explicit qualified Egyptian lawyer role, and valid publication/review chronology. Full Tests passed on the PR head; the post-merge full Tests workflow on 27e4b9ceb7a887c9e0e8a407bcec8359464dca78 was still running at the time of this checkpoint.
+
+### Next gates
+
+1. Confirm post-merge full Tests on 27e4b9ceb7a887c9e0e8a407bcec8359464dca78.
+2. Keep confirmed legal relationships blocked unless a trusted human verifies the referenced official evidence and reviewer credentials. URL/hash format checks do not verify content.
+3. Acquire permitted primary texts for priority laws, reconcile official Gazette text and amendments/effective dates, and obtain qualified Egyptian-lawyer review. Do not infer permission from public access or unanswered emails.
+4. Produce actual reviewed benchmark runs with source-version pin-cites before making legal-accuracy claims.
+5. Record manual accessibility and bilingual browser acceptance.
+6. Leave tenant DB, migrations, storage adapters, and identity lifecycle to the assigned database workstream.
+
+Overall readiness remains 42% ± 8%; recent changes strengthen accountability but do not substitute for verified law content, permission evidence, real human review, or product acceptance.
