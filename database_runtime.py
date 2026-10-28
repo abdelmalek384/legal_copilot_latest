@@ -155,6 +155,10 @@ class DatabaseRuntime:
             raise DatabaseRuntimeError(
                 f"Production {profile} migration inventory is unsafe"
             ) from exc
+        if not expected:
+            raise DatabaseRuntimeError(
+                f"Production {profile} migration inventory must not be empty"
+            )
 
         connection = None
         try:
