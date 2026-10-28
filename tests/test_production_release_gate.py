@@ -7,6 +7,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from tools import production_release_gate as gate
+from tools.migrate_tenant_fleet import FleetMigrationError
 
 
 class ProductionReleaseGateTests(unittest.TestCase):
@@ -191,6 +192,70 @@ class ProductionReleaseGateTests(unittest.TestCase):
                 ])
                 self.assertEqual(result, 2)
                 self.assertEqual(manifest_path.read_text(encoding="utf-8"), "{}")
+
+    def test_pending_tenant_schema_migrations_block_release(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            candidate = self._candidate_file(root)
+            acceptance_path = root / "database-acceptance.json"
+            acceptance_path.write_text(json.dumps(self._database_acceptance_manifest()), encoding="utf-8")
+            release_env = {
+                **self.clean_env,
+                "COPILOT_DATABASE_ACCEPTANCE_FILE": str(acceptance_path),
+                "COPILOT_CONTROL_DB": str(root / "control.sqlite3"),
+                "COPILOT_TENANT_DB_ROOT": str(root / "tenants"),
+            }
+            with patch.object(gate, "inspect_environment", return_value=(["environment okay"], [], [])), \
+                 patch.object(gate, "build_tenant_migration_plan", return_value={
+                     "schema": "tenant-fleet-migration-plan/v1",
+                     "pending_database_count": 2,
+                     "pending_migration_count": 3,
+                     "skipped": [],
+                     "targets": [],
+                 }), \
+                 patch.object(gate, "build_legal_report", return_value=self._ready_report(candidate)), \
+                 patch.object(gate, "read_jsonl", return_value=self._approved_questions()):
+                report = gate.evaluate_release(
+                    env=release_env,
+                    candidate_paths=[candidate],
+                    benchmark_path=Path("approved-benchmark.jsonl"),
+                    reviewer_registry=self._reviewer_registry(),
+                )
+        self.assertFalse(report["ready"])
+        self.assertEqual(report["tenant_schema_migrations"]["pending_migration_count"], 3)
+        self.assertIn(
+            "tenant_schema_migrations_pending",
+            {item["code"] for item in report["blockers"]},
+        )
+
+    def test_tenant_migration_preflight_error_blocks_release(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            candidate = self._candidate_file(root)
+            acceptance_path = root / "database-acceptance.json"
+            acceptance_path.write_text(json.dumps(self._database_acceptance_manifest()), encoding="utf-8")
+            release_env = {
+                **self.clean_env,
+                "COPILOT_DATABASE_ACCEPTANCE_FILE": str(acceptance_path),
+                "COPILOT_CONTROL_DB": str(root / "control.sqlite3"),
+                "COPILOT_TENANT_DB_ROOT": str(root / "tenants"),
+            }
+            with patch.object(gate, "inspect_environment", return_value=(["environment okay"], [], [])), \
+                 patch.object(gate, "build_tenant_migration_plan", side_effect=FleetMigrationError("catalog unavailable")), \
+                 patch.object(gate, "build_legal_report", return_value=self._ready_report(candidate)), \
+                 patch.object(gate, "read_jsonl", return_value=self._approved_questions()):
+                report = gate.evaluate_release(
+                    env=release_env,
+                    candidate_paths=[candidate],
+                    benchmark_path=Path("approved-benchmark.jsonl"),
+                    reviewer_registry=self._reviewer_registry(),
+                )
+        self.assertFalse(report["ready"])
+        self.assertEqual(report["tenant_schema_migrations"]["error"], "catalog unavailable")
+        self.assertIn(
+            "tenant_schema_migration_preflight_failed",
+            {item["code"] for item in report["blockers"]},
+        )
 
     def test_missing_database_operational_acceptance_blocks_otherwise_ready_release(self):
         questions = self._approved_questions()

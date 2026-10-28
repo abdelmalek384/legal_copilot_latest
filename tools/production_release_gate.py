@@ -6,6 +6,7 @@ import argparse
 import json
 import os
 import re
+import sqlite3
 import sys
 from datetime import date
 from pathlib import Path
@@ -16,6 +17,7 @@ if str(ROOT) not in sys.path:
 
 from tools.deployment_preflight import inspect_environment
 from tools.database_release_acceptance import load_acceptance_manifest
+from tools.migrate_tenant_fleet import FleetMigrationError, build_plan as build_tenant_migration_plan
 from tools.evaluate_legal_answers import APPROVED, EvaluationError, _validate_reviewed_question, read_jsonl
 from tools.evaluate_legal_answer_reviews import validate_reviewer_registry
 from tools.validate_legal_release_readiness import (
@@ -142,6 +144,37 @@ def evaluate_release(
     if database_acceptance_path is None:
         database_acceptance_path = acceptance_environment.get("COPILOT_DATABASE_ACCEPTANCE_FILE")
     database_acceptance = load_acceptance_manifest(database_acceptance_path)
+    tenant_migration_report = {"configured": False, "pending_database_count": 0, "pending_migration_count": 0}
+    control_db = acceptance_environment.get("COPILOT_CONTROL_DB")
+    tenant_root = acceptance_environment.get("COPILOT_TENANT_DB_ROOT")
+    if control_db and tenant_root:
+        tenant_migration_report["configured"] = True
+        try:
+            tenant_migration_report = build_tenant_migration_plan(
+                control_db, tenant_root, Path(root) / "migrations"
+            )
+            tenant_migration_report["configured"] = True
+            if tenant_migration_report.get("pending_migration_count", 0):
+                blockers.append({
+                    "gate": "tenant_schema_migrations",
+                    "code": "tenant_schema_migrations_pending",
+                    "pending_database_count": tenant_migration_report.get("pending_database_count", 0),
+                    "pending_migration_count": tenant_migration_report.get("pending_migration_count", 0),
+                })
+            if tenant_migration_report.get("skipped"):
+                blockers.append({
+                    "gate": "tenant_schema_migrations",
+                    "code": "unresolved_tenant_catalog_lifecycle_states",
+                    "count": len(tenant_migration_report["skipped"]),
+                    "examples": tenant_migration_report["skipped"][:10],
+                })
+        except (FleetMigrationError, OSError, ValueError, sqlite3.Error) as exc:
+            tenant_migration_report = {"configured": True, "error": str(exc)}
+            blockers.append({
+                "gate": "tenant_schema_migrations",
+                "code": "tenant_schema_migration_preflight_failed",
+                "details": str(exc),
+            })
     if not database_acceptance["ready"]:
         blockers.append({
             "gate": "database_operational_acceptance",
@@ -292,6 +325,7 @@ def evaluate_release(
         "decision": "ready" if not blockers else "blocked",
         "environment": {"passed_checks": len(passed), "warnings": warnings, "errors": errors},
         "database_operational_acceptance": database_acceptance,
+        "tenant_schema_migrations": tenant_migration_report,
         "legal_corpus": {
             "candidate_count": len(paths),
             "ready_count": legal_report.get("ready_count", 0),
