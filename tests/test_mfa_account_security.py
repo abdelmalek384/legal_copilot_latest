@@ -184,6 +184,74 @@ class MFAAccountSecurityTests(unittest.TestCase):
         self.assertEqual(statuses[-1], 429)
         self.assertTrue(all(code in (401, 429) for code in statuses))
 
+    def test_recovery_code_rotation_invalidates_old_codes_and_is_not_cached(self):
+        secret = self.enroll()
+        old_codes = self.confirm(secret)
+        # Confirmation establishes a recent, verified MFA session.
+        rotate = self.mutate(
+            "post", "/account/mfa/recovery-codes/rotate",
+            json={
+                "current_password": self.password,
+                "code": totp_code(secret, (int(time.time()) // 30 + 1) * 30),
+            },
+        )
+        self.assertEqual(rotate.status_code, 200, rotate.text)
+        self.assertEqual(len(rotate.json()["recovery_codes"]), 10)
+        self.assertIn("no-store", rotate.headers.get("cache-control", "").lower())
+        new_codes = rotate.json()["recovery_codes"]
+        self.assertNotEqual(old_codes, new_codes)
+
+        control = self.runtime.control_connection()
+        rows = control.execute(
+            "SELECT code_hash,used_at FROM mfa_recovery_codes WHERE user_id=? ORDER BY id",
+            (self.user_id,),
+        ).fetchall()
+        self.assertEqual(len(rows), 10)
+        self.assertTrue(all(row["code_hash"].startswith("scrypt$") for row in rows))
+        self.assertTrue(all(row["used_at"] is None for row in rows))
+        self.assertFalse(any(code in [row["code_hash"] for row in rows] for code in new_codes))
+
+        self.login()
+        old_code_attempt = self.mutate(
+            "post", "/account/mfa/verify", json={"recovery_code": old_codes[0]}
+        )
+        self.assertEqual(old_code_attempt.status_code, 401, old_code_attempt.text)
+
+    def test_lost_authenticator_reenrollment_requires_recent_mfa_and_current_password(self):
+        old_secret = self.enroll()
+        self.confirm(old_secret)
+        # A valid recent MFA session is required, even when the password is correct.
+        reenroll = self.mutate(
+            "post", "/account/mfa/re-enroll",
+            json={"current_password": "incorrect-password"},
+        )
+        self.assertEqual(reenroll.status_code, 401, reenroll.text)
+        control = self.runtime.control_connection()
+        current = control.execute(
+            "SELECT status,secret_ciphertext FROM mfa_credentials WHERE user_id=?",
+            (self.user_id,),
+        ).fetchone()
+        self.assertEqual(current["status"], "enabled")
+        self.assertNotEqual(current["secret_ciphertext"], old_secret)
+
+        # Correct password and recent MFA verification can start a new pending
+        # enrollment, but the replacement is not enabled until explicitly confirmed.
+        reenroll = self.mutate(
+            "post", "/account/mfa/re-enroll",
+            json={"current_password": self.password},
+        )
+        self.assertEqual(reenroll.status_code, 200, reenroll.text)
+        new_secret = reenroll.json()["secret"]
+        self.assertNotEqual(new_secret, old_secret)
+        current = control.execute(
+            "SELECT status,secret_ciphertext,enrollment_expires FROM mfa_credentials WHERE user_id=?",
+            (self.user_id,),
+        ).fetchone()
+        self.assertEqual(current["status"], "pending")
+        self.assertNotEqual(current["secret_ciphertext"], new_secret)
+        self.assertGreater(current["enrollment_expires"], int(time.time()))
+        self.assertIn("no-store", reenroll.headers.get("cache-control", "").lower())
+
     def test_required_policy_prevents_privileged_admin_from_disabling_mfa(self):
         secret = self.enroll()
         self.confirm(secret)
