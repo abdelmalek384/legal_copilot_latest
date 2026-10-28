@@ -21,7 +21,7 @@ The current inventory has 72 unique instrument candidates across 13 source recor
 
 ## Operating rules
 
-1. Unknown stays unknown. An official publisher or discovered URL does not grant collection, OCR, storage, indexing, commercial display, or redistribution permission.
+1. Unknown stays unknown. An official publisher or discovered URL does not grant collection, OCR, storage, indexing, commercial display, or redistribution permission. Use the same canonical source_id across the Phase 2 inventory and central source permission register when they refer to the same publisher/source; matching hostnames alone do not transfer permission.
 2. Source discovery and source-level terms are not item-level permission evidence. Confirm the exact instrument, intended acquisition method, storage, extraction, indexing, display, and commercial use separately.
 3. Discovery status is not authenticity, current-law, amendment-history, or legal-effect verification.
 4. Source indexes and secondary catalogues are discovery aids; primary text and Gazette issue/page evidence remain separate requirements.
