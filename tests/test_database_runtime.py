@@ -490,7 +490,7 @@ class DatabaseRuntimeTests(unittest.TestCase):
         control.commit()
         path = self.runtime.paths.tenant_root / filename
         path.write_bytes(b"ambiguous partial database")
-        with self.assertRaisesRegex(DatabaseRuntimeError, "file or sidecar exists"):
+        with self.assertRaisesRegex(DatabaseRuntimeError, "database or sidecar exists"):
             self.runtime.reconcile_interrupted_firm_provisioning(
                 firm_id,
                 reason="operator is checking a crash recovery",
