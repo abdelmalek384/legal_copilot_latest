@@ -206,5 +206,24 @@ class CorpusAuditTests(unittest.TestCase):
             self.assertEqual(report["version_quality"]["amendment_history_flag_without_evidence"], 1)
             self.assertEqual(report["relation_quality"]["relations_touching_unreviewed_amendment_history"], 1)
 
+    def test_markdown_renders_new_review_and_chunk_version_metrics(self):
+        report = {
+            "generated_at": "2026-10-27T00:00:00Z",
+            "database_sha256": "a" * 64,
+            "counts": {},
+            "review_event_quality": {"reviewer_missing": 0, "orphan_version": 2},
+            "chunk_version_consistency": {
+                "verified_chunks_without_verified_version": 0,
+                "in_force_chunks_conflicting_with_version": 3,
+            },
+            "issues": [],
+        }
+        markdown = MODULE.render_markdown(report)
+        self.assertIn("## Review Event Quality", markdown)
+        self.assertIn("reviewer missing", markdown)
+        self.assertIn("orphan version", markdown)
+        self.assertIn("## Chunk Version Consistency", markdown)
+        self.assertIn("in force chunks conflicting with version", markdown)
+
 if __name__ == "__main__":
     unittest.main()
