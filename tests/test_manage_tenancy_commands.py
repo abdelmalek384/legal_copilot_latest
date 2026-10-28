@@ -131,6 +131,64 @@ class TenancyCommandTests(unittest.TestCase):
             0,
         )
 
+    def test_reconcile_interrupted_provisioning_cli_requires_both_confirmations(self):
+        control = self.runtime.control_connection()
+        firm_id = int(control.execute(
+            "INSERT INTO firms(name,status) VALUES('CLI Interrupted Firm','provisioning')"
+        ).lastrowid)
+        control.execute(
+            "INSERT INTO tenant_database_catalog(firm_id,database_file,status) "
+            "VALUES(?,NULL,'provisioning')",
+            (firm_id,),
+        )
+        control.commit()
+
+        args = (
+            "reconcile-interrupted-provisioning",
+            "--firm-id", str(firm_id),
+            "--reason", "reconcile after host restart and confirmed worker shutdown",
+            "--operator-reference", "incident-cli-123",
+            "--change-reference", "change-cli-456",
+        )
+        refused = self.run_manage(*args)
+        self.assertNotEqual(refused.returncode, 0)
+        self.assertIn("--confirm-workers-stopped", refused.stderr)
+        self.assertEqual(
+            control.execute("SELECT status FROM firms WHERE id=?", (firm_id,)).fetchone()[0],
+            "provisioning",
+        )
+
+        refused = self.run_manage(*args, "--confirm-workers-stopped")
+        self.assertNotEqual(refused.returncode, 0)
+        self.assertIn("--confirm-reconcile", refused.stderr)
+        self.assertEqual(
+            control.execute("SELECT status FROM firms WHERE id=?", (firm_id,)).fetchone()[0],
+            "provisioning",
+        )
+
+        completed = self.run_manage(
+            *args, "--confirm-workers-stopped", "--confirm-reconcile"
+        )
+        self.assertEqual(completed.returncode, 0, completed.stderr)
+        report = json.loads(completed.stdout)
+        self.assertEqual(report["status"], "failed")
+        self.assertEqual(report["firm_id"], firm_id)
+        self.assertEqual(report["recovery"], "reconciled_interrupted_provisioning")
+        self.assertTrue(report["retry_allowed"])
+        self.assertEqual(
+            control.execute("SELECT status FROM firms WHERE id=?", (firm_id,)).fetchone()[0],
+            "disabled",
+        )
+        event = control.execute(
+            "SELECT detail_json FROM platform_security_events "
+            "WHERE firm_id=? AND event_type='firm_provisioning_reconciled_failed'",
+            (firm_id,),
+        ).fetchone()
+        self.assertIsNotNone(event)
+        detail = json.loads(event["detail_json"])
+        self.assertEqual(detail["operator_reference"], "incident-cli-123")
+        self.assertEqual(detail["change_reference"], "change-cli-456")
+
     def test_retry_failed_provisioning_cli_requires_confirmation_and_audits_recovery(self):
         control = self.runtime.control_connection()
         cursor = control.execute(

@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import sqlite3
 import stat
 import threading
@@ -487,6 +488,94 @@ class DatabaseRuntime:
         finally:
             if catalog is not None:
                 catalog.close()
+
+    def reconcile_interrupted_firm_provisioning(
+        self,
+        firm_id: int,
+        *,
+        reason: str,
+        operator_reference: str,
+        change_reference: str,
+    ) -> None:
+        """Move a confirmed interrupted, file-less provisioning attempt to retryable failure.
+
+        This deliberately refuses to inspect, delete, adopt, or overwrite any existing
+        tenant database file. The operator must stop all app/background workers first.
+        """
+        if isinstance(firm_id, bool) or not isinstance(firm_id, int) or firm_id <= 0:
+            raise ValueError("firm_id must be a positive integer")
+        audit_fields = {
+            "reason": reason,
+            "operator_reference": operator_reference,
+            "change_reference": change_reference,
+        }
+        if any(not isinstance(value, str) or not value.strip() for value in audit_fields.values()):
+            raise ValueError("reason, operator_reference, and change_reference are required")
+        self._require_initialized()
+        root = self.paths.tenant_root
+        if root.is_symlink() or not root.is_dir():
+            raise DatabaseRuntimeError("Tenant storage root is unsafe; refusing reconciliation")
+        control = self.control_connection()
+        control.execute("BEGIN IMMEDIATE")
+        try:
+            firm = control.execute(
+                "SELECT status FROM firms WHERE id=?", (firm_id,)
+            ).fetchone()
+            catalog_state = control.execute(
+                "SELECT status,database_file FROM tenant_database_catalog WHERE firm_id=?",
+                (firm_id,),
+            ).fetchone()
+            if firm is None or firm["status"] != "provisioning":
+                raise DatabaseRuntimeError(
+                    "Only a firm explicitly stuck in provisioning can be reconciled"
+                )
+            if catalog_state is None or catalog_state["status"] != "provisioning":
+                raise DatabaseRuntimeError(
+                    "Firm and catalog are not both in provisioning state; refusing reconciliation"
+                )
+            filename = catalog_state["database_file"]
+            if filename is not None and (
+                not isinstance(filename, str)
+                or not re.fullmatch(rf"tenant-{firm_id}-[0-9a-f]{{32}}\.sqlite3", filename)
+            ):
+                raise DatabaseRuntimeError(
+                    "Provisioning catalog contains an invalid filename; manual investigation required"
+                )
+            # Any tenant file or SQLite sidecar for this firm is ambiguous: it may
+            # contain a complete database whose final catalog commit was interrupted.
+            # Never delete or adopt it automatically.
+            candidates = list(root.glob(f"tenant-{firm_id}-*.sqlite3*"))
+            if candidates:
+                raise DatabaseRuntimeError(
+                    "Tenant database or sidecar exists; manual integrity/binding review required"
+                )
+            changed = control.execute(
+                "UPDATE firms SET status='disabled' WHERE id=? AND status='provisioning'",
+                (firm_id,),
+            )
+            if changed.rowcount != 1:
+                raise DatabaseRuntimeError("Firm lifecycle state changed concurrently")
+            updated = control.execute(
+                "UPDATE tenant_database_catalog SET status='failed',database_file=NULL,"
+                "last_error_code='interrupted_provisioning_reconciled',updated_at=datetime('now') "
+                "WHERE firm_id=? AND status='provisioning'",
+                (firm_id,),
+            )
+            if updated.rowcount != 1:
+                raise DatabaseRuntimeError("Catalog lifecycle state changed concurrently")
+            control.execute(
+                "INSERT INTO platform_security_events(actor_user_id,firm_id,event_type,detail_json) "
+                "VALUES(NULL,?,'firm_provisioning_reconciled_failed',?)",
+                (firm_id, json.dumps({
+                    "previous_database_file": filename,
+                    "status": "failed",
+                    **{key: value.strip() for key, value in audit_fields.items()},
+                }, sort_keys=True)),
+            )
+            control.commit()
+        except Exception:
+            control.rollback()
+            raise
 
     def disable_firm(self, firm_id: int) -> bool:
         """Disable a firm without deleting its database or membership history.

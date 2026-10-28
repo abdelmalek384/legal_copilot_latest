@@ -430,6 +430,182 @@ class DatabaseRuntimeTests(unittest.TestCase):
             0,
         )
 
+    def test_reconcile_interrupted_fileless_provisioning_to_retryable_failure(self):
+        control = self.runtime.control_connection()
+        firm_id = int(control.execute(
+            "INSERT INTO firms(name,status) VALUES('Interrupted Provisioning','provisioning')"
+        ).lastrowid)
+        control.execute(
+            "INSERT INTO tenant_database_catalog(firm_id,database_file,status) "
+            "VALUES(?,NULL,'provisioning')",
+            (firm_id,),
+        )
+        control.commit()
+
+        self.runtime.reconcile_interrupted_firm_provisioning(
+            firm_id,
+            reason="deployment host restarted during tenant initialization",
+            operator_reference="incident-123",
+            change_reference="change-456",
+        )
+
+        firm = control.execute("SELECT status FROM firms WHERE id=?", (firm_id,)).fetchone()
+        catalog = control.execute(
+            "SELECT status,database_file,last_error_code FROM tenant_database_catalog WHERE firm_id=?",
+            (firm_id,),
+        ).fetchone()
+        self.assertEqual(firm["status"], "disabled")
+        self.assertEqual(catalog["status"], "failed")
+        self.assertIsNone(catalog["database_file"])
+        self.assertEqual(catalog["last_error_code"], "interrupted_provisioning_reconciled")
+        event = control.execute(
+            "SELECT detail_json FROM platform_security_events "
+            "WHERE firm_id=? AND event_type='firm_provisioning_reconciled_failed'",
+            (firm_id,),
+        ).fetchone()
+        self.assertIsNotNone(event)
+        detail = json.loads(event["detail_json"])
+        self.assertEqual(detail["operator_reference"], "incident-123")
+        self.assertEqual(detail["change_reference"], "change-456")
+        self.assertEqual(
+            control.execute(
+                "SELECT COUNT(*) FROM platform_security_events "
+                "WHERE firm_id=? AND event_type='firm_provisioning_reconciled_failed'",
+                (firm_id,),
+            ).fetchone()[0],
+            1,
+        )
+        tenant_path = self.runtime.retry_failed_firm_provisioning(
+            firm_id,
+            reason="retry after file-less interrupted provisioning was reconciled",
+            operator_reference="operator-retry-after-reconcile",
+            change_reference="change-retry-after-reconcile",
+        )
+        self.assertTrue(tenant_path.is_file())
+        self.assertEqual(
+            control.execute("SELECT status FROM firms WHERE id=?", (firm_id,)).fetchone()[0],
+            "active",
+        )
+        self.assertEqual(
+            control.execute(
+                "SELECT status FROM tenant_database_catalog WHERE firm_id=?", (firm_id,)
+            ).fetchone()[0],
+            "provisioned",
+        )
+
+    def test_reconcile_interrupted_provisioning_refuses_any_existing_database_file(self):
+        control = self.runtime.control_connection()
+        firm_id = int(control.execute(
+            "INSERT INTO firms(name,status) VALUES('Interrupted With File','provisioning')"
+        ).lastrowid)
+        filename = f"tenant-{firm_id}-{'a' * 32}.sqlite3"
+        control.execute(
+            "INSERT INTO tenant_database_catalog(firm_id,database_file,status) "
+            "VALUES(?,?,'provisioning')",
+            (firm_id, filename),
+        )
+        control.commit()
+        path = self.runtime.paths.tenant_root / filename
+        path.write_bytes(b"ambiguous partial database")
+        with self.assertRaisesRegex(DatabaseRuntimeError, "database or sidecar exists"):
+            self.runtime.reconcile_interrupted_firm_provisioning(
+                firm_id,
+                reason="operator is checking a crash recovery",
+                operator_reference="incident-789",
+                change_reference="change-012",
+            )
+        self.assertEqual(
+            control.execute("SELECT status FROM firms WHERE id=?", (firm_id,)).fetchone()[0],
+            "provisioning",
+        )
+        self.assertEqual(
+            control.execute(
+                "SELECT status,database_file FROM tenant_database_catalog WHERE firm_id=?",
+                (firm_id,),
+            ).fetchone()["status"],
+            "provisioning",
+        )
+        self.assertTrue(path.is_file())
+
+    def test_reconcile_interrupted_provisioning_rejects_mismatched_states_and_invalid_mapping(self):
+        control = self.runtime.control_connection()
+        cases = [
+            ("Active firm", "active", "provisioning", None),
+            ("Failed catalog", "provisioning", "failed", None),
+            ("Invalid mapping", "provisioning", "provisioning", "../another-tenant.sqlite3"),
+        ]
+        firm_ids = []
+        for name, firm_status, catalog_status, filename in cases:
+            firm_id = int(control.execute(
+                "INSERT INTO firms(name,status) VALUES(?,?)", (name, firm_status)
+            ).lastrowid)
+            control.execute(
+                "INSERT INTO tenant_database_catalog(firm_id,database_file,status) VALUES(?,?,?)",
+                (firm_id, filename, catalog_status),
+            )
+            firm_ids.append(firm_id)
+        control.commit()
+
+        for firm_id in firm_ids:
+            with self.subTest(firm_id=firm_id):
+                with self.assertRaises(DatabaseRuntimeError):
+                    self.runtime.reconcile_interrupted_firm_provisioning(
+                        firm_id,
+                        reason="reject inconsistent state during lifecycle review",
+                        operator_reference="incident-state-matrix",
+                        change_reference="change-state-matrix",
+                    )
+                self.assertEqual(
+                    control.execute(
+                        "SELECT status FROM tenant_database_catalog WHERE firm_id=?", (firm_id,)
+                    ).fetchone()[0],
+                    cases[firm_ids.index(firm_id)][2],
+                )
+        self.assertEqual(
+            control.execute(
+                "SELECT COUNT(*) FROM platform_security_events "
+                "WHERE event_type='firm_provisioning_reconciled_failed'"
+            ).fetchone()[0],
+            0,
+        )
+
+    def test_reconcile_interrupted_provisioning_audit_failure_rolls_back_lifecycle_changes(self):
+        control = self.runtime.control_connection()
+        firm_id = int(control.execute(
+            "INSERT INTO firms(name,status) VALUES('Interrupted Audit Failure','provisioning')"
+        ).lastrowid)
+        control.execute(
+            "INSERT INTO tenant_database_catalog(firm_id,database_file,status) "
+            "VALUES(?,NULL,'provisioning')",
+            (firm_id,),
+        )
+        control.execute(
+            "CREATE TRIGGER reject_interrupted_reconcile_audit "
+            "BEFORE INSERT ON platform_security_events "
+            "WHEN NEW.event_type='firm_provisioning_reconciled_failed' "
+            "BEGIN SELECT RAISE(ABORT, 'injected reconcile audit failure'); END"
+        )
+        control.commit()
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "injected reconcile audit failure"):
+            self.runtime.reconcile_interrupted_firm_provisioning(
+                firm_id,
+                reason="verify lifecycle changes require an audit record",
+                operator_reference="incident-audit",
+                change_reference="change-audit",
+            )
+        control.execute("DROP TRIGGER reject_interrupted_reconcile_audit")
+        control.commit()
+        self.assertEqual(
+            control.execute("SELECT status FROM firms WHERE id=?", (firm_id,)).fetchone()[0],
+            "provisioning",
+        )
+        self.assertEqual(
+            control.execute(
+                "SELECT status FROM tenant_database_catalog WHERE firm_id=?", (firm_id,)
+            ).fetchone()[0],
+            "provisioning",
+        )
+
     def test_failed_firm_provisioning_can_be_retried_with_audited_operator_references(self):
         with patch.object(
             self.runtime,

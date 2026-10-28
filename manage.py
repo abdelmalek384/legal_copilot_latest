@@ -194,6 +194,35 @@ def retry_failed_provisioning_cli(a):
         runtime.close_current_thread()
 
 
+def reconcile_interrupted_provisioning_cli(a):
+    """Mark only a file-less interrupted provisioning attempt as retryable failure."""
+    if not app._separate_runtime_enabled():
+        raise SystemExit("Provisioning reconciliation requires the separate database architecture.")
+    if not a.confirm_workers_stopped:
+        raise SystemExit("Refusing reconciliation without --confirm-workers-stopped.")
+    if not a.confirm_reconcile:
+        raise SystemExit("Refusing reconciliation without --confirm-reconcile.")
+    runtime = DatabaseRuntime.from_env()
+    try:
+        runtime.initialize()
+        runtime.reconcile_interrupted_firm_provisioning(
+            a.firm_id,
+            reason=a.reason,
+            operator_reference=a.operator_reference,
+            change_reference=a.change_reference,
+        )
+        print(json.dumps({
+            "status": "failed",
+            "firm_id": a.firm_id,
+            "recovery": "reconciled_interrupted_provisioning",
+            "retry_allowed": True,
+        }, ensure_ascii=False, sort_keys=True))
+    except (DatabaseRuntimeError, ValueError, OSError, sqlite3.Error) as exc:
+        raise SystemExit("Interrupted provisioning reconciliation refused or failed: " + str(exc)) from exc
+    finally:
+        runtime.close_current_thread()
+
+
 def disable_firm_cli(a):
     """Disable firm access while retaining its database and historical data."""
     if not app._separate_runtime_enabled():
@@ -1003,6 +1032,14 @@ x.add_argument("--operator-reference", required=True)
 x.add_argument("--change-reference", required=True)
 x.add_argument("--confirm-retry", action="store_true", help="Explicitly confirm this audited provisioning retry")
 x.set_defaults(f=retry_failed_provisioning_cli)
+x = sp.add_parser("reconcile-interrupted-provisioning", help="Reconcile a file-less interrupted firm provisioning attempt")
+x.add_argument("--firm-id", type=int, required=True)
+x.add_argument("--reason", required=True)
+x.add_argument("--operator-reference", required=True)
+x.add_argument("--change-reference", required=True)
+x.add_argument("--confirm-workers-stopped", action="store_true", help="Confirm all app and background workers are stopped")
+x.add_argument("--confirm-reconcile", action="store_true", help="Explicitly confirm this audited lifecycle reconciliation")
+x.set_defaults(f=reconcile_interrupted_provisioning_cli)
 x = sp.add_parser("addmembership"); x.add_argument("email"); x.add_argument("--firm-id", type=int, required=True); x.add_argument("--role", choices=["lawyer", "junior"], required=True); x.set_defaults(f=addmembership_cli)
 x = sp.add_parser("disable-firm"); x.add_argument("firm_id", type=int); x.set_defaults(f=disable_firm_cli)
 x = sp.add_parser("resetpw"); x.add_argument("email"); x.set_defaults(f=resetpw)
@@ -1053,7 +1090,7 @@ x = sp.add_parser("platform-audit", help="Read recent platform security events o
 x.add_argument("--limit", type=int, default=50)
 x.add_argument("--firm-id", type=int)
 x.add_argument("--target-user-id", type=int)
-x.add_argument("--event-type", choices=["password_reset_cli", "identity_created_cli", "password_changed_web", "firm_provisioned", "firm_provisioning_retried", "firm_disabled", "membership_created", "membership_suspended", "initial_owner_bootstrapped", "platform_role_granted", "platform_role_revoked", "platform_admin_bootstrap_cli", "password_reset_assisted_cli"])
+x.add_argument("--event-type", choices=["password_reset_cli", "identity_created_cli", "password_changed_web", "firm_provisioned", "firm_provisioning_retried", "firm_provisioning_reconciled_failed", "firm_disabled", "membership_created", "membership_suspended", "initial_owner_bootstrapped", "platform_role_granted", "platform_role_revoked", "platform_admin_bootstrap_cli", "password_reset_assisted_cli"])
 x.set_defaults(f=platform_audit)
 x = sp.add_parser("restore-tenancy"); x.add_argument("file"); x.add_argument("--target-root", required=True); x.set_defaults(f=restore_tenancy)
 x = sp.add_parser("verify-backup-tenancy", help="Verify an encrypted tenancy bundle using temporary protected storage"); x.add_argument("file"); x.set_defaults(f=verify_tenancy_backup)
