@@ -159,6 +159,14 @@
           "القانون المرافق، المادة 148"
         ],
         "basis": "PDF text extraction lines 1528-1544"
+      },
+      {
+        "pdf_page_index_zero_based": 51,
+        "printed_page_label": "53",
+        "provisions": [
+          "القانون المرافق، المادتان 120 و121"
+        ],
+        "basis": "PDF text extraction lines 1248-1273"
       }
     ]
   },
@@ -535,6 +543,32 @@
         "pdf_page_indices_zero_based": [
           61,
           62
+        ],
+        "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf"
+      }
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-120",
+      "provision_ref": "القانون المرافق، المادة 120",
+      "topic": "weekly_rest_period",
+      "summary_ar": "توجب المادة 120 تنظيم العمل بما يمنح العامل راحة أسبوعية لا تقل عن أربع وعشرين ساعة كاملة بعد ستة أيام عمل متصلة على الأكثر، وتقرر أن تكون الراحة الأسبوعية مدفوعة الأجر. وتجيز استثناءً تجميع الراحات المستحقة في أماكن بعيدة عن العمران أو في أعمال تستلزم استمرار التشغيل لمدة لا تجاوز ثمانية أسابيع، وفق الضوابط المنصوص عليها.",
+      "source_refs": [
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "basis": "government-hosted Gazette PDF; targeted text extraction reviewed; printed pages 52-53"
+        }
+      ],
+      "confidence": "provisional_source_text_observed",
+      "human_review": "pending",
+      "page_pinpoint": {
+        "gazette_issue": "18 (تابع)",
+        "printed_pages": [
+          "52",
+          "53"
+        ],
+        "pdf_page_indices_zero_based": [
+          50,
+          51
         ],
         "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf"
       }
