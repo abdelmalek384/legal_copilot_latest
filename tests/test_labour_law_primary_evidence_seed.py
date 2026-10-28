@@ -65,6 +65,7 @@ class LabourLawPrimaryEvidenceSeedTests(unittest.TestCase):
         self.assertIn("12", pages)
         self.assertIn("43", pages)
         self.assertIn("52", pages)
+        self.assertIn("53", pages)
         self.assertIn("54", pages)
         self.assertIn("55", pages)
         self.assertIn("68", pages)
@@ -79,7 +80,12 @@ class LabourLawPrimaryEvidenceSeedTests(unittest.TestCase):
         for provision in self.seed["provisions"]:
             pinpoint = provision["page_pinpoint"]
             self.assertEqual(pinpoint["gazette_issue"], "18 (تابع)")
-            self.assertIn(pinpoint["printed_page"], pages)
+            if "printed_pages" in pinpoint:
+                self.assertEqual(len(pinpoint["printed_pages"]), len(pinpoint["pdf_page_indices_zero_based"]))
+                for page in pinpoint["printed_pages"]:
+                    self.assertIn(page, pages)
+            else:
+                self.assertIn(pinpoint["printed_page"], pages)
             self.assertEqual(pinpoint["source_url"], "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf")
 
     def test_publication_metadata_and_commencement_candidates_are_explicit(self):
