@@ -30,7 +30,7 @@ export COPILOT_CORPUS_DB=/secure/persistent/legal-corpus.sqlite3
 python manage.py init-tenancy --firm-name "Firm name" --owner-name "Initial owner" --owner-email "owner@example.invalid"
 ```
 
-This is a one-time bootstrap command, not permission to run the web application in development mode on production data. Protect the maintenance environment, credentials, and volumes; then run the strict deployment preflight and operational acceptance process. Set `COPILOT_ENV=production` for the actual web service. Production startup requires existing regular control/corpus database files, a non-symlink tenant root, and a complete fresh acceptance manifest. If any profile file is missing, stop and investigate; do not let startup recreate an empty database in place of missing data.
+This is a one-time bootstrap command, not permission to run the web application in development mode on production data. Protect the maintenance environment, credentials, and volumes; then run the strict deployment preflight and operational acceptance process. Set `COPILOT_ENV=production` for the actual web service. Production startup requires existing regular control/corpus database files, an existing non-symlink tenant root, and a complete fresh acceptance manifest. On POSIX, the tenant root must be private (`0700`) and profile database/sidecar files must be private (`0600`). If any profile file or required directory is missing or too broadly accessible, stop and investigate; do not let startup recreate an empty database in place of missing data.
 
 ## Procedure
 
