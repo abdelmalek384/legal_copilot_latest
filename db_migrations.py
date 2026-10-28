@@ -22,7 +22,7 @@ class MigrationError(RuntimeError):
     """Raised when migration files or recorded migration history are unsafe."""
 
 
-def _read_regular_migration(path: Path) -> str:
+def read_migration_file(path: Path) -> str:
     """Read executable migration SQL without following links or blocking on special files."""
     if path.is_symlink():
         raise MigrationError(f"Migration file must not be a symlink: {path.name}")
@@ -72,7 +72,7 @@ def _migration_files(directory: Path) -> list[tuple[int, str, Path, str]]:
         if version in versions:
             raise MigrationError(f"Duplicate migration version: {version}")
         versions.add(version)
-        sql = _read_regular_migration(path)
+        sql = read_migration_file(path)
         if not sql.strip():
             raise MigrationError(f"Empty migration: {path.name}")
         found.append((version, path.name, path, sql))
