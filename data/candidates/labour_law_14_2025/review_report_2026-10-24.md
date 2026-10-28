@@ -70,3 +70,6 @@ A government-hosted PDF copy of Official Gazette issue 18 (supplement) was opene
 - Printed page 12 (PDF page index 9): accompanying-law Articles 4–6 (forced labour/harassment, non-discrimination, and worker-rights waiver provisions).
 
 This is a targeted extracted-text review, not a complete visual inspection of the PDF. The file was not downloaded or hashed. The 311-row article-by-article comparison, full amendment/currentness review, and qualified Egyptian-lawyer approval remain pending. Source collection and commercial-reuse permission remain unknown. This evidence does not change the registry's pending verification flags or make the law search-eligible.
+
+
+Further targeted extracted-text review on 2026-10-28 also covered printed page 43 (PDF page index 41), containing accompanying-law Articles 89–90 on written employment contracts and probation. This adds two provision pinpoints to the provisional review seed; it does not change the pending authenticity, currentness, amendment-history, permission, or lawyer-review statuses.
