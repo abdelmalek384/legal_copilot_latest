@@ -17,9 +17,23 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
 
     def test_current_inventory_is_metadata_only_and_structurally_valid(self):
         self.assertEqual(validate_inventory(self.inventory), [])
-        self.assertEqual(len(self.inventory["documents"]), 69)
+        self.assertEqual(len(self.inventory["documents"]), 70)
         self.assertTrue(all(d["review_status"] != "verified" for d in self.inventory["documents"]))
         self.assertTrue(all(d["legal_status"] in {"unknown", "not_applicable"} for d in self.inventory["documents"]))
+
+    def test_2026_labour_work_regulation_rules_remain_discovery_only(self):
+        record = next(
+            d for d in self.inventory["documents"]
+            if d["document_id"] == "EG-LABOUR-WORK-REGULATION-RULES-2026"
+        )
+        self.assertEqual(record["source_id"], "EG-MINISTRY-OF-LABOUR")
+        self.assertEqual(record["source_status"], "official_index_discovered_primary_text_pending")
+        self.assertEqual(record["collection_permission"], "unknown")
+        self.assertEqual(record["legal_status"], "unknown")
+        self.assertEqual(record["review_status"], "discovery_only")
+        self.assertIsNone(record["instrument_number"])
+        self.assertIn("Official Gazette", record["notes"])
+        self.assertEqual(validate_inventory(self.inventory), [])
 
     def test_unknown_source_and_duplicate_instrument_ids_are_rejected(self):
         data = copy.deepcopy(self.inventory)
