@@ -3897,65 +3897,14 @@ def create_user(b: UserCreateIn, u: dict = Depends(user)):
 
 @app.post("/memberships", status_code=201)
 def add_existing_user_membership(b: ExistingMembershipIn, u: dict = Depends(user)):
-    """Add an existing global identity to the active firm without duplicating the identity."""
+    """Prevent direct membership grants; all firm onboarding must be invitation-accepted."""
     require_admin(u)
     if not _separate_runtime_enabled():
         raise HTTPException(404, "cross-firm memberships are available only in separate-database mode")
-    normalized = normalize_email(b.email)
-    c = control_conn()
-    c.execute("BEGIN IMMEDIATE")
-    try:
-        firm = c.execute(
-            "SELECT status FROM firms WHERE id=?", (u["firm_id"],)
-        ).fetchone()
-        if firm is None or firm["status"] != "active":
-            c.rollback()
-            raise HTTPException(409, "cannot create a membership for an inactive firm")
-        identity = c.execute(
-            "SELECT id,name,status FROM users WHERE email_normalized=?", (normalized,)
-        ).fetchone()
-        if identity is None:
-            c.rollback()
-            raise HTTPException(404, "global user not found; create the identity before adding memberships")
-        if identity["status"] != "active":
-            c.rollback()
-            raise HTTPException(409, "disabled global identities cannot receive new memberships")
-        existing = c.execute(
-            "SELECT status FROM firm_memberships WHERE user_id=? AND firm_id=?",
-            (identity["id"], u["firm_id"]),
-        ).fetchone()
-        if existing is not None:
-            c.rollback()
-            raise HTTPException(409, "membership already exists; reactivation requires a separate reviewed workflow")
-        c.execute(
-            "INSERT INTO firm_memberships(user_id,firm_id,firm_role,status,created_by_user_id) "
-            "VALUES(?,?,?,'active',?)",
-            (identity["id"], u["firm_id"], b.role, u["id"]),
-        )
-        try:
-            c.execute(
-                "INSERT INTO platform_security_events(actor_user_id,target_user_id,firm_id,event_type,detail_json) "
-                "VALUES(?,?,?,'membership_created',?)",
-                (u["id"], identity["id"], u["firm_id"], json.dumps({"method": "web_existing_identity", "firm_role": b.role}, sort_keys=True)),
-            )
-        except sqlite3.Error as exc:
-            raise HTTPException(503, "membership was not created because audit logging failed") from exc
-        c.commit()
-    except HTTPException:
-        if c.in_transaction:
-            c.rollback()
-        raise
-    except sqlite3.IntegrityError as exc:
-        c.rollback()
-        raise HTTPException(409, "membership could not be created; check identity and firm status") from exc
-    return {
-        "ok": True,
-        "user_id": int(identity["id"]),
-        "name": identity["name"],
-        "email": normalized,
-        "firm_id": int(u["firm_id"]),
-        "role": b.role,
-    }
+    raise HTTPException(
+        410,
+        "direct membership creation is disabled; send a firm invitation and require acceptance",
+    )
 
 
 @app.get("/dashboard")
