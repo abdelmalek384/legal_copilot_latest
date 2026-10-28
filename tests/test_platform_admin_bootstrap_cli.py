@@ -2,6 +2,7 @@ import contextlib
 import io
 import json
 import os
+import sqlite3
 import tempfile
 import unittest
 from pathlib import Path
@@ -89,7 +90,7 @@ class PlatformAdminBootstrapCliTests(unittest.TestCase):
         self.assertEqual(detail["reason"], "First platform administrator for pilot deployment")
         self.assertEqual(detail["operator_reference"], "ops-team-2026")
         self.assertEqual(detail["change_reference"], "CHG-2026-10-28")
-        with self.assertRaises(Exception):
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "append-only"):
             control.execute(
                 "UPDATE platform_security_events SET detail_json='{}' WHERE event_type='platform_admin_bootstrap_cli'"
             )
