@@ -140,6 +140,65 @@ class DatabaseRuntime:
                         f"{profile} SQLite sidecar permissions allow group/other access"
                     )
 
+    @staticmethod
+    def _schema_object_inventory(connection: sqlite3.Connection) -> dict[str, object]:
+        """Describe schema objects and constraints without reading application rows."""
+        objects = tuple(
+            (str(row[0]), str(row[1]), str(row[2]))
+            for row in connection.execute(
+                "SELECT type,name,tbl_name FROM sqlite_master "
+                "WHERE name NOT LIKE 'sqlite_%' ORDER BY type,name"
+            )
+        )
+        tables = [
+            str(row[0]) for row in connection.execute(
+                "SELECT name FROM sqlite_master WHERE type='table' "
+                "AND name NOT LIKE 'sqlite_%' ORDER BY name"
+            )
+        ]
+        columns = []
+        indexes = []
+        foreign_keys = []
+        for table in tables:
+            quoted = '"' + table.replace('"', '""') + '"'
+            table_columns = tuple(
+                (str(row[1]), str(row[2]), int(row[3]), row[4], int(row[5]))
+                for row in connection.execute(f"PRAGMA table_info({quoted})")
+            )
+            columns.append((table, table_columns))
+            for index in connection.execute(f"PRAGMA index_list({quoted})"):
+                index_name = str(index[1])
+                quoted_index = '"' + index_name.replace('"', '""') + '"'
+                index_columns = tuple(
+                    (int(row[0]), int(row[1]), row[2], int(row[3]), row[4], int(row[5]))
+                    for row in connection.execute(f"PRAGMA index_xinfo({quoted_index})")
+                )
+                indexes.append((
+                    table, index_name, int(index[2]), str(index[3]), int(index[4]), index_columns
+                ))
+            foreign_keys.append((
+                table,
+                tuple(
+                    (int(row[0]), int(row[1]), str(row[2]), str(row[3]), str(row[4]),
+                     str(row[5]), str(row[6]), str(row[7]))
+                    for row in connection.execute(f"PRAGMA foreign_key_list({quoted})")
+                ),
+            ))
+        triggers = tuple(
+            (str(row[0]), " ".join(str(row[1]).split()))
+            for row in connection.execute(
+                "SELECT name,sql FROM sqlite_master WHERE type='trigger' "
+                "AND name NOT LIKE 'sqlite_%' ORDER BY name"
+            )
+        )
+        return {
+            "objects": objects,
+            "columns": tuple(columns),
+            "indexes": tuple(sorted(indexes)),
+            "foreign_keys": tuple(foreign_keys),
+            "triggers": triggers,
+        }
+
     def _validate_preprovisioned_profile(self, path: Path, profile: str) -> None:
         """Require an exact, healthy migration state before production startup."""
         directory = self.migrations_root / profile
@@ -210,6 +269,21 @@ class DatabaseRuntime:
                 raise DatabaseRuntimeError(
                     f"Production {profile} migration history is pending, missing, or drifted"
                 )
+
+            expected_connection = sqlite3.connect(":memory:")
+            try:
+                apply_profile_migrations(
+                    expected_connection, profile, self.migrations_root
+                )
+                expected_schema = self._schema_object_inventory(expected_connection)
+            finally:
+                expected_connection.close()
+            actual_schema = self._schema_object_inventory(connection)
+            if actual_schema != expected_schema:
+                raise DatabaseRuntimeError(
+                    f"Production {profile} schema objects or constraints differ from trusted migrations"
+                )
+
             journal = connection.execute("PRAGMA journal_mode").fetchone()
             if journal is None or str(journal[0]).lower() != "wal":
                 raise DatabaseRuntimeError(
