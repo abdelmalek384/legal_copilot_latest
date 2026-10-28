@@ -129,7 +129,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             "SELECT COUNT(*) FROM platform_security_events WHERE event_type='membership_created'"
         ).fetchone()[0], before_events)
 
-    def test_membership_writers_recheck_active_firm_inside_write_transaction(self):
+    def test_direct_identity_and_membership_routes_fail_closed_without_writes(self):
         target_user = self.runtime.create_global_identity(
             "Second Firm User", "second-firm-user@example.test", app.hash_pw(self.password)
         )
@@ -154,7 +154,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
                 app.ExistingMembershipIn(email="second-firm-user@example.test", role="lawyer"),
                 admin_context,
             )
-        self.assertEqual(membership_error.exception.status_code, 409)
+        self.assertEqual(membership_error.exception.status_code, 410)
 
         control = self.runtime.control_connection()
         self.assertIsNone(
@@ -171,7 +171,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             0,
         )
 
-    def test_disabled_global_identity_cannot_receive_new_membership(self):
+    def test_disabled_global_identity_cannot_receive_direct_membership_grant(self):
         firm_c, _ = self.runtime.provision_firm("Disabled Identity Firm")
         disabled_user_id = self.runtime.create_initial_firm_owner(
             firm_c, "Disabled Owner", "disabled-owner@example.test", app.hash_pw(self.password)
@@ -191,7 +191,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             "post", "/memberships",
             json={"email": "disabled-owner@example.test", "role": "lawyer"},
         )
-        self.assertEqual(response.status_code, 409, response.text)
+        self.assertEqual(response.status_code, 410, response.text)
         self.assertEqual(
             control.execute(
                 "SELECT COUNT(*) FROM firm_memberships WHERE user_id=? AND firm_id=?",
