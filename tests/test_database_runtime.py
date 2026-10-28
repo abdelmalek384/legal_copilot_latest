@@ -199,6 +199,42 @@ class DatabaseRuntimeTests(unittest.TestCase):
                 "AND name='idx_legal_documents_source_id'"
             ).fetchone())
 
+    def test_production_runtime_refuses_tenant_binding_trigger_drift(self):
+        base = self.root / "production-tenant-schema-drift"
+        migrations_root = base / "migrations"
+        shutil.copytree(Path(__file__).resolve().parents[1] / "migrations", migrations_root)
+        control = base / "control.sqlite3"
+        tenant_root = base / "tenants"
+        corpus = base / "corpus.sqlite3"
+        development_runtime = DatabaseRuntime(
+            control, tenant_root, corpus, migrations_root=migrations_root
+        )
+        with patch.dict(os.environ, {"COPILOT_ENV": "development"}):
+            development_runtime.initialize()
+            _firm_id, tenant_path = development_runtime.provision_firm(
+                "Binding Guard Drift Firm"
+            )
+        development_runtime.close_current_thread()
+        if os.name == "posix":
+            os.chmod(tenant_root, 0o700)
+        connection = sqlite3.connect(tenant_path)
+        try:
+            connection.execute("DROP TRIGGER tenant_database_binding_no_update")
+            connection.commit()
+        finally:
+            connection.close()
+        runtime = DatabaseRuntime(
+            control, tenant_root, corpus, migrations_root=migrations_root
+        )
+        with patch.dict(os.environ, {"COPILOT_ENV": "production"}):
+            with self.assertRaisesRegex(DatabaseRuntimeError, "schema objects or constraints differ"):
+                runtime.initialize()
+        with sqlite3.connect(tenant_path) as check:
+            self.assertIsNone(check.execute(
+                "SELECT name FROM sqlite_master WHERE type='trigger' "
+                "AND name='tenant_database_binding_no_update'"
+            ).fetchone())
+
     def test_production_runtime_requires_private_tenant_root(self):
         base = self.root / "production-open-root"
         tenant_root = base / "tenants"
