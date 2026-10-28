@@ -69,6 +69,21 @@ class OriginalFileReconciliationTests(unittest.TestCase):
         self.assertEqual(report.checked_metadata_rows, 1)
         self.assertEqual(report.checked_objects, 1)
 
+    def test_local_reconciler_reports_backend_mismatch_without_false_missing_blob(self):
+        self._create_database(rows=[(self.object_id, self.payload, "ready")])
+        connection = sqlite3.connect(self.db)
+        connection.execute(
+            "UPDATE original_file_objects SET storage_backend='s3' WHERE object_id=?",
+            (self.object_id,),
+        )
+        connection.commit()
+        connection.close()
+
+        report = self._reconcile()
+        codes = {finding.code for finding in report.findings}
+        self.assertIn("backend_mismatch", codes)
+        self.assertNotIn("missing_object", codes)
+
     def test_detects_corrupt_bytes_and_missing_ready_object(self):
         self._create_database(rows=[
             (self.object_id, self.payload, "ready"),
