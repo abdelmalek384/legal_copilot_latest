@@ -43,3 +43,12 @@ Before activation:
 5. Only then consider approval and search eligibility.
 
 A JSONL hash proves the identity of the supplied data file, not the authenticity of the law or permission to reuse it.
+
+## Source-linked provision evidence cards (2026-10-28)
+
+See [`provision_evidence_cards.json`](provision_evidence_cards.json) for nine concise Arabic research cards with article/page pinpoints, official publisher and government-hosted Gazette-PDF links, secondary cross-checks, explicit limitations, and related-instrument follow-ups.
+
+The cards cover promulgation Articles 1, 12 and 13, and accompanying-law Articles 89, 90, 117, 124, 129 and 165. They are **provisional research leads only**. The Gazette PDF text was inspected through web text extraction for selected pages, but the original file has not been downloaded, hashed, or visually inspected; the full 311-record article-by-article comparison is incomplete. Decisions 49/2026 (annual-leave categories) and 294/2025 (paid holidays) remain unresolved discovery leads, not verified operative rules.
+
+These cards must not be activated as authoritative retrieval, used to calculate individual entitlements, or presented as a lawyer-reviewed current-law answer. Source reuse permission, complete amendment/currentness review, and qualified Egyptian-lawyer review remain outstanding.
+
