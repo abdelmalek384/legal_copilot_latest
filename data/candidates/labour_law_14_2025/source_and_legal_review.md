@@ -74,3 +74,6 @@ Further targeted extracted-text review on 2026-10-28 also covered printed page 4
 
 
 Further targeted text review on 2026-10-28 covered printed page 52 (Articles 117 and 121: ordinary working hours and overtime) and printed pages 54–55 (Article 124: annual leave). These are provision summaries for review, not lawyer-approved advice; no full-law comparison or currentness certification is claimed.
+
+
+Further targeted extracted-text review on 2026-10-28 covered printed pages 68–70 (Article 165: compensation for unlawful termination of an indefinite-term contract) and pages 73–74 (Article 177: specialized labour-court jurisdiction). These are provisional summaries and do not certify currentness or substitute for counsel review.
