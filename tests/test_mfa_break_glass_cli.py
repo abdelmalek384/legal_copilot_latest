@@ -175,7 +175,7 @@ class MFABreakGlassCLITests(unittest.TestCase):
             (self.actor_id, self.target_id),
         ).fetchone()
         self.assertEqual(mfa_event["event_type"], "administrator_reset")
-        self.assertNotIn(self.owner_email if hasattr(self, "owner_email") else "target-admin@example.test", output.getvalue())
+        self.assertNotIn("target-admin@example.test", output.getvalue())
 
     def test_ordinary_resetpw_refuses_privileged_target_before_prompting(self):
         with patch("getpass.getpass") as prompt:
