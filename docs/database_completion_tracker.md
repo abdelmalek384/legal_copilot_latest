@@ -264,6 +264,7 @@ This is a planning estimate across fresh-install schema/migrations, tenant isola
 
 ### 5. Prove tenant isolation and operational recovery
 - [ ] Complete route-by-route and SQL-query-by-query cross-firm authorization tests, including exports, audit, search, legal review, background work, and administrative paths.
+- [ ] Extend reminder lifecycle acceptance to cover disabled accounts and firms; send-time authorization checks exist, but SMTP/provider acceptance remains an operational gate.
 - [x] Draft the tenant-scoped original-file storage proposal, including blob metadata, staged upload atomicity, backup/restore integrity, retention, and acceptance gates (PR #597 merged; proposal only).
 - [x] Add a mandatory database operational-acceptance gate to the production release decision, with fail-closed manifest validation, distinct recovery/bootstrap witnesses, independent-reviewer separation, and sanitized output (PR #742 merged; full CI passed). The template intentionally remains pending until real operational evidence is supplied.
 - [ ] Complete acceptance for tenant-scoped original binary storage. PR #671 is merged and adds local/S3-KMS adapters, authorized downloads, integrity/reconciliation, backup/restore staging, legal holds, deletion safeguards, and recovery tooling; production uploads remain fail-closed pending live-provider validation.
