@@ -1057,6 +1057,11 @@
           "url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc",
           "source_role": "Egyptian Proceedings issue metadata candidate",
           "status": "metadata_discovered_pdf_listed_not_downloaded"
+        },
+        {
+          "url": "https://sis.gov.eg/ar/%D8%A7%D9%84%D9%85%D8%B1%D9%83%D8%B2-%D8%A7%D9%84%D8%A5%D8%B9%D9%84%D8%A7%D9%85%D9%8A/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D9%8A%D8%B9%D8%AA%D9%85%D8%AF-%D9%85%D8%B9%D8%A7%D9%8A%D9%8A%D8%B1-%D9%85%D9%86%D8%AD-%D8%AA%D8%B1%D8%AE%D9%8A%D8%B5-%D9%85%D8%B1%D8%A7%D9%83%D8%B2-%D8%A7%D9%84%D8%AA%D8%AF%D8%B1%D9%8A%D8%A8-%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A-%D8%A7%D9%84%D8%AE%D8%A7%D8%B5%D8%A9-%D9%84%D8%AA%D8%AF%D8%B1%D9%8A%D8%A8-%D9%85%D8%B3%D8%A7%D8%B9%D8%AF%D9%8A-%D8%A7%D9%84%D8%AE%D8%AF%D9%85%D8%A7%D8%AA-%D8%A7%D9%84%D8%B5%D8%AD%D9%8A%D8%A9/",
+          "source_role": "official State Information Service report attributing standards to Ministry of Labour; supporting discovery evidence only",
+          "status": "discovered_not_downloaded"
         }
       ],
       "source_status": "discovery_only",
@@ -1068,9 +1073,12 @@
         "exact title/date and page range",
         "enabling legal provision",
         "amendments/repeal/subsequent decisions",
-        "lawyer review"
+        "lawyer review",
+        "exact standards text and legal form (including whether a separate instrument number exists)",
+        "publication/effective date and official publication reference for the standards",
+        "scope of Ministerial Decision 264/2025 and its relationship to Labour Law 14/2025"
       ],
-      "notes": "Metadata indicates a decision regulating training operations and development of training levels; verify exact title and whether/how it implements Labour Law 14/2025. No PDF acquired; no legal-status or reuse-permission review completed."
+      "notes": "Metadata indicates a decision regulating training operations and development of training levels; verify exact title and whether/how it implements Labour Law 14/2025. No PDF acquired; no legal-status or reuse-permission review completed. A State Information Service report dated 2026-09-04 says the Minister of Labour approved standards for private vocational training centres training health-services assistants under Labour Law 14/2025 and Ministerial Decision 264/2025. This is a follow-up lead, not the standards text or proof of a separate instrument; exact legal form, publication, currentness and rights remain unverified."
     },
     {
       "document_id": "EG-LABOUR-DECISION-271-2025",
@@ -2011,6 +2019,12 @@
     {
       "id": "ACT-LABOUR-RULES-2026-VERIFY",
       "action": "Verify the exact instrument number/title, Official Gazette issue/pages, commencement and relationship to Labour Law 14/2025 for the general private-sector work-regulation rules reported by the Ministry of Labour in 2026; keep permission and legal status unknown until independently reviewed.",
+      "owner": "legal corpus lead",
+      "status": "not_started"
+    },
+    {
+      "id": "ACT-LABOUR-DECISION-264-2026-STANDARDS-VERIFY",
+      "action": "Retrieve the official text/publication reference for the 2026 standards reported under Labour Decision 264/2025; establish whether they are a separate instrument, record exact title/number and effective date, and keep legal status and reuse permission unresolved until reviewed.",
       "owner": "legal corpus lead",
       "status": "not_started"
     }
