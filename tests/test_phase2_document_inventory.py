@@ -32,7 +32,7 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         self.assertEqual(record["legal_status"], "unknown")
         self.assertEqual(record["review_status"], "discovery_only")
         self.assertIsNone(record["instrument_number"])
-        self.assertIn("Official Gazette", record["notes"])
+        self.assertIn("official Gazette text/pages", record["notes"])
         self.assertEqual(validate_inventory(self.inventory), [])
 
     def test_unknown_source_and_duplicate_instrument_ids_are_rejected(self):
