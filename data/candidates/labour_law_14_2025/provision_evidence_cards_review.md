@@ -2,7 +2,7 @@
 
 **Record:** `EG-LABOUR-LAW-14-2025-EVIDENCE-CARDS-2026-10-28`  
 **Prepared on:** 2026-10-28  
-**Cards in this report:** 63
+**Cards in this report:** 64
 
 ## Status and limits
 
@@ -14,7 +14,7 @@
 - Collection permission: `unknown`; commercial reuse: `unknown`.
 - Authoritative search eligibility: `false`.
 
-Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF has not been downloaded, hashed, or visually inspected; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording. Additional cards for accompanying-law Articles 4–9 were prepared from text extraction of the government-hosted Official Gazette PDF on 2026-10-28. The PDF has not been downloaded, hashed, or visually inspected; page pinpointing is provisional and all cards remain non-authoritative. Additional cards for accompanying-law Articles 10–12 were prepared from the government-hosted Official Gazette PDF text extraction on 2026-10-28. Page references are based on the extracted page labels; the PDF has not been downloaded, hashed, or visually inspected. Cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 16, 22, 23, 25 and 27 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; these cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 28–31 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 32–34 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 36–37 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshot checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 40–43 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 44–48 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 49–54 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 126 and 127 were added from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 55. The original PDF remains undownloaded and unhashed, and both cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 121 and 122 were prepared from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 53. Article 121 was cross-checked against a secondary English translation, and Article 122 against a secondary legal text copy. The original PDF remains undownloaded and unhashed; both cards remain provisional and non-authoritative.
+Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF has not been downloaded, hashed, or visually inspected; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording. Additional cards for accompanying-law Articles 4–9 were prepared from text extraction of the government-hosted Official Gazette PDF on 2026-10-28. The PDF has not been downloaded, hashed, or visually inspected; page pinpointing is provisional and all cards remain non-authoritative. Additional cards for accompanying-law Articles 10–12 were prepared from the government-hosted Official Gazette PDF text extraction on 2026-10-28. Page references are based on the extracted page labels; the PDF has not been downloaded, hashed, or visually inspected. Cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 16, 22, 23, 25 and 27 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; these cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 28–31 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 32–34 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 36–37 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshot checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 40–43 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 44–48 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 49–54 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 126 and 127 were added from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 55. The original PDF remains undownloaded and unhashed, and both cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 121 and 122 were prepared from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 53. Article 121 was cross-checked against a secondary English translation, and Article 122 against a secondary legal text copy. The original PDF remains undownloaded and unhashed; both cards remain provisional and non-authoritative. An additional card for accompanying-law Article 123 was added from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 53. It is cross-checked against a secondary English translation, but the implementing ministerial decision has not been identified and reviewed in this task. The original PDF remains undownloaded and unhashed; the card is provisional and non-authoritative.
 
 ## Provision cards
 
@@ -1853,6 +1853,35 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final compliance determination for a specific establishment.
+
+### 64. EG-LABOUR-14-2025-ART-123-WORK-HOUR-EXEMPTIONS
+
+**Question:** Which worker categories does Article 123 exclude from specified working-hour and rest rules?
+
+**Pinpoint:** القانون المرافق, المادة 123, printed Gazette page 53 (PDF page index 51).
+
+**Provisional summary (Arabic):**
+
+تستثني المادة 123 الوكلاء المفوضين عن صاحب العمل، والعاملين في الأعمال التجهيزية أو التكميلية التي يلزم إنجازها قبل أو بعد العمل، وعمال الحراسة والنظافة، من أحكام محددة بشأن ساعات العمل والراحة الأسبوعية. وتوجب تحديد الحد الأقصى للساعات الفعلية والإضافية لبعض هذه الفئات بقرار من الوزير المختص، مع استحقاق الأجر الإضافي وفق المادة 121. لا يُفترض أن الاستثناء يلغي جميع ضمانات ساعات العمل أو الراحة؛ يلزم تحديد الفئة والقرار الوزاري المنطبق.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; النص الرسمي القابل للبحث؛ يلزم فحص موضع المادة والقرار الوزاري ذي الصلة (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 53؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary English translation](https://eg.andersen.com/wp-content/uploads/2025/06/Translation-of-Labor-law-No.-14-of-2025.pdf) — ترجمة ثانوية للمادة 123 وتحدد الفئات المستثناة؛ لا تحل محل النص العربي الرسمي أو القرار الوزاري.
+
+**Limitations:**
+
+- يلزم العثور على القرار الوزاري المحدد للحد الأقصى للساعات للفئات الواردة في المادة ومراجعته مستقلاً
+- لا يُفهم الاستثناء على أنه إعفاء شامل من جميع حقوق العمل أو أجر العمل الإضافي
+- لم يُفحص ملف الجريدة الأصلي بصرياً ولا توجد مراجعة محامٍ مسجلة
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** final classification of a worker or determination of applicable hours without the implementing decision.
 
 ## Activation gates
 
