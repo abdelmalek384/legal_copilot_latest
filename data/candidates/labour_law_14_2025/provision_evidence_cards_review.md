@@ -187,6 +187,9 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
   - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
+- `EG-LABOUR-DECISION-290-2025` — قرار وزير العمل رقم 290 لسنة 2025 بشأن الأعمال المتقطعة بطبيعتها; Official Gazette metadata and partial abstract found; detailed list, complete text, currentness and reuse are not verified. Source: [https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829](https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829).
+- `EG-LABOUR-DECISION-291-2025` — قرار وزير العمل رقم 291 لسنة 2025 بشأن ضوابط التشغيل الإضافي ومبرراته; Official Gazette issue metadata found; operative text, currentness and reuse are not verified. Source: [https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1](https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1).
+- `EG-LABOUR-DECISION-292-2025` — قرار وزير العمل رقم 292 لسنة 2025 بشأن الحد الأقصى لساعات العمل الفعلية والإضافية لأعمال محددة; Official Gazette issue metadata found; exact limits, exceptions, currentness and reuse are not verified. Source: [https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc/full](https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc/full).
 
 **Limitations:**
 
@@ -336,6 +339,9 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
   - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
+- `EG-LABOUR-DECISION-290-2025` — قرار وزير العمل رقم 290 لسنة 2025 بشأن الأعمال المتقطعة بطبيعتها; Official Gazette metadata and partial abstract found; detailed list, complete text, currentness and reuse are not verified. Source: [https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829](https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829).
+- `EG-LABOUR-DECISION-291-2025` — قرار وزير العمل رقم 291 لسنة 2025 بشأن ضوابط التشغيل الإضافي ومبرراته; Official Gazette issue metadata found; operative text, currentness and reuse are not verified. Source: [https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1](https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1).
+- `EG-LABOUR-DECISION-292-2025` — قرار وزير العمل رقم 292 لسنة 2025 بشأن الحد الأقصى لساعات العمل الفعلية والإضافية لأعمال محددة; Official Gazette issue metadata found; exact limits, exceptions, currentness and reuse are not verified. Source: [https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc/full](https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc/full).
 
 **Limitations:**
 
@@ -1890,6 +1896,9 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
   - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
+- `EG-LABOUR-DECISION-290-2025` — قرار وزير العمل رقم 290 لسنة 2025 بشأن الأعمال المتقطعة بطبيعتها; Official Gazette metadata and partial abstract found; detailed list, complete text, currentness and reuse are not verified. Source: [https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829](https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829).
+- `EG-LABOUR-DECISION-291-2025` — قرار وزير العمل رقم 291 لسنة 2025 بشأن ضوابط التشغيل الإضافي ومبرراته; Official Gazette issue metadata found; operative text, currentness and reuse are not verified. Source: [https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1](https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1).
+- `EG-LABOUR-DECISION-292-2025` — قرار وزير العمل رقم 292 لسنة 2025 بشأن الحد الأقصى لساعات العمل الفعلية والإضافية لأعمال محددة; Official Gazette issue metadata found; exact limits, exceptions, currentness and reuse are not verified. Source: [https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc/full](https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc/full).
 
 **Limitations:**
 
@@ -1993,6 +2002,9 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
   - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
+- `EG-LABOUR-DECISION-290-2025` — قرار وزير العمل رقم 290 لسنة 2025 بشأن الأعمال المتقطعة بطبيعتها; Official Gazette metadata and partial abstract found; detailed list, complete text, currentness and reuse are not verified. Source: [https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829](https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829).
+- `EG-LABOUR-DECISION-291-2025` — قرار وزير العمل رقم 291 لسنة 2025 بشأن ضوابط التشغيل الإضافي ومبرراته; Official Gazette issue metadata found; operative text, currentness and reuse are not verified. Source: [https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1](https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1).
+- `EG-LABOUR-DECISION-292-2025` — قرار وزير العمل رقم 292 لسنة 2025 بشأن الحد الأقصى لساعات العمل الفعلية والإضافية لأعمال محددة; Official Gazette issue metadata found; exact limits, exceptions, currentness and reuse are not verified. Source: [https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc/full](https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc/full).
 
 **Limitations:**
 
@@ -2028,6 +2040,9 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
   - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
+- `EG-LABOUR-DECISION-290-2025` — قرار وزير العمل رقم 290 لسنة 2025 بشأن الأعمال المتقطعة بطبيعتها; Official Gazette metadata and partial abstract found; detailed list, complete text, currentness and reuse are not verified. Source: [https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829](https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829).
+- `EG-LABOUR-DECISION-291-2025` — قرار وزير العمل رقم 291 لسنة 2025 بشأن ضوابط التشغيل الإضافي ومبرراته; Official Gazette issue metadata found; operative text, currentness and reuse are not verified. Source: [https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1](https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1).
+- `EG-LABOUR-DECISION-292-2025` — قرار وزير العمل رقم 292 لسنة 2025 بشأن الحد الأقصى لساعات العمل الفعلية والإضافية لأعمال محددة; Official Gazette issue metadata found; exact limits, exceptions, currentness and reuse are not verified. Source: [https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc/full](https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc/full).
 
 **Limitations:**
 
@@ -2063,6 +2078,9 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
   - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
+- `EG-LABOUR-DECISION-290-2025` — قرار وزير العمل رقم 290 لسنة 2025 بشأن الأعمال المتقطعة بطبيعتها; Official Gazette metadata and partial abstract found; detailed list, complete text, currentness and reuse are not verified. Source: [https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829](https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829).
+- `EG-LABOUR-DECISION-291-2025` — قرار وزير العمل رقم 291 لسنة 2025 بشأن ضوابط التشغيل الإضافي ومبرراته; Official Gazette issue metadata found; operative text, currentness and reuse are not verified. Source: [https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1](https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1).
+- `EG-LABOUR-DECISION-292-2025` — قرار وزير العمل رقم 292 لسنة 2025 بشأن الحد الأقصى لساعات العمل الفعلية والإضافية لأعمال محددة; Official Gazette issue metadata found; exact limits, exceptions, currentness and reuse are not verified. Source: [https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc/full](https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc/full).
 
 **Limitations:**
 
@@ -2241,6 +2259,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
   - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
+- `EG-LABOUR-DECISION-294-2025` — قرار وزير العمل رقم 294 لسنة 2025 بشأن تحديد العطلات والأعياد والمناسبات التي تعتبر إجازة بأجر كامل للعمال; Official Ministry reference and Gazette metadata found; complete decision text, currentness and reuse are not verified. Source: [https://www.labour.gov.eg/ar/الأخبار/وزير-العمل-الأربعاء-المقبل-إجازة-مدفوعة-الأجر-للعاملين-بالقطاع-الخاص-بمناسبة-عيد-الميلاد-المجيد-جبران-وحدة-المصريين-والعمل-المشترك-أساس-قوة-الوطن/](https://www.labour.gov.eg/ar/الأخبار/وزير-العمل-الأربعاء-المقبل-إجازة-مدفوعة-الأجر-للعاملين-بالقطاع-الخاص-بمناسبة-عيد-الميلاد-المجيد-جبران-وحدة-المصريين-والعمل-المشترك-أساس-قوة-الوطن/).
 
 **Limitations:**
 
@@ -3482,6 +3501,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
   - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
+- `EG-LABOUR-DECISION-187-2025` — قرار وزير العمل رقم 187 لسنة 2025 بشأن وضع آليات وضوابط لاعتماد الاستقالات العمالية من جانب مكتب العمل; Official/news source leads found; complete official text, Gazette pinpoint, currentness and reuse are not verified. Source: [https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/14-09-2025/no-187?id=2177898&type=1](https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/14-09-2025/no-187?id=2177898&type=1).
 
 **Limitations:**
 
