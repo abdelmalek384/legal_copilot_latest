@@ -6,16 +6,16 @@ The database implementation is still under development. A passing unit/integrati
 
 ## Required evidence
 
-| Gate | Required acceptance evidence |
-|---|---|
-| `original_file_storage` | Live object-storage and KMS/key policy validation, firm-scoped authorization, integrity/reconciliation behavior, and provider configuration |
-| `backup_restore_rollback` | Witnessed staging restore, rollback, staged-upload recovery, and deletion-recovery drill |
-| `retention_export_deletion_policy` | Approved retention schedule and tenant export/deletion policy; do not substitute an unapproved default |
-| `production_identity_email` | Production email delivery and recovery-message validation, plus multi-host rate-limit behavior |
-| `privileged_recovery_bootstrap` | Rehearsed privileged-account recovery and first-platform-admin bootstrap, with a distinct witness |
-| `independent_security_review` | Independent review evidence and zero unresolved critical/high findings |
+| Gate | Required acceptance evidence | Maximum evidence age |
+|---|---|---:|
+| `original_file_storage` | Live object-storage and KMS/key policy validation, firm-scoped authorization, integrity/reconciliation behavior, and provider configuration | 90 days |
+| `backup_restore_rollback` | Witnessed staging restore, rollback, staged-upload recovery, and deletion-recovery drill | 90 days |
+| `retention_export_deletion_policy` | Approved retention schedule and tenant export/deletion policy; do not substitute an unapproved default | 365 days |
+| `production_identity_email` | Production email delivery and recovery-message validation, plus multi-host rate-limit behavior | 90 days |
+| `privileged_recovery_bootstrap` | Rehearsed privileged-account recovery and first-platform-admin bootstrap, with a distinct witness | 180 days |
+| `independent_security_review` | Independent review evidence and zero unresolved critical/high findings | 90 days |
 
-Each accepted item must have `status: "passed"`, an evidence reference, a timezone-aware ISO-8601 timestamp, and the named approver/verifier. The restore drill and privileged recovery/bootstrap additionally require a witness distinct from the verifier. The independent review must report `unresolved_critical_high: 0`.
+Each accepted item must have `status: "passed"`, an evidence reference, a timezone-aware ISO-8601 timestamp, and the named approver/verifier. Evidence older than the gate-specific maximum age above is rejected at startup and by the release gate, even if its status remains `passed`; re-run and re-approve the underlying check before refreshing its timestamp. The restore drill and privileged recovery/bootstrap additionally require a witness distinct from the verifier. The independent review must report `unresolved_critical_high: 0`.
 
 ## Procedure
 
