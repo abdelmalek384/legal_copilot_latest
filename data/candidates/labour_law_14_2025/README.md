@@ -60,3 +60,7 @@ python tools/report_labour_law_evidence_cards.py
 
 The report is a review aid only; it does not change any source-permission, legal-status, lawyer-review, or retrieval-eligibility flags. Its regression test requires the checked-in Markdown report to match the JSON cards.
 
+## Evidence-card inventory (2026-10-28)
+
+The provisional evidence-card inventory currently represents 240 records across the main file and split supplements. Use [`provision_evidence_cards_manifest.json`](provision_evidence_cards_manifest.json) as the inventory manifest; the report builder now loads all listed files, rejects duplicate card IDs, checks per-file counts, and preserves the non-authoritative status. Supplements cover Arts. 256–274 and 275–298. The original Official Gazette PDF binary is still not downloaded/hashed and Gazette page pinpoints for supplements have not been visually checked. All cards remain disabled for authoritative retrieval pending currentness, reuse and Egyptian-lawyer review.
+
