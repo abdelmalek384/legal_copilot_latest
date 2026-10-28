@@ -30,14 +30,15 @@ No written permission was requested or obtained in this review. Keep collection,
 
 The supplied file was parsed and its article numbering/counts inspected. The accessible Manshurat PDF text was checked at the promulgation provisions and sampled at the beginning and end of the accompanying law. The title, Gazette issue/date, promulgation clauses, Article 12 repeal clause, Article 13 commencement clause, and sampled opening/closing article text are consistent with those visible text extracts.
 
-However, the exact Official Gazette PDF was not obtained and page-reviewed. The secondary PDF is not a substitute for an authorized copy of the primary issue. Therefore, no claim is made that all 311 rows have been matched verbatim to the Gazette. The following remain outstanding:
+Supplemental review on 2026-10-28 located a government-hosted copy of the Official Gazette PDF at the Egyptian Tax Authority portal. Extracted text was reviewed for printed pages 2, 5, and 12, covering promulgation Article 1, promulgation Articles 12–13, and accompanying-law Articles 4–6. The PDF file itself was not downloaded, hashed, or visually inspected. Therefore, no claim is made that all 311 rows have been matched verbatim to the Gazette. The following remain outstanding:
 - page-by-page and article-by-article comparison of all 13 promulgation provisions and all 298 law articles;
 - exact wording, numbering, paragraph boundaries, omissions, insertions, and duplicates;
-- official Gazette page references and any corrigenda.
+- full page-by-page and article-by-article comparison beyond the three targeted pages;
+- visual scan integrity, exact PDF hash, and any corrigenda.
 
 ## 3. Commencement, repeals, and subsequent instruments
 
-The accessible promulgation text states:
+The accessible official Amiri Press text page and targeted extracted text from the government-hosted Gazette PDF state:
 - Publication/issuance: 2025-05-03, Official Gazette issue 18 (supplement).
 - General commencement: 2025-09-01 under Article 13's formula; this date is also reported by [Manshurat](https://manshurat.org/content/qnwn-lml-ljdyd-rqm-14-lsn-2025), [ILO NATLEX](https://natlex.ilo.org/dyn/natlex2/r/natlex/fe/results?clear=2&p2_country_filter=EGY&p2_home_flag=Y), and the [Library of Congress](https://www.loc.gov/item/global-legal-monitor/2025-07-25/egypt-labor-law-updated/).
 - Specialized labour courts: 2025-10-01 under Article 13.
