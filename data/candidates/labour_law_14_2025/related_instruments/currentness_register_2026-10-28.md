@@ -111,3 +111,16 @@ Tests were added for Arts. 201–230 but have not been run. Keep authoritative r
 
 **Next tranche:** continue with Arts. 231 onward (arbitration review, strikes, lockouts and subsequent collective-labour rules), and continue looking for accessible full-text alternatives for implementing decisions rather than looping on restricted Gazette download buttons. No access controls have been bypassed.
 
+## Evidence-card expansion — strikes, economic restructuring and occupational safety (2026-10-28)
+
+The provisional inventory now contains **197 cards**, extending through accompanying-law Article 255.
+
+- **Arts. 231–241:** strike prerequisites and ten-day notice; restrictions during a collective agreement, in essential services and exceptional circumstances; effect of a strike; economic closure or downsizing; committee applications and 45-day decision window; notice and implementation; selection criteria for affected workers; closure requests during collective disputes or strikes; and temporary changes to contract terms for economic reasons.
+- **Arts. 242–255:** scope and definition of covered establishments; optional compliance offices; physical, engineering, biological, chemical and indirect hazards; fire and confined-space risks; emergency plans; worker withdrawal from imminent serious danger without disciplinary consequences for the withdrawal; prevention of harassment, bullying and violence; and ministerial technical safety standards.
+
+The article wording was cross-checked against the public Law Hub transcription at https://lawhub.info/eg/?p=11848. The official Amiri Press searchable text and government-hosted Gazette PDF remain attached as primary-source leads. Gazette page mapping for this batch is inferred from the text sequence: Arts. 231–236 printed p.83/PDF index 81; 237–241 p.84/index 82; 242–247 p.85/index 83; 248–253 p.86/index 84; 254–255 p.87/index 85. These are not visually verified page-by-page. No PDF hash is claimed.
+
+Focused tests now include Arts. 231–255, and previous fixed card-count assertions have been updated to 197. Tests have not been executed. Keep authoritative retrieval disabled. Economic closure, strike, and occupational safety summaries are research leads only; decisions, technical standards, currentness, reuse permissions, and qualified legal review remain outstanding.
+
+**Next tranche:** continue with the remaining occupational safety and health provisions from Article 256 onward, then labour inspection, penalties, and transitional provisions; continue searching for publicly accessible full-text implementing decisions rather than retrying restricted file links.
+
