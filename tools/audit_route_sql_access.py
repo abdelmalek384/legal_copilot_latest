@@ -85,8 +85,9 @@ def _sql_text(node: ast.AST | None) -> tuple[str, bool]:
             if isinstance(value, ast.Constant) and isinstance(value.value, str):
                 pieces.append(value.value)
             else:
+                pieces.append("{dynamic}")
                 dynamic = True
-        return " ".join(pieces), dynamic
+        return "".join(pieces), dynamic
     return "", True
 
 
@@ -118,6 +119,7 @@ def audit_source(source: str) -> dict[str, Any]:
         tables: set[str] = set()
         sql_calls = 0
         dynamic_sql_calls = 0
+        dynamic_sql_sites: list[dict[str, Any]] = []
         direct_sqlite_open = False
 
         while pending:
@@ -141,6 +143,12 @@ def audit_source(source: str) -> dict[str, Any]:
                         sql_calls += 1
                         tables.update(_tables_in(sql))
                         dynamic_sql_calls += int(dynamic)
+                        if dynamic:
+                            dynamic_sql_sites.append({
+                                "function": name,
+                                "line": call.lineno,
+                                "sql_template": sql[:1000],
+                            })
                 if called in functions and called not in STOP_TRAVERSAL and called not in visited:
                     pending.append(called)
 
@@ -152,6 +160,7 @@ def audit_source(source: str) -> dict[str, Any]:
             "data_boundaries": sorted(boundaries),
             "sql_call_count": sql_calls,
             "dynamic_sql_call_count": dynamic_sql_calls,
+            "dynamic_sql_sites": sorted(dynamic_sql_sites, key=lambda site: (site["function"], site["line"])),
             "table_references": sorted(tables),
             "direct_sqlite_open": direct_sqlite_open,
         })
@@ -200,8 +209,12 @@ def main() -> int:
             f"unclassified_sql_routes={len(report['unclassified_sql_routes'])}, "
             f"direct_sqlite_opens={len(report['routes_opening_sqlite_directly'])}"
         )
-        for item in report["routes_with_dynamic_sql"]:
-            print(f"DYNAMIC SQL REVIEW REQUIRED ({item['call_count']} call(s)): {item['route']}")
+        for row in report["routes"]:
+            for site in row["dynamic_sql_sites"]:
+                print(
+                    f"DYNAMIC SQL REVIEW REQUIRED: {row['method']} {row['path']} "
+                    f"({site['function']}:{site['line']}): {site['sql_template']}"
+                )
         for item in report["unclassified_sql_routes"]:
             print(f"UNCLASSIFIED SQL: {item}")
         for item in report["routes_opening_sqlite_directly"]:
