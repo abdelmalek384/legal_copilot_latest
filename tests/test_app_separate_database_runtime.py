@@ -1993,6 +1993,71 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             0,
         )
 
+    def test_same_firm_nonmember_cannot_read_or_mutate_extraction_reviews(self):
+        owner_login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(owner_login.status_code, 200, owner_login.text)
+        created_case = self._mutate("post", "/cases", json={"title": "Case-member review boundary"})
+        self.assertEqual(created_case.status_code, 200, created_case.text)
+        case_id = created_case.json()["id"]
+        uploaded = self._mutate(
+            "post", f"/cases/{case_id}/docs",
+            json={"name": "private-extraction.txt", "text": "SAME_FIRM_PRIVATE_EXTRACTION " * 12},
+        )
+        self.assertEqual(uploaded.status_code, 200, uploaded.text)
+        document_id = uploaded.json()["document_id"]
+
+        owner_context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        firm_db = self.runtime.firm_connection(owner_context)
+        chunk = firm_db.execute(
+            "SELECT id,text FROM chunks WHERE document_id=? AND case_id=? ORDER BY id LIMIT 1",
+            (document_id, case_id),
+        ).fetchone()
+        self.assertIsNotNone(chunk)
+        chunk_id, original_text = int(chunk["id"]), str(chunk["text"])
+        import hashlib
+        digest = hashlib.sha256(original_text.encode("utf-8")).hexdigest()
+
+        other_password = "SameFirmNonmember-Password-2026!"
+        other_user_id = self.runtime.create_global_identity(
+            "Same Firm Nonmember", "nonmember-review@example.test", app.hash_pw(other_password)
+        )
+        self.runtime.create_firm_membership(other_user_id, self.firm_a, "lawyer")
+
+        other_login = self.client.post(
+            "/login",
+            json={"email": "nonmember-review@example.test", "password": other_password},
+        )
+        self.assertEqual(other_login.status_code, 200, other_login.text)
+        for method, path, kwargs in (
+            ("get", f"/cases/{case_id}/docs/{document_id}/reviews", {}),
+            ("get", f"/cases/{case_id}/docs/{document_id}/chunks", {}),
+            ("post", f"/cases/{case_id}/docs/{document_id}/chunks/{chunk_id}/review", {
+                "json": {
+                    "outcome": "corrected",
+                    "corrected_text": "UNAUTHORIZED-SAME-FIRM-CORRECTION",
+                    "expected_text_sha256": digest,
+                },
+            }),
+        ):
+            response = self._mutate(method, path, **kwargs) if method != "get" else self.client.get(path)
+            self.assertEqual(response.status_code, 404, response.text)
+
+        unchanged = firm_db.execute(
+            "SELECT text FROM chunks WHERE id=? AND document_id=? AND case_id=?",
+            (chunk_id, document_id, case_id),
+        ).fetchone()
+        self.assertIsNotNone(unchanged)
+        self.assertEqual(unchanged["text"], original_text)
+        self.assertEqual(
+            firm_db.execute(
+                "SELECT COUNT(*) FROM document_extraction_reviews WHERE chunk_id=?",
+                (chunk_id,),
+            ).fetchone()[0],
+            0,
+        )
+
     def test_research_conversations_are_isolated_across_firms(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
