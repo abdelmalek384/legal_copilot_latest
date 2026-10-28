@@ -2501,6 +2501,26 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
 
         switched_back = self._mutate("post", "/session/firm", json={"firm_id": self.firm_a})
         self.assertEqual(switched_back.status_code, 200, switched_back.text)
+
+        # If the audit event cannot be written, removal and task unassignment must
+        # roll back together rather than leaving a partially applied operation.
+        with patch.object(app, "log", side_effect=RuntimeError("injected audit failure")):
+            failed_removal = self._mutate("delete", f"/cases/{case_id}/members/{member_id}")
+        self.assertEqual(failed_removal.status_code, 500, failed_removal.text)
+        self.assertEqual(
+            firm_a_db.execute(
+                "SELECT COUNT(*) FROM members WHERE case_id=? AND user_id=?",
+                (case_id, member_id),
+            ).fetchone()[0],
+            1,
+        )
+        self.assertEqual(
+            firm_a_db.execute("SELECT assignee FROM tasks WHERE id=?", (task_id,)).fetchone()[0],
+            member_id,
+        )
+
+        removed = self._mutate("delete", f"/cases/{case_id}/members/{member_id}")
+        self.assertEqual(switched_back.status_code, 200, switched_back.text)
         removed = self._mutate("delete", f"/cases/{case_id}/members/{member_id}")
         self.assertEqual(removed.status_code, 200, removed.text)
         self.assertEqual(
