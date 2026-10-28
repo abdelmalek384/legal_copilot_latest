@@ -16,6 +16,7 @@ if str(ROOT) not in sys.path:
 
 from tools.deployment_preflight import inspect_environment
 from tools.evaluate_legal_answers import APPROVED, EvaluationError, _validate_reviewed_question, read_jsonl
+from tools.evaluate_legal_answer_reviews import validate_reviewer_registry
 from tools.validate_legal_release_readiness import (
     DEFAULT_CANDIDATES,
     DEFAULT_COVERAGE_MATRIX,
@@ -122,6 +123,7 @@ def evaluate_release(
     register_path: Path = DEFAULT_REGISTER,
     coverage_matrix_path: Path = DEFAULT_COVERAGE_MATRIX,
     benchmark_path: Path = DEFAULT_BENCHMARK,
+    reviewer_registry=None,
     root: Path = ROOT,
 ) -> dict:
     """Read-only release decision. Any warning, missing gate, or malformed evidence blocks release."""
@@ -160,8 +162,11 @@ def evaluate_release(
                 "blocked_count": blocked_count if type(blocked_count) is int else None,
             })
 
+    approved_reviewers, reviewer_registry_errors = validate_reviewer_registry(reviewer_registry)
     benchmark_report = {
         "path": str(benchmark_path),
+        "approved_reviewer_count": len(approved_reviewers),
+        "reviewer_registry_error_count": len(reviewer_registry_errors),
         "question_count": 0,
         "approved_count": 0,
         "unreviewed_count": 0,
@@ -175,6 +180,14 @@ def evaluate_release(
         benchmark_report["error"] = str(exc)
         blockers.append({"gate": "lawyer_approved_benchmark", "code": "benchmark_unreadable"})
     benchmark_report["question_count"] = len(questions)
+    if reviewer_registry is None or reviewer_registry_errors or not approved_reviewers:
+        blockers.append({
+            "gate": "lawyer_approved_benchmark",
+            "code": "reviewer_registry_missing_or_invalid",
+            "approved_reviewer_count": len(approved_reviewers),
+            "error_count": len(reviewer_registry_errors),
+            "examples": reviewer_registry_errors[:5],
+        })
     approved = [row for row in questions if row.get("review_status") == APPROVED]
     unreviewed = [row for row in questions if row.get("review_status") != APPROVED]
     benchmark_report["approved_count"] = len(approved)
@@ -187,7 +200,7 @@ def evaluate_release(
     source_index = _ready_candidate_source_index(paths, legal_report)
     for row in approved:
         try:
-            expected_sources, expected_pins = _validate_reviewed_question(row)
+            expected_sources, expected_pins = _validate_reviewed_question(row, approved_reviewers)
         except EvaluationError as exc:
             invalid.append({"id": row.get("id"), "reason": str(exc)})
         else:
@@ -291,9 +304,16 @@ def main(argv=None) -> int:
     parser.add_argument("--register", type=Path, default=DEFAULT_REGISTER)
     parser.add_argument("--coverage-matrix", type=Path, default=DEFAULT_COVERAGE_MATRIX)
     parser.add_argument("--benchmark", type=Path, default=DEFAULT_BENCHMARK)
+    parser.add_argument("--reviewer-registry", type=Path, help="Private JSON registry of approved reviewer qualification checks.")
     parser.add_argument("--root", type=Path, default=ROOT)
     parser.add_argument("--out", type=Path, help="Optional JSON report path.")
     args = parser.parse_args(argv)
+    reviewer_registry = None
+    if args.reviewer_registry:
+        try:
+            reviewer_registry = json.loads(args.reviewer_registry.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as exc:
+            parser.error(f"invalid reviewer registry: {exc}")
 
     report = evaluate_release(
         candidate_paths=args.candidate,
@@ -301,6 +321,7 @@ def main(argv=None) -> int:
         register_path=args.register,
         coverage_matrix_path=args.coverage_matrix,
         benchmark_path=args.benchmark,
+        reviewer_registry=reviewer_registry,
         root=args.root,
     )
     rendered = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
@@ -308,6 +329,8 @@ def main(argv=None) -> int:
         destination = args.out.resolve()
         protected_files = {Path(args.register).resolve(), Path(args.coverage_matrix).resolve(),
                            Path(args.benchmark).resolve()}
+        if args.reviewer_registry:
+            protected_files.add(Path(args.reviewer_registry).resolve())
         protected_files.update(Path(path).resolve() for path in (args.candidate or []))
         protected_directories = {
             Path(args.candidates_dir).resolve(),
