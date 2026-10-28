@@ -1,81 +1,85 @@
 # DB-04 — tenant schema boundary and migration contract
 
-**Status:** Design contract for review; no runtime schema or data migration changed  
-**Depends on:** DB-02 versioned migrations, DB-03 trusted tenant catalog/provisioning, and approval of the identity/firm-membership contract  
-**Scope:** Define what belongs in a firm database versus the shared legal corpus and control plane before tenant schema initialization is implemented.
+**Status:** Current architecture contract for the greenfield separate-database runtime. The core profile migrations and trusted runtime routing are implemented; exhaustive authorization review and production release gates remain open.
+**Scope:** Define the ownership boundaries that new migrations, routes, CLI tools, background jobs, backups, and storage adapters must preserve.
 
-## Why this is a separate step
+## Operating assumptions
 
-The current application schema in `app.py` is a mixed schema. Copying it into every firm database would duplicate legal-corpus governance and version records, while retaining global FTS structures could create cross-firm retrieval leakage. Conversely, moving tables based only on names could break foreign keys, legacy routes, audit semantics, and backup/restore. This contract is a classification gate, not authorization to move tables.
+- This is a fresh implementation. No legacy customer database has been deployed or used.
+- Do not create a legacy-data migration or reconciliation project unless an external database is explicitly proposed for import and approved separately.
+- The approved runtime uses three distinct database domains: control plane, one firm database per firm, and shared legal corpus. The explicitly configured `COPILOT_DB` compatibility path remains for development/tests and is rejected in production; it is not an approved multi-firm boundary.
+- A schema profile, database file, row-scope trigger, or passing CI run is not by itself proof that every application route or query is authorized correctly.
 
-## Proposed schema profiles
+## Current schema ownership
 
-### Firm database (confidential matter/work-product profile)
+### Control plane — global identity and tenant governance
 
-Candidate tables:
-- `cases`, `notes`, `deadlines`, `fees`, `members`, `tasks`, `events`, case/calendar `sessions`, `docs`
-- `document_extraction_reviews`, `research_conversations`, `research_messages`
-- Matter-linked `chunks` and a firm-local full-text index for those chunks
-- `case_deletion_audit` and firm-scoped security events, subject to a final audit-retention decision
+Owns global identity and firm lifecycle data, including:
+- `users`, globally normalized identity/email keys, account status and authentication sessions;
+- `firms`, `firm_memberships`, trusted `tenant_database_catalog` entries and immutable firm-to-database bindings;
+- platform roles, MFA state, account/invitation/recovery token ledgers, and platform security/lifecycle audit events;
+- global security/rate-limit state where the key is intentionally user-, IP-, or platform-scoped.
 
-Every matter-owned row must have either an explicit `firm_id` constraint or a validated parent chain that is resolved within the already-selected firm database. A parent ID supplied by a client is not authorization. Child reads, writes, exports, deletes and background jobs must resolve the parent inside the same firm boundary.
+Memberships and platform roles are separate authorization domains. A firm-admin role never implies a platform-admin or platform-reviewer role. Firm context must be resolved from authenticated server-side identity and current active membership, not from a caller-supplied firm ID alone. Suspension, revocation, account disablement and session invalidation must take effect without relying on stale cached authorization.
 
-### Shared legal-corpus profile (platform-controlled)
+### Firm database — confidential matter and work-product data
 
-Candidate tables:
-- `legal_sources`, `legal_documents`, `legal_document_versions`, `legal_version_relations`, `legal_review_events`
-- Global/reference `chunks` rows only where their provenance establishes `case_id IS NULL`, with a corpus-only search index
+Each firm has a distinct database bound to its immutable firm ID. It owns:
+- cases and case children such as members, tasks, events, notes, deadlines, fees and calendar sessions;
+- document metadata, extraction chunks and FTS index, extraction-review history, research conversations/messages, case-deletion snapshots and firm-scoped audit events;
+- opaque original-file metadata in `original_file_objects` and the legal-hold/deletion workflow tables when the storage migrations from open PR #671 are merged.
 
-Firm-facing application paths should receive read-only access to approved corpus retrieval interfaces. Corpus ingestion, review and version-graph mutations remain privileged platform workflows. Shared corpus permissions and legal-status review must not be inferred from a database boundary.
+Every child lookup, mutation, export, deletion and background operation must first establish the parent case/document inside the selected firm database and enforce the applicable case-membership/role rule. A child ID is never authorization. Database triggers enforce immutable tenant binding and selected row-scope constraints, but do not replace route-level checks.
 
-### Identity/control-plane profile (not yet approved)
+### Shared legal corpus — platform-controlled legal-reference data
 
-Candidate tables:
-- `firms` and tenant catalog metadata
-- `users`, `auth_sessions`, `login_attempts`, and membership/role data only after product-owner approval of the identity model
-- Tenant lifecycle/provisioning state and trusted references to generated database filenames
+Owns global legal sources, legal documents and versions, version relationships, review events, import/review staging, and verified legal-reference chunks with their FTS index. Matter/client content, tenant secrets and firm-private notes must never be written into this profile.
 
-The global-identity/many-to-many membership proposal in `docs/identity_firm_membership_contract.md` remains unapproved. Do not implement a global `users` table or change sign-in semantics based solely on this document. Revalidate active membership and firm-scoped role on every tenant-context establishment; membership removal, account disablement and session revocation need explicit tests.
+Corpus read access may be shared according to product policy. Ingestion, verification, effective-date/repeal changes, source permission state and review outcomes require platform-level authorization and durable audit history. A caller-supplied flag cannot make content verified or current.
 
-### Unresolved operational/security records
+### Identically named tables in separate profiles
 
-- `api_rate_limit_windows`: determine whether limits are global, user-scoped, firm-scoped, or layered. Do not move it without reviewing key construction and denial-of-service implications.
-- `security_audit_events`: define separate event classes and access/retention rules for firm activity versus platform security activity.
-- File uploads, exports, OCR outputs, temporary files, SQLite WAL/SHM files, logs, backups and scheduled jobs need a real deployment inventory. Database partitioning alone does not isolate these resources.
-- Existing whole-database backup/restore cannot be treated as firm-specific backup/restore.
+The `chunks` and `chunks_fts` names may exist in both firm and legal-corpus files, but the approved separate-database runtime keeps their contents and indexes physically separate:
+- firm profile: only matter-linked extracted chunks belonging to that firm;
+- legal-corpus profile: only legal-reference chunks linked to corpus provenance/version records.
 
-## Full-text search partitioning contract
+The older compatibility schema can contain mixed data and is not the approved multi-firm runtime. Never infer that two tables with the same name share ownership, or copy the legacy mixed FTS index into firm databases.
 
-The current `chunks` table mixes legal corpus and matter text, and `chunks_fts` is a single FTS5 virtual table. The target design must not copy that mixed index into every tenant database or query it without a trusted scope.
+## Migration and runtime invariants
 
-1. The shared corpus store contains only corpus chunks with verified source/version provenance and no matter ownership.
-2. Each firm store contains only chunks whose case/document ownership resolves within that firm.
-3. Search APIs compose results from these separately scoped stores only after authorization; corpus retrieval and matter retrieval keep distinct provenance and access policies.
-4. FTS rebuild/update/delete behavior must be transactionally tested, including document correction, case deletion, tenant migration and rollback.
-5. Tests must plant unique sentinel text in firm A, firm B and the shared corpus, then prove each query class returns only permitted results. Test both positive access and negative cross-firm leakage.
+1. Fresh-install schema changes belong in ordered, profile-specific, checksum-validated migrations. Applied migrations are immutable; corrective changes use forward-only migrations.
+2. Control-plane, firm and corpus initializers must reject the wrong profile, incompatible schema state, unsafe paths and mismatched immutable bindings.
+3. A firm database is resolved only through the trusted catalog. Do not construct database filenames from request input or accept a client-provided storage path.
+4. Cross-database operations must not claim distributed atomicity. Use explicit states, append-only audit events, failure injection and conservative reconciliation where a filesystem/object store cannot share a SQLite transaction.
+5. FTS maintenance must be tested on the correct profile and preserve the external-content schema and synchronization triggers.
+6. Backups must include a coordinated recovery point across control plane, corpus, every cataloged firm database, and configured original-file objects. Writers must be quiesced for the full snapshot; the flag is an operator assertion, not a distributed lock.
+7. Restore must target a new isolated directory and validate bundle checksums, profiles, firm bindings, catalog consistency, SQLite integrity, object digests and active/inactive membership behavior before cutover.
+8. Temporary plaintext restore files require restricted storage. Cleanup is not guaranteed secure erasure, particularly on SSD or copy-on-write filesystems.
+9. Logs, reports and audit exports must not leak passwords, tokens, cookies, original document content, raw secrets or cross-firm data.
 
-## Migration and rollout gates
+## External resource ownership
 
-1. Approve the identity/membership model and record explicit decisions for unresolved ownership rows.
-2. Complete the exhaustive SQL call-site, route, CLI, job, file, backup, restore, logging and deployment inventory. Existing static inventories are not exhaustive.
-3. Define independently testable schema initializers for control plane, firm database and shared corpus. Each initializer must be versioned, deterministic, safe to rerun, and reject incompatible schema state.
-4. Run a dry-run against a protected copy of a representative database. Produce per-table source/destination counts, orphan reports, duplicate/key conflicts, hashes where suitable, foreign-key checks, FTS consistency checks and quarantine reports.
-5. Never infer ownership from a defaulted `firm_id`, user email, filename, or creator ID alone. Ambiguous rows remain quarantined until evidence-backed reconciliation.
-6. Migrate one test firm first. Verify source and destination counts, constraints, application behavior, firm-scoped export/delete, and rollback before attempting another firm.
-7. Run cross-firm sentinel tests for all routes, background jobs, search, files, exports, backups and restores. Verify a firm-specific restore does not change another firm's records or corpus state.
-8. Switch runtime routing only after the prior gates pass and a rollback plan is approved. The catalog/provisioning module alone does not establish end-to-end isolation.
+- Original binary files: local private filesystem adapter is for development/testing only. Production object storage with managed KMS/envelope-key lifecycle is not implemented; production upload/purge must remain fail-closed until the chosen provider is reviewed and verified end-to-end.
+- Encrypted backup bundles: separate from the database paths and backup key; verify and restore before treating a bundle as a recovery point.
+- Email invitations/recovery: SMTP delivery and the public HTTPS origin are deployment-configured; no credentials belong in source control.
+- Temporary extraction, OCR, upload staging and recovery directories: must be private, bounded, reconciled after interrupted work and excluded from public serving.
+- Operational reports and logs: store in the approved restricted evidence location; do not place client content or secret values in the repository.
 
-## Acceptance criteria for implementation
+## Required review gates
 
-- [ ] Three explicit schema profiles and ownership decisions are approved.
-- [ ] Every table, FTS object and external resource has an owner, writer, reader, retention policy and migration strategy.
-- [ ] No tenant schema initializer creates platform-only legal review or control-plane tables in a firm DB.
-- [ ] No shared corpus schema contains matter text or tenant secrets.
-- [ ] Two-firm isolation tests cover reads, writes, search, exports, deletion and background jobs.
-- [ ] Migration is dry-run-first, count-reconciled, restartable, auditable and rollback-tested.
-- [ ] Firm-specific backup/restore is tested independently of other firms.
-- [ ] Independent security review and deployment-owner sign-off precede production use.
+- [ ] Complete route-by-route and SQL-query-by-query authorization review, including exports, audit, search, corpus review, CLI commands and background/maintenance tools.
+- [ ] Keep route inventory synchronized with every registered route and confirm non-public routes authenticate through the shared identity dependency; then test route-specific firm/case/platform authorization and failure branches.
+- [ ] Finish invitation, recovery, first-platform-admin bootstrap and privileged-account recovery acceptance. Code in open PR #690 is not considered merged/release-complete.
+- [ ] Merge and validate the original-file lifecycle in open PR #671; choose and implement a production object-storage/KMS provider before production matter uploads.
+- [ ] Approve jurisdiction-appropriate retention periods, export/deletion semantics and legal-hold policy; test that held material cannot be purged and every purge preserves a tombstone/audit event.
+- [ ] Run the automated isolated recovery smoke test, then conduct a witnessed staging restore/startup/isolation/rollback drill with independent reviewer sign-off.
+- [ ] Validate production host/proxy/cookie, secret-store, key-recovery, monitoring and incident-response controls.
+- [ ] Obtain an independent security review before onboarding unrelated firms or storing confidential production matter data.
 
-## Explicit non-claims
+## Conditional future import
 
-This document does not implement schema initializers, database routing, global identities, membership changes, table movement, FTS separation, firm-specific backup/restore, or production isolation. Current application storage remains a single configured SQLite database until these steps are implemented and verified.
+No legacy customer database is in scope for first deployment. If an external database is deliberately introduced later, treat it as a separate approved import project: work only on protected copies; establish ownership from trusted evidence; report source/target counts, foreign-key and FTS integrity, hashes where suitable, cross-firm references and quarantine decisions; rehearse rollback before any cutover. Never infer ownership from a default firm ID, email, filename or creator ID alone.
+
+## Acceptance rule
+
+The database is not production-ready for unrelated firms' confidential matter data until the release gates above are satisfied. Passing CI proves only the tested code paths, not independent security review, production KMS readiness, real-world recovery or complete legal-content correctness.
