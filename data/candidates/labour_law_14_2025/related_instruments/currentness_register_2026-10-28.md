@@ -1,0 +1,39 @@
+# Labour Law No. 14 of 2025 — implementing-instrument currentness register
+
+**As-of date:** 2026-10-28  
+**Purpose:** Track official-source leads that can affect interpretation or currentness of candidate cards. This is a research register, not a complete statement of current law.  
+**Activation status:** All candidate cards remain provisional; `search_eligible: false`.
+
+## A. Officially located instruments and announcements
+
+| Instrument / source | Official evidence located | Relevant card families | What is established | What remains unverified |
+|---|---|---|---|---|
+| Ministerial Decree 49/2026 — hazardous/difficult work and remote areas qualifying for +7 annual-leave days | Ministry of Labour announcement dated 2026-03-26: https://www.labour.gov.eg/ar/الأخبار/لتحقق-التوازن-بين-متطلبات-الإنتاج-وصون-حقوق-القوى-العاملة-وزير-العمل-يصدر-قرار-ا-وزاري-ا-بتحديد-الأعمال-الخطرة-والمناطق-النائية-التي-ت-زاد-فيها-الإجازات-السنوية-7-أيام-للعاملين/ | Article 124 annual leave | The Ministry announced Decree 49/2026 and describes categories of dangerous/difficult work and remote areas for the statutory seven-day annual-leave increase. | Full Arabic decision, Gazette issue/date, exact schedules and amendments have not been compared against the official text. Do not infer eligibility from the announcement summary alone. |
+| Ministerial Decree 294/2025 — paid holidays and occasions | Ministry of Labour announcement dated 2026-01-05 identifies Decree 294/2025 and quotes the 7 January holiday: https://www.labour.gov.eg/ar/الأخبار/وزير-العمل-الأربعاء-المقبل-إجازة-مدفوعة-الأجر-للعاملين-بالقطاع-الخاص-بمناسبة-عيد-الميلاد-المجيد-جبران-وحدة-المصريين-والعمل-المشترك-أساس-قوة-الوطن/ | Articles 129 and 128/129 leave-related scenarios | The Ministry links the holiday to Article 129 and Decree 294/2025, and describes double pay or an alternative day on written request when work is required. | Full decision and complete holiday list, Gazette publication/effective date, and later changes still need primary-text verification. |
+| Decrees 248–252/2026 — occupational safety and health | Ministry of Labour announcement dated 2026-10-20: https://www.labour.gov.eg/ar/الأخبار/وزير-العمل-يصدر-5-قرارات-تنفيذية-لتعزيز-منظومة-السلامة-والصحة-المهنية-وتأمين-بيئة-العمل/ | Occupational-safety cards to be added in a later focused batch; possible contextual cross-links to workplace injury/illness topics | The Ministry officially announces five instruments and describes coverage including workplace risks, accidents, occupational disease, safety units/committees, and technical safety standards. | Exact decree-to-topic mapping, complete text, Gazette metadata, effective dates, and any overlap with individual cards are not verified. Do not treat these as amendments to sick-leave Article 131 without textual evidence. |
+| Ministerial Decree 162/2026 — general rules for workplace regulations in private-sector establishments | Ministry of Labour announcement dated 2026-09-05: https://www.labour.gov.eg/ar/الأخبار/وزير-العمل-يعلن-نص-القواعد-العامة-للائحة-تنظيم-العمل-بالقطاع-الخاص/ ; Gazette-publisher repository metadata: https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full | Articles 117–120 and 124–132 as possible workplace-rule context; broader work-rules corpus | Ministry announcement identifies general workplace-regulation rules as an implementing instrument for private-sector establishments with 10 or more workers. Repository metadata identifies Decree 162/2026 and a Gazette supplement record. | The repository's PDF links require a copy request. No PDF was downloaded or reviewed; exact clauses, Gazette date/issue, effective date and article-level impact remain unresolved. Do not request a copy from the holder under the current source-acquisition constraint. |
+| Ministerial Decrees 290/2025 and 291/2025 — intermittent work/presence time and overtime controls | Secondary instrument index only: https://www.careerians.com/egyptian-labor-law/اللائحة-التنفيذية-قانون-العمل-14-2025/ | Articles 117–123 (working time, breaks, span, overtime) | A secondary index identifies these decree numbers and subject descriptions. | No official primary text located in this review. Treat as high-priority leads only, not verified legal propositions. |
+| Ministerial Decree 346/2025 — religious holidays for Christian workers | Secondary instrument index only: https://www.careerians.com/egyptian-labor-law/اللائحة-التنفيذية-قانون-العمل-14-2025/ | Article 129 holiday entitlement; related card set | A secondary index identifies this decree and subject. | Official primary text, scope, publication/effective date and interaction with Decree 294/2025 are not verified. |
+| Decree 187/2025 — resignation approval procedures | Secondary instrument index only: https://www.careerians.com/egyptian-labor-law/اللائحة-التنفيذية-قانون-العمل-14-2025/ | Future termination/resignation card set; not a direct leave-card amendment identified | A secondary index identifies this decree and subject. | Official primary text and Gazette metadata not verified in this task. |
+
+## B. Legal transition / currentness rule
+
+Article 11 of the issuing provisions of Law 14/2025 states, in the official-text transcription located during this research, that implementing decisions should be issued within 90 days and that existing decisions continue until replacement insofar as they do not conflict with the new Law. Source lead: https://drhisham.org/tax-law/قوانين-أخرى-ذات-صلة/قانون-14-لسنة-2025/مواد-الإصدار-المادة-الحادية-عشر/ . The official Gazette PDF remains the controlling reference; the complete prior-decision inventory and conflict analysis have not been completed.
+
+## C. Required evidence before a card can be marked current
+
+1. Obtain an accessible, public primary text or official Gazette entry for each instrument; do not treat an announcement or secondary index as a substitute.
+2. Record source URL, source publisher, publication date, Gazette issue/page, retrieval date, SHA-256 of the downloaded original, and extraction method.
+3. Compare Arabic article wording and schedules to the candidate proposition, including exceptions and commencement clauses.
+4. Record whether the instrument amends, implements, supplements, or is unrelated to the statutory article. A topical relationship is not proof of amendment.
+5. Search later official publications for amendment, repeal, replacement, suspension, or judicial interpretation.
+6. Keep all affected cards `search_eligible: false` until legal review, source-rights assessment, and provenance gates are complete.
+
+## D. Acquisition outcome in this task
+
+- Official Ministry announcements were found for Decree 49/2026, Decree 294/2025, Decrees 248–252/2026, and Decree 162/2026.
+- A public official publisher text lead and a government-hosted Gazette PDF search result were found for Law 14/2025.
+- Direct binary download attempts for the Law 14/2025 PDF from the State Information Service and ILO NATLEX endpoints failed in this environment. No hash is claimed.
+- The Gazette publisher's Decree 162/2026 repository item exposes copy-request links rather than direct public PDF access; no request was submitted.
+- No official primary text for Decrees 290/2025 and 291/2025 was located in this review.
+- These are evidence-discovery results, not proof that the source set is complete or that all cards are current.
