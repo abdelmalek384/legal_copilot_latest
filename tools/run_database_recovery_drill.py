@@ -16,6 +16,7 @@ from cryptography.fernet import Fernet
 from database_backup import DatabaseBundleError, restore_backup_bundle
 from database_runtime import DatabaseRuntime
 from original_file_reconciliation import TenantDatabase, reconcile_original_file_storage
+from tenant_context import FirmContextError
 
 _TENANT_FILE = re.compile(r"^tenant-([1-9][0-9]*)-([0-9a-f]{32})\.sqlite3$")
 
@@ -108,6 +109,18 @@ def run_recovery_drill(bundle_path: str | Path, cipher: Fernet, temp_parent: str
             active_firms = control.execute(
                 "SELECT id FROM firms WHERE status='active' ORDER BY id"
             ).fetchall()
+            all_users = control.execute(
+                "SELECT id,status FROM users ORDER BY id"
+            ).fetchall()
+            active_membership_pairs = {
+                (int(row["user_id"]), int(row["firm_id"]))
+                for row in control.execute(
+                    "SELECT fm.user_id,fm.firm_id FROM firm_memberships fm "
+                    "JOIN users u ON u.id=fm.user_id "
+                    "JOIN firms f ON f.id=fm.firm_id "
+                    "WHERE fm.status='active' AND u.status='active' AND f.status='active'"
+                ).fetchall()
+            }
             for firm_row in active_firms:
                 firm_id = int(firm_row["id"])
                 members = control.execute(
@@ -145,6 +158,32 @@ def run_recovery_drill(bundle_path: str | Path, cipher: Fernet, temp_parent: str
                         "code": "runtime_routing_failed",
                         "detail": type(exc).__name__,
                     })
+
+            # Negative acceptance: every identity without an active membership
+            # (including suspended/revoked memberships and disabled identities)
+            # must be denied for every active firm's database after restore.
+            for user_row in all_users:
+                user_id = int(user_row["id"])
+                for firm_row in active_firms:
+                    firm_id = int(firm_row["id"])
+                    if (user_id, firm_id) in active_membership_pairs:
+                        continue
+                    try:
+                        runtime.resolve_context(user_id, firm_id)
+                    except FirmContextError:
+                        continue
+                    except Exception as exc:
+                        findings.append({
+                            "scope": f"firm:{firm_id}",
+                            "code": "membership_denial_check_failed",
+                            "detail": type(exc).__name__,
+                        })
+                    else:
+                        findings.append({
+                            "scope": f"firm:{firm_id}",
+                            "code": "inactive_membership_denial_failed",
+                            "detail": f"user_id:{user_id}",
+                        })
         finally:
             runtime.close_current_thread()
 
