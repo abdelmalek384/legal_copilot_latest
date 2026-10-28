@@ -812,11 +812,12 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 ## Activation gates
 
-1. Obtain written permission covering storage, extraction, indexing, embeddings, display, redistribution and commercial use, or confirm a separately licensed source.
-2. Obtain the exact Official Gazette issue through an authorized route and complete the 311-record article-by-article comparison with page-level evidence.
-3. Register and review the identified implementing instruments as separate documents; distinguish implementation/extension from formal amendment.
-4. Verify commencement, transitional rules, repeals and temporal effects with qualified Egyptian counsel.
-5. Keep these cards out of authoritative retrieval until source rights, primary-text comparison, amendment/currentness review, and lawyer approval are recorded.
+1. Download and preserve the exact Official Gazette PDF through an authorized route; record its SHA-256 and visually inspect each cited page.
+2. Complete a full article-by-article comparison of all 311 candidate records against the Official Gazette.
+3. Review amendments, implementing instruments, transitional rules, and current legal effect as of the requested date.
+4. Resolve source-specific collection, indexing, display, and commercial-use terms; do not infer permission from public access.
+5. Obtain documented qualified Egyptian-lawyer review for each card and record reviewer identity, date, scope, and decision.
+6. Only then create retrieval-eligible chunks with exact page/article citations.
 
 ## Important interpretation rule
 
