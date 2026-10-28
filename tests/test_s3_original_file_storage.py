@@ -66,6 +66,10 @@ class FakeS3Client:
         self.objects.pop((kwargs["Bucket"], kwargs["Key"]), None)
         return {}
 
+    def list_objects_v2(self, **kwargs):
+        keys = sorted(key for (bucket, key) in self.objects if bucket == kwargs["Bucket"] and key.startswith(kwargs["Prefix"]))
+        return {"Contents": [{"Key": key} for key in keys], "IsTruncated": False}
+
 
 class S3PrivateObjectStoreTests(unittest.TestCase):
     def setUp(self):
@@ -127,6 +131,15 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
         self.store.finalize(12, final.object_id)
         self.assertTrue(self.store.delete(12, final.object_id))
         self.assertFalse(self.store.delete(12, final.object_id))
+
+    def test_inventory_lists_only_keys_in_originals_namespace(self):
+        one = self.store.stage(12, b"one")
+        self.store.finalize(12, one.object_id)
+        other = self.store.stage(13, b"other")
+        keys = self.store.list_object_keys()
+        self.assertIn(f"firms/12/originals/{one.object_id}.blob", keys)
+        self.assertIn(f"firms/13/originals/{other.object_id}.staged", keys)
+        self.assertTrue(all(key.startswith("firms/") for key in keys))
 
     def test_missing_kms_configuration_is_rejected(self):
         with self.assertRaises(ValueError):
