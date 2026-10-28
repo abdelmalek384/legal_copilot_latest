@@ -56,7 +56,7 @@ class PlatformSecurityAuditTests(unittest.TestCase):
         self.assertIsNone(event["actor_user_id"])
         self.assertEqual(event["target_user_id"], self.reset_user_id)
         self.assertEqual(event["event_type"], "password_reset_cli")
-        self.assertIn('"sessions_revoked": true', event["detail_json"])
+        self.assertEqual(json.loads(event["detail_json"])["sessions_revoked"], 1)
         self.assertTrue(control.execute("SELECT password_hash FROM users WHERE id=?", (self.reset_user_id,)).fetchone()[0] != "old-password-hash")
 
     def test_audit_write_failure_rolls_back_password_change_and_session_revocation(self):
