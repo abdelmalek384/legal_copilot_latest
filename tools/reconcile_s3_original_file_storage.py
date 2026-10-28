@@ -46,6 +46,7 @@ def main() -> int:
         store = S3PrivateObjectStore(
             boto3.client("s3", region_name=region, endpoint_url=endpoint),
             bucket=bucket, kms_key_id=kms_key_id,
+            kms_client=boto3.client("kms", region_name=region),
         )
         runtime = DatabaseRuntime.from_env()
         control = _read_only(runtime.paths.control_plane)
