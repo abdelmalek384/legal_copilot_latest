@@ -122,7 +122,7 @@ class LegalAnswerReviewEvaluationTests(unittest.TestCase):
 
     def test_duplicate_assessment_ids_are_excluded(self):
         first = review()
-        second = review(case_id="CASE-002", reviewer_name="Reviewer B")
+        second = review(case_id="CASE-002", reviewer_id="reviewer-b", reviewer_name="Reviewer B")
         result = summarize_reviews([first, second], reviewer_registry())
         self.assertEqual(result["valid_assessments"], 1)
         self.assertEqual(result["invalid_assessments_excluded"], 1)
