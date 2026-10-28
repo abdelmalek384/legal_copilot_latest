@@ -4,7 +4,7 @@ CREATE TABLE original_file_objects (
     object_id TEXT PRIMARY KEY CHECK(length(object_id) = 32),
     document_id INTEGER NOT NULL UNIQUE REFERENCES docs(id) ON DELETE RESTRICT,
     firm_id INTEGER NOT NULL CHECK(firm_id > 0),
-    storage_backend TEXT NOT NULL CHECK(storage_backend IN ('local')),
+    storage_backend TEXT NOT NULL CHECK(storage_backend IN ('local','s3')),
     sha256 TEXT NOT NULL CHECK(length(sha256) = 64),
     byte_size INTEGER NOT NULL CHECK(byte_size >= 0),
     content_type TEXT NOT NULL DEFAULT 'application/octet-stream',
