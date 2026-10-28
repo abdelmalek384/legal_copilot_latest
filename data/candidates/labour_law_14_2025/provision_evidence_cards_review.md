@@ -183,6 +183,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - [government-hosted official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — يعرض نص المادة 117 على الصفحة المطبوعة 52.
 
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
+
 **Limitations:**
 
 - قد توجد قرارات وزارية أو استثناءات خاصة تؤثر في الحد العام
@@ -216,8 +221,10 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Related instruments requiring separate review:**
 
-- `EG-LABOUR-DECISION-49-2026` — قرار وزير العمل رقم 49 لسنة 2026 بشأن تحديد الأعمال الخطرة والصعبة والمناطق النائية التي يستحق العاملون فيها زيادة الإجازة السنوية سبعة أيام; discovery_only; Official Gazette issue metadata found for issue 64 supplement dated 2026-03-18, but full decision text, page range, operative schedules, commencement, currentness, and reuse permission remain unverified. Source: [https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%84%D8%AA%D8%AD%D9%82%D9%82-%D8%A7%D9%84%D8%AA%D9%88%D8%A7%D8%B2%D9%86-%D8%A8%D9%8A%D9%86-%D9%85%D8%AA%D8%B7%D9%84%D8%A8%D8%A7%D8%AA-%D8%A7%D9%84%D8%A5%D9%86%D8%AA%D8%A7%D8%AC-%D9%88%D8%B5%D9%88%D9%86-%D8%AD%D9%82%D9%88%D9%82-%D8%A7%D9%84%D9%82%D9%88%D9%89-%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D9%84%D8%A9-%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D9%8A%D8%B5%D8%AF%D8%B1-%D9%82%D8%B1%D8%A7%D8%B1-%D8%A7-%D9%88%D8%B2%D8%A7%D8%B1%D9%8A-%D8%A7-%D8%A8%D8%AA%D8%AD%D8%AF%D9%8A%D8%AF-%D8%A7%D9%84%D8%A3%D8%B9%D9%85%D8%A7%D9%84-%D8%A7%D9%84%D8%AE%D8%B7%D8%B1%D8%A9-%D9%88%D8%A7%D9%84%D9%85%D9%86%D8%A7%D8%B7%D9%82-%D8%A7%D9%84%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D8%A7%D9%84%D8%AA%D9%8A-%D8%AA-%D8%B2%D8%A7%D8%AF-%D9%81%D9%8A%D9%87%D8%A7-%D8%A7%D9%84%D8%A5%D8%AC%D8%A7%D8%B2%D8%A7%D8%AA-%D8%A7%D9%84%D8%B3%D9%86%D9%88%D9%8A%D8%A9-7-%D8%A3%D9%8A%D8%A7%D9%85-%D9%84%D9%84%D8%B9%D8%A7%D9%85%D9%84%D9%8A%D9%86/](https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%84%D8%AA%D8%AD%D9%82%D9%82-%D8%A7%D9%84%D8%AA%D9%88%D8%A7%D8%B2%D9%86-%D8%A8%D9%8A%D9%86-%D9%85%D8%AA%D8%B7%D9%84%D8%A8%D8%A7%D8%AA-%D8%A7%D9%84%D8%A5%D9%86%D8%AA%D8%A7%D8%AC-%D9%88%D8%B5%D9%88%D9%86-%D8%AD%D9%82%D9%88%D9%82-%D8%A7%D9%84%D9%82%D9%88%D9%89-%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D9%84%D8%A9-%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D9%8A%D8%B5%D8%AF%D8%B1-%D9%82%D8%B1%D8%A7%D8%B1-%D8%A7-%D9%88%D8%B2%D8%A7%D8%B1%D9%8A-%D8%A7-%D8%A8%D8%AA%D8%AD%D8%AF%D9%8A%D8%AF-%D8%A7%D9%84%D8%A3%D8%B9%D9%85%D8%A7%D9%84-%D8%A7%D9%84%D8%AE%D8%B7%D8%B1%D8%A9-%D9%88%D8%A7%D9%84%D9%85%D9%86%D8%A7%D8%B7%D9%82-%D8%A7%D9%84%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D8%A7%D9%84%D8%AA%D9%8A-%D8%AA-%D8%B2%D8%A7%D8%AF-%D9%81%D9%8A%D9%87%D8%A7-%D8%A7%D9%84%D8%A5%D8%AC%D8%A7%D8%B2%D8%A7%D8%AA-%D8%A7%D9%84%D8%B3%D9%86%D9%88%D9%8A%D8%A9-7-%D8%A3%D9%8A%D8%A7%D9%85-%D9%84%D9%84%D8%B9%D8%A7%D9%85%D9%84%D9%8A%D9%86/).
-  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 64 تابع, 2026-03-18; An item record lists Arabic and English PDF files, but no original file has been downloaded, hashed, visually inspected, or fully compared with the Gazette issue in this task.
+- `EG-LABOUR-DECISION-49-2026` — قرار وزير العمل رقم 49 لسنة 2026 بشأن تحديد الأعمال الخطرة والصعبة والمناطق النائية التي يستحق العاملون فيها زيادة الإجازة السنوية سبعة أيام; Official Gazette metadata found for issue 64 supplement dated 2026-03-18; public secondary transcription found but not verified against primary PDF; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/03/49-2026-7.html](https://ahmedazimelgamel.blogspot.com/2026/03/49-2026-7.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 64 تابع, 2026-03-18; A public secondary transcription contains Articles 1–5 and schedules; the official PDF has not been downloaded, hashed, or fully compared.
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
 
 **Limitations:**
 
@@ -249,6 +256,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Cross-checks:**
 
 - [government-hosted official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — يعرض نص المادة 165 وتعويض الإنهاء غير المشروع.
+
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
 
 **Limitations:**
 
@@ -285,6 +297,8 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - `EG-LABOUR-DECISION-294-2025` — قرار وزير العمل رقم 294 لسنة 2025 بشأن تحديد العطلات والأعياد والمناسبات التي تعتبر إجازة بأجر كامل للعمال; discovery_only; Official Gazette issue metadata found for issue 291 supplement dated 2025-12-25, but full decision text, page range, commencement, currentness, and reuse permission remain unverified. Source: [https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A7%D9%84%D8%A3%D8%B1%D8%A8%D8%B9%D8%A7%D8%A1-%D8%A7%D9%84%D9%85%D9%82%D8%A8%D9%84-%D8%A5%D8%AC%D8%A7%D8%B2%D8%A9-%D9%85%D8%AF%D9%81%D9%88%D8%B9%D8%A9-%D8%A7%D9%84%D8%A3%D8%AC%D8%B1-%D9%84%D9%84%D8%B9%D8%A7%D9%85%D9%84%D9%8A%D9%86-%D8%A8%D8%A7%D9%84%D9%82%D8%B7%D8%A7%D8%B9-%D8%A7%D9%84%D8%AE%D8%A7%D8%B5-%D8%A8%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%A9-%D8%B9%D9%8A%D8%AF-%D8%A7%D9%84%D9%85%D9%8A%D9%84%D8%A7%D8%AF-%D8%A7%D9%84%D9%85%D8%AC%D9%8A%D8%AF-%D8%AC%D8%A8%D8%B1%D8%A7%D9%86-%D9%88%D8%AD%D8%AF%D8%A9-%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D9%8A%D9%86-%D9%88%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A7%D9%84%D9%85%D8%B4%D8%AA%D8%B1%D9%83-%D8%A3%D8%B3%D8%A7%D8%B3-%D9%82%D9%88%D8%A9-%D8%A7%D9%84%D9%88%D8%B7%D9%86/](https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A7%D9%84%D8%A3%D8%B1%D8%A8%D8%B9%D8%A7%D8%A1-%D8%A7%D9%84%D9%85%D9%82%D8%A8%D9%84-%D8%A5%D8%AC%D8%A7%D8%B2%D8%A9-%D9%85%D8%AF%D9%81%D9%88%D8%B9%D8%A9-%D8%A7%D9%84%D8%A3%D8%AC%D8%B1-%D9%84%D9%84%D8%B9%D8%A7%D9%85%D9%84%D9%8A%D9%86-%D8%A8%D8%A7%D9%84%D9%82%D8%B7%D8%A7%D8%B9-%D8%A7%D9%84%D8%AE%D8%A7%D8%B5-%D8%A8%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%A9-%D8%B9%D9%8A%D8%AF-%D8%A7%D9%84%D9%85%D9%8A%D9%84%D8%A7%D8%AF-%D8%A7%D9%84%D9%85%D8%AC%D9%8A%D8%AF-%D8%AC%D8%A8%D8%B1%D8%A7%D9%86-%D9%88%D8%AD%D8%AF%D8%A9-%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D9%8A%D9%86-%D9%88%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A7%D9%84%D9%85%D8%B4%D8%AA%D8%B1%D9%83-%D8%A3%D8%B3%D8%A7%D8%B3-%D9%82%D9%88%D8%A9-%D8%A7%D9%84%D9%88%D8%B7%D9%86/).
   - Gazette metadata lead: الوقائع المصرية، ملحق العدد 291 (تابع), 2025-12-25; The record lists a PDF through a request-a-copy workflow; the full decision text has not been obtained or page-reviewed.
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
 
 **Limitations:**
 
@@ -318,6 +332,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - [government-hosted official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — نص المواد 118–120 في الصفحة المطبوعة 52.
 
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
+
 **Limitations:**
 
 - تتضمن المواد استثناءات وقرارات وزارية محتملة
@@ -346,6 +365,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Cross-checks:**
 
 - [government-hosted official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — نص المادة 125 على الصفحة المطبوعة 55.
+
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
 
 **Limitations:**
 
@@ -377,6 +401,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - [government-hosted official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — نص المادة 164 على الصفحة المطبوعة 69.
 
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
+
 **Limitations:**
 
 - تتطلب الحالة تصنيف العقد وتحديد مهلة الإخطار المنطبقة
@@ -405,6 +434,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Cross-checks:**
 
 - [government-hosted official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — نص المادة 128 على الصفحة المطبوعة 56.
+
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
 
 **Limitations:**
 
@@ -665,6 +699,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - [Library of Congress legal update](https://www.loc.gov/item/global-legal-monitor/2025-07-25/egypt-labor-law-updated/) — يعرض حظر التحرش والتنمر والعنف في القانون الجديد كمصدر ثانوي للمقارنة.
 
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
+
 **Limitations:**
 
 - لم تتم مقارنة المادة بصورة الصفحة الأصلية بصرياً
@@ -694,6 +733,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - [Library of Congress legal update](https://www.loc.gov/item/global-legal-monitor/2025-07-25/egypt-labor-law-updated/) — ملخص ثانوي لأحكام القانون المتعلقة بالتمييز والحماية في العمل.
 
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
+
 **Limitations:**
 
 - القائمة الواردة في هذه الخلاصة ليست نقلاً كاملاً لجميع الأوصاف والاستثناءات
@@ -722,6 +766,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Cross-checks:**
 
 - [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
+
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
 
 **Limitations:**
 
@@ -1767,6 +1816,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - [government-hosted Official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — يعرض نص المادتين 126 و127 على الصفحة المطبوعة 55.
 
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
+
 **Limitations:**
 
 - تتوقف النتيجة على إثبات القيد التعليمي وموعد الامتحان والإخطار الفعلي
@@ -1796,6 +1850,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Cross-checks:**
 
 - [government-hosted Official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — يعرض نص المادتين 126 و127 على الصفحة المطبوعة 55.
+
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
 
 **Limitations:**
 
@@ -1827,6 +1886,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - [secondary English translation](https://eg.andersen.com/wp-content/uploads/2025/05/Translation-of-Labor-law-No.-14-of-2025.pdf) — ترجمة ثانوية للمادة 121 تتضمن إخطار السبعة أيام وحدود 35٪ و70٪ وحد 12 ساعة؛ لا تحل محل النص العربي الرسمي.
 
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
+
 **Limitations:**
 
 - تتعلق القاعدة باستثناءات العمل غير العادي أو الظروف الاستثنائية وليست إذناً عاماً بتجاوز ساعات العمل
@@ -1857,6 +1921,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - [secondary legal text copy](https://manshurat.org/content/qnwn-lml-ljdyd-2025) — يعرض نص المادة 122؛ يستخدم للمقارنة فقط وليس بديلاً عن المصدر الرسمي.
 
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
+
 **Limitations:**
 
 - يلزم التحقق من تعليمات الجهة الإدارية ذات الصلة وإثبات تاريخ تنفيذ الجدول أو تعديله
@@ -1886,6 +1955,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - [secondary English translation](https://eg.andersen.com/wp-content/uploads/2025/06/Translation-of-Labor-law-No.-14-of-2025.pdf) — ترجمة ثانوية للمادة 123 وتحدد الفئات المستثناة؛ لا تحل محل النص العربي الرسمي أو القرار الوزاري.
 
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
+
 **Limitations:**
 
 - يلزم العثور على القرار الوزاري المحدد للحد الأقصى للساعات للفئات الواردة في المادة ومراجعته مستقلاً
@@ -1914,6 +1988,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Cross-checks:**
 
 - [secondary legal text transcription](https://manshurat.org/content/qnwn-lml-ljdyd-2025) — ينقل نص المادة 117 حد 8 ساعات يومياً و48 أسبوعياً وإمكان التخفيض بقرار وزاري؛ لا يحل محل النص العربي الرسمي.
+
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
 
 **Limitations:**
 
@@ -1945,6 +2024,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - [secondary legal text transcription](https://manshurat.org/content/qnwn-lml-ljdyd-2025) — ينقل النص الثانوي أحكام الساعة الإجمالية وخمس ساعات متصلة والتفويض الوزاري؛ لا يحل محل النص العربي الرسمي.
 
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
+
 **Limitations:**
 
 - وجود استثناء يتطلب تحديد القرار الوزاري والفئة المهنية المنطبقة
@@ -1974,6 +2058,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Cross-checks:**
 
 - [secondary legal text transcription](https://manshurat.org/content/qnwn-lml-ljdyd-2025) — ينقل النص الثانوي قاعدة العشر ساعات واستثناءات الأعمال المتقطعة/الخاصة وحد التواجد 12 ساعة؛ لا يحل محل النص العربي الرسمي.
+
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
 
 **Limitations:**
 
@@ -2005,6 +2094,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - [secondary legal text transcription](https://manshurat.org/content/qnwn-lml-ljdyd-2025) — ينقل النص الثانوي قاعدة الراحة الأسبوعية المدفوعة وإمكان التجميع بشروطه؛ لا يحل محل النص العربي الرسمي.
 
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
+
 **Limitations:**
 
 - الاستثناء ليس عاماً؛ يجب فحص مكان العمل وظروفه ولائحة المنشأة والقرارات ذات الصلة
@@ -2034,6 +2128,13 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Cross-checks:**
 
 - [secondary legal text transcription](https://manshurat.org/content/qnwn-lml-ljdyd-2025) — يعرض النص الثانوي مدد الإجازة السنوية وشروط النسبة والزيادة؛ لا يحل محل النص العربي الرسمي.
+
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-DECISION-49-2026` — قرار وزير العمل رقم 49 لسنة 2026 بشأن تحديد الأعمال الخطرة والصعبة والمناطق النائية التي يستحق العاملون فيها زيادة الإجازة السنوية سبعة أيام; Official Gazette metadata found for issue 64 supplement dated 2026-03-18; public secondary transcription found but not verified against primary PDF; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/03/49-2026-7.html](https://ahmedazimelgamel.blogspot.com/2026/03/49-2026-7.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 64 تابع, 2026-03-18; A public secondary transcription contains Articles 1–5 and schedules; the official PDF has not been downloaded, hashed, or fully compared.
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
 
 **Limitations:**
 
@@ -2065,6 +2166,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - [secondary legal text transcription](https://manshurat.org/content/qnwn-lml-ljdyd-2025) — ينقل النص الثانوي أحكام تحديد الموعد والحد الأدنى والتسوية والقيود الخاصة؛ لا يحل محل النص العربي الرسمي.
 
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
+
 **Limitations:**
 
 - تطبيق الأثر المالي يتطلب مراجعة سجل الإجازات والأجر وسبب انتهاء الخدمة وأي أحكام أو قرارات ذات صلة
@@ -2094,6 +2200,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Cross-checks:**
 
 - [secondary legal text transcription](https://manshurat.org/content/qnwn-lml-ljdyd-2025) — النص الرسمي المفهرس يعرض سقف سبعة أيام سنوياً ويومين في المرة وإجازة مدفوعة يوم الولادة بحد أقصى ثلاث مرات؛ يظل النص العربي الرسمي هو المرجع.
+
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
 
 **Limitations:**
 
@@ -2125,6 +2236,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Cross-checks:**
 
 - [secondary legal text transcription](https://manshurat.org/content/qnwn-lml-ljdyd-2025) — النص الرسمي المفهرس يذكر الأجر المضاعف أو يوم بديل بناءً على طلب كتابي؛ يظل النص العربي الرسمي هو المرجع.
+
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
 
 **Limitations:**
 
@@ -2337,6 +2453,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
+
 **Limitations:**
 
 - القرار التنفيذي رقم 162/2026 مصدر ذو صلة محتملة، لكن نصه الكامل غير متاح في هذه الجولة؛ لا يُستنتج استيفاء منشأة بعينها من المادة وحدها
@@ -2366,6 +2487,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Cross-checks:**
 
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
+
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
 
 **Limitations:**
 
@@ -2397,6 +2523,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
+
 **Limitations:**
 
 - الحدود الرقمية وشروط كل جزاء يجب نقلها ومراجعتها بنداً بنداً قبل الاستخدام؛ الملخص لا يغني عن النص الكامل
@@ -2426,6 +2557,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Cross-checks:**
 
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
+
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
 
 **Limitations:**
 
@@ -2457,6 +2593,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
+
 **Limitations:**
 
 - تطبيق المواعيد والاستثناءات يتطلب تحديد تاريخ اكتشاف المخالفة وبداية التحقيق ونوع الجزاء والوقائع والمستندات
@@ -2486,6 +2627,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Cross-checks:**
 
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
+
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
 
 **Limitations:**
 
@@ -2517,6 +2663,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
+
 **Limitations:**
 
 - يجب التحقق من الأجر الأساسي اليومي وجميع الخصومات في الشهر وطبيعة الجزاء
@@ -2546,6 +2697,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Cross-checks:**
 
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
+
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
 
 **Limitations:**
 
@@ -2577,6 +2733,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
+
 **Limitations:**
 
 - الوقف لا يُعامل كسلطة عامة؛ يلزم توثيق الحالة القانونية وقرار الوقف ومدته وسبب الوقف
@@ -2606,6 +2767,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Cross-checks:**
 
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
+
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
 
 **Limitations:**
 
@@ -2637,6 +2803,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
+
 **Limitations:**
 
 - يتطلب التطبيق تاريخ انتهاء الوقف وتاريخ تقديم الطلب وقرار القاضي وحالة مباشرة العمل
@@ -2666,6 +2837,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Cross-checks:**
 
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
+
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
 
 **Limitations:**
 
@@ -2847,6 +3023,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
+
 **Limitations:**
 
 - الآثار المالية تعتمد على مدة العقد ونصه وتاريخ الإخطار وأي استثناءات قانونية
@@ -2876,6 +3057,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Cross-checks:**
 
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
+
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
 
 **Limitations:**
 
@@ -2907,6 +3093,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
+
 **Limitations:**
 
 - تحديد بداية ونهاية المهلة يتطلب مراجعة الإخطار وإثبات تسلمه وطبيعة العقد والاستثناءات
@@ -2936,6 +3127,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Cross-checks:**
 
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
+
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
 
 **Limitations:**
 
@@ -2967,6 +3163,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
+
 **Limitations:**
 
 - تحديد تاريخ التسلم يتطلب دليلاً على التبليغ، مع مراجعة الأحكام الخاصة المنطبقة
@@ -2996,6 +3197,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Cross-checks:**
 
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
+
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
 
 **Limitations:**
 
@@ -3027,6 +3233,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
+
 **Limitations:**
 
 - التطبيق يتطلب تحديد تاريخ تسلم الإخطار وأي استثناء أو اتفاق جائز بشأن المهلة
@@ -3056,6 +3267,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Cross-checks:**
 
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
+
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
 
 **Limitations:**
 
@@ -3087,6 +3303,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
+
 **Limitations:**
 
 - تطبيق الحق يتطلب أن يكون الإخطار من صاحب العمل وتوثيق إخطار العامل بوقت الغياب
@@ -3116,6 +3337,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Cross-checks:**
 
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
+
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
 
 **Limitations:**
 
@@ -3147,6 +3373,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
+
 **Limitations:**
 
 - الحساب النهائي يتطلب تحديد الطرف المنهي وتاريخ التسلم والمهلة الواجبة والأجر الذي يدخل في الحساب
@@ -3176,6 +3407,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Cross-checks:**
 
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — مقارنة ثانوية أولية فقط؛ لا تحل محل النص العربي الرسمي أو مراجعة النص الكامل.
+
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
 
 **Limitations:**
 
@@ -3207,6 +3443,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — مقارنة ثانوية أولية فقط؛ لا تحل محل النص العربي الرسمي أو مراجعة النص الكامل.
 
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
+
 **Limitations:**
 
 - تتوقف النتيجة على احتساب أيام الغياب والمبرر وصحة الإنذار وإثبات وصوله
@@ -3236,6 +3477,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Cross-checks:**
 
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — مقارنة ثانوية أولية فقط؛ لا تحل محل النص العربي الرسمي أو مراجعة النص الكامل.
+
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
 
 **Limitations:**
 
@@ -3267,6 +3513,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — مقارنة ثانوية أولية فقط؛ لا تحل محل النص العربي الرسمي أو مراجعة النص الكامل.
 
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
+
 **Limitations:**
 
 - توصيف الإخلال بأنه جوهري أو إثبات الاعتداء يتطلب وقائع ومستندات وتقييماً قانونياً
@@ -3296,6 +3547,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Cross-checks:**
 
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — مقارنة ثانوية أولية فقط؛ لا تحل محل النص العربي الرسمي أو مراجعة النص الكامل.
+
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
 
 **Limitations:**
 
@@ -3327,6 +3583,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — مقارنة ثانوية أولية فقط؛ لا تحل محل النص العربي الرسمي أو مراجعة النص الكامل.
 
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
+
 **Limitations:**
 
 - يتطلب الأمر إثبات نوع العجز والقدرة على أداء عمل آخر وتوافره وطلب النقل
@@ -3356,6 +3617,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Cross-checks:**
 
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — مقارنة ثانوية أولية فقط؛ لا تحل محل النص العربي الرسمي أو مراجعة النص الكامل.
+
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
 
 **Limitations:**
 
@@ -3387,6 +3653,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — مقارنة ثانوية أولية فقط؛ لا تحل محل النص العربي الرسمي أو مراجعة النص الكامل.
 
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
+
 **Limitations:**
 
 - الحساب يتطلب بيانات الأجر ومدد الخدمة وحقوق التأمين الاجتماعي عن المدة ذاتها
@@ -3416,6 +3687,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Cross-checks:**
 
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — مقارنة ثانوية أولية فقط؛ لا تحل محل النص العربي الرسمي أو مراجعة النص الكامل.
+
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
 
 **Limitations:**
 
@@ -3447,6 +3723,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — مقارنة ثانوية أولية فقط؛ لا تحل محل النص العربي الرسمي أو مراجعة النص الكامل.
 
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
+
 **Limitations:**
 
 - الأثر يتوقف على منطوق الحكم ونهائيته وتكييف الجريمة ووجود أمر بوقف التنفيذ
@@ -3476,6 +3757,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Cross-checks:**
 
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — مقارنة ثانوية أولية فقط؛ لا تحل محل النص العربي الرسمي أو مراجعة النص الكامل.
+
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
 
 **Limitations:**
 
