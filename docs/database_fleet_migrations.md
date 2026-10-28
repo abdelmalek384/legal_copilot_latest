@@ -36,6 +36,10 @@ python tools/migrate_tenant_fleet.py \
 
 The command re-preflights the fleet, snapshots every database that has pending migrations before it changes any schema, verifies each snapshot's integrity, and writes a private JSON run manifest into the backup directory. It then applies migrations sequentially. Each target is checked for file identity, profile binding, firm binding, integrity, and foreign-key integrity. A failure stops subsequent migrations; the tool does not automatically restore a partially migrated fleet.
 
+## Release gate integration
+
+When production control-plane and tenant-root paths are configured, `tools/production_release_gate.py` runs the read-only fleet plan. Production release is blocked if any eligible tenant has pending schema migrations, the fleet preflight cannot be completed safely, or unresolved catalog lifecycle rows are skipped. This prevents deploying code that expects a schema version the tenant fleet has not yet received. The release gate does not run migrations; use the explicit maintenance-window apply procedure above.
+
 ## Safety and recovery boundaries
 
 - The backup directory and snapshots use restrictive permissions on POSIX systems.
