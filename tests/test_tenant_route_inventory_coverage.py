@@ -1,12 +1,8 @@
 """Require every registered FastAPI route to appear in the tenant-isolation review inventory."""
-import os
-import tempfile
 import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-_TEST_DB_DIR = tempfile.TemporaryDirectory(prefix="legal-copilot-tenant-route-inventory-")
-os.environ["COPILOT_DB"] = str(Path(_TEST_DB_DIR.name) / "inventory-test.db")
 import app  # noqa: E402
 
 
