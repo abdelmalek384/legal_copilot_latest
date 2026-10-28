@@ -279,3 +279,33 @@ This checkpoint supersedes earlier status estimates where they differ. Percentag
 6. **Database work:** keep assigned identity, tenant storage, migrations, and production data operations separate. No irreversible database changes were made in this non-DB workstream.
 
 The overall readiness estimate remains 42% ± 8%. The recent work makes permission and reviewer claims more accountable, but it does not itself establish reuse rights, legal authenticity, currentness, or product readiness.
+
+
+## Latest checkpoint — 2026-10-28 (after PR #712)
+
+This update supersedes previous checkpoints where statuses have changed. Percentages remain rough, non-additive estimates—not legal-accuracy scores.
+
+| Workstream | Estimate | Status |
+|---|---:|---|
+| Overall product readiness | 42% ± 8 percentage points | Unchanged; no verified corpus or manual acceptance completion claimed. |
+| Verified Egyptian legal corpus | 6% | Blocked on original source artifacts, source-specific rights, effective-date/amendment reconciliation, and Egyptian-lawyer sign-off. |
+| Research evaluation and citation integrity | 78% | Both human-review scoring and benchmark scoring now require a private approved reviewer registry. Actual lawyer-reviewed benchmark runs remain missing. |
+| Legal corpus audit safeguards | 75% | Audits identify evidence/status/version inconsistencies; they do not authenticate legal texts. |
+| Source provenance/acquisition safeguards | 85% | Stale terms reviews and missing/credential-bearing HTTPS terms URLs block acquisition readiness. Rights remain unknown until evidenced. |
+| UI/UX implementation | 55% | Bilingual workflows and modal keyboard focus handling are implemented; manual RTL/LTR, screen-reader, responsive, and lawyer-workflow QA remains outstanding. |
+| Database/tenant isolation | 65% estimate | Separate workstream owned by the other AI; no overlap with migrations, tenant storage, or identity lifecycle. |
+
+### Newly merged — #712
+
+The benchmark scorer and production release gate now require reviewer IDs/names to match a valid approved reviewer registry. The release gate blocks when the registry is missing or invalid. The PR's full Tests workflow passed on commit 2a122e83cce33bf1caa47f9c1cd828bbf34d9479. Post-merge full Tests are queued on main commit 990a664d149ae753248e4faf767ddb95333e0af6; do not call current main validated until that run completes.
+
+### Immediate next actions
+
+1. Confirm the post-merge full Tests result on 990a664d149ae753248e4faf767ddb95333e0af6.
+2. Keep actual reviewer credential evidence private and require trusted manual verification before setting registry status to approved. The registry gate checks consistency; it does not independently verify a license.
+3. Obtain and compare permitted primary legal texts, beginning with Labour Law 14/2025; preserve source bytes/hashes, dates, amendments, and review notes, and keep retrieval blocked until release checks pass.
+4. Populate the benchmark only with qualified reviewer-approved questions, exact source versions, and pinpoint citations; no legal-accuracy claims before real reviewed runs.
+5. Perform and record manual browser/accessibility QA.
+6. Leave DB/tenant/storage and production data actions to the assigned database workstream.
+
+Overall readiness stays at 42% ± 8%. Reviewer/source controls are more accountable, but source permissions, verified legal content, lawyer-labelled evidence, manual QA, and independent release review remain unresolved.
