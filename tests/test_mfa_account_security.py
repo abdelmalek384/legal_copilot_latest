@@ -127,15 +127,27 @@ class MFAAccountSecurityTests(unittest.TestCase):
         login = self.login()
         self.assertEqual(login.status_code, 200, login.text)
         self.assertTrue(login.json()["mfa_verification_required"])
+        credential = self.runtime.control_connection().execute(
+            "SELECT last_accepted_step FROM mfa_credentials WHERE user_id=?",
+            (self.user_id,),
+        ).fetchone()
+        last_accepted_step = credential["last_accepted_step"]
+        self.assertIsNotNone(last_accepted_step)
+
+        # Replay the exact step accepted during enrollment confirmation. Do not
+        # derive this code from wall-clock time: a 30-second boundary between
+        # confirm() and login verification otherwise makes this test flaky.
         replay = self.mutate(
             "post", "/account/mfa/verify",
-            json={"code": totp_code(secret, (int(time.time()) // 30) * 30)},
+            json={"code": totp_code(secret, last_accepted_step * 30)},
         )
         self.assertEqual(replay.status_code, 401, replay.text)
-        next_step = (int(time.time()) // 30 + 1) * 30
+
+        current_step = int(time.time()) // 30
+        next_step = max(current_step, last_accepted_step + 1)
         accepted = self.mutate(
             "post", "/account/mfa/verify",
-            json={"code": totp_code(secret, next_step)},
+            json={"code": totp_code(secret, next_step * 30)},
         )
         self.assertEqual(accepted.status_code, 200, accepted.text)
         self.assertTrue(accepted.json()["mfa_verified"])
