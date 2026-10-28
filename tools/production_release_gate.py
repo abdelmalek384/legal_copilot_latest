@@ -346,6 +346,8 @@ def main(argv=None) -> int:
                            Path(args.benchmark).resolve()}
         if args.reviewer_registry:
             protected_files.add(Path(args.reviewer_registry).resolve())
+        if args.database_acceptance:
+            protected_files.add(Path(args.database_acceptance).resolve())
         protected_files.update(Path(path).resolve() for path in (args.candidate or []))
         protected_directories = {
             Path(args.candidates_dir).resolve(),
