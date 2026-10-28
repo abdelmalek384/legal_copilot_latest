@@ -167,6 +167,35 @@ class CorpusAuditTests(unittest.TestCase):
             self.assertEqual(report["version_quality"]["status_flag_without_evidence"], 1)
             self.assertEqual(report["version_quality"]["verified_status_without_lawyer_approval_event"], 1)
 
+    def test_review_event_integrity_checks_dates_reviewers_evidence_and_version_links(self):
+        with tempfile.TemporaryDirectory() as td:
+            db_path = Path(td) / "review-event-integrity.db"
+            db = sqlite3.connect(db_path)
+            db.executescript("""
+            CREATE TABLE legal_document_versions(version_id INTEGER PRIMARY KEY);
+            CREATE TABLE legal_review_events(
+              review_event_id INTEGER PRIMARY KEY, version_id INT, reviewer TEXT,
+              review_type TEXT, outcome TEXT, evidence_url TEXT, reviewed_at TEXT
+            );
+            INSERT INTO legal_document_versions VALUES(1);
+            INSERT INTO legal_review_events VALUES
+              (1,1,'Reviewer','source_authenticity','pass','https://example.gov/evidence','2026-01-01T12:00:00Z'),
+              (2,1,'   ','unknown','pass','http://unsafe.example/evidence','not-a-date'),
+              (3,99,'Reviewer','legal_status','pass',NULL,'2999-01-01T00:00:00Z');
+            """)
+            db.commit()
+            db.close()
+            report = MODULE.audit(db_path)
+            codes = {issue["code"] for issue in report["issues"]}
+            self.assertIn("review_events_reviewer_missing", codes)
+            self.assertIn("review_events_invalid_review_type", codes)
+            self.assertIn("review_events_reviewed_at_invalid", codes)
+            self.assertIn("review_events_reviewed_at_in_future", codes)
+            self.assertIn("review_events_passing_event_without_valid_evidence", codes)
+            self.assertIn("review_events_orphan_version", codes)
+            self.assertEqual(report["review_event_quality"]["reviewer_missing"], 1)
+            self.assertEqual(report["review_event_quality"]["orphan_version"], 1)
+
     def test_amendment_history_flags_require_review_evidence_and_relations_are_audited(self):
         with tempfile.TemporaryDirectory() as td:
             db_path = Path(td) / "versions.db"

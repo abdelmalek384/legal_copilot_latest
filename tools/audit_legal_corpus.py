@@ -48,6 +48,17 @@ def valid_iso_date(value):
     except ValueError:
         return False
 
+def parse_reviewed_at(value):
+    if not isinstance(value, str) or not value.strip():
+        return None
+    try:
+        parsed = datetime.fromisoformat(value.strip().replace("Z", "+00:00"))
+        if parsed.tzinfo is None:
+            parsed = parsed.replace(tzinfo=timezone.utc)
+        return parsed.astimezone(timezone.utc)
+    except ValueError:
+        return None
+
 def sha256_file(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as stream:
@@ -87,6 +98,35 @@ def audit(db_path: Path):
         }
         for table in ("chunks","legal_sources","legal_documents","legal_document_versions","legal_version_relations","legal_review_events"):
             if table in tables: result["counts"][table] = count(db,table)
+        if "legal_review_events" in tables:
+            event_cols = columns(db, "legal_review_events")
+            event_required = {"review_event_id", "version_id", "reviewer", "review_type", "outcome", "evidence_url", "reviewed_at"}
+            if event_required - event_cols:
+                result["issues"].append({"severity": "high", "code": "review_event_columns_missing", "detail": str(sorted(event_required - event_cols))})
+            else:
+                events = db.execute("SELECT review_event_id, version_id, reviewer, review_type, outcome, evidence_url, reviewed_at FROM legal_review_events").fetchall()
+                allowed_types = {"source_authenticity", "extraction_quality", "legal_status", "amendment_history", "licensing", "lawyer_approval"}
+                allowed_outcomes = {"pending", "pass", "fail", "needs_correction"}
+                quality = {"reviewer_missing": 0, "invalid_review_type": 0, "invalid_review_outcome": 0, "reviewed_at_invalid": 0, "reviewed_at_in_future": 0, "passing_event_without_valid_evidence": 0, "orphan_version": 0}
+                now = datetime.now(timezone.utc)
+                version_ids = None
+                if "legal_document_versions" in tables and "version_id" in columns(db, "legal_document_versions"):
+                    version_ids = {row[0] for row in db.execute("SELECT version_id FROM legal_document_versions")}
+                for event in events:
+                    quality["reviewer_missing"] += int(not isinstance(event["reviewer"], str) or not event["reviewer"].strip())
+                    quality["invalid_review_type"] += int(event["review_type"] not in allowed_types)
+                    quality["invalid_review_outcome"] += int(event["outcome"] not in allowed_outcomes)
+                    reviewed_at = parse_reviewed_at(event["reviewed_at"])
+                    quality["reviewed_at_invalid"] += int(reviewed_at is None)
+                    quality["reviewed_at_in_future"] += int(reviewed_at is not None and reviewed_at > now)
+                    if event["outcome"] == "pass" and not valid_evidence_url(event["evidence_url"]):
+                        quality["passing_event_without_valid_evidence"] += 1
+                    if version_ids is not None and event["version_id"] not in version_ids:
+                        quality["orphan_version"] += 1
+                result["review_event_quality"] = quality
+                for key, value in quality.items():
+                    if value:
+                        result["issues"].append({"severity": "high", "code": "review_events_" + key, "count": value, "detail": "Review events are audit evidence; malformed, future-dated, unsupported, or orphaned events must be corrected before relying on them."})
         missing = sorted(REGISTRY_TABLES-tables)
         if missing:
             result["issues"].append({"severity":"high","code":"registry_tables_missing","detail":", ".join(missing)})
