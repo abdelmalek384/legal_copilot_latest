@@ -36,6 +36,24 @@ python manage.py retry-failed-provisioning \
 
 The command creates a new uniquely named tenant database, reruns the firm-profile migrations and immutable firm binding checks, validates SQLite integrity/foreign keys, then activates the firm only after the catalog is provisioned and the recovery audit event commits. If schema initialization fails, the partial database is removed and the catalog remains `failed`, allowing a later reviewed retry. If provisioning succeeds but the final recovery audit/activation transaction fails, the firm remains disabled and the valid database is retained with catalog status `disabled` for maintenance; this is not retryable through this command and requires a separate reviewed repair. Missing catalog rows, stale filename mappings, memberships, and invitations are refused. Do not manually set lifecycle status values or reuse a database file from another firm.
 
+## Reconcile interrupted, file-less firm provisioning
+
+Use this only when the application or host stopped during provisioning and both the firm and its catalog row remain in `provisioning`. First stop **all** web workers, scheduled jobs, and background workers and confirm no provisioning process is active. This command never opens, adopts, deletes, or overwrites a tenant database. It refuses to proceed if any tenant database file or SQLite sidecar for the firm exists, if the filename is invalid, or if the firm/catalog states do not match exactly.
+
+For the file-less case, record the incident and approved change, then run:
+
+```bash
+python manage.py reconcile-interrupted-provisioning \
+  --firm-id 123 \
+  --reason "Host restarted during tenant provisioning; no tenant file or sidecar exists" \
+  --operator-reference "incident-or-ticket-reference" \
+  --change-reference "approved-change-reference" \
+  --confirm-workers-stopped \
+  --confirm-reconcile
+```
+
+The command atomically changes the firm to `disabled`, changes the catalog to `failed` with no database filename, and appends an immutable audit event. It does not activate the firm. Once the failure is reviewed, the separate `retry-failed-provisioning` command can perform a fresh, audited attempt. If any database file or sidecar exists, stop and investigate integrity, firm binding, and catalog history manually; do not force the state or delete the file as part of reconciliation.
+
 ## Create a coordinated encrypted bundle
 
 1. Put the application into maintenance mode or stop all application/background workers that can write to any of the three database areas. Wait for active requests and jobs to finish. Keep writes paused for the full bundle snapshot window.
