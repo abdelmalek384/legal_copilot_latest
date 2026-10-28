@@ -33,6 +33,9 @@ def reviewer_registry():
             "reviewer_id": "reviewer-a",
             "display_name": "Qualified Reviewer A",
             "status": "approved",
+            "professional_role": "egyptian_lawyer",
+            "jurisdiction": "Egypt",
+            "practice_areas": ["labour_law", "civil_law"],
             "qualification_basis": "Synthetic test fixture: Egyptian-law qualification reviewed",
             "evidence_reference": "private-test-reference-A",
             "verified_by": "test-operator",
@@ -59,6 +62,11 @@ class LegalAnswerReviewEvaluationTests(unittest.TestCase):
         self.assertEqual(result["valid_assessments"], 0)
         self.assertEqual(result["invalid_assessments_excluded"], 1)
         self.assertIn("approved reviewer registry", " ".join(result["invalid_records"][0]["errors"]))
+
+    def test_reviewer_must_be_approved_for_assessment_practice_area(self):
+        result = summarize_reviews([review(practice_area="criminal_law")], reviewer_registry())
+        self.assertEqual(result["valid_assessments"], 0)
+        self.assertIn("not approved for this practice_area", " ".join(result["invalid_records"][0]["errors"]))
 
     def test_reviewer_name_must_match_approved_registry(self):
         result = summarize_reviews([review(reviewer_name="Someone Else")], reviewer_registry())
