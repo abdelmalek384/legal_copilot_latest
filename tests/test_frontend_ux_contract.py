@@ -33,6 +33,14 @@ class FrontendUXContractTests(unittest.TestCase):
             self.assertIn("PAGE==='" + page + "'", switch)
         self.assertIn("if(!ME.id){login(AUTH_MODE)", switch)
 
+    def test_case_tabs_summary_team_and_activity_follow_selected_language(self):
+        self.assertIn("uiText('الملخص','Overview')", HTML)
+        self.assertIn("uiText('الحالة: ','Status: ')", HTML)
+        self.assertIn("uiText('جلسة','Hearing')", HTML)
+        self.assertIn("uiText(RL[m.role]||m.role,m.role==='lead'?'Lead':m.role==='associate'?'Associate':'Junior')", HTML)
+        self.assertIn("uiText('إزالة هذا العضو من القضية؟','Remove this member from the case?')", HTML)
+        self.assertIn("toLocaleString(LANG==='ar'?'ar-EG':'en-US'", HTML)
+
     def test_document_review_workflow_labels_follow_selected_language(self):
         self.assertIn("uiText('اعتماد النص المستخرج','Accept extracted text')", HTML)
         self.assertIn("uiText('يحتاج إعادة فحص','Needs recheck')", HTML)
