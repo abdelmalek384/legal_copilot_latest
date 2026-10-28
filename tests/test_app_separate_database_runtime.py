@@ -750,6 +750,128 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
         self.assertEqual(denied_history.status_code, 404, denied_history.text)
 
+    def test_original_file_hold_and_deletion_routes_cannot_cross_firm_boundaries(self):
+        import hashlib
+        from original_file_storage import LocalPrivateObjectStore
+
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created_a = self._mutate("post", "/cases", json={"title": "Firm A Original Evidence"})
+        self.assertEqual(created_a.status_code, 200, created_a.text)
+        case_id = created_a.json()["id"]
+
+        firm_a_context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        firm_a_db = self.runtime.firm_connection(firm_a_context)
+        original = b"firm A confidential original bytes"
+        _, document_id = app.save_doc(
+            firm_a_db,
+            {"id": self.user_id, "firm_id": self.firm_a, "name": "First Owner"},
+            case_id,
+            "firm-a-evidence.txt",
+            "Extracted text for test only",
+            content_hash=hashlib.sha256(original).hexdigest(),
+            content_type="text/plain",
+            byte_size=len(original),
+        )
+        store = LocalPrivateObjectStore(self.root / "objects")
+        staged = store.stage(self.firm_a, original)
+        store.finalize(self.firm_a, staged.object_id)
+        firm_a_db.execute(
+            "INSERT INTO original_file_objects("
+            "object_id,document_id,firm_id,storage_backend,sha256,byte_size,content_type,state"
+            ") VALUES(?,?,?,'local',?,?,?,'ready')",
+            (
+                staged.object_id, document_id, self.firm_a, staged.sha256,
+                staged.byte_size, "text/plain",
+            ),
+        )
+        firm_a_db.commit()
+        requested = self._mutate(
+            "post",
+            f"/cases/{case_id}/docs/{document_id}/original/deletion-requests",
+            json={"reason": "Retain pending deletion request for cross-firm test"},
+        )
+        self.assertEqual(requested.status_code, 200, requested.text)
+        request_id = requested.json()["request_id"]
+
+        foreign_admin_id = self.runtime.create_global_identity(
+            "Firm B Original Admin", "firm-b-original-admin@example.test", app.hash_pw(self.password)
+        )
+        self.runtime.create_firm_membership(foreign_admin_id, self.firm_b, "admin")
+        foreign_client = TestClient(app.app)
+        try:
+            foreign_login = foreign_client.post(
+                "/login",
+                json={"email": "firm-b-original-admin@example.test", "password": self.password},
+            )
+            self.assertEqual(foreign_login.status_code, 200, foreign_login.text)
+            created_b = foreign_client.post(
+                "/cases",
+                json={"title": "Firm B Unrelated Matter"},
+                headers={"X-CSRF-Token": foreign_client.cookies.get("lc_csrf") or ""},
+            )
+            self.assertEqual(created_b.status_code, 200, created_b.text)
+            # Matching parent IDs prove that authorization depends on the selected
+            # firm database and document linkage, not on a globally guessed integer.
+            self.assertEqual(created_b.json()["id"], case_id)
+
+            base = f"/cases/{case_id}/docs/{document_id}/original"
+            csrf = foreign_client.cookies.get("lc_csrf") or ""
+            attempts = [
+                ("get", base, None),
+                ("post", base + "/legal-hold", {"reason": "foreign hold attempt"}),
+                ("post", base + "/legal-hold/release", {"reason": "foreign release attempt"}),
+                ("get", base + "/legal-hold/events", None),
+                ("post", base + "/deletion-requests", {"reason": "foreign deletion request"}),
+                ("get", base + "/deletion-requests", None),
+                (
+                    "post",
+                    base + f"/deletion-requests/{request_id}/approve",
+                    {"reason": "foreign approval attempt"},
+                ),
+            ]
+            for method, url, body in attempts:
+                with self.subTest(method=method, url=url):
+                    kwargs = {}
+                    if body is not None:
+                        kwargs["json"] = body
+                    if method == "post":
+                        kwargs["headers"] = {"X-CSRF-Token": csrf}
+                    response = getattr(foreign_client, method)(url, **kwargs)
+                    self.assertEqual(response.status_code, 404, response.text)
+        finally:
+            foreign_client.close()
+
+        original_row = firm_a_db.execute(
+            "SELECT legal_hold,state FROM original_file_objects WHERE document_id=? AND firm_id=?",
+            (document_id, self.firm_a),
+        ).fetchone()
+        self.assertEqual(original_row["legal_hold"], 0)
+        self.assertEqual(original_row["state"], "ready")
+        self.assertEqual(
+            firm_a_db.execute(
+                "SELECT status FROM original_file_deletion_requests WHERE id=? AND firm_id=?",
+                (request_id, self.firm_a),
+            ).fetchone()["status"],
+            "requested",
+        )
+        firm_b_context = self.runtime.resolve_context(foreign_admin_id, self.firm_b)
+        firm_b_db = self.runtime.firm_connection(firm_b_context)
+        self.assertEqual(
+            firm_b_db.execute("SELECT COUNT(*) FROM original_file_objects").fetchone()[0],
+            0,
+        )
+        self.assertEqual(
+            firm_b_db.execute("SELECT COUNT(*) FROM original_file_hold_events").fetchone()[0],
+            0,
+        )
+        self.assertEqual(
+            firm_b_db.execute("SELECT COUNT(*) FROM original_file_deletion_requests").fetchone()[0],
+            0,
+        )
+
     def test_original_file_deletion_requires_distinct_admin_and_legal_hold_cancels_it(self):
         import hashlib
         from original_file_storage import LocalPrivateObjectStore
