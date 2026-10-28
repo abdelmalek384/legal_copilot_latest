@@ -139,7 +139,6 @@ _t = _connection_provider._local
 _init_lock = threading.Lock()
 _schema_ready = False
 _active_firm_context = ContextVar("legal_copilot_active_firm_context", default=None)
-_active_tenant_connection = ContextVar("legal_copilot_active_tenant_connection", default=None)
 _database_runtime = None
 _database_runtime_lock = threading.Lock()
 
@@ -231,9 +230,7 @@ def conn():
     context = _active_firm_context.get()
     if not isinstance(context, FirmContext):
         raise HTTPException(401, "authenticated firm context required")
-    connection = get_database_runtime().firm_connection(context)
-    _active_tenant_connection.set(connection)
-    return connection
+    return get_database_runtime().firm_connection(context)
 
 
 def _ensure_legacy_firm_ownership(c):
@@ -1599,7 +1596,6 @@ async def security_headers(request: Request, call_next):
     nonce = secrets.token_urlsafe(18)
     request.state.csp_nonce = nonce
     context_token = _active_firm_context.set(None)
-    connection_token = _active_tenant_connection.set(None)
     try:
         try:
             retry_after = _rate_limit(request)
@@ -1629,7 +1625,6 @@ async def security_headers(request: Request, call_next):
             response = JSONResponse(status_code=500, content={"detail": "internal server error"})
     finally:
         _active_firm_context.reset(context_token)
-        _active_tenant_connection.reset(connection_token)
     # Tenant-scoped matter, identity, audit, and error responses must not persist in caches.
     response.headers["Cache-Control"] = "no-store"
     response.headers["Pragma"] = "no-cache"
@@ -2107,22 +2102,6 @@ def extract(name, data):
         raise HTTPException(415, "PDF or DOCX only")
     return "\n\n".join(parts)
 
-def _rollback_active_tenant_transaction():
-    """Roll back the exact tenant connection used by the failing handler."""
-    connection = _active_tenant_connection.get()
-    if connection is None:
-        try:
-            connection = conn()
-        except Exception:
-            return
-    try:
-        connection.rollback()
-    except Exception:
-        # Preserve the original route error; the release gate and tests detect
-        # any failed rollback through the resulting persisted state.
-        pass
-
-
 def rollback_tenant_transaction_on_error(func):
     """Roll back uncommitted firm-database writes when a route fails."""
     @wraps(func)
@@ -2130,10 +2109,18 @@ def rollback_tenant_transaction_on_error(func):
         try:
             return func(*args, **kwargs)
         except sqlite3.Error as exc:
-            _rollback_active_tenant_transaction()
+            try:
+                conn().rollback()
+            except Exception:
+                # The request may have failed before a firm context was available.
+                pass
             raise HTTPException(503, "database write unavailable") from exc
         except Exception:
-            _rollback_active_tenant_transaction()
+            try:
+                conn().rollback()
+            except Exception:
+                # The request may have failed before a firm context was available.
+                pass
             raise
     wrapped._rollback_transaction_domain = "tenant"
     return wrapped
