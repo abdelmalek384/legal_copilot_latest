@@ -98,3 +98,16 @@ The provisional inventory now contains **142 cards**, extending coverage through
 
 Focused tests were added for the 13 cards, but have not been executed. Keep `search_eligible=false`. The article summaries remain provisional: verify exact official Gazette wording and pinpoints, later amendments, implementing rules, case law, reuse rights, and qualified Egyptian-lawyer review before authoritative use. Next coverage tranche should continue through Articles 201 onward on collective-agreement registration, enforcement, collective disputes, conciliation/mediation/arbitration, strikes/lockouts, and related rules, while separately deepening implementing-decision crosswalks from public full-text alternatives.
 
+## Evidence-card expansion — collective agreements and dispute resolution (2026-10-28)
+
+The provisional inventory now contains **172 cards**, extending through accompanying-law Article 230. Added coverage:
+
+- **Arts. 201–214:** Arabic-language controlling text; renewal timing and extension; filing and administrative objection; challenge to refusal to register; workplace display; joining; register updates; good-faith performance; unforeseen hardship; enforcement and compensation; union/employer-organization actions for members; dispute procedures; scope of collective disputes; and the one-month negotiation threshold for requesting conciliation.
+- **Arts. 215–230:** conciliation hearing deadlines and settlement documentation; referral to mediation/arbitration; mediation/arbitration centre structure; mediator/arbitrator lists and eligibility; selection and replacement deadlines; mediator tasks and recommendations; arbitration composition, submission, award deadlines and review.
+
+The text summaries were cross-checked against the publicly accessible Law Hub transcription at https://lawhub.info/eg/?p=11848, while retaining the Amiri Press searchable-text and government-hosted Official Gazette PDF as primary-source leads. The Amiri Press page intermittently failed to open during this task; the secondary text was used as an access fallback, not as a claimed official or licensed source. The inferred Gazette page map is Arts. 201–205 p.78/index 76; 206–212 p.79/index 77; 213–217 p.80/index 78; 218–222 p.81/index 79; 223–228 p.82/index 80; 229–230 p.83/index 81. These pinpoints have not been visually verified page by page. No PDF hash is claimed.
+
+Tests were added for Arts. 201–230 but have not been run. Keep authoritative retrieval disabled. Particularly for procedural deadlines and arbitration, the summaries are research leads only and must not be used to calculate or advise on a live matter until official text, applicable implementing decisions, current procedural rules, the actual case record and qualified Egyptian-lawyer review are checked.
+
+**Next tranche:** continue with Arts. 231 onward (arbitration review, strikes, lockouts and subsequent collective-labour rules), and continue looking for accessible full-text alternatives for implementing decisions rather than looping on restricted Gazette download buttons. No access controls have been bypassed.
+
