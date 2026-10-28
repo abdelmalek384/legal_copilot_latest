@@ -187,7 +187,7 @@ class TenancyCommandTests(unittest.TestCase):
                 "law": "Synthetic Test Law", "article": "1",
                 "text": "Synthetic article text for staging only.",
                 "source": "synthetic-test",
-            }) + "\\n",
+            }) + "\n",
             encoding="utf-8",
         )
         result = self.run_manage("importlaws", str(source))
@@ -220,7 +220,7 @@ class TenancyCommandTests(unittest.TestCase):
         source = self.root / "blocked-law-rows.jsonl"
         source.write_text(json.dumps({
             "law": "Must Not Be Imported", "article": "1", "text": "blocked",
-        }) + "\\n", encoding="utf-8")
+        }) + "\n", encoding="utf-8")
         env = self.env.copy()
         env["COPILOT_DB"] = str(self.root / "legacy.sqlite3")
         result = subprocess.run(
