@@ -27,6 +27,9 @@ class TenancyCommandTests(unittest.TestCase):
             "COPILOT_CORPUS_DB": str(self.root / "corpus.sqlite3"),
             "PYTHONPATH": str(ROOT),
         })
+        # The workflow may set COPILOT_DB for legacy unit tests; these CLI
+        # integration tests intentionally exercise only the fresh-install profiles.
+        self.env.pop("COPILOT_DB", None)
         self.runtime = DatabaseRuntime(
             self.env["COPILOT_CONTROL_DB"],
             self.env["COPILOT_TENANT_DB_ROOT"],
@@ -174,6 +177,64 @@ class TenancyCommandTests(unittest.TestCase):
             1,
         )
 
+
+    def test_importlaws_stages_rows_only_in_shared_legal_corpus(self):
+        import json
+
+        source = self.root / "synthetic-law-rows.jsonl"
+        source.write_text(
+            json.dumps({
+                "law": "Synthetic Test Law", "article": "1",
+                "text": "Synthetic article text for staging only.",
+                "source": "synthetic-test",
+            }) + "\\n",
+            encoding="utf-8",
+        )
+        result = self.run_manage("importlaws", str(source))
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn("staged for legal review: 1", result.stdout)
+
+        corpus = self.runtime.legal_corpus_connection()
+        self.assertEqual(
+            corpus.execute(
+                "SELECT law,article,text FROM legal_import_staging WHERE law='Synthetic Test Law'"
+            ).fetchall()[0][:],
+            ("Synthetic Test Law", "1", "Synthetic article text for staging only."),
+        )
+        self.assertEqual(corpus.execute(
+            "SELECT COUNT(*) FROM chunks WHERE text='Synthetic article text for staging only.'"
+        ).fetchone()[0], 0)
+        firm_db = self.runtime.firm_connection(
+            self.runtime.resolve_context(self.user_id, self.firm_a)
+        )
+        firm_tables = {
+            row[0] for row in firm_db.execute(
+                "SELECT name FROM sqlite_master WHERE type='table'"
+            )
+        }
+        self.assertNotIn("legal_import_staging", firm_tables)
+
+    def test_importlaws_refuses_legacy_shared_database_configuration(self):
+        import json
+
+        source = self.root / "blocked-law-rows.jsonl"
+        source.write_text(json.dumps({
+            "law": "Must Not Be Imported", "article": "1", "text": "blocked",
+        }) + "\\n", encoding="utf-8")
+        env = self.env.copy()
+        env["COPILOT_DB"] = str(self.root / "legacy.sqlite3")
+        result = subprocess.run(
+            [sys.executable, str(MANAGE), "importlaws", str(source)],
+            cwd=ROOT, env=env, text=True, capture_output=True, timeout=60, check=False,
+        )
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("legacy shared database", result.stderr)
+        self.assertEqual(
+            self.runtime.legal_corpus_connection().execute(
+                "SELECT COUNT(*) FROM legal_import_staging WHERE law='Must Not Be Imported'"
+            ).fetchone()[0],
+            0,
+        )
 
     def test_init_tenancy_bootstraps_a_clean_install_without_platform_privileges(self):
         fresh = self.root / "fresh-bootstrap"
