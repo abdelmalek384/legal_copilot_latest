@@ -77,3 +77,6 @@ Further targeted text review on 2026-10-28 covered printed page 52 (Articles 117
 
 
 Further targeted extracted-text review on 2026-10-28 covered printed pages 68–70 (Article 165: compensation for unlawful termination of an indefinite-term contract) and pages 73–74 (Article 177: specialized labour-court jurisdiction). These are provisional summaries and do not certify currentness or substitute for counsel review.
+
+
+Further targeted extracted-text review on 2026-10-28 covered printed pages 61–62 (Article 141: disciplinary investigation and reasoned decisions) and pages 63–64 (Article 148: dismissal authority and gross-misconduct conditions). These are provisional summaries; the full legal context and counsel review remain pending.

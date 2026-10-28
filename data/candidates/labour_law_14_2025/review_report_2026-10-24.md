@@ -80,3 +80,6 @@ Further targeted extracted-text review on 2026-10-28 covered printed page 52 (Ar
 
 
 Further targeted extracted-text review on 2026-10-28 covered printed pages 68–70 (Article 165) and 73–74 (Article 177). This adds termination-compensation and court-jurisdiction provisions to the provisional review seed while preserving all pending verification and permission flags.
+
+
+Further targeted extracted-text review on 2026-10-28 covered printed pages 61–62 (Article 141) and 63–64 (Article 148). These additions document disciplinary procedure and dismissal conditions while preserving pending legal-status, amendment-history, permission and lawyer-review flags.
