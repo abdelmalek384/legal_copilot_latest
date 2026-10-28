@@ -86,3 +86,6 @@ Further targeted extracted-text review on 2026-10-28 covered printed pages 61–
 
 
 Further targeted extracted-text review on 2026-10-28 covered printed pages 52–53 for Article 120 (weekly rest). This extends the provisional knowledge seed without changing pending legal-status, amendment-history, permission or lawyer-review flags.
+
+
+Further targeted extracted-text review on 2026-10-28 covered Articles 118–119 (printed page 52) and Article 122 (printed pages 53–54), adding break-period, daily-presence-span and schedule-posting rules to the provisional seed.
