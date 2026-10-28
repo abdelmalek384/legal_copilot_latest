@@ -1,0 +1,473 @@
+{
+  "schema_version": "1.0",
+  "record_id": "EG-LABOUR-LAW-14-2025-EVIDENCE-CARDS-2026-10-28",
+  "purpose": "Small, source-linked, paraphrased research cards for human review. This is not a verified/current-law corpus and must not be activated for authoritative legal retrieval.",
+  "created_on": "2026-10-28",
+  "jurisdiction": "Egypt",
+  "language": "ar",
+  "instrument": {
+    "document_id": "EG-LABOUR-LAW-14-2025",
+    "official_title": "قانون رقم 14 لسنة 2025 بإصدار قانون العمل",
+    "gazette_issue": "الجريدة الرسمية، العدد 18 (تابع)",
+    "publication_date": "2025-05-03",
+    "legal_status": "under_review",
+    "authenticity_verified": false,
+    "currentness_verified": false,
+    "amendment_history_verified": false,
+    "egyptian_lawyer_review": "pending",
+    "collection_permission": "unknown",
+    "commercial_reuse_permission": "unknown",
+    "search_eligible": false
+  },
+  "source_method_note": "Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF has not been downloaded, hashed, or visually inspected; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording.",
+  "cards": [
+    {
+      "card_id": "EG-LABOUR-14-2025-PROMULGATION-ART-1-SCOPE",
+      "question": "What scope exclusions does the promulgation text identify?",
+      "provisional_answer_ar": "تنص المادة الأولى من مواد الإصدار على استثناء فئات، من بينها العاملون بأجهزة الدولة وعمال الخدمة المنزلية ومن في حكمهم، مع مراعاة ما قد يرد بنص خاص. لا تستخدم هذه الخلاصة لتقرير انطباق القانون على حالة فردية دون فحص النص الكامل والاستثناءات ذات الصلة.",
+      "pinpoint": {
+        "part": "مواد الإصدار",
+        "article": "المادة الأولى",
+        "official_gazette_printed_page": 2,
+        "pdf_page_index_zero_based": 0
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "عنوان القانون ونص مواد الإصدار؛ صفحة النص قابلة للبحث",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص الصفحة المطبوعة 2؛ لم يُنزّل الملف أو يُفحص بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://natlex.ilo.org/dyn/natlex2/r/natlex/fe/results?clear=2&p2_country_filter=EGY&p2_home_flag=Y",
+          "source_type": "international legislation index",
+          "supports": "بيانات تعريف القانون وتاريخ النفاذ المعلن؛ ليس بديلاً عن النص الرسمي"
+        }
+      ],
+      "limitations": [
+        "لا يحسم جميع الاستثناءات أو قوانين الفئات الخاصة",
+        "لم تُراجع تعديلات لاحقة أو أحكام انتقالية لكل حالة",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "final advice, definitive scope decision, or authoritative retrieval"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-PROMULGATION-ART-12-REPEALS",
+      "question": "Which prior laws are expressly named in the repeal clause?",
+      "provisional_answer_ar": "تذكر المادة 12 من مواد الإصدار إلغاء قانون العمل رقم 12 لسنة 2003 والقانون رقم 125 لسنة 2010 بشأن مرتبة امتياز حقوق العمال، إلى جانب الأحكام المخالفة. يجب التحقق من الأثر الزمني والأحكام الانتقالية وأي تشريعات لاحقة قبل وصف الحالة القانونية الحالية.",
+      "pinpoint": {
+        "part": "مواد الإصدار",
+        "article": "المادة 12",
+        "official_gazette_printed_page": 5,
+        "pdf_page_index_zero_based": 3
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "نص المادة 12 ضمن مواد الإصدار",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص الصفحة المطبوعة 5؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://www.loc.gov/item/global-legal-monitor/2025-07-25/egypt-labor-law-updated/",
+          "source_type": "Library of Congress legal update",
+          "supports": "يذكر أن القانون الجديد حل محل قانون العمل 12/2003؛ مصدر ثانوي للمقارنة"
+        }
+      ],
+      "limitations": [
+        "لا تمثل هذه البطاقة شهادة كاملة بعدم وجود تعديلات لاحقة",
+        "لا تغني عن مراجعة النصوص الانتقالية أو التطبيق الزمني",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "final opinion on current status of every repealed instrument"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-PROMULGATION-ART-13-COMMENCEMENT",
+      "question": "What commencement dates are stated for the law and specialized labour courts?",
+      "provisional_answer_ar": "تضع المادة 13 قاعدة نفاذ عامة محسوبة من تاريخ النشر، وتذكر موعداً منفصلاً للمحاكم العمالية المتخصصة. تسجل المراجع المقارنة 1 سبتمبر 2025 للنفاذ العام و1 أكتوبر 2025 للمحاكم المتخصصة؛ يلزم مراجعة النص الرسمي الكامل والأحكام الانتقالية قبل حساب أثرهما على نزاع محدد.",
+      "pinpoint": {
+        "part": "مواد الإصدار",
+        "article": "المادة 13",
+        "official_gazette_printed_page": 5,
+        "pdf_page_index_zero_based": 3
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "قاعدة النفاذ بالمادة 13",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص الصفحة المطبوعة 5؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://natlex.ilo.org/dyn/natlex2/r/natlex/fe/results?clear=2&p2_country_filter=EGY&p2_home_flag=Y",
+          "source_type": "ILO NATLEX legislation index",
+          "supports": "يورد 2025-09-01 كتاريخ نفاذ"
+        },
+        {
+          "url": "https://www.loc.gov/item/global-legal-monitor/2025-07-25/egypt-labor-law-updated/",
+          "source_type": "Library of Congress legal update",
+          "supports": "يورد 2025-09-01 للنفاذ العام و2025-10-01 للمحاكم المتخصصة"
+        }
+      ],
+      "limitations": [
+        "الأحكام الانتقالية قد تغير النتيجة في قضية بعينها",
+        "لا يوجد بحث شامل موثق عن جميع التعديلات أو أحكام التأجيل اللاحقة",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "timeline research lead",
+      "not_usable_for": "automated deadline calculation or final temporal-law advice"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-89-WRITTEN-CONTRACT",
+      "question": "What does Article 89 say about documenting an employment contract?",
+      "provisional_answer_ar": "تتطلب المادة 89 عقد عمل مكتوباً باللغة العربية من أربع نسخ وتحدد الجهات التي تحتفظ بكل نسخة، كما تسرد بيانات أساسية للعقد. وتسمح بإثبات علاقة العمل ومدتها والحقوق المرتبطة بها بطرق الإثبات كافة عند غياب العقد المكتوب. تنطبق التفاصيل والاستثناءات وفق النص الكامل.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 89",
+        "official_gazette_printed_page": 43,
+        "pdf_page_index_zero_based": 41
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "النص الرسمي القابل للبحث؛ تحقق موضعي مطلوب عند التطبيق",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص الصفحة المطبوعة 43؛ لم يُنزّل الملف أو يُفحص بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf",
+          "source_type": "ILO NATLEX-hosted legal text",
+          "supports": "نص عربي متاح للمقارنة؛ شروط إعادة الاستخدام غير مثبتة في هذه البطاقة"
+        }
+      ],
+      "limitations": [
+        "لم تتم مقارنة المادة كاملة حرفياً مع صورة الجريدة الرسمية",
+        "لا يقرر النص وحده نتيجة النزاع أو عبء الإثبات في كل واقعة",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "final advice or authoritative retrieval"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-90-PROBATION",
+      "question": "What is the statutory maximum probation period stated in Article 90?",
+      "provisional_answer_ar": "تحدد المادة 90 فترة الاختبار بحد أقصى ثلاثة أشهر، وتنص على عدم تعيين العامل تحت الاختبار أكثر من مرة لدى صاحب عمل واحد.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 90",
+        "official_gazette_printed_page": 43,
+        "pdf_page_index_zero_based": 41
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "النص الرسمي القابل للبحث؛ تحقق موضعي مطلوب عند التطبيق",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص الصفحة المطبوعة 43؛ لم يُنزّل الملف أو يُفحص بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf",
+          "source_type": "ILO NATLEX-hosted legal text",
+          "supports": "نص عربي متاح للمقارنة؛ شروط إعادة الاستخدام غير مثبتة في هذه البطاقة"
+        }
+      ],
+      "limitations": [
+        "لم تتم مقارنة المادة كاملة حرفياً مع صورة الجريدة الرسمية",
+        "قد توجد قرارات تنفيذية أو وقائع تؤثر في التطبيق ولا تغطيها البطاقة",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "final advice or authoritative retrieval"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-117-ORDINARY-HOURS",
+      "question": "What ordinary actual working-hour limits does Article 117 state?",
+      "provisional_answer_ar": "تضع المادة 117 حداً عاماً للعمل الفعلي لا يتجاوز ثماني ساعات يومياً أو ثمانياً وأربعين ساعة أسبوعياً، مع استبعاد فترات الطعام والراحة، وتجيز تخفيض الحدود لبعض الفئات أو الأعمال بقرار من الوزير المختص. يجب فحص القرارات الخاصة وأي استثناء منطبق قبل حساب الساعات في واقعة محددة.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 117",
+        "official_gazette_printed_page": 52,
+        "pdf_page_index_zero_based": 50
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "النص الرسمي القابل للبحث؛ مراجعة موضعية لا تمثل فحصاً بصرياً للصفحة",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص الصفحة المطبوعة 52؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted official Gazette PDF search result",
+          "supports": "يعرض نص المادة 117 على الصفحة المطبوعة 52"
+        }
+      ],
+      "limitations": [
+        "قد توجد قرارات وزارية أو استثناءات خاصة تؤثر في الحد العام",
+        "لا توجد مراجعة محامٍ مسجلة أو شهادة اكتمال للتشريعات المنفذة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "automated overtime calculation or final advice"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-124-ANNUAL-LEAVE",
+      "question": "What annual paid-leave entitlement tiers does Article 124 list?",
+      "provisional_answer_ar": "تسرد المادة 124 إجازة سنوية مدفوعة مقدارها 15 يوماً في السنة الأولى، و21 يوماً ابتداءً من السنة الثانية، و30 يوماً لمن أمضى عشر سنوات لدى صاحب عمل أو أكثر أو تجاوز الخمسين، و45 يوماً للأشخاص ذوي الإعاقة والأقزام. كما تضع قاعدة تناسبية لمن تقل خدمته عن سنة بشرط خدمة ستة أشهر على الأقل، وتقرر زيادة سبعة أيام للأعمال الخطرة أو المضرة بالصحة أو المناطق النائية التي يحددها قرار وزاري.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 124",
+        "official_gazette_printed_page": 54,
+        "pdf_page_index_zero_based": 52
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "النص الرسمي القابل للبحث؛ تم فحص استخراج النص لهذه المادة، لا صورة الصفحة",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص الصفحة المطبوعة 54؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://sis.gov.eg/media/760267/%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86-%D8%B1%D9%82%D9%85-14-%D9%84%D8%B3%D9%86%D8%A9-2025-%D8%A8%D8%A5%D8%B5%D8%AF%D8%A7%D8%B1-%D9%82%D8%A7%D9%86%D9%88%D9%86-%D8%A7%D9%84%D8%B9%D9%85%D9%84.pdf",
+          "source_type": "government-hosted official Gazette PDF",
+          "supports": "يعرض مواد الإجازات على الصفحات المطبوعة 54–55"
+        },
+        {
+          "url": "https://www.loc.gov/item/global-legal-monitor/2025-07-25/egypt-labor-law-updated/",
+          "source_type": "Library of Congress legal update",
+          "supports": "سياق تشريعي عام؛ لا يعتمد عليه وحده لحساب استحقاق فردي"
+        },
+        {
+          "url": "https://dspace.id.com.eg/items/f32b4a07-6598-4ed8-a170-60d631a57221",
+          "source_type": "Official Gazette issue metadata hosted by IDSC",
+          "supports": "Issue metadata dated 2026-03-18 identifies the supplement to issue 64 and lists Decision 49/2026; not a substitute for the full instrument."
+        }
+      ],
+      "limitations": [
+        "الزيادة الإضافية تتوقف على قرار يحدد الأعمال/المناطق المعنية",
+        "لا توجد مراجعة محامٍ مسجلة ولا تحقق شامل من القرارات اللاحقة",
+        "Decision 49/2026 is a relevant implementation candidate, but its full decision text, Gazette publication, schedules, effective date, and currentness remain unverified.",
+        "Official Gazette issue metadata now identifies Decision 49/2026 in the supplement to issue 64 dated 2026-03-18; the operative schedules, page range, effective date, and eligibility criteria still need authorized review."
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "final leave balance or payroll determination",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-DECISION-49-2026",
+          "title_ar": "قرار وزير العمل رقم 49 لسنة 2026 بشأن تحديد الأعمال الخطرة والصعبة والمناطق النائية التي يستحق العاملون فيها زيادة الإجازة السنوية سبعة أيام",
+          "relationship": "possible implementing instrument under Article 124",
+          "source_url": "https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%84%D8%AA%D8%AD%D9%82%D9%82-%D8%A7%D9%84%D8%AA%D9%88%D8%A7%D8%B2%D9%86-%D8%A8%D9%8A%D9%86-%D9%85%D8%AA%D8%B7%D9%84%D8%A8%D8%A7%D8%AA-%D8%A7%D9%84%D8%A5%D9%86%D8%AA%D8%A7%D8%AC-%D9%88%D8%B5%D9%88%D9%86-%D8%AD%D9%82%D9%88%D9%82-%D8%A7%D9%84%D9%82%D9%88%D9%89-%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D9%84%D8%A9-%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D9%8A%D8%B5%D8%AF%D8%B1-%D9%82%D8%B1%D8%A7%D8%B1-%D8%A7-%D9%88%D8%B2%D8%A7%D8%B1%D9%8A-%D8%A7-%D8%A8%D8%AA%D8%AD%D8%AF%D9%8A%D8%AF-%D8%A7%D9%84%D8%A3%D8%B9%D9%85%D8%A7%D9%84-%D8%A7%D9%84%D8%AE%D8%B7%D8%B1%D8%A9-%D9%88%D8%A7%D9%84%D9%85%D9%86%D8%A7%D8%B7%D9%82-%D8%A7%D9%84%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D8%A7%D9%84%D8%AA%D9%8A-%D8%AA-%D8%B2%D8%A7%D8%AF-%D9%81%D9%8A%D9%87%D8%A7-%D8%A7%D9%84%D8%A5%D8%AC%D8%A7%D8%B2%D8%A7%D8%AA-%D8%A7%D9%84%D8%B3%D9%86%D9%88%D9%8A%D8%A9-7-%D8%A3%D9%8A%D8%A7%D9%85-%D9%84%D9%84%D8%B9%D8%A7%D9%85%D9%84%D9%8A%D9%86/",
+          "status": "discovery_only; Official Gazette issue metadata found for issue 64 supplement dated 2026-03-18, but full decision text, page range, operative schedules, commencement, currentness, and reuse permission remain unverified",
+          "note": "Do not determine eligibility for the additional seven days from Article 124 alone; obtain and review the full decision, its schedules, effective date, and current status.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/f32b4a07-6598-4ed8-a170-60d631a57221",
+            "item_metadata_url": "https://dspace.id.com.eg/items/6e700208-61d6-4beb-8629-19fa7b6195fb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 64 تابع",
+            "publication_date": "2026-03-18",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "The issue abstract explicitly lists Ministerial Decision 49/2026 and describes its subject as hazardous/arduous work and remote areas qualifying for seven additional annual-leave days.",
+            "full_text_status": "An item record lists Arabic and English PDF files, but no original file has been downloaded, hashed, visually inspected, or fully compared with the Gazette issue in this task.",
+            "reuse_terms_status": "Source register records restrictions on commercial exploitation and systematic database compilation absent written permission; do not download, index, or republish the PDF without authorization."
+          }
+        }
+      ]
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-165-UNLAWFUL-TERMINATION",
+      "question": "What minimum compensation does Article 165 state for unlawful termination of an indefinite-term contract?",
+      "provisional_answer_ar": "تنص المادة 165 على حق العامل في تعويض عن الضرر عند إنهاء صاحب العمل عقداً غير محدد المدة لسبب غير مشروع، بحد أدنى يعادل أجر شهرين عن كل سنة خدمة، مع عدم الإخلال بباقي الحقوق القانونية. وتورد المادة أمثلة لأسباب غير مشروعة؛ تحديد الانطباق يتطلب الوقائع والنص الكامل ومراجعة محامٍ.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 165",
+        "official_gazette_printed_page": 69,
+        "pdf_page_index_zero_based": 67
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "استخراج نص المادة 165 على الصفحة المطبوعة 69؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص الصفحة المطبوعة 69؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted official Gazette PDF search result",
+          "supports": "يعرض نص المادة 165 وتعويض الإنهاء غير المشروع"
+        }
+      ],
+      "limitations": [
+        "يعتمد الاستحقاق على كون العقد غير محدد المدة ووجود سبب غير مشروع وفق القانون",
+        "يجب فحص الوقائع والأحكام الأخرى والتعديلات أو القرارات ذات الصلة",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "settlement valuation, case prediction, or final legal advice"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-129-PAID-HOLIDAYS",
+      "question": "What does Article 129 provide when a worker is required to work on a designated paid holiday?",
+      "provisional_answer_ar": "تقرر المادة 129 إجازة بأجر في العطلات والأعياد والمناسبات التي يحددها قرار من الوزير المختص، مع قاعدة خاصة للأعياد الدينية لغير المسلمين. وإذا اقتضت ظروف العمل تشغيل العامل في هذه الأيام، يستحق بالإضافة إلى أجر اليوم مثلي هذا الأجر، أو يوماً آخر عوضاً عنه بناءً على طلب كتابي من العامل يُودع في ملفه. تحديد الأيام المشمولة يتطلب مراجعة القرار الوزاري ذي الصلة.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 129",
+        "official_gazette_printed_page": 56,
+        "pdf_page_index_zero_based": 54
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "النص الرسمي القابل للبحث؛ يلزم التحقق الموضعي عند التطبيق",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص الصفحة المطبوعة 56؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted official Gazette PDF search result",
+          "supports": "يعرض المادة 129 والقاعدة الخاصة بالعمل في العطلات"
+        },
+        {
+          "url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc",
+          "source_type": "Official Gazette issue metadata hosted by IDSC",
+          "supports": "Issue metadata dated 2025-12-25 identifies Amiri Press as publisher and explicitly lists Decision 294/2025; not a substitute for the full instrument."
+        }
+      ],
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-DECISION-294-2025",
+          "title_ar": "قرار وزير العمل رقم 294 لسنة 2025 بشأن تحديد العطلات والأعياد والمناسبات التي تعتبر إجازة بأجر كامل للعمال",
+          "relationship": "possible implementing instrument under Article 129",
+          "source_url": "https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A7%D9%84%D8%A3%D8%B1%D8%A8%D8%B9%D8%A7%D8%A1-%D8%A7%D9%84%D9%85%D9%82%D8%A8%D9%84-%D8%A5%D8%AC%D8%A7%D8%B2%D8%A9-%D9%85%D8%AF%D9%81%D9%88%D8%B9%D8%A9-%D8%A7%D9%84%D8%A3%D8%AC%D8%B1-%D9%84%D9%84%D8%B9%D8%A7%D9%85%D9%84%D9%8A%D9%86-%D8%A8%D8%A7%D9%84%D9%82%D8%B7%D8%A7%D8%B9-%D8%A7%D9%84%D8%AE%D8%A7%D8%B5-%D8%A8%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%A9-%D8%B9%D9%8A%D8%AF-%D8%A7%D9%84%D9%85%D9%8A%D9%84%D8%A7%D8%AF-%D8%A7%D9%84%D9%85%D8%AC%D9%8A%D8%AF-%D8%AC%D8%A8%D8%B1%D8%A7%D9%86-%D9%88%D8%AD%D8%AF%D8%A9-%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D9%8A%D9%86-%D9%88%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A7%D9%84%D9%85%D8%B4%D8%AA%D8%B1%D9%83-%D8%A3%D8%B3%D8%A7%D8%B3-%D9%82%D9%88%D8%A9-%D8%A7%D9%84%D9%88%D8%B7%D9%86/",
+          "status": "discovery_only; Official Gazette issue metadata found for issue 291 supplement dated 2025-12-25, but full decision text, page range, commencement, currentness, and reuse permission remain unverified",
+          "note": "Do not present a complete holiday list until Decision 294/2025 is obtained and reviewed.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc",
+            "source_type": "Amiri Press Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 291 (تابع)",
+            "publication_date": "2025-12-25",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "The repository abstract explicitly lists Ministerial Decision 294/2025 among the contents of this issue.",
+            "full_text_status": "The record lists a PDF through a request-a-copy workflow; the full decision text has not been obtained or page-reviewed.",
+            "reuse_terms_status": "The source register records IDSC terms as personal non-commercial use and bars commercial exploitation/systematic database compilation without written permission; do not acquire or republish the PDF absent authorization."
+          }
+        }
+      ],
+      "limitations": [
+        "قائمة العطلات نفسها لا ترد كاملة في هذه البطاقة وتحتاج إلى القرار الوزاري",
+        "لم يُثبت الوضع الحالي أو التعديلات أو الشروط التنفيذية للقرار 294/2025",
+        "لا توجد مراجعة محامٍ مسجلة",
+        "Official Gazette issue metadata now identifies Decision 294/2025 in the supplement to Egyptian Gazette issue 291 dated 2025-12-25; exact page range and operative text still need an authorized review."
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "complete holiday calendar, payroll calculation, or final advice"
+    }
+  ],
+  "activation_gates": [
+    "Download and preserve the exact Official Gazette PDF through an authorized route; record its SHA-256 and visually inspect each cited page.",
+    "Complete a full article-by-article comparison of all 311 candidate records against the Official Gazette.",
+    "Review amendments, implementing instruments, transitional rules, and current legal effect as of the requested date.",
+    "Resolve source-specific collection, indexing, display, and commercial-use terms; do not infer permission from public access.",
+    "Obtain documented qualified Egyptian-lawyer review for each card and record reviewer identity, date, scope, and decision.",
+    "Only then create retrieval-eligible chunks with exact page/article citations."
+  ]
+}
