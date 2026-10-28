@@ -86,3 +86,6 @@ Further targeted extracted-text review on 2026-10-28 covered printed pages 52–
 
 
 Further targeted extracted-text review on 2026-10-28 covered printed page 52 (Articles 118–119: meal/rest breaks and daily presence span) and printed pages 53–54 (Article 122: posted work schedule and notice of changes). These summaries remain provisional and require counsel review.
+
+
+Further targeted extracted-text review on 2026-10-28 covered printed page 55 for Article 129 (paid holidays and compensation if work is required on those days). The specific ministerial or cabinet decision designating a holiday must be verified for each query.
