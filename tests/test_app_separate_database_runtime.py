@@ -1174,6 +1174,47 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertFalse(result["possible_conflict"])
         self.assertFalse(result["admin_review_required"])
 
+    def test_conflict_check_returns_only_generic_warning_for_same_firm_hidden_case(self):
+        owner_login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(owner_login.status_code, 200, owner_login.text)
+        created = self._mutate(
+            "post",
+            "/cases",
+            json={
+                "title": "PRIVATE_HIDDEN_CONFLICT_CASE_TITLE",
+                "opposing_party": "PRIVATE_HIDDEN_CONFLICT_OPPOSING_PARTY",
+            },
+        )
+        self.assertEqual(created.status_code, 200, created.text)
+
+        nonmember_id = self.runtime.create_global_identity(
+            "Conflict Nonmember", "conflict-nonmember@example.test", app.hash_pw(self.password)
+        )
+        self.runtime.create_firm_membership(nonmember_id, self.firm_a, "lawyer")
+        nonmember_client = TestClient(app.app)
+        try:
+            login = nonmember_client.post(
+                "/login",
+                json={"email": "conflict-nonmember@example.test", "password": self.password},
+            )
+            self.assertEqual(login.status_code, 200, login.text)
+            response = nonmember_client.post(
+                "/conflicts",
+                json={"q": "PRIVATE_HIDDEN_CONFLICT_OPPOSING_PARTY"},
+                headers={"X-CSRF-Token": nonmember_client.cookies.get("lc_csrf") or ""},
+            )
+            self.assertEqual(response.status_code, 200, response.text)
+            result = response.json()
+            self.assertEqual(result["matches"], [])
+            self.assertTrue(result["possible_conflict"])
+            self.assertTrue(result["admin_review_required"])
+            self.assertNotIn("PRIVATE_HIDDEN_CONFLICT_CASE_TITLE", response.text)
+            self.assertNotIn("PRIVATE_HIDDEN_CONFLICT_OPPOSING_PARTY", response.text)
+        finally:
+            nonmember_client.close()
+
     def test_platform_reviewer_role_guards_all_shared_corpus_review_reads(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
