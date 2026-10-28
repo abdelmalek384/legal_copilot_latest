@@ -303,16 +303,27 @@ class IdentityLifecycleTests(unittest.TestCase):
         )
         self.runtime.create_firm_membership(user_id, self.firm_a, "lawyer")
         request = app.RecoveryRequestIn(email="distributed-recovery@example.test")
-        with patch.object(app, "_send_identity_link") as send:
-            responses = [
-                app.request_account_recovery(
-                    request,
-                    SimpleNamespace(client=SimpleNamespace(host=f"192.0.2.{index}")),
-                )
-                for index in range(1, 7)
-            ]
-        self.assertTrue(all(response == app._identity_recovery_generic_response() for response in responses))
-        self.assertEqual(send.call_count, 5)
+        # Model two independent application workers with separate runtime objects
+        # and SQLite connections pointing at the same control-plane database.
+        worker_two = DatabaseRuntime.from_env()
+        worker_two.initialize()
+        responses = []
+        original_runtime = app._database_runtime
+        try:
+            with patch.object(app, "_send_identity_link") as send:
+                for index in range(1, 7):
+                    app._database_runtime = self.runtime if index % 2 else worker_two
+                    responses.append(app.request_account_recovery(
+                        request,
+                        SimpleNamespace(client=SimpleNamespace(host=f"192.0.2.{index}")),
+                    ))
+            self.assertTrue(all(
+                response == app._identity_recovery_generic_response() for response in responses
+            ))
+            self.assertEqual(send.call_count, 5)
+        finally:
+            app._database_runtime = original_runtime
+            worker_two.close_current_thread()
         control = self.runtime.control_connection()
         rate_limit = control.execute(
             "SELECT hits FROM api_rate_limit_windows WHERE bucket='identity_recovery_email' "
