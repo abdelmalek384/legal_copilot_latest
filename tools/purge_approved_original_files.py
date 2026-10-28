@@ -75,14 +75,63 @@ def purge_approved_requests(
     operator_user_id: int,
     *,
     apply: bool,
+    control_database_path: str | Path,
+    tenant_root: str | Path,
+    corpus_database_path: str | Path,
 ) -> dict:
-    """Purge approved requests while holding a tenant write transaction.
+    """Purge approved requests only after revalidating the trusted offboarding gate.
 
     Filesystem deletion cannot be rolled back. If the process stops after unlink but
     before SQLite commit, the request remains approved and the missing object requires
     manual review; this function never infers that an absent file was safely purged.
+    The authority checks live here as well as in the CLI so an internal caller cannot
+    bypass disabled-firm, active-platform-admin, or clean-preflight requirements.
     """
+    if isinstance(firm_id, bool) or not isinstance(firm_id, int) or firm_id <= 0:
+        raise ValueError("firm_id must be a positive integer")
+    if (isinstance(operator_user_id, bool) or not isinstance(operator_user_id, int)
+            or operator_user_id <= 0):
+        raise ValueError("operator_user_id must be a positive integer")
     database_path = Path(database_path)
+    control_path = Path(control_database_path)
+    tenant_root_path = Path(tenant_root)
+    corpus_path = Path(corpus_database_path)
+
+    control = _read_only(control_path)
+    try:
+        initialize_catalog(control)
+        if not _eligible_operator(control, operator_user_id):
+            raise RuntimeError("Purge operator must be an active platform administrator")
+        firm = control.execute("SELECT status FROM firms WHERE id=?", (firm_id,)).fetchone()
+        catalog = control.execute(
+            "SELECT status FROM tenant_database_catalog WHERE firm_id=?", (firm_id,)
+        ).fetchone()
+        if firm is None or firm["status"] != "disabled":
+            raise RuntimeError("Firm must be disabled before original-file purge")
+        if catalog is None or catalog["status"] != "disabled":
+            raise RuntimeError("Tenant catalog entry must be disabled before original-file purge")
+        active_memberships = int(control.execute(
+            "SELECT COUNT(*) FROM firm_memberships fm JOIN users u ON u.id=fm.user_id "
+            "WHERE fm.firm_id=? AND fm.status='active' AND u.status='active'",
+            (firm_id,),
+        ).fetchone()[0])
+        if active_memberships:
+            raise RuntimeError("Active firm memberships must be revoked before original-file purge")
+        trusted_database_path = resolve_tenant_database_for_maintenance(
+            control, firm_id, tenant_root_path
+        )
+    finally:
+        control.close()
+
+    if database_path.resolve() != trusted_database_path.resolve():
+        raise RuntimeError("Supplied tenant database does not match the trusted catalog")
+    database_path = trusted_database_path
+    preflight = inspect_firm_offboarding(
+        control_path, tenant_root_path, corpus_path, object_root, firm_id
+    )
+    if not preflight["purge_preflight_clear"]:
+        raise RuntimeError("Original-file purge is blocked by offboarding preflight findings")
+
     store = LocalPrivateObjectStore(object_root)
     connection = sqlite3.connect(database_path, timeout=30)
     connection.row_factory = sqlite3.Row
@@ -262,6 +311,9 @@ def main() -> int:
             args.firm_id,
             args.operator_user_id,
             apply=args.apply,
+            control_database_path=required["COPILOT_CONTROL_DB"],
+            tenant_root=required["COPILOT_TENANT_DB_ROOT"],
+            corpus_database_path=required["COPILOT_CORPUS_DB"],
         )
         report = {
             **result,
