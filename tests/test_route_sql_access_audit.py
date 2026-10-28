@@ -1,6 +1,11 @@
+import io
+import tempfile
 import unittest
+from contextlib import redirect_stdout
+from pathlib import Path
+from unittest.mock import patch
 
-from tools.audit_route_sql_access import audit_source
+from tools.audit_route_sql_access import audit_source, main
 
 
 class RouteSQLAccessAuditTests(unittest.TestCase):
@@ -117,6 +122,27 @@ def unsafe(table):
         site = report["unreviewed_dynamic_sql_sites"][0]
         self.assertEqual(site["function"], "unsafe")
         self.assertIn("{dynamic}", site["sql_template"])
+
+    def test_strict_cli_fails_for_unreviewed_dynamic_sql(self):
+        source = '''
+def conn():
+    return None
+
+@app.get("/unsafe")
+def unsafe(table):
+    db = conn()
+    return db.execute(f"SELECT id FROM {table}").fetchall()
+'''
+        with tempfile.TemporaryDirectory() as temp_dir:
+            app_path = Path(temp_dir) / "app.py"
+            app_path.write_text(source, encoding="utf-8")
+            output = io.StringIO()
+            with patch("sys.argv", [
+                "audit_route_sql_access.py", "--app", str(app_path), "--strict"
+            ]), redirect_stdout(output):
+                self.assertEqual(main(), 1)
+            self.assertIn("UNREVIEWED DYNAMIC SQL", output.getvalue())
+            self.assertIn("STRICT AUDIT FAILED", output.getvalue())
 
     def test_flags_direct_sqlite_open_in_route_call_graph(self):
         source = '''
