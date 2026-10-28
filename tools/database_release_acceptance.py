@@ -11,31 +11,37 @@ REQUIRED_GATES = {
         "description": "Live object-storage, KMS/key policy, authorization, integrity, and reconciliation validation",
         "fields": ("verified_at", "verified_by"),
         "witness_required": False,
+        "max_age_days": 90,
     },
     "backup_restore_rollback": {
         "description": "Witnessed staging restore, rollback, staged-upload recovery, and deletion-recovery drill",
         "fields": ("verified_at", "verified_by", "witnessed_by"),
         "witness_required": True,
+        "max_age_days": 90,
     },
     "retention_export_deletion_policy": {
         "description": "Approved retention, tenant export, and deletion policy",
         "fields": ("approved_at", "approved_by"),
         "witness_required": False,
+        "max_age_days": 365,
     },
     "production_identity_email": {
         "description": "Production email delivery, recovery messaging, and multi-host rate-limit validation",
         "fields": ("verified_at", "verified_by"),
         "witness_required": False,
+        "max_age_days": 90,
     },
     "privileged_recovery_bootstrap": {
         "description": "Privileged-account recovery and first-platform-admin bootstrap rehearsal",
         "fields": ("verified_at", "verified_by", "witnessed_by"),
         "witness_required": True,
+        "max_age_days": 180,
     },
     "independent_security_review": {
         "description": "Independent security review with no unresolved critical/high findings",
         "fields": ("reviewed_at", "reviewer"),
         "witness_required": False,
+        "max_age_days": 90,
     },
 }
 
@@ -106,6 +112,10 @@ def validate_acceptance_manifest(manifest: object, *, now: datetime | None = Non
                 break
             if parsed > current + timedelta(minutes=5):
                 blockers.append({"gate": name, "code": "evidence_timestamp_in_future"})
+                timestamps_valid = False
+                break
+            if current - parsed > timedelta(days=spec["max_age_days"]):
+                blockers.append({"gate": name, "code": "evidence_expired"})
                 timestamps_valid = False
                 break
         if not timestamps_valid:
