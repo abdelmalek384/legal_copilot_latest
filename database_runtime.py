@@ -184,9 +184,34 @@ class DatabaseRuntime:
         with self._initialize_lock:
             if self._initialized:
                 return
-            self.paths.tenant_root.mkdir(parents=True, exist_ok=True)
-            if self.paths.tenant_root.is_symlink():
-                raise DatabaseRuntimeError("Tenant storage root must not be a symlink")
+            production = os.environ.get("COPILOT_ENV", "").strip().lower() in {
+                "prod", "production"
+            }
+            if production:
+                # Production startup is not a provisioning command. Validate all
+                # persistent storage before touching either database so a missing
+                # corpus/control file cannot cause partial startup or silent recreation.
+                if self.paths.tenant_root.is_symlink() or not self.paths.tenant_root.is_dir():
+                    raise DatabaseRuntimeError(
+                        "Production tenant storage root must already exist and must not be a symlink"
+                    )
+                if os.name == "posix":
+                    try:
+                        root_mode = stat.S_IMODE(self.paths.tenant_root.stat().st_mode)
+                    except OSError as exc:
+                        raise DatabaseRuntimeError(
+                            "Production tenant storage root permissions cannot be verified"
+                        ) from exc
+                    if root_mode & 0o077:
+                        raise DatabaseRuntimeError(
+                            "Production tenant storage root permissions allow group/other access"
+                        )
+                self._validate_profile_storage(self.paths.control_plane, "control-plane")
+                self._validate_profile_storage(self.paths.legal_corpus, "legal-corpus")
+            else:
+                self.paths.tenant_root.mkdir(parents=True, exist_ok=True)
+                if self.paths.tenant_root.is_symlink():
+                    raise DatabaseRuntimeError("Tenant storage root must not be a symlink")
 
             control = self._open_profile_database(self.paths.control_plane, "control_plane")
             try:
