@@ -1,4 +1,5 @@
 import json
+import os
 import tempfile
 import unittest
 from datetime import datetime, timedelta, timezone
@@ -159,6 +160,47 @@ class DatabaseReleaseAcceptanceTests(unittest.TestCase):
         self.assertIn(
             "manifest_unreadable_or_invalid_json",
             {item["code"] for item in malformed["blockers"]},
+        )
+
+    def test_loader_rejects_symlinked_acceptance_manifest(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            real = root / "real.json"
+            real.write_text(json.dumps(self.manifest), encoding="utf-8")
+            link = root / "acceptance.json"
+            try:
+                link.symlink_to(real)
+            except (OSError, NotImplementedError):
+                self.skipTest("symlink creation is unavailable on this platform")
+            report = load_acceptance_manifest(link, now=self.now)
+        self.assertFalse(report["ready"])
+        self.assertIn(
+            ("manifest", "manifest_symlink_forbidden"),
+            {(item["gate"], item["code"]) for item in report["blockers"]},
+        )
+
+    @unittest.skipUnless(os.name == "posix", "POSIX permission bits are not portable")
+    def test_loader_rejects_group_or_other_writable_acceptance_manifest(self):
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "acceptance.json"
+            path.write_text(json.dumps(self.manifest), encoding="utf-8")
+            path.chmod(0o664)
+            report = load_acceptance_manifest(path, now=self.now)
+        self.assertFalse(report["ready"])
+        self.assertIn(
+            ("manifest", "manifest_group_or_other_writable"),
+            {(item["gate"], item["code"]) for item in report["blockers"]},
+        )
+
+    def test_loader_rejects_oversized_acceptance_manifest(self):
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "acceptance.json"
+            path.write_text(" " * 1_000_001, encoding="utf-8")
+            report = load_acceptance_manifest(path, now=self.now)
+        self.assertFalse(report["ready"])
+        self.assertIn(
+            ("manifest", "manifest_too_large"),
+            {(item["gate"], item["code"]) for item in report["blockers"]},
         )
 
     def test_reports_never_echo_private_evidence_references(self):
