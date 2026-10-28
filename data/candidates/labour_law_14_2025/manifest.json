@@ -65,5 +65,24 @@
     "Register metadata in the local versioned registry only after backing up the database; keep review states pending and do not create searchable chunks until approved."
   ],
   "terms_review": "reviewed_on_2026-10-24; no affirmative redistribution_or_commercial_reuse permission located",
-  "collection_permission": "unknown_pending_written_permission_or_terms_confirmation"
+  "collection_permission": "unknown_pending_written_permission_or_terms_confirmation",
+  "official_primary_source_evidence": {
+    "source_assessment": "official government-hosted PDF of Official Gazette issue discovered through indexed search; PDF has not been downloaded and page-reviewed in this workflow",
+    "official_gazette_issue": "18 (تابع)",
+    "publication_date": "2025-05-03",
+    "primary_text_page_url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+    "government_hosted_gazette_pdf_url": "https://sis.gov.eg/media/760267/%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86-%D8%B1%D9%82%D9%85-14-%D9%84%D8%B3%D9%86%D8%A9-2025-%D8%A8%D8%A5%D8%B5%D8%AF%D8%A7%D8%B1-%D9%82%D8%A7%D9%86%D9%88%D9%86-%D8%A7%D9%84%D8%B9%D9%85%D9%84.pdf",
+    "corroborating_government_hosted_pdf_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+    "source_retrieval_date": "2026-10-28",
+    "original_pdf_downloaded": false,
+    "original_pdf_sha256": null,
+    "page_level_review": false,
+    "article_by_article_comparison": false,
+    "source_reuse_permission": "unknown",
+    "commercial_reuse_permission": "unknown",
+    "legal_status": "under_review",
+    "lawyer_review_status": "pending",
+    "search_eligible": false,
+    "notes": "Indexed content supports the promulgation metadata and selected provisions, but this is not a page-level comparison of the Gazette scan, does not establish reuse permission, and does not verify the complete amendment/repeal chain. Do not import article chunks or mark the instrument fully verified from this record."
+  }
 }
