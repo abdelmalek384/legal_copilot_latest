@@ -39,3 +39,11 @@ Article 11 of the issuing provisions of Law 14/2025 states, in the official-text
 - No official primary text for Decrees 290/2025 and 291/2025 was located in this review.
 - Visually checked page map: Arts. 117–120 p.52; 121–122 p.53; 123–124 p.54; 125–127 p.55; 128–130 p.56; 131–132 p.57. The prior provisional pinpoints for new cards on Arts. 125 and 131 were corrected accordingly.
 - These are evidence-discovery results, not proof that the source set is complete or that all cards are current.
+
+## Evidence-card expansion — termination and end-of-service provisions (2026-10-28)
+
+The provisional evidence-card inventory now extends through accompanying-law Article 175 (117 cards total). New cards cover unlawful termination compensation (Art. 165); absence treated as resignation (166); resignation formalities and withdrawal (167); worker termination for employer breach/assault (168); death and related family payments (169); total/partial disability (170); retirement age and fixed-term contracts (171); post-retirement gratuity (172); termination during illness (173); final criminal convictions (174); and employment certificates/return of documents (175).
+
+**Source-location note:** searchable text extracted from the government-hosted Official Gazette PDF places Art. 165 on printed page 69/PDF index 67; Arts. 166–169 begin on printed page 70/PDF index 68; Arts. 170–171 on printed page 71/PDF index 69; and Arts. 172–175 on printed page 72/PDF index 70. These are text-extraction pinpoints. Not every cited page in this new batch has been independently visually inspected, the PDF binary is not available locally for hashing, and no full-text article-by-article comparison has been completed.
+
+This expansion does not confirm that any implementing decision has amended these articles, nor does it verify the current legal effect of each provision. Related instruments and judicial interpretation remain separate review tasks. The new cards remain search_eligible=false and must not be presented as authoritative legal conclusions. Public accessibility alone does not establish rights to reproduce, index, or commercially reuse the source.
