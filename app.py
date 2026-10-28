@@ -1375,6 +1375,9 @@ _RATE_LIMITS = {
     # the intentional policy that a known user can still log in during lockout.
     "/ask": (20, 60),
     "/search": (40, 60),
+    "/account/recovery/request": (10, 3600),
+    "/account/recovery/consume": (10, 3600),
+    "/invitations": (20, 60),
     # Share a single budget across persistent research conversation IDs.
     "__research_message__": (20, 60),
 }
