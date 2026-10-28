@@ -78,10 +78,11 @@ def _migration_inventory(directory: Path) -> list[tuple[int, str, str]]:
         if version in seen:
             raise FleetMigrationError(f"Duplicate migration version: {version}")
         seen.add(version)
-        raw = path.read_bytes()
-        if not raw.strip():
+        sql = path.read_text(encoding="utf-8")
+        if not sql.strip():
             raise FleetMigrationError(f"Empty migration file: {path.name}")
-        inventory.append((version, path.name, hashlib.sha256(raw).hexdigest()))
+        # Match db_migrations.apply_migrations exactly, including text-mode newline normalization.
+        inventory.append((version, path.name, hashlib.sha256(sql.encode("utf-8")).hexdigest()))
     return sorted(inventory)
 
 
@@ -152,6 +153,14 @@ def build_plan(control_db: str | Path, tenant_root: str | Path, migrations_root:
         status = str(row["status"])
         firm_status = str(row["firm_status"])
         filename = row["database_file"]
+        if status == "provisioned" and firm_status not in {"active", "suspended"}:
+            raise FleetMigrationError(
+                f"Firm {firm_id} lifecycle status {firm_status!r} conflicts with provisioned catalog state"
+            )
+        if status == "disabled" and firm_status != "disabled":
+            raise FleetMigrationError(
+                f"Firm {firm_id} lifecycle status {firm_status!r} conflicts with disabled catalog state"
+            )
         if status not in {"provisioned", "disabled"}:
             skipped.append({"firm_id": firm_id, "catalog_status": status, "firm_status": firm_status,
                             "reason": "lifecycle state is not eligible for schema migration"})
