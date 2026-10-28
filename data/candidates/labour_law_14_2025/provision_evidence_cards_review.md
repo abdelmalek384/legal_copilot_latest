@@ -2,7 +2,7 @@
 
 **Record:** `EG-LABOUR-LAW-14-2025-EVIDENCE-CARDS-2026-10-28`  
 **Prepared on:** 2026-10-28  
-**Cards in this report:** 106
+**Cards in this report:** 117
 
 ## Status and limits
 
@@ -14,7 +14,7 @@
 - Collection permission: `unknown`; commercial reuse: `unknown`.
 - Authoritative search eligibility: `false`.
 
-Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF binary has not been downloaded or hashed; only specifically listed page images have been visually inspected, and the full PDF has not been comprehensively reviewed; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording. Additional cards for accompanying-law Articles 4–9 were prepared from text extraction of the government-hosted Official Gazette PDF on 2026-10-28. The PDF binary has not been downloaded or hashed; only specifically listed page images have been visually inspected, and the full PDF has not been comprehensively reviewed; page pinpointing is provisional and all cards remain non-authoritative. Additional cards for accompanying-law Articles 10–12 were prepared from the government-hosted Official Gazette PDF text extraction on 2026-10-28. Page references are based on the extracted page labels; the PDF binary has not been downloaded or hashed; only explicitly recorded page images have been visually inspected. Cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 16, 22, 23, 25 and 27 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; these cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 28–31 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 32–34 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 36–37 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshot checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 40–43 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 44–48 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 49–54 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 126 and 127 were added from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 55. The original PDF remains undownloaded and unhashed, and both cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 121 and 122 were prepared from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 53. Article 121 was cross-checked against a secondary English translation, and Article 122 against a secondary legal text copy. The original PDF remains undownloaded and unhashed; both cards remain provisional and non-authoritative. An additional card for accompanying-law Article 123 was added from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 53. It is cross-checked against a secondary English translation, but the implementing ministerial decision has not been identified and reviewed in this task. The original PDF remains undownloaded and unhashed; the card is provisional and non-authoritative. Additional provisional cards for accompanying-law Articles 117–120 and 124–125 were added on 2026-10-28 from indexed official Amiri Press / government-hosted Gazette text leads, cross-checked against a secondary transcription. Gazette printed-page pinpoints are provisional (52 for Articles 117–120; 54 for Articles 124–125); the original PDF remains undownloaded, unhashed, and not visually inspected. These additions do not establish currentness, completeness, reuse rights, or lawyer approval. Additional provisional cards for accompanying-law Articles 128–130 were added on 2026-10-28 using indexed text from the government-hosted Official Gazette PDF (printed page 56; provisional pinpoint) and a secondary transcription cross-check. The official publisher page is recorded as a source lead but was not directly opened in this round. The Gazette PDF remains undownloaded, unhashed, and not visually inspected; cards remain non-authoritative. Additional provisional cards for accompanying-law Articles 131–132 were added on 2026-10-28 from indexed government-hosted Gazette text with a secondary transcription cross-check. Printed-page pinpoints are provisional; the source PDF remains undownloaded, unhashed, and not visually inspected. The sick-leave card distinguishes the general medical-authority rule from the special industrial-establishment tiers; implementing decisions and related social-insurance rules remain unresolved. PAGE-LEVEL VISUAL CHECK UPDATE (2026-10-28): the official Gazette PDF at the ETA portal is accessible through the web PDF viewer (110 pages) and rendered page images were visually checked for printed Gazette pages 52–57. The article-to-page mapping is: Arts. 117–120 p.52; 121–122 p.53; 123–124 p.54; 125–127 p.55; 128–130 p.56; 131–132 p.57. This corrects the prior provisional page assignments for Article 125 (p.55, not p.54) and Article 131 (p.57, not p.56). PDF page indices are printed page minus 2. The source binary still could not be downloaded in the runtime, so no SHA-256 is claimed; only the listed pages were visually checked, not the entire instrument or amendment history. CURRENTNESS LEAD (2026-10-28): Ministry of Labour announcement dated 2026-10-01 identifies Circular 22/2026 for the 8 October 2026 private-sector holiday and confirms that Decision 294/2025 lists Armed Forces Day (6 October) as a paid holiday. This is event-specific implementation evidence, not proof of a general amendment or a complete current holiday list. Additional provisional cards for Articles 133–136 were added after visual inspection of official Gazette printed pages 57–59 (PDF indices 55–57) on 2026-10-28. Article 134 begins on printed page 57 and continues onto page 58. The PDF binary remains undownloaded and unhashed; summaries are provisional and no lawyer review or currentness certification is claimed. Additional provisional disciplinary/work-regulation cards for Articles 137–141 were added after visual inspection of official Gazette printed pages 60–61 (PDF indices 58–59) on 2026-10-28. These cards summarize statutory framework only; the current general workplace-regulation decision (162/2026), each employer's actual regulation, full amendment history, and legal review remain outstanding. Additional provisional disciplinary cards for Articles 142–148 were added after visual inspection of official Gazette printed pages 62–63 (PDF indices 60–61) on 2026-10-28. These summaries cover investigation assignment, deduction caps, repeated violations, temporary suspension, suspension grievances/extensions, and authority to impose discipline. They remain provisional and require full text/currentness/legal review. Additional provisional individual-dispute cards for Articles 149–150 were added after visual inspection of official Gazette printed pages 64–65 (PDF indices 62–63) on 2026-10-28. Procedural deadlines and financial consequences require full-text extraction and legal review before any case-specific use. Additional provisional cards for Articles 151–158 were added after visual inspection of official Gazette printed pages 65–67 (PDF indices 63–65) on 2026-10-28. They cover worker liability for damage, union protections, disciplinary-fine accounting, expiry/renewal of fixed-term or specific-work contracts, and notice/justification rules for indefinite-term termination. They remain provisional; case-specific calculations require full-text and legal review. Additional provisional termination-notice cards for Articles 159–164 were added after visual inspection of official Gazette printed pages 68–69 (PDF indices 66–67) on 2026-10-28. They cover notice during leave, contract continuity, notice-period constraints, paid job-search time, employer waiver of work, and payment in lieu of unserved notice. These cards remain provisional and require full legal review.
+Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF binary has not been downloaded or hashed; only specifically listed page images have been visually inspected, and the full PDF has not been comprehensively reviewed; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording. Additional cards for accompanying-law Articles 4–9 were prepared from text extraction of the government-hosted Official Gazette PDF on 2026-10-28. The PDF binary has not been downloaded or hashed; only specifically listed page images have been visually inspected, and the full PDF has not been comprehensively reviewed; page pinpointing is provisional and all cards remain non-authoritative. Additional cards for accompanying-law Articles 10–12 were prepared from the government-hosted Official Gazette PDF text extraction on 2026-10-28. Page references are based on the extracted page labels; the PDF binary has not been downloaded or hashed; only explicitly recorded page images have been visually inspected. Cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 16, 22, 23, 25 and 27 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; these cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 28–31 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 32–34 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 36–37 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshot checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 40–43 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 44–48 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 49–54 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 126 and 127 were added from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 55. The original PDF remains undownloaded and unhashed, and both cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 121 and 122 were prepared from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 53. Article 121 was cross-checked against a secondary English translation, and Article 122 against a secondary legal text copy. The original PDF remains undownloaded and unhashed; both cards remain provisional and non-authoritative. An additional card for accompanying-law Article 123 was added from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 53. It is cross-checked against a secondary English translation, but the implementing ministerial decision has not been identified and reviewed in this task. The original PDF remains undownloaded and unhashed; the card is provisional and non-authoritative. Additional provisional cards for accompanying-law Articles 117–120 and 124–125 were added on 2026-10-28 from indexed official Amiri Press / government-hosted Gazette text leads, cross-checked against a secondary transcription. Gazette printed-page pinpoints are provisional (52 for Articles 117–120; 54 for Articles 124–125); the original PDF remains undownloaded, unhashed, and not visually inspected. These additions do not establish currentness, completeness, reuse rights, or lawyer approval. Additional provisional cards for accompanying-law Articles 128–130 were added on 2026-10-28 using indexed text from the government-hosted Official Gazette PDF (printed page 56; provisional pinpoint) and a secondary transcription cross-check. The official publisher page is recorded as a source lead but was not directly opened in this round. The Gazette PDF remains undownloaded, unhashed, and not visually inspected; cards remain non-authoritative. Additional provisional cards for accompanying-law Articles 131–132 were added on 2026-10-28 from indexed government-hosted Gazette text with a secondary transcription cross-check. Printed-page pinpoints are provisional; the source PDF remains undownloaded, unhashed, and not visually inspected. The sick-leave card distinguishes the general medical-authority rule from the special industrial-establishment tiers; implementing decisions and related social-insurance rules remain unresolved. PAGE-LEVEL VISUAL CHECK UPDATE (2026-10-28): the official Gazette PDF at the ETA portal is accessible through the web PDF viewer (110 pages) and rendered page images were visually checked for printed Gazette pages 52–57. The article-to-page mapping is: Arts. 117–120 p.52; 121–122 p.53; 123–124 p.54; 125–127 p.55; 128–130 p.56; 131–132 p.57. This corrects the prior provisional page assignments for Article 125 (p.55, not p.54) and Article 131 (p.57, not p.56). PDF page indices are printed page minus 2. The source binary still could not be downloaded in the runtime, so no SHA-256 is claimed; only the listed pages were visually checked, not the entire instrument or amendment history. CURRENTNESS LEAD (2026-10-28): Ministry of Labour announcement dated 2026-10-01 identifies Circular 22/2026 for the 8 October 2026 private-sector holiday and confirms that Decision 294/2025 lists Armed Forces Day (6 October) as a paid holiday. This is event-specific implementation evidence, not proof of a general amendment or a complete current holiday list. Additional provisional cards for Articles 133–136 were added after visual inspection of official Gazette printed pages 57–59 (PDF indices 55–57) on 2026-10-28. Article 134 begins on printed page 57 and continues onto page 58. The PDF binary remains undownloaded and unhashed; summaries are provisional and no lawyer review or currentness certification is claimed. Additional provisional disciplinary/work-regulation cards for Articles 137–141 were added after visual inspection of official Gazette printed pages 60–61 (PDF indices 58–59) on 2026-10-28. These cards summarize statutory framework only; the current general workplace-regulation decision (162/2026), each employer's actual regulation, full amendment history, and legal review remain outstanding. Additional provisional disciplinary cards for Articles 142–148 were added after visual inspection of official Gazette printed pages 62–63 (PDF indices 60–61) on 2026-10-28. These summaries cover investigation assignment, deduction caps, repeated violations, temporary suspension, suspension grievances/extensions, and authority to impose discipline. They remain provisional and require full text/currentness/legal review. Additional provisional individual-dispute cards for Articles 149–150 were added after visual inspection of official Gazette printed pages 64–65 (PDF indices 62–63) on 2026-10-28. Procedural deadlines and financial consequences require full-text extraction and legal review before any case-specific use. Additional provisional cards for Articles 151–158 were added after visual inspection of official Gazette printed pages 65–67 (PDF indices 63–65) on 2026-10-28. They cover worker liability for damage, union protections, disciplinary-fine accounting, expiry/renewal of fixed-term or specific-work contracts, and notice/justification rules for indefinite-term termination. They remain provisional; case-specific calculations require full-text and legal review. Additional provisional termination-notice cards for Articles 159–164 were added after visual inspection of official Gazette printed pages 68–69 (PDF indices 66–67) on 2026-10-28. They cover notice during leave, contract continuity, notice-period constraints, paid job-search time, employer waiver of work, and payment in lieu of unserved notice. These cards remain provisional and require full legal review. Additional provisional termination and end-of-service cards for accompanying-law Articles 165–175 were added on 2026-10-28 from the searchable extraction of the government-hosted Official Gazette PDF. The extracted lines place Article 165 on printed page 69/PDF index 67; Articles 166–169 begin on printed page 70/PDF index 68; Articles 170–171 appear on printed page 71/PDF index 69; and Articles 172–175 appear on printed page 72/PDF index 70. Page locations are text-extraction pinpoints, not independent visual inspection of every cited page. Cards remain provisional; source binary hash, comprehensive currentness/amendment review, reuse review and Egyptian-lawyer review remain outstanding.
 
 ## Provision cards
 
@@ -38,6 +38,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [international legislation index](https://natlex.ilo.org/dyn/natlex2/r/natlex/fe/results?clear=2&p2_country_filter=EGY&p2_home_flag=Y) — بيانات تعريف القانون وتاريخ النفاذ المعلن؛ ليس بديلاً عن النص الرسمي.
 
 **Limitations:**
+
 - لا يحسم جميع الاستثناءات أو قوانين الفئات الخاصة
 - لم تُراجع تعديلات لاحقة أو أحكام انتقالية لكل حالة
 - لا توجد مراجعة محامٍ مسجلة
@@ -66,6 +67,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [Library of Congress legal update](https://www.loc.gov/item/global-legal-monitor/2025-07-25/egypt-labor-law-updated/) — يذكر أن القانون الجديد حل محل قانون العمل 12/2003؛ مصدر ثانوي للمقارنة.
 
 **Limitations:**
+
 - لا تمثل هذه البطاقة شهادة كاملة بعدم وجود تعديلات لاحقة
 - لا تغني عن مراجعة النصوص الانتقالية أو التطبيق الزمني
 - لا توجد مراجعة محامٍ مسجلة
@@ -95,6 +97,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [Library of Congress legal update](https://www.loc.gov/item/global-legal-monitor/2025-07-25/egypt-labor-law-updated/) — يورد 2025-09-01 للنفاذ العام و2025-10-01 للمحاكم المتخصصة.
 
 **Limitations:**
+
 - الأحكام الانتقالية قد تغير النتيجة في قضية بعينها
 - لا يوجد بحث شامل موثق عن جميع التعديلات أو أحكام التأجيل اللاحقة
 - لا توجد مراجعة محامٍ مسجلة
@@ -123,6 +126,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [ILO NATLEX-hosted legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي متاح للمقارنة؛ شروط إعادة الاستخدام غير مثبتة في هذه البطاقة.
 
 **Limitations:**
+
 - لم تتم مقارنة المادة كاملة حرفياً مع صورة الجريدة الرسمية
 - لا يقرر النص وحده نتيجة النزاع أو عبء الإثبات في كل واقعة
 - لا توجد مراجعة محامٍ مسجلة
@@ -151,6 +155,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [ILO NATLEX-hosted legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي متاح للمقارنة؛ شروط إعادة الاستخدام غير مثبتة في هذه البطاقة.
 
 **Limitations:**
+
 - لم تتم مقارنة المادة كاملة حرفياً مع صورة الجريدة الرسمية
 - قد توجد قرارات تنفيذية أو وقائع تؤثر في التطبيق ولا تغطيها البطاقة
 - لا توجد مراجعة محامٍ مسجلة
@@ -179,6 +184,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [government-hosted official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — يعرض نص المادة 117 على الصفحة المطبوعة 52.
 
 **Limitations:**
+
 - قد توجد قرارات وزارية أو استثناءات خاصة تؤثر في الحد العام
 - لا توجد مراجعة محامٍ مسجلة أو شهادة اكتمال للتشريعات المنفذة
 - PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
@@ -214,6 +220,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
   - Gazette metadata lead: الوقائع المصرية، ملحق العدد 64 تابع, 2026-03-18; An item record lists Arabic and English PDF files, but no original file has been downloaded, hashed, visually inspected, or fully compared with the Gazette issue in this task.
 
 **Limitations:**
+
 - الزيادة الإضافية تتوقف على قرار يحدد الأعمال/المناطق المعنية
 - لا توجد مراجعة محامٍ مسجلة ولا تحقق شامل من القرارات اللاحقة
 - Decision 49/2026 is a relevant implementation candidate, but its full decision text, Gazette publication, schedules, effective date, and currentness remain unverified.
@@ -244,6 +251,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [government-hosted official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — يعرض نص المادة 165 وتعويض الإنهاء غير المشروع.
 
 **Limitations:**
+
 - يعتمد الاستحقاق على كون العقد غير محدد المدة ووجود سبب غير مشروع وفق القانون
 - يجب فحص الوقائع والأحكام الأخرى والتعديلات أو القرارات ذات الصلة
 - لا توجد مراجعة محامٍ مسجلة
@@ -279,6 +287,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
   - Gazette metadata lead: الوقائع المصرية، ملحق العدد 291 (تابع), 2025-12-25; The record lists a PDF through a request-a-copy workflow; the full decision text has not been obtained or page-reviewed.
 
 **Limitations:**
+
 - قائمة العطلات نفسها لا ترد كاملة في هذه البطاقة وتحتاج إلى القرار الوزاري
 - لم يُثبت الوضع الحالي أو التعديلات أو الشروط التنفيذية للقرار 294/2025
 - لا توجد مراجعة محامٍ مسجلة
@@ -310,6 +319,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [government-hosted official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — نص المواد 118–120 في الصفحة المطبوعة 52.
 
 **Limitations:**
+
 - تتضمن المواد استثناءات وقرارات وزارية محتملة
 - لا توجد مراجعة محامٍ مسجلة ولا تحقق شامل من القرارات التنفيذية الحالية
 - PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
@@ -338,6 +348,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [government-hosted official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — نص المادة 125 على الصفحة المطبوعة 55.
 
 **Limitations:**
+
 - يجب قراءة المادة 124 معها لتحديد مقدار الاستحقاق السنوي للفئة المعنية
 - قد تؤثر القرارات المنفذة والتعديلات والوقائع الخاصة في النتيجة
 - لا توجد مراجعة محامٍ مسجلة
@@ -367,6 +378,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [government-hosted official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — نص المادة 164 على الصفحة المطبوعة 69.
 
 **Limitations:**
+
 - تتطلب الحالة تصنيف العقد وتحديد مهلة الإخطار المنطبقة
 - لا تتناول البطاقة كل أسباب انتهاء العقد أو الاستثناءات
 - لا توجد مراجعة محامٍ مسجلة
@@ -395,6 +407,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [government-hosted official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — نص المادة 128 على الصفحة المطبوعة 56.
 
 **Limitations:**
+
 - يجب فحص أحكام الإجازة السنوية ذات الصلة والوقائع الخاصة
 - لا توجد مراجعة محامٍ مسجلة ولا تحقق شامل من أي تعديل لاحق
 - PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
@@ -423,6 +436,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [government-hosted official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — نص المادة 130 على الصفحة المطبوعة 56.
 
 **Limitations:**
+
 - تتوقف الأهلية على مدة الخدمة المتصلة وعدم الاستفادة السابقة
 - لا توجد مراجعة محامٍ مسجلة ولا تحقق شامل من أي تعديل لاحق
 - PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
@@ -451,6 +465,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [government-hosted official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — بداية المادة 131 على الصفحة المطبوعة 56.
 
 **Limitations:**
+
 - قانون التأمينات والقواعد الطبية ذات الصلة لازمة لتحديد النسبة والمدة
 - قد توجد أحكام خاصة لبعض المنشآت أو الحالات
 - لا توجد مراجعة محامٍ مسجلة
@@ -480,6 +495,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [government-hosted official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — نص المادة 91 على الصفحة المطبوعة 44.
 
 **Limitations:**
+
 - يتوقف التطبيق على طبيعة المهمة والضرورة والمدة والفروق الجوهرية
 - لا توجد مراجعة محامٍ مسجلة
 
@@ -507,6 +523,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [government-hosted official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — نص المادة 92 على الصفحة المطبوعة 44.
 
 **Limitations:**
+
 - يجب مراجعة متطلبات حماية البيانات والتأمينات والتزامات الاحتفاظ ذات الصلة
 - لا تضع هذه البطاقة سياسة احتفاظ كاملة للمنشأة
 - لا توجد مراجعة محامٍ مسجلة
@@ -535,6 +552,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [government-hosted official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — نص المادة 93 على الصفحة المطبوعة 44.
 
 **Limitations:**
+
 - تقتصر القاعدة على أسباب الانتهاء التي يشملها النص
 - لا توجد مراجعة محامٍ مسجلة
 
@@ -562,6 +580,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [government-hosted official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — نص المادة 94 على الصفحة المطبوعة 45.
 
 **Limitations:**
+
 - يتطلب التطبيق فحص حقيقة الإسناد ومكان العمل وطبيعة الحقوق المطالب بها
 - لا توجد مراجعة محامٍ مسجلة
 
@@ -589,6 +608,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [government-hosted official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — نص المادة 95 على الصفحة المطبوعة 45.
 
 **Limitations:**
+
 - النص يحيل إلى المدة المتفق عليها والعقد قد يتضمن شروطاً مؤثرة
 - لا تقرر البطاقة صحة أو مقدار مطالبة محددة
 - لا توجد مراجعة محامٍ مسجلة
@@ -617,6 +637,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [government-hosted official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — بداية المادة 96 على الصفحة المطبوعة 45.
 
 **Limitations:**
+
 - لم تتم مراجعة بقية المادة أو المواد التالية المتعلقة بكل نمط عمل
 - قد تتطلب التفاصيل قرارات تنفيذية أو قواعد خاصة
 - لا توجد مراجعة محامٍ مسجلة
@@ -645,6 +666,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [Library of Congress legal update](https://www.loc.gov/item/global-legal-monitor/2025-07-25/egypt-labor-law-updated/) — يعرض حظر التحرش والتنمر والعنف في القانون الجديد كمصدر ثانوي للمقارنة.
 
 **Limitations:**
+
 - لم تتم مقارنة المادة بصورة الصفحة الأصلية بصرياً
 - لم تُراجع اللوائح الداخلية أو القرارات التنفيذية أو الوقائع الخاصة
 - لا توجد مراجعة محامٍ مسجلة
@@ -673,6 +695,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [Library of Congress legal update](https://www.loc.gov/item/global-legal-monitor/2025-07-25/egypt-labor-law-updated/) — ملخص ثانوي لأحكام القانون المتعلقة بالتمييز والحماية في العمل.
 
 **Limitations:**
+
 - القائمة الواردة في هذه الخلاصة ليست نقلاً كاملاً لجميع الأوصاف والاستثناءات
 - لم تُراجع تشريعات أخرى قد تنطبق على الواقعة
 - لا توجد مراجعة محامٍ مسجلة
@@ -701,6 +724,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
 
 **Limitations:**
+
 - لا تحسم البطاقة كل صور الإبراء أو قواعد الإثبات أو التقادم
 - لم تُراجع أحكاماً قضائية أو تشريعات خاصة قد تكون ذات صلة
 - لا توجد مراجعة محامٍ مسجلة
@@ -729,6 +753,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
 
 **Limitations:**
+
 - الإعفاء ليس وصفاً عاماً لكل دعوى أو كل متقاضٍ
 - لم يُراجع قانون الرسوم أو القواعد الإجرائية ذات الصلة
 - لا توجد مراجعة محامٍ مسجلة
@@ -757,6 +782,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
 
 **Limitations:**
+
 - لا تمثل البطاقة ترتيباً تنفيذياً كاملاً لكل الديون والامتيازات
 - يلزم فحص القواعد الأخرى والوقائع وتاريخ نشوء الحق
 - لا توجد مراجعة محامٍ مسجلة
@@ -785,6 +811,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
 
 **Limitations:**
+
 - لا تحدد البطاقة وحدها إجراءات الإفلاس أو التصفية أو أولوية التنفيذ
 - لم تُراجع اللوائح والقرارات التنفيذية ذات الصلة
 - لا توجد مراجعة محامٍ مسجلة
@@ -813,6 +840,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
 
 **Limitations:**
+
 - لا تحدد البطاقة كل صور تعدد أصحاب العمل أو حدود التفويض
 - لم تُراجع الأحكام القضائية أو القواعد الخاصة ذات الصلة
 - لا توجد مراجعة محامٍ مسجلة
@@ -841,6 +869,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
 
 **Limitations:**
+
 - هذه خلاصة للقاعدة العامة ولا تحسم أثر كل نوع من أنواع التصرفات
 - لم تُراجع التشريعات الخاصة أو المستندات المتعلقة بمعاملة محددة
 - لا توجد مراجعة محامٍ مسجلة
@@ -869,6 +898,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
 
 **Limitations:**
+
 - لا تثبت البطاقة وحدها انطباق القانون على العامل أو اكتمال شروط الاستحقاق
 - لم تُراجع قرارات المجلس القومي للأجور أو أي تطبيقات لاحقة
 - لا توجد مراجعة محامٍ مسجلة
@@ -897,6 +927,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — مصدر مقارنة/اكتشاف ثانوي؛ لا يحل محل التحقق من النص الرسمي، وشروط إعادة الاستخدام غير مثبتة.
 
 **Limitations:**
+
 - هذه الخلاصة لا تحدد جميع شروط الخضوع أو الاستثناءات في القانون
 - لم تُراجع القرارات التنفيذية المنظمة للتدريب أو التعديلات اللاحقة
 - لا توجد مراجعة محامٍ مسجلة
@@ -925,6 +956,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — مصدر مقارنة/اكتشاف ثانوي؛ لا يحل محل التحقق من النص الرسمي، وشروط إعادة الاستخدام غير مثبتة.
 
 **Limitations:**
+
 - الاستثناءات مرتبطة بصياغة المادة وشروطها ولا تعني إعفاء كل جهة من كل متطلب
 - لم تُراجع التراخيص الخاصة أو القرارات المنظمة لكل فئة
 - لا توجد مراجعة محامٍ مسجلة
@@ -953,6 +985,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — مصدر مقارنة/اكتشاف ثانوي؛ لا يحل محل التحقق من النص الرسمي، وشروط إعادة الاستخدام غير مثبتة.
 
 **Limitations:**
+
 - المادة تحيل تفاصيل مهمة إلى قرار وزاري لم يُثبت هنا نصه الحالي
 - الحد الأقصى للرسوم لا يساوي الرسوم الفعلية المستحقة
 - لا توجد مراجعة محامٍ مسجلة
@@ -981,6 +1014,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — مصدر مقارنة/اكتشاف ثانوي؛ لا يحل محل التحقق من النص الرسمي، وشروط إعادة الاستخدام غير مثبتة.
 
 **Limitations:**
+
 - يتوقف الإعفاء على الفئة القانونية للجهة ونطاق التدريب الفعلي
 - لم يُراجع القرار التنفيذي الساري أو سجل الترخيص
 - لا توجد مراجعة محامٍ مسجلة
@@ -1009,6 +1043,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — مصدر مقارنة/اكتشاف ثانوي؛ لا يحل محل التحقق من النص الرسمي، وشروط إعادة الاستخدام غير مثبتة.
 
 **Limitations:**
+
 - يتوقف التطبيق على وجود قرار وزاري يحدد المهنة وعلى شروطه وحالات الإعفاء
 - لم يُراجع سجل القرارات الوزارية الحالية أو سجل التراخيص
 - لا توجد مراجعة محامٍ مسجلة
@@ -1037,6 +1072,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
 
 **Limitations:**
+
 - الحد الأدنى الوارد هنا لا يحسم جميع القيود الخاصة بعمل الأطفال أو الأعمال المحظورة
 - لم تُراجع القرارات التنفيذية السارية أو التشريعات المكملة
 - لا توجد مراجعة محامٍ مسجلة
@@ -1065,6 +1101,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
 
 **Limitations:**
+
 - لا تقدم البطاقة قائمة كاملة بكل البيانات أو الشروط التي قد تتطلبها القواعد التنفيذية
 - لم تُراجع القرارات التنفيذية أو نماذج الاتفاقات المعتمدة
 - لا توجد مراجعة محامٍ مسجلة
@@ -1093,6 +1130,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
 
 **Limitations:**
+
 - لا تحسم البطاقة ما يكفي لإثبات عدم الصلاحية أو عدم الاستعداد في واقعة معينة
 - لم تُراجع أي قواعد أو إجراءات إضافية واجبة التطبيق
 - لا توجد مراجعة محامٍ مسجلة
@@ -1121,6 +1159,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
 
 **Limitations:**
+
 - هذه إحالة تشريعية وليست تحديداً مستقلاً لكل حد زمني أو استحقاق
 - يلزم قراءة الفصل المشار إليه مع بقية أحكام القانون
 - لا توجد مراجعة محامٍ مسجلة
@@ -1149,6 +1188,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
 
 **Limitations:**
+
 - لا تثبت البطاقة التشكيل الحالي للمجلس أو صدور القرار التنفيذي ومضمونه
 - لم تُراجع القرارات التنفيذية أو أي تعديلات لاحقة
 - لا توجد مراجعة محامٍ مسجلة
@@ -1177,6 +1217,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
 
 **Limitations:**
+
 - هذه خلاصة مشروطة وليست تأكيداً بأن الشهادة مطلوبة لكل عامل أو كل وظيفة
 - لم تُراجع اللوائح التنفيذية أو القواعد الخاصة بالفئات المستثناة
 - لا توجد مراجعة محامٍ مسجلة
@@ -1205,6 +1246,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
 
 **Limitations:**
+
 - لا يقرر النص أن كل مهنة تحتاج إلى الترخيص نفسه؛ يلزم الرجوع إلى قرار تحديد المهن
 - لم تُراجع القرارات الحالية أو إجراءات إصدار شهادة قياس المهارة
 - لا توجد مراجعة محامٍ مسجلة
@@ -1233,6 +1275,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
 
 **Limitations:**
+
 - لا تحدد البطاقة النموذج الحالي أو كل البيانات الإضافية المطلوبة إدارياً
 - لم تُراجع القرارات التنفيذية أو أي تعديلات لاحقة
 - لا توجد مراجعة محامٍ مسجلة
@@ -1261,6 +1304,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
 
 **Limitations:**
+
 - لا تحسم البطاقة متطلبات الحصة أو جميع التزامات أصحاب العمل تجاه هذه الفئات
 - لم تُراجع اللوائح أو قانون حقوق الأشخاص ذوي الإعاقة وتعديلاته
 - لا توجد مراجعة محامٍ مسجلة
@@ -1289,6 +1333,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
 
 **Limitations:**
+
 - تتوقف القاعدة على نوع الجهة ونطاق نشاطها والترخيص الممنوح لها
 - لم تُراجع قرارات الترخيص الحالية أو التعديلات اللاحقة
 - لا توجد مراجعة محامٍ مسجلة
@@ -1317,6 +1362,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
 
 **Limitations:**
+
 - هذه البطاقة لا تسرد جميع شروط الترخيص أو مستنداته
 - لم تُراجع القرارات التنفيذية أو تعديلات رأس المال والتأمين أو الرسوم بعد النشر
 - لا توجد مراجعة محامٍ مسجلة
@@ -1345,6 +1391,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
 
 **Limitations:**
+
 - المادة تحيل التفاصيل إلى قرار وزاري لم يُراجع نصه الحالي هنا
 - لم تُراجع نماذج السجلات أو متطلبات التفتيش السارية
 - لا توجد مراجعة محامٍ مسجلة
@@ -1373,6 +1420,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
 
 **Limitations:**
+
 - الاستثناء ضيق ومقيد بنوع الجهة وسبب التحصيل والفترة المحددة بالنص
 - لم تُراجع أحكام أو قرارات تنفيذية أو تعديلات لاحقة
 - لا توجد مراجعة محامٍ مسجلة
@@ -1401,6 +1449,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
 
 **Limitations:**
+
 - هذه خلاصة لأمثلة من الحالات وليست قائمة إجرائية كاملة
 - لم تُراجع القرارات التنفيذية أو سجل الترخيص أو أي تعديل لاحق
 - لا توجد مراجعة محامٍ مسجلة
@@ -1429,6 +1478,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
 
 **Limitations:**
+
 - يلزم قراءة المادة 40 مع النص الكامل للمادة 45 قبل تصنيف نموذج تعاقدي
 - لم تُراجع أحكام قضائية أو قرارات تنفيذية ذات صلة
 - لا توجد مراجعة محامٍ مسجلة
@@ -1457,6 +1507,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
 
 **Limitations:**
+
 - الإذن مقيد بالجهات والشروط الواردة في النص والقانون المنظم لها
 - لم تُراجع القرارات التنفيذية أو إجراءات الترخيص الحالية
 - لا توجد مراجعة محامٍ مسجلة
@@ -1485,6 +1536,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
 
 **Limitations:**
+
 - لا تحدد البطاقة كل وسائل الإعلان أو البيانات والإجراءات المطلوبة
 - لم تُراجع القرارات التنفيذية أو متطلبات الإخطار الحالية
 - لا توجد مراجعة محامٍ مسجلة
@@ -1513,6 +1565,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
 
 **Limitations:**
+
 - تتوقف المتطلبات على فئة الجهة والاستثناءات والإجراءات التنفيذية
 - لم تُراجع النماذج الحالية أو أي تعديل لاحق
 - لا توجد مراجعة محامٍ مسجلة
@@ -1541,6 +1594,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
 
 **Limitations:**
+
 - لا تحدد البطاقة اتفاقية دولية بعينها أو آلية تسوية محددة
 - لم تُراجع الاتفاقيات الثنائية أو القرارات التنفيذية ذات الصلة
 - لا توجد مراجعة محامٍ مسجلة
@@ -1569,6 +1623,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
 
 **Limitations:**
+
 - تتوقف القاعدة على نوع المنظمة والخبرة المطلوبة والجهة المتعاقدة
 - لم تُراجع الموافقات أو الإجراءات التنفيذية الحالية
 - لا توجد مراجعة محامٍ مسجلة
@@ -1597,6 +1652,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
 
 **Limitations:**
+
 - لا تحدد البطاقة النموذج الحالي أو جميع البيانات المطلوب إدراجها
 - لم تُراجع القرارات التنفيذية أو أي تعديل لاحق
 - لا توجد مراجعة محامٍ مسجلة
@@ -1625,6 +1681,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
 
 **Limitations:**
+
 - يلزم تحديد طبيعة نشاط المنصة وما إذا كان يدخل في مفهوم إلحاق العمالة
 - لم تُراجع قواعد الترخيص الحالية أو الاستثناءات التفصيلية
 - لا توجد مراجعة محامٍ مسجلة
@@ -1653,6 +1710,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
 
 **Limitations:**
+
 - لا تحدد البطاقة طريقة تقييم القيمة المتساوية للعمل أو جميع المزايا المقصودة
 - لم تُراجع القرارات التنفيذية التي تحدد الأعمال المحظورة أو المقيدة
 - لا توجد مراجعة محامٍ مسجلة
@@ -1681,6 +1739,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
 
 **Limitations:**
+
 - لا تحدد البطاقة جميع الشروط والمستندات أو طريقة احتساب التعويضات التأمينية
 - لم تُراجع التعديلات اللاحقة أو القرارات التنفيذية ذات الصلة
 - لا توجد مراجعة محامٍ مسجلة
@@ -1709,6 +1768,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [government-hosted Official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — يعرض نص المادتين 126 و127 على الصفحة المطبوعة 55.
 
 **Limitations:**
+
 - تتوقف النتيجة على إثبات القيد التعليمي وموعد الامتحان والإخطار الفعلي
 - لم تُراجع القرارات المنفذة أو التعديلات اللاحقة بصورة شاملة
 - لا توجد مراجعة محامٍ مسجلة
@@ -1738,6 +1798,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [government-hosted Official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — يعرض نص المادتين 126 و127 على الصفحة المطبوعة 55.
 
 **Limitations:**
+
 - تطبيق الحكم يتطلب إثبات العمل لدى الغير خلال الإجازة وتحديد ما دُفع عنها
 - لم تُراجع التعديلات أو اللوائح ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مسجلة
@@ -1767,6 +1828,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary English translation](https://eg.andersen.com/wp-content/uploads/2025/05/Translation-of-Labor-law-No.-14-of-2025.pdf) — ترجمة ثانوية للمادة 121 تتضمن إخطار السبعة أيام وحدود 35٪ و70٪ وحد 12 ساعة؛ لا تحل محل النص العربي الرسمي.
 
 **Limitations:**
+
 - تتعلق القاعدة باستثناءات العمل غير العادي أو الظروف الاستثنائية وليست إذناً عاماً بتجاوز ساعات العمل
 - قد تؤثر القرارات الوزارية المنفذة والوقائع والتعديلات اللاحقة في التطبيق
 - لا توجد مراجعة محامٍ مسجلة
@@ -1796,6 +1858,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary legal text copy](https://manshurat.org/content/qnwn-lml-ljdyd-2025) — يعرض نص المادة 122؛ يستخدم للمقارنة فقط وليس بديلاً عن المصدر الرسمي.
 
 **Limitations:**
+
 - يلزم التحقق من تعليمات الجهة الإدارية ذات الصلة وإثبات تاريخ تنفيذ الجدول أو تعديله
 - لا توجد مراجعة محامٍ مسجلة
 - PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
@@ -1824,6 +1887,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary English translation](https://eg.andersen.com/wp-content/uploads/2025/06/Translation-of-Labor-law-No.-14-of-2025.pdf) — ترجمة ثانوية للمادة 123 وتحدد الفئات المستثناة؛ لا تحل محل النص العربي الرسمي أو القرار الوزاري.
 
 **Limitations:**
+
 - يلزم العثور على القرار الوزاري المحدد للحد الأقصى للساعات للفئات الواردة في المادة ومراجعته مستقلاً
 - لا يُفهم الاستثناء على أنه إعفاء شامل من جميع حقوق العمل أو أجر العمل الإضافي
 - PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
@@ -1852,6 +1916,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary legal text transcription](https://manshurat.org/content/qnwn-lml-ljdyd-2025) — ينقل نص المادة 117 حد 8 ساعات يومياً و48 أسبوعياً وإمكان التخفيض بقرار وزاري؛ لا يحل محل النص العربي الرسمي.
 
 **Limitations:**
+
 - يجب تحديد انطباق قانون تشغيل العمال في المنشآت الصناعية وأي قرار وزاري خاص قبل التطبيق
 - لم تُراجع جميع القرارات الوزارية أو الأحكام القضائية ذات الصلة أو التعديلات اللاحقة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -1881,6 +1946,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary legal text transcription](https://manshurat.org/content/qnwn-lml-ljdyd-2025) — ينقل النص الثانوي أحكام الساعة الإجمالية وخمس ساعات متصلة والتفويض الوزاري؛ لا يحل محل النص العربي الرسمي.
 
 **Limitations:**
+
 - وجود استثناء يتطلب تحديد القرار الوزاري والفئة المهنية المنطبقة
 - لم تُراجع جميع القرارات الوزارية أو الأحكام القضائية ذات الصلة أو التعديلات اللاحقة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -1910,6 +1976,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary legal text transcription](https://manshurat.org/content/qnwn-lml-ljdyd-2025) — ينقل النص الثانوي قاعدة العشر ساعات واستثناءات الأعمال المتقطعة/الخاصة وحد التواجد 12 ساعة؛ لا يحل محل النص العربي الرسمي.
 
 **Limitations:**
+
 - يلزم التحقق من طبيعة العمل والقرار الوزاري المحدد للاستثناء
 - لم تُراجع جميع القرارات الوزارية أو الأحكام القضائية ذات الصلة أو التعديلات اللاحقة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -1939,6 +2006,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary legal text transcription](https://manshurat.org/content/qnwn-lml-ljdyd-2025) — ينقل النص الثانوي قاعدة الراحة الأسبوعية المدفوعة وإمكان التجميع بشروطه؛ لا يحل محل النص العربي الرسمي.
 
 **Limitations:**
+
 - الاستثناء ليس عاماً؛ يجب فحص مكان العمل وظروفه ولائحة المنشأة والقرارات ذات الصلة
 - لم تُراجع جميع القرارات الوزارية أو الأحكام القضائية ذات الصلة أو التعديلات اللاحقة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -1968,6 +2036,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary legal text transcription](https://manshurat.org/content/qnwn-lml-ljdyd-2025) — يعرض النص الثانوي مدد الإجازة السنوية وشروط النسبة والزيادة؛ لا يحل محل النص العربي الرسمي.
 
 **Limitations:**
+
 - يلزم التحقق من مدة الخدمة والفئة القانونية والقرار الوزاري الذي يحدد الأعمال أو المناطق المستحقة للزيادة
 - لم تُراجع جميع القرارات الوزارية أو الأحكام القضائية ذات الصلة أو التعديلات اللاحقة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -1997,6 +2066,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary legal text transcription](https://manshurat.org/content/qnwn-lml-ljdyd-2025) — ينقل النص الثانوي أحكام تحديد الموعد والحد الأدنى والتسوية والقيود الخاصة؛ لا يحل محل النص العربي الرسمي.
 
 **Limitations:**
+
 - تطبيق الأثر المالي يتطلب مراجعة سجل الإجازات والأجر وسبب انتهاء الخدمة وأي أحكام أو قرارات ذات صلة
 - لم تُراجع جميع القرارات الوزارية أو الأحكام القضائية ذات الصلة أو التعديلات اللاحقة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -2026,6 +2096,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary legal text transcription](https://manshurat.org/content/qnwn-lml-ljdyd-2025) — النص الرسمي المفهرس يعرض سقف سبعة أيام سنوياً ويومين في المرة وإجازة مدفوعة يوم الولادة بحد أقصى ثلاث مرات؛ يظل النص العربي الرسمي هو المرجع.
 
 **Limitations:**
+
 - تتطلب الحالة التحقق من سجل الإجازات وعدد مرات الاستفادة وظروف الواقعة
 - لم تُراجع جميع القرارات المنفذة أو التعديلات اللاحقة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -2056,6 +2127,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary legal text transcription](https://manshurat.org/content/qnwn-lml-ljdyd-2025) — النص الرسمي المفهرس يذكر الأجر المضاعف أو يوم بديل بناءً على طلب كتابي؛ يظل النص العربي الرسمي هو المرجع.
 
 **Limitations:**
+
 - يلزم تحديد اليوم بقرار الوزير المختص، والتحقق من الأجر وسجل الطلب الكتابي والقرارات اللاحقة
 - لم تُراجع جميع القرارات المنفذة أو التعديلات اللاحقة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -2086,6 +2158,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary transcription of official-source text](https://drhisham.org/tax-law/%D9%82%D9%88%D8%A7%D9%86%D9%8A%D9%86-%D8%A3%D8%AE%D8%B1%D9%89/%D9%82%D8%A7%D9%86%D9%88%D9%86-14-%D9%84%D8%B3%D9%86%D8%A9-2025/) — تأييد ثانوي للنص مع بقاء الوثيقة الرسمية المرجع.
 
 **Limitations:**
+
 - تطبيق شرائح الأجر الخاصة مشروط بنطاق المنشآت الصناعية المحددة قانوناً، ولا يغني عن مراجعة قانون التأمينات والجهة الطبية والقرارات ذات الصلة.
 - لم تُراجع التعديلات والقرارات التنفيذية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -2115,6 +2188,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary transcription of official-source text](https://drhisham.org/tax-law/%D9%82%D9%88%D8%A7%D9%86%D9%8A%D9%86-%D8%A3%D8%AE%D8%B1%D9%89/%D9%82%D8%A7%D9%86%D9%88%D9%86-14-%D9%84%D8%B3%D9%86%D8%A9-2025/) — تأييد ثانوي للنص مع بقاء الوثيقة الرسمية المرجع.
 
 **Limitations:**
+
 - يتطلب التطبيق تحديد المرض المشمول والقرار الوزاري والجهة الطبية صاحبة الاختصاص، ولم تُراجع تلك القرارات هنا.
 - لم تُراجع التعديلات والقرارات التنفيذية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -2144,6 +2218,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية فقط، ولا يحل محل النص العربي الرسمي.
 
 **Limitations:**
+
 - الأثر على انتهاء الخدمة أو الاستحقاقات يتطلب مراجعة قانون التأمينات واللوائح الطبية والملف الفردي
 - لم تُراجع التعديلات والقرارات المنفذة والأحكام القضائية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -2173,6 +2248,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية فقط، ولا يحل محل النص العربي الرسمي.
 
 **Limitations:**
+
 - هذا ملخص لمجموعة واجبات وليس قائمة حرفية؛ يلزم مطابقة البند المحدد بالواقعة واللائحة والإجراءات التأديبية قبل التوصية
 - لم تُراجع التعديلات والقرارات المنفذة والأحكام القضائية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -2202,6 +2278,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية فقط، ولا يحل محل النص العربي الرسمي.
 
 **Limitations:**
+
 - لم تُراجع القرارات المنفذة أو الضمانات الطبية والخصوصية أو أي تعديلات لاحقة على المادة
 - لم تُراجع التعديلات والقرارات المنفذة والأحكام القضائية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -2231,6 +2308,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية فقط، ولا يحل محل النص العربي الرسمي.
 
 **Limitations:**
+
 - تطبيق الحظر يتطلب تحديد البند والاستثناءات والوقائع واللوائح، ولا يثبت النص وحده وقوع المخالفة
 - لم تُراجع التعديلات والقرارات المنفذة والأحكام القضائية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -2260,6 +2338,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
 **Limitations:**
+
 - القرار التنفيذي رقم 162/2026 مصدر ذو صلة محتملة، لكن نصه الكامل غير متاح في هذه الجولة؛ لا يُستنتج استيفاء منشأة بعينها من المادة وحدها
 - لم تُراجع التعديلات والقرارات المنفذة والأحكام القضائية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -2289,6 +2368,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
 **Limitations:**
+
 - لا يمكن تحديد الجزاء الصحيح دون نص لائحة المنشأة والوقائع والإجراءات وسجل الجزاءات
 - لم تُراجع التعديلات والقرارات المنفذة والأحكام القضائية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -2318,6 +2398,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
 **Limitations:**
+
 - الحدود الرقمية وشروط كل جزاء يجب نقلها ومراجعتها بنداً بنداً قبل الاستخدام؛ الملخص لا يغني عن النص الكامل
 - لم تُراجع التعديلات والقرارات المنفذة والأحكام القضائية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -2347,6 +2428,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
 **Limitations:**
+
 - الحساب النهائي يتطلب مراجعة نوع الجزاء، أساس الأجر، إجمالي الاقتطاعات خلال الشهر والنص الكامل للمادة
 - لم تُراجع التعديلات والقرارات المنفذة والأحكام القضائية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -2376,6 +2458,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
 **Limitations:**
+
 - تطبيق المواعيد والاستثناءات يتطلب تحديد تاريخ اكتشاف المخالفة وبداية التحقيق ونوع الجزاء والوقائع والمستندات
 - لم تُراجع التعديلات والقرارات المنفذة والأحكام القضائية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -2405,6 +2488,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
 **Limitations:**
+
 - يلزم التحقق من وجود إدارة قانونية، وخبرة المحقق، ومستواه الوظيفي، وملف التحقيق
 - لم تُراجع التعديلات والقرارات المنفذة والأحكام القضائية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -2434,6 +2518,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
 **Limitations:**
+
 - يجب التحقق من الأجر الأساسي اليومي وجميع الخصومات في الشهر وطبيعة الجزاء
 - لم تُراجع التعديلات والقرارات المنفذة والأحكام القضائية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -2463,6 +2548,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
 **Limitations:**
+
 - التشديد يتطلب إثبات نوع المخالفة السابقة والجديدة وتاريخ الإبلاغ ووجود الجزاء السابق
 - لم تُراجع التعديلات والقرارات المنفذة والأحكام القضائية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -2492,6 +2578,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
 **Limitations:**
+
 - الوقف لا يُعامل كسلطة عامة؛ يلزم توثيق الحالة القانونية وقرار الوقف ومدته وسبب الوقف
 - لم تُراجع التعديلات والقرارات المنفذة والأحكام القضائية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -2521,6 +2608,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
 **Limitations:**
+
 - يجب تحديد أساس الوقف وتاريخ الإخطار أو العلم والنتيجة القضائية قبل حساب المواعيد والأثر
 - لم تُراجع التعديلات والقرارات المنفذة والأحكام القضائية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -2550,6 +2638,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
 **Limitations:**
+
 - يتطلب التطبيق تاريخ انتهاء الوقف وتاريخ تقديم الطلب وقرار القاضي وحالة مباشرة العمل
 - لم تُراجع التعديلات والقرارات المنفذة والأحكام القضائية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -2579,6 +2668,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
 **Limitations:**
+
 - تقييم الاختصاص يتطلب نسخة القرار وصفة موقّعه والتفويض ونوع الجزاء
 - لم تُراجع التعديلات والقرارات المنفذة والأحكام القضائية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -2608,6 +2698,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
 **Limitations:**
+
 - يجب التحقق من تاريخ نشوء النزاع وتقديم الطلب ومحاضر اللجنة وما إذا كانت التسوية تغطي المطالبة محل التنفيذ
 - لم تُراجع التعديلات والأحكام القضائية والقرارات الإجرائية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -2637,6 +2728,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
 **Limitations:**
+
 - لم تُنقل كل المدد والإجراءات في هذا الملخص؛ يلزم استخراج النص الكامل ومراجعة نوع الطلب والوقائع قبل أي حساب إجرائي أو مالي
 - لم تُراجع التعديلات والأحكام القضائية والقرارات الإجرائية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -2666,6 +2758,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
 **Limitations:**
+
 - لم يُلخص هنا كل شروط المسؤولية والحد الإجمالي للاقتطاع أو المواعيد؛ يجب فحص النص الكامل والأدلة على الخطأ وقيمة الضرر
 - لم تُراجع التعديلات والأحكام القضائية والقرارات ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -2695,6 +2788,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
 **Limitations:**
+
 - تحديد الضمانات المنطبقة يتطلب مراجعة قانون المنظمات النقابية وصفة العامل ودوره النقابي
 - لم تُراجع التعديلات والأحكام القضائية والقرارات ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -2724,6 +2818,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
 **Limitations:**
+
 - التزامات التسجيل والمحاسبة تحتاج إلى مراجعة النص الكامل والقرارات المحاسبية ذات الصلة
 - لم تُراجع التعديلات والأحكام القضائية والقرارات ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -2753,6 +2848,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
 **Limitations:**
+
 - الآثار المالية تعتمد على مدة العقد ونصه وتاريخ الإخطار وأي استثناءات قانونية
 - لم تُراجع التعديلات والأحكام القضائية والقرارات ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -2782,6 +2878,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
 **Limitations:**
+
 - التكييف يتوقف على طبيعة العمل المتفق عليه ومدة تنفيذه وسلوك الطرفين ونص العقد
 - لم تُراجع التعديلات والأحكام القضائية والقرارات ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -2811,6 +2908,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
 **Limitations:**
+
 - تحديد بداية ونهاية المهلة يتطلب مراجعة الإخطار وإثبات تسلمه وطبيعة العقد والاستثناءات
 - لم تُراجع التعديلات والأحكام القضائية والقرارات ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -2840,6 +2938,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
 **Limitations:**
+
 - تقييم مشروعية السبب يعتمد على الوقائع والأحكام اللاحقة ذات الصلة، ولم تُراجع هنا مادةً بمادة
 - لم تُراجع التعديلات والأحكام القضائية والقرارات ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -2869,6 +2968,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
 **Limitations:**
+
 - تحديد تاريخ التسلم يتطلب دليلاً على التبليغ، مع مراجعة الأحكام الخاصة المنطبقة
 - لم تُراجع التعديلات والأحكام القضائية والقرارات ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -2898,6 +2998,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
 **Limitations:**
+
 - حساب المهلة يتطلب إثبات تاريخ الإخطار ومدد الإجازات وتواريخ انتهائها
 - لم تُراجع التعديلات والأحكام القضائية والقرارات ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -2927,6 +3028,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
 **Limitations:**
+
 - التطبيق يتطلب تحديد تاريخ تسلم الإخطار وأي استثناء أو اتفاق جائز بشأن المهلة
 - لم تُراجع التعديلات والأحكام القضائية والقرارات ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -2956,6 +3058,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
 **Limitations:**
+
 - يلزم مراجعة نص الإخطار والاتفاقات وأي أحكام خاصة واجبة التطبيق
 - لم تُراجع التعديلات والأحكام القضائية والقرارات ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -2985,6 +3088,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
 **Limitations:**
+
 - تطبيق الحق يتطلب أن يكون الإخطار من صاحب العمل وتوثيق إخطار العامل بوقت الغياب
 - لم تُراجع التعديلات والأحكام القضائية والقرارات ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -3014,6 +3118,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
 **Limitations:**
+
 - الأثر المالي النهائي يتطلب مراجعة قرار الإعفاء وتاريخ انتهاء المهلة والأجر المستحق
 - لم تُراجع التعديلات والأحكام القضائية والقرارات ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -3043,6 +3148,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
 
 **Limitations:**
+
 - الحساب النهائي يتطلب تحديد الطرف المنهي وتاريخ التسلم والمهلة الواجبة والأجر الذي يدخل في الحساب
 - لم تُراجع التعديلات والأحكام القضائية والقرارات ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
@@ -3051,6 +3157,336 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** حساب مقابل الإخطار أو مدة الخدمة دون مراجعة العقد والإخطار والأجر والنص الكامل.
+
+### 107. EG-LABOUR-14-2025-ART-165-UNLAWFUL-TERMINATION-COMPENSATION
+
+**Question:** ما الحد الأدنى للتعويض عند إنهاء عقد غير محدد المدة لسبب غير مشروع؟
+
+**Pinpoint:** القانون المرافق, المادة 165, printed Gazette page 69 (PDF page index 67).
+
+**Provisional summary (Arabic):**
+
+تقرر المادة 165 للعامل حق التعويض عن الضرر الناتج عن إنهاء صاحب العمل عقداً غير محدد المدة لسبب غير مشروع، بحد أدنى يعادل أجر شهرين عن كل سنة خدمة، دون الإخلال بالمطالبة بباقي الحقوق القانونية. كما تسرد المادة أمثلة لأسباب غير مشروعة تشمل النشاط النقابي، والشكوى من مخالفة قانونية، واستعمال الإجازات وبعض صور التمييز. يجب فحص الوقائع ونوع العقد وسائر مواد الفصل قبل تقدير الاستحقاق.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع رسمي قابل للبحث للمادة 165؛ يلزم مطابقة النص الكامل والتعديلات قبل الاعتماد (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf; استخراج نصي من عارض PDF الرسمي: المادة 165 تظهر ضمن الصفحة المطبوعة 69 (فهرس PDF 67)؛ لم يُنزّل الملف الأصلي ولم يُحسب SHA-256، ولا توجد مراجعة قانونية كاملة (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — مقارنة ثانوية أولية فقط؛ لا تحل محل النص العربي الرسمي أو مراجعة النص الكامل.
+
+**Limitations:**
+
+- لا يكفي وصف الإنهاء بأنه غير مشروع؛ يلزم فحص العقد والوقائع والأدلة وأي قواعد خاصة واجبة التطبيق
+- لم تُراجع التعديلات والأحكام القضائية والقرارات التنفيذية ذات الصلة مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+- التحقق من النص في عارض PDF لا يساوي مطابقة الملف الأصلي كاملاً أو التحقق من الوضع القانوني الحالي
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** حساب التعويض أو الجزم بعدم مشروعية الإنهاء دون فحص الملف القانوني الكامل.
+
+### 108. EG-LABOUR-14-2025-ART-166-ABSENCE-DEEMED-RESIGNATION
+
+**Question:** متى تعتبر المادة 166 العامل مستقيلاً بسبب الغياب؟
+
+**Pinpoint:** القانون المرافق, المادة 166, printed Gazette page 70 (PDF page index 68).
+
+**Provisional summary (Arabic):**
+
+تتناول المادة 166 الغياب دون مبرر مشروع لأكثر من عشرين يوماً متقطعة خلال السنة أو أكثر من عشرة أيام متتالية، وتشترط إنذاراً بخطاب موصى عليه بعلم الوصول بعد عشرة أيام غياب في الحالة الأولى أو خمسة أيام في الثانية. يجب التحقق من سجل الحضور، والمبررات، وإثبات الإنذار وتاريخ وصوله قبل استخلاص أثر قانوني.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع رسمي قابل للبحث للمادة 166؛ يلزم مطابقة النص الكامل والتعديلات قبل الاعتماد (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf; استخراج نصي من عارض PDF الرسمي: المادة 166 تظهر ضمن الصفحة المطبوعة 70 (فهرس PDF 68)؛ لم يُنزّل الملف الأصلي ولم يُحسب SHA-256، ولا توجد مراجعة قانونية كاملة (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — مقارنة ثانوية أولية فقط؛ لا تحل محل النص العربي الرسمي أو مراجعة النص الكامل.
+
+**Limitations:**
+
+- تتوقف النتيجة على احتساب أيام الغياب والمبرر وصحة الإنذار وإثبات وصوله
+- لم تُراجع التعديلات والأحكام القضائية والقرارات التنفيذية ذات الصلة مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+- التحقق من النص في عارض PDF لا يساوي مطابقة الملف الأصلي كاملاً أو التحقق من الوضع القانوني الحالي
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** اعتبار الغياب وحده استقالة صحيحة دون التحقق من الشروط والإخطار.
+
+### 109. EG-LABOUR-14-2025-ART-167-RESIGNATION-FORMALITY-ACCEPTANCE-WITHDRAWAL
+
+**Question:** ما الإجراءات والآجال الأساسية لاستقالة العامل؟
+
+**Pinpoint:** القانون المرافق, المادة 167, printed Gazette page 70 (PDF page index 68).
+
+**Provisional summary (Arabic):**
+
+تتطلب المادة 167 استقالة مكتوبة موقعة من العامل أو وكيله الخاص ومعتمدة من الجهة الإدارية المختصة. وتربط انتهاء الخدمة بقرار القبول، مع مهلة عشرة أيام للبت وإلا اعتبرت مقبولة، كما تنظم العدول خلال عشرة أيام من إخطار القبول بشروط كتابية واعتماد إداري. يجب التحقق من المستندات وتواريخ التقديم والإخطار والاعتماد.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع رسمي قابل للبحث للمادة 167؛ يلزم مطابقة النص الكامل والتعديلات قبل الاعتماد (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf; استخراج نصي من عارض PDF الرسمي: المادة 167 تظهر ضمن الصفحة المطبوعة 70 (فهرس PDF 68)؛ لم يُنزّل الملف الأصلي ولم يُحسب SHA-256، ولا توجد مراجعة قانونية كاملة (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — مقارنة ثانوية أولية فقط؛ لا تحل محل النص العربي الرسمي أو مراجعة النص الكامل.
+
+**Limitations:**
+
+- تتطلب المسألة مستند الاستقالة وإثبات التقديم والاعتماد والإخطار وتواريخها
+- لم تُراجع التعديلات والأحكام القضائية والقرارات التنفيذية ذات الصلة مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+- التحقق من النص في عارض PDF لا يساوي مطابقة الملف الأصلي كاملاً أو التحقق من الوضع القانوني الحالي
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** تقرير انتهاء الخدمة أو صحة العدول دون فحص الأصول والتواريخ.
+
+### 110. EG-LABOUR-14-2025-ART-168-WORKER-TERMINATION-EMPLOYER-BREACH-OR-ASSAULT
+
+**Question:** متى يمكن للعامل إنهاء العقد بسبب إخلال صاحب العمل؟
+
+**Pinpoint:** القانون المرافق, المادة 168, printed Gazette page 70 (PDF page index 68).
+
+**Provisional summary (Arabic):**
+
+تجيز المادة 168 للعامل إنهاء العقد إذا أخل صاحب العمل بالتزام جوهري ناشئ عن القانون أو عقد العمل الفردي أو الجماعي أو لائحة المنشأة، أو وقع اعتداء على العامل أو أحد ذويه من صاحب العمل أو ممثله. ويعامل الإنهاء في هذه الحالات كإنهاء من جانب صاحب العمل بغير مبرر مشروع. يلزم تحديد الالتزام والواقعة والأدلة والعلاقة بالعمل.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع رسمي قابل للبحث للمادة 168؛ يلزم مطابقة النص الكامل والتعديلات قبل الاعتماد (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf; استخراج نصي من عارض PDF الرسمي: المادة 168 تظهر ضمن الصفحة المطبوعة 70 (فهرس PDF 68)؛ لم يُنزّل الملف الأصلي ولم يُحسب SHA-256، ولا توجد مراجعة قانونية كاملة (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — مقارنة ثانوية أولية فقط؛ لا تحل محل النص العربي الرسمي أو مراجعة النص الكامل.
+
+**Limitations:**
+
+- توصيف الإخلال بأنه جوهري أو إثبات الاعتداء يتطلب وقائع ومستندات وتقييماً قانونياً
+- لم تُراجع التعديلات والأحكام القضائية والقرارات التنفيذية ذات الصلة مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+- التحقق من النص في عارض PDF لا يساوي مطابقة الملف الأصلي كاملاً أو التحقق من الوضع القانوني الحالي
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** توجيه العامل للإنهاء أو تقدير التعويض دون فحص الوقائع والمخاطر الإجرائية.
+
+### 111. EG-LABOUR-14-2025-ART-169-DEATH-EMPLOYEE-EMPLOYER-AND-FAMILY-PAYMENTS
+
+**Question:** ما آثار وفاة العامل أو صاحب العمل على عقد العمل والمبالغ المرتبطة بالوفاة؟
+
+**Pinpoint:** القانون المرافق, المادة 169, printed Gazette page 70 (PDF page index 68).
+
+**Provisional summary (Arabic):**
+
+تنظم المادة 169 انتهاء عقد العمل بوفاة العامل، بينما لا تنهي وفاة صاحب العمل العقد تلقائياً إلا في الحالات المرتبطة بشخصه أو بنشاط ينقطع بوفاته. كما تقرر مبالغ لأسرة العامل المتوفى أثناء الخدمة تشمل ما يعادل أجر شهرين لمواجهة نفقات الجنازة بحد أدنى ألف جنيه، ومنحة تعادل أجر شهر الوفاة والشهرين التاليين، مع أحكام أخرى للنقل والتجهيز. يلزم التحقق من الوقائع والتداخل مع قانون التأمينات.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع رسمي قابل للبحث للمادة 169؛ يلزم مطابقة النص الكامل والتعديلات قبل الاعتماد (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf; استخراج نصي من عارض PDF الرسمي: المادة 169 تظهر ضمن الصفحة المطبوعة 70 (فهرس PDF 68)؛ لم يُنزّل الملف الأصلي ولم يُحسب SHA-256، ولا توجد مراجعة قانونية كاملة (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — مقارنة ثانوية أولية فقط؛ لا تحل محل النص العربي الرسمي أو مراجعة النص الكامل.
+
+**Limitations:**
+
+- الأثر النهائي يتطلب مراجعة قانون التأمينات والجهة المستحقة والمستندات وتاريخ الوفاة
+- لم تُراجع التعديلات والأحكام القضائية والقرارات التنفيذية ذات الصلة مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+- التحقق من النص في عارض PDF لا يساوي مطابقة الملف الأصلي كاملاً أو التحقق من الوضع القانوني الحالي
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** حساب نهائي أو تحديد المستحقين دون مراجعة النصوص المرتبطة والوثائق.
+
+### 112. EG-LABOUR-14-2025-ART-170-TOTAL-PARTIAL-DISABILITY
+
+**Question:** كيف يؤثر العجز الكلي أو الجزئي على عقد العمل؟
+
+**Pinpoint:** القانون المرافق, المادة 170, printed Gazette page 71 (PDF page index 69).
+
+**Provisional summary (Arabic):**
+
+تقرر المادة 170 انتهاء عقد العمل عند عجز العامل عن أداء العمل بعجز كلي، أياً كان سبب العجز، مع مراعاة قانون التأمينات الاجتماعية والمعاشات. أما العجز الجزئي فلا ينهي العلاقة إلا إذا ثبت عدم وجود عمل آخر لدى صاحب العمل يمكن للعامل أداؤه على نحو ملائم؛ وإذا وجد عمل آخر، ينقل العامل إليه بناء على طلبه كتابة. يجب مراجعة التقارير الطبية والوظائف المتاحة والقانون التأميني.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع رسمي قابل للبحث للمادة 170؛ يلزم مطابقة النص الكامل والتعديلات قبل الاعتماد (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf; استخراج نصي من عارض PDF الرسمي: المادة 170 تظهر ضمن الصفحة المطبوعة 71 (فهرس PDF 69)؛ لم يُنزّل الملف الأصلي ولم يُحسب SHA-256، ولا توجد مراجعة قانونية كاملة (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — مقارنة ثانوية أولية فقط؛ لا تحل محل النص العربي الرسمي أو مراجعة النص الكامل.
+
+**Limitations:**
+
+- يتطلب الأمر إثبات نوع العجز والقدرة على أداء عمل آخر وتوافره وطلب النقل
+- لم تُراجع التعديلات والأحكام القضائية والقرارات التنفيذية ذات الصلة مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+- التحقق من النص في عارض PDF لا يساوي مطابقة الملف الأصلي كاملاً أو التحقق من الوضع القانوني الحالي
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** إنهاء الخدمة تلقائياً عند أي عجز دون فحص الشروط.
+
+### 113. EG-LABOUR-14-2025-ART-171-RETIREMENT-AGE-AND-FIXED-TERM
+
+**Question:** ما القاعدة بشأن سن التقاعد وإنهاء العقد عند بلوغه؟
+
+**Pinpoint:** القانون المرافق, المادة 171, printed Gazette page 71 (PDF page index 69).
+
+**Provisional summary (Arabic):**
+
+تحظر المادة 171 تحديد سن للتقاعد يقل عن ستين سنة. وتجيز لصاحب العمل إنهاء العقد عند بلوغ العامل الستين، ما لم يكن العقد محدد المدة ويمتد إلى ما بعد هذا السن؛ ففي الحالة الأخيرة لا ينتهي العقد إلا بانقضاء مدته، مع مراعاة قانون التأمينات الاجتماعية والمعاشات. يلزم التحقق من نوع العقد ونصه وتاريخ انتهائه.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع رسمي قابل للبحث للمادة 171؛ يلزم مطابقة النص الكامل والتعديلات قبل الاعتماد (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf; استخراج نصي من عارض PDF الرسمي: المادة 171 تظهر ضمن الصفحة المطبوعة 71 (فهرس PDF 69)؛ لم يُنزّل الملف الأصلي ولم يُحسب SHA-256، ولا توجد مراجعة قانونية كاملة (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — مقارنة ثانوية أولية فقط؛ لا تحل محل النص العربي الرسمي أو مراجعة النص الكامل.
+
+**Limitations:**
+
+- قد تتأثر النتيجة بشروط العقد والقانون التأميني والقواعد الانتقالية
+- لم تُراجع التعديلات والأحكام القضائية والقرارات التنفيذية ذات الصلة مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+- التحقق من النص في عارض PDF لا يساوي مطابقة الملف الأصلي كاملاً أو التحقق من الوضع القانوني الحالي
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** تحديد تاريخ انتهاء العقد أو المعاش دون مراجعة العقد والقانون المرتبط.
+
+### 114. EG-LABOUR-14-2025-ART-172-POST-RETIREMENT-SERVICE-GRATUITY
+
+**Question:** كيف تحسب مكافأة مدة العمل بعد سن الستين؟
+
+**Pinpoint:** القانون المرافق, المادة 172, printed Gazette page 72 (PDF page index 70).
+
+**Provisional summary (Arabic):**
+
+تقرر المادة 172 مكافأة عن مدة العمل بعد سن الستين بواقع نصف أجر شهر عن كل سنة من السنوات الخمس الأولى، وأجر شهر عن كل سنة تالية، بشرط عدم وجود حقوق عن المدة ذاتها وفق أحكام تأمين الشيخوخة والعجز والوفاة المشار إليها. وتضع المادة قاعدة خاصة للخدمة السابقة على سن الثامنة عشرة. يلزم فحص مدد الخدمة والأجر والحقوق التأمينية منعاً للازدواج.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع رسمي قابل للبحث للمادة 172؛ يلزم مطابقة النص الكامل والتعديلات قبل الاعتماد (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf; استخراج نصي من عارض PDF الرسمي: المادة 172 تظهر ضمن الصفحة المطبوعة 72 (فهرس PDF 70)؛ لم يُنزّل الملف الأصلي ولم يُحسب SHA-256، ولا توجد مراجعة قانونية كاملة (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — مقارنة ثانوية أولية فقط؛ لا تحل محل النص العربي الرسمي أو مراجعة النص الكامل.
+
+**Limitations:**
+
+- الحساب يتطلب بيانات الأجر ومدد الخدمة وحقوق التأمين الاجتماعي عن المدة ذاتها
+- لم تُراجع التعديلات والأحكام القضائية والقرارات التنفيذية ذات الصلة مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+- التحقق من النص في عارض PDF لا يساوي مطابقة الملف الأصلي كاملاً أو التحقق من الوضع القانوني الحالي
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** حساب مكافأة نهائية دون مراجعة كشوف الأجر والتأمينات.
+
+### 115. EG-LABOUR-14-2025-ART-173-TERMINATION-DURING-ILLNESS-LEAVE
+
+**Question:** متى يجوز إنهاء العقد بسبب مرض العامل؟
+
+**Pinpoint:** القانون المرافق, المادة 173, printed Gazette page 72 (PDF page index 70).
+
+**Provisional summary (Arabic):**
+
+تحظر المادة 173 على صاحب العمل إنهاء عقد العامل بسبب المرض قبل استنفاد إجازاته المرضية وما تبقى من رصيد إجازاته السنوية، مع مراعاة قانون التأمينات الاجتماعية والمعاشات. وتوجب إخطار العامل بالرغبة في الإنهاء قبل خمسة عشر يوماً من تاريخ استنفاد إجازاته، ويمنع الشفاء قبل اكتمال الإخطار من إنهاء العقد بسبب المرض. يلزم فحص سجل الإجازات والإخطارات والتقارير الطبية.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع رسمي قابل للبحث للمادة 173؛ يلزم مطابقة النص الكامل والتعديلات قبل الاعتماد (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf; استخراج نصي من عارض PDF الرسمي: المادة 173 تظهر ضمن الصفحة المطبوعة 72 (فهرس PDF 70)؛ لم يُنزّل الملف الأصلي ولم يُحسب SHA-256، ولا توجد مراجعة قانونية كاملة (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — مقارنة ثانوية أولية فقط؛ لا تحل محل النص العربي الرسمي أو مراجعة النص الكامل.
+
+**Limitations:**
+
+- يتطلب التطبيق حساب رصيد الإجازات وتاريخ استنفاده وفترة الإخطار وحالة العامل
+- لم تُراجع التعديلات والأحكام القضائية والقرارات التنفيذية ذات الصلة مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+- التحقق من النص في عارض PDF لا يساوي مطابقة الملف الأصلي كاملاً أو التحقق من الوضع القانوني الحالي
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** تأكيد مشروعية الإنهاء بسبب المرض دون مراجعة السجلات والتواريخ.
+
+### 116. EG-LABOUR-14-2025-ART-174-FINAL-CRIMINAL-CONVICTION-TERMINATION
+
+**Question:** هل تؤثر الإدانة الجنائية النهائية على عقد العمل؟
+
+**Pinpoint:** القانون المرافق, المادة 174, printed Gazette page 72 (PDF page index 70).
+
+**Provisional summary (Arabic):**
+
+تجيز المادة 174 لصاحب العمل إنهاء عقد العمل، ولو كان محدد المدة أو مبرماً لإنجاز عمل معين، إذا حكم نهائياً على العامل بعقوبة جناية أو بعقوبة مقيدة للحرية في جريمة مخلة بالشرف أو الأمانة، ما لم تأمر المحكمة بوقف تنفيذ العقوبة. يجب التحقق من نهائية الحكم ونوع الجريمة والعقوبة وأي أمر بوقف التنفيذ قبل بحث أثر المادة.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع رسمي قابل للبحث للمادة 174؛ يلزم مطابقة النص الكامل والتعديلات قبل الاعتماد (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf; استخراج نصي من عارض PDF الرسمي: المادة 174 تظهر ضمن الصفحة المطبوعة 72 (فهرس PDF 70)؛ لم يُنزّل الملف الأصلي ولم يُحسب SHA-256، ولا توجد مراجعة قانونية كاملة (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — مقارنة ثانوية أولية فقط؛ لا تحل محل النص العربي الرسمي أو مراجعة النص الكامل.
+
+**Limitations:**
+
+- الأثر يتوقف على منطوق الحكم ونهائيته وتكييف الجريمة ووجود أمر بوقف التنفيذ
+- لم تُراجع التعديلات والأحكام القضائية والقرارات التنفيذية ذات الصلة مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+- التحقق من النص في عارض PDF لا يساوي مطابقة الملف الأصلي كاملاً أو التحقق من الوضع القانوني الحالي
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** إنهاء الخدمة استناداً إلى اتهام أو حكم غير نهائي دون فحص الحكم.
+
+### 117. EG-LABOUR-14-2025-ART-175-EMPLOYMENT-CERTIFICATE-AND-RETURN-OF-DOCUMENTS
+
+**Question:** ما المستندات التي يجب تسليمها للعامل عند انتهاء علاقة العمل؟
+
+**Pinpoint:** القانون المرافق, المادة 175, printed Gazette page 72 (PDF page index 70).
+
+**Provisional summary (Arabic):**
+
+تلزم المادة 175 صاحب العمل بتمكين العامل من الاطلاع على تدرجه الوظيفي وعناصر أجره، وإعطائه بناء على طلبه شهادة خبرة مجانية تحدد خبرته وكفاءته المهنية أثناء سريان العقد أو عند انتهائه. كما توجب عند انتهاء العلاقة تسليم شهادة تتضمن تاريخ الالتحاق والانتهاء ونوع العمل والمزايا، ويجوز بناء على طلب العامل تضمينها مقدار الأجر وسبب انتهاء العلاقة خلال خمسة عشر يوماً من تاريخ الطلب، مع رد الأوراق والشهادات والأدوات المودعة لديه فور طلبها.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع رسمي قابل للبحث للمادة 175؛ يلزم مطابقة النص الكامل والتعديلات قبل الاعتماد (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf; استخراج نصي من عارض PDF الرسمي: المادة 175 تظهر ضمن الصفحة المطبوعة 72 (فهرس PDF 70)؛ لم يُنزّل الملف الأصلي ولم يُحسب SHA-256، ولا توجد مراجعة قانونية كاملة (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — مقارنة ثانوية أولية فقط؛ لا تحل محل النص العربي الرسمي أو مراجعة النص الكامل.
+
+**Limitations:**
+
+- يلزم توثيق طلب العامل وتاريخه ومحتوى الشهادة والممتلكات المودعة
+- لم تُراجع التعديلات والأحكام القضائية والقرارات التنفيذية ذات الصلة مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+- التحقق من النص في عارض PDF لا يساوي مطابقة الملف الأصلي كاملاً أو التحقق من الوضع القانوني الحالي
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** تقرير إخلال أو حساب تعويض دون إثبات الطلب والوقائع ذات الصلة.
 
 ## Activation gates
 
