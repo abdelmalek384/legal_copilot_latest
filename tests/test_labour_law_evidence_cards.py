@@ -94,6 +94,29 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
         for card in self.data["cards"]:
             self.assertIn(card["card_id"], actual)
 
+    def test_working_time_and_annual_leave_cards_have_pinpoints_and_fail_closed(self):
+        cards = {card["card_id"]: card for card in self.data["cards"]}
+        expected = {
+            "EG-LABOUR-14-2025-ART-117-DAILY-WEEKLY-HOURS": ("المادة 117", 52),
+            "EG-LABOUR-14-2025-ART-118-BREAKS": ("المادة 118", 52),
+            "EG-LABOUR-14-2025-ART-119-WORKDAY-SPAN": ("المادة 119", 52),
+            "EG-LABOUR-14-2025-ART-120-WEEKLY-REST": ("المادة 120", 52),
+            "EG-LABOUR-14-2025-ART-124-ANNUAL-LEAVE-ENTITLEMENT": ("المادة 124", 54),
+            "EG-LABOUR-14-2025-ART-125-ANNUAL-LEAVE-SCHEDULING": ("المادة 125", 54),
+        }
+        for card_id, (article, printed_page) in expected.items():
+            with self.subTest(card_id=card_id):
+                card = cards[card_id]
+                self.assertEqual(card["pinpoint"]["article"], article)
+                self.assertEqual(card["pinpoint"]["official_gazette_printed_page"], printed_page)
+                self.assertTrue(any("alamiria.com" in item["url"] for item in card["primary_evidence"]))
+                self.assertTrue(any("portal.eta.gov.eg" in item["url"] for item in card["primary_evidence"]))
+                self.assertTrue(card["cross_checks"])
+                self.assertEqual(card["review_state"], "provisional_primary_text_extract_reviewed")
+                self.assertIn("لا توجد مراجعة محامٍ مصر", " ".join(card["limitations"]))
+                self.assertTrue(card["not_usable_for"])
+        self.assertFalse(self.data["instrument"]["search_eligible"])
+
     def test_exam_leave_cards_have_pinpoints_and_fail_closed(self):
         cards = {card["card_id"]: card for card in self.data["cards"]}
         expected = {
