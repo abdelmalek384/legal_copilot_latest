@@ -2012,7 +2012,7 @@
       "instrument_number": 49,
       "instrument_year": 2026,
       "source_id": "EG-MINISTRY-LABOUR-LAWS",
-      "source_status": "official_index_discovered_primary_text_pending",
+      "source_status": "official_Gazette_metadata_verified_primary_text_restricted_secondary_full_text_crosscheck_found",
       "collection_permission": "unknown",
       "legal_status": "unknown",
       "review_status": "discovery_only",
@@ -2025,12 +2025,22 @@
         "qualified Egyptian labour-lawyer review",
         "source-specific collection and commercial reuse terms"
       ],
-      "notes": "Discovery-only candidate. The Ministry of Labour announced on 2026-03-26 that Ministerial Decision 49/2026 identifies hazardous/difficult work and remote areas entitling covered workers to seven additional annual-leave days, under Labour Law 14/2025. The announcement is not the decision text or Gazette evidence; do not infer full scope, commencement, currentness, or reuse rights until the instrument is obtained and reviewed.",
+      "notes": "Official Gazette repository metadata identifies the decision in الوقائع المصرية, Supplement issue 64 (تابع), dated 2026-03-18. The official Ministry of Labour announcement dated 2026-03-26 confirms Decision 49/2026 concerns an additional seven annual-leave days for workers in specified hazardous/difficult work and remote areas. A publicly accessible secondary transcription was found at https://ahmedazimelgamel.blogspot.com/2026/03/49-2026-7.html and includes Articles 1–5 and detailed work/area schedules. The Gazette PDF itself is hosted in the repository but has not been downloaded or independently compared; do not treat the secondary transcription as primary evidence. The transcription states the decision was signed 2026-03-03 and takes effect the day after publication; verify these details against the official Gazette PDF before authoritative use. Keep legal_status and collection/commercial reuse permission unknown; no source-holder copy request was submitted.",
       "source_urls": [
         {
-          "url": "https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%84%D8%AA%D8%AD%D9%82%D9%82-%D8%A7%D9%84%D8%AA%D9%88%D8%A7%D8%B2%D9%86-%D8%A8%D9%8A%D9%86-%D9%85%D8%AA%D8%B7%D9%84%D8%A8%D8%A7%D8%AA-%D8%A7%D9%84%D8%A5%D9%86%D8%AA%D8%A7%D8%AC-%D9%88%D8%B5%D9%88%D9%86-%D8%AD%D9%82%D9%88%D9%82-%D8%A7%D9%84%D9%82%D9%88%D9%89-%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D9%84%D8%A9-%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D9%8A%D8%B5%D8%AF%D8%B1-%D9%82%D8%B1%D8%A7%D8%B1-%D8%A7-%D9%88%D8%B2%D8%A7%D8%B1%D9%8A-%D8%A7-%D8%A8%D8%AA%D8%AD%D8%AF%D9%8A%D8%AF-%D8%A7%D9%84%D8%A3%D8%B9%D9%85%D8%A7%D9%84-%D8%A7%D9%84%D8%AE%D8%B7%D8%B1%D8%A9-%D9%88%D8%A7%D9%84%D9%85%D9%86%D8%A7%D8%B7%D9%82-%D8%A7%D9%84%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D8%A7%D9%84%D8%AA%D9%8A-%D8%AA-%D8%B2%D8%A7%D8%AF-%D9%81%D9%8A%D9%87%D8%A7-%D8%A7%D9%84%D8%A5%D8%AC%D8%A7%D8%B2%D8%A7%D8%AA-%D8%A7%D9%84%D8%B3%D9%86%D9%88%D9%8A%D8%A9-7-%D8%A3%D9%8A%D8%A7%D9%85-%D9%84%D9%84%D8%B9%D8%A7%D9%85%D9%84%D9%8A%D9%86/",
-          "source_role": "official Ministry of Labour announcement; discovery evidence only",
-          "status": "discovered_not_downloaded"
+          "url": "https://dspace.id.com.eg/items/f32b4a07-6598-4ed8-a170-60d631a57221",
+          "source_role": "Official Gazette repository metadata for Supplement issue 64 (تابع)",
+          "status": "metadata_discovered_primary_pdf_not_independently_reviewed"
+        },
+        {
+          "url": "https://www.labour.gov.eg/ar/الأخبار/لتحقق-التوازن-بين-متطلبات-الإنتاج-وصون-حقوق-القوى-العاملة-وزير-العمل-يصدر-قرار-ا-وزاري-ا-بتحديد-الأعمال-الخطرة-والمناطق-النائية-التي-ت-زاد-فيها-الإجازات-السنوية-7-أيام-للعاملين/",
+          "source_role": "official Ministry of Labour announcement",
+          "status": "official_announcement_discovery_only"
+        },
+        {
+          "url": "https://ahmedazimelgamel.blogspot.com/2026/03/49-2026-7.html",
+          "source_role": "public secondary full-text transcription; cross-check only",
+          "status": "discovered_not_primary"
         }
       ]
     },
