@@ -131,5 +131,98 @@ class MFABreakGlassCLITests(unittest.TestCase):
         self.assertEqual(c.execute("SELECT COUNT(*) FROM auth_sessions WHERE user_id=?", (self.target_id,)).fetchone()[0], 1)
 
 
+    def test_assisted_password_reset_requires_distinct_mfa_admin_and_revokes_sessions(self):
+        now = int(time.time())
+        new_password = "PrivilegedNewPassword-2026!"
+        args = SimpleNamespace(
+            actor_email="operator@example.test",
+            target_user_id=self.target_id,
+            reason="privileged password recovery after verified identity proof",
+            operator_reference="ops-team-2026",
+            change_reference="CHG-2026-10-28",
+            confirm_reset=True,
+        )
+        output = io.StringIO()
+        with patch("getpass.getpass", side_effect=[
+            self.actor_password, _code(self.actor_secret, now), new_password
+        ]), contextlib.redirect_stdout(output):
+            manage.resetpw_assisted_cli(args)
+
+        c = self.runtime.control_connection()
+        self.assertEqual(c.execute(
+            "SELECT COUNT(*) FROM auth_sessions WHERE user_id=?", (self.target_id,)
+        ).fetchone()[0], 0)
+        self.assertIsNotNone(c.execute(
+            "SELECT 1 FROM mfa_credentials WHERE user_id=?", (self.target_id,)
+        ).fetchone())
+        self.assertTrue(app.check_pw(
+            new_password,
+            c.execute("SELECT password_hash FROM users WHERE id=?", (self.target_id,)).fetchone()["password_hash"],
+        ))
+        event = c.execute(
+            "SELECT actor_user_id,target_user_id,event_type,detail_json FROM platform_security_events "
+            "WHERE event_type='password_reset_assisted_cli'"
+        ).fetchone()
+        self.assertEqual(event["actor_user_id"], self.actor_id)
+        self.assertEqual(event["target_user_id"], self.target_id)
+        self.assertIn('"reason":"privileged password recovery after verified identity proof"', event["detail_json"])
+        self.assertIn('"operator_reference":"ops-team-2026"', event["detail_json"])
+        self.assertNotIn(self.actor_password, event["detail_json"])
+        self.assertNotIn(new_password, event["detail_json"])
+        mfa_event = c.execute(
+            "SELECT event_type FROM mfa_security_events WHERE actor_user_id=? AND target_user_id=? "
+            "ORDER BY id DESC LIMIT 1",
+            (self.actor_id, self.target_id),
+        ).fetchone()
+        self.assertEqual(mfa_event["event_type"], "administrator_reset")
+        self.assertNotIn(self.owner_email if hasattr(self, "owner_email") else "target-admin@example.test", output.getvalue())
+
+    def test_ordinary_resetpw_refuses_privileged_target_before_prompting(self):
+        with patch("getpass.getpass") as prompt:
+            with self.assertRaisesRegex(SystemExit, "MFA-authorized"):
+                manage.resetpw(SimpleNamespace(email="target-admin@example.test"))
+        prompt.assert_not_called()
+        c = self.runtime.control_connection()
+        self.assertEqual(c.execute(
+            "SELECT COUNT(*) FROM auth_sessions WHERE user_id=?", (self.target_id,)
+        ).fetchone()[0], 1)
+
+    def test_assisted_password_reset_audit_failure_rolls_back_password_and_sessions(self):
+        now = int(time.time())
+        new_password = "PrivilegedRollbackPassword-2026!"
+        c = self.runtime.control_connection()
+        old_hash = c.execute(
+            "SELECT password_hash FROM users WHERE id=?", (self.target_id,)
+        ).fetchone()["password_hash"]
+        c.execute("""
+            CREATE TRIGGER reject_assisted_password_audit
+            BEFORE INSERT ON platform_security_events
+            WHEN NEW.event_type='password_reset_assisted_cli'
+            BEGIN SELECT RAISE(ABORT, 'injected assisted reset audit failure'); END
+        """)
+        c.commit()
+        args = SimpleNamespace(
+            actor_email="operator@example.test",
+            target_user_id=self.target_id,
+            reason="privileged password recovery after verified identity proof",
+            operator_reference="ops-team-2026",
+            change_reference="CHG-2026-10-28",
+            confirm_reset=True,
+        )
+        with patch("getpass.getpass", side_effect=[
+            self.actor_password, _code(self.actor_secret, now), new_password
+        ]):
+            with self.assertRaisesRegex(SystemExit, "no success is reported"):
+                manage.resetpw_assisted_cli(args)
+        self.assertEqual(c.execute(
+            "SELECT password_hash FROM users WHERE id=?", (self.target_id,)
+        ).fetchone()["password_hash"], old_hash)
+        self.assertEqual(c.execute(
+            "SELECT COUNT(*) FROM auth_sessions WHERE user_id=?", (self.target_id,)
+        ).fetchone()[0], 1)
+        self.assertEqual(c.execute(
+            "SELECT COUNT(*) FROM platform_security_events WHERE event_type='password_reset_assisted_cli'"
+        ).fetchone()[0], 0)
+
 if __name__ == "__main__":
     unittest.main()
