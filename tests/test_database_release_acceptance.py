@@ -1,7 +1,7 @@
 import json
 import tempfile
 import unittest
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from tools.database_release_acceptance import (
@@ -116,17 +116,17 @@ class DatabaseReleaseAcceptanceTests(unittest.TestCase):
     def test_stale_operational_evidence_blocks_release(self):
         manifest = json.loads(json.dumps(self.manifest))
         manifest["gates"]["original_file_storage"]["verified_at"] = (
-            self.now - __import__("datetime").timedelta(days=91)
+            self.now - timedelta(days=91)
         ).isoformat()
         manifest["gates"]["production_identity_email"]["verified_at"] = (
-            self.now - __import__("datetime").timedelta(days=91)
+            self.now - timedelta(days=91)
         ).isoformat()
         manifest["gates"]["independent_security_review"]["reviewed_at"] = (
-            self.now - __import__("datetime").timedelta(days=91)
+            self.now - timedelta(days=91)
         ).isoformat()
         # The approved policy has a longer but still finite review window.
         manifest["gates"]["retention_export_deletion_policy"]["approved_at"] = (
-            self.now - __import__("datetime").timedelta(days=366)
+            self.now - timedelta(days=366)
         ).isoformat()
         report = validate_acceptance_manifest(manifest, now=self.now)
         codes = {(item["gate"], item["code"]) for item in report["blockers"]}
@@ -139,7 +139,7 @@ class DatabaseReleaseAcceptanceTests(unittest.TestCase):
     def test_operational_evidence_at_freshness_boundary_is_accepted(self):
         manifest = json.loads(json.dumps(self.manifest))
         manifest["gates"]["original_file_storage"]["verified_at"] = (
-            self.now - __import__("datetime").timedelta(days=90)
+            self.now - timedelta(days=90)
         ).isoformat()
         report = validate_acceptance_manifest(manifest, now=self.now)
         self.assertNotIn(
