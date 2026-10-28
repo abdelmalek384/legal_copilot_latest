@@ -2,7 +2,7 @@
 
 **Record:** `EG-LABOUR-LAW-14-2025-EVIDENCE-CARDS-2026-10-28`  
 **Prepared on:** 2026-10-28  
-**Cards in this report:** 100
+**Cards in this report:** 106
 
 ## Status and limits
 
@@ -14,7 +14,7 @@
 - Collection permission: `unknown`; commercial reuse: `unknown`.
 - Authoritative search eligibility: `false`.
 
-Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF binary has not been downloaded or hashed; only specifically listed page images have been visually inspected, and the full PDF has not been comprehensively reviewed; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording. Additional cards for accompanying-law Articles 4–9 were prepared from text extraction of the government-hosted Official Gazette PDF on 2026-10-28. The PDF binary has not been downloaded or hashed; only specifically listed page images have been visually inspected, and the full PDF has not been comprehensively reviewed; page pinpointing is provisional and all cards remain non-authoritative. Additional cards for accompanying-law Articles 10–12 were prepared from the government-hosted Official Gazette PDF text extraction on 2026-10-28. Page references are based on the extracted page labels; the PDF binary has not been downloaded or hashed; only explicitly recorded page images have been visually inspected. Cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 16, 22, 23, 25 and 27 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; these cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 28–31 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 32–34 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 36–37 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshot checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 40–43 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 44–48 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 49–54 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 126 and 127 were added from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 55. The original PDF remains undownloaded and unhashed, and both cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 121 and 122 were prepared from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 53. Article 121 was cross-checked against a secondary English translation, and Article 122 against a secondary legal text copy. The original PDF remains undownloaded and unhashed; both cards remain provisional and non-authoritative. An additional card for accompanying-law Article 123 was added from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 53. It is cross-checked against a secondary English translation, but the implementing ministerial decision has not been identified and reviewed in this task. The original PDF remains undownloaded and unhashed; the card is provisional and non-authoritative. Additional provisional cards for accompanying-law Articles 117–120 and 124–125 were added on 2026-10-28 from indexed official Amiri Press / government-hosted Gazette text leads, cross-checked against a secondary transcription. Gazette printed-page pinpoints are provisional (52 for Articles 117–120; 54 for Articles 124–125); the original PDF remains undownloaded, unhashed, and not visually inspected. These additions do not establish currentness, completeness, reuse rights, or lawyer approval. Additional provisional cards for accompanying-law Articles 128–130 were added on 2026-10-28 using indexed text from the government-hosted Official Gazette PDF (printed page 56; provisional pinpoint) and a secondary transcription cross-check. The official publisher page is recorded as a source lead but was not directly opened in this round. The Gazette PDF remains undownloaded, unhashed, and not visually inspected; cards remain non-authoritative. Additional provisional cards for accompanying-law Articles 131–132 were added on 2026-10-28 from indexed government-hosted Gazette text with a secondary transcription cross-check. Printed-page pinpoints are provisional; the source PDF remains undownloaded, unhashed, and not visually inspected. The sick-leave card distinguishes the general medical-authority rule from the special industrial-establishment tiers; implementing decisions and related social-insurance rules remain unresolved. PAGE-LEVEL VISUAL CHECK UPDATE (2026-10-28): the official Gazette PDF at the ETA portal is accessible through the web PDF viewer (110 pages) and rendered page images were visually checked for printed Gazette pages 52–57. The article-to-page mapping is: Arts. 117–120 p.52; 121–122 p.53; 123–124 p.54; 125–127 p.55; 128–130 p.56; 131–132 p.57. This corrects the prior provisional page assignments for Article 125 (p.55, not p.54) and Article 131 (p.57, not p.56). PDF page indices are printed page minus 2. The source binary still could not be downloaded in the runtime, so no SHA-256 is claimed; only the listed pages were visually checked, not the entire instrument or amendment history. CURRENTNESS LEAD (2026-10-28): Ministry of Labour announcement dated 2026-10-01 identifies Circular 22/2026 for the 8 October 2026 private-sector holiday and confirms that Decision 294/2025 lists Armed Forces Day (6 October) as a paid holiday. This is event-specific implementation evidence, not proof of a general amendment or a complete current holiday list. Additional provisional cards for Articles 133–136 were added after visual inspection of official Gazette printed pages 57–59 (PDF indices 55–57) on 2026-10-28. Article 134 begins on printed page 57 and continues onto page 58. The PDF binary remains undownloaded and unhashed; summaries are provisional and no lawyer review or currentness certification is claimed. Additional provisional disciplinary/work-regulation cards for Articles 137–141 were added after visual inspection of official Gazette printed pages 60–61 (PDF indices 58–59) on 2026-10-28. These cards summarize statutory framework only; the current general workplace-regulation decision (162/2026), each employer's actual regulation, full amendment history, and legal review remain outstanding. Additional provisional disciplinary cards for Articles 142–148 were added after visual inspection of official Gazette printed pages 62–63 (PDF indices 60–61) on 2026-10-28. These summaries cover investigation assignment, deduction caps, repeated violations, temporary suspension, suspension grievances/extensions, and authority to impose discipline. They remain provisional and require full text/currentness/legal review. Additional provisional individual-dispute cards for Articles 149–150 were added after visual inspection of official Gazette printed pages 64–65 (PDF indices 62–63) on 2026-10-28. Procedural deadlines and financial consequences require full-text extraction and legal review before any case-specific use. Additional provisional cards for Articles 151–158 were added after visual inspection of official Gazette printed pages 65–67 (PDF indices 63–65) on 2026-10-28. They cover worker liability for damage, union protections, disciplinary-fine accounting, expiry/renewal of fixed-term or specific-work contracts, and notice/justification rules for indefinite-term termination. They remain provisional; case-specific calculations require full-text and legal review.
+Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF binary has not been downloaded or hashed; only specifically listed page images have been visually inspected, and the full PDF has not been comprehensively reviewed; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording. Additional cards for accompanying-law Articles 4–9 were prepared from text extraction of the government-hosted Official Gazette PDF on 2026-10-28. The PDF binary has not been downloaded or hashed; only specifically listed page images have been visually inspected, and the full PDF has not been comprehensively reviewed; page pinpointing is provisional and all cards remain non-authoritative. Additional cards for accompanying-law Articles 10–12 were prepared from the government-hosted Official Gazette PDF text extraction on 2026-10-28. Page references are based on the extracted page labels; the PDF binary has not been downloaded or hashed; only explicitly recorded page images have been visually inspected. Cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 16, 22, 23, 25 and 27 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; these cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 28–31 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 32–34 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 36–37 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshot checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 40–43 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 44–48 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 49–54 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 126 and 127 were added from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 55. The original PDF remains undownloaded and unhashed, and both cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 121 and 122 were prepared from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 53. Article 121 was cross-checked against a secondary English translation, and Article 122 against a secondary legal text copy. The original PDF remains undownloaded and unhashed; both cards remain provisional and non-authoritative. An additional card for accompanying-law Article 123 was added from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 53. It is cross-checked against a secondary English translation, but the implementing ministerial decision has not been identified and reviewed in this task. The original PDF remains undownloaded and unhashed; the card is provisional and non-authoritative. Additional provisional cards for accompanying-law Articles 117–120 and 124–125 were added on 2026-10-28 from indexed official Amiri Press / government-hosted Gazette text leads, cross-checked against a secondary transcription. Gazette printed-page pinpoints are provisional (52 for Articles 117–120; 54 for Articles 124–125); the original PDF remains undownloaded, unhashed, and not visually inspected. These additions do not establish currentness, completeness, reuse rights, or lawyer approval. Additional provisional cards for accompanying-law Articles 128–130 were added on 2026-10-28 using indexed text from the government-hosted Official Gazette PDF (printed page 56; provisional pinpoint) and a secondary transcription cross-check. The official publisher page is recorded as a source lead but was not directly opened in this round. The Gazette PDF remains undownloaded, unhashed, and not visually inspected; cards remain non-authoritative. Additional provisional cards for accompanying-law Articles 131–132 were added on 2026-10-28 from indexed government-hosted Gazette text with a secondary transcription cross-check. Printed-page pinpoints are provisional; the source PDF remains undownloaded, unhashed, and not visually inspected. The sick-leave card distinguishes the general medical-authority rule from the special industrial-establishment tiers; implementing decisions and related social-insurance rules remain unresolved. PAGE-LEVEL VISUAL CHECK UPDATE (2026-10-28): the official Gazette PDF at the ETA portal is accessible through the web PDF viewer (110 pages) and rendered page images were visually checked for printed Gazette pages 52–57. The article-to-page mapping is: Arts. 117–120 p.52; 121–122 p.53; 123–124 p.54; 125–127 p.55; 128–130 p.56; 131–132 p.57. This corrects the prior provisional page assignments for Article 125 (p.55, not p.54) and Article 131 (p.57, not p.56). PDF page indices are printed page minus 2. The source binary still could not be downloaded in the runtime, so no SHA-256 is claimed; only the listed pages were visually checked, not the entire instrument or amendment history. CURRENTNESS LEAD (2026-10-28): Ministry of Labour announcement dated 2026-10-01 identifies Circular 22/2026 for the 8 October 2026 private-sector holiday and confirms that Decision 294/2025 lists Armed Forces Day (6 October) as a paid holiday. This is event-specific implementation evidence, not proof of a general amendment or a complete current holiday list. Additional provisional cards for Articles 133–136 were added after visual inspection of official Gazette printed pages 57–59 (PDF indices 55–57) on 2026-10-28. Article 134 begins on printed page 57 and continues onto page 58. The PDF binary remains undownloaded and unhashed; summaries are provisional and no lawyer review or currentness certification is claimed. Additional provisional disciplinary/work-regulation cards for Articles 137–141 were added after visual inspection of official Gazette printed pages 60–61 (PDF indices 58–59) on 2026-10-28. These cards summarize statutory framework only; the current general workplace-regulation decision (162/2026), each employer's actual regulation, full amendment history, and legal review remain outstanding. Additional provisional disciplinary cards for Articles 142–148 were added after visual inspection of official Gazette printed pages 62–63 (PDF indices 60–61) on 2026-10-28. These summaries cover investigation assignment, deduction caps, repeated violations, temporary suspension, suspension grievances/extensions, and authority to impose discipline. They remain provisional and require full text/currentness/legal review. Additional provisional individual-dispute cards for Articles 149–150 were added after visual inspection of official Gazette printed pages 64–65 (PDF indices 62–63) on 2026-10-28. Procedural deadlines and financial consequences require full-text extraction and legal review before any case-specific use. Additional provisional cards for Articles 151–158 were added after visual inspection of official Gazette printed pages 65–67 (PDF indices 63–65) on 2026-10-28. They cover worker liability for damage, union protections, disciplinary-fine accounting, expiry/renewal of fixed-term or specific-work contracts, and notice/justification rules for indefinite-term termination. They remain provisional; case-specific calculations require full-text and legal review. Additional provisional termination-notice cards for Articles 159–164 were added after visual inspection of official Gazette printed pages 68–69 (PDF indices 66–67) on 2026-10-28. They cover notice during leave, contract continuity, notice-period constraints, paid job-search time, employer waiver of work, and payment in lieu of unserved notice. These cards remain provisional and require full legal review.
 
 ## Provision cards
 
@@ -2877,6 +2877,180 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** حساب مهلة الإخطار دون دليل على التسلم ومراجعة نوع العقد والاستثناءات.
+
+### 101. EG-LABOUR-14-2025-ART-159-NOTICE-DURING-LEAVE-AND-SICKNESS
+
+**Question:** هل يجوز توجيه إخطار الإنهاء أثناء الإجازة وكيف تؤثر الإجازة المرضية على المهلة؟
+
+**Pinpoint:** القانون المرافق, المادة 159, printed Gazette page 68 (PDF page index 66).
+
+**Provisional summary (Arabic):**
+
+تحظر المادة 159 توجيه إخطار الإنهاء للعامل أثناء إجازاته، وتقرر أن مهلة الإخطار لا تحتسب إلا من اليوم التالي لانتهاء الإجازة. وإذا حصل العامل على إجازة مرضية خلال مهلة الإخطار، يتوقف سريان المهلة ولا يستأنف إلا من اليوم التالي لانتهاء الإجازة المرضية. يجب توثيق الإجازة وتواريخها والإخطار قبل حساب تاريخ الانتهاء.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; المرجع الرسمي القابل للبحث؛ يجب مطابقة النص الكامل والاستثناءات قبل الاعتماد (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf; الصفحة المطبوعة 68 تعرض المادة 159 وتوقف/بدء مهلة الإخطار بالنسبة للإجازات والإجازة المرضية؛ الصفحة روجعت بصرياً في عارض PDF بتاريخ 2026-10-28، لكن الملف الأصلي لم يُنزّل ولم يُحسب SHA-256 (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
+
+**Limitations:**
+- حساب المهلة يتطلب إثبات تاريخ الإخطار ومدد الإجازات وتواريخ انتهائها
+- لم تُراجع التعديلات والأحكام القضائية والقرارات ذات الصلة مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+- التحقق البصري اقتصر على الصفحة المحددة؛ لم يُحسب SHA-256 للملف الأصلي
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** حساب تاريخ انتهاء الخدمة دون مراجعة الإخطار وسجلات الإجازات.
+
+### 102. EG-LABOUR-14-2025-ART-160-CONTRACT-OBLIGATIONS-DURING-NOTICE
+
+**Question:** هل يستمر عقد العمل وواجبات الطرفين خلال مهلة الإخطار؟
+
+**Pinpoint:** القانون المرافق, المادة 160, printed Gazette page 68 (PDF page index 66).
+
+**Provisional summary (Arabic):**
+
+تقرر المادة 160 استمرار عقد العمل قائماً طوال مهلة الإخطار، ويلتزم طرفاه بتنفيذ جميع الالتزامات الناشئة عنه حتى انقضاء المهلة. لذلك لا يعني توجيه الإخطار وحده انتهاء العلاقة فوراً؛ يجب مراجعة تاريخ التسلم والمهلة وأي قواعد خاصة.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; المرجع الرسمي القابل للبحث؛ يجب مطابقة النص الكامل والاستثناءات قبل الاعتماد (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf; الصفحة المطبوعة 68 تعرض المادة 160 واستمرار العقد والالتزامات حتى انقضاء مهلة الإخطار؛ الصفحة روجعت بصرياً في عارض PDF بتاريخ 2026-10-28، لكن الملف الأصلي لم يُنزّل ولم يُحسب SHA-256 (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
+
+**Limitations:**
+- التطبيق يتطلب تحديد تاريخ تسلم الإخطار وأي استثناء أو اتفاق جائز بشأن المهلة
+- لم تُراجع التعديلات والأحكام القضائية والقرارات ذات الصلة مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+- التحقق البصري اقتصر على الصفحة المحددة؛ لم يُحسب SHA-256 للملف الأصلي
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** اعتبار العلاقة منتهية بمجرد إرسال الإخطار دون حساب المهلة.
+
+### 103. EG-LABOUR-14-2025-ART-161-NOTICE-PERIOD-WAIVER-OR-EXTENSION
+
+**Question:** هل يجوز الاتفاق على إسقاط مهلة الإخطار أو تقصيرها؟
+
+**Pinpoint:** القانون المرافق, المادة 161, printed Gazette page 68 (PDF page index 66).
+
+**Provisional summary (Arabic):**
+
+تحظر المادة 161 الاتفاق على الإعفاء من شرط الإخطار أو تخفيض مدته، وتجيز الاتفاق على زيادة مدة الإخطار. يجب التحقق من أي اتفاق على تاريخ الانتهاء ومقارنته بهذا القيد.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; المرجع الرسمي القابل للبحث؛ يجب مطابقة النص الكامل والاستثناءات قبل الاعتماد (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf; الصفحة المطبوعة 68 تعرض المادة 161 بشأن عدم جواز الإعفاء أو التخفيض وإمكان زيادة المهلة؛ الصفحة روجعت بصرياً في عارض PDF بتاريخ 2026-10-28، لكن الملف الأصلي لم يُنزّل ولم يُحسب SHA-256 (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
+
+**Limitations:**
+- يلزم مراجعة نص الإخطار والاتفاقات وأي أحكام خاصة واجبة التطبيق
+- لم تُراجع التعديلات والأحكام القضائية والقرارات ذات الصلة مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+- التحقق البصري اقتصر على الصفحة المحددة؛ لم يُحسب SHA-256 للملف الأصلي
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** اعتبار اتفاق تقصير مهلة الإخطار صحيحاً دون مراجعة المادة والنصوص الخاصة.
+
+### 104. EG-LABOUR-14-2025-ART-162-PAID-TIME-TO-SEARCH-DURING-NOTICE
+
+**Question:** ما حق العامل في وقت مدفوع للبحث عن عمل جديد خلال مهلة الإخطار؟
+
+**Pinpoint:** القانون المرافق, المادة 162, printed Gazette page 68 (PDF page index 66).
+
+**Provisional summary (Arabic):**
+
+إذا كان الإخطار بالإنهاء من جانب صاحب العمل، تمنح المادة 162 العامل حق التغيب يوماً كاملاً في الأسبوع أو ثماني ساعات أثناء الأسبوع بأجر كامل للبحث عن عمل آخر، مع إخطار صاحب العمل بذلك في اليوم السابق على الأقل. يجب التحقق من مصدر الإخطار وطريقة تنظيم وقت البحث وسجل الإخطار.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; المرجع الرسمي القابل للبحث؛ يجب مطابقة النص الكامل والاستثناءات قبل الاعتماد (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf; الصفحة المطبوعة 68 تعرض المادة 162 وحق يوم أو ثماني ساعات أسبوعياً بأجر كامل مع إخطار مسبق؛ الصفحة روجعت بصرياً في عارض PDF بتاريخ 2026-10-28، لكن الملف الأصلي لم يُنزّل ولم يُحسب SHA-256 (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
+
+**Limitations:**
+- تطبيق الحق يتطلب أن يكون الإخطار من صاحب العمل وتوثيق إخطار العامل بوقت الغياب
+- لم تُراجع التعديلات والأحكام القضائية والقرارات ذات الصلة مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+- التحقق البصري اقتصر على الصفحة المحددة؛ لم يُحسب SHA-256 للملف الأصلي
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** خصم أجر وقت البحث أو تقرير مخالفة دون فحص شروط المادة والإخطار.
+
+### 105. EG-LABOUR-14-2025-ART-163-EMPLOYER-WAIVER-OF-WORK-DURING-NOTICE
+
+**Question:** هل يمكن لصاحب العمل إعفاء العامل من أداء العمل خلال مهلة الإخطار؟
+
+**Pinpoint:** القانون المرافق, المادة 163, printed Gazette page 68 (PDF page index 66).
+
+**Provisional summary (Arabic):**
+
+تجيز المادة 163 لصاحب العمل إعفاء العامل من أداء العمل خلال مهلة الإخطار، مع استمرار احتساب مدة الخدمة حتى انتهاء المهلة وما يترتب عليها من آثار، وبخاصة استحقاق أجر العامل عن المدة وفقاً للنص. يجب التمييز بين الإعفاء من الحضور وانتهاء عقد العمل فعلياً.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; المرجع الرسمي القابل للبحث؛ يجب مطابقة النص الكامل والاستثناءات قبل الاعتماد (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf; الصفحة المطبوعة 68 تعرض المادة 163 بشأن إعفاء العامل من العمل مع استمرار الخدمة خلال المهلة وآثارها المالية؛ الصفحة روجعت بصرياً في عارض PDF بتاريخ 2026-10-28، لكن الملف الأصلي لم يُنزّل ولم يُحسب SHA-256 (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
+
+**Limitations:**
+- الأثر المالي النهائي يتطلب مراجعة قرار الإعفاء وتاريخ انتهاء المهلة والأجر المستحق
+- لم تُراجع التعديلات والأحكام القضائية والقرارات ذات الصلة مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+- التحقق البصري اقتصر على الصفحة المحددة؛ لم يُحسب SHA-256 للملف الأصلي
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** اعتبار الإعفاء من الحضور إنهاءً فورياً للخدمة دون فحص القرار والمهلة.
+
+### 106. EG-LABOUR-14-2025-ART-164-PAYMENT-IN-LIEU-OF-UNSERVED-NOTICE
+
+**Question:** ما الأثر المالي إذا أنهى أحد الطرفين العقد غير محدد المدة دون استكمال مهلة الإخطار؟
+
+**Pinpoint:** القانون المرافق, المادة 164, printed Gazette page 69 (PDF page index 67).
+
+**Provisional summary (Arabic):**
+
+تنظم المادة 164 الأثر المالي لإنهاء عقد العمل غير محدد المدة دون إخطار أو قبل انقضاء المهلة، بما يشمل أداء مبلغ يعادل أجر مهلة الإخطار أو الجزء الباقي منها بحسب الحالة، واحتساب المدة ذات الصلة ضمن مدة الخدمة والالتزامات المترتبة عليها وفق النص. يجب التحقق من الطرف الذي أنهى العقد وتاريخ الإنهاء والجزء غير المستوفى من المهلة.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; المرجع الرسمي القابل للبحث؛ يجب مطابقة النص الكامل والاستثناءات قبل الاعتماد (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf; الصفحة المطبوعة 69 تعرض المادة 164 بشأن المقابل عن مهلة الإخطار أو الجزء المتبقي وآثارها على مدة الخدمة؛ الصفحة روجعت بصرياً في عارض PDF بتاريخ 2026-10-28، لكن الملف الأصلي لم يُنزّل ولم يُحسب SHA-256 (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://manshurat.org/node/76602) — نص ثانوي للمقارنة الأولية؛ لا يحل محل النص العربي الرسمي.
+
+**Limitations:**
+- الحساب النهائي يتطلب تحديد الطرف المنهي وتاريخ التسلم والمهلة الواجبة والأجر الذي يدخل في الحساب
+- لم تُراجع التعديلات والأحكام القضائية والقرارات ذات الصلة مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+- التحقق البصري اقتصر على الصفحة المحددة؛ لم يُحسب SHA-256 للملف الأصلي
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** حساب مقابل الإخطار أو مدة الخدمة دون مراجعة العقد والإخطار والأجر والنص الكامل.
 
 ## Activation gates
 
