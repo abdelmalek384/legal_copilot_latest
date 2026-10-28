@@ -41,6 +41,19 @@ class LabourLawPrimaryEvidenceSeedTests(unittest.TestCase):
                 self.assertTrue(parsed.netloc)
                 self.assertTrue(source["basis"])
 
+    def test_official_document_copyright_note_does_not_override_source_terms(self):
+        note = self.seed["source_assessment"]
+        # This seed may discuss a legal copyright basis, but must never imply that
+        # it grants source-site access or commercial reuse permission.
+        manifest_path = ROOT / "data/candidates/labour_law_14_2025/manifest.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        copyright_note = manifest["official_primary_source_evidence"]["egyptian_official_document_copyright_basis"]
+        self.assertIn("Article 141", copyright_note["statute"])
+        self.assertEqual(copyright_note["permission_status_unchanged"], "unknown")
+        self.assertEqual(copyright_note["review_status"], "pending_qualified_legal_review")
+        self.assertIn("systematic retrieval restrictions", copyright_note["does_not_resolve"])
+        self.assertEqual(note["permission_status"], "unknown")
+
     def test_publication_metadata_and_commencement_candidates_are_explicit(self):
         evidence = self.seed["source_assessment"]
         self.assertEqual(evidence["official_gazette_issue"], "18 (تابع)")
