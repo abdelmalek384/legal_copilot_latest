@@ -67,7 +67,7 @@
   "terms_review": "reviewed_on_2026-10-24; no affirmative redistribution_or_commercial_reuse permission located",
   "collection_permission": "unknown_pending_written_permission_or_terms_confirmation",
   "official_primary_source_evidence": {
-    "source_assessment": "official government-hosted PDF of Official Gazette issue discovered through indexed search; PDF has not been downloaded and page-reviewed in this workflow",
+    "source_assessment": "Official government-hosted Official Gazette PDF text was opened and targeted relevant pages were reviewed through extracted text; the PDF itself was not downloaded or visually inspected.",
     "official_gazette_issue": "18 (تابع)",
     "publication_date": "2025-05-03",
     "primary_text_page_url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
@@ -98,6 +98,33 @@
       ],
       "review_status": "pending_qualified_legal_review",
       "permission_status_unchanged": "unknown"
+    },
+    "targeted_pdf_text_page_review": {
+      "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+      "reviewed_on": "2026-10-28",
+      "method": "Web-accessible PDF text extraction",
+      "reviewed_pdf_pages": [
+        {
+          "pdf_page_index_zero_based": 0,
+          "printed_page_label": "2",
+          "pinpoint": "مواد الإصدار، المادة الأولى"
+        },
+        {
+          "pdf_page_index_zero_based": 3,
+          "printed_page_label": "5",
+          "pinpoint": "مواد الإصدار، المادتان 12 و13"
+        },
+        {
+          "pdf_page_index_zero_based": 9,
+          "printed_page_label": "12",
+          "pinpoint": "القانون المرافق، المواد 4-6"
+        }
+      ],
+      "original_pdf_downloaded": false,
+      "original_pdf_sha256": null,
+      "full_visual_review": false,
+      "full_article_by_article_comparison": false,
+      "note": "Targeted extracted text supports the listed pinpoints. Do not imply that all 311 candidate rows were checked against the Gazette."
     }
   }
 }
