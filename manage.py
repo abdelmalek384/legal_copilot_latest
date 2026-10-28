@@ -547,6 +547,8 @@ def bootstrap_platform_admin_cli(a):
             "firm_id": int(membership["firm_id"]),
             "event_type": "platform_admin_bootstrap_cli",
         }, sort_keys=True))
+    except (DatabaseRuntimeError, sqlite3.Error, ValueError) as exc:
+        raise SystemExit("Platform-admin bootstrap could not safely complete.") from exc
     finally:
         runtime.close_current_thread()
 
