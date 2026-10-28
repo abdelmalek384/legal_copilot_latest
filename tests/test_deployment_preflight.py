@@ -118,7 +118,11 @@ class DeploymentPreflightTests(unittest.TestCase):
         env["BACKUP_KEY"] = Fernet.generate_key().decode()
         env["MFA_ENCRYPTION_KEY"] = Fernet.generate_key().decode()
         _, _, errors = preflight.inspect_environment(env)
-        self.assertEqual(errors, [])
+        self.assertTrue(any(
+            "no production object-storage/KMS backend is implemented and verified end-to-end" in item
+            for item in errors
+        ))
+        self.assertEqual(len(errors), 1, errors)
 
     def test_production_requires_host_and_secure_cookie_settings(self):
         env = dict(self.env)
@@ -134,6 +138,59 @@ class DeploymentPreflightTests(unittest.TestCase):
         self.assertTrue(any("COPILOT_ALLOWED_HOSTS is required in production" in item for item in errors))
         self.assertTrue(any("COPILOT_SECURE_COOKIES=1 is required in production" in item for item in errors))
         self.assertTrue(any("COPILOT_PUBLIC_ORIGIN must be set" in item for item in errors))
+
+    def test_unimplemented_backend_name_cannot_bypass_production_storage_gate(self):
+        root = Path(self.tempdir.name)
+        tenant_root = root / "tenants"
+        tenant_root.mkdir()
+        if os.name == "posix":
+            os.chmod(tenant_root, 0o700)
+        (root / "control").mkdir()
+        (root / "corpus").mkdir()
+        base = {
+            "ADMIN_TOKEN": "a" * 40,
+            "MIN_SCORE": "0.3",
+            "COPILOT_ENV": "production",
+            "COPILOT_CONTROL_DB": str(root / "control" / "control.sqlite3"),
+            "COPILOT_TENANT_DB_ROOT": str(tenant_root),
+            "COPILOT_CORPUS_DB": str(root / "corpus" / "corpus.sqlite3"),
+            "COPILOT_ALLOWED_HOSTS": "legal.example.test",
+            "COPILOT_SECURE_COOKIES": "1",
+            "COPILOT_PUBLIC_ORIGIN": "https://legal.example.test",
+            "BACKUP_KEY": Fernet.generate_key().decode(),
+            "MFA_ENFORCEMENT": "admins_required",
+            "MFA_ENCRYPTION_KEY": Fernet.generate_key().decode(),
+        }
+        for backend in ("local", "s3_kms", "unknown"):
+            with self.subTest(backend=backend):
+                _, _, errors = preflight.inspect_environment(
+                    dict(base, COPILOT_OBJECT_STORAGE_BACKEND=backend)
+                )
+                self.assertTrue(any(
+                    "no production object-storage/KMS backend is implemented and verified end-to-end" in item
+                    for item in errors
+                ))
+
+    def test_release_preflight_blocks_until_production_object_storage_is_verified(self):
+        root = Path(self.tempdir.name)
+        tenant_root = root / "tenants"
+        tenant_root.mkdir()
+        if os.name == "posix":
+            os.chmod(tenant_root, 0o700)
+        (root / "control").mkdir()
+        (root / "corpus").mkdir()
+        env = {
+            "ADMIN_TOKEN": "a" * 40,
+            "MIN_SCORE": "0.3",
+            "COPILOT_CONTROL_DB": str(root / "control" / "control.sqlite3"),
+            "COPILOT_TENANT_DB_ROOT": str(tenant_root),
+            "COPILOT_CORPUS_DB": str(root / "corpus" / "corpus.sqlite3"),
+        }
+        _, _, errors = preflight.inspect_environment(env, require_separate=True)
+        self.assertTrue(any(
+            "no production object-storage/KMS backend is implemented and verified end-to-end" in item
+            for item in errors
+        ))
 
     def test_accepts_complete_separate_database_path_configuration_without_shared_warning(self):
         root = Path(self.tempdir.name)

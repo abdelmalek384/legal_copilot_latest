@@ -1,5 +1,6 @@
 import io
 import json
+import sqlite3
 import tempfile
 import unittest
 import zipfile
@@ -65,6 +66,22 @@ class DatabaseBackupBundleTests(unittest.TestCase):
         self.assertTrue(restored["control_plane"].is_file())
         self.assertTrue(restored["legal_corpus"].is_file())
 
+        # Restore itself, before runtime initialization, must establish the
+        # concurrency mode expected by the application for every database.
+        restored_databases = [
+            restored["control_plane"],
+            restored["legal_corpus"],
+            *sorted(restored["tenant_root"].glob("tenant-*.sqlite3")),
+        ]
+        self.assertGreaterEqual(len(restored_databases), 4)
+        for database_path in restored_databases:
+            connection = sqlite3.connect(database_path)
+            try:
+                journal_mode = connection.execute("PRAGMA journal_mode").fetchone()[0]
+                self.assertEqual(str(journal_mode).lower(), "wal", database_path.name)
+            finally:
+                connection.close()
+
         restored_runtime = DatabaseRuntime(
             restored["control_plane"], restored["tenant_root"], restored["legal_corpus"]
         )
@@ -83,6 +100,83 @@ class DatabaseBackupBundleTests(unittest.TestCase):
             "legal_corpus",
         )
         restored_runtime.close_current_thread()
+
+    def test_original_objects_restore_with_tenant_metadata_and_verified_bytes(self):
+        import hashlib
+        import app
+        from original_file_storage import LocalPrivateObjectStore
+
+        context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        firm_db = self.runtime.firm_connection(context)
+        case_id = firm_db.execute(
+            "SELECT id FROM cases WHERE title='Snapshot Matter'"
+        ).fetchone()[0]
+        original = b"synthetic confidential original evidence bytes"
+        _, document_id = app.save_doc(
+            firm_db,
+            {"id": self.user_id, "firm_id": self.firm_a, "name": "Backup Owner"},
+            case_id,
+            "original-evidence.txt",
+            "Extracted evidence text retained separately from original bytes.",
+            content_hash=hashlib.sha256(original).hexdigest(),
+            content_type="text/plain",
+            byte_size=len(original),
+        )
+
+        object_root = self.root / "source" / "objects"
+        store = LocalPrivateObjectStore(object_root)
+        staged = store.stage(self.firm_a, original)
+        store.finalize(self.firm_a, staged.object_id)
+        firm_db.execute(
+            "INSERT INTO original_file_objects(object_id,document_id,firm_id,storage_backend,sha256,byte_size,content_type,state) "
+            "VALUES(?,?,?,'local',?,?,?,'ready')",
+            (staged.object_id, document_id, self.firm_a, staged.sha256, staged.byte_size, "text/plain"),
+        )
+        firm_db.commit()
+
+        bundle = create_backup_bundle(
+            self.runtime, self.cipher, self.backup_dir, quiesced=True
+        )
+        restored = restore_backup_bundle(bundle, self.cipher, self.root / "restored-with-objects")
+        restored_object = (
+            restored["object_storage"] / f"firm-{self.firm_a}" / f"{staged.object_id}.blob"
+        )
+        self.assertTrue(restored_object.is_file())
+        self.assertEqual(restored_object.read_bytes(), original)
+
+        from tools.run_database_recovery_drill import run_recovery_drill
+        drill = run_recovery_drill(bundle, self.cipher, self.root)
+        self.assertTrue(drill["verified"], drill["findings"])
+        self.assertEqual(drill["object_file_count"], 1)
+        self.assertEqual(drill["active_firm_routing_checks"], 2)
+
+        restored_runtime = DatabaseRuntime(
+            restored["control_plane"], restored["tenant_root"], restored["legal_corpus"]
+        )
+        restored_runtime.initialize()
+        restored_context = restored_runtime.resolve_context(self.user_id, self.firm_a)
+        restored_db = restored_runtime.firm_connection(restored_context)
+        metadata = restored_db.execute(
+            "SELECT state,sha256,byte_size FROM original_file_objects WHERE object_id=?",
+            (staged.object_id,),
+        ).fetchone()
+        self.assertEqual(metadata["state"], "ready")
+        self.assertEqual(metadata["sha256"], hashlib.sha256(original).hexdigest())
+        self.assertEqual(metadata["byte_size"], len(original))
+        restored_runtime.close_current_thread()
+
+    def test_recovery_drill_restores_and_exercises_active_firm_routing(self):
+        from tools.run_database_recovery_drill import run_recovery_drill
+
+        bundle = create_backup_bundle(
+            self.runtime, self.cipher, self.backup_dir, quiesced=True
+        )
+        report = run_recovery_drill(bundle, self.cipher, self.root)
+
+        self.assertTrue(report["verified"], report["findings"])
+        self.assertGreaterEqual(report["database_count"], 4)
+        self.assertEqual(report["active_firm_routing_checks"], 2)
+        self.assertFalse(report["plaintext_retained"])
 
     def test_restore_refuses_existing_target_and_wrong_encryption_key(self):
         bundle = create_backup_bundle(
@@ -123,8 +217,10 @@ class DatabaseBackupBundleTests(unittest.TestCase):
         bundle = create_backup_bundle(self.runtime, self.cipher, self.backup_dir, quiesced=True)
         result = verify_backup_bundle(bundle, self.cipher)
         self.assertTrue(result["verified"])
-        self.assertEqual(result["format_version"], 1)
+        self.assertEqual(result["format_version"], 2)
         self.assertEqual(result["tenant_database_count"], 2)
+        self.assertEqual(result["original_object_count"], 0)
+        self.assertTrue(result["original_objects_verified"])
         self.assertFalse(result["plaintext_retained"])
         self.assertIn("not guaranteed secure erasure", result["warning"])
 

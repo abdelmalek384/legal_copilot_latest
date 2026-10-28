@@ -15,6 +15,8 @@ from tools.mfa_primitives import (
 )
 from tools.mfa_crypto import MFAConfigurationError, encrypt_totp_secret, decrypt_totp_secret
 from storage import SQLiteConnectionProvider
+from original_file_storage import LocalPrivateObjectStore, ObjectStorageError, StagedObject
+from s3_original_file_storage import S3PrivateObjectStore
 from identity import normalize_email
 from db_migrations import apply_migrations
 from database_runtime import DatabaseRuntime, DatabaseRuntimeError
@@ -566,7 +568,7 @@ def add_doc(c, case_id, name, text, document_id=None, *, commit=True):
                      "page": str(page) if page is not None else None})
     return add_chunks(c, rows, commit=commit)
 
-def save_doc(c, u, cid, name, text, *, content_hash=None, content_type="text/plain", byte_size=None, extraction_status="text_extracted", ocr_used=False):
+def save_doc(c, u, cid, name, text, *, content_hash=None, content_type="text/plain", byte_size=None, extraction_status="text_extracted", ocr_used=False, original_file: StagedObject | None = None, storage_backend='local', commit=True):
     content_hash = content_hash or hashlib.sha256(text.encode("utf-8")).hexdigest()
     byte_size = len(text.encode("utf-8")) if byte_size is None else byte_size
     # Chunk insertion and its audit event must commit with the document metadata.
@@ -581,9 +583,18 @@ def save_doc(c, u, cid, name, text, *, content_hash=None, content_type="text/pla
             (cid, name, u["firm_id"], u["id"], content_hash, content_type, byte_size, extraction_status, int(ocr_used)))
         document_id = cur.lastrowid
         n = add_doc(c, cid, name, text, document_id=document_id, commit=False)
+        if original_file is not None:
+            c.execute(
+                "INSERT INTO original_file_objects(object_id,document_id,firm_id,storage_backend,sha256,byte_size,content_type,state) "
+                "VALUES(?,?,?,?,?,?,?,'staged')",
+                (original_file.object_id, document_id, u["firm_id"], storage_backend,
+                 original_file.sha256, original_file.byte_size,
+                 content_type or "application/octet-stream"),
+            )
         log(c, cid, u["name"], "إضافة مستند: " + name)
         c.execute(f"RELEASE SAVEPOINT {savepoint}")
-        c.commit()
+        if commit:
+            c.commit()
         return n, document_id
     except Exception as exc:
         try:
@@ -596,6 +607,76 @@ def save_doc(c, u, cid, name, text, *, content_hash=None, content_type="text/pla
         if isinstance(exc, sqlite3.Error):
             raise HTTPException(503, "document persistence unavailable") from exc
         raise
+
+
+def _original_file_store():
+    """Build a private development or KMS-backed object store from deployment config."""
+    production = os.environ.get("COPILOT_ENV", "").strip().lower() in {"prod", "production"}
+    backend = os.environ.get("COPILOT_OBJECT_STORAGE_BACKEND", "local").strip().lower()
+    if production:
+        # Do not enable confidential originals until S3 inventory/reconciliation,
+        # encrypted backup/restore, staged-upload recovery, and deletion drills
+        # operate against the same production backend.
+        raise HTTPException(
+            503,
+            "production original-file storage is blocked pending S3 recovery and backup acceptance",
+        )
+    if backend == "s3":
+        bucket = os.environ.get("COPILOT_S3_BUCKET", "").strip()
+        region = os.environ.get("COPILOT_S3_REGION", "").strip()
+        kms_key_id = os.environ.get("COPILOT_S3_KMS_KEY_ID", "").strip()
+        endpoint_url = os.environ.get("COPILOT_S3_ENDPOINT_URL", "").strip() or None
+        if not bucket or not region or not kms_key_id:
+            raise HTTPException(503, "S3 bucket, region, and KMS key ID must be configured")
+        try:
+            import boto3
+            client = boto3.client("s3", region_name=region, endpoint_url=endpoint_url)
+            return S3PrivateObjectStore(
+                client, bucket=bucket, kms_key_id=kms_key_id, max_bytes=15_000_000
+            )
+        except ImportError as exc:
+            raise HTTPException(503, "S3 storage SDK is unavailable") from exc
+        except (ValueError, OSError) as exc:
+            raise HTTPException(503, "S3 storage configuration is invalid") from exc
+    if backend != "local":
+        raise HTTPException(503, "configured original-file storage backend is not supported")
+    if production:
+        raise HTTPException(503, "local object storage is development-only")
+    tenant_root_value = os.environ.get("COPILOT_TENANT_DB_ROOT", "").strip()
+    if not tenant_root_value:
+        raise HTTPException(503, "tenant storage root is required for original-file storage")
+    tenant_root = Path(tenant_root_value).expanduser().absolute()
+    configured_root = os.environ.get("COPILOT_OBJECT_STORAGE_ROOT", "").strip()
+    object_root = Path(configured_root).expanduser().absolute() if configured_root else tenant_root.parent / "objects"
+    try:
+        tenant_resolved = tenant_root.resolve()
+        object_resolved = object_root.resolve()
+        if (object_resolved == tenant_resolved or object_resolved in tenant_resolved.parents
+                or tenant_resolved in object_resolved.parents):
+            raise HTTPException(503, "object storage must be separate from the tenant database root")
+        for key in ("COPILOT_CONTROL_DB", "COPILOT_CORPUS_DB"):
+            db_value = os.environ.get(key, "").strip()
+            if not db_value:
+                continue
+            db_path = Path(db_value).expanduser().absolute().resolve()
+            if object_resolved == db_path or object_resolved in db_path.parents:
+                raise HTTPException(503, "object storage must not contain control-plane or corpus databases")
+        return LocalPrivateObjectStore(object_root, max_bytes=15_000_000)
+    except ObjectStorageError as exc:
+        raise HTTPException(503, "original-file storage is unavailable") from exc
+    except OSError as exc:
+        raise HTTPException(503, "object storage path cannot be verified") from exc
+
+
+def _cleanup_original_file(store, firm_id, object_id):
+    if store is None or firm_id is None or object_id is None:
+        return
+    try:
+        store.delete(int(firm_id), object_id)
+    except Exception:
+        # Keep cleanup failures non-sensitive in logs; reconciliation must inspect
+        # staged/orphan objects before confidential originals are enabled in production.
+        logger.error("Could not clean up a staged original-file object after upload failure")
 
 
 def add_task(c, u, cid, title, assignee, due):
@@ -3585,44 +3666,400 @@ def upload(cid: int, file: UploadFile, u: dict = Depends(user)):
     if len(data) > 15_000_000: raise HTTPException(413, "max 15 MB")
     raw_name = (file.filename or "doc").replace("\\", "/").split("/")[-1]
     name = "".join(ch for ch in raw_name if ord(ch) >= 32 and ch not in "\x7f").strip()[:200] or "doc"
+    store = _original_file_store() if _separate_runtime_enabled() else None
+    staged = None
+    if store is not None:
+        try:
+            staged = store.stage(u["firm_id"], data)
+        except ObjectStorageError as exc:
+            raise HTTPException(503, "original-file storage is unavailable") from exc
     try:
-        text = extract(name, data)
-    except HTTPException:
-        raise
-    except Exception:
-        raise HTTPException(422, "unreadable file")
-    ocr_used = False
-    ocr_warning = None
-    if name.lower().endswith(".pdf"):
-        page_texts = _pdf_page_texts(text)
-        missing_pages = {n: value for n, value in page_texts.items() if len(value.strip()) < 20}
-        if missing_pages:
-            has_readable_pages = any(len(value.strip()) >= 20 for value in page_texts.values())
-            try:
-                text = ocr_pdf_text(data, existing_pages=page_texts)
+        try:
+            text = extract(name, data)
+        except HTTPException:
+            raise
+        except Exception as exc:
+            raise HTTPException(422, "unreadable file") from exc
+        ocr_used = False
+        ocr_warning = None
+        if name.lower().endswith(".pdf"):
+            page_texts = _pdf_page_texts(text)
+            missing_pages = {n: value for n, value in page_texts.items() if len(value.strip()) < 20}
+            if missing_pages:
+                has_readable_pages = any(len(value.strip()) >= 20 for value in page_texts.values())
+                try:
+                    text = ocr_pdf_text(data, existing_pages=page_texts)
+                    ocr_used = True
+                except HTTPException as exc:
+                    if has_readable_pages and "optional OCR dependencies" in str(exc.detail):
+                        ocr_warning = "Some pages contain no extractable text; OCR dependencies were unavailable, so those pages were not indexed."
+                    else:
+                        raise
+            elif len(_extracted_text_content(text)) < 20:
+                text = ocr_pdf_text(data)
                 ocr_used = True
-            except HTTPException as exc:
-                # Keep readable pages indexable if optional OCR libraries are absent,
-                # but make the partial extraction state explicit rather than silently
-                # presenting a mixed scanned/text PDF as fully extracted.
-                if has_readable_pages and "optional OCR dependencies" in str(exc.detail):
-                    ocr_warning = "Some pages contain no extractable text; OCR dependencies were unavailable, so those pages were not indexed."
-                else:
-                    raise
-        elif len(_extracted_text_content(text)) < 20:
-            # Compatibility path for empty extraction results without page markers.
-            text = ocr_pdf_text(data)
-            ocr_used = True
-    if len(_extracted_text_content(text)) < 20:
-        raise HTTPException(422, "no readable text found; for scanned PDFs enable OCR with Arabic/English Tesseract language data")
-    extraction_status = "ocr_unverified" if ocr_used else ("partial_text_ocr_unavailable" if ocr_warning else "text_extracted")
-    digest = hashlib.sha256(data).hexdigest()
-    chunks, document_id = save_doc(
-        c, u, cid, name, text, content_hash=digest,
-        content_type=(file.content_type or ("application/pdf" if name.lower().endswith(".pdf") else "application/vnd.openxmlformats-officedocument.wordprocessingml.document")),
-        byte_size=len(data), extraction_status=extraction_status, ocr_used=ocr_used)
-    return {"document_id": document_id, "sha256": digest, "chunks": chunks, "ocr_used": ocr_used,
-            "text_status": extraction_status, "ocr_warning": ocr_warning}
+        if len(_extracted_text_content(text)) < 20:
+            raise HTTPException(422, "no readable text found; for scanned PDFs enable OCR with Arabic/English Tesseract language data")
+        extraction_status = "ocr_unverified" if ocr_used else ("partial_text_ocr_unavailable" if ocr_warning else "text_extracted")
+        digest = hashlib.sha256(data).hexdigest()
+        content_type = file.content_type or ("application/pdf" if name.lower().endswith(".pdf") else "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
+        if staged is None:
+            chunks, document_id = save_doc(
+                c, u, cid, name, text, content_hash=digest, content_type=content_type,
+                byte_size=len(data), extraction_status=extraction_status, ocr_used=ocr_used)
+        else:
+            # Keep the metadata/chunk transaction open while publishing the staged
+            # object. The download route cannot see the object until this commits.
+            if not c.in_transaction:
+                c.execute("BEGIN IMMEDIATE")
+            chunks, document_id = save_doc(
+                c, u, cid, name, text, content_hash=digest, content_type=content_type,
+                byte_size=len(data), extraction_status=extraction_status, ocr_used=ocr_used,
+                original_file=staged, storage_backend=("s3" if isinstance(store, S3PrivateObjectStore) else "local"), commit=False)
+            store.finalize(u["firm_id"], staged.object_id)
+            updated = c.execute(
+                "UPDATE original_file_objects SET state='ready',updated_at=datetime('now') "
+                "WHERE object_id=? AND firm_id=? AND state='staged'",
+                (staged.object_id, u["firm_id"]),
+            )
+            if updated.rowcount != 1:
+                raise RuntimeError("original file metadata state changed during upload")
+            c.commit()
+        return {"document_id": document_id, "sha256": digest, "chunks": chunks, "ocr_used": ocr_used,
+                "text_status": extraction_status, "ocr_warning": ocr_warning,
+                "original_file_retained": staged is not None}
+    except ObjectStorageError as exc:
+        if c.in_transaction:
+            c.rollback()
+        if staged is not None:
+            _cleanup_original_file(store, u["firm_id"], staged.object_id)
+        raise HTTPException(503, "original-file storage is unavailable") from exc
+    except Exception:
+        if c.in_transaction:
+            c.rollback()
+        if staged is not None:
+            _cleanup_original_file(store, u["firm_id"], staged.object_id)
+        raise
+
+
+@app.get("/cases/{cid}/docs/{document_id}/original")
+def download_original_document(cid: int, document_id: int, u: dict = Depends(user)):
+    """Return a verified original only to a user authorized for its matter."""
+    if not _separate_runtime_enabled():
+        raise HTTPException(404, "original-file storage is available only in separate-database mode")
+    c = conn()
+    need(c, u, cid)
+    row = c.execute(
+        "SELECT d.id,o.object_id,o.sha256,o.byte_size,o.legal_hold "
+        "FROM docs d JOIN original_file_objects o ON o.document_id=d.id "
+        "WHERE d.id=? AND d.case_id=? AND d.firm_id=? AND o.firm_id=? "
+        "AND o.state='ready' AND o.purged_at IS NULL",
+        (document_id, cid, u["firm_id"], u["firm_id"]),
+    ).fetchone()
+    if row is None:
+        raise HTTPException(404, "original document not found")
+    store = _original_file_store()
+    try:
+        with store.open(u["firm_id"], row["object_id"]) as handle:
+            data = handle.read(15_000_001)
+    except ObjectStorageError as exc:
+        raise HTTPException(503, "original document is unavailable") from exc
+    if (len(data) != int(row["byte_size"]) or len(data) > 15_000_000
+            or hashlib.sha256(data).hexdigest() != row["sha256"]):
+        logger.error("Original document integrity verification failed")
+        raise HTTPException(503, "original document failed integrity verification")
+    try:
+        c.execute(
+            "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
+            (u["firm_id"], u["id"], "original_document_download:" + str(document_id)),
+        )
+        c.commit()
+    except sqlite3.Error as exc:
+        c.rollback()
+        # Record only SQLite's stable error classification, never SQL parameters or document data.
+        logger.error(
+            "Original document audit write failed (sqlite_errorname=%s, exception=%s)",
+            getattr(exc, "sqlite_errorname", "unknown"),
+            type(exc).__name__,
+        )
+        raise HTTPException(503, "download was not released because audit logging failed") from exc
+    return Response(
+        content=data,
+        media_type="application/octet-stream",
+        headers={"Content-Disposition": 'attachment; filename="original-document"',
+                 "Cache-Control": "no-store", "Pragma": "no-cache"},
+    )
+
+
+class OriginalFileHoldIn(BaseModel):
+    reason: str = Field(min_length=1, max_length=2000)
+
+
+@app.post("/cases/{cid}/docs/{document_id}/original/legal-hold")
+@rollback_tenant_transaction_on_error
+def set_original_document_legal_hold(
+    cid: int, document_id: int, body: OriginalFileHoldIn, u: dict = Depends(user)
+):
+    """Set a firm-admin legal hold after verifying the retained original bytes."""
+    if not _separate_runtime_enabled():
+        raise HTTPException(404, "original-file storage is available only in separate-database mode")
+    c = conn()
+    need(c, u, cid)
+    require_admin(u)
+    reason = body.reason.strip()
+    if not reason:
+        raise HTTPException(422, "a non-empty legal hold reason is required")
+    row = c.execute(
+        "SELECT o.object_id,o.sha256,o.byte_size,o.legal_hold,o.state,o.purged_at "
+        "FROM docs d JOIN original_file_objects o ON o.document_id=d.id "
+        "WHERE d.id=? AND d.case_id=? AND d.firm_id=? AND o.firm_id=?",
+        (document_id, cid, u["firm_id"], u["firm_id"]),
+    ).fetchone()
+    if row is None:
+        raise HTTPException(404, "original document not found")
+    if row["purged_at"] is not None:
+        raise HTTPException(409, "original document has already been purged")
+    if row["legal_hold"]:
+        raise HTTPException(409, "original document already has a legal hold")
+    if row["state"] not in {"ready", "quarantined"}:
+        raise HTTPException(409, "original document is not in a holdable state")
+    store = _original_file_store()
+    try:
+        verified = store.verify(
+            u["firm_id"], row["object_id"],
+            expected_sha256=row["sha256"], expected_size=int(row["byte_size"]),
+        )
+    except (ObjectStorageError, ValueError) as exc:
+        raise HTTPException(503, "original document integrity could not be verified") from exc
+    if not verified:
+        logger.error("Original document integrity verification failed before legal hold")
+        raise HTTPException(503, "original document integrity could not be verified")
+    updated = c.execute(
+        "UPDATE original_file_objects SET legal_hold=1,hold_reason=?,hold_set_by=?,"
+        "hold_set_at=datetime('now'),hold_released_by=NULL,hold_released_at=NULL,"
+        "hold_release_reason=NULL,updated_at=datetime('now') "
+        "WHERE object_id=? AND firm_id=? AND legal_hold=0",
+        (reason, u["id"], row["object_id"], u["firm_id"]),
+    )
+    if updated.rowcount != 1:
+        raise HTTPException(409, "original document hold state changed; reload and retry")
+    c.commit()
+    return {"document_id": document_id, "legal_hold": True, "hold_set_at": c.execute(
+        "SELECT hold_set_at FROM original_file_objects WHERE object_id=? AND firm_id=?",
+        (row["object_id"], u["firm_id"]),
+    ).fetchone()["hold_set_at"]}
+
+
+@app.post("/cases/{cid}/docs/{document_id}/original/legal-hold/release")
+@rollback_tenant_transaction_on_error
+def release_original_document_legal_hold(
+    cid: int, document_id: int, body: OriginalFileHoldIn, u: dict = Depends(user)
+):
+    """Release a hold with a mandatory reason; SQLite atomically records the audit event."""
+    if not _separate_runtime_enabled():
+        raise HTTPException(404, "original-file storage is available only in separate-database mode")
+    c = conn()
+    need(c, u, cid)
+    require_admin(u)
+    reason = body.reason.strip()
+    if not reason:
+        raise HTTPException(422, "a non-empty legal hold release reason is required")
+    row = c.execute(
+        "SELECT o.object_id,o.legal_hold FROM docs d "
+        "JOIN original_file_objects o ON o.document_id=d.id "
+        "WHERE d.id=? AND d.case_id=? AND d.firm_id=? AND o.firm_id=?",
+        (document_id, cid, u["firm_id"], u["firm_id"]),
+    ).fetchone()
+    if row is None:
+        raise HTTPException(404, "original document not found")
+    if not row["legal_hold"]:
+        raise HTTPException(409, "original document does not have an active legal hold")
+    updated = c.execute(
+        "UPDATE original_file_objects SET legal_hold=0,hold_released_by=?,"
+        "hold_released_at=datetime('now'),hold_release_reason=?,updated_at=datetime('now') "
+        "WHERE object_id=? AND firm_id=? AND legal_hold=1",
+        (u["id"], reason, row["object_id"], u["firm_id"]),
+    )
+    if updated.rowcount != 1:
+        raise HTTPException(409, "original document hold state changed; reload and retry")
+    c.commit()
+    released_at = c.execute(
+        "SELECT hold_released_at FROM original_file_objects WHERE object_id=? AND firm_id=?",
+        (row["object_id"], u["firm_id"]),
+    ).fetchone()["hold_released_at"]
+    return {"document_id": document_id, "legal_hold": False, "hold_released_at": released_at}
+
+
+@app.get("/cases/{cid}/docs/{document_id}/original/legal-hold/events")
+def list_original_document_legal_hold_events(
+    cid: int, document_id: int, u: dict = Depends(user)
+):
+    """Return immutable hold history to firm admins for the authorized matter."""
+    if not _separate_runtime_enabled():
+        raise HTTPException(404, "original-file storage is available only in separate-database mode")
+    c = conn()
+    need(c, u, cid)
+    require_admin(u)
+    row = c.execute(
+        "SELECT o.object_id FROM docs d "
+        "JOIN original_file_objects o ON o.document_id=d.id "
+        "WHERE d.id=? AND d.case_id=? AND d.firm_id=? AND o.firm_id=?",
+        (document_id, cid, u["firm_id"], u["firm_id"]),
+    ).fetchone()
+    if row is None:
+        raise HTTPException(404, "original document not found")
+    events = c.execute(
+        "SELECT action,reason,actor_user_id,occurred_at "
+        "FROM original_file_hold_events "
+        "WHERE object_id=? AND document_id=? AND firm_id=? ORDER BY id",
+        (row["object_id"], document_id, u["firm_id"]),
+    ).fetchall()
+    return {"document_id": document_id, "events": [dict(event) for event in events]}
+
+
+class OriginalFileDeletionRequestIn(BaseModel):
+    reason: str = Field(min_length=1, max_length=2000)
+
+
+@app.post("/cases/{cid}/docs/{document_id}/original/deletion-requests")
+@rollback_tenant_transaction_on_error
+def request_original_document_deletion(
+    cid: int, document_id: int, body: OriginalFileDeletionRequestIn, u: dict = Depends(user)
+):
+    """Request deletion; a different firm admin must approve before any purge can occur."""
+    if not _separate_runtime_enabled():
+        raise HTTPException(404, "original-file storage is available only in separate-database mode")
+    c = conn()
+    need(c, u, cid)
+    require_admin(u)
+    reason = body.reason.strip()
+    if not reason:
+        raise HTTPException(422, "a non-empty deletion reason is required")
+    row = c.execute(
+        "SELECT o.object_id,o.state,o.legal_hold,o.purged_at "
+        "FROM docs d JOIN original_file_objects o ON o.document_id=d.id "
+        "WHERE d.id=? AND d.case_id=? AND d.firm_id=? AND o.firm_id=?",
+        (document_id, cid, u["firm_id"], u["firm_id"]),
+    ).fetchone()
+    if row is None:
+        raise HTTPException(404, "original document not found")
+    if row["purged_at"] is not None:
+        raise HTTPException(409, "original document has already been purged")
+    if row["legal_hold"]:
+        raise HTTPException(409, "original document is under legal hold")
+    if row["state"] != "ready":
+        raise HTTPException(409, "only verified ready originals may be requested for deletion")
+    try:
+        cursor = c.execute(
+            "INSERT INTO original_file_deletion_requests("
+            "object_id,document_id,firm_id,requested_by_user_id,request_reason"
+            ") VALUES(?,?,?,?,?)",
+            (row["object_id"], document_id, u["firm_id"], u["id"], reason),
+        )
+        c.commit()
+    except sqlite3.IntegrityError as exc:
+        c.rollback()
+        raise HTTPException(409, "a deletion request already exists or the original is not eligible") from exc
+    return {"document_id": document_id, "request_id": int(cursor.lastrowid), "status": "requested"}
+
+
+@app.post("/cases/{cid}/docs/{document_id}/original/deletion-requests/{request_id}/approve")
+@rollback_tenant_transaction_on_error
+def approve_original_document_deletion(
+    cid: int, document_id: int, request_id: int,
+    body: OriginalFileDeletionRequestIn, u: dict = Depends(user)
+):
+    """Approve a deletion request with a distinct admin and a verified original."""
+    if not _separate_runtime_enabled():
+        raise HTTPException(404, "original-file storage is available only in separate-database mode")
+    c = conn()
+    need(c, u, cid)
+    require_admin(u)
+    reason = body.reason.strip()
+    if not reason:
+        raise HTTPException(422, "a non-empty approval reason is required")
+    row = c.execute(
+        "SELECT r.status,r.requested_by_user_id,r.object_id,"
+        "o.sha256,o.byte_size,o.legal_hold,o.state,o.purged_at "
+        "FROM docs d JOIN original_file_objects o ON o.document_id=d.id "
+        "JOIN original_file_deletion_requests r ON r.object_id=o.object_id "
+        "WHERE d.id=? AND d.case_id=? AND d.firm_id=? AND o.firm_id=? "
+        "AND r.id=? AND r.firm_id=?",
+        (document_id, cid, u["firm_id"], u["firm_id"], request_id, u["firm_id"]),
+    ).fetchone()
+    if row is None:
+        raise HTTPException(404, "deletion request not found")
+    if row["status"] != "requested":
+        raise HTTPException(409, "deletion request is not awaiting approval")
+    if int(row["requested_by_user_id"]) == int(u["id"]):
+        raise HTTPException(403, "a different firm admin must approve this request")
+    if row["legal_hold"] or row["purged_at"] is not None or row["state"] != "ready":
+        raise HTTPException(409, "original document is held or no longer eligible for deletion")
+    store = _original_file_store()
+    try:
+        staged_exists, final_exists = store.object_presence(u["firm_id"], row["object_id"])
+        verified = (
+            not staged_exists and final_exists
+            and store.verify(
+                u["firm_id"], row["object_id"],
+                expected_sha256=row["sha256"], expected_size=int(row["byte_size"]),
+            )
+        )
+    except (ObjectStorageError, ValueError) as exc:
+        raise HTTPException(503, "original document integrity could not be verified") from exc
+    if not verified:
+        raise HTTPException(503, "original document integrity could not be verified")
+    try:
+        updated = c.execute(
+            "UPDATE original_file_deletion_requests SET status='approved',"
+            "approved_by_user_id=?,approved_at=datetime('now'),approval_reason=? "
+            "WHERE id=? AND firm_id=? AND status='requested'",
+            (u["id"], reason, request_id, u["firm_id"]),
+        )
+        if updated.rowcount != 1:
+            raise HTTPException(409, "deletion request changed; reload and retry")
+        c.commit()
+    except sqlite3.IntegrityError as exc:
+        c.rollback()
+        raise HTTPException(409, "deletion request is no longer eligible for approval") from exc
+    return {"document_id": document_id, "request_id": request_id, "status": "approved"}
+
+
+@app.get("/cases/{cid}/docs/{document_id}/original/deletion-requests")
+def list_original_document_deletion_requests(
+    cid: int, document_id: int, u: dict = Depends(user)
+):
+    """Expose the firm-scoped deletion decision and immutable audit history to firm admins."""
+    if not _separate_runtime_enabled():
+        raise HTTPException(404, "original-file storage is available only in separate-database mode")
+    c = conn()
+    need(c, u, cid)
+    require_admin(u)
+    row = c.execute(
+        "SELECT o.object_id FROM docs d JOIN original_file_objects o ON o.document_id=d.id "
+        "WHERE d.id=? AND d.case_id=? AND d.firm_id=? AND o.firm_id=?",
+        (document_id, cid, u["firm_id"], u["firm_id"]),
+    ).fetchone()
+    if row is None:
+        raise HTTPException(404, "original document not found")
+    requests = c.execute(
+        "SELECT id,status,request_reason,requested_by_user_id,requested_at,"
+        "approved_by_user_id,approved_at,approval_reason,purge_started_by_user_id,"
+        "purge_started_at,completed_by_user_id,completed_at,cancelled_by_user_id,"
+        "cancelled_at,cancellation_reason "
+        "FROM original_file_deletion_requests WHERE object_id=? AND firm_id=? ORDER BY id DESC",
+        (row["object_id"], u["firm_id"]),
+    ).fetchall()
+    result = []
+    for request_row in requests:
+        item = dict(request_row)
+        item["events"] = [dict(event) for event in c.execute(
+            "SELECT action,reason,actor_user_id,occurred_at FROM original_file_deletion_events "
+            "WHERE request_id=? AND firm_id=? ORDER BY id",
+            (request_row["id"], u["firm_id"]),
+        ).fetchall()]
+        result.append(item)
+    return {"document_id": document_id, "requests": result}
 
 
 class ExtractionReviewIn(BaseModel):

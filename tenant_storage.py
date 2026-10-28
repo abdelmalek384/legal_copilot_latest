@@ -179,6 +179,11 @@ class TenantSQLiteConnectionRouter:
         try:
             connection = sqlite3.connect(str(path), timeout=self._timeout, uri=True)
             connection.row_factory = sqlite3.Row
+            journal_mode = connection.execute("PRAGMA journal_mode").fetchone()
+            if journal_mode is None or str(journal_mode[0]).lower() != "wal":
+                raise TenantConnectionError(
+                    "Tenant database must use WAL journal mode; provision or repair it while quiesced"
+                )
             connection.execute("PRAGMA foreign_keys=ON")
             if connection.execute("PRAGMA foreign_keys").fetchone()[0] != 1:
                 raise TenantConnectionError(

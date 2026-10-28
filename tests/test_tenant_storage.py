@@ -20,6 +20,7 @@ class TenantSQLiteConnectionRouterTests(unittest.TestCase):
         self._init_catalog()
 
         def initialize_tenant(db):
+            db.execute("PRAGMA journal_mode=WAL")
             db.execute("CREATE TABLE marker (value TEXT NOT NULL)")
             db.execute("INSERT INTO marker(value) VALUES (?)", ("created",))
             db.execute("""
@@ -78,6 +79,15 @@ class TenantSQLiteConnectionRouterTests(unittest.TestCase):
 
     def _catalog(self):
         return sqlite3.connect(self.catalog_path)
+
+    def test_rejects_tenant_database_without_wal_mode(self):
+        with self._catalog() as catalog:
+            path = resolve_tenant_database(catalog, 101, self.root)
+        with sqlite3.connect(path) as db:
+            self.assertEqual(db.execute("PRAGMA journal_mode=DELETE").fetchone()[0].lower(), "delete")
+
+        with self.assertRaisesRegex(TenantConnectionError, "must use WAL journal mode"):
+            self.router.connection_for_firm(101)
 
     def test_routes_to_distinct_catalog_selected_databases(self):
         a = self.router.connection_for_firm(101)

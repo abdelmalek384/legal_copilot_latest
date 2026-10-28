@@ -1,6 +1,6 @@
 # Tenant-scoped original document storage — design proposal
 
-**Status:** Proposal only. Original upload binaries are currently not retained by the ingestion flow. Do not treat this document as an approved retention policy or as implemented storage.
+**Status:** Partially implemented in PR #671; not production-ready. The branch now includes a local development adapter and an S3-compatible adapter that requests SSE-KMS, plus firm-scoped metadata and audited authorized downloads. The S3 adapter has mocked-client regression tests, but the operational reconciler, staged-object recovery, encrypted backup/restore, deletion drills, bucket policy, KMS policy, and real-provider acceptance have not been completed. Application production uploads intentionally remain fail-closed until those paths support the same backend and pass witnessed recovery tests. This is not a complete retention policy.
 
 ## Goal and security boundary
 
@@ -17,15 +17,15 @@ The approved database architecture remains:
 
 ### Storage adapter and key namespace
 
-Introduce a storage adapter with a small interface: stage an object, finalize it, open it for an authorized read, delete/quarantine it, and verify its digest. The adapter receives a trusted firm context resolved by the application; it must not accept a tenant ID or storage path from request payloads.
+The local adapter interface is implemented in `original_file_storage.py`, and the S3-compatible adapter in `s3_original_file_storage.py` provides stage/finalize/open/delete/integrity operations. The S3 adapter requires a dedicated private bucket and managed KMS key ID, uses firm-namespaced opaque keys, conditional creation/copy, and SSE-KMS request parameters. Inventory checks cover the reserved `firms/` prefix, so do not share this bucket with unrelated applications or data. It never creates public URLs. The local adapter is development-only and uses restrictive permissions, opaque IDs, symlink rejection, size limits, and non-overwriting finalization. Both adapters receive a firm ID resolved from trusted server-side context, never from request payloads.
 
 For local development, use a dedicated storage root separate from the database root. Derive each firm's namespace from the trusted catalog binding and an opaque generated object ID. For production, use a private encrypted volume or private object-storage bucket with server-side encryption/KMS, least-privilege service access, and no public object URLs. Keep original filenames as metadata only; never use them as path components.
 
-Do not reuse `BACKUP_KEY` for document encryption. The production backend and key-management method must be chosen before implementing encryption; the storage adapter should allow the local and production implementations to differ without changing authorization logic.
+Do not reuse `BACKUP_KEY` for document encryption. S3 backend configuration uses `COPILOT_S3_BUCKET`, `COPILOT_S3_REGION`, `COPILOT_S3_KMS_KEY_ID`, and optional `COPILOT_S3_ENDPOINT_URL`; the AWS SDK uses its standard credential chain. A successful API request is not proof that bucket policy, KMS grants, retention/versioning, or provider-specific conditional writes are correctly configured. Those settings require independent review and live staging tests. Production remains disabled until reconciliation, recovery, encrypted backup/restore, and deletion are tested against S3 end to end.
 
 ### Tenant database metadata
 
-Add a migration-managed per-firm blob metadata table (or equivalent schema) with fields such as:
+Migration `migrations/firm/0010_original_file_objects.sql` adds the per-firm `original_file_objects` table, firm-binding triggers, digest/size/state metadata, and a legal-hold deletion guard. Migration `migrations/firm/0011_original_file_hold_lifecycle.sql` adds mandatory release reasons, transition guards, immutable active-hold metadata, and database-triggered audit events. Migration `migrations/firm/0012_original_file_hold_event_ledger.sql` adds an immutable per-firm event ledger preserving each set/release reason, actor, and timestamp. A firm-admin-only history endpoint exposes these records for an authorized matter. Uploader metadata and full retention/deletion lifecycle fields remain outstanding.
 
 - Opaque `blob_id` / object ID.
 - Storage backend and opaque storage key.
@@ -42,16 +42,34 @@ The stored digest must be computed from the original bytes, not from extracted t
 2. Enforce request size and allowed media-type limits before extraction. Treat the submitted filename as untrusted display metadata.
 3. Stream bytes to a temporary object inside the same firm's storage namespace; compute SHA-256 and byte size while writing.
 4. Validate the staged object and perform extraction against the staged original. Preserve page markers and extraction provenance separately from the binary.
-5. In one tenant-database transaction, write document metadata, blob metadata, chunks/FTS rows, and the required case event. Finalize/rename the object atomically where the backend supports it.
+5. The current separate-database upload path stages the original, writes document/blob metadata, chunks/FTS rows and the case event in a tenant transaction, finalizes the object, then marks metadata ready before commit. This narrows the failure window but cannot provide cross-system atomicity.
 6. If database persistence or object finalization fails, roll back the transaction and delete/quarantine staged/final objects as appropriate. Because a filesystem/object store cannot participate in SQLite's transaction, use an explicit staging state plus a reconciliation job/report for crash windows; never claim perfect cross-system atomicity.
-7. Make the object visible to download/review endpoints only after the metadata state is finalized. Require case authorization on every read and never return raw storage paths.
+7. The current download endpoint requires case authorization, serves only ready metadata, verifies size and SHA-256, audits before release, and sends no-store headers. Raw storage paths are not returned.
+
+### Reconciliation and interrupted-upload recovery
+
+- `original_file_reconciliation.py` performs a read-only inventory comparison between trusted tenant-database paths, `original_file_objects` metadata, and firm-scoped local object files.
+- `tools/reconcile_original_file_storage.py` is the operator entry point. It resolves tenant database paths through the control-plane catalog, checks database firm bindings, hashes object bytes, and reports missing/corrupt objects, orphaned objects, unsafe symlinks, unknown namespaces, and interrupted staged/finalization windows.
+- `tools/reconcile_s3_original_file_storage.py` performs a read-only comparison between the reserved S3 originals namespace and trusted tenant metadata; it reports missing, corrupt, staged, orphaned, and backend-mismatch findings without mutation.
+- `tools/validate_s3_original_file_storage.py --json` checks bucket access, all four public-access-block controls, bucket-owner-enforced ACL disablement, versioning, default SSE-KMS encryption, and the configured customer-managed KMS key. It is read-only and always reports `production_ready: false`; IAM/bucket-policy review, firm isolation, key rotation, and live recovery drills remain required.
+- The command exits `0` when clean, `1` when findings exist, and `2` when it cannot safely complete. `--json` emits machine-readable findings. It does not delete or repair files.
+- `tools/recover_staged_original_files.py` adds a separate, conservative recovery operation for upload crash windows. It only advances metadata to `ready` when exactly one staged/final object exists and its bytes match the recorded digest and size. By default it is a dry run; mutations require both `--apply --quiesced`. It never deletes orphaned, duplicate, or corrupt objects. Local filesystem recovery is disabled in production; S3 recovery uses the configured S3 adapter and still requires a quiesced, reviewed maintenance window for mutations.
+- Run only with appropriate access to all firm databases and object storage. A production operator should quiesce writes first so a concurrent upload does not create transient findings. Review and resolve findings manually; do not auto-delete orphaned objects because they may be evidence under retention or legal hold.
+- Example: `COPILOT_CONTROL_DB=... COPILOT_TENANT_DB_ROOT=... COPILOT_CORPUS_DB=... COPILOT_OBJECT_STORAGE_ROOT=... python tools/reconcile_original_file_storage.py --json`.
 
 ### Restore and backup integration
 
-- Include original objects in the coordinated encrypted recovery bundle or use a documented, versioned object-store snapshot tied to the database recovery point.
-- Include object keys, digests, sizes, firm binding, and counts in the manifest; verify all objects against the manifest before accepting a restore.
-- Snapshot database and object storage under one coordinated quiescence window. A database-only backup is not a complete matter-document recovery point after originals are retained.
-- Add tests for cross-firm object lookup denial, tampered/missing objects, orphaned metadata, orphaned staged objects, interrupted upload/finalization, backup/restore checksum validation, and deletion/retention behavior.
+- **Implemented in development backup format v2:** the encrypted multi-database bundle includes original object bytes under firm-scoped opaque paths, and its manifest checksums cover the database snapshots and object files.
+- Backup creation verifies each object's firm, state, byte size, and SHA-256 against tenant metadata. It fails closed for missing or tampered objects, unfinished staged metadata, and orphaned/unrecognized files in the object root.
+- Restore verifies the object inventory against the restored tenant metadata and checks byte size and SHA-256 before publishing a new restore directory. For S3 deployments, `tools/import_restored_originals_to_s3.py --restore-root PATH` performs a dry-run by default; use `--apply` only after reviewing the target bucket, then run `tools/reconcile_s3_original_file_storage.py --json` before considering the restored tenant databases for activation. The importer refuses restore roots overlapping configured live database paths and updates only the isolated restored tenant databases.
+- `tools/run_database_recovery_drill.py` restores an encrypted bundle into a private temporary directory, checks SQLite integrity and foreign keys across all restored databases, reconciles original-file bytes, initializes the runtime, and exercises routing for each active firm with an active member. Run it on a protected maintenance/staging host with `COPILOT_BACKUP_FERNET_KEY` set; it refuses to run inside production application mode.
+- `tools/firm_offboarding_preflight.py --firm-id N --json` is read-only and checks disabled firm/catalog state, active memberships, SQLite integrity/foreign keys, legal holds, staged/quarantined records, and original-byte reconciliation. A clear result is a gate for policy review, not deletion authorization.
+- `tools/purge_approved_original_files.py --firm-id N --operator-user-id ID --apply --quiesced` executes only approved requests, requires an active platform admin distinct from requester and approver, and runs only against disabled firms using the local development backend. Use dry-run mode first. If a purge is interrupted after file unlink but before database commit, the tool reports manual review instead of guessing that deletion succeeded.
+- The purge operation repeats the trusted-catalog, active platform-admin, disabled-firm/catalog, revoked-membership, and clean-preflight checks. These guards are enforced inside the callable operation as well as the CLI.
+- The recovery drill creates temporary plaintext databases. Temporary cleanup is not guaranteed secure erasure on SSDs or copy-on-write filesystems; use a trusted host and protected temporary storage.
+- **Still required operationally:** pause application writes across all tenant databases and object storage before backup. The bundle uses an operator-supplied quiescence assertion; it does not create a distributed atomic snapshot by itself.
+- **Still not production-ready:** the S3 adapter now requests SSE-KMS and is covered by mocked-client tests; read-only S3 reconciliation, staged-object recovery, encrypted backup staging, and a restore-to-S3 importer are implemented. No live provider, bucket policy, KMS policy, key rotation, or real cloud conditional-write behavior has been verified. Production application uploads remain fail-closed pending live-provider acceptance and a witnessed end-to-end restore/deletion/recovery drill. The isolated restore-drill CLI is implemented; a witnessed operational drill is still required. The firm-admin hold/release workflow is implemented and covered by integration tests in this branch.
+- Tests cover bundle round-trip, object-byte integrity, firm-admin hold/release authorization, immutable hold/deletion event ledgers, two-admin deletion approval, legal-hold cancellation, disabled-firm purge gates, retained purge tombstones, and backup/restore of tombstones. Remaining acceptance work includes injected crash testing around filesystem unlink/database commit, full CLI-level maintenance tests, and a witnessed operational recovery drill.
 
 ### Access, caching, and logging
 
@@ -61,16 +79,16 @@ The stored digest must be computed from the original bytes, not from extracted t
 - Audit upload, read/download, retention change, legal-hold change, deletion, and restore actions without recording document content, secrets, or raw storage paths in general logs.
 - Use restrictive filesystem permissions in local/staging environments and verify sidecar/temp-object handling.
 
-## Decisions required before implementation
+## Policy decisions and remaining implementation
 
 These are product/security decisions, not safe to infer from the database architecture alone:
 
-1. **Retention:** how long originals and derived previews are retained; what happens on case closure, firm offboarding, user deletion, and legal hold; who can authorize permanent purge.
-2. **Production backend:** encrypted local volume versus private object storage, and the target deployment platform.
-3. **Key management:** provider KMS/managed encryption versus application-level envelope encryption; rotation and recovery requirements. Do not reuse the backup key.
-4. **Download behavior:** whether all case members can download originals, whether previews are allowed, and whether downloads require an additional audit event.
-5. **Limits and allowed formats:** maximum upload size, MIME/type allowlist, archive handling, malware scanning, and OCR/page-count limits.
-6. **Recovery objectives:** whether object storage must meet the same RPO/RTO as the database and what consistency guarantees the deployment can provide.
+1. **Retention:** the interim default remains no automatic permanent deletion. Firm admins can now set a hold after verifying original bytes and release it with a mandatory reason; database triggers validate transition metadata and insert both the security audit event and immutable hold-history event in the same transaction. The event ledger retains action, reason, actor, and timestamp, and rejects update/delete attempts. Metadata deletion and quarantine transitions are blocked while held. `tools/firm_offboarding_preflight.py` now provides a read-only gate that requires disabled firm/catalog state, no active memberships, clean database integrity, verified original bytes, and no active legal holds or unresolved staged/quarantined objects. A clear result is not authorization to delete. Authorized original deletion uses a firm-admin request, approval by a different firm admin, and a platform-admin maintenance purge after the firm is disabled, memberships are revoked, and the read-only preflight is clear. The callable purge operation rechecks the trusted catalog, active platform-admin status, disabled firm/catalog state, revoked memberships, and a clean preflight so internal callers cannot bypass the CLI gate. The purge requires an explicit quiescence assertion and retains an immutable tombstone/event history. Retention schedules and broader automated firm offboarding remain unimplemented.
+2. **Production backend:** private S3-compatible object storage is the approved direction, with the provider kept configurable. The S3 adapter and operational command foundations are implemented on this branch, but production application access remains fail-closed until live-provider and full lifecycle acceptance pass.
+3. **Key management:** the S3 adapter requires a configured managed KMS key and requests SSE-KMS on object writes/copies. Provider-enforced bucket policy, firm-scoped cryptographic isolation, key rotation, revocation, and recovery integration remain unverified. Do not reuse the backup key.
+4. **Download behavior:** approved default is case-authorized, audited downloads with no public URLs. The initial endpoint implements this for ready originals; role-specific policy review remains.
+5. **Limits and allowed formats:** the current adapter/upload flow enforces a 15 MB cap; a comprehensive media-type allowlist, malware scanning and robust archive/page-count defenses remain open.
+6. **Recovery objectives:** originals must be recoverable consistently with firm DB metadata; coordinated backup/restore and measured RPO/RTO remain open.
 
 ## Acceptance gates
 
@@ -79,8 +97,8 @@ Do not enable original-binary retention for confidential matter data until:
 - The decisions above are approved and documented.
 - Tenant storage namespaces and path/object authorization have regression tests.
 - Upload failure and crash-window reconciliation tests pass.
-- Encrypted backup/restore includes originals and verifies their digests.
-- Retention, deletion, legal-hold, and offboarding behavior is implemented and tested.
+- Encrypted backup/restore includes originals and verifies their digests; for S3, run the restore-to-S3 importer and verify the resulting inventory in staging.
+- Legal-hold set/release, two-admin deletion approval, legal-hold cancellation, gated local purge, tombstone retention, and backup/restore are tested; retention schedules and automated offboarding orchestration remain outstanding.
 - The witnessed staging recovery drill and independent security review are complete.
 
-This proposal narrows the design, but it does not implement storage, approve retention periods, or close the current production-readiness blocker.
+This is an initial end-to-end development implementation, not release completion. Do not enable it for confidential production matter data until the production object-store/KMS adapter, complete retention/deletion/offboarding lifecycle, object/database reconciliation, coordinated encrypted backup/restore, failure/crash-window tests, witnessed recovery drill, and independent security review are complete.

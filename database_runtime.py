@@ -226,6 +226,12 @@ class DatabaseRuntime:
                         ) from exc
             connection = sqlite3.connect(str(path), timeout=self.timeout)
             connection.row_factory = sqlite3.Row
+            # The app serves concurrent requests against the same profile DB.
+            # WAL lets readers coexist with the audited writes performed by other
+            # request threads; keep this setting established before migrations/use.
+            journal_mode = connection.execute("PRAGMA journal_mode=WAL").fetchone()
+            if journal_mode is None or str(journal_mode[0]).lower() != "wal":
+                raise DatabaseRuntimeError(f"WAL journal mode could not be enabled for {profile}")
             connection.execute("PRAGMA foreign_keys=ON")
             if connection.execute("PRAGMA foreign_keys").fetchone()[0] != 1:
                 raise DatabaseRuntimeError(f"Foreign-key enforcement failed for {profile}")
@@ -419,6 +425,11 @@ class DatabaseRuntime:
             raise
 
     def _initialize_firm_database(self, connection: sqlite3.Connection) -> None:
+        # Tenant databases are written by concurrent request threads too. Set
+        # WAL once, while the database is being provisioned and before serving it.
+        journal_mode = connection.execute("PRAGMA journal_mode=WAL").fetchone()
+        if journal_mode is None or str(journal_mode[0]).lower() != "wal":
+            raise DatabaseRuntimeError("Tenant WAL journal mode could not be enabled")
         connection.execute("PRAGMA foreign_keys=ON")
         if connection.execute("PRAGMA foreign_keys").fetchone()[0] != 1:
             raise DatabaseRuntimeError("Tenant foreign-key enforcement could not be enabled")

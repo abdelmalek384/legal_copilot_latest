@@ -20,14 +20,18 @@ from typing import Any
 from cryptography.fernet import Fernet, InvalidToken
 
 from database_runtime import DatabaseRuntime
+from original_file_storage import ObjectStorageError
+from s3_original_file_storage import S3PrivateObjectStore
 
 
 class DatabaseBundleError(RuntimeError):
     """Raised when a database bundle cannot be safely created or restored."""
 
 
-_FORMAT_VERSION = 1
+_FORMAT_VERSION = 2
 _TENANT_FILENAME = re.compile(r"tenant-(?P<firm_id>[1-9][0-9]*)-(?P<nonce>[0-9a-f]{32})\.sqlite3\Z")
+_OBJECT_ID = re.compile(r"^[0-9a-f]{32}\.blob$")
+_FIRM_OBJECT_DIR = re.compile(r"^firm-[1-9][0-9]*$")
 _MAX_ARCHIVE_BYTES = 8 * 1024 * 1024 * 1024
 _MAX_ENTRIES = 2048
 
@@ -134,6 +138,12 @@ def _snapshot(source_path: Path, destination: Path, profile: str, firm_id: int |
         target = sqlite3.connect(str(destination), timeout=30)
         source.backup(target, pages=256, sleep=0.05)
         target.commit()
+        # SQLite backup copies the database header, including WAL mode. Backup
+        # archives must contain a single self-contained DB file, not transient
+        # -wal/-shm sidecars whose contents could be omitted or inconsistent.
+        journal_mode = target.execute("PRAGMA journal_mode=DELETE").fetchone()
+        if journal_mode is None or str(journal_mode[0]).lower() != "delete":
+            raise DatabaseBundleError("Could not finalize a standalone database snapshot")
     except sqlite3.Error as exc:
         raise DatabaseBundleError(f"Could not snapshot {source_path.name}") from exc
     finally:
@@ -156,6 +166,207 @@ def _sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def _object_root_path(value: str | Path, tenant_root: Path, control_path: Path, corpus_path: Path) -> Path:
+    raw = Path(value).expanduser()
+    if raw.is_symlink():
+        raise DatabaseBundleError("Original-object storage root must not be a symlink")
+    resolved = raw.resolve()
+    protected = [tenant_root.resolve(), control_path.resolve(), corpus_path.resolve()]
+    for path in protected:
+        if resolved == path or resolved in path.parents or path in resolved.parents:
+            raise DatabaseBundleError("Original-object storage must be separate from database storage")
+    if raw.exists() and (not raw.is_dir() or raw.is_symlink()):
+        raise DatabaseBundleError("Original-object storage root must be a real directory")
+    return resolved
+
+
+def _copy_original_objects(
+    tenant_snapshot: Path, firm_id: int, object_root: Path, payload: Path
+) -> set[str]:
+    db = _readonly(tenant_snapshot)
+    try:
+        tables = {row[0] for row in db.execute(
+            "SELECT name FROM sqlite_master WHERE type='table'"
+        )}
+        if "original_file_objects" not in tables:
+            return set()
+        rows = db.execute(
+            "SELECT object_id,firm_id,storage_backend,sha256,byte_size,state FROM original_file_objects ORDER BY object_id"
+        ).fetchall()
+    finally:
+        db.close()
+
+    expected: set[str] = set()
+    namespace = object_root / ("firm-" + str(firm_id))
+    if namespace.is_symlink():
+        raise DatabaseBundleError(f"Original-object namespace is a symlink for firm {firm_id}")
+    if rows and (not object_root.is_dir() or not namespace.is_dir()):
+        raise DatabaseBundleError(f"Original-object storage is missing for firm {firm_id}")
+    for row in rows:
+        object_id = row["object_id"]
+        if row["firm_id"] != firm_id or row["storage_backend"] != "local" or not isinstance(object_id, str) or not re.fullmatch(r"[0-9a-f]{32}", object_id):
+            raise DatabaseBundleError(f"Original-object metadata is invalid for local storage in firm {firm_id}")
+        if row["state"] not in {"ready", "quarantined"}:
+            raise DatabaseBundleError(f"Firm {firm_id} has unfinished original-object metadata; reconcile before backup")
+        source = namespace / (object_id + ".blob")
+        if source.is_symlink() or not source.is_file():
+            raise DatabaseBundleError(f"Original object is missing for firm {firm_id}")
+        if source.stat().st_size != int(row["byte_size"]) or _sha256(source) != row["sha256"]:
+            raise DatabaseBundleError(f"Original-object integrity check failed for firm {firm_id}")
+        relative = f"objects/firm-{firm_id}/{object_id}.blob"
+        target = payload / relative
+        target.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
+        shutil.copyfile(source, target)
+        try:
+            os.chmod(target, 0o600)
+        except OSError:
+            if os.name == "posix":
+                raise DatabaseBundleError("Could not restrict permissions on backed-up original object")
+        expected.add(f"firm-{firm_id}/{object_id}.blob")
+    return expected
+
+
+def _copy_s3_original_objects(
+    tenant_snapshot: Path, firm_id: int, store: S3PrivateObjectStore, payload: Path
+) -> set[str]:
+    db = _readonly(tenant_snapshot)
+    try:
+        tables = {row[0] for row in db.execute(
+            "SELECT name FROM sqlite_master WHERE type='table'"
+        )}
+        if "original_file_objects" not in tables:
+            return set()
+        columns = {row[1] for row in db.execute("PRAGMA table_info(original_file_objects)")}
+        required = {"object_id", "firm_id", "storage_backend", "sha256", "byte_size", "state"}
+        if not required.issubset(columns):
+            raise DatabaseBundleError(f"Tenant {firm_id} has incomplete original-object metadata")
+        has_purged_at = "purged_at" in columns
+        select = "object_id,firm_id,storage_backend,sha256,byte_size,state"
+        if has_purged_at:
+            select += ",purged_at"
+        rows = db.execute(f"SELECT {select} FROM original_file_objects ORDER BY object_id").fetchall()
+    finally:
+        db.close()
+
+    expected: set[str] = set()
+    for row in rows:
+        object_id = row["object_id"]
+        if row["firm_id"] != firm_id or row["storage_backend"] != "s3" or not isinstance(object_id, str) or not re.fullmatch(r"[0-9a-f]{32}", object_id):
+            raise DatabaseBundleError(f"Original-object metadata is invalid for firm {firm_id}")
+        if has_purged_at and row["purged_at"] is not None:
+            continue
+        if row["state"] not in {"ready", "quarantined"}:
+            raise DatabaseBundleError(f"Firm {firm_id} has unfinished original-object metadata; reconcile before backup")
+        digest, size = row["sha256"], int(row["byte_size"])
+        try:
+            staged, finalized = store.object_presence(firm_id, object_id)
+            valid = not staged and finalized and store.verify(
+                firm_id, object_id, expected_sha256=digest, expected_size=size
+            )
+            if not valid:
+                raise DatabaseBundleError(f"S3 original-object integrity check failed for firm {firm_id}")
+            with store.open(firm_id, object_id) as source:
+                relative = f"objects/firm-{firm_id}/{object_id}.blob"
+                target = payload / relative
+                target.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
+                digest_check = hashlib.sha256()
+                size_check = 0
+                flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL
+                fd = os.open(target, flags, 0o600)
+                try:
+                    with os.fdopen(fd, "wb", closefd=True) as output:
+                        while True:
+                            block = source.read(1024 * 1024)
+                            if not block:
+                                break
+                            output.write(block)
+                            digest_check.update(block)
+                            size_check += len(block)
+                except Exception:
+                    target.unlink(missing_ok=True)
+                    raise
+                if size_check != size or digest_check.hexdigest() != digest:
+                    target.unlink(missing_ok=True)
+                    raise DatabaseBundleError(f"S3 original-object changed during backup for firm {firm_id}")
+        except (ObjectStorageError, ValueError) as exc:
+            raise DatabaseBundleError(f"S3 original-object could not be safely backed up for firm {firm_id}") from exc
+        expected.add(f"firm-{firm_id}/{object_id}.blob")
+    return expected
+
+
+def _scan_s3_original_object_inventory(store: S3PrivateObjectStore) -> set[str]:
+    found: set[str] = set()
+    for key in store.list_object_keys():
+        match = re.fullmatch(r"firms/([1-9][0-9]*)/originals/([0-9a-f]{32})\.(staged|blob)", key)
+        if not match or match.group(3) != "blob":
+            raise DatabaseBundleError("S3 original-object storage contains staged or unexpected objects")
+        found.add(f"firm-{match.group(1)}/{match.group(2)}.blob")
+    return found
+
+
+def _scan_original_object_root(object_root: Path) -> set[str]:
+    if not object_root.exists():
+        return set()
+    if object_root.is_symlink() or not object_root.is_dir():
+        raise DatabaseBundleError("Original-object storage root must be a real directory")
+    found: set[str] = set()
+    for namespace in object_root.iterdir():
+        if namespace.is_symlink() or not namespace.is_dir() or not _FIRM_OBJECT_DIR.fullmatch(namespace.name):
+            raise DatabaseBundleError("Original-object storage contains an unexpected entry")
+        for item in namespace.iterdir():
+            if item.is_symlink() or not item.is_file() or not _OBJECT_ID.fullmatch(item.name):
+                raise DatabaseBundleError("Original-object storage contains an unfinished or unexpected object")
+            found.add(f"{namespace.name}/{item.name}")
+    return found
+
+
+def _validate_original_object_inventory(
+    extracted: Path, files: dict, tenant_records: list[dict]
+) -> set[str]:
+    expected: set[str] = set()
+    for record in tenant_records:
+        relative = record.get("archive_path")
+        if not relative:
+            continue
+        firm_id = int(record["firm_id"])
+        db = _readonly(extracted / relative)
+        try:
+            tables = {row[0] for row in db.execute(
+                "SELECT name FROM sqlite_master WHERE type='table'"
+            )}
+            if "original_file_objects" not in tables:
+                continue
+            rows = db.execute(
+                "SELECT object_id,firm_id,sha256,byte_size,state,purged_at,"
+                "purged_by_user_id,purge_reason FROM original_file_objects"
+            ).fetchall()
+            for row in rows:
+                object_id = row["object_id"]
+                if row["firm_id"] != firm_id or not isinstance(object_id, str) or not re.fullmatch(r"[0-9a-f]{32}", object_id):
+                    raise DatabaseBundleError(f"Original-object metadata is invalid for firm {firm_id}")
+                if row["state"] not in {"ready", "quarantined"}:
+                    raise DatabaseBundleError(f"Firm {firm_id} has unfinished original-object metadata")
+                if row["purged_at"] is not None:
+                    if row["purged_by_user_id"] is None or not str(row["purge_reason"] or "").strip():
+                        raise DatabaseBundleError(f"Firm {firm_id} has an invalid purge tombstone")
+                    continue
+                object_relative = f"objects/firm-{firm_id}/{object_id}.blob"
+                if files.get(object_relative) is None:
+                    raise DatabaseBundleError(f"Backup omits original object for firm {firm_id}")
+                object_path = extracted / object_relative
+                if object_path.is_symlink() or not object_path.is_file():
+                    raise DatabaseBundleError("Backup original-object path is unsafe")
+                if object_path.stat().st_size != int(row["byte_size"]) or _sha256(object_path) != row["sha256"]:
+                    raise DatabaseBundleError(f"Backup original-object integrity check failed for firm {firm_id}")
+                expected.add(object_relative)
+        finally:
+            db.close()
+    actual = {name for name in files if name.startswith("objects/")}
+    if actual != expected:
+        raise DatabaseBundleError("Backup original-object inventory does not match tenant metadata")
+    return expected
+
+
 def create_backup_bundle(
     runtime: DatabaseRuntime,
     cipher: Fernet,
@@ -163,6 +374,8 @@ def create_backup_bundle(
     *,
     keep: int = 14,
     quiesced: bool = False,
+    object_storage_root: str | Path | None = None,
+    object_store: S3PrivateObjectStore | None = None,
 ) -> Path:
     """Create an encrypted bundle from consistent per-file SQLite snapshots.
 
@@ -179,6 +392,40 @@ def create_backup_bundle(
     tenant_root = runtime.paths.tenant_root
     if tenant_root.is_symlink() or not tenant_root.is_dir():
         raise DatabaseBundleError("Tenant storage root must be a real directory")
+    backend = os.environ.get("COPILOT_OBJECT_STORAGE_BACKEND", "local").strip().lower()
+    production = os.environ.get("COPILOT_ENV", "").strip().lower() in {"prod", "production"}
+    object_root: Path | None = None
+    if backend == "s3":
+        if object_storage_root is not None:
+            raise DatabaseBundleError("object_storage_root cannot be used with the S3 backend")
+        if object_store is None:
+            bucket = os.environ.get("COPILOT_S3_BUCKET", "").strip()
+            region = os.environ.get("COPILOT_S3_REGION", "").strip()
+            kms_key_id = os.environ.get("COPILOT_S3_KMS_KEY_ID", "").strip()
+            endpoint = os.environ.get("COPILOT_S3_ENDPOINT_URL", "").strip() or None
+            if not bucket or not region or not kms_key_id:
+                raise DatabaseBundleError("S3 bucket, region, and KMS key ID are required for backup")
+            try:
+                import boto3
+                object_store = S3PrivateObjectStore(
+                    boto3.client("s3", region_name=region, endpoint_url=endpoint),
+                    bucket=bucket, kms_key_id=kms_key_id,
+                )
+            except ImportError as exc:
+                raise DatabaseBundleError("AWS SDK is not installed") from exc
+        if not isinstance(object_store, S3PrivateObjectStore):
+            raise DatabaseBundleError("S3 backup requires the reviewed S3 object-store adapter")
+    elif backend == "local":
+        if production:
+            raise DatabaseBundleError("production backup requires S3 original-object storage")
+        if object_store is not None:
+            raise DatabaseBundleError("object_store is only supported with the S3 backend")
+        configured_object_root = object_storage_root
+        if configured_object_root is None:
+            configured_object_root = os.environ.get("COPILOT_OBJECT_STORAGE_ROOT", "").strip() or (tenant_root.parent / "objects")
+        object_root = _object_root_path(configured_object_root, tenant_root, control_path, corpus_path)
+    else:
+        raise DatabaseBundleError("COPILOT_OBJECT_STORAGE_BACKEND must be local or s3")
     destination = Path(output_dir).expanduser()
     if destination.is_symlink():
         raise DatabaseBundleError("Backup destination must not be a symlink")
@@ -187,11 +434,20 @@ def create_backup_bundle(
     if not destination.is_dir():
         raise DatabaseBundleError("Backup destination must be a directory")
     resolved_tenant_root = tenant_root.resolve()
-    try:
-        destination.relative_to(resolved_tenant_root)
-        raise DatabaseBundleError("Backup output must be outside tenant storage")
-    except ValueError:
-        pass
+    protected_roots = [(resolved_tenant_root, "tenant storage")]
+    if object_root is not None:
+        protected_roots.append((object_root, "original-object storage"))
+    for protected_root, label in protected_roots:
+        try:
+            destination.relative_to(protected_root)
+            raise DatabaseBundleError(f"Backup output must be outside {label}")
+        except ValueError:
+            pass
+        try:
+            protected_root.relative_to(destination)
+            raise DatabaseBundleError(f"Backup output must not contain {label}")
+        except ValueError:
+            pass
 
     with tempfile.TemporaryDirectory(prefix=".dbbundle-stage-", dir=destination) as tmp:
         stage = Path(tmp)
@@ -201,6 +457,7 @@ def create_backup_bundle(
         corpus_snapshot = payload / "legal_corpus.sqlite3"
         _snapshot(control_path, control_snapshot, "control_plane")
         _snapshot(corpus_path, corpus_snapshot, "legal_corpus")
+        expected_objects: set[str] = set()
 
         control = _readonly(control_snapshot)
         try:
@@ -246,12 +503,24 @@ def create_backup_bundle(
                     target_path = payload / relative
                     target_path.parent.mkdir(parents=True, exist_ok=True)
                     _snapshot(source_path, target_path, "firm", firm_id)
+                    if backend == "s3":
+                        expected_objects.update(_copy_s3_original_objects(target_path, firm_id, object_store, payload))
+                    else:
+                        expected_objects.update(_copy_original_objects(target_path, firm_id, object_root, payload))
                     record["archive_path"] = relative
                 elif status == "provisioned":
                     raise DatabaseBundleError(f"Provisioned firm {firm_id} has no database file")
                 tenant_records.append(record)
         finally:
             control.close()
+
+        actual_objects = (
+            _scan_s3_original_object_inventory(object_store)
+            if backend == "s3"
+            else _scan_original_object_root(object_root)
+        )
+        if actual_objects != expected_objects:
+            raise DatabaseBundleError("Original-object storage contains missing or unreferenced objects; reconcile before backup")
 
         file_hashes = {}
         for path in sorted(p for p in payload.rglob("*") if p.is_file()):
@@ -263,6 +532,7 @@ def create_backup_bundle(
                 "control_plane": "control_plane.sqlite3",
                 "legal_corpus": "legal_corpus.sqlite3",
                 "tenant_root": "tenants/",
+                "object_storage": "objects/",
             },
             "tenants": tenant_records,
             "files": file_hashes,
@@ -361,6 +631,13 @@ def verify_backup_bundle(bundle_path: str | Path, cipher: Fernet) -> dict[str, A
             "verified": True,
             "format_version": _FORMAT_VERSION,
             "tenant_database_count": len(tenant_paths),
+            "tenant_firm_ids": sorted(
+                int(_TENANT_FILENAME.fullmatch(path.name).group("firm_id"))
+                for path in tenant_paths
+                if _TENANT_FILENAME.fullmatch(path.name) is not None
+            ),
+            "original_object_count": len(list(restored["object_storage"].rglob("*.blob"))),
+            "original_objects_verified": True,
             "plaintext_retained": False,
             "warning": "Verification used temporary plaintext database files; deletion is not guaranteed secure erasure.",
         }
@@ -413,6 +690,7 @@ def restore_backup_bundle(
             "control_plane": "control_plane.sqlite3",
             "legal_corpus": "legal_corpus.sqlite3",
             "tenant_root": "tenants/",
+            "object_storage": "objects/",
         }:
             raise DatabaseBundleError("Backup bundle profile inventory is invalid")
         files = manifest.get("files")
@@ -426,8 +704,12 @@ def restore_backup_bundle(
             if relative in {"control_plane.sqlite3", "legal_corpus.sqlite3"}:
                 continue
             parts = PurePosixPath(relative).parts
-            if len(parts) != 2 or parts[0] != "tenants" or not _TENANT_FILENAME.fullmatch(parts[1]):
-                raise DatabaseBundleError("Backup bundle contains an unexpected database path")
+            if len(parts) == 2 and parts[0] == "tenants" and _TENANT_FILENAME.fullmatch(parts[1]):
+                continue
+            if (len(parts) == 3 and parts[0] == "objects"
+                    and _FIRM_OBJECT_DIR.fullmatch(parts[1]) and _OBJECT_ID.fullmatch(parts[2])):
+                continue
+            raise DatabaseBundleError("Backup bundle contains an unexpected database or object path")
         for relative, expected_hash in files.items():
             if not isinstance(relative, str) or not isinstance(expected_hash, str):
                 raise DatabaseBundleError("Backup bundle checksum entry is malformed")
@@ -487,21 +769,56 @@ def restore_backup_bundle(
                 raise DatabaseBundleError(f"Manifest has an invalid database path for firm {firm_id}")
             _validate_profile(extracted / relative, "firm", firm_id)
 
+        _validate_original_object_inventory(extracted, files, tenant_records)
+
         staged_root = stage / "restored"
-        staged_root.mkdir()
-        (staged_root / "tenants").mkdir()
+        staged_root.mkdir(mode=0o700)
+        (staged_root / "tenants").mkdir(mode=0o700)
+        (staged_root / "objects").mkdir(mode=0o700)
         shutil.copyfile(control_file, staged_root / "control_plane.sqlite3")
         shutil.copyfile(corpus_file, staged_root / "legal_corpus.sqlite3")
         for record in tenant_records:
             relative = record.get("archive_path")
             if relative:
                 shutil.copyfile(extracted / relative, staged_root / relative)
-        for path in staged_root.rglob("*.sqlite3"):
+        for relative in files:
+            if relative.startswith("objects/"):
+                target = staged_root / relative
+                target.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
+                shutil.copyfile(extracted / relative, target)
+        # Restored tenant files must satisfy the runtime's concurrency
+        # contract before they are made available to the application.
+        for database_path in staged_root.rglob("*.sqlite3"):
+            connection = None
+            try:
+                connection = sqlite3.connect(str(database_path), timeout=30)
+                mode = connection.execute("PRAGMA journal_mode=WAL").fetchone()
+                if mode is None or str(mode[0]).lower() != "wal":
+                    raise DatabaseBundleError(
+                        f"Could not enable WAL on restored database {database_path.name}"
+                    )
+            except sqlite3.Error as exc:
+                raise DatabaseBundleError(
+                    f"Could not initialize restored database {database_path.name}"
+                ) from exc
+            finally:
+                if connection is not None:
+                    connection.close()
+
+        for path in staged_root.rglob("*"):
+            if not path.is_file():
+                continue
             try:
                 os.chmod(path, 0o600)
             except OSError:
                 if os.name == "posix":
-                    raise DatabaseBundleError(f"Could not restrict permissions on restored database {path.name}")
+                    raise DatabaseBundleError(f"Could not restrict permissions on restored file {path.name}")
+        for directory in [staged_root / "objects", *[p for p in (staged_root / "objects").rglob("*") if p.is_dir()]]:
+            try:
+                os.chmod(directory, 0o700)
+            except OSError:
+                if os.name == "posix":
+                    raise DatabaseBundleError("Could not restrict permissions on restored object directory")
         os.replace(staged_root, destination)
 
     return {
@@ -509,4 +826,5 @@ def restore_backup_bundle(
         "control_plane": destination / "control_plane.sqlite3",
         "tenant_root": destination / "tenants",
         "legal_corpus": destination / "legal_corpus.sqlite3",
+        "object_storage": destination / "objects",
     }

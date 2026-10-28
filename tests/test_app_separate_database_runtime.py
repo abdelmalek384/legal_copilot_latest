@@ -1,4 +1,5 @@
 import os
+import sqlite3
 import tempfile
 import unittest
 from datetime import date, timedelta
@@ -16,11 +17,16 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.root = Path(self.temp.name)
-        self.env_names = ("COPILOT_CONTROL_DB", "COPILOT_TENANT_DB_ROOT", "COPILOT_CORPUS_DB", "ADMIN_TOKEN")
+        self.env_names = ("COPILOT_CONTROL_DB", "COPILOT_TENANT_DB_ROOT", "COPILOT_CORPUS_DB",
+                          "COPILOT_OBJECT_STORAGE_ROOT", "COPILOT_OBJECT_STORAGE_BACKEND",
+                          "COPILOT_ENV", "ADMIN_TOKEN")
         self.old_env = {name: os.environ.get(name) for name in self.env_names}
         os.environ["COPILOT_CONTROL_DB"] = str(self.root / "control.sqlite3")
         os.environ["COPILOT_TENANT_DB_ROOT"] = str(self.root / "tenants")
         os.environ["COPILOT_CORPUS_DB"] = str(self.root / "corpus.sqlite3")
+        os.environ["COPILOT_OBJECT_STORAGE_ROOT"] = str(self.root / "objects")
+        os.environ["COPILOT_OBJECT_STORAGE_BACKEND"] = "local"
+        os.environ["COPILOT_ENV"] = "development"
         self.admin_token = "test-only-shared-corpus-import-token-2026"
         os.environ["ADMIN_TOKEN"] = self.admin_token
         app._database_runtime = None
@@ -562,6 +568,351 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             db_a.execute("SELECT title FROM cases WHERE id=?", (case_id,)).fetchone()[0],
             "Firm A child-write boundary",
         )
+
+    def test_original_file_upload_download_integrity_and_cross_firm_denial(self):
+        import hashlib
+        import io
+        from docx import Document
+
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate("post", "/cases", json={"title": "Original File Test"})
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+
+        buffer = io.BytesIO()
+        source = Document()
+        source.add_paragraph("Confidential original contract text for storage verification.")
+        source.save(buffer)
+        original = buffer.getvalue()
+        with patch.object(app, "_mfa_required_for_user", return_value=False):
+            uploaded = self._mutate(
+                "post", f"/cases/{case_id}/upload",
+                files={"file": ("original-contract.docx", original,
+                                "application/vnd.openxmlformats-officedocument.wordprocessingml.document")},
+            )
+        self.assertEqual(uploaded.status_code, 200, uploaded.text)
+        body = uploaded.json()
+        self.assertTrue(body["original_file_retained"])
+        document_id = body["document_id"]
+
+        context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        firm_db = self.runtime.firm_connection(context)
+        # Keep a read snapshot open while another request writes its audit event.
+        # WAL must allow the download/audit write to complete without blocking.
+        if not firm_db.in_transaction:
+            firm_db.execute("BEGIN")
+        metadata = firm_db.execute(
+            "SELECT object_id,sha256,byte_size,state FROM original_file_objects WHERE document_id=? AND firm_id=?",
+            (document_id, self.firm_a),
+        ).fetchone()
+        self.assertIsNotNone(metadata)
+        self.assertEqual(metadata["state"], "ready")
+        self.assertEqual(metadata["sha256"], hashlib.sha256(original).hexdigest())
+        self.assertEqual(metadata["byte_size"], len(original))
+        self.assertTrue((self.root / "objects" / f"firm-{self.firm_a}" /
+                         (metadata["object_id"] + ".blob")).is_file())
+
+        downloaded = self.client.get(f"/cases/{case_id}/docs/{document_id}/original")
+        self.assertEqual(downloaded.status_code, 200, downloaded.text)
+        self.assertEqual(downloaded.content, original)
+        self.assertEqual(downloaded.headers["content-type"], "application/octet-stream")
+        self.assertEqual(downloaded.headers["cache-control"], "no-store")
+        # End the older snapshot before checking the newly committed audit row.
+        firm_db.commit()
+        self.assertTrue(firm_db.execute(
+            "SELECT 1 FROM security_audit_events WHERE firm_id=? AND user_id=? AND event=?",
+            (self.firm_a, self.user_id, f"original_document_download:{document_id}"),
+        ).fetchone())
+
+        # A case member who is not a firm admin must not be able to change legal holds.
+        member_id = self.runtime.create_global_identity(
+            "Original File Junior", "original-file-junior@example.test", app.hash_pw(self.password)
+        )
+        self.runtime.create_firm_membership(member_id, self.firm_a, "lawyer")
+        added_member = self._mutate(
+            "post", f"/cases/{case_id}/members", json={"user_id": member_id, "role": "junior"}
+        )
+        self.assertEqual(added_member.status_code, 200, added_member.text)
+        member_client = TestClient(app.app)
+        try:
+            member_login = member_client.post(
+                "/login", json={"email": "original-file-junior@example.test", "password": self.password}
+            )
+            self.assertEqual(member_login.status_code, 200, member_login.text)
+            member_csrf = member_client.cookies.get("lc_csrf") or ""
+            denied_hold = member_client.post(
+                f"/cases/{case_id}/docs/{document_id}/original/legal-hold",
+                json={"reason": "unauthorized hold attempt"},
+                headers={"X-CSRF-Token": member_csrf},
+            )
+            self.assertEqual(denied_hold.status_code, 403, denied_hold.text)
+        finally:
+            member_client.close()
+
+        # A failed audit insert must abort the hold state change atomically.
+        firm_db.execute("""
+            CREATE TRIGGER reject_original_hold_audit
+            BEFORE INSERT ON security_audit_events
+            WHEN NEW.event LIKE 'original_document_legal_hold_set:%'
+            BEGIN SELECT RAISE(ABORT, 'hold audit unavailable'); END
+        """)
+        firm_db.commit()
+        failed_hold = self._mutate(
+            "post",
+            f"/cases/{case_id}/docs/{document_id}/original/legal-hold",
+            json={"reason": "This hold must roll back"},
+        )
+        self.assertEqual(failed_hold.status_code, 503, failed_hold.text)
+        firm_db.commit()
+        self.assertEqual(
+            firm_db.execute(
+                "SELECT legal_hold FROM original_file_objects WHERE document_id=?", (document_id,)
+            ).fetchone()["legal_hold"],
+            0,
+        )
+        firm_db.execute("DROP TRIGGER reject_original_hold_audit")
+        firm_db.commit()
+
+        held = self._mutate(
+            "post",
+            f"/cases/{case_id}/docs/{document_id}/original/legal-hold",
+            json={"reason": "Preserve original evidence for pending proceedings"},
+        )
+        self.assertEqual(held.status_code, 200, held.text)
+        self.assertTrue(held.json()["legal_hold"])
+        firm_db.commit()
+        hold_metadata = firm_db.execute(
+            "SELECT legal_hold,hold_reason,hold_set_by,hold_set_at FROM original_file_objects WHERE document_id=?",
+            (document_id,),
+        ).fetchone()
+        self.assertEqual(hold_metadata["legal_hold"], 1)
+        self.assertEqual(hold_metadata["hold_reason"], "Preserve original evidence for pending proceedings")
+        self.assertEqual(hold_metadata["hold_set_by"], self.user_id)
+        self.assertTrue(hold_metadata["hold_set_at"])
+
+        with self.assertRaises(sqlite3.IntegrityError):
+            firm_db.execute(
+                "DELETE FROM original_file_objects WHERE document_id=?", (document_id,)
+            )
+        firm_db.rollback()
+
+        released = self._mutate(
+            "post",
+            f"/cases/{case_id}/docs/{document_id}/original/legal-hold/release",
+            json={"reason": "The preservation instruction has been withdrawn"},
+        )
+        self.assertEqual(released.status_code, 200, released.text)
+        self.assertFalse(released.json()["legal_hold"])
+        firm_db.commit()
+        release_metadata = firm_db.execute(
+            "SELECT legal_hold,hold_released_by,hold_released_at,hold_release_reason "
+            "FROM original_file_objects WHERE document_id=?",
+            (document_id,),
+        ).fetchone()
+        self.assertEqual(release_metadata["legal_hold"], 0)
+        self.assertEqual(release_metadata["hold_released_by"], self.user_id)
+        self.assertTrue(release_metadata["hold_released_at"])
+        self.assertEqual(
+            release_metadata["hold_release_reason"], "The preservation instruction has been withdrawn"
+        )
+        for event in (
+            f"original_document_legal_hold_set:{document_id}",
+            f"original_document_legal_hold_released:{document_id}",
+        ):
+            self.assertTrue(firm_db.execute(
+                "SELECT 1 FROM security_audit_events WHERE firm_id=? AND user_id=? AND event=?",
+                (self.firm_a, self.user_id, event),
+            ).fetchone(), event)
+
+        hold_events = firm_db.execute(
+            "SELECT id,action,reason,actor_user_id,occurred_at FROM original_file_hold_events "
+            "WHERE firm_id=? AND document_id=? ORDER BY id",
+            (self.firm_a, document_id),
+        ).fetchall()
+        self.assertEqual([event["action"] for event in hold_events], ["set", "release"])
+        self.assertEqual(
+            [event["reason"] for event in hold_events],
+            [
+                "Preserve original evidence for pending proceedings",
+                "The preservation instruction has been withdrawn",
+            ],
+        )
+        self.assertEqual([event["actor_user_id"] for event in hold_events], [self.user_id, self.user_id])
+        self.assertTrue(all(event["occurred_at"] for event in hold_events))
+        history_response = self.client.get(
+            f"/cases/{case_id}/docs/{document_id}/original/legal-hold/events"
+        )
+        self.assertEqual(history_response.status_code, 200, history_response.text)
+        self.assertEqual(
+            [event["reason"] for event in history_response.json()["events"]],
+            [
+                "Preserve original evidence for pending proceedings",
+                "The preservation instruction has been withdrawn",
+            ],
+        )
+        with self.assertRaises(sqlite3.IntegrityError):
+            firm_db.execute(
+                "UPDATE original_file_hold_events SET reason='rewritten history' WHERE id=?",
+                (hold_events[0]["id"],),
+            )
+        firm_db.rollback()
+        with self.assertRaises(sqlite3.IntegrityError):
+            firm_db.execute(
+                "DELETE FROM original_file_hold_events WHERE id=?",
+                (hold_events[0]["id"],),
+            )
+        firm_db.rollback()
+
+        switched = self._mutate("post", "/session/firm", json={"firm_id": self.firm_b})
+        self.assertEqual(switched.status_code, 200, switched.text)
+        denied = self.client.get(f"/cases/{case_id}/docs/{document_id}/original")
+        self.assertEqual(denied.status_code, 404, denied.text)
+        denied_history = self.client.get(
+            f"/cases/{case_id}/docs/{document_id}/original/legal-hold/events"
+        )
+        self.assertEqual(denied_history.status_code, 404, denied_history.text)
+
+    def test_original_file_deletion_requires_distinct_admin_and_legal_hold_cancels_it(self):
+        import hashlib
+        from original_file_storage import LocalPrivateObjectStore
+
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate("post", "/cases", json={"title": "Deletion Workflow Matter"})
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+
+        context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        firm_db = self.runtime.firm_connection(context)
+        original = b"original evidence for deletion workflow"
+        _, document_id = app.save_doc(
+            firm_db,
+            {"id": self.user_id, "firm_id": self.firm_a, "name": "First Owner"},
+            case_id,
+            "deletion-workflow.txt",
+            "Extracted evidence text",
+            content_hash=hashlib.sha256(original).hexdigest(),
+            content_type="text/plain",
+            byte_size=len(original),
+        )
+        store = LocalPrivateObjectStore(self.root / "objects")
+        staged = store.stage(self.firm_a, original)
+        store.finalize(self.firm_a, staged.object_id)
+        firm_db.execute(
+            "INSERT INTO original_file_objects("
+            "object_id,document_id,firm_id,storage_backend,sha256,byte_size,content_type,state"
+            ") VALUES(?,?,?,'local',?,?,?,'ready')",
+            (
+                staged.object_id, document_id, self.firm_a, staged.sha256,
+                staged.byte_size, "text/plain",
+            ),
+        )
+        firm_db.commit()
+
+        requested = self._mutate(
+            "post",
+            f"/cases/{case_id}/docs/{document_id}/original/deletion-requests",
+            json={"reason": "Remove a duplicate original after export review"},
+        )
+        self.assertEqual(requested.status_code, 200, requested.text)
+        request_id = requested.json()["request_id"]
+
+        same_admin_approval = self._mutate(
+            "post",
+            f"/cases/{case_id}/docs/{document_id}/original/deletion-requests/{request_id}/approve",
+            json={"reason": "Attempted self-approval"},
+        )
+        self.assertEqual(same_admin_approval.status_code, 403, same_admin_approval.text)
+
+        second_id = self.runtime.create_global_identity(
+            "Second Firm Admin", "second-deletion-admin@example.test", app.hash_pw(self.password)
+        )
+        self.runtime.create_firm_membership(second_id, self.firm_a, "admin")
+        second_client = TestClient(app.app)
+        try:
+            second_login = second_client.post(
+                "/login",
+                json={"email": "second-deletion-admin@example.test", "password": self.password},
+            )
+            self.assertEqual(second_login.status_code, 200, second_login.text)
+            approved = second_client.post(
+                f"/cases/{case_id}/docs/{document_id}/original/deletion-requests/{request_id}/approve",
+                json={"reason": "Second admin confirms approved export and deletion"},
+                headers={"X-CSRF-Token": second_client.cookies.get("lc_csrf") or ""},
+            )
+            self.assertEqual(approved.status_code, 200, approved.text)
+        finally:
+            second_client.close()
+
+        # A new legal hold supersedes a pending approved purge and appends an audit event.
+        held = self._mutate(
+            "post",
+            f"/cases/{case_id}/docs/{document_id}/original/legal-hold",
+            json={"reason": "Preserve evidence for newly identified litigation"},
+        )
+        self.assertEqual(held.status_code, 200, held.text)
+        listed = self.client.get(
+            f"/cases/{case_id}/docs/{document_id}/original/deletion-requests"
+        )
+        self.assertEqual(listed.status_code, 200, listed.text)
+        request_record = listed.json()["requests"][0]
+        self.assertEqual(request_record["status"], "cancelled")
+        self.assertEqual(
+            [event["action"] for event in request_record["events"]],
+            ["requested", "approved", "cancelled"],
+        )
+        self.assertEqual(
+            request_record["events"][-1]["reason"], "Automatically cancelled by legal hold"
+        )
+
+        under_hold = self._mutate(
+            "post",
+            f"/cases/{case_id}/docs/{document_id}/original/deletion-requests",
+            json={"reason": "Must be rejected while held"},
+        )
+        self.assertEqual(under_hold.status_code, 409, under_hold.text)
+        self.assertTrue(store.verify(
+            self.firm_a, staged.object_id,
+            expected_sha256=staged.sha256, expected_size=staged.byte_size,
+        ))
+
+    def test_original_file_storage_fails_closed_in_production_until_backend_is_available(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate("post", "/cases", json={"title": "Production Storage Gate"})
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+        from docx import Document
+        import io
+        buffer = io.BytesIO()
+        document = Document()
+        document.add_paragraph("Production gate test content")
+        document.save(buffer)
+        os.environ["COPILOT_ENV"] = "production"
+        os.environ["COPILOT_OBJECT_STORAGE_BACKEND"] = "s3"
+        try:
+            with patch.object(app, "_mfa_required_for_user", return_value=False):
+                response = self._mutate(
+                    "post", f"/cases/{case_id}/upload",
+                    files={"file": ("production-gate.docx", buffer.getvalue(),
+                                    "application/vnd.openxmlformats-officedocument.wordprocessingml.document")},
+                )
+        finally:
+            os.environ["COPILOT_ENV"] = "development"
+            os.environ["COPILOT_OBJECT_STORAGE_BACKEND"] = "local"
+        self.assertEqual(response.status_code, 503, response.text)
+        context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        firm_db = self.runtime.firm_connection(context)
+        self.assertEqual(firm_db.execute(
+            "SELECT COUNT(*) FROM docs WHERE case_id=?", (case_id,)
+        ).fetchone()[0], 0)
 
     def test_cross_firm_document_and_membership_writes_are_denied(self):
         login = self.client.post(
