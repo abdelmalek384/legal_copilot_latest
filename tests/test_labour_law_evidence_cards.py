@@ -368,3 +368,21 @@ if __name__ == "__main__":
                 self.assertTrue(card["limitations"])
                 self.assertFalse(self.data["instrument"]["search_eligible"])
 
+    def test_decree_162_2026_primary_text_access_and_secondary_crosscheck_are_explicit(self):
+        inventory = json.loads(
+            (ROOT / "docs" / "phase_2_document_inventory.json").read_text(encoding="utf-8")
+        )
+        record = next(
+            item for item in inventory["documents"]
+            if item["document_id"] == "EG-LABOUR-WORK-REGULATION-RULES-2026"
+        )
+        self.assertEqual(record["instrument_number"], 162)
+        self.assertEqual(record["instrument_year"], 2026)
+        self.assertEqual(record["review_status"], "discovery_only")
+        self.assertEqual(record["legal_status"], "unknown")
+        self.assertEqual(record["collection_permission"], "unknown")
+        self.assertIn("primary_text_restricted", record["source_status"])
+        self.assertTrue(any("dspace.id.com.eg/items/" in item["url"] for item in record["source_urls"]))
+        self.assertTrue(any("ahmedazimelgamel.blogspot.com/2026/08/162-2026.html" in item["url"] for item in record["source_urls"]))
+        self.assertIn("no copy was requested", record["notes"])
+
