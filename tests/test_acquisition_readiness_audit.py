@@ -115,6 +115,38 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
         self.assertIn("manifest_terms_checked_on_missing_or_invalid", item["blockers"])
         self.assertIn("document_level_collection_scope_review_missing", item["blockers"])
 
+    def test_stale_terms_and_scope_reviews_block_acquisition_readiness(self):
+        old_date = "2025-01-01"
+        manifest = {"documents": [{
+            "document_id": "LAW-STALE",
+            "source_id": "SRC-STALE",
+            "direct_url": "https://laws.example.gov/law.pdf",
+            "allowed_hosts": ["example.gov"],
+            "collection_permission": "allowed",
+            "permission_evidence": "written authorization",
+            "terms_checked_on": old_date,
+            "permission_scope_review": passed_scope_review(reviewed_on="2025-01-02"),
+        }]}
+        register = {"sources": [{
+            "source_id": "SRC-STALE",
+            "collection_permission": "allowed",
+            "commercial_reuse_permission": "allowed",
+            "permission_evidence": "written authorization",
+            "permission_evidence_url": "https://laws.example.gov/rights/collection",
+            "terms_checked_on": old_date,
+            "commercial_reuse_evidence": "commercial authorization",
+            "commercial_reuse_evidence_url": "https://laws.example.gov/rights/commercial",
+            "commercial_terms_checked_on": old_date,
+        }]}
+        report = MODULE.audit(manifest, register)
+        item = report["documents"][0]
+        self.assertFalse(item["collection_ready"])
+        self.assertFalse(item["commercial_product_use_ready"])
+        self.assertIn("source_terms_review_stale", item["blockers"])
+        self.assertIn("manifest_terms_review_stale", item["blockers"])
+        self.assertIn("document_level_scope_review_stale", item["blockers"])
+        self.assertIn("commercial_terms_review_stale", item["warnings"])
+
     def test_scope_review_must_explicitly_approve_each_use(self):
         for flag in ("storage", "text_extraction", "indexing", "commercial_product_use", "excerpt_display"):
             review = passed_scope_review()

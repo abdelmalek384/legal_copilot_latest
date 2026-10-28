@@ -18,6 +18,8 @@ DEFAULT_MANIFEST = ROOT / "docs" / "collection_manifest.example.json"
 DEFAULT_REGISTER = ROOT / "docs" / "source_permission_register.json"
 COLLECTION_ALLOWED = {"allowed", "allowed_limited"}
 COMMERCIAL_ALLOWED = {"allowed", "allowed_limited"}
+# Internal freshness policy for source terms and scope review, not a legal rule.
+TERMS_REVIEW_MAX_AGE_DAYS = 180
 
 
 def _valid_date(value: object) -> bool:
@@ -28,6 +30,13 @@ def _valid_date(value: object) -> bool:
         return parsed.isoformat() == value and parsed <= dt.date.today()
     except ValueError:
         return False
+
+
+def _fresh_date(value: object) -> bool:
+    if not _valid_date(value):
+        return False
+    parsed = dt.date.fromisoformat(value)
+    return dt.date.today() - dt.timedelta(days=TERMS_REVIEW_MAX_AGE_DAYS) <= parsed <= dt.date.today()
 
 
 def _hostname(value: object) -> str | None:
@@ -82,7 +91,7 @@ def _scope_review_valid(document: dict) -> bool:
         return False
     if review.get("access_method") != "direct_document_url" or review.get("source_terms_reviewed") is not True:
         return False
-    if not _valid_date(review.get("reviewed_on")) or not _valid_date(document.get("terms_checked_on")):
+    if not _fresh_date(review.get("reviewed_on")) or not _fresh_date(document.get("terms_checked_on")):
         return False
     if review["reviewed_on"] < document["terms_checked_on"]:
         return False
@@ -161,6 +170,8 @@ def audit(manifest: dict, register: dict) -> dict:
                 blockers.append("source_register_does_not_allow_collection")
             if not source.get("permission_evidence") or not _valid_date(source.get("terms_checked_on")):
                 blockers.append("source_permission_evidence_or_terms_date_missing")
+            if _valid_date(source.get("terms_checked_on")) and not _fresh_date(source.get("terms_checked_on")):
+                blockers.append("source_terms_review_stale")
             if not _hostname(source.get("permission_evidence_url")):
                 blockers.append("source_permission_evidence_url_missing_or_invalid")
             if source.get("commercial_reuse_permission") not in COMMERCIAL_ALLOWED:
@@ -174,6 +185,12 @@ def audit(manifest: dict, register: dict) -> dict:
             blockers.append("manifest_permission_evidence_missing")
         if not _valid_date(document.get("terms_checked_on")):
             blockers.append("manifest_terms_checked_on_missing_or_invalid")
+        elif not _fresh_date(document.get("terms_checked_on")):
+            blockers.append("manifest_terms_review_stale")
+
+        review_record = document.get("permission_scope_review")
+        if isinstance(review_record, dict) and _valid_date(review_record.get("reviewed_on")) and not _fresh_date(review_record.get("reviewed_on")):
+            blockers.append("document_level_scope_review_stale")
 
         host = _hostname(document.get("direct_url"))
         if host is None:
@@ -190,7 +207,7 @@ def audit(manifest: dict, register: dict) -> dict:
             source is not None
             and isinstance(source.get("commercial_reuse_evidence"), str)
             and bool(source["commercial_reuse_evidence"].strip())
-            and _valid_date(source.get("commercial_terms_checked_on"))
+            and _fresh_date(source.get("commercial_terms_checked_on"))
             and _hostname(source.get("commercial_reuse_evidence_url")) is not None
         )
         commercial_source_ready = (
@@ -199,6 +216,8 @@ def audit(manifest: dict, register: dict) -> dict:
             and commercial_evidence_valid
         )
         product_use_ready = collection_ready and scope_review_valid and commercial_source_ready
+        if source is not None and _valid_date(source.get("commercial_terms_checked_on")) and not _fresh_date(source.get("commercial_terms_checked_on")):
+            warnings.append("commercial_terms_review_stale")
         if source is not None and source.get("commercial_reuse_permission") not in COMMERCIAL_ALLOWED:
             warnings.append("commercial_product_reuse_not_established")
         elif source is not None and not commercial_evidence_valid:
