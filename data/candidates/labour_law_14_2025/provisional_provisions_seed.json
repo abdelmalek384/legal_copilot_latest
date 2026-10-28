@@ -1112,6 +1112,72 @@
         "printed_page": null,
         "pdf_page_index_zero_based": null
       }
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-163",
+      "provision_ref": "القانون المرافق، المادة 163",
+      "topic": "employer_release_from_notice_work",
+      "summary_ar": "تجيز المادة لصاحب العمل إعفاء العامل من أداء العمل أثناء مهلة الإخطار، مع استمرار احتساب مدة الخدمة حتى انتهاء المهلة وما يترتب عليها، وبخاصة استحقاق أجر العامل عنها. يجب التحقق من تاريخ المهلة وأي مستحقات أو آثار مرتبطة.",
+      "source_refs": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "retrieved_on": "2026-10-28",
+          "basis": "Official General Authority for Amiri Press electronic text page; Article 163 text observed in indexed official-source result. No Gazette-scan page-level comparison claimed."
+        }
+      ],
+      "confidence": "provisional_official_text_observed",
+      "human_review": "pending",
+      "page_pinpoint": {
+        "source_type": "official_text_page",
+        "source_url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+        "pinpoint": "مادة (163)",
+        "printed_page": null,
+        "pdf_page_index_zero_based": null
+      }
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-167",
+      "provision_ref": "القانون المرافق، المادة 167",
+      "topic": "resignation_form_acceptance_and_withdrawal",
+      "summary_ar": "تشترط المادة تقديم الاستقالة كتابة وتوقيعها من العامل أو وكيله الخاص واعتمادها من الجهة الإدارية المختصة. ولا تنتهي الخدمة إلا بقبولها، وعلى جهة العمل البت خلال عشرة أيام وإلا اعتبرت مقبولة؛ ويجوز العدول عنها كتابة واعتمادًا خلال عشرة أيام من إخطار العامل بالقبول. يجب مراجعة القرار التنفيذي المنظم لاعتماد الاستقالات.",
+      "source_refs": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "retrieved_on": "2026-10-28",
+          "basis": "Official General Authority for Amiri Press electronic text page; Article 167 text observed in indexed official-source result. No Gazette-scan page-level comparison claimed."
+        }
+      ],
+      "confidence": "provisional_official_text_observed",
+      "human_review": "pending",
+      "page_pinpoint": {
+        "source_type": "official_text_page",
+        "source_url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+        "pinpoint": "مادة (167)",
+        "printed_page": null,
+        "pdf_page_index_zero_based": null
+      }
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-175",
+      "provision_ref": "القانون المرافق، المادة 175",
+      "topic": "employment_certificate_and_return_of_documents",
+      "summary_ar": "تُلزم المادة صاحب العمل بإتاحة الاطلاع على التدرج الوظيفي وعناصر الأجر وإصدار شهادة خبرة وكفاءة دون مقابل عند الطلب. وعند انتهاء العلاقة، تتضمن الشهادة بيانات الالتحاق والانتهاء ونوع العمل والمزايا، ويمكن أن تتضمن الأجر وسبب الانتهاء بطلب العامل، خلال خمسة عشر يومًا من طلبها؛ كما يجب رد الأوراق والشهادات والأدوات وإخلاء الطرف فور طلبها. يجب التحقق من تاريخ الطلب والمستندات والقرار التنفيذي ذي الصلة.",
+      "source_refs": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "retrieved_on": "2026-10-28",
+          "basis": "Official General Authority for Amiri Press electronic text page; Article 175 text observed in indexed official-source result. No Gazette-scan page-level comparison claimed."
+        }
+      ],
+      "confidence": "provisional_official_text_observed",
+      "human_review": "pending",
+      "page_pinpoint": {
+        "source_type": "official_text_page",
+        "source_url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+        "pinpoint": "مادة (175)",
+        "printed_page": null,
+        "pdf_page_index_zero_based": null
+      }
     }
   ]
 }
