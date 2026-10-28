@@ -181,3 +181,37 @@ Each new code PR passed its recorded PR Tests workflow before merge. The full Te
 5. **Database work:** leave migrations, tenant storage, identity lifecycle, and production data actions with the assigned DB workstream. Do not overlap or take irreversible actions without approval.
 
 The overall completion estimate is intentionally unchanged: engineering safeguards have improved, but verified legal content, external review, manual QA, and release acceptance remain major gaps.
+
+
+## Latest checkpoint — 2026-10-28 (after PRs #699–#704)
+
+This supersedes earlier checkpoint estimates where status has changed. Percentages are rough workstream estimates, not legal-accuracy scores.
+
+| Workstream | Estimate | Status |
+|---|---:|---|
+| Overall product readiness | 42% ± 8 percentage points | Unchanged; no product-readiness increase claimed from code-only safeguards and UI localization. |
+| Verified Egyptian legal corpus | 6% | Still the critical blocker: original source artifacts, reuse scope, effective-date/amendment reconciliation, and qualified Egyptian-lawyer review are missing. |
+| Research evaluation and citation integrity | 78% | Evidence/status scoring and runner/scorer integration are merged. A lawyer-labelled benchmark is still needed to measure actual legal correctness. |
+| Legal corpus audit safeguards | 75% | Review-event integrity and chunk/version consistency audits are merged. They flag inconsistencies but do not authenticate legal texts. |
+| UI/UX implementation | 55% | Bilingual forms and document review, case-tab labels, and modal keyboard-focus handling improved. Manual browser/accessibility QA is still outstanding. |
+| Database/tenant isolation | 65% estimate | Remains the other AI's workstream. Do not overlap migrations, tenant storage, identity lifecycle, or production data operations. |
+
+### Newly merged UI and onboarding work
+
+- **#699:** corrected README installation, first-owner bootstrap, and separate-database backup/restore instructions; the full Tests workflow passed before merge.
+- **#700:** localized case creation and client/conflict-check workflows for Arabic/English.
+- **#701:** localized case-detail inputs, validation feedback, and fee formatting.
+- **#702:** localized document-review actions, OCR warnings, status labels, and reviewer prompts.
+- **#703:** localized case tabs, team roles, summary labels, and activity timestamps.
+- **#704:** added modal focus trapping and focus restoration on dismissal.
+
+PR-specific Tests and non-database safety workflows passed for the UI changes before merge. The full Tests workflow also passed on combined main commit e923be526fa9fe3ba25f52a7a7231112850d2694 after PR #704. Manual browser testing has not been performed and must not be inferred from CI.
+
+### Remaining blockers / next order
+
+1. **Manual UI acceptance:** test Arabic RTL and English LTR at 360, 768, 1024, and 1440 px; verify keyboard-only navigation, modal focus return, screen-reader labels, zoom/reflow, long Arabic/Latin citations, and document-review flows. Capture screenshots/results before calling UI/UX release-ready.
+2. **Legal corpus:** continue metadata-only discovery unless source-specific acquisition/reuse permission is established. Labour Law 14/2025 remains blocked pending independent source artifacts, effective-date/amendment reconciliation, and lawyer sign-off.
+3. **Research quality:** use the evaluation tools with lawyer-reviewed expected sources and pin-cites; tooling success is not a substitute for ground truth.
+4. **Database work:** keep the assigned database/identity PRs separate. No irreversible database changes were made by this workstream.
+
+Overall readiness remains 42% ± 8% because the largest unresolved product gap is still the absence of a comprehensive verified Egyptian legal corpus and qualified legal review.
