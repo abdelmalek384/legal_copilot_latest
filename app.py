@@ -3,7 +3,7 @@ Run: pip install -r requirements.txt && uvicorn app:app --reload"""
 import sqlite3, re, json, os, io, csv, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request, zipfile, ipaddress, logging
 from pathlib import Path
 from cryptography.fernet import Fernet
-from urllib.parse import urlsplit
+from urllib.parse import urlsplit, quote
 from contextvars import ContextVar
 from collections import Counter
 from datetime import date, datetime, timedelta, timezone
@@ -3141,6 +3141,591 @@ def create_legal_review_event(version_id: int, b: LegalReviewEventIn, u: dict = 
         "FROM legal_review_events WHERE review_event_id=?", (cur.lastrowid,)).fetchone()
     return {"event": dict(event), "status_changed": False,
             "warning": "Recording an event does not change review_status, legal_status, or verification flags."}
+
+
+
+def _identity_public_base_url() -> str:
+    raw = os.environ.get("COPILOT_PUBLIC_BASE_URL", "").strip()
+    parsed = urlsplit(raw)
+    if (
+        not raw or parsed.scheme not in {"https", "http"} or not parsed.hostname
+        or parsed.username or parsed.password or parsed.query or parsed.fragment
+        or parsed.path not in {"", "/"}
+    ):
+        raise IdentityEmailError("a trusted public application origin must be configured")
+    production = os.environ.get("COPILOT_ENV", "").strip().lower() in {"prod", "production"}
+    if production and parsed.scheme != "https":
+        raise IdentityEmailError("production identity links require HTTPS")
+    if parsed.scheme == "http" and parsed.hostname not in {"localhost", "127.0.0.1", "::1"}:
+        raise IdentityEmailError("HTTP identity links are allowed only for local development")
+    return raw.rstrip("/")
+
+
+def _identity_event(
+    control, event_type: str, *, actor_user_id=None, target_user_id=None,
+    firm_id=None, invitation_id=None, recovery_token_id=None, detail=None, now=None,
+):
+    control.execute(
+        "INSERT INTO identity_lifecycle_events("
+        "actor_user_id,target_user_id,firm_id,invitation_id,recovery_token_id,"
+        "event_type,detail_json,created_at) VALUES(?,?,?,?,?,?,?,?)",
+        (
+            actor_user_id, target_user_id, firm_id, invitation_id, recovery_token_id,
+            event_type, json.dumps(detail or {}, sort_keys=True, separators=(",", ":")),
+            int(time.time()) if now is None else int(now),
+        ),
+    )
+
+
+def _identity_is_privileged(control, user_id: int) -> bool:
+    admin_membership = control.execute(
+        "SELECT 1 FROM firm_memberships WHERE user_id=? AND firm_role='admin' LIMIT 1",
+        (user_id,),
+    ).fetchone()
+    platform_role = control.execute(
+        "SELECT 1 FROM user_platform_roles WHERE user_id=? LIMIT 1", (user_id,)
+    ).fetchone()
+    return admin_membership is not None or platform_role is not None
+
+
+def _identity_token_digest(token: str) -> str:
+    return hashlib.sha256(token.encode("utf-8")).hexdigest()
+
+
+def _identity_recovery_generic_response():
+    return {
+        "message": "If the account is eligible, recovery instructions will be sent."
+    }
+
+
+def _send_identity_link(recipient: str, *, purpose: str, token: str) -> None:
+    base = _identity_public_base_url()
+    if purpose == "invitation":
+        link = base + "/invite/accept#token=" + quote(token, safe="")
+        subject = "Your Legal Copilot firm invitation"
+        body = (
+            "A firm administrator invited you to join Legal Copilot.\n\n"
+            "Open the following link to accept the invitation. The one-time token is kept "
+            "in the URL fragment and is not sent to the web server as part of the request URL:\n"
+            + link + "\n\n"
+            "If you did not expect this invitation, ignore this message."
+        )
+    else:
+        link = base + "/account/recovery#token=" + quote(token, safe="")
+        subject = "Reset your Legal Copilot password"
+        body = (
+            "A password recovery was requested for your Legal Copilot account.\n\n"
+            "Open the following link to set a new password. The one-time token is kept "
+            "in the URL fragment and is not sent to the web server as part of the request URL:\n"
+            + link + "\n\n"
+            "If you did not request recovery, ignore this message."
+        )
+    send_identity_email(recipient, subject, body)
+
+
+@app.get("/invite/accept", response_class=HTMLResponse)
+def invitation_accept_page():
+    return HTMLResponse("""<!doctype html><html lang="en"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Accept firm invitation</title><body><main><h1>Accept firm invitation</h1>
+<p>This one-time invitation is tied to the invited email address and firm.</p>
+<form id="new-account"><label>Name <input id="name" autocomplete="name" required maxlength="120"></label>
+<label>Choose password <input id="password" type="password" autocomplete="new-password" minlength="12" required maxlength="200"></label>
+<button type="submit">Create account and accept</button></form>
+<button id="existing-account" type="button">Accept with my existing signed-in account</button>
+<p id="result" role="status" aria-live="polite"></p></main><script>
+const token=new URLSearchParams(location.hash.slice(1)).get("token")||"";
+const result=document.getElementById("result");
+function csrf(){const m=document.cookie.match(/(?:^|; )lc_csrf=([^;]+)/);return m?decodeURIComponent(m[1]):"";}
+async function send(path,data,needsCsrf){const headers={"Content-Type":"application/json"};if(needsCsrf)headers["X-CSRF-Token"]=csrf();
+const r=await fetch(path,{method:"POST",headers,body:JSON.stringify(data),credentials:"same-origin"});
+const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(d.detail||"The invitation could not be accepted.");return d;}
+document.getElementById("new-account").addEventListener("submit",async e=>{e.preventDefault();try{
+await send("/invitations/accept/new",{token,name:document.getElementById("name").value,password:document.getElementById("password").value},false);
+result.textContent="Invitation accepted. You can now sign in.";document.getElementById("new-account").reset();
+}catch(err){result.textContent=err.message;}});
+document.getElementById("existing-account").addEventListener("click",async()=>{try{
+await send("/invitations/accept-existing",{token},true);result.textContent="Invitation accepted for your existing account.";
+}catch(err){result.textContent=err.message;}});
+if(!token)result.textContent="This invitation link is missing its token. Request a new invitation.";
+</script></body></html>""")
+
+
+@app.get("/account/recovery", response_class=HTMLResponse)
+def password_recovery_page():
+    return HTMLResponse("""<!doctype html><html lang="en"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Recover account</title><body><main><h1>Set a new password</h1>
+<form id="recovery"><label>New password <input id="password" type="password" autocomplete="new-password" minlength="12" maxlength="200" required></label>
+<button type="submit">Reset password</button></form><p id="result" role="status" aria-live="polite"></p></main><script>
+const token=new URLSearchParams(location.hash.slice(1)).get("token")||"";
+const form=document.getElementById("recovery"),result=document.getElementById("result");
+form.addEventListener("submit",async e=>{e.preventDefault();try{const r=await fetch("/account/recovery/consume",{
+method:"POST",headers:{"Content-Type":"application/json"},
+body:JSON.stringify({token,new_password:document.getElementById("password").value}),credentials:"same-origin"});
+const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(d.detail||"The recovery link is invalid or expired.");
+result.textContent="Password reset successful. Sign in with your new password.";form.reset();
+}catch(err){result.textContent=err.message;}});
+if(!token)result.textContent="This recovery link is missing its token. Request a new recovery email.";
+</script></body></html>""")
+
+
+@app.post("/invitations")
+def create_firm_invitation(b: InvitationCreateIn, u: dict = Depends(user)):
+    if not _separate_runtime_enabled():
+        raise HTTPException(404, "invitations are available only in separate-database mode")
+    require_admin(u)
+    email_display = b.email.strip()
+    email_normalized = normalize_email(email_display)
+    if "@" not in email_normalized or "." not in email_normalized.rsplit("@", 1)[-1]:
+        raise HTTPException(422, "a valid email address is required")
+    now = int(time.time())
+    token = secrets.token_urlsafe(32)
+    token_hash = _identity_token_digest(token)
+    control = control_conn()
+    try:
+        control.execute("BEGIN IMMEDIATE")
+        firm = control.execute("SELECT status FROM firms WHERE id=?", (u["firm_id"],)).fetchone()
+        if firm is None or firm["status"] != "active":
+            raise HTTPException(409, "cannot invite a member to an inactive firm")
+        existing_membership = control.execute(
+            "SELECT fm.status FROM users x JOIN firm_memberships fm ON fm.user_id=x.id "
+            "WHERE x.email_normalized=? AND fm.firm_id=?",
+            (email_normalized, u["firm_id"]),
+        ).fetchone()
+        if existing_membership is not None:
+            raise HTTPException(409, "this identity already has a membership; suspended or revoked memberships are not reactivated by invitation")
+        prior = control.execute(
+            "SELECT id FROM identity_invitations WHERE firm_id=? AND email_normalized=? "
+            "AND status IN ('pending','sent')",
+            (u["firm_id"], email_normalized),
+        ).fetchall()
+        for old in prior:
+            control.execute(
+                "UPDATE identity_invitations SET status='revoked',updated_at=? WHERE id=?",
+                (now, old["id"]),
+            )
+            _identity_event(
+                control, "invitation_revoked", actor_user_id=u["id"], firm_id=u["firm_id"],
+                invitation_id=old["id"], detail={"reason": "superseded_by_resend"}, now=now,
+            )
+        cursor = control.execute(
+            "INSERT INTO identity_invitations("
+            "firm_id,email_normalized,email_display,invited_role,token_hash,invited_by_user_id,"
+            "created_at,expires_at,status,updated_at) VALUES(?,?,?,?,?,?,?,?,'pending',?)",
+            (
+                u["firm_id"], email_normalized, email_display, b.role, token_hash,
+                u["id"], now, now + 24 * 60 * 60, now,
+            ),
+        )
+        invitation_id = int(cursor.lastrowid)
+        _identity_event(
+            control, "invitation_created", actor_user_id=u["id"], firm_id=u["firm_id"],
+            invitation_id=invitation_id,
+            detail={"role": b.role, "expires_in_seconds": 24 * 60 * 60}, now=now,
+        )
+        control.commit()
+    except HTTPException:
+        if control.in_transaction:
+            control.rollback()
+        raise
+    except sqlite3.IntegrityError as exc:
+        if control.in_transaction:
+            control.rollback()
+        raise HTTPException(409, "invitation could not be created; review the identity and membership state") from exc
+    except sqlite3.Error as exc:
+        if control.in_transaction:
+            control.rollback()
+        raise HTTPException(503, "invitation was not committed") from exc
+
+    try:
+        _send_identity_link(email_display, purpose="invitation", token=token)
+    except (IdentityEmailError, ValueError):
+        try:
+            control.execute("BEGIN IMMEDIATE")
+            control.execute(
+                "UPDATE identity_invitations SET status='delivery_failed',updated_at=? "
+                "WHERE id=? AND status='pending'",
+                (int(time.time()), invitation_id),
+            )
+            _identity_event(
+                control, "invitation_delivery_failed", actor_user_id=u["id"],
+                firm_id=u["firm_id"], invitation_id=invitation_id,
+                detail={"reason": "delivery_unavailable"},
+            )
+            control.commit()
+        except sqlite3.Error:
+            if control.in_transaction:
+                control.rollback()
+        logger.warning("Firm invitation email delivery failed")
+        raise HTTPException(503, "invitation email could not be delivered; request a new invitation")
+    try:
+        control.execute("BEGIN IMMEDIATE")
+        updated = control.execute(
+            "UPDATE identity_invitations SET status='sent',updated_at=? "
+            "WHERE id=? AND status='pending' AND expires_at>?",
+            (int(time.time()), invitation_id, int(time.time())),
+        )
+        if updated.rowcount != 1:
+            raise sqlite3.IntegrityError("invitation state changed before delivery was recorded")
+        _identity_event(
+            control, "invitation_sent", actor_user_id=u["id"], firm_id=u["firm_id"],
+            invitation_id=invitation_id, detail={"channel": "smtp"},
+        )
+        control.commit()
+    except sqlite3.Error as exc:
+        if control.in_transaction:
+            control.rollback()
+        logger.error("Invitation delivery status could not be committed")
+        raise HTTPException(503, "invitation state could not be finalized; request a new invitation") from exc
+    return {"invitation_id": invitation_id, "status": "sent", "expires_at": now + 24 * 60 * 60}
+
+
+@app.post("/invitations/accept/new")
+def accept_invitation_new_identity(b: InvitationAcceptNewIn):
+    if not _separate_runtime_enabled():
+        raise HTTPException(404, "invitations are available only in separate-database mode")
+    now = int(time.time())
+    digest = _identity_token_digest(b.token)
+    control = control_conn()
+    try:
+        control.execute("BEGIN IMMEDIATE")
+        invitation = control.execute(
+            "SELECT id,firm_id,email_normalized,email_display,invited_role,invited_by_user_id,"
+            "expires_at,status FROM identity_invitations WHERE token_hash=?",
+            (digest,),
+        ).fetchone()
+        if invitation is None or invitation["status"] != "sent":
+            raise HTTPException(400, "invitation token is invalid, expired, or already used")
+        if int(invitation["expires_at"]) <= now:
+            control.execute(
+                "UPDATE identity_invitations SET status='expired',updated_at=? WHERE id=? AND status='sent'",
+                (now, invitation["id"]),
+            )
+            _identity_event(
+                control, "invitation_expired", firm_id=invitation["firm_id"],
+                invitation_id=invitation["id"], detail={"reason": "expired"}, now=now,
+            )
+            control.commit()
+            raise HTTPException(400, "invitation token is invalid, expired, or already used")
+        firm = control.execute("SELECT status FROM firms WHERE id=?", (invitation["firm_id"],)).fetchone()
+        if firm is None or firm["status"] != "active":
+            raise HTTPException(409, "invitation firm is no longer active")
+        existing = control.execute(
+            "SELECT id,status FROM users WHERE email_normalized=?",
+            (invitation["email_normalized"],),
+        ).fetchone()
+        if existing is not None:
+            raise HTTPException(409, "sign in to the existing identity and accept this invitation")
+        cursor = control.execute(
+            "INSERT INTO users(name,email_display,email_normalized,password_hash,status) "
+            "VALUES(?,?,?,?,'active')",
+            (b.name.strip(), invitation["email_display"], invitation["email_normalized"], hash_pw(b.password)),
+        )
+        user_id = int(cursor.lastrowid)
+        control.execute(
+            "INSERT INTO firm_memberships(user_id,firm_id,firm_role,status,created_by_user_id) "
+            "VALUES(?,?,?,'active',?)",
+            (user_id, invitation["firm_id"], invitation["invited_role"], invitation["invited_by_user_id"]),
+        )
+        control.execute(
+            "UPDATE identity_invitations SET status='consumed',consumed_by_user_id=?,"
+            "consumed_at=?,updated_at=? WHERE id=? AND status='sent'",
+            (user_id, now, now, invitation["id"]),
+        )
+        control.execute(
+            "INSERT INTO platform_security_events(actor_user_id,target_user_id,firm_id,event_type,detail_json) "
+            "VALUES(?,?,?,'membership_created',?)",
+            (invitation["invited_by_user_id"], user_id, invitation["firm_id"],
+             json.dumps({"method": "invitation", "firm_role": invitation["invited_role"]}, sort_keys=True)),
+        )
+        _identity_event(
+            control, "invitation_accepted", actor_user_id=user_id, target_user_id=user_id,
+            firm_id=invitation["firm_id"], invitation_id=invitation["id"],
+            detail={"role": invitation["invited_role"], "identity_created": True}, now=now,
+        )
+        control.commit()
+    except HTTPException:
+        if control.in_transaction:
+            control.rollback()
+        raise
+    except sqlite3.IntegrityError as exc:
+        if control.in_transaction:
+            control.rollback()
+        raise HTTPException(409, "invitation could not be accepted; the identity or membership already exists") from exc
+    except sqlite3.Error as exc:
+        if control.in_transaction:
+            control.rollback()
+        raise HTTPException(503, "invitation acceptance was not committed") from exc
+    return {"accepted": True, "firm_id": invitation["firm_id"], "role": invitation["invited_role"]}
+
+
+@app.post("/invitations/accept-existing")
+def accept_invitation_existing_identity(b: InvitationAcceptExistingIn, u: dict = Depends(user)):
+    if not _separate_runtime_enabled():
+        raise HTTPException(404, "invitations are available only in separate-database mode")
+    now = int(time.time())
+    digest = _identity_token_digest(b.token)
+    control = control_conn()
+    try:
+        control.execute("BEGIN IMMEDIATE")
+        invitation = control.execute(
+            "SELECT id,firm_id,email_normalized,invited_role,invited_by_user_id,expires_at,status "
+            "FROM identity_invitations WHERE token_hash=?",
+            (digest,),
+        ).fetchone()
+        identity = control.execute(
+            "SELECT id,email_normalized,status FROM users WHERE id=?", (u["id"],)
+        ).fetchone()
+        if invitation is None or invitation["status"] != "sent" or identity is None:
+            raise HTTPException(400, "invitation token is invalid, expired, or already used")
+        if identity["status"] != "active" or identity["email_normalized"] != invitation["email_normalized"]:
+            raise HTTPException(403, "sign in with the invited active identity to accept this invitation")
+        if int(invitation["expires_at"]) <= now:
+            control.execute(
+                "UPDATE identity_invitations SET status='expired',updated_at=? WHERE id=? AND status='sent'",
+                (now, invitation["id"]),
+            )
+            _identity_event(
+                control, "invitation_expired", firm_id=invitation["firm_id"],
+                invitation_id=invitation["id"], detail={"reason": "expired"}, now=now,
+            )
+            control.commit()
+            raise HTTPException(400, "invitation token is invalid, expired, or already used")
+        firm = control.execute("SELECT status FROM firms WHERE id=?", (invitation["firm_id"],)).fetchone()
+        if firm is None or firm["status"] != "active":
+            raise HTTPException(409, "invitation firm is no longer active")
+        existing = control.execute(
+            "SELECT status FROM firm_memberships WHERE user_id=? AND firm_id=?",
+            (u["id"], invitation["firm_id"]),
+        ).fetchone()
+        if existing is not None:
+            raise HTTPException(409, "this identity already has a membership; invitations do not reactivate memberships")
+        control.execute(
+            "INSERT INTO firm_memberships(user_id,firm_id,firm_role,status,created_by_user_id) "
+            "VALUES(?,?,?,'active',?)",
+            (u["id"], invitation["firm_id"], invitation["invited_role"], invitation["invited_by_user_id"]),
+        )
+        control.execute(
+            "UPDATE identity_invitations SET status='consumed',consumed_by_user_id=?,"
+            "consumed_at=?,updated_at=? WHERE id=? AND status='sent'",
+            (u["id"], now, now, invitation["id"]),
+        )
+        control.execute(
+            "INSERT INTO platform_security_events(actor_user_id,target_user_id,firm_id,event_type,detail_json) "
+            "VALUES(?,?,?,'membership_created',?)",
+            (invitation["invited_by_user_id"], u["id"], invitation["firm_id"],
+             json.dumps({"method": "invitation", "firm_role": invitation["invited_role"]}, sort_keys=True)),
+        )
+        _identity_event(
+            control, "invitation_accepted", actor_user_id=u["id"], target_user_id=u["id"],
+            firm_id=invitation["firm_id"], invitation_id=invitation["id"],
+            detail={"role": invitation["invited_role"], "identity_created": False}, now=now,
+        )
+        control.commit()
+    except HTTPException:
+        if control.in_transaction:
+            control.rollback()
+        raise
+    except sqlite3.IntegrityError as exc:
+        if control.in_transaction:
+            control.rollback()
+        raise HTTPException(409, "invitation could not be accepted; the membership already exists") from exc
+    except sqlite3.Error as exc:
+        if control.in_transaction:
+            control.rollback()
+        raise HTTPException(503, "invitation acceptance was not committed") from exc
+    return {"accepted": True, "firm_id": invitation["firm_id"], "role": invitation["invited_role"]}
+
+
+@app.post("/account/recovery/request")
+def request_account_recovery(b: RecoveryRequestIn, request: Request):
+    if not _separate_runtime_enabled():
+        raise HTTPException(404, "account recovery is available only in separate-database mode")
+    generic = _identity_recovery_generic_response()
+    email_normalized = normalize_email(b.email)
+    if not email_normalized or len(email_normalized) > 200:
+        return generic
+    now = int(time.time())
+    peer = request.client.host if request.client else "unknown"
+    client_key = hashlib.sha256((peer + "|" + email_normalized).encode("utf-8")).hexdigest()
+    window_start = (now // 3600) * 3600
+    control = control_conn()
+    try:
+        control.execute("BEGIN IMMEDIATE")
+        limit_cursor = control.execute(
+            "INSERT INTO api_rate_limit_windows(bucket,client_key,window_start,hits) "
+            "VALUES('identity_recovery',?,?,1) "
+            "ON CONFLICT(bucket,client_key,window_start) DO UPDATE "
+            "SET hits=api_rate_limit_windows.hits+1 RETURNING hits",
+            (client_key, window_start),
+        )
+        hits_row = limit_cursor.fetchone()
+        hits = int(hits_row["hits"]) if hits_row else 1
+        account = control.execute(
+            "SELECT id,email_display,status FROM users WHERE email_normalized=?",
+            (email_normalized,),
+        ).fetchone()
+        if hits > 5:
+            if account is not None:
+                _identity_event(
+                    control, "recovery_rate_limited", target_user_id=account["id"],
+                    detail={"bucket": "identity_recovery"}, now=now,
+                )
+            control.commit()
+            return generic
+        if account is None or account["status"] != "active":
+            control.commit()
+            return generic
+        if _identity_is_privileged(control, account["id"]):
+            _identity_event(
+                control, "recovery_requested", target_user_id=account["id"],
+                detail={"outcome": "assisted_verification_required"}, now=now,
+            )
+            control.commit()
+            return generic
+        prior = control.execute(
+            "SELECT id FROM password_recovery_tokens WHERE user_id=? AND status IN ('pending','sent')",
+            (account["id"],),
+        ).fetchall()
+        for old in prior:
+            control.execute(
+                "UPDATE password_recovery_tokens SET status='revoked',updated_at=? WHERE id=?",
+                (now, old["id"]),
+            )
+            _identity_event(
+                control, "recovery_revoked", target_user_id=account["id"],
+                recovery_token_id=old["id"], detail={"reason": "superseded_by_new_request"}, now=now,
+            )
+        token = secrets.token_urlsafe(32)
+        token_hash = _identity_token_digest(token)
+        cursor = control.execute(
+            "INSERT INTO password_recovery_tokens(user_id,token_hash,created_at,expires_at,status,updated_at) "
+            "VALUES(?,?,?,?,'pending',?)",
+            (account["id"], token_hash, now, now + 30 * 60, now),
+        )
+        recovery_id = int(cursor.lastrowid)
+        _identity_event(
+            control, "recovery_requested", target_user_id=account["id"],
+            recovery_token_id=recovery_id, detail={"channel": "email"}, now=now,
+        )
+        control.commit()
+    except sqlite3.Error as exc:
+        if control.in_transaction:
+            control.rollback()
+        logger.error("Account recovery request could not be recorded")
+        return generic
+
+    try:
+        _send_identity_link(account["email_display"], purpose="recovery", token=token)
+    except (IdentityEmailError, ValueError):
+        try:
+            control.execute("BEGIN IMMEDIATE")
+            control.execute(
+                "UPDATE password_recovery_tokens SET status='delivery_failed',updated_at=? "
+                "WHERE id=? AND status='pending'",
+                (int(time.time()), recovery_id),
+            )
+            _identity_event(
+                control, "recovery_delivery_failed", target_user_id=account["id"],
+                recovery_token_id=recovery_id, detail={"reason": "delivery_unavailable"},
+            )
+            control.commit()
+        except sqlite3.Error:
+            if control.in_transaction:
+                control.rollback()
+        logger.warning("Account recovery email delivery failed")
+        return generic
+    try:
+        sent_at = int(time.time())
+        control.execute("BEGIN IMMEDIATE")
+        updated = control.execute(
+            "UPDATE password_recovery_tokens SET status='sent',updated_at=? "
+            "WHERE id=? AND status='pending' AND expires_at>?",
+            (sent_at, recovery_id, sent_at),
+        )
+        if updated.rowcount != 1:
+            raise sqlite3.IntegrityError("recovery token state changed before delivery was recorded")
+        _identity_event(
+            control, "recovery_sent", target_user_id=account["id"],
+            recovery_token_id=recovery_id, detail={"channel": "smtp"}, now=sent_at,
+        )
+        control.commit()
+    except sqlite3.Error:
+        if control.in_transaction:
+            control.rollback()
+        logger.error("Account recovery delivery status could not be committed")
+    return generic
+
+
+@app.post("/account/recovery/consume")
+def consume_account_recovery(b: RecoveryConsumeIn):
+    if not _separate_runtime_enabled():
+        raise HTTPException(404, "account recovery is available only in separate-database mode")
+    now = int(time.time())
+    digest = _identity_token_digest(b.token)
+    control = control_conn()
+    try:
+        control.execute("BEGIN IMMEDIATE")
+        recovery = control.execute(
+            "SELECT id,user_id,expires_at,status FROM password_recovery_tokens WHERE token_hash=?",
+            (digest,),
+        ).fetchone()
+        if recovery is None or recovery["status"] != "sent":
+            raise HTTPException(400, "recovery token is invalid, expired, or already used")
+        if int(recovery["expires_at"]) <= now:
+            control.execute(
+                "UPDATE password_recovery_tokens SET status='expired',updated_at=? WHERE id=? AND status='sent'",
+                (now, recovery["id"]),
+            )
+            _identity_event(
+                control, "recovery_expired", target_user_id=recovery["user_id"],
+                recovery_token_id=recovery["id"], detail={"reason": "expired"}, now=now,
+            )
+            control.commit()
+            raise HTTPException(400, "recovery token is invalid, expired, or already used")
+        account = control.execute(
+            "SELECT id,status FROM users WHERE id=?", (recovery["user_id"],)
+        ).fetchone()
+        if account is None or account["status"] != "active" or _identity_is_privileged(control, recovery["user_id"]):
+            control.execute(
+                "UPDATE password_recovery_tokens SET status='revoked',updated_at=? WHERE id=? AND status='sent'",
+                (now, recovery["id"]),
+            )
+            _identity_event(
+                control, "recovery_revoked", target_user_id=recovery["user_id"],
+                recovery_token_id=recovery["id"], detail={"reason": "identity_not_eligible"}, now=now,
+            )
+            control.commit()
+            raise HTTPException(400, "recovery token is invalid, expired, or already used")
+        updated = control.execute(
+            "UPDATE users SET password_hash=?,updated_at=datetime('now') "
+            "WHERE id=? AND status='active'",
+            (hash_pw(b.new_password), recovery["user_id"]),
+        )
+        if updated.rowcount != 1:
+            raise sqlite3.IntegrityError("identity changed during password recovery")
+        control.execute("DELETE FROM auth_sessions WHERE user_id=?", (recovery["user_id"],))
+        control.execute(
+            "UPDATE password_recovery_tokens SET status='consumed',consumed_at=?,updated_at=? "
+            "WHERE id=? AND status='sent'",
+            (now, now, recovery["id"]),
+        )
+        _identity_event(
+            control, "recovery_consumed", actor_user_id=recovery["user_id"],
+            target_user_id=recovery["user_id"], recovery_token_id=recovery["id"],
+            detail={"sessions_revoked": True}, now=now,
+        )
+        control.commit()
+    except HTTPException:
+        if control.in_transaction:
+            control.rollback()
+        raise
+    except sqlite3.Error as exc:
+        if control.in_transaction:
+            control.rollback()
+        raise HTTPException(503, "password recovery was not committed") from exc
+    return {"message": "Password reset successful. Sign in again."}
 
 
 @app.get("/users")
