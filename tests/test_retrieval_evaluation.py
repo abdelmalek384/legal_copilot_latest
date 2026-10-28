@@ -7,7 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from tools.evaluate_retrieval_quality import DEFAULT_QUESTIONS, _load_jsonl, score_evaluation, validate_reviewed_question
+from tools.evaluate_retrieval_quality import DEFAULT_QUESTIONS, _load_jsonl, _write_report, score_evaluation, validate_reviewed_question
 
 
 def reviewed_question(**overrides):
@@ -30,6 +30,15 @@ def reviewed_question(**overrides):
 
 
 class RetrievalEvaluationTests(unittest.TestCase):
+    def test_report_writer_creates_new_file_and_never_overwrites_existing_evidence(self):
+        with tempfile.TemporaryDirectory() as td:
+            report = Path(td) / "evaluation-report.json"
+            _write_report(report, "first report\n")
+            self.assertEqual(report.read_text(encoding="utf-8"), "first report\n")
+            with self.assertRaises(FileExistsError):
+                _write_report(report, "replacement report\n")
+            self.assertEqual(report.read_text(encoding="utf-8"), "first report\n")
+
     def test_unreviewed_seed_questions_are_excluded_not_scored(self):
         seeds = _load_jsonl(DEFAULT_QUESTIONS)
         result = score_evaluation(seeds, [])
