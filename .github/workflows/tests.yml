@@ -88,6 +88,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_legal_release_readiness.py
       - name: Test aggregate production release gate
         run: PYTHONPATH=. python tests/test_production_release_gate.py
+      - name: Test database operational release acceptance gate
+        run: PYTHONPATH=. python tests/test_database_release_acceptance.py
       - name: Audit legal release candidate readiness without acquiring content
         run: python tools/validate_legal_release_readiness.py --out /tmp/legal-release-readiness.json
       - name: Test acquisition readiness production gate
