@@ -28,12 +28,13 @@ Each accepted item must have `status: "passed"`, an evidence reference, a timezo
    python tools/database_release_acceptance_cli.py --manifest /secure/path/database-release-acceptance.json
    ```
 
-5. Supply the same controlled manifest to the overall release gate:
+5. Set `COPILOT_DATABASE_ACCEPTANCE_FILE=/secure/path/database-release-acceptance.json` in the production service environment. The application startup guard validates the manifest and refuses to start when the path is missing or the evidence is incomplete.
+6. Supply the same controlled manifest to the overall release gate:
 
    ```bash
    python tools/production_release_gate.py --database-acceptance /secure/path/database-release-acceptance.json --reviewer-registry /secure/path/reviewer-registry.json
    ```
 
-6. Keep production original-file uploads fail-closed until the live storage and recovery gates are accepted. A successful manifest validates recorded evidence fields; it does not independently witness or authenticate the underlying operational work.
+7. Keep production original-file uploads fail-closed until the live storage and recovery gates are accepted. A successful manifest validates recorded evidence fields; it does not independently witness or authenticate the underlying operational work.
 
 The manifest is deployment evidence, not a migration, and it must not be filled with invented or placeholder approvals. No legacy-data import/reconciliation is required for this fresh-install project.
