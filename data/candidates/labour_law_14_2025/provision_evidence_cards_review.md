@@ -7562,3 +7562,16 @@ A separate public legal-text service (Fahm Qanun) provided per-article pages tha
 
 The earlier transcription-corruption blocker is resolved for these articles at the secondary-transcription level, not at the official-Gazette verification level. Article 295 remains cross-checked against the public transcription. Do not treat these summaries as final criminal-exposure assessments until exact Gazette wording, applicable amendments and qualified Egyptian-lawyer review are checked.
 
+## Implementing-instrument crosswalk started
+
+Created `related_instruments/implementing_decisions_inventory_2026-10-28.json` with seven source-linked leads:
+- Ministerial Decision 260/2025 — administrative competent authorities crosswalk for Arts. 256, 257, 260 and 271.
+- Decision 162/2026 — workplace-regulation rules (official announcement and Gazette metadata lead; full text still inaccessible in the checked path).
+- Five OSH executive decisions announced by the Ministry in 2026 — exact decision numbers and full texts still need to be extracted.
+- Decision 49/2026 — hazardous work/remote areas and additional annual leave.
+- Decision 266/2025 — skill-level measurement and vocational licensing.
+- Decision 272/2025 — domestic and overseas recruitment operations.
+- Circular 22/2026 — event-specific October holiday guidance; explicitly not treated as a permanent change to leave rules.
+
+Each entry separates source leads from verified operative text, records article mapping as provisional, and keeps authoritative retrieval disabled. Added a focused test file for the instrument register. The register itself was structurally built with seven unique IDs, HTTPS sources, article mappings, and no search-eligible items; tests have not been run in a repository runtime.
+
