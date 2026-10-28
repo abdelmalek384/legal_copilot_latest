@@ -568,7 +568,7 @@ def add_doc(c, case_id, name, text, document_id=None, *, commit=True):
                      "page": str(page) if page is not None else None})
     return add_chunks(c, rows, commit=commit)
 
-def save_doc(c, u, cid, name, text, *, content_hash=None, content_type="text/plain", byte_size=None, extraction_status="text_extracted", ocr_used=False, original_file: StagedObject | None = None, commit=True):
+def save_doc(c, u, cid, name, text, *, content_hash=None, content_type="text/plain", byte_size=None, extraction_status="text_extracted", ocr_used=False, original_file: StagedObject | None = None, storage_backend='local', commit=True):
     content_hash = content_hash or hashlib.sha256(text.encode("utf-8")).hexdigest()
     byte_size = len(text.encode("utf-8")) if byte_size is None else byte_size
     # Chunk insertion and its audit event must commit with the document metadata.
@@ -587,8 +587,7 @@ def save_doc(c, u, cid, name, text, *, content_hash=None, content_type="text/pla
             c.execute(
                 "INSERT INTO original_file_objects(object_id,document_id,firm_id,storage_backend,sha256,byte_size,content_type,state) "
                 "VALUES(?,?,?,?,?,?,?,'staged')",
-                (original_file.object_id, document_id, u["firm_id"],
-                 "s3" if isinstance(store, S3PrivateObjectStore) else "local",
+                (original_file.object_id, document_id, u["firm_id"], storage_backend,
                  original_file.sha256, original_file.byte_size,
                  content_type or "application/octet-stream"),
             )
@@ -3716,7 +3715,7 @@ def upload(cid: int, file: UploadFile, u: dict = Depends(user)):
             chunks, document_id = save_doc(
                 c, u, cid, name, text, content_hash=digest, content_type=content_type,
                 byte_size=len(data), extraction_status=extraction_status, ocr_used=ocr_used,
-                original_file=staged, commit=False)
+                original_file=staged, storage_backend=("s3" if isinstance(store, S3PrivateObjectStore) else "local"), commit=False)
             store.finalize(u["firm_id"], staged.object_id)
             updated = c.execute(
                 "UPDATE original_file_objects SET state='ready',updated_at=datetime('now') "
