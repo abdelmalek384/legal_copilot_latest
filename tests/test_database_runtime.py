@@ -569,6 +569,73 @@ class DatabaseRuntimeTests(unittest.TestCase):
             0,
         )
 
+    def test_reconcile_interrupted_provisioning_refuses_existing_memberships_or_invitations(self):
+        control = self.runtime.control_connection()
+        user_id = self.runtime.create_global_identity(
+            "Provisioning History User", "provisioning-history-user@example.test", "test-hash"
+        )
+        firm_with_membership = int(control.execute(
+            "INSERT INTO firms(name,status) VALUES('Interrupted With Membership','provisioning')"
+        ).lastrowid)
+        control.execute(
+            "INSERT INTO tenant_database_catalog(firm_id,database_file,status) "
+            "VALUES(?,NULL,'provisioning')",
+            (firm_with_membership,),
+        )
+        control.execute(
+            "INSERT INTO firm_memberships(user_id,firm_id,firm_role,status) "
+            "VALUES(?,?,'lawyer','suspended')",
+            (user_id, firm_with_membership),
+        )
+        firm_with_invitation = int(control.execute(
+            "INSERT INTO firms(name,status) VALUES('Interrupted With Invitation','provisioning')"
+        ).lastrowid)
+        control.execute(
+            "INSERT INTO tenant_database_catalog(firm_id,database_file,status) "
+            "VALUES(?,NULL,'provisioning')",
+            (firm_with_invitation,),
+        )
+        control.execute(
+            "INSERT INTO identity_invitations("
+            "firm_id,email_normalized,email_display,invited_role,token_hash,invited_by_user_id,"
+            "created_at,expires_at,status,updated_at"
+            ") VALUES(?,?,?,?,?,?,?,?,?,?)",
+            (
+                firm_with_invitation,
+                "interrupted-invite@example.test",
+                "interrupted-invite@example.test",
+                "lawyer",
+                "b" * 64,
+                user_id,
+                100,
+                200,
+                "sent",
+                100,
+            ),
+        )
+        control.commit()
+
+        for firm_id in (firm_with_membership, firm_with_invitation):
+            with self.subTest(firm_id=firm_id):
+                with self.assertRaisesRegex(DatabaseRuntimeError, "existing memberships or invitations"):
+                    self.runtime.reconcile_interrupted_firm_provisioning(
+                        firm_id,
+                        reason="state with identity history requires manual review",
+                        operator_reference="incident-identity-history",
+                        change_reference="change-identity-history",
+                    )
+                self.assertEqual(
+                    control.execute("SELECT status FROM firms WHERE id=?", (firm_id,)).fetchone()[0],
+                    "provisioning",
+                )
+        self.assertEqual(
+            control.execute(
+                "SELECT COUNT(*) FROM platform_security_events "
+                "WHERE event_type='firm_provisioning_reconciled_failed'"
+            ).fetchone()[0],
+            0,
+        )
+
     def test_reconcile_interrupted_provisioning_audit_failure_rolls_back_lifecycle_changes(self):
         control = self.runtime.control_connection()
         firm_id = int(control.execute(
