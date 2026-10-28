@@ -358,7 +358,7 @@ if __name__ == "__main__":
             "EG-LABOUR-14-2025-ART-186-COURT-OF-CASSATION-LABOUR-CHAMBERS": ("المادة 186", 75, 73),
             "EG-LABOUR-14-2025-ART-187-LABOUR-JUDGMENT-APPEAL-PROCEDURE": ("المادة 187", 75, 73),
         }
-        self.assertEqual(len(self.data["cards"]), 216)
+        self.assertEqual(len(self.data["cards"]), 240)
         for card_id, (article, printed_page, pdf_index) in expected.items():
             with self.subTest(card_id=card_id):
                 card = cards[card_id]
@@ -403,7 +403,7 @@ if __name__ == "__main__":
             "EG-LABOUR-14-2025-ART-199-COLLECTIVE-AGREEMENT-DURATION": ("المادة 199", 78, 76),
             "EG-LABOUR-14-2025-ART-200-COLLECTIVE-AGREEMENT-CONFLICT-AND-BETTER-BENEFIT": ("المادة 200", 78, 76),
         }
-        self.assertEqual(len(self.data["cards"]), 216)
+        self.assertEqual(len(self.data["cards"]), 240)
         for card_id, (article, printed_page, pdf_index) in expected.items():
             with self.subTest(card_id=card_id):
                 card = cards[card_id]
@@ -431,7 +431,7 @@ if __name__ == "__main__":
             "EG-LABOUR-14-2025-ART-213-COLLECTIVE-LABOUR-DISPUTE-SCOPE": ("المادة 213", 80, 78),
             "EG-LABOUR-14-2025-ART-214-COLLECTIVE-DISPUTE-CONCILIATION-THRESHOLD": ("المادة 214", 80, 78),
         }
-        self.assertEqual(len(self.data["cards"]), 216)
+        self.assertEqual(len(self.data["cards"]), 240)
         for card_id, (article, printed_page, pdf_index) in expected.items():
             with self.subTest(card_id=card_id):
                 card = cards[card_id]
@@ -461,7 +461,7 @@ if __name__ == "__main__":
             "EG-LABOUR-14-2025-ART-229-LABOUR-ARBITRAL-AWARD-RULES-AND-DEADLINE": ("المادة 229", 83, 81),
             "EG-LABOUR-14-2025-ART-230-LABOUR-ARBITRAL-AWARD-REVIEW": ("المادة 230", 83, 81),
         }
-        self.assertEqual(len(self.data["cards"]), 216)
+        self.assertEqual(len(self.data["cards"]), 240)
         for card_id, (article, printed_page, pdf_index) in expected.items():
             with self.subTest(card_id=card_id):
                 card = cards[card_id]
@@ -486,7 +486,7 @@ if __name__ == "__main__":
             "EG-LABOUR-14-2025-ART-240-ECONOMIC-CLOSURE-DURING-COLLECTIVE-DISPUTE-OR-STRIKE": ("المادة 240", 84, 82),
             "EG-LABOUR-14-2025-ART-241-TEMPORARY-ECONOMIC-CHANGES-IN-EMPLOYMENT-TERMS": ("المادة 241", 84, 82),
         }
-        self.assertEqual(len(self.data["cards"]), 216)
+        self.assertEqual(len(self.data["cards"]), 240)
         for card_id, (article, printed_page, pdf_index) in expected.items():
             with self.subTest(card_id=card_id):
                 card = cards[card_id]
@@ -514,7 +514,7 @@ if __name__ == "__main__":
             "EG-LABOUR-14-2025-ART-254-WORKPLACE-HARASSMENT-BULLYING-VIOLENCE-PREVENTION": ("المادة 254", 87, 85),
             "EG-LABOUR-14-2025-ART-255-OCCUPATIONAL-SAFETY-TECHNICAL-STANDARDS": ("المادة 255", 87, 85),
         }
-        self.assertEqual(len(self.data["cards"]), 216)
+        self.assertEqual(len(self.data["cards"]), 240)
         for card_id, (article, printed_page, pdf_index) in expected.items():
             with self.subTest(card_id=card_id):
                 card = cards[card_id]
@@ -547,7 +547,45 @@ if __name__ == "__main__":
             "EG-LABOUR-14-2025-ART-273-SOCIAL-HEALTH-CULTURAL-SERVICES-FUND": ("المادة 273", 91, 89),
             "EG-LABOUR-14-2025-ART-274-SOCIAL-SERVICES-FUND-BENEFITS": ("المادة 274", 91, 89),
         }
-        self.assertEqual(len(self.data["cards"]), 216)
+        self.assertEqual(len(self.data["cards"]), 240)
+        for card_id, (article, printed_page, pdf_index) in expected.items():
+            with self.subTest(card_id=card_id):
+                card = cards[card_id]
+                self.assertEqual(card["pinpoint"]["article"], article)
+                self.assertEqual(card["pinpoint"]["official_gazette_printed_page"], printed_page)
+                self.assertEqual(card["pinpoint"]["pdf_page_index_zero_based"], pdf_index)
+                self.assertTrue(card["limitations"])
+                self.assertFalse(self.data["instrument"]["search_eligible"])
+
+    def test_labour_inspection_and_penalty_cards_275_to_298_have_pinpoints(self):
+        cards = {card["card_id"]: card for card in self.data["cards"]}
+        expected = {
+            "EG-LABOUR-14-2025-ART-275-LABOUR-INSPECTOR-JUDICIAL-POLICE-STATUS": ("المادة 275", 92, 90),
+            "EG-LABOUR-14-2025-ART-276-LABOUR-INSPECTOR-ENTRY-AND-RECORDS": ("المادة 276", 92, 90),
+            "EG-LABOUR-14-2025-ART-277-EMPLOYER-DUTY-TO-COOPERATE-WITH-INSPECTORS": ("المادة 277", 92, 90),
+            "EG-LABOUR-14-2025-ART-278-EMPLOYER-ATTENDANCE-REQUESTS": ("المادة 278", 92, 90),
+            "EG-LABOUR-14-2025-ART-279-PUBLIC-AUTHORITY-ASSISTANCE-TO-INSPECTORS": ("المادة 279", 92, 90),
+            "EG-LABOUR-14-2025-ART-280-LABOUR-OFFENCES-PENALTY-INTRODUCTION": ("المادة 280", 93, 91),
+            "EG-LABOUR-14-2025-ART-281-LABOUR-PENALTY-ARTICLES-4-5": ("المادة 281", 93, 91),
+            "EG-LABOUR-14-2025-ART-282-LABOUR-PENALTY-ARTICLES-82-273-21": ("المادة 282", 93, 91),
+            "EG-LABOUR-14-2025-ART-283-LABOUR-PENALTY-ARTICLES-37-48-153-137": ("المادة 283", 93, 91),
+            "EG-LABOUR-14-2025-ART-284-LABOUR-PENALTY-ARTICLE-26": ("المادة 284", 93, 91),
+            "EG-LABOUR-14-2025-ART-285-LABOUR-PENALTY-ARTICLE-23": ("المادة 285", 93, 91),
+            "EG-LABOUR-14-2025-ART-286-LABOUR-PENALTY-ARTICLES-7-24-25-36-46-51-52-68": ("المادة 286", 93, 91),
+            "EG-LABOUR-14-2025-ART-287-LABOUR-PENALTY-ARTICLES-45-104-108": ("المادة 287", 93, 91),
+            "EG-LABOUR-14-2025-ART-288-LABOUR-PENALTY-MULTIPLE-WORKER-RIGHTS-ARTICLES": ("المادة 288", 93, 91),
+            "EG-LABOUR-14-2025-ART-289-LABOUR-PENALTY-ARTICLES-62-66": ("المادة 289", 94, 92),
+            "EG-LABOUR-14-2025-ART-290-LABOUR-PENALTY-ARTICLES-33-37-35-205": ("المادة 290", 94, 92),
+            "EG-LABOUR-14-2025-ART-291-LABOUR-PENALTY-UNLICENSED-RECRUITMENT-AND-UNLAWFUL-CHARGES": ("المادة 291", 94, 92),
+            "EG-LABOUR-14-2025-ART-292-LABOUR-PENALTY-ARTICLE-42": ("المادة 292", 94, 92),
+            "EG-LABOUR-14-2025-ART-293-LABOUR-PENALTY-ARTICLES-70-74": ("المادة 293", 94, 92),
+            "EG-LABOUR-14-2025-ART-294-LABOUR-PENALTY-DISCIPLINE-AND-RELATED-ARTICLES": ("المادة 294", 94, 92),
+            "EG-LABOUR-14-2025-ART-295-LABOUR-PENALTY-ECONOMIC-CLOSURE-ARTICLES": ("المادة 295", 94, 92),
+            "EG-LABOUR-14-2025-ART-296-LABOUR-PENALTY-OCCUPATIONAL-SAFETY-ARTICLES": ("المادة 296", 94, 92),
+            "EG-LABOUR-14-2025-ART-297-LABOUR-PENALTY-INSPECTION-OBSTRUCTION": ("المادة 297", 94, 92),
+            "EG-LABOUR-14-2025-ART-298-LABOUR-CORPORATE-MANAGER-AND-ENTITY-LIABILITY": ("المادة 298", 94, 92),
+        }
+        self.assertEqual(len(self.data["cards"]), 240)
         for card_id, (article, printed_page, pdf_index) in expected.items():
             with self.subTest(card_id=card_id):
                 card = cards[card_id]
