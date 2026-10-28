@@ -149,6 +149,24 @@ def build_plan(control_db: str | Path, tenant_root: str | Path, migrations_root:
         except sqlite3.Error as exc:
             raise FleetMigrationError("Control-plane catalog is missing or unreadable") from exc
 
+    # Every SQLite database file in this dedicated root must have one catalog
+    # reference. Ignoring an orphan would make release preflight incomplete and
+    # could leave matter data outside the backup/migration inventory.
+    catalog_files = {
+        row["database_file"] for row in rows
+        if isinstance(row["database_file"], str) and row["database_file"]
+    }
+    try:
+        actual_database_files = {
+            entry.name for entry in root.iterdir() if entry.name.endswith(".sqlite3")
+        }
+    except OSError as exc:
+        raise FleetMigrationError("Tenant storage inventory could not be read") from exc
+    if actual_database_files != catalog_files:
+        raise FleetMigrationError(
+            "Tenant storage contains missing or unsafe database files, or unreferenced files"
+        )
+
     targets = []
     skipped = []
     seen_files = set()
