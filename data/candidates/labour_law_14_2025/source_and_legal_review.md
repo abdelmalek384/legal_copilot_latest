@@ -68,3 +68,6 @@ This session cannot access or modify the user's local SQLite database. The regis
 3. Register and review relevant implementing instruments and their temporal effects; distinguish `implements` from `amends`.
 4. Have qualified Egyptian counsel verify commencement, transition, repeal/supersession, and the relevant as-of timeline.
 5. Only then record affirmative review events and consider enabling eligible version-linked chunks.
+
+
+Further targeted extracted-text review on 2026-10-28 also covered printed page 43 (PDF page index 41), containing accompanying-law Articles 89–90 on written employment contracts and probation. This adds two provision pinpoints to the provisional review seed; it does not change the pending authenticity, currentness, amendment-history, permission, or lawyer-review statuses.
