@@ -13,7 +13,7 @@ class LabourLawProvisionalReviewQuestionTests(unittest.TestCase):
         rows = [json.loads(line) for line in QUESTIONS.read_text(encoding="utf-8").splitlines() if line.strip()]
         provisions = json.loads(PROVISIONS.read_text(encoding="utf-8"))["provisions"]
         provision_ids = {item["provision_id"] for item in provisions}
-        self.assertEqual(len(rows), 6)
+        self.assertEqual(len(rows), 8)
         self.assertEqual(len({row["id"] for row in rows}), len(rows))
         for row in rows:
             self.assertTrue(row["question_ar"])
@@ -22,6 +22,12 @@ class LabourLawProvisionalReviewQuestionTests(unittest.TestCase):
             self.assertEqual(row["source_document_id"], "EG-LABOUR-LAW-14-2025")
             self.assertTrue(row["expected_pin_cite"])
             self.assertTrue(row["supporting_source_urls"])
+            provision = next(item for item in provisions if item["provision_id"] == row["provision_id"])
+            pinpoint = provision["page_pinpoint"]
+            expected_page = "الجريدة الرسمية، العدد 18 (تابع)، ص. " + pinpoint["printed_page"] + " (PDF page index " + str(pinpoint["pdf_page_index_zero_based"]) + ")"
+            self.assertEqual(row["source_page_ref"], expected_page)
+            self.assertTrue(row["targeted_pdf_text_reviewed"])
+            self.assertFalse(row["original_pdf_downloaded"])
             for url in row["supporting_source_urls"]:
                 parsed = urlparse(url)
                 self.assertEqual(parsed.scheme, "https")
