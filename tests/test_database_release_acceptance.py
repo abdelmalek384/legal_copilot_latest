@@ -85,6 +85,16 @@ class DatabaseReleaseAcceptanceTests(unittest.TestCase):
             {(item["gate"], item["code"]) for item in report["blockers"]},
         )
 
+    def test_independent_security_reviewer_cannot_be_an_operator(self):
+        manifest = json.loads(json.dumps(self.manifest))
+        manifest["gates"]["independent_security_review"]["reviewer"] = "OPERATOR-A"
+        report = validate_acceptance_manifest(manifest, now=self.now)
+        self.assertFalse(report["ready"])
+        self.assertIn(
+            ("independent_security_review", "reviewer_not_independent_of_operators"),
+            {(item["gate"], item["code"]) for item in report["blockers"]},
+        )
+
     def test_timestamps_must_have_timezone_and_cannot_be_in_future(self):
         manifest = json.loads(json.dumps(self.manifest))
         manifest["gates"]["original_file_storage"]["verified_at"] = "2026-10-28T12:00:00"
