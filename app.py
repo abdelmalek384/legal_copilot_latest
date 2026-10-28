@@ -16,6 +16,7 @@ from tools.mfa_primitives import (
 from tools.mfa_crypto import MFAConfigurationError, encrypt_totp_secret, decrypt_totp_secret
 from storage import SQLiteConnectionProvider
 from original_file_storage import LocalPrivateObjectStore, ObjectStorageError, StagedObject
+from s3_original_file_storage import S3PrivateObjectStore
 from identity import normalize_email
 from db_migrations import apply_migrations
 from database_runtime import DatabaseRuntime, DatabaseRuntimeError
@@ -608,12 +609,32 @@ def save_doc(c, u, cid, name, text, *, content_hash=None, content_type="text/pla
 
 
 def _original_file_store():
-    """Build the reviewed local development adapter; production must use a reviewed backend."""
-    if os.environ.get("COPILOT_ENV", "").strip().lower() in {"prod", "production"}:
-        raise HTTPException(503, "production original-file storage backend is not configured")
+    """Build a private development or KMS-backed object store from deployment config."""
+    production = os.environ.get("COPILOT_ENV", "").strip().lower() in {"prod", "production"}
     backend = os.environ.get("COPILOT_OBJECT_STORAGE_BACKEND", "local").strip().lower()
+    if production and backend != "s3":
+        raise HTTPException(503, "production requires the KMS-backed S3 object-storage backend")
+    if backend == "s3":
+        bucket = os.environ.get("COPILOT_S3_BUCKET", "").strip()
+        region = os.environ.get("COPILOT_S3_REGION", "").strip()
+        kms_key_id = os.environ.get("COPILOT_S3_KMS_KEY_ID", "").strip()
+        endpoint_url = os.environ.get("COPILOT_S3_ENDPOINT_URL", "").strip() or None
+        if not bucket or not region or not kms_key_id:
+            raise HTTPException(503, "S3 bucket, region, and KMS key ID must be configured")
+        try:
+            import boto3
+            client = boto3.client("s3", region_name=region, endpoint_url=endpoint_url)
+            return S3PrivateObjectStore(
+                client, bucket=bucket, kms_key_id=kms_key_id, max_bytes=15_000_000
+            )
+        except ImportError as exc:
+            raise HTTPException(503, "S3 storage SDK is unavailable") from exc
+        except (ValueError, OSError) as exc:
+            raise HTTPException(503, "S3 storage configuration is invalid") from exc
     if backend != "local":
-        raise HTTPException(503, "configured original-file storage backend is not available")
+        raise HTTPException(503, "configured original-file storage backend is not supported")
+    if production:
+        raise HTTPException(503, "local object storage is development-only")
     tenant_root_value = os.environ.get("COPILOT_TENANT_DB_ROOT", "").strip()
     if not tenant_root_value:
         raise HTTPException(503, "tenant storage root is required for original-file storage")
@@ -637,7 +658,7 @@ def _original_file_store():
     except ObjectStorageError as exc:
         raise HTTPException(503, "original-file storage is unavailable") from exc
     except OSError as exc:
-        raise HTTPException(503, "original-file storage path cannot be verified") from exc
+        raise HTTPException(503, "object storage path cannot be verified") from exc
 
 
 def _cleanup_original_file(store, firm_id, object_id):
