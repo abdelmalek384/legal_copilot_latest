@@ -814,6 +814,115 @@ class DatabaseRuntimeTests(unittest.TestCase):
                 change_reference="change-window-999",
             )
 
+    def test_disabled_firm_invitation_offboarding_revokes_and_audits_active_tokens(self):
+        firm_id, _ = self.runtime.provision_firm("Invitation Offboarding Firm")
+        user_id = self.runtime.create_global_identity(
+            "Invitation Offboarding Owner", "invitation-offboarding-owner@example.test", "test-hash"
+        )
+        control = self.runtime.control_connection()
+        invitation_ids = []
+        for index, status in enumerate(("pending", "sent")):
+            cursor = control.execute(
+                "INSERT INTO identity_invitations("
+                "firm_id,email_normalized,email_display,invited_role,token_hash,invited_by_user_id,"
+                "created_at,expires_at,status,updated_at"
+                ") VALUES(?,?,?,?,?,?,?,?,?,?)",
+                (
+                    firm_id,
+                    f"offboarding-{index}@example.test",
+                    f"offboarding-{index}@example.test",
+                    "lawyer",
+                    str(index + 1) * 64,
+                    user_id,
+                    100,
+                    200,
+                    status,
+                    100,
+                ),
+            )
+            invitation_ids.append(int(cursor.lastrowid))
+        control.commit()
+        self.runtime.disable_firm(firm_id)
+
+        revoked = self.runtime.revoke_disabled_firm_invitations(
+            firm_id,
+            reason="close all outstanding invitations before approved offboarding",
+            operator_reference="offboarding-ticket-123",
+            change_reference="change-offboarding-456",
+        )
+        self.assertEqual(revoked, 2)
+        for invitation_id in invitation_ids:
+            row = control.execute(
+                "SELECT status FROM identity_invitations WHERE id=?", (invitation_id,)
+            ).fetchone()
+            self.assertEqual(row["status"], "revoked")
+            event = control.execute(
+                "SELECT detail_json FROM identity_lifecycle_events "
+                "WHERE invitation_id=? AND event_type='invitation_revoked'",
+                (invitation_id,),
+            ).fetchone()
+            self.assertIsNotNone(event)
+            detail = json.loads(event["detail_json"])
+            self.assertEqual(detail["operator_reference"], "offboarding-ticket-123")
+            self.assertEqual(detail["change_reference"], "change-offboarding-456")
+            self.assertEqual(detail["source"], "firm_offboarding_cli")
+        self.assertEqual(
+            control.execute(
+                "SELECT COUNT(*) FROM identity_invitations "
+                "WHERE firm_id=? AND status IN ('pending','sent')",
+                (firm_id,),
+            ).fetchone()[0],
+            0,
+        )
+
+    def test_disabled_firm_invitation_offboarding_audit_failure_rolls_back_all_changes(self):
+        firm_id, _ = self.runtime.provision_firm("Invitation Offboarding Audit Failure")
+        user_id = self.runtime.create_global_identity(
+            "Invitation Audit Owner", "invitation-audit-owner@example.test", "test-hash"
+        )
+        control = self.runtime.control_connection()
+        control.execute(
+            "INSERT INTO identity_invitations("
+            "firm_id,email_normalized,email_display,invited_role,token_hash,invited_by_user_id,"
+            "created_at,expires_at,status,updated_at"
+            ") VALUES(?,?,?,?,?,?,?,?,?,?)",
+            (
+                firm_id, "rollback-invite@example.test", "rollback-invite@example.test",
+                "lawyer", "c" * 64, user_id, 100, 200, "sent", 100,
+            ),
+        )
+        control.execute(
+            "CREATE TRIGGER reject_offboarding_invitation_audit "
+            "BEFORE INSERT ON identity_lifecycle_events "
+            "WHEN NEW.event_type='invitation_revoked' "
+            "BEGIN SELECT RAISE(ABORT, 'injected invitation audit failure'); END"
+        )
+        control.commit()
+        self.runtime.disable_firm(firm_id)
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "injected invitation audit failure"):
+            self.runtime.revoke_disabled_firm_invitations(
+                firm_id,
+                reason="test audit rollback",
+                operator_reference="offboarding-ticket-audit",
+                change_reference="change-offboarding-audit",
+            )
+        control.execute("DROP TRIGGER reject_offboarding_invitation_audit")
+        control.commit()
+        self.assertEqual(
+            control.execute(
+                "SELECT status FROM identity_invitations WHERE firm_id=?", (firm_id,)
+            ).fetchone()[0],
+            "sent",
+        )
+        self.assertEqual(
+            control.execute(
+                "SELECT COUNT(*) FROM identity_lifecycle_events "
+                "WHERE firm_id=? AND event_type='invitation_revoked'",
+                (firm_id,),
+            ).fetchone()[0],
+            0,
+        )
+
     def test_revoked_membership_closes_cached_firm_connection(self):
         user_id = self._identity()
         firm_id, _ = self.runtime.provision_firm("Revocation Test")
