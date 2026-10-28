@@ -19,7 +19,7 @@
     "commercial_reuse_permission": "unknown",
     "search_eligible": false
   },
-  "source_method_note": "Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF has not been downloaded, hashed, or visually inspected; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording. Additional cards for accompanying-law Articles 4–9 were prepared from text extraction of the government-hosted Official Gazette PDF on 2026-10-28. The PDF has not been downloaded, hashed, or visually inspected; page pinpointing is provisional and all cards remain non-authoritative.",
+  "source_method_note": "Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF has not been downloaded, hashed, or visually inspected; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording. Additional cards for accompanying-law Articles 4–9 were prepared from text extraction of the government-hosted Official Gazette PDF on 2026-10-28. The PDF has not been downloaded, hashed, or visually inspected; page pinpointing is provisional and all cards remain non-authoritative. Additional cards for accompanying-law Articles 10–12 were prepared from the government-hosted Official Gazette PDF text extraction on 2026-10-28. Page references are based on the extracted page labels; the PDF has not been downloaded, hashed, or visually inspected. Cards remain provisional and non-authoritative.",
   "cards": [
     {
       "card_id": "EG-LABOUR-14-2025-PROMULGATION-ART-1-SCOPE",
@@ -1205,6 +1205,132 @@
       "limitations": [
         "لا تحدد البطاقة وحدها إجراءات الإفلاس أو التصفية أو أولوية التنفيذ",
         "لم تُراجع اللوائح والقرارات التنفيذية ذات الصلة",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "final advice or authoritative retrieval"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-10-JOINT-LIABILITY",
+      "question": "When can multiple employers or an authorized delegate be jointly responsible for labour obligations?",
+      "provisional_answer_ar": "تقرر المادة 10 مسؤولية أصحاب العمل بالتضامن عن الوفاء بالالتزامات الناشئة عن القانون أو لوائح المنشأة المعتمدة أو اتفاقيات العمل الجماعية عند تعددهم. كما تتناول مسؤولية الوكيل المفوض أو من تنازل له صاحب العمل عن الأعمال المسندة إليه. يتوقف التطبيق على صفة الأطراف والأعمال والالتزام المحدد، ويلزم فحص النص الكامل والوقائع.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 10",
+        "official_gazette_printed_page": 13,
+        "pdf_page_index_zero_based": 11
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص المادة 10 من الصفحة المطبوعة 13؛ الملف لم يُنزّل أو يُفحص بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "صفحة النص الرسمي للقانون؛ يلزم التحقق الموضعي عند التطبيق",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf",
+          "source_type": "ILO NATLEX-hosted Arabic legal text",
+          "supports": "نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية"
+        }
+      ],
+      "limitations": [
+        "لا تحدد البطاقة كل صور تعدد أصحاب العمل أو حدود التفويض",
+        "لم تُراجع الأحكام القضائية أو القواعد الخاصة ذات الصلة",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "final advice or authoritative retrieval"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-11-TRANSFER-OF-ESTABLISHMENT",
+      "question": "What does Article 11 say about employment contracts when an establishment is transferred?",
+      "provisional_answer_ar": "تقرر المادة 11 أن اندماج المنشأة أو تقسيمها أو انتقالها بالإرث أو الوصية أو الهبة أو البيع أو غير ذلك من التصرفات المذكورة لا يترتب عليه بذاته إنهاء عقود استخدام العمال. كما تتناول المسؤولية التضامنية للخلف عن الالتزامات الناشئة عن العقود مع أصحاب الأعمال السابقين. يجب مراجعة النص الكامل وشكل التصرف وتواريخه قبل تطبيق القاعدة على معاملة معينة.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 11",
+        "official_gazette_printed_page": 14,
+        "pdf_page_index_zero_based": 12
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص المادة 11 من الصفحة المطبوعة 14؛ الملف لم يُنزّل أو يُفحص بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "صفحة النص الرسمي للقانون؛ يلزم التحقق الموضعي عند التطبيق",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf",
+          "source_type": "ILO NATLEX-hosted Arabic legal text",
+          "supports": "نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية"
+        }
+      ],
+      "limitations": [
+        "هذه خلاصة للقاعدة العامة ولا تحسم أثر كل نوع من أنواع التصرفات",
+        "لم تُراجع التشريعات الخاصة أو المستندات المتعلقة بمعاملة محددة",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "final advice or authoritative retrieval"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-12-ANNUAL-INCREMENT",
+      "question": "What annual periodic increment does Article 12 describe, and what happens in specified economic hardship?",
+      "provisional_answer_ar": "تقرر المادة 12 للعاملين الخاضعين للقانون علاوة دورية سنوية لا تقل عن 3% من الأجر التأميني في تاريخ استحقاقها، وتحدد قاعدة سنوية لميعاد الاستحقاق. وإذا حالت ظروف اقتصادية بالمنشأة دون صرفها، تنص المادة على عرض الأمر على المجلس القومي للأجور للبت في التخفيض أو الإعفاء خلال المدة المحددة بالنص. يلزم التحقق من انطباق القانون والأجر التأميني والقرارات أو الإجراءات ذات الصلة قبل حساب استحقاق فردي.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 12",
+        "official_gazette_printed_page": 14,
+        "pdf_page_index_zero_based": 12
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص المادة 12 من الصفحة المطبوعة 14؛ الملف لم يُنزّل أو يُفحص بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "صفحة النص الرسمي للقانون؛ يلزم التحقق الموضعي عند التطبيق",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf",
+          "source_type": "ILO NATLEX-hosted Arabic legal text",
+          "supports": "نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية"
+        }
+      ],
+      "limitations": [
+        "لا تثبت البطاقة وحدها انطباق القانون على العامل أو اكتمال شروط الاستحقاق",
+        "لم تُراجع قرارات المجلس القومي للأجور أو أي تطبيقات لاحقة",
         "لا توجد مراجعة محامٍ مسجلة"
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
