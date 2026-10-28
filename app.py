@@ -1479,6 +1479,18 @@ async def initialize_database_runtime_before_serving():
     if not _separate_runtime_enabled():
         # Explicit development/test compatibility harness only.
         return
+    if _environment_mode in {"prod", "production"}:
+        control_path = Path(os.environ["COPILOT_CONTROL_DB"])
+        corpus_path = Path(os.environ["COPILOT_CORPUS_DB"])
+        tenant_root = Path(os.environ["COPILOT_TENANT_DB_ROOT"])
+        if (
+            not control_path.is_file() or control_path.is_symlink()
+            or not corpus_path.is_file() or corpus_path.is_symlink()
+            or not tenant_root.is_dir() or tenant_root.is_symlink()
+        ):
+            raise RuntimeError(
+                "Production database profiles must be provisioned and validated before application startup."
+            )
     try:
         get_database_runtime()
     except Exception as exc:
