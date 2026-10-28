@@ -98,6 +98,13 @@ class FirmOffboardingPreflightTests(unittest.TestCase):
         self.assertEqual(report["active_invitations"], 1)
         self.assertIn("active_invitations_remain", {item["code"] for item in report["findings"]})
         self.assertEqual(report["mutations_performed"], 0)
+        control_after = self.runtime.control_connection()
+        self.assertEqual(
+            control_after.execute(
+                "SELECT status FROM identity_invitations WHERE firm_id=?", (self.firm_id,)
+            ).fetchone()[0],
+            "sent",
+        )
 
     def test_active_legal_hold_blocks_purge_preflight(self):
         context = self.runtime.resolve_context(self.user_id, self.firm_id)
