@@ -1649,6 +1649,10 @@ class InvitationAcceptExistingIn(BaseModel):
     token: str = Field(min_length=32, max_length=200)
 
 
+class InvitationRevokeIn(BaseModel):
+    reason: str = Field(min_length=5, max_length=500)
+
+
 class RecoveryRequestIn(BaseModel):
     email: str = Field(min_length=3, max_length=200)
 
