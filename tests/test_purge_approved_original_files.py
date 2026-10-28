@@ -108,6 +108,51 @@ class PurgeApprovedOriginalFilesTests(unittest.TestCase):
         firm_db.commit()
         return staged, request_id
 
+    def test_purge_operation_rejects_active_firm_even_when_request_is_approved(self):
+        staged, _ = self._create_approved_request()
+        with self.assertRaisesRegex(RuntimeError, "Firm must be disabled"):
+            purge_approved_requests(
+                self.tenant_path,
+                self.object_root,
+                self.firm_id,
+                self.operator_id,
+                apply=True,
+                control_database_path=self.control_path,
+                tenant_root=self.tenant_root,
+                corpus_database_path=self.corpus_path,
+            )
+        self.assertTrue(LocalPrivateObjectStore(self.object_root).verify(
+            self.firm_id, staged.object_id,
+            expected_sha256=staged.sha256, expected_size=staged.byte_size,
+        ))
+
+    def test_purge_operation_rejects_operator_without_platform_admin_role(self):
+        staged, _ = self._create_approved_request()
+        self.runtime.disable_firm(self.firm_id)
+        control = self.runtime.control_connection()
+        control.execute(
+            "UPDATE firm_memberships SET status='suspended',updated_at=datetime('now') "
+            "WHERE firm_id=?",
+            (self.firm_id,),
+        )
+        control.commit()
+        self.runtime.close_current_thread()
+        with self.assertRaisesRegex(RuntimeError, "active platform administrator"):
+            purge_approved_requests(
+                self.tenant_path,
+                self.object_root,
+                self.firm_id,
+                self.requester_id,
+                apply=True,
+                control_database_path=self.control_path,
+                tenant_root=self.tenant_root,
+                corpus_database_path=self.corpus_path,
+            )
+        self.assertTrue(LocalPrivateObjectStore(self.object_root).verify(
+            self.firm_id, staged.object_id,
+            expected_sha256=staged.sha256, expected_size=staged.byte_size,
+        ))
+
     def test_purge_retains_tombstone_and_immutable_audit_through_backup_restore(self):
         staged, request_id = self._create_approved_request()
         self.runtime.disable_firm(self.firm_id)
@@ -126,6 +171,9 @@ class PurgeApprovedOriginalFilesTests(unittest.TestCase):
             self.firm_id,
             self.operator_id,
             apply=True,
+            control_database_path=self.control_path,
+            tenant_root=self.tenant_root,
+            corpus_database_path=self.corpus_path,
         )
 
         self.assertEqual(result["purged_count"], 1, result["results"])
