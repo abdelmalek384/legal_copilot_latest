@@ -9,6 +9,7 @@ from original_file_storage import ObjectStorageError
 from s3_original_file_storage import S3PrivateObjectStore
 from original_file_reconciliation import TenantDatabase
 from original_file_s3_reconciliation import reconcile_s3_original_file_storage
+from database_backup import _copy_s3_original_objects, _scan_s3_original_object_inventory
 
 
 class FakeS3Error(RuntimeError):
@@ -198,6 +199,35 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
                 self.store, [TenantDatabase(firm_id=12, path=path)]
             )
             self.assertIn("missing_object", {item.code for item in report.findings})
+
+    def test_encrypted_backup_staging_copies_verified_s3_originals(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            path = root / "tenant.sqlite3"
+            payload_dir = root / "payload"
+            payload_dir.mkdir()
+            db = sqlite3.connect(path)
+            db.executescript("""
+                CREATE TABLE original_file_objects(
+                    object_id TEXT PRIMARY KEY, firm_id INTEGER NOT NULL, storage_backend TEXT NOT NULL,
+                    sha256 TEXT NOT NULL, byte_size INTEGER NOT NULL, state TEXT NOT NULL, purged_at TEXT
+                );
+            """)
+            payload = b"backup source bytes"
+            staged = self.store.stage(12, payload)
+            self.store.finalize(12, staged.object_id)
+            db.execute(
+                "INSERT INTO original_file_objects VALUES(?,?,?,?,?,'ready',NULL)",
+                (staged.object_id, 12, "s3", staged.sha256, staged.byte_size),
+            )
+            db.commit()
+            db.close()
+
+            expected = _copy_s3_original_objects(path, 12, self.store, payload_dir)
+            backup_copy = payload_dir / "objects" / "firm-12" / f"{staged.object_id}.blob"
+            self.assertEqual(expected, {f"firm-12/{staged.object_id}.blob"})
+            self.assertEqual(backup_copy.read_bytes(), payload)
+            self.assertEqual(_scan_s3_original_object_inventory(self.store), expected)
 
     def test_missing_kms_configuration_is_rejected(self):
         with self.assertRaises(ValueError):
