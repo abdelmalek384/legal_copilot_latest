@@ -1,6 +1,6 @@
 # Legal Copilot — Project Progress Tracker
 
-**Last updated:** 2026-10-27 (current workstream snapshot added through PR #684; legacy 20-deliverable tally retained for historical continuity but is not a current overall project percentage)  
+**Last updated:** 2026-10-28 (historical 2026-10-27 snapshot retained; current checkpoint appended; legacy 20-deliverable tally retained for historical continuity but is not a current overall project percentage)  
 **Tracking method:** deliverable-level checklist, not an estimate of engineering hours. A task is “complete” only when its change is merged and its acceptance criteria are met. Open PRs are in progress, not complete.
 
 ## Overall status
@@ -103,3 +103,47 @@ Percentages count the 20 deliverables actually listed in this register equally; 
 - Some source permission requests may be declined or unanswered; the roadmap must remain useful without them.
 - A practice-area value of `unknown` means unclassified, not absent or covered.
 - Automated tests cannot substitute for legal review, manual accessibility checks or security assessment.
+
+
+## Current checkpoint update — 2026-10-28
+
+This section supersedes the dated open-PR list above where the status has changed. It is a snapshot, not a fresh full-repository test or legal review.
+
+### Workstream estimates (rough, non-additive)
+
+| Workstream | Estimate | Current state |
+|---|---:|---|
+| Overall product readiness | 42% ± 8 percentage points | Estimate carried forward from the prior review; not recalculated from a full acceptance run. |
+| Legal corpus verification | 6% | Still the largest product gap: no comprehensive lawyer-reviewed corpus; source artifacts, reuse scope, effective dates, and qualified review remain blockers. |
+| Research evaluation and citation integrity | 72% | Several scoring safeguards merged; source-status consistency and runner/scorer changes remain open/conflicted. Real lawyer-labelled benchmark runs are still missing. |
+| Legal corpus audit safeguards | 55% | Evidence-flag audit and Markdown metric display merged; review-event integrity and chunk/version consistency PRs remain open with conflicts. |
+| Database/tenant isolation | 65% estimate | Separate workstream owned by the other AI. Do not treat this percentage as release approval; independent security review and deployment-level validation remain. |
+| UI/UX and manual QA | 45% | Fresh browser, RTL/LTR, keyboard, screen-reader and lawyer workflow evidence remains outstanding. |
+
+### Merged since the 2026-10-27 snapshot
+
+- #666: hardened evaluation-runner API base URL validation.
+- #670: evaluation reports refuse to overwrite existing evidence files.
+- #672: stabilized the MFA replay regression test across TOTP time boundaries (test-only; not a security certification).
+- #673: expanded official Egyptian legal-source discovery metadata; new sources remain discovery-only and reuse permission remains unknown.
+- #675: added exact-article future-effective-law regression coverage (test-only).
+- #676: gates case-scoped prompts and follow-up context on the separate firm-data processing approval flag.
+- #677 and #678: evaluator now penalizes citations to sources not retrieved and reports false abstentions/strict decision metrics.
+- #681: requires supporting review/evidence records for legal verification flags.
+- #686: renders the new audit metrics in Markdown as well as JSON.
+
+The above merges improve tooling and safety controls; they do not prove the corpus is authentic/current, establish commercial reuse permission, or certify product readiness.
+
+### Current blockers and next actions
+
+1. **#682 — review-event integrity audit:** recorded PR Tests workflow passed, but GitHub reports merge conflicts. Reconcile against current main and rerun tests; do not force-merge.
+2. **#683 — chunk/version consistency audit:** recorded PR Tests workflow passed, but GitHub reports merge conflicts. Reconcile after #682 to avoid overlapping edits to the same audit files.
+3. **#680 — citation source-status evidence:** recorded PR Tests workflow passed, but GitHub reports merge conflicts with newer evaluator changes. Port/reconcile changes and rerun tests.
+4. **#668 — runner/scorer schema and citation parsing:** recorded PR Tests workflow passed, but merge is rejected due conflicts. Reconcile with the now-merged #677/#678 work before merging.
+5. **Legal content:** continue metadata discovery and source-specific rights analysis only. Do not bulk-download or commercially reuse material where rights remain unknown. Labour Law 14/2025 remains blocked pending independently sourced artifacts, amendment/effective-date comparison, and Egyptian-lawyer sign-off.
+6. **Current test evidence:** PR-specific workflows passed before their merges, but the complete test suite has not yet been independently confirmed on the latest combined main commit.
+7. **Database work:** PR #690 is the other AI's identity/invitation/recovery lifecycle workstream. This tracker update does not alter or approve that code. Avoid overlapping changes to migrations, tenant storage, identity lifecycle, or production data.
+
+### Completion accounting rule
+
+Count a deliverable as complete only when its code is merged and acceptance criteria are met. CI success on an individual PR is not the same as a passing full suite on current main. A validator or metadata catalog is not a verified legal corpus, and no percentage here should be interpreted as a legal accuracy guarantee.
