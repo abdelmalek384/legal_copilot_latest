@@ -86,7 +86,8 @@
         "pdf_page_index_zero_based": 53,
         "printed_page_label": "55",
         "provisions": [
-          "القانون المرافق، المادة 124"
+          "القانون المرافق، المادة 124",
+          "القانون المرافق، المادة 129"
         ],
         "basis": "PDF text extraction lines 1302-1304"
       },
@@ -639,6 +640,26 @@
           51,
           52
         ],
+        "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf"
+      }
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-129",
+      "provision_ref": "القانون المرافق، المادة 129",
+      "topic": "paid_official_holidays",
+      "summary_ar": "تقرر المادة 129 إجازة بأجر في العطلات والأعياد والمناسبات التي يحددها الوزير المختص، مع تطبيق قرار مجلس الوزراء بشأن الأعياد الدينية لغير المسلمين. وإذا اقتضت ظروف العمل تشغيل العامل في تلك الأيام، يستحق التعويض المالي المحدد بالمادة أو يوماً آخر عوضاً عنه بناءً على طلب كتابي يودع بملفه. يلزم التحقق من القرار الوزاري أو قرار مجلس الوزراء الذي يحدد المناسبة المعنية.",
+      "source_refs": [
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "basis": "government-hosted Gazette PDF; targeted text extraction reviewed; printed page 55"
+        }
+      ],
+      "confidence": "provisional_source_text_observed",
+      "human_review": "pending",
+      "page_pinpoint": {
+        "gazette_issue": "18 (تابع)",
+        "printed_page": "55",
+        "pdf_page_index_zero_based": 53,
         "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf"
       }
     }
