@@ -116,18 +116,30 @@ def register(db, record):
     return {"version_id": version_id, "version_state": dict(row), "linked_chunk_count": chunk_count}
 
 
+def register_configured_corpus(record):
+    """Register candidate metadata only in the configured shared corpus profile."""
+    if os.environ.get("COPILOT_DB", "").strip():
+        raise RuntimeError(
+            "COPILOT_DB is the legacy shared database and is not accepted; "
+            "configure COPILOT_CONTROL_DB, COPILOT_TENANT_DB_ROOT, and COPILOT_CORPUS_DB"
+        )
+    sys.path.insert(0, str(ROOT))
+    from database_runtime import DatabaseRuntime
+
+    runtime = DatabaseRuntime.from_env()
+    runtime.initialize()
+    try:
+        return register(runtime.legal_corpus_connection(), record)
+    finally:
+        runtime.close_current_thread()
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--db", help="SQLite path; defaults to COPILOT_DB / app default")
     parser.add_argument("--record", default=str(DEFAULT_RECORD), help="Candidate registry JSON")
     args = parser.parse_args()
-    if args.db:
-        os.environ["COPILOT_DB"] = args.db
-    sys.path.insert(0, str(ROOT))
-    import app
-
     record = json.loads(Path(args.record).read_text(encoding="utf-8"))
-    result = register(app.conn(), record)
+    result = register_configured_corpus(record)
     print(json.dumps({
         "registered": True,
         "document_id": record["document"]["document_id"],
