@@ -10,7 +10,7 @@ from __future__ import annotations
 import hashlib
 import re
 import uuid
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import BinaryIO
 
 from original_file_storage import ObjectStorageError, StagedObject
@@ -27,6 +27,8 @@ class S3PrivateObjectStore:
     bucket: str
     kms_key_id: str
     max_bytes: int = 15_000_000
+    kms_client: object | None = None
+    _accepted_kms_key_ids: frozenset[str] = field(init=False, repr=False, compare=False)
 
     def __post_init__(self):
         if not isinstance(self.bucket, str) or not self.bucket.strip():
@@ -35,6 +37,30 @@ class S3PrivateObjectStore:
             raise ValueError("a managed KMS key identifier is required")
         if isinstance(self.max_bytes, bool) or not isinstance(self.max_bytes, int) or self.max_bytes < 1:
             raise ValueError("max_bytes must be a positive integer")
+        if self.kms_client is None:
+            if self.kms_key_id.startswith("alias/"):
+                raise ValueError("a KMS client is required to resolve KMS key aliases")
+            accepted = {self.kms_key_id}
+        else:
+            try:
+                metadata = self.kms_client.describe_key(KeyId=self.kms_key_id).get("KeyMetadata", {})
+            except Exception as exc:
+                raise ValueError("configured KMS key could not be resolved") from exc
+            accepted = {
+                value for value in (metadata.get("KeyId"), metadata.get("Arn"))
+                if isinstance(value, str) and value.strip()
+            }
+            if not accepted:
+                raise ValueError("configured KMS key did not resolve to a canonical identity")
+        object.__setattr__(self, "_accepted_kms_key_ids", frozenset(accepted))
+
+    def _is_expected_kms_key(self, response: dict) -> bool:
+        key_id = response.get("SSEKMSKeyId")
+        return (
+            response.get("ServerSideEncryption") == "aws:kms"
+            and isinstance(key_id, str)
+            and key_id in self._accepted_kms_key_ids
+        )
 
     @staticmethod
     def _firm_id(firm_id: int) -> int:
@@ -73,10 +99,8 @@ class S3PrivateObjectStore:
             raise ObjectStorageError("object-storage metadata lookup failed") from exc
         # Do not treat an object as valid merely because its key exists. Require
         # S3's response to attest that server-side KMS encryption is active.
-        if (result.get("ServerSideEncryption") != "aws:kms"
-                or not isinstance(result.get("SSEKMSKeyId"), str)
-                or not result["SSEKMSKeyId"].strip()):
-            raise ObjectStorageError("stored object is not protected by KMS encryption")
+        if not self._is_expected_kms_key(result):
+            raise ObjectStorageError("stored object is not protected by the configured KMS key")
         return result
 
     def stage(self, firm_id: int, data: bytes) -> StagedObject:
@@ -144,9 +168,7 @@ class S3PrivateObjectStore:
         try:
             response = self.client.get_object(Bucket=self.bucket, Key=key)
             body = response.get("Body")
-            if (response.get("ServerSideEncryption") != "aws:kms"
-                    or not isinstance(response.get("SSEKMSKeyId"), str)
-                    or not response["SSEKMSKeyId"].strip()):
+            if not self._is_expected_kms_key(response):
                 close = getattr(body, "close", None)
                 if callable(close):
                     close()
