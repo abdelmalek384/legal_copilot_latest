@@ -27,7 +27,7 @@ Memberships and platform roles are separate authorization domains. A firm-admin 
 Each firm has a distinct database bound to its immutable firm ID. It owns:
 - cases and case children such as members, tasks, events, notes, deadlines, fees and calendar sessions;
 - document metadata, extraction chunks and FTS index, extraction-review history, research conversations/messages, case-deletion snapshots and firm-scoped audit events;
-- opaque original-file metadata in `original_file_objects` and the legal-hold/deletion workflow tables when the storage migrations from open PR #671 are merged.
+- opaque original-file metadata in `original_file_objects` and the legal-hold/deletion workflow tables added by merged PR #671. Production uploads remain fail-closed until live provider and recovery acceptance.
 
 Every child lookup, mutation, export, deletion and background operation must first establish the parent case/document inside the selected firm database and enforce the applicable case-membership/role rule. A child ID is never authorization. Database triggers enforce immutable tenant binding and selected row-scope constraints, but do not replace route-level checks.
 
@@ -70,7 +70,7 @@ The older compatibility schema can contain mixed data and is not the approved mu
 - [ ] Complete route-by-route and SQL-query-by-query authorization review, including exports, audit, search, corpus review, CLI commands and background/maintenance tools.
 - [ ] Keep route inventory synchronized with every registered route and confirm non-public routes authenticate through the shared identity dependency; then test route-specific firm/case/platform authorization and failure branches.
 - [ ] Finish invitation, recovery, first-platform-admin bootstrap and privileged-account recovery acceptance. Code in open PR #690 is not considered merged/release-complete.
-- [ ] Merge and validate the original-file lifecycle in open PR #671; choose and implement a production object-storage/KMS provider before production matter uploads.
+- [ ] Validate the merged original-file lifecycle with a production object-storage/KMS provider before enabling production matter uploads; live-provider, witnessed recovery, retention, and independent-review gates remain open.
 - [ ] Approve jurisdiction-appropriate retention periods, export/deletion semantics and legal-hold policy; test that held material cannot be purged and every purge preserves a tombstone/audit event.
 - [ ] Run the automated isolated recovery smoke test, then conduct a witnessed staging restore/startup/isolation/rollback drill with independent reviewer sign-off.
 - [ ] Validate production host/proxy/cookie, secret-store, key-recovery, monitoring and incident-response controls.
