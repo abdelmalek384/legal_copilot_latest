@@ -3227,7 +3227,7 @@ def _send_identity_link(recipient: str, *, purpose: str, token: str) -> None:
 
 
 @app.get("/invite/accept", response_class=HTMLResponse)
-def invitation_accept_page():
+def invitation_accept_page(request: Request):
     return HTMLResponse("""<!doctype html><html lang="en"><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Accept firm invitation</title><body><main><h1>Accept firm invitation</h1>
@@ -3236,7 +3236,7 @@ def invitation_accept_page():
 <label>Choose password <input id="password" type="password" autocomplete="new-password" minlength="12" required maxlength="200"></label>
 <button type="submit">Create account and accept</button></form>
 <button id="existing-account" type="button">Accept with my existing signed-in account</button>
-<p id="result" role="status" aria-live="polite"></p></main><script>
+<p id="result" role="status" aria-live="polite"></p></main><script nonce="__CSP_NONCE__">
 const token=new URLSearchParams(location.hash.slice(1)).get("token")||"";
 const result=document.getElementById("result");
 function csrf(){const m=document.cookie.match(/(?:^|; )lc_csrf=([^;]+)/);return m?decodeURIComponent(m[1]):"";}
@@ -3251,16 +3251,16 @@ document.getElementById("existing-account").addEventListener("click",async()=>{t
 await send("/invitations/accept-existing",{token},true);result.textContent="Invitation accepted for your existing account.";
 }catch(err){result.textContent=err.message;}});
 if(!token)result.textContent="This invitation link is missing its token. Request a new invitation.";
-</script></body></html>""")
+</script></body></html>""".replace("__CSP_NONCE__", request.state.csp_nonce))
 
 
 @app.get("/account/recovery", response_class=HTMLResponse)
-def password_recovery_page():
+def password_recovery_page(request: Request):
     return HTMLResponse("""<!doctype html><html lang="en"><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Recover account</title><body><main><h1>Set a new password</h1>
 <form id="recovery"><label>New password <input id="password" type="password" autocomplete="new-password" minlength="12" maxlength="200" required></label>
-<button type="submit">Reset password</button></form><p id="result" role="status" aria-live="polite"></p></main><script>
+<button type="submit">Reset password</button></form><p id="result" role="status" aria-live="polite"></p></main><script nonce="__CSP_NONCE__">
 const token=new URLSearchParams(location.hash.slice(1)).get("token")||"";
 const form=document.getElementById("recovery"),result=document.getElementById("result");
 form.addEventListener("submit",async e=>{e.preventDefault();try{const r=await fetch("/account/recovery/consume",{
@@ -3270,7 +3270,7 @@ const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(d.detail||"The r
 result.textContent="Password reset successful. Sign in with your new password.";form.reset();
 }catch(err){result.textContent=err.message;}});
 if(!token)result.textContent="This recovery link is missing its token. Request a new recovery email.";
-</script></body></html>""")
+</script></body></html>""".replace("__CSP_NONCE__", request.state.csp_nonce))
 
 
 @app.post("/invitations")
