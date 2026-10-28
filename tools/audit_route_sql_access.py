@@ -147,7 +147,10 @@ def _sql_text(
                     except (TypeError, ValueError):
                         alternatives = []
                     if alternatives:
-                        return "{choice}".join(alternatives), True, True
+                        # Every identifier is a literal source-code choice, not
+                        # caller-controlled SQL. Preserve alternatives for table
+                        # inventory without classifying this as open-ended SQL.
+                        return "{choice}".join(alternatives), False, True
             template = re.sub(r"%[sdif]", "{dynamic}", left)
             return template, True, right_resolved
         return left + " {dynamic} " + right, True, left_resolved and right_resolved
@@ -253,6 +256,28 @@ def _tables_in(sql: str) -> set[str]:
     for pattern in TABLE_PATTERNS:
         tables.update(match.group(1).strip('"\u0060').lower() for match in pattern.finditer(sql))
     return tables
+
+
+def _reviewed_dynamic_sql(function: str, template: str) -> bool:
+    """Allow only the two dynamic SQL patterns manually checked in app.py."""
+    if function == "save_doc" and template in {
+        "SAVEPOINT {dynamic}",
+        "RELEASE SAVEPOINT {dynamic}",
+        "ROLLBACK TO SAVEPOINT {dynamic}",
+    }:
+        # save_doc derives this identifier only from a generated UUID hex value;
+        # it is not supplied by the request and contains no SQL metacharacters.
+        return True
+    if function == "discover_research_metadata":
+        # The dynamic join repeats a fixed predicate template; user terms remain
+        # bound parameters and are escaped before being placed in the parameter list.
+        return (
+            "FROM legal_documents d JOIN legal_sources s" in template
+            and "WHERE {dynamic_join}" in template
+            and "ORDER BY d.official_title" in template
+            and "LIMIT 30" in template
+        )
+    return False
 
 
 def audit_source(source: str) -> dict[str, Any]:
@@ -361,6 +386,14 @@ def audit_source(source: str) -> dict[str, Any]:
         }
         for row in records if row["dynamic_sql_call_count"]
     ]
+    unreviewed_dynamic_sql = []
+    for row in records:
+        for site in row["dynamic_sql_sites"]:
+            if not _reviewed_dynamic_sql(site["function"], site["sql_template"]):
+                unreviewed_dynamic_sql.append({
+                    "route": f"{row['method']} {row['path']} ({row['handler']})",
+                    **site,
+                })
     return {
         "scope": "static review aid; not proof of authorization or complete runtime SQL coverage",
         "route_count": len(records),
@@ -368,6 +401,7 @@ def audit_source(source: str) -> dict[str, Any]:
         "dynamic_sql_call_count": sum(row["dynamic_sql_call_count"] for row in records),
         "unresolved_sql_call_count": sum(row["unresolved_sql_call_count"] for row in records),
         "routes_with_dynamic_sql": dynamic_sql,
+        "unreviewed_dynamic_sql_sites": unreviewed_dynamic_sql,
         "unclassified_sql_routes": unclassified_sql,
         "routes_opening_sqlite_directly": direct_open,
         "routes": records,
@@ -377,7 +411,7 @@ def audit_source(source: str) -> dict[str, Any]:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--json", action="store_true", help="Emit the complete machine-readable map.")
-    parser.add_argument("--strict", action="store_true", help="Fail on unresolved SQL, unclassified SQL routes, or direct SQLite opens.")
+    parser.add_argument("--strict", action="store_true", help="Fail on unresolved/unreviewed SQL or unclassified SQL routes and direct SQLite opens.")
     parser.add_argument("--app", type=Path, default=APP_FILE, help="Application source file to inspect.")
     args = parser.parse_args()
     report = audit_source(args.app.read_text(encoding="utf-8"))
@@ -409,9 +443,13 @@ def main() -> int:
             print(f"DIRECT SQLITE OPEN: {item}")
     failed = bool(report["unclassified_sql_routes"] or report["routes_opening_sqlite_directly"])
     if args.strict:
-        failed = failed or bool(report["unresolved_sql_call_count"])
+        failed = failed or bool(report["unresolved_sql_call_count"] or report["unreviewed_dynamic_sql_sites"])
         if report["unresolved_sql_call_count"]:
             print("STRICT AUDIT FAILED: unresolved SQL expressions require explicit review.")
+        if report["unreviewed_dynamic_sql_sites"]:
+            print("STRICT AUDIT FAILED: dynamic SQL sites require review and an explicit allowlist entry.")
+            for site in report["unreviewed_dynamic_sql_sites"]:
+                print(f"UNREVIEWED DYNAMIC SQL: {site['route']} ({site['function']}:{site['line']}): {site['sql_template']}")
     return 1 if failed else 0
 
 
