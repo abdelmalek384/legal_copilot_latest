@@ -421,6 +421,20 @@ class DatabaseRuntime:
                     raise DatabaseRuntimeError(
                         "Production tenant database fleet has pending migrations or unresolved lifecycle states"
                     )
+                for target in fleet_plan["targets"]:
+                    tenant_path = self.paths.tenant_root / target["database_file"]
+                    self._validate_profile_storage(tenant_path, "firm")
+                    try:
+                        metadata = tenant_path.stat()
+                    except OSError as exc:
+                        raise DatabaseRuntimeError(
+                            f"Production tenant database for firm {target['firm_id']} cannot be inspected"
+                        ) from exc
+                    if [metadata.st_dev, metadata.st_ino] != target["file_identity"]:
+                        raise DatabaseRuntimeError(
+                            f"Production tenant database identity changed during startup preflight"
+                        )
+                    self._validate_preprovisioned_profile(tenant_path, "firm")
             else:
                 self.paths.tenant_root.mkdir(parents=True, exist_ok=True)
                 if self.paths.tenant_root.is_symlink():
