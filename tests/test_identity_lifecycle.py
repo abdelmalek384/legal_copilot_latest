@@ -72,6 +72,17 @@ class IdentityLifecycleTests(unittest.TestCase):
             raise AssertionError("identity email did not contain a fragment token")
         return match.group(1)
 
+    def test_identity_pages_use_csp_nonce_and_no_store_headers(self):
+        for path in ("/invite/accept", "/account/recovery"):
+            response = self.client.get(path)
+            self.assertEqual(response.status_code, 200)
+            policy = response.headers.get("Content-Security-Policy", "")
+            match = re.search(r"script-src[^;]*'nonce-([^']+)'", policy)
+            self.assertIsNotNone(match, policy)
+            self.assertIn(f'<script nonce="{match.group(1)}">', response.text)
+            self.assertEqual(response.headers.get("Cache-Control"), "no-store")
+            self.assertEqual(response.headers.get("Referrer-Policy"), "no-referrer")
+
     def test_invitation_creates_new_identity_atomically_and_token_is_single_use(self):
         self.assertEqual(self._login(self.client, "invitation-owner@example.test", self.password).status_code, 200)
         with patch.object(app, "send_identity_email") as send:
