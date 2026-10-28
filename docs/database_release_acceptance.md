@@ -25,7 +25,7 @@ Each accepted item must have `status: "passed"`, an evidence reference, a timezo
 4. Run the read-only validator:
 
    ```bash
-   python tools/database_release_acceptance.py --manifest /secure/path/database-release-acceptance.json
+   python tools/database_release_acceptance_cli.py --manifest /secure/path/database-release-acceptance.json
    ```
 
 5. Supply the same controlled manifest to the overall release gate:
