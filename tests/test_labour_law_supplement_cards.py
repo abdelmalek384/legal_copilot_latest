@@ -39,8 +39,10 @@ class LabourLawSupplementCardTests(unittest.TestCase):
         self.assertEqual(articles, set(range(275, 299)))
         for card in payload["cards"]:
             article = int(card["pinpoint"]["article"].replace("المادة ", ""))
-            if 281 <= article <= 295:
-                self.assertEqual(card["review_state"], "pinpoint_only_full_text_required")
+            if article in {288, 290, 291, 293}:
+                self.assertEqual(card["review_state"], "source_conflict_transcription_corrupted")
+            elif 281 <= article <= 295:
+                self.assertEqual(card["review_state"], "provisional_secondary_crosscheck")
 
     def test_all_supplement_cards_are_explicitly_non_authoritative(self):
         for filename, count in (
