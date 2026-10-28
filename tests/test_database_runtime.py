@@ -111,6 +111,40 @@ class DatabaseRuntimeTests(unittest.TestCase):
                 "SELECT name FROM sqlite_master WHERE type='table' AND name='pending_production_test'"
             ).fetchone())
 
+    def test_production_runtime_refuses_pending_tenant_fleet_migrations(self):
+        base = self.root / "production-pending-tenant"
+        migrations_root = base / "migrations"
+        shutil.copytree(Path(__file__).resolve().parents[1] / "migrations", migrations_root)
+        control = base / "control.sqlite3"
+        tenant_root = base / "tenants"
+        corpus = base / "corpus.sqlite3"
+        development_runtime = DatabaseRuntime(
+            control, tenant_root, corpus, migrations_root=migrations_root
+        )
+        with patch.dict(os.environ, {"COPILOT_ENV": "development"}):
+            development_runtime.initialize()
+            firm_id, tenant_path = development_runtime.provision_firm(
+                "Pending Migration Firm"
+            )
+        development_runtime.close_current_thread()
+        if os.name == "posix":
+            os.chmod(tenant_root, 0o700)
+        pending = migrations_root / "firm" / "9999_pending_tenant_test.sql"
+        pending.write_text(
+            "CREATE TABLE pending_tenant_test(id INTEGER PRIMARY KEY);",
+            encoding="utf-8",
+        )
+        runtime = DatabaseRuntime(
+            control, tenant_root, corpus, migrations_root=migrations_root
+        )
+        with patch.dict(os.environ, {"COPILOT_ENV": "production"}):
+            with self.assertRaisesRegex(DatabaseRuntimeError, "tenant database fleet has pending migrations"):
+                runtime.initialize()
+        with sqlite3.connect(tenant_path) as db:
+            self.assertIsNone(db.execute(
+                "SELECT name FROM sqlite_master WHERE type='table' AND name='pending_tenant_test'"
+            ).fetchone())
+
     def test_production_runtime_requires_private_tenant_root(self):
         base = self.root / "production-open-root"
         tenant_root = base / "tenants"
