@@ -54,15 +54,30 @@ The --quiesced flag is an operator assertion, not an automated lock on all appli
        python manage.py restore-tenancy /protected/backup-directory/backup-file.bundle.enc --target-root /protected/restore-rehearsal-unique
 
    Use the exact encrypted bundle filename emitted by the backup command. The target must be a new location; do not use the current control-plane path, corpus path, or tenant root.
-4. Capture the three paths printed by the restore command in the restricted recovery record. Configure a separate staging process to use those restored paths.
-5. Before considering a cutover, run deployment preflight in strict mode against the staging configuration:
+4. Capture all restored paths (control plane, tenant root, legal corpus, and original-object directory) in the restricted recovery record. Configure a separate staging process to use those restored paths.
+5. If the deployment uses the S3/KMS original-file backend, first run the local-object recovery smoke test above while the restored metadata still references its bundled local originals. Then, with the operator environment still pointing at the current live database paths for overlap protection, run the read-only S3/KMS preflight:
+
+       python tools/validate_s3_original_file_storage.py --json
+
+   This command always reports `production_ready: false`; passing its structural checks is not production approval. Confirm the dedicated bucket, customer-managed key, public-access-block settings, ownership controls, versioning, and default SSE-KMS encryption. Bucket/IAM policy, KMS grants, and live behavior still require independent review.
+6. Run the restored-original importer in dry-run mode against the isolated restore root:
+
+       python tools/import_restored_originals_to_s3.py --restore-root /protected/restore-rehearsal-unique
+
+   Set `COPILOT_OBJECT_STORAGE_BACKEND=s3`, `COPILOT_S3_BUCKET`, `COPILOT_S3_REGION`, and `COPILOT_S3_KMS_KEY_ID` from the approved secret/configuration source. Review the report for every object and confirm zero integrity or conflict errors. Only under a separately approved change, rerun with `--apply`; the command must continue to use the current live database paths for overlap protection and will mutate only the isolated restore directory and configured S3 bucket.
+7. After import, point the operator environment's three database paths at the restored staging control-plane, tenant root, and legal-corpus paths, then run the read-only S3 reconciliation against those restored databases:
+
+       python tools/reconcile_s3_original_file_storage.py --json
+
+   Require `clean: true` and zero findings before starting the restored staging application. Restore/import/reconciliation commands do not themselves authorize cutover.
+8. Before considering a cutover, run deployment preflight in strict mode against the staging configuration:
 
        python tools/deployment_preflight.py --strict
 
    The environment must contain all three separate database paths, must not contain the legacy shared COPILOT_DB path, and must point to the restored staging locations.
-6. Start only a staging instance. Verify that migration startup succeeds, the catalog resolves each expected firm, active memberships still work, disabled/revoked memberships remain denied, and a synthetic case created in one firm cannot be read from another.
-7. Verify corpus lookup and FTS behavior against known test records. Check that a firm's case/document/chunk sentinels are present only in that firm's database and absent from other firm databases.
-8. Record the tested bundle, application revision, restore duration, checks performed, discrepancies, and pass/fail result. Delete or quarantine the rehearsal copy according to the approved retention policy after the exercise.
+9. Start only a staging instance. Verify that migration startup succeeds, the catalog resolves each expected firm, active memberships still work, disabled/revoked memberships remain denied, and a synthetic case created in one firm cannot be read from another.
+10. Verify corpus lookup and FTS behavior against known test records. Check that a firm's case/document/chunk sentinels are present only in that firm's database and absent from other firm databases.
+11. Record the tested bundle, application revision, restore duration, checks performed, discrepancies, and pass/fail result. Delete or quarantine the rehearsal copy according to the approved retention policy after the exercise.
 
 ## Automated isolated restore smoke test
 
