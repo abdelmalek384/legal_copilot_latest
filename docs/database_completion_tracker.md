@@ -15,6 +15,7 @@ This is a planning estimate across fresh-install schema/migrations, tenant isola
 - [x] Validate live production schema objects against a fresh schema built from trusted migrations, including table columns, indexes, foreign keys, and trigger definitions for control-plane, legal-corpus, and every cataloged firm database; refuse startup on drift without silently repairing it (PR #802 merged; Tests #2740 passed).
 - [x] Extend tenant-fleet release preflight to reconcile all tenant-root SQLite files with catalog bindings, validate each catalog filename against its firm ID, and reject orphaned control-plane catalog rows/foreign-key violations rather than omitting them from planning (PR #804 merged; Tests #2759 passed).
 - [x] Add endpoint-level MFA recovery hardening regressions: rotation invalidates prior recovery codes while storing only salted hashes, and lost-authenticator replacement requires the current password plus recent MFA verification and remains pending until confirmed (PR #806 merged; Tests #2794 passed after correcting the expected password-denial status).
+- [x] Add behavioral checks that firm lawyers are denied both JSON and CSV security-audit exports, and that untrusted event text is neutralized against spreadsheet-formula injection (PR #808 merged; Tests #2815 passed).
 
 - [x] Validate encrypted backup input before decryption: reject symlinks, non-regular files/FIFOs, and oversized encrypted inputs using a bounded no-follow read; regression tests assert rejected restore inputs do not create a target (PR #799 merged; Tests #2670 passed).
 
