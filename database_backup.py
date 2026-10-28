@@ -191,7 +191,7 @@ def _copy_original_objects(
         if "original_file_objects" not in tables:
             return set()
         rows = db.execute(
-            "SELECT object_id,firm_id,sha256,byte_size,state FROM original_file_objects ORDER BY object_id"
+            "SELECT object_id,firm_id,storage_backend,sha256,byte_size,state FROM original_file_objects ORDER BY object_id"
         ).fetchall()
     finally:
         db.close()
@@ -204,8 +204,8 @@ def _copy_original_objects(
         raise DatabaseBundleError(f"Original-object storage is missing for firm {firm_id}")
     for row in rows:
         object_id = row["object_id"]
-        if row["firm_id"] != firm_id or not isinstance(object_id, str) or not re.fullmatch(r"[0-9a-f]{32}", object_id):
-            raise DatabaseBundleError(f"Original-object metadata is invalid for firm {firm_id}")
+        if row["firm_id"] != firm_id or row["storage_backend"] != "local" or not isinstance(object_id, str) or not re.fullmatch(r"[0-9a-f]{32}", object_id):
+            raise DatabaseBundleError(f"Original-object metadata is invalid for local storage in firm {firm_id}")
         if row["state"] not in {"ready", "quarantined"}:
             raise DatabaseBundleError(f"Firm {firm_id} has unfinished original-object metadata; reconcile before backup")
         source = namespace / (object_id + ".blob")
