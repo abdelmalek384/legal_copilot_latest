@@ -1,7 +1,7 @@
 import unittest
 from pathlib import Path
 
-from tools.report_labour_law_evidence_cards import DEFAULT_INPUT, load_inventory
+from tools.report_labour_law_evidence_cards import DEFAULT_INPUT, load_inventory, render_report
 
 
 class LabourLawEvidenceManifestLoaderTests(unittest.TestCase):
@@ -16,6 +16,9 @@ class LabourLawEvidenceManifestLoaderTests(unittest.TestCase):
             self.assertIn("primary_evidence", card)
             self.assertIn("limitations", card)
         self.assertIn("Supplemental manifest loaded: 53 cards", data["source_method_note"])
+        report = render_report(data)
+        self.assertIn("**Cards in this report:** 250", report)
+        self.assertEqual(sum(1 for line in report.splitlines() if line.startswith("### ") and line[4:5].isdigit()), 250)
 
 
 if __name__ == "__main__":
