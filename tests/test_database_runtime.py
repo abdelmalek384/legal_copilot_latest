@@ -429,6 +429,77 @@ class DatabaseRuntimeTests(unittest.TestCase):
             0,
         )
 
+    def test_failed_firm_provisioning_can_be_retried_with_audited_operator_references(self):
+        with patch.object(
+            self.runtime,
+            "_initialize_firm_database",
+            side_effect=RuntimeError("simulated tenant schema initialization failure"),
+        ):
+            with self.assertRaisesRegex(RuntimeError, "simulated tenant schema initialization failure"):
+                self.runtime.provision_firm("Retryable Failed Firm")
+
+        control = self.runtime.control_connection()
+        firm = control.execute(
+            "SELECT id,status FROM firms WHERE name='Retryable Failed Firm'"
+        ).fetchone()
+        self.assertIsNotNone(firm)
+        firm_id = int(firm["id"])
+        self.assertEqual(firm["status"], "disabled")
+        catalog = control.execute(
+            "SELECT status,database_file FROM tenant_database_catalog WHERE firm_id=?",
+            (firm_id,),
+        ).fetchone()
+        self.assertEqual(catalog["status"], "failed")
+        self.assertIsNone(catalog["database_file"])
+        self.assertEqual(
+            list(self.runtime.paths.tenant_root.glob(f"tenant-{firm_id}-*.sqlite3")), []
+        )
+
+        path = self.runtime.retry_failed_firm_provisioning(
+            firm_id,
+            reason="recover after transient schema initializer failure",
+            operator_reference="operator-ticket-123",
+            change_reference="change-window-456",
+        )
+        self.assertTrue(path.is_file())
+        firm = control.execute(
+            "SELECT status FROM firms WHERE id=?", (firm_id,)
+        ).fetchone()
+        self.assertEqual(firm["status"], "active")
+        catalog = control.execute(
+            "SELECT status,database_file FROM tenant_database_catalog WHERE firm_id=?",
+            (firm_id,),
+        ).fetchone()
+        self.assertEqual(catalog["status"], "provisioned")
+        self.assertEqual(catalog["database_file"], path.name)
+        event = control.execute(
+            "SELECT detail_json FROM platform_security_events "
+            "WHERE firm_id=? AND event_type='firm_provisioning_retried'",
+            (firm_id,),
+        ).fetchone()
+        self.assertIsNotNone(event)
+        detail = json.loads(event["detail_json"])
+        self.assertEqual(detail["operator_reference"], "operator-ticket-123")
+        self.assertEqual(detail["change_reference"], "change-window-456")
+        self.assertEqual(
+            control.execute(
+                "SELECT COUNT(*) FROM platform_security_events "
+                "WHERE firm_id=? AND event_type='firm_provisioned'",
+                (firm_id,),
+            ).fetchone()[0],
+            0,
+        )
+
+    def test_failed_firm_provisioning_retry_rejects_nonfailed_lifecycle_states(self):
+        firm_id, _ = self.runtime.provision_firm("Already Provisioned Firm")
+        with self.assertRaisesRegex(DatabaseRuntimeError, "Only a disabled firm"):
+            self.runtime.retry_failed_firm_provisioning(
+                firm_id,
+                reason="must not retry",
+                operator_reference="operator-ticket-789",
+                change_reference="change-window-999",
+            )
+
     def test_revoked_membership_closes_cached_firm_connection(self):
         user_id = self._identity()
         firm_id, _ = self.runtime.provision_firm("Revocation Test")
