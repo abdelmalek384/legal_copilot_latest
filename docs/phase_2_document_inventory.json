@@ -27,13 +27,6 @@
       "permission": "unknown",
       "next_action": "Confirm exact version against Gazette and review terms for intended use."
     },
-    "EG-MINISTRY-OF-LABOUR": {
-      "authority": "Ministry of Labour, Egypt",
-      "source_url": "https://www.labour.gov.eg/",
-      "source_class": "official_government_supporting_source",
-      "permission": "unknown",
-      "next_action": "Verify live source, terms, document provenance and Gazette correspondence."
-    },
     "EG-MINISTRY-OF-JUSTICE": {
       "authority": "Ministry of Justice, Egypt",
       "source_url": "https://moj.gov.eg/",
@@ -103,6 +96,13 @@
       "source_class": "official_regulator_discovery_index",
       "permission": "unknown",
       "next_action": "Review terms and obtain authorization for storage, download, OCR, indexing, commercial use, excerpt display and redistribution; verify every instrument against the original Official Gazette before legal use."
+    },
+    "EG-MINISTRY-LABOUR-LAWS": {
+      "authority": "Ministry of Labour, Arab Republic of Egypt",
+      "source_url": "https://www.labour.gov.eg/en/laws-and-legislations/",
+      "source_class": "official_government_supporting_source",
+      "permission": "unknown",
+      "next_action": "Use the canonical central permission-register source ID; pin exact document URLs, review current terms, and establish intended-use permission before acquisition."
     }
   },
   "documents": [
@@ -1966,7 +1966,7 @@
       "document_type": "reported_implementing_rules",
       "instrument_number": null,
       "instrument_year": 2026,
-      "source_id": "EG-MINISTRY-OF-LABOUR",
+      "source_id": "EG-MINISTRY-LABOUR-LAWS",
       "source_status": "official_index_discovered_primary_text_pending",
       "collection_permission": "unknown",
       "legal_status": "unknown",
@@ -1998,7 +1998,7 @@
       "document_type": "ministerial_decision",
       "instrument_number": 49,
       "instrument_year": 2026,
-      "source_id": "EG-MINISTRY-OF-LABOUR",
+      "source_id": "EG-MINISTRY-LABOUR-LAWS",
       "source_status": "official_index_discovered_primary_text_pending",
       "collection_permission": "unknown",
       "legal_status": "unknown",
@@ -2030,7 +2030,7 @@
       "document_type": "ministerial_decision",
       "instrument_number": 294,
       "instrument_year": 2025,
-      "source_id": "EG-MINISTRY-OF-LABOUR",
+      "source_id": "EG-MINISTRY-LABOUR-LAWS",
       "source_status": "official_index_discovered_primary_text_pending",
       "collection_permission": "unknown",
       "legal_status": "unknown",
