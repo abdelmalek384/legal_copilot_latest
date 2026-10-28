@@ -25,6 +25,8 @@ Merged PR #439 verifies Firm B cannot see Firm A's security events or case-delet
 
 The static route-to-SQL map in `tools/audit_route_sql_access.py` now follows reachable local helper calls from registered route handlers, inventories recognized firm/control-plane/corpus connection boundaries and SQL table references, and fails CI if a route reaches SQL without a recognized boundary or opens SQLite directly. This catches inventory drift and unsafe connection shortcuts; it does not prove that a query is correctly scoped, that every dynamic SQL statement was parsed, or that every authorization branch was tested. Manual route/query review and negative cross-firm tests remain mandatory.
 
+The strict route-to-SQL gate now also rejects unresolved SQL expressions and any dynamic SQL pattern outside the explicit reviewed allowlist. Literal table/column choices in loops are expanded into the static table inventory; the current audit reports zero unresolved expressions, zero unclassified SQL routes, zero direct SQLite opens, and nine dynamic SQL sites matching the allowlist. The allowlist currently covers generated UUID-based savepoint identifiers and the research metadata query's fixed predicate templates with bound user values. This is still a static inventory, not evidence that every route's role/case authorization has been behaviorally tested.
+
 ## Route inventory
 
 Routes are grouped by the data boundary they should preserve. "Tested" means there are relevant assertions in `api_test.py`; it does not mean every branch, role, and failure mode has been exhaustively tested.
