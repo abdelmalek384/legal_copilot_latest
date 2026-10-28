@@ -1,6 +1,6 @@
 # Tenant-scoped original document storage — design proposal
 
-**Status:** Partially implemented in PR #671; not production-ready. The branch adds a local development adapter, firm-scoped metadata migration, upload retention and audited authorized downloads in separate-database mode. This is not a production object-store/KMS integration, and restore/retention acceptance gates remain open. Do not treat it as production-ready or as a complete retention policy.
+**Status:** Partially implemented in PR #671; not production-ready. The branch adds a local development adapter, firm-scoped metadata migration, upload retention and audited authorized downloads in separate-database mode. This is not a production object-store/KMS integration, and restore/retention acceptance gates remain open. Do not treat it as production-ready or as a complete retention policy. The deployment/release preflight now fails closed while no production KMS-backed object-storage adapter is implemented and verified across upload, reconciliation, backup, restore, and deletion.
 
 ## Goal and security boundary
 
