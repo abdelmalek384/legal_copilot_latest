@@ -15,20 +15,35 @@ if str(ROOT) not in sys.path:
 class LabourLawCandidateRegistryTests(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
-        os.environ["COPILOT_DB"] = str(Path(self.tmp.name) / "candidate.db")
+        self.old_env = {
+            name: os.environ.get(name)
+            for name in ("COPILOT_CONTROL_DB", "COPILOT_TENANT_DB_ROOT", "COPILOT_CORPUS_DB", "COPILOT_DB", "COPILOT_ENV")
+        }
+        os.environ["COPILOT_CONTROL_DB"] = str(Path(self.tmp.name) / "control.sqlite3")
+        os.environ["COPILOT_TENANT_DB_ROOT"] = str(Path(self.tmp.name) / "tenants")
+        os.environ["COPILOT_CORPUS_DB"] = str(Path(self.tmp.name) / "corpus.sqlite3")
+        os.environ["COPILOT_ENV"] = "test"
+        os.environ.pop("COPILOT_DB", None)
         import app
         self.app = importlib.reload(app)
+        self.runtime = self.app.DatabaseRuntime.from_env()
+        self.runtime.initialize()
         from tools.register_labour_law_candidate import register, DEFAULT_RECORD
         self.register = register
         self.record = json.loads(DEFAULT_RECORD.read_text(encoding="utf-8"))
-        self.db = self.app.conn()
+        self.db = self.runtime.legal_corpus_connection()
 
     def tearDown(self):
-        self.db.close()
-        self.app._t.c = None
-        self.app._schema_ready = False
-        os.environ.pop("COPILOT_DB", None)
-        self.tmp.cleanup()
+        try:
+            self.runtime.close_current_thread()
+        finally:
+            self.app._database_runtime = None
+            for name, value in self.old_env.items():
+                if value is None:
+                    os.environ.pop(name, None)
+                else:
+                    os.environ[name] = value
+            self.tmp.cleanup()
 
     def test_registers_pending_metadata_without_chunks(self):
         result = self.register(self.db, self.record)

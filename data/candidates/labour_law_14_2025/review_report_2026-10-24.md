@@ -50,7 +50,7 @@ No direct statute amending Law 14/2025 was confirmed in this limited search. Thi
 
 The accompanying `registry_candidate.json` and `tools/register_labour_law_candidate.py` create **metadata-only** records in the application's versioned legal-source registry. The version is stored as `under_review` / `pending_source_review`; authenticity, status, amendment history, licensing and lawyer approval remain unverified. No chunks are created, and nothing becomes searchable.
 
-The script records the supplied JSONL hash in notes only; it deliberately does not mislabel that hash as the original Gazette PDF hash. It is idempotent and preserves existing reviewer decisions. Run it against the local application database only after reviewing the PR. This environment cannot access or modify the user's local SQLite database directly.
+The script records the supplied JSONL hash in notes only; it deliberately does not mislabel that hash as the original Gazette PDF hash. It is idempotent and preserves existing reviewer decisions. Run it against the explicitly configured shared legal-corpus database only: set `COPILOT_CONTROL_DB`, `COPILOT_TENANT_DB_ROOT`, and `COPILOT_CORPUS_DB`, and keep `COPILOT_DB` unset. The registration tool no longer accepts a `--db` path override. This environment cannot access or modify the user's local SQLite database directly.
 
 ## Required blockers before activation
 

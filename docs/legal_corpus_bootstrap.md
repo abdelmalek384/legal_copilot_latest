@@ -18,7 +18,7 @@ After installing the project requirements and ensuring \`app.py\` can initialize
 python tools/seed_legal_candidates.py --apply
 \`\`\`
 
-It uses the database configured by \`COPILOT_DB\` (defaults to \`copilot.db\`). Back up the database first if it already contains data. The script uses \`INSERT OR IGNORE\`, so repeated runs do not overwrite existing source permission decisions or candidate records.
+It writes only to the shared legal-corpus database through the profile-separated runtime. Set `COPILOT_CONTROL_DB`, `COPILOT_TENANT_DB_ROOT`, and `COPILOT_CORPUS_DB`, and keep `COPILOT_DB` unset. The script uses `INSERT OR IGNORE`, so repeated runs do not overwrite existing source permission decisions or candidate records.
 
 This creates source and document identity records only. It does not create legal versions because no direct downloadable document URL has yet passed the permission gate. It does not import article text or mark any source or law as verified.
 
