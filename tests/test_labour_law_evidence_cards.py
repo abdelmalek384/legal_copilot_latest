@@ -155,6 +155,32 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
                 self.assertTrue(card["not_usable_for"])
         self.assertFalse(self.data["instrument"]["search_eligible"])
 
+    def test_working_time_and_leave_pinpoints_match_visual_gazette_page_map(self):
+        expected_pages = {
+            117: 52, 118: 52, 119: 52, 120: 52,
+            121: 53, 122: 53, 123: 54, 124: 54,
+            125: 55, 126: 55, 127: 55,
+            128: 56, 129: 56, 130: 56,
+            131: 57, 132: 57,
+        }
+        for card in self.data["cards"]:
+            article_text = card.get("pinpoint", {}).get("article", "")
+            article_numbers = [int(n) for n in __import__("re").findall(r"\d+", article_text)]
+            relevant = [n for n in article_numbers if n in expected_pages]
+            if not relevant:
+                continue
+            article = relevant[0]
+            with self.subTest(card_id=card["card_id"]):
+                self.assertEqual(card["pinpoint"]["official_gazette_printed_page"], expected_pages[article])
+                self.assertEqual(card["pinpoint"]["pdf_page_index_zero_based"], expected_pages[article] - 2)
+                pdf_evidence = [
+                    item for item in card["primary_evidence"]
+                    if "portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf" in item["url"]
+                ]
+                self.assertTrue(pdf_evidence)
+                self.assertIn("visually checked", pdf_evidence[0]["supports"])
+        self.assertFalse(self.data["instrument"]["search_eligible"])
+
     def test_exam_leave_cards_have_pinpoints_and_fail_closed(self):
         cards = {card["card_id"]: card for card in self.data["cards"]}
         expected = {
