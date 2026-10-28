@@ -73,18 +73,26 @@ class S3PrivateObjectStore:
             raise ObjectStorageError("object-storage metadata lookup failed") from exc
 
     def stage(self, firm_id: int, data: bytes) -> StagedObject:
-        self._firm_id(firm_id)
+        """Stage bytes under a newly generated opaque object ID."""
+        return self.stage_with_id(firm_id, uuid.uuid4().hex, data)
+
+    def stage_with_id(self, firm_id: int, object_id: str, data: bytes) -> StagedObject:
+        """Stage a verified restore object while preserving its immutable object ID."""
+        firm_id = self._firm_id(firm_id)
+        object_id = self._object_id(object_id)
         if not isinstance(data, bytes):
             raise TypeError("data must be bytes")
         if len(data) > self.max_bytes:
             raise ObjectStorageError("object exceeds configured size limit")
-        object_id = uuid.uuid4().hex
-        key = self._key(firm_id, object_id, "staged")
+        staged_key = self._key(firm_id, object_id, "staged")
+        final_key = self._key(firm_id, object_id, "blob")
+        if self._head(staged_key) is not None or self._head(final_key) is not None:
+            raise ObjectStorageError("object ID already exists in target storage")
         digest = hashlib.sha256(data).hexdigest()
         try:
             self.client.put_object(
                 Bucket=self.bucket,
-                Key=key,
+                Key=staged_key,
                 Body=data,
                 ContentLength=len(data),
                 ContentType="application/octet-stream",
