@@ -1211,7 +1211,14 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             self.assertTrue(result["possible_conflict"])
             self.assertTrue(result["admin_review_required"])
             self.assertNotIn("PRIVATE_HIDDEN_CONFLICT_CASE_TITLE", response.text)
-            self.assertNotIn("PRIVATE_HIDDEN_CONFLICT_OPPOSING_PARTY", response.text)
+            # The response echoes the caller's own query once, but must not add
+            # the matched opposing-party value to any result or warning field.
+            self.assertEqual(
+                response.text.count("PRIVATE_HIDDEN_CONFLICT_OPPOSING_PARTY"), 1
+            )
+            self.assertNotIn(
+                "PRIVATE_HIDDEN_CONFLICT_OPPOSING_PARTY", result["warning"]
+            )
         finally:
             nonmember_client.close()
 
