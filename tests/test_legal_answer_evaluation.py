@@ -36,7 +36,7 @@ def reviewer_registry():
         "status": "approved",
         "professional_role": "qualified_egyptian_counsel",
         "jurisdiction": "Egypt",
-        "practice_areas": ["civil_law"],
+        "practice_areas": ["civil_law", "labour_law"],
         "qualification_basis": "Synthetic test fixture: Egyptian counsel qualification checked",
         "evidence_reference": "private-test-reference",
         "verified_by": "test-operator",
