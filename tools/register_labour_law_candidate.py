@@ -118,23 +118,32 @@ def register(db, record):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--db", help="SQLite path; defaults to COPILOT_DB / app default")
     parser.add_argument("--record", default=str(DEFAULT_RECORD), help="Candidate registry JSON")
     args = parser.parse_args()
-    if args.db:
-        os.environ["COPILOT_DB"] = args.db
     sys.path.insert(0, str(ROOT))
     import app
 
+    required = ("COPILOT_CONTROL_DB", "COPILOT_TENANT_DB_ROOT", "COPILOT_CORPUS_DB")
+    missing = [name for name in required if not os.environ.get(name, "").strip()]
+    if missing or os.environ.get("COPILOT_DB", "").strip():
+        parser.error(
+            "profile-separated corpus paths are required and COPILOT_DB must be unset"
+            + (": missing " + ", ".join(missing) if missing else "")
+        )
+
     record = json.loads(Path(args.record).read_text(encoding="utf-8"))
-    result = register(app.conn(), record)
-    print(json.dumps({
-        "registered": True,
-        "document_id": record["document"]["document_id"],
-        **result,
-        "search_eligible": False,
-        "article_chunks_imported": 0,
-    }, ensure_ascii=False, indent=2))
+    db = app.corpus_conn()
+    try:
+        result = register(db, record)
+        print(json.dumps({
+            "registered": True,
+            "document_id": record["document"]["document_id"],
+            **result,
+            "search_eligible": False,
+            "article_chunks_imported": 0,
+        }, ensure_ascii=False, indent=2))
+    finally:
+        app.get_database_runtime().close_current_thread()
 
 
 if __name__ == "__main__":
