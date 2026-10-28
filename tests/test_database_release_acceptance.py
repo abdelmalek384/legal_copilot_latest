@@ -113,6 +113,40 @@ class DatabaseReleaseAcceptanceTests(unittest.TestCase):
             {(item["gate"], item["code"]) for item in report["blockers"]},
         )
 
+    def test_stale_operational_evidence_blocks_release(self):
+        manifest = json.loads(json.dumps(self.manifest))
+        manifest["gates"]["original_file_storage"]["verified_at"] = (
+            self.now - __import__("datetime").timedelta(days=91)
+        ).isoformat()
+        manifest["gates"]["production_identity_email"]["verified_at"] = (
+            self.now - __import__("datetime").timedelta(days=91)
+        ).isoformat()
+        manifest["gates"]["independent_security_review"]["reviewed_at"] = (
+            self.now - __import__("datetime").timedelta(days=91)
+        ).isoformat()
+        # The approved policy has a longer but still finite review window.
+        manifest["gates"]["retention_export_deletion_policy"]["approved_at"] = (
+            self.now - __import__("datetime").timedelta(days=366)
+        ).isoformat()
+        report = validate_acceptance_manifest(manifest, now=self.now)
+        codes = {(item["gate"], item["code"]) for item in report["blockers"]}
+        self.assertIn(("original_file_storage", "evidence_expired"), codes)
+        self.assertIn(("production_identity_email", "evidence_expired"), codes)
+        self.assertIn(("independent_security_review", "evidence_expired"), codes)
+        self.assertIn(("retention_export_deletion_policy", "evidence_expired"), codes)
+        self.assertFalse(report["ready"])
+
+    def test_operational_evidence_at_freshness_boundary_is_accepted(self):
+        manifest = json.loads(json.dumps(self.manifest))
+        manifest["gates"]["original_file_storage"]["verified_at"] = (
+            self.now - __import__("datetime").timedelta(days=90)
+        ).isoformat()
+        report = validate_acceptance_manifest(manifest, now=self.now)
+        self.assertNotIn(
+            ("original_file_storage", "evidence_expired"),
+            {(item["gate"], item["code"]) for item in report["blockers"]},
+        )
+
     def test_loader_fails_closed_for_missing_or_malformed_manifest(self):
         with tempfile.TemporaryDirectory() as td:
             missing = load_acceptance_manifest(Path(td) / "missing.json", now=self.now)
