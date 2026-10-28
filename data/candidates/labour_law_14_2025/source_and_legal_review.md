@@ -92,3 +92,6 @@ Further targeted extracted-text review on 2026-10-28 covered printed page 55 for
 
 
 Further targeted extracted-text review on 2026-10-28 covered printed page 71 (Article 173: termination due to illness) and page 72 (Article 171: retirement age and fixed-term contracts). These remain provisional summaries pending review of connected laws and case-specific conditions.
+
+
+Further targeted extracted-text review on 2026-10-28 covered printed page 69 (Article 164: notice-period compensation) and page 70 (Article 166: absence deemed resignation and required warnings). These summaries remain provisional and require case-specific procedural review.
