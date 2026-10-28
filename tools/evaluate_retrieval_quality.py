@@ -215,6 +215,8 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5)):
     invalid_citation_index_records = []
     expected_pin_cite_total = expected_pin_cite_correct = 0
     answerable_cases = answerable_with_expected_citation = 0
+    answerable_abstentions = 0
+    strict_decision_correct = 0
     citations_outside_retrieval = []
     abstention_cases = abstention_correct = unsafe_unverified_uses = 0
     for question, run in reviewed:
@@ -236,8 +238,12 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5)):
         }
         if question["answerable"] is True:
             answerable_cases += 1
+            if run["abstained"] is True:
+                answerable_abstentions += 1
             if cited_expected_sources:
                 answerable_with_expected_citation += 1
+            if run["abstained"] is False and run["used_unverified_source"] is False:
+                strict_decision_correct += 1
         for citation in run["citations"]:
             citation_total += 1
             cited_source_id = citation["source_id"].strip()
@@ -275,6 +281,7 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5)):
             abstention_cases += 1
             if run["abstained"] is True and run["used_unverified_source"] is not True:
                 abstention_correct += 1
+                strict_decision_correct += 1
         if run["used_unverified_source"] is True and run["abstained"] is not True:
             unsafe_unverified_uses += 1
 
@@ -297,6 +304,11 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5)):
         "citation_coverage": round(answerable_with_expected_citation / answerable_cases, 4) if answerable_cases else None,
         "answerable_cases_with_expected_citation": answerable_with_expected_citation,
         "answerable_reviewed_cases": answerable_cases,
+        "answerable_abstentions": answerable_abstentions,
+        "answerable_abstention_rate": round(answerable_abstentions / answerable_cases, 4) if answerable_cases else None,
+        "answerable_response_rate": round((answerable_cases - answerable_abstentions) / answerable_cases, 4) if answerable_cases else None,
+        "strict_decision_accuracy": round(strict_decision_correct / len(reviewed), 4) if reviewed else None,
+        "strict_decision_correct": strict_decision_correct,
         "pin_cite_accuracy": round(pin_cite_correct / pin_cite_total, 4) if pin_cite_total else None,
         "pin_cite_correct": pin_cite_correct,
         "pin_cite_count": pin_cite_total,
@@ -314,6 +326,7 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5)):
             "Review labels must be assigned by a qualified reviewer; this tool never generates ground truth.",
             "Pin-cite precision (pin_cite_accuracy) is scored only where reviewed expected_pin_cites are provided; expected_pin_cite_recall measures how many reviewed expected citation pairs were returned.",
             "Citation coverage measures the share of answerable reviewed cases that cite at least one expected source; it complements citation precision so answers with no citations are not silently omitted from the coverage view.",
+            "Answerable abstention rate reports how often the system abstains despite a reviewed answer being available; strict decision accuracy counts an answerable case as correct only when it answers without unverified sources and an unanswerable case as correct only when it abstains without using unverified sources.",
             "Citations whose source IDs were not present in the retrieved source set count as incorrect and are listed; they do not contribute to citation coverage or expected pin-cite recall.",
             "Invalid visible citation indices are counted as incorrect citation markers and reported separately; they cannot improve citation precision.",
         ],

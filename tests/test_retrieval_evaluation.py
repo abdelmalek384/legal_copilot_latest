@@ -140,6 +140,49 @@ class RetrievalEvaluationTests(unittest.TestCase):
             [{"question_id": question["id"], "source_id": "LAW-A", "pin_cite": "Article 12"}],
         )
 
+    def test_answerable_abstention_is_measured_as_a_false_abstention(self):
+        question = reviewed_question(answerable=True)
+        run = {
+            "question_id": question["id"],
+            "retrieved_source_ids": ["LAW-A"],
+            "citations": [{"source_id": "LAW-A", "pin_cite": "Article 12"}],
+            "abstained": True,
+            "used_unverified_source": False,
+        }
+
+        result = score_evaluation([question], [run])
+
+        self.assertEqual(result["answerable_abstentions"], 1)
+        self.assertEqual(result["answerable_abstention_rate"], 1.0)
+        self.assertEqual(result["answerable_response_rate"], 0.0)
+        self.assertEqual(result["strict_decision_accuracy"], 0.0)
+
+    def test_strict_decision_accuracy_requires_verified_nonabstaining_answer(self):
+        answerable = reviewed_question(id="Q-ANSWERABLE", answerable=True)
+        unanswerable = reviewed_question(id="Q-UNANSWERABLE", answerable=False)
+        runs = [
+            {
+                "question_id": "Q-ANSWERABLE",
+                "retrieved_source_ids": ["LAW-A"],
+                "citations": [{"source_id": "LAW-A"}],
+                "abstained": False,
+                "used_unverified_source": True,
+            },
+            {
+                "question_id": "Q-UNANSWERABLE",
+                "retrieved_source_ids": [],
+                "citations": [],
+                "abstained": True,
+                "used_unverified_source": False,
+            },
+        ]
+
+        result = score_evaluation([answerable, unanswerable], runs)
+
+        self.assertEqual(result["strict_decision_accuracy"], 0.5)
+        self.assertEqual(result["strict_decision_correct"], 1)
+        self.assertEqual(result["answerable_abstention_rate"], 0.0)
+
     def test_unanswerable_case_requires_abstention(self):
         question = reviewed_question(
             id="Q-TEST-002",
