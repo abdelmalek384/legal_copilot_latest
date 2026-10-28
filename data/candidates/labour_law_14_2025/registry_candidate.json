@@ -34,6 +34,17 @@
       "terms_url": "https://dspace.id.com.eg/info/end-user-agreement",
       "terms_checked_on": "2026-10-24",
       "permission_evidence": "Repository End User Agreement states content is for personal non-commercial use, bars commercial exploitation without express prior written permission, and prohibits systematic retrieval to compile a database without written permission."
+    },
+    {
+      "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+      "authority": "Egyptian Tax Authority (government-hosted copy of Official Gazette publication; original publisher identified as Amiri Press)",
+      "source_page": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+      "access_status": "government_hosted_pdf_opened; targeted text extraction reviewed for printed pages 2, 5, and 12; original file not downloaded or visually inspected",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": "No permission conclusion; no applicable source terms were established in this review."
     }
   ],
   "document": {
@@ -67,20 +78,46 @@
     "status_verified": 0,
     "amendment_history_verified": 0,
     "permission_evidence": "Reuse permission remains unknown; official IDSC Gazette repository requires written permission for systematic database compilation; the supplied JSONL is a derived transcription, not the original Gazette PDF.",
-    "notes": "Metadata-only candidate registration. Supplied JSONL SHA-256 is 3e964de5c9cc994aefcc29c031712e85d664febd97c428e61c2eacdccaf1c600 (393861 bytes, 311 records); this is not the hash of the original legal publication. All input rows have verified=0 and in_force=1; the latter is untrusted and must not set registry verification. No article chunks are inserted. General commencement 2025-09-01 and specialized labor courts 2025-10-01 are based on promulgation Article 13 and corroborating sources; full Gazette comparison and lawyer review remain pending. Desk review updated 2026-10-24: supplied file parsed (311 records, SHA-256 independently recomputed); structural counts and selected provisions spot-checked against accessible Amiri Press/Manshurat text. Exact Gazette PDF unavailable for full article-by-article comparison. Permission remains unknown; do not import chunks or enable search. Commencement dates remain provisional pending primary-copy and counsel review."
+    "notes": "Metadata-only candidate registration. Supplied JSONL SHA-256 is 3e964de5c9cc994aefcc29c031712e85d664febd97c428e61c2eacdccaf1c600 (393861 bytes, 311 records); this is not the hash of the original legal publication. All input rows have verified=0 and in_force=1; the latter is untrusted and must not set registry verification. No article chunks are inserted. General commencement 2025-09-01 and specialized labor courts 2025-10-01 are based on promulgation Article 13 and corroborating sources; full Gazette comparison and lawyer review remain pending. Desk review updated 2026-10-24: supplied file parsed (311 records, SHA-256 independently recomputed); structural counts and selected provisions spot-checked against accessible Amiri Press/Manshurat text. Exact Gazette PDF unavailable for full article-by-article comparison. Permission remains unknown; do not import chunks or enable search. Commencement dates remain provisional pending primary-copy and counsel review. Supplemental source review on 2026-10-28: opened a government-hosted Official Gazette PDF at the ETA portal and reviewed extracted text for printed pages 2, 5 and 12 (promulgation Article 1; promulgation Articles 12-13; accompanying-law Articles 4-6). The PDF was not downloaded, hashed or visually inspected; this does not complete the 311-record comparison or change any verification/permission flags. Supplemental targeted text review also covers printed page 43 (PDF page index 41), accompanying-law Articles 89-90 on written employment contracts and probation; no original PDF download/hash or full-law verification is claimed.",
+    "targeted_page_evidence": [
+      {
+        "printed_page": 2,
+        "pdf_page_index_zero_based": 0,
+        "pinpoint": "مواد الإصدار، المادة الأولى",
+        "review_status": "targeted_extracted_text_reviewed"
+      },
+      {
+        "printed_page": 5,
+        "pdf_page_index_zero_based": 3,
+        "pinpoint": "مواد الإصدار، المادتان 12 و13",
+        "review_status": "targeted_extracted_text_reviewed"
+      },
+      {
+        "printed_page": 12,
+        "pdf_page_index_zero_based": 9,
+        "pinpoint": "القانون المرافق، المواد 4-6",
+        "review_status": "targeted_extracted_text_reviewed"
+      },
+      {
+        "printed_page": 43,
+        "pdf_page_index_zero_based": 41,
+        "pinpoint": "القانون المرافق، المادتان 89 و90",
+        "review_status": "targeted_extracted_text_reviewed"
+      }
+    ]
   },
   "reviews": [
     {
       "review_type": "source_authenticity",
       "outcome": "pending",
       "evidence_url": "https://dspace.id.com.eg/items/75a95151-8a93-45c0-a607-9320863881df",
-      "notes": "Amiri Press official text page and IDSC Gazette issue metadata were found; exact original Gazette PDF has not been obtained and page-reviewed."
+      "notes": "Amiri Press official text page and IDSC Gazette issue metadata were found; exact original Gazette PDF has not been obtained and page-reviewed. Supplemental review 2026-10-28: an ETA-hosted Gazette PDF was found and targeted extracted text pages reviewed; original file not downloaded or visually inspected, so authenticity verification remains pending."
     },
     {
       "review_type": "extraction_quality",
       "outcome": "pending",
       "evidence_url": "https://manshurat.org/file/89254/download?token=aN3Nv2Ig",
-      "notes": "Supplied JSONL parsed successfully (311 records; SHA-256 independently recomputed). Selected promulgation provisions and opening/closing law text spot-checked against accessible secondary text; full Gazette article-by-article comparison not completed because exact Gazette PDF was not obtained."
+      "notes": "Supplied JSONL parsed successfully (311 records; SHA-256 independently recomputed). Selected promulgation provisions and opening/closing law text spot-checked against accessible secondary text; full Gazette article-by-article comparison not completed because exact Gazette PDF was not obtained. Supplemental review 2026-10-28: targeted extracted-text checks now include printed pages 2, 5 and 12 from a government-hosted Gazette PDF; full article-by-article comparison remains incomplete."
     },
     {
       "review_type": "legal_status",

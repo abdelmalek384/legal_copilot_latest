@@ -58,3 +58,19 @@ The script records the supplied JSONL hash in notes only; it deliberately does n
 2. Authorized acquisition of the original Gazette PDF and a full 311-record article-by-article comparison with exact page evidence.
 3. Individual registration and date/status review of the relevant implementing decisions and transitional extensions.
 4. Qualified Egyptian lawyer approval before setting authenticity/status/amendment flags or enabling search.
+
+
+## 5. Supplemental targeted primary-source review — 2026-10-28
+
+A government-hosted PDF copy of Official Gazette issue 18 (supplement) was opened at the Egyptian Tax Authority portal:
+
+- PDF: https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf
+- Printed page 2 (PDF page index 0): promulgation Article 1.
+- Printed page 5 (PDF page index 3): promulgation Articles 12–13 (repeal and commencement clauses).
+- Printed page 12 (PDF page index 9): accompanying-law Articles 4–6 (forced labour/harassment, non-discrimination, and worker-rights waiver provisions).
+- Printed page 43 (PDF page index 41): accompanying-law Articles 89–90 (written employment contracts and probation).
+
+This is a targeted extracted-text review, not a complete visual inspection of the PDF. The file was not downloaded or hashed. The 311-row article-by-article comparison, full amendment/currentness review, and qualified Egyptian-lawyer approval remain pending. Source collection and commercial-reuse permission remain unknown. This evidence does not change the registry's pending verification flags or make the law search-eligible.
+
+
+The printed page 43 evidence is included in the four-page targeted review set; it adds two provision pinpoints to the provisional review seed but does not change pending authenticity, currentness, amendment-history, permission, or lawyer-review statuses.

@@ -388,6 +388,45 @@
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "notes": "Article 141 states official documents including laws are excluded from copyright protection, but collections can be protected for creative selection/arrangement. This is a preliminary statutory copyright basis, not permission to ignore a repository's access terms or systematic-retrieval restrictions. Counsel review is pending."
+    },
+    {
+      "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+      "publisher": "Egyptian Tax Authority (government-hosted copy of Official Gazette publication; original publisher identified as Amiri Press)",
+      "source_type": "government-hosted Official Gazette PDF",
+      "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+      "observed_title": "الجريدة الرسمية – العدد 18 (تابع) في 3 مايو سنة 2025؛ قانون رقم 14 لسنة 2025 بإصدار قانون العمل",
+      "publication_date": "2025-05-03",
+      "document_ids": [
+        "EG-LABOUR-LAW-14-2025"
+      ],
+      "source_state": "pdf_text_opened_targeted_pages_reviewed_original_file_not_downloaded_or_hashed",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "reviewed_pdf_pages": [
+        {
+          "pdf_page_index_zero_based": 0,
+          "printed_page_label": "2",
+          "provisions": [
+            "مواد الإصدار، المادة الأولى"
+          ]
+        },
+        {
+          "pdf_page_index_zero_based": 3,
+          "printed_page_label": "5",
+          "provisions": [
+            "مواد الإصدار، المادتان 12 و13"
+          ]
+        },
+        {
+          "pdf_page_index_zero_based": 9,
+          "printed_page_label": "12",
+          "provisions": [
+            "القانون المرافق، المواد 4-6"
+          ]
+        }
+      ],
+      "notes": "Targeted PDF text extraction was reviewed for the listed pages. The original file was not downloaded, hashed, or visually inspected. This does not establish a complete article-by-article match, amendment history, current status, or permission for systematic retrieval/commercial use."
     }
   ],
   "document_records_to_create_from_batch": [

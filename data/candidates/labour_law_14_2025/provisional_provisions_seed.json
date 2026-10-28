@@ -11,6 +11,7 @@
     "source_urls": [
       "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
       "https://sis.gov.eg/media/760267/%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86-%D8%B1%D9%82%D9%85-14-%D9%84%D8%B3%D9%86%D8%A9-2025-%D8%A8%D8%A5%D8%B5%D8%AF%D8%A7%D8%B1-%D9%82%D8%A7%D9%86%D9%88%D9%86-%D8%A7%D9%84%D8%B9%D9%85%D9%84.pdf",
+      "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
       "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf"
     ],
     "evidence_method": "Official Amiri Press text page and government-hosted Official Gazette PDF text surfaced through search indexing; issue metadata independently listed by the IDSC repository.",
@@ -25,9 +26,44 @@
     "search_eligible": false,
     "limitations": [
       "These records capture selected provisions only and do not establish that the complete law or amendment chain is current.",
-      "No page numbers are assigned because the original PDF has not been downloaded and page-reviewed.",
+      "Targeted PDF text extraction was reviewed for printed pages 2, 5 and 12 only; the original file was not downloaded or visually inspected, and this is not a full page-by-page review.",
       "Public availability is not treated as permission for bulk collection, indexing, embeddings, display, redistribution or commercial use.",
       "Do not treat this seed as a substitute for the original Gazette, a complete currentness check, or qualified Egyptian-lawyer review."
+    ],
+    "targeted_pdf_text_page_review": true,
+    "targeted_pdf_pages_reviewed": [
+      {
+        "pdf_page_index_zero_based": 0,
+        "printed_page_label": "2",
+        "provisions": [
+          "مواد الإصدار، المادة الأولى"
+        ],
+        "basis": "PDF text extraction lines 0-13"
+      },
+      {
+        "pdf_page_index_zero_based": 3,
+        "printed_page_label": "5",
+        "provisions": [
+          "مواد الإصدار، المادتان 12 و13"
+        ],
+        "basis": "PDF text extraction lines 89-99"
+      },
+      {
+        "pdf_page_index_zero_based": 9,
+        "printed_page_label": "12",
+        "provisions": [
+          "القانون المرافق، المواد 4-6"
+        ],
+        "basis": "PDF text extraction lines 231-255"
+      },
+      {
+        "pdf_page_index_zero_based": 41,
+        "printed_page_label": "43",
+        "provisions": [
+          "القانون المرافق، المادتان 89 و90"
+        ],
+        "basis": "PDF text extraction lines 1000-1021"
+      }
     ]
   },
   "provisions": [
@@ -44,10 +80,20 @@
         {
           "url": "https://sis.gov.eg/media/760267/%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86-%D8%B1%D9%82%D9%85-14-%D9%84%D8%B3%D9%86%D8%A9-2025-%D8%A8%D8%A5%D8%B5%D8%AF%D8%A7%D8%B1-%D9%82%D8%A7%D9%86%D9%88%D9%86-%D8%A7%D9%84%D8%B9%D9%85%D9%84.pdf",
           "basis": "government-hosted Official Gazette PDF; indexed text"
+        },
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "basis": "government-hosted Gazette PDF; targeted text extraction reviewed; printed page 2"
         }
       ],
       "confidence": "provisional_source_text_observed",
-      "human_review": "pending"
+      "human_review": "pending",
+      "page_pinpoint": {
+        "gazette_issue": "18 (تابع)",
+        "printed_page": "2",
+        "pdf_page_index_zero_based": 0,
+        "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf"
+      }
     },
     {
       "provision_id": "EG-LABOUR-LAW-14-2025-ART-4",
@@ -62,10 +108,20 @@
         {
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "basis": "government-hosted Gazette PDF; indexed text"
+        },
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "basis": "government-hosted Gazette PDF; targeted text extraction reviewed; printed page 12"
         }
       ],
       "confidence": "provisional_source_text_observed",
-      "human_review": "pending"
+      "human_review": "pending",
+      "page_pinpoint": {
+        "gazette_issue": "18 (تابع)",
+        "printed_page": "12",
+        "pdf_page_index_zero_based": 9,
+        "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf"
+      }
     },
     {
       "provision_id": "EG-LABOUR-LAW-14-2025-ART-5",
@@ -76,10 +132,20 @@
         {
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "basis": "indexed official text page"
+        },
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "basis": "government-hosted Gazette PDF; targeted text extraction reviewed; printed page 12"
         }
       ],
       "confidence": "provisional_source_text_observed",
-      "human_review": "pending"
+      "human_review": "pending",
+      "page_pinpoint": {
+        "gazette_issue": "18 (تابع)",
+        "printed_page": "12",
+        "pdf_page_index_zero_based": 9,
+        "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf"
+      }
     },
     {
       "provision_id": "EG-LABOUR-LAW-14-2025-ART-6",
@@ -90,10 +156,20 @@
         {
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "basis": "indexed official text page"
+        },
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "basis": "government-hosted Gazette PDF; targeted text extraction reviewed; printed page 12"
         }
       ],
       "confidence": "provisional_source_text_observed",
-      "human_review": "pending"
+      "human_review": "pending",
+      "page_pinpoint": {
+        "gazette_issue": "18 (تابع)",
+        "printed_page": "12",
+        "pdf_page_index_zero_based": 9,
+        "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf"
+      }
     },
     {
       "provision_id": "EG-LABOUR-LAW-14-2025-PROMULGATION-ART-12",
@@ -108,10 +184,20 @@
         {
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "basis": "government-hosted Gazette PDF; indexed text"
+        },
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "basis": "government-hosted Gazette PDF; targeted text extraction reviewed; printed page 5"
         }
       ],
       "confidence": "provisional_source_text_observed",
-      "human_review": "pending"
+      "human_review": "pending",
+      "page_pinpoint": {
+        "gazette_issue": "18 (تابع)",
+        "printed_page": "5",
+        "pdf_page_index_zero_based": 3,
+        "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf"
+      }
     },
     {
       "provision_id": "EG-LABOUR-LAW-14-2025-PROMULGATION-ART-13",
@@ -130,10 +216,60 @@
         {
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "basis": "government-hosted Gazette PDF; indexed text"
+        },
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "basis": "government-hosted Gazette PDF; targeted text extraction reviewed; printed page 5"
         }
       ],
       "confidence": "provisional_source_text_observed",
-      "human_review": "pending"
+      "human_review": "pending",
+      "page_pinpoint": {
+        "gazette_issue": "18 (تابع)",
+        "printed_page": "5",
+        "pdf_page_index_zero_based": 3,
+        "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf"
+      }
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-89",
+      "provision_ref": "القانون المرافق، المادة 89",
+      "topic": "written_contract_requirements",
+      "summary_ar": "تلزم المادة 89 صاحب العمل بتحرير عقد العمل كتابة باللغة العربية من أربع نسخ وتحدد توزيعها. ويجوز للعامل الأجنبي الذي لا يجيد العربية أن يكون العقد بالعربية ولغته، وعند اختلاف التفسير يُعمل بالنص العربي. ويجب أن يتضمن العقد بيانات أساسية محددة؛ وإذا لم يوجد عقد مكتوب جاز إثبات علاقة العمل ومدتها والحقوق المترتبة عليها بطرق الإثبات كافة.",
+      "source_refs": [
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "basis": "government-hosted Gazette PDF; targeted text extraction reviewed; printed page 43"
+        }
+      ],
+      "confidence": "provisional_source_text_observed",
+      "human_review": "pending",
+      "page_pinpoint": {
+        "gazette_issue": "18 (تابع)",
+        "printed_page": "43",
+        "pdf_page_index_zero_based": 41,
+        "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf"
+      }
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-90",
+      "provision_ref": "القانون المرافق، المادة 90",
+      "topic": "probation_period",
+      "summary_ar": "تحدد المادة 90 فترة الاختبار في عقد العمل بمدة لا تزيد على ثلاثة أشهر، ولا تجيز تعيين العامل تحت الاختبار أكثر من مرة واحدة لدى صاحب عمل واحد.",
+      "source_refs": [
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "basis": "government-hosted Gazette PDF; targeted text extraction reviewed; printed page 43"
+        }
+      ],
+      "confidence": "provisional_source_text_observed",
+      "human_review": "pending",
+      "page_pinpoint": {
+        "gazette_issue": "18 (تابع)",
+        "printed_page": "43",
+        "pdf_page_index_zero_based": 41,
+        "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf"
+      }
     }
   ]
 }
