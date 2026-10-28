@@ -175,6 +175,22 @@ class ProductionReleaseGateTests(unittest.TestCase):
         self.assertEqual(report["benchmark"]["practice_area_count"], gate.MIN_PRACTICE_AREAS)
         self.assertEqual(report["benchmark"]["ready_source_count"], 1)
 
+    def test_release_report_cannot_overwrite_environment_configured_acceptance_manifest(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            manifest_path = root / "database-acceptance.json"
+            manifest_path.write_text("{}", encoding="utf-8")
+            reviewer_path = root / "reviewers.json"
+            reviewer_path.write_text(json.dumps(self._reviewer_registry()), encoding="utf-8")
+            with patch.dict(os.environ, {"COPILOT_DATABASE_ACCEPTANCE_FILE": str(manifest_path)}), \
+                 patch.object(gate, "evaluate_release", return_value={"ready": True}):
+                result = gate.main([
+                    "--reviewer-registry", str(reviewer_path),
+                    "--out", str(manifest_path),
+                ])
+        self.assertEqual(result, 2)
+        self.assertEqual(manifest_path.read_text(encoding="utf-8"), "{}")
+
     def test_missing_database_operational_acceptance_blocks_otherwise_ready_release(self):
         questions = self._approved_questions()
         with tempfile.TemporaryDirectory() as td:
