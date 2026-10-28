@@ -165,10 +165,19 @@ def audit_source(source: str) -> dict[str, Any]:
         f"{row['method']} {row['path']} ({row['handler']})"
         for row in records if row["direct_sqlite_open"]
     ]
+    dynamic_sql = [
+        {
+            "route": f"{row['method']} {row['path']} ({row['handler']})",
+            "call_count": row["dynamic_sql_call_count"],
+        }
+        for row in records if row["dynamic_sql_call_count"]
+    ]
     return {
         "scope": "static review aid; not proof of authorization or complete runtime SQL coverage",
         "route_count": len(records),
         "routes_with_sql": sum(bool(row["sql_call_count"]) for row in records),
+        "dynamic_sql_call_count": sum(row["dynamic_sql_call_count"] for row in records),
+        "routes_with_dynamic_sql": dynamic_sql,
         "unclassified_sql_routes": unclassified_sql,
         "routes_opening_sqlite_directly": direct_open,
         "routes": records,
@@ -187,9 +196,12 @@ def main() -> int:
         print(
             f"Route SQL access map: routes={report['route_count']}, "
             f"routes_with_sql={report['routes_with_sql']}, "
+            f"dynamic_sql_calls={report['dynamic_sql_call_count']}, "
             f"unclassified_sql_routes={len(report['unclassified_sql_routes'])}, "
             f"direct_sqlite_opens={len(report['routes_opening_sqlite_directly'])}"
         )
+        for item in report["routes_with_dynamic_sql"]:
+            print(f"DYNAMIC SQL REVIEW REQUIRED ({item['call_count']} call(s)): {item['route']}")
         for item in report["unclassified_sql_routes"]:
             print(f"UNCLASSIFIED SQL: {item}")
         for item in report["routes_opening_sqlite_directly"]:
