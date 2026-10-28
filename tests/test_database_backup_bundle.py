@@ -192,6 +192,37 @@ class DatabaseBackupBundleTests(unittest.TestCase):
         with self.assertRaises(DatabaseBundleError):
             restore_backup_bundle(bundle, Fernet(Fernet.generate_key()), self.root / "wrong-key")
 
+    def test_restore_rejects_symlinked_backup_input(self):
+        bundle = self.backup_dir / "linked-backup.enc"
+        target = self.backup_dir / "target.enc"
+        target.write_bytes(self.cipher.encrypt(b"not a real bundle"))
+        bundle.symlink_to(target)
+        with self.assertRaisesRegex(DatabaseBundleError, "must not be a symlink"):
+            restore_backup_bundle(bundle, self.cipher, self.root / "linked-restore")
+        self.assertFalse((self.root / "linked-restore").exists())
+
+    def test_restore_rejects_fifo_backup_input_without_blocking(self):
+        import os
+
+        if not hasattr(os, "mkfifo") or os.name != "posix":
+            self.skipTest("FIFO behavior is POSIX-specific")
+        fifo = self.backup_dir / "waiting-backup.enc"
+        os.mkfifo(fifo)
+        with self.assertRaisesRegex(DatabaseBundleError, "must be a regular file"):
+            restore_backup_bundle(fifo, self.cipher, self.root / "fifo-restore")
+        self.assertFalse((self.root / "fifo-restore").exists())
+
+    def test_restore_rejects_oversized_encrypted_input_before_reading(self):
+        from unittest.mock import patch
+        import database_backup
+
+        bundle = self.backup_dir / "oversized-backup.enc"
+        bundle.write_bytes(b"x" * 17)
+        with patch.object(database_backup, "_MAX_ENCRYPTED_BUNDLE_BYTES", 16):
+            with self.assertRaisesRegex(DatabaseBundleError, "size limit"):
+                restore_backup_bundle(bundle, self.cipher, self.root / "oversized-restore")
+        self.assertFalse((self.root / "oversized-restore").exists())
+
     def test_restore_rejects_checksum_tampering_even_with_valid_encryption(self):
         bundle = create_backup_bundle(
             self.runtime, self.cipher, self.backup_dir, quiesced=True

@@ -11,6 +11,7 @@ import os
 import re
 import shutil
 import sqlite3
+import stat
 import tempfile
 import time
 import zipfile
@@ -34,6 +35,8 @@ _OBJECT_ID = re.compile(r"^[0-9a-f]{32}\.blob$")
 _FIRM_OBJECT_DIR = re.compile(r"^firm-[1-9][0-9]*$")
 _MAX_ARCHIVE_BYTES = 8 * 1024 * 1024 * 1024
 _MAX_ENTRIES = 2048
+# Fernet adds a 57-byte envelope and up to 16 bytes of block padding before base64 encoding.
+_MAX_ENCRYPTED_BUNDLE_BYTES = ((_MAX_ARCHIVE_BYTES + 73 + 2) // 3) * 4
 
 
 def _readonly(path: Path) -> sqlite3.Connection:
@@ -644,6 +647,36 @@ def verify_backup_bundle(bundle_path: str | Path, cipher: Fernet) -> dict[str, A
         }
 
 
+def _read_encrypted_backup(path_value: str | Path) -> bytes:
+    """Read a bounded regular backup file without following links or blocking on FIFOs."""
+    path = Path(path_value).expanduser()
+    if path.is_symlink():
+        raise DatabaseBundleError("Backup input must not be a symlink")
+    flags = os.O_RDONLY | getattr(os, "O_NONBLOCK", 0) | getattr(os, "O_NOFOLLOW", 0)
+    descriptor = None
+    try:
+        descriptor = os.open(path, flags)
+        metadata = os.fstat(descriptor)
+        if not stat.S_ISREG(metadata.st_mode):
+            raise DatabaseBundleError("Backup input must be a regular file")
+        if metadata.st_size > _MAX_ENCRYPTED_BUNDLE_BYTES:
+            raise DatabaseBundleError("Encrypted backup exceeds the supported size limit")
+        stream = os.fdopen(descriptor, "rb")
+        descriptor = None
+        with stream:
+            data = stream.read(_MAX_ENCRYPTED_BUNDLE_BYTES + 1)
+        if len(data) > _MAX_ENCRYPTED_BUNDLE_BYTES:
+            raise DatabaseBundleError("Encrypted backup exceeds the supported size limit")
+        return data
+    except DatabaseBundleError:
+        raise
+    except OSError as exc:
+        raise DatabaseBundleError("Backup input could not be read safely") from exc
+    finally:
+        if descriptor is not None:
+            os.close(descriptor)
+
+
 def restore_backup_bundle(
     backup_file: str | Path,
     cipher: Fernet,
@@ -658,8 +691,10 @@ def restore_backup_bundle(
         raise DatabaseBundleError("Restore target's parent directory must already exist")
     destination = destination.resolve()
     try:
-        encrypted = Path(backup_file).expanduser().read_bytes()
+        encrypted = _read_encrypted_backup(backup_file)
         plaintext = cipher.decrypt(encrypted)
+    except DatabaseBundleError:
+        raise
     except (OSError, InvalidToken, ValueError) as exc:
         raise DatabaseBundleError("Backup bundle could not be authenticated or decrypted") from exc
 
