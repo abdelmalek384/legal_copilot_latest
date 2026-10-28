@@ -53,6 +53,7 @@ Both boolean fields are required explicitly; malformed source-ID lists, citation
 - **Expected pin-cite recall:** fraction of distinct reviewer-expected source-ID/pin-cite pairs that were emitted exactly. A missing citation counts against recall.
 - **Abstention compliance:** among reviewed unanswerable cases, fraction where the system abstained and did not use an unverified source.
 - **Unsafe unverified-source uses:** count of runs marked as using an unverified source without abstaining.
+- **Source-status evidence:** when `source_summary` is supplied, cited source IDs must appear there and a non-verified status cannot be paired with `used_unverified_source: false`. For records with citations but no status summary, the evaluator fails closed for safety scoring and reports `source_status_evidence_missing_count`.
 
 Metrics are `null` when there is no eligible denominator (for example, no answerable reviewed cases for citation coverage, or no expected pin-cite pairs for pin-cite recall). The report lists excluded questions and reasons, malformed question/run records, duplicate question IDs, and duplicate run question IDs. Duplicate IDs are excluded from scoring instead of choosing an arbitrary record. Resolve these data-quality errors before relying on a score.
 
