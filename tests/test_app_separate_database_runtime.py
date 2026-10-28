@@ -1059,6 +1059,17 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(login.status_code, 200, login.text)
         self.assertFalse(login.json()["can_review_legal"])
         self.assertFalse(self.client.get("/session").json()["can_review_legal"])
+        private_case = self._mutate(
+            "post", "/cases", json={"title": "PRIVATE_TENANT_CATALOG_SENTINEL"}
+        )
+        self.assertEqual(private_case.status_code, 200, private_case.text)
+        private_case_id = private_case.json()["id"]
+        private_doc = self._mutate(
+            "post", f"/cases/{private_case_id}/docs",
+            json={"name": "PRIVATE_TENANT_CATALOG_SENTINEL.txt",
+                  "text": "PRIVATE_TENANT_CATALOG_SENTINEL confidential matter text"},
+        )
+        self.assertEqual(private_doc.status_code, 200, private_doc.text)
         corpus = self.runtime.legal_corpus_connection()
         corpus.execute(
             "INSERT INTO legal_sources(source_id,authority,source_page) VALUES(?,?,?)",
@@ -1096,6 +1107,10 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             with self.subTest(url=url, role="platform_reviewer"):
                 allowed = self.client.get(url)
                 self.assertEqual(allowed.status_code, 200, allowed.text)
+                self.assertNotIn(
+                    "PRIVATE_TENANT_CATALOG_SENTINEL", allowed.text,
+                    "shared-corpus review endpoints must never expose firm matter content",
+                )
 
         control.execute(
             "DELETE FROM user_platform_roles WHERE user_id=? AND role_name='platform_reviewer'",
