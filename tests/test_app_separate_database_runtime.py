@@ -2538,5 +2538,56 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
 
 
+    def test_research_discovery_escapes_like_wildcards_and_returns_metadata_only(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+
+        corpus = self.runtime.legal_corpus_connection()
+        corpus.execute(
+            "INSERT INTO legal_sources(source_id,authority,source_page) VALUES(?,?,?)",
+            ("literal-query-source", "Literal query test authority", "https://example.test/metadata"),
+        )
+        corpus.executemany(
+            "INSERT INTO legal_documents(document_id,source_id,official_title,document_type) VALUES(?,?,?,?)",
+            [
+                (
+                    "literal-query-target",
+                    "literal-query-source",
+                    "Case_A_100%_Contract",
+                    "synthetic-metadata",
+                ),
+                (
+                    "literal-query-wildcard-decoy",
+                    "literal-query-source",
+                    "CaseXA1000XContract",
+                    "synthetic-metadata",
+                ),
+            ],
+        )
+        corpus.commit()
+
+        response = self._mutate(
+            "post", "/research/discover",
+            json={"q": "Case_A_100%_Contract", "as_of": "2026-10-28"},
+        )
+        self.assertEqual(response.status_code, 200, response.text)
+        body = response.json()
+        self.assertEqual(body["scope"], "metadata_only")
+        self.assertEqual(
+            [item["document_id"] for item in body["results"]],
+            ["literal-query-target"],
+            "underscore and percent characters must be treated as literal search input, not LIKE wildcards",
+        )
+        result = body["results"][0]
+        self.assertFalse(result["text_available"])
+        self.assertEqual(result["status"], "metadata_only")
+        self.assertNotIn("text", result)
+        self.assertNotIn("content", result)
+        self.assertNotIn("passage", result)
+        self.assertNotIn("CaseXA1000XContract", response.text)
+
+
 if __name__ == "__main__":
     unittest.main()
