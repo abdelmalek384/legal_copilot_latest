@@ -1471,6 +1471,24 @@ class RequestBodyLimitMiddleware:
 
 
 app = FastAPI(title="Legal Copilot MVP", docs_url=None, redoc_url=None, openapi_url=None)
+
+
+@app.on_event("startup")
+async def initialize_database_runtime_before_serving():
+    """Validate and initialize all configured profiles before accepting requests."""
+    if not _separate_runtime_enabled():
+        # Explicit development/test compatibility harness only.
+        return
+    try:
+        get_database_runtime()
+    except Exception as exc:
+        logger.error(
+            "Database runtime initialization failed; refusing to serve requests (%s)",
+            type(exc).__name__,
+        )
+        raise RuntimeError(
+            "Database runtime initialization failed; refusing to start the application."
+        ) from exc
 app.add_middleware(RequestBodyLimitMiddleware, max_body_bytes=MAX_REQUEST_BODY_BYTES)
 # Enforce Host-header allowlisting when the deployment explicitly configures it.
 _allowed_hosts = os.environ.get("COPILOT_ALLOWED_HOSTS", "").strip()
