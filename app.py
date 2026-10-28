@@ -150,10 +150,19 @@ def _separate_runtime_enabled():
     ))
     if separate_paths:
         return True
-    # The shared-database compatibility mode is opt-in via an explicit COPILOT_DB.
-    # With no storage configuration, fail closed rather than silently booting the
-    # old shared database architecture.
-    return not os.environ.get("COPILOT_DB", "").strip()
+    # The shared-database development harness is never an implicit fallback.
+    # Explicitly select development mode or configure the approved profile-separated
+    # runtime; staging/production and unconfigured environments fail closed.
+    legacy_path = os.environ.get("COPILOT_DB", "").strip()
+    if legacy_path:
+        environment = os.environ.get("COPILOT_ENV", "").strip().lower()
+        if environment not in {"development", "dev", "test"}:
+            raise RuntimeError(
+                "COPILOT_DB is restricted to explicit development/test mode; "
+                "configure COPILOT_CONTROL_DB, COPILOT_TENANT_DB_ROOT, and COPILOT_CORPUS_DB."
+            )
+        return False
+    return True
 
 
 # Never start production with the legacy shared-database compatibility path. The
