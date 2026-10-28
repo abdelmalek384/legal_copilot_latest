@@ -2,7 +2,7 @@
 
 **Record:** `EG-LABOUR-LAW-14-2025-EVIDENCE-CARDS-2026-10-28`  
 **Prepared on:** 2026-10-28  
-**Cards in this report:** 72
+**Cards in this report:** 74
 
 ## Status and limits
 
@@ -14,7 +14,7 @@
 - Collection permission: `unknown`; commercial reuse: `unknown`.
 - Authoritative search eligibility: `false`.
 
-Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF has not been downloaded, hashed, or visually inspected; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording. Additional cards for accompanying-law Articles 4–9 were prepared from text extraction of the government-hosted Official Gazette PDF on 2026-10-28. The PDF has not been downloaded, hashed, or visually inspected; page pinpointing is provisional and all cards remain non-authoritative. Additional cards for accompanying-law Articles 10–12 were prepared from the government-hosted Official Gazette PDF text extraction on 2026-10-28. Page references are based on the extracted page labels; the PDF has not been downloaded, hashed, or visually inspected. Cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 16, 22, 23, 25 and 27 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; these cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 28–31 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 32–34 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 36–37 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshot checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 40–43 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 44–48 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 49–54 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 126 and 127 were added from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 55. The original PDF remains undownloaded and unhashed, and both cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 121 and 122 were prepared from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 53. Article 121 was cross-checked against a secondary English translation, and Article 122 against a secondary legal text copy. The original PDF remains undownloaded and unhashed; both cards remain provisional and non-authoritative. An additional card for accompanying-law Article 123 was added from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 53. It is cross-checked against a secondary English translation, but the implementing ministerial decision has not been identified and reviewed in this task. The original PDF remains undownloaded and unhashed; the card is provisional and non-authoritative. Additional provisional cards for accompanying-law Articles 117–120 and 124–125 were added on 2026-10-28 from indexed official Amiri Press / government-hosted Gazette text leads, cross-checked against a secondary transcription. Gazette printed-page pinpoints are provisional (52 for Articles 117–120; 54 for Articles 124–125); the original PDF remains undownloaded, unhashed, and not visually inspected. These additions do not establish currentness, completeness, reuse rights, or lawyer approval. Additional provisional cards for accompanying-law Articles 128–130 were added on 2026-10-28 using indexed text from the government-hosted Official Gazette PDF (printed page 56; provisional pinpoint) and a secondary transcription cross-check. The official publisher page is recorded as a source lead but was not directly opened in this round. The Gazette PDF remains undownloaded, unhashed, and not visually inspected; cards remain non-authoritative.
+Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF has not been downloaded, hashed, or visually inspected; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording. Additional cards for accompanying-law Articles 4–9 were prepared from text extraction of the government-hosted Official Gazette PDF on 2026-10-28. The PDF has not been downloaded, hashed, or visually inspected; page pinpointing is provisional and all cards remain non-authoritative. Additional cards for accompanying-law Articles 10–12 were prepared from the government-hosted Official Gazette PDF text extraction on 2026-10-28. Page references are based on the extracted page labels; the PDF has not been downloaded, hashed, or visually inspected. Cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 16, 22, 23, 25 and 27 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; these cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 28–31 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 32–34 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 36–37 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshot checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 40–43 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 44–48 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 49–54 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 126 and 127 were added from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 55. The original PDF remains undownloaded and unhashed, and both cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 121 and 122 were prepared from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 53. Article 121 was cross-checked against a secondary English translation, and Article 122 against a secondary legal text copy. The original PDF remains undownloaded and unhashed; both cards remain provisional and non-authoritative. An additional card for accompanying-law Article 123 was added from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 53. It is cross-checked against a secondary English translation, but the implementing ministerial decision has not been identified and reviewed in this task. The original PDF remains undownloaded and unhashed; the card is provisional and non-authoritative. Additional provisional cards for accompanying-law Articles 117–120 and 124–125 were added on 2026-10-28 from indexed official Amiri Press / government-hosted Gazette text leads, cross-checked against a secondary transcription. Gazette printed-page pinpoints are provisional (52 for Articles 117–120; 54 for Articles 124–125); the original PDF remains undownloaded, unhashed, and not visually inspected. These additions do not establish currentness, completeness, reuse rights, or lawyer approval. Additional provisional cards for accompanying-law Articles 128–130 were added on 2026-10-28 using indexed text from the government-hosted Official Gazette PDF (printed page 56; provisional pinpoint) and a secondary transcription cross-check. The official publisher page is recorded as a source lead but was not directly opened in this round. The Gazette PDF remains undownloaded, unhashed, and not visually inspected; cards remain non-authoritative. Additional provisional cards for accompanying-law Articles 131–132 were added on 2026-10-28 from indexed government-hosted Gazette text with a secondary transcription cross-check. Printed-page pinpoints are provisional; the source PDF remains undownloaded, unhashed, and not visually inspected. The sick-leave card distinguishes the general medical-authority rule from the special industrial-establishment tiers; implementing decisions and related social-insurance rules remain unresolved.
 
 ## Provision cards
 
@@ -2042,6 +2042,62 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** احتساب مستحق مالي نهائي دون مراجعة قرار العطلة وسجل الأجر والطلب.
+
+### 73. EG-LABOUR-14-2025-ART-131-SICK-LEAVE-AND-WAGE-COMPENSATION
+
+**Question:** ما الإطار العام للإجازة المرضية وما القواعد الخاصة ببعض المنشآت الصناعية؟
+
+**Pinpoint:** القانون المرافق, المادة 131, printed Gazette page 56 (PDF page index 54).
+
+**Provisional summary (Arabic):**
+
+تقرر المادة 131 للعامل الذي يثبت مرضه أو إصابته بما يمنعه من أداء العمل إجازة مرضية تحددها الجهة الطبية المختصة، ويحدد تعويض الأجر ومدته وفق قانون التأمينات الاجتماعية والمعاشات. وتقرر للعمال المرضى في المنشآت الصناعية المحددة قانوناً نظاماً خاصاً لكل ثلاث سنوات خدمة: ثلاثة أشهر بأجر، ثم ستة أشهر بنسبة 85%، ثم ثلاثة أشهر بنسبة 75%، إذا توقعت الجهة الطبية الشفاء. وتخصم من التزام صاحب العمل مبالغ تعويض الأجر المستحقة من نظام التأمين الاجتماعي؛ كما تجيز الاستفادة من رصيد الإجازات السنوية أو تحويل المرضية إليها إذا سمح الرصيد.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مصدر الناشر الرسمي مسجل؛ يلزم فحص موضع المادة مباشرة قبل الاعتماد (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_searchable_text; النص المفهرس يعرض القاعدة العامة للإجازة المرضية والتعويض، والشرائح الخاصة ببعض المنشآت الصناعية، وخصم تعويض التأمين الاجتماعي؛ لم يُنزّل الملف الأصلي أو يُحسب SHA-256 أو يُفحص بصرياً (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of official-source text](https://drhisham.org/tax-law/%D9%82%D9%88%D8%A7%D9%86%D9%8A%D9%86-%D8%A3%D8%AE%D8%B1%D9%89/%D9%82%D8%A7%D9%86%D9%88%D9%86-14-%D9%84%D8%B3%D9%86%D8%A9-2025/) — تأييد ثانوي للنص مع بقاء الوثيقة الرسمية المرجع.
+
+**Limitations:**
+- تطبيق شرائح الأجر الخاصة مشروط بنطاق المنشآت الصناعية المحددة قانوناً، ولا يغني عن مراجعة قانون التأمينات والجهة الطبية والقرارات ذات الصلة.
+- لم تُراجع التعديلات والقرارات التنفيذية ذات الصلة مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** حساب تعويض المرض أو تقرير إنهاء الخدمة دون مراجعة قانون التأمينات والملف الطبي والقرارات المنفذة.
+
+### 74. EG-LABOUR-14-2025-ART-132-INFECTIOUS-DISEASE-CONTACT-LEAVE
+
+**Question:** متى يجوز منع العامل المخالط لمريض بمرض معد من مزاولة العمل؟
+
+**Pinpoint:** القانون المرافق, المادة 132, printed Gazette page 57 (PDF page index 55).
+
+**Provisional summary (Arabic):**
+
+تجيز المادة 132 للجهة الطبية المختصة منع العامل المخالط لمريض بمرض معد من أحد أفراد أسرته من مزاولة العمل للمدة المناسبة، على ألا تجاوز ثلاثة أشهر. ويحدد وزير الصحة الأمراض المعنية والجهة الطبية المختصة بقرار؛ لذلك لا يكفي مجرد الاشتباه دون التحقق من القرار والجهة المختصة والوقائع.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مصدر الناشر الرسمي مسجل؛ يلزم فحص موضع المادة مباشرة قبل الاعتماد (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_searchable_text; النص المفهرس للمادة 132 يقرر سقف ثلاثة أشهر ويُحيل تحديد الأمراض والجهة الطبية إلى قرار الوزير المختص؛ لم يُنزّل الملف الأصلي أو يُحسب SHA-256 أو يُفحص بصرياً (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of official-source text](https://drhisham.org/tax-law/%D9%82%D9%88%D8%A7%D9%86%D9%8A%D9%86-%D8%A3%D8%AE%D8%B1%D9%89/%D9%82%D8%A7%D9%86%D9%88%D9%86-14-%D9%84%D8%B3%D9%86%D8%A9-2025/) — تأييد ثانوي للنص مع بقاء الوثيقة الرسمية المرجع.
+
+**Limitations:**
+- يتطلب التطبيق تحديد المرض المشمول والقرار الوزاري والجهة الطبية صاحبة الاختصاص، ولم تُراجع تلك القرارات هنا.
+- لم تُراجع التعديلات والقرارات التنفيذية ذات الصلة مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** إصدار قرار غياب أو عزل نهائي دون التحقق من القرار الوزاري والتقييم الطبي.
 
 ## Activation gates
 
