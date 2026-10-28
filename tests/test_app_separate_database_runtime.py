@@ -342,61 +342,38 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(firm_b_users.status_code, 200, firm_b_users.text)
         self.assertTrue(any(row["id"] == firm_b_only_user for row in firm_b_users.json()))
 
-    def test_existing_global_identity_can_join_another_firm_without_duplication(self):
+    def test_direct_membership_creation_requires_invitation_acceptance(self):
         firm_c, _ = self.runtime.provision_firm("Firm C")
         existing_user_id = self.runtime.create_initial_firm_owner(
             firm_c, "Second Firm Owner", "second-owner@example.test", app.hash_pw(self.password)
         )
-
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
         )
         self.assertEqual(login.status_code, 200, login.text)
-        added = self._mutate(
-            "post",
-            "/memberships",
+
+        response = self._mutate(
+            "post", "/memberships",
             json={"email": " SECOND-OWNER@EXAMPLE.TEST ", "role": "lawyer"},
         )
-        self.assertEqual(added.status_code, 201, added.text)
-        self.assertEqual(added.json()["user_id"], existing_user_id)
-        self.assertEqual(added.json()["firm_id"], self.firm_a)
-
+        self.assertEqual(response.status_code, 410, response.text)
         control = self.runtime.control_connection()
-        created_event = control.execute(
-            "SELECT actor_user_id,target_user_id,firm_id,event_type FROM platform_security_events "
-            "WHERE event_type='membership_created' AND target_user_id=? AND firm_id=? ORDER BY id DESC LIMIT 1",
+        self.assertIsNone(control.execute(
+            "SELECT 1 FROM firm_memberships WHERE user_id=? AND firm_id=?",
             (existing_user_id, self.firm_a),
-        ).fetchone()
-        self.assertIsNotNone(created_event)
-        self.assertEqual(created_event["actor_user_id"], self.user_id)
+        ).fetchone())
+        self.assertEqual(control.execute(
+            "SELECT COUNT(*) FROM platform_security_events "
+            "WHERE event_type='membership_created' AND target_user_id=? AND firm_id=?",
+            (existing_user_id, self.firm_a),
+        ).fetchone()[0], 0)
         memberships = control.execute(
             "SELECT firm_id,firm_role,status FROM firm_memberships WHERE user_id=? ORDER BY firm_id",
             (existing_user_id,),
         ).fetchall()
         self.assertEqual(
             [(row["firm_id"], row["firm_role"], row["status"]) for row in memberships],
-            [(self.firm_a, "lawyer", "active"), (firm_c, "admin", "active")],
-        )
-        listed = self.client.get("/users")
-        self.assertEqual(listed.status_code, 200, listed.text)
-        self.assertTrue(any(row["id"] == existing_user_id for row in listed.json()))
-
-        duplicate = self._mutate(
-            "post", "/memberships",
-            json={"email": "second-owner@example.test", "role": "lawyer"},
-        )
-        self.assertEqual(duplicate.status_code, 409, duplicate.text)
-        missing = self._mutate(
-            "post", "/memberships",
-            json={"email": "unknown@example.test", "role": "lawyer"},
-        )
-        self.assertEqual(missing.status_code, 404, missing.text)
-        self.assertEqual(
-            control.execute(
-                "SELECT COUNT(*) FROM firm_memberships WHERE user_id=?",
-                (existing_user_id,),
-            ).fetchone()[0],
-            2,
+            [(firm_c, "admin", "active")],
         )
 
     def test_case_delete_audit_failure_rolls_back_entire_deletion(self):
