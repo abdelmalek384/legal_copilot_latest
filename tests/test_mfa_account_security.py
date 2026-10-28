@@ -226,7 +226,7 @@ class MFAAccountSecurityTests(unittest.TestCase):
             "post", "/account/mfa/re-enroll",
             json={"current_password": "incorrect-password"},
         )
-        self.assertEqual(reenroll.status_code, 401, reenroll.text)
+        self.assertEqual(reenroll.status_code, 403, reenroll.text)
         control = self.runtime.control_connection()
         current = control.execute(
             "SELECT status,secret_ciphertext FROM mfa_credentials WHERE user_id=?",
