@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "gates": {
+    "original_file_storage": {
+      "status": "pending",
+      "evidence_ref": "",
+      "verified_at": "",
+      "verified_by": ""
+    },
+    "backup_restore_rollback": {
+      "status": "pending",
+      "evidence_ref": "",
+      "verified_at": "",
+      "verified_by": "",
+      "witnessed_by": ""
+    },
+    "retention_export_deletion_policy": {
+      "status": "pending",
+      "evidence_ref": "",
+      "approved_at": "",
+      "approved_by": ""
+    },
+    "production_identity_email": {
+      "status": "pending",
+      "evidence_ref": "",
+      "verified_at": "",
+      "verified_by": ""
+    },
+    "privileged_recovery_bootstrap": {
+      "status": "pending",
+      "evidence_ref": "",
+      "verified_at": "",
+      "verified_by": "",
+      "witnessed_by": ""
+    },
+    "independent_security_review": {
+      "status": "pending",
+      "evidence_ref": "",
+      "reviewed_at": "",
+      "reviewer": "",
+      "unresolved_critical_high": null
+    }
+  }
+}

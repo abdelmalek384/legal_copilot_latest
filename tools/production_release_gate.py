@@ -15,6 +15,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools.deployment_preflight import inspect_environment
+from tools.database_release_acceptance import load_acceptance_manifest
 from tools.evaluate_legal_answers import APPROVED, EvaluationError, _validate_reviewed_question, read_jsonl
 from tools.evaluate_legal_answer_reviews import validate_reviewer_registry
 from tools.validate_legal_release_readiness import (
@@ -124,6 +125,7 @@ def evaluate_release(
     coverage_matrix_path: Path = DEFAULT_COVERAGE_MATRIX,
     benchmark_path: Path = DEFAULT_BENCHMARK,
     reviewer_registry=None,
+    database_acceptance_path: Path | None = None,
     root: Path = ROOT,
 ) -> dict:
     """Read-only release decision. Any warning, missing gate, or malformed evidence blocks release."""
@@ -135,6 +137,16 @@ def evaluate_release(
     if warnings:
         blockers.append({"gate": "deployment_environment", "code": "environment_warnings", "count": len(warnings),
                          "details": warnings})
+
+    database_acceptance = load_acceptance_manifest(database_acceptance_path)
+    if not database_acceptance["ready"]:
+        blockers.append({
+            "gate": "database_operational_acceptance",
+            "code": "database_operational_acceptance_incomplete",
+            "passed_count": database_acceptance["passed_count"],
+            "required_count": database_acceptance["required_count"],
+            "details": database_acceptance["blockers"],
+        })
 
     paths = [Path(path) for path in candidate_paths] if candidate_paths is not None else sorted(
         Path(candidates_dir).glob("**/registry_candidate.json")
@@ -276,6 +288,7 @@ def evaluate_release(
         "ready": not blockers,
         "decision": "ready" if not blockers else "blocked",
         "environment": {"passed_checks": len(passed), "warnings": warnings, "errors": errors},
+        "database_operational_acceptance": database_acceptance,
         "legal_corpus": {
             "candidate_count": len(paths),
             "ready_count": legal_report.get("ready_count", 0),
@@ -305,6 +318,7 @@ def main(argv=None) -> int:
     parser.add_argument("--coverage-matrix", type=Path, default=DEFAULT_COVERAGE_MATRIX)
     parser.add_argument("--benchmark", type=Path, default=DEFAULT_BENCHMARK)
     parser.add_argument("--reviewer-registry", type=Path, help="Private JSON registry of approved reviewer qualification checks.")
+    parser.add_argument("--database-acceptance", type=Path, help="Controlled operational evidence manifest; missing/incomplete evidence blocks release.")
     parser.add_argument("--root", type=Path, default=ROOT)
     parser.add_argument("--out", type=Path, help="Optional JSON report path.")
     args = parser.parse_args(argv)
@@ -322,6 +336,7 @@ def main(argv=None) -> int:
         coverage_matrix_path=args.coverage_matrix,
         benchmark_path=args.benchmark,
         reviewer_registry=reviewer_registry,
+        database_acceptance_path=args.database_acceptance,
         root=args.root,
     )
     rendered = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
@@ -331,6 +346,8 @@ def main(argv=None) -> int:
                            Path(args.benchmark).resolve()}
         if args.reviewer_registry:
             protected_files.add(Path(args.reviewer_registry).resolve())
+        if args.database_acceptance:
+            protected_files.add(Path(args.database_acceptance).resolve())
         protected_files.update(Path(path).resolve() for path in (args.candidate or []))
         protected_directories = {
             Path(args.candidates_dir).resolve(),

@@ -76,6 +76,41 @@ class ProductionReleaseGateTests(unittest.TestCase):
         }), encoding="utf-8")
         return path
 
+    def _database_acceptance_manifest(self):
+        verified_at = dt.datetime.now(dt.timezone.utc).isoformat()
+        return {
+            "schema_version": 1,
+            "gates": {
+                "original_file_storage": {
+                    "status": "passed", "evidence_ref": "synthetic-test-evidence",
+                    "verified_at": verified_at, "verified_by": "test-operator",
+                },
+                "backup_restore_rollback": {
+                    "status": "passed", "evidence_ref": "synthetic-test-evidence",
+                    "verified_at": verified_at, "verified_by": "test-operator",
+                    "witnessed_by": "independent-test-witness",
+                },
+                "retention_export_deletion_policy": {
+                    "status": "passed", "evidence_ref": "synthetic-test-evidence",
+                    "approved_at": verified_at, "approved_by": "test-policy-owner",
+                },
+                "production_identity_email": {
+                    "status": "passed", "evidence_ref": "synthetic-test-evidence",
+                    "verified_at": verified_at, "verified_by": "test-operator",
+                },
+                "privileged_recovery_bootstrap": {
+                    "status": "passed", "evidence_ref": "synthetic-test-evidence",
+                    "verified_at": verified_at, "verified_by": "test-operator",
+                    "witnessed_by": "independent-test-witness",
+                },
+                "independent_security_review": {
+                    "status": "passed", "evidence_ref": "synthetic-test-evidence",
+                    "reviewed_at": verified_at, "reviewer": "independent-test-reviewer",
+                    "unresolved_critical_high": 0,
+                },
+            },
+        }
+
     def _ready_report(self, candidate_path):
         return self._ready_report_many([candidate_path])
 
@@ -116,6 +151,30 @@ class ProductionReleaseGateTests(unittest.TestCase):
     def test_all_gates_must_pass_for_release_ready(self):
         questions = self._approved_questions()
         with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            candidate = self._candidate_file(root)
+            acceptance_path = root / "database-acceptance.json"
+            acceptance_path.write_text(
+                json.dumps(self._database_acceptance_manifest()), encoding="utf-8"
+            )
+            with patch.object(gate, "inspect_environment", return_value=(["environment okay"], [], [])), \
+                 patch.object(gate, "build_legal_report", return_value=self._ready_report(candidate)), \
+                 patch.object(gate, "read_jsonl", return_value=questions):
+                report = gate.evaluate_release(
+                    env=self.clean_env,
+                    candidate_paths=[candidate],
+                    benchmark_path=Path("approved-benchmark.jsonl"),
+                    reviewer_registry=self._reviewer_registry(),
+                    database_acceptance_path=acceptance_path,
+                )
+        self.assertTrue(report["ready"], report["blockers"])
+        self.assertEqual(report["benchmark"]["approved_count"], gate.MIN_APPROVED_QUESTIONS)
+        self.assertEqual(report["benchmark"]["practice_area_count"], gate.MIN_PRACTICE_AREAS)
+        self.assertEqual(report["benchmark"]["ready_source_count"], 1)
+
+    def test_missing_database_operational_acceptance_blocks_otherwise_ready_release(self):
+        questions = self._approved_questions()
+        with tempfile.TemporaryDirectory() as td:
             candidate = self._candidate_file(Path(td))
             with patch.object(gate, "inspect_environment", return_value=(["environment okay"], [], [])), \
                  patch.object(gate, "build_legal_report", return_value=self._ready_report(candidate)), \
@@ -123,12 +182,15 @@ class ProductionReleaseGateTests(unittest.TestCase):
                 report = gate.evaluate_release(
                     env=self.clean_env,
                     candidate_paths=[candidate],
-                    benchmark_path=Path("approved-benchmark.jsonl"), reviewer_registry=self._reviewer_registry(),
+                    benchmark_path=Path("approved-benchmark.jsonl"),
+                    reviewer_registry=self._reviewer_registry(),
                 )
-        self.assertTrue(report["ready"], report["blockers"])
-        self.assertEqual(report["benchmark"]["approved_count"], gate.MIN_APPROVED_QUESTIONS)
-        self.assertEqual(report["benchmark"]["practice_area_count"], gate.MIN_PRACTICE_AREAS)
-        self.assertEqual(report["benchmark"]["ready_source_count"], 1)
+        self.assertFalse(report["ready"])
+        self.assertFalse(report["database_operational_acceptance"]["ready"])
+        self.assertIn(
+            "database_operational_acceptance_incomplete",
+            {item["code"] for item in report["blockers"]},
+        )
 
     def test_benchmark_sources_must_exist_in_ready_corpus(self):
         questions = self._approved_questions()
