@@ -97,6 +97,16 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
         self.assertEqual(call["Metadata"]["firm-id"], "12")
         self.assertEqual(self.store.object_presence(12, staged.object_id), (True, False))
 
+    def test_stage_with_id_preserves_restored_object_id_and_refuses_overwrite(self):
+        object_id = "d" * 32
+        staged = self.store.stage_with_id(12, object_id, b"restored bytes")
+        self.assertEqual(staged.object_id, object_id)
+        with self.assertRaises(ObjectStorageError):
+            self.store.stage_with_id(12, object_id, b"replacement bytes")
+        self.store.finalize(12, object_id)
+        with self.store.open(12, object_id) as handle:
+            self.assertEqual(handle.read(), b"restored bytes")
+
     def test_finalize_open_and_verify(self):
         payload = b"private original bytes"
         staged = self.store.stage(12, payload)
