@@ -9,7 +9,7 @@ The rubric in [Human Review Rubric for Egyptian Legal Answers](legal_answer_revi
 Create a UTF-8 JSONL file with one assessment per line. Use synthetic scenarios or approved anonymized material only; never commit privileged/client facts, secrets, or re-identifiable records.
 
 Each record requires:
-- Unique `assessment_id`, `case_id`, `practice_area`, `reviewer_name`, `review_date`, and `disposition`. `review_date` must be a real calendar date in `YYYY-MM-DD` format; malformed disposition values are rejected without crashing the validator.
+- Unique `assessment_id`, `case_id`, `practice_area`, `reviewer_id`, `reviewer_name`, `review_date`, and `disposition`. The reviewer ID and name must match a separate approved reviewer registry. `review_date` must be a real calendar date in `YYYY-MM-DD` format; malformed disposition values are rejected without crashing the validator.
 - `scores`: all seven dimensions, each scored `0`, `1`, `2`, or `not_applicable`.
 - `rationales`: an evidence-based rationale for every dimension. A not-applicable rationale must explain why the dimension does not apply.
 - `critical_defect`: explicit boolean. If true, disposition must be `unsafe` and `critical_defect_description` is required.
@@ -28,13 +28,17 @@ The last disposition is not a pass and is excluded from dimension means. Invalid
 ## Run
 
 ```bash
-python tools/evaluate_legal_answer_reviews.py /secure/path/legal-answer-reviews.jsonl
-python tools/evaluate_legal_answer_reviews.py /secure/path/legal-answer-reviews.jsonl --output /secure/path/legal-answer-review-report.json
+python tools/evaluate_legal_answer_reviews.py /secure/path/legal-answer-reviews.jsonl --reviewer-registry /secure/private/reviewer-registry.json
+python tools/evaluate_legal_answer_reviews.py /secure/path/legal-answer-reviews.jsonl --reviewer-registry /secure/private/reviewer-registry.json --output /secure/path/legal-answer-review-report.json
 python -m unittest tests.test_legal_answer_review_evaluation
 ```
 
 The JSON report includes disposition counts, practice-area counts, per-dimension score counts and means, invalid records, and critical defects. Critical defects remain separately visible and must never be hidden inside an average.
 
+## Reviewer registry
+
+The private registry must contain a `reviewers` list. Each entry records `reviewer_id`, `display_name`, `status` (`approved`, `pending`, `suspended`, or `rejected`), `qualification_basis`, `evidence_reference`, `verified_by`, and `verified_on`. Only unique, valid, approved entries count. Keep real credential evidence and the registry in controlled private storage; never commit licenses, identity documents, or confidential contact details to the public repository. Registry fields are an auditable human assertion, not independent proof of a license; a trusted operator must check the evidence before marking a reviewer approved.
+
 ## Limits
 
-A valid schema does not prove that a reviewer is qualified, that the source was authentic or current, or that the rationale is correct. The report is only as reliable as the source/version verification and human review behind each record. Do not set release thresholds from a small or unbalanced seed set. Have qualified Egyptian-law reviewers and the product owner approve the benchmark and release policy.
+A valid schema does not prove that a source was authentic or current, or that the rationale is correct. The report is only as reliable as the source/version verification and human review behind each record. Do not set release thresholds from a small or unbalanced seed set. Have qualified Egyptian-law reviewers and the product owner approve the benchmark and release policy.
