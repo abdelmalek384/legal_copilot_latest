@@ -39,8 +39,6 @@ TABLE_PATTERNS = (
 )
 
 
-MUTATED_SQL_NAMES: dict[int, set[str]] = {}
-
 def _call_name(node: ast.AST) -> str | None:
     if isinstance(node, ast.Name):
         return node.id
@@ -83,10 +81,12 @@ def _sql_text(
     assignments: dict[str, list[ast.AST]] | None = None,
     globals_: dict[str, ast.AST] | None = None,
     seen: frozenset[str] = frozenset(),
+    mutated_names: set[str] | None = None,
 ) -> tuple[str, bool, bool]:
     """Return (template, interpolated, resolved) for a SQL expression."""
     assignments = assignments or {}
     globals_ = globals_ or {}
+    mutated_names = mutated_names or set()
     if isinstance(node, ast.Constant) and isinstance(node.value, str):
         return node.value, False, True
     if isinstance(node, ast.JoinedStr):
@@ -101,7 +101,7 @@ def _sql_text(
         name = node.id
         if name in seen:
             return "{unresolved:" + name + "}", False, False
-        if name in assignments and name not in MUTATED_SQL_NAMES.get(id(assignments), set()):
+        if name in assignments and name not in mutated_names:
             values = assignments[name]
             resolved = [
                 _sql_text(value, assignments=assignments, globals_=globals_, seen=seen | {name})
@@ -243,7 +243,7 @@ def audit_source(source: str) -> dict[str, Any]:
             visited.add(name)
             node = functions[name]
             local_assignments = _assignments_for(node)
-            MUTATED_SQL_NAMES[id(local_assignments)] = _mutated_sql_names(node)
+            mutated_sql_names = _mutated_sql_names(node)
             for call in (item for item in ast.walk(node) if isinstance(item, ast.Call)):
                 called = _call_name(call.func)
                 if called in BOUNDARY_CALLS:
@@ -258,6 +258,7 @@ def audit_source(source: str) -> dict[str, Any]:
                         call.args[0] if call.args else None,
                         assignments=local_assignments,
                         globals_=global_assignments,
+                        mutated_names=mutated_sql_names,
                     )
                     if sql or dynamic or not resolved:
                         sql_calls += 1
