@@ -1288,6 +1288,50 @@
         "printed_page": null,
         "pdf_page_index_zero_based": null
       }
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-146",
+      "provision_ref": "القانون المرافق، المادة 146",
+      "topic": "appeal_of_temporary_suspension",
+      "summary_ar": "تتيح المادة للعامل التظلم من قرار الإيقاف الصادر وفق البندين الأول والثاني من المادة 145 بعريضة إلى قاضي الأمور الوقتية بالمحكمة العمالية المختصة خلال ثلاثة أيام من الإخطار أو العلم بالقرار. ويُفصل في التظلم في اليوم التالي لتقديمه على الأكثر؛ وإذا ثبت عدم صحة الإيقاف قضى القاضي بعودة العامل إلى العمل. يلزم توثيق تاريخ العلم وسبب الإيقاف.",
+      "source_refs": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "retrieved_on": "2026-10-28",
+          "basis": "Official General Authority for Amiri Press electronic text page; Article 146 text observed in indexed official-source result. No Gazette-scan page-level comparison claimed."
+        }
+      ],
+      "confidence": "provisional_official_text_observed",
+      "human_review": "pending",
+      "page_pinpoint": {
+        "source_type": "official_text_page",
+        "source_url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+        "pinpoint": "مادة (146)",
+        "printed_page": null,
+        "pdf_page_index_zero_based": null
+      }
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-147",
+      "provision_ref": "القانون المرافق، المادة 147",
+      "topic": "extension_of_suspension_and_pay",
+      "summary_ar": "تجيز المادة لصاحب العمل طلب مد الإيقاف من قاضي الأمور الوقتية قبل انتهاء مدته بعشرة أيام، مع صرف نصف أجر العامل خلال المدة الإضافية المطلوبة. وعلى القاضي البت قبل انتهاء الإيقاف؛ وإذا لم يصدر القرار ولم يعد العامل، يستمر الإيقاف مع صرف الأجر كاملًا حتى البت، وإذا رُفض الطلب يعاد العامل فور انتهاء المدة الأخيرة. يلزم التحقق من التواريخ والقرارات.",
+      "source_refs": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "retrieved_on": "2026-10-28",
+          "basis": "Official General Authority for Amiri Press electronic text page; Article 147 text observed in indexed official-source result. No Gazette-scan page-level comparison claimed."
+        }
+      ],
+      "confidence": "provisional_official_text_observed",
+      "human_review": "pending",
+      "page_pinpoint": {
+        "source_type": "official_text_page",
+        "source_url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+        "pinpoint": "مادة (147)",
+        "printed_page": null,
+        "pdf_page_index_zero_based": null
+      }
     }
   ]
 }
