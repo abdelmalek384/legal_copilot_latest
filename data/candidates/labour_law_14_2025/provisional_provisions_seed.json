@@ -769,7 +769,8 @@
       "source_refs": [
         {
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
-          "basis": "Official General Authority for Amiri Press electronic text page; Article 91 text observed in indexed official-source result. No Gazette-scan page-level comparison claimed."
+          "basis": "Official General Authority for Amiri Press electronic text page; Article 91 text observed in indexed official-source result. No Gazette-scan page-level comparison claimed.",
+          "retrieved_on": "2026-10-28"
         }
       ],
       "confidence": "provisional_official_text_observed",
@@ -790,7 +791,8 @@
       "source_refs": [
         {
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
-          "basis": "Official General Authority for Amiri Press electronic text page; Article 92 text observed in indexed official-source result. No Gazette-scan page-level comparison claimed."
+          "basis": "Official General Authority for Amiri Press electronic text page; Article 92 text observed in indexed official-source result. No Gazette-scan page-level comparison claimed.",
+          "retrieved_on": "2026-10-28"
         }
       ],
       "confidence": "provisional_official_text_observed",
@@ -811,7 +813,8 @@
       "source_refs": [
         {
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
-          "basis": "Official General Authority for Amiri Press electronic text page; Article 128 text observed in indexed official-source result. No Gazette-scan page-level comparison claimed."
+          "basis": "Official General Authority for Amiri Press electronic text page; Article 128 text observed in indexed official-source result. No Gazette-scan page-level comparison claimed.",
+          "retrieved_on": "2026-10-28"
         }
       ],
       "confidence": "provisional_official_text_observed",
@@ -886,6 +889,72 @@
         "source_type": "official_text_page",
         "source_url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
         "pinpoint": "مادة (133)",
+        "printed_page": null,
+        "pdf_page_index_zero_based": null
+      }
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-134",
+      "provision_ref": "القانون المرافق، المادة 134",
+      "topic": "worker_duties_and_confidentiality",
+      "summary_ar": "تلزم المادة العامل بأداء واجباته بأمانة وعناية، واتباع التعليمات المشروعة غير المخالفة للعقد أو القانون أو الآداب العامة وغير المعرضة للخطر، والمحافظة على أدوات ومستندات العمل والسلامة والسرية. ويجب عدم إفشاء المعلومات المتعلقة بالعمل متى كانت سرية بطبيعتها أو وفق تعليمات كتابية من صاحب العمل.",
+      "source_refs": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "retrieved_on": "2026-10-28",
+          "basis": "Official General Authority for Amiri Press electronic text page; Article 134 text observed in indexed official-source result. No Gazette-scan page-level comparison claimed."
+        }
+      ],
+      "confidence": "provisional_official_text_observed",
+      "human_review": "pending",
+      "page_pinpoint": {
+        "source_type": "official_text_page",
+        "source_url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+        "pinpoint": "مادة (134)",
+        "printed_page": null,
+        "pdf_page_index_zero_based": null
+      }
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-135",
+      "provision_ref": "القانون المرافق، المادة 135",
+      "topic": "medical_testing_and_health_confidentiality",
+      "summary_ar": "تنظم المادة الفحوص الطبية المتعلقة بتعاطي المواد المخدرة أو الأمراض المعدية عند طلب صاحب العمل وعلى نفقته، وتربط الإجراءات والضمانات بقرار من الوزير المختص، بما في ذلك فحص العينة في يوم سحبها والتحليل التوكيدي عند اختلاف النتائج. وعند تأكد إيجابية العينة تُحال المسألة إلى المحكمة العمالية المختصة، ويلتزم صاحب العمل بسرية الكشف وعدم الإفصاح عن الحالة الصحية. يجب مراجعة القرار التنفيذي والإجراءات السارية قبل التطبيق.",
+      "source_refs": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "retrieved_on": "2026-10-28",
+          "basis": "Official General Authority for Amiri Press electronic text page; Article 135 text observed in indexed official-source result. No Gazette-scan page-level comparison claimed."
+        }
+      ],
+      "confidence": "provisional_official_text_observed",
+      "human_review": "pending",
+      "page_pinpoint": {
+        "source_type": "official_text_page",
+        "source_url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+        "pinpoint": "مادة (135)",
+        "printed_page": null,
+        "pdf_page_index_zero_based": null
+      }
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-136",
+      "provision_ref": "القانون المرافق، المادة 136",
+      "topic": "worker_conflicts_and_work_information",
+      "summary_ar": "تحظر المادة، ضمن أمور أخرى، احتفاظ العامل لنفسه بمستندات أو بيانات إلكترونية أو وسائل تأمين خاصة بالعمل أو تمكين الغير منها، كما تقيد العمل لدى الغير إذا أخل بأداء العمل أو أتاح أسرار المنشأة أو ساعد على منافسة صاحب العمل. وتشمل المادة قيودًا أخرى مرتبطة بالمنافسة والمصالح والهدايا والتجمعات داخل العمل، وتلزم مراجعة النص الكامل والاستثناءات ذات الصلة قبل تطبيق أي قيد.",
+      "source_refs": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "retrieved_on": "2026-10-28",
+          "basis": "Official General Authority for Amiri Press electronic text page; Article 136 text observed in indexed official-source result. No Gazette-scan page-level comparison claimed."
+        }
+      ],
+      "confidence": "provisional_official_text_observed",
+      "human_review": "pending",
+      "page_pinpoint": {
+        "source_type": "official_text_page",
+        "source_url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+        "pinpoint": "مادة (136)",
         "printed_page": null,
         "pdf_page_index_zero_based": null
       }
