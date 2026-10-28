@@ -167,7 +167,7 @@ def _read_acceptance_manifest_file(path: Path) -> object:
     """Read a bounded regular file without following a manifest symlink."""
     if path.is_symlink():
         raise AcceptanceManifestFileError("manifest_symlink_forbidden")
-    flags = os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0)
+    flags = os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0) | getattr(os, "O_NONBLOCK", 0)
     descriptor = os.open(path, flags)
     with os.fdopen(descriptor, "r", encoding="utf-8") as stream:
         metadata = os.fstat(stream.fileno())
