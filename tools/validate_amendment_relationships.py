@@ -189,7 +189,7 @@ def validate(relationships_doc: dict, inventory_doc: dict) -> dict:
                     "reviewed_confirmed requires a confirmation_evidence object with Gazette publication and reviewer details.",
                 )
             else:
-                for field in ("gazette_issue", "gazette_page_range", "reviewer_role", "review_basis"):
+                for field in ("gazette_issue", "gazette_page_range", "reviewer_id", "review_basis"):
                     value = confirmation.get(field)
                     if not isinstance(value, str) or not value.strip():
                         add(
@@ -198,9 +198,37 @@ def validate(relationships_doc: dict, inventory_doc: dict) -> dict:
                             rid_label,
                             f"confirmation_evidence.{field} must be a non-empty string.",
                         )
+                if confirmation.get("reviewer_role") != "qualified_egyptian_lawyer":
+                    add(
+                        "error",
+                        "confirmed_relationship_reviewer_not_qualified",
+                        rid_label,
+                        "confirmation_evidence.reviewer_role must be qualified_egyptian_lawyer before a legal relationship can be marked reviewed_confirmed.",
+                    )
+                if not _https_url(confirmation.get("evidence_url")):
+                    add(
+                        "error",
+                        "confirmed_relationship_missing_traceable_evidence_url",
+                        rid_label,
+                        "confirmation_evidence.evidence_url must be a valid HTTPS URL without embedded credentials.",
+                    )
+                evidence_hash = confirmation.get("evidence_sha256")
+                if not (
+                    isinstance(evidence_hash, str)
+                    and len(evidence_hash) == 64
+                    and all(ch in "0123456789abcdefABCDEF" for ch in evidence_hash)
+                ):
+                    add(
+                        "error",
+                        "confirmed_relationship_invalid_evidence_sha256",
+                        rid_label,
+                        "confirmation_evidence.evidence_sha256 must be a 64-character hexadecimal SHA-256 digest for the reviewed evidence artifact.",
+                    )
+                parsed_dates = {}
                 for field in ("gazette_publication_date", "reviewed_on"):
                     value = confirmation.get(field)
                     valid_date = False
+                    parsed_date = None
                     if isinstance(value, str):
                         try:
                             parsed_date = date.fromisoformat(value)
@@ -214,6 +242,26 @@ def validate(relationships_doc: dict, inventory_doc: dict) -> dict:
                             rid_label,
                             f"confirmation_evidence.{field} must be a real YYYY-MM-DD calendar date.",
                         )
+                    elif parsed_date is not None:
+                        parsed_dates[field] = parsed_date
+                        if parsed_date > date.today():
+                            add(
+                                "error",
+                                "confirmed_relationship_future_confirmation_date",
+                                rid_label,
+                                f"confirmation_evidence.{field} cannot be in the future.",
+                            )
+                if (
+                    "gazette_publication_date" in parsed_dates
+                    and "reviewed_on" in parsed_dates
+                    and parsed_dates["reviewed_on"] < parsed_dates["gazette_publication_date"]
+                ):
+                    add(
+                        "error",
+                        "confirmed_relationship_review_precedes_publication",
+                        rid_label,
+                        "The confirmation review date cannot precede the Gazette publication date.",
+                    )
             if relation_type != "base_instrument" and not item.get("affected_provision") and not item.get("affected_provisions"):
                 add(
                     "error",
