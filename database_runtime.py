@@ -143,10 +143,13 @@ class DatabaseRuntime:
     @staticmethod
     def _schema_object_inventory(connection: sqlite3.Connection) -> dict[str, object]:
         """Describe schema objects and constraints without reading application rows."""
+        # Compare stored DDL as well as PRAGMA inventories. PRAGMA table_info
+        # does not expose CHECK constraints, and index metadata alone does not
+        # capture partial-index predicates or expression definitions.
         objects = tuple(
-            (str(row[0]), str(row[1]), str(row[2]))
+            (str(row[0]), str(row[1]), str(row[2]), row[3])
             for row in connection.execute(
-                "SELECT type,name,tbl_name FROM sqlite_master "
+                "SELECT type,name,tbl_name,sql FROM sqlite_master "
                 "WHERE name NOT GLOB 'sqlite_*' ORDER BY type,name"
             )
         )
