@@ -45,7 +45,9 @@ def read_migration_file(path: Path) -> str:
             data = stream.read(5_000_001)
         if len(data) > 5_000_000:
             raise MigrationError(f"Migration file exceeds the 5 MB safety limit: {path.name}")
-        return data.decode("utf-8")
+        # Match Path.read_text(newline=None) semantics so checksums remain stable
+        # when a checkout presents CRLF or bare-CR line endings.
+        return data.decode("utf-8").replace("\r\n", "\n").replace("\r", "\n")
     except MigrationError:
         raise
     except (OSError, UnicodeError) as exc:
