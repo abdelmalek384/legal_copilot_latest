@@ -175,6 +175,7 @@ def main() -> int:
                                 store.delete(firm_id, object_id)
                                 raise RuntimeError("Final S3 object failed integrity verification")
                             action = "imported"
+                    metadata_updated = False
                     if args.apply and row["storage_backend"] != "s3":
                         try:
                             db.execute("BEGIN IMMEDIATE")
@@ -187,6 +188,7 @@ def main() -> int:
                                 db.rollback()
                                 raise RuntimeError("Restored metadata changed during backend migration")
                             db.commit()
+                            metadata_updated = True
                         except Exception:
                             if db.in_transaction:
                                 db.rollback()
@@ -196,7 +198,10 @@ def main() -> int:
                                 except ObjectStorageError:
                                     pass
                             raise
-                    actions.append({"firm_id": firm_id, "object_id": object_id, "action": action})
+                    actions.append({
+                        "firm_id": firm_id, "object_id": object_id,
+                        "action": action, "metadata_updated": metadata_updated,
+                    })
             finally:
                 db.close()
 
@@ -205,7 +210,9 @@ def main() -> int:
             "bucket": bucket,
             "objects_checked": len(actions),
             "actions": actions,
-            "mutations_performed": sum(item["action"] == "imported" for item in actions),
+            "mutations_performed": sum(
+                item["action"] == "imported" or item["metadata_updated"] for item in actions
+            ),
         }, sort_keys=True))
     except (RuntimeError, ValueError, sqlite3.Error, TenantCatalogError, ObjectStorageError, OSError) as exc:
         print(f"S3 restore import could not safely complete: {exc}", file=sys.stderr)
