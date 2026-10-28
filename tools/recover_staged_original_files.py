@@ -11,6 +11,7 @@ from pathlib import Path
 
 from database_runtime import DatabaseRuntime
 from original_file_storage import LocalPrivateObjectStore, ObjectStorageError
+from s3_original_file_storage import S3PrivateObjectStore
 from tenant_catalog import TenantCatalogError, resolve_tenant_database
 
 
@@ -164,35 +165,60 @@ def main() -> int:
     )
     parser.add_argument("--json", action="store_true", help="Emit machine-readable JSON.")
     args = parser.parse_args()
-    if not args.object_root:
-        parser.error("set COPILOT_OBJECT_STORAGE_ROOT or pass --object-root")
     if args.apply and not args.quiesced:
         parser.error("--apply requires --quiesced")
     if args.quiesced and not args.apply:
         parser.error("--quiesced is only meaningful with --apply")
-    if os.environ.get("COPILOT_ENV", "").strip().lower() in {"prod", "production"}:
-        parser.error("local filesystem recovery is disabled in production mode")
-    if os.environ.get("COPILOT_OBJECT_STORAGE_BACKEND", "local").strip().lower() != "local":
-        parser.error("this command supports only the local development storage backend")
+
+    backend = os.environ.get("COPILOT_OBJECT_STORAGE_BACKEND", "local").strip().lower()
+    production = os.environ.get("COPILOT_ENV", "").strip().lower() in {"prod", "production"}
+    if backend == "local":
+        if production:
+            parser.error("local filesystem recovery is disabled in production mode")
+        if not args.object_root:
+            parser.error("set COPILOT_OBJECT_STORAGE_ROOT or pass --object-root")
+    elif backend == "s3":
+        if args.object_root:
+            parser.error("--object-root is only valid for the local backend")
+    else:
+        parser.error("COPILOT_OBJECT_STORAGE_BACKEND must be local or s3")
 
     try:
         runtime = DatabaseRuntime.from_env()
-        raw_root = Path(args.object_root).expanduser()
-        if raw_root.is_symlink() or not raw_root.is_dir():
-            raise RuntimeError("Object storage root must be an existing non-symlink directory")
-        object_root = raw_root.resolve()
-        tenant_root = runtime.paths.tenant_root.resolve()
-        control_path = runtime.paths.control_plane.resolve()
-        corpus_path = runtime.paths.legal_corpus.resolve()
-        if (
-            object_root == tenant_root
-            or object_root in tenant_root.parents
-            or tenant_root in object_root.parents
-        ):
-            raise RuntimeError("Object storage must be separate from the tenant database root")
-        for label, database_path in (("control-plane", control_path), ("legal-corpus", corpus_path)):
-            if object_root == database_path or object_root in database_path.parents:
-                raise RuntimeError(f"Object storage must not contain the {label} database")
+        if backend == "local":
+            raw_root = Path(args.object_root).expanduser()
+            if raw_root.is_symlink() or not raw_root.is_dir():
+                raise RuntimeError("Object storage root must be an existing non-symlink directory")
+            object_root = raw_root.resolve()
+            tenant_root = runtime.paths.tenant_root.resolve()
+            control_path = runtime.paths.control_plane.resolve()
+            corpus_path = runtime.paths.legal_corpus.resolve()
+            if (
+                object_root == tenant_root
+                or object_root in tenant_root.parents
+                or tenant_root in object_root.parents
+            ):
+                raise RuntimeError("Object storage must be separate from the tenant database root")
+            for label, database_path in (("control-plane", control_path), ("legal-corpus", corpus_path)):
+                if object_root == database_path or object_root in database_path.parents:
+                    raise RuntimeError(f"Object storage must not contain the {label} database")
+            store = LocalPrivateObjectStore(object_root)
+        else:
+            bucket = os.environ.get("COPILOT_S3_BUCKET", "").strip()
+            region = os.environ.get("COPILOT_S3_REGION", "").strip()
+            kms_key_id = os.environ.get("COPILOT_S3_KMS_KEY_ID", "").strip()
+            endpoint = os.environ.get("COPILOT_S3_ENDPOINT_URL", "").strip() or None
+            if not bucket or not region or not kms_key_id:
+                raise RuntimeError("S3 bucket, region, and KMS key ID must be configured")
+            try:
+                import boto3
+            except ImportError as exc:
+                raise RuntimeError("AWS SDK is not installed") from exc
+            store = S3PrivateObjectStore(
+                boto3.client("s3", region_name=region, endpoint_url=endpoint),
+                bucket=bucket, kms_key_id=kms_key_id,
+            )
+            control_path = runtime.paths.control_plane
 
         control = _connect_control(control_path)
         try:
@@ -219,7 +245,6 @@ def main() -> int:
         finally:
             control.close()
 
-        store = LocalPrivateObjectStore(object_root)
         findings = []
         recovered = 0
         for firm_id, database_path in tenant_paths:
@@ -236,6 +261,7 @@ def main() -> int:
     )
     candidates = any(item["status"] == "recoverable_candidate" for item in findings)
     payload = {
+        "backend": backend,
         "apply": args.apply,
         "quiescence_asserted": args.quiesced,
         "recovered_count": recovered,
@@ -247,7 +273,7 @@ def main() -> int:
         print(json.dumps(payload, sort_keys=True))
     else:
         print(
-            "Staged original-file recovery: "
+            f"Staged original-file recovery ({backend}): "
             + ("MANUAL REVIEW REQUIRED" if unresolved else "RECOVERY CANDIDATES" if candidates else "COMPLETE")
             + f"; recovered={recovered}; findings={len(findings)}"
         )
@@ -258,7 +284,7 @@ def main() -> int:
             )
     if unresolved:
         return 1
-    if candidates:
+    if candidates and not args.apply:
         return 1
     return 0
 
