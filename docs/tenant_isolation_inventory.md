@@ -1,11 +1,11 @@
 # SEC-01 — tenant-isolation inventory and audit findings
 
-**Review date:** 2026-10-27  
+**Review date:** 2026-10-28  
 **Scope:** static review of `app.py`, current API regression tests, schema/table definitions, and the existing multi-firm isolation plan. This is an engineering inventory, not an independent penetration test or production certification.
 
 ## Executive finding
 
-The application has a separate-database runtime when all three paths (`COPILOT_CONTROL_DB`, `COPILOT_TENANT_DB_ROOT`, and `COPILOT_CORPUS_DB`) are configured: identities and memberships live in the control plane, each firm's matters live in a distinct SQLite file, and legal-reference data lives in a shared corpus database. Explicit legacy `COPILOT_DB` compatibility remains, but it is not an approved isolation boundary for unrelated firms' confidential matters. A further route review found and closed an intra-firm disclosure path where assigned tasks could reveal a nonmember's case title through dashboard/calendar output (PR #573). Application responses now receive central no-store cache directives (PR #576). Route/query isolation still needs exhaustive review in the separate runtime.
+The application has a separate-database runtime when all three paths (`COPILOT_CONTROL_DB`, `COPILOT_TENANT_DB_ROOT`, and `COPILOT_CORPUS_DB`) are configured: identities and memberships live in the control plane, each firm's matters live in a distinct SQLite file, and legal-reference data lives in a shared corpus database. Explicit legacy `COPILOT_DB` compatibility remains, but it is not an approved isolation boundary for unrelated firms' confidential matters. A further route review found and closed an intra-firm disclosure path where assigned tasks could reveal a nonmember's case title through dashboard/calendar output (PR #573). Application responses now receive central no-store cache directives (PR #576). PR #714's strict route-to-SQL static gate is merged and reports zero unresolved SQL expressions, zero unclassified SQL routes, zero direct SQLite opens, and nine dynamic SQL sites on a review allowlist. PR #671's original-file lifecycle and PR #729's identity invitation/account-recovery lifecycle are now merged, with both CI workflows passing on the identity PR's current head. Route/query behavioral authorization review, live S3/KMS validation, witnessed recovery, production email configuration, and independent security review remain open.
 
 **Do not onboard unrelated firms or production confidential client material yet.** Exhaustive route/query review, first-deployment operational controls, restore/rollback drills, retention and monitoring policies, and independent security review remain release blockers.
 
