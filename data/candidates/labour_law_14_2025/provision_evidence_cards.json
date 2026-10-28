@@ -709,6 +709,130 @@
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
       "not_usable_for": "sick-pay calculation or final advice"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-91-ASSIGNMENT-LIMITS",
+      "question": "When may an employer assign work outside the agreed individual or collective contract terms?",
+      "provisional_answer_ar": "تمنع المادة 91 صاحب العمل، كقاعدة عامة، من مخالفة الشروط المتفق عليها أو تكليف العامل بعمل غير متفق عليه. وتورد استثناءات مؤقتة لحالات الضرورة كمنع الحوادث أو إصلاح آثارها أو القوة القاهرة، كما تجيز التكليف بعمل لا يختلف جوهرياً عن العمل المتفق عليه، مع عدم المساس بحقوق العامل.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 91",
+        "official_gazette_printed_page": 44,
+        "pdf_page_index_zero_based": 42
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "النص الرسمي القابل للبحث؛ مراجعة موضعية مطلوبة عند التطبيق",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص الصفحة المطبوعة 44؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً. يعرض النص المستخرج المادة 91.",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted official Gazette PDF search result",
+          "supports": "نص المادة 91 على الصفحة المطبوعة 44"
+        }
+      ],
+      "limitations": [
+        "يتوقف التطبيق على طبيعة المهمة والضرورة والمدة والفروق الجوهرية",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "deciding an individual workplace dispute without facts and counsel review"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-92-EMPLOYEE-FILE",
+      "question": "What employee-file, access, and retention duties does Article 92 state?",
+      "provisional_answer_ar": "تلزم المادة 92 صاحب العمل بإنشاء ملف ورقي أو إلكتروني لكل عامل يتضمن بيانات الخدمة والمستندات المحددة في النص. وتقصر الاطلاع على هذه البيانات على من يجيز له القانون ذلك، وتوجب الاحتفاظ بالملف خمس سنوات على الأقل من انتهاء علاقة العمل، مع استمرار الاحتفاظ به عند وجود نزاع قضائي حتى الفصل فيه بحكم بات.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 92",
+        "official_gazette_printed_page": 44,
+        "pdf_page_index_zero_based": 42
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "النص الرسمي القابل للبحث؛ مراجعة موضعية مطلوبة عند التطبيق",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص الصفحة المطبوعة 44؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً. يعرض النص المستخرج المادة 92 بما فيها قيود الاطلاع ومدة الاحتفاظ.",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted official Gazette PDF search result",
+          "supports": "نص المادة 92 على الصفحة المطبوعة 44"
+        }
+      ],
+      "limitations": [
+        "يجب مراجعة متطلبات حماية البيانات والتأمينات والتزامات الاحتفاظ ذات الصلة",
+        "لا تضع هذه البطاقة سياسة احتفاظ كاملة للمنشأة",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and compliance-review checklist",
+      "not_usable_for": "standalone retention policy or final compliance advice"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-93-RETURN-TRANSPORT",
+      "question": "What return-transport obligation does Article 93 describe when employment ends?",
+      "provisional_answer_ar": "تقرر المادة 93 التزام صاحب العمل بنقل العامل من الجهة التي تعاقد معها فيها إلى مكان العمل، وإعادته إلى تلك الجهة خلال ثلاثة أيام من انتهاء العقد للأسباب المحددة بالقانون، بما في ذلك أثناء فترة الاختبار، ما لم يرفض العامل العودة كتابة خلال المدة المشار إليها. يجب فحص سبب الانتهاء والوقائع قبل تقرير انطباق الالتزام.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 93",
+        "official_gazette_printed_page": 44,
+        "pdf_page_index_zero_based": 42
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "النص الرسمي القابل للبحث؛ مراجعة موضعية مطلوبة عند التطبيق",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص الصفحة المطبوعة 44؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً. يعرض النص المستخرج المادة 93.",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted official Gazette PDF search result",
+          "supports": "نص المادة 93 على الصفحة المطبوعة 44"
+        }
+      ],
+      "limitations": [
+        "تقتصر القاعدة على أسباب الانتهاء التي يشملها النص",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "final liability or reimbursement determination"
     }
   ],
   "activation_gates": [
