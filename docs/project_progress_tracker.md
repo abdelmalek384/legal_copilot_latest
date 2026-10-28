@@ -248,3 +248,34 @@ The full Tests workflow passed on combined main commit 9f7392e9f7a22e4743ad00ef5
 4. **Database work:** leave the assigned database/identity workstream separate. No irreversible database actions were taken here.
 
 Overall readiness remains 42% ± 8%. Engineering safeguards have improved, but a comprehensive verified Egyptian legal corpus and qualified legal review are still missing.
+
+
+## Latest checkpoint — 2026-10-28 (after PRs #709–#710)
+
+This checkpoint supersedes earlier status estimates where they differ. Percentages are rough workstream estimates, not additive and not measures of legal accuracy.
+
+| Workstream | Estimate | Status / next gate |
+|---|---:|---|
+| Overall product readiness | 42% ± 8 percentage points | Unchanged. New safety tooling does not resolve the verified-law corpus, independent review, or manual acceptance gates. |
+| Verified Egyptian legal corpus | 6% | Critical blocker: original legal artifacts, rights scope, effective-date/amendment reconciliation, and qualified Egyptian-lawyer review are still missing. |
+| Research evaluation and citation integrity | 78% | Evaluation now requires reviewer-registry approval before assessments count. Actual lawyer-reviewed benchmark records and runs are still absent. |
+| Legal corpus audit safeguards | 75% | Audits flag contradictions; they do not authenticate law or prove completeness/currentness. |
+| Source provenance and acquisition readiness | 85% | Fresh terms reviews and explicit HTTPS terms URLs are required for readiness. Source-specific permissions remain unknown unless backed by evidence. |
+| UI/UX implementation | 55% | Bilingual workflow changes and modal keyboard focus safeguards are merged; manual RTL/LTR, responsive, screen-reader, and lawyer-workflow QA remains open. |
+| Database/tenant isolation | 65% estimate | Separate workstream owned by the other AI. Do not overlap migrations, tenant storage, identity lifecycle, or production data actions. |
+
+### Newly merged
+
+- **#709 — explicit source-terms URLs:** the acquisition-readiness audit now requires valid HTTPS terms URLs in both the source register and document manifest, rejecting missing or credential-bearing URLs. The first CI run exposed four older CLI fixtures without terms URLs; the fixtures were updated and the corrected PR Tests and non-database safety workflows passed. The full Tests workflow passed on main commit 4144673b6f18a2cd0a5b89ca9eb1eb1213b9d5b9.
+- **#710 — approved reviewer registry:** human-answer evaluation records must match a unique approved reviewer ID and name, with qualification basis, evidence reference, verifier, and a valid non-future verification date. The full Tests workflow passed on the final PR commit a7171896102e3d1a15d6bd2b625e8fb0b689a2f7; post-merge Tests are running on main commit aae7fad31d901c67bd1e7094fd65fb95fdb57a64.
+
+### Current blockers and next actions
+
+1. **Current-main validation:** await the post-merge full Tests workflow on aae7fad31d901c67bd1e7094fd65fb95fdb57a64; record any failure rather than relying on PR-only CI.
+2. **Reviewer governance:** the registry is an auditable administrative assertion, not independent proof of a professional license. Keep real credential evidence in private controlled storage; a trusted operator must verify it before approving a reviewer.
+3. **Legal corpus:** keep candidates blocked until source-specific rights evidence and original text/version checks exist. Labour Law 14/2025 still needs independent source comparison, effective-date/amendment reconciliation, and Egyptian-lawyer sign-off.
+4. **Human evaluation:** do not claim legal-answer accuracy until approved reviewers score a sufficiently balanced benchmark with exact source versions and pin-cites.
+5. **UI/UX:** manual browser, keyboard, screen-reader, RTL/LTR, and lawyer-workflow acceptance is not yet recorded.
+6. **Database work:** keep assigned identity, tenant storage, migrations, and production data operations separate. No irreversible database changes were made in this non-DB workstream.
+
+The overall readiness estimate remains 42% ± 8%. The recent work makes permission and reviewer claims more accountable, but it does not itself establish reuse rights, legal authenticity, currentness, or product readiness.
