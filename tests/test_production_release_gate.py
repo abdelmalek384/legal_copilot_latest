@@ -172,6 +172,26 @@ class ProductionReleaseGateTests(unittest.TestCase):
         self.assertEqual(report["benchmark"]["practice_area_count"], gate.MIN_PRACTICE_AREAS)
         self.assertEqual(report["benchmark"]["ready_source_count"], 1)
 
+    def test_missing_database_operational_acceptance_blocks_otherwise_ready_release(self):
+        questions = self._approved_questions()
+        with tempfile.TemporaryDirectory() as td:
+            candidate = self._candidate_file(Path(td))
+            with patch.object(gate, "inspect_environment", return_value=(["environment okay"], [], [])), \
+                 patch.object(gate, "build_legal_report", return_value=self._ready_report(candidate)), \
+                 patch.object(gate, "read_jsonl", return_value=questions):
+                report = gate.evaluate_release(
+                    env=self.clean_env,
+                    candidate_paths=[candidate],
+                    benchmark_path=Path("approved-benchmark.jsonl"),
+                    reviewer_registry=self._reviewer_registry(),
+                )
+        self.assertFalse(report["ready"])
+        self.assertFalse(report["database_operational_acceptance"]["ready"])
+        self.assertIn(
+            "database_operational_acceptance_incomplete",
+            {item["code"] for item in report["blockers"]},
+        )
+
     def test_benchmark_sources_must_exist_in_ready_corpus(self):
         questions = self._approved_questions()
         questions[0]["expected_sources"] = ["SRC-OTHER"]
