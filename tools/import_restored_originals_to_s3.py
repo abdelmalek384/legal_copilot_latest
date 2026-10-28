@@ -130,13 +130,13 @@ def main() -> int:
                         raise RuntimeError("Restored original metadata crosses its tenant binding")
                     purged = has_purged and row["purged_at"] is not None
                     namespace = object_root / f"firm-{firm_id}"
-                    if namespace.is_symlink() or not namespace.is_dir():
-                        raise RuntimeError("Restored firm object namespace is missing or unsafe")
                     source = namespace / f"{object_id}.blob"
                     if purged:
-                        if source.exists() or source.is_symlink():
+                        if namespace.is_symlink() or source.exists() or source.is_symlink():
                             raise RuntimeError("Purged original unexpectedly exists in restored object inventory")
                         continue
+                    if namespace.is_symlink() or not namespace.is_dir():
+                        raise RuntimeError("Restored firm object namespace is missing or unsafe")
                     if row["state"] not in {"ready", "quarantined"}:
                         raise RuntimeError("Restore contains unfinished original-object metadata")
                     digest, size = _digest(source)
