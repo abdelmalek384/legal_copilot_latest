@@ -172,6 +172,32 @@ class DatabaseRuntimeTests(unittest.TestCase):
             with self.assertRaisesRegex(DatabaseRuntimeError, "unreferenced database files"):
                 runtime.initialize()
 
+    def test_schema_inventory_detects_check_constraint_drift(self):
+        expected = sqlite3.connect(":memory:")
+        altered = sqlite3.connect(":memory:")
+        try:
+            expected.execute(
+                "CREATE TABLE policy_state (id INTEGER PRIMARY KEY, "
+                "state TEXT NOT NULL CHECK(state IN ('pending','approved')))"
+            )
+            altered.execute(
+                "CREATE TABLE policy_state (id INTEGER PRIMARY KEY, "
+                "state TEXT NOT NULL CHECK(state IN ('pending','approved','rejected')))"
+            )
+            # PRAGMA column metadata is identical; the stored DDL is the
+            # evidence that the CHECK constraint has changed.
+            self.assertEqual(
+                DatabaseRuntime._schema_object_inventory(expected)["columns"],
+                DatabaseRuntime._schema_object_inventory(altered)["columns"],
+            )
+            self.assertNotEqual(
+                DatabaseRuntime._schema_object_inventory(expected),
+                DatabaseRuntime._schema_object_inventory(altered),
+            )
+        finally:
+            expected.close()
+            altered.close()
+
     def test_production_runtime_refuses_schema_object_drift(self):
         base = self.root / "production-schema-drift"
         tenant_root = base / "tenants"
