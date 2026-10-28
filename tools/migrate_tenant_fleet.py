@@ -141,6 +141,8 @@ def build_plan(control_db: str | Path, tenant_root: str | Path, migrations_root:
             ).fetchone()
             if profile is None or profile["profile"] != "control_plane":
                 raise FleetMigrationError("Control database is not immutably bound to control_plane")
+            if control.execute("PRAGMA foreign_key_check").fetchall():
+                raise FleetMigrationError("Control-plane catalog has foreign-key violations")
             rows = control.execute(
                 "SELECT c.firm_id,c.database_file,c.status,f.status AS firm_status "
                 "FROM tenant_database_catalog c JOIN firms f ON f.id=c.firm_id "
@@ -148,6 +150,32 @@ def build_plan(control_db: str | Path, tenant_root: str | Path, migrations_root:
             ).fetchall()
         except sqlite3.Error as exc:
             raise FleetMigrationError("Control-plane catalog is missing or unreadable") from exc
+
+    # Every SQLite database file in this dedicated root must have one catalog
+    # reference. Ignoring an orphan would make release preflight incomplete and
+    # could leave matter data outside the backup/migration inventory.
+    catalog_files = set()
+    for row in rows:
+        filename = row["database_file"]
+        if filename is None:
+            continue
+        firm_id = int(row["firm_id"])
+        match = _FILENAME.fullmatch(filename) if isinstance(filename, str) else None
+        if not match or int(match.group("firm_id")) != firm_id:
+            raise FleetMigrationError(
+                f"Catalog filename is invalid or mismatched for firm {firm_id}"
+            )
+        catalog_files.add(filename)
+    try:
+        actual_database_files = {
+            entry.name for entry in root.iterdir() if entry.name.endswith(".sqlite3")
+        }
+    except OSError as exc:
+        raise FleetMigrationError("Tenant storage inventory could not be read") from exc
+    if actual_database_files != catalog_files:
+        raise FleetMigrationError(
+            "Tenant storage contains missing or unsafe database files, or unreferenced files"
+        )
 
     targets = []
     skipped = []

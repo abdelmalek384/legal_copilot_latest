@@ -111,6 +111,25 @@ class TenantFleetMigrationTests(unittest.TestCase):
                 "SELECT name FROM sqlite_master WHERE type='table' AND name='fleet_migration_test'"
             ).fetchone())
 
+    def test_preflight_refuses_orphaned_control_plane_catalog_rows(self):
+        control_path = self.runtime.paths.control_plane
+        connection = sqlite3.connect(control_path)
+        try:
+            connection.execute("PRAGMA foreign_keys=OFF")
+            connection.execute(
+                "INSERT INTO tenant_database_catalog(firm_id,database_file,status) "
+                "VALUES(999,NULL,'failed')"
+            )
+            connection.commit()
+        finally:
+            connection.close()
+        with self.assertRaisesRegex(FleetMigrationError, "foreign-key violations"):
+            build_plan(
+                control_path,
+                self.runtime.paths.tenant_root,
+                self.migrations_root,
+            )
+
     def test_preflight_refuses_catalog_file_belonging_to_another_firm(self):
         control = self.runtime.control_connection()
         control.execute(
@@ -143,6 +162,20 @@ class TenantFleetMigrationTests(unittest.TestCase):
         control.execute("UPDATE firms SET status='disabled' WHERE id=?", (self.firm_id,))
         control.commit()
         with self.assertRaisesRegex(FleetMigrationError, "conflicts with provisioned catalog state"):
+            build_plan(
+                self.runtime.paths.control_plane,
+                self.runtime.paths.tenant_root,
+                self.migrations_root,
+            )
+
+    def test_preflight_refuses_unreferenced_tenant_database_file(self):
+        # Keep the orphan filename in the tenant naming family so the test
+        # proves catalog reconciliation, not filename parsing, catches it.
+        orphan_path = self.runtime.paths.tenant_root / ("tenant-999-" + "a" * 32 + ".sqlite3")
+        sqlite3.connect(orphan_path).close()
+        if os.name == "posix":
+            os.chmod(orphan_path, 0o600)
+        with self.assertRaisesRegex(FleetMigrationError, "unreferenced files"):
             build_plan(
                 self.runtime.paths.control_plane,
                 self.runtime.paths.tenant_root,
