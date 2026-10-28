@@ -2,6 +2,7 @@ import json
 import os
 import sqlite3
 import stat
+import shutil
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -56,6 +57,58 @@ class DatabaseRuntimeTests(unittest.TestCase):
         with sqlite3.connect(control) as db:
             self.assertIsNone(db.execute(
                 "SELECT name FROM sqlite_master WHERE type='table' AND name='schema_migrations'"
+            ).fetchone())
+
+    def test_production_runtime_refuses_existing_but_unprovisioned_files(self):
+        base = self.root / "production-empty"
+        tenant_root = base / "tenants"
+        tenant_root.mkdir(parents=True, mode=0o700)
+        control = base / "control.sqlite3"
+        corpus = base / "corpus.sqlite3"
+        sqlite3.connect(control).close()
+        sqlite3.connect(corpus).close()
+        if os.name == "posix":
+            os.chmod(tenant_root, 0o700)
+            os.chmod(control, 0o600)
+            os.chmod(corpus, 0o600)
+        runtime = DatabaseRuntime(control, tenant_root, corpus)
+        with patch.dict(os.environ, {"COPILOT_ENV": "production"}):
+            with self.assertRaisesRegex(DatabaseRuntimeError, "not pre-provisioned"):
+                runtime.initialize()
+        with sqlite3.connect(control) as db:
+            self.assertIsNone(db.execute(
+                "SELECT name FROM sqlite_master WHERE type='table' AND name='schema_migrations'"
+            ).fetchone())
+
+    def test_production_runtime_refuses_pending_migrations_instead_of_applying_them(self):
+        base = self.root / "production-pending"
+        migrations_root = base / "migrations"
+        shutil.copytree(Path(__file__).resolve().parents[1] / "migrations", migrations_root)
+        control = base / "control.sqlite3"
+        tenant_root = base / "tenants"
+        corpus = base / "corpus.sqlite3"
+        development_runtime = DatabaseRuntime(
+            control, tenant_root, corpus, migrations_root=migrations_root
+        )
+        with patch.dict(os.environ, {"COPILOT_ENV": "development"}):
+            development_runtime.initialize()
+        development_runtime.close_current_thread()
+        if os.name == "posix":
+            os.chmod(tenant_root, 0o700)
+        pending = migrations_root / "control_plane" / "9999_pending_production_test.sql"
+        pending.write_text(
+            "CREATE TABLE pending_production_test(id INTEGER PRIMARY KEY);",
+            encoding="utf-8",
+        )
+        runtime = DatabaseRuntime(
+            control, tenant_root, corpus, migrations_root=migrations_root
+        )
+        with patch.dict(os.environ, {"COPILOT_ENV": "production"}):
+            with self.assertRaisesRegex(DatabaseRuntimeError, "migration history is pending"):
+                runtime.initialize()
+        with sqlite3.connect(control) as db:
+            self.assertIsNone(db.execute(
+                "SELECT name FROM sqlite_master WHERE type='table' AND name='pending_production_test'"
             ).fetchone())
 
     def test_production_runtime_requires_private_tenant_root(self):
