@@ -2,7 +2,7 @@
 
 **Record:** `EG-LABOUR-LAW-14-2025-EVIDENCE-CARDS-2026-10-28`  
 **Prepared on:** 2026-10-28  
-**Cards in this report:** 197
+**Cards in this report:** 216
 
 ## Status and limits
 
@@ -14,7 +14,7 @@
 - Collection permission: `unknown`; commercial reuse: `unknown`.
 - Authoritative search eligibility: `false`.
 
-Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF binary has not been downloaded or hashed; only specifically listed page images have been visually inspected, and the full PDF has not been comprehensively reviewed; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording. Additional cards for accompanying-law Articles 4–9 were prepared from text extraction of the government-hosted Official Gazette PDF on 2026-10-28. The PDF binary has not been downloaded or hashed; only specifically listed page images have been visually inspected, and the full PDF has not been comprehensively reviewed; page pinpointing is provisional and all cards remain non-authoritative. Additional cards for accompanying-law Articles 10–12 were prepared from the government-hosted Official Gazette PDF text extraction on 2026-10-28. Page references are based on the extracted page labels; the PDF binary has not been downloaded or hashed; only explicitly recorded page images have been visually inspected. Cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 16, 22, 23, 25 and 27 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; these cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 28–31 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 32–34 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 36–37 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshot checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 40–43 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 44–48 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 49–54 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 126 and 127 were added from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 55. The original PDF remains undownloaded and unhashed, and both cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 121 and 122 were prepared from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 53. Article 121 was cross-checked against a secondary English translation, and Article 122 against a secondary legal text copy. The original PDF remains undownloaded and unhashed; both cards remain provisional and non-authoritative. An additional card for accompanying-law Article 123 was added from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 53. It is cross-checked against a secondary English translation, but the implementing ministerial decision has not been identified and reviewed in this task. The original PDF remains undownloaded and unhashed; the card is provisional and non-authoritative. Additional provisional cards for accompanying-law Articles 117–120 and 124–125 were added on 2026-10-28 from indexed official Amiri Press / government-hosted Gazette text leads, cross-checked against a secondary transcription. Gazette printed-page pinpoints are provisional (52 for Articles 117–120; 54 for Articles 124–125); the original PDF remains undownloaded, unhashed, and not visually inspected. These additions do not establish currentness, completeness, reuse rights, or lawyer approval. Additional provisional cards for accompanying-law Articles 128–130 were added on 2026-10-28 using indexed text from the government-hosted Official Gazette PDF (printed page 56; provisional pinpoint) and a secondary transcription cross-check. The official publisher page is recorded as a source lead but was not directly opened in this round. The Gazette PDF remains undownloaded, unhashed, and not visually inspected; cards remain non-authoritative. Additional provisional cards for accompanying-law Articles 131–132 were added on 2026-10-28 from indexed government-hosted Gazette text with a secondary transcription cross-check. Printed-page pinpoints are provisional; the source PDF remains undownloaded, unhashed, and not visually inspected. The sick-leave card distinguishes the general medical-authority rule from the special industrial-establishment tiers; implementing decisions and related social-insurance rules remain unresolved. PAGE-LEVEL VISUAL CHECK UPDATE (2026-10-28): the official Gazette PDF at the ETA portal is accessible through the web PDF viewer (110 pages) and rendered page images were visually checked for printed Gazette pages 52–57. The article-to-page mapping is: Arts. 117–120 p.52; 121–122 p.53; 123–124 p.54; 125–127 p.55; 128–130 p.56; 131–132 p.57. This corrects the prior provisional page assignments for Article 125 (p.55, not p.54) and Article 131 (p.57, not p.56). PDF page indices are printed page minus 2. The source binary still could not be downloaded in the runtime, so no SHA-256 is claimed; only the listed pages were visually checked, not the entire instrument or amendment history. CURRENTNESS LEAD (2026-10-28): Ministry of Labour announcement dated 2026-10-01 identifies Circular 22/2026 for the 8 October 2026 private-sector holiday and confirms that Decision 294/2025 lists Armed Forces Day (6 October) as a paid holiday. This is event-specific implementation evidence, not proof of a general amendment or a complete current holiday list. Additional provisional cards for Articles 133–136 were added after visual inspection of official Gazette printed pages 57–59 (PDF indices 55–57) on 2026-10-28. Article 134 begins on printed page 57 and continues onto page 58. The PDF binary remains undownloaded and unhashed; summaries are provisional and no lawyer review or currentness certification is claimed. Additional provisional disciplinary/work-regulation cards for Articles 137–141 were added after visual inspection of official Gazette printed pages 60–61 (PDF indices 58–59) on 2026-10-28. These cards summarize statutory framework only; the current general workplace-regulation decision (162/2026), each employer's actual regulation, full amendment history, and legal review remain outstanding. Additional provisional disciplinary cards for Articles 142–148 were added after visual inspection of official Gazette printed pages 62–63 (PDF indices 60–61) on 2026-10-28. These summaries cover investigation assignment, deduction caps, repeated violations, temporary suspension, suspension grievances/extensions, and authority to impose discipline. They remain provisional and require full text/currentness/legal review. Additional provisional individual-dispute cards for Articles 149–150 were added after visual inspection of official Gazette printed pages 64–65 (PDF indices 62–63) on 2026-10-28. Procedural deadlines and financial consequences require full-text extraction and legal review before any case-specific use. Additional provisional cards for Articles 151–158 were added after visual inspection of official Gazette printed pages 65–67 (PDF indices 63–65) on 2026-10-28. They cover worker liability for damage, union protections, disciplinary-fine accounting, expiry/renewal of fixed-term or specific-work contracts, and notice/justification rules for indefinite-term termination. They remain provisional; case-specific calculations require full-text and legal review. Additional provisional termination-notice cards for Articles 159–164 were added after visual inspection of official Gazette printed pages 68–69 (PDF indices 66–67) on 2026-10-28. They cover notice during leave, contract continuity, notice-period constraints, paid job-search time, employer waiver of work, and payment in lieu of unserved notice. These cards remain provisional and require full legal review. Additional provisional termination and end-of-service cards for accompanying-law Articles 165–175 were added on 2026-10-28 from the searchable extraction of the government-hosted Official Gazette PDF. The extracted lines place Article 165 on printed page 69/PDF index 67; Articles 166–169 begin on printed page 70/PDF index 68; Articles 170–171 appear on printed page 71/PDF index 69; and Articles 172–175 appear on printed page 72/PDF index 70. Page locations are text-extraction pinpoints, not independent visual inspection of every cited page. Cards remain provisional; source binary hash, comprehensive currentness/amendment review, reuse review and Egyptian-lawyer review remain outstanding. Additional provisional procedural cards for accompanying-law Articles 176–187 were added on 2026-10-28 from searchable text extraction of the government-hosted Official Gazette PDF. The extracted viewer pages place Articles 176–180 on printed page 73/PDF index 71; Articles 181–185 on printed page 74/PDF index 72; and Articles 186–187 on printed page 75/PDF index 73. These are text-extraction pinpoints, not independent visual inspection of every cited page. The source PDF binary remains unavailable for hashing, and currentness, amendment history, reuse rights and qualified legal review remain unresolved. On 2026-10-28, added provisional cards for accompanying-law Articles 188–200 (social consultation and collective bargaining). Their article text was checked against a public secondary transcription of Law 14/2025 at Law Hub; official publisher and government Gazette links remain attached as primary-source leads. The printed-page mapping (Arts. 188–193 p.76/index 74; Arts. 194–198 p.77/index 75; Arts. 199–200 p.78/index 76) is an inferred text-extraction map, not a visual page-by-page verification. The source PDF remains unavailable locally for hashing; currentness, amendments, reuse rights, and lawyer review remain unresolved. Added 14 provisional cards for accompanying-law Articles 201–214 on 2026-10-28: language, renewal, filing and challenge of collective agreements, display, joining, registry updates, good-faith implementation, hardship, enforcement, representative actions, dispute procedures, scope of collective disputes, and the one-month negotiation-to-conciliation threshold. Cross-checked against a public secondary transcription; official-source links remain attached. Inferred Gazette page map: Arts. 201–205 printed p.78/PDF index 76; Arts. 206–212 p.79/index 77; Arts. 213–214 p.80/index 78. These page pinpoints are not visually verified. No source binary hash, complete currentness audit, reuse clearance or lawyer review is claimed. Added 16 provisional cards for accompanying-law Articles 215–230 (conciliation timing, settlement documentation, mediation/arbitration referral, centre structure, mediator/arbitrator lists and eligibility, selection and replacement deadlines, mediation recommendations, arbitration composition/submission/award and review). Cross-checked against the public Law Hub transcription; official-source leads remain attached. Inferred Gazette page map: Arts. 215–218 printed p.80–81/PDF index 78–79; Arts. 219–224 p.81–82/index 79–80; Arts. 225–228 p.82/index 80; Arts. 229–230 p.83/index 81. These page pinpoints are not visually verified; no PDF hash, currentness audit, reuse clearance or lawyer review is claimed. Added 11 provisional cards for accompanying-law Articles 231–241 covering strike prerequisites and notice, strike restrictions, effect on employment obligations, economic closure/down-sizing, committee applications and deadlines, notice, selection criteria, closure restrictions during collective disputes/strikes, and temporary economic changes to employment terms. Public Law Hub transcription used as the text fallback while primary official links remain attached. Inferred Gazette page map: Arts. 231–236 printed p.83/PDF index 81; Arts. 237–241 p.84/index 82. These pinpoints are not visually verified; no PDF hash, currentness audit, reuse clearance or lawyer review is claimed. Added 14 provisional occupational safety, health and work-environment cards for accompanying-law Articles 242–255: chapter and establishment scope, compliance offices, physical/engineering/biological/chemical/indirect hazards, fire and confined spaces, emergency plans and worker withdrawal from imminent serious danger, harassment/bullying/violence prevention, and technical safety standards. Cross-checked against the public Law Hub transcription while retaining official publisher and government Gazette links. Inferred Gazette page map: Arts. 242–247 printed p.85/PDF index 83; Arts. 248–253 p.86/index 84; Arts. 254–255 p.87/index 85. These pinpoints are not visually verified; no hash, full currentness audit, reuse clearance or lawyer review is claimed.
+Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF binary has not been downloaded or hashed; only specifically listed page images have been visually inspected, and the full PDF has not been comprehensively reviewed; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording. Additional cards for accompanying-law Articles 4–9 were prepared from text extraction of the government-hosted Official Gazette PDF on 2026-10-28. The PDF binary has not been downloaded or hashed; only specifically listed page images have been visually inspected, and the full PDF has not been comprehensively reviewed; page pinpointing is provisional and all cards remain non-authoritative. Additional cards for accompanying-law Articles 10–12 were prepared from the government-hosted Official Gazette PDF text extraction on 2026-10-28. Page references are based on the extracted page labels; the PDF binary has not been downloaded or hashed; only explicitly recorded page images have been visually inspected. Cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 16, 22, 23, 25 and 27 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; these cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 28–31 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 32–34 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 36–37 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshot checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 40–43 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 44–48 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 49–54 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 126 and 127 were added from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 55. The original PDF remains undownloaded and unhashed, and both cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 121 and 122 were prepared from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 53. Article 121 was cross-checked against a secondary English translation, and Article 122 against a secondary legal text copy. The original PDF remains undownloaded and unhashed; both cards remain provisional and non-authoritative. An additional card for accompanying-law Article 123 was added from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 53. It is cross-checked against a secondary English translation, but the implementing ministerial decision has not been identified and reviewed in this task. The original PDF remains undownloaded and unhashed; the card is provisional and non-authoritative. Additional provisional cards for accompanying-law Articles 117–120 and 124–125 were added on 2026-10-28 from indexed official Amiri Press / government-hosted Gazette text leads, cross-checked against a secondary transcription. Gazette printed-page pinpoints are provisional (52 for Articles 117–120; 54 for Articles 124–125); the original PDF remains undownloaded, unhashed, and not visually inspected. These additions do not establish currentness, completeness, reuse rights, or lawyer approval. Additional provisional cards for accompanying-law Articles 128–130 were added on 2026-10-28 using indexed text from the government-hosted Official Gazette PDF (printed page 56; provisional pinpoint) and a secondary transcription cross-check. The official publisher page is recorded as a source lead but was not directly opened in this round. The Gazette PDF remains undownloaded, unhashed, and not visually inspected; cards remain non-authoritative. Additional provisional cards for accompanying-law Articles 131–132 were added on 2026-10-28 from indexed government-hosted Gazette text with a secondary transcription cross-check. Printed-page pinpoints are provisional; the source PDF remains undownloaded, unhashed, and not visually inspected. The sick-leave card distinguishes the general medical-authority rule from the special industrial-establishment tiers; implementing decisions and related social-insurance rules remain unresolved. PAGE-LEVEL VISUAL CHECK UPDATE (2026-10-28): the official Gazette PDF at the ETA portal is accessible through the web PDF viewer (110 pages) and rendered page images were visually checked for printed Gazette pages 52–57. The article-to-page mapping is: Arts. 117–120 p.52; 121–122 p.53; 123–124 p.54; 125–127 p.55; 128–130 p.56; 131–132 p.57. This corrects the prior provisional page assignments for Article 125 (p.55, not p.54) and Article 131 (p.57, not p.56). PDF page indices are printed page minus 2. The source binary still could not be downloaded in the runtime, so no SHA-256 is claimed; only the listed pages were visually checked, not the entire instrument or amendment history. CURRENTNESS LEAD (2026-10-28): Ministry of Labour announcement dated 2026-10-01 identifies Circular 22/2026 for the 8 October 2026 private-sector holiday and confirms that Decision 294/2025 lists Armed Forces Day (6 October) as a paid holiday. This is event-specific implementation evidence, not proof of a general amendment or a complete current holiday list. Additional provisional cards for Articles 133–136 were added after visual inspection of official Gazette printed pages 57–59 (PDF indices 55–57) on 2026-10-28. Article 134 begins on printed page 57 and continues onto page 58. The PDF binary remains undownloaded and unhashed; summaries are provisional and no lawyer review or currentness certification is claimed. Additional provisional disciplinary/work-regulation cards for Articles 137–141 were added after visual inspection of official Gazette printed pages 60–61 (PDF indices 58–59) on 2026-10-28. These cards summarize statutory framework only; the current general workplace-regulation decision (162/2026), each employer's actual regulation, full amendment history, and legal review remain outstanding. Additional provisional disciplinary cards for Articles 142–148 were added after visual inspection of official Gazette printed pages 62–63 (PDF indices 60–61) on 2026-10-28. These summaries cover investigation assignment, deduction caps, repeated violations, temporary suspension, suspension grievances/extensions, and authority to impose discipline. They remain provisional and require full text/currentness/legal review. Additional provisional individual-dispute cards for Articles 149–150 were added after visual inspection of official Gazette printed pages 64–65 (PDF indices 62–63) on 2026-10-28. Procedural deadlines and financial consequences require full-text extraction and legal review before any case-specific use. Additional provisional cards for Articles 151–158 were added after visual inspection of official Gazette printed pages 65–67 (PDF indices 63–65) on 2026-10-28. They cover worker liability for damage, union protections, disciplinary-fine accounting, expiry/renewal of fixed-term or specific-work contracts, and notice/justification rules for indefinite-term termination. They remain provisional; case-specific calculations require full-text and legal review. Additional provisional termination-notice cards for Articles 159–164 were added after visual inspection of official Gazette printed pages 68–69 (PDF indices 66–67) on 2026-10-28. They cover notice during leave, contract continuity, notice-period constraints, paid job-search time, employer waiver of work, and payment in lieu of unserved notice. These cards remain provisional and require full legal review. Additional provisional termination and end-of-service cards for accompanying-law Articles 165–175 were added on 2026-10-28 from the searchable extraction of the government-hosted Official Gazette PDF. The extracted lines place Article 165 on printed page 69/PDF index 67; Articles 166–169 begin on printed page 70/PDF index 68; Articles 170–171 appear on printed page 71/PDF index 69; and Articles 172–175 appear on printed page 72/PDF index 70. Page locations are text-extraction pinpoints, not independent visual inspection of every cited page. Cards remain provisional; source binary hash, comprehensive currentness/amendment review, reuse review and Egyptian-lawyer review remain outstanding. Additional provisional procedural cards for accompanying-law Articles 176–187 were added on 2026-10-28 from searchable text extraction of the government-hosted Official Gazette PDF. The extracted viewer pages place Articles 176–180 on printed page 73/PDF index 71; Articles 181–185 on printed page 74/PDF index 72; and Articles 186–187 on printed page 75/PDF index 73. These are text-extraction pinpoints, not independent visual inspection of every cited page. The source PDF binary remains unavailable for hashing, and currentness, amendment history, reuse rights and qualified legal review remain unresolved. On 2026-10-28, added provisional cards for accompanying-law Articles 188–200 (social consultation and collective bargaining). Their article text was checked against a public secondary transcription of Law 14/2025 at Law Hub; official publisher and government Gazette links remain attached as primary-source leads. The printed-page mapping (Arts. 188–193 p.76/index 74; Arts. 194–198 p.77/index 75; Arts. 199–200 p.78/index 76) is an inferred text-extraction map, not a visual page-by-page verification. The source PDF remains unavailable locally for hashing; currentness, amendments, reuse rights, and lawyer review remain unresolved. Added 14 provisional cards for accompanying-law Articles 201–214 on 2026-10-28: language, renewal, filing and challenge of collective agreements, display, joining, registry updates, good-faith implementation, hardship, enforcement, representative actions, dispute procedures, scope of collective disputes, and the one-month negotiation-to-conciliation threshold. Cross-checked against a public secondary transcription; official-source links remain attached. Inferred Gazette page map: Arts. 201–205 printed p.78/PDF index 76; Arts. 206–212 p.79/index 77; Arts. 213–214 p.80/index 78. These page pinpoints are not visually verified. No source binary hash, complete currentness audit, reuse clearance or lawyer review is claimed. Added 16 provisional cards for accompanying-law Articles 215–230 (conciliation timing, settlement documentation, mediation/arbitration referral, centre structure, mediator/arbitrator lists and eligibility, selection and replacement deadlines, mediation recommendations, arbitration composition/submission/award and review). Cross-checked against the public Law Hub transcription; official-source leads remain attached. Inferred Gazette page map: Arts. 215–218 printed p.80–81/PDF index 78–79; Arts. 219–224 p.81–82/index 79–80; Arts. 225–228 p.82/index 80; Arts. 229–230 p.83/index 81. These page pinpoints are not visually verified; no PDF hash, currentness audit, reuse clearance or lawyer review is claimed. Added 11 provisional cards for accompanying-law Articles 231–241 covering strike prerequisites and notice, strike restrictions, effect on employment obligations, economic closure/down-sizing, committee applications and deadlines, notice, selection criteria, closure restrictions during collective disputes/strikes, and temporary economic changes to employment terms. Public Law Hub transcription used as the text fallback while primary official links remain attached. Inferred Gazette page map: Arts. 231–236 printed p.83/PDF index 81; Arts. 237–241 p.84/index 82. These pinpoints are not visually verified; no PDF hash, currentness audit, reuse clearance or lawyer review is claimed. Added 14 provisional occupational safety, health and work-environment cards for accompanying-law Articles 242–255: chapter and establishment scope, compliance offices, physical/engineering/biological/chemical/indirect hazards, fire and confined spaces, emergency plans and worker withdrawal from imminent serious danger, harassment/bullying/violence prevention, and technical safety standards. Cross-checked against the public Law Hub transcription while retaining official publisher and government Gazette links. Inferred Gazette page map: Arts. 242–247 printed p.85/PDF index 83; Arts. 248–253 p.86/index 84; Arts. 254–255 p.87/index 85. These pinpoints are not visually verified; no hash, full currentness audit, reuse clearance or lawyer review is claimed. Added 19 provisional cards for accompanying-law Articles 256–274 covering occupational safety inspection powers, internal committees, incident reporting, licensed training/consulting, national and governorate safety bodies, pre-employment medical/capability exams, employer/worker PPE duties, daily inspection and medical checks, first aid and nursing thresholds, remote-worksite transport/food/housing, and social/health/cultural services and funding. Text cross-checked against the public Law Hub transcription; official links retained. Inferred Gazette page map: Arts. 256–259 printed p.87–88/PDF index 85–86; 260–265 p.88–89/index 86–87; 266–270 p.90/index 88; 271–274 p.91/index 89. These are not visually verified page-by-page. No PDF hash, currentness audit, reuse clearance or lawyer review is claimed.
 
 ## Provision cards
 
@@ -6189,6 +6189,576 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - تقديم حدود أمان أو معيار رقمي دون القرار الفني الساري
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات الفنية والتنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 198. EG-LABOUR-14-2025-ART-256-OCCUPATIONAL-SAFETY-INSPECTION-UNIT
+
+**Question:** ما الجهاز المختص بتفتيش السلامة والصحة المهنية؟
+
+**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 256, printed Gazette page 87 (PDF page index 85).
+
+**Provisional summary (Arabic):**
+
+تلزم المادة 256 الجهة الإدارية بتشكيل جهاز متخصص لتفتيش السلامة والصحة المهنية وتأمين بيئة العمل، يضم مؤهلات متعددة، وتوفير التدريب والأجهزة ومعدات القياس اللازمة له. وتستثنى المنشآت المرتبطة بالأمن القومي وفق قرار رئيس مجلس الوزراء. يلزم الرجوع إلى قرارات تشكيل الجهاز والاستثناءات السارية.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 256؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 256؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 256–274؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تحديد الجهة المختصة أو انطباق استثناء الأمن القومي دون القرارات السارية
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 199. EG-LABOUR-14-2025-ART-257-OCCUPATIONAL-SAFETY-INSPECTOR-POWERS
+
+**Question:** ما أبرز صلاحيات جهاز تفتيش السلامة والصحة المهنية؟
+
+**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 257, printed Gazette page 88 (PDF page index 86).
+
+**Provisional summary (Arabic):**
+
+تعدد المادة 257 صلاحيات تشمل الفحوص الطبية والمعملية، وأخذ عينات من مواد العمل، واستخدام أجهزة التصوير والقياس لتحليل الحوادث، والاطلاع على خطط الطوارئ وتقارير الحوادث ومخزون المواد الخطرة. ويجوز للجهة الإدارية بناء على التقرير إصدار إغلاق أو إيقاف عند وجود خطر داهم، مع استمرار استحقاق الأجور وفق النص. يلزم فحص التقرير والقرار والوقائع.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 257؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 257؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 256–274؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تقرير صحة إغلاق أو إيقاف أو نطاق سلطة المفتش دون التقرير والقرار والوقائع
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 200. EG-LABOUR-14-2025-ART-258-OCCUPATIONAL-SAFETY-INSPECTOR-ACCESS
+
+**Question:** ما أساس حق مفتشي السلامة في التفتيش على المنشآت؟
+
+**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 258, printed Gazette page 88 (PDF page index 86).
+
+**Provisional summary (Arabic):**
+
+تمنح المادة 258 مفتشي السلامة والصحة المهنية حق التفتيش للتحقق من استيفاء اشتراطات السلامة وتأمين بيئة العمل وفق القانون والقرارات المنفذة له، مع مراعاة نطاق المادة 242. يجب التحقق من صفة المفتش والاختصاص وأي قواعد خاصة بالمنشأة.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 258؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 258؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 256–274؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تحديد مشروعية تفتيش بعينه دون التحقق من صفة المفتش واختصاصه والقواعد الخاصة
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 201. EG-LABOUR-14-2025-ART-259-OCCUPATIONAL-SAFETY-INTERNAL-UNITS-COMMITTEES
+
+**Question:** متى تلزم المنشأة بإنشاء أجهزة ولجان للسلامة المهنية؟
+
+**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 259, printed Gazette page 88 (PDF page index 86).
+
+**Provisional summary (Arabic):**
+
+تترك المادة 259 للوزير المختص تحديد المنشآت وفروعها الملزمة بإنشاء أجهزة وظيفية ولجان للسلامة والصحة المهنية. وتبحث اللجان ظروف العمل وأسباب الحوادث والإصابات وتضع قواعد واحتياطات الوقاية، وتكون قراراتها ملزمة للمنشأة، كما يلزم تدريب المعنيين. يلزم إرفاق القرار الوزاري المحدد للفئات والنطاق.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 259؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 259؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 256–274؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- الجزم بوجوب إنشاء لجنة في منشأة معينة دون القرار التنفيذي وحجم المنشأة ونشاطها
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 202. EG-LABOUR-14-2025-ART-260-OCCUPATIONAL-ACCIDENT-REPORTING-DEADLINES
+
+**Question:** ما مواعيد الإحصاءات والإبلاغ عن الحوادث الجسيمة والأمراض المهنية؟
+
+**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 260, printed Gazette page 88 (PDF page index 86).
+
+**Provisional summary (Arabic):**
+
+توجب المادة 260 على المنشأة التي يعمل بها ثلاثون عاملاً فأكثر تقديم إحصائية نصف سنوية عن الأمراض والحوادث والإصابات خلال النصف الأول من شهري يوليو ويناير على الأكثر. كما توجب إخطار الجهة الإدارية بكل حادث جسيم أو ظهور أعراض مرض مهني خلال 24 ساعة، وتطلب بيانات إلكترونية وفق قرار الوزير. يلزم التحقق من النماذج والقرارات وتاريخ الواقعة.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 260؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 260؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 256–274؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- حساب الامتثال أو ميعاد إخطار في واقعة دون تحديد الحدث والنموذج والقرار الساري
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 203. EG-LABOUR-14-2025-ART-261-OCCUPATIONAL-SAFETY-TRAINING-LICENSING
+
+**Question:** من يجوز له تقديم التدريب المتخصص في السلامة والصحة المهنية؟
+
+**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 261, printed Gazette page 88 (PDF page index 86).
+
+**Provisional summary (Arabic):**
+
+تنظم المادة 261 تقديم التدريب الأساسي والمتقدم والنوعي والتخصصي بواسطة الوزارة والمركز القومي والجهات المرخص لها، وتحيل إلى قرار وزاري بشأن التراخيص وشروطها ومدتها ورسومها وحدودها. يجب التحقق من الترخيص الفعلي ونوع التدريب والقرار التنفيذي.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 261؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 261؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 256–274؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- اعتبار جهة تدريب مرخصة أو تحديد الرسوم دون سجل الترخيص والقرار الساري
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 204. EG-LABOUR-14-2025-ART-262-OCCUPATIONAL-SAFETY-CONSULTANT-LICENSE
+
+**Question:** هل يحتاج خبير السلامة والصحة المهنية إلى ترخيص؟
+
+**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 262, printed Gazette page 88 (PDF page index 86).
+
+**Provisional summary (Arabic):**
+
+تشترط المادة 262 الحصول على الترخيص اللازم لمزاولة أعمال الخبرة والاستشارات في السلامة والصحة المهنية وتأمين بيئة العمل، وتحيل إلى قرار الوزير لتحديد شروط الترخيص وإجراءاته ومدته وقيده ورسومه. يلزم التحقق من سجل الترخيص ونطاقه قبل الاعتماد على خبير بعينه.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 262؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 262؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 256–274؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تقرير قانونية مزاولة خبير أو شركة دون الترخيص وسجله ونطاقه
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 205. EG-LABOUR-14-2025-ART-263-NATIONAL-OCCUPATIONAL-SAFETY-CENTRE
+
+**Question:** ما دور المركز القومي لدراسات السلامة والصحة المهنية؟
+
+**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 263, printed Gazette page 89 (PDF page index 87).
+
+**Provisional summary (Arabic):**
+
+تسند المادة 263 إلى المركز القومي، بالاشتراك مع الوزارة المختصة، إعداد الخطط المركزية للبحوث والدراسات في السلامة والصحة المهنية وفق التحليل الإحصائي لإصابات العمل ومتابعة تنفيذها بالتنسيق مع الجهات المعنية. تفاصيل القواعد والإجراءات تتوقف على القرار الوزاري المنظم.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 263؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 263؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 256–274؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- نسبة اختصاص تشغيلي أو إجراء محدد للمركز دون القرار التنظيمي الساري
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 206. EG-LABOUR-14-2025-ART-264-SUPREME-OCCUPATIONAL-SAFETY-COUNCIL
+
+**Question:** ما المجلس الأعلى للسلامة والصحة المهنية؟
+
+**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 264, printed Gazette page 89 (PDF page index 87).
+
+**Provisional summary (Arabic):**
+
+تنشئ المادة 264 مجلساً أعلى برئاسة الوزير المختص وعضوية ممثلين عن الجهات الحكومية ومنظمات أصحاب الأعمال والمنظمات النقابية العمالية وخبراء، ويتولى رسم السياسة العامة واقتراح ما يلزم لتنفيذها. يصدر رئيس مجلس الوزراء قرار تشكيله واختصاصاته ونظام عمله؛ يجب التحقق من القرار الحالي.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 264؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 264؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 256–274؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تحديد التشكيل الحالي أو إجراء المجلس دون قرار التشكيل الساري
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 207. EG-LABOUR-14-2025-ART-265-GOVERNORATE-OCCUPATIONAL-SAFETY-COMMITTEES
+
+**Question:** هل توجد لجان فرعية للسلامة والصحة المهنية في المحافظات؟
+
+**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 265, printed Gazette page 89 (PDF page index 87).
+
+**Provisional summary (Arabic):**
+
+توجب المادة 265 تشكيل لجنة فرعية في نطاق كل محافظة برئاسة المحافظ، تضم الجهات المعنية وممثلي المنظمات النقابية وأصحاب الأعمال والخبراء. ويحدد قرار الوزير تشكيلها واختصاصاتها ونظام عملها. يلزم التحقق من القرارات المحلية والتنظيمية عند طلب إجراء عملي.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 265؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 265؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 256–274؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تحديد أعضاء لجنة أو صلاحياتها العملية دون القرار الوزاري الساري
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 208. EG-LABOUR-14-2025-ART-266-PRE-EMPLOYMENT-MEDICAL-AND-CAPABILITY-EXAMS
+
+**Question:** ما الفحوص المطلوبة قبل التحاق العامل بالعمل؟
+
+**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 266, printed Gazette page 90 (PDF page index 88).
+
+**Provisional summary (Arabic):**
+
+توجب المادة 266 الكشف الطبي الابتدائي قبل التحاق العامل بالعمل للتحقق من السلامة واللياقة الصحية المناسبة لطبيعة العمل، وفحص القدرات البدنية والعقلية والنفسية الملائمة لاحتياجاته. وتتم الفحوص وفق قواعد التأمين الصحي وقرار يحدد مستويات اللياقة بالتنسيق مع وزارة الصحة. يجب مراجعة القرار والنصوص الطبية ذات الصلة.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 266؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 266؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 256–274؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تحديد لياقة عامل أو جواز فحص معين دون المعايير الطبية والقرار الساري
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 209. EG-LABOUR-14-2025-ART-267-EMPLOYER-TRAINING-AND-PPE-NO-CHARGE
+
+**Question:** ما واجبات صاحب العمل في التدريب ومعدات الوقاية الشخصية؟
+
+**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 267, printed Gazette page 90 (PDF page index 88).
+
+**Provisional summary (Arabic):**
+
+توجب المادة 267 تدريب العامل على الأسس السليمة لأداء مهنته وإحاطته بمخاطرها قبل مزاولتها، وتوفير وسائل الوقاية الشخصية المناسبة وتدريبه على استخدامها. ويحظر تحميل العامل نفقات توفير وسائل الحماية أو اقتطاع مبالغ من أجره مقابلها. يلزم فحص سجلات التدريب والتوريد والأجر والقرارات الفنية.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 267؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 267؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 256–274؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تقرير الامتثال دون سجلات التدريب ومعدات الوقاية وبيانات الأجر
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 210. EG-LABOUR-14-2025-ART-268-WORKER-USE-AND-CARE-OF-PPE
+
+**Question:** ما التزامات العامل بشأن معدات الوقاية والتعليمات؟
+
+**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 268, printed Gazette page 90 (PDF page index 88).
+
+**Provisional summary (Arabic):**
+
+تلزم المادة 268 العامل باستعمال وسائل الوقاية والعناية بما في حوزته وتنفيذ التعليمات لحماية صحته من حوادث العمل، وتحظر الأفعال المقصودة لتعطيل التعليمات أو إساءة استعمال وسائل الحماية أو تغييرها أو إتلافها. تطبيق النص يتطلب فحص التعليمات والتدريب وظروف الواقعة والأدلة.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 268؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 268؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 256–274؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- نسبة مخالفة أو مسؤولية للعامل دون فحص التعليمات والتدريب والوقائع
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 211. EG-LABOUR-14-2025-ART-269-WORKPLACE-DAILY-SAFETY-INSPECTIONS-AND-MEDICAL-CHECKS
+
+**Question:** ما الفحوص الدورية التي يجب أن تجريها المنشأة؟
+
+**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 269, printed Gazette page 90 (PDF page index 88).
+
+**Provisional summary (Arabic):**
+
+توجب المادة 269 التفتيش الدوري اليومي في كل وردية على أماكن العمل، خصوصاً الخطرة، وإعداد سجل لذلك؛ وفحص الشكوى المرضية وعلاقتها بالعمل بواسطة طبيب المنشأة إن وجد؛ والتنسيق مع التأمين الصحي للفحوص الدورية وفحص انتهاء الخدمة وفق النظام. يلزم مراجعة السجلات ونظام التأمين الصحي المنطبق.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 269؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 269؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 256–274؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تحديد كفاية الفحوص أو التزام منشأة بعينها دون السجلات والقرارات والنظام الصحي
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 212. EG-LABOUR-14-2025-ART-270-WORKPLACE-FIRST-AID-AND-NURSING
+
+**Question:** متى يجب توفير ممرض وطبيب وأدوية للعمال؟
+
+**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 270, printed Gazette page 90 (PDF page index 88).
+
+**Provisional summary (Arabic):**
+
+تلزم المادة 270 جميع المنشآت بوسائل الإسعاف الأولية. وإذا تجاوز عدد العمال خمسين في مكان واحد أو بلد واحد أو ضمن دائرة نصف قطرها 15 كم، يلزم توفير ممرض مؤهل بكل وردية وطبيب لعيادتهم والأدوية مجاناً وفق النص، كما تتحمل المنشأة نفقات العلاج والإقامة في المستشفيات الحكومية أو الخيرية في الحالات المحددة. يلزم التحقق من طريقة حساب العدد والقرارات التنفيذية.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 270؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 270؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 256–274؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تقرير تحقق عتبة الخمسين أو حساب نفقات العلاج دون البيانات والقرارات
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 213. EG-LABOUR-14-2025-ART-271-REMOTE-WORKSITE-TRANSPORT-FOOD-HOUSING
+
+**Question:** ما التزامات صاحب العمل تجاه العمال في المواقع البعيدة؟
+
+**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 271, printed Gazette page 91 (PDF page index 89).
+
+**Provisional summary (Arabic):**
+
+تلزم المادة 271 من يستخدم عمالاً في أماكن لا تصل إليها وسائل المواصلات العادية بتوفير النقل المناسب على نفقته، وتوجب على من يستخدمهم في المناطق البعيدة عن العمران توفير الغذاء والسكن الملائم مع مراعاة سكن العمال المتزوجين. وتحدد قرارات تنفيذية المناطق والمواصفات والكميات والمقابل، ويحظر استبدال الوجبات كلها أو بعضها بمقابل نقدي. يلزم التحقق من القرارات والموقع ونظام الوجبات المعتمد.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 271؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 271؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 256–274؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تحديد استحقاق عامل أو مواصفات سكن/غذاء دون القرارات التنفيذية والموقع والوقائع
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 214. EG-LABOUR-14-2025-ART-272-SOCIAL-CULTURAL-SERVICES-50-WORKERS
+
+**Question:** متى يجب على المنشأة توفير خدمات اجتماعية وثقافية؟
+
+**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 272, printed Gazette page 91 (PDF page index 89).
+
+**Provisional summary (Arabic):**
+
+تلزم المادة 272 المنشأة التي يبلغ عدد عمالها خمسين عاملاً فأكثر بتقديم الخدمات الاجتماعية والثقافية اللازمة بالاشتراك مع المنظمة النقابية العمالية دون تحميل العامل التزامات، وتترك للوزير تحديد الحد الأدنى لهذه الخدمات بقرارات. يجب التحقق من عدد العمال والقرار الوزاري الساري.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 272؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 272؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 256–274؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تحديد الحد الأدنى للخدمات دون القرار الوزاري وحساب العمال المعنيين
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 215. EG-LABOUR-14-2025-ART-273-SOCIAL-HEALTH-CULTURAL-SERVICES-FUND
+
+**Question:** ما طبيعة صندوق الخدمات الاجتماعية والصحية والثقافية وكيف يمول؟
+
+**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 273, printed Gazette page 91 (PDF page index 89).
+
+**Provisional summary (Arabic):**
+
+تمنح المادة 273 الصندوق شخصية اعتبارية وتحدد أهدافه ومجلس إدارته وحسابه وموازنته ورقابته، وتوجب على المنشآت المشار إليها التي يبلغ عدد عمالها عشرين فأكثر اشتراكاً سنوياً يحدده الوزير ضمن النطاق الوارد بالنص، مع أحكام خصم لبعض الخدمات المقدمة مباشرة. يلزم التحقق من القرار المحدد لقيمة الاشتراك والنظام المالي الحالي.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 273؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 273؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 256–274؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- حساب الاشتراك المستحق أو الخصم دون القرار الحالي وعدد العمال والخدمات المقدمة
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 216. EG-LABOUR-14-2025-ART-274-SOCIAL-SERVICES-FUND-BENEFITS
+
+**Question:** ما الخدمات التي يمولها صندوق الخدمات الاجتماعية والصحية والثقافية؟
+
+**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 274, printed Gazette page 91 (PDF page index 89).
+
+**Provisional summary (Arabic):**
+
+تعدد المادة 274 خدمات الصندوق، ومنها دعم النفقات العلاجية والمكتبات والندوات ومحو الأمية والأنشطة الرياضية والرحلات والأنشطة النقابية وبرامج الوقاية من العنف والتحرش والتنمر متى توافرت الموارد. وتجيز إضافة خدمات من ذات المجال بقرار، وتحيل اللائحة المالية والإدارية والصرف والرقابة إلى قرار رئيس مجلس الوزراء. يجب التحقق من اللائحة والموارد وشروط الاستفادة.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 274؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 274؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 256–274؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- ضمان خدمة أو استحقاق مالي محدد دون اللائحة والموارد وشروط الانتفاع
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 
 **Review state:** `provisional_text_extract_crosschecked`.
