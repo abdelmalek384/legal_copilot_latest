@@ -178,6 +178,31 @@ class S3PrivateObjectStore:
     def verify_staged(self, firm_id: int, object_id: str, *, expected_sha256: str, expected_size: int) -> bool:
         return self._verify(firm_id, object_id, "staged", expected_sha256=expected_sha256, expected_size=expected_size)
 
+    def list_object_keys(self) -> set[str]:
+        """List keys in the dedicated originals namespace; never returns object bytes."""
+        prefix = "firms/"
+        found: set[str] = set()
+        token = None
+        try:
+            while True:
+                args = {"Bucket": self.bucket, "Prefix": prefix}
+                if token:
+                    args["ContinuationToken"] = token
+                response = self.client.list_objects_v2(**args)
+                for item in response.get("Contents", []):
+                    key = item.get("Key")
+                    if isinstance(key, str):
+                        found.add(key)
+                if not response.get("IsTruncated"):
+                    return found
+                token = response.get("NextContinuationToken")
+                if not token:
+                    raise ObjectStorageError("object-storage listing omitted its continuation token")
+        except ObjectStorageError:
+            raise
+        except Exception as exc:
+            raise ObjectStorageError("object-storage inventory could not be listed") from exc
+
     def delete(self, firm_id: int, object_id: str) -> bool:
         keys = [self._key(firm_id, object_id, state) for state in ("staged", "blob")]
         existed = any(self._head(key) is not None for key in keys)
