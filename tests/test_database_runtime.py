@@ -510,6 +510,48 @@ class DatabaseRuntimeTests(unittest.TestCase):
         )
         self.assertTrue(path.is_file())
 
+    def test_reconcile_interrupted_provisioning_rejects_mismatched_states_and_invalid_mapping(self):
+        control = self.runtime.control_connection()
+        cases = [
+            ("Active firm", "active", "provisioning", None),
+            ("Failed catalog", "provisioning", "failed", None),
+            ("Invalid mapping", "provisioning", "provisioning", "../another-tenant.sqlite3"),
+        ]
+        firm_ids = []
+        for name, firm_status, catalog_status, filename in cases:
+            firm_id = int(control.execute(
+                "INSERT INTO firms(name,status) VALUES(?,?)", (name, firm_status)
+            ).lastrowid)
+            control.execute(
+                "INSERT INTO tenant_database_catalog(firm_id,database_file,status) VALUES(?,?,?)",
+                (firm_id, filename, catalog_status),
+            )
+            firm_ids.append(firm_id)
+        control.commit()
+
+        for firm_id in firm_ids:
+            with self.subTest(firm_id=firm_id):
+                with self.assertRaises(DatabaseRuntimeError):
+                    self.runtime.reconcile_interrupted_firm_provisioning(
+                        firm_id,
+                        reason="reject inconsistent state during lifecycle review",
+                        operator_reference="incident-state-matrix",
+                        change_reference="change-state-matrix",
+                    )
+                self.assertEqual(
+                    control.execute(
+                        "SELECT status FROM tenant_database_catalog WHERE firm_id=?", (firm_id,)
+                    ).fetchone()[0],
+                    cases[firm_ids.index(firm_id)][2],
+                )
+        self.assertEqual(
+            control.execute(
+                "SELECT COUNT(*) FROM platform_security_events "
+                "WHERE event_type='firm_provisioning_reconciled_failed'"
+            ).fetchone()[0],
+            0,
+        )
+
     def test_reconcile_interrupted_provisioning_audit_failure_rolls_back_lifecycle_changes(self):
         control = self.runtime.control_connection()
         firm_id = int(control.execute(
