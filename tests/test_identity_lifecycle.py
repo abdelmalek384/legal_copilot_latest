@@ -1,3 +1,4 @@
+import hashlib
 import os
 import re
 import tempfile
@@ -316,7 +317,7 @@ class IdentityLifecycleTests(unittest.TestCase):
         rate_limit = control.execute(
             "SELECT hits FROM api_rate_limit_windows WHERE bucket='identity_recovery_email' "
             "AND client_key=?",
-            (__import__("hashlib").sha256(b"distributed-recovery@example.test").hexdigest(),),
+            (hashlib.sha256(b"distributed-recovery@example.test").hexdigest(),),
         ).fetchone()
         self.assertEqual(rate_limit["hits"], 6)
         event = control.execute(
