@@ -38,7 +38,7 @@ The command creates a new uniquely named tenant database, reruns the firm-profil
 
 ## Reconcile interrupted, file-less firm provisioning
 
-Use this only when the application or host stopped during provisioning and both the firm and its catalog row remain in `provisioning`. First stop **all** web workers, scheduled jobs, and background workers and confirm no provisioning process is active. This command never opens, adopts, deletes, or overwrites a tenant database. It refuses to proceed if any tenant database file or SQLite sidecar for the firm exists, if the filename is invalid, or if the firm/catalog states do not match exactly.
+Use this only when the application or host stopped during provisioning and both the firm and its catalog row remain in `provisioning`. First stop **all** web workers, scheduled jobs, and background workers and confirm no provisioning process is active. This command never opens, adopts, deletes, or overwrites a tenant database. It refuses to proceed if any tenant database file or SQLite sidecar for the firm exists, if the filename is invalid, if any membership or invitation history exists, or if the firm/catalog states do not match exactly.
 
 For the file-less case, record the incident and approved change, then run:
 
