@@ -24,7 +24,7 @@ def _connect_control(path: Path) -> sqlite3.Connection:
     return connection
 
 
-def _process_tenant(database_path: Path, firm_id: int, store: LocalPrivateObjectStore, apply: bool):
+def _process_tenant(database_path: Path, firm_id: int, store, apply: bool):
     findings = []
     recovered = 0
     expected_backend = "s3" if isinstance(store, S3PrivateObjectStore) else "local"
