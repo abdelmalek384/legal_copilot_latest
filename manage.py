@@ -223,6 +223,33 @@ def reconcile_interrupted_provisioning_cli(a):
         runtime.close_current_thread()
 
 
+def revoke_firm_invitations_cli(a):
+    """Revoke pending/sent invitations for a disabled firm before offboarding."""
+    if not app._separate_runtime_enabled():
+        raise SystemExit("Invitation offboarding requires the separate database architecture.")
+    if not a.confirm_revoke:
+        raise SystemExit("Refusing invitation revocation without --confirm-revoke.")
+    runtime = DatabaseRuntime.from_env()
+    try:
+        runtime.initialize()
+        revoked = runtime.revoke_disabled_firm_invitations(
+            a.firm_id,
+            reason=a.reason,
+            operator_reference=a.operator_reference,
+            change_reference=a.change_reference,
+        )
+        print(json.dumps({
+            "firm_id": a.firm_id,
+            "revoked_invitation_count": revoked,
+            "status": "completed",
+            "operation": "revoke_disabled_firm_invitations",
+        }, ensure_ascii=False, sort_keys=True))
+    except (DatabaseRuntimeError, ValueError, OSError, sqlite3.Error) as exc:
+        raise SystemExit("Firm invitation offboarding refused or failed: " + str(exc)) from exc
+    finally:
+        runtime.close_current_thread()
+
+
 def disable_firm_cli(a):
     """Disable firm access while retaining its database and historical data."""
     if not app._separate_runtime_enabled():
@@ -1042,6 +1069,13 @@ x.add_argument("--confirm-reconcile", action="store_true", help="Explicitly conf
 x.set_defaults(f=reconcile_interrupted_provisioning_cli)
 x = sp.add_parser("addmembership"); x.add_argument("email"); x.add_argument("--firm-id", type=int, required=True); x.add_argument("--role", choices=["lawyer", "junior"], required=True); x.set_defaults(f=addmembership_cli)
 x = sp.add_parser("disable-firm"); x.add_argument("firm_id", type=int); x.set_defaults(f=disable_firm_cli)
+x = sp.add_parser("revoke-firm-invitations", help="Revoke pending/sent invitations for a disabled firm before offboarding")
+x.add_argument("--firm-id", type=int, required=True)
+x.add_argument("--reason", required=True)
+x.add_argument("--operator-reference", required=True)
+x.add_argument("--change-reference", required=True)
+x.add_argument("--confirm-revoke", action="store_true", help="Explicitly confirm audited revocation of active invitations")
+x.set_defaults(f=revoke_firm_invitations_cli)
 x = sp.add_parser("resetpw"); x.add_argument("email"); x.set_defaults(f=resetpw)
 sp.add_parser("genkey").set_defaults(f=lambda a: print(Fernet.generate_key().decode()))
 sp.add_parser("gen-mfa-key", help="Generate a dedicated MFA secret-encryption key; never reuse BACKUP_KEY").set_defaults(
