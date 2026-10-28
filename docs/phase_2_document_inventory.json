@@ -361,7 +361,7 @@
         "amending instruments",
         "transition rules"
       ],
-      "notes": "The repository has an exact candidate URL in docs/collection_manifest.example.json; rights and legal-status review remain separate. Public-source discovery found an official Amiri Press text page and Ministry of Labour index. Neither establishes collection permission or completes amendment/status review. Verify Gazette issue/pages and commencement/implementing instruments.",
+      "notes": "The repository has an exact candidate URL in docs/collection_manifest.example.json; rights and legal-status review remain separate. Public-source discovery found an official Amiri Press text page and Ministry of Labour index. Neither establishes collection permission or completes amendment/status review. Verify Gazette issue/pages and commencement/implementing instruments. Review of the Ministry of Labour laws-and-legislations index on 2026-10-28 found a listed entry for Law 14/2025 but no separately identified full executive-regulations entry in the retrieved index. This is an index observation only; it does not prove that regulations were not issued or published elsewhere.",
       "source_urls": [
         {
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
@@ -2111,6 +2111,12 @@
     {
       "id": "ACT-LABOUR-DECISION-294-2025-VERIFY",
       "action": "Obtain and verify the complete official text, Gazette issue/pages, scope and amendments/repeal history of Ministerial Decision 294/2025 on paid holidays; keep legal status and reuse permission unknown until evidence and lawyer review are complete.",
+      "owner": "legal corpus lead",
+      "status": "not_started"
+    },
+    {
+      "id": "ACT-LABOUR-LAW-14-2025-EXEC-REGS-VERIFY",
+      "action": "Independently determine whether the full executive regulations for Labour Law 14/2025 have been issued; search official Gazette/ministerial publication and record exact number, publication/effective date, source text and amendment history. The Ministry index snapshot did not show a separate entry, which is not proof of non-existence.",
       "owner": "legal corpus lead",
       "status": "not_started"
     }
