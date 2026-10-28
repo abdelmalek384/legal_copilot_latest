@@ -166,6 +166,10 @@ jobs:
         run: PYTHONPATH=. python tests/test_mfa_account_security.py
       - name: Test two-admin MFA break-glass recovery
         run: PYTHONPATH=. python tests/test_mfa_break_glass_cli.py
+      - name: Test invitation and account recovery lifecycle
+        run: PYTHONPATH=. python tests/test_identity_lifecycle.py
+      - name: Test secure SMTP identity email adapter
+        run: PYTHONPATH=. python tests/test_identity_email.py
       - name: Run unit tests
         run: python selftest.py
       - name: Run API tests
