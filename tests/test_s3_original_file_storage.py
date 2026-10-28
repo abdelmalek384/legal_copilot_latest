@@ -1,9 +1,14 @@
 import hashlib
 import io
+import sqlite3
+import tempfile
 import unittest
+from pathlib import Path
 
 from original_file_storage import ObjectStorageError
 from s3_original_file_storage import S3PrivateObjectStore
+from original_file_reconciliation import TenantDatabase
+from original_file_s3_reconciliation import reconcile_s3_original_file_storage
 
 
 class FakeS3Error(RuntimeError):
@@ -140,6 +145,59 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
         self.assertIn(f"firms/12/originals/{one.object_id}.blob", keys)
         self.assertIn(f"firms/13/originals/{other.object_id}.staged", keys)
         self.assertTrue(all(key.startswith("firms/") for key in keys))
+
+    def test_s3_reconciliation_checks_metadata_integrity_and_orphans_read_only(self):
+        with tempfile.TemporaryDirectory() as temp:
+            path = Path(temp) / "firm.sqlite3"
+            db = sqlite3.connect(path)
+            db.executescript("""
+                CREATE TABLE tenant_database_binding(singleton INTEGER PRIMARY KEY, firm_id INTEGER NOT NULL);
+                CREATE TABLE original_file_objects(
+                    object_id TEXT PRIMARY KEY, firm_id INTEGER NOT NULL, storage_backend TEXT NOT NULL,
+                    sha256 TEXT NOT NULL, byte_size INTEGER NOT NULL, state TEXT NOT NULL, purged_at TEXT
+                );
+                INSERT INTO tenant_database_binding(singleton,firm_id) VALUES(1,12);
+            """)
+            payload = b"verified object"
+            staged = self.store.stage(12, payload)
+            self.store.finalize(12, staged.object_id)
+            db.execute(
+                "INSERT INTO original_file_objects VALUES(?,?,?,?,?,'ready',NULL)",
+                (staged.object_id, 12, "s3", staged.sha256, staged.byte_size),
+            )
+            db.commit()
+            db.close()
+
+            report = reconcile_s3_original_file_storage(
+                self.store, [TenantDatabase(firm_id=12, path=path)]
+            )
+            self.assertTrue(report.clean, report.findings)
+            self.assertEqual(report.checked_metadata_rows, 1)
+            self.assertEqual(report.checked_objects, 1)
+
+    def test_s3_reconciliation_reports_missing_object(self):
+        with tempfile.TemporaryDirectory() as temp:
+            path = Path(temp) / "firm.sqlite3"
+            db = sqlite3.connect(path)
+            db.executescript("""
+                CREATE TABLE tenant_database_binding(singleton INTEGER PRIMARY KEY, firm_id INTEGER NOT NULL);
+                CREATE TABLE original_file_objects(
+                    object_id TEXT PRIMARY KEY, firm_id INTEGER NOT NULL, storage_backend TEXT NOT NULL,
+                    sha256 TEXT NOT NULL, byte_size INTEGER NOT NULL, state TEXT NOT NULL, purged_at TEXT
+                );
+                INSERT INTO tenant_database_binding(singleton,firm_id) VALUES(1,12);
+            """)
+            db.execute(
+                "INSERT INTO original_file_objects VALUES(?,?,?,?,?,'ready',NULL)",
+                ("a" * 32, 12, "s3", hashlib.sha256(b"missing").hexdigest(), 7),
+            )
+            db.commit()
+            db.close()
+
+            report = reconcile_s3_original_file_storage(
+                self.store, [TenantDatabase(firm_id=12, path=path)]
+            )
+            self.assertIn("missing_object", {item.code for item in report.findings})
 
     def test_missing_kms_configuration_is_rejected(self):
         with self.assertRaises(ValueError):
