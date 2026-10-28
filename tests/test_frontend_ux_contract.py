@@ -67,6 +67,14 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("uiText('أدخل حرفين على الأقل','Enter at least two characters')", HTML)
         self.assertIn("uiText('بدون مرحلة','No stage')", HTML)
 
+    def test_modal_traps_keyboard_focus_and_restores_opener(self):
+        self.assertIn("function closeModal(overlay)", HTML)
+        self.assertIn("overlay.__focusReturn=opener", HTML)
+        self.assertIn("if(e.key!=='Tab')return", HTML)
+        self.assertIn("focusables[focusables.length-1]", HTML)
+        self.assertIn("last.focus()", HTML)
+        self.assertIn("if(opener&&opener.isConnected&&typeof opener.focus==='function')opener.focus()", HTML)
+
     def test_modal_escape_and_reduced_motion_support(self):
         self.assertIn("document.addEventListener('keydown'", HTML)
         self.assertIn("e.key==='Escape'", HTML)
