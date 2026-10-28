@@ -36,3 +36,8 @@ For each query, the product should:
 ## Human answer review
 
 Use [the proposed human legal-answer review rubric](legal_answer_review_rubric.md) to record evidence-based scores, critical defects, and case dispositions after an actual run. The rubric is a proposed workflow, not an approved legal standard. Do not claim answer accuracy until qualified Egyptian-law reviewers validate the source versions and review the outputs.
+
+
+## Reviewer qualification gate
+
+The production release gate requires each approved benchmark reviewer ID/name to match the private approved reviewer registry. Supply it with `--reviewer-registry /secure/private/reviewer-registry.json`; omitting it blocks release. Keep credential evidence private, and treat registry approval as an auditable human assertion rather than independent license verification.
