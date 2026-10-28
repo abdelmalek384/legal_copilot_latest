@@ -317,11 +317,22 @@
       ],
       "limitations": [
         "الزيادة الإضافية تتوقف على قرار يحدد الأعمال/المناطق المعنية",
-        "لا توجد مراجعة محامٍ مسجلة ولا تحقق شامل من القرارات اللاحقة"
+        "لا توجد مراجعة محامٍ مسجلة ولا تحقق شامل من القرارات اللاحقة",
+        "Decision 49/2026 is a relevant implementation candidate, but its full decision text, Gazette publication, schedules, effective date, and currentness remain unverified."
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final leave balance or payroll determination"
+      "not_usable_for": "final leave balance or payroll determination",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-DECISION-49-2026",
+          "title_ar": "قرار وزير العمل رقم 49 لسنة 2026 بشأن تحديد الأعمال الخطرة والصعبة والمناطق النائية التي يستحق العاملون فيها زيادة الإجازة السنوية سبعة أيام",
+          "relationship": "possible implementing instrument under Article 124",
+          "source_url": "https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%84%D8%AA%D8%AD%D9%82%D9%82-%D8%A7%D9%84%D8%AA%D9%88%D8%A7%D8%B2%D9%86-%D8%A8%D9%8A%D9%86-%D9%85%D8%AA%D8%B7%D9%84%D8%A8%D8%A7%D8%AA-%D8%A7%D9%84%D8%A5%D9%86%D8%AA%D8%A7%D8%AC-%D9%88%D8%B5%D9%88%D9%86-%D8%AD%D9%82%D9%88%D9%82-%D8%A7%D9%84%D9%82%D9%88%D9%89-%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D9%84%D8%A9-%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D9%8A%D8%B5%D8%AF%D8%B1-%D9%82%D8%B1%D8%A7%D8%B1-%D8%A7-%D9%88%D8%B2%D8%A7%D8%B1%D9%8A-%D8%A7-%D8%A8%D8%AA%D8%AD%D8%AF%D9%8A%D8%AF-%D8%A7%D9%84%D8%A3%D8%B9%D9%85%D8%A7%D9%84-%D8%A7%D9%84%D8%AE%D8%B7%D8%B1%D8%A9-%D9%88%D8%A7%D9%84%D9%85%D9%86%D8%A7%D8%B7%D9%82-%D8%A7%D9%84%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D8%A7%D9%84%D8%AA%D9%8A-%D8%AA-%D8%B2%D8%A7%D8%AF-%D9%81%D9%8A%D9%87%D8%A7-%D8%A7%D9%84%D8%A5%D8%AC%D8%A7%D8%B2%D8%A7%D8%AA-%D8%A7%D9%84%D8%B3%D9%86%D9%88%D9%8A%D8%A9-7-%D8%A3%D9%8A%D8%A7%D9%85-%D9%84%D9%84%D8%B9%D8%A7%D9%85%D9%84%D9%8A%D9%86/",
+          "status": "discovery_only; announcement located, full decision text and Gazette evidence not verified",
+          "note": "Do not determine eligibility for the additional seven days from Article 124 alone; obtain and review the full decision, its schedules, effective date, and current status."
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-165-UNLAWFUL-TERMINATION",
