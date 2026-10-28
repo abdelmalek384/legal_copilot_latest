@@ -531,17 +531,18 @@
           "title_ar": "قرار وزير العمل رقم 294 لسنة 2025 بشأن تحديد العطلات والأعياد والمناسبات التي تعتبر إجازة بأجر كامل للعمال",
           "relationship": "possible implementing instrument under Article 129",
           "source_url": "https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A7%D9%84%D8%A3%D8%B1%D8%A8%D8%B9%D8%A7%D8%A1-%D8%A7%D9%84%D9%85%D9%82%D8%A8%D9%84-%D8%A5%D8%AC%D8%A7%D8%B2%D8%A9-%D9%85%D8%AF%D9%81%D9%88%D8%B9%D8%A9-%D8%A7%D9%84%D8%A3%D8%AC%D8%B1-%D9%84%D9%84%D8%B9%D8%A7%D9%85%D9%84%D9%8A%D9%86-%D8%A8%D8%A7%D9%84%D9%82%D8%B7%D8%A7%D8%B9-%D8%A7%D9%84%D8%AE%D8%A7%D8%B5-%D8%A8%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%A9-%D8%B9%D9%8A%D8%AF-%D8%A7%D9%84%D9%85%D9%8A%D9%84%D8%A7%D8%AF-%D8%A7%D9%84%D9%85%D8%AC%D9%8A%D8%AF-%D8%AC%D8%A8%D8%B1%D8%A7%D9%86-%D9%88%D8%AD%D8%AF%D8%A9-%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D9%8A%D9%86-%D9%88%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A7%D9%84%D9%85%D8%B4%D8%AA%D8%B1%D9%83-%D8%A3%D8%B3%D8%A7%D8%B3-%D9%82%D9%88%D8%A9-%D8%A7%D9%84%D9%88%D8%B7%D9%86/",
-          "status": "discovery_only; Official Gazette issue metadata found for issue 291 supplement dated 2025-12-25, but full decision text, page range, commencement, currentness, and reuse permission remain unverified",
+          "status": "Official Ministry reference and Gazette metadata found; complete decision text, currentness and reuse are not verified",
           "note": "Do not present a complete holiday list until Decision 294/2025 is obtained and reviewed.",
           "official_gazette_metadata": {
-            "source_url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc",
-            "source_type": "Amiri Press Official Gazette supplement metadata hosted by IDSC repository",
-            "gazette_publication": "الوقائع المصرية، ملحق العدد 291 (تابع)",
+            "source_url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc/full",
+            "item_metadata_url": "https://dspace.id.com.eg/handle/123456789/6073",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 291 تابع",
             "publication_date": "2025-12-25",
             "publisher": "المطابع الأميرية",
-            "metadata_supports": "The repository abstract explicitly lists Ministerial Decision 294/2025 among the contents of this issue.",
-            "full_text_status": "The record lists a PDF through a request-a-copy workflow; the full decision text has not been obtained or page-reviewed.",
-            "reuse_terms_status": "The source register records IDSC terms as personal non-commercial use and bars commercial exploitation/systematic database compilation without written permission; do not acquire or republish the PDF absent authorization."
+            "metadata_supports": "The Gazette supplement abstract lists Decision 294/2025 on full-paid holidays and occasions for workers.",
+            "full_text_status": "The Gazette issue PDF is listed in the repository, but the original file has not been downloaded, hashed, or fully compared in this task; a secondary legal-database page is available but its full text is restricted.",
+            "reuse_terms_status": "Unknown; public metadata and announcements do not establish permission to reproduce or commercially reuse the instrument."
           }
         },
         {
@@ -3803,7 +3804,18 @@
           "relationship": "possible implementing decision under Article 129",
           "source_url": "https://www.labour.gov.eg/ar/الأخبار/وزير-العمل-الأربعاء-المقبل-إجازة-مدفوعة-الأجر-للعاملين-بالقطاع-الخاص-بمناسبة-عيد-الميلاد-المجيد-جبران-وحدة-المصريين-والعمل-المشترك-أساس-قوة-الوطن/",
           "status": "Official Ministry reference and Gazette metadata found; complete decision text, currentness and reuse are not verified",
-          "note": "Event-specific Ministry announcements do not substitute for the complete holiday list or confirm later changes."
+          "note": "Event-specific Ministry announcements do not substitute for the complete holiday list or confirm later changes.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc/full",
+            "item_metadata_url": "https://dspace.id.com.eg/handle/123456789/6073",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 291 تابع",
+            "publication_date": "2025-12-25",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "The Gazette supplement abstract lists Decision 294/2025 on full-paid holidays and occasions for workers.",
+            "full_text_status": "The Gazette issue PDF is listed in the repository, but the original file has not been downloaded, hashed, or fully compared in this task; a secondary legal-database page is available but its full text is restricted.",
+            "reuse_terms_status": "Unknown; public metadata and announcements do not establish permission to reproduce or commercially reuse the instrument."
+          }
         }
       ]
     },
