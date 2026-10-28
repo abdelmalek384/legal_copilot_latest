@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import json
+import os
+import stat
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -153,6 +155,31 @@ def validate_acceptance_manifest(manifest: object, *, now: datetime | None = Non
     }
 
 
+class AcceptanceManifestFileError(ValueError):
+    """A sanitized filesystem-integrity rejection for the acceptance manifest."""
+
+    def __init__(self, code: str):
+        super().__init__(code)
+        self.code = code
+
+
+def _read_acceptance_manifest_file(path: Path) -> object:
+    """Read a bounded regular file without following a manifest symlink."""
+    if path.is_symlink():
+        raise AcceptanceManifestFileError("manifest_symlink_forbidden")
+    flags = os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0)
+    descriptor = os.open(path, flags)
+    with os.fdopen(descriptor, "r", encoding="utf-8") as stream:
+        metadata = os.fstat(stream.fileno())
+        if not stat.S_ISREG(metadata.st_mode):
+            raise AcceptanceManifestFileError("manifest_not_regular_file")
+        if metadata.st_size > 1_000_000:
+            raise AcceptanceManifestFileError("manifest_too_large")
+        if os.name == "posix" and stat.S_IMODE(metadata.st_mode) & 0o022:
+            raise AcceptanceManifestFileError("manifest_group_or_other_writable")
+        return json.load(stream)
+
+
 def load_acceptance_manifest(path: str | Path | None, *, now: datetime | None = None) -> dict:
     if path is None:
         return {
@@ -162,8 +189,17 @@ def load_acceptance_manifest(path: str | Path | None, *, now: datetime | None = 
             "required_count": len(REQUIRED_GATES),
             "blockers": [{"gate": "manifest", "code": "manifest_path_required"}],
         }
+    manifest_path = Path(path).expanduser()
     try:
-        manifest = json.loads(Path(path).read_text(encoding="utf-8"))
+        manifest = _read_acceptance_manifest_file(manifest_path)
+    except AcceptanceManifestFileError as exc:
+        return {
+            "ready": False,
+            "decision": "blocked",
+            "passed_count": 0,
+            "required_count": len(REQUIRED_GATES),
+            "blockers": [{"gate": "manifest", "code": exc.code}],
+        }
     except FileNotFoundError:
         return {
             "ready": False,
@@ -172,7 +208,7 @@ def load_acceptance_manifest(path: str | Path | None, *, now: datetime | None = 
             "required_count": len(REQUIRED_GATES),
             "blockers": [{"gate": "manifest", "code": "manifest_not_found"}],
         }
-    except (OSError, json.JSONDecodeError):
+    except (OSError, UnicodeError, json.JSONDecodeError):
         return {
             "ready": False,
             "decision": "blocked",
