@@ -26,10 +26,14 @@ class PlatformSecurityAuditTests(unittest.TestCase):
         self.user_id = self.runtime.create_initial_firm_owner(
             self.firm_id, "Audit Owner", "audit-owner@example.test", "old-password-hash"
         )
+        self.reset_user_id = self.runtime.create_global_identity(
+            "Audit Reset User", "audit-reset@example.test", "old-password-hash"
+        )
+        self.runtime.create_firm_membership(self.reset_user_id, self.firm_id, "lawyer")
         control = self.runtime.control_connection()
         control.execute(
             "INSERT INTO auth_sessions(token_hash,user_id,expires) VALUES('hashed-session',?,9999999999)",
-            (self.user_id,),
+            (self.reset_user_id,),
         )
         control.commit()
 
@@ -43,14 +47,14 @@ class PlatformSecurityAuditTests(unittest.TestCase):
 
     def test_password_reset_revokes_sessions_and_writes_atomic_platform_audit(self):
         with patch("manage.read_password", return_value="NewStrongPassphrase_2026"):
-            manage.resetpw(Namespace(email=" AUDIT-OWNER@example.test "))
+            manage.resetpw(Namespace(email=" AUDIT-RESET@example.test "))
         control = self.runtime.control_connection()
-        self.assertEqual(control.execute("SELECT COUNT(*) FROM auth_sessions WHERE user_id=?", (self.user_id,)).fetchone()[0], 0)
+        self.assertEqual(control.execute("SELECT COUNT(*) FROM auth_sessions WHERE user_id=?", (self.reset_user_id,)).fetchone()[0], 0)
         event = control.execute(
             "SELECT actor_user_id,target_user_id,event_type,detail_json FROM platform_security_events WHERE event_type='password_reset_cli'"
         ).fetchone()
         self.assertIsNone(event["actor_user_id"])
-        self.assertEqual(event["target_user_id"], self.user_id)
+        self.assertEqual(event["target_user_id"], self.reset_user_id)
         self.assertEqual(event["event_type"], "password_reset_cli")
         self.assertIn('"sessions_revoked": true', event["detail_json"])
         self.assertTrue(control.execute("SELECT password_hash FROM users WHERE id=?", (self.user_id,)).fetchone()[0] != "old-password-hash")
@@ -62,13 +66,13 @@ class PlatformSecurityAuditTests(unittest.TestCase):
             BEGIN SELECT RAISE(ABORT, 'audit unavailable'); END
         """)
         control.commit()
-        old_hash = control.execute("SELECT password_hash FROM users WHERE id=?", (self.user_id,)).fetchone()[0]
+        old_hash = control.execute("SELECT password_hash FROM users WHERE id=?", (self.reset_user_id,)).fetchone()[0]
         with patch("manage.read_password", return_value="NewStrongPassphrase_2026"):
             with self.assertRaisesRegex(Exception, "audit unavailable"):
-                manage.resetpw(Namespace(email="audit-owner@example.test"))
+                manage.resetpw(Namespace(email="audit-reset@example.test"))
         control = self.runtime.control_connection()
-        self.assertEqual(control.execute("SELECT password_hash FROM users WHERE id=?", (self.user_id,)).fetchone()[0], old_hash)
-        self.assertEqual(control.execute("SELECT COUNT(*) FROM auth_sessions WHERE user_id=?", (self.user_id,)).fetchone()[0], 1)
+        self.assertEqual(control.execute("SELECT password_hash FROM users WHERE id=?", (self.reset_user_id,)).fetchone()[0], old_hash)
+        self.assertEqual(control.execute("SELECT COUNT(*) FROM auth_sessions WHERE user_id=?", (self.reset_user_id,)).fetchone()[0], 1)
         self.assertEqual(control.execute("SELECT COUNT(*) FROM platform_security_events WHERE event_type='password_reset_cli'").fetchone()[0], 0)
 
     def test_firm_lifecycle_and_membership_changes_are_audited(self):
