@@ -22,6 +22,7 @@ from identity_email import IdentityEmailError, send_identity_email
 from db_migrations import apply_migrations
 from database_runtime import DatabaseRuntime, DatabaseRuntimeError
 from tenant_context import FirmContext, FirmContextError
+from tools.database_release_acceptance import load_acceptance_manifest
 from fastapi import Request
 from fastapi.responses import JSONResponse, HTMLResponse, Response
 
@@ -194,6 +195,12 @@ if os.environ.get("COPILOT_ENV", "").strip().lower() in {"prod", "production"}:
         Fernet(backup_key.encode("ascii"))
     except (ValueError, TypeError, UnicodeError):
         startup_errors.append("BACKUP_KEY must be a valid Fernet key in production.")
+    acceptance_path = os.environ.get("COPILOT_DATABASE_ACCEPTANCE_FILE", "").strip()
+    acceptance_report = load_acceptance_manifest(acceptance_path or None)
+    if not acceptance_report["ready"]:
+        startup_errors.append(
+            "COPILOT_DATABASE_ACCEPTANCE_FILE must reference a complete accepted database operational evidence manifest."
+        )
     if startup_errors:
         raise RuntimeError("Production startup blocked: " + "; ".join(startup_errors))
 
