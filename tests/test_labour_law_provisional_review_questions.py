@@ -13,7 +13,7 @@ class LabourLawProvisionalReviewQuestionTests(unittest.TestCase):
         rows = [json.loads(line) for line in QUESTIONS.read_text(encoding="utf-8").splitlines() if line.strip()]
         provisions = json.loads(PROVISIONS.read_text(encoding="utf-8"))["provisions"]
         provision_ids = {item["provision_id"] for item in provisions}
-        self.assertEqual(len(rows), 30)
+        self.assertEqual(len(rows), 33)
         self.assertEqual(len({row["id"] for row in rows}), len(rows))
         for row in rows:
             self.assertTrue(row["question_ar"])
@@ -26,6 +26,7 @@ class LabourLawProvisionalReviewQuestionTests(unittest.TestCase):
             pinpoint = provision["page_pinpoint"]
             if pinpoint.get("source_type") == "official_text_page":
                 self.assertEqual(pinpoint["source_url"], "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D")
+                self.assertTrue(any(ref.get("url") == pinpoint["source_url"] and ref.get("retrieved_on") == "2026-10-28" for ref in provision["source_refs"]))
                 self.assertEqual(row["source_page_ref"], "الهيئة العامة لشئون المطابع الأميرية، النص الرسمي الإلكتروني، مادة (" + pinpoint["pinpoint"].replace("مادة (", "").replace(")", "") + ")؛ لم تتم مراجعة صفحة ممسوحة من الجريدة الرسمية")
                 self.assertFalse(row["targeted_pdf_text_reviewed"])
             else:
