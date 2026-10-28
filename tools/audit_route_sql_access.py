@@ -133,6 +133,21 @@ def _sql_text(
             node.right, assignments=assignments, globals_=globals_, seen=seen, mutated_names=mutated_names
         )
         if isinstance(node.left, ast.Constant) and isinstance(node.left.value, str):
+            # Preserve finite, literal loop substitutions as separate SQL
+            # alternatives so table inventory can see every referenced table.
+            if isinstance(node.right, ast.Name):
+                values = assignments.get(node.right.id, [])
+                literals = [
+                    value.value for value in values
+                    if isinstance(value, ast.Constant) and isinstance(value.value, str)
+                ]
+                if literals and len(literals) == len(values):
+                    try:
+                        alternatives = [node.left.value % value for value in dict.fromkeys(literals)]
+                    except (TypeError, ValueError):
+                        alternatives = []
+                    if alternatives:
+                        return "{choice}".join(alternatives), True, True
             template = re.sub(r"%[sdif]", "{dynamic}", left)
             return template, True, right_resolved
         return left + " {dynamic} " + right, True, left_resolved and right_resolved
