@@ -46,6 +46,10 @@ jobs:
         run: PYTHONPATH=. python tests/test_app_separate_database_runtime.py
       - name: Test encrypted multi-database backup and restore
         run: PYTHONPATH=. python tests/test_database_backup_bundle.py
+      - name: Test isolated database recovery drill
+        run: PYTHONPATH=. python tests/test_database_recovery_drill.py
+      - name: Test restored original-file S3 import
+        run: PYTHONPATH=. python tests/test_import_restored_originals_to_s3.py
       - name: Test migration history ordering guard
         run: PYTHONPATH=. python tests/test_migration_history_ordering.py
       - name: Test read-only startup DDL inventory
@@ -62,6 +66,10 @@ jobs:
         run: PYTHONPATH=. python tests/test_security_surface_inventory.py
       - name: Test tenant route inventory completeness
         run: PYTHONPATH=. python tests/test_tenant_route_inventory_coverage.py
+      - name: Test route-to-SQL access audit
+        run: PYTHONPATH=. python tests/test_route_sql_access_audit.py
+      - name: Audit route-to-SQL access boundaries
+        run: PYTHONPATH=. python tools/audit_route_sql_access.py --strict
       - name: Test encrypted restore safety
         run: PYTHONPATH=. python tests/test_backup_restore_safety.py
       - name: Test read-only tenant database preflight
