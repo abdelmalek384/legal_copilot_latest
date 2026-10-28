@@ -2507,6 +2507,9 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         with patch.object(app, "log", side_effect=RuntimeError("injected audit failure")):
             failed_removal = self._mutate("delete", f"/cases/{case_id}/members/{member_id}")
         self.assertEqual(failed_removal.status_code, 500, failed_removal.text)
+        # End any read snapshot on the observer connection before checking the
+        # committed state written by the request connection.
+        firm_a_db.commit()
         self.assertEqual(
             firm_a_db.execute(
                 "SELECT COUNT(*) FROM members WHERE case_id=? AND user_id=?",
@@ -2520,9 +2523,8 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
 
         removed = self._mutate("delete", f"/cases/{case_id}/members/{member_id}")
-        self.assertEqual(switched_back.status_code, 200, switched_back.text)
-        removed = self._mutate("delete", f"/cases/{case_id}/members/{member_id}")
         self.assertEqual(removed.status_code, 200, removed.text)
+        firm_a_db.commit()
         self.assertEqual(
             firm_a_db.execute(
                 "SELECT COUNT(*) FROM members WHERE case_id=? AND user_id=?",
