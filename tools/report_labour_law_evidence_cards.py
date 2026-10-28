@@ -106,12 +106,17 @@ def render_report(data: dict[str, Any]) -> str:
     ]
     for index, card in enumerate(cards, 1):
         pin = card["pinpoint"]
+        page_label = (
+            f"printed Gazette page {pin['official_gazette_printed_page']} (PDF page index {pin['pdf_page_index_zero_based']})"
+            if pin.get("official_gazette_printed_page") is not None
+            else "Official Gazette page pinpoint not verified"
+        )
         lines.extend([
             f"### {index}. {card['card_id']}",
             "",
             f"**Question:** {card['question']}",
             "",
-            f"**Pinpoint:** {pin['part']}, {pin['article']}, printed Gazette page {pin['official_gazette_printed_page']} (PDF page index {pin['pdf_page_index_zero_based']}).",
+            f"**Pinpoint:** {pin['part']}, {pin['article']}, {page_label}.",
             "",
             "**Provisional summary (Arabic):**",
             "",
