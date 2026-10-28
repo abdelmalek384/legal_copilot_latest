@@ -77,6 +77,10 @@ class RetrievalEvaluationTests(unittest.TestCase):
                 {"source_id": "LAW-A", "pin_cite": "Article 12"},
                 {"source_id": "LAW-X", "pin_cite": "Article 99"},
             ],
+            "source_summary": [
+                {"source_id": "LAW-A", "source_status": "verified_operative_text"},
+                {"source_id": "LAW-X", "source_status": "verified_operative_text"},
+            ],
             "abstained": False,
             "used_unverified_source": False,
         }
@@ -148,6 +152,33 @@ class RetrievalEvaluationTests(unittest.TestCase):
             result["citations_outside_retrieval"],
             [{"question_id": question["id"], "source_id": "LAW-A", "pin_cite": "Article 12"}],
         )
+
+    def test_source_summary_cannot_contradict_unverified_source_flag(self):
+        question = reviewed_question()
+        run = {
+            "question_id": question["id"],
+            "retrieved_source_ids": ["LAW-A"],
+            "citations": [{"source_id": "LAW-A"}],
+            "source_summary": [{"source_id": "LAW-A", "source_status": "outdated_or_under_review"}],
+            "abstained": False,
+            "used_unverified_source": False,
+        }
+        result = score_evaluation([question], [run])
+        self.assertEqual(result["reviewed_cases_scored"], 0)
+        self.assertIn("not verified", " ".join(result["invalid_run_records"][0]["reasons"]))
+
+    def test_cited_source_without_status_evidence_fails_closed(self):
+        question = reviewed_question()
+        run = {
+            "question_id": question["id"],
+            "retrieved_source_ids": ["LAW-A"],
+            "citations": [{"source_id": "LAW-A"}],
+            "abstained": False,
+            "used_unverified_source": False,
+        }
+        result = score_evaluation([question], [run])
+        self.assertEqual(result["source_status_evidence_missing_count"], 1)
+        self.assertEqual(result["unsafe_unverified_source_uses"], 1)
 
     def test_unanswerable_case_requires_abstention(self):
         question = reviewed_question(
