@@ -350,11 +350,7 @@ class DatabaseRuntime:
             control.execute(
                 "INSERT INTO platform_security_events(actor_user_id,firm_id,event_type,detail_json) "
                 "VALUES(NULL,?,'firm_provisioned',?)",
-                (firm_id, json.dumps({
-                    "database_file": path.name,
-                    "status": "active",
-                    **{key: value.strip() for key, value in audit_fields.items()},
-                }, sort_keys=True)),
+                (firm_id, json.dumps({"database_file": path.name, "status": "active"}, sort_keys=True)),
             )
             control.commit()
             return firm_id, path
@@ -443,7 +439,11 @@ class DatabaseRuntime:
             control.execute(
                 "INSERT INTO platform_security_events(actor_user_id,firm_id,event_type,detail_json) "
                 "VALUES(NULL,?,'firm_provisioning_retried',?)",
-                (firm_id, json.dumps({"database_file": path.name, "status": "active"}, sort_keys=True)),
+                (firm_id, json.dumps({
+                    "database_file": path.name,
+                    "status": "active",
+                    **{key: value.strip() for key, value in audit_fields.items()},
+                }, sort_keys=True)),
             )
             control.commit()
             return path
