@@ -102,7 +102,7 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
             "EG-LABOUR-14-2025-ART-119-WORKDAY-SPAN": ("المادة 119", 52),
             "EG-LABOUR-14-2025-ART-120-WEEKLY-REST": ("المادة 120", 52),
             "EG-LABOUR-14-2025-ART-124-ANNUAL-LEAVE-ENTITLEMENT": ("المادة 124", 54),
-            "EG-LABOUR-14-2025-ART-125-ANNUAL-LEAVE-SCHEDULING": ("المادة 125", 54),
+            "EG-LABOUR-14-2025-ART-125-ANNUAL-LEAVE-SCHEDULING": ("المادة 125", 55),
         }
         for card_id, (article, printed_page) in expected.items():
             with self.subTest(card_id=card_id):
@@ -139,7 +139,7 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
     def test_sickness_and_infectious_contact_leave_cards_fail_closed(self):
         cards = {card["card_id"]: card for card in self.data["cards"]}
         expected = {
-            "EG-LABOUR-14-2025-ART-131-SICK-LEAVE-AND-WAGE-COMPENSATION": ("المادة 131", 56),
+            "EG-LABOUR-14-2025-ART-131-SICK-LEAVE-AND-WAGE-COMPENSATION": ("المادة 131", 57),
             "EG-LABOUR-14-2025-ART-132-INFECTIOUS-DISEASE-CONTACT-LEAVE": ("المادة 132", 57),
         }
         for card_id, (article, printed_page) in expected.items():
