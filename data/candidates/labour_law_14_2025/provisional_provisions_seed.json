@@ -823,6 +823,72 @@
         "printed_page": null,
         "pdf_page_index_zero_based": null
       }
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-131",
+      "provision_ref": "القانون المرافق، المادة 131",
+      "topic": "medical_leave_and_wage_compensation",
+      "summary_ar": "تقرر المادة حق العامل الذي يثبت مرضه أو إصابته بما يمنعه من أداء العمل في إجازة مرضية تحددها الجهة الطبية المختصة، ويحدد التعويض عن الأجر ومدته وفق قانون التأمينات الاجتماعية والمعاشات. وتورد المادة نظامًا خاصًا لبعض العاملين في المنشآت الصناعية الخاضعة لقانون تيسير منح تراخيص المنشآت الصناعية، بشروط ومدد ونسب أجر محددة؛ يلزم التحقق من انطباق هذا النظام الخاص ومن قانون التأمينات والقرارات ذات الصلة.",
+      "source_refs": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "retrieved_on": "2026-10-28",
+          "basis": "Official General Authority for Amiri Press electronic text page; Article 131 text observed in indexed official-source result. No Gazette-scan page-level comparison claimed."
+        }
+      ],
+      "confidence": "provisional_official_text_observed",
+      "human_review": "pending",
+      "page_pinpoint": {
+        "source_type": "official_text_page",
+        "source_url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+        "pinpoint": "مادة (131)",
+        "printed_page": null,
+        "pdf_page_index_zero_based": null
+      }
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-132",
+      "provision_ref": "القانون المرافق، المادة 132",
+      "topic": "work_restriction_after_contagious_disease_exposure",
+      "summary_ar": "تجيز المادة للجهة الطبية المختصة منع العامل المخالط لمريض بمرض معدٍ من أفراد أسرته من مزاولة العمل للمدة المناسبة، بما لا يجاوز ثلاثة أشهر. وتُحدد الأمراض والجهة الطبية المختصة بقرار من الوزير المعني بشئون الصحة؛ لذلك يتطلب التطبيق الرجوع إلى القرار المحدد والوقائع الطبية.",
+      "source_refs": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "retrieved_on": "2026-10-28",
+          "basis": "Official General Authority for Amiri Press electronic text page; Article 132 text observed in indexed official-source result. No Gazette-scan page-level comparison claimed."
+        }
+      ],
+      "confidence": "provisional_official_text_observed",
+      "human_review": "pending",
+      "page_pinpoint": {
+        "source_type": "official_text_page",
+        "source_url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+        "pinpoint": "مادة (132)",
+        "printed_page": null,
+        "pdf_page_index_zero_based": null
+      }
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-133",
+      "provision_ref": "القانون المرافق، المادة 133",
+      "topic": "medical_unfitness_determination",
+      "summary_ar": "تحيل المادة تحديد عدم اللياقة للخدمة صحيًا إلى أحكام قانون التأمينات الاجتماعية والمعاشات المشار إليه. ولا تكفي هذه المادة وحدها لتحديد الاختبار الطبي أو الأثر الوظيفي؛ يلزم الرجوع إلى القانون المحال إليه واللوائح والقرارات الطبية ذات الصلة.",
+      "source_refs": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "retrieved_on": "2026-10-28",
+          "basis": "Official General Authority for Amiri Press electronic text page; Article 133 text observed in indexed official-source result. No Gazette-scan page-level comparison claimed."
+        }
+      ],
+      "confidence": "provisional_official_text_observed",
+      "human_review": "pending",
+      "page_pinpoint": {
+        "source_type": "official_text_page",
+        "source_url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+        "pinpoint": "مادة (133)",
+        "printed_page": null,
+        "pdf_page_index_zero_based": null
+      }
     }
   ]
 }
