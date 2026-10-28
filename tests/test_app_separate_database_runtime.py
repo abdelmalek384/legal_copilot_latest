@@ -2666,6 +2666,15 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
                 json={"user_id": researcher_id, "role": "associate"},
             )
             self.assertEqual(added.status_code, 200, added.text)
+            # Membership creation itself writes an audit event, so reset the
+            # baseline after that authorized mutation before testing rollback.
+            tenant.commit()
+            notes_before = tenant.execute(
+                "SELECT COUNT(*) FROM notes WHERE case_id=?", (case_id,)
+            ).fetchone()[0]
+            events_before = tenant.execute(
+                "SELECT COUNT(*) FROM events WHERE case_id=?", (case_id,)
+            ).fetchone()[0]
             with patch.object(app, "log", side_effect=RuntimeError("injected research memo audit failure")):
                 failed = researcher.post(
                     f"/research/conversations/{conversation_id}/save-to-matter",
