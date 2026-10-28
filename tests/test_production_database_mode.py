@@ -48,6 +48,7 @@ class ProductionDatabaseModeTests(unittest.TestCase):
     def test_production_startup_requires_host_cookie_origin_admin_and_backup_settings(self):
         env = os.environ.copy()
         env.pop("COPILOT_DB", None)
+        env.pop("COPILOT_DATABASE_ACCEPTANCE_FILE", None)
         env.update({
             "COPILOT_ENV": "production",
             "COPILOT_CONTROL_DB": "/tmp/legal-copilot-control.sqlite3",
