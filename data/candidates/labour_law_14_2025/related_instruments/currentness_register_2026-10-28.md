@@ -171,3 +171,7 @@ Rather than repeatedly retrying blocked Gazette download actions, a separate cro
 
 A focused test was added for the crosswalk's source, currentness and reuse gates. It has not been run. All four records keep reuse rights unknown, currentness unverified, and authoritative retrieval disabled. Public access is used as a research alternative, not as a bypass of access controls and not as evidence of permission for commercial reuse.
 
+## Article-number coverage audit — completed drafting pass (2026-10-28)
+
+The article-number gap audit has been addressed across two JSON files: **294 cards** in the main evidence file plus **15 supplemental cards** for Articles 1–3, 14–15, 17–21, 24, 26, 35, and 38–39. The supplemental test now asserts that the combined files contain at least one card for every accompanying-law article number from 1 through 298. This test has been authored but **not executed**. Thus, statutory article-number coverage is drafted across the two files; it is not the same as fully verified legal knowledge. Text/currentness, page accuracy, implementing decisions, reuse rights and qualified lawyer review remain incomplete. Both files retain `search_eligible=false`.
+
