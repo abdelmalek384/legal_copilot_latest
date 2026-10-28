@@ -19,7 +19,7 @@
     "commercial_reuse_permission": "unknown",
     "search_eligible": false
   },
-  "source_method_note": "Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF has not been downloaded, hashed, or visually inspected; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording.",
+  "source_method_note": "Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF has not been downloaded, hashed, or visually inspected; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording. Additional cards for accompanying-law Articles 4–9 were prepared from text extraction of the government-hosted Official Gazette PDF on 2026-10-28. The PDF has not been downloaded, hashed, or visually inspected; page pinpointing is provisional and all cards remain non-authoritative.",
   "cards": [
     {
       "card_id": "EG-LABOUR-14-2025-PROMULGATION-ART-1-SCOPE",
@@ -958,6 +958,258 @@
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
       "not_usable_for": "full remote-work compliance checklist or final advice"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-4-FORCED-LABOUR-HARASSMENT",
+      "question": "What workplace conduct does Article 4 expressly prohibit?",
+      "provisional_answer_ar": "تحظر المادة 4 تشغيل العامل سخرةً أو جبراً، كما تحظر التحرش والتنمر وأشكال العنف اللفظي أو الجسدي أو النفسي ضد العامل. وتترك المادة للائحة تنظيم العمل تحديد التنظيم والجزاءات التأديبية؛ لذلك لا تكفي هذه البطاقة وحدها لتحديد عناصر المخالفة أو الجزاء في واقعة بعينها.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 4",
+        "official_gazette_printed_page": 11,
+        "pdf_page_index_zero_based": 9
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص المادة 4 من الصفحة المطبوعة 11؛ لم يُنزّل الملف أو يُفحص بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "صفحة النص الرسمي للقانون؛ يلزم التحقق الموضعي عند التطبيق",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://www.loc.gov/item/global-legal-monitor/2025-07-25/egypt-labor-law-updated/",
+          "source_type": "Library of Congress legal update",
+          "supports": "يعرض حظر التحرش والتنمر والعنف في القانون الجديد كمصدر ثانوي للمقارنة"
+        }
+      ],
+      "limitations": [
+        "لم تتم مقارنة المادة بصورة الصفحة الأصلية بصرياً",
+        "لم تُراجع اللوائح الداخلية أو القرارات التنفيذية أو الوقائع الخاصة",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "final advice, definitive liability assessment, or authoritative retrieval"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-5-NONDISCRIMINATION",
+      "question": "What employment-related discrimination does Article 5 address?",
+      "provisional_answer_ar": "تحظر المادة 5 الأفعال أو الإجراءات التي تؤدي إلى التمييز في الإعلان عن الوظائف أو شغلها أو التدريب أو شروط العمل والحقوق والواجبات الناشئة عن العقد على أسس متعددة، منها الجنس أو الدين أو اللون أو الأصل أو الإعاقة، مع مراعاة التدابير الحمائية التي يقررها القانون للفئات المستحقة. يلزم فحص النص الكامل والوقائع والاستثناءات قبل تصنيف حالة معينة.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 5",
+        "official_gazette_printed_page": 11,
+        "pdf_page_index_zero_based": 9
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص المادة 5 من الصفحة المطبوعة 11؛ لم يُنزّل الملف أو يُفحص بصرياً؛ تمتد المادة عبر حد الصفحة",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "صفحة النص الرسمي للقانون؛ يلزم التحقق الموضعي عند التطبيق",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://www.loc.gov/item/global-legal-monitor/2025-07-25/egypt-labor-law-updated/",
+          "source_type": "Library of Congress legal update",
+          "supports": "ملخص ثانوي لأحكام القانون المتعلقة بالتمييز والحماية في العمل"
+        }
+      ],
+      "limitations": [
+        "القائمة الواردة في هذه الخلاصة ليست نقلاً كاملاً لجميع الأوصاف والاستثناءات",
+        "لم تُراجع تشريعات أخرى قد تنطبق على الواقعة",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "final advice or authoritative retrieval"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-6-VOID-WAIVERS",
+      "question": "What kinds of contractual terms or waivers does Article 6 treat as void?",
+      "provisional_answer_ar": "تقرر المادة 6 بطلان الشرط أو الاتفاق المخالف للقانون إذا انتقص من حقوق العامل المقررة، وتتناول الإبراء من الحقوق الناشئة عن عقد العمل أثناء سريانه أو خلال ثلاثة أشهر من انتهائه. كما تقرر استمرار المزايا الأفضل المقررة بمصادر أخرى وفق شروط النص. يلزم فحص النص كاملاً ومصدر الميزة وتاريخها قبل إبداء رأي بشأن شرط محدد.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 6",
+        "official_gazette_printed_page": 12,
+        "pdf_page_index_zero_based": 10
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص المادة 6 من الصفحة المطبوعة 12؛ لم يُنزّل الملف أو يُفحص بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "صفحة النص الرسمي للقانون؛ يلزم التحقق الموضعي عند التطبيق",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf",
+          "source_type": "ILO NATLEX-hosted Arabic legal text",
+          "supports": "نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية"
+        }
+      ],
+      "limitations": [
+        "لا تحسم البطاقة كل صور الإبراء أو قواعد الإثبات أو التقادم",
+        "لم تُراجع أحكاماً قضائية أو تشريعات خاصة قد تكون ذات صلة",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "final advice or authoritative retrieval"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-7-LITIGATION-FEES",
+      "question": "What fee and cost treatment does Article 7 describe for labour disputes?",
+      "provisional_answer_ar": "تعفي المادة 7 الدعاوى المتعلقة بالمنازعات الناشئة عن تطبيق قانون العمل التي ترفعها الفئات المحددة بالنص، أو المستحقون عنهم، من الرسوم والمصاريف القضائية في مراحل التقاضي، وتورد أحكاماً مرتبطة بالمستندات والطلبات. ويظل للمحكمة وفق النص سلطة بشأن المصروفات في بعض الحالات؛ يجب التحقق من صفة رافع الدعوى ونوع الطلب والنص الكامل.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 7",
+        "official_gazette_printed_page": 12,
+        "pdf_page_index_zero_based": 10
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص المادة 7 من الصفحة المطبوعة 12؛ لم يُنزّل الملف أو يُفحص بصرياً؛ يستمر النص في الصفحة التالية",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "صفحة النص الرسمي للقانون؛ يلزم التحقق الموضعي عند التطبيق",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf",
+          "source_type": "ILO NATLEX-hosted Arabic legal text",
+          "supports": "نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية"
+        }
+      ],
+      "limitations": [
+        "الإعفاء ليس وصفاً عاماً لكل دعوى أو كل متقاضٍ",
+        "لم يُراجع قانون الرسوم أو القواعد الإجرائية ذات الصلة",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "final advice on court costs or authoritative retrieval"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-8-WORKER-DUES-PRIORITY",
+      "question": "What priority does Article 8 give certain worker dues?",
+      "provisional_answer_ar": "تقرر المادة 8 امتيازاً للمبالغ المستحقة للعامل أو المستحقين عنه بسبب علاقة العمل على أموال المدين المنقولة والعقارية، وتحدد ترتيباً عاماً لهذا الامتياز بالنسبة إلى مطالبات ومصروفات أخرى، كما تتناول اشتراكات التأمين الاجتماعي. لا تستخدم هذه الخلاصة لتحديد مرتبة مطالبة في تنفيذ فعلي دون مراجعة النص الكامل والقواعد الخاصة.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 8",
+        "official_gazette_printed_page": 13,
+        "pdf_page_index_zero_based": 11
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص المادة 8 من الصفحة المطبوعة 13؛ لم يُنزّل الملف أو يُفحص بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "صفحة النص الرسمي للقانون؛ يلزم التحقق الموضعي عند التطبيق",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf",
+          "source_type": "ILO NATLEX-hosted Arabic legal text",
+          "supports": "نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية"
+        }
+      ],
+      "limitations": [
+        "لا تمثل البطاقة ترتيباً تنفيذياً كاملاً لكل الديون والامتيازات",
+        "يلزم فحص القواعد الأخرى والوقائع وتاريخ نشوء الحق",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "final ranking of creditor claims or authoritative retrieval"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-9-CLOSURE-DOES-NOT-ERASE-DUES",
+      "question": "Does closing or liquidating an establishment by itself remove its labour-law obligations?",
+      "provisional_answer_ar": "تنص المادة 9 على أن حل المنشأة أو إغلاقها أو تصفيتها أو إفلاسها لا يمنع الوفاء بالالتزامات الناشئة وفق القانون، وتتناول تحديد أجل للوفاء ومتابعة الجهة الإدارية المختصة. يلزم الرجوع إلى النص الكامل وقواعد الإفلاس والتصفية والتنفيذ لتحديد الإجراء والمرتبة في الحالة المحددة.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 9",
+        "official_gazette_printed_page": 13,
+        "pdf_page_index_zero_based": 11
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص المادة 9 من الصفحة المطبوعة 13؛ لم يُنزّل الملف أو يُفحص بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "صفحة النص الرسمي للقانون؛ يلزم التحقق الموضعي عند التطبيق",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf",
+          "source_type": "ILO NATLEX-hosted Arabic legal text",
+          "supports": "نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية"
+        }
+      ],
+      "limitations": [
+        "لا تحدد البطاقة وحدها إجراءات الإفلاس أو التصفية أو أولوية التنفيذ",
+        "لم تُراجع اللوائح والقرارات التنفيذية ذات الصلة",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "final advice or authoritative retrieval"
     }
   ],
   "activation_gates": [
