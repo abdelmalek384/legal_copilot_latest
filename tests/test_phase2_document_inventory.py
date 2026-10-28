@@ -35,6 +35,18 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         self.assertIn("official Gazette text/pages", record["notes"])
         self.assertEqual(validate_inventory(self.inventory), [])
 
+    def test_decision_264_has_2026_followup_without_claiming_text_or_status_verified(self):
+        record = next(
+            d for d in self.inventory["documents"]
+            if d["document_id"] == "EG-LABOUR-DECISION-264-2025"
+        )
+        self.assertTrue(any("sis.gov.eg" in item["url"] for item in record["source_urls"]))
+        self.assertEqual(record["review_status"], "discovery_only")
+        self.assertEqual(record["legal_status"], "unknown")
+        self.assertEqual(record["collection_permission"], "permission_pending")
+        self.assertTrue(any("exact standards text" in item for item in record["required_related_records"]))
+        self.assertEqual(validate_inventory(self.inventory), [])
+
     def test_unknown_source_and_duplicate_instrument_ids_are_rejected(self):
         data = copy.deepcopy(self.inventory)
         data["documents"][0]["source_id"] = "EG-NOT-REGISTERED"
