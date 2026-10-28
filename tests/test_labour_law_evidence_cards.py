@@ -386,3 +386,30 @@ if __name__ == "__main__":
         self.assertTrue(any("ahmedazimelgamel.blogspot.com/2026/08/162-2026.html" in item["url"] for item in record["source_urls"]))
         self.assertIn("no copy was requested", record["notes"])
 
+    def test_collective_labour_relations_cards_188_to_200_have_pinpoints(self):
+        cards = {card["card_id"]: card for card in self.data["cards"]}
+        expected = {
+            "EG-LABOUR-14-2025-ART-188-SUPREME-SOCIAL-CONSULTATION-COUNCIL": ("المادة 188", 76, 74),
+            "EG-LABOUR-14-2025-ART-189-SOCIAL-CONSULTATION-COUNCIL-COMPETENCIES": ("المادة 189", 76, 74),
+            "EG-LABOUR-14-2025-ART-190-SOCIAL-COUNCIL-COMPOSITION": ("المادة 190", 76, 74),
+            "EG-LABOUR-14-2025-ART-191-SOCIAL-COUNCIL-TERM": ("المادة 191", 76, 74),
+            "EG-LABOUR-14-2025-ART-192-SOCIAL-COUNCIL-BRANCHES-COMMITTEES": ("المادة 192", 76, 74),
+            "EG-LABOUR-14-2025-ART-193-SOCIAL-COUNCIL-FUNDING-AND-AUDIT": ("المادة 193", 76, 74),
+            "EG-LABOUR-14-2025-ART-194-COLLECTIVE-BARGAINING-PURPOSES": ("المادة 194", 77, 75),
+            "EG-LABOUR-14-2025-ART-195-COLLECTIVE-BARGAINING-LEVELS": ("المادة 195", 77, 75),
+            "EG-LABOUR-14-2025-ART-196-COLLECTIVE-DISPUTE-MANDATORY-NEGOTIATION": ("المادة 196", 77, 75),
+            "EG-LABOUR-14-2025-ART-197-COLLECTIVE-AGREEMENT-FROM-NEGOTIATION": ("المادة 197", 77, 75),
+            "EG-LABOUR-14-2025-ART-198-NO-UNILATERAL-ACTIONS-DURING-NEGOTIATION": ("المادة 198", 77, 75),
+            "EG-LABOUR-14-2025-ART-199-COLLECTIVE-AGREEMENT-DURATION": ("المادة 199", 78, 76),
+            "EG-LABOUR-14-2025-ART-200-COLLECTIVE-AGREEMENT-CONFLICT-AND-BETTER-BENEFIT": ("المادة 200", 78, 76),
+        }
+        self.assertEqual(len(self.data["cards"]), 142)
+        for card_id, (article, printed_page, pdf_index) in expected.items():
+            with self.subTest(card_id=card_id):
+                card = cards[card_id]
+                self.assertEqual(card["pinpoint"]["article"], article)
+                self.assertEqual(card["pinpoint"]["official_gazette_printed_page"], printed_page)
+                self.assertEqual(card["pinpoint"]["pdf_page_index_zero_based"], pdf_index)
+                self.assertTrue(card["limitations"])
+                self.assertFalse(self.data["instrument"]["search_eligible"])
+
