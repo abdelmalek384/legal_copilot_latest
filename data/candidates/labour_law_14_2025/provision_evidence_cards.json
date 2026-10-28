@@ -235,6 +235,135 @@
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
       "not_usable_for": "final advice or authoritative retrieval"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-117-ORDINARY-HOURS",
+      "question": "What ordinary actual working-hour limits does Article 117 state?",
+      "provisional_answer_ar": "تضع المادة 117 حداً عاماً للعمل الفعلي لا يتجاوز ثماني ساعات يومياً أو ثمانياً وأربعين ساعة أسبوعياً، مع استبعاد فترات الطعام والراحة، وتجيز تخفيض الحدود لبعض الفئات أو الأعمال بقرار من الوزير المختص. يجب فحص القرارات الخاصة وأي استثناء منطبق قبل حساب الساعات في واقعة محددة.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 117",
+        "official_gazette_printed_page": 52,
+        "pdf_page_index_zero_based": 50
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "النص الرسمي القابل للبحث؛ مراجعة موضعية لا تمثل فحصاً بصرياً للصفحة",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص الصفحة المطبوعة 52؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted official Gazette PDF search result",
+          "supports": "يعرض نص المادة 117 على الصفحة المطبوعة 52"
+        }
+      ],
+      "limitations": [
+        "قد توجد قرارات وزارية أو استثناءات خاصة تؤثر في الحد العام",
+        "لا توجد مراجعة محامٍ مسجلة أو شهادة اكتمال للتشريعات المنفذة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "automated overtime calculation or final advice"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-124-ANNUAL-LEAVE",
+      "question": "What annual paid-leave entitlement tiers does Article 124 list?",
+      "provisional_answer_ar": "تسرد المادة 124 إجازة سنوية مدفوعة مقدارها 15 يوماً في السنة الأولى، و21 يوماً ابتداءً من السنة الثانية، و30 يوماً لمن أمضى عشر سنوات لدى صاحب عمل أو أكثر أو تجاوز الخمسين، و45 يوماً للأشخاص ذوي الإعاقة والأقزام. كما تضع قاعدة تناسبية لمن تقل خدمته عن سنة بشرط خدمة ستة أشهر على الأقل، وتقرر زيادة سبعة أيام للأعمال الخطرة أو المضرة بالصحة أو المناطق النائية التي يحددها قرار وزاري.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 124",
+        "official_gazette_printed_page": 54,
+        "pdf_page_index_zero_based": 52
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "النص الرسمي القابل للبحث؛ تم فحص استخراج النص لهذه المادة، لا صورة الصفحة",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص الصفحة المطبوعة 54؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://sis.gov.eg/media/760267/%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86-%D8%B1%D9%82%D9%85-14-%D9%84%D8%B3%D9%86%D8%A9-2025-%D8%A8%D8%A5%D8%B5%D8%AF%D8%A7%D8%B1-%D9%82%D8%A7%D9%86%D9%88%D9%86-%D8%A7%D9%84%D8%B9%D9%85%D9%84.pdf",
+          "source_type": "government-hosted official Gazette PDF",
+          "supports": "يعرض مواد الإجازات على الصفحات المطبوعة 54–55"
+        },
+        {
+          "url": "https://www.loc.gov/item/global-legal-monitor/2025-07-25/egypt-labor-law-updated/",
+          "source_type": "Library of Congress legal update",
+          "supports": "سياق تشريعي عام؛ لا يعتمد عليه وحده لحساب استحقاق فردي"
+        }
+      ],
+      "limitations": [
+        "الزيادة الإضافية تتوقف على قرار يحدد الأعمال/المناطق المعنية",
+        "لا توجد مراجعة محامٍ مسجلة ولا تحقق شامل من القرارات اللاحقة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "final leave balance or payroll determination"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-165-UNLAWFUL-TERMINATION",
+      "question": "What minimum compensation does Article 165 state for unlawful termination of an indefinite-term contract?",
+      "provisional_answer_ar": "تنص المادة 165 على حق العامل في تعويض عن الضرر عند إنهاء صاحب العمل عقداً غير محدد المدة لسبب غير مشروع، بحد أدنى يعادل أجر شهرين عن كل سنة خدمة، مع عدم الإخلال بباقي الحقوق القانونية. وتورد المادة أمثلة لأسباب غير مشروعة؛ تحديد الانطباق يتطلب الوقائع والنص الكامل ومراجعة محامٍ.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 165",
+        "official_gazette_printed_page": 69,
+        "pdf_page_index_zero_based": 67
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "استخراج نص المادة 165 على الصفحة المطبوعة 69؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص الصفحة المطبوعة 69؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted official Gazette PDF search result",
+          "supports": "يعرض نص المادة 165 وتعويض الإنهاء غير المشروع"
+        }
+      ],
+      "limitations": [
+        "يعتمد الاستحقاق على كون العقد غير محدد المدة ووجود سبب غير مشروع وفق القانون",
+        "يجب فحص الوقائع والأحكام الأخرى والتعديلات أو القرارات ذات الصلة",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "settlement valuation, case prediction, or final legal advice"
     }
   ],
   "activation_gates": [
