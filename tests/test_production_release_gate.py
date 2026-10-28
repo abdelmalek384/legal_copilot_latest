@@ -7,6 +7,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from tools import production_release_gate as gate
+from tools.migrate_tenant_fleet import FleetMigrationError
 
 
 class ProductionReleaseGateTests(unittest.TestCase):
