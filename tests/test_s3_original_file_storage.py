@@ -46,7 +46,13 @@ class FakeS3Client:
 
     def head_object(self, **kwargs):
         value = self._read(kwargs["Bucket"], kwargs["Key"])
-        return {"ETag": value["ETag"], "ContentLength": len(value["Body"]), "Metadata": value["Metadata"]}
+        return {
+            "ETag": value["ETag"],
+            "ContentLength": len(value["Body"]),
+            "Metadata": value["Metadata"],
+            "ServerSideEncryption": value.get("ServerSideEncryption"),
+            "SSEKMSKeyId": value.get("SSEKMSKeyId"),
+        }
 
     def copy_object(self, **kwargs):
         self.calls.append(("copy_object", kwargs.copy()))
@@ -66,7 +72,11 @@ class FakeS3Client:
 
     def get_object(self, **kwargs):
         value = self._read(kwargs["Bucket"], kwargs["Key"])
-        return {"Body": io.BytesIO(value["Body"])}
+        return {
+            "Body": io.BytesIO(value["Body"]),
+            "ServerSideEncryption": value.get("ServerSideEncryption"),
+            "SSEKMSKeyId": value.get("SSEKMSKeyId"),
+        }
 
     def delete_object(self, **kwargs):
         self.objects.pop((kwargs["Bucket"], kwargs["Key"]), None)
@@ -121,6 +131,20 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
         self.assertEqual(copy_call["ServerSideEncryption"], "aws:kms")
         self.assertEqual(copy_call["SSEKMSKeyId"], "alias/legal-files")
         self.assertEqual(copy_call["IfNoneMatch"], "*")
+
+    def test_rejects_unencrypted_or_non_kms_objects_on_read_and_verify(self):
+        staged = self.store.stage(12, b"confidential")
+        self.store.finalize(12, staged.object_id)
+        key = ("private-matter-files", f"firms/12/originals/{staged.object_id}.blob")
+        self.client.objects[key]["ServerSideEncryption"] = "AES256"
+        with self.assertRaises(ObjectStorageError):
+            self.store.open(12, staged.object_id)
+        self.assertFalse(self.store.verify(
+            12, staged.object_id, expected_sha256=staged.sha256,
+            expected_size=staged.byte_size,
+        ))
+        with self.assertRaises(ObjectStorageError):
+            self.store.object_presence(12, staged.object_id)
 
     def test_firm_namespace_and_object_id_validation(self):
         staged = self.store.stage(12, b"firm twelve")

@@ -66,11 +66,18 @@ class S3PrivateObjectStore:
 
     def _head(self, key: str):
         try:
-            return self.client.head_object(Bucket=self.bucket, Key=key)
+            result = self.client.head_object(Bucket=self.bucket, Key=key)
         except Exception as exc:
             if self._missing(exc):
                 return None
             raise ObjectStorageError("object-storage metadata lookup failed") from exc
+        # Do not treat an object as valid merely because its key exists. Require
+        # S3's response to attest that server-side KMS encryption is active.
+        if (result.get("ServerSideEncryption") != "aws:kms"
+                or not isinstance(result.get("SSEKMSKeyId"), str)
+                or not result["SSEKMSKeyId"].strip()):
+            raise ObjectStorageError("stored object is not protected by KMS encryption")
+        return result
 
     def stage(self, firm_id: int, data: bytes) -> StagedObject:
         """Stage bytes under a newly generated opaque object ID."""
@@ -137,6 +144,13 @@ class S3PrivateObjectStore:
         try:
             response = self.client.get_object(Bucket=self.bucket, Key=key)
             body = response.get("Body")
+            if (response.get("ServerSideEncryption") != "aws:kms"
+                    or not isinstance(response.get("SSEKMSKeyId"), str)
+                    or not response["SSEKMSKeyId"].strip()):
+                close = getattr(body, "close", None)
+                if callable(close):
+                    close()
+                raise ObjectStorageError("stored object is not protected by KMS encryption")
             if body is None:
                 raise ObjectStorageError("object-storage response has no body")
             return body
@@ -161,6 +175,13 @@ class S3PrivateObjectStore:
         try:
             response = self.client.get_object(Bucket=self.bucket, Key=key)
             body = response.get("Body")
+            if (response.get("ServerSideEncryption") != "aws:kms"
+                    or not isinstance(response.get("SSEKMSKeyId"), str)
+                    or not response["SSEKMSKeyId"].strip()):
+                close = getattr(body, "close", None)
+                if callable(close):
+                    close()
+                return False
             if body is None:
                 return False
             try:
