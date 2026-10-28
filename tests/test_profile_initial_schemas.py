@@ -118,6 +118,10 @@ class ProfileInitialSchemaTests(unittest.TestCase):
                 "case_deletion_audit_tenant_firm_insert",
                 "case_deletion_audit_tenant_firm_update",
             },
+            "original_file_objects": {
+                "original_file_objects_tenant_insert",
+                "original_file_objects_tenant_update",
+            },
         }
         installed = {
             row["name"]
@@ -197,6 +201,34 @@ class ProfileInitialSchemaTests(unittest.TestCase):
                     7,
                     f"{table} retained an update that escaped the tenant binding",
                 )
+        db.close()
+
+    def test_original_file_metadata_is_firm_scoped_and_legal_hold_blocks_delete(self):
+        db = self.build("firm")
+        db.execute("INSERT INTO cases(id,title,firm_id) VALUES(1,'Matter',7)")
+        db.execute("INSERT INTO docs(id,case_id,firm_id,name) VALUES(2,1,7,'original.pdf')")
+        db.execute(
+            "INSERT INTO original_file_objects"
+            "(object_id,document_id,firm_id,storage_backend,sha256,byte_size,content_type,state) "
+            "VALUES(?,?,?,?,?,?,?,'ready')",
+            ("a" * 32, 2, 7, "local", "b" * 64, 123, "application/pdf"),
+        )
+        db.commit()
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "different firm"):
+            db.execute("UPDATE original_file_objects SET firm_id=8 WHERE object_id=?", ("a" * 32,))
+        db.execute(
+            "UPDATE original_file_objects SET legal_hold=1,hold_reason='active litigation',"
+            "hold_set_by=42,hold_set_at=datetime('now') WHERE object_id=?",
+            ("a" * 32,),
+        )
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "legal hold"):
+            db.execute("DELETE FROM original_file_objects WHERE object_id=?", ("a" * 32,))
+        self.assertEqual(
+            tuple(db.execute(
+                "SELECT state,legal_hold FROM original_file_objects WHERE object_id=?", ("a" * 32,)
+            ).fetchone()),
+            ("ready", 1),
+        )
         db.close()
 
     def test_control_plane_catalog_requires_existing_firm_and_blocks_firm_delete(self):
