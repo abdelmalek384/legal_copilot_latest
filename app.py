@@ -3564,6 +3564,7 @@ def request_account_recovery(b: RecoveryRequestIn, request: Request):
             (client_key, window_start),
         )
         hits_row = limit_cursor.fetchone()
+        limit_cursor.fetchall()  # Finish the RETURNING statement before later writes/commit.
         hits = int(hits_row["hits"]) if hits_row else 1
         account = control.execute(
             "SELECT id,email_display,status FROM users WHERE email_normalized=?",
