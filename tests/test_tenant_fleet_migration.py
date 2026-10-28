@@ -111,6 +111,25 @@ class TenantFleetMigrationTests(unittest.TestCase):
                 "SELECT name FROM sqlite_master WHERE type='table' AND name='fleet_migration_test'"
             ).fetchone())
 
+    def test_preflight_refuses_orphaned_control_plane_catalog_rows(self):
+        control_path = self.runtime.paths.control_plane
+        connection = sqlite3.connect(control_path)
+        try:
+            connection.execute("PRAGMA foreign_keys=OFF")
+            connection.execute(
+                "INSERT INTO tenant_database_catalog(firm_id,database_file,status) "
+                "VALUES(999,NULL,'failed')"
+            )
+            connection.commit()
+        finally:
+            connection.close()
+        with self.assertRaisesRegex(FleetMigrationError, "foreign-key violations"):
+            build_plan(
+                control_path,
+                self.runtime.paths.tenant_root,
+                self.migrations_root,
+            )
+
     def test_preflight_refuses_catalog_file_belonging_to_another_firm(self):
         control = self.runtime.control_connection()
         control.execute(
