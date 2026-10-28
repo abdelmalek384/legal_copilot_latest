@@ -192,6 +192,30 @@ class DatabaseMigrationTests(unittest.TestCase):
             "SELECT name FROM sqlite_master WHERE type='table' AND name='unexpected'"
         ).fetchone())
 
+    def test_non_regular_migration_fifo_is_rejected_without_blocking(self):
+        import os
+
+        if not hasattr(os, "mkfifo") or os.name != "posix":
+            self.skipTest("FIFO behavior is POSIX-specific")
+        fifo = self.path / "0001_wait_forever.sql"
+        os.mkfifo(fifo)
+        with self.assertRaisesRegex(MigrationError, "must be a regular file"):
+            apply_migrations(self.db, self.path)
+        self.assertEqual(
+            self.db.execute("SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='schema_migrations'").fetchone()[0],
+            0,
+        )
+
+    def test_oversized_migration_is_rejected(self):
+        path = self.path / "0001_oversized.sql"
+        path.write_text(" " * (5_000_001), encoding="utf-8")
+        with self.assertRaisesRegex(MigrationError, "5 MB safety limit"):
+            apply_migrations(self.db, self.path)
+        self.assertEqual(
+            self.db.execute("SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='schema_migrations'").fetchone()[0],
+            0,
+        )
+
     def test_symlinked_migration_directory_is_rejected(self):
         actual = self.path / "actual"
         actual.mkdir()
