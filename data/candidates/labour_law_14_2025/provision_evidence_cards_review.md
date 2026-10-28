@@ -2,7 +2,7 @@
 
 **Record:** `EG-LABOUR-LAW-14-2025-EVIDENCE-CARDS-2026-10-28`  
 **Prepared on:** 2026-10-28  
-**Cards in this report:** 129
+**Cards in this report:** 142
 
 ## Status and limits
 
@@ -14,7 +14,7 @@
 - Collection permission: `unknown`; commercial reuse: `unknown`.
 - Authoritative search eligibility: `false`.
 
-Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF binary has not been downloaded or hashed; only specifically listed page images have been visually inspected, and the full PDF has not been comprehensively reviewed; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording. Additional cards for accompanying-law Articles 4–9 were prepared from text extraction of the government-hosted Official Gazette PDF on 2026-10-28. The PDF binary has not been downloaded or hashed; only specifically listed page images have been visually inspected, and the full PDF has not been comprehensively reviewed; page pinpointing is provisional and all cards remain non-authoritative. Additional cards for accompanying-law Articles 10–12 were prepared from the government-hosted Official Gazette PDF text extraction on 2026-10-28. Page references are based on the extracted page labels; the PDF binary has not been downloaded or hashed; only explicitly recorded page images have been visually inspected. Cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 16, 22, 23, 25 and 27 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; these cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 28–31 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 32–34 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 36–37 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshot checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 40–43 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 44–48 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 49–54 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 126 and 127 were added from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 55. The original PDF remains undownloaded and unhashed, and both cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 121 and 122 were prepared from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 53. Article 121 was cross-checked against a secondary English translation, and Article 122 against a secondary legal text copy. The original PDF remains undownloaded and unhashed; both cards remain provisional and non-authoritative. An additional card for accompanying-law Article 123 was added from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 53. It is cross-checked against a secondary English translation, but the implementing ministerial decision has not been identified and reviewed in this task. The original PDF remains undownloaded and unhashed; the card is provisional and non-authoritative. Additional provisional cards for accompanying-law Articles 117–120 and 124–125 were added on 2026-10-28 from indexed official Amiri Press / government-hosted Gazette text leads, cross-checked against a secondary transcription. Gazette printed-page pinpoints are provisional (52 for Articles 117–120; 54 for Articles 124–125); the original PDF remains undownloaded, unhashed, and not visually inspected. These additions do not establish currentness, completeness, reuse rights, or lawyer approval. Additional provisional cards for accompanying-law Articles 128–130 were added on 2026-10-28 using indexed text from the government-hosted Official Gazette PDF (printed page 56; provisional pinpoint) and a secondary transcription cross-check. The official publisher page is recorded as a source lead but was not directly opened in this round. The Gazette PDF remains undownloaded, unhashed, and not visually inspected; cards remain non-authoritative. Additional provisional cards for accompanying-law Articles 131–132 were added on 2026-10-28 from indexed government-hosted Gazette text with a secondary transcription cross-check. Printed-page pinpoints are provisional; the source PDF remains undownloaded, unhashed, and not visually inspected. The sick-leave card distinguishes the general medical-authority rule from the special industrial-establishment tiers; implementing decisions and related social-insurance rules remain unresolved. PAGE-LEVEL VISUAL CHECK UPDATE (2026-10-28): the official Gazette PDF at the ETA portal is accessible through the web PDF viewer (110 pages) and rendered page images were visually checked for printed Gazette pages 52–57. The article-to-page mapping is: Arts. 117–120 p.52; 121–122 p.53; 123–124 p.54; 125–127 p.55; 128–130 p.56; 131–132 p.57. This corrects the prior provisional page assignments for Article 125 (p.55, not p.54) and Article 131 (p.57, not p.56). PDF page indices are printed page minus 2. The source binary still could not be downloaded in the runtime, so no SHA-256 is claimed; only the listed pages were visually checked, not the entire instrument or amendment history. CURRENTNESS LEAD (2026-10-28): Ministry of Labour announcement dated 2026-10-01 identifies Circular 22/2026 for the 8 October 2026 private-sector holiday and confirms that Decision 294/2025 lists Armed Forces Day (6 October) as a paid holiday. This is event-specific implementation evidence, not proof of a general amendment or a complete current holiday list. Additional provisional cards for Articles 133–136 were added after visual inspection of official Gazette printed pages 57–59 (PDF indices 55–57) on 2026-10-28. Article 134 begins on printed page 57 and continues onto page 58. The PDF binary remains undownloaded and unhashed; summaries are provisional and no lawyer review or currentness certification is claimed. Additional provisional disciplinary/work-regulation cards for Articles 137–141 were added after visual inspection of official Gazette printed pages 60–61 (PDF indices 58–59) on 2026-10-28. These cards summarize statutory framework only; the current general workplace-regulation decision (162/2026), each employer's actual regulation, full amendment history, and legal review remain outstanding. Additional provisional disciplinary cards for Articles 142–148 were added after visual inspection of official Gazette printed pages 62–63 (PDF indices 60–61) on 2026-10-28. These summaries cover investigation assignment, deduction caps, repeated violations, temporary suspension, suspension grievances/extensions, and authority to impose discipline. They remain provisional and require full text/currentness/legal review. Additional provisional individual-dispute cards for Articles 149–150 were added after visual inspection of official Gazette printed pages 64–65 (PDF indices 62–63) on 2026-10-28. Procedural deadlines and financial consequences require full-text extraction and legal review before any case-specific use. Additional provisional cards for Articles 151–158 were added after visual inspection of official Gazette printed pages 65–67 (PDF indices 63–65) on 2026-10-28. They cover worker liability for damage, union protections, disciplinary-fine accounting, expiry/renewal of fixed-term or specific-work contracts, and notice/justification rules for indefinite-term termination. They remain provisional; case-specific calculations require full-text and legal review. Additional provisional termination-notice cards for Articles 159–164 were added after visual inspection of official Gazette printed pages 68–69 (PDF indices 66–67) on 2026-10-28. They cover notice during leave, contract continuity, notice-period constraints, paid job-search time, employer waiver of work, and payment in lieu of unserved notice. These cards remain provisional and require full legal review. Additional provisional termination and end-of-service cards for accompanying-law Articles 165–175 were added on 2026-10-28 from the searchable extraction of the government-hosted Official Gazette PDF. The extracted lines place Article 165 on printed page 69/PDF index 67; Articles 166–169 begin on printed page 70/PDF index 68; Articles 170–171 appear on printed page 71/PDF index 69; and Articles 172–175 appear on printed page 72/PDF index 70. Page locations are text-extraction pinpoints, not independent visual inspection of every cited page. Cards remain provisional; source binary hash, comprehensive currentness/amendment review, reuse review and Egyptian-lawyer review remain outstanding. Additional provisional procedural cards for accompanying-law Articles 176–187 were added on 2026-10-28 from searchable text extraction of the government-hosted Official Gazette PDF. The extracted viewer pages place Articles 176–180 on printed page 73/PDF index 71; Articles 181–185 on printed page 74/PDF index 72; and Articles 186–187 on printed page 75/PDF index 73. These are text-extraction pinpoints, not independent visual inspection of every cited page. The source PDF binary remains unavailable for hashing, and currentness, amendment history, reuse rights and qualified legal review remain unresolved.
+Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF binary has not been downloaded or hashed; only specifically listed page images have been visually inspected, and the full PDF has not been comprehensively reviewed; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording. Additional cards for accompanying-law Articles 4–9 were prepared from text extraction of the government-hosted Official Gazette PDF on 2026-10-28. The PDF binary has not been downloaded or hashed; only specifically listed page images have been visually inspected, and the full PDF has not been comprehensively reviewed; page pinpointing is provisional and all cards remain non-authoritative. Additional cards for accompanying-law Articles 10–12 were prepared from the government-hosted Official Gazette PDF text extraction on 2026-10-28. Page references are based on the extracted page labels; the PDF binary has not been downloaded or hashed; only explicitly recorded page images have been visually inspected. Cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 16, 22, 23, 25 and 27 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; these cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 28–31 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 32–34 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 36–37 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshot checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 40–43 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 44–48 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 49–54 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 126 and 127 were added from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 55. The original PDF remains undownloaded and unhashed, and both cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 121 and 122 were prepared from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 53. Article 121 was cross-checked against a secondary English translation, and Article 122 against a secondary legal text copy. The original PDF remains undownloaded and unhashed; both cards remain provisional and non-authoritative. An additional card for accompanying-law Article 123 was added from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 53. It is cross-checked against a secondary English translation, but the implementing ministerial decision has not been identified and reviewed in this task. The original PDF remains undownloaded and unhashed; the card is provisional and non-authoritative. Additional provisional cards for accompanying-law Articles 117–120 and 124–125 were added on 2026-10-28 from indexed official Amiri Press / government-hosted Gazette text leads, cross-checked against a secondary transcription. Gazette printed-page pinpoints are provisional (52 for Articles 117–120; 54 for Articles 124–125); the original PDF remains undownloaded, unhashed, and not visually inspected. These additions do not establish currentness, completeness, reuse rights, or lawyer approval. Additional provisional cards for accompanying-law Articles 128–130 were added on 2026-10-28 using indexed text from the government-hosted Official Gazette PDF (printed page 56; provisional pinpoint) and a secondary transcription cross-check. The official publisher page is recorded as a source lead but was not directly opened in this round. The Gazette PDF remains undownloaded, unhashed, and not visually inspected; cards remain non-authoritative. Additional provisional cards for accompanying-law Articles 131–132 were added on 2026-10-28 from indexed government-hosted Gazette text with a secondary transcription cross-check. Printed-page pinpoints are provisional; the source PDF remains undownloaded, unhashed, and not visually inspected. The sick-leave card distinguishes the general medical-authority rule from the special industrial-establishment tiers; implementing decisions and related social-insurance rules remain unresolved. PAGE-LEVEL VISUAL CHECK UPDATE (2026-10-28): the official Gazette PDF at the ETA portal is accessible through the web PDF viewer (110 pages) and rendered page images were visually checked for printed Gazette pages 52–57. The article-to-page mapping is: Arts. 117–120 p.52; 121–122 p.53; 123–124 p.54; 125–127 p.55; 128–130 p.56; 131–132 p.57. This corrects the prior provisional page assignments for Article 125 (p.55, not p.54) and Article 131 (p.57, not p.56). PDF page indices are printed page minus 2. The source binary still could not be downloaded in the runtime, so no SHA-256 is claimed; only the listed pages were visually checked, not the entire instrument or amendment history. CURRENTNESS LEAD (2026-10-28): Ministry of Labour announcement dated 2026-10-01 identifies Circular 22/2026 for the 8 October 2026 private-sector holiday and confirms that Decision 294/2025 lists Armed Forces Day (6 October) as a paid holiday. This is event-specific implementation evidence, not proof of a general amendment or a complete current holiday list. Additional provisional cards for Articles 133–136 were added after visual inspection of official Gazette printed pages 57–59 (PDF indices 55–57) on 2026-10-28. Article 134 begins on printed page 57 and continues onto page 58. The PDF binary remains undownloaded and unhashed; summaries are provisional and no lawyer review or currentness certification is claimed. Additional provisional disciplinary/work-regulation cards for Articles 137–141 were added after visual inspection of official Gazette printed pages 60–61 (PDF indices 58–59) on 2026-10-28. These cards summarize statutory framework only; the current general workplace-regulation decision (162/2026), each employer's actual regulation, full amendment history, and legal review remain outstanding. Additional provisional disciplinary cards for Articles 142–148 were added after visual inspection of official Gazette printed pages 62–63 (PDF indices 60–61) on 2026-10-28. These summaries cover investigation assignment, deduction caps, repeated violations, temporary suspension, suspension grievances/extensions, and authority to impose discipline. They remain provisional and require full text/currentness/legal review. Additional provisional individual-dispute cards for Articles 149–150 were added after visual inspection of official Gazette printed pages 64–65 (PDF indices 62–63) on 2026-10-28. Procedural deadlines and financial consequences require full-text extraction and legal review before any case-specific use. Additional provisional cards for Articles 151–158 were added after visual inspection of official Gazette printed pages 65–67 (PDF indices 63–65) on 2026-10-28. They cover worker liability for damage, union protections, disciplinary-fine accounting, expiry/renewal of fixed-term or specific-work contracts, and notice/justification rules for indefinite-term termination. They remain provisional; case-specific calculations require full-text and legal review. Additional provisional termination-notice cards for Articles 159–164 were added after visual inspection of official Gazette printed pages 68–69 (PDF indices 66–67) on 2026-10-28. They cover notice during leave, contract continuity, notice-period constraints, paid job-search time, employer waiver of work, and payment in lieu of unserved notice. These cards remain provisional and require full legal review. Additional provisional termination and end-of-service cards for accompanying-law Articles 165–175 were added on 2026-10-28 from the searchable extraction of the government-hosted Official Gazette PDF. The extracted lines place Article 165 on printed page 69/PDF index 67; Articles 166–169 begin on printed page 70/PDF index 68; Articles 170–171 appear on printed page 71/PDF index 69; and Articles 172–175 appear on printed page 72/PDF index 70. Page locations are text-extraction pinpoints, not independent visual inspection of every cited page. Cards remain provisional; source binary hash, comprehensive currentness/amendment review, reuse review and Egyptian-lawyer review remain outstanding. Additional provisional procedural cards for accompanying-law Articles 176–187 were added on 2026-10-28 from searchable text extraction of the government-hosted Official Gazette PDF. The extracted viewer pages place Articles 176–180 on printed page 73/PDF index 71; Articles 181–185 on printed page 74/PDF index 72; and Articles 186–187 on printed page 75/PDF index 73. These are text-extraction pinpoints, not independent visual inspection of every cited page. The source PDF binary remains unavailable for hashing, and currentness, amendment history, reuse rights and qualified legal review remain unresolved. On 2026-10-28, added provisional cards for accompanying-law Articles 188–200 (social consultation and collective bargaining). Their article text was checked against a public secondary transcription of Law 14/2025 at Law Hub; official publisher and government Gazette links remain attached as primary-source leads. The printed-page mapping (Arts. 188–193 p.76/index 74; Arts. 194–198 p.77/index 75; Arts. 199–200 p.78/index 76) is an inferred text-extraction map, not a visual page-by-page verification. The source PDF remains unavailable locally for hashing; currentness, amendments, reuse rights, and lawyer review remain unresolved.
 
 ## Provision cards
 
@@ -4154,6 +4154,396 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** حساب ميعاد أو تحديد شكل الطعن دون مراجعة القانون الإجرائي المحال إليه والنصوص الخاصة.
+
+### 130. EG-LABOUR-14-2025-ART-188-SUPREME-SOCIAL-CONSULTATION-COUNCIL
+
+**Question:** ما المجلس الأعلى للتشاور الاجتماعي الذي ينشئه قانون العمل؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 188, printed Gazette page 76 (PDF page index 74).
+
+**Provisional summary (Arabic):**
+
+تنشئ المادة 188 بالمجلس المختص بالعمل مجلساً أعلى للتشاور الاجتماعي وتمنحه الشخصية الاعتبارية العامة، بهدف تعزيز التعاون والتشاور والحوار بين أطراف العمل الثلاثة في قضايا العمل وتحقيق التوازن والاستقرار في العلاقات الفردية والجماعية. يلزم التحقق من قرار تشكيل المجلس وتنظيمه الفعلي قبل الاعتماد على إجراءاته.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 188؛ pinpoint الصفحة مبني على استخراج نصي ويحتاج مطابقة كاملة (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 188؛ pinpoint الصفحة مبني على استخراج نصي ويحتاج مطابقة كاملة (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للنص العربي؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تحديد التشكيل الحالي أو إجراءات المجلس دون قرار التشكيل والتنظيم
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً لكل صفحة
+- لم تُراجع التعديلات والأحكام القضائية واللوائح التنفيذية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 131. EG-LABOUR-14-2025-ART-189-SOCIAL-CONSULTATION-COUNCIL-COMPETENCIES
+
+**Question:** ما اختصاصات المجلس الأعلى للتشاور الاجتماعي؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 189, printed Gazette page 76 (PDF page index 74).
+
+**Provisional summary (Arabic):**
+
+تعدد المادة 189 اختصاصات المجلس، ومنها اقتراح سياسات الحوار الثلاثي، وإبداء الرأي في مشروعات القوانين واتفاقيات العمل الدولية، واقتراح حلول للمنازعات الجماعية، وتعزيز التفاهم بين أطراف العمل، وإعداد دراسات العمل، والنظر في الموضوعات المحالة إليه. يلزم قراءة النص الكامل وقرارات التنظيم عند تحديد اختصاص محدد.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 189؛ pinpoint الصفحة مبني على استخراج نصي ويحتاج مطابقة كاملة (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 189؛ pinpoint الصفحة مبني على استخراج نصي ويحتاج مطابقة كاملة (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للنص العربي؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- نسبة قرار ملزم أو اختصاص حصري للمجلس دون سند صريح أو قرار تنظيمي
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً لكل صفحة
+- لم تُراجع التعديلات والأحكام القضائية واللوائح التنفيذية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 132. EG-LABOUR-14-2025-ART-190-SOCIAL-COUNCIL-COMPOSITION
+
+**Question:** كيف يشكل المجلس الأعلى للتشاور الاجتماعي ومن يمثل فيه؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 190, printed Gazette page 76 (PDF page index 74).
+
+**Provisional summary (Arabic):**
+
+تقرر المادة 190 تشكيل المجلس بقرار من رئيس مجلس الوزراء برئاسة الوزير المختص، وعضوية ممثلين عن الجهات الحكومية ومنظمات أصحاب الأعمال والمنظمات النقابية العمالية، مع قواعد للمساواة والتمثيل تشمل تمثيل المرأة، وممثلين عن مجالس وطنية دون صوت معدود. وتظل تفاصيل التشكيل الفعلي مرتبطة بقرار التشكيل.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 190؛ pinpoint الصفحة مبني على استخراج نصي ويحتاج مطابقة كاملة (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 190؛ pinpoint الصفحة مبني على استخراج نصي ويحتاج مطابقة كاملة (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للنص العربي؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- الجزم بأسماء الأعضاء الحاليين أو اكتمال نسب التمثيل دون قرار التشكيل الساري
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً لكل صفحة
+- لم تُراجع التعديلات والأحكام القضائية واللوائح التنفيذية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 133. EG-LABOUR-14-2025-ART-191-SOCIAL-COUNCIL-TERM
+
+**Question:** ما مدة دورة المجلس الأعلى للتشاور الاجتماعي؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 191, printed Gazette page 76 (PDF page index 74).
+
+**Provisional summary (Arabic):**
+
+تحدد المادة 191 دورة المجلس بأربع سنوات تبدأ من اليوم التالي لصدور قرار رئيس مجلس الوزراء بالتشكيل، وتوجب إعادة تشكيله خلال الستين يوماً الأخيرة على الأقل قبل انتهاء الدورة. وإذا خلا مقعد، ترشح الجهة المعنية بديلاً لاستكمال المدة. يلزم الاطلاع على قرار التشكيل وتاريخ صدوره لتحديد المواعيد الفعلية.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 191؛ pinpoint الصفحة مبني على استخراج نصي ويحتاج مطابقة كاملة (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 191؛ pinpoint الصفحة مبني على استخراج نصي ويحتاج مطابقة كاملة (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للنص العربي؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- حساب انتهاء دورة المجلس دون معرفة تاريخ قرار التشكيل وحالات خلو المقاعد
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً لكل صفحة
+- لم تُراجع التعديلات والأحكام القضائية واللوائح التنفيذية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 134. EG-LABOUR-14-2025-ART-192-SOCIAL-COUNCIL-BRANCHES-COMMITTEES
+
+**Question:** هل يجوز إنشاء فروع ولجان ووحدات بحثية للمجلس؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 192, printed Gazette page 76 (PDF page index 74).
+
+**Provisional summary (Arabic):**
+
+تجيز المادة 192 للمجلس إنشاء فروع بالمحافظات برئاسة مدير مديرية العمل، وتشكيل لجان نوعية ووحدات بحثية، مع مراعاة التمثيل الثلاثي، وتجيز له إصدار اللوائح المالية والإدارية اللازمة لتنظيم عمل هذه الوحدات. لا يثبت النص وحده إنشاء فرع أو لجنة بعينها أو سريان لائحة محددة.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 192؛ pinpoint الصفحة مبني على استخراج نصي ويحتاج مطابقة كاملة (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 192؛ pinpoint الصفحة مبني على استخراج نصي ويحتاج مطابقة كاملة (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للنص العربي؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- القول بوجود فرع أو لجنة قائمة أو تحديد إجراءاتها دون قرار أو لائحة منشورة
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً لكل صفحة
+- لم تُراجع التعديلات والأحكام القضائية واللوائح التنفيذية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 135. EG-LABOUR-14-2025-ART-193-SOCIAL-COUNCIL-FUNDING-AND-AUDIT
+
+**Question:** ما قواعد قبول المنح وإدارة أموال المجلس الأعلى للتشاور الاجتماعي؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 193, printed Gazette page 76 (PDF page index 74).
+
+**Provisional summary (Arabic):**
+
+تسمح المادة 193 بقبول الهبات والمنح والتبرعات وفق إجراءات قانونية وبموافقة ثلثي أعضاء مجلس الإدارة على الأقل، وتنظم الحساب الخاص والاستثمار الآمن وترحيل الفائض، وتخضع الحسابات لرقابة الجهاز المركزي للمحاسبات. التطبيق العملي يتطلب الرجوع إلى القواعد المالية والتنظيمية ذات الصلة.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 193؛ pinpoint الصفحة مبني على استخراج نصي ويحتاج مطابقة كاملة (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 193؛ pinpoint الصفحة مبني على استخراج نصي ويحتاج مطابقة كاملة (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للنص العربي؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تقرير مشروعية تبرع أو استثمار محدد دون مراجعة القواعد المالية والموافقات
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً لكل صفحة
+- لم تُراجع التعديلات والأحكام القضائية واللوائح التنفيذية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 136. EG-LABOUR-14-2025-ART-194-COLLECTIVE-BARGAINING-PURPOSES
+
+**Question:** ما أهداف المفاوضة الجماعية وفق قانون العمل؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 194, printed Gazette page 77 (PDF page index 75).
+
+**Provisional summary (Arabic):**
+
+تقرر المادة 194 أن المفاوضة الجماعية تتم بحرية وطواعية وبما يوازن مصالح الطرفين، وتهدف إلى تحسين شروط وظروف العمل وأحكام التشغيل، والتعاون لتحقيق التنمية الاجتماعية لعمال المنشأة، وتسوية المنازعات الجماعية. يجب قراءة هذا الحكم مع أحكام التفاوض والنزاع الجماعي اللاحقة.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 194؛ pinpoint الصفحة مبني على استخراج نصي ويحتاج مطابقة كاملة (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 194؛ pinpoint الصفحة مبني على استخراج نصي ويحتاج مطابقة كاملة (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للنص العربي؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- اعتبار كل تفاوض ملزماً بنتيجة معينة أو اختزال إجراء النزاع في هذه المادة وحدها
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً لكل صفحة
+- لم تُراجع التعديلات والأحكام القضائية واللوائح التنفيذية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 137. EG-LABOUR-14-2025-ART-195-COLLECTIVE-BARGAINING-LEVELS
+
+**Question:** على أي مستوى يمكن إجراء المفاوضة الجماعية؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 195, printed Gazette page 77 (PDF page index 75).
+
+**Provisional summary (Arabic):**
+
+تجيز المادة 195 إجراء المفاوضة الجماعية على مستوى المنشأة أو فروعها، أو المهنة أو الصناعة، أو المستوى الإقليمي أو القومي. تحديد ممثلي الأطراف وصحة التفويض يتطلب مراجعة أحكام التنظيم النقابي والقواعد ذات الصلة.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 195؛ pinpoint الصفحة مبني على استخراج نصي ويحتاج مطابقة كاملة (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 195؛ pinpoint الصفحة مبني على استخراج نصي ويحتاج مطابقة كاملة (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للنص العربي؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تقرير صفة ممثل أو صحة تفويض في تفاوض معين دون فحص المستندات والقواعد النقابية
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً لكل صفحة
+- لم تُراجع التعديلات والأحكام القضائية واللوائح التنفيذية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 138. EG-LABOUR-14-2025-ART-196-COLLECTIVE-DISPUTE-MANDATORY-NEGOTIATION
+
+**Question:** ما الالتزامات عند نشوء نزاع عمل جماعي؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 196, printed Gazette page 77 (PDF page index 75).
+
+**Provisional summary (Arabic):**
+
+توجب المادة 196 على طرفي نزاع العمل الجماعي الدخول في مفاوضة جماعية لتسويته ودياً وتقديم البيانات والمعلومات والمستندات المطلوبة والسير في إجراءات التفاوض. وإذا رفض طرف البدء، يجوز للطرف الآخر طلب تدخل الجهة الإدارية المختصة لدعوة المنظمة النقابية أو منظمة أصحاب الأعمال أو المفوض العمالي المعني لمحاولة إقناعه. يلزم فحص مواد التوفيق والوساطة التالية لتحديد المسار والآجال.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 196؛ pinpoint الصفحة مبني على استخراج نصي ويحتاج مطابقة كاملة (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 196؛ pinpoint الصفحة مبني على استخراج نصي ويحتاج مطابقة كاملة (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للنص العربي؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- حساب ميعاد أو تحديد الإجراء التالي دون فحص المواد التالية ووقائع النزاع
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً لكل صفحة
+- لم تُراجع التعديلات والأحكام القضائية واللوائح التنفيذية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 139. EG-LABOUR-14-2025-ART-197-COLLECTIVE-AGREEMENT-FROM-NEGOTIATION
+
+**Question:** ماذا يحدث إذا انتهت المفاوضة الجماعية إلى اتفاق؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 197, printed Gazette page 77 (PDF page index 75).
+
+**Provisional summary (Arabic):**
+
+تنص المادة 197 على تدوين اتفاق الطرفين الناتج عن المفاوضة الجماعية في اتفاقية عمل جماعية وفق الشروط والقواعد الواردة في القانون. يجب مراجعة المواد 199 وما بعدها بشأن المدة واللغة والقيد والنفاذ قبل تقرير أن اتفاقاً بعينه أصبح اتفاقية نافذة.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 197؛ pinpoint الصفحة مبني على استخراج نصي ويحتاج مطابقة كاملة (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 197؛ pinpoint الصفحة مبني على استخراج نصي ويحتاج مطابقة كاملة (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للنص العربي؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- اعتبار محضر تفاوض أو اتفاق شفهي اتفاقية عمل جماعية مستوفية للشروط دون فحص القانون
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً لكل صفحة
+- لم تُراجع التعديلات والأحكام القضائية واللوائح التنفيذية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 140. EG-LABOUR-14-2025-ART-198-NO-UNILATERAL-ACTIONS-DURING-NEGOTIATION
+
+**Question:** هل يجوز اتخاذ قرارات بشأن موضوعات التفاوض أثناء المفاوضة الجماعية؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 198, printed Gazette page 77 (PDF page index 75).
+
+**Provisional summary (Arabic):**
+
+تحظر المادة 198 على طرفي علاقة العمل أثناء المفاوضة اتخاذ إجراءات أو إصدار قرارات تتعلق بالموضوعات محل التفاوض، إلا في حالة الضرورة والاستعجال وبشرط أن يكون الإجراء أو القرار مؤقتاً. تقييم الاستثناء يتوقف على الوقائع وطبيعة الإجراء ومدى مؤقته.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 198؛ pinpoint الصفحة مبني على استخراج نصي ويحتاج مطابقة كاملة (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 198؛ pinpoint الصفحة مبني على استخراج نصي ويحتاج مطابقة كاملة (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للنص العربي؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- الحكم بمشروعية إجراء محدد دون فحص الضرورة والاستعجال وطبيعته ومدته
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً لكل صفحة
+- لم تُراجع التعديلات والأحكام القضائية واللوائح التنفيذية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 141. EG-LABOUR-14-2025-ART-199-COLLECTIVE-AGREEMENT-DURATION
+
+**Question:** ما الحد الأقصى لمدة اتفاقية العمل الجماعية؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 199, printed Gazette page 78 (PDF page index 76).
+
+**Provisional summary (Arabic):**
+
+تحدد المادة 199 مدة الاتفاقية الجماعية بما لا يزيد على ثلاث سنوات، أو المدة اللازمة لتنفيذ مشروع معين. وإذا تجاوزت مدة المشروع ثلاث سنوات، يجب التفاوض لتجديد الاتفاقية أو تعديل شروطها وفق أحكام القانون، ومنها المادة 202. يجب مراجعة النص الكامل والاستثناءات ذات الصلة قبل حساب انتهاء اتفاقية بعينها.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 199؛ pinpoint الصفحة مبني على استخراج نصي ويحتاج مطابقة كاملة (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 199؛ pinpoint الصفحة مبني على استخراج نصي ويحتاج مطابقة كاملة (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للنص العربي؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- حساب انتهاء اتفاقية أو تمديدها دون قراءة الاتفاقية وأحكام التجديد ذات الصلة
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً لكل صفحة
+- لم تُراجع التعديلات والأحكام القضائية واللوائح التنفيذية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 142. EG-LABOUR-14-2025-ART-200-COLLECTIVE-AGREEMENT-CONFLICT-AND-BETTER-BENEFIT
+
+**Question:** ما أثر مخالفة الاتفاقية الجماعية للقانون أو تعارضها مع عقد العمل الفردي؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 200, printed Gazette page 78 (PDF page index 76).
+
+**Provisional summary (Arabic):**
+
+تقضي المادة 200 ببطلان أي نص في اتفاقية عمل جماعية يخالف قانون العمل أو القوانين ذات الصلة. وإذا تعارض نص في عقد العمل الفردي مع نص في الاتفاقية الجماعية، يسري الحكم الأكثر فائدة للعامل. يتطلب تحديد الحكم الأكثر فائدة مقارنة النصوص والشروط الفعلية كاملة، وليس مقارنة جملة منفردة.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 200؛ pinpoint الصفحة مبني على استخراج نصي ويحتاج مطابقة كاملة (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 200؛ pinpoint الصفحة مبني على استخراج نصي ويحتاج مطابقة كاملة (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للنص العربي؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- إعلان بطلان الاتفاقية بأكملها أو تحديد الحكم الأكثر فائدة دون تحليل النصوص المتعارضة كاملة
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً لكل صفحة
+- لم تُراجع التعديلات والأحكام القضائية واللوائح التنفيذية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
 
 ## Activation gates
 
