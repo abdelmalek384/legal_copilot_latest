@@ -63,6 +63,7 @@ def inspect_firm_offboarding(
     firm_status = None
     catalog_status = None
     active_memberships = None
+    active_invitations = None
     object_count = 0
     purged_tombstone_count = 0
     active_holds = 0
@@ -93,6 +94,16 @@ def inspect_firm_offboarding(
         ).fetchone()[0])
         if active_memberships:
             findings.append({"code": "active_memberships_remain", "count": active_memberships})
+        active_invitations = int(control.execute(
+            "SELECT COUNT(*) FROM identity_invitations "
+            "WHERE firm_id=? AND status IN ('pending','sent')",
+            (firm_id,),
+        ).fetchone()[0])
+        if active_invitations:
+            findings.append({
+                "code": "active_invitations_remain",
+                "count": active_invitations,
+            })
         database_path = resolve_tenant_database_for_maintenance(
             control, firm_id, tenant_root_path
         )
@@ -182,6 +193,7 @@ def inspect_firm_offboarding(
         "firm_status": firm_status,
         "catalog_status": catalog_status,
         "active_memberships": active_memberships,
+        "active_invitations": active_invitations,
         "original_object_count": object_count,
         "purged_tombstone_count": purged_tombstone_count,
         "active_legal_hold_count": active_holds,

@@ -57,6 +57,7 @@ class FirmOffboardingPreflightTests(unittest.TestCase):
         self.assertEqual(report["firm_status"], "disabled")
         self.assertEqual(report["catalog_status"], "disabled")
         self.assertEqual(report["active_memberships"], 0)
+        self.assertEqual(report["active_invitations"], 0)
         self.assertEqual(report["mutations_performed"], 0)
 
     def test_active_membership_blocks_purge_preflight(self):
@@ -67,6 +68,43 @@ class FirmOffboardingPreflightTests(unittest.TestCase):
 
         self.assertFalse(report["purge_preflight_clear"])
         self.assertIn("active_memberships_remain", {item["code"] for item in report["findings"]})
+
+    def test_active_invitation_blocks_purge_preflight(self):
+        control = self.runtime.control_connection()
+        control.execute(
+            "INSERT INTO identity_invitations("
+            "firm_id,email_normalized,email_display,invited_role,token_hash,invited_by_user_id,"
+            "created_at,expires_at,status,updated_at"
+            ") VALUES(?,?,?,?,?,?,?,?,?,?)",
+            (
+                self.firm_id,
+                "pending-offboarding-invite@example.test",
+                "pending-offboarding-invite@example.test",
+                "lawyer",
+                "a" * 64,
+                self.user_id,
+                100,
+                200,
+                "sent",
+                100,
+            ),
+        )
+        control.commit()
+        self._disable_and_revoke_membership()
+
+        report = self._inspect()
+
+        self.assertFalse(report["purge_preflight_clear"])
+        self.assertEqual(report["active_invitations"], 1)
+        self.assertIn("active_invitations_remain", {item["code"] for item in report["findings"]})
+        self.assertEqual(report["mutations_performed"], 0)
+        control_after = self.runtime.control_connection()
+        self.assertEqual(
+            control_after.execute(
+                "SELECT status FROM identity_invitations WHERE firm_id=?", (self.firm_id,)
+            ).fetchone()[0],
+            "sent",
+        )
 
     def test_active_legal_hold_blocks_purge_preflight(self):
         context = self.runtime.resolve_context(self.user_id, self.firm_id)
