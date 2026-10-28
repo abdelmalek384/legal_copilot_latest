@@ -197,9 +197,10 @@ class S3PrivateObjectStore:
         try:
             response = self.client.get_object(Bucket=self.bucket, Key=key)
             body = response.get("Body")
-            if (response.get("ServerSideEncryption") != "aws:kms"
-                    or not isinstance(response.get("SSEKMSKeyId"), str)
-                    or not response["SSEKMSKeyId"].strip()):
+            # Match the exact configured KMS key identity here too. Do not
+            # let the streaming integrity path accept any arbitrary KMS key
+            # merely because the ciphertext is encrypted.
+            if not self._is_expected_kms_key(response):
                 close = getattr(body, "close", None)
                 if callable(close):
                     close()
