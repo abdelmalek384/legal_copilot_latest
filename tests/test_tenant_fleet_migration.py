@@ -152,7 +152,7 @@ class TenantFleetMigrationTests(unittest.TestCase):
     def test_preflight_refuses_unreferenced_tenant_database_file(self):
         # Keep the orphan filename in the tenant naming family so the test
         # proves catalog reconciliation, not filename parsing, catches it.
-        orphan_path = self.root / ("tenant-999-" + "a" * 32 + ".sqlite3")
+        orphan_path = self.runtime.paths.tenant_root / ("tenant-999-" + "a" * 32 + ".sqlite3")
         sqlite3.connect(orphan_path).close()
         if os.name == "posix":
             os.chmod(orphan_path, 0o600)
