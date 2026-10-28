@@ -33,6 +33,15 @@ class FrontendUXContractTests(unittest.TestCase):
             self.assertIn("PAGE==='" + page + "'", switch)
         self.assertIn("if(!ME.id){login(AUTH_MODE)", switch)
 
+    def test_case_detail_inputs_and_validation_follow_selected_language(self):
+        self.assertIn("uiText('رقم القضية','Case number')", HTML)
+        self.assertIn("uiText('مهمة جديدة','New task')", HTML)
+        self.assertIn("uiText('ملاحظة (المحكمة، الدائرة، الغرض)','Note (court, circuit, purpose)')", HTML)
+        self.assertIn("uiText('نوع الموعد (استئناف، طعن، تقديم مستند...)','Deadline type (appeal, challenge, filing...)')", HTML)
+        self.assertIn("uiText('وصف الأتعاب','Fee description')", HTML)
+        self.assertIn("uiText('الإجمالي ','Total ')", HTML)
+        self.assertIn("uiText('أدخل نوع الموعد وتاريخه','Enter the deadline type and date')", HTML)
+
     def test_new_case_and_client_views_follow_selected_language(self):
         self.assertIn("uiText('عنوان القضية','Case title')", HTML)
         self.assertIn("uiText('حفظ القضية','Save case')", HTML)
