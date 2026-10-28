@@ -896,6 +896,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         document.add_paragraph("Production gate test content")
         document.save(buffer)
         os.environ["COPILOT_ENV"] = "production"
+        os.environ["COPILOT_OBJECT_STORAGE_BACKEND"] = "s3"
         try:
             with patch.object(app, "_mfa_required_for_user", return_value=False):
                 response = self._mutate(
@@ -905,6 +906,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
                 )
         finally:
             os.environ["COPILOT_ENV"] = "development"
+            os.environ["COPILOT_OBJECT_STORAGE_BACKEND"] = "local"
         self.assertEqual(response.status_code, 503, response.text)
         context = self.runtime.resolve_context(self.user_id, self.firm_a)
         firm_db = self.runtime.firm_connection(context)
