@@ -461,14 +461,16 @@
           "pdf_page_index_zero_based": 67,
           "printed_page_label": "69",
           "provisions": [
-            "القانون المرافق، المادة 165"
+            "القانون المرافق، المادة 165",
+            "القانون المرافق، المادتان 164 و165"
           ]
         },
         {
           "pdf_page_index_zero_based": 68,
           "printed_page_label": "70",
           "provisions": [
-            "القانون المرافق، المادة 165"
+            "القانون المرافق، المادة 165",
+            "القانون المرافق، المادتان 165 و166"
           ]
         },
         {
@@ -536,7 +538,7 @@
           ]
         }
       ],
-      "notes": "Targeted PDF text extraction was reviewed for the listed pages. The original file was not downloaded, hashed, or visually inspected. This does not establish a complete article-by-article match, amendment history, current status, or permission for systematic retrieval/commercial use. Additional targeted pages reviewed: printed page 52 (Articles 117 and 121), and printed pages 54-55 (Article 124). Additional targeted pages reviewed: printed pages 68-70 (Article 165) and 73-74 (Article 177). Additional targeted pages reviewed: printed pages 61-62 (Article 141) and 63-64 (Article 148). Additional targeted review covers Article 120 on printed pages 52-53. Additional targeted review covers Articles 118-119 and 122 on printed pages 52-54. Printed page 55 also contains Article 129 on paid holidays; the relevant ministerial/cabinet designation decisions remain to be verified. Additional targeted pages reviewed: printed page 71 (Article 173) and page 72 (Article 171)."
+      "notes": "Targeted PDF text extraction was reviewed for the listed pages. The original file was not downloaded, hashed, or visually inspected. This does not establish a complete article-by-article match, amendment history, current status, or permission for systematic retrieval/commercial use. Additional targeted pages reviewed: printed page 52 (Articles 117 and 121), and printed pages 54-55 (Article 124). Additional targeted pages reviewed: printed pages 68-70 (Article 165) and 73-74 (Article 177). Additional targeted pages reviewed: printed pages 61-62 (Article 141) and 63-64 (Article 148). Additional targeted review covers Article 120 on printed pages 52-53. Additional targeted review covers Articles 118-119 and 122 on printed pages 52-54. Printed page 55 also contains Article 129 on paid holidays; the relevant ministerial/cabinet designation decisions remain to be verified. Additional targeted pages reviewed: printed page 71 (Article 173) and page 72 (Article 171). Additional targeted review covers Article 164 on printed page 69 and Article 166 on printed page 70."
     }
   ],
   "document_records_to_create_from_batch": [
