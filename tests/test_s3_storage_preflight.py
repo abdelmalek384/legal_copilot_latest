@@ -63,8 +63,8 @@ class S3StoragePreflightTests(unittest.TestCase):
         )
         self.assertNotIn("default_sse_kms", result["failed_checks"])
         self.assertIn("alias/legal-originals", kms.lookups)
-        self.assertTrue(result["checks"][-1]["passed"] or any(
-            item["name"] == "default_sse_kms" and item["passed"] for item in result["checks"]
+        self.assertTrue(next(
+            item["passed"] for item in result["checks"] if item["name"] == "default_sse_kms"
         ))
 
     def test_rejects_bucket_default_encryption_using_a_different_kms_key(self):
