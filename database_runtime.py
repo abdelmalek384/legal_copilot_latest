@@ -306,6 +306,22 @@ class DatabaseRuntime:
                 self._validate_profile_storage(self.paths.legal_corpus, "legal-corpus")
                 self._validate_preprovisioned_profile(self.paths.control_plane, "control_plane")
                 self._validate_preprovisioned_profile(self.paths.legal_corpus, "legal_corpus")
+                # The app must not start with tenant databases that still need
+                # migrations or catalog lifecycle states that require recovery.
+                from tools.migrate_tenant_fleet import FleetMigrationError, build_plan
+
+                try:
+                    fleet_plan = build_plan(
+                        self.paths.control_plane, self.paths.tenant_root, self.migrations_root
+                    )
+                except FleetMigrationError as exc:
+                    raise DatabaseRuntimeError(
+                        "Production tenant database fleet failed read-only preflight"
+                    ) from exc
+                if fleet_plan["pending_migration_count"] or fleet_plan["skipped"]:
+                    raise DatabaseRuntimeError(
+                        "Production tenant database fleet has pending migrations or unresolved lifecycle states"
+                    )
             else:
                 self.paths.tenant_root.mkdir(parents=True, exist_ok=True)
                 if self.paths.tenant_root.is_symlink():
