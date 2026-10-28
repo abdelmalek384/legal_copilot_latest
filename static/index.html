@@ -720,35 +720,35 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
  const lead=ME.role==='admin'||c.members.some(m=>m.role==='lead'&&m.user_id===ME.id),dn=c.tasks.filter(t=>t.status==='done').length,tot=c.tasks.length;
  const tabs=[['sum','الملخص'],['tasks','المهام'],['sess','الجلسات'],['dead','المواعيد القانونية'],['notes','الملاحظات'],['fees','الأتعاب'],['docs','المستندات'],['team','الفريق'],['ask','اسأل'],['log','السجل']];let body;
  if(TAB==='sum'){
-  const fields=[['case_number','رقم القضية'],['case_year','السنة'],['court','المحكمة'],['circuit','الدائرة'],['opposing_party','الخصم'],['stage','المرحلة']];
+  const fields=[['case_number',uiText('رقم القضية','Case number')],['case_year',uiText('السنة','Year')],['court',uiText('المحكمة','Court')],['circuit',uiText('الدائرة','Circuit')],['opposing_party',uiText('الخصم','Opposing party')],['stage',uiText('المرحلة','Stage')]];
   const inputs={};fields.forEach(([k,label])=>inputs[k]=h('input',{value:c[k]||'',placeholder:label,style:'width:100%'}));
   body=h('div',{className:'card'},h('div',{className:'row'},h('span',{textContent:'التقدم'}),h('div',{style:'display:flex;gap:8px;align-items:center'},prog({done_tasks:dn,open_tasks:tot-dn}),h('span',{className:'mut',textContent:dn+'/'+tot+' مهام'}))),
    h('div',{className:'grid'},fields.map(([k,label])=>h('label',{style:'display:block'},h('span',{className:'mut',textContent:label}),inputs[k]))),
-   lead&&h('div',{className:'row'},btn('حفظ بيانات القضية',async()=>{const data={};fields.forEach(([k])=>data[k]=inputs[k].value);await api('/cases/'+id,'PATCH',data);toast('تم حفظ بيانات القضية');again()})),
+   lead&&h('div',{className:'row'},btn('حفظ بيانات القضية',async()=>{const data={};fields.forEach(([k])=>data[k]=inputs[k].value);await api('/cases/'+id,'PATCH',data);toast(uiText('تم حفظ بيانات القضية','Case details saved'));again()})),
    h('div',{className:'row'},h('span',{textContent:'العميل: '+(c.client||'—')}),h('span',{textContent:'الحالة: '+(c.status==='open'?'مفتوحة':'مغلقة')})),
    lead&&h('div',{className:'row'},btn(c.status==='open'?'إغلاق القضية':'إعادة فتح',async()=>{await api('/cases/'+id,'PATCH',{status:c.status==='open'?'closed':'open'});again()},'g'),
-    btn('حذف القضية',async()=>{if(confirm('حذف نهائي لكل بيانات القضية؟')){await api('/cases/'+id,'DELETE');PAGE='clients';clients()}},'d')))}
- if(TAB==='tasks'){const tt=h('input',{placeholder:'مهمة جديدة'}),as=h('select',{},new Option('غير معيّن',''),...c.members.map(m=>new Option(m.name,m.user_id))),due=h('input',{type:'date'});
+    btn('حذف القضية',async()=>{if(confirm(uiText('حذف نهائي لكل بيانات القضية؟','Permanently delete all case data?'))){await api('/cases/'+id,'DELETE');PAGE='clients';clients()}},'d')))}
+ if(TAB==='tasks'){const tt=h('input',{placeholder:uiText('مهمة جديدة','New task')}),as=h('select',{},new Option(uiText('غير معيّن','Unassigned'),''),...c.members.map(m=>new Option(m.name,m.user_id))),due=h('input',{type:'date'});
   body=h('div',{className:'card'},c.tasks.length?c.tasks.map(t=>h('div',{className:'row'},h('div',{},h('b',{textContent:t.title}),h('div',{className:'mut',textContent:t.assignee_name||'غير معيّن'})),
    h('div',{},t.status==='done'?pill('منجزة','done'):[duePill(t)||pill('مفتوحة','open'),' ',btn('تم',async()=>{await api('/tasks/'+t.id+'/done','POST');again()},'g')]))):empty('لا توجد مهام'),
-   h('div',{className:'row'},tt,as,due,btn('إضافة مهمة',async()=>{if(!tt.value.trim()){toast('أدخل اسم المهمة');tt.focus();return}await api('/cases/'+id+'/tasks','POST',{title:tt.value.trim(),assignee:as.value?+as.value:null,due:due.value||null});again()})))}
- if(TAB==='sess'){const sd=h('input',{type:'date'}),sn=h('input',{placeholder:'ملاحظة (المحكمة، الدائرة، الغرض)'});
+   h('div',{className:'row'},tt,as,due,btn('إضافة مهمة',async()=>{if(!tt.value.trim()){toast(uiText('أدخل اسم المهمة','Enter a task title'));tt.focus();return}await api('/cases/'+id+'/tasks','POST',{title:tt.value.trim(),assignee:as.value?+as.value:null,due:due.value||null});again()})))}
+ if(TAB==='sess'){const sd=h('input',{type:'date'}),sn=h('input',{placeholder:uiText('ملاحظة (المحكمة، الدائرة، الغرض)','Note (court, circuit, purpose)')});
   body=h('div',{className:'card'},c.sessions.length?c.sessions.map(s=>h('div',{className:'row'},h('span',{textContent:s.note||'جلسة'}),pill(fd(s.date),s.date<today?'closed':'open'))):empty('لا توجد جلسات'),
-   h('div',{className:'row'},sd,sn,btn('إضافة جلسة',async()=>{if(!sd.value){toast('أدخل تاريخ الجلسة');sd.focus();return}await api('/cases/'+id+'/sessions','POST',{date:sd.value,note:sn.value});again()})))}
- if(TAB==='dead'){const title=h('input',{placeholder:'نوع الموعد (استئناف، طعن، تقديم مستند...)'}),due=h('input',{type:'date'}),note=h('input',{placeholder:'ملاحظة (اختياري)',style:'width:100%'});
+   h('div',{className:'row'},sd,sn,btn('إضافة جلسة',async()=>{if(!sd.value){toast(uiText('أدخل تاريخ الجلسة','Enter a hearing date'));sd.focus();return}await api('/cases/'+id+'/sessions','POST',{date:sd.value,note:sn.value});again()})))}
+ if(TAB==='dead'){const title=h('input',{placeholder:uiText('نوع الموعد (استئناف، طعن، تقديم مستند...)','Deadline type (appeal, challenge, filing...)')}),due=h('input',{type:'date'}),note=h('input',{placeholder:uiText('ملاحظة (اختياري)','Note (optional)'),style:'width:100%'});
   body=h('div',{className:'card'},c.deadlines.length?c.deadlines.map(d=>h('div',{className:'row'},h('div',{},h('b',{textContent:d.title}),h('div',{className:'mut',textContent:d.note||''})),duePill({due:d.due})||pill(fd(d.due),'open'))):empty('لا توجد مواعيد قانونية مسجلة. هذه المواعيد منفصلة عن جلسات المحكمة.'),
-   h('div',{className:'row'},title,due,btn('إضافة موعد',async()=>{if(!title.value.trim()||!due.value){toast('أدخل نوع الموعد وتاريخه');return}await api('/cases/'+id+'/deadlines','POST',{title:title.value,due:due.value,note:note.value});again()})),note)}
- if(TAB==='notes'){const txt=h('textarea',{placeholder:'اكتب ملاحظة داخلية للقضية...',rows:4,style:'width:100%;font:inherit;border:1px solid var(--line);border-radius:8px;padding:10px'});
+   h('div',{className:'row'},title,due,btn('إضافة موعد',async()=>{if(!title.value.trim()||!due.value){toast(uiText('أدخل نوع الموعد وتاريخه','Enter the deadline type and date'));return}await api('/cases/'+id+'/deadlines','POST',{title:title.value,due:due.value,note:note.value});again()})),note)}
+ if(TAB==='notes'){const txt=h('textarea',{placeholder:uiText('اكتب ملاحظة داخلية للقضية...','Write an internal case note...'),rows:4,style:'width:100%;font:inherit;border:1px solid var(--line);border-radius:8px;padding:10px'});
   body=h('div',{className:'card'},h('h3',{textContent:'ملاحظات القضية'}),c.notes.length?c.notes.map(n=>h('div',{className:'src'},h('div',{textContent:n.text,style:'white-space:pre-wrap'}),h('div',{className:'mut',textContent:(n.author||'')+' · '+(n.created_at||'')}))):empty('لا توجد ملاحظات بعد.'),
-   txt,h('div',{className:'row'},btn('حفظ الملاحظة',async()=>{if(!txt.value.trim()){toast('اكتب الملاحظة أولا');return}await api('/cases/'+id+'/notes','POST',{text:txt.value});again()})))}
- if(TAB==='fees'){const title=h('input',{placeholder:'وصف الأتعاب'}),amount=h('input',{type:'number',min:'0',step:'0.01',placeholder:'المبلغ الإجمالي'}),paid=h('input',{type:'number',min:'0',step:'0.01',placeholder:'المدفوع'}),due=h('input',{type:'date'}),note=h('input',{placeholder:'ملاحظة',style:'width:100%'});
-  const money=n=>new Intl.NumberFormat('ar-EG',{maximumFractionDigits:2}).format(Number(n||0))+' ج.م';
-  body=h('div',{className:'card'},c.fees.length?c.fees.map(f=>h('div',{className:'row'},h('div',{},h('b',{textContent:f.title}),h('div',{className:'mut',textContent:(f.note||'')+(f.due?' · '+fd(f.due):'')})),h('span',{textContent:'الإجمالي '+money(f.amount)+' · المدفوع '+money(f.paid)+' · المتبقي '+money(Number(f.amount)-Number(f.paid))}))):empty('لا توجد أتعاب مسجلة.'),
-   h('div',{className:'grid'},title,amount,paid,due,note),h('div',{className:'row'},btn('إضافة أتعاب',async()=>{if(!title.value.trim()||amount.value===''||paid.value===''){toast('أدخل الوصف والإجمالي والمدفوع');return}await api('/cases/'+id+'/fees','POST',{title:title.value,amount:Number(amount.value),paid:Number(paid.value),due:due.value||null,note:note.value});again()})))}
+   txt,h('div',{className:'row'},btn('حفظ الملاحظة',async()=>{if(!txt.value.trim()){toast(uiText('اكتب الملاحظة أولا','Write a note first'));return}await api('/cases/'+id+'/notes','POST',{text:txt.value});again()})))}
+ if(TAB==='fees'){const title=h('input',{placeholder:uiText('وصف الأتعاب','Fee description')}),amount=h('input',{type:'number',min:'0',step:'0.01',placeholder:uiText('المبلغ الإجمالي','Total amount')}),paid=h('input',{type:'number',min:'0',step:'0.01',placeholder:uiText('المدفوع','Paid amount')}),due=h('input',{type:'date'}),note=h('input',{placeholder:uiText('ملاحظة','Note'),style:'width:100%'});
+  const money=n=>new Intl.NumberFormat(LANG==='ar'?'ar-EG':'en-US',{maximumFractionDigits:2}).format(Number(n||0))+(LANG==='ar'?' ج.م':' EGP');
+  body=h('div',{className:'card'},c.fees.length?c.fees.map(f=>h('div',{className:'row'},h('div',{},h('b',{textContent:f.title}),h('div',{className:'mut',textContent:(f.note||'')+(f.due?' · '+fd(f.due):'')})),h('span',{textContent:uiText('الإجمالي ','Total ')+money(f.amount)+' · '+uiText('المدفوع ','Paid ')+money(f.paid)+' · '+uiText('المتبقي ','Remaining ')+money(Number(f.amount)-Number(f.paid))}))):empty('لا توجد أتعاب مسجلة.'),
+   h('div',{className:'grid'},title,amount,paid,due,note),h('div',{className:'row'},btn('إضافة أتعاب',async()=>{if(!title.value.trim()||amount.value===''||paid.value===''){toast(uiText('أدخل الوصف والإجمالي والمدفوع','Enter the description, total, and paid amount'));return}await api('/cases/'+id+'/fees','POST',{title:title.value,amount:Number(amount.value),paid:Number(paid.value),due:due.value||null,note:note.value});again()})))}
  if(TAB==='docs'){
   const f=h('input',{type:'file',accept:'.pdf,.docx'});
   const panel=h('div',{});
-  const statusText=(x)=>x==='accepted'?'تمت مراجعة النص':x==='corrected'?'تم تصحيح النص':x==='needs_recheck'?'يحتاج إعادة فحص':'لم تتم المراجعة';
+  const statusText=(x)=>x==='accepted'?uiText('تمت مراجعة النص','Text reviewed'):x==='corrected'?uiText('تم تصحيح النص','Text corrected'):x==='needs_recheck'?uiText('يحتاج إعادة فحص','Needs recheck'):uiText('لم تتم المراجعة','Not reviewed');
   const renderChunkReview=(container,data)=>{
    container.replaceChildren();
    container.append(h('div',{className:'mut',textContent:data.warning||''}));
@@ -760,8 +760,8 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
     const original=h('textarea',{value:chunk.text||'',rows:5,style:'width:100%;direction:rtl',readOnly:true,'aria-label':'النص المستخرج الأصلي'});
     card.append(h('label',{},h('span',{className:'mut',textContent:'النص المستخرج — للقراءة فقط'}),original));
     const corrected=h('textarea',{value:chunk.text||'',rows:5,style:'width:100%;direction:rtl',maxLength:20000,'aria-label':'النص المصحح'});
-    const pageRef=h('input',{value:chunk.page||'',placeholder:'مرجع الصفحة (اختياري)',maxLength:100});
-    const note=h('input',{placeholder:'ملاحظة المراجع (اختياري)',maxLength:2000,style:'width:100%'});
+    const pageRef=h('input',{value:chunk.page||'',placeholder:uiText('مرجع الصفحة (اختياري)','Page reference (optional)'),maxLength:100});
+    const note=h('input',{placeholder:uiText('ملاحظة المراجع (اختياري)','Reviewer note (optional)'),maxLength:2000,style:'width:100%'});
     const actions=h('div',{className:'row'});
     actions.append(btn('اعتماد النص المستخرج',async()=>{
       await api('/cases/'+id+'/docs/'+data.document_id+'/chunks/'+chunk.id+'/review','POST',{outcome:'accepted',expected_text_sha256:chunk.text_sha256,page_reference:pageRef.value.trim(),note:note.value.trim()});
