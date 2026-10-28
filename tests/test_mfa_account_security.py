@@ -253,6 +253,27 @@ class MFAAccountSecurityTests(unittest.TestCase):
         self.assertGreater(current["enrollment_expires"], int(time.time()))
         self.assertIn("no-store", reenroll.headers.get("cache-control", "").lower())
 
+    def test_lost_authenticator_reenrollment_rejects_stale_mfa_verification(self):
+        secret = self.enroll()
+        self.confirm(secret)
+        control = self.runtime.control_connection()
+        control.execute(
+            "UPDATE auth_sessions SET mfa_verified_at=? WHERE user_id=?",
+            (int(time.time()) - 601, self.user_id),
+        )
+        control.commit()
+
+        response = self.mutate(
+            "post", "/account/mfa/re-enroll",
+            json={"current_password": self.password},
+        )
+        self.assertEqual(response.status_code, 403, response.text)
+        self.assertIn("recent MFA verification is required", response.text)
+        credential = control.execute(
+            "SELECT status FROM mfa_credentials WHERE user_id=?", (self.user_id,)
+        ).fetchone()
+        self.assertEqual(credential["status"], "enabled")
+
     def test_required_policy_prevents_privileged_admin_from_disabling_mfa(self):
         secret = self.enroll()
         self.confirm(secret)
