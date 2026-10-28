@@ -28,6 +28,7 @@ Use `--out path/to/report.json` to preserve a report.
 - The manifest's collection permission is explicitly `allowed`.
 - The source register independently records `allowed` or `allowed_limited`, with collection permission evidence and a valid terms-review date. Source terms, commercial terms, and document-level scope reviews must be within the internal 180-day freshness window; stale reviews block readiness and must be refreshed. This is a conservative project policy, not a legal rule.
 - Both the source register and document-level scope review link to inspectable HTTPS evidence; a prose note or reference label alone is not treated as a direct evidence link.
+- Both the source register and manifest must record the actual source-terms URL as valid HTTPS without embedded credentials, separately from the permission-evidence URL. A review date without the reviewed terms location is insufficient.
 - Commercial reuse, when claimed as allowed, has its own separate HTTPS evidence URL and review date.
 - The manifest has its own permission evidence and a valid terms-review date that is not in the future.
 - A document-level `permission_scope_review` is marked `passed` and records a reviewer, evidence reference, valid review date not earlier than the terms-check date, reviewed source terms, and the `direct_document_url` method. It must explicitly approve storage, text extraction, indexing, commercial product use, and excerpt display. The scope-review evidence URL is required, must be HTTPS, and must not contain credentials.
