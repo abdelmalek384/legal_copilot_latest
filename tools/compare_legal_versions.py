@@ -246,14 +246,26 @@ def compare_registered_versions(db_path, left_version_id, right_version_id):
         connection.close()
 
 
+def default_database_path(env=None):
+    """Resolve the default read-only registry from the approved corpus profile only."""
+    env = os.environ if env is None else env
+    corpus_path = env.get("COPILOT_CORPUS_DB", "").strip()
+    if not corpus_path:
+        raise ValueError(
+            "Set COPILOT_CORPUS_DB or pass --db explicitly; COPILOT_DB is not a supported default."
+        )
+    return Path(corpus_path)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--db", type=Path, default=Path(os.environ.get("COPILOT_DB", "copilot.db")))
+    parser.add_argument("--db", type=Path, help="Read-only corpus database path; defaults to COPILOT_CORPUS_DB")
     parser.add_argument("--left-version-id", type=int, required=True, help="baseline version ID")
     parser.add_argument("--right-version-id", type=int, required=True, help="version to compare against baseline")
     args = parser.parse_args()
     try:
-        result = compare_registered_versions(args.db, args.left_version_id, args.right_version_id)
+        database_path = args.db if args.db is not None else default_database_path()
+        result = compare_registered_versions(database_path, args.left_version_id, args.right_version_id)
     except ValueError as exc:
         print(f"error: {exc}", file=sys.stderr)
         return 2

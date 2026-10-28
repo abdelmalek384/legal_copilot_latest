@@ -321,12 +321,23 @@ def backup(a):
 
 
 def importlaws(a):
+    if os.environ.get("COPILOT_DB", "").strip():
+        raise SystemExit(
+            "COPILOT_DB is the legacy shared database and is not accepted; "
+            "configure COPILOT_CONTROL_DB, COPILOT_TENANT_DB_ROOT, and COPILOT_CORPUS_DB."
+        )
+    if not app._separate_runtime_enabled():
+        raise SystemExit(
+            "Law imports require the separate-database runtime and are staged in the shared legal corpus."
+        )
     with open(a.file, encoding="utf-8") as source:
         rows = [json.loads(line) for line in source if line.strip()]
-    if app._separate_runtime_enabled():
-        runtime = DatabaseRuntime.from_env()
-        runtime.initialize()
+    runtime = DatabaseRuntime.from_env()
+    runtime.initialize()
+    c = None
+    try:
         c = runtime.legal_corpus_connection()
+        c.execute("BEGIN IMMEDIATE")
         total = 0
         for i in range(0, len(rows), 500):
             batch = rows[i:i + 500]
@@ -337,8 +348,12 @@ def importlaws(a):
             total += len(batch)
         c.commit()
         print("staged for legal review:", total)
-        return
-    print("imported", sum(app.import_law(app.conn(), rows[i:i + 500]) for i in range(0, len(rows), 500)))
+    except Exception:
+        if c is not None and c.in_transaction:
+            c.rollback()
+        raise
+    finally:
+        runtime.close_current_thread()
 
 
 def backup_tenancy(a):

@@ -1,8 +1,11 @@
 import importlib.util
+import os
 import sqlite3
+import tempfile
 import sys
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
@@ -43,6 +46,65 @@ class CandidateCatalogTests(unittest.TestCase):
                 path.write_text(json.dumps(catalog), encoding="utf-8")
                 with self.assertRaisesRegex(ValueError, expected.replace("[", r"\[").replace("]", r"\]")):
                     MODULE.load_catalog(path)
+
+    def test_configured_seed_writes_only_to_shared_corpus_profile(self):
+        from database_runtime import DatabaseRuntime
+
+        data = MODULE.load_catalog()
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            (root / "control").mkdir()
+            (root / "corpus").mkdir()
+            env = {
+                "COPILOT_CONTROL_DB": str(root / "control" / "control.sqlite3"),
+                "COPILOT_TENANT_DB_ROOT": str(root / "tenants"),
+                "COPILOT_CORPUS_DB": str(root / "corpus" / "corpus.sqlite3"),
+            }
+            with patch.dict(os.environ, env, clear=False):
+                os.environ.pop("COPILOT_DB", None)
+                inserted_sources, inserted_documents = MODULE.seed_configured_corpus(data)
+                self.assertGreater(inserted_sources, 0)
+                self.assertGreater(inserted_documents, 20)
+
+                runtime = DatabaseRuntime.from_env()
+                runtime.initialize()
+                try:
+                    corpus = runtime.legal_corpus_connection()
+                    self.assertEqual(
+                        corpus.execute("SELECT COUNT(*) FROM legal_sources").fetchone()[0],
+                        len(data["sources"]),
+                    )
+                    self.assertEqual(
+                        corpus.execute("SELECT COUNT(*) FROM legal_documents").fetchone()[0],
+                        len(data["documents"]),
+                    )
+                    firm_id, _ = runtime.provision_firm("Candidate Seeder Isolation Firm")
+                    user_id = runtime.create_initial_firm_owner(
+                        firm_id, "Seeder Owner", "seeder-owner@example.test", "test-hash"
+                    )
+                    context = runtime.resolve_context(user_id, firm_id)
+                    firm = runtime.firm_connection(context)
+                    firm_tables = {
+                        row[0] for row in firm.execute(
+                            "SELECT name FROM sqlite_master WHERE type='table'"
+                        )
+                    }
+                    self.assertNotIn("legal_sources", firm_tables)
+                    control = runtime.control_connection()
+                    control_tables = {
+                        row[0] for row in control.execute(
+                            "SELECT name FROM sqlite_master WHERE type='table'"
+                        )
+                    }
+                    self.assertNotIn("legal_sources", control_tables)
+                finally:
+                    runtime.close_current_thread()
+
+    def test_configured_seed_refuses_legacy_shared_database_mode(self):
+        data = MODULE.load_catalog()
+        with patch.dict(os.environ, {"COPILOT_DB": "legacy.sqlite3"}, clear=False):
+            with self.assertRaisesRegex(RuntimeError, "legacy shared database"):
+                MODULE.seed_configured_corpus(data)
 
     def test_seed_is_idempotent_and_does_not_create_versions(self):
         data=MODULE.load_catalog()

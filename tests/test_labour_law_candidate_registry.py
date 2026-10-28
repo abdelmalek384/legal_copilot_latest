@@ -4,6 +4,7 @@ import os
 import sqlite3
 import tempfile
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 import sys
 
@@ -40,6 +41,51 @@ class LabourLawCandidateRegistryTests(unittest.TestCase):
         self.assertEqual(result["linked_chunk_count"], 0)
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM chunks").fetchone()[0], 0)
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM legal_review_events").fetchone()[0], 6)
+
+    def test_cli_registration_helper_uses_only_the_shared_corpus_profile(self):
+        from database_runtime import DatabaseRuntime
+        from tools.register_labour_law_candidate import register_configured_corpus
+
+        root = Path(self.tmp.name) / "separate"
+        (root / "control").mkdir(parents=True)
+        (root / "corpus").mkdir()
+        env = {
+            "COPILOT_CONTROL_DB": str(root / "control" / "control.sqlite3"),
+            "COPILOT_TENANT_DB_ROOT": str(root / "tenants"),
+            "COPILOT_CORPUS_DB": str(root / "corpus" / "corpus.sqlite3"),
+        }
+        with patch.dict(os.environ, env, clear=False):
+            os.environ.pop("COPILOT_DB", None)
+            result = register_configured_corpus(self.record)
+            self.assertEqual(result["version_state"]["review_status"], "pending_source_review")
+            runtime = DatabaseRuntime.from_env()
+            runtime.initialize()
+            try:
+                corpus = runtime.legal_corpus_connection()
+                self.assertEqual(
+                    corpus.execute("SELECT COUNT(*) FROM legal_document_versions").fetchone()[0],
+                    1,
+                )
+                self.assertEqual(
+                    corpus.execute("SELECT COUNT(*) FROM legal_review_events").fetchone()[0],
+                    6,
+                )
+                control = runtime.control_connection()
+                control_tables = {
+                    row[0] for row in control.execute(
+                        "SELECT name FROM sqlite_master WHERE type='table'"
+                    )
+                }
+                self.assertNotIn("legal_sources", control_tables)
+            finally:
+                runtime.close_current_thread()
+
+    def test_cli_registration_helper_refuses_legacy_database_configuration(self):
+        from tools.register_labour_law_candidate import register_configured_corpus
+
+        with patch.dict(os.environ, {"COPILOT_DB": "legacy.sqlite3"}, clear=False):
+            with self.assertRaisesRegex(RuntimeError, "legacy shared database"):
+                register_configured_corpus(self.record)
 
     def test_registration_is_idempotent_and_preserves_review_decisions(self):
         first = self.register(self.db, self.record)
