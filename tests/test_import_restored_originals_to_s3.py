@@ -174,6 +174,16 @@ class RestoredOriginalS3ImporterTests(unittest.TestCase):
         self.assertEqual(self.store.final, {})
         self.assertEqual(self._restored_storage_backend(), "local")
 
+    def test_apply_resumes_a_verified_staged_upload_after_interruption(self):
+        key = (self.firm_id, self.object_id)
+        self.store.staged[key] = self.payload
+        code, report = self._run_import(apply=True)
+        self.assertEqual(code, 0)
+        self.assertEqual(report["actions"][0]["action"], "imported")
+        self.assertEqual(self.store.staged, {})
+        self.assertEqual(self.store.final[key], self.payload)
+        self.assertEqual(self._restored_storage_backend(), "s3")
+
     def test_apply_uploads_verified_object_and_updates_only_restored_metadata(self):
         code, report = self._run_import(apply=True)
         self.assertEqual(code, 0)
