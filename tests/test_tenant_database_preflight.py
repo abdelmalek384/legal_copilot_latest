@@ -51,6 +51,29 @@ class TenantDatabasePreflightTests(unittest.TestCase):
                 os.chmod(self.root / filename, 0o600)
         return filename
 
+    def test_profile_migration_fifo_is_rejected_without_blocking(self):
+        import os
+        from unittest.mock import patch
+        from scripts import tenant_database_preflight as preflight_module
+
+        if not hasattr(os, "mkfifo") or os.name != "posix":
+            self.skipTest("FIFO behavior is POSIX-specific")
+        fake_root = self.base / "tool-root"
+        scripts = fake_root / "scripts"
+        migrations = fake_root / "migrations"
+        scripts.mkdir(parents=True)
+        (migrations / "firm").mkdir(parents=True)
+        (migrations / "control_plane").mkdir(parents=True)
+        script_file = scripts / "tenant_database_preflight.py"
+        script_file.write_text("# test fixture", encoding="utf-8")
+        (migrations / "firm" / "0001_fixture.sql").write_text(
+            "CREATE TABLE fixture(id INTEGER);", encoding="utf-8"
+        )
+        os.mkfifo(migrations / "firm" / "0002_wait_forever.sql")
+        with patch.object(preflight_module, "__file__", str(script_file)):
+            with self.assertRaisesRegex(ValueError, "unsafe firm migration input"):
+                preflight_module._expected_profile_migrations("firm")
+
     def test_clean_catalog_and_database_pass(self):
         self.add_tenant(1)
         before = self.catalog.execute("SELECT * FROM tenant_database_catalog").fetchall()
