@@ -1,14 +1,10 @@
-import os
-import tempfile
 import unittest
-from pathlib import Path
 
 import httpx
+import os
 
 # The app reads host policy and the database path at import time. Keep this test
 # isolated from developer data and exercise the actual ASGI middleware stack.
-_TEMP_DB = tempfile.TemporaryDirectory()
-os.environ["COPILOT_DB"] = str(Path(_TEMP_DB.name) / "trusted-host-test.db")
 os.environ["COPILOT_ENV"] = "development"
 os.environ["COPILOT_ALLOWED_HOSTS"] = "legal.example.test"
 
