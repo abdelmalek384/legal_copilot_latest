@@ -104,7 +104,7 @@ def _sql_text(
         if name in assignments and name not in mutated_names:
             values = assignments[name]
             resolved = [
-                _sql_text(value, assignments=assignments, globals_=globals_, seen=seen | {name})
+                _sql_text(value, assignments=assignments, globals_=globals_, seen=seen | {name}, mutated_names=mutated_names)
                 for value in values
             ]
             if len(resolved) == 1:
@@ -115,7 +115,7 @@ def _sql_text(
                     return unique[0], False, True
                 return "{choice}".join(unique), False, True
         if name in globals_:
-            return _sql_text(globals_[name], globals_=globals_, seen=seen | {name})
+            return _sql_text(globals_[name], globals_=globals_, seen=seen | {name}, mutated_names=mutated_names)
         return "{unresolved:" + name + "}", False, False
     if isinstance(node, ast.BinOp) and isinstance(node.op, ast.Add):
         left, left_dynamic, left_resolved = _sql_text(
@@ -148,7 +148,7 @@ def _sql_text(
         return body + "{choice}" + other, body_dynamic or other_dynamic, False
     if isinstance(node, (ast.List, ast.Tuple)):
         parts = [
-            _sql_text(item, assignments=assignments, globals_=globals_, seen=seen)
+            _sql_text(item, assignments=assignments, globals_=globals_, seen=seen, mutated_names=mutated_names)
             for item in node.elts
         ]
         if all(item[2] for item in parts):
@@ -161,7 +161,7 @@ def _sql_text(
         if node.func.attr == "join" and isinstance(node.func.value, ast.Constant) and isinstance(node.func.value.value, str):
             if node.args and isinstance(node.args[0], (ast.List, ast.Tuple)):
                 parts = [
-                    _sql_text(item, assignments=assignments, globals_=globals_, seen=seen)
+                    _sql_text(item, assignments=assignments, globals_=globals_, seen=seen, mutated_names=mutated_names)
                     for item in node.args[0].elts
                 ]
                 if all(item[2] for item in parts):
