@@ -97,14 +97,16 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
     def test_exam_leave_cards_have_pinpoints_and_fail_closed(self):
         cards = {card["card_id"]: card for card in self.data["cards"]}
         expected = {
-            "EG-LABOUR-14-2025-ART-126-EXAM-LEAVE": "المادة 126",
-            "EG-LABOUR-14-2025-ART-127-WORK-DURING-LEAVE": "المادة 127",
+            "EG-LABOUR-14-2025-ART-121-OVERTIME-EXCEPTION": ("المادة 121", 53),
+            "EG-LABOUR-14-2025-ART-122-WORK-SCHEDULE-DISPLAY": ("المادة 122", 53),
+            "EG-LABOUR-14-2025-ART-126-EXAM-LEAVE": ("المادة 126", 55),
+            "EG-LABOUR-14-2025-ART-127-WORK-DURING-LEAVE": ("المادة 127", 55),
         }
-        for card_id, article in expected.items():
+        for card_id, (article, printed_page) in expected.items():
             with self.subTest(card_id=card_id):
                 card = cards[card_id]
                 self.assertEqual(card["pinpoint"]["article"], article)
-                self.assertEqual(card["pinpoint"]["official_gazette_printed_page"], 55)
+                self.assertEqual(card["pinpoint"]["official_gazette_printed_page"], printed_page)
                 self.assertTrue(any("alamiria.com" in item["url"] for item in card["primary_evidence"]))
                 self.assertTrue(any("portal.eta.gov.eg" in item["url"] for item in card["primary_evidence"]))
                 self.assertEqual(card["review_state"], "provisional_primary_text_extract_reviewed")
