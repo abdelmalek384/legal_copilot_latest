@@ -1,10 +1,50 @@
+import json
 import os
 import subprocess
 import sys
 import unittest
+from datetime import datetime, timezone
+from pathlib import Path
 
 
 class ProductionDatabaseModeTests(unittest.TestCase):
+    def _write_acceptance_manifest(self, path):
+        stamp = datetime.now(timezone.utc).isoformat()
+        manifest = {
+            "schema_version": 1,
+            "gates": {
+                "original_file_storage": {
+                    "status": "passed", "evidence_ref": "synthetic-test-evidence",
+                    "verified_at": stamp, "verified_by": "test-operator",
+                },
+                "backup_restore_rollback": {
+                    "status": "passed", "evidence_ref": "synthetic-test-evidence",
+                    "verified_at": stamp, "verified_by": "test-operator",
+                    "witnessed_by": "independent-test-witness",
+                },
+                "retention_export_deletion_policy": {
+                    "status": "passed", "evidence_ref": "synthetic-test-evidence",
+                    "approved_at": stamp, "approved_by": "test-policy-owner",
+                },
+                "production_identity_email": {
+                    "status": "passed", "evidence_ref": "synthetic-test-evidence",
+                    "verified_at": stamp, "verified_by": "test-operator",
+                },
+                "privileged_recovery_bootstrap": {
+                    "status": "passed", "evidence_ref": "synthetic-test-evidence",
+                    "verified_at": stamp, "verified_by": "test-operator",
+                    "witnessed_by": "independent-test-witness",
+                },
+                "independent_security_review": {
+                    "status": "passed", "evidence_ref": "synthetic-test-evidence",
+                    "reviewed_at": stamp, "reviewer": "independent-security-reviewer",
+                    "unresolved_critical_high": 0,
+                },
+            },
+        }
+        path.write_text(json.dumps(manifest), encoding="utf-8")
+        return path
+
     def test_production_startup_requires_host_cookie_origin_admin_and_backup_settings(self):
         env = os.environ.copy()
         env.pop("COPILOT_DB", None)
@@ -22,12 +62,15 @@ class ProductionDatabaseModeTests(unittest.TestCase):
         self.assertIn("COPILOT_ALLOWED_HOSTS is required in production", result.stderr)
         self.assertIn("COPILOT_SECURE_COOKIES=1 is required in production", result.stderr)
         self.assertIn("BACKUP_KEY must be a valid Fernet key", result.stderr)
+        self.assertIn("COPILOT_DATABASE_ACCEPTANCE_FILE must reference a complete accepted database operational evidence manifest", result.stderr)
 
     def test_production_startup_accepts_explicit_hardened_configuration(self):
         from cryptography.fernet import Fernet
         with __import__("tempfile").TemporaryDirectory() as temp:
             env = os.environ.copy()
             env.pop("COPILOT_DB", None)
+            acceptance_path = self._write_acceptance_manifest(Path(temp) / "database-acceptance.json")
+            env["COPILOT_DATABASE_ACCEPTANCE_FILE"] = str(acceptance_path)
             env.update({
                 "COPILOT_ENV": "production",
                 "COPILOT_CONTROL_DB": os.path.join(temp, "control.sqlite3"),
@@ -50,6 +93,7 @@ class ProductionDatabaseModeTests(unittest.TestCase):
         for key in ("COPILOT_CONTROL_DB", "COPILOT_TENANT_DB_ROOT", "COPILOT_CORPUS_DB"):
             env.pop(key, None)
         env["COPILOT_ENV"] = "production"
+        env.pop("COPILOT_DATABASE_ACCEPTANCE_FILE", None)
         env["COPILOT_DB"] = "/tmp/legacy-shared.sqlite3"
         result = subprocess.run(
             [sys.executable, "-c", "import app"],
