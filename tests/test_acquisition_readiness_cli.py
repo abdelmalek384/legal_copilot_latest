@@ -51,6 +51,7 @@ class AcquisitionReadinessCliTests(unittest.TestCase):
                 "permission_evidence": "written authorization ref AUTH-1",
                 "permission_evidence_url": "https://laws.example.gov/rights/collection",
                 "terms_checked_on": "2026-10-23",
+                "terms_url": "https://laws.example.gov/terms",
                 "permission_scope_review": passed_scope_review(),
             }]
         }
@@ -62,6 +63,7 @@ class AcquisitionReadinessCliTests(unittest.TestCase):
                 "permission_evidence": "written authorization ref AUTH-1",
                 "permission_evidence_url": "https://laws.example.gov/rights/collection",
                 "terms_checked_on": "2026-10-23",
+                "terms_url": "https://laws.example.gov/terms",
             }]
         }
         self.manifest.write_text(json.dumps(self.payload), encoding="utf-8")

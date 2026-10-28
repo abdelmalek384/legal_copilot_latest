@@ -170,6 +170,8 @@ def audit(manifest: dict, register: dict) -> dict:
                 blockers.append("source_register_does_not_allow_collection")
             if not source.get("permission_evidence") or not _valid_date(source.get("terms_checked_on")):
                 blockers.append("source_permission_evidence_or_terms_date_missing")
+            if not _hostname(source.get("terms_url")):
+                blockers.append("source_terms_url_missing_or_invalid")
             if _valid_date(source.get("terms_checked_on")) and not _fresh_date(source.get("terms_checked_on")):
                 blockers.append("source_terms_review_stale")
             if not _hostname(source.get("permission_evidence_url")):
@@ -183,6 +185,8 @@ def audit(manifest: dict, register: dict) -> dict:
 
         if not document.get("permission_evidence"):
             blockers.append("manifest_permission_evidence_missing")
+        if not _hostname(document.get("terms_url")):
+            blockers.append("manifest_terms_url_missing_or_invalid")
         if not _valid_date(document.get("terms_checked_on")):
             blockers.append("manifest_terms_checked_on_missing_or_invalid")
         elif not _fresh_date(document.get("terms_checked_on")):
