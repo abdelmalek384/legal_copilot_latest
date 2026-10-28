@@ -373,6 +373,21 @@
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "notes": "Search-indexed PDF text and the official Amiri Press legislation page corroborate the title, issue/date and selected promulgation provisions. The original PDF has not been downloaded, hashed, or page-reviewed here. This discovery is not permission to collect, store, index, embed, display, redistribute or commercially use the file."
+    },
+    {
+      "source_id": "EG-WIPOLEX-EGYPT-IP-LAW-82-2002-ART141",
+      "publisher": "World Intellectual Property Organization (WIPO Lex)",
+      "source_type": "legal text / copyright exclusion evidence",
+      "url": "https://www.wipo.int/wipolex/en/legislation/details/22066",
+      "observed_title": "Law No. 82 of 2002 on the Protection of Intellectual Property Rights",
+      "document_ids": [
+        "EG-LABOUR-LAW-14-2025"
+      ],
+      "source_state": "article_141_text_discovered",
+      "access_terms_state": "not_reviewed_for_automated_collection",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "notes": "Article 141 states official documents including laws are excluded from copyright protection, but collections can be protected for creative selection/arrangement. This is a preliminary statutory copyright basis, not permission to ignore a repository's access terms or systematic-retrieval restrictions. Counsel review is pending."
     }
   ],
   "document_records_to_create_from_batch": [
