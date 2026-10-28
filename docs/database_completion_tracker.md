@@ -227,6 +227,8 @@ This is a planning estimate across fresh-install schema/migrations, tenant isola
 ## Remaining database work
 
 ### 1. Finish versioned schema migrations
+
+- [ ] Add an operator-run, backup-first fleet migration workflow for all eligible firm databases, with read-only planning, whole-fleet preflight, immutable profile/firm binding checks, private per-tenant snapshots, a persisted run manifest, explicit worker-stop confirmation, and stop-on-first-failure behavior (`tools/migrate_tenant_fleet.py`; pending review/CI). See `docs/database_fleet_migrations.md`.
 - [ ] Remove the remaining shared-database compatibility implementation after the test harnesses are migrated to the approved profile-separated runtime. This PR restricts `COPILOT_DB` to explicit development/test mode and documents that it is not a legacy import path; no legacy database has been deployed or used.
 - [x] Keep the approved fresh-install control-plane, firm, and legal-corpus schemas under versioned profile migrations. Remove runtime DDL fallbacks for the tenant catalog and immutable firm binding (PR #524 CI run #1372 passed; PR #525 CI run #1388 passed). Continue moving any remaining schema prerequisites used by the approved profiles into ordered migrations.
 - [x] Add a read-only FTS5 internal index-integrity check on a disposable copy, detecting stale inverted indexes without mutating the source database (PR #388 merged; CI passed).
