@@ -19,6 +19,8 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+# Support both "python -m tools.migrate_tenant_fleet" and direct script execution.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from schema_profiles import apply_profile_migrations
 
 _FILENAME = re.compile(r"^tenant-(?P<firm_id>[1-9][0-9]*)-(?P<nonce>[0-9a-f]{32})\.sqlite3$")
@@ -183,8 +185,10 @@ def build_plan(control_db: str | Path, tenant_root: str | Path, migrations_root:
             if foreign_key_errors:
                 raise FleetMigrationError(f"Tenant {firm_id} failed foreign_key_check")
             pending = _pending_versions(tenant, migrations)
+        metadata = path.stat()
         targets.append({
             "firm_id": firm_id,
+            "file_identity": [metadata.st_dev, metadata.st_ino],
             "firm_status": firm_status,
             "catalog_status": status,
             "database_file": filename,
@@ -226,6 +230,31 @@ def _snapshot(path: Path, backup_dir: Path, firm_id: int, run_id: str) -> Path:
         raise
 
 
+def _persist_manifest(directory: Path, run_id: str, payload: dict) -> str:
+    destination = directory / f"{run_id}-manifest.json"
+    temporary = directory / f".{run_id}-manifest-{os.getpid()}.tmp"
+    flags = os.O_CREAT | os.O_EXCL | os.O_WRONLY
+    if hasattr(os, "O_NOFOLLOW"):
+        flags |= os.O_NOFOLLOW
+    try:
+        fd = os.open(temporary, flags, 0o600)
+        with os.fdopen(fd, "w", encoding="utf-8") as handle:
+            json.dump(payload, handle, ensure_ascii=False, sort_keys=True, indent=2)
+            handle.write("\\n")
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, destination)
+        if os.name == "posix":
+            os.chmod(destination, 0o600)
+        return str(destination)
+    except Exception:
+        try:
+            temporary.unlink(missing_ok=True)
+        except OSError:
+            pass
+        raise
+
+
 def apply_fleet(control_db: str | Path, tenant_root: str | Path, migrations_root: str | Path,
                 backup_dir: str | Path, *, confirm_workers_stopped: bool) -> dict:
     if not confirm_workers_stopped:
@@ -249,11 +278,31 @@ def apply_fleet(control_db: str | Path, tenant_root: str | Path, migrations_root
     run_id = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
     backups = []
     work_targets = [target for target in plan["targets"] if target["pending_versions"]]
+    manifest = {
+        "schema": "tenant-fleet-migration-result/v1",
+        "run_id": run_id,
+        "status": "preparing_backups",
+        "preflight": plan,
+        "backups": backups,
+        "outcome": [],
+    }
+    manifest_path = _persist_manifest(backup, run_id, manifest)
     # Complete all snapshots before touching any schema; a backup failure means no migration begins.
     for target in work_targets:
         path = root / target["database_file"]
+        _secure_regular_file(path, f"Tenant {target['firm_id']}")
+        _secure_sidecars(path)
+        identity = path.stat()
+        if [identity.st_dev, identity.st_ino] != target["file_identity"]:
+            raise FleetMigrationError(f"Tenant {target['firm_id']} file identity changed after preflight")
         snapshot = _snapshot(path, backup, target["firm_id"], run_id)
+        identity_after = path.stat()
+        if [identity_after.st_dev, identity_after.st_ino] != target["file_identity"]:
+            raise FleetMigrationError(f"Tenant {target['firm_id']} file identity changed during backup")
         backups.append({"firm_id": target["firm_id"], "path": str(snapshot)})
+        manifest["backups"] = list(backups)
+        manifest["status"] = "backing_up"
+        manifest_path = _persist_manifest(backup, run_id, manifest)
     outcome = [
         {"firm_id": target["firm_id"], "status": "up_to_date", "applied_versions": []}
         for target in plan["targets"] if not target["pending_versions"]
@@ -265,6 +314,8 @@ def apply_fleet(control_db: str | Path, tenant_root: str | Path, migrations_root
             _secure_regular_file(path, f"Tenant {firm_id}")
             _secure_sidecars(path)
             before = (path.stat().st_dev, path.stat().st_ino)
+            if list(before) != target["file_identity"]:
+                raise FleetMigrationError("Tenant database file identity changed after backup")
             with closing(sqlite3.connect(path, timeout=30)) as connection:
                 connection.row_factory = sqlite3.Row
                 connection.execute("PRAGMA foreign_keys=ON")
@@ -290,18 +341,29 @@ def apply_fleet(control_db: str | Path, tenant_root: str | Path, migrations_root
             outcome.append({"firm_id": firm_id, "status": "migrated", "applied_versions": applied})
         except Exception as exc:
             outcome.append({"firm_id": firm_id, "status": "failed", "error": str(exc)})
+            manifest["outcome"] = list(outcome)
+            manifest["status"] = "stopped_after_failure"
+            manifest_path = _persist_manifest(backup, run_id, manifest)
             break
-    return {
+        manifest["outcome"] = list(outcome)
+        manifest["status"] = "migrating"
+        manifest_path = _persist_manifest(backup, run_id, manifest)
+    result = {
         "schema": "tenant-fleet-migration-result/v1",
         "run_id": run_id,
         "preflight": plan,
         "backups": backups,
         "outcome": outcome,
+        "manifest_path": manifest_path,
         "stopped_after_failure": any(item["status"] == "failed" for item in outcome),
         "all_targets_migrated": len(outcome) == len(plan["targets"]) and all(
             item["status"] in {"migrated", "up_to_date"} for item in outcome
         ),
     }
+    manifest.update(result)
+    manifest["status"] = "failed" if result["stopped_after_failure"] else "completed"
+    result["manifest_path"] = _persist_manifest(backup, run_id, manifest)
+    return result
 
 
 def main(argv: list[str] | None = None) -> int:
