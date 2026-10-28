@@ -20,6 +20,8 @@ from typing import Any
 from cryptography.fernet import Fernet, InvalidToken
 
 from database_runtime import DatabaseRuntime
+from original_file_storage import ObjectStorageError
+from s3_original_file_storage import S3PrivateObjectStore
 
 
 class DatabaseBundleError(RuntimeError):
@@ -222,6 +224,84 @@ def _copy_original_objects(
                 raise DatabaseBundleError("Could not restrict permissions on backed-up original object")
         expected.add(f"firm-{firm_id}/{object_id}.blob")
     return expected
+
+
+def _copy_s3_original_objects(
+    tenant_snapshot: Path, firm_id: int, store: S3PrivateObjectStore, payload: Path
+) -> set[str]:
+    db = _readonly(tenant_snapshot)
+    try:
+        tables = {row[0] for row in db.execute(
+            "SELECT name FROM sqlite_master WHERE type='table'"
+        )}
+        if "original_file_objects" not in tables:
+            return set()
+        columns = {row[1] for row in db.execute("PRAGMA table_info(original_file_objects)")}
+        required = {"object_id", "firm_id", "storage_backend", "sha256", "byte_size", "state"}
+        if not required.issubset(columns):
+            raise DatabaseBundleError(f"Tenant {firm_id} has incomplete original-object metadata")
+        has_purged_at = "purged_at" in columns
+        select = "object_id,firm_id,storage_backend,sha256,byte_size,state"
+        if has_purged_at:
+            select += ",purged_at"
+        rows = db.execute(f"SELECT {select} FROM original_file_objects ORDER BY object_id").fetchall()
+    finally:
+        db.close()
+
+    expected: set[str] = set()
+    for row in rows:
+        object_id = row["object_id"]
+        if row["firm_id"] != firm_id or row["storage_backend"] != "s3" or not isinstance(object_id, str) or not re.fullmatch(r"[0-9a-f]{32}", object_id):
+            raise DatabaseBundleError(f"Original-object metadata is invalid for firm {firm_id}")
+        if has_purged_at and row["purged_at"] is not None:
+            continue
+        if row["state"] not in {"ready", "quarantined"}:
+            raise DatabaseBundleError(f"Firm {firm_id} has unfinished original-object metadata; reconcile before backup")
+        digest, size = row["sha256"], int(row["byte_size"])
+        try:
+            staged, finalized = store.object_presence(firm_id, object_id)
+            valid = not staged and finalized and store.verify(
+                firm_id, object_id, expected_sha256=digest, expected_size=size
+            )
+            if not valid:
+                raise DatabaseBundleError(f"S3 original-object integrity check failed for firm {firm_id}")
+            with store.open(firm_id, object_id) as source:
+                relative = f"objects/firm-{firm_id}/{object_id}.blob"
+                target = payload / relative
+                target.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
+                digest_check = hashlib.sha256()
+                size_check = 0
+                flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL
+                fd = os.open(target, flags, 0o600)
+                try:
+                    with os.fdopen(fd, "wb", closefd=True) as output:
+                        while True:
+                            block = source.read(1024 * 1024)
+                            if not block:
+                                break
+                            output.write(block)
+                            digest_check.update(block)
+                            size_check += len(block)
+                except Exception:
+                    target.unlink(missing_ok=True)
+                    raise
+                if size_check != size or digest_check.hexdigest() != digest:
+                    target.unlink(missing_ok=True)
+                    raise DatabaseBundleError(f"S3 original-object changed during backup for firm {firm_id}")
+        except (ObjectStorageError, ValueError) as exc:
+            raise DatabaseBundleError(f"S3 original-object could not be safely backed up for firm {firm_id}") from exc
+        expected.add(f"firm-{firm_id}/{object_id}.blob")
+    return expected
+
+
+def _scan_s3_original_object_inventory(store: S3PrivateObjectStore) -> set[str]:
+    found: set[str] = set()
+    for key in store.list_object_keys():
+        match = re.fullmatch(r"firms/([1-9][0-9]*)/originals/([0-9a-f]{32})\\.(staged|blob)", key)
+        if not match or match.group(3) != "blob":
+            raise DatabaseBundleError("S3 original-object storage contains staged or unexpected objects")
+        found.add(f"firm-{match.group(1)}/{match.group(2)}.blob")
+    return found
 
 
 def _scan_original_object_root(object_root: Path) -> set[str]:
