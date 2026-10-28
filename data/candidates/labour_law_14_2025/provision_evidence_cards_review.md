@@ -7550,3 +7550,15 @@ Source fallback used: https://ar.wikisource.org/wiki/قانون_العمل_14_ل
 
 **Immediate next work:** recover clean full text for the four blocked penalty articles from another public transcription, then catalogue publicly accessible implementing decisions (starting with Decision 260/2025) and map each to affected articles. Continue to keep `search_eligible: false`.
 
+## Penalty text recovery — no longer blocked at Articles 288, 290, 291 and 293
+
+A separate public legal-text service (Fahm Qanun) provided per-article pages that cite the official SIS rights-studies site as the source. This recovered clean readable text for Articles 288, 289, 290, 291, 293 and 294. The supplemental cards were corrected accordingly:
+- Art. 288: fines for listed violations, generally EGP 500–5,000, multiple by affected workers and doubled on repeat violations.
+- Art. 289: employer penalties for breaches of Arts. 62–66, EGP 2,000–10,000, repeat-offence doubling and possible closure up to six months.
+- Art. 290: EGP 500–1,000 for breaches of Arts. 33 and 37, also Arts. 35 and 205.
+- Art. 291: imprisonment and/or EGP 20,000–100,000 for specified unlicensed recruitment, improper deductions/collections, and false overseas recruitment data; refund and closure provisions also apply.
+- Art. 293: EGP 20,000–100,000 for breaches of Arts. 70, 71, 72 and 74.
+- Art. 294: EGP 1,000–20,000 for the listed provisions, including Arts. 140–145, Art. 151(2), Art. 152 and Art. 198.
+
+The earlier transcription-corruption blocker is resolved for these articles at the secondary-transcription level, not at the official-Gazette verification level. Article 295 remains cross-checked against the public transcription. Do not treat these summaries as final criminal-exposure assessments until exact Gazette wording, applicable amendments and qualified Egyptian-lawyer review are checked.
+
