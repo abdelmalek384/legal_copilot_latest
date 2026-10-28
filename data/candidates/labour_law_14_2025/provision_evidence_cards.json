@@ -276,7 +276,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "automated overtime calculation or final advice"
+      "not_usable_for": "automated overtime calculation or final advice",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-124-ANNUAL-LEAVE",
@@ -336,9 +357,9 @@
           "document_id": "EG-LABOUR-DECISION-49-2026",
           "title_ar": "قرار وزير العمل رقم 49 لسنة 2026 بشأن تحديد الأعمال الخطرة والصعبة والمناطق النائية التي يستحق العاملون فيها زيادة الإجازة السنوية سبعة أيام",
           "relationship": "possible implementing instrument under Article 124",
-          "source_url": "https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%84%D8%AA%D8%AD%D9%82%D9%82-%D8%A7%D9%84%D8%AA%D9%88%D8%A7%D8%B2%D9%86-%D8%A8%D9%8A%D9%86-%D9%85%D8%AA%D8%B7%D9%84%D8%A8%D8%A7%D8%AA-%D8%A7%D9%84%D8%A5%D9%86%D8%AA%D8%A7%D8%AC-%D9%88%D8%B5%D9%88%D9%86-%D8%AD%D9%82%D9%88%D9%82-%D8%A7%D9%84%D9%82%D9%88%D9%89-%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D9%84%D8%A9-%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D9%8A%D8%B5%D8%AF%D8%B1-%D9%82%D8%B1%D8%A7%D8%B1-%D8%A7-%D9%88%D8%B2%D8%A7%D8%B1%D9%8A-%D8%A7-%D8%A8%D8%AA%D8%AD%D8%AF%D9%8A%D8%AF-%D8%A7%D9%84%D8%A3%D8%B9%D9%85%D8%A7%D9%84-%D8%A7%D9%84%D8%AE%D8%B7%D8%B1%D8%A9-%D9%88%D8%A7%D9%84%D9%85%D9%86%D8%A7%D8%B7%D9%82-%D8%A7%D9%84%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D8%A7%D9%84%D8%AA%D9%8A-%D8%AA-%D8%B2%D8%A7%D8%AF-%D9%81%D9%8A%D9%87%D8%A7-%D8%A7%D9%84%D8%A5%D8%AC%D8%A7%D8%B2%D8%A7%D8%AA-%D8%A7%D9%84%D8%B3%D9%86%D9%88%D9%8A%D8%A9-7-%D8%A3%D9%8A%D8%A7%D9%85-%D9%84%D9%84%D8%B9%D8%A7%D9%85%D9%84%D9%8A%D9%86/",
-          "status": "discovery_only; Official Gazette issue metadata found for issue 64 supplement dated 2026-03-18, but full decision text, page range, operative schedules, commencement, currentness, and reuse permission remain unverified",
-          "note": "Do not determine eligibility for the additional seven days from Article 124 alone; obtain and review the full decision, its schedules, effective date, and current status.",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/03/49-2026-7.html",
+          "status": "Official Gazette metadata found for issue 64 supplement dated 2026-03-18; public secondary transcription found but not verified against primary PDF; currentness and reuse remain unverified",
+          "note": "Do not determine eligibility for the additional seven days from Article 124 alone; verify the exact work/area schedules and the worker's duties/location against the official Gazette text.",
           "official_gazette_metadata": {
             "source_url": "https://dspace.id.com.eg/items/f32b4a07-6598-4ed8-a170-60d631a57221",
             "item_metadata_url": "https://dspace.id.com.eg/items/6e700208-61d6-4beb-8629-19fa7b6195fb/full",
@@ -346,9 +367,28 @@
             "gazette_publication": "الوقائع المصرية، ملحق العدد 64 تابع",
             "publication_date": "2026-03-18",
             "publisher": "المطابع الأميرية",
-            "metadata_supports": "The issue abstract explicitly lists Ministerial Decision 49/2026 and describes its subject as hazardous/arduous work and remote areas qualifying for seven additional annual-leave days.",
-            "full_text_status": "An item record lists Arabic and English PDF files, but no original file has been downloaded, hashed, visually inspected, or fully compared with the Gazette issue in this task.",
-            "reuse_terms_status": "Source register records restrictions on commercial exploitation and systematic database compilation absent written permission; do not download, index, or republish the PDF without authorization."
+            "metadata_supports": "The issue abstract lists Decision 49/2026 and its seven-additional-day annual leave subject.",
+            "full_text_status": "A public secondary transcription contains Articles 1–5 and schedules; the official PDF has not been downloaded, hashed, or fully compared.",
+            "reuse_terms_status": "Unknown; public access does not establish rights to reproduce or commercially reuse the official file."
+          }
+        },
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
           }
         }
       ]
@@ -393,7 +433,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "settlement valuation, case prediction, or final legal advice"
+      "not_usable_for": "settlement valuation, case prediction, or final legal advice",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-129-PAID-HOLIDAYS",
@@ -458,6 +519,25 @@
             "full_text_status": "The record lists a PDF through a request-a-copy workflow; the full decision text has not been obtained or page-reviewed.",
             "reuse_terms_status": "The source register records IDSC terms as personal non-commercial use and bars commercial exploitation/systematic database compilation without written permission; do not acquire or republish the PDF absent authorization."
           }
+        },
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
         }
       ],
       "limitations": [
@@ -512,7 +592,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final shift scheduling, overtime calculation, or legal advice"
+      "not_usable_for": "final shift scheduling, overtime calculation, or legal advice",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-125-ANNUAL-LEAVE-ADMIN",
@@ -555,7 +656,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final leave balance or payroll determination"
+      "not_usable_for": "final leave balance or payroll determination",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-164-NOTICE-PAY",
@@ -597,7 +719,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final notice-pay calculation or legal advice"
+      "not_usable_for": "final notice-pay calculation or legal advice",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-128-CASUAL-LEAVE",
@@ -639,7 +782,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "leave-balance calculation or final advice"
+      "not_usable_for": "leave-balance calculation or final advice",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-130-PILGRIMAGE-LEAVE",
@@ -1015,7 +1179,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice, definitive liability assessment, or authoritative retrieval"
+      "not_usable_for": "final advice, definitive liability assessment, or authoritative retrieval",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-5-NONDISCRIMINATION",
@@ -1057,7 +1242,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice or authoritative retrieval"
+      "not_usable_for": "final advice or authoritative retrieval",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-6-VOID-WAIVERS",
@@ -1099,7 +1305,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice or authoritative retrieval"
+      "not_usable_for": "final advice or authoritative retrieval",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-7-LITIGATION-FEES",
@@ -2612,7 +2839,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "automatic approval or denial of a specific leave request"
+      "not_usable_for": "automatic approval or denial of a specific leave request",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-127-WORK-DURING-LEAVE",
@@ -2655,7 +2903,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final finding of misconduct or payroll recovery decision"
+      "not_usable_for": "final finding of misconduct or payroll recovery decision",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-121-OVERTIME-EXCEPTION",
@@ -2698,7 +2967,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "automated overtime payroll calculation or final legal advice"
+      "not_usable_for": "automated overtime payroll calculation or final legal advice",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-122-WORK-SCHEDULE-DISPLAY",
@@ -2740,7 +3030,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final compliance determination for a specific establishment"
+      "not_usable_for": "final compliance determination for a specific establishment",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-123-WORK-HOUR-EXEMPTIONS",
@@ -2782,7 +3093,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final classification of a worker or determination of applicable hours without the implementing decision"
+      "not_usable_for": "final classification of a worker or determination of applicable hours without the implementing decision",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-117-DAILY-WEEKLY-HOURS",
@@ -2825,7 +3157,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "حسم مشروعية جدول عمل فردي دون مراجعة الاستثناءات والقرارات المنفذة"
+      "not_usable_for": "حسم مشروعية جدول عمل فردي دون مراجعة الاستثناءات والقرارات المنفذة",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-118-BREAKS",
@@ -2868,7 +3221,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "تقرير مخالفة نهائية دون مراجعة القرارات الوزارية والوقائع"
+      "not_usable_for": "تقرير مخالفة نهائية دون مراجعة القرارات الوزارية والوقائع",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-119-WORKDAY-SPAN",
@@ -2911,7 +3285,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "احتساب مخالفة نهائية من جدول الدوام وحده"
+      "not_usable_for": "احتساب مخالفة نهائية من جدول الدوام وحده",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-120-WEEKLY-REST",
@@ -2954,7 +3349,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "حسم استحقاق راحة أسبوعية أو مشروعية تجميعها دون فحص الوقائع والقرارات"
+      "not_usable_for": "حسم استحقاق راحة أسبوعية أو مشروعية تجميعها دون فحص الوقائع والقرارات",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-124-ANNUAL-LEAVE-ENTITLEMENT",
@@ -2997,7 +3413,47 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "إصدار حساب نهائي لرصيد الإجازات دون بيانات الخدمة والفئة والقرارات المنفذة"
+      "not_usable_for": "إصدار حساب نهائي لرصيد الإجازات دون بيانات الخدمة والفئة والقرارات المنفذة",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-DECISION-49-2026",
+          "title_ar": "قرار وزير العمل رقم 49 لسنة 2026 بشأن تحديد الأعمال الخطرة والصعبة والمناطق النائية التي يستحق العاملون فيها زيادة الإجازة السنوية سبعة أيام",
+          "relationship": "possible implementing instrument under Article 124",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/03/49-2026-7.html",
+          "status": "Official Gazette metadata found for issue 64 supplement dated 2026-03-18; public secondary transcription found but not verified against primary PDF; currentness and reuse remain unverified",
+          "note": "Do not determine eligibility for the additional seven days from Article 124 alone; verify the exact work/area schedules and the worker's duties/location against the official Gazette text.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/f32b4a07-6598-4ed8-a170-60d631a57221",
+            "item_metadata_url": "https://dspace.id.com.eg/items/6e700208-61d6-4beb-8629-19fa7b6195fb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 64 تابع",
+            "publication_date": "2026-03-18",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "The issue abstract lists Decision 49/2026 and its seven-additional-day annual leave subject.",
+            "full_text_status": "A public secondary transcription contains Articles 1–5 and schedules; the official PDF has not been downloaded, hashed, or fully compared.",
+            "reuse_terms_status": "Unknown; public access does not establish rights to reproduce or commercially reuse the official file."
+          }
+        },
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-125-ANNUAL-LEAVE-SCHEDULING",
@@ -3040,7 +3496,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "حساب تعويض نهائي أو تقرير سقوط حق دون مراجعة ملف العامل والوقائع"
+      "not_usable_for": "حساب تعويض نهائي أو تقرير سقوط حق دون مراجعة ملف العامل والوقائع",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-128-CASUAL-AND-CHILDBIRTH-LEAVE",
@@ -3083,7 +3560,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "تقرير الاستحقاق النهائي دون مراجعة سجل الإجازات والوقائع"
+      "not_usable_for": "تقرير الاستحقاق النهائي دون مراجعة سجل الإجازات والوقائع",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-129-PUBLIC-HOLIDAY-WORK-COMPENSATION",
@@ -3134,7 +3632,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "احتساب مستحق مالي نهائي دون مراجعة قرار العطلة وسجل الأجر والطلب"
+      "not_usable_for": "احتساب مستحق مالي نهائي دون مراجعة قرار العطلة وسجل الأجر والطلب",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-131-SICK-LEAVE-AND-WAGE-COMPENSATION",
@@ -3435,7 +3954,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "إقرار لائحة منشأة بأنها معتمدة أو نافذة دون مراجعة النص الكامل والقرار التنفيذي وإجراءات التقديم"
+      "not_usable_for": "إقرار لائحة منشأة بأنها معتمدة أو نافذة دون مراجعة النص الكامل والقرار التنفيذي وإجراءات التقديم",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-138-DISCIPLINARY-SCOPE-AND-PROPORTIONALITY",
@@ -3478,7 +4018,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "الجزم بمشروعية جزاء تأديبي دون مراجعة لائحة المنشأة والتناسب والإجراءات"
+      "not_usable_for": "الجزم بمشروعية جزاء تأديبي دون مراجعة لائحة المنشأة والتناسب والإجراءات",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-139-DISCIPLINARY-PENALTIES-LIST",
@@ -3521,7 +4082,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "اختيار أو احتساب جزاء نهائي دون التحقق من الحد القانوني ولائحة المنشأة والواقعة"
+      "not_usable_for": "اختيار أو احتساب جزاء نهائي دون التحقق من الحد القانوني ولائحة المنشأة والواقعة",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-140-SINGLE-PENALTY-AND-DEDUCTION-LIMIT",
@@ -3564,7 +4146,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "اعتماد خصم أو جزاء مالي دون احتساب مجموع الاقتطاعات ومراجعة المادة 139 واللائحة"
+      "not_usable_for": "اعتماد خصم أو جزاء مالي دون احتساب مجموع الاقتطاعات ومراجعة المادة 139 واللائحة",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-141-DISCIPLINARY-INVESTIGATION-TIME-LIMITS",
@@ -3607,7 +4210,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "الحكم ببطلان أو صحة إجراء تأديبي دون مراجعة ملف التحقيق والنص الكامل والوقائع"
+      "not_usable_for": "الحكم ببطلان أو صحة إجراء تأديبي دون مراجعة ملف التحقيق والنص الكامل والوقائع",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-142-DISCIPLINARY-INVESTIGATION-ASSIGNMENT",
@@ -3650,7 +4274,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "الحكم ببطلان التحقيق أو صحته دون معرفة هيكل المنشأة وصفة المحقق وملف الواقعة"
+      "not_usable_for": "الحكم ببطلان التحقيق أو صحته دون معرفة هيكل المنشأة وصفة المحقق وملف الواقعة",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-143-DISCIPLINARY-DEDUCTION-CAPS",
@@ -3693,7 +4338,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "اعتماد خصم دون حساب الحد للمخالفة الواحدة وإجمالي الخصومات الشهرية"
+      "not_usable_for": "اعتماد خصم دون حساب الحد للمخالفة الواحدة وإجمالي الخصومات الشهرية",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-144-REPEAT-VIOLATION-AGGRAVATION",
@@ -3736,7 +4402,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "تشديد جزاء دون إثبات المخالفة السابقة وتاريخ الإبلاغ والتطابق في نوع المخالفة"
+      "not_usable_for": "تشديد جزاء دون إثبات المخالفة السابقة وتاريخ الإبلاغ والتطابق في نوع المخالفة",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-145-TEMPORARY-SUSPENSION-FULL-PAY",
@@ -3779,7 +4466,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "تقرير مشروعية وقف عامل دون فحص السبب والقرار المكتوب والمدة والأجر"
+      "not_usable_for": "تقرير مشروعية وقف عامل دون فحص السبب والقرار المكتوب والمدة والأجر",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-146-SUSPENSION-GRIEVANCE-REVIEW",
@@ -3822,7 +4530,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "حساب ميعاد أو تقرير أثر التظلم دون مستند قرار الوقف وتاريخ العلم والقرار القضائي"
+      "not_usable_for": "حساب ميعاد أو تقرير أثر التظلم دون مستند قرار الوقف وتاريخ العلم والقرار القضائي",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-147-EMPLOYER-REQUEST-TO-EXTEND-SUSPENSION",
@@ -3865,7 +4594,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "حساب الأجر أو تقرير استمرار الوقف دون مراجعة الطلب وتاريخه وقرار القاضي"
+      "not_usable_for": "حساب الأجر أو تقرير استمرار الوقف دون مراجعة الطلب وتاريخه وقرار القاضي",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-148-AUTHORITY-TO-IMPOSE-DISCIPLINE",
@@ -3908,7 +4658,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "الحكم بصحة جزاء أو فصل دون فحص الاختصاص والتفويض والنص الكامل"
+      "not_usable_for": "الحكم بصحة جزاء أو فصل دون فحص الاختصاص والتفويض والنص الكامل",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-149-INDIVIDUAL-DISPUTE-AMICABLE-SETTLEMENT",
@@ -4166,7 +4937,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "تقرير صحة إنهاء عقد أو استحقاق تعويض دون مراجعة العقد الكامل والتواريخ والنص الكامل"
+      "not_usable_for": "تقرير صحة إنهاء عقد أو استحقاق تعويض دون مراجعة العقد الكامل والتواريخ والنص الكامل",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-155-SPECIFIC-WORK-CONTRACT-COMPLETION",
@@ -4209,7 +5001,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "تحديد انتهاء العقد أو تجديده دون مراجعة العقد والوقائع الفعلية"
+      "not_usable_for": "تحديد انتهاء العقد أو تجديده دون مراجعة العقد والوقائع الفعلية",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-156-INDEFINITE-CONTRACT-THREE-MONTH-NOTICE",
@@ -4252,7 +5065,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "حساب تاريخ انتهاء الخدمة أو استحقاق التعويض دون فحص العقد والإخطار والاستثناءات"
+      "not_usable_for": "حساب تاريخ انتهاء الخدمة أو استحقاق التعويض دون فحص العقد والإخطار والاستثناءات",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-157-INDEFINITE-CONTRACT-LEGITIMATE-REASON",
@@ -4295,7 +5129,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "تقرير مشروعية إنهاء عقد غير محدد المدة اعتماداً على الإخطار وحده"
+      "not_usable_for": "تقرير مشروعية إنهاء عقد غير محدد المدة اعتماداً على الإخطار وحده",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-158-TERMINATION-NOTICE-CANNOT-BE-CONDITIONAL",
@@ -4338,7 +5193,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "حساب مهلة الإخطار دون دليل على التسلم ومراجعة نوع العقد والاستثناءات"
+      "not_usable_for": "حساب مهلة الإخطار دون دليل على التسلم ومراجعة نوع العقد والاستثناءات",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-159-NOTICE-DURING-LEAVE-AND-SICKNESS",
@@ -4381,7 +5257,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "حساب تاريخ انتهاء الخدمة دون مراجعة الإخطار وسجلات الإجازات"
+      "not_usable_for": "حساب تاريخ انتهاء الخدمة دون مراجعة الإخطار وسجلات الإجازات",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-160-CONTRACT-OBLIGATIONS-DURING-NOTICE",
@@ -4424,7 +5321,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "اعتبار العلاقة منتهية بمجرد إرسال الإخطار دون حساب المهلة"
+      "not_usable_for": "اعتبار العلاقة منتهية بمجرد إرسال الإخطار دون حساب المهلة",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-161-NOTICE-PERIOD-WAIVER-OR-EXTENSION",
@@ -4467,7 +5385,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "اعتبار اتفاق تقصير مهلة الإخطار صحيحاً دون مراجعة المادة والنصوص الخاصة"
+      "not_usable_for": "اعتبار اتفاق تقصير مهلة الإخطار صحيحاً دون مراجعة المادة والنصوص الخاصة",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-162-PAID-TIME-TO-SEARCH-DURING-NOTICE",
@@ -4510,7 +5449,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "خصم أجر وقت البحث أو تقرير مخالفة دون فحص شروط المادة والإخطار"
+      "not_usable_for": "خصم أجر وقت البحث أو تقرير مخالفة دون فحص شروط المادة والإخطار",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-163-EMPLOYER-WAIVER-OF-WORK-DURING-NOTICE",
@@ -4553,7 +5513,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "اعتبار الإعفاء من الحضور إنهاءً فورياً للخدمة دون فحص القرار والمهلة"
+      "not_usable_for": "اعتبار الإعفاء من الحضور إنهاءً فورياً للخدمة دون فحص القرار والمهلة",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-164-PAYMENT-IN-LIEU-OF-UNSERVED-NOTICE",
@@ -4596,7 +5577,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "حساب مقابل الإخطار أو مدة الخدمة دون مراجعة العقد والإخطار والأجر والنص الكامل"
+      "not_usable_for": "حساب مقابل الإخطار أو مدة الخدمة دون مراجعة العقد والإخطار والأجر والنص الكامل",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-165-UNLAWFUL-TERMINATION-COMPENSATION",
@@ -4639,7 +5641,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "حساب التعويض أو الجزم بعدم مشروعية الإنهاء دون فحص الملف القانوني الكامل"
+      "not_usable_for": "حساب التعويض أو الجزم بعدم مشروعية الإنهاء دون فحص الملف القانوني الكامل",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-166-ABSENCE-DEEMED-RESIGNATION",
@@ -4682,7 +5705,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "اعتبار الغياب وحده استقالة صحيحة دون التحقق من الشروط والإخطار"
+      "not_usable_for": "اعتبار الغياب وحده استقالة صحيحة دون التحقق من الشروط والإخطار",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-167-RESIGNATION-FORMALITY-ACCEPTANCE-WITHDRAWAL",
@@ -4725,7 +5769,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "تقرير انتهاء الخدمة أو صحة العدول دون فحص الأصول والتواريخ"
+      "not_usable_for": "تقرير انتهاء الخدمة أو صحة العدول دون فحص الأصول والتواريخ",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-168-WORKER-TERMINATION-EMPLOYER-BREACH-OR-ASSAULT",
@@ -4768,7 +5833,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "توجيه العامل للإنهاء أو تقدير التعويض دون فحص الوقائع والمخاطر الإجرائية"
+      "not_usable_for": "توجيه العامل للإنهاء أو تقدير التعويض دون فحص الوقائع والمخاطر الإجرائية",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-169-DEATH-EMPLOYEE-EMPLOYER-AND-FAMILY-PAYMENTS",
@@ -4811,7 +5897,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "حساب نهائي أو تحديد المستحقين دون مراجعة النصوص المرتبطة والوثائق"
+      "not_usable_for": "حساب نهائي أو تحديد المستحقين دون مراجعة النصوص المرتبطة والوثائق",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-170-TOTAL-PARTIAL-DISABILITY",
@@ -4854,7 +5961,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "إنهاء الخدمة تلقائياً عند أي عجز دون فحص الشروط"
+      "not_usable_for": "إنهاء الخدمة تلقائياً عند أي عجز دون فحص الشروط",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-171-RETIREMENT-AGE-AND-FIXED-TERM",
@@ -4897,7 +6025,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "تحديد تاريخ انتهاء العقد أو المعاش دون مراجعة العقد والقانون المرتبط"
+      "not_usable_for": "تحديد تاريخ انتهاء العقد أو المعاش دون مراجعة العقد والقانون المرتبط",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-172-POST-RETIREMENT-SERVICE-GRATUITY",
@@ -4940,7 +6089,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "حساب مكافأة نهائية دون مراجعة كشوف الأجر والتأمينات"
+      "not_usable_for": "حساب مكافأة نهائية دون مراجعة كشوف الأجر والتأمينات",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-173-TERMINATION-DURING-ILLNESS-LEAVE",
@@ -4983,7 +6153,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "تأكيد مشروعية الإنهاء بسبب المرض دون مراجعة السجلات والتواريخ"
+      "not_usable_for": "تأكيد مشروعية الإنهاء بسبب المرض دون مراجعة السجلات والتواريخ",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-174-FINAL-CRIMINAL-CONVICTION-TERMINATION",
@@ -5026,7 +6217,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "إنهاء الخدمة استناداً إلى اتهام أو حكم غير نهائي دون فحص الحكم"
+      "not_usable_for": "إنهاء الخدمة استناداً إلى اتهام أو حكم غير نهائي دون فحص الحكم",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-175-EMPLOYMENT-CERTIFICATE-AND-RETURN-OF-DOCUMENTS",
@@ -5069,7 +6281,28 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "تقرير إخلال أو حساب تعويض دون إثبات الطلب والوقائع ذات الصلة"
+      "not_usable_for": "تقرير إخلال أو حساب تعويض دون إثبات الطلب والوقائع ذات الصلة",
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+          "relationship": "related implementing instrument / cross-reference lead; not a confirmed amendment",
+          "source_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "status": "Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified",
+          "note": "Use only as a cross-reference lead. The publicly accessible transcription is secondary; do not infer that this decision amends the cited Law article. Check the full official text, commencement, later changes, and reuse terms before authoritative use.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+            "item_metadata_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+            "source_type": "Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 176 تابع",
+            "publication_date": "2026-08-13",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "Repository metadata identifies Ministerial Decision 162/2026 and lists Arabic/English PDF files.",
+            "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
+            "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
+          }
+        }
+      ]
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-176-SPECIALIZED-LABOUR-COURTS",
