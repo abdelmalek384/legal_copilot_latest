@@ -263,6 +263,20 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
                 self.assertTrue(card["limitations"])
         self.assertFalse(self.data["instrument"]["search_eligible"])
 
+    def test_worker_liability_and_termination_cards_have_official_pinpoints(self):
+        expected = {151: 65, 152: 66, 153: 66, 154: 66, 155: 67, 156: 67, 157: 67, 158: 67}
+        cards = {card["card_id"]: card for card in self.data["cards"]}
+        for article, page in expected.items():
+            matching = [card for card in cards.values() if card["pinpoint"]["article"] == f"المادة {article}"]
+            with self.subTest(article=article):
+                self.assertTrue(matching)
+                card = matching[-1]
+                self.assertEqual(card["pinpoint"]["official_gazette_printed_page"], page)
+                self.assertTrue(any("alamiria.com" in item["url"] for item in card["primary_evidence"]))
+                self.assertTrue(any("portal.eta.gov.eg" in item["url"] for item in card["primary_evidence"]))
+                self.assertTrue(card["limitations"])
+        self.assertFalse(self.data["instrument"]["search_eligible"])
+
     def test_exam_leave_cards_have_pinpoints_and_fail_closed(self):
         cards = {card["card_id"]: card for card in self.data["cards"]}
         expected = {
