@@ -1,0 +1,248 @@
+{
+  "schema_version": "1.0",
+  "record_id": "EG-LABOUR-LAW-14-2025-EVIDENCE-CARDS-2026-10-28",
+  "purpose": "Small, source-linked, paraphrased research cards for human review. This is not a verified/current-law corpus and must not be activated for authoritative legal retrieval.",
+  "created_on": "2026-10-28",
+  "jurisdiction": "Egypt",
+  "language": "ar",
+  "instrument": {
+    "document_id": "EG-LABOUR-LAW-14-2025",
+    "official_title": "قانون رقم 14 لسنة 2025 بإصدار قانون العمل",
+    "gazette_issue": "الجريدة الرسمية، العدد 18 (تابع)",
+    "publication_date": "2025-05-03",
+    "legal_status": "under_review",
+    "authenticity_verified": false,
+    "currentness_verified": false,
+    "amendment_history_verified": false,
+    "egyptian_lawyer_review": "pending",
+    "collection_permission": "unknown",
+    "commercial_reuse_permission": "unknown",
+    "search_eligible": false
+  },
+  "source_method_note": "Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF has not been downloaded, hashed, or visually inspected; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording.",
+  "cards": [
+    {
+      "card_id": "EG-LABOUR-14-2025-PROMULGATION-ART-1-SCOPE",
+      "question": "What scope exclusions does the promulgation text identify?",
+      "provisional_answer_ar": "تنص المادة الأولى من مواد الإصدار على استثناء فئات، من بينها العاملون بأجهزة الدولة وعمال الخدمة المنزلية ومن في حكمهم، مع مراعاة ما قد يرد بنص خاص. لا تستخدم هذه الخلاصة لتقرير انطباق القانون على حالة فردية دون فحص النص الكامل والاستثناءات ذات الصلة.",
+      "pinpoint": {
+        "part": "مواد الإصدار",
+        "article": "المادة الأولى",
+        "official_gazette_printed_page": 2,
+        "pdf_page_index_zero_based": 0
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "عنوان القانون ونص مواد الإصدار؛ صفحة النص قابلة للبحث",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص الصفحة المطبوعة 2؛ لم يُنزّل الملف أو يُفحص بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://natlex.ilo.org/dyn/natlex2/r/natlex/fe/results?clear=2&p2_country_filter=EGY&p2_home_flag=Y",
+          "source_type": "international legislation index",
+          "supports": "بيانات تعريف القانون وتاريخ النفاذ المعلن؛ ليس بديلاً عن النص الرسمي"
+        }
+      ],
+      "limitations": [
+        "لا يحسم جميع الاستثناءات أو قوانين الفئات الخاصة",
+        "لم تُراجع تعديلات لاحقة أو أحكام انتقالية لكل حالة",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "final advice, definitive scope decision, or authoritative retrieval"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-PROMULGATION-ART-12-REPEALS",
+      "question": "Which prior laws are expressly named in the repeal clause?",
+      "provisional_answer_ar": "تذكر المادة 12 من مواد الإصدار إلغاء قانون العمل رقم 12 لسنة 2003 والقانون رقم 125 لسنة 2010 بشأن مرتبة امتياز حقوق العمال، إلى جانب الأحكام المخالفة. يجب التحقق من الأثر الزمني والأحكام الانتقالية وأي تشريعات لاحقة قبل وصف الحالة القانونية الحالية.",
+      "pinpoint": {
+        "part": "مواد الإصدار",
+        "article": "المادة 12",
+        "official_gazette_printed_page": 5,
+        "pdf_page_index_zero_based": 3
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "نص المادة 12 ضمن مواد الإصدار",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص الصفحة المطبوعة 5؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://www.loc.gov/item/global-legal-monitor/2025-07-25/egypt-labor-law-updated/",
+          "source_type": "Library of Congress legal update",
+          "supports": "يذكر أن القانون الجديد حل محل قانون العمل 12/2003؛ مصدر ثانوي للمقارنة"
+        }
+      ],
+      "limitations": [
+        "لا تمثل هذه البطاقة شهادة كاملة بعدم وجود تعديلات لاحقة",
+        "لا تغني عن مراجعة النصوص الانتقالية أو التطبيق الزمني",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "final opinion on current status of every repealed instrument"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-PROMULGATION-ART-13-COMMENCEMENT",
+      "question": "What commencement dates are stated for the law and specialized labour courts?",
+      "provisional_answer_ar": "تضع المادة 13 قاعدة نفاذ عامة محسوبة من تاريخ النشر، وتذكر موعداً منفصلاً للمحاكم العمالية المتخصصة. تسجل المراجع المقارنة 1 سبتمبر 2025 للنفاذ العام و1 أكتوبر 2025 للمحاكم المتخصصة؛ يلزم مراجعة النص الرسمي الكامل والأحكام الانتقالية قبل حساب أثرهما على نزاع محدد.",
+      "pinpoint": {
+        "part": "مواد الإصدار",
+        "article": "المادة 13",
+        "official_gazette_printed_page": 5,
+        "pdf_page_index_zero_based": 3
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "قاعدة النفاذ بالمادة 13",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص الصفحة المطبوعة 5؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://natlex.ilo.org/dyn/natlex2/r/natlex/fe/results?clear=2&p2_country_filter=EGY&p2_home_flag=Y",
+          "source_type": "ILO NATLEX legislation index",
+          "supports": "يورد 2025-09-01 كتاريخ نفاذ"
+        },
+        {
+          "url": "https://www.loc.gov/item/global-legal-monitor/2025-07-25/egypt-labor-law-updated/",
+          "source_type": "Library of Congress legal update",
+          "supports": "يورد 2025-09-01 للنفاذ العام و2025-10-01 للمحاكم المتخصصة"
+        }
+      ],
+      "limitations": [
+        "الأحكام الانتقالية قد تغير النتيجة في قضية بعينها",
+        "لا يوجد بحث شامل موثق عن جميع التعديلات أو أحكام التأجيل اللاحقة",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "timeline research lead",
+      "not_usable_for": "automated deadline calculation or final temporal-law advice"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-89-WRITTEN-CONTRACT",
+      "question": "What does Article 89 say about documenting an employment contract?",
+      "provisional_answer_ar": "تتطلب المادة 89 عقد عمل مكتوباً باللغة العربية من أربع نسخ وتحدد الجهات التي تحتفظ بكل نسخة، كما تسرد بيانات أساسية للعقد. وتسمح بإثبات علاقة العمل ومدتها والحقوق المرتبطة بها بطرق الإثبات كافة عند غياب العقد المكتوب. تنطبق التفاصيل والاستثناءات وفق النص الكامل.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 89",
+        "official_gazette_printed_page": 43,
+        "pdf_page_index_zero_based": 41
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "النص الرسمي القابل للبحث؛ تحقق موضعي مطلوب عند التطبيق",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص الصفحة المطبوعة 43؛ لم يُنزّل الملف أو يُفحص بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf",
+          "source_type": "ILO NATLEX-hosted legal text",
+          "supports": "نص عربي متاح للمقارنة؛ شروط إعادة الاستخدام غير مثبتة في هذه البطاقة"
+        }
+      ],
+      "limitations": [
+        "لم تتم مقارنة المادة كاملة حرفياً مع صورة الجريدة الرسمية",
+        "لا يقرر النص وحده نتيجة النزاع أو عبء الإثبات في كل واقعة",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "final advice or authoritative retrieval"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-90-PROBATION",
+      "question": "What is the statutory maximum probation period stated in Article 90?",
+      "provisional_answer_ar": "تحدد المادة 90 فترة الاختبار بحد أقصى ثلاثة أشهر، وتنص على عدم تعيين العامل تحت الاختبار أكثر من مرة لدى صاحب عمل واحد.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 90",
+        "official_gazette_printed_page": 43,
+        "pdf_page_index_zero_based": 41
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "النص الرسمي القابل للبحث؛ تحقق موضعي مطلوب عند التطبيق",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص الصفحة المطبوعة 43؛ لم يُنزّل الملف أو يُفحص بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf",
+          "source_type": "ILO NATLEX-hosted legal text",
+          "supports": "نص عربي متاح للمقارنة؛ شروط إعادة الاستخدام غير مثبتة في هذه البطاقة"
+        }
+      ],
+      "limitations": [
+        "لم تتم مقارنة المادة كاملة حرفياً مع صورة الجريدة الرسمية",
+        "قد توجد قرارات تنفيذية أو وقائع تؤثر في التطبيق ولا تغطيها البطاقة",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "final advice or authoritative retrieval"
+    }
+  ],
+  "activation_gates": [
+    "Download and preserve the exact Official Gazette PDF through an authorized route; record its SHA-256 and visually inspect each cited page.",
+    "Complete a full article-by-article comparison of all 311 candidate records against the Official Gazette.",
+    "Review amendments, implementing instruments, transitional rules, and current legal effect as of the requested date.",
+    "Resolve source-specific collection, indexing, display, and commercial-use terms; do not infer permission from public access.",
+    "Obtain documented qualified Egyptian-lawyer review for each card and record reviewer identity, date, scope, and decision.",
+    "Only then create retrieval-eligible chunks with exact page/article citations."
+  ]
+}
