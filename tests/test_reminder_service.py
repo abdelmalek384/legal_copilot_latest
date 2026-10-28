@@ -136,6 +136,44 @@ class ReminderServiceTests(unittest.TestCase):
         self.assertEqual(attempt["smtp_attempts"], 0)
         self.assertEqual(attempt["error_code"], "recipient_not_active")
 
+    def test_queued_reminder_is_not_sent_after_user_account_is_disabled(self):
+        plan = build_reminder_plan(
+            [{"kind": "task", "event_id": str(self.task_id), "due_date": "2026-10-27", "is_complete": False}],
+            str(self.user_id), self.now, "Africa/Cairo", str(self.firm_id),
+        )
+        enqueue_plan(self.tenant, plan, firm_id=self.firm_id, recipient_user_id=self.user_id)
+        self.control.execute("UPDATE users SET status='disabled' WHERE id=?", (self.user_id,))
+        self.control.commit()
+        with patch("tools.reminder_service.send_reminder_email") as sender:
+            report = run_scheduler(
+                self.runtime, now=self.now, timezone_name="Africa/Cairo", send=True,
+                smtp_config=self.smtp, app_url="https://app.example.test",
+            )
+        self.assertEqual(sender.call_count, 0)
+        self.assertEqual(report["skipped_unauthorized_or_stale"], 1)
+        row = self.tenant.execute("SELECT status,last_error_code FROM reminder_deliveries").fetchone()
+        self.assertEqual(row["status"], "failed")
+        self.assertEqual(row["last_error_code"], "recipient_not_active")
+
+    def test_queued_reminder_is_not_sent_after_firm_is_disabled(self):
+        plan = build_reminder_plan(
+            [{"kind": "task", "event_id": str(self.task_id), "due_date": "2026-10-27", "is_complete": False}],
+            str(self.user_id), self.now, "Africa/Cairo", str(self.firm_id),
+        )
+        enqueue_plan(self.tenant, plan, firm_id=self.firm_id, recipient_user_id=self.user_id)
+        self.control.execute("UPDATE firms SET status='disabled' WHERE id=?", (self.firm_id,))
+        self.control.commit()
+        with patch("tools.reminder_service.send_reminder_email") as sender:
+            report = run_scheduler(
+                self.runtime, now=self.now, timezone_name="Africa/Cairo", send=True,
+                smtp_config=self.smtp, app_url="https://app.example.test",
+            )
+        self.assertEqual(sender.call_count, 0)
+        # Disabled firms are not processed by the scheduler at all.
+        self.assertEqual(report["firms_scanned"], 0)
+        row = self.tenant.execute("SELECT status FROM reminder_deliveries").fetchone()
+        self.assertEqual(row["status"], "queued")
+
     def test_queued_reminder_is_not_sent_after_case_membership_revocation(self):
         plan = build_reminder_plan(
             [{"kind": "task", "event_id": str(self.task_id), "due_date": "2026-10-27", "is_complete": False}],
