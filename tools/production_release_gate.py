@@ -349,8 +349,9 @@ def main(argv=None) -> int:
                            Path(args.benchmark).resolve()}
         if args.reviewer_registry:
             protected_files.add(Path(args.reviewer_registry).resolve())
-        if args.database_acceptance:
-            protected_files.add(Path(args.database_acceptance).resolve())
+        acceptance_input = args.database_acceptance or os.environ.get("COPILOT_DATABASE_ACCEPTANCE_FILE")
+        if acceptance_input:
+            protected_files.add(Path(acceptance_input).resolve())
         protected_files.update(Path(path).resolve() for path in (args.candidate or []))
         protected_directories = {
             Path(args.candidates_dir).resolve(),
