@@ -20,6 +20,9 @@ from s3_original_file_storage import S3PrivateObjectStore
 from tenant_catalog import TenantCatalogError, resolve_tenant_database
 
 
+MAX_ORIGINAL_BYTES = 15_000_000
+
+
 def _readonly(path: Path) -> sqlite3.Connection:
     if path.is_symlink() or not path.is_file():
         raise RuntimeError("Restore database is missing or unsafe")
@@ -36,8 +39,10 @@ def _digest(path: Path) -> tuple[str, int]:
     size = 0
     with path.open("rb") as handle:
         for block in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(block)
             size += len(block)
+            if size > MAX_ORIGINAL_BYTES:
+                raise RuntimeError("Restored original exceeds the configured size limit")
+            digest.update(block)
     return digest.hexdigest(), size
 
 
