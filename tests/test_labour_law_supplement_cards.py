@@ -31,7 +31,7 @@ class LabourLawSupplementCardTests(unittest.TestCase):
         for card in payload["cards"]:
             article = int(card["pinpoint"]["article"].replace("المادة ", ""))
             if 258 <= article <= 265 or 270 <= article <= 274:
-                self.assertEqual(card["review_state"], "pinpoint_only_text_review_required")
+                self.assertEqual(card["review_state"], "provisional_secondary_crosscheck")
 
     def test_articles_275_to_298_supplement(self):
         payload = self.load_batch("provision_evidence_cards_275_298.json", 24)
