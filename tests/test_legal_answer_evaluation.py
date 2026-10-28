@@ -49,7 +49,7 @@ def run_main(args):
     with tempfile.TemporaryDirectory() as td:
         registry_path = Path(td) / "reviewers.json"
         registry_path.write_text(json.dumps(reviewer_registry()), encoding="utf-8")
-        return run_main([*args, "--reviewer-registry", str(registry_path)])
+        return main([*args, "--reviewer-registry", str(registry_path)])
 
 
 def result(qid="Q1", abstained=False, sources=None, pins=None):
