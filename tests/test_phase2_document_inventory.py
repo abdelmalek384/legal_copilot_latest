@@ -89,6 +89,14 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         self.assertTrue(any(a["id"] == "ACT-LABOUR-DECISION-294-2025-VERIFY" for a in self.inventory["next_actions"]))
         self.assertEqual(validate_inventory(self.inventory), [])
 
+    def test_labour_executive_regulations_gap_is_an_action_not_a_claim_of_nonexistence(self):
+        law = next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-LAW-14-2025")
+        self.assertTrue(any("Ministry of Labour laws-and-legislations index" in law["notes"] for _ in [0]))
+        action = next(a for a in self.inventory["next_actions"] if a["id"] == "ACT-LABOUR-LAW-14-2025-EXEC-REGS-VERIFY")
+        self.assertIn("not proof of non-existence", action["action"])
+        self.assertEqual(action["status"], "not_started")
+        self.assertEqual(validate_inventory(self.inventory), [])
+
     def test_unknown_source_and_duplicate_instrument_ids_are_rejected(self):
         data = copy.deepcopy(self.inventory)
         data["documents"][0]["source_id"] = "EG-NOT-REGISTERED"
