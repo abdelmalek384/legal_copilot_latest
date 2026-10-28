@@ -172,6 +172,33 @@ class DatabaseRuntimeTests(unittest.TestCase):
             with self.assertRaisesRegex(DatabaseRuntimeError, "unreferenced database files"):
                 runtime.initialize()
 
+    def test_production_runtime_refuses_schema_object_drift(self):
+        base = self.root / "production-schema-drift"
+        tenant_root = base / "tenants"
+        control = base / "control.sqlite3"
+        corpus = base / "corpus.sqlite3"
+        development_runtime = DatabaseRuntime(control, tenant_root, corpus)
+        with patch.dict(os.environ, {"COPILOT_ENV": "development"}):
+            development_runtime.initialize()
+        development_runtime.close_current_thread()
+        if os.name == "posix":
+            os.chmod(tenant_root, 0o700)
+        connection = sqlite3.connect(corpus)
+        try:
+            connection.execute("DROP INDEX idx_legal_documents_source_id")
+            connection.commit()
+        finally:
+            connection.close()
+        runtime = DatabaseRuntime(control, tenant_root, corpus)
+        with patch.dict(os.environ, {"COPILOT_ENV": "production"}):
+            with self.assertRaisesRegex(DatabaseRuntimeError, "schema objects or constraints differ"):
+                runtime.initialize()
+        with sqlite3.connect(corpus) as check:
+            self.assertIsNone(check.execute(
+                "SELECT name FROM sqlite_master WHERE type='index' "
+                "AND name='idx_legal_documents_source_id'"
+            ).fetchone())
+
     def test_production_runtime_requires_private_tenant_root(self):
         base = self.root / "production-open-root"
         tenant_root = base / "tenants"
