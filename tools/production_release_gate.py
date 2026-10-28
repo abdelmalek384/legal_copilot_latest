@@ -138,6 +138,9 @@ def evaluate_release(
         blockers.append({"gate": "deployment_environment", "code": "environment_warnings", "count": len(warnings),
                          "details": warnings})
 
+    acceptance_environment = os.environ if env is None else env
+    if database_acceptance_path is None:
+        database_acceptance_path = acceptance_environment.get("COPILOT_DATABASE_ACCEPTANCE_FILE")
     database_acceptance = load_acceptance_manifest(database_acceptance_path)
     if not database_acceptance["ready"]:
         blockers.append({
