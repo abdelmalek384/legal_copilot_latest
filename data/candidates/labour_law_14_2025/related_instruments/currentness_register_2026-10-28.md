@@ -179,3 +179,8 @@ The article-number gap audit has been addressed across two JSON files: **294 car
 
 The public-text crosswalk now contains **eight** implementing-decision records: Decisions 49/2026, 162/2026, 187/2025, 214/2025, 290/2025, 291/2025, 292/2025 and 294/2025. For each, it separates the official primary-source lead from public secondary text or summaries, lists the relevant Law 14/2025 article crosswalk, and states what must not be inferred from incomplete evidence. A focused test was updated to require all eight records and preserve `reuse_rights=unknown`, `currentness=not verified`, and authoritative retrieval disabled. The test has not been run.
 
+## Public text fallback recovery (2026-10-28)
+
+Alternative per-article pages on Fahm Qanun were found for Labour Law Articles 288–294; they attribute the displayed text to the official SIS rights-studies source. This resolved the earlier transcription blocker for Articles 288, 290, 291 and 293 and corrected Articles 289 and 294. Keep the text provisional pending comparison against the official Gazette image. Article 295 is provisionally cross-checked against the public Wikisource transcription. This demonstrates the fallback rule: use independent public text pages when a public transcription is corrupted, but never infer missing offence wording from neighbouring provisions.
+
+Public text sources: https://fahmqanon.com/laws/14-2025/288 ; https://fahmqanon.com/laws/14-2025/289 ; https://fahmqanon.com/laws/14-2025/290 ; https://fahmqanon.com/laws/14-2025/291 ; https://fahmqanon.com/laws/14-2025/292 ; https://fahmqanon.com/laws/14-2025/293 ; https://fahmqanon.com/laws/14-2025/294 .
