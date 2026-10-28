@@ -39,6 +39,8 @@ TABLE_PATTERNS = (
 )
 
 
+MUTATED_SQL_NAMES: dict[int, set[str]] = {}
+
 def _call_name(node: ast.AST) -> str | None:
     if isinstance(node, ast.Name):
         return node.id
@@ -75,20 +77,123 @@ def _route_decorators(function: ast.FunctionDef | ast.AsyncFunctionDef) -> list[
     return result
 
 
-def _sql_text(node: ast.AST | None) -> tuple[str, bool]:
+def _sql_text(
+    node: ast.AST | None,
+    *,
+    assignments: dict[str, list[ast.AST]] | None = None,
+    globals_: dict[str, ast.AST] | None = None,
+    seen: frozenset[str] = frozenset(),
+) -> tuple[str, bool, bool]:
+    """Return (template, interpolated, resolved) for a SQL expression."""
+    assignments = assignments or {}
+    globals_ = globals_ or {}
     if isinstance(node, ast.Constant) and isinstance(node.value, str):
-        return node.value, False
+        return node.value, False, True
     if isinstance(node, ast.JoinedStr):
         pieces = []
-        dynamic = False
         for value in node.values:
             if isinstance(value, ast.Constant) and isinstance(value.value, str):
                 pieces.append(value.value)
             else:
                 pieces.append("{dynamic}")
-                dynamic = True
-        return "".join(pieces), dynamic
-    return "", True
+        return "".join(pieces), True, True
+    if isinstance(node, ast.Name):
+        name = node.id
+        if name in seen:
+            return "{unresolved:" + name + "}", False, False
+        if name in assignments and name not in MUTATED_SQL_NAMES.get(id(assignments), set()):
+            values = assignments[name]
+            resolved = [
+                _sql_text(value, assignments=assignments, globals_=globals_, seen=seen | {name})
+                for value in values
+            ]
+            if len(resolved) == 1:
+                return resolved[0]
+            if resolved and all(item[2] and not item[1] for item in resolved):
+                unique = list(dict.fromkeys(item[0] for item in resolved))
+                if len(unique) == 1:
+                    return unique[0], False, True
+                return "{choice}".join(unique), False, True
+        if name in globals_:
+            return _sql_text(globals_[name], globals_=globals_, seen=seen | {name})
+        return "{unresolved:" + name + "}", False, False
+    if isinstance(node, ast.BinOp) and isinstance(node.op, ast.Add):
+        left, left_dynamic, left_resolved = _sql_text(
+            node.left, assignments=assignments, globals_=globals_, seen=seen
+        )
+        right, right_dynamic, right_resolved = _sql_text(
+            node.right, assignments=assignments, globals_=globals_, seen=seen
+        )
+        return left + right, left_dynamic or right_dynamic, left_resolved and right_resolved
+    if isinstance(node, ast.BinOp) and isinstance(node.op, ast.Mod):
+        left, left_dynamic, left_resolved = _sql_text(
+            node.left, assignments=assignments, globals_=globals_, seen=seen
+        )
+        right, _, right_resolved = _sql_text(
+            node.right, assignments=assignments, globals_=globals_, seen=seen
+        )
+        if isinstance(node.left, ast.Constant) and isinstance(node.left.value, str):
+            template = re.sub(r"%[sdif]", "{dynamic}", left)
+            return template, True, right_resolved
+        return left + " {dynamic} " + right, True, left_resolved and right_resolved
+    if isinstance(node, ast.IfExp):
+        body, body_dynamic, body_resolved = _sql_text(
+            node.body, assignments=assignments, globals_=globals_, seen=seen
+        )
+        other, other_dynamic, other_resolved = _sql_text(
+            node.orelse, assignments=assignments, globals_=globals_, seen=seen
+        )
+        if body_resolved and other_resolved:
+            return body + "{choice}" + other, body_dynamic or other_dynamic, True
+        return body + "{choice}" + other, body_dynamic or other_dynamic, False
+    if isinstance(node, (ast.List, ast.Tuple)):
+        parts = [
+            _sql_text(item, assignments=assignments, globals_=globals_, seen=seen)
+            for item in node.elts
+        ]
+        if all(item[2] for item in parts):
+            return "".join(item[0] for item in parts), any(item[1] for item in parts), True
+        return "{unresolved:sequence}", False, False
+    if isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute):
+        if node.func.attr == "format" and isinstance(node.func.value, ast.Constant) and isinstance(node.func.value.value, str):
+            template = re.sub(r"\{[^{}]*\}", "{dynamic}", node.func.value.value)
+            return template, bool(node.args or node.keywords), True
+        if node.func.attr == "join" and isinstance(node.func.value, ast.Constant) and isinstance(node.func.value.value, str):
+            if node.args and isinstance(node.args[0], (ast.List, ast.Tuple)):
+                parts = [
+                    _sql_text(item, assignments=assignments, globals_=globals_, seen=seen)
+                    for item in node.args[0].elts
+                ]
+                if all(item[2] for item in parts):
+                    return node.func.value.value.join(item[0] for item in parts), any(item[1] for item in parts), True
+        return "{unresolved:call}", False, False
+    return "{unresolved:expression}", False, False
+
+
+def _assignments_for(node: ast.AST) -> dict[str, list[ast.AST]]:
+    assignments: dict[str, list[ast.AST]] = {}
+    for item in ast.walk(node):
+        if isinstance(item, ast.Assign):
+            targets, value = item.targets, item.value
+        elif isinstance(item, ast.AnnAssign):
+            targets, value = [item.target], item.value
+        else:
+            continue
+        for target in targets:
+            if isinstance(target, ast.Name) and value is not None:
+                assignments.setdefault(target.id, []).append(value)
+    return assignments
+
+
+def _mutated_sql_names(node: ast.AST) -> set[str]:
+    mutated = set()
+    for item in ast.walk(node):
+        if isinstance(item, ast.Call) and isinstance(item.func, ast.Attribute):
+            if item.func.attr in {"append", "extend", "insert", "clear", "pop", "remove"}:
+                owner = item.func.value
+                if isinstance(owner, ast.Name):
+                    mutated.add(owner.id)
+    return mutated
 
 
 def _tables_in(sql: str) -> set[str]:
@@ -104,6 +209,14 @@ def audit_source(source: str) -> dict[str, Any]:
         node.name: node for node in tree.body
         if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))
     }
+    global_assignments: dict[str, ast.AST] = {}
+    for item in tree.body:
+        if isinstance(item, ast.Assign):
+            for target in item.targets:
+                if isinstance(target, ast.Name):
+                    global_assignments[target.id] = item.value
+        elif isinstance(item, ast.AnnAssign) and isinstance(item.target, ast.Name) and item.value is not None:
+            global_assignments[item.target.id] = item.value
     routes: list[tuple[dict[str, str], str]] = []
     for node in tree.body:
         if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
@@ -120,6 +233,7 @@ def audit_source(source: str) -> dict[str, Any]:
         sql_calls = 0
         dynamic_sql_calls = 0
         dynamic_sql_sites: list[dict[str, Any]] = []
+        unresolved_sql_sites: list[dict[str, Any]] = []
         direct_sqlite_open = False
 
         while pending:
@@ -128,6 +242,8 @@ def audit_source(source: str) -> dict[str, Any]:
                 continue
             visited.add(name)
             node = functions[name]
+            local_assignments = _assignments_for(node)
+            MUTATED_SQL_NAMES[id(local_assignments)] = _mutated_sql_names(node)
             for call in (item for item in ast.walk(node) if isinstance(item, ast.Call)):
                 called = _call_name(call.func)
                 if called in BOUNDARY_CALLS:
@@ -138,17 +254,24 @@ def audit_source(source: str) -> dict[str, Any]:
                     if isinstance(owner, ast.Name) and owner.id == "sqlite3":
                         direct_sqlite_open = True
                 if called in {"execute", "executemany", "executescript"}:
-                    sql, dynamic = _sql_text(call.args[0] if call.args else None)
-                    if sql or dynamic:
+                    sql, dynamic, resolved = _sql_text(
+                        call.args[0] if call.args else None,
+                        assignments=local_assignments,
+                        globals_=global_assignments,
+                    )
+                    if sql or dynamic or not resolved:
                         sql_calls += 1
                         tables.update(_tables_in(sql))
                         dynamic_sql_calls += int(dynamic)
+                        site = {
+                            "function": name,
+                            "line": call.lineno,
+                            "sql_template": sql[:1000],
+                        }
                         if dynamic:
-                            dynamic_sql_sites.append({
-                                "function": name,
-                                "line": call.lineno,
-                                "sql_template": sql[:1000],
-                            })
+                            dynamic_sql_sites.append(site)
+                        if not resolved:
+                            unresolved_sql_sites.append(site)
                 if called in functions and called not in STOP_TRAVERSAL and called not in visited:
                     pending.append(called)
 
@@ -161,6 +284,8 @@ def audit_source(source: str) -> dict[str, Any]:
             "sql_call_count": sql_calls,
             "dynamic_sql_call_count": dynamic_sql_calls,
             "dynamic_sql_sites": sorted(dynamic_sql_sites, key=lambda site: (site["function"], site["line"])),
+            "unresolved_sql_call_count": len(unresolved_sql_sites),
+            "unresolved_sql_sites": sorted(unresolved_sql_sites, key=lambda site: (site["function"], site["line"])),
             "table_references": sorted(tables),
             "direct_sqlite_open": direct_sqlite_open,
         })
@@ -186,6 +311,7 @@ def audit_source(source: str) -> dict[str, Any]:
         "route_count": len(records),
         "routes_with_sql": sum(bool(row["sql_call_count"]) for row in records),
         "dynamic_sql_call_count": sum(row["dynamic_sql_call_count"] for row in records),
+        "unresolved_sql_call_count": sum(row["unresolved_sql_call_count"] for row in records),
         "routes_with_dynamic_sql": dynamic_sql,
         "unclassified_sql_routes": unclassified_sql,
         "routes_opening_sqlite_directly": direct_open,
@@ -206,6 +332,7 @@ def main() -> int:
             f"Route SQL access map: routes={report['route_count']}, "
             f"routes_with_sql={report['routes_with_sql']}, "
             f"dynamic_sql_calls={report['dynamic_sql_call_count']}, "
+            f"unresolved_sql_calls={report['unresolved_sql_call_count']}, "
             f"unclassified_sql_routes={len(report['unclassified_sql_routes'])}, "
             f"direct_sqlite_opens={len(report['routes_opening_sqlite_directly'])}"
         )
@@ -213,6 +340,11 @@ def main() -> int:
             for site in row["dynamic_sql_sites"]:
                 print(
                     f"DYNAMIC SQL REVIEW REQUIRED: {row['method']} {row['path']} "
+                    f"({site['function']}:{site['line']}): {site['sql_template']}"
+                )
+            for site in row["unresolved_sql_sites"]:
+                print(
+                    f"UNRESOLVED SQL EXPRESSION: {row['method']} {row['path']} "
                     f"({site['function']}:{site['line']}): {site['sql_template']}"
                 )
         for item in report["unclassified_sql_routes"]:
