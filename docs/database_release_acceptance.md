@@ -34,7 +34,7 @@ This is a one-time bootstrap command, not permission to run the web application 
 
 ## Procedure
 
-1. Copy `docs/database_release_acceptance.template.json` into a controlled, access-restricted location outside the repository.
+1. Copy `docs/database_release_acceptance.template.json` into a controlled, access-restricted location outside the repository. The manifest must be a regular file, not a symlink, at most 1 MB, and not writable by group/other users (on POSIX).
 2. Complete only after the corresponding real operational check has passed. Do not mark a gate passed based on a planned drill, a mocked test, or a code review.
 3. Keep evidence references non-secret. Never put passwords, access tokens, private keys, recovery codes, or cloud credentials in the manifest.
 4. Run the read-only validator:
