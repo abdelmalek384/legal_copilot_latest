@@ -8,10 +8,23 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from tools.compare_legal_versions import compare_registered_versions, compare_version_chunks
+from tools.compare_legal_versions import (
+    compare_registered_versions, compare_version_chunks, default_database_path,
+)
 
 
 class CompareLegalVersionsTests(unittest.TestCase):
+    def test_default_registry_path_uses_corpus_profile_not_legacy_database(self):
+        path = default_database_path({
+            "COPILOT_CORPUS_DB": "/srv/legal/corpus.sqlite3",
+            "COPILOT_DB": "/srv/legal/legacy.sqlite3",
+        })
+        self.assertEqual(path, Path("/srv/legal/corpus.sqlite3"))
+
+    def test_default_registry_path_refuses_implicit_legacy_fallback(self):
+        with self.assertRaisesRegex(ValueError, "COPILOT_DB is not a supported default"):
+            default_database_path({"COPILOT_DB": "/srv/legal/legacy.sqlite3"})
+
     def test_compares_by_article_and_reports_changes_and_unmapped_passages(self):
         left = [
             {"id": 1, "article": "1", "page": "2", "text": "same text"},
