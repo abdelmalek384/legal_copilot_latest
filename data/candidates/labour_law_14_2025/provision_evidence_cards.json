@@ -833,6 +833,131 @@
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
       "not_usable_for": "final liability or reimbursement determination"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-94-OUTSOURCING-EQUAL-RIGHTS",
+      "question": "What obligations arise when one employer assigns work to another employer in the same work area?",
+      "provisional_answer_ar": "إذا عهد صاحب العمل إلى صاحب عمل آخر بأداء عمل أو جزء منه في منطقة عمل واحدة، تلزم المادة 94 صاحب العمل الآخر بتسوية حقوق عماله مع عمال صاحب العمل الأصلي، وتقرر تضامن صاحب العمل الأصلي معه في الوفاء بالالتزامات التي يفرضها القانون. ويجب فحص وقائع الإسناد ومنطقة العمل ونطاق الالتزامات قبل تقرير المسؤولية.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 94",
+        "official_gazette_printed_page": 45,
+        "pdf_page_index_zero_based": 43
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "النص الرسمي القابل للبحث؛ مراجعة موضعية مطلوبة عند التطبيق",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص الصفحة المطبوعة 45؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً. يعرض النص المستخرج المادة 94.",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted official Gazette PDF search result",
+          "supports": "نص المادة 94 على الصفحة المطبوعة 45"
+        }
+      ],
+      "limitations": [
+        "يتطلب التطبيق فحص حقيقة الإسناد ومكان العمل وطبيعة الحقوق المطالب بها",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "final liability allocation or legal advice"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-95-TRAINING-COSTS",
+      "question": "What does Article 95 provide when a worker leaves before completing an agreed post-training period?",
+      "provisional_answer_ar": "تلزم المادة 95 العامل الذي دُرّب على نفقة صاحب العمل بقضاء المدة المتفق عليها لديه، وتذكر التزاماً بسداد نفقات التدريب عند ترك العمل قبل انتهاء تلك المدة، دون إخلال بحق صاحب العمل في التعويض، ما لم ينص العقد على خلاف ذلك. يجب مراجعة العقد والوقائع وأي أحكام ذات صلة قبل تقدير أي مبلغ.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 95",
+        "official_gazette_printed_page": 45,
+        "pdf_page_index_zero_based": 43
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "النص الرسمي القابل للبحث؛ مراجعة موضعية مطلوبة عند التطبيق",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص الصفحة المطبوعة 45؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً. يعرض النص المستخرج المادة 95.",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted official Gazette PDF search result",
+          "supports": "نص المادة 95 على الصفحة المطبوعة 45"
+        }
+      ],
+      "limitations": [
+        "النص يحيل إلى المدة المتفق عليها والعقد قد يتضمن شروطاً مؤثرة",
+        "لا تقرر البطاقة صحة أو مقدار مطالبة محددة",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "calculating or asserting a worker debt without contract review"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-96-NEW-WORK-PATTERNS",
+      "question": "How does Article 96 define new work patterns and what examples are identified in the reviewed text?",
+      "provisional_answer_ar": "تعرف المادة 96 نمط العمل الجديد بالرجوع إلى طريقة أداء غير تقليدية للعمل لصالح صاحب العمل وتحت إدارته أو إشرافه مقابل أجر. ويذكر النص المستخرج، ضمن الأمثلة، العمل عن بُعد والعمل بعض الوقت أو لجزء من الوقت. لا تفترض هذه البطاقة أن المثالين هما القائمة الكاملة أو أنها تغطي جميع الضوابط التنظيمية.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 96",
+        "official_gazette_printed_page": 45,
+        "pdf_page_index_zero_based": 43
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "النص الرسمي القابل للبحث؛ مراجعة موضعية مطلوبة عند التطبيق",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص الصفحة المطبوعة 45؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً. يعرض النص المستخرج بداية المادة 96 وتعريف نمط العمل الجديد ومثالين؛ لم تُراجع بقية المادة بالكامل في هذه المهمة.",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted official Gazette PDF search result",
+          "supports": "بداية المادة 96 على الصفحة المطبوعة 45"
+        }
+      ],
+      "limitations": [
+        "لم تتم مراجعة بقية المادة أو المواد التالية المتعلقة بكل نمط عمل",
+        "قد تتطلب التفاصيل قرارات تنفيذية أو قواعد خاصة",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "full remote-work compliance checklist or final advice"
     }
   ],
   "activation_gates": [
