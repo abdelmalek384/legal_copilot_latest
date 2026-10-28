@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+from contextlib import closing
 import json
 import os
 import re
@@ -126,7 +127,7 @@ def build_plan(control_db: str | Path, tenant_root: str | Path, migrations_root:
     if root.is_relative_to(migrations) or migrations.is_relative_to(root):
         raise FleetMigrationError("Migration source and tenant storage must be separate")
 
-    with _open_readonly(control_path) as control:
+    with closing(_open_readonly(control_path)) as control:
         try:
             profile = control.execute(
                 "SELECT profile FROM database_profile WHERE singleton=1"
@@ -164,7 +165,7 @@ def build_plan(control_db: str | Path, tenant_root: str | Path, migrations_root:
         path = root / filename
         if path.is_symlink() or path.resolve().parent != root or not path.is_file():
             raise FleetMigrationError(f"Tenant database path is missing or unsafe for firm {firm_id}")
-        with _open_readonly(path) as tenant:
+        with closing(_open_readonly(path)) as tenant:
             tenant_profile = tenant.execute(
                 "SELECT profile FROM database_profile WHERE singleton=1"
             ).fetchone()
@@ -211,7 +212,7 @@ def _snapshot(path: Path, backup_dir: Path, firm_id: int, run_id: str) -> Path:
         raise FleetMigrationError(f"Cannot create exclusive backup for firm {firm_id}") from exc
     os.close(fd)
     try:
-        with sqlite3.connect(path, timeout=30) as source, sqlite3.connect(destination, timeout=30) as target:
+        with closing(sqlite3.connect(path, timeout=30)) as source, closing(sqlite3.connect(destination, timeout=30)) as target:
             source.backup(target)
             target.execute("PRAGMA foreign_keys=ON")
             integrity = target.execute("PRAGMA integrity_check").fetchone()
@@ -247,20 +248,24 @@ def apply_fleet(control_db: str | Path, tenant_root: str | Path, migrations_root
     plan = build_plan(control, root, migrations_root)
     run_id = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
     backups = []
+    work_targets = [target for target in plan["targets"] if target["pending_versions"]]
     # Complete all snapshots before touching any schema; a backup failure means no migration begins.
-    for target in plan["targets"]:
+    for target in work_targets:
         path = root / target["database_file"]
         snapshot = _snapshot(path, backup, target["firm_id"], run_id)
         backups.append({"firm_id": target["firm_id"], "path": str(snapshot)})
-    outcome = []
-    for target in plan["targets"]:
+    outcome = [
+        {"firm_id": target["firm_id"], "status": "up_to_date", "applied_versions": []}
+        for target in plan["targets"] if not target["pending_versions"]
+    ]
+    for target in work_targets:
         firm_id = target["firm_id"]
         path = root / target["database_file"]
         try:
             _secure_regular_file(path, f"Tenant {firm_id}")
             _secure_sidecars(path)
             before = (path.stat().st_dev, path.stat().st_ino)
-            with sqlite3.connect(path, timeout=30) as connection:
+            with closing(sqlite3.connect(path, timeout=30)) as connection:
                 connection.row_factory = sqlite3.Row
                 connection.execute("PRAGMA foreign_keys=ON")
                 if connection.execute("PRAGMA foreign_keys").fetchone()[0] != 1:
@@ -294,7 +299,7 @@ def apply_fleet(control_db: str | Path, tenant_root: str | Path, migrations_root
         "outcome": outcome,
         "stopped_after_failure": any(item["status"] == "failed" for item in outcome),
         "all_targets_migrated": len(outcome) == len(plan["targets"]) and all(
-            item["status"] == "migrated" for item in outcome
+            item["status"] in {"migrated", "up_to_date"} for item in outcome
         ),
     }
 
