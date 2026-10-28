@@ -15,6 +15,7 @@ import sqlite3
 import stat
 import threading
 import time
+from contextlib import closing
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -312,7 +313,7 @@ class DatabaseRuntime:
                 # by the control-plane catalog must never be silently ignored.
                 try:
                     control_uri = self.paths.control_plane.resolve().as_uri() + "?mode=ro"
-                    with sqlite3.connect(control_uri, uri=True, timeout=self.timeout) as control:
+                    with closing(sqlite3.connect(control_uri, uri=True, timeout=self.timeout)) as control:
                         referenced_files = {
                             row[0] for row in control.execute(
                                 "SELECT database_file FROM tenant_database_catalog "
