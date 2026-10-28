@@ -375,6 +375,58 @@
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
       "not_usable_for": "settlement valuation, case prediction, or final legal advice"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-129-PAID-HOLIDAYS",
+      "question": "What does Article 129 provide when a worker is required to work on a designated paid holiday?",
+      "provisional_answer_ar": "تقرر المادة 129 إجازة بأجر في العطلات والأعياد والمناسبات التي يحددها قرار من الوزير المختص، مع قاعدة خاصة للأعياد الدينية لغير المسلمين. وإذا اقتضت ظروف العمل تشغيل العامل في هذه الأيام، يستحق بالإضافة إلى أجر اليوم مثلي هذا الأجر، أو يوماً آخر عوضاً عنه بناءً على طلب كتابي من العامل يُودع في ملفه. تحديد الأيام المشمولة يتطلب مراجعة القرار الوزاري ذي الصلة.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 129",
+        "official_gazette_printed_page": 56,
+        "pdf_page_index_zero_based": 54
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "النص الرسمي القابل للبحث؛ يلزم التحقق الموضعي عند التطبيق",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص الصفحة المطبوعة 56؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted official Gazette PDF search result",
+          "supports": "يعرض المادة 129 والقاعدة الخاصة بالعمل في العطلات"
+        }
+      ],
+      "related_instruments_to_review": [
+        {
+          "document_id": "EG-LABOUR-DECISION-294-2025",
+          "title_ar": "قرار وزير العمل رقم 294 لسنة 2025 بشأن تحديد العطلات والأعياد والمناسبات التي تعتبر إجازة بأجر كامل للعمال",
+          "relationship": "possible implementing instrument under Article 129",
+          "source_url": "https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A7%D9%84%D8%A3%D8%B1%D8%A8%D8%B9%D8%A7%D8%A1-%D8%A7%D9%84%D9%85%D9%82%D8%A8%D9%84-%D8%A5%D8%AC%D8%A7%D8%B2%D8%A9-%D9%85%D8%AF%D9%81%D9%88%D8%B9%D8%A9-%D8%A7%D9%84%D8%A3%D8%AC%D8%B1-%D9%84%D9%84%D8%B9%D8%A7%D9%85%D9%84%D9%8A%D9%86-%D8%A8%D8%A7%D9%84%D9%82%D8%B7%D8%A7%D8%B9-%D8%A7%D9%84%D8%AE%D8%A7%D8%B5-%D8%A8%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%A9-%D8%B9%D9%8A%D8%AF-%D8%A7%D9%84%D9%85%D9%8A%D9%84%D8%A7%D8%AF-%D8%A7%D9%84%D9%85%D8%AC%D9%8A%D8%AF-%D8%AC%D8%A8%D8%B1%D8%A7%D9%86-%D9%88%D8%AD%D8%AF%D8%A9-%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D9%8A%D9%86-%D9%88%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A7%D9%84%D9%85%D8%B4%D8%AA%D8%B1%D9%83-%D8%A3%D8%B3%D8%A7%D8%B3-%D9%82%D9%88%D8%A9-%D8%A7%D9%84%D9%88%D8%B7%D9%86/",
+          "status": "discovery_only; ministry announcement located, complete decision text/Gazette evidence not verified",
+          "note": "Do not present a complete holiday list until Decision 294/2025 is obtained and reviewed."
+        }
+      ],
+      "limitations": [
+        "قائمة العطلات نفسها لا ترد كاملة في هذه البطاقة وتحتاج إلى القرار الوزاري",
+        "لم يُثبت الوضع الحالي أو التعديلات أو الشروط التنفيذية للقرار 294/2025",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "complete holiday calendar, payroll calculation, or final advice"
     }
   ],
   "activation_gates": [
