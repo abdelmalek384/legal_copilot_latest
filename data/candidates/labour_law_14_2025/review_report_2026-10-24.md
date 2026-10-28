@@ -92,3 +92,6 @@ Further targeted extracted-text review on 2026-10-28 covered Articles 118–119 
 
 
 Further targeted extracted-text review on 2026-10-28 recorded Article 129 on printed page 55, covering paid holidays and compensation if work is required; applicable designation decisions still require separate verification.
+
+
+Further targeted extracted-text review on 2026-10-28 recorded Article 173 on printed page 71 and Article 171 on printed page 72, covering illness-related termination and retirement age. This does not change pending currentness, amendment-history, permission, or lawyer-review statuses.
