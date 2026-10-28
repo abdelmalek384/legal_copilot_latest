@@ -44,6 +44,7 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         self.assertEqual(record["review_status"], "discovery_only")
         self.assertEqual(record["legal_status"], "unknown")
         self.assertEqual(record["collection_permission"], "permission_pending")
+        self.assertTrue(any(a["id"] == "ACT-LABOUR-DECISION-264-2026-STANDARDS-VERIFY" for a in self.inventory["next_actions"]))
         self.assertTrue(any("exact standards text" in item for item in record["required_related_records"]))
         self.assertEqual(validate_inventory(self.inventory), [])
 
