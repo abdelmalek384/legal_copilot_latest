@@ -78,6 +78,7 @@ def delete_case(case_id):
         self.assertEqual(report["unresolved_sql_call_count"], 0)
         self.assertEqual(report["unclassified_sql_routes"], [])
         self.assertTrue({"chunks", "docs", "tasks"}.issubset(set(route["table_references"])))
+        self.assertEqual(route["dynamic_sql_call_count"], 0)
 
     def test_resolves_sql_passed_to_local_lambda_and_reports_dynamic_join(self):
         source = '''
@@ -99,6 +100,23 @@ def case_detail(case_id):
         self.assertEqual(report["routes"][0]["unresolved_sql_call_count"], 0)
         self.assertGreaterEqual(report["dynamic_sql_call_count"], 1)
         self.assertIn("legal_documents", report["routes"][0]["table_references"])
+
+    def test_unreviewed_dynamic_sql_is_explicitly_reported(self):
+        source = '''
+def conn():
+    return None
+
+@app.get("/unsafe")
+def unsafe(table):
+    db = conn()
+    return db.execute(f"SELECT id FROM {table}").fetchall()
+'''
+        report = audit_source(source)
+        self.assertEqual(report["unresolved_sql_call_count"], 0)
+        self.assertEqual(len(report["unreviewed_dynamic_sql_sites"]), 1)
+        site = report["unreviewed_dynamic_sql_sites"][0]
+        self.assertEqual(site["function"], "unsafe")
+        self.assertIn("{dynamic}", site["sql_template"])
 
     def test_flags_direct_sqlite_open_in_route_call_graph(self):
         source = '''
