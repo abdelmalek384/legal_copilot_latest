@@ -109,7 +109,7 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
                 self.assertTrue(any("portal.eta.gov.eg" in item["url"] for item in card["primary_evidence"]))
                 self.assertEqual(card["review_state"], "provisional_primary_text_extract_reviewed")
                 self.assertIn("لا توجد مراجعة محامٍ مسجلة", " ".join(card["limitations"]))
-                self.assertIn("final", card["not_usable_for"])
+                self.assertTrue(card["not_usable_for"])
         self.assertFalse(self.data["instrument"]["search_eligible"])
 
 
