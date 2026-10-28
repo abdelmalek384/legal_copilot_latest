@@ -67,7 +67,19 @@ def validate_s3_configuration(s3_client, kms_client, *, bucket: str, configured_
         for rule in rules:
             algorithm = rule.get("ApplyServerSideEncryptionByDefault", {})
             key_id = algorithm.get("KMSMasterKeyID")
-            if algorithm.get("SSEAlgorithm") == "aws:kms" and key_arn and key_id == key_arn:
+            if algorithm.get("SSEAlgorithm") != "aws:kms" or not key_arn:
+                continue
+            # GetBucketEncryption may return the configured alias, key ID, or
+            # ARN. Resolve it before comparing; string equality would reject
+            # a correctly configured alias and could not prove key identity.
+            if not isinstance(key_id, str) or not key_id.strip():
+                continue
+            try:
+                bucket_key = kms_client.describe_key(KeyId=key_id).get("KeyMetadata", {})
+                bucket_key_arn = bucket_key.get("Arn")
+            except Exception:
+                continue
+            if isinstance(bucket_key_arn, str) and bucket_key_arn == key_arn:
                 matched = True
         check("default_sse_kms", matched, "default bucket encryption must require the configured customer-managed KMS key")
     except Exception:

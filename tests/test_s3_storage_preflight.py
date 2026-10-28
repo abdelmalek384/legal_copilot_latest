@@ -22,15 +22,25 @@ class FakeS3:
     def get_bucket_encryption(self, **kwargs):
         return {"ServerSideEncryptionConfiguration": {"Rules": [{
             "ApplyServerSideEncryptionByDefault": {
-                "SSEAlgorithm": "aws:kms", "KMSMasterKeyID": "arn:aws:kms:eu-west-1:123456789012:key/abc"
+                "SSEAlgorithm": "aws:kms", "KMSMasterKeyID": "alias/legal-originals"
             }
         }]}}
 
 
 class FakeKMS:
+    def __init__(self):
+        self.lookups = []
+
     def describe_key(self, **kwargs):
+        key_id = kwargs.get("KeyId")
+        self.lookups.append(key_id)
+        arn = (
+            "arn:aws:kms:eu-west-1:123456789012:key/other"
+            if key_id == "alias/other"
+            else "arn:aws:kms:eu-west-1:123456789012:key/abc"
+        )
         return {"KeyMetadata": {
-            "Arn": "arn:aws:kms:eu-west-1:123456789012:key/abc",
+            "Arn": arn, "KeyId": "abc" if arn.endswith("/abc") else "other",
             "KeyState": "Enabled", "KeyUsage": "ENCRYPT_DECRYPT",
             "KeySpec": "SYMMETRIC_DEFAULT", "KeyManager": "CUSTOMER",
         }}
@@ -45,6 +55,31 @@ class S3StoragePreflightTests(unittest.TestCase):
         self.assertFalse(result["production_ready"])
         self.assertTrue(result["manual_review_required"])
         self.assertTrue(all(check["passed"] for check in result["checks"]))
+
+    def test_resolves_bucket_default_encryption_alias_to_canonical_key_arn(self):
+        kms = FakeKMS()
+        result = validate_s3_configuration(
+            FakeS3(), kms, bucket="private-originals", configured_key="alias/legal-originals"
+        )
+        self.assertNotIn("default_sse_kms", result["failed_checks"])
+        self.assertIn("alias/legal-originals", kms.lookups)
+        self.assertTrue(next(
+            item["passed"] for item in result["checks"] if item["name"] == "default_sse_kms"
+        ))
+
+    def test_rejects_bucket_default_encryption_using_a_different_kms_key(self):
+        class WrongKeyS3(FakeS3):
+            def get_bucket_encryption(self, **kwargs):
+                return {"ServerSideEncryptionConfiguration": {"Rules": [{
+                    "ApplyServerSideEncryptionByDefault": {
+                        "SSEAlgorithm": "aws:kms", "KMSMasterKeyID": "alias/other"
+                    }
+                }]}}
+
+        result = validate_s3_configuration(
+            WrongKeyS3(), FakeKMS(), bucket="private-originals", configured_key="alias/legal-originals"
+        )
+        self.assertIn("default_sse_kms", result["failed_checks"])
 
     def test_missing_public_access_and_versioning_controls_fail(self):
         class UnsafeS3(FakeS3):
