@@ -33,9 +33,9 @@ STOP_TRAVERSAL = {
     "get_database_runtime", "_original_file_store",
 }
 TABLE_PATTERNS = (
-    re.compile(r"\b(?:FROM|JOIN|INTO|UPDATE|TABLE|REFERENCES)\s+[\\"'`]?([A-Za-z_][A-Za-z0-9_]*)", re.I),
-    re.compile(r"\bDELETE\s+FROM\s+[\\"'`]?([A-Za-z_][A-Za-z0-9_]*)", re.I),
-    re.compile(r"\bPRAGMA\s+(?:table_info|foreign_key_check)\s*\(\s*[\\"'`]?([A-Za-z_][A-Za-z0-9_]*)", re.I),
+    re.compile(r"""\b(?:FROM|JOIN|INTO|UPDATE|TABLE|REFERENCES)\s+["'`]?([A-Za-z_][A-Za-z0-9_]*)""", re.I),
+    re.compile(r"""\bDELETE\s+FROM\s+["'`]?([A-Za-z_][A-Za-z0-9_]*)""", re.I),
+    re.compile(r"""\bPRAGMA\s+(?:table_info|foreign_key_check)\s*\(\s*["'`]?([A-Za-z_][A-Za-z0-9_]*)""", re.I),
 )
 
 
