@@ -196,6 +196,36 @@ class CorpusAuditTests(unittest.TestCase):
             self.assertEqual(report["review_event_quality"]["reviewer_missing"], 1)
             self.assertEqual(report["review_event_quality"]["orphan_version"], 1)
 
+    def test_chunk_flags_must_match_linked_legal_version(self):
+        with tempfile.TemporaryDirectory() as td:
+            db_path = Path(td) / "chunk-version-consistency.db"
+            db = sqlite3.connect(db_path)
+            db.executescript("""
+            CREATE TABLE chunks(
+              id INTEGER PRIMARY KEY, ref TEXT, article TEXT, text TEXT, source TEXT,
+              verified INT, in_force INT, case_id INT, document_version_id INT
+            );
+            CREATE TABLE legal_document_versions(
+              version_id INTEGER PRIMARY KEY, review_status TEXT, authenticity_verified INT,
+              status_verified INT, legal_status TEXT, effective_date TEXT, repeal_date TEXT
+            );
+            INSERT INTO legal_document_versions VALUES
+              (1,'pending_source_review',0,0,'unknown','2020-01-01',NULL),
+              (2,'verified',1,1,'in_force','9999-01-01',NULL);
+            INSERT INTO chunks VALUES
+              (1,'law','1','text','https://example.gov/law',1,1,NULL,1),
+              (2,'law','2','text','https://example.gov/law',0,1,NULL,2),
+              (3,'law','3','text','https://example.gov/law',1,0,NULL,999);
+            """)
+            db.commit()
+            db.close()
+            report = MODULE.audit(db_path)
+            codes = {issue["code"] for issue in report["issues"]}
+            self.assertIn("chunks_verified_without_verified_version", codes)
+            self.assertIn("chunks_in_force_conflicting_with_version", codes)
+            self.assertEqual(report["chunk_version_consistency"]["verified_chunks_without_verified_version"], 2)
+            self.assertEqual(report["chunk_version_consistency"]["in_force_chunks_conflicting_with_version"], 2)
+
     def test_amendment_history_flags_require_review_evidence_and_relations_are_audited(self):
         with tempfile.TemporaryDirectory() as td:
             db_path = Path(td) / "versions.db"

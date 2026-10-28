@@ -342,6 +342,56 @@ def audit(db_path: Path):
                             "detail": "Verification flags exist but review-event fields needed to audit their evidence are unavailable."
                         })
                 result["version_quality"] = q
+        if "chunks" in tables and "legal_document_versions" in tables:
+            cc = columns(db, "chunks")
+            vc = columns(db, "legal_document_versions")
+            chunk_required = {"id", "case_id", "document_version_id", "verified", "in_force"}
+            version_required = {"version_id", "review_status", "authenticity_verified", "status_verified", "legal_status", "effective_date", "repeal_date"}
+            if chunk_required.issubset(cc) and version_required.issubset(vc):
+                today = datetime.now(timezone.utc).date()
+                mismatch_verified = 0
+                mismatch_in_force = 0
+                linked_rows = db.execute(
+                    "SELECT c.verified, c.in_force, c.document_version_id, v.version_id, "
+                    "v.review_status, v.authenticity_verified, v.status_verified, v.legal_status, "
+                    "v.effective_date, v.repeal_date "
+                    "FROM chunks c LEFT JOIN legal_document_versions v ON v.version_id=c.document_version_id "
+                    "WHERE c.case_id IS NULL AND (COALESCE(c.verified,0)=1 OR COALESCE(c.in_force,0)=1)"
+                ).fetchall()
+                for row in linked_rows:
+                    version_missing = row["version_id"] is None
+                    if row["verified"] == 1 and (
+                        version_missing or row["review_status"] != "verified"
+                        or row["authenticity_verified"] != 1 or row["status_verified"] != 1
+                    ):
+                        mismatch_verified += 1
+                    effective = row["effective_date"]
+                    repeal = row["repeal_date"]
+                    invalid_timing = (
+                        valid_iso_date(effective) and date.fromisoformat(effective) > today
+                    ) or (
+                        valid_iso_date(repeal) and date.fromisoformat(repeal) < today
+                    )
+                    if row["in_force"] == 1 and (
+                        version_missing or row["legal_status"] != "in_force" or invalid_timing
+                    ):
+                        mismatch_in_force += 1
+                result["chunk_version_consistency"] = {
+                    "verified_chunks_without_verified_version": mismatch_verified,
+                    "in_force_chunks_conflicting_with_version": mismatch_in_force,
+                }
+                if mismatch_verified:
+                    result["issues"].append({
+                        "severity": "high", "code": "chunks_verified_without_verified_version",
+                        "count": mismatch_verified,
+                        "detail": "A global corpus chunk marked verified must link to a version with verified review, authenticity, and legal-status flags."
+                    })
+                if mismatch_in_force:
+                    result["issues"].append({
+                        "severity": "high", "code": "chunks_in_force_conflicting_with_version",
+                        "count": mismatch_in_force,
+                        "detail": "A global corpus chunk marked in force must link to a version currently labelled in force and outside known effective/repeal dates."
+                    })
         if "legal_version_relations" in tables:
             relc = columns(db, "legal_version_relations")
             if {"from_version_id", "to_version_id", "relation_type"}.issubset(relc) and "legal_document_versions" in tables:
