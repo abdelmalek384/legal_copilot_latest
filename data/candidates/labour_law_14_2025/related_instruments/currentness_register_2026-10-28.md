@@ -150,3 +150,13 @@ Focused tests were added for the new cards and previous fixed-count assertions w
 
 **Next task:** identify and fill the remaining article-coverage gaps in Articles 1–116, using the same source-linked, provisional approach, and separately crosswalk the discovered ministerial decisions to the statutory cards. No access controls have been bypassed.
 
+## Coverage-gap closure for early statutory articles — supplemental file (2026-10-28)
+
+The main evidence-card JSON had 294 cards and an article-number audit identified 15 remaining gaps in the selected article sequence: Arts. 1–3, 14–15, 17–21, 24, 26, 35, and 38–39. These have now been drafted in a separate supplemental file because the GitHub connector stopped returning content for the oversized canonical JSON, so it was not safe to overwrite that file without its complete contents.
+
+- Supplemental cards: `data/candidates/labour_law_14_2025/provision_evidence_cards_coverage_gaps_1_39.json`
+- Supplemental review report: `data/candidates/labour_law_14_2025/provision_evidence_cards_coverage_gaps_1_39_review.md`
+- Focused test: `tests/test_labour_law_coverage_gap_supplement.py`
+
+The supplemental file contains 15 unique article numbers and keeps `search_eligible=false`. This brings the **combined drafted inventory to 309 cards across the main file and the supplement**, but the 15 cards are not yet merged into the canonical JSON/report. The main report remains at 294 until a safe merge can be made with complete file contents. This is a tooling limitation, not a legal-source access restriction. The new page numbers are inferred and not visually verified; currentness, amendment history, reuse rights and qualified Egyptian-lawyer review remain outstanding.
+
