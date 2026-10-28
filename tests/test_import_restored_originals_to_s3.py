@@ -124,12 +124,12 @@ class RestoredOriginalS3ImporterTests(unittest.TestCase):
             pass
         self.temp.cleanup()
 
-    def _run_import(self, *, apply):
+    def _run_import(self, *, apply, restore_root=None):
         fake_boto3 = types.ModuleType("boto3")
         fake_boto3.client = lambda *args, **kwargs: object()
         argv = [
             "import_restored_originals_to_s3.py",
-            "--restore-root", str(self.restore_root),
+            "--restore-root", str(restore_root or self.restore_root),
         ]
         if apply:
             argv.append("--apply")
@@ -188,6 +188,20 @@ class RestoredOriginalS3ImporterTests(unittest.TestCase):
         self.assertEqual(self.store.staged, {})
         self.assertEqual(self.store.final, {})
         self.assertEqual(self._restored_storage_backend(), "local")
+
+    def test_import_refuses_a_restore_root_that_overlaps_live_tenant_storage(self):
+        code, report = self._run_import(
+            apply=True, restore_root=self.runtime.paths.tenant_root
+        )
+        self.assertEqual(code, 2)
+        self.assertIn("overlaps a currently configured live database path", report["stderr"])
+        self.assertEqual(self.store.staged, {})
+        self.assertEqual(self.store.final, {})
+        context = self.runtime.resolve_context(self.user_id, self.firm_id)
+        source_db = self.runtime.firm_connection(context)
+        self.assertEqual(source_db.execute(
+            "SELECT storage_backend FROM original_file_objects WHERE object_id=?", (self.object_id,)
+        ).fetchone()[0], "local")
 
     def test_oversized_restored_object_is_rejected_before_upload(self):
         source = self.restore_root / "objects" / f"firm-{self.firm_id}" / f"{self.object_id}.blob"
