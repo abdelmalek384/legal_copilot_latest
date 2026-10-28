@@ -1959,33 +1959,46 @@
     },
     {
       "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
-      "official_title_ar": "القواعد العامة للائحة تنظيم العمل بالقطاع الخاص (العنوان كما ورد في إعلان وزارة العمل؛ الاسم الرسمي ورقم الأداة قيد التحقق)",
+      "official_title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
       "practice_areas": [
         "labour"
       ],
       "document_type": "reported_implementing_rules",
-      "instrument_number": null,
+      "instrument_number": 162,
       "instrument_year": 2026,
       "source_id": "EG-MINISTRY-LABOUR-LAWS",
-      "source_status": "official_index_discovered_primary_text_pending",
+      "source_status": "official_Gazette_metadata_verified_primary_text_restricted_secondary_full_text_crosscheck_found",
       "collection_permission": "unknown",
       "legal_status": "unknown",
       "review_status": "discovery_only",
       "required_related_records": [
-        "exact legal instrument title and number",
-        "official Gazette issue, publication date and page range",
-        "official text and commencement/effective-date clause",
-        "scope and relationship to Labour Law 14/2025",
-        "later amendments, replacement or repeal",
-        "qualified Egyptian labour-lawyer review",
-        "source-specific collection and commercial reuse terms"
+        "obtain and preserve official Gazette text without bypassing access controls; record exact file hash if lawfully obtained",
+        "full article-by-article comparison of the decision against accessible transcription and Labour Law 14/2025",
+        "verify commencement, scope and any amendments/replacement/repeal",
+        "source-specific terms for collection, indexing, display and commercial reuse",
+        "qualified Egyptian-lawyer review"
       ],
-      "notes": "Discovery-only candidate. The Ministry of Labour reported publication/launch of general rules for private-sector work regulations in late August/early September 2026. The available announcement does not by itself establish the exact instrument number, official Gazette text/pages, commencement, currentness, or rights to copy/store/index/display the text. Do not download or promote this record; verify the underlying instrument and terms first.",
+      "notes": "Official Gazette repository metadata identifies Ministerial Decision 162/2026, issued 2026-08-13 in الوقائع المصرية, issue 176 (تابع); metadata describes the subject as general rules for workplace regulations. The Gazette repository exposes the Arabic and English PDFs only through a request-a-copy form, so no copy was requested in accordance with the project constraint against contacting source holders. A publicly accessible secondary transcription was found at https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html and a public announcement at the Ministry of Labour site. The transcription is a useful cross-check lead, not primary evidence; no full comparison against the official PDF has been completed. A secondary transcription states it was issued 2026-07-28 and effective the day after publication, but this commencement detail remains unverified against the inaccessible primary file. Keep legal_status and permissions unknown; do not enable authoritative retrieval.",
       "source_urls": [
         {
-          "url": "https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D9%8A%D8%B9%D9%84%D9%86-%D9%86%D8%B5-%D8%A7%D9%84%D9%82%D9%88%D8%A7%D8%B9%D8%AF-%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D8%A9-%D9%84%D9%84%D8%A7%D8%A6%D8%AD%D8%A9-%D8%AA%D9%86%D8%B8%D9%8A%D9%85-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A8%D8%A7%D9%84%D9%82%D8%B7%D8%A7%D8%B9-%D8%A7%D9%84%D8%AE%D8%A7%D8%B5/",
-          "source_role": "official Ministry of Labour announcement; discovery evidence only",
-          "status": "discovered_not_downloaded"
+          "url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+          "source_role": "Official Gazette repository metadata for Egyptian Gazette Supplement issue 176 (تابع)",
+          "status": "metadata_verified_full_text_requires_copy_request"
+        },
+        {
+          "url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+          "source_role": "Official Gazette repository bilingual metadata and file listing",
+          "status": "metadata_verified_files_restricted"
+        },
+        {
+          "url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "source_role": "public secondary full-text transcription; cross-check only",
+          "status": "discovered_not_primary"
+        },
+        {
+          "url": "https://www.labour.gov.eg/ar/الأخبار/وزير-العمل-يعلن-نص-القواعد-العامة-للائحة-تنظيم-العمل-بالقطاع-الخاص/",
+          "source_role": "official Ministry of Labour announcement and summary",
+          "status": "official_announcement_discovery_only"
         }
       ]
     },
