@@ -1798,6 +1798,28 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         denied_after_revocation = self.client.get("/cases")
         self.assertEqual(denied_after_revocation.status_code, 403,
                          denied_after_revocation.text)
+
+        # The same stale cookie must not retain access through other route
+        # families after the control-plane membership is revoked.
+        revoked_route_attempts = [
+            ("get", "/dashboard", None),
+            ("get", "/calendar.ics", None),
+            ("get", "/finance/overview", None),
+            ("get", "/research/conversations", None),
+            ("get", "/invitations", None),
+            ("post", "/search", {"q": "FIRM_B_PRIVATE_SENTINEL"}),
+            ("post", "/ask", {"q": "FIRM_B_PRIVATE_SENTINEL"}),
+        ]
+        for method, path, payload in revoked_route_attempts:
+            with self.subTest(method=method, path=path):
+                kwargs = {}
+                if payload is not None:
+                    kwargs["json"] = payload
+                if method == "post":
+                    kwargs["headers"] = {"X-CSRF-Token": self.client.cookies.get("lc_csrf") or ""}
+                response = getattr(self.client, method)(path, **kwargs)
+                self.assertEqual(response.status_code, 403, response.text)
+
         self.assertEqual(
             self.runtime.firm_connection(
                 self.runtime.resolve_context(self.user_id, self.firm_a)
