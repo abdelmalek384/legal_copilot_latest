@@ -80,3 +80,6 @@ Further targeted extracted-text review on 2026-10-28 covered printed pages 68–
 
 
 Further targeted extracted-text review on 2026-10-28 covered printed pages 61–62 (Article 141: disciplinary investigation and reasoned decisions) and pages 63–64 (Article 148: dismissal authority and gross-misconduct conditions). These are provisional summaries; the full legal context and counsel review remain pending.
+
+
+Further targeted extracted-text review on 2026-10-28 covered printed pages 52–53 for Article 120 (weekly rest period and limited aggregation exception). The summary remains provisional and requires review against the full text and applicable implementing rules.
