@@ -170,7 +170,7 @@ This update supersedes the earlier 2026-10-28 checkpoint above where PR state ha
 - **#696:** runner/scorer integration; citation-like markers in code/comments are ignored, unstable source IDs are invalid, and missing/non-verified status is treated conservatively.
 - **#668, #680, #682, #683, #667, and #685:** stale/conflicted PR branches were closed as superseded by the merged replacements or current tracker.
 
-Each new code PR passed its recorded PR Tests workflow before merge. The full test workflow for the latest combined main state must still finish successfully before claiming a fresh full-suite pass.
+Each new code PR passed its recorded PR Tests workflow before merge. The full Tests workflow also passed on combined main commit dbada2e06f5f917c6ff5ee2de1d6d2ed35ad5e40 after PR #696 merged. This confirms the suite on that exact code snapshot; any later code changes require their own validation.
 
 ### Remaining blockers / next task order
 
