@@ -614,8 +614,14 @@ def _original_file_store():
     """Build a private development or KMS-backed object store from deployment config."""
     production = os.environ.get("COPILOT_ENV", "").strip().lower() in {"prod", "production"}
     backend = os.environ.get("COPILOT_OBJECT_STORAGE_BACKEND", "local").strip().lower()
-    if production and backend != "s3":
-        raise HTTPException(503, "production requires the KMS-backed S3 object-storage backend")
+    if production:
+        # Do not enable confidential originals until S3 inventory/reconciliation,
+        # encrypted backup/restore, staged-upload recovery, and deletion drills
+        # operate against the same production backend.
+        raise HTTPException(
+            503,
+            "production original-file storage is blocked pending S3 recovery and backup acceptance",
+        )
     if backend == "s3":
         bucket = os.environ.get("COPILOT_S3_BUCKET", "").strip()
         region = os.environ.get("COPILOT_S3_REGION", "").strip()
