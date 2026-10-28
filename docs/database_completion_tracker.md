@@ -239,14 +239,14 @@ This is a planning estimate across fresh-install schema/migrations, tenant isola
 - [x] Enforce migration immutability through checksum drift and missing-applied-file rejection; document forward-only corrective migrations (`docs/database_migrations.md`; CI run #1436 passed).
 
 ### 2. Approve identity and tenant contract
-- [ ] Implement the approved invitation/account-recovery defaults and finish initial firm-owner/session lifecycle acceptance; the one-time CLI bootstrap and role boundary are approved design defaults, but implementation and end-to-end validation remain required.
+- [ ] Merge and complete acceptance for the approved invitation/account-recovery defaults. PR #690 implements invitations, ordinary-account recovery, and the one-time platform-admin bootstrap CLI with passing CI, but remains open/unmerged; assisted recovery for privileged accounts and witnessed first-deployment bootstrap remain release blockers.
 - [x] Complete the initial deployment and storage entrypoint inventories (see `tenant_isolation_inventory.md` and `repository_storage_entrypoint_inventory.md`); production storage backend, key-management, and retention decisions remain open.
 - [x] Wire control-plane identity, sessions, firm memberships, and trusted active-firm routing into the separate runtime (PR #372 merged; CI passed).
-- [ ] Finish and verify invitation/bootstrap lifecycle and prompt session/cache revocation across all routes after membership suspension or revocation; platform-role grant/revocation commands have targeted authorization/audit tests (PR #570).
+- [ ] Finish lifecycle acceptance and verify session/cache revocation across all routes after membership suspension/revocation. PR #690 supplies token-bound invitation and ordinary-account recovery flows; platform-role grant/revocation commands have targeted authorization/audit tests (PR #570).
 
 ### 3. Implement actual tenant storage boundaries
 - [x] Implement the separate-runtime request path: authenticated session plus active membership resolves a trusted catalog entry; firm matter requests use the firm database, identity uses the control plane, and verified legal-reference search uses the shared corpus (PR #372 merged; CI passed).
-- [ ] Finish route-by-route and query-by-query verification, including routes that intentionally use control-plane or corpus connections.
+- [ ] Finish behavioral route-by-route and query-by-query authorization verification, including control-plane/corpus routes. PR #714 adds a passing strict static SQL-boundary gate (59 routes, 0 unresolved SQL, 0 unclassified SQL routes, 0 direct SQLite opens); this is not proof of correct role/case authorization.
 - [x] Add explicit three-path configuration and a fail-closed deployment preflight for the separate runtime (PR #384 merged; CI passed). Legacy `COPILOT_DB` compatibility remains available only when explicitly configured and is not approved for unrelated firms' confidential matters.
 - [x] Define separate firm and corpus schema profiles and initialize separate databases.
 - [ ] Conditional future import only: require legacy mixed `chunks`/FTS reconciliation if a legacy database is deliberately introduced; it is not a first-deployment task.
@@ -265,11 +265,11 @@ This is a planning estimate across fresh-install schema/migrations, tenant isola
 ### 5. Prove tenant isolation and operational recovery
 - [ ] Complete route-by-route and SQL-query-by-query cross-firm authorization tests, including exports, audit, search, legal review, background work, and administrative paths.
 - [x] Draft the tenant-scoped original-file storage proposal, including blob metadata, staged upload atomicity, backup/restore integrity, retention, and acceptance gates (PR #597 merged; proposal only).
-- [ ] Implement and test tenant-scoped original binary storage using the approved private object-storage abstraction/local development adapter, configurable KMS interface, authorized download/limits, integrity checks, and explicit audited deletion/legal holds. Vendor selection and jurisdiction-specific retention periods remain deployment decisions; the current upload flow still does not retain original binaries.
+- [ ] Merge and complete acceptance for tenant-scoped original binary storage. PR #671 implements a local development adapter, S3/KMS adapter foundation, authorized download, integrity/reconciliation, backup/restore staging, audited legal holds and deletion safeguards; it remains open with merge conflicts, and production uploads remain fail-closed pending live-provider validation.
 - [x] Implement encrypted, checksummed multi-database backup and non-destructive restore to a new directory, with two-firm isolation and tamper/wrong-key tests (PR #382 merged; CI passed).
 - [x] Add `python manage.py verify-backup-tenancy` to validate an encrypted tenancy bundle through a restricted temporary restore, re-check all restored databases, and clean up temporary plaintext; deletion is not guaranteed secure erasure and this does not replace a witnessed recovery drill (PR #538 merged; CI run #1426 passed).
-- [ ] Complete retention policy, tenant-specific export/deletion semantics, automated scheduling/monitoring, and operational recovery drills.
-- [ ] Rehearse deployment, restore, and rollback using representative copies; validate permissions, secrets, encryption keys, monitoring, and incident runbooks.
+- [ ] Finalize deployment-specific retention periods, tenant export/deletion semantics, monitoring, and witnessed operational recovery. PR #671 adds legal-hold/deletion workflows and a recovery-drill CLI, but real staging restore/rollback, live S3/KMS validation, and independent witness sign-off remain outstanding.
+- [ ] Rehearse deployment, restore, and rollback using representative synthetic/staging copies; validate permissions, secrets, encryption keys, monitoring, and incident runbooks. Code-level restore tests do not substitute for a witnessed deployment drill.
 - [ ] Obtain an independent security review before production use with unrelated firms' confidential matters.
 
 ## Release gate
