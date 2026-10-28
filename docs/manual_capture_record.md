@@ -30,7 +30,7 @@ Use this sidecar to preserve provenance for an original file obtained through a 
 - `commercial_reuse_permission`: `unknown`, `allowed`, `allowed_limited`, `restricted`, `prohibited`, `not_allowed_without_explicit_exception_or_license`, or `prior_written_permission_required_per_published_terms`
 
 Optional evidence fields:
-- `terms_url`, `terms_checked_on` (must not be future-dated)
+- `terms_url`, `terms_checked_on` (must not be future-dated; the validator blocks collection/commercial readiness if the terms review is older than 180 days, an internal freshness policy rather than a legal rule)
 - `collection_permission_evidence_url`, `commercial_reuse_evidence_url`
 - `publication_date`, `effective_date`, `repeal_date`, `gazette_issue`, `gazette_pages`
 - `legal_status`: `unknown`, `under_review`, `not_yet_in_force`, `in_force`, `partially_repealed`, `repealed`, or `historical`

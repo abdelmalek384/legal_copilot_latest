@@ -28,6 +28,9 @@ COMMERCIAL_STATES = {
 LEGAL_STATUSES = {"unknown", "under_review", "not_yet_in_force", "in_force", "partially_repealed", "repealed", "historical"}
 REVIEW_STATUSES = {"pending_source_review", "pending_lawyer_review", "verified", "rejected"}
 
+# Internal freshness policy for source-site terms, not a legal rule.
+TERMS_REVIEW_MAX_AGE_DAYS = 180
+
 
 def _https_url(value: object) -> bool:
     if not isinstance(value, str) or not value or value != value.strip():
@@ -179,11 +182,25 @@ def validate_capture_record(record: object, record_path: Path) -> dict:
 
     collection_evidence = _https_url(record.get("collection_permission_evidence_url"))
     commercial_evidence = _https_url(record.get("commercial_reuse_evidence_url"))
-    terms_recorded = _https_url(record.get("terms_url")) and _iso_date(record.get("terms_checked_on"))
+    terms_url_valid = _https_url(record.get("terms_url"))
+    terms_checked_valid = _iso_date(record.get("terms_checked_on"))
+    terms_checked_date = date.fromisoformat(record["terms_checked_on"]) if terms_checked_valid else None
+    terms_review_fresh = bool(
+        terms_url_valid
+        and terms_checked_date
+        and date.today() - timedelta(days=TERMS_REVIEW_MAX_AGE_DAYS) <= terms_checked_date <= date.today()
+    )
+    terms_recorded = terms_url_valid and terms_review_fresh
     collection_ready = collection == "allowed" and collection_evidence and terms_recorded
     commercial_ready = commercial == "allowed" and commercial_evidence and terms_recorded
-    if not terms_recorded:
+    if not terms_url_valid or not terms_checked_valid:
         warnings.append("source terms URL and checked date are not both recorded")
+    elif terms_checked_date > date.today():
+        warnings.append("source terms review date is future-dated; permission readiness remains blocked")
+    elif not terms_review_fresh:
+        warnings.append(
+            f"source terms review is older than {TERMS_REVIEW_MAX_AGE_DAYS} days; refresh the terms review before collection or commercial reuse"
+        )
     if not collection_ready:
         warnings.append("collection permission is not supported by recorded terms and evidence")
     if not commercial_ready:
@@ -198,6 +215,7 @@ def validate_capture_record(record: object, record_path: Path) -> dict:
         "actual_sha256": actual_hash,
         "collection_ready": bool(collection_ready),
         "commercial_product_use_ready": bool(commercial_ready),
+        "terms_review_fresh": bool(terms_review_fresh),
         "retrieval_eligible": False,
         "errors": errors,
         "warnings": warnings,

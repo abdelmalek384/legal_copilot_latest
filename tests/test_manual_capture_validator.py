@@ -126,6 +126,23 @@ class ManualCaptureRecordTests(unittest.TestCase):
         self.assertFalse(result["commercial_product_use_ready"])
         self.assertFalse(result["retrieval_eligible"])
 
+    def test_stale_terms_review_blocks_permission_readiness(self):
+        self.record.update({
+            "collection_permission": "allowed",
+            "commercial_reuse_permission": "allowed",
+            "terms_url": "https://example.gov/terms",
+            "terms_checked_on": "2025-01-01",
+            "collection_permission_evidence_url": "https://example.gov/permission/collection",
+            "commercial_reuse_evidence_url": "https://example.gov/permission/commercial",
+        })
+        result = validate_capture_record(self.record, self.record_path)
+        self.assertTrue(result["valid"])
+        self.assertFalse(result["terms_review_fresh"])
+        self.assertFalse(result["collection_ready"])
+        self.assertFalse(result["commercial_product_use_ready"])
+        self.assertTrue(any("source terms review is older than 180 days" in warning for warning in result["warnings"]))
+        self.assertFalse(result["retrieval_eligible"])
+
     def test_permission_gates_need_terms_and_separate_evidence(self):
         self.record.update({
             "collection_permission": "allowed",
