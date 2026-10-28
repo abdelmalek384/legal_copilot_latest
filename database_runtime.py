@@ -360,9 +360,116 @@ class DatabaseRuntime:
                 "UPDATE firms SET status='disabled' WHERE id=? AND status IN ('provisioning','active')",
                 (firm_id,),
             )
+            # Preserve the catalog's explicit failed state when the tenant
+            # initializer rejected its database. Only a still-provisioning or
+            # already-provisioned mapping is disabled here; overwriting failed
+            # would erase the operator's recovery signal.
             control.execute(
                 "UPDATE tenant_database_catalog SET status='disabled',updated_at=datetime('now') "
-                "WHERE firm_id=?",
+                "WHERE firm_id=? AND status IN ('provisioning','provisioned')",
+                (firm_id,),
+            )
+            control.commit()
+            raise
+        finally:
+            if catalog is not None:
+                catalog.close()
+
+    def retry_failed_firm_provisioning(
+        self,
+        firm_id: int,
+        *,
+        reason: str,
+        operator_reference: str,
+        change_reference: str,
+    ) -> Path:
+        """Retry only a disabled firm whose catalog explicitly records failed provisioning."""
+        if isinstance(firm_id, bool) or not isinstance(firm_id, int) or firm_id <= 0:
+            raise ValueError("firm_id must be a positive integer")
+        audit_fields = {
+            "reason": reason,
+            "operator_reference": operator_reference,
+            "change_reference": change_reference,
+        }
+        if any(not isinstance(value, str) or not value.strip() for value in audit_fields.values()):
+            raise ValueError("reason, operator_reference, and change_reference are required")
+        self._require_initialized()
+        control = self.control_connection()
+        control.execute("BEGIN IMMEDIATE")
+        try:
+            firm = control.execute(
+                "SELECT status FROM firms WHERE id=?", (firm_id,)
+            ).fetchone()
+            catalog_state = control.execute(
+                "SELECT status,database_file FROM tenant_database_catalog WHERE firm_id=?", (firm_id,)
+            ).fetchone()
+            if firm is None or firm["status"] != "disabled":
+                raise DatabaseRuntimeError("Only a disabled firm can enter provisioning recovery")
+            if (
+                catalog_state is None
+                or catalog_state["status"] != "failed"
+                or catalog_state["database_file"] is not None
+            ):
+                raise DatabaseRuntimeError(
+                    "Firm does not have a clean failed provisioning catalog entry; refusing implicit recovery"
+                )
+            existing_memberships = control.execute(
+                "SELECT COUNT(*) FROM firm_memberships WHERE firm_id=?", (firm_id,)
+            ).fetchone()[0]
+            existing_invitations = control.execute(
+                "SELECT COUNT(*) FROM identity_invitations WHERE firm_id=?", (firm_id,)
+            ).fetchone()[0]
+            if existing_memberships or existing_invitations:
+                raise DatabaseRuntimeError(
+                    "Failed provisioning recovery requires no existing memberships or invitations"
+                )
+            changed = control.execute(
+                "UPDATE firms SET status='provisioning' WHERE id=? AND status='disabled'",
+                (firm_id,),
+            )
+            if changed.rowcount != 1:
+                raise DatabaseRuntimeError("Firm lifecycle state changed concurrently")
+            control.commit()
+        except Exception:
+            control.rollback()
+            raise
+
+        catalog = None
+        try:
+            catalog = self._new_catalog_connection()
+            path = provision_tenant_database(
+                catalog,
+                firm_id,
+                self.paths.tenant_root,
+                self._initialize_firm_database,
+            )
+            control.execute("BEGIN IMMEDIATE")
+            changed = control.execute(
+                "UPDATE firms SET status='active' WHERE id=? AND status='provisioning'",
+                (firm_id,),
+            )
+            if changed.rowcount != 1:
+                raise DatabaseRuntimeError("Firm lifecycle state changed during provisioning recovery")
+            control.execute(
+                "INSERT INTO platform_security_events(actor_user_id,firm_id,event_type,detail_json) "
+                "VALUES(NULL,?,'firm_provisioning_retried',?)",
+                (firm_id, json.dumps({
+                    "database_file": path.name,
+                    "status": "active",
+                    **{key: value.strip() for key, value in audit_fields.items()},
+                }, sort_keys=True)),
+            )
+            control.commit()
+            return path
+        except Exception:
+            control.rollback()
+            control.execute(
+                "UPDATE firms SET status='disabled' WHERE id=? AND status='provisioning'",
+                (firm_id,),
+            )
+            control.execute(
+                "UPDATE tenant_database_catalog SET status='disabled',updated_at=datetime('now') "
+                "WHERE firm_id=? AND status IN ('provisioning','provisioned')",
                 (firm_id,),
             )
             control.commit()

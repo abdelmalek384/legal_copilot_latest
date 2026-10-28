@@ -131,6 +131,61 @@ class TenancyCommandTests(unittest.TestCase):
             0,
         )
 
+    def test_retry_failed_provisioning_cli_requires_confirmation_and_audits_recovery(self):
+        control = self.runtime.control_connection()
+        cursor = control.execute(
+            "INSERT INTO firms(name,status) VALUES('Failed Firm Recovery','disabled')"
+        )
+        firm_id = int(cursor.lastrowid)
+        control.execute(
+            "INSERT INTO tenant_database_catalog(firm_id,database_file,status) VALUES(?,NULL,'failed')",
+            (firm_id,),
+        )
+        control.commit()
+
+        refused = self.run_manage(
+            "retry-failed-provisioning",
+            "--firm-id", str(firm_id),
+            "--reason", "retry failed tenant initialization",
+            "--operator-reference", "operator-ticket-123",
+            "--change-reference", "change-456",
+        )
+        self.assertNotEqual(refused.returncode, 0)
+        self.assertIn("--confirm-retry", refused.stderr)
+        self.assertEqual(
+            control.execute("SELECT status FROM firms WHERE id=?", (firm_id,)).fetchone()[0],
+            "disabled",
+        )
+
+        retried = self.run_manage(
+            "retry-failed-provisioning",
+            "--firm-id", str(firm_id),
+            "--reason", "retry failed tenant initialization",
+            "--operator-reference", "operator-ticket-123",
+            "--change-reference", "change-456",
+            "--confirm-retry",
+        )
+        self.assertEqual(retried.returncode, 0, retried.stderr)
+        report = json.loads(retried.stdout)
+        self.assertEqual(report["status"], "provisioned")
+        self.assertEqual(report["firm_id"], firm_id)
+        self.assertEqual(report["recovery"], "retried_failed_provisioning")
+        self.assertTrue((self.root / "tenants" / report["database_file"]).is_file())
+        self.assertEqual(
+            control.execute("SELECT status FROM firms WHERE id=?", (firm_id,)).fetchone()[0],
+            "active",
+        )
+        event = control.execute(
+            "SELECT detail_json FROM platform_security_events "
+            "WHERE firm_id=? AND event_type='firm_provisioning_retried'",
+            (firm_id,),
+        ).fetchone()
+        self.assertIsNotNone(event)
+        detail = json.loads(event["detail_json"])
+        self.assertEqual(detail["reason"], "retry failed tenant initialization")
+        self.assertEqual(detail["operator_reference"], "operator-ticket-123")
+        self.assertEqual(detail["change_reference"], "change-456")
+
     def test_provision_firm_and_attach_existing_global_identity(self):
         provisioned = self.run_manage("provision-firm", "Firm B")
         self.assertEqual(provisioned.returncode, 0, provisioned.stderr)

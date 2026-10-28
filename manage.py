@@ -167,6 +167,33 @@ def provision_firm_cli(a):
         runtime.close_current_thread()
 
 
+def retry_failed_provisioning_cli(a):
+    """Retry a failed tenant initializer only with explicit operator/change evidence."""
+    if not app._separate_runtime_enabled():
+        raise SystemExit("Provisioning recovery requires the separate database architecture.")
+    if not a.confirm_retry:
+        raise SystemExit("Refusing provisioning retry without --confirm-retry.")
+    runtime = DatabaseRuntime.from_env()
+    try:
+        runtime.initialize()
+        database_path = runtime.retry_failed_firm_provisioning(
+            a.firm_id,
+            reason=a.reason,
+            operator_reference=a.operator_reference,
+            change_reference=a.change_reference,
+        )
+        print(json.dumps({
+            "status": "provisioned",
+            "firm_id": a.firm_id,
+            "database_file": database_path.name,
+            "recovery": "retried_failed_provisioning",
+        }, ensure_ascii=False, sort_keys=True))
+    except (RuntimeError, ValueError, OSError, sqlite3.Error) as exc:
+        raise SystemExit("Failed-firm provisioning recovery refused or failed: " + str(exc)) from exc
+    finally:
+        runtime.close_current_thread()
+
+
 def disable_firm_cli(a):
     """Disable firm access while retaining its database and historical data."""
     if not app._separate_runtime_enabled():
@@ -969,6 +996,13 @@ sp = p.add_subparsers(dest="cmd", required=True)
 x = sp.add_parser("adduser"); x.add_argument("name"); x.add_argument("email"); x.add_argument("role", choices=["admin", "lawyer", "junior"]); x.add_argument("--firm-id", type=int); x.set_defaults(f=adduser)
 x = sp.add_parser("init-tenancy"); x.add_argument("--firm-name", required=True); x.add_argument("--owner-name", required=True); x.add_argument("--owner-email", required=True); x.set_defaults(f=init_tenancy)
 x = sp.add_parser("provision-firm"); x.add_argument("name"); x.set_defaults(f=provision_firm_cli)
+x = sp.add_parser("retry-failed-provisioning", help="Retry only a disabled firm with a failed tenant catalog entry")
+x.add_argument("--firm-id", type=int, required=True)
+x.add_argument("--reason", required=True)
+x.add_argument("--operator-reference", required=True)
+x.add_argument("--change-reference", required=True)
+x.add_argument("--confirm-retry", action="store_true", help="Explicitly confirm this audited provisioning retry")
+x.set_defaults(f=retry_failed_provisioning_cli)
 x = sp.add_parser("addmembership"); x.add_argument("email"); x.add_argument("--firm-id", type=int, required=True); x.add_argument("--role", choices=["lawyer", "junior"], required=True); x.set_defaults(f=addmembership_cli)
 x = sp.add_parser("disable-firm"); x.add_argument("firm_id", type=int); x.set_defaults(f=disable_firm_cli)
 x = sp.add_parser("resetpw"); x.add_argument("email"); x.set_defaults(f=resetpw)
@@ -1019,7 +1053,7 @@ x = sp.add_parser("platform-audit", help="Read recent platform security events o
 x.add_argument("--limit", type=int, default=50)
 x.add_argument("--firm-id", type=int)
 x.add_argument("--target-user-id", type=int)
-x.add_argument("--event-type", choices=["password_reset_cli", "identity_created_cli", "password_changed_web", "firm_provisioned", "firm_disabled", "membership_created", "membership_suspended", "initial_owner_bootstrapped", "platform_role_granted", "platform_role_revoked", "platform_admin_bootstrap_cli", "password_reset_assisted_cli"])
+x.add_argument("--event-type", choices=["password_reset_cli", "identity_created_cli", "password_changed_web", "firm_provisioned", "firm_provisioning_retried", "firm_disabled", "membership_created", "membership_suspended", "initial_owner_bootstrapped", "platform_role_granted", "platform_role_revoked", "platform_admin_bootstrap_cli", "password_reset_assisted_cli"])
 x.set_defaults(f=platform_audit)
 x = sp.add_parser("restore-tenancy"); x.add_argument("file"); x.add_argument("--target-root", required=True); x.set_defaults(f=restore_tenancy)
 x = sp.add_parser("verify-backup-tenancy", help="Verify an encrypted tenancy bundle using temporary protected storage"); x.add_argument("file"); x.set_defaults(f=verify_tenancy_backup)

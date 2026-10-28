@@ -19,6 +19,23 @@ Before starting:
 3. Confirm BACKUP_KEY is available from the approved secret store. Generate a key with python manage.py genkey only when creating a new key. Keep the key separate from the backup directory and database storage. Losing the key makes encrypted backups unrecoverable; do not paste it into tickets, logs, source control, or chat.
 4. Confirm the retention window and destination capacity before using --keep; pruning old bundles is destructive to those backup files.
 
+## Recover a failed firm-provisioning attempt
+
+Provisioning failures are deliberately not auto-retried by request handlers. The runtime preserves a failed catalog state only when tenant schema initialization failed and the partial database was removed. Recovery is permitted only when the firm is disabled and its catalog entry is explicitly `failed`; active firms, intentionally disabled firms, missing catalog entries, and provisioned databases are not eligible for this retry command.
+
+After reviewing the control-plane and catalog state on a trusted operator host, retry with an auditable reason and change references:
+
+```bash
+python manage.py retry-failed-provisioning \
+  --firm-id 123 \
+  --reason "Retry after reviewed transient schema initialization failure" \
+  --operator-reference "incident-or-ticket-reference" \
+  --change-reference "approved-change-reference" \
+  --confirm-retry
+```
+
+The command creates a new uniquely named tenant database, reruns the firm-profile migrations and immutable firm binding checks, validates SQLite integrity/foreign keys, then activates the firm only after the catalog is provisioned and the recovery audit event commits. If any step fails, the firm remains disabled and the operator must investigate; do not manually set lifecycle status values or reuse a database file from another firm. The command does not recover an audit failure after a successful provision or an absent catalog row; those states require a separate reviewed repair.
+
 ## Create a coordinated encrypted bundle
 
 1. Put the application into maintenance mode or stop all application/background workers that can write to any of the three database areas. Wait for active requests and jobs to finish. Keep writes paused for the full bundle snapshot window.
