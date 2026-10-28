@@ -84,10 +84,38 @@ class ProductionDatabaseModeTests(unittest.TestCase):
                 "BACKUP_KEY": Fernet.generate_key().decode("ascii"),
             })
             result = subprocess.run(
-                [sys.executable, "-c", "import app"],
-                env=env, capture_output=True, text=True, timeout=30,
+                [
+                    sys.executable, "-c",
+                    "from fastapi.testclient import TestClient; import app; "
+                    "client = TestClient(app.app); client.__enter__(); client.__exit__(None, None, None)",
+                ],
+                env=env, capture_output=True, text=True, timeout=60,
             )
             self.assertEqual(result.returncode, 0, result.stderr)
+
+    def test_profile_initialization_failure_blocks_asgi_startup(self):
+        with __import__("tempfile").TemporaryDirectory() as temp:
+            control_directory = Path(temp) / "control-is-a-directory.sqlite3"
+            control_directory.mkdir()
+            env = os.environ.copy()
+            for key in ("COPILOT_DB", "COPILOT_DATABASE_ACCEPTANCE_FILE"):
+                env.pop(key, None)
+            env.update({
+                "COPILOT_ENV": "development",
+                "COPILOT_CONTROL_DB": str(control_directory),
+                "COPILOT_TENANT_DB_ROOT": os.path.join(temp, "tenants"),
+                "COPILOT_CORPUS_DB": os.path.join(temp, "corpus.sqlite3"),
+            })
+            result = subprocess.run(
+                [
+                    sys.executable, "-c",
+                    "from fastapi.testclient import TestClient; import app; "
+                    "client = TestClient(app.app); client.__enter__()",
+                ],
+                env=env, capture_output=True, text=True, timeout=60,
+            )
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("Database runtime initialization failed; refusing to start", result.stderr)
 
     def test_production_startup_blocks_missing_acceptance_even_with_other_settings_valid(self):
         from cryptography.fernet import Fernet
