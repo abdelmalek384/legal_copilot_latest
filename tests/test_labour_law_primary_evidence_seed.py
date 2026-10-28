@@ -71,6 +71,8 @@ class LabourLawPrimaryEvidenceSeedTests(unittest.TestCase):
         self.assertIn("68", pages)
         self.assertIn("69", pages)
         self.assertIn("70", pages)
+        self.assertIn("71", pages)
+        self.assertIn("72", pages)
         self.assertIn("73", pages)
         self.assertIn("74", pages)
         self.assertIn("61", pages)
