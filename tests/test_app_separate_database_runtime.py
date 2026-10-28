@@ -55,27 +55,24 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         headers["X-CSRF-Token"] = csrf or ""
         return getattr(self.client, method)(url, headers=headers, **kwargs)
 
-    def test_web_user_creation_records_platform_membership_audit(self):
+    def test_direct_user_creation_is_disabled_in_separate_runtime(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
         )
         self.assertEqual(login.status_code, 200, login.text)
-        created = self._mutate(
+        response = self._mutate(
             "post", "/users",
-            json={"name": "Audited User", "email": "audited-user@example.test",
+            json={"name": "Direct User", "email": "direct-user@example.test",
                   "password": self.password, "role": "lawyer"},
         )
-        self.assertEqual(created.status_code, 200, created.text)
+        self.assertEqual(response.status_code, 410, response.text)
         control = self.runtime.control_connection()
-        event = control.execute(
-            "SELECT actor_user_id,target_user_id,firm_id,event_type,detail_json FROM platform_security_events "
-            "WHERE event_type='membership_created' AND target_user_id=? ORDER BY id DESC LIMIT 1",
-            (created.json()["id"],),
-        ).fetchone()
-        self.assertIsNotNone(event)
-        self.assertEqual(event["actor_user_id"], self.user_id)
-        self.assertEqual(event["firm_id"], self.firm_a)
-        self.assertIn('"method": "web"', event["detail_json"])
+        self.assertIsNone(control.execute(
+            "SELECT id FROM users WHERE email_normalized='direct-user@example.test'"
+        ).fetchone())
+        self.assertEqual(control.execute(
+            "SELECT COUNT(*) FROM identity_invitations WHERE email_normalized='direct-user@example.test'"
+        ).fetchone()[0], 0)
 
     def test_membership_suspension_audit_failure_keeps_membership_active(self):
         target_id = self.runtime.create_global_identity(
