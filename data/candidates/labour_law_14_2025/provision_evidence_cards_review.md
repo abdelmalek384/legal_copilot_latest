@@ -2,7 +2,7 @@
 
 **Record:** `EG-LABOUR-LAW-14-2025-EVIDENCE-CARDS-2026-10-28`  
 **Prepared on:** 2026-10-28  
-**Cards in this report:** 59
+**Cards in this report:** 61
 
 ## Status and limits
 
@@ -1737,6 +1737,64 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final advice or authoritative retrieval.
+
+### 60. EG-LABOUR-14-2025-ART-126-EXAM-LEAVE
+
+**Question:** What notice and evidence conditions apply to annual-leave scheduling and paid exam leave under Article 126?
+
+**Pinpoint:** القانون المرافق, المادة 126, printed Gazette page 55 (PDF page index 53).
+
+**Provisional summary (Arabic):**
+
+تقرر المادة 126 للعامل المتقدم لامتحان في إحدى مراحل التعليم حق تحديد موعد إجازته السنوية بشرط إخطار صاحب العمل قبلها بخمسة عشر يوماً على الأقل. كما تقرر إجازة دراسية بأجر عن أيام الامتحان الفعلية لا تخصم من رصيد الإجازة السنوية، بشرط الإخطار قبلها بعشرة أيام على الأقل وتقديم ما يثبت دخول الامتحان فعلاً. يلزم فحص النص الكامل واللوائح والوقائع قبل تقرير الاستحقاق في حالة بعينها.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; النص الرسمي القابل للبحث؛ مراجعة موضعية للمادة مطلوبة عند التطبيق (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 55؛ يظهر نص المادة 126، ولم يُنزّل الملف الأصلي أو يُفحص بصرياً (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [government-hosted Official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — يعرض نص المادتين 126 و127 على الصفحة المطبوعة 55.
+
+**Limitations:**
+
+- تتوقف النتيجة على إثبات القيد التعليمي وموعد الامتحان والإخطار الفعلي
+- لم تُراجع القرارات المنفذة أو التعديلات اللاحقة بصورة شاملة
+- لا توجد مراجعة محامٍ مسجلة
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** automatic approval or denial of a specific leave request.
+
+### 61. EG-LABOUR-14-2025-ART-127-WORK-DURING-LEAVE
+
+**Question:** What consequence does Article 127 state if a worker works for another party during leave?
+
+**Pinpoint:** القانون المرافق, المادة 127, printed Gazette page 55 (PDF page index 53).
+
+**Provisional summary (Arabic):**
+
+تجيز المادة 127 لصاحب العمل حرمان العامل من أجر مدة الإجازة أو استرداد ما دُفع عنها إذا ثبت أن العامل اشتغل خلالها لدى الغير، دون إخلال بالجزاء التأديبي. لا تكفي البطاقة وحدها لتقرير ثبوت المخالفة أو تحديد الإجراء المناسب؛ يلزم التحقق من الوقائع والنصوص المرتبطة وأي أحكام لاحقة.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; النص الرسمي القابل للبحث؛ مراجعة موضعية للمادة مطلوبة عند التطبيق (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 55؛ يظهر نص المادة 127، ولم يُنزّل الملف الأصلي أو يُفحص بصرياً (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [government-hosted Official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — يعرض نص المادتين 126 و127 على الصفحة المطبوعة 55.
+
+**Limitations:**
+
+- تطبيق الحكم يتطلب إثبات العمل لدى الغير خلال الإجازة وتحديد ما دُفع عنها
+- لم تُراجع التعديلات أو اللوائح ذات الصلة مراجعة شاملة
+- لا توجد مراجعة محامٍ مسجلة
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** final finding of misconduct or payroll recovery decision.
 
 ## Activation gates
 
