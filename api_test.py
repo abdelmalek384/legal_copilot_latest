@@ -287,6 +287,7 @@ assert c.get("/cases", headers=expired).status_code == 401
 # CLI password-reset behavior is covered by profile-separated tests in
 # tests/test_platform_security_audit.py; this legacy API harness deliberately
 # exercises only the explicit development compatibility app, not CLI writes.
+c.post("/users", json={"name":"Login Concurrency Test","email":"reset@x.eg","password":"new-password-Long","role":"lawyer"}, headers=A)
 # Isolate login-rate-limit assertions from earlier requests in this scenario.
 if hasattr(app, "_rate_limit_state"):
     with app._rate_limit_lock:
