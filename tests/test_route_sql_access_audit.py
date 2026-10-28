@@ -77,6 +77,7 @@ def delete_case(case_id):
         self.assertEqual(route["unresolved_sql_call_count"], 0)
         self.assertEqual(report["unresolved_sql_call_count"], 0)
         self.assertEqual(report["unclassified_sql_routes"], [])
+        self.assertTrue({"chunks", "docs", "tasks"}.issubset(set(route["table_references"])))
 
     def test_resolves_sql_passed_to_local_lambda_and_reports_dynamic_join(self):
         source = '''
