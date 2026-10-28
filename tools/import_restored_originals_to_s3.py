@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import json
 import os
 import sqlite3
 import sys
@@ -186,13 +187,13 @@ def main() -> int:
             finally:
                 db.close()
 
-        print({
+        print(json.dumps({
             "mode": "apply" if args.apply else "dry_run",
             "bucket": bucket,
             "objects_checked": len(actions),
             "actions": actions,
             "mutations_performed": sum(item["action"] == "imported" for item in actions),
-        })
+        }, sort_keys=True))
     except (RuntimeError, ValueError, sqlite3.Error, TenantCatalogError, ObjectStorageError, OSError) as exc:
         print(f"S3 restore import could not safely complete: {exc}", file=sys.stderr)
         return 2
