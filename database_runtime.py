@@ -308,6 +308,30 @@ class DatabaseRuntime:
                 self._validate_preprovisioned_profile(self.paths.legal_corpus, "legal_corpus")
                 # The app must not start with tenant databases that still need
                 # migrations or catalog lifecycle states that require recovery.
+                # Reject orphaned database files too; a tenant-root file not bound
+                # by the control-plane catalog must never be silently ignored.
+                try:
+                    control_uri = self.paths.control_plane.resolve().as_uri() + "?mode=ro"
+                    with sqlite3.connect(control_uri, uri=True, timeout=self.timeout) as control:
+                        referenced_files = {
+                            row[0] for row in control.execute(
+                                "SELECT database_file FROM tenant_database_catalog "
+                                "WHERE database_file IS NOT NULL"
+                            )
+                        }
+                except sqlite3.Error as exc:
+                    raise DatabaseRuntimeError(
+                        "Production tenant catalog could not be inspected read-only"
+                    ) from exc
+                actual_files = {
+                    entry.name for entry in self.paths.tenant_root.iterdir()
+                    if entry.name.startswith("tenant-") and entry.name.endswith(".sqlite3")
+                }
+                if actual_files != referenced_files:
+                    raise DatabaseRuntimeError(
+                        "Production tenant storage contains missing or unreferenced database files"
+                    )
+
                 from tools.migrate_tenant_fleet import FleetMigrationError, build_plan
 
                 try:
