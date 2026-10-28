@@ -3780,6 +3780,10 @@ def request_account_recovery(b: RecoveryRequestIn, request: Request):
     now = int(time.time())
     peer = request.client.host if request.client else "unknown"
     client_key = hashlib.sha256((peer + "|" + email_normalized).encode("utf-8")).hexdigest()
+    # Keep the existing per-IP-and-address budget, but also enforce an address-
+    # scoped budget so an attacker cannot bypass recovery throttling by rotating
+    # source IPs. Store only keyed digests in the shared control-plane table.
+    email_key = hashlib.sha256(email_normalized.encode("utf-8")).hexdigest()
     window_start = (now // 3600) * 3600
     control = control_conn()
     try:
@@ -3794,15 +3798,25 @@ def request_account_recovery(b: RecoveryRequestIn, request: Request):
         hits_row = limit_cursor.fetchone()
         limit_cursor.fetchall()  # Finish the RETURNING statement before later writes/commit.
         hits = int(hits_row["hits"]) if hits_row else 1
+        email_limit_cursor = control.execute(
+            "INSERT INTO api_rate_limit_windows(bucket,client_key,window_start,hits) "
+            "VALUES('identity_recovery_email',?,?,1) "
+            "ON CONFLICT(bucket,client_key,window_start) DO UPDATE "
+            "SET hits=api_rate_limit_windows.hits+1 RETURNING hits",
+            (email_key, window_start),
+        )
+        email_hits_row = email_limit_cursor.fetchone()
+        email_limit_cursor.fetchall()
+        email_hits = int(email_hits_row["hits"]) if email_hits_row else 1
         account = control.execute(
             "SELECT id,email_display,status FROM users WHERE email_normalized=?",
             (email_normalized,),
         ).fetchone()
-        if hits > 5:
+        if hits > 5 or email_hits > 5:
             if account is not None:
                 _identity_event(
                     control, "recovery_rate_limited", target_user_id=account["id"],
-                    detail={"bucket": "identity_recovery"}, now=now,
+                    detail={"bucket": "identity_recovery_email" if email_hits > 5 else "identity_recovery"}, now=now,
                 )
             control.commit()
             return generic
