@@ -33,7 +33,7 @@ Article 11 of the issuing provisions of Law 14/2025 states, in the official-text
 ## D. Acquisition outcome in this task
 
 - Official Ministry announcements were found for Decree 49/2026, Decree 294/2025, Decrees 248–252/2026, and Decree 162/2026.
-- A public official publisher text lead and a government-hosted Gazette PDF search result were found for Law 14/2025.
+- Official Law 14/2025 text is discoverable through the Amiri Press searchable-text page, the ETA-hosted Gazette PDF, and an additional direct PDF hosted on the Ministry of Labour site: https://www.labour.gov.eg/media/0iedik3q/القانون-رقم-14-لسنة-2025-بإصدار-قانون-العمل.pdf. The PDF is viewable in the web PDF viewer through the ETA link; the original binary was not obtained in the runtime.
 - Direct binary download attempts for the Law 14/2025 PDF from the State Information Service and ILO NATLEX endpoints failed in this environment. No hash is claimed.
 - The Gazette publisher's Decree 162/2026 repository item exposes copy-request links rather than direct public PDF access; no request was submitted.
 - No official primary text for Decrees 290/2025 and 291/2025 was located in this review.
