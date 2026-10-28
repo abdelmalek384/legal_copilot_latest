@@ -171,6 +171,22 @@
           "القانون المرافق، المواد 120 و122"
         ],
         "basis": "PDF text extraction lines 1248-1273"
+      },
+      {
+        "pdf_page_index_zero_based": 69,
+        "printed_page_label": "71",
+        "provisions": [
+          "القانون المرافق، المادة 173"
+        ],
+        "basis": "PDF text extraction lines 1738-1745"
+      },
+      {
+        "pdf_page_index_zero_based": 70,
+        "printed_page_label": "72",
+        "provisions": [
+          "القانون المرافق، المادتان 171-173"
+        ],
+        "basis": "PDF text extraction lines 1720-1745"
       }
     ]
   },
@@ -660,6 +676,46 @@
         "gazette_issue": "18 (تابع)",
         "printed_page": "55",
         "pdf_page_index_zero_based": 53,
+        "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf"
+      }
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-171",
+      "provision_ref": "القانون المرافق، المادة 171",
+      "topic": "retirement_age_and_fixed_term_contract",
+      "summary_ar": "تقرر المادة 171 ألا يقل سن التقاعد عن ستين سنة. ويجوز لصاحب العمل إنهاء العقد عند بلوغ العامل هذا السن، إلا إذا كان العقد محدد المدة وتمتد مدته إلى ما بعد بلوغ السن؛ ففي هذه الحالة لا ينتهي العقد إلا بانقضاء مدته، مع مراعاة أحكام قانون التأمينات الاجتماعية والمعاشات المشار إليه.",
+      "source_refs": [
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "basis": "government-hosted Gazette PDF; targeted text extraction reviewed; printed page 72"
+        }
+      ],
+      "confidence": "provisional_source_text_observed",
+      "human_review": "pending",
+      "page_pinpoint": {
+        "gazette_issue": "18 (تابع)",
+        "printed_page": "72",
+        "pdf_page_index_zero_based": 70,
+        "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf"
+      }
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-173",
+      "provision_ref": "القانون المرافق، المادة 173",
+      "topic": "termination_due_to_illness",
+      "summary_ar": "تحظر المادة 173 على صاحب العمل إنهاء عقد العامل بسبب المرض إلا بعد استنفاد الإجازات المرضية وما تبقى من رصيد الإجازة السنوية المستحقة. ويلتزم صاحب العمل بإخطار العامل برغبته في الإنهاء قبل خمسة عشر يوماً من تاريخ استنفاد الإجازات، وإذا شُفي العامل قبل انتهاء الإخطار امتنع إنهاء العقد لمرضه. يلزم التحقق من الأحكام المرتبطة بالتأمينات والإجازات والوقائع الطبية والإجرائية.",
+      "source_refs": [
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "basis": "government-hosted Gazette PDF; targeted text extraction reviewed; printed page 71"
+        }
+      ],
+      "confidence": "provisional_source_text_observed",
+      "human_review": "pending",
+      "page_pinpoint": {
+        "gazette_issue": "18 (تابع)",
+        "printed_page": "71",
+        "pdf_page_index_zero_based": 69,
         "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf"
       }
     }
