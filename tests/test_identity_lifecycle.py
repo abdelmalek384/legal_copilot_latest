@@ -1,8 +1,10 @@
+import hashlib
 import os
 import re
 import tempfile
 import unittest
 from pathlib import Path
+from types import SimpleNamespace
 from unittest.mock import patch
 
 from fastapi.testclient import TestClient
@@ -293,6 +295,37 @@ class IdentityLifecycleTests(unittest.TestCase):
             (user_id,),
         ).fetchone()
         self.assertIn('"sessions_revoked":true', event["detail_json"])
+
+    def test_recovery_email_budget_cannot_be_bypassed_by_rotating_source_ips(self):
+        user_id = self.runtime.create_global_identity(
+            "Distributed Recovery User", "distributed-recovery@example.test",
+            app.hash_pw("DistributedRecoveryPassphrase-2026!"),
+        )
+        self.runtime.create_firm_membership(user_id, self.firm_a, "lawyer")
+        request = app.RecoveryRequestIn(email="distributed-recovery@example.test")
+        with patch.object(app, "_send_identity_link") as send:
+            responses = [
+                app.request_account_recovery(
+                    request,
+                    SimpleNamespace(client=SimpleNamespace(host=f"192.0.2.{index}")),
+                )
+                for index in range(1, 7)
+            ]
+        self.assertTrue(all(response == app._identity_recovery_generic_response() for response in responses))
+        self.assertEqual(send.call_count, 5)
+        control = self.runtime.control_connection()
+        rate_limit = control.execute(
+            "SELECT hits FROM api_rate_limit_windows WHERE bucket='identity_recovery_email' "
+            "AND client_key=?",
+            (hashlib.sha256(b"distributed-recovery@example.test").hexdigest(),),
+        ).fetchone()
+        self.assertEqual(rate_limit["hits"], 6)
+        event = control.execute(
+            "SELECT detail_json FROM identity_lifecycle_events WHERE event_type='recovery_rate_limited' "
+            "AND target_user_id=? ORDER BY id DESC LIMIT 1",
+            (user_id,),
+        ).fetchone()
+        self.assertIn('"bucket":"identity_recovery_email"', event["detail_json"])
 
     def test_recovery_audit_failure_rolls_back_password_session_and_token(self):
         old_password = "AuditRecoveryOldPassphrase-2026!"
