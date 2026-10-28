@@ -39,6 +39,24 @@ def unsafe():
         self.assertEqual(report["route_count"], 1)
         self.assertEqual(report["unclassified_sql_routes"], ["GET /unsafe (unsafe)"])
 
+    def test_reports_dynamic_sql_for_manual_review(self):
+        source = '''
+def conn():
+    return None
+
+def read_table(db, table):
+    return db.execute(f"SELECT id FROM {table}").fetchall()
+
+@app.get("/lookup")
+def lookup():
+    return read_table(conn(), "cases")
+'''
+        report = audit_source(source)
+        self.assertEqual(report["dynamic_sql_call_count"], 1)
+        self.assertEqual(report["routes_with_dynamic_sql"], [
+            {"route": "GET /lookup (lookup)", "call_count": 1}
+        ])
+
     def test_flags_direct_sqlite_open_in_route_call_graph(self):
         source = '''
 import sqlite3
