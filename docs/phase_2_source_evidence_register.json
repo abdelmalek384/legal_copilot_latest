@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "register_id": "EG-PHASE2-OFFICIAL-SOURCE-EVIDENCE-BATCH-1",
-  "checked_on": "2026-10-23",
+  "checked_on": "2026-10-28",
   "scope": "Source discovery and publication metadata only. No files were downloaded or OCR-processed by this register.",
   "interpretation_rules": {
     "source_discovered_does_not_mean_collected": true,
@@ -357,6 +357,37 @@
       "access_terms_state": "not_reviewed",
       "collection_permission": "permission_pending",
       "notes": "Index entries are discovery leads. Verify the actual issuing instrument, publication series, exact text, commencement and applicable scope before use."
+    },
+    {
+      "source_id": "EG-SIS-GAZETTE-2025-18-LABOUR-PDF",
+      "publisher": "State Information Service (government-hosted copy of Official Gazette publication; original publisher identified as Amiri Press)",
+      "source_type": "government-hosted Official Gazette PDF",
+      "url": "https://sis.gov.eg/media/760267/%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86-%D8%B1%D9%82%D9%85-14-%D9%84%D8%B3%D9%86%D8%A9-2025-%D8%A8%D8%A5%D8%B5%D8%AF%D8%A7%D8%B1-%D9%82%D8%A7%D9%86%D9%88%D9%86-%D8%A7%D9%84%D8%B9%D9%85%D9%84.pdf",
+      "observed_title": "الجريدة الرسمية – العدد 18 (تابع) في 3 مايو سنة 2025؛ قانون رقم 14 لسنة 2025 بإصدار قانون العمل",
+      "publication_date": "2025-05-03",
+      "document_ids": [
+        "EG-LABOUR-LAW-14-2025"
+      ],
+      "source_state": "pdf_url_and_indexed_text_discovered_not_downloaded_or_page_reviewed",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "notes": "Search-indexed PDF text and the official Amiri Press legislation page corroborate the title, issue/date and selected promulgation provisions. The original PDF has not been downloaded, hashed, or page-reviewed here. This discovery is not permission to collect, store, index, embed, display, redistribute or commercially use the file."
+    },
+    {
+      "source_id": "EG-WIPOLEX-EGYPT-IP-LAW-82-2002-ART141",
+      "publisher": "World Intellectual Property Organization (WIPO Lex)",
+      "source_type": "legal text / copyright exclusion evidence",
+      "url": "https://www.wipo.int/wipolex/en/legislation/details/22066",
+      "observed_title": "Law No. 82 of 2002 on the Protection of Intellectual Property Rights",
+      "document_ids": [
+        "EG-LABOUR-LAW-14-2025"
+      ],
+      "source_state": "article_141_text_discovered",
+      "access_terms_state": "not_reviewed_for_automated_collection",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "notes": "Article 141 states official documents including laws are excluded from copyright protection, but collections can be protected for creative selection/arrangement. This is a preliminary statutory copyright basis, not permission to ignore a repository's access terms or systematic-retrieval restrictions. Counsel review is pending."
     }
   ],
   "document_records_to_create_from_batch": [
