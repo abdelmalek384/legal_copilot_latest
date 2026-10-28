@@ -38,7 +38,7 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
             d for d in self.inventory["documents"]
             if d["document_id"] == "EG-LABOUR-WORK-REGULATION-RULES-2026"
         )
-        self.assertEqual(record["source_id"], "EG-MINISTRY-OF-LABOUR")
+        self.assertEqual(record["source_id"], "EG-MINISTRY-LABOUR-LAWS")
         self.assertEqual(record["source_status"], "official_index_discovered_primary_text_pending")
         self.assertEqual(record["collection_permission"], "unknown")
         self.assertEqual(record["legal_status"], "unknown")
@@ -68,7 +68,7 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         )
         self.assertEqual(record["instrument_number"], 49)
         self.assertEqual(record["instrument_year"], 2026)
-        self.assertEqual(record["source_id"], "EG-MINISTRY-OF-LABOUR")
+        self.assertEqual(record["source_id"], "EG-MINISTRY-LABOUR-LAWS")
         self.assertEqual(record["collection_permission"], "unknown")
         self.assertEqual(record["legal_status"], "unknown")
         self.assertEqual(record["review_status"], "discovery_only")
