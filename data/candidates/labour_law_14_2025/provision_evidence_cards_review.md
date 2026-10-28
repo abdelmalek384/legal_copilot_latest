@@ -7525,3 +7525,28 @@ Contains 24 cards covering labour inspector status and powers, employer cooperat
 - Gazette page pinpoints for these supplemental batches are inferred and not visually verified; no source-file SHA-256 is claimed. Currentness, implementing decisions, reuse permission, and Egyptian-lawyer review remain outstanding.
 
 **Next priority:** obtain exact operative text for Articles 258–265, 270–274, and 281–295 from the public transcription; then add separate, source-linked cards for relevant implementing instruments such as Ministerial Decision 260/2025 and other publicly accessible decisions. Do not spend more time retrying blocked binary downloads.
+
+## Public-text fallback work — Articles 258–274 and 281–295 (2026-10-28)
+
+The accessible Wikisource transcription was opened at the relevant article lines rather than retrying the inaccessible PDF binary. This enabled substantive provisional summaries for Articles 258–265 and 270–274, including:
+- OSH inspectors' inspection authority (Art. 258);
+- establishment safety units, committees and training (259);
+- half-year statistics and 24-hour serious-accident / occupational-disease notification (260);
+- authorized OSH training providers and licensing cap (261);
+- licensing of OSH expert/consultancy work (262);
+- national research centre and central plans (263);
+- Supreme Council and governorate subcommittees (264–265);
+- first aid, nursing/doctor coverage, transport, accommodation, meals, social/cultural services and the social/health/cultural fund (270–274).
+
+For the penalty section, Articles 281–287, 289, 292, 294 and 295 now have provisional summaries drawn from the accessible transcription, including fine ranges and referenced provisions. **Articles 288, 290, 291 and 293 remain blocked** because the available transcription contains editorial notes, truncated references or uncertain wording at those points. No missing offence or penalty was guessed. These cards are still not authoritative and require comparison with the official Gazette, currentness review and Egyptian-lawyer review.
+
+The primary inventory exceeded the GitHub Contents API read-size limit, so supplements are separate files:
+- `provision_evidence_cards_256_274.json` — 19 cards
+- `provision_evidence_cards_275_298.json` — 24 cards
+- Combined with the 197-card main inventory, **240 provisional cards are represented across three files**.
+- A focused test file checks counts, article ranges, required fields and non-authoritative status. The tests have not been executed in a repository runtime.
+
+Source fallback used: https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر. This is a publicly accessible transcription, not the Gazette image itself. Its metadata indicates Law 14/2025 was published in Official Gazette issue 18 on 3 May 2025 and became effective after the statutory waiting period; that metadata does not prove that all later implementing decisions or amendments have been incorporated.
+
+**Immediate next work:** recover clean full text for the four blocked penalty articles from another public transcription, then catalogue publicly accessible implementing decisions (starting with Decision 260/2025) and map each to affected articles. Continue to keep `search_eligible: false`.
+
