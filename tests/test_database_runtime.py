@@ -22,6 +22,62 @@ class DatabaseRuntimeTests(unittest.TestCase):
         )
         self.runtime.initialize()
 
+    def test_production_runtime_refuses_to_create_missing_database_files(self):
+        base = self.root / "production-missing"
+        tenant_root = base / "tenants"
+        tenant_root.mkdir(parents=True, mode=0o700)
+        if os.name == "posix":
+            os.chmod(tenant_root, 0o700)
+        control = base / "control.sqlite3"
+        corpus = base / "corpus.sqlite3"
+        runtime = DatabaseRuntime(control, tenant_root, corpus)
+        with patch.dict(os.environ, {"COPILOT_ENV": "production"}):
+            with self.assertRaisesRegex(DatabaseRuntimeError, "control-plane database file is missing"):
+                runtime.initialize()
+        self.assertFalse(control.exists())
+        self.assertFalse(corpus.exists())
+
+    def test_production_runtime_validates_all_profiles_before_migrating_any(self):
+        base = self.root / "production-partial"
+        tenant_root = base / "tenants"
+        tenant_root.mkdir(parents=True, mode=0o700)
+        if os.name == "posix":
+            os.chmod(tenant_root, 0o700)
+        control = base / "control.sqlite3"
+        corpus = base / "corpus.sqlite3"
+        sqlite3.connect(control).close()
+        if os.name == "posix":
+            os.chmod(control, 0o600)
+        runtime = DatabaseRuntime(control, tenant_root, corpus)
+        with patch.dict(os.environ, {"COPILOT_ENV": "production"}):
+            with self.assertRaisesRegex(DatabaseRuntimeError, "legal-corpus database file is missing"):
+                runtime.initialize()
+        self.assertFalse(corpus.exists())
+        with sqlite3.connect(control) as db:
+            self.assertIsNone(db.execute(
+                "SELECT name FROM sqlite_master WHERE type='table' AND name='schema_migrations'"
+            ).fetchone())
+
+    def test_production_runtime_requires_private_tenant_root(self):
+        base = self.root / "production-open-root"
+        tenant_root = base / "tenants"
+        tenant_root.mkdir(parents=True, mode=0o755)
+        control = base / "control.sqlite3"
+        corpus = base / "corpus.sqlite3"
+        sqlite3.connect(control).close()
+        sqlite3.connect(corpus).close()
+        if os.name == "posix":
+            os.chmod(tenant_root, 0o755)
+            os.chmod(control, 0o600)
+            os.chmod(corpus, 0o600)
+        runtime = DatabaseRuntime(control, tenant_root, corpus)
+        if os.name == "posix":
+            with patch.dict(os.environ, {"COPILOT_ENV": "production"}):
+                with self.assertRaisesRegex(DatabaseRuntimeError, "tenant storage root permissions"):
+                    runtime.initialize()
+        else:
+            self.skipTest("POSIX directory permission bits are not portable to this platform")
+
     def tearDown(self):
         self.runtime.close_current_thread()
         self.temp.cleanup()
