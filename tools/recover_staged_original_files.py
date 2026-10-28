@@ -27,6 +27,7 @@ def _connect_control(path: Path) -> sqlite3.Connection:
 def _process_tenant(database_path: Path, firm_id: int, store: LocalPrivateObjectStore, apply: bool):
     findings = []
     recovered = 0
+    expected_backend = "s3" if isinstance(store, S3PrivateObjectStore) else "local"
     if database_path.is_symlink() or not database_path.is_file():
         raise RuntimeError(f"Tenant database for firm {firm_id} is missing or unsafe")
     if apply:
@@ -44,11 +45,18 @@ def _process_tenant(database_path: Path, firm_id: int, store: LocalPrivateObject
         if binding is None or int(binding["firm_id"]) != firm_id:
             raise RuntimeError(f"Tenant database binding mismatch for firm {firm_id}")
         rows = connection.execute(
-            "SELECT object_id,firm_id,sha256,byte_size,state FROM original_file_objects "
+            "SELECT object_id,firm_id,storage_backend,sha256,byte_size,state FROM original_file_objects "
             "WHERE state='staged' ORDER BY object_id"
         ).fetchall()
         for row in rows:
             object_id = row["object_id"]
+            if row["storage_backend"] != expected_backend:
+                findings.append({
+                    "firm_id": firm_id, "object_id": object_id,
+                    "status": "manual_review_required",
+                    "detail": "metadata backend does not match the configured recovery backend",
+                })
+                continue
             if int(row["firm_id"]) != firm_id:
                 findings.append({
                     "firm_id": firm_id, "object_id": object_id,
@@ -59,11 +67,11 @@ def _process_tenant(database_path: Path, firm_id: int, store: LocalPrivateObject
             if apply:
                 connection.execute("BEGIN IMMEDIATE")
                 current = connection.execute(
-                    "SELECT sha256,byte_size,state FROM original_file_objects "
+                    "SELECT storage_backend,sha256,byte_size,state FROM original_file_objects "
                     "WHERE object_id=? AND firm_id=?",
                     (object_id, firm_id),
                 ).fetchone()
-                if current is None or current["state"] != "staged":
+                if current is None or current["state"] != "staged" or current["storage_backend"] != expected_backend:
                     connection.rollback()
                     findings.append({
                         "firm_id": firm_id, "object_id": object_id,
