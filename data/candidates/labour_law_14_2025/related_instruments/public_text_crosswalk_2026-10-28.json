@@ -105,6 +105,145 @@
       "reuse_rights": "unknown",
       "currentness": "not verified; event-specific Ministry circulars can affect a particular holiday date but do not themselves prove permanent amendment",
       "card_action": "cross-reference only; check full current text and any current-year holiday guidance before answering a specific date"
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-49-2026",
+      "number": 49,
+      "year": 2026,
+      "related_law_articles": [
+        124
+      ],
+      "title_ar": "قرار وزير العمل رقم 49 لسنة 2026 بشأن تحديد الأعمال الخطرة والصعبة والمناطق النائية التي يستحق العاملون فيها زيادة الإجازة السنوية سبعة أيام",
+      "primary_lead": {
+        "url": "https://dspace.id.com.eg/items/f32b4a07-6598-4ed8-a170-60d631a57221",
+        "status": "Official Gazette repository metadata for Supplement issue 64 (تابع), dated 2026-03-18"
+      },
+      "secondary_text": {
+        "url": "https://ahmedazimelgamel.blogspot.com/2026/03/49-2026-7.html",
+        "status": "Public secondary transcription of Articles 1–5 and schedules; not compared with the official PDF"
+      },
+      "official_announcement": {
+        "url": "https://www.labour.gov.eg/ar/الأخبار/لتحقق-التوازن-بين-متطلبات-الإنتاج-وصون-حقوق-القوى-العاملة-وزير-العمل-يصدر-قرار-ا-وزاري-ا-بتحديد-الأعمال-الخطرة-والمناطق-النائية-التي-ت-زاد-فيها-الإجازات-السنوية-7-أيام-للعاملين/",
+        "status": "Ministry announcement confirms subject and seven additional annual-leave days"
+      },
+      "effective_date": "secondary transcription says day after publication; not verified against official PDF",
+      "reuse_rights": "unknown",
+      "currentness": "not verified",
+      "card_action": "check the exact job and remote-area schedules and worker's actual duties/location; do not infer eligibility from sector alone"
+    },
+    {
+      "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+      "number": 162,
+      "year": 2026,
+      "related_law_articles": [
+        4,
+        5,
+        6,
+        117,
+        118,
+        119,
+        120,
+        121,
+        124,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175
+      ],
+      "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+      "primary_lead": {
+        "url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+        "status": "Official Gazette metadata for Supplement issue 176 (تابع), dated 2026-08-13; official PDFs listed but require copy request"
+      },
+      "secondary_text": {
+        "url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+        "status": "Public secondary transcription of Articles 1–66; not compared fully with official Gazette PDF"
+      },
+      "official_announcement": {
+        "url": "https://www.labour.gov.eg/ar/الأخبار/وزير-العمل-يعلن-نص-القواعد-العامة-للائحة-تنظيم-العمل-بالقطاع-الخاص/",
+        "status": "Ministry announcement summarizes workplace regulation rules"
+      },
+      "effective_date": "secondary transcription states day after publication; unverified against primary PDF",
+      "reuse_rights": "unknown",
+      "currentness": "not verified",
+      "card_action": "use as cross-reference lead only; do not infer amendments to Law articles; compare official text and later decisions before authoritative use"
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-187-2025",
+      "number": 187,
+      "year": 2025,
+      "related_law_articles": [
+        166,
+        167,
+        168
+      ],
+      "title_ar": "قرار وزير العمل رقم 187 لسنة 2025 بشأن آليات وضوابط اعتماد الاستقالات العمالية من جانب مكتب العمل",
+      "primary_lead": {
+        "url": "https://www.labour.gov.eg/ar/الأخبار/وزير-العمل-يُصدر-قرارا-لضبط-آليات-اعتماد-الاستقالات-العمالية-طبقا/",
+        "status": "Official Ministry announcement dated 2025-09-15 describes the decision and its nine articles"
+      },
+      "secondary_text": {
+        "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/14-09-2025/no-187?id=2177898&type=1",
+        "status": "Partial secondary legal-database preview; full text access restricted"
+      },
+      "effective_date": "not verified",
+      "reuse_rights": "unknown",
+      "currentness": "not verified",
+      "card_action": "cross-reference administrative Labour Office authentication procedure separately from statutory substantive resignation rules; do not infer complete procedure from the preview"
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-214-2025",
+      "number": 214,
+      "year": 2025,
+      "related_law_articles": [
+        86,
+        87,
+        88,
+        89
+      ],
+      "title_ar": "قرار وزير العمل رقم 214 لسنة 2025 بشأن ضوابط وآليات تحرير عقود العمل",
+      "primary_lead": {
+        "url": "https://alamiria.com/Sec/TashTxt?id=5EinXV37k4w%3D",
+        "status": "Official Amiri Press searchable text page; source binary not downloaded or hashed"
+      },
+      "secondary_text": {
+        "url": "https://dspace.id.com.eg/items/8ebcec10-0c45-4fbf-9a56-44ca409dc6c4/full",
+        "status": "Official Gazette repository metadata and PDF listing"
+      },
+      "effective_date": "Gazette repository metadata date 2025-10-05; exact effective date needs verification",
+      "reuse_rights": "unknown",
+      "currentness": "not verified",
+      "card_action": "cross-reference contract-writing requirements; compare full operative text and any later decisions before authoritative use"
     }
   ]
 }
