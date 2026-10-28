@@ -189,8 +189,8 @@ class ProductionReleaseGateTests(unittest.TestCase):
                     "--reviewer-registry", str(reviewer_path),
                     "--out", str(manifest_path),
                 ])
-        self.assertEqual(result, 2)
-        self.assertEqual(manifest_path.read_text(encoding="utf-8"), "{}")
+                self.assertEqual(result, 2)
+                self.assertEqual(manifest_path.read_text(encoding="utf-8"), "{}")
 
     def test_missing_database_operational_acceptance_blocks_otherwise_ready_release(self):
         questions = self._approved_questions()
