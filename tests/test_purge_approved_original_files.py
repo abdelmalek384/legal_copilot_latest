@@ -11,6 +11,7 @@ from cryptography.fernet import Fernet
 from database_backup import create_backup_bundle, restore_backup_bundle
 from database_runtime import DatabaseRuntime
 from original_file_reconciliation import TenantDatabase, reconcile_original_file_storage
+from tools.firm_offboarding_preflight import inspect_firm_offboarding
 from original_file_storage import LocalPrivateObjectStore
 from tools.purge_approved_original_files import purge_approved_requests
 
@@ -108,6 +109,63 @@ class PurgeApprovedOriginalFilesTests(unittest.TestCase):
         )
         firm_db.commit()
         return staged, request_id
+
+    def test_interrupted_purge_after_unlink_is_manual_review_and_never_claims_success(self):
+        staged, request_id = self._create_approved_request()
+        self.runtime.disable_firm(self.firm_id)
+        control = self.runtime.control_connection()
+        control.execute(
+            "UPDATE firm_memberships SET status='suspended',updated_at=datetime('now') "
+            "WHERE firm_id=?",
+            (self.firm_id,),
+        )
+        control.commit()
+        self.runtime.close_current_thread()
+
+        original_delete = LocalPrivateObjectStore.delete
+
+        def unlink_then_interrupt(store, firm_id, object_id):
+            removed = original_delete(store, firm_id, object_id)
+            self.assertTrue(removed)
+            raise RuntimeError("simulated interruption after filesystem unlink")
+
+        with patch.object(LocalPrivateObjectStore, "delete", new=unlink_then_interrupt):
+            result = purge_approved_requests(
+                self.tenant_path,
+                self.object_root,
+                self.firm_id,
+                self.operator_id,
+                apply=True,
+                control_database_path=self.control_path,
+                tenant_root=self.tenant_root,
+                corpus_database_path=self.corpus_path,
+            )
+
+        self.assertEqual(result["purged_count"], 0)
+        self.assertEqual(result["results"][0]["status"], "manual_review_required")
+        tenant = sqlite3.connect(self.tenant_path)
+        try:
+            request = tenant.execute(
+                "SELECT status FROM original_file_deletion_requests WHERE id=?",
+                (request_id,),
+            ).fetchone()
+            metadata = tenant.execute(
+                "SELECT purged_at FROM original_file_objects WHERE object_id=?",
+                (staged.object_id,),
+            ).fetchone()
+            self.assertEqual(request[0], "approved")
+            self.assertIsNone(metadata[0])
+        finally:
+            tenant.close()
+        self.assertFalse(
+            (self.object_root / f"firm-{self.firm_id}" / f"{staged.object_id}.blob").exists()
+        )
+        preflight = inspect_firm_offboarding(
+            self.control_path, self.tenant_root, self.corpus_path,
+            self.object_root, self.firm_id,
+        )
+        self.assertFalse(preflight["purge_preflight_clear"])
+        self.assertIn("missing_original_object", {item["code"] for item in preflight["findings"]})
 
     def test_purge_operation_rejects_production_mode_before_touching_storage(self):
         with patch.dict("os.environ", {
