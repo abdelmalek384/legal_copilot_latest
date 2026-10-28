@@ -76,13 +76,16 @@ Fresh separate-database installs must use encrypted tenancy bundles, not the leg
 
 ```bash
 python manage.py genkey
-# Store the generated BACKUP_KEY outside the server and repository.
-BACKUP_KEY='YOUR_STORED_KEY' python manage.py backup-tenancy /safe/backup/path --quiesced --keep 14
-BACKUP_KEY='YOUR_STORED_KEY' python manage.py verify-backup-tenancy /safe/backup/path/backup-file.enc
-BACKUP_KEY='YOUR_STORED_KEY' python manage.py restore-tenancy /safe/backup/path/backup-file.enc --target-root /new/restore/directory
+# Store the generated key in a protected secret store, not in the repository.
+read -rsp "BACKUP_KEY: " BACKUP_KEY; echo
+export BACKUP_KEY
+python manage.py backup-tenancy /safe/backup/path --quiesced --keep 14
+python manage.py verify-backup-tenancy /safe/backup/path/backup-file.enc
+python manage.py restore-tenancy /safe/backup/path/backup-file.enc --target-root /new/restore/directory
+unset BACKUP_KEY
 ```
 
-Keep application writes paused for the full backup snapshot window. Verify a bundle before recovery, restore only to a new target directory, and complete a witnessed restore/rollback drill before production. Never paste real keys into tickets, chat, shell history shared with others, or source control. The commands above are operator examples; replace paths and the key placeholder with values from your deployment's protected secret store.
+Keep application writes paused for the full backup snapshot window. Verify a bundle before recovery, restore only to a new target directory, and complete a witnessed restore/rollback drill before production. For non-interactive deployments, inject the key from the deployment's protected secret manager. Never place real keys in tickets, chat, or source control. The commands above are operator examples; replace paths and the key placeholder with values from your deployment's protected secret store.
 
 ### Account and privilege operations
 
