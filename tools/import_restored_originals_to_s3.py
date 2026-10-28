@@ -129,7 +129,10 @@ def main() -> int:
                     if int(row["firm_id"]) != firm_id:
                         raise RuntimeError("Restored original metadata crosses its tenant binding")
                     purged = has_purged and row["purged_at"] is not None
-                    source = object_root / f"firm-{firm_id}" / f"{object_id}.blob"
+                    namespace = object_root / f"firm-{firm_id}"
+                    if namespace.is_symlink() or not namespace.is_dir():
+                        raise RuntimeError("Restored firm object namespace is missing or unsafe")
+                    source = namespace / f"{object_id}.blob"
                     if purged:
                         if source.exists() or source.is_symlink():
                             raise RuntimeError("Purged original unexpectedly exists in restored object inventory")
