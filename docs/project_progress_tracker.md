@@ -215,3 +215,36 @@ PR-specific Tests and non-database safety workflows passed for the UI changes be
 4. **Database work:** keep the assigned database/identity PRs separate. No irreversible database changes were made by this workstream.
 
 Overall readiness remains 42% ± 8% because the largest unresolved product gap is still the absence of a comprehensive verified Egyptian legal corpus and qualified legal review.
+
+
+## Latest checkpoint — 2026-10-28 (after PR #706)
+
+This update supersedes prior checkpoints where statuses have changed. Percentages remain estimates, not a legal accuracy score or a full product acceptance decision.
+
+| Workstream | Estimate | Status |
+|---|---:|---|
+| Overall product readiness | 42% ± 8 percentage points | Unchanged; verified legal content and real-world acceptance remain major gaps. |
+| Verified Egyptian legal corpus | 6% | Blocked on source artifacts, rights scope, amendment/effective-date reconciliation, and qualified Egyptian-lawyer review. |
+| Research evaluation and citation integrity | 78% | Citation-status evidence, runner/scorer integration, and strict scoring safeguards are merged. A lawyer-labelled benchmark is still required. |
+| Legal corpus audit safeguards | 75% | Review-event and chunk/version consistency audits are merged. These flag metadata conflicts but do not authenticate legal texts. |
+| Source provenance / permission metadata checks | 80% | Manual capture integrity validation now also blocks permission-readiness flags when terms review is older than the internal 180-day freshness policy. This is not a legal rule and does not grant permission. |
+| UI/UX implementation | 55% | Case/client/document workflows are more consistently bilingual; modal keyboard focus trapping/restoration is implemented. Manual browser/accessibility QA remains open. |
+| Database/tenant isolation | 65% estimate | Other AI's workstream; avoid overlapping migrations, tenant storage, identity lifecycle, and production data operations. |
+
+### Newly merged since the previous checkpoint
+
+- **#699:** corrected README setup, first-owner bootstrap, and separate-database backup/restore instructions.
+- **#700–#703:** localized case creation, client/conflict checks, case-detail fields, document review, case tabs/team roles, and activity timestamps.
+- **#704:** modal keyboard focus trap and focus restoration.
+- **#706:** stale source-terms review now blocks collection/commercial-readiness flags until terms are rechecked.
+
+The full Tests workflow passed on combined main commit 9f7392e9f7a22e4743ad00ef57891ea5d38ce68b after PR #706. PR-level and main-level CI are tied to exact commits; future code changes require fresh validation.
+
+### Remaining blockers / next order
+
+1. **Manual UI acceptance:** test Arabic RTL and English LTR at 360, 768, 1024, and 1440 px; keyboard-only navigation; modal focus return; screen-reader labels; zoom/reflow; long Arabic/Latin citations; and document-review workflows. Record screenshots and results.
+2. **Legal corpus:** keep source permissions unknown unless supported by source-specific evidence. Labour Law 14/2025 remains blocked pending independently sourced original artifacts, amendment/effective-date reconciliation, and lawyer sign-off.
+3. **Research quality:** run evaluation against lawyer-reviewed expected sources and pin-cites; CI success does not create legal ground truth.
+4. **Database work:** leave the assigned database/identity workstream separate. No irreversible database actions were taken here.
+
+Overall readiness remains 42% ± 8%. Engineering safeguards have improved, but a comprehensive verified Egyptian legal corpus and qualified legal review are still missing.
