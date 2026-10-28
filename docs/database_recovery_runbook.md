@@ -54,6 +54,16 @@ python manage.py reconcile-interrupted-provisioning \
 
 The command atomically changes the firm to `disabled`, changes the catalog to `failed` with no database filename, and appends an immutable audit event. It does not activate the firm. Once the failure is reviewed, the separate `retry-failed-provisioning` command can perform a fresh, audited attempt. If any database file or sidecar exists, stop and investigate integrity, firm binding, and catalog history manually; do not force the state or delete the file as part of reconciliation.
 
+## Run the read-only tenant offboarding preflight
+
+Before any tenant-level export, retention action, or deletion proposal, disable the firm through the lifecycle command and suspend/revoke its active memberships according to the approved offboarding plan. Then run the read-only preflight using the intended database/object-storage paths:
+
+```bash
+python tools/firm_offboarding_preflight.py --firm-id 123 --json
+```
+
+The command never deletes or modifies data. A clear report is not legal authorization to purge. Resolve every finding first, including active memberships, active/pending invitations, active legal holds, staged or quarantined originals, pending second-admin deletion approvals, in-flight purges, integrity/binding failures, and object-store reconciliation discrepancies. Active invitations are a blocker even when the firm is disabled; revoke/expire them through the audited invitation lifecycle rather than deleting invitation rows. Retain the report and policy/legal approval evidence in the restricted operations record.
+
 ## Create a coordinated encrypted bundle
 
 1. Put the application into maintenance mode or stop all application/background workers that can write to any of the three database areas. Wait for active requests and jobs to finish. Keep writes paused for the full bundle snapshot window.
