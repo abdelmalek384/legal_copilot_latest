@@ -224,40 +224,62 @@ def addmembership_cli(a):
         runtime.close_current_thread()
 
 
+def _is_privileged_identity(control, user_id: int) -> bool:
+    return control.execute(
+        "SELECT 1 FROM user_platform_roles WHERE user_id=? "
+        "UNION ALL SELECT 1 FROM firm_memberships WHERE user_id=? AND firm_role='admin' LIMIT 1",
+        (user_id, user_id),
+    ).fetchone() is not None
+
+
 def resetpw(a):
-    pw = read_password("كلمة المرور الجديدة: ")
     if app._separate_runtime_enabled():
         runtime = DatabaseRuntime.from_env()
         try:
             runtime.initialize()
             c = runtime.control_connection()
             email = app.normalize_email(a.email)
-            c.execute("BEGIN IMMEDIATE")
-            account = c.execute("SELECT id FROM users WHERE email_normalized=?", (email,)).fetchone()
+            account = c.execute(
+                "SELECT id,status FROM users WHERE email_normalized=?", (email,)
+            ).fetchone()
             if not account:
-                c.rollback()
                 raise SystemExit("لا يوجد حساب بهذا البريد الإلكتروني.")
+            if _is_privileged_identity(c, int(account["id"])):
+                raise SystemExit(
+                    "Privileged identities require the MFA-authorized resetpw-assisted procedure."
+                )
+            pw = read_password("كلمة المرور الجديدة: ")
+            c.execute("BEGIN IMMEDIATE")
+            current = c.execute(
+                "SELECT id,status FROM users WHERE id=?", (account["id"],)
+            ).fetchone()
+            if current is None or current["status"] != "active" or _is_privileged_identity(c, int(account["id"])):
+                c.rollback()
+                raise SystemExit("Identity state changed; no password reset was performed.")
             c.execute(
-                "UPDATE users SET password_hash=?,updated_at=datetime('now') WHERE id=?",
+                "UPDATE users SET password_hash=?,updated_at=datetime('now') WHERE id=? AND status='active'",
                 (app.hash_pw(pw), account["id"]),
             )
-            c.execute("DELETE FROM auth_sessions WHERE user_id=?", (account["id"],))
+            revoked = c.execute("DELETE FROM auth_sessions WHERE user_id=?", (account["id"],)).rowcount
             c.execute(
                 "INSERT INTO platform_security_events(actor_user_id,target_user_id,event_type,detail_json) "
                 "VALUES(NULL,?,'password_reset_cli',?)",
-                (account["id"], json.dumps({"method": "manage.py resetpw", "sessions_revoked": True}, sort_keys=True)),
+                (account["id"], json.dumps({"method": "manage.py resetpw", "sessions_revoked": revoked}, sort_keys=True)),
             )
             c.commit()
             print("تم تحديث كلمة المرور وإبطال جميع الجلسات؛ سجّل الدخول من جديد.")
             return
-        except Exception:
+        except SystemExit:
+            raise
+        except Exception as exc:
             try:
                 runtime.control_connection().rollback()
             except Exception:
                 pass
-            raise
+            raise SystemExit("Password reset failed; no success is reported.") from exc
         finally:
             runtime.close_current_thread()
+    pw = read_password("كلمة المرور الجديدة: ")
     c = app.conn()
     email = a.email.strip().lower()
     c.execute("BEGIN IMMEDIATE")
@@ -271,6 +293,171 @@ def resetpw(a):
               (account["firm_id"], account["id"], "password_reset_cli_sessions_revoked"))
     c.commit()
     print("تم تحديث كلمة المرور؛ سجّل الدخول من جديد.")
+
+
+def resetpw_assisted_cli(a):
+    """Reset a privileged identity only after a distinct active MFA-enabled platform admin authorizes it."""
+    if not app._separate_runtime_enabled():
+        raise SystemExit("Assisted privileged password recovery requires separate-database mode.")
+    if not getattr(a, "confirm_reset", False):
+        raise SystemExit("Explicit --confirm-reset is required.")
+    if isinstance(a.target_user_id, bool) or a.target_user_id <= 0:
+        raise SystemExit("--target-user-id must be a positive integer.")
+    reason = a.reason.strip() if isinstance(a.reason, str) else ""
+    if len(reason) < 8 or len(reason) > 500:
+        raise SystemExit("--reason must contain 8 to 500 characters; do not include secrets.")
+    reference_pattern = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._/-]{2,63}$")
+    operator_reference = a.operator_reference.strip() if isinstance(a.operator_reference, str) else ""
+    change_reference = a.change_reference.strip() if isinstance(a.change_reference, str) else ""
+    if not reference_pattern.fullmatch(operator_reference):
+        raise SystemExit("--operator-reference must be a 3-64 character restricted identifier.")
+    if not reference_pattern.fullmatch(change_reference):
+        raise SystemExit("--change-reference must be a 3-64 character restricted identifier.")
+    actor_email = app.normalize_email(a.actor_email)
+    if not actor_email:
+        raise SystemExit("--actor-email must identify an existing global identity.")
+
+    actor_password = getpass.getpass("Authorizing platform administrator password: ")
+    actor_code = getpass.getpass("Authorizing platform administrator TOTP code: ")
+    new_password = read_password("New password for privileged account: ")
+    new_password_hash = app.hash_pw(new_password)
+    runtime = DatabaseRuntime.from_env()
+    try:
+        runtime.initialize()
+        control = runtime.control_connection()
+        now = int(time.time())
+        control.execute("BEGIN IMMEDIATE")
+
+        def abort(message):
+            if control.in_transaction:
+                control.rollback()
+            raise SystemExit(message)
+
+        actor = control.execute(
+            "SELECT id,password_hash,status FROM users WHERE email_normalized=?",
+            (actor_email,),
+        ).fetchone()
+        if (
+            actor is None or actor["status"] != "active"
+            or not app.check_pw(actor_password, actor["password_hash"])
+        ):
+            abort("Assisted recovery actor authentication failed.")
+        actor_id = int(actor["id"])
+        if actor_id == a.target_user_id:
+            abort("The authorizing platform administrator must differ from the target.")
+        authorized = control.execute(
+            "SELECT 1 FROM user_platform_roles WHERE user_id=? AND role_name='platform_admin'",
+            (actor_id,),
+        ).fetchone()
+        if authorized is None:
+            abort("Only an active platform_admin may authorize privileged password recovery.")
+        actor_mfa = control.execute(
+            "SELECT status,locked_until FROM mfa_credentials WHERE user_id=?",
+            (actor_id,),
+        ).fetchone()
+        if actor_mfa is None or actor_mfa["status"] != "enabled":
+            abort("The authorizing platform administrator must have enabled MFA.")
+        if int(actor_mfa["locked_until"] or 0) > now:
+            abort("The authorizing administrator's MFA is temporarily locked.")
+        try:
+            factor = app._mfa_verify_factor_in_transaction(
+                control, actor_id, code=actor_code, recovery_code=None, now=now,
+            )
+        except app.MFAConfigurationError as exc:
+            abort("MFA encryption key is unavailable or invalid.")
+        if factor != "totp":
+            app._mfa_record_failure(control, actor_id, now)
+            control.commit()
+            raise SystemExit("Assisted recovery actor MFA verification failed.")
+
+        target = control.execute(
+            "SELECT id,status,password_hash FROM users WHERE id=?",
+            (a.target_user_id,),
+        ).fetchone()
+        if target is None or target["status"] != "active":
+            abort("Target must be an existing active global identity.")
+        if not _is_privileged_identity(control, int(target["id"])):
+            abort("This command is restricted to firm-admin or platform-role identities.")
+        active_access = control.execute(
+            "SELECT 1 FROM firm_memberships fm JOIN firms f ON f.id=fm.firm_id "
+            "WHERE fm.user_id=? AND fm.status='active' AND f.status='active' "
+            "UNION ALL SELECT 1 FROM user_platform_roles WHERE user_id=? LIMIT 1",
+            (target["id"], target["id"]),
+        ).fetchone()
+        if active_access is None:
+            abort("Target has no active firm membership or platform role; no reset was performed.")
+        if app.check_pw(new_password, target["password_hash"]):
+            abort("Choose a new password different from the current password.")
+        if control.execute(
+            "SELECT 1 FROM user_platform_roles WHERE user_id=? AND role_name='platform_admin'",
+            (target["id"],),
+        ).fetchone():
+            active_admins = control.execute(
+                "SELECT COUNT(DISTINCT u.id) FROM users u JOIN user_platform_roles r ON r.user_id=u.id "
+                "WHERE u.status='active' AND r.role_name='platform_admin'"
+            ).fetchone()[0]
+            if active_admins <= 1:
+                abort("Cannot reset the last active platform administrator through this command.")
+
+        revoked = control.execute(
+            "DELETE FROM auth_sessions WHERE user_id=?", (target["id"],)
+        ).rowcount
+        control.execute(
+            "UPDATE users SET password_hash=?,updated_at=datetime('now') "
+            "WHERE id=? AND status='active'",
+            (new_password_hash, target["id"]),
+        )
+        firm = control.execute(
+            "SELECT fm.firm_id FROM firm_memberships fm JOIN firms f ON f.id=fm.firm_id "
+            "WHERE fm.user_id=? AND fm.firm_role='admin' AND fm.status='active' AND f.status='active' "
+            "ORDER BY fm.firm_id LIMIT 1",
+            (target["id"],),
+        ).fetchone()
+        control.execute(
+            "INSERT INTO platform_security_events("
+            "actor_user_id,target_user_id,firm_id,event_type,detail_json) "
+            "VALUES(?,?,?,'password_reset_assisted_cli',?)",
+            (
+                actor_id, target["id"], int(firm["firm_id"]) if firm else None,
+                json.dumps({
+                    "method": "manage.py resetpw-assisted",
+                    "reason": reason,
+                    "operator_reference": operator_reference,
+                    "change_reference": change_reference,
+                    "sessions_revoked": revoked,
+                }, sort_keys=True, separators=(",", ":")),
+            ),
+        )
+        control.execute(
+            "INSERT INTO mfa_security_events(actor_user_id,target_user_id,event_type,detail_json) "
+            "VALUES(?,?,'administrator_reset',?)",
+            (
+                actor_id, target["id"],
+                json.dumps({
+                    "reason": "assisted_privileged_password_recovery",
+                    "method": "manage.py resetpw-assisted",
+                    "sessions_revoked": revoked,
+                }, sort_keys=True, separators=(",", ":")),
+            ),
+        )
+        control.commit()
+        print(json.dumps({
+            "status": "password_reset_assisted",
+            "actor_user_id": actor_id,
+            "target_user_id": int(target["id"]),
+            "sessions_revoked": revoked,
+            "event_type": "password_reset_assisted_cli",
+        }, sort_keys=True))
+    except SystemExit:
+        raise
+    except (DatabaseRuntimeError, sqlite3.Error, ValueError) as exc:
+        try:
+            runtime.control_connection().rollback()
+        except Exception:
+            pass
+        raise SystemExit("Assisted privileged password recovery failed; no success is reported.") from exc
+    finally:
+        runtime.close_current_thread()
 
 
 def backup(a):
