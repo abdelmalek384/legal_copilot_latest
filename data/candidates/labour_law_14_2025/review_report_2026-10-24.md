@@ -77,3 +77,6 @@ The printed page 43 evidence is included in the four-page targeted review set; i
 
 
 Further targeted extracted-text review on 2026-10-28 covered printed page 52 (Articles 117 and 121) and printed pages 54–55 (Article 124). This extends the provisional review seed to working hours, overtime and annual leave without changing pending legal-status, amendment-history, permission or counsel-review flags.
+
+
+Further targeted extracted-text review on 2026-10-28 covered printed pages 68–70 (Article 165) and 73–74 (Article 177). This adds termination-compensation and court-jurisdiction provisions to the provisional review seed while preserving all pending verification and permission flags.
