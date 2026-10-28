@@ -124,3 +124,16 @@ Focused tests now include Arts. 231–255, and previous fixed card-count asserti
 
 **Next tranche:** continue with the remaining occupational safety and health provisions from Article 256 onward, then labour inspection, penalties, and transitional provisions; continue searching for publicly accessible full-text implementing decisions rather than retrying restricted file links.
 
+## Evidence-card expansion — safety inspection, medical protection and worker welfare (2026-10-28)
+
+The provisional inventory now contains **216 cards**, extending through Article 274.
+
+- **Arts. 256–265:** occupational safety inspection-unit formation and powers, access to inspect, internal safety committees, accident/occupational disease reporting, licensed training and consultants, national research centre, national council and governorate committees.
+- **Arts. 266–274:** pre-employment medical and capability exams; employer training and no-charge PPE; worker PPE duties; daily inspection and periodic medical checks; first aid and nursing thresholds; transport, food and housing for remote worksites; social/cultural services for establishments with 50+ workers; the social/health/cultural services fund and its services/contributions.
+
+Text summaries were cross-checked against the public Law Hub transcription at https://lawhub.info/eg/?p=11848; official publisher and government Gazette links remain attached. Inferred Gazette page map: Arts. 256–259 p.87–88/PDF index 85–86; 260–265 p.88–89/index 86–87; 266–270 p.90/index 88; 271–274 p.91/index 89. These pinpoints are not visually verified page-by-page. No PDF hash is claimed.
+
+Focused tests were added for Arts. 256–274 and all earlier card-count assertions were updated to 216; tests have not been run. Keep authoritative retrieval disabled. Safety thresholds, licensing, medical fitness, reporting deadlines, remote-worksite entitlements and service-fund contributions depend on implementing decisions and specific facts; the cards are not ready for live legal advice.
+
+**Next tranche:** continue with labour inspection and penalties (starting Article 275), then remaining closing/transitional provisions, and maintain a public-text fallback for implementing decisions where repository downloads are gated. No access controls were bypassed.
+
