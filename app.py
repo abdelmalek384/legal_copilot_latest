@@ -165,9 +165,22 @@ def _separate_runtime_enabled():
     return True
 
 
+# Reject shared-database mode during import outside explicitly selected local
+# development/test runs. Production retains its more specific configuration error
+# below, while staging and unset/unknown environments cannot defer failure until
+# the first database request.
+_environment_mode = os.environ.get("COPILOT_ENV", "").strip().lower()
+if os.environ.get("COPILOT_DB", "").strip() and _environment_mode not in {
+    "development", "dev", "test", "prod", "production"
+}:
+    raise RuntimeError(
+        "COPILOT_DB is restricted to explicit development/test mode; "
+        "configure COPILOT_CONTROL_DB, COPILOT_TENANT_DB_ROOT, and COPILOT_CORPUS_DB."
+    )
+
 # Never start production with the legacy shared-database compatibility path. The
 # explicit COPILOT_ENV switch keeps local development compatibility available.
-if os.environ.get("COPILOT_ENV", "").strip().lower() in {"prod", "production"}:
+if _environment_mode in {"prod", "production"}:
     required_paths = ("COPILOT_CONTROL_DB", "COPILOT_TENANT_DB_ROOT", "COPILOT_CORPUS_DB")
     missing_paths = [name for name in required_paths if not os.environ.get(name, "").strip()]
     shared_path_set = bool(os.environ.get("COPILOT_DB", "").strip())
