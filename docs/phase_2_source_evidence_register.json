@@ -480,9 +480,37 @@
           "provisions": [
             "القانون المرافق، المادة 177"
           ]
+        },
+        {
+          "pdf_page_index_zero_based": 59,
+          "printed_page_label": "61",
+          "provisions": [
+            "القانون المرافق، المادة 141"
+          ]
+        },
+        {
+          "pdf_page_index_zero_based": 60,
+          "printed_page_label": "62",
+          "provisions": [
+            "القانون المرافق، المادة 141"
+          ]
+        },
+        {
+          "pdf_page_index_zero_based": 61,
+          "printed_page_label": "63",
+          "provisions": [
+            "القانون المرافق، المادة 148"
+          ]
+        },
+        {
+          "pdf_page_index_zero_based": 62,
+          "printed_page_label": "64",
+          "provisions": [
+            "القانون المرافق، المادة 148"
+          ]
         }
       ],
-      "notes": "Targeted PDF text extraction was reviewed for the listed pages. The original file was not downloaded, hashed, or visually inspected. This does not establish a complete article-by-article match, amendment history, current status, or permission for systematic retrieval/commercial use. Additional targeted pages reviewed: printed page 52 (Articles 117 and 121), and printed pages 54-55 (Article 124). Additional targeted pages reviewed: printed pages 68-70 (Article 165) and 73-74 (Article 177)."
+      "notes": "Targeted PDF text extraction was reviewed for the listed pages. The original file was not downloaded, hashed, or visually inspected. This does not establish a complete article-by-article match, amendment history, current status, or permission for systematic retrieval/commercial use. Additional targeted pages reviewed: printed page 52 (Articles 117 and 121), and printed pages 54-55 (Article 124). Additional targeted pages reviewed: printed pages 68-70 (Article 165) and 73-74 (Article 177). Additional targeted pages reviewed: printed pages 61-62 (Article 141) and 63-64 (Article 148)."
     }
   ],
   "document_records_to_create_from_batch": [
