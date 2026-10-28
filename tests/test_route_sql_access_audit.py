@@ -61,6 +61,44 @@ def lookup():
         self.assertIn("{dynamic}", site["sql_template"])
         self.assertGreater(site["line"], 0)
 
+    def test_resolves_finite_table_names_from_literal_loops(self):
+        source = '''
+def conn():
+    return None
+
+@app.delete("/cases/{case_id}")
+def delete_case(case_id):
+    db = conn()
+    for table in ("chunks", "docs", "tasks"):
+        db.execute("DELETE FROM %s WHERE case_id=?" % table, (case_id,))
+'''
+        report = audit_source(source)
+        route = report["routes"][0]
+        self.assertEqual(route["unresolved_sql_call_count"], 0)
+        self.assertEqual(report["unresolved_sql_call_count"], 0)
+        self.assertEqual(report["unclassified_sql_routes"], [])
+
+    def test_resolves_sql_passed_to_local_lambda_and_reports_dynamic_join(self):
+        source = '''
+def corpus_conn():
+    return None
+
+@app.get("/cases/{case_id}")
+def case_detail(case_id):
+    db = corpus_conn()
+    rows = lambda q: [dict(row) for row in db.execute(q, (case_id,))]
+    result = rows("SELECT id FROM legal_documents WHERE document_id=?")
+    where = []
+    where.append("document_type = ?")
+    sql = "SELECT id FROM legal_documents WHERE " + " AND ".join(where)
+    return result, db.execute(sql, ("law",)).fetchall()
+'''
+        report = audit_source(source)
+        self.assertEqual(report["unresolved_sql_call_count"], 0)
+        self.assertEqual(report["routes"][0]["unresolved_sql_call_count"], 0)
+        self.assertGreaterEqual(report["dynamic_sql_call_count"], 1)
+        self.assertIn("legal_documents", report["routes"][0]["table_references"])
+
     def test_flags_direct_sqlite_open_in_route_call_graph(self):
         source = '''
 import sqlite3
