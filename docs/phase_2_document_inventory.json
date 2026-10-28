@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "inventory_id": "EG-PHASE2-LEGAL-DOCUMENT-INVENTORY",
-  "prepared_on": "2026-10-23",
+  "prepared_on": "2026-10-28",
   "purpose": "Structured discovery inventory for Phase 2. Entries are research leads, not collected files, verified current law, permission to collect, or lawyer-approved legal advice.",
   "policy": {
     "default_collection_permission": "unknown",
@@ -394,6 +394,11 @@
           "document_id": "EG-LABOUR-DECISION-271-2025",
           "relationship": "implements_or_supports",
           "relationship_status": "candidate_pending_text_review"
+        },
+        {
+          "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+          "relationship": "implements_or_supports",
+          "relationship_status": "official_ministry_report_pending_exact_instrument_and_Gazette_verification"
         }
       ]
     },
@@ -1933,6 +1938,38 @@
         "qualified Egyptian tax-lawyer review"
       ],
       "notes": "Official tax authority index lists this decision under the 2026 tax-dispute renewal. Verify issuing authority, official publication, application process and deadlines."
+    },
+    {
+      "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+      "official_title_ar": "القواعد العامة للائحة تنظيم العمل بالقطاع الخاص (العنوان كما ورد في إعلان وزارة العمل؛ الاسم الرسمي ورقم الأداة قيد التحقق)",
+      "practice_areas": [
+        "labour"
+      ],
+      "document_type": "reported_implementing_rules",
+      "instrument_number": null,
+      "instrument_year": 2026,
+      "source_id": "EG-MINISTRY-OF-LABOUR",
+      "source_status": "official_index_discovered_primary_text_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "exact legal instrument title and number",
+        "official Gazette issue, publication date and page range",
+        "official text and commencement/effective-date clause",
+        "scope and relationship to Labour Law 14/2025",
+        "later amendments, replacement or repeal",
+        "qualified Egyptian labour-lawyer review",
+        "source-specific collection and commercial reuse terms"
+      ],
+      "notes": "Discovery-only candidate. The Ministry of Labour reported publication/launch of general rules for private-sector work regulations in late August/early September 2026. The available announcement does not by itself establish the exact instrument number, official Gazette text/pages, commencement, currentness, or rights to copy/store/index/display the text. Do not download or promote this record; verify the underlying instrument and terms first.",
+      "source_urls": [
+        {
+          "url": "https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D9%8A%D8%B9%D9%84%D9%86-%D9%86%D8%B5-%D8%A7%D9%84%D9%82%D9%88%D8%A7%D8%B9%D8%AF-%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D8%A9-%D9%84%D9%84%D8%A7%D8%A6%D8%AD%D8%A9-%D8%AA%D9%86%D8%B8%D9%8A%D9%85-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A8%D8%A7%D9%84%D9%82%D8%B7%D8%A7%D8%B9-%D8%A7%D9%84%D8%AE%D8%A7%D8%B5/",
+          "source_role": "official Ministry of Labour announcement; discovery evidence only",
+          "status": "discovered_not_downloaded"
+        }
+      ]
     }
   ],
   "next_actions": [
@@ -1970,6 +2007,12 @@
       "owner": "legal researcher",
       "status": "not_started",
       "blocking": true
+    },
+    {
+      "id": "ACT-LABOUR-RULES-2026-VERIFY",
+      "action": "Verify the exact instrument number/title, Official Gazette issue/pages, commencement and relationship to Labour Law 14/2025 for the general private-sector work-regulation rules reported by the Ministry of Labour in 2026; keep permission and legal status unknown until independently reviewed.",
+      "owner": "legal corpus lead",
+      "status": "not_started"
     }
   ],
   "research_log": {
