@@ -223,6 +223,50 @@ class IdentityLifecycleTests(unittest.TestCase):
         ).fetchone()
         self.assertIn('"sessions_revoked":true', event["detail_json"])
 
+    def test_recovery_audit_failure_rolls_back_password_session_and_token(self):
+        old_password = "AuditRecoveryOldPassphrase-2026!"
+        new_password = "AuditRecoveryNewPassphrase-2026!"
+        user_id = self.runtime.create_global_identity(
+            "Audit Recovery User", "audit-recovery@example.test", app.hash_pw(old_password)
+        )
+        self.runtime.create_firm_membership(user_id, self.firm_a, "lawyer")
+        target = TestClient(app.app)
+        try:
+            self.assertEqual(self._login(target, "audit-recovery@example.test", old_password).status_code, 200)
+            with patch.object(app, "send_identity_email") as send:
+                requested = target.post(
+                    "/account/recovery/request", json={"email": "audit-recovery@example.test"}
+                )
+            self.assertEqual(requested.status_code, 200)
+            token = self._token_from_email(send)
+            control = self.runtime.control_connection()
+            old_hash = control.execute(
+                "SELECT password_hash FROM users WHERE id=?", (user_id,)
+            ).fetchone()["password_hash"]
+            control.execute("""
+                CREATE TRIGGER reject_recovery_consumed_audit
+                BEFORE INSERT ON identity_lifecycle_events
+                WHEN NEW.event_type='recovery_consumed'
+                BEGIN SELECT RAISE(ABORT, 'injected recovery audit failure'); END
+            """)
+            control.commit()
+            reset = target.post("/account/recovery/consume", json={
+                "token": token, "new_password": new_password,
+            })
+            self.assertEqual(reset.status_code, 503, reset.text)
+            self.assertEqual(target.get("/session").status_code, 200)
+            self.assertEqual(control.execute(
+                "SELECT password_hash FROM users WHERE id=?", (user_id,)
+            ).fetchone()["password_hash"], old_hash)
+            self.assertEqual(control.execute(
+                "SELECT status FROM password_recovery_tokens ORDER BY id DESC LIMIT 1"
+            ).fetchone()["status"], "sent")
+            self.assertEqual(control.execute(
+                "SELECT COUNT(*) FROM auth_sessions WHERE user_id=?", (user_id,)
+            ).fetchone()[0], 1)
+        finally:
+            target.close()
+
     def test_privileged_account_recovery_requires_assisted_verification(self):
         self.assertEqual(self._login(self.client, "invitation-owner@example.test", self.password).status_code, 200)
         with patch.object(app, "send_identity_email") as send:
