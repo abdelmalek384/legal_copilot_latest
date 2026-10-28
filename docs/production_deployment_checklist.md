@@ -27,16 +27,16 @@ This checklist is a release gate, not a certification. Completing it does not re
 
 ## 3. Database, uploads, and backups
 
-- [ ] Set COPILOT_DB to an absolute path on a persistent, access-controlled volume.
-- [ ] Run python tools/deployment_preflight.py --strict for the exact release environment and retain its output. The current shared-database warning is an intentional blocker; do not bypass it for a multi-firm release.
-- [ ] Before any database-per-firm rollout, run the read-only tenant preflight against an authorized protected copy and retain the JSON report:
-  python scripts/tenant_database_preflight.py /absolute/path/to/control-plane.db /absolute/path/to/tenant-databases
-  Resolve catalog-authority, migration-ledger, foreign-key, path, and file-permission findings before proceeding. A clean report still does not prove route-level tenant isolation.
-- [ ] Restrict database, WAL/SHM files, and backup directories to the application account; encrypt the underlying disk/volume.
+- [ ] Configure three distinct absolute persistent paths: `COPILOT_CONTROL_DB`, `COPILOT_TENANT_DB_ROOT`, and `COPILOT_CORPUS_DB`. Keep `COPILOT_DB` unset; the shared-database compatibility harness is not an approved deployment architecture.
+- [ ] Before serving production traffic, provision the profile schemas and first firm owner through the restricted maintenance/bootstrap procedure. Use the three profile-separated paths and no `COPILOT_DB`; production startup now refuses to create missing database files implicitly.
+- [ ] Run `python tools/deployment_preflight.py --strict` against the exact production environment and retain its output. Fix every error and warning that blocks the release.
+- [ ] Keep the legacy tenant-import preflight out of first-deployment acceptance. No legacy database has been deployed or used; only run import/reconciliation tools if a separate, approved external-data import is later proposed.
+- [ ] Set `COPILOT_DATABASE_ACCEPTANCE_FILE` to the controlled, completed operational-evidence manifest. Startup and the aggregate release gate both reject missing, incomplete, or stale evidence.
+- [ ] Restrict database and WAL/SHM files, tenant-root contents, and backup directories to the application account; encrypt the underlying disk/volume.
 - [ ] Do not deploy multiple hosts with separate local SQLite databases and assume rate limits or data are shared. SQLite-backed rate limits coordinate workers only when they share the same database file; separate hosts need a shared rate-limit service and an appropriate database architecture.
 - [ ] Schedule encrypted backups outside the application host. Store the backup key separately from the backups.
-- [ ] Test restoration to an isolated location before release and at regular intervals; document recovery-point and recovery-time objectives.
-- [ ] Verify storage capacity, retention, and secure deletion policies for legal case data and audit records.
+- [ ] Complete a witnessed restore/rollback and staged-upload/deletion-recovery drill before release; code-level restore tests do not substitute for this exercise.
+- [ ] Verify storage capacity, retention, export, and secure deletion policies for legal case data and audit records.
 
 ## 4. Legal-data safety
 

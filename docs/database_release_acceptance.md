@@ -17,6 +17,21 @@ The database implementation is still under development. A passing unit/integrati
 
 Each accepted item must have `status: "passed"`, an evidence reference, a timezone-aware ISO-8601 timestamp, and the named approver/verifier. Evidence older than the gate-specific maximum age above is rejected at startup and by the release gate, even if its status remains `passed`; re-run and re-approve the underlying check before refreshing its timestamp. The restore drill and privileged recovery/bootstrap additionally require a witness distinct from the verifier. The independent review must report `unresolved_critical_high: 0`.
 
+## Fresh-install database bootstrap
+
+The first production app process must not create missing database files implicitly. Provision the profile schemas and first firm owner in a restricted maintenance shell before production startup. Use the three separate paths and keep `COPILOT_DB` unset:
+
+```bash
+export COPILOT_ENV=development
+unset COPILOT_DB
+export COPILOT_CONTROL_DB=/secure/persistent/control-plane.sqlite3
+export COPILOT_TENANT_DB_ROOT=/secure/persistent/tenants
+export COPILOT_CORPUS_DB=/secure/persistent/legal-corpus.sqlite3
+python manage.py init-tenancy --firm-name "Firm name" --owner-name "Initial owner" --owner-email "owner@example.invalid"
+```
+
+This is a one-time bootstrap command, not permission to run the web application in development mode on production data. Protect the maintenance environment, credentials, and volumes; then run the strict deployment preflight and operational acceptance process. Set `COPILOT_ENV=production` for the actual web service. Production startup requires existing regular control/corpus database files, a non-symlink tenant root, and a complete fresh acceptance manifest. If any profile file is missing, stop and investigate; do not let startup recreate an empty database in place of missing data.
+
 ## Procedure
 
 1. Copy `docs/database_release_acceptance.template.json` into a controlled, access-restricted location outside the repository.
