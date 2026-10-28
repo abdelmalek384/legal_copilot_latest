@@ -375,6 +375,7 @@ def create_backup_bundle(
     keep: int = 14,
     quiesced: bool = False,
     object_storage_root: str | Path | None = None,
+    object_store: S3PrivateObjectStore | None = None,
 ) -> Path:
     """Create an encrypted bundle from consistent per-file SQLite snapshots.
 
@@ -391,10 +392,40 @@ def create_backup_bundle(
     tenant_root = runtime.paths.tenant_root
     if tenant_root.is_symlink() or not tenant_root.is_dir():
         raise DatabaseBundleError("Tenant storage root must be a real directory")
-    configured_object_root = object_storage_root
-    if configured_object_root is None:
-        configured_object_root = os.environ.get("COPILOT_OBJECT_STORAGE_ROOT", "").strip() or (tenant_root.parent / "objects")
-    object_root = _object_root_path(configured_object_root, tenant_root, control_path, corpus_path)
+    backend = os.environ.get("COPILOT_OBJECT_STORAGE_BACKEND", "local").strip().lower()
+    production = os.environ.get("COPILOT_ENV", "").strip().lower() in {"prod", "production"}
+    object_root: Path | None = None
+    if backend == "s3":
+        if object_storage_root is not None:
+            raise DatabaseBundleError("object_storage_root cannot be used with the S3 backend")
+        if object_store is None:
+            bucket = os.environ.get("COPILOT_S3_BUCKET", "").strip()
+            region = os.environ.get("COPILOT_S3_REGION", "").strip()
+            kms_key_id = os.environ.get("COPILOT_S3_KMS_KEY_ID", "").strip()
+            endpoint = os.environ.get("COPILOT_S3_ENDPOINT_URL", "").strip() or None
+            if not bucket or not region or not kms_key_id:
+                raise DatabaseBundleError("S3 bucket, region, and KMS key ID are required for backup")
+            try:
+                import boto3
+                object_store = S3PrivateObjectStore(
+                    boto3.client("s3", region_name=region, endpoint_url=endpoint),
+                    bucket=bucket, kms_key_id=kms_key_id,
+                )
+            except ImportError as exc:
+                raise DatabaseBundleError("AWS SDK is not installed") from exc
+        if not isinstance(object_store, S3PrivateObjectStore):
+            raise DatabaseBundleError("S3 backup requires the reviewed S3 object-store adapter")
+    elif backend == "local":
+        if production:
+            raise DatabaseBundleError("production backup requires S3 original-object storage")
+        if object_store is not None:
+            raise DatabaseBundleError("object_store is only supported with the S3 backend")
+        configured_object_root = object_storage_root
+        if configured_object_root is None:
+            configured_object_root = os.environ.get("COPILOT_OBJECT_STORAGE_ROOT", "").strip() or (tenant_root.parent / "objects")
+        object_root = _object_root_path(configured_object_root, tenant_root, control_path, corpus_path)
+    else:
+        raise DatabaseBundleError("COPILOT_OBJECT_STORAGE_BACKEND must be local or s3")
     destination = Path(output_dir).expanduser()
     if destination.is_symlink():
         raise DatabaseBundleError("Backup destination must not be a symlink")
@@ -403,7 +434,10 @@ def create_backup_bundle(
     if not destination.is_dir():
         raise DatabaseBundleError("Backup destination must be a directory")
     resolved_tenant_root = tenant_root.resolve()
-    for protected_root, label in ((resolved_tenant_root, "tenant storage"), (object_root, "original-object storage")):
+    protected_roots = [(resolved_tenant_root, "tenant storage")]
+    if object_root is not None:
+        protected_roots.append((object_root, "original-object storage"))
+    for protected_root, label in protected_roots:
         try:
             destination.relative_to(protected_root)
             raise DatabaseBundleError(f"Backup output must be outside {label}")
@@ -469,7 +503,10 @@ def create_backup_bundle(
                     target_path = payload / relative
                     target_path.parent.mkdir(parents=True, exist_ok=True)
                     _snapshot(source_path, target_path, "firm", firm_id)
-                    expected_objects.update(_copy_original_objects(target_path, firm_id, object_root, payload))
+                    if backend == "s3":
+                        expected_objects.update(_copy_s3_original_objects(target_path, firm_id, object_store, payload))
+                    else:
+                        expected_objects.update(_copy_original_objects(target_path, firm_id, object_root, payload))
                     record["archive_path"] = relative
                 elif status == "provisioned":
                     raise DatabaseBundleError(f"Provisioned firm {firm_id} has no database file")
@@ -477,7 +514,11 @@ def create_backup_bundle(
         finally:
             control.close()
 
-        actual_objects = _scan_original_object_root(object_root)
+        actual_objects = (
+            _scan_s3_original_object_inventory(object_store)
+            if backend == "s3"
+            else _scan_original_object_root(object_root)
+        )
         if actual_objects != expected_objects:
             raise DatabaseBundleError("Original-object storage contains missing or unreferenced objects; reconcile before backup")
 
