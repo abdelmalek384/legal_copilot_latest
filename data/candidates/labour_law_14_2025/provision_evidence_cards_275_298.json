@@ -1,0 +1,1114 @@
+{
+  "instrument": "Egyptian Labour Law No. 14 of 2025",
+  "supplement_id": "labour-law-arts-275-298",
+  "created_on": "2026-10-28",
+  "cards_count": 24,
+  "search_eligible": false,
+  "source_method_note": "Split supplement for the labour inspection and penalties book. Public Wikisource/Law Hub transcriptions used as fallback; primary official links retained. Pinpoints inferred, not visually verified. Arts. 281–295 deliberately left as indexing-only cards rather than inventing offences or penalties.",
+  "cards": [
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-275-LABOUR-INSPECTOR-JUDICIAL-POLICE-STATUS",
+      "question": "من يكتسب صفة مأمور الضبط القضائي في مخالفات قانون العمل؟",
+      "provisional_answer_ar": "تقرر المادة 275 منح الصفة للعاملين المكلفين بتنفيذ القانون والقرارات الصادرة تنفيذاً له، الذين يحددهم قرار من وزير العدل بالاتفاق مع الوزير المختص، في حدود اختصاصهم والجرائم المتصلة بوظائفهم.",
+      "pinpoint": {
+        "article": "المادة 275",
+        "official_gazette_printed_page": 91,
+        "pdf_page_index_zero_based": 89,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 275؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 275؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "public secondary transcription"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "المواد 281–295 بطاقات فهرسة فقط ولا تتضمن نصاً عقابياً موضوعياً موثقاً",
+        "القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة"
+      ],
+      "review_state": "provisional_secondary_crosscheck",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative advice or criminal exposure calculation until official text and currentness are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-276-LABOUR-INSPECTOR-POWERS-AND-OATH",
+      "question": "ما سلطات مفتشي العمل وما شروط مباشرتها؟",
+      "provisional_answer_ar": "توجب المادة 276 أداء القسم قبل مباشرة العمل وحمل بطاقة تثبت الصفة، وتمنح حق دخول أماكن العمل وتفتيشها وفحص الدفاتر والأوراق وطلب المستندات والبيانات. وتُنظم القرارات المختصة التفتيش ليلاً وخارج المواعيد الرسمية.",
+      "pinpoint": {
+        "article": "المادة 276",
+        "official_gazette_printed_page": 91,
+        "pdf_page_index_zero_based": 89,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 276؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 276؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "public secondary transcription"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "المواد 281–295 بطاقات فهرسة فقط ولا تتضمن نصاً عقابياً موضوعياً موثقاً",
+        "القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة"
+      ],
+      "review_state": "provisional_secondary_crosscheck",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative advice or criminal exposure calculation until official text and currentness are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-277-EMPLOYER-DUTY-TO-COOPERATE-WITH-INSPECTORS",
+      "question": "ما واجب صاحب العمل تجاه المفتشين؟",
+      "provisional_answer_ar": "توجب المادة 277 تمكين المكلفين بالتفتيش من أداء مهمتهم وتوفير المستندات والبيانات اللازمة. وتقرر المادة 297 غرامة من 5,000 إلى 20,000 جنيه عند مخالفة المادتين 277 أو 278، وتضاعف عند العود؛ يلزم التحقق من التعديلات والوقائع قبل تطبيق الجزاء.",
+      "pinpoint": {
+        "article": "المادة 277",
+        "official_gazette_printed_page": 91,
+        "pdf_page_index_zero_based": 89,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 277؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 277؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "public secondary transcription"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "المواد 281–295 بطاقات فهرسة فقط ولا تتضمن نصاً عقابياً موضوعياً موثقاً",
+        "القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة"
+      ],
+      "review_state": "provisional_secondary_crosscheck",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative advice or criminal exposure calculation until official text and currentness are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-278-EMPLOYER-ATTENDANCE-ON-INSPECTOR-SUMMONS",
+      "question": "هل يجب على صاحب العمل الاستجابة لطلب الحضور؟",
+      "provisional_answer_ar": "تلزم المادة 278 صاحب العمل أو من ينوب عنه بالاستجابة لطلبات الحضور الصادرة من العاملين المحددين بالمادة 275 في المواعيد التي يحددونها. جزاء المخالفة وارد بالمادة 297، مع ضرورة التحقق من صحة الطلب والصفة والإخطار.",
+      "pinpoint": {
+        "article": "المادة 278",
+        "official_gazette_printed_page": 91,
+        "pdf_page_index_zero_based": 89,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 278؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 278؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "public secondary transcription"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "المواد 281–295 بطاقات فهرسة فقط ولا تتضمن نصاً عقابياً موضوعياً موثقاً",
+        "القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة"
+      ],
+      "review_state": "provisional_secondary_crosscheck",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative advice or criminal exposure calculation until official text and currentness are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-279-PUBLIC-AUTHORITY-ASSISTANCE-TO-INSPECTORS",
+      "question": "هل يجب على الجهات العامة مساعدة مفتشي العمل؟",
+      "provisional_answer_ar": "تلزم المادة 279 السلطات والوزارات والجهات والهيئات المعنية بمساعدة المكلفين بمراقبة تنفيذ القانون عند أداء وظائفهم متى طلب منهم ذلك. نطاق المساعدة يتحدد بحسب الطلب والاختصاص والوقائع.",
+      "pinpoint": {
+        "article": "المادة 279",
+        "official_gazette_printed_page": 91,
+        "pdf_page_index_zero_based": 89,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 279؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 279؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "public secondary transcription"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "المواد 281–295 بطاقات فهرسة فقط ولا تتضمن نصاً عقابياً موضوعياً موثقاً",
+        "القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة"
+      ],
+      "review_state": "provisional_secondary_crosscheck",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative advice or criminal exposure calculation until official text and currentness are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-280-LABOUR-LAW-PENALTIES-GENERAL-CLAUSE",
+      "question": "كيف تُقرأ أحكام العقوبات في قانون العمل؟",
+      "provisional_answer_ar": "تنص المادة 280 على أن العقوبات الواردة في المواد التالية لا تخل بأي عقوبة أشد يقررها قانون العقوبات أو قانون آخر. لا يكفي الاستناد إلى هذه المادة وحدها لتحديد جريمة أو عقوبة؛ يجب تحديد مادة التجريم والوقائع والنصوص الأشد المحتملة.",
+      "pinpoint": {
+        "article": "المادة 280",
+        "official_gazette_printed_page": 92,
+        "pdf_page_index_zero_based": 90,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 280؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 280؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "public secondary transcription"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "المواد 281–295 بطاقات فهرسة فقط ولا تتضمن نصاً عقابياً موضوعياً موثقاً",
+        "القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة"
+      ],
+      "review_state": "provisional_secondary_crosscheck",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative advice or criminal exposure calculation until official text and currentness are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-281-LABOUR-OFFENCE-PENALTY-ARTICLE-281",
+      "question": "ما العقوبة المنصوص عليها في المادة 281؟",
+      "provisional_answer_ar": "يجب الرجوع إلى النص الكامل للمادة 281 وتحديد عناصر المخالفة والفاعل والجزاء قبل الإجابة. لا تُستنتج العقوبة من رقم المادة أو من مواد مجاورة؛ هذه البطاقة سجل بحث فقط حتى استكمال مطابقة النص.",
+      "pinpoint": {
+        "article": "المادة 281",
+        "official_gazette_printed_page": 92,
+        "pdf_page_index_zero_based": 90,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 281؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 281؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "public secondary transcription"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "المواد 281–295 بطاقات فهرسة فقط ولا تتضمن نصاً عقابياً موضوعياً موثقاً",
+        "القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة"
+      ],
+      "review_state": "pinpoint_only_full_text_required",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative advice or criminal exposure calculation until official text and currentness are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-282-LABOUR-OFFENCE-PENALTY-ARTICLE-282",
+      "question": "ما العقوبة المنصوص عليها في المادة 282؟",
+      "provisional_answer_ar": "يجب استخراج النص الكامل للمادة 282 ومطابقته مع الجريدة الرسمية قبل تحديد عناصر المخالفة أو مقدار الغرامة أو الحبس. لا تستخدم البطاقة لتحديد عقوبة في قضية فعلية.",
+      "pinpoint": {
+        "article": "المادة 282",
+        "official_gazette_printed_page": 92,
+        "pdf_page_index_zero_based": 90,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 282؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 282؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "public secondary transcription"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "المواد 281–295 بطاقات فهرسة فقط ولا تتضمن نصاً عقابياً موضوعياً موثقاً",
+        "القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة"
+      ],
+      "review_state": "pinpoint_only_full_text_required",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative advice or criminal exposure calculation until official text and currentness are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-283-LABOUR-OFFENCE-PENALTY-ARTICLE-283",
+      "question": "ما العقوبة المنصوص عليها في المادة 283؟",
+      "provisional_answer_ar": "مضمون المادة 283 وعناصر المخالفة والجزاء لم تُطابق في هذه البطاقة. يلزم الرجوع إلى النص الرسمي الكامل والقرارات المنفذة وأي قانون أشد قابل للتطبيق.",
+      "pinpoint": {
+        "article": "المادة 283",
+        "official_gazette_printed_page": 92,
+        "pdf_page_index_zero_based": 90,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 283؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 283؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "public secondary transcription"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "المواد 281–295 بطاقات فهرسة فقط ولا تتضمن نصاً عقابياً موضوعياً موثقاً",
+        "القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة"
+      ],
+      "review_state": "pinpoint_only_full_text_required",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative advice or criminal exposure calculation until official text and currentness are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-284-LABOUR-OFFENCE-PENALTY-ARTICLE-284",
+      "question": "ما العقوبة المنصوص عليها في المادة 284؟",
+      "provisional_answer_ar": "لا يُثبت رقم العقوبة أو عناصر الجريمة دون النص الكامل للمادة 284 ومقارنته بالمصدر الرسمي. هذه البطاقة لا تصلح لتقديم تقدير للعقوبة.",
+      "pinpoint": {
+        "article": "المادة 284",
+        "official_gazette_printed_page": 92,
+        "pdf_page_index_zero_based": 90,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 284؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 284؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "public secondary transcription"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "المواد 281–295 بطاقات فهرسة فقط ولا تتضمن نصاً عقابياً موضوعياً موثقاً",
+        "القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة"
+      ],
+      "review_state": "pinpoint_only_full_text_required",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative advice or criminal exposure calculation until official text and currentness are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-285-LABOUR-OFFENCE-PENALTY-ARTICLE-285",
+      "question": "ما العقوبة المنصوص عليها في المادة 285؟",
+      "provisional_answer_ar": "يجب مطابقة المادة 285 من النص الرسمي وتحديد المخاطب بها وعناصر المخالفة والجزاء وظروف التشديد قبل استخدامها.",
+      "pinpoint": {
+        "article": "المادة 285",
+        "official_gazette_printed_page": 92,
+        "pdf_page_index_zero_based": 90,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 285؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 285؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "public secondary transcription"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "المواد 281–295 بطاقات فهرسة فقط ولا تتضمن نصاً عقابياً موضوعياً موثقاً",
+        "القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة"
+      ],
+      "review_state": "pinpoint_only_full_text_required",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative advice or criminal exposure calculation until official text and currentness are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-286-LABOUR-OFFENCE-PENALTY-ARTICLE-286",
+      "question": "ما العقوبة المنصوص عليها في المادة 286؟",
+      "provisional_answer_ar": "النص الموضوعي والعقابي للمادة 286 لم يُراجع بالكامل هنا. يلزم استخراج النص الكامل قبل الإجابة عن نطاق المسؤولية أو العقوبة.",
+      "pinpoint": {
+        "article": "المادة 286",
+        "official_gazette_printed_page": 92,
+        "pdf_page_index_zero_based": 90,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 286؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 286؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "public secondary transcription"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "المواد 281–295 بطاقات فهرسة فقط ولا تتضمن نصاً عقابياً موضوعياً موثقاً",
+        "القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة"
+      ],
+      "review_state": "pinpoint_only_full_text_required",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative advice or criminal exposure calculation until official text and currentness are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-287-LABOUR-OFFENCE-PENALTY-ARTICLE-287",
+      "question": "ما العقوبة المنصوص عليها في المادة 287؟",
+      "provisional_answer_ar": "لا يمكن تقرير عناصر المخالفة أو الجزاء في المادة 287 دون مطابقة نصها الكامل ومراجعة أي نصوص ذات صلة.",
+      "pinpoint": {
+        "article": "المادة 287",
+        "official_gazette_printed_page": 92,
+        "pdf_page_index_zero_based": 90,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 287؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 287؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "public secondary transcription"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "المواد 281–295 بطاقات فهرسة فقط ولا تتضمن نصاً عقابياً موضوعياً موثقاً",
+        "القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة"
+      ],
+      "review_state": "pinpoint_only_full_text_required",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative advice or criminal exposure calculation until official text and currentness are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-288-LABOUR-OFFENCE-PENALTY-ARTICLE-288",
+      "question": "ما العقوبة المنصوص عليها في المادة 288؟",
+      "provisional_answer_ar": "تحتاج المادة 288 إلى استخراج ومراجعة مباشرة قبل تحديد الفعل المجرّم أو مقدار العقوبة أو شروط تطبيقها.",
+      "pinpoint": {
+        "article": "المادة 288",
+        "official_gazette_printed_page": 92,
+        "pdf_page_index_zero_based": 90,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 288؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 288؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "public secondary transcription"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "المواد 281–295 بطاقات فهرسة فقط ولا تتضمن نصاً عقابياً موضوعياً موثقاً",
+        "القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة"
+      ],
+      "review_state": "pinpoint_only_full_text_required",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative advice or criminal exposure calculation until official text and currentness are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-289-LABOUR-OFFENCE-PENALTY-ARTICLE-289",
+      "question": "ما العقوبة المنصوص عليها في المادة 289؟",
+      "provisional_answer_ar": "لا يُستنتج مضمون المادة 289 من قائمة العقوبات أو المواد المجاورة؛ يجب الرجوع إلى النص الرسمي الكامل قبل أي إجابة قانونية.",
+      "pinpoint": {
+        "article": "المادة 289",
+        "official_gazette_printed_page": 92,
+        "pdf_page_index_zero_based": 90,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 289؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 289؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "public secondary transcription"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "المواد 281–295 بطاقات فهرسة فقط ولا تتضمن نصاً عقابياً موضوعياً موثقاً",
+        "القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة"
+      ],
+      "review_state": "pinpoint_only_full_text_required",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative advice or criminal exposure calculation until official text and currentness are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-290-LABOUR-OFFENCE-PENALTY-ARTICLE-290",
+      "question": "ما العقوبة المنصوص عليها في المادة 290؟",
+      "provisional_answer_ar": "يلزم استخراج النص الكامل للمادة 290 ومراجعة عناصر المخالفة والجزاء والجهة المسؤولة وأي تعديلات قبل استخدامها.",
+      "pinpoint": {
+        "article": "المادة 290",
+        "official_gazette_printed_page": 92,
+        "pdf_page_index_zero_based": 90,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 290؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 290؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "public secondary transcription"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "المواد 281–295 بطاقات فهرسة فقط ولا تتضمن نصاً عقابياً موضوعياً موثقاً",
+        "القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة"
+      ],
+      "review_state": "pinpoint_only_full_text_required",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative advice or criminal exposure calculation until official text and currentness are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-291-LABOUR-OFFENCE-PENALTY-ARTICLE-291",
+      "question": "ما العقوبة المنصوص عليها في المادة 291؟",
+      "provisional_answer_ar": "لا تتضمن هذه البطاقة نصاً موضوعياً معتمداً للمادة 291. يجب التحقق من النص الرسمي الكامل والقرارات المنفذة قبل الإجابة.",
+      "pinpoint": {
+        "article": "المادة 291",
+        "official_gazette_printed_page": 92,
+        "pdf_page_index_zero_based": 90,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 291؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 291؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "public secondary transcription"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "المواد 281–295 بطاقات فهرسة فقط ولا تتضمن نصاً عقابياً موضوعياً موثقاً",
+        "القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة"
+      ],
+      "review_state": "pinpoint_only_full_text_required",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative advice or criminal exposure calculation until official text and currentness are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-292-LABOUR-OFFENCE-PENALTY-ARTICLE-292",
+      "question": "ما العقوبة المنصوص عليها في المادة 292؟",
+      "provisional_answer_ar": "تحتاج المادة 292 إلى مطابقة النص الرسمي لتحديد الفعل المخالف والجزاء وظروف التشديد أو التكرار.",
+      "pinpoint": {
+        "article": "المادة 292",
+        "official_gazette_printed_page": 92,
+        "pdf_page_index_zero_based": 90,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 292؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 292؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "public secondary transcription"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "المواد 281–295 بطاقات فهرسة فقط ولا تتضمن نصاً عقابياً موضوعياً موثقاً",
+        "القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة"
+      ],
+      "review_state": "pinpoint_only_full_text_required",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative advice or criminal exposure calculation until official text and currentness are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-293-LABOUR-OFFENCE-PENALTY-ARTICLE-293",
+      "question": "ما العقوبة المنصوص عليها في المادة 293؟",
+      "provisional_answer_ar": "لا تُحدد العقوبة أو عناصر المخالفة في المادة 293 دون النص الكامل والمراجعة القانونية ذات الصلة.",
+      "pinpoint": {
+        "article": "المادة 293",
+        "official_gazette_printed_page": 92,
+        "pdf_page_index_zero_based": 90,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 293؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 293؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "public secondary transcription"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "المواد 281–295 بطاقات فهرسة فقط ولا تتضمن نصاً عقابياً موضوعياً موثقاً",
+        "القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة"
+      ],
+      "review_state": "pinpoint_only_full_text_required",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative advice or criminal exposure calculation until official text and currentness are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-294-LABOUR-OFFENCE-PENALTY-ARTICLE-294",
+      "question": "ما العقوبة المنصوص عليها في المادة 294؟",
+      "provisional_answer_ar": "يجب مراجعة النص الكامل للمادة 294 والقرارات المنفذة قبل وصف الجزاء أو تحديد من يسأل عنه.",
+      "pinpoint": {
+        "article": "المادة 294",
+        "official_gazette_printed_page": 92,
+        "pdf_page_index_zero_based": 90,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 294؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 294؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "public secondary transcription"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "المواد 281–295 بطاقات فهرسة فقط ولا تتضمن نصاً عقابياً موضوعياً موثقاً",
+        "القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة"
+      ],
+      "review_state": "pinpoint_only_full_text_required",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative advice or criminal exposure calculation until official text and currentness are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-295-LABOUR-OFFENCE-PENALTY-ARTICLE-295",
+      "question": "ما العقوبة المنصوص عليها في المادة 295؟",
+      "provisional_answer_ar": "المادة 295 تحتاج إلى مطابقة مباشرة من المصدر الرسمي؛ لا تُستنتج عقوبتها من المواد 296–298 أو من الإحالات الواردة فيها.",
+      "pinpoint": {
+        "article": "المادة 295",
+        "official_gazette_printed_page": 92,
+        "pdf_page_index_zero_based": 90,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 295؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 295؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "public secondary transcription"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "المواد 281–295 بطاقات فهرسة فقط ولا تتضمن نصاً عقابياً موضوعياً موثقاً",
+        "القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة"
+      ],
+      "review_state": "pinpoint_only_full_text_required",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative advice or criminal exposure calculation until official text and currentness are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-296-OSH-AND-HEALTH-SAFETY-FINES",
+      "question": "ما الغرامات المقررة لبعض مخالفات السلامة والصحة المهنية؟",
+      "provisional_answer_ar": "تنص المادة 296 على غرامة من 5,000 إلى 100,000 جنيه لبعض مخالفات المواد 245 و254–255 و259–262 و266 و270–272 والقرارات المنفذة، مع مضاعفة الغرامة في العود. وتمتد العقوبة ذاتها إلى مخالفات المواد 246–253 و267–269. يجب التحقق من النص الساري وتحديد الفعل والمخاطب به قبل التطبيق.",
+      "pinpoint": {
+        "article": "المادة 296",
+        "official_gazette_printed_page": 92,
+        "pdf_page_index_zero_based": 90,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 296؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 296؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "public secondary transcription"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "المواد 281–295 بطاقات فهرسة فقط ولا تتضمن نصاً عقابياً موضوعياً موثقاً",
+        "القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة"
+      ],
+      "review_state": "provisional_secondary_crosscheck",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative advice or criminal exposure calculation until official text and currentness are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-297-LABOUR-INSPECTION-OBSTRUCTION-FINE",
+      "question": "ما غرامة مخالفة واجب تمكين التفتيش أو الاستجابة لطلب الحضور؟",
+      "provisional_answer_ar": "تقرر المادة 297 غرامة لا تقل عن 5,000 ولا تجاوز 20,000 جنيه لصاحب العمل أو ممثله إذا خالف المادتين 277 أو 278، وتضاعف عند العود. يلزم التحقق من الصفة والإخطار والوقائع والنص الساري.",
+      "pinpoint": {
+        "article": "المادة 297",
+        "official_gazette_printed_page": 92,
+        "pdf_page_index_zero_based": 90,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 297؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 297؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "public secondary transcription"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "المواد 281–295 بطاقات فهرسة فقط ولا تتضمن نصاً عقابياً موضوعياً موثقاً",
+        "القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة"
+      ],
+      "review_state": "provisional_secondary_crosscheck",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative advice or criminal exposure calculation until official text and currentness are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-298-CORPORATE-MANAGER-AND-ENTITY-FINANCIAL-LIABILITY",
+      "question": "متى يسأل المدير الفعلي والشخص الاعتباري عن مخالفة قانون العمل؟",
+      "provisional_answer_ar": "تقرر المادة 298 معاقبة المسؤول عن الإدارة الفعلية بالعقوبة المقررة للفعل إذا ثبت علمه به وأسهم إخلاله بواجباته الإدارية في وقوع الجريمة. ويكون الشخص الاعتباري مسؤولاً بالتضامن عن العقوبات المالية والتعويضات المحكوم بها. يتطلب التطبيق إثبات عناصر المسؤولية لكل حالة.",
+      "pinpoint": {
+        "article": "المادة 298",
+        "official_gazette_printed_page": 92,
+        "pdf_page_index_zero_based": 90,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 298؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 298؛ النص والموضع بحاجة إلى مطابقة مباشرة"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "public secondary transcription"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "المواد 281–295 بطاقات فهرسة فقط ولا تتضمن نصاً عقابياً موضوعياً موثقاً",
+        "القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة"
+      ],
+      "review_state": "provisional_secondary_crosscheck",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative advice or criminal exposure calculation until official text and currentness are verified"
+    }
+  ]
+}
