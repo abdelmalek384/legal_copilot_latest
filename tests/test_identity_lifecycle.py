@@ -83,6 +83,66 @@ class IdentityLifecycleTests(unittest.TestCase):
             self.assertEqual(response.headers.get("Cache-Control"), "no-store")
             self.assertEqual(response.headers.get("Referrer-Policy"), "no-referrer")
 
+    def test_admin_can_list_and_revoke_only_own_firm_invitations(self):
+        self.assertEqual(self._login(self.client, "invitation-owner@example.test", self.password).status_code, 200)
+        with patch.object(app, "send_identity_email") as send:
+            created = self._mutate(
+                "post", "/invitations",
+                json={"email": "revoke-me@example.test", "role": "lawyer"},
+            )
+        self.assertEqual(created.status_code, 200, created.text)
+        token = self._token_from_email(send)
+        invitation_id = created.json()["invitation_id"]
+
+        listing = self.client.get("/invitations")
+        self.assertEqual(listing.status_code, 200, listing.text)
+        row = next(item for item in listing.json()["invitations"] if item["id"] == invitation_id)
+        self.assertEqual(row["status"], "sent")
+        self.assertEqual(row["email"], "revoke-me@example.test")
+        self.assertNotIn("token_hash", row)
+        self.assertNotIn(token, listing.text)
+
+        revoked = self._mutate(
+            "post", f"/invitations/{invitation_id}/revoke",
+            json={"reason": "Pilot candidate withdrew"},
+        )
+        self.assertEqual(revoked.status_code, 200, revoked.text)
+        self.assertEqual(revoked.json()["status"], "revoked")
+        replay = self.client.post("/invitations/accept/new", json={
+            "token": token, "name": "Revoked Candidate",
+            "password": "RevokedCandidateStrongPassphrase-2026!",
+        })
+        self.assertEqual(replay.status_code, 400)
+
+        firm_b_owner = self.runtime.create_initial_firm_owner(
+            self.firm_b, "Firm B Owner", "firm-b-owner@example.test", app.hash_pw(self.password)
+        )
+        other = TestClient(app.app)
+        try:
+            login = self._login(other, "firm-b-owner@example.test", self.password)
+            self.assertEqual(login.status_code, 200, login.text)
+            other_listing = other.get("/invitations")
+            self.assertEqual(other_listing.status_code, 200, other_listing.text)
+            self.assertEqual(other_listing.json()["invitations"], [])
+            response = other.post(
+                f"/invitations/{invitation_id}/revoke",
+                json={"reason": "Attempt cross-firm revocation"},
+                headers={"X-CSRF-Token": other.cookies.get("lc_csrf") or ""},
+            )
+            self.assertEqual(response.status_code, 404, response.text)
+        finally:
+            other.close()
+        control = self.runtime.control_connection()
+        events = control.execute(
+            "SELECT event_type,detail_json FROM identity_lifecycle_events "
+            "WHERE invitation_id=? ORDER BY id",
+            (invitation_id,),
+        ).fetchall()
+        self.assertEqual([event["event_type"] for event in events], [
+            "invitation_created", "invitation_sent", "invitation_revoked"
+        ])
+        self.assertIn("Pilot candidate withdrew", events[-1]["detail_json"])
+
     def test_invitation_creates_new_identity_atomically_and_token_is_single_use(self):
         self.assertEqual(self._login(self.client, "invitation-owner@example.test", self.password).status_code, 200)
         with patch.object(app, "send_identity_email") as send:
