@@ -54,6 +54,21 @@ class LabourLawPrimaryEvidenceSeedTests(unittest.TestCase):
         self.assertIn("systematic retrieval restrictions", copyright_note["does_not_resolve"])
         self.assertEqual(note["permission_status"], "unknown")
 
+    def test_targeted_pdf_page_pinpoints_are_explicit_without_claiming_full_review(self):
+        evidence = self.seed["source_assessment"]
+        self.assertTrue(evidence["targeted_pdf_text_page_review"])
+        self.assertFalse(evidence["official_pdf_downloaded"])
+        self.assertFalse(evidence["page_level_review"])
+        pages = {item["printed_page_label"]: item for item in evidence["targeted_pdf_pages_reviewed"]}
+        self.assertIn("2", pages)
+        self.assertIn("5", pages)
+        self.assertIn("12", pages)
+        for provision in self.seed["provisions"]:
+            pinpoint = provision["page_pinpoint"]
+            self.assertEqual(pinpoint["gazette_issue"], "18 (تابع)")
+            self.assertIn(pinpoint["printed_page"], pages)
+            self.assertEqual(pinpoint["source_url"], "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf")
+
     def test_publication_metadata_and_commencement_candidates_are_explicit(self):
         evidence = self.seed["source_assessment"]
         self.assertEqual(evidence["official_gazette_issue"], "18 (تابع)")
