@@ -21,3 +21,16 @@ class TestLabourDecisionPublicTextCrosswalk(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+    def test_inventory_keeps_secondary_text_distinct_from_primary_verification(self):
+        inventory_path = ROOT / "docs" / "phase_2_document_inventory.json"
+        inventory = json.loads(inventory_path.read_text(encoding="utf-8"))
+        records = {item["document_id"]: item for item in inventory["documents"]}
+        for document_id in ("EG-LABOUR-DECISION-290-2025", "EG-LABOUR-DECISION-292-2025", "EG-LABOUR-DECISION-294-2025"):
+            with self.subTest(document_id=document_id):
+                record = records[document_id]
+                self.assertIn("secondary", record["source_status"])
+                self.assertEqual(record["legal_status"], "unknown")
+                self.assertEqual(record["collection_permission"], "unknown")
+                self.assertTrue(any(item["url"].startswith("https://") for item in record["source_urls"]))
+
