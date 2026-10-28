@@ -137,3 +137,16 @@ Focused tests were added for Arts. 256–274 and all earlier card-count assertio
 
 **Next tranche:** continue with labour inspection and penalties (starting Article 275), then remaining closing/transitional provisions, and maintain a public-text fallback for implementing decisions where repository downloads are gated. No access controls were bypassed.
 
+## Evidence-card expansion — labour inspection and penalties (2026-10-28)
+
+The provisional inventory now contains **240 cards**, extending through Article 298, the final article of the accompanying Law 14/2025 text in the public transcription.
+
+- **Arts. 275–279:** designation and oath of labour inspectors with judicial-police status; entry, inspection and records powers; employer duties to facilitate inspections and attend upon request; assistance from public authorities.
+- **Arts. 280–298:** general penalty framework and separate cards for the article-specific penalty bands, including worker-count multiplication, recidivism, possible closure, recruitment offences, occupational-safety penalties, obstruction of inspection, and actual-manager/corporate liability.
+
+The article wording was cross-checked against the public Law Hub transcription at https://lawhub.info/eg/?p=11848. Official publisher and government Gazette links remain attached as primary-source leads. Inferred page map: Arts. 275–279 printed p.92/PDF index 90; 280–288 p.93/index 91; 289–298 p.94/index 92. These pinpoints are not visually verified page by page. No source PDF hash is claimed.
+
+Focused tests were added for the new cards and previous fixed-count assertions were updated to 240; the suite has not been executed. Penalty summaries are particularly sensitive to exact paragraph references, amendments, concurrent offences, and any more severe penalty under another law. Do not calculate a live penalty or assert liability from these cards alone. Keep authoritative retrieval disabled pending exact official-text verification, currentness, reuse and Egyptian-lawyer review.
+
+**Next task:** identify and fill the remaining article-coverage gaps in Articles 1–116, using the same source-linked, provisional approach, and separately crosswalk the discovered ministerial decisions to the statutory cards. No access controls have been bypassed.
+
