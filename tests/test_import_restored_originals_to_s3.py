@@ -8,7 +8,7 @@ import sys
 import tempfile
 import types
 import unittest
-from contextlib import redirect_stdout
+from contextlib import redirect_stderr, redirect_stdout
 from pathlib import Path
 from unittest.mock import patch
 
@@ -140,12 +140,17 @@ class RestoredOriginalS3ImporterTests(unittest.TestCase):
             "COPILOT_S3_KMS_KEY_ID": "test-managed-key",
         }
         output = io.StringIO()
+        errors = io.StringIO()
         with patch.dict(os.environ, env, clear=False), patch.dict(sys.modules, {"boto3": fake_boto3}), \
              patch.object(DatabaseRuntime, "from_env", return_value=self.runtime), \
              patch.object(importer, "S3PrivateObjectStore", return_value=self.store), \
-             patch("sys.argv", argv), redirect_stdout(output):
+             patch("sys.argv", argv), redirect_stdout(output), redirect_stderr(errors):
             code = importer.main()
-        return code, json.loads(output.getvalue())
+        try:
+            report = json.loads(output.getvalue())
+        except json.JSONDecodeError:
+            report = {"stdout": output.getvalue(), "stderr": errors.getvalue()}
+        return code, report
 
     def _restored_storage_backend(self):
         control = sqlite3.connect(self.restore_root / "control_plane.sqlite3")
@@ -172,6 +177,26 @@ class RestoredOriginalS3ImporterTests(unittest.TestCase):
         self.assertEqual(report["mutations_performed"], 0)
         self.assertEqual(self.store.staged, {})
         self.assertEqual(self.store.final, {})
+        self.assertEqual(self._restored_storage_backend(), "local")
+
+    def test_tampered_restore_object_fails_before_any_target_mutation(self):
+        source = self.restore_root / "objects" / f"firm-{self.firm_id}" / f"{self.object_id}.blob"
+        source.write_bytes(b"tampered restore object")
+        code, report = self._run_import(apply=True)
+        self.assertEqual(code, 2)
+        self.assertIn("fails its recorded digest/size", report["stderr"])
+        self.assertEqual(self.store.staged, {})
+        self.assertEqual(self.store.final, {})
+        self.assertEqual(self._restored_storage_backend(), "local")
+
+    def test_conflicting_existing_s3_object_fails_closed(self):
+        key = (self.firm_id, self.object_id)
+        self.store.final[key] = b"unexpected target bytes"
+        code, report = self._run_import(apply=True)
+        self.assertEqual(code, 2)
+        self.assertIn("conflicts with restored original metadata", report["stderr"])
+        self.assertEqual(self.store.final[key], b"unexpected target bytes")
+        self.assertEqual(self.store.staged, {})
         self.assertEqual(self._restored_storage_backend(), "local")
 
     def test_apply_resumes_a_verified_staged_upload_after_interruption(self):
