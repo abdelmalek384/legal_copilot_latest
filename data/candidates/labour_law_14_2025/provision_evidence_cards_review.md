@@ -1,0 +1,650 @@
+# Labour Law No. 14 of 2025 — provision evidence review
+
+**Record:** `EG-LABOUR-LAW-14-2025-EVIDENCE-CARDS-2026-10-28`  
+**Prepared on:** 2026-10-28  
+**Cards in this report:** 21
+
+## Status and limits
+
+- **Provisional source-linked research leads only. Not authoritative legal advice.**
+- Authenticity verified: `false`.
+- Currentness verified: `false`.
+- Amendment history verified: `false`.
+- Egyptian-lawyer review: `pending`.
+- Collection permission: `unknown`; commercial reuse: `unknown`.
+- Authoritative search eligibility: `false`.
+
+Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF has not been downloaded, hashed, or visually inspected; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording.
+
+## Provision cards
+
+### 1. EG-LABOUR-14-2025-PROMULGATION-ART-1-SCOPE
+
+**Question:** What scope exclusions does the promulgation text identify?
+
+**Pinpoint:** مواد الإصدار, المادة الأولى, printed Gazette page 2 (PDF page index 0).
+
+**Provisional summary (Arabic):**
+
+تنص المادة الأولى من مواد الإصدار على استثناء فئات، من بينها العاملون بأجهزة الدولة وعمال الخدمة المنزلية ومن في حكمهم، مع مراعاة ما قد يرد بنص خاص. لا تستخدم هذه الخلاصة لتقرير انطباق القانون على حالة فردية دون فحص النص الكامل والاستثناءات ذات الصلة.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; عنوان القانون ونص مواد الإصدار؛ صفحة النص قابلة للبحث (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 2؛ لم يُنزّل الملف أو يُفحص بصرياً (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [international legislation index](https://natlex.ilo.org/dyn/natlex2/r/natlex/fe/results?clear=2&p2_country_filter=EGY&p2_home_flag=Y) — بيانات تعريف القانون وتاريخ النفاذ المعلن؛ ليس بديلاً عن النص الرسمي.
+
+**Limitations:**
+
+- لا يحسم جميع الاستثناءات أو قوانين الفئات الخاصة
+- لم تُراجع تعديلات لاحقة أو أحكام انتقالية لكل حالة
+- لا توجد مراجعة محامٍ مسجلة
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** final advice, definitive scope decision, or authoritative retrieval.
+
+### 2. EG-LABOUR-14-2025-PROMULGATION-ART-12-REPEALS
+
+**Question:** Which prior laws are expressly named in the repeal clause?
+
+**Pinpoint:** مواد الإصدار, المادة 12, printed Gazette page 5 (PDF page index 3).
+
+**Provisional summary (Arabic):**
+
+تذكر المادة 12 من مواد الإصدار إلغاء قانون العمل رقم 12 لسنة 2003 والقانون رقم 125 لسنة 2010 بشأن مرتبة امتياز حقوق العمال، إلى جانب الأحكام المخالفة. يجب التحقق من الأثر الزمني والأحكام الانتقالية وأي تشريعات لاحقة قبل وصف الحالة القانونية الحالية.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; نص المادة 12 ضمن مواد الإصدار (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 5؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [Library of Congress legal update](https://www.loc.gov/item/global-legal-monitor/2025-07-25/egypt-labor-law-updated/) — يذكر أن القانون الجديد حل محل قانون العمل 12/2003؛ مصدر ثانوي للمقارنة.
+
+**Limitations:**
+
+- لا تمثل هذه البطاقة شهادة كاملة بعدم وجود تعديلات لاحقة
+- لا تغني عن مراجعة النصوص الانتقالية أو التطبيق الزمني
+- لا توجد مراجعة محامٍ مسجلة
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** final opinion on current status of every repealed instrument.
+
+### 3. EG-LABOUR-14-2025-PROMULGATION-ART-13-COMMENCEMENT
+
+**Question:** What commencement dates are stated for the law and specialized labour courts?
+
+**Pinpoint:** مواد الإصدار, المادة 13, printed Gazette page 5 (PDF page index 3).
+
+**Provisional summary (Arabic):**
+
+تضع المادة 13 قاعدة نفاذ عامة محسوبة من تاريخ النشر، وتذكر موعداً منفصلاً للمحاكم العمالية المتخصصة. تسجل المراجع المقارنة 1 سبتمبر 2025 للنفاذ العام و1 أكتوبر 2025 للمحاكم المتخصصة؛ يلزم مراجعة النص الرسمي الكامل والأحكام الانتقالية قبل حساب أثرهما على نزاع محدد.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; قاعدة النفاذ بالمادة 13 (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 5؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [ILO NATLEX legislation index](https://natlex.ilo.org/dyn/natlex2/r/natlex/fe/results?clear=2&p2_country_filter=EGY&p2_home_flag=Y) — يورد 2025-09-01 كتاريخ نفاذ.
+- [Library of Congress legal update](https://www.loc.gov/item/global-legal-monitor/2025-07-25/egypt-labor-law-updated/) — يورد 2025-09-01 للنفاذ العام و2025-10-01 للمحاكم المتخصصة.
+
+**Limitations:**
+
+- الأحكام الانتقالية قد تغير النتيجة في قضية بعينها
+- لا يوجد بحث شامل موثق عن جميع التعديلات أو أحكام التأجيل اللاحقة
+- لا توجد مراجعة محامٍ مسجلة
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** timeline research lead.
+**Not usable for:** automated deadline calculation or final temporal-law advice.
+
+### 4. EG-LABOUR-14-2025-ART-89-WRITTEN-CONTRACT
+
+**Question:** What does Article 89 say about documenting an employment contract?
+
+**Pinpoint:** القانون المرافق, المادة 89, printed Gazette page 43 (PDF page index 41).
+
+**Provisional summary (Arabic):**
+
+تتطلب المادة 89 عقد عمل مكتوباً باللغة العربية من أربع نسخ وتحدد الجهات التي تحتفظ بكل نسخة، كما تسرد بيانات أساسية للعقد. وتسمح بإثبات علاقة العمل ومدتها والحقوق المرتبطة بها بطرق الإثبات كافة عند غياب العقد المكتوب. تنطبق التفاصيل والاستثناءات وفق النص الكامل.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; النص الرسمي القابل للبحث؛ تحقق موضعي مطلوب عند التطبيق (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 43؛ لم يُنزّل الملف أو يُفحص بصرياً (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [ILO NATLEX-hosted legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي متاح للمقارنة؛ شروط إعادة الاستخدام غير مثبتة في هذه البطاقة.
+
+**Limitations:**
+
+- لم تتم مقارنة المادة كاملة حرفياً مع صورة الجريدة الرسمية
+- لا يقرر النص وحده نتيجة النزاع أو عبء الإثبات في كل واقعة
+- لا توجد مراجعة محامٍ مسجلة
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** final advice or authoritative retrieval.
+
+### 5. EG-LABOUR-14-2025-ART-90-PROBATION
+
+**Question:** What is the statutory maximum probation period stated in Article 90?
+
+**Pinpoint:** القانون المرافق, المادة 90, printed Gazette page 43 (PDF page index 41).
+
+**Provisional summary (Arabic):**
+
+تحدد المادة 90 فترة الاختبار بحد أقصى ثلاثة أشهر، وتنص على عدم تعيين العامل تحت الاختبار أكثر من مرة لدى صاحب عمل واحد.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; النص الرسمي القابل للبحث؛ تحقق موضعي مطلوب عند التطبيق (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 43؛ لم يُنزّل الملف أو يُفحص بصرياً (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [ILO NATLEX-hosted legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي متاح للمقارنة؛ شروط إعادة الاستخدام غير مثبتة في هذه البطاقة.
+
+**Limitations:**
+
+- لم تتم مقارنة المادة كاملة حرفياً مع صورة الجريدة الرسمية
+- قد توجد قرارات تنفيذية أو وقائع تؤثر في التطبيق ولا تغطيها البطاقة
+- لا توجد مراجعة محامٍ مسجلة
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** final advice or authoritative retrieval.
+
+### 6. EG-LABOUR-14-2025-ART-117-ORDINARY-HOURS
+
+**Question:** What ordinary actual working-hour limits does Article 117 state?
+
+**Pinpoint:** القانون المرافق, المادة 117, printed Gazette page 52 (PDF page index 50).
+
+**Provisional summary (Arabic):**
+
+تضع المادة 117 حداً عاماً للعمل الفعلي لا يتجاوز ثماني ساعات يومياً أو ثمانياً وأربعين ساعة أسبوعياً، مع استبعاد فترات الطعام والراحة، وتجيز تخفيض الحدود لبعض الفئات أو الأعمال بقرار من الوزير المختص. يجب فحص القرارات الخاصة وأي استثناء منطبق قبل حساب الساعات في واقعة محددة.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; النص الرسمي القابل للبحث؛ مراجعة موضعية لا تمثل فحصاً بصرياً للصفحة (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 52؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [government-hosted official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — يعرض نص المادة 117 على الصفحة المطبوعة 52.
+
+**Limitations:**
+
+- قد توجد قرارات وزارية أو استثناءات خاصة تؤثر في الحد العام
+- لا توجد مراجعة محامٍ مسجلة أو شهادة اكتمال للتشريعات المنفذة
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** automated overtime calculation or final advice.
+
+### 7. EG-LABOUR-14-2025-ART-124-ANNUAL-LEAVE
+
+**Question:** What annual paid-leave entitlement tiers does Article 124 list?
+
+**Pinpoint:** القانون المرافق, المادة 124, printed Gazette page 54 (PDF page index 52).
+
+**Provisional summary (Arabic):**
+
+تسرد المادة 124 إجازة سنوية مدفوعة مقدارها 15 يوماً في السنة الأولى، و21 يوماً ابتداءً من السنة الثانية، و30 يوماً لمن أمضى عشر سنوات لدى صاحب عمل أو أكثر أو تجاوز الخمسين، و45 يوماً للأشخاص ذوي الإعاقة والأقزام. كما تضع قاعدة تناسبية لمن تقل خدمته عن سنة بشرط خدمة ستة أشهر على الأقل، وتقرر زيادة سبعة أيام للأعمال الخطرة أو المضرة بالصحة أو المناطق النائية التي يحددها قرار وزاري.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; النص الرسمي القابل للبحث؛ تم فحص استخراج النص لهذه المادة، لا صورة الصفحة (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 54؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [government-hosted official Gazette PDF](https://sis.gov.eg/media/760267/%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86-%D8%B1%D9%82%D9%85-14-%D9%84%D8%B3%D9%86%D8%A9-2025-%D8%A8%D8%A5%D8%B5%D8%AF%D8%A7%D8%B1-%D9%82%D8%A7%D9%86%D9%88%D9%86-%D8%A7%D9%84%D8%B9%D9%85%D9%84.pdf) — يعرض مواد الإجازات على الصفحات المطبوعة 54–55.
+- [Library of Congress legal update](https://www.loc.gov/item/global-legal-monitor/2025-07-25/egypt-labor-law-updated/) — سياق تشريعي عام؛ لا يعتمد عليه وحده لحساب استحقاق فردي.
+- [Official Gazette issue metadata hosted by IDSC](https://dspace.id.com.eg/items/f32b4a07-6598-4ed8-a170-60d631a57221) — Issue metadata dated 2026-03-18 identifies the supplement to issue 64 and lists Decision 49/2026; not a substitute for the full instrument..
+
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-DECISION-49-2026` — قرار وزير العمل رقم 49 لسنة 2026 بشأن تحديد الأعمال الخطرة والصعبة والمناطق النائية التي يستحق العاملون فيها زيادة الإجازة السنوية سبعة أيام; discovery_only; Official Gazette issue metadata found for issue 64 supplement dated 2026-03-18, but full decision text, page range, operative schedules, commencement, currentness, and reuse permission remain unverified. Source: [https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%84%D8%AA%D8%AD%D9%82%D9%82-%D8%A7%D9%84%D8%AA%D9%88%D8%A7%D8%B2%D9%86-%D8%A8%D9%8A%D9%86-%D9%85%D8%AA%D8%B7%D9%84%D8%A8%D8%A7%D8%AA-%D8%A7%D9%84%D8%A5%D9%86%D8%AA%D8%A7%D8%AC-%D9%88%D8%B5%D9%88%D9%86-%D8%AD%D9%82%D9%88%D9%82-%D8%A7%D9%84%D9%82%D9%88%D9%89-%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D9%84%D8%A9-%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D9%8A%D8%B5%D8%AF%D8%B1-%D9%82%D8%B1%D8%A7%D8%B1-%D8%A7-%D9%88%D8%B2%D8%A7%D8%B1%D9%8A-%D8%A7-%D8%A8%D8%AA%D8%AD%D8%AF%D9%8A%D8%AF-%D8%A7%D9%84%D8%A3%D8%B9%D9%85%D8%A7%D9%84-%D8%A7%D9%84%D8%AE%D8%B7%D8%B1%D8%A9-%D9%88%D8%A7%D9%84%D9%85%D9%86%D8%A7%D8%B7%D9%82-%D8%A7%D9%84%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D8%A7%D9%84%D8%AA%D9%8A-%D8%AA-%D8%B2%D8%A7%D8%AF-%D9%81%D9%8A%D9%87%D8%A7-%D8%A7%D9%84%D8%A5%D8%AC%D8%A7%D8%B2%D8%A7%D8%AA-%D8%A7%D9%84%D8%B3%D9%86%D9%88%D9%8A%D8%A9-7-%D8%A3%D9%8A%D8%A7%D9%85-%D9%84%D9%84%D8%B9%D8%A7%D9%85%D9%84%D9%8A%D9%86/](https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%84%D8%AA%D8%AD%D9%82%D9%82-%D8%A7%D9%84%D8%AA%D9%88%D8%A7%D8%B2%D9%86-%D8%A8%D9%8A%D9%86-%D9%85%D8%AA%D8%B7%D9%84%D8%A8%D8%A7%D8%AA-%D8%A7%D9%84%D8%A5%D9%86%D8%AA%D8%A7%D8%AC-%D9%88%D8%B5%D9%88%D9%86-%D8%AD%D9%82%D9%88%D9%82-%D8%A7%D9%84%D9%82%D9%88%D9%89-%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D9%84%D8%A9-%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D9%8A%D8%B5%D8%AF%D8%B1-%D9%82%D8%B1%D8%A7%D8%B1-%D8%A7-%D9%88%D8%B2%D8%A7%D8%B1%D9%8A-%D8%A7-%D8%A8%D8%AA%D8%AD%D8%AF%D9%8A%D8%AF-%D8%A7%D9%84%D8%A3%D8%B9%D9%85%D8%A7%D9%84-%D8%A7%D9%84%D8%AE%D8%B7%D8%B1%D8%A9-%D9%88%D8%A7%D9%84%D9%85%D9%86%D8%A7%D8%B7%D9%82-%D8%A7%D9%84%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D8%A7%D9%84%D8%AA%D9%8A-%D8%AA-%D8%B2%D8%A7%D8%AF-%D9%81%D9%8A%D9%87%D8%A7-%D8%A7%D9%84%D8%A5%D8%AC%D8%A7%D8%B2%D8%A7%D8%AA-%D8%A7%D9%84%D8%B3%D9%86%D9%88%D9%8A%D8%A9-7-%D8%A3%D9%8A%D8%A7%D9%85-%D9%84%D9%84%D8%B9%D8%A7%D9%85%D9%84%D9%8A%D9%86/).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 64 تابع, 2026-03-18; An item record lists Arabic and English PDF files, but no original file has been downloaded, hashed, visually inspected, or fully compared with the Gazette issue in this task.
+
+**Limitations:**
+
+- الزيادة الإضافية تتوقف على قرار يحدد الأعمال/المناطق المعنية
+- لا توجد مراجعة محامٍ مسجلة ولا تحقق شامل من القرارات اللاحقة
+- Decision 49/2026 is a relevant implementation candidate, but its full decision text, Gazette publication, schedules, effective date, and currentness remain unverified.
+- Official Gazette issue metadata now identifies Decision 49/2026 in the supplement to issue 64 dated 2026-03-18; the operative schedules, page range, effective date, and eligibility criteria still need authorized review.
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** final leave balance or payroll determination.
+
+### 8. EG-LABOUR-14-2025-ART-165-UNLAWFUL-TERMINATION
+
+**Question:** What minimum compensation does Article 165 state for unlawful termination of an indefinite-term contract?
+
+**Pinpoint:** القانون المرافق, المادة 165, printed Gazette page 69 (PDF page index 67).
+
+**Provisional summary (Arabic):**
+
+تنص المادة 165 على حق العامل في تعويض عن الضرر عند إنهاء صاحب العمل عقداً غير محدد المدة لسبب غير مشروع، بحد أدنى يعادل أجر شهرين عن كل سنة خدمة، مع عدم الإخلال بباقي الحقوق القانونية. وتورد المادة أمثلة لأسباب غير مشروعة؛ تحديد الانطباق يتطلب الوقائع والنص الكامل ومراجعة محامٍ.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; استخراج نص المادة 165 على الصفحة المطبوعة 69؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 69؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [government-hosted official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — يعرض نص المادة 165 وتعويض الإنهاء غير المشروع.
+
+**Limitations:**
+
+- يعتمد الاستحقاق على كون العقد غير محدد المدة ووجود سبب غير مشروع وفق القانون
+- يجب فحص الوقائع والأحكام الأخرى والتعديلات أو القرارات ذات الصلة
+- لا توجد مراجعة محامٍ مسجلة
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** settlement valuation, case prediction, or final legal advice.
+
+### 9. EG-LABOUR-14-2025-ART-129-PAID-HOLIDAYS
+
+**Question:** What does Article 129 provide when a worker is required to work on a designated paid holiday?
+
+**Pinpoint:** القانون المرافق, المادة 129, printed Gazette page 56 (PDF page index 54).
+
+**Provisional summary (Arabic):**
+
+تقرر المادة 129 إجازة بأجر في العطلات والأعياد والمناسبات التي يحددها قرار من الوزير المختص، مع قاعدة خاصة للأعياد الدينية لغير المسلمين. وإذا اقتضت ظروف العمل تشغيل العامل في هذه الأيام، يستحق بالإضافة إلى أجر اليوم مثلي هذا الأجر، أو يوماً آخر عوضاً عنه بناءً على طلب كتابي من العامل يُودع في ملفه. تحديد الأيام المشمولة يتطلب مراجعة القرار الوزاري ذي الصلة.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; النص الرسمي القابل للبحث؛ يلزم التحقق الموضعي عند التطبيق (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 56؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [government-hosted official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — يعرض المادة 129 والقاعدة الخاصة بالعمل في العطلات.
+- [Official Gazette issue metadata hosted by IDSC](https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc) — Issue metadata dated 2025-12-25 identifies Amiri Press as publisher and explicitly lists Decision 294/2025; not a substitute for the full instrument..
+
+**Related instruments requiring separate review:**
+
+- `EG-LABOUR-DECISION-294-2025` — قرار وزير العمل رقم 294 لسنة 2025 بشأن تحديد العطلات والأعياد والمناسبات التي تعتبر إجازة بأجر كامل للعمال; discovery_only; Official Gazette issue metadata found for issue 291 supplement dated 2025-12-25, but full decision text, page range, commencement, currentness, and reuse permission remain unverified. Source: [https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A7%D9%84%D8%A3%D8%B1%D8%A8%D8%B9%D8%A7%D8%A1-%D8%A7%D9%84%D9%85%D9%82%D8%A8%D9%84-%D8%A5%D8%AC%D8%A7%D8%B2%D8%A9-%D9%85%D8%AF%D9%81%D9%88%D8%B9%D8%A9-%D8%A7%D9%84%D8%A3%D8%AC%D8%B1-%D9%84%D9%84%D8%B9%D8%A7%D9%85%D9%84%D9%8A%D9%86-%D8%A8%D8%A7%D9%84%D9%82%D8%B7%D8%A7%D8%B9-%D8%A7%D9%84%D8%AE%D8%A7%D8%B5-%D8%A8%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%A9-%D8%B9%D9%8A%D8%AF-%D8%A7%D9%84%D9%85%D9%8A%D9%84%D8%A7%D8%AF-%D8%A7%D9%84%D9%85%D8%AC%D9%8A%D8%AF-%D8%AC%D8%A8%D8%B1%D8%A7%D9%86-%D9%88%D8%AD%D8%AF%D8%A9-%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D9%8A%D9%86-%D9%88%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A7%D9%84%D9%85%D8%B4%D8%AA%D8%B1%D9%83-%D8%A3%D8%B3%D8%A7%D8%B3-%D9%82%D9%88%D8%A9-%D8%A7%D9%84%D9%88%D8%B7%D9%86/](https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A7%D9%84%D8%A3%D8%B1%D8%A8%D8%B9%D8%A7%D8%A1-%D8%A7%D9%84%D9%85%D9%82%D8%A8%D9%84-%D8%A5%D8%AC%D8%A7%D8%B2%D8%A9-%D9%85%D8%AF%D9%81%D9%88%D8%B9%D8%A9-%D8%A7%D9%84%D8%A3%D8%AC%D8%B1-%D9%84%D9%84%D8%B9%D8%A7%D9%85%D9%84%D9%8A%D9%86-%D8%A8%D8%A7%D9%84%D9%82%D8%B7%D8%A7%D8%B9-%D8%A7%D9%84%D8%AE%D8%A7%D8%B5-%D8%A8%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%A9-%D8%B9%D9%8A%D8%AF-%D8%A7%D9%84%D9%85%D9%8A%D9%84%D8%A7%D8%AF-%D8%A7%D9%84%D9%85%D8%AC%D9%8A%D8%AF-%D8%AC%D8%A8%D8%B1%D8%A7%D9%86-%D9%88%D8%AD%D8%AF%D8%A9-%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D9%8A%D9%86-%D9%88%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A7%D9%84%D9%85%D8%B4%D8%AA%D8%B1%D9%83-%D8%A3%D8%B3%D8%A7%D8%B3-%D9%82%D9%88%D8%A9-%D8%A7%D9%84%D9%88%D8%B7%D9%86/).
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 291 (تابع), 2025-12-25; The record lists a PDF through a request-a-copy workflow; the full decision text has not been obtained or page-reviewed.
+
+**Limitations:**
+
+- قائمة العطلات نفسها لا ترد كاملة في هذه البطاقة وتحتاج إلى القرار الوزاري
+- لم يُثبت الوضع الحالي أو التعديلات أو الشروط التنفيذية للقرار 294/2025
+- لا توجد مراجعة محامٍ مسجلة
+- Official Gazette issue metadata now identifies Decision 294/2025 in the supplement to Egyptian Gazette issue 291 dated 2025-12-25; exact page range and operative text still need an authorized review.
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** complete holiday calendar, payroll calculation, or final advice.
+
+### 10. EG-LABOUR-14-2025-ART-118-120-REST
+
+**Question:** What general meal/rest-break, daily-span, and weekly-rest rules appear in Articles 118–120?
+
+**Pinpoint:** القانون المرافق, المواد 118–120, printed Gazette page 52 (PDF page index 50).
+
+**Provisional summary (Arabic):**
+
+تقرر المواد 118–120، كقواعد عامة، فترات للطعام والراحة لا يقل مجموعها عن ساعة مع مراعاة ألا يعمل العامل أكثر من خمس ساعات متصلة؛ وتنظيم فترة التواجد اليومية بحيث لا تتجاوز عادةً عشر ساعات، مع استثناءات محددة؛ وراحة أسبوعية مدفوعة لا تقل عن 24 ساعة كاملة بعد ستة أيام عمل متصلة على الأكثر. يجب فحص القرارات والاستثناءات الخاصة بطبيعة العمل قبل تطبيق هذه الحدود.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; النص الرسمي القابل للبحث؛ مراجعة موضعية مطلوبة عند التطبيق (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 52؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً. يعرض النص المستخرج المواد 118–120. (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [government-hosted official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — نص المواد 118–120 في الصفحة المطبوعة 52.
+
+**Limitations:**
+
+- تتضمن المواد استثناءات وقرارات وزارية محتملة
+- لا توجد مراجعة محامٍ مسجلة ولا تحقق شامل من القرارات التنفيذية الحالية
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** final shift scheduling, overtime calculation, or legal advice.
+
+### 11. EG-LABOUR-14-2025-ART-125-ANNUAL-LEAVE-ADMIN
+
+**Question:** What administration and carry-over rules does Article 125 state for annual leave?
+
+**Pinpoint:** القانون المرافق, المادة 125, printed Gazette page 55 (PDF page index 53).
+
+**Provisional summary (Arabic):**
+
+تمنح المادة 125 صاحب العمل سلطة تحديد مواعيد الإجازة وفق مقتضيات العمل، مع تقييد قطعها بأسباب قوية. وتقرر حدًا أدنى فعليًا مقداره 15 يومًا سنويًا، منها ستة أيام متصلة على الأقل، وتسوية رصيد الإجازات أو مقابله كل ثلاث سنوات على الأكثر، واستحقاق مقابل الرصيد غير المستنفد عند انتهاء علاقة العمل. وتورد المادة قواعد خاصة لعدم النزول عن الإجازة وللأطفال والأشخاص ذوي الإعاقة والأقزام.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; النص الرسمي القابل للبحث؛ مراجعة موضعية مطلوبة عند التطبيق (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 55؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً. يعرض النص المستخرج المادة 125. (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [government-hosted official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — نص المادة 125 على الصفحة المطبوعة 55.
+
+**Limitations:**
+
+- يجب قراءة المادة 124 معها لتحديد مقدار الاستحقاق السنوي للفئة المعنية
+- قد تؤثر القرارات المنفذة والتعديلات والوقائع الخاصة في النتيجة
+- لا توجد مراجعة محامٍ مسجلة
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** final leave balance or payroll determination.
+
+### 12. EG-LABOUR-14-2025-ART-164-NOTICE-PAY
+
+**Question:** What does Article 164 provide for termination of an indefinite-term contract without full notice?
+
+**Pinpoint:** القانون المرافق, المادة 164, printed Gazette page 69 (PDF page index 67).
+
+**Provisional summary (Arabic):**
+
+إذا أنهى صاحب العمل عقدًا غير محدد المدة دون إخطار أو قبل اكتمال مهلة الإخطار، تقرر المادة 164 أداء مبلغ يعادل أجر العامل عن المهلة أو الجزء المتبقي منها. وتتعامل المادة مع مدة المهلة أو باقيها كجزء من مدة الخدمة، وتبقي الالتزامات المرتبطة بها قائمة خلال تلك المدة. يجب قراءة المادة مع قواعد إنهاء العقد ذات الصلة.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; النص الرسمي القابل للبحث؛ مراجعة موضعية مطلوبة عند التطبيق (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 69؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً. يعرض النص المستخرج المادتين 164–165. (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [government-hosted official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — نص المادة 164 على الصفحة المطبوعة 69.
+
+**Limitations:**
+
+- تتطلب الحالة تصنيف العقد وتحديد مهلة الإخطار المنطبقة
+- لا تتناول البطاقة كل أسباب انتهاء العقد أو الاستثناءات
+- لا توجد مراجعة محامٍ مسجلة
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** final notice-pay calculation or legal advice.
+
+### 13. EG-LABOUR-14-2025-ART-128-CASUAL-LEAVE
+
+**Question:** What limits does Article 128 state for casual absence and birth-related emergency leave?
+
+**Pinpoint:** القانون المرافق, المادة 128, printed Gazette page 56 (PDF page index 54).
+
+**Provisional summary (Arabic):**
+
+تسمح المادة 128 للعامل بالانقطاع لسبب عارض لمدة لا تجاوز سبعة أيام في السنة، وبحد أقصى يومين في المرة، وتُحسب من رصيد الإجازة السنوية. كما تقرر يوماً طارئاً مدفوع الأجر عند ولادة مولود، لا يخصم من الرصيد السنوي، وبحد أقصى ثلاث مرات طوال الخدمة.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; النص الرسمي القابل للبحث؛ مراجعة موضعية مطلوبة عند التطبيق (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 56؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً. يعرض النص المستخرج المادة 128. (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [government-hosted official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — نص المادة 128 على الصفحة المطبوعة 56.
+
+**Limitations:**
+
+- يجب فحص أحكام الإجازة السنوية ذات الصلة والوقائع الخاصة
+- لا توجد مراجعة محامٍ مسجلة ولا تحقق شامل من أي تعديل لاحق
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** leave-balance calculation or final advice.
+
+### 14. EG-LABOUR-14-2025-ART-130-PILGRIMAGE-LEAVE
+
+**Question:** What eligibility conditions does Article 130 state for paid pilgrimage leave?
+
+**Pinpoint:** القانون المرافق, المادة 130, printed Gazette page 56 (PDF page index 54).
+
+**Provisional summary (Arabic):**
+
+تقرر المادة 130 للعامل الذي أمضى خمس سنوات متصلة في خدمة صاحب العمل إجازة بأجر لمدة شهر لأداء فريضة الحج أو زيارة بيت المقدس، وتكون مرة واحدة طوال مدة خدمته. يلزم فحص النص الكامل وظروف الخدمة وأي قواعد تنفيذية قبل تأكيد الاستحقاق الفردي.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; النص الرسمي القابل للبحث؛ مراجعة موضعية مطلوبة عند التطبيق (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 56؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً. يعرض النص المستخرج المادة 130. (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [government-hosted official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — نص المادة 130 على الصفحة المطبوعة 56.
+
+**Limitations:**
+
+- تتوقف الأهلية على مدة الخدمة المتصلة وعدم الاستفادة السابقة
+- لا توجد مراجعة محامٍ مسجلة ولا تحقق شامل من أي تعديل لاحق
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** final eligibility determination or legal advice.
+
+### 15. EG-LABOUR-14-2025-ART-131-SICK-LEAVE
+
+**Question:** How does Article 131 frame sick-leave entitlement and wage compensation?
+
+**Pinpoint:** القانون المرافق, المادة 131, printed Gazette page 56 (PDF page index 54).
+
+**Provisional summary (Arabic):**
+
+تقرر المادة 131 حق العامل الذي يثبت مرضه أو إصابته بما يمنعه من أداء العمل في إجازة مرضية تحددها الجهة الطبية المختصة، ويُحدد التعويض عن الأجر ونسبته ومدته وفق قانون التأمينات الاجتماعية والمعاشات المشار إليه. لا تكفي هذه البطاقة لحساب التعويض دون مراجعة قانون التأمينات والقواعد الطبية المنطبقة.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; النص الرسمي القابل للبحث؛ مراجعة موضعية مطلوبة عند التطبيق (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 56؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً. يعرض النص المستخرج بداية المادة 131؛ التفاصيل المتعلقة بالمنشآت الصناعية والقواعد الخاصة تحتاج إلى مراجعة النص الكامل. (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [government-hosted official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — بداية المادة 131 على الصفحة المطبوعة 56.
+
+**Limitations:**
+
+- قانون التأمينات والقواعد الطبية ذات الصلة لازمة لتحديد النسبة والمدة
+- قد توجد أحكام خاصة لبعض المنشآت أو الحالات
+- لا توجد مراجعة محامٍ مسجلة
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** sick-pay calculation or final advice.
+
+### 16. EG-LABOUR-14-2025-ART-91-ASSIGNMENT-LIMITS
+
+**Question:** When may an employer assign work outside the agreed individual or collective contract terms?
+
+**Pinpoint:** القانون المرافق, المادة 91, printed Gazette page 44 (PDF page index 42).
+
+**Provisional summary (Arabic):**
+
+تمنع المادة 91 صاحب العمل، كقاعدة عامة، من مخالفة الشروط المتفق عليها أو تكليف العامل بعمل غير متفق عليه. وتورد استثناءات مؤقتة لحالات الضرورة كمنع الحوادث أو إصلاح آثارها أو القوة القاهرة، كما تجيز التكليف بعمل لا يختلف جوهرياً عن العمل المتفق عليه، مع عدم المساس بحقوق العامل.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; النص الرسمي القابل للبحث؛ مراجعة موضعية مطلوبة عند التطبيق (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 44؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً. يعرض النص المستخرج المادة 91. (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [government-hosted official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — نص المادة 91 على الصفحة المطبوعة 44.
+
+**Limitations:**
+
+- يتوقف التطبيق على طبيعة المهمة والضرورة والمدة والفروق الجوهرية
+- لا توجد مراجعة محامٍ مسجلة
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** deciding an individual workplace dispute without facts and counsel review.
+
+### 17. EG-LABOUR-14-2025-ART-92-EMPLOYEE-FILE
+
+**Question:** What employee-file, access, and retention duties does Article 92 state?
+
+**Pinpoint:** القانون المرافق, المادة 92, printed Gazette page 44 (PDF page index 42).
+
+**Provisional summary (Arabic):**
+
+تلزم المادة 92 صاحب العمل بإنشاء ملف ورقي أو إلكتروني لكل عامل يتضمن بيانات الخدمة والمستندات المحددة في النص. وتقصر الاطلاع على هذه البيانات على من يجيز له القانون ذلك، وتوجب الاحتفاظ بالملف خمس سنوات على الأقل من انتهاء علاقة العمل، مع استمرار الاحتفاظ به عند وجود نزاع قضائي حتى الفصل فيه بحكم بات.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; النص الرسمي القابل للبحث؛ مراجعة موضعية مطلوبة عند التطبيق (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 44؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً. يعرض النص المستخرج المادة 92 بما فيها قيود الاطلاع ومدة الاحتفاظ. (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [government-hosted official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — نص المادة 92 على الصفحة المطبوعة 44.
+
+**Limitations:**
+
+- يجب مراجعة متطلبات حماية البيانات والتأمينات والتزامات الاحتفاظ ذات الصلة
+- لا تضع هذه البطاقة سياسة احتفاظ كاملة للمنشأة
+- لا توجد مراجعة محامٍ مسجلة
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and compliance-review checklist.
+**Not usable for:** standalone retention policy or final compliance advice.
+
+### 18. EG-LABOUR-14-2025-ART-93-RETURN-TRANSPORT
+
+**Question:** What return-transport obligation does Article 93 describe when employment ends?
+
+**Pinpoint:** القانون المرافق, المادة 93, printed Gazette page 44 (PDF page index 42).
+
+**Provisional summary (Arabic):**
+
+تقرر المادة 93 التزام صاحب العمل بنقل العامل من الجهة التي تعاقد معها فيها إلى مكان العمل، وإعادته إلى تلك الجهة خلال ثلاثة أيام من انتهاء العقد للأسباب المحددة بالقانون، بما في ذلك أثناء فترة الاختبار، ما لم يرفض العامل العودة كتابة خلال المدة المشار إليها. يجب فحص سبب الانتهاء والوقائع قبل تقرير انطباق الالتزام.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; النص الرسمي القابل للبحث؛ مراجعة موضعية مطلوبة عند التطبيق (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 44؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً. يعرض النص المستخرج المادة 93. (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [government-hosted official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — نص المادة 93 على الصفحة المطبوعة 44.
+
+**Limitations:**
+
+- تقتصر القاعدة على أسباب الانتهاء التي يشملها النص
+- لا توجد مراجعة محامٍ مسجلة
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** final liability or reimbursement determination.
+
+### 19. EG-LABOUR-14-2025-ART-94-OUTSOURCING-EQUAL-RIGHTS
+
+**Question:** What obligations arise when one employer assigns work to another employer in the same work area?
+
+**Pinpoint:** القانون المرافق, المادة 94, printed Gazette page 45 (PDF page index 43).
+
+**Provisional summary (Arabic):**
+
+إذا عهد صاحب العمل إلى صاحب عمل آخر بأداء عمل أو جزء منه في منطقة عمل واحدة، تلزم المادة 94 صاحب العمل الآخر بتسوية حقوق عماله مع عمال صاحب العمل الأصلي، وتقرر تضامن صاحب العمل الأصلي معه في الوفاء بالالتزامات التي يفرضها القانون. ويجب فحص وقائع الإسناد ومنطقة العمل ونطاق الالتزامات قبل تقرير المسؤولية.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; النص الرسمي القابل للبحث؛ مراجعة موضعية مطلوبة عند التطبيق (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 45؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً. يعرض النص المستخرج المادة 94. (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [government-hosted official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — نص المادة 94 على الصفحة المطبوعة 45.
+
+**Limitations:**
+
+- يتطلب التطبيق فحص حقيقة الإسناد ومكان العمل وطبيعة الحقوق المطالب بها
+- لا توجد مراجعة محامٍ مسجلة
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** final liability allocation or legal advice.
+
+### 20. EG-LABOUR-14-2025-ART-95-TRAINING-COSTS
+
+**Question:** What does Article 95 provide when a worker leaves before completing an agreed post-training period?
+
+**Pinpoint:** القانون المرافق, المادة 95, printed Gazette page 45 (PDF page index 43).
+
+**Provisional summary (Arabic):**
+
+تلزم المادة 95 العامل الذي دُرّب على نفقة صاحب العمل بقضاء المدة المتفق عليها لديه، وتذكر التزاماً بسداد نفقات التدريب عند ترك العمل قبل انتهاء تلك المدة، دون إخلال بحق صاحب العمل في التعويض، ما لم ينص العقد على خلاف ذلك. يجب مراجعة العقد والوقائع وأي أحكام ذات صلة قبل تقدير أي مبلغ.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; النص الرسمي القابل للبحث؛ مراجعة موضعية مطلوبة عند التطبيق (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 45؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً. يعرض النص المستخرج المادة 95. (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [government-hosted official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — نص المادة 95 على الصفحة المطبوعة 45.
+
+**Limitations:**
+
+- النص يحيل إلى المدة المتفق عليها والعقد قد يتضمن شروطاً مؤثرة
+- لا تقرر البطاقة صحة أو مقدار مطالبة محددة
+- لا توجد مراجعة محامٍ مسجلة
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** calculating or asserting a worker debt without contract review.
+
+### 21. EG-LABOUR-14-2025-ART-96-NEW-WORK-PATTERNS
+
+**Question:** How does Article 96 define new work patterns and what examples are identified in the reviewed text?
+
+**Pinpoint:** القانون المرافق, المادة 96, printed Gazette page 45 (PDF page index 43).
+
+**Provisional summary (Arabic):**
+
+تعرف المادة 96 نمط العمل الجديد بالرجوع إلى طريقة أداء غير تقليدية للعمل لصالح صاحب العمل وتحت إدارته أو إشرافه مقابل أجر. ويذكر النص المستخرج، ضمن الأمثلة، العمل عن بُعد والعمل بعض الوقت أو لجزء من الوقت. لا تفترض هذه البطاقة أن المثالين هما القائمة الكاملة أو أنها تغطي جميع الضوابط التنظيمية.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; النص الرسمي القابل للبحث؛ مراجعة موضعية مطلوبة عند التطبيق (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 45؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً. يعرض النص المستخرج بداية المادة 96 وتعريف نمط العمل الجديد ومثالين؛ لم تُراجع بقية المادة بالكامل في هذه المهمة. (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [government-hosted official Gazette PDF search result](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — بداية المادة 96 على الصفحة المطبوعة 45.
+
+**Limitations:**
+
+- لم تتم مراجعة بقية المادة أو المواد التالية المتعلقة بكل نمط عمل
+- قد تتطلب التفاصيل قرارات تنفيذية أو قواعد خاصة
+- لا توجد مراجعة محامٍ مسجلة
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** full remote-work compliance checklist or final advice.
+
+## Activation gates
+
+1. Download and preserve the exact Official Gazette PDF through an authorized route; record its SHA-256 and visually inspect each cited page.
+2. Complete a full article-by-article comparison of all 311 candidate records against the Official Gazette.
+3. Review amendments, implementing instruments, transitional rules, and current legal effect as of the requested date.
+4. Resolve source-specific collection, indexing, display, and commercial-use terms; do not infer permission from public access.
+5. Obtain documented qualified Egyptian-lawyer review for each card and record reviewer identity, date, scope, and decision.
+6. Only then create retrieval-eligible chunks with exact page/article citations.
+
+## Important interpretation rule
+
+A source link, search snippet, or Gazette-index record is evidence of a source lead—not proof that the complete instrument is current, fully compared, licensed for reuse, or approved by Egyptian counsel. Do not activate these cards for authoritative retrieval until all recorded gates are satisfied.
