@@ -586,9 +586,11 @@ def save_doc(c, u, cid, name, text, *, content_hash=None, content_type="text/pla
         if original_file is not None:
             c.execute(
                 "INSERT INTO original_file_objects(object_id,document_id,firm_id,storage_backend,sha256,byte_size,content_type,state) "
-                "VALUES(?,?,?,'local',?,?,?,'staged')",
-                (original_file.object_id, document_id, u["firm_id"], original_file.sha256,
-                 original_file.byte_size, content_type or "application/octet-stream"),
+                "VALUES(?,?,?,?,?,?,?,'staged')",
+                (original_file.object_id, document_id, u["firm_id"],
+                 "s3" if isinstance(store, S3PrivateObjectStore) else "local",
+                 original_file.sha256, original_file.byte_size,
+                 content_type or "application/octet-stream"),
             )
         log(c, cid, u["name"], "إضافة مستند: " + name)
         c.execute(f"RELEASE SAVEPOINT {savepoint}")
