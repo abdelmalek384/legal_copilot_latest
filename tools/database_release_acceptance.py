@@ -121,6 +121,18 @@ def validate_acceptance_manifest(manifest: object, *, now: datetime | None = Non
             if type(unresolved) is not int or unresolved != 0:
                 blockers.append({"gate": name, "code": "unresolved_critical_or_high_findings"})
                 continue
+            reviewer = item.get("reviewer", "").strip().casefold()
+            operational_actors = set()
+            for other_name, other_item in gates.items():
+                if other_name == name or not isinstance(other_item, dict) or other_item.get("status") != "passed":
+                    continue
+                for actor_field in ("verified_by", "witnessed_by", "approved_by"):
+                    actor = other_item.get(actor_field)
+                    if isinstance(actor, str) and actor.strip():
+                        operational_actors.add(actor.strip().casefold())
+            if reviewer in operational_actors:
+                blockers.append({"gate": name, "code": "reviewer_not_independent_of_operators"})
+                continue
         passed_count += 1
     return {
         "ready": not blockers and passed_count == len(REQUIRED_GATES),
