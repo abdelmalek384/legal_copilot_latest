@@ -1,0 +1,40 @@
+{
+  "instrument": "Egyptian Labour Law No. 14 of 2025",
+  "manifest_version": 1,
+  "updated_on": "2026-10-28",
+  "authoritative_search_eligible": false,
+  "inventory_files": [
+    {
+      "path": "data/candidates/labour_law_14_2025/provision_evidence_cards.json",
+      "expected_cards": 197,
+      "role": "main provisional inventory",
+      "note": "Large file exceeds GitHub Contents API readable-size limit; do not infer that it is absent."
+    },
+    {
+      "path": "data/candidates/labour_law_14_2025/provision_evidence_cards_256_274.json",
+      "expected_cards": 19,
+      "article_range": [
+        256,
+        274
+      ],
+      "role": "supplemental provisional inventory"
+    },
+    {
+      "path": "data/candidates/labour_law_14_2025/provision_evidence_cards_275_298.json",
+      "expected_cards": 24,
+      "article_range": [
+        275,
+        298
+      ],
+      "role": "supplemental provisional inventory"
+    }
+  ],
+  "combined_expected_cards": 240,
+  "loader_requirement": "Any inventory reader or report builder must explicitly read all listed files, validate unique card IDs across files, and preserve each card's search_eligible=false/review_state/limitations. Do not activate this inventory for authoritative retrieval.",
+  "known_gaps": [
+    "Main inventory could not be re-read through the current GitHub Contents API because of file size.",
+    "Supplemental cards have inferred Gazette page pinpoints, not visually verified.",
+    "Some penalty summaries and implementing-decision mappings are secondary-source cross-checks only.",
+    "Currentness, full amendments, reuse rights and Egyptian-lawyer review remain incomplete."
+  ]
+}
