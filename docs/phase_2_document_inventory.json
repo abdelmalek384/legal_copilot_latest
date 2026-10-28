@@ -2021,6 +2021,12 @@
       "action": "Verify the exact instrument number/title, Official Gazette issue/pages, commencement and relationship to Labour Law 14/2025 for the general private-sector work-regulation rules reported by the Ministry of Labour in 2026; keep permission and legal status unknown until independently reviewed.",
       "owner": "legal corpus lead",
       "status": "not_started"
+    },
+    {
+      "id": "ACT-LABOUR-DECISION-264-2026-STANDARDS-VERIFY",
+      "action": "Retrieve the official text/publication reference for the 2026 standards reported under Labour Decision 264/2025; establish whether they are a separate instrument, record exact title/number and effective date, and keep legal status and reuse permission unresolved until reviewed.",
+      "owner": "legal corpus lead",
+      "status": "not_started"
     }
   ],
   "research_log": {
