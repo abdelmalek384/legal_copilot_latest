@@ -10,6 +10,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env:
+      COPILOT_ENV: development
       COPILOT_DB: copilot.db
     steps:
       - name: Check out repository

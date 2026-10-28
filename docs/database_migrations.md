@@ -1,6 +1,6 @@
 # Versioned database migrations
 
-**Status:** The versioned migration runner is used for the three approved separate-database profiles. Legacy startup DDL remains only in the explicitly configured `COPILOT_DB` compatibility mode, which is not the approved fresh-install path.
+**Status:** The versioned migration runner is used for the three approved separate-database profiles. Legacy startup DDL remains only in an explicitly selected `COPILOT_ENV=development` test/compatibility harness with `COPILOT_DB`; this path is not an approved fresh-install, staging, or production configuration. No legacy database has been deployed or used, and no import/reconciliation is planned.
 
 ## Workflow
 

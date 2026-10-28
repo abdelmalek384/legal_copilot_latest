@@ -116,6 +116,33 @@ class ProductionDatabaseModeTests(unittest.TestCase):
             result.stderr,
         )
 
+    def test_shared_database_compatibility_requires_explicit_development_mode(self):
+        with __import__("tempfile").TemporaryDirectory() as temp:
+            env = os.environ.copy()
+            env.pop("COPILOT_ENV", None)
+            for key in ("COPILOT_CONTROL_DB", "COPILOT_TENANT_DB_ROOT", "COPILOT_CORPUS_DB"):
+                env.pop(key, None)
+            env["COPILOT_DB"] = os.path.join(temp, "shared.sqlite3")
+            result = subprocess.run(
+                [sys.executable, "-c", "import app; app.conn()"],
+                env=env, capture_output=True, text=True, timeout=30,
+            )
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("COPILOT_DB is restricted to explicit development/test mode", result.stderr)
+
+    def test_shared_database_compatibility_is_explicitly_available_in_development(self):
+        with __import__("tempfile").TemporaryDirectory() as temp:
+            env = os.environ.copy()
+            for key in ("COPILOT_CONTROL_DB", "COPILOT_TENANT_DB_ROOT", "COPILOT_CORPUS_DB"):
+                env.pop(key, None)
+            env["COPILOT_ENV"] = "development"
+            env["COPILOT_DB"] = os.path.join(temp, "shared.sqlite3")
+            result = subprocess.run(
+                [sys.executable, "-c", "import app; app.conn().close()"],
+                env=env, capture_output=True, text=True, timeout=30,
+            )
+        self.assertEqual(result.returncode, 0, result.stderr)
+
     def test_app_refuses_legacy_shared_database_in_production(self):
         env = os.environ.copy()
         for key in ("COPILOT_CONTROL_DB", "COPILOT_TENANT_DB_ROOT", "COPILOT_CORPUS_DB"):

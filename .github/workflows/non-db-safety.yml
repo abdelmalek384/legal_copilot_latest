@@ -71,6 +71,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
+      COPILOT_ENV: development
       PYTHONPATH: .
     steps:
       - name: Check out repository
