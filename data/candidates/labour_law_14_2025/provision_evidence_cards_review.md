@@ -2,7 +2,7 @@
 
 **Record:** `EG-LABOUR-LAW-14-2025-EVIDENCE-CARDS-2026-10-28`  
 **Prepared on:** 2026-10-28  
-**Cards in this report:** 53
+**Cards in this report:** 59
 
 ## Status and limits
 
@@ -14,7 +14,7 @@
 - Collection permission: `unknown`; commercial reuse: `unknown`.
 - Authoritative search eligibility: `false`.
 
-Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF has not been downloaded, hashed, or visually inspected; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording. Additional cards for accompanying-law Articles 4–9 were prepared from text extraction of the government-hosted Official Gazette PDF on 2026-10-28. The PDF has not been downloaded, hashed, or visually inspected; page pinpointing is provisional and all cards remain non-authoritative. Additional cards for accompanying-law Articles 10–12 were prepared from the government-hosted Official Gazette PDF text extraction on 2026-10-28. Page references are based on the extracted page labels; the PDF has not been downloaded, hashed, or visually inspected. Cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 16, 22, 23, 25 and 27 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; these cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 28–31 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 32–34 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 36–37 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshot checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 40–43 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 44–48 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative.
+Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF has not been downloaded, hashed, or visually inspected; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording. Additional cards for accompanying-law Articles 4–9 were prepared from text extraction of the government-hosted Official Gazette PDF on 2026-10-28. The PDF has not been downloaded, hashed, or visually inspected; page pinpointing is provisional and all cards remain non-authoritative. Additional cards for accompanying-law Articles 10–12 were prepared from the government-hosted Official Gazette PDF text extraction on 2026-10-28. Page references are based on the extracted page labels; the PDF has not been downloaded, hashed, or visually inspected. Cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 16, 22, 23, 25 and 27 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; these cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 28–31 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 32–34 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 36–37 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshot checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 40–43 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 44–48 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 49–54 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative.
 
 ## Provision cards
 
@@ -1558,6 +1558,180 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - تتوقف المتطلبات على فئة الجهة والاستثناءات والإجراءات التنفيذية
 - لم تُراجع النماذج الحالية أو أي تعديل لاحق
+- لا توجد مراجعة محامٍ مسجلة
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** final advice or authoritative retrieval.
+
+### 54. EG-LABOUR-14-2025-ART-49-OVERSEAS-LABOUR-AGREEMENTS
+
+**Question:** What role does Article 49 assign to the Ministry regarding agreements on Egyptians working abroad?
+
+**Pinpoint:** القانون المرافق, المادة 49, printed Gazette page 30 (PDF page index 28).
+
+**Provisional summary (Arabic):**
+
+تكلف المادة 49 الوزارة المختصة بالتعاون مع الوزارات والجهات المعنية بمتابعة تنفيذ الاتفاقيات الدولية والعقود المتعلقة بالعمالة المصرية في الخارج، وبحث المنازعات الناشئة عن تنفيذها وتسويتها. يلزم الرجوع إلى الاتفاقية أو العقد المحدد والإجراءات الحالية قبل تحديد الحقوق أو مسار تسوية نزاع بعينه.
+
+**Primary-source leads:**
+
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; استخراج نص المادة 49 من الصفحة المطبوعة 30؛ الملف لم يُنزّل أو يُفحص بصرياً (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; صفحة النص الرسمي للقانون؛ يلزم التحقق الموضعي عند التطبيق (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
+
+**Limitations:**
+
+- لا تحدد البطاقة اتفاقية دولية بعينها أو آلية تسوية محددة
+- لم تُراجع الاتفاقيات الثنائية أو القرارات التنفيذية ذات الصلة
+- لا توجد مراجعة محامٍ مسجلة
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** final advice or authoritative retrieval.
+
+### 55. EG-LABOUR-14-2025-ART-50-FOREIGN-RECRUITMENT-CHANNELS
+
+**Question:** When may international organizations recruit Egyptian workers for work abroad under Article 50?
+
+**Pinpoint:** القانون المرافق, المادة 50, printed Gazette page 30 (PDF page index 28).
+
+**Provisional summary (Arabic):**
+
+تتناول المادة 50 إلحاق العمالة المصرية بالعمل خارج البلاد بواسطة منظمات دولية عندما تتوافر الخبرات والكفاءات الخاصة المطلوبة، مع اشتراطات تتعلق بالتعاقد مع جهات حكومية أو هيئات عامة وموافقة الجهات المختصة، وإخطار الوزارة بفرص العمل وعقود العمل المبرمة. يجب التحقق من نوع المنظمة وطبيعة العقد والموافقات المطلوبة في الحالة المحددة.
+
+**Primary-source leads:**
+
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; استخراج نص المادة 50 من الصفحة المطبوعة 30؛ الملف لم يُنزّل أو يُفحص بصرياً (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; صفحة النص الرسمي للقانون؛ يلزم التحقق الموضعي عند التطبيق (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
+
+**Limitations:**
+
+- تتوقف القاعدة على نوع المنظمة والخبرة المطلوبة والجهة المتعاقدة
+- لم تُراجع الموافقات أو الإجراءات التنفيذية الحالية
+- لا توجد مراجعة محامٍ مسجلة
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** final advice or authoritative retrieval.
+
+### 56. EG-LABOUR-14-2025-ART-51-EMPLOYMENT-ACTIVITY-REPORTING
+
+**Question:** How often must employment operators report their activity under Article 51?
+
+**Pinpoint:** القانون المرافق, المادة 51, printed Gazette page 30 (PDF page index 28).
+
+**Provisional summary (Arabic):**
+
+تلزم المادة 51 الجهات التي تزاول عمليات التشغيل في الداخل والخارج بموافاة الوزارة المختصة بالبيانات ونتائج أعمالها مرة واحدة على الأقل كل ستة أشهر، وتفوض الوزير في تحديد القواعد والإجراءات. يلزم الرجوع إلى القرار التنفيذي والنماذج السارية لتحديد شكل التقرير ومحتواه.
+
+**Primary-source leads:**
+
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; استخراج نص المادة 51 من الصفحة المطبوعة 30؛ الملف لم يُنزّل أو يُفحص بصرياً (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; صفحة النص الرسمي للقانون؛ يلزم التحقق الموضعي عند التطبيق (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
+
+**Limitations:**
+
+- لا تحدد البطاقة النموذج الحالي أو جميع البيانات المطلوب إدراجها
+- لم تُراجع القرارات التنفيذية أو أي تعديل لاحق
+- لا توجد مراجعة محامٍ مسجلة
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** final advice or authoritative retrieval.
+
+### 57. EG-LABOUR-14-2025-ART-52-ONLINE-RECRUITMENT-LICENCE
+
+**Question:** Can a website or electronic platform recruit Egyptians for work without a licence under Article 52?
+
+**Pinpoint:** القانون المرافق, المادة 52, printed Gazette page 30 (PDF page index 28).
+
+**Provisional summary (Arabic):**
+
+تحظر المادة 52 مزاولة عمليات إلحاق المصريين بالعمل في الداخل أو الخارج عبر المواقع أو الصفحات أو المنصات الإلكترونية إلا بعد الحصول على ترخيص من الوزارة المختصة، مع استثناء وكالات التشغيل الخاصة المشار إليها في البند الثالث من المادة 40 وفق النص. وتفوض الوزير، بالتنسيق مع الوزير المعني بشؤون الاتصالات، في تحديد قواعد الترخيص ومدته ورسومه ومتطلبات التقارير. يجب مراجعة القواعد التنفيذية قبل تقييم منصة محددة.
+
+**Primary-source leads:**
+
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; استخراج نص المادة 52 من الصفحة المطبوعة 30؛ الملف لم يُنزّل أو يُفحص بصرياً (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; صفحة النص الرسمي للقانون؛ يلزم التحقق الموضعي عند التطبيق (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
+
+**Limitations:**
+
+- يلزم تحديد طبيعة نشاط المنصة وما إذا كان يدخل في مفهوم إلحاق العمالة
+- لم تُراجع قواعد الترخيص الحالية أو الاستثناءات التفصيلية
+- لا توجد مراجعة محامٍ مسجلة
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** final advice or authoritative retrieval.
+
+### 58. EG-LABOUR-14-2025-ART-53-EQUAL-PAY
+
+**Question:** What equal-pay rule does Article 53 state for women and men?
+
+**Pinpoint:** القانون المرافق, المادة 53, printed Gazette page 31 (PDF page index 29).
+
+**Provisional summary (Arabic):**
+
+تقرر المادة 53 سريان أحكامها على العاملات دون تمييز، وتمنح العاملين والعاملات أجراً متساوياً عن العمل ذي القيمة المتساوية، شاملاً صور الأجر ومكوناته ومزاياه. كما تتناول إصدار قرار يحدد الأعمال أو الأحوال التي لا يجوز تشغيل النساء فيها لأغراض الحماية المرتبطة بالأمومة أو السلامة والصحة المهنية. يلزم مراجعة القرارات السارية وتقييم قيمة العمل والوقائع قبل تطبيق القاعدة على حالة معينة.
+
+**Primary-source leads:**
+
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; استخراج نص المادة 53 من الصفحة المطبوعة 31؛ الملف لم يُنزّل أو يُفحص بصرياً (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; صفحة النص الرسمي للقانون؛ يلزم التحقق الموضعي عند التطبيق (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
+
+**Limitations:**
+
+- لا تحدد البطاقة طريقة تقييم القيمة المتساوية للعمل أو جميع المزايا المقصودة
+- لم تُراجع القرارات التنفيذية التي تحدد الأعمال المحظورة أو المقيدة
+- لا توجد مراجعة محامٍ مسجلة
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** final advice or authoritative retrieval.
+
+### 59. EG-LABOUR-14-2025-ART-54-MATERNITY-LEAVE-AND-HOURS
+
+**Question:** What maternity leave and working-time protections does Article 54 describe?
+
+**Pinpoint:** القانون المرافق, المادة 54, printed Gazette page 31 (PDF page index 29).
+
+**Provisional summary (Arabic):**
+
+تمنح المادة 54 العاملة إجازة وضع لمدة أربعة أشهر، تشمل المدة السابقة واللاحقة للوضع، على ألا تقل المدة التالية للوضع عن خمسة وأربعين يوماً، مع الشروط الطبية الواردة بالنص، وتكون الإجازة مدفوعة الأجر ولا تستحقها العاملة أكثر من ثلاث مرات طوال مدة خدمتها. كما تخفض ساعات العمل اليومية للمرأة الحامل ساعة على الأقل اعتباراً من الشهر السادس، ولا يجوز إلزامها بساعات عمل إضافية أثناء الحمل وحتى نهاية ستة أشهر من تاريخ الوضع. يجب التحقق من النص الكامل والتشريعات التأمينية والقرارات ذات الصلة قبل حساب استحقاق فردي.
+
+**Primary-source leads:**
+
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; استخراج نص المادة 54 من الصفحة المطبوعة 31؛ الملف لم يُنزّل أو يُفحص بصرياً (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; صفحة النص الرسمي للقانون؛ يلزم التحقق الموضعي عند التطبيق (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
+
+**Limitations:**
+
+- لا تحدد البطاقة جميع الشروط والمستندات أو طريقة احتساب التعويضات التأمينية
+- لم تُراجع التعديلات اللاحقة أو القرارات التنفيذية ذات الصلة
 - لا توجد مراجعة محامٍ مسجلة
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
