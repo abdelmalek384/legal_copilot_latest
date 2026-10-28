@@ -315,3 +315,30 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+    def test_termination_and_end_of_service_cards_165_to_175_have_pinpoints(self):
+        cards = {card["card_id"]: card for card in self.data["cards"]}
+        expected = {
+            "EG-LABOUR-14-2025-ART-165-UNLAWFUL-TERMINATION-COMPENSATION": ("المادة 165", 69, 67),
+            "EG-LABOUR-14-2025-ART-166-ABSENCE-DEEMED-RESIGNATION": ("المادة 166", 70, 68),
+            "EG-LABOUR-14-2025-ART-167-RESIGNATION-FORMALITY-ACCEPTANCE-WITHDRAWAL": ("المادة 167", 70, 68),
+            "EG-LABOUR-14-2025-ART-168-WORKER-TERMINATION-EMPLOYER-BREACH-OR-ASSAULT": ("المادة 168", 70, 68),
+            "EG-LABOUR-14-2025-ART-169-DEATH-EMPLOYEE-EMPLOYER-AND-FAMILY-PAYMENTS": ("المادة 169", 70, 68),
+            "EG-LABOUR-14-2025-ART-170-TOTAL-PARTIAL-DISABILITY": ("المادة 170", 71, 69),
+            "EG-LABOUR-14-2025-ART-171-RETIREMENT-AGE-AND-FIXED-TERM": ("المادة 171", 71, 69),
+            "EG-LABOUR-14-2025-ART-172-POST-RETIREMENT-SERVICE-GRATUITY": ("المادة 172", 72, 70),
+            "EG-LABOUR-14-2025-ART-173-TERMINATION-DURING-ILLNESS-LEAVE": ("المادة 173", 72, 70),
+            "EG-LABOUR-14-2025-ART-174-FINAL-CRIMINAL-CONVICTION-TERMINATION": ("المادة 174", 72, 70),
+            "EG-LABOUR-14-2025-ART-175-EMPLOYMENT-CERTIFICATE-AND-RETURN-OF-DOCUMENTS": ("المادة 175", 72, 70),
+        }
+        self.assertEqual(len(self.data["cards"]), 117)
+        for card_id, (article, printed_page, pdf_index) in expected.items():
+            with self.subTest(card_id=card_id):
+                card = cards[card_id]
+                self.assertEqual(card["pinpoint"]["article"], article)
+                self.assertEqual(card["pinpoint"]["official_gazette_printed_page"], printed_page)
+                self.assertEqual(card["pinpoint"]["pdf_page_index_zero_based"], pdf_index)
+                self.assertFalse(self.data["instrument"]["search_eligible"])
+                self.assertTrue(card["limitations"])
+                self.assertIn("portal.eta.gov.eg", " ".join(s["url"] for s in card["primary_evidence"]))
+
