@@ -42,6 +42,20 @@ class LabourLawSupplementCardTests(unittest.TestCase):
             if 281 <= article <= 295:
                 self.assertEqual(card["review_state"], "provisional_secondary_crosscheck")
 
+
+    def test_promulgation_articles_2_to_11_supplement(self):
+        payload = json.loads((DATA / "provision_evidence_cards_promulgation_2_11.json").read_text(encoding="utf-8"))
+        self.assertEqual(payload["cards_count"], 10)
+        self.assertEqual(len(payload["cards"]), 10)
+        self.assertFalse(payload["search_eligible"])
+        articles = {int(card["pinpoint"]["article"].replace("المادة ", "")) for card in payload["cards"]}
+        self.assertEqual(articles, set(range(2, 12)))
+        for card in payload["cards"]:
+            self.assertFalse(card["search_eligible"])
+            self.assertIsNone(card["pinpoint"]["official_gazette_printed_page"])
+            self.assertIn("not verified", card["pinpoint"]["pinpoint_status"])
+            self.assertTrue(card["limitations"])
+
     def test_all_supplement_cards_are_explicitly_non_authoritative(self):
         for filename, count in (
             ("provision_evidence_cards_256_274.json", 19),
