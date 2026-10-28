@@ -206,6 +206,32 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
                 self.assertTrue(card["not_usable_for"])
         self.assertFalse(self.data["instrument"]["search_eligible"])
 
+    def test_work_rules_and_disciplinary_procedure_cards_have_official_pinpoints(self):
+        expected = {
+            "EG-LABOUR-14-2025-ART-137-WORK-REGULATIONS-REQUIREMENTS": ("المادة 137", 60),
+            "EG-LABOUR-14-2025-ART-138-DISCIPLINARY-SCOPE-AND-PROPORTIONALITY": ("المادة 138", 60),
+            "EG-LABOUR-14-2025-ART-139-DISCIPLINARY-PENALTIES-LIST": ("المادة 139", 61),
+            "EG-LABOUR-14-2025-ART-140-SINGLE-PENALTY-AND-DEDUCTION-LIMIT": ("المادة 140", 61),
+            "EG-LABOUR-14-2025-ART-141-DISCIPLINARY-INVESTIGATION-TIME-LIMITS": ("المادة 141", 61),
+        }
+        cards = {card["card_id"]: card for card in self.data["cards"]}
+        for card_id, (article, printed_page) in expected.items():
+            with self.subTest(card_id=card_id):
+                card = cards[card_id]
+                self.assertEqual(card["pinpoint"]["article"], article)
+                self.assertEqual(card["pinpoint"]["official_gazette_printed_page"], printed_page)
+                self.assertTrue(any("alamiria.com" in item["url"] for item in card["primary_evidence"]))
+                gazette = [
+                    item for item in card["primary_evidence"]
+                    if "portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf" in item["url"]
+                ]
+                self.assertTrue(gazette)
+                self.assertIn("روجعت بصرياً", gazette[0]["supports"])
+                self.assertTrue(card["cross_checks"])
+                self.assertTrue(card["limitations"])
+                self.assertTrue(card["not_usable_for"])
+        self.assertFalse(self.data["instrument"]["search_eligible"])
+
     def test_exam_leave_cards_have_pinpoints_and_fail_closed(self):
         cards = {card["card_id"]: card for card in self.data["cards"]}
         expected = {
