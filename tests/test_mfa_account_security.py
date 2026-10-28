@@ -206,9 +206,10 @@ class MFAAccountSecurityTests(unittest.TestCase):
             "SELECT code_hash,used_at FROM mfa_recovery_codes WHERE user_id=? ORDER BY id",
             (self.user_id,),
         ).fetchall()
-        self.assertEqual(len(rows), 10)
+        self.assertEqual(len(rows), 20)
         self.assertTrue(all(row["code_hash"].startswith("scrypt$") for row in rows))
-        self.assertTrue(all(row["used_at"] is None for row in rows))
+        self.assertTrue(all(row["used_at"] is not None for row in rows[:10]))
+        self.assertTrue(all(row["used_at"] is None for row in rows[10:]))
         self.assertFalse(any(code in [row["code_hash"] for row in rows] for code in new_codes))
 
         self.login()
