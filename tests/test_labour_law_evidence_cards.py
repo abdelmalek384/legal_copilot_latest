@@ -49,5 +49,21 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
             self.assertNotIn("النص الكامل", card["provisional_answer_ar"])
 
 
+    def test_related_implementing_instruments_remain_discovery_only(self):
+        inventory = json.loads(
+            (ROOT / "docs" / "phase_2_document_inventory.json").read_text(encoding="utf-8")
+        )
+        documents = {item["document_id"]: item for item in inventory["documents"]}
+        linked = []
+        for card in self.data["cards"]:
+            linked.extend(card.get("related_instruments_to_review", []))
+        self.assertTrue(linked)
+        for item in linked:
+            with self.subTest(document_id=item["document_id"]):
+                self.assertIn(item["document_id"], documents)
+                self.assertEqual(documents[item["document_id"]]["review_status"], "discovery_only")
+                self.assertEqual(documents[item["document_id"]]["legal_status"], "unknown")
+                self.assertIn("not verified", item["status"])
+
 if __name__ == "__main__":
     unittest.main()
