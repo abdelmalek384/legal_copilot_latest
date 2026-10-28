@@ -1024,6 +1024,94 @@
         "printed_page": null,
         "pdf_page_index_zero_based": null
       }
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-142",
+      "provision_ref": "القانون المرافق، المادة 142",
+      "topic": "disciplinary_investigator_qualifications",
+      "summary_ar": "تسند المادة التحقيق إلى الشئون القانونية بالمنشأة، وعند عدم وجودها يجوز لصاحب العمل تكليف شخص آخر من ذوي الخبرة أو أحد العاملين، بشرط ألا يقل المستوى الوظيفي للمحقق عن مستوى العامل محل التحقيق. يجب التحقق من الهيكل الوظيفي ومن توافر الشئون القانونية والإجراءات المرتبطة.",
+      "source_refs": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "retrieved_on": "2026-10-28",
+          "basis": "Official General Authority for Amiri Press electronic text page; Article 142 text observed in indexed official-source result. No Gazette-scan page-level comparison claimed."
+        }
+      ],
+      "confidence": "provisional_official_text_observed",
+      "human_review": "pending",
+      "page_pinpoint": {
+        "source_type": "official_text_page",
+        "source_url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+        "pinpoint": "مادة (142)",
+        "printed_page": null,
+        "pdf_page_index_zero_based": null
+      }
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-143",
+      "provision_ref": "القانون المرافق، المادة 143",
+      "topic": "disciplinary_deduction_limits",
+      "summary_ar": "تضع المادة حدًا للخصم عن المخالفة الواحدة لا يتجاوز أجر خمسة أيام من الأجر الأساسي، كما لا يجوز أن يتجاوز مجموع ما يقتطع من الأجر الأساسي وفاءً للجزاءات أجر خمسة أيام في الشهر الواحد. يجب احتساب الأجر الأساسي والخصومات السابقة والتحقق من الجزاءات الأخرى.",
+      "source_refs": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "retrieved_on": "2026-10-28",
+          "basis": "Official General Authority for Amiri Press electronic text page; Article 143 text observed in indexed official-source result. No Gazette-scan page-level comparison claimed."
+        }
+      ],
+      "confidence": "provisional_official_text_observed",
+      "human_review": "pending",
+      "page_pinpoint": {
+        "source_type": "official_text_page",
+        "source_url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+        "pinpoint": "مادة (143)",
+        "printed_page": null,
+        "pdf_page_index_zero_based": null
+      }
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-144",
+      "provision_ref": "القانون المرافق، المادة 144",
+      "topic": "repeat_offense_penalty_escalation",
+      "summary_ar": "تجيز المادة تشديد الجزاء عند ارتكاب العامل مخالفة جديدة من نوع المخالفة التي سبق مجازاته عليها، بشرط وقوع المخالفة الجديدة خلال سنة من تاريخ إبلاغه بالجزاء السابق. يلزم التحقق من نوع المخالفتين وتاريخ الإبلاغ.",
+      "source_refs": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "retrieved_on": "2026-10-28",
+          "basis": "Official General Authority for Amiri Press electronic text page; Article 144 text observed in indexed official-source result. No Gazette-scan page-level comparison claimed."
+        }
+      ],
+      "confidence": "provisional_official_text_observed",
+      "human_review": "pending",
+      "page_pinpoint": {
+        "source_type": "official_text_page",
+        "source_url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+        "pinpoint": "مادة (144)",
+        "printed_page": null,
+        "pdf_page_index_zero_based": null
+      }
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-145",
+      "provision_ref": "القانون المرافق، المادة 145",
+      "topic": "temporary_suspension_conditions",
+      "summary_ar": "تجيز المادة لصاحب العمل إيقاف العامل مؤقتًا بقرار مكتوب لمدة لا تزيد على ستين يومًا مع صرف أجره كاملًا في حالات محددة، منها مقتضيات التحقيق في مخالفة وقعت داخل مقر العمل، أو اتهام العامل بجرائم معينة. يجب التحقق من تحقق الحالة القانونية، ومدة القرار، وأي قيود أو إجراءات مرتبطة.",
+      "source_refs": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "retrieved_on": "2026-10-28",
+          "basis": "Official General Authority for Amiri Press electronic text page; Article 145 text observed in indexed official-source result. No Gazette-scan page-level comparison claimed."
+        }
+      ],
+      "confidence": "provisional_official_text_observed",
+      "human_review": "pending",
+      "page_pinpoint": {
+        "source_type": "official_text_page",
+        "source_url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+        "pinpoint": "مادة (145)",
+        "printed_page": null,
+        "pdf_page_index_zero_based": null
+      }
     }
   ]
 }
