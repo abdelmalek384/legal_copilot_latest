@@ -153,6 +153,16 @@ jobs:
         run: python tools/validate_amendment_relationships.py --out amendment-relationship-audit.json
       - name: Test first official batch manifest
         run: python tests/test_first_official_batch_manifest.py
+      - name: Test Labour Law supplemental evidence cards
+        run: python tests/test_labour_law_supplement_cards.py
+      - name: Test Labour Law implementing-instrument register
+        run: python tests/test_labour_law_instrument_register.py
+      - name: Test Labour Law evidence-card manifest
+        run: python tests/test_labour_law_card_manifest.py
+      - name: Test Labour Law manifest-aware report loader
+        run: PYTHONPATH=. python tests/test_labour_law_evidence_manifest_loader.py
+      - name: Test Labour Law source-rights register
+        run: python tests/test_labour_law_source_rights_register.py
       - name: Validate collection manifest template
         run: python -c "import json; d=json.load(open('docs/collection_manifest.example.json', encoding='utf-8')); assert isinstance(d.get('documents'), list); assert len(d['documents']) == 4"
       - name: Test secure cookie transport configuration
