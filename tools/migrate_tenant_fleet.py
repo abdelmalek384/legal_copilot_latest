@@ -152,10 +152,18 @@ def build_plan(control_db: str | Path, tenant_root: str | Path, migrations_root:
     # Every SQLite database file in this dedicated root must have one catalog
     # reference. Ignoring an orphan would make release preflight incomplete and
     # could leave matter data outside the backup/migration inventory.
-    catalog_files = {
-        row["database_file"] for row in rows
-        if isinstance(row["database_file"], str) and row["database_file"]
-    }
+    catalog_files = set()
+    for row in rows:
+        filename = row["database_file"]
+        if filename is None:
+            continue
+        firm_id = int(row["firm_id"])
+        match = _FILENAME.fullmatch(filename) if isinstance(filename, str) else None
+        if not match or int(match.group("firm_id")) != firm_id:
+            raise FleetMigrationError(
+                f"Catalog filename is invalid or mismatched for firm {firm_id}"
+            )
+        catalog_files.add(filename)
     try:
         actual_database_files = {
             entry.name for entry in root.iterdir() if entry.name.endswith(".sqlite3")
