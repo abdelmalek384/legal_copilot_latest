@@ -171,7 +171,7 @@ def retry_failed_provisioning_cli(a):
     """Retry a failed tenant initializer only with explicit operator/change evidence."""
     if not app._separate_runtime_enabled():
         raise SystemExit("Provisioning recovery requires the separate database architecture.")
-    if not a.confirm:
+    if not a.confirm_retry:
         raise SystemExit("Refusing provisioning retry without --confirm-retry.")
     runtime = DatabaseRuntime.from_env()
     try:
