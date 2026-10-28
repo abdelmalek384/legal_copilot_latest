@@ -10,17 +10,19 @@ python tools/seed_legal_candidates.py
 
 This is a dry run. It checks duplicate identifiers, unknown source references, candidate state, and basic permission metadata.
 
-## 2. Seed metadata into the local SQLite registry
+## 2. Seed metadata into the shared legal-corpus database
 
-After installing the project requirements and ensuring \`app.py\` can initialize the schema:
+After installing the project requirements, configure all three fresh-install database paths. The candidate seeder writes only to the shared legal-corpus profile; it refuses the legacy \`COPILOT_DB\` setting.
 
 \`\`\`bash
+export COPILOT_CONTROL_DB="$PWD/data/control/control.sqlite3"
+export COPILOT_TENANT_DB_ROOT="$PWD/data/tenants"
+export COPILOT_CORPUS_DB="$PWD/data/corpus/legal-corpus.sqlite3"
+unset COPILOT_DB
 python tools/seed_legal_candidates.py --apply
 \`\`\`
 
-It uses the database configured by \`COPILOT_DB\` (defaults to \`copilot.db\`). Back up the database first if it already contains data. The script uses \`INSERT OR IGNORE\`, so repeated runs do not overwrite existing source permission decisions or candidate records.
-
-This creates source and document identity records only. It does not create legal versions because no direct downloadable document URL has yet passed the permission gate. It does not import article text or mark any source or law as verified.
+The versioned corpus migrations create the registry schema. The script uses \`INSERT OR IGNORE\`, so repeated runs do not overwrite existing source permission decisions or candidate records. It does not write legal-corpus records into the control plane or any firm's matter database.
 
 ## 3. Next collection workflow
 
