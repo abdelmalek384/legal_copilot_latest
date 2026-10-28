@@ -147,3 +147,37 @@ The above merges improve tooling and safety controls; they do not prove the corp
 ### Completion accounting rule
 
 Count a deliverable as complete only when its code is merged and acceptance criteria are met. CI success on an individual PR is not the same as a passing full suite on current main. A validator or metadata catalog is not a verified legal corpus, and no percentage here should be interpreted as a legal accuracy guarantee.
+
+
+## Latest checkpoint update — 2026-10-28 (after PRs #693–#696)
+
+This update supersedes the earlier 2026-10-28 checkpoint above where PR state has changed. Percentages remain rough, non-additive estimates; they are not a full acceptance test or legal accuracy score.
+
+| Workstream | Estimate | Current status |
+|---|---:|---|
+| Overall product readiness | 42% ± 8 percentage points | Carried forward; no increase claimed without a fresh full acceptance run. |
+| Verified Egyptian legal corpus | 6% | Critical blocker remains: source artifacts, rights scope, amendment/currentness verification, and qualified Egyptian-lawyer review. |
+| Research evaluation and citation integrity | 78% | PRs #694 and #696 merged after successful PR CI. Still needs lawyer-labelled benchmark runs and fresh full-suite confirmation on latest main. |
+| Legal corpus audit safeguards | 75% | PRs #693 and #695 merged after successful PR CI. Audits expose inconsistencies but do not authenticate source material or repair records. |
+| Database/tenant isolation | 65% estimate | Owned by the other AI. PR #690 remains separate and unapproved by this non-DB workstream. |
+| UI/UX and manual QA | 45% | Manual RTL/LTR, keyboard, screen-reader, responsive, and lawyer workflow QA remain outstanding. |
+
+### Newly merged since the previous checkpoint
+
+- **#693:** review-event integrity audit (reviewer, type/outcome, timestamp, evidence URL shape, and version references).
+- **#694:** fail-closed source-status evidence checks in legal evaluation.
+- **#695:** consistency audit between global chunk flags and linked legal versions.
+- **#696:** runner/scorer integration; citation-like markers in code/comments are ignored, unstable source IDs are invalid, and missing/non-verified status is treated conservatively.
+- **#668, #680, #682, #683, #667, and #685:** stale/conflicted PR branches were closed as superseded by the merged replacements or current tracker.
+
+Each new code PR passed its recorded PR Tests workflow before merge. The full Tests workflow also passed on combined main commit dbada2e06f5f917c6ff5ee2de1d6d2ed35ad5e40 after PR #696 merged. This confirms the suite on that exact code snapshot; any later code changes require their own validation.
+
+### Remaining blockers / next task order
+
+1. **Confirm current main CI after #696.** Record exact commit and outcome; investigate any failures instead of relying on earlier PR-only passes.
+2. **Legal corpus:** preserve discovery-only and unknown permission states until source-specific evidence supports promotion. Labour Law 14/2025 remains blocked pending independently sourced original artifacts, effective-date/amendment reconciliation, and lawyer sign-off.
+3. **Research quality:** run the evaluator only against a lawyer-reviewed benchmark. The scoring tools validate evidence consistency; they do not create ground truth or prove legal correctness.
+4. **UI/UX:** collect real browser/accessibility/manual QA evidence.
+5. **Database work:** leave migrations, tenant storage, identity lifecycle, and production data actions with the assigned DB workstream. Do not overlap or take irreversible actions without approval.
+
+The overall completion estimate is intentionally unchanged: engineering safeguards have improved, but verified legal content, external review, manual QA, and release acceptance remain major gaps.
