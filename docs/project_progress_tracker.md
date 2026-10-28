@@ -340,3 +340,39 @@ Percentages are rough, non-additive estimates; they are not measures of legal ac
 6. Leave tenant DB, migrations, storage adapters, and identity lifecycle to the assigned database workstream.
 
 Overall readiness remains 42% ± 8%; recent changes strengthen accountability but do not substitute for verified law content, permission evidence, real human review, or product acceptance.
+
+
+## Latest checkpoint — 2026-10-28 (after PRs #718–#720)
+
+Percentages are rough, non-additive estimates, not measures of legal accuracy.
+
+| Workstream | Estimate | Current state |
+|---|---:|---|
+| Overall product readiness | 42% ± 8 percentage points | Unchanged; not market-ready. |
+| Verified Egyptian legal corpus | 6% | Still blocked on original official text, source-specific rights, Gazette/page evidence, effective dates/amendment reconciliation, and Egyptian-lawyer sign-off. |
+| Metadata discovery inventory | 71 instrument candidates | Discovery coverage only; candidates are not verified laws or permission to copy. |
+| Research evaluation and citation integrity | 82% | Reviewer registry and practice-area scope enforced; actual qualified-counsel benchmark runs still absent. |
+| Amendment/repeal provenance safeguards | 80% | Confirmed relationships require traceable HTTPS evidence URL, SHA-256 metadata, reviewer ID/role, and valid publication/review chronology. Human verification remains required. |
+| Source provenance/acquisition safeguards | 85% | Source-terms URLs and freshness checks exist; reuse rights remain unknown unless backed by evidence. |
+| UI/UX implementation | 55% | Bilingual workflows and modal keyboard-focus handling implemented; manual accessibility and lawyer-workflow QA remains open. |
+| Database/tenant isolation | 65% estimate | Assigned to the other AI. No database/tenant-storage changes made in this workstream. |
+
+### Newly merged legal-discovery updates
+
+- **#718 — 2026 general work-regulation rules:** added an official Ministry of Labour announcement as a discovery-only candidate linked to Labour Law 14/2025. Exact instrument number, Gazette text/pages, commencement, currentness, and reuse rights remain unknown.
+- **#719 — follow-up to Decision 264/2025:** added a State Information Service report that the Ministry approved 2026 training-centre standards under Labour Law 14/2025 and Decision 264/2025. The standards text and whether there is a separate instrument remain unverified.
+- **#720 — Ministerial Decision 49/2026:** added an official Ministry announcement describing the decision on hazardous/difficult work and remote areas for additional annual leave. The full decision and Gazette evidence remain outstanding.
+
+The Phase 2 metadata-only inventory now contains 71 candidates across 13 source records. No legal text was downloaded, no permission or legal-status flag was promoted, and no candidate was marked verified by these PRs.
+
+### Next gates
+
+1. Confirm the post-merge full Tests run on main commit 32f42ddadd435dde22fb14783b588471fd393722.
+2. Obtain official Gazette issue/page references and permitted original text for Labour Law 14/2025 and its implementing instruments; reconcile the exact effective date, transitional provisions, amendments, and repeal history.
+3. Verify the exact text and legal form of the 2026 work-regulation rules and the standards linked to Decision 264/2025; keep them discovery-only until the primary instrument is located.
+4. Review collection, storage, extraction, indexing, excerpt display, commercial use, and redistribution rights separately for each source and document.
+5. Run a real benchmark with qualified Egyptian counsel, exact source versions and pinpoint citations before making legal-accuracy claims.
+6. Record manual RTL/LTR, keyboard, screen-reader, responsive and lawyer-workflow acceptance.
+7. Leave tenant database, migrations, storage adapters and identity lifecycle to the assigned database workstream.
+
+Overall readiness remains 42% ± 8%. The recent work improves traceability and identifies current implementation leads; it does not establish verified legal content or production readiness.
