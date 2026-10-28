@@ -533,6 +533,17 @@ class DatabaseRuntime:
                 raise DatabaseRuntimeError(
                     "Firm and catalog are not both in provisioning state; refusing reconciliation"
                 )
+            existing_memberships = control.execute(
+                "SELECT COUNT(*) FROM firm_memberships WHERE firm_id=?", (firm_id,)
+            ).fetchone()[0]
+            existing_invitations = control.execute(
+                "SELECT COUNT(*) FROM identity_invitations WHERE firm_id=?", (firm_id,)
+            ).fetchone()[0]
+            if existing_memberships or existing_invitations:
+                raise DatabaseRuntimeError(
+                    "Interrupted provisioning has existing memberships or invitations; "
+                    "manual lifecycle review required"
+                )
             filename = catalog_state["database_file"]
             if filename is not None and (
                 not isinstance(filename, str)
