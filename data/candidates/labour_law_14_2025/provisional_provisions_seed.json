@@ -1178,6 +1178,116 @@
         "printed_page": null,
         "pdf_page_index_zero_based": null
       }
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-156",
+      "provision_ref": "القانون المرافق، المادة 156",
+      "topic": "three_month_notice_for_indefinite_contract",
+      "summary_ar": "تجيز المادة لأي من طرفي عقد العمل غير محدد المدة إنهاءه بشرط إخطار الطرف الآخر كتابة قبل الإنهاء بثلاثة أشهر، مع مراعاة الإحالة إلى المادة 165. يجب التحقق من نوع العقد وطرف الإنهاء والإخطار والنصوص المرتبطة.",
+      "source_refs": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "retrieved_on": "2026-10-28",
+          "basis": "Official General Authority for Amiri Press electronic text page; Article 156 text observed in indexed official-source result. No Gazette-scan page-level comparison claimed."
+        }
+      ],
+      "confidence": "provisional_official_text_observed",
+      "human_review": "pending",
+      "page_pinpoint": {
+        "source_type": "official_text_page",
+        "source_url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+        "pinpoint": "مادة (156)",
+        "printed_page": null,
+        "pdf_page_index_zero_based": null
+      }
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-157",
+      "provision_ref": "القانون المرافق، المادة 157",
+      "topic": "justified_reason_for_indefinite_termination",
+      "summary_ar": "تقرر المادة عدم جواز إنهاء عقد العمل غير محدد المدة إلا بمبرر مشروع وكافٍ، مع مراعاة توقيت مناسب لظروف العمل، وتحيل إلى مواد أخرى من بينها المواد 158 إلى 175. يجب فحص المبرر والإجراءات والمواد المستثناة أو الخاصة.",
+      "source_refs": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "retrieved_on": "2026-10-28",
+          "basis": "Official General Authority for Amiri Press electronic text page; Article 157 text observed in indexed official-source result. No Gazette-scan page-level comparison claimed."
+        }
+      ],
+      "confidence": "provisional_official_text_observed",
+      "human_review": "pending",
+      "page_pinpoint": {
+        "source_type": "official_text_page",
+        "source_url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+        "pinpoint": "مادة (157)",
+        "printed_page": null,
+        "pdf_page_index_zero_based": null
+      }
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-158",
+      "provision_ref": "القانون المرافق، المادة 158",
+      "topic": "notice_period_starts_on_receipt",
+      "summary_ar": "تحظر المادة تعليق إخطار الإنهاء على شرط واقف أو فاسخ، وتبدأ مهلة الإخطار من تاريخ تسلمه. يلزم إثبات تاريخ الاستلام والتحقق من أي نزاع حول صحة الإخطار.",
+      "source_refs": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "retrieved_on": "2026-10-28",
+          "basis": "Official General Authority for Amiri Press electronic text page; Article 158 text observed in indexed official-source result. No Gazette-scan page-level comparison claimed."
+        }
+      ],
+      "confidence": "provisional_official_text_observed",
+      "human_review": "pending",
+      "page_pinpoint": {
+        "source_type": "official_text_page",
+        "source_url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+        "pinpoint": "مادة (158)",
+        "printed_page": null,
+        "pdf_page_index_zero_based": null
+      }
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-159",
+      "provision_ref": "القانون المرافق، المادة 159",
+      "topic": "notice_period_and_leave_interaction",
+      "summary_ar": "تحظر المادة توجيه الإخطار للعامل خلال إجازاته، ولا تحتسب مهلة الإخطار إلا من اليوم التالي لانتهاء الإجازة. وإذا حصل العامل على إجازة مرضية أثناء المهلة، يوقف سريانها حتى اليوم التالي لانتهاء الإجازة المرضية. يجب التحقق من أنواع الإجازات والتواريخ والمستندات.",
+      "source_refs": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "retrieved_on": "2026-10-28",
+          "basis": "Official General Authority for Amiri Press electronic text page; Article 159 text observed in indexed official-source result. No Gazette-scan page-level comparison claimed."
+        }
+      ],
+      "confidence": "provisional_official_text_observed",
+      "human_review": "pending",
+      "page_pinpoint": {
+        "source_type": "official_text_page",
+        "source_url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+        "pinpoint": "مادة (159)",
+        "printed_page": null,
+        "pdf_page_index_zero_based": null
+      }
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-160",
+      "provision_ref": "القانون المرافق، المادة 160",
+      "topic": "contract_continues_during_notice",
+      "summary_ar": "يبقى عقد العمل قائمًا طوال مهلة الإخطار ويلتزم الطرفان بتنفيذ الالتزامات الناشئة عنه، وينتهي العقد بانقضاء المهلة. يجب التحقق من تاريخ بدء المهلة وأي أحكام خاصة تنطبق على الحالة.",
+      "source_refs": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "retrieved_on": "2026-10-28",
+          "basis": "Official General Authority for Amiri Press electronic text page; Article 160 text observed in indexed official-source result. No Gazette-scan page-level comparison claimed."
+        }
+      ],
+      "confidence": "provisional_official_text_observed",
+      "human_review": "pending",
+      "page_pinpoint": {
+        "source_type": "official_text_page",
+        "source_url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+        "pinpoint": "مادة (160)",
+        "printed_page": null,
+        "pdf_page_index_zero_based": null
+      }
     }
   ]
 }
