@@ -7497,3 +7497,31 @@ Primary-source evidence below is based on searchable/extracted text returned for
 ## Important interpretation rule
 
 A source link, search snippet, or Gazette-index record is evidence of a source lead—not proof that the complete instrument is current, fully compared, licensed for reuse, or approved by Egyptian counsel. Do not activate these cards for authoritative retrieval until all recorded gates are satisfied.
+
+## Continuation — split supplemental batches (2026-10-28)
+
+The original 197-card JSON inventory exceeded the GitHub Contents API's readable-size limit. Rather than repeatedly retrying the same inaccessible response or silently dropping work, later cards are stored in split supplemental JSON files. This is a repository transport/size workaround, not a legal-source bypass.
+
+### Supplemental batch: Articles 256–274
+
+File: `data/candidates/labour_law_14_2025/provision_evidence_cards_256_274.json`
+
+Contains 19 cards covering OSH inspection and closure, accident/health reporting and registers, medical fitness, PPE and training, shift inspections, periodic medical exams, and social/health provisions. Articles 258–265 and 270–274 are explicitly **pinpoint-only / full-text required** because their operative wording was not fully matched. They are not eligible for authoritative answers.
+
+### Supplemental batch: Articles 275–298
+
+File: `data/candidates/labour_law_14_2025/provision_evidence_cards_275_298.json`
+
+Contains 24 cards covering labour inspector status and powers, employer cooperation and attendance, public-authority assistance, the general penalty clause, and the final penalty provisions. Articles 281–295 are intentionally indexing-only cards; no offence wording or penalty was invented where the full text had not been transcribed into this batch. Articles 296–298 have provisional summaries cross-checked against public transcriptions.
+
+### Count and readiness
+
+- Main inventory: 197 cards (last successfully validated before the file crossed the readable-size limit).
+- Supplemental batch 256–274: 19 cards.
+- Supplemental batch 275–298: 24 cards.
+- **Combined provisional inventory represented across these files: 240 cards.**
+- All three files must be included by any downstream loader/report builder; do not assume the original JSON alone contains the complete inventory.
+- Keep `search_eligible: false`. The split files are research leads, not authoritative legal content.
+- Gazette page pinpoints for these supplemental batches are inferred and not visually verified; no source-file SHA-256 is claimed. Currentness, implementing decisions, reuse permission, and Egyptian-lawyer review remain outstanding.
+
+**Next priority:** obtain exact operative text for Articles 258–265, 270–274, and 281–295 from the public transcription; then add separate, source-linked cards for relevant implementing instruments such as Ministerial Decision 260/2025 and other publicly accessible decisions. Do not spend more time retrying blocked binary downloads.
