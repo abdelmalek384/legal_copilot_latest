@@ -958,6 +958,72 @@
         "printed_page": null,
         "pdf_page_index_zero_based": null
       }
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-137",
+      "provision_ref": "القانون المرافق، المادة 137",
+      "topic": "workplace_regulations_for_employers_with_ten_workers",
+      "summary_ar": "تلزم المادة صاحب العمل الذي يستخدم عشرة عمال فأكثر بإعداد لائحة لتنظيم العمل بحسب طبيعة النشاط، تشمل موضوعات منها الترقية والنقل والأجور والمخالفات والجزاءات التأديبية، خلال المدة المحددة بالنص. وتضع إجراءات لتقديم اللائحة ومراجعتها والتشاور بشأنها وإعلانها في مكان ظاهر. يلزم التحقق من عدد العمال وتاريخ نشوء الالتزام والقرارات العامة المنفذة.",
+      "source_refs": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "retrieved_on": "2026-10-28",
+          "basis": "Official General Authority for Amiri Press electronic text page; Article 137 text observed in indexed official-source result. No Gazette-scan page-level comparison claimed."
+        }
+      ],
+      "confidence": "provisional_official_text_observed",
+      "human_review": "pending",
+      "page_pinpoint": {
+        "source_type": "official_text_page",
+        "source_url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+        "pinpoint": "مادة (137)",
+        "printed_page": null,
+        "pdf_page_index_zero_based": null
+      }
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-138",
+      "provision_ref": "القانون المرافق، المادة 138",
+      "topic": "disciplinary_offense_and_penalty_deadline",
+      "summary_ar": "تشترط المادة أن يكون الفعل المنسوب إلى العامل ذا صلة بالعمل، وأن تحدد لائحة الجزاءات المخالفات والجزاءات مع مراعاة التناسب. كما تمنع توقيع الجزاء التأديبي بعد مضي ثلاثين يومًا من تاريخ انتهاء التحقيق في المخالفة. يلزم ضبط تاريخ انتهاء التحقيق وفحص اللوائح والمواد المرتبطة.",
+      "source_refs": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "retrieved_on": "2026-10-28",
+          "basis": "Official General Authority for Amiri Press electronic text page; Article 138 text observed in indexed official-source result. No Gazette-scan page-level comparison claimed."
+        }
+      ],
+      "confidence": "provisional_official_text_observed",
+      "human_review": "pending",
+      "page_pinpoint": {
+        "source_type": "official_text_page",
+        "source_url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+        "pinpoint": "مادة (138)",
+        "printed_page": null,
+        "pdf_page_index_zero_based": null
+      }
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-139",
+      "provision_ref": "القانون المرافق، المادة 139",
+      "topic": "permitted_disciplinary_penalties",
+      "summary_ar": "تعدد المادة الجزاءات التأديبية التي يجوز إدراجها في لوائح تنظيم العمل، ومنها الإنذار الكتابي والخصم من الأجر الأساسي وتأجيل العلاوة أو الترقية وخفض الأجر الأساسي أو الدرجة والفصل وفق أحكام القانون. يجب قراءة القائمة مع المواد التي تحدد سلطة توقيع الجزاء وحدوده وإجراءات التحقيق، ولا يُستنتج منها وحدها جواز الفصل بقرار منفرد من صاحب العمل.",
+      "source_refs": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "retrieved_on": "2026-10-28",
+          "basis": "Official General Authority for Amiri Press electronic text page; Article 139 text observed in indexed official-source result. No Gazette-scan page-level comparison claimed."
+        }
+      ],
+      "confidence": "provisional_official_text_observed",
+      "human_review": "pending",
+      "page_pinpoint": {
+        "source_type": "official_text_page",
+        "source_url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+        "pinpoint": "مادة (139)",
+        "printed_page": null,
+        "pdf_page_index_zero_based": null
+      }
     }
   ]
 }
