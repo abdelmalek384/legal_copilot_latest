@@ -1,3 +1,4 @@
+import importlib.util
 import json
 import unittest
 from pathlib import Path
@@ -75,6 +76,23 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
                     else:
                         self.assertEqual(gazette["publication_date"], "2025-12-25")
                         self.assertIn("291", gazette["gazette_publication"])
+
+
+    def test_markdown_review_report_matches_machine_readable_cards(self):
+        script_path = ROOT / "tools" / "report_labour_law_evidence_cards.py"
+        spec = importlib.util.spec_from_file_location("report_labour_law_evidence_cards", script_path)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        report_path = ROOT / "data" / "candidates" / "labour_law_14_2025" / "provision_evidence_cards_review.md"
+        expected = module.render_report(self.data)
+        actual = report_path.read_text(encoding="utf-8")
+        self.assertEqual(actual, expected)
+        self.assertIn("Not authoritative legal advice", actual)
+        self.assertIn("Authoritative search eligibility: `false`", actual)
+        self.assertIn("EG-LABOUR-DECISION-49-2026", actual)
+        self.assertIn("EG-LABOUR-DECISION-294-2025", actual)
+        for card in self.data["cards"]:
+            self.assertIn(card["card_id"], actual)
 
 if __name__ == "__main__":
     unittest.main()
