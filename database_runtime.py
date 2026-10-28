@@ -147,13 +147,13 @@ class DatabaseRuntime:
             (str(row[0]), str(row[1]), str(row[2]))
             for row in connection.execute(
                 "SELECT type,name,tbl_name FROM sqlite_master "
-                "WHERE name NOT LIKE 'sqlite_%' ORDER BY type,name"
+                "WHERE name NOT GLOB 'sqlite_*' ORDER BY type,name"
             )
         )
         tables = [
             str(row[0]) for row in connection.execute(
                 "SELECT name FROM sqlite_master WHERE type='table' "
-                "AND name NOT LIKE 'sqlite_%' ORDER BY name"
+                "AND name NOT GLOB 'sqlite_*' ORDER BY name"
             )
         ]
         columns = []
@@ -188,7 +188,7 @@ class DatabaseRuntime:
             (str(row[0]), " ".join(str(row[1]).split()))
             for row in connection.execute(
                 "SELECT name,sql FROM sqlite_master WHERE type='trigger' "
-                "AND name NOT LIKE 'sqlite_%' ORDER BY name"
+                "AND name NOT GLOB 'sqlite_*' ORDER BY name"
             )
         )
         return {
