@@ -3387,6 +3387,80 @@ def create_firm_invitation(b: InvitationCreateIn, u: dict = Depends(user)):
     return {"invitation_id": invitation_id, "status": "sent", "expires_at": now + 24 * 60 * 60}
 
 
+
+@app.get("/invitations")
+def list_firm_invitations(u: dict = Depends(user)):
+    if not _separate_runtime_enabled():
+        raise HTTPException(404, "invitations are available only in separate-database mode")
+    require_admin(u)
+    now = int(time.time())
+    control = control_conn()
+    rows = control.execute(
+        "SELECT id,email_display,invited_role,invited_by_user_id,created_at,expires_at,status "
+        "FROM identity_invitations WHERE firm_id=? ORDER BY created_at DESC,id DESC LIMIT 100",
+        (u["firm_id"],),
+    ).fetchall()
+    return {
+        "invitations": [
+            {
+                "id": int(row["id"]),
+                "email": row["email_display"],
+                "role": row["invited_role"],
+                "invited_by_user_id": int(row["invited_by_user_id"]),
+                "created_at": int(row["created_at"]),
+                "expires_at": int(row["expires_at"]),
+                "status": (
+                    "expired" if row["status"] == "sent" and int(row["expires_at"]) <= now
+                    else row["status"]
+                ),
+            }
+            for row in rows
+        ]
+    }
+
+
+@app.post("/invitations/{invitation_id}/revoke")
+def revoke_firm_invitation(
+    invitation_id: int, b: InvitationRevokeIn, u: dict = Depends(user)
+):
+    if not _separate_runtime_enabled():
+        raise HTTPException(404, "invitations are available only in separate-database mode")
+    require_admin(u)
+    now = int(time.time())
+    control = control_conn()
+    try:
+        control.execute("BEGIN IMMEDIATE")
+        invitation = control.execute(
+            "SELECT id,status FROM identity_invitations WHERE id=? AND firm_id=?",
+            (invitation_id, u["firm_id"]),
+        ).fetchone()
+        if invitation is None:
+            raise HTTPException(404, "invitation not found")
+        if invitation["status"] not in {"pending", "sent"}:
+            raise HTTPException(409, "invitation is no longer revocable")
+        updated = control.execute(
+            "UPDATE identity_invitations SET status='revoked',updated_at=? "
+            "WHERE id=? AND firm_id=? AND status IN ('pending','sent')",
+            (now, invitation_id, u["firm_id"]),
+        )
+        if updated.rowcount != 1:
+            raise HTTPException(409, "invitation state changed; reload and retry")
+        _identity_event(
+            control, "invitation_revoked", actor_user_id=u["id"], firm_id=u["firm_id"],
+            invitation_id=invitation_id, detail={"reason": b.reason.strip()}, now=now,
+        )
+        control.commit()
+    except HTTPException:
+        if control.in_transaction:
+            control.rollback()
+        raise
+    except sqlite3.Error as exc:
+        if control.in_transaction:
+            control.rollback()
+        raise HTTPException(503, "invitation revocation was not committed") from exc
+    return {"invitation_id": invitation_id, "status": "revoked"}
+
+
 @app.post("/invitations/accept/new")
 def accept_invitation_new_identity(b: InvitationAcceptNewIn):
     if not _separate_runtime_enabled():
