@@ -95,3 +95,6 @@ Further targeted extracted-text review on 2026-10-28 recorded Article 129 on pri
 
 
 Further targeted extracted-text review on 2026-10-28 recorded Article 173 on printed page 71 and Article 171 on printed page 72, covering illness-related termination and retirement age. This does not change pending currentness, amendment-history, permission, or lawyer-review statuses.
+
+
+Further targeted extracted-text review on 2026-10-28 added Article 164 on printed page 69 and Article 166 on printed page 70, covering notice-period compensation and absence-related resignation rules.
