@@ -34,7 +34,7 @@ python manage.py retry-failed-provisioning \
   --confirm-retry
 ```
 
-The command creates a new uniquely named tenant database, reruns the firm-profile migrations and immutable firm binding checks, validates SQLite integrity/foreign keys, then activates the firm only after the catalog is provisioned and the recovery audit event commits. If any step fails, the firm remains disabled and the operator must investigate; do not manually set lifecycle status values or reuse a database file from another firm. The command does not recover an audit failure after a successful provision or an absent catalog row; those states require a separate reviewed repair.
+The command creates a new uniquely named tenant database, reruns the firm-profile migrations and immutable firm binding checks, validates SQLite integrity/foreign keys, then activates the firm only after the catalog is provisioned and the recovery audit event commits. If schema initialization fails, the partial database is removed and the catalog remains `failed`, allowing a later reviewed retry. If provisioning succeeds but the final recovery audit/activation transaction fails, the firm remains disabled and the valid database is retained with catalog status `disabled` for maintenance; this is not retryable through this command and requires a separate reviewed repair. Missing catalog rows, stale filename mappings, memberships, and invitations are refused. Do not manually set lifecycle status values or reuse a database file from another firm.
 
 ## Create a coordinated encrypted bundle
 

@@ -491,6 +491,107 @@ class DatabaseRuntimeTests(unittest.TestCase):
             0,
         )
 
+    def test_failed_recovery_keeps_catalog_retryable_for_another_operator_attempt(self):
+        with patch.object(
+            self.runtime,
+            "_initialize_firm_database",
+            side_effect=RuntimeError("initial schema initialization failure"),
+        ):
+            with self.assertRaisesRegex(RuntimeError, "initial schema initialization failure"):
+                self.runtime.provision_firm("Repeatable Recovery Failure")
+        control = self.runtime.control_connection()
+        firm_id = int(control.execute(
+            "SELECT id FROM firms WHERE name='Repeatable Recovery Failure'"
+        ).fetchone()[0])
+
+        with patch.object(
+            self.runtime,
+            "_initialize_firm_database",
+            side_effect=RuntimeError("recovery schema initialization failure"),
+        ):
+            with self.assertRaisesRegex(RuntimeError, "recovery schema initialization failure"):
+                self.runtime.retry_failed_firm_provisioning(
+                    firm_id,
+                    reason="first recovery attempt failed during schema initialization",
+                    operator_reference="operator-ticket-retry-1",
+                    change_reference="change-retry-1",
+                )
+
+        firm = control.execute("SELECT status FROM firms WHERE id=?", (firm_id,)).fetchone()
+        catalog = control.execute(
+            "SELECT status,database_file FROM tenant_database_catalog WHERE firm_id=?",
+            (firm_id,),
+        ).fetchone()
+        self.assertEqual(firm["status"], "disabled")
+        self.assertEqual(catalog["status"], "failed")
+        self.assertIsNone(catalog["database_file"])
+        self.assertEqual(list(self.runtime.paths.tenant_root.glob(f"tenant-{firm_id}-*.sqlite3")), [])
+
+        path = self.runtime.retry_failed_firm_provisioning(
+            firm_id,
+            reason="retry after the second schema initialization failure was diagnosed",
+            operator_reference="operator-ticket-retry-2",
+            change_reference="change-retry-2",
+        )
+        self.assertTrue(path.is_file())
+        self.assertEqual(
+            control.execute("SELECT status FROM firms WHERE id=?", (firm_id,)).fetchone()[0],
+            "active",
+        )
+        self.assertEqual(
+            control.execute(
+                "SELECT status FROM tenant_database_catalog WHERE firm_id=?", (firm_id,)
+            ).fetchone()[0],
+            "provisioned",
+        )
+
+    def test_recovery_audit_failure_disables_but_retains_successfully_provisioned_database(self):
+        with patch.object(
+            self.runtime,
+            "_initialize_firm_database",
+            side_effect=RuntimeError("initial schema initialization failure"),
+        ):
+            with self.assertRaisesRegex(RuntimeError, "initial schema initialization failure"):
+                self.runtime.provision_firm("Recovery Audit Failure")
+        control = self.runtime.control_connection()
+        firm_id = int(control.execute(
+            "SELECT id FROM firms WHERE name='Recovery Audit Failure'"
+        ).fetchone()[0])
+        control.execute(
+            "CREATE TRIGGER test_fail_provisioning_retry_audit "
+            "BEFORE INSERT ON platform_security_events "
+            "WHEN NEW.event_type='firm_provisioning_retried' "
+            "BEGIN SELECT RAISE(ABORT, 'injected recovery audit failure'); END"
+        )
+        control.commit()
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "injected recovery audit failure"):
+            self.runtime.retry_failed_firm_provisioning(
+                firm_id,
+                reason="test that audit failure prevents activation",
+                operator_reference="operator-ticket-audit",
+                change_reference="change-audit",
+            )
+        control.execute("DROP TRIGGER test_fail_provisioning_retry_audit")
+        control.commit()
+        firm = control.execute("SELECT status FROM firms WHERE id=?", (firm_id,)).fetchone()
+        catalog = control.execute(
+            "SELECT status,database_file FROM tenant_database_catalog WHERE firm_id=?",
+            (firm_id,),
+        ).fetchone()
+        self.assertEqual(firm["status"], "disabled")
+        self.assertEqual(catalog["status"], "disabled")
+        self.assertTrue(catalog["database_file"])
+        retained_path = self.runtime.paths.tenant_root / catalog["database_file"]
+        self.assertTrue(retained_path.is_file())
+        self.assertEqual(
+            control.execute(
+                "SELECT COUNT(*) FROM platform_security_events "
+                "WHERE firm_id=? AND event_type='firm_provisioning_retried'",
+                (firm_id,),
+            ).fetchone()[0],
+            0,
+        )
+
     def test_failed_firm_provisioning_retry_refuses_existing_membership_history(self):
         control = self.runtime.control_connection()
         firm_id = int(control.execute(
