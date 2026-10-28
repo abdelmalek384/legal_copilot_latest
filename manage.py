@@ -1,12 +1,10 @@
 """Admin commands for account maintenance and encrypted database backups."""
 import argparse
 import getpass
-import glob
 import json
 import os
 import re
 import sqlite3
-import tempfile
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -42,20 +40,6 @@ def _backup_fernet():
         raise SystemExit("BACKUP_KEY is invalid; generate a Fernet key with: python manage.py genkey") from exc
 
 
-def _validate_sqlite(path):
-    """Reject authenticated but corrupt/non-SQLite payloads before restore."""
-    connection = None
-    try:
-        uri = Path(path).resolve().as_uri() + "?mode=ro"
-        connection = sqlite3.connect(uri, uri=True, timeout=5)
-        result = connection.execute("PRAGMA quick_check").fetchall()
-        if len(result) != 1 or result[0][0] != "ok":
-            raise SystemExit("Restore rejected: SQLite quick_check did not pass.")
-    except sqlite3.Error as exc:
-        raise SystemExit("Restore rejected: decrypted payload is not a readable SQLite database.") from exc
-    finally:
-        if connection is not None:
-            connection.close()
 
 
 def read_password(prompt):
@@ -539,51 +523,10 @@ def resetpw_assisted_cli(a):
 
 
 def backup(a):
-    if app._separate_runtime_enabled():
-        raise SystemExit("Refusing single-file backup in separate-database mode. A verified multi-database backup bundle is required.")
-    if a.keep < 1:
-        raise SystemExit("--keep must be at least 1")
-    cipher = _backup_fernet()
-    backup_dir = Path(a.dir).expanduser().resolve()
-    backup_dir.mkdir(parents=True, exist_ok=True)
-    if not backup_dir.is_dir():
-        raise SystemExit("Backup destination must be a directory")
-
-    db_fd, db_stage = tempfile.mkstemp(prefix=".backup-db-", suffix=".tmp", dir=backup_dir)
-    os.close(db_fd)
-    encrypted_stage = None
-    dst = None
-    try:
-        dst = sqlite3.connect(db_stage, timeout=30)
-        app.conn().backup(dst)
-        dst.close()
-        dst = None
-        _validate_sqlite(db_stage)
-
-        with open(db_stage, "rb") as source:
-            token = cipher.encrypt(source.read())
-        out = backup_dir / f"backup-{time.strftime('%Y%m%d-%H%M%S')}-{time.time_ns()}.db.enc"
-        fd, encrypted_stage = tempfile.mkstemp(prefix=".backup-enc-", suffix=".tmp", dir=backup_dir)
-        with os.fdopen(fd, "wb") as output:
-            output.write(token)
-            output.flush()
-            os.fsync(output.fileno())
-        os.replace(encrypted_stage, out)
-        encrypted_stage = None
-
-        old_backups = sorted(
-            (Path(name) for name in glob.glob(str(backup_dir / "backup-*.enc")) if Path(name) != out),
-            key=lambda item: item.name,
-        )
-        for old in old_backups[:max(0, len(old_backups) + 1 - a.keep)]:
-            old.unlink(missing_ok=True)
-        print("saved", out)
-    finally:
-        if dst is not None:
-            dst.close()
-        Path(db_stage).unlink(missing_ok=True)
-        if encrypted_stage and os.path.exists(encrypted_stage):
-            os.remove(encrypted_stage)
+    raise SystemExit(
+        "Single-file backups are disabled. Use 'python manage.py backup-tenancy "
+        "<directory> --quiesced' with the three profile-separated databases."
+    )
 
 
 def importlaws(a):
@@ -1026,27 +969,10 @@ def restore_tenancy(a):
 
 
 def restore(a):
-    if app._separate_runtime_enabled():
-        raise SystemExit("Refusing single-file restore in separate-database mode. A verified multi-database restore bundle is required.")
-    cipher = _backup_fernet()
-    with open(a.file, "rb") as source:
-        plaintext = cipher.decrypt(source.read())
-
-    destination = Path(a.out).expanduser().resolve()
-    parent = destination.parent
-    if not parent.is_dir():
-        raise SystemExit("Restore destination directory must already exist.")
-    fd, staged = tempfile.mkstemp(prefix=".restore-", suffix=".tmp", dir=parent)
-    try:
-        with os.fdopen(fd, "wb") as output:
-            output.write(plaintext)
-            output.flush()
-            os.fsync(output.fileno())
-        _validate_sqlite(staged)
-        os.replace(staged, destination)
-    finally:
-        if os.path.exists(staged):
-            os.remove(staged)
+    raise SystemExit(
+        "Single-file restores are disabled. Use 'python manage.py restore-tenancy "
+        "<bundle> --target-root <new-empty-directory>' after verifying the encrypted bundle."
+    )
 
 
 p = argparse.ArgumentParser()

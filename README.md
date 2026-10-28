@@ -72,7 +72,7 @@ A model endpoint must not receive prompts until its data-processing terms, reten
 
 ### Backup and restore
 
-Fresh separate-database installs must use encrypted tenancy bundles, not the legacy single-file `backup` / `restore` commands.
+The single-file `backup` / `restore` commands are disabled. Use encrypted tenancy bundles so the control plane, per-firm databases, and legal corpus are captured and restored together.
 
 ```bash
 python manage.py genkey

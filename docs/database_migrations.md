@@ -29,7 +29,7 @@ Run the regression suite with:
 PYTHONPATH=. python tests/test_backup_restore_safety.py
 ```
 
-These checks do not provide per-firm backup/restore while the application still uses a single configured database. The backup key must be stored separately from the backup files, and operators must rehearse restore against a disposable destination before any production recovery.
+The legacy single-file `backup` and `restore` commands now fail closed; this test verifies they do not create output or replace a destination. Actual backup/restore integrity coverage is provided by `tests/test_database_backup_bundle.py`. The backup key must be stored separately from backup files, and operators must complete a witnessed staging restore/rollback drill before production recovery.
 
 
 ## Disposable-copy migration rehearsal
