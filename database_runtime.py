@@ -13,6 +13,7 @@ import re
 import sqlite3
 import stat
 import threading
+import time
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -573,6 +574,81 @@ class DatabaseRuntime:
                 }, sort_keys=True)),
             )
             control.commit()
+        except Exception:
+            control.rollback()
+            raise
+
+    def revoke_disabled_firm_invitations(
+        self,
+        firm_id: int,
+        *,
+        reason: str,
+        operator_reference: str,
+        change_reference: str,
+    ) -> int:
+        """Revoke active invitations for a disabled firm before offboarding."""
+        if isinstance(firm_id, bool) or not isinstance(firm_id, int) or firm_id <= 0:
+            raise ValueError("firm_id must be a positive integer")
+        audit_fields = {
+            "reason": reason,
+            "operator_reference": operator_reference,
+            "change_reference": change_reference,
+        }
+        if any(not isinstance(value, str) or not value.strip() for value in audit_fields.values()):
+            raise ValueError("reason, operator_reference, and change_reference are required")
+        self._require_initialized()
+        control = self.control_connection()
+        now = int(time.time())
+        control.execute("BEGIN IMMEDIATE")
+        try:
+            firm = control.execute(
+                "SELECT status FROM firms WHERE id=?", (firm_id,)
+            ).fetchone()
+            catalog = control.execute(
+                "SELECT status FROM tenant_database_catalog WHERE firm_id=?", (firm_id,)
+            ).fetchone()
+            if firm is None or firm["status"] != "disabled":
+                raise DatabaseRuntimeError(
+                    "Invitation offboarding requires a disabled firm"
+                )
+            if catalog is None or catalog["status"] != "disabled":
+                raise DatabaseRuntimeError(
+                    "Invitation offboarding requires a disabled tenant catalog entry"
+                )
+            invitations = control.execute(
+                "SELECT id,status FROM identity_invitations "
+                "WHERE firm_id=? AND status IN ('pending','sent') ORDER BY id",
+                (firm_id,),
+            ).fetchall()
+            for invitation in invitations:
+                updated = control.execute(
+                    "UPDATE identity_invitations SET status='revoked',updated_at=? "
+                    "WHERE id=? AND status IN ('pending','sent')",
+                    (now, invitation["id"]),
+                )
+                if updated.rowcount != 1:
+                    raise DatabaseRuntimeError(
+                        "Invitation lifecycle state changed concurrently"
+                    )
+                control.execute(
+                    "INSERT INTO identity_lifecycle_events("
+                    "actor_user_id,target_user_id,firm_id,invitation_id,recovery_token_id,"
+                    "event_type,detail_json,created_at"
+                    ") VALUES(NULL,NULL,?,?,NULL,'invitation_revoked',?,?)",
+                    (
+                        firm_id,
+                        invitation["id"],
+                        json.dumps({
+                            "reason": reason.strip(),
+                            "operator_reference": operator_reference.strip(),
+                            "change_reference": change_reference.strip(),
+                            "source": "firm_offboarding_cli",
+                        }, sort_keys=True),
+                        now,
+                    ),
+                )
+            control.commit()
+            return len(invitations)
         except Exception:
             control.rollback()
             raise
