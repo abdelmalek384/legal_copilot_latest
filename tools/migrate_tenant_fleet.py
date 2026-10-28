@@ -21,6 +21,7 @@ from pathlib import Path
 
 # Support both "python -m tools.migrate_tenant_fleet" and direct script execution.
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from db_migrations import MigrationError, read_migration_file
 from schema_profiles import apply_profile_migrations
 
 _FILENAME = re.compile(r"^tenant-(?P<firm_id>[1-9][0-9]*)-(?P<nonce>[0-9a-f]{32})\.sqlite3$")
@@ -78,7 +79,10 @@ def _migration_inventory(directory: Path) -> list[tuple[int, str, str]]:
         if version in seen:
             raise FleetMigrationError(f"Duplicate migration version: {version}")
         seen.add(version)
-        sql = path.read_text(encoding="utf-8")
+        try:
+            sql = read_migration_file(path)
+        except MigrationError as exc:
+            raise FleetMigrationError(f"Unsafe migration input: {path.name}") from exc
         if not sql.strip():
             raise FleetMigrationError(f"Empty migration file: {path.name}")
         # Match db_migrations.apply_migrations exactly, including text-mode newline normalization.
