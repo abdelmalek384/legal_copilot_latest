@@ -1069,7 +1069,13 @@
           "retrieved_or_checked_on": "2026-10-28"
         }
       ],
-      "cross_checks": [],
+      "cross_checks": [
+        {
+          "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf",
+          "source_type": "ILO NATLEX-hosted Arabic legal text",
+          "supports": "نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية"
+        }
+      ],
       "limitations": [
         "لا تحسم البطاقة كل صور الإبراء أو قواعد الإثبات أو التقادم",
         "لم تُراجع أحكاماً قضائية أو تشريعات خاصة قد تكون ذات صلة",
@@ -1105,7 +1111,13 @@
           "retrieved_or_checked_on": "2026-10-28"
         }
       ],
-      "cross_checks": [],
+      "cross_checks": [
+        {
+          "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf",
+          "source_type": "ILO NATLEX-hosted Arabic legal text",
+          "supports": "نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية"
+        }
+      ],
       "limitations": [
         "الإعفاء ليس وصفاً عاماً لكل دعوى أو كل متقاضٍ",
         "لم يُراجع قانون الرسوم أو القواعد الإجرائية ذات الصلة",
@@ -1141,7 +1153,13 @@
           "retrieved_or_checked_on": "2026-10-28"
         }
       ],
-      "cross_checks": [],
+      "cross_checks": [
+        {
+          "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf",
+          "source_type": "ILO NATLEX-hosted Arabic legal text",
+          "supports": "نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية"
+        }
+      ],
       "limitations": [
         "لا تمثل البطاقة ترتيباً تنفيذياً كاملاً لكل الديون والامتيازات",
         "يلزم فحص القواعد الأخرى والوقائع وتاريخ نشوء الحق",
@@ -1177,7 +1195,13 @@
           "retrieved_or_checked_on": "2026-10-28"
         }
       ],
-      "cross_checks": [],
+      "cross_checks": [
+        {
+          "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf",
+          "source_type": "ILO NATLEX-hosted Arabic legal text",
+          "supports": "نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية"
+        }
+      ],
       "limitations": [
         "لا تحدد البطاقة وحدها إجراءات الإفلاس أو التصفية أو أولوية التنفيذ",
         "لم تُراجع اللوائح والقرارات التنفيذية ذات الصلة",
