@@ -189,6 +189,68 @@ class TenancyCommandTests(unittest.TestCase):
         self.assertEqual(detail["operator_reference"], "incident-cli-123")
         self.assertEqual(detail["change_reference"], "change-cli-456")
 
+    def test_revoke_firm_invitations_cli_requires_confirmation_and_audits_each_revocation(self):
+        control = self.runtime.control_connection()
+        control.execute(
+            "INSERT INTO identity_invitations("
+            "firm_id,email_normalized,email_display,invited_role,token_hash,invited_by_user_id,"
+            "created_at,expires_at,status,updated_at"
+            ") VALUES(?,?,?,?,?,?,?,?,?,?)",
+            (
+                self.firm_a,
+                "cli-offboarding-invite@example.test",
+                "cli-offboarding-invite@example.test",
+                "lawyer",
+                "d" * 64,
+                self.user_id,
+                100,
+                200,
+                "sent",
+                100,
+            ),
+        )
+        control.commit()
+        self.runtime.disable_firm(self.firm_a)
+
+        args = (
+            "revoke-firm-invitations",
+            "--firm-id", str(self.firm_a),
+            "--reason", "revoke active invitations before tenant offboarding",
+            "--operator-reference", "offboarding-cli-ticket",
+            "--change-reference", "offboarding-cli-change",
+        )
+        refused = self.run_manage(*args)
+        self.assertNotEqual(refused.returncode, 0)
+        self.assertIn("--confirm-revoke", refused.stderr)
+        self.assertEqual(
+            control.execute(
+                "SELECT status FROM identity_invitations WHERE firm_id=?", (self.firm_a,)
+            ).fetchone()[0],
+            "sent",
+        )
+
+        completed = self.run_manage(*args, "--confirm-revoke")
+        self.assertEqual(completed.returncode, 0, completed.stderr)
+        report = json.loads(completed.stdout)
+        self.assertEqual(report["firm_id"], self.firm_a)
+        self.assertEqual(report["revoked_invitation_count"], 1)
+        self.assertEqual(report["operation"], "revoke_disabled_firm_invitations")
+        self.assertEqual(
+            control.execute(
+                "SELECT status FROM identity_invitations WHERE firm_id=?", (self.firm_a,)
+            ).fetchone()[0],
+            "revoked",
+        )
+        event = control.execute(
+            "SELECT detail_json FROM identity_lifecycle_events "
+            "WHERE firm_id=? AND event_type='invitation_revoked'",
+            (self.firm_a,),
+        ).fetchone()
+        self.assertIsNotNone(event)
+        detail = json.loads(event["detail_json"])
+        self.assertEqual(detail["operator_reference"], "offboarding-cli-ticket")
+        self.assertEqual(detail["change_reference"], "offboarding-cli-change")
+
     def test_retry_failed_provisioning_cli_requires_confirmation_and_audits_recovery(self):
         control = self.runtime.control_connection()
         cursor = control.execute(
