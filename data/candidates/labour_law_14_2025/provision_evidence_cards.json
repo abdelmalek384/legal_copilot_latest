@@ -296,6 +296,30 @@
             "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
             "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
           }
+        },
+        {
+          "document_id": "EG-LABOUR-DECISION-290-2025",
+          "title_ar": "قرار وزير العمل رقم 290 لسنة 2025 بشأن الأعمال المتقطعة بطبيعتها",
+          "relationship": "possible implementing decision for working-time provisions; not a confirmed amendment",
+          "source_url": "https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829",
+          "status": "Official Gazette metadata and partial abstract found; detailed list, complete text, currentness and reuse are not verified",
+          "note": "Do not classify a job as intermittent from the title or partial Article 1 abstract; verify the detailed official list and commencement."
+        },
+        {
+          "document_id": "EG-LABOUR-DECISION-291-2025",
+          "title_ar": "قرار وزير العمل رقم 291 لسنة 2025 بشأن ضوابط التشغيل الإضافي ومبرراته",
+          "relationship": "possible implementing decision for overtime provisions; not a confirmed amendment",
+          "source_url": "https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1",
+          "status": "Official Gazette issue metadata found; operative text, currentness and reuse are not verified",
+          "note": "Do not infer allowed reasons or limits from the title alone; full text is required."
+        },
+        {
+          "document_id": "EG-LABOUR-DECISION-292-2025",
+          "title_ar": "قرار وزير العمل رقم 292 لسنة 2025 بشأن الحد الأقصى لساعات العمل الفعلية والإضافية لأعمال محددة",
+          "relationship": "possible implementing decision for working-time provisions; not a confirmed amendment",
+          "source_url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc/full",
+          "status": "Official Gazette issue metadata found; exact limits, exceptions, currentness and reuse are not verified",
+          "note": "Do not calculate hours or overtime from the title alone; compare the complete decision."
         }
       ]
     },
@@ -612,6 +636,30 @@
             "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
             "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
           }
+        },
+        {
+          "document_id": "EG-LABOUR-DECISION-290-2025",
+          "title_ar": "قرار وزير العمل رقم 290 لسنة 2025 بشأن الأعمال المتقطعة بطبيعتها",
+          "relationship": "possible implementing decision for working-time provisions; not a confirmed amendment",
+          "source_url": "https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829",
+          "status": "Official Gazette metadata and partial abstract found; detailed list, complete text, currentness and reuse are not verified",
+          "note": "Do not classify a job as intermittent from the title or partial Article 1 abstract; verify the detailed official list and commencement."
+        },
+        {
+          "document_id": "EG-LABOUR-DECISION-291-2025",
+          "title_ar": "قرار وزير العمل رقم 291 لسنة 2025 بشأن ضوابط التشغيل الإضافي ومبرراته",
+          "relationship": "possible implementing decision for overtime provisions; not a confirmed amendment",
+          "source_url": "https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1",
+          "status": "Official Gazette issue metadata found; operative text, currentness and reuse are not verified",
+          "note": "Do not infer allowed reasons or limits from the title alone; full text is required."
+        },
+        {
+          "document_id": "EG-LABOUR-DECISION-292-2025",
+          "title_ar": "قرار وزير العمل رقم 292 لسنة 2025 بشأن الحد الأقصى لساعات العمل الفعلية والإضافية لأعمال محددة",
+          "relationship": "possible implementing decision for working-time provisions; not a confirmed amendment",
+          "source_url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc/full",
+          "status": "Official Gazette issue metadata found; exact limits, exceptions, currentness and reuse are not verified",
+          "note": "Do not calculate hours or overtime from the title alone; compare the complete decision."
         }
       ]
     },
@@ -2987,6 +3035,30 @@
             "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
             "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
           }
+        },
+        {
+          "document_id": "EG-LABOUR-DECISION-290-2025",
+          "title_ar": "قرار وزير العمل رقم 290 لسنة 2025 بشأن الأعمال المتقطعة بطبيعتها",
+          "relationship": "possible implementing decision for working-time provisions; not a confirmed amendment",
+          "source_url": "https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829",
+          "status": "Official Gazette metadata and partial abstract found; detailed list, complete text, currentness and reuse are not verified",
+          "note": "Do not classify a job as intermittent from the title or partial Article 1 abstract; verify the detailed official list and commencement."
+        },
+        {
+          "document_id": "EG-LABOUR-DECISION-291-2025",
+          "title_ar": "قرار وزير العمل رقم 291 لسنة 2025 بشأن ضوابط التشغيل الإضافي ومبرراته",
+          "relationship": "possible implementing decision for overtime provisions; not a confirmed amendment",
+          "source_url": "https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1",
+          "status": "Official Gazette issue metadata found; operative text, currentness and reuse are not verified",
+          "note": "Do not infer allowed reasons or limits from the title alone; full text is required."
+        },
+        {
+          "document_id": "EG-LABOUR-DECISION-292-2025",
+          "title_ar": "قرار وزير العمل رقم 292 لسنة 2025 بشأن الحد الأقصى لساعات العمل الفعلية والإضافية لأعمال محددة",
+          "relationship": "possible implementing decision for working-time provisions; not a confirmed amendment",
+          "source_url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc/full",
+          "status": "Official Gazette issue metadata found; exact limits, exceptions, currentness and reuse are not verified",
+          "note": "Do not calculate hours or overtime from the title alone; compare the complete decision."
         }
       ]
     },
@@ -3177,6 +3249,30 @@
             "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
             "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
           }
+        },
+        {
+          "document_id": "EG-LABOUR-DECISION-290-2025",
+          "title_ar": "قرار وزير العمل رقم 290 لسنة 2025 بشأن الأعمال المتقطعة بطبيعتها",
+          "relationship": "possible implementing decision for working-time provisions; not a confirmed amendment",
+          "source_url": "https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829",
+          "status": "Official Gazette metadata and partial abstract found; detailed list, complete text, currentness and reuse are not verified",
+          "note": "Do not classify a job as intermittent from the title or partial Article 1 abstract; verify the detailed official list and commencement."
+        },
+        {
+          "document_id": "EG-LABOUR-DECISION-291-2025",
+          "title_ar": "قرار وزير العمل رقم 291 لسنة 2025 بشأن ضوابط التشغيل الإضافي ومبرراته",
+          "relationship": "possible implementing decision for overtime provisions; not a confirmed amendment",
+          "source_url": "https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1",
+          "status": "Official Gazette issue metadata found; operative text, currentness and reuse are not verified",
+          "note": "Do not infer allowed reasons or limits from the title alone; full text is required."
+        },
+        {
+          "document_id": "EG-LABOUR-DECISION-292-2025",
+          "title_ar": "قرار وزير العمل رقم 292 لسنة 2025 بشأن الحد الأقصى لساعات العمل الفعلية والإضافية لأعمال محددة",
+          "relationship": "possible implementing decision for working-time provisions; not a confirmed amendment",
+          "source_url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc/full",
+          "status": "Official Gazette issue metadata found; exact limits, exceptions, currentness and reuse are not verified",
+          "note": "Do not calculate hours or overtime from the title alone; compare the complete decision."
         }
       ]
     },
@@ -3241,6 +3337,30 @@
             "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
             "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
           }
+        },
+        {
+          "document_id": "EG-LABOUR-DECISION-290-2025",
+          "title_ar": "قرار وزير العمل رقم 290 لسنة 2025 بشأن الأعمال المتقطعة بطبيعتها",
+          "relationship": "possible implementing decision for working-time provisions; not a confirmed amendment",
+          "source_url": "https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829",
+          "status": "Official Gazette metadata and partial abstract found; detailed list, complete text, currentness and reuse are not verified",
+          "note": "Do not classify a job as intermittent from the title or partial Article 1 abstract; verify the detailed official list and commencement."
+        },
+        {
+          "document_id": "EG-LABOUR-DECISION-291-2025",
+          "title_ar": "قرار وزير العمل رقم 291 لسنة 2025 بشأن ضوابط التشغيل الإضافي ومبرراته",
+          "relationship": "possible implementing decision for overtime provisions; not a confirmed amendment",
+          "source_url": "https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1",
+          "status": "Official Gazette issue metadata found; operative text, currentness and reuse are not verified",
+          "note": "Do not infer allowed reasons or limits from the title alone; full text is required."
+        },
+        {
+          "document_id": "EG-LABOUR-DECISION-292-2025",
+          "title_ar": "قرار وزير العمل رقم 292 لسنة 2025 بشأن الحد الأقصى لساعات العمل الفعلية والإضافية لأعمال محددة",
+          "relationship": "possible implementing decision for working-time provisions; not a confirmed amendment",
+          "source_url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc/full",
+          "status": "Official Gazette issue metadata found; exact limits, exceptions, currentness and reuse are not verified",
+          "note": "Do not calculate hours or overtime from the title alone; compare the complete decision."
         }
       ]
     },
@@ -3305,6 +3425,30 @@
             "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
             "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
           }
+        },
+        {
+          "document_id": "EG-LABOUR-DECISION-290-2025",
+          "title_ar": "قرار وزير العمل رقم 290 لسنة 2025 بشأن الأعمال المتقطعة بطبيعتها",
+          "relationship": "possible implementing decision for working-time provisions; not a confirmed amendment",
+          "source_url": "https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829",
+          "status": "Official Gazette metadata and partial abstract found; detailed list, complete text, currentness and reuse are not verified",
+          "note": "Do not classify a job as intermittent from the title or partial Article 1 abstract; verify the detailed official list and commencement."
+        },
+        {
+          "document_id": "EG-LABOUR-DECISION-291-2025",
+          "title_ar": "قرار وزير العمل رقم 291 لسنة 2025 بشأن ضوابط التشغيل الإضافي ومبرراته",
+          "relationship": "possible implementing decision for overtime provisions; not a confirmed amendment",
+          "source_url": "https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1",
+          "status": "Official Gazette issue metadata found; operative text, currentness and reuse are not verified",
+          "note": "Do not infer allowed reasons or limits from the title alone; full text is required."
+        },
+        {
+          "document_id": "EG-LABOUR-DECISION-292-2025",
+          "title_ar": "قرار وزير العمل رقم 292 لسنة 2025 بشأن الحد الأقصى لساعات العمل الفعلية والإضافية لأعمال محددة",
+          "relationship": "possible implementing decision for working-time provisions; not a confirmed amendment",
+          "source_url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc/full",
+          "status": "Official Gazette issue metadata found; exact limits, exceptions, currentness and reuse are not verified",
+          "note": "Do not calculate hours or overtime from the title alone; compare the complete decision."
         }
       ]
     },
@@ -3652,6 +3796,14 @@
             "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
             "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
           }
+        },
+        {
+          "document_id": "EG-LABOUR-DECISION-294-2025",
+          "title_ar": "قرار وزير العمل رقم 294 لسنة 2025 بشأن تحديد العطلات والأعياد والمناسبات التي تعتبر إجازة بأجر كامل للعمال",
+          "relationship": "possible implementing decision under Article 129",
+          "source_url": "https://www.labour.gov.eg/ar/الأخبار/وزير-العمل-الأربعاء-المقبل-إجازة-مدفوعة-الأجر-للعاملين-بالقطاع-الخاص-بمناسبة-عيد-الميلاد-المجيد-جبران-وحدة-المصريين-والعمل-المشترك-أساس-قوة-الوطن/",
+          "status": "Official Ministry reference and Gazette metadata found; complete decision text, currentness and reuse are not verified",
+          "note": "Event-specific Ministry announcements do not substitute for the complete holiday list or confirm later changes."
         }
       ]
     },
@@ -5789,6 +5941,14 @@
             "full_text_status": "PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.",
             "reuse_terms_status": "Unknown; public accessibility of the transcription or metadata does not establish rights to reproduce or commercially reuse the official file."
           }
+        },
+        {
+          "document_id": "EG-LABOUR-DECISION-187-2025",
+          "title_ar": "قرار وزير العمل رقم 187 لسنة 2025 بشأن وضع آليات وضوابط لاعتماد الاستقالات العمالية من جانب مكتب العمل",
+          "relationship": "administrative procedure cross-reference for Article 167; not confirmed to amend the Law",
+          "source_url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/14-09-2025/no-187?id=2177898&type=1",
+          "status": "Official/news source leads found; complete official text, Gazette pinpoint, currentness and reuse are not verified",
+          "note": "A public preview and news summaries describe Labour Office authentication procedures. Do not confuse this procedure with the substantive requirements of Law Article 167; obtain full official text before authoritative use."
         }
       ]
     },
