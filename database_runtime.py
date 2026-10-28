@@ -7,6 +7,7 @@ central corpus. Firm connections require a server-validated FirmContext.
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import re
@@ -17,6 +18,7 @@ import time
 from dataclasses import dataclass
 from pathlib import Path
 
+from db_migrations import MigrationError, _migration_files
 from schema_profiles import apply_profile_migrations
 from tenant_catalog import TenantCatalogError, initialize_catalog, provision_tenant_database
 from tenant_context import (
@@ -137,6 +139,96 @@ class DatabaseRuntime:
                         f"{profile} SQLite sidecar permissions allow group/other access"
                     )
 
+    def _validate_preprovisioned_profile(self, path: Path, profile: str) -> None:
+        """Require an exact, healthy migration state before production startup."""
+        directory = self.migrations_root / profile
+        if directory.is_symlink() or not directory.is_dir():
+            raise DatabaseRuntimeError(
+                f"Production {profile} migration directory is missing or unsafe"
+            )
+        try:
+            expected = {
+                version: (name, hashlib.sha256(sql.encode("utf-8")).hexdigest())
+                for version, name, _migration_path, sql in _migration_files(directory)
+            }
+        except (MigrationError, OSError) as exc:
+            raise DatabaseRuntimeError(
+                f"Production {profile} migration inventory is unsafe"
+            ) from exc
+
+        connection = None
+        try:
+            uri = path.resolve().as_uri() + "?mode=ro"
+            connection = sqlite3.connect(uri, uri=True, timeout=self.timeout)
+            tables = {
+                row[0] for row in connection.execute(
+                    "SELECT name FROM sqlite_master WHERE type='table'"
+                )
+            }
+            if not {"database_profile", "schema_migrations"}.issubset(tables):
+                raise DatabaseRuntimeError(
+                    f"Production {profile} database is not pre-provisioned"
+                )
+            marker = connection.execute(
+                "SELECT profile FROM database_profile WHERE singleton=1"
+            ).fetchall()
+            if len(marker) != 1 or marker[0][0] != profile:
+                raise DatabaseRuntimeError(
+                    f"Production database is not bound to the {profile} profile"
+                )
+
+            triggers = {
+                row[0]: row[1] for row in connection.execute(
+                    "SELECT name,sql FROM sqlite_master WHERE type='trigger' "
+                    "AND name IN ('database_profile_no_update','database_profile_no_delete')"
+                )
+            }
+            for operation in ("update", "delete"):
+                sql = triggers.get(f"database_profile_no_{operation}")
+                normalized = " ".join(sql.lower().split()) if isinstance(sql, str) else ""
+                if (
+                    f"before {operation} on database_profile" not in normalized
+                    or "raise(abort" not in normalized
+                    or "database profile binding is immutable" not in normalized
+                ):
+                    raise DatabaseRuntimeError(
+                        f"Production {profile} database lacks immutable profile guards"
+                    )
+
+            recorded = {
+                int(row[0]): (str(row[1]), str(row[2]))
+                for row in connection.execute(
+                    "SELECT version,name,checksum_sha256 FROM schema_migrations"
+                )
+            }
+            if recorded != expected:
+                raise DatabaseRuntimeError(
+                    f"Production {profile} migration history is pending, missing, or drifted"
+                )
+            journal = connection.execute("PRAGMA journal_mode").fetchone()
+            if journal is None or str(journal[0]).lower() != "wal":
+                raise DatabaseRuntimeError(
+                    f"Production {profile} database must already use WAL mode"
+                )
+            integrity = connection.execute("PRAGMA quick_check").fetchall()
+            if len(integrity) != 1 or integrity[0][0] != "ok":
+                raise DatabaseRuntimeError(
+                    f"Production {profile} database failed SQLite quick_check"
+                )
+            if connection.execute("PRAGMA foreign_key_check").fetchall():
+                raise DatabaseRuntimeError(
+                    f"Production {profile} database has foreign-key violations"
+                )
+        except DatabaseRuntimeError:
+            raise
+        except (sqlite3.Error, OSError, ValueError) as exc:
+            raise DatabaseRuntimeError(
+                f"Production {profile} database could not be validated read-only"
+            ) from exc
+        finally:
+            if connection is not None:
+                connection.close()
+
     @staticmethod
     def _file_identity(path: Path) -> tuple[int, int]:
         """Return the device/inode identity of the database currently at a trusted path."""
@@ -208,6 +300,8 @@ class DatabaseRuntime:
                         )
                 self._validate_profile_storage(self.paths.control_plane, "control-plane")
                 self._validate_profile_storage(self.paths.legal_corpus, "legal-corpus")
+                self._validate_preprovisioned_profile(self.paths.control_plane, "control_plane")
+                self._validate_preprovisioned_profile(self.paths.legal_corpus, "legal_corpus")
             else:
                 self.paths.tenant_root.mkdir(parents=True, exist_ok=True)
                 if self.paths.tenant_root.is_symlink():
