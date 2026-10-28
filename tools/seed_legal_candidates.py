@@ -106,10 +106,20 @@ def main():
         return
     sys.path.insert(0,str(ROOT))
     import app
-    db=app.conn()
-    sources,documents=seed(data,db)
-    print(f"Inserted {sources} new source records and {documents} new document candidates.")
-    print("No legal text was downloaded, no legal version was created, and no source was marked permitted or verified.")
+    required = ("COPILOT_CONTROL_DB", "COPILOT_TENANT_DB_ROOT", "COPILOT_CORPUS_DB")
+    missing = [name for name in required if not os.environ.get(name, "").strip()]
+    if missing or os.environ.get("COPILOT_DB", "").strip():
+        raise SystemExit(
+            "Corpus seeding requires the profile-separated runtime with COPILOT_DB unset; "
+            + ("missing " + ", ".join(missing) if missing else "remove COPILOT_DB")
+        )
+    db = app.corpus_conn()
+    try:
+        sources,documents=seed(data,db)
+        print(f"Inserted {sources} new source records and {documents} new document candidates.")
+        print("No legal text was downloaded, no legal version was created, and no source was marked permitted or verified.")
+    finally:
+        app.get_database_runtime().close_current_thread()
 
 if __name__=="__main__":
     main()
