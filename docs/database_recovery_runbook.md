@@ -62,7 +62,18 @@ Before any tenant-level export, retention action, or deletion proposal, disable 
 python tools/firm_offboarding_preflight.py --firm-id 123 --json
 ```
 
-The command never deletes or modifies data. A clear report is not legal authorization to purge. Resolve every finding first, including active memberships, active/pending invitations, active legal holds, staged or quarantined originals, pending second-admin deletion approvals, in-flight purges, integrity/binding failures, and object-store reconciliation discrepancies. Active invitations are a blocker even when the firm is disabled; revoke/expire them through the audited invitation lifecycle rather than deleting invitation rows. Retain the report and policy/legal approval evidence in the restricted operations record.
+The command never deletes or modifies data. A clear report is not legal authorization to purge. Resolve every finding first, including active memberships, active/pending invitations, active legal holds, staged or quarantined originals, pending second-admin deletion approvals, in-flight purges, integrity/binding failures, and object-store reconciliation discrepancies. Active invitations are a blocker even when the firm is disabled. After confirming the firm and catalog are disabled, revoke pending/sent invitations atomically with per-invitation audit events:
+
+```bash
+python manage.py revoke-firm-invitations \\
+  --firm-id 123 \\
+  --reason "Revoke outstanding invitations before approved tenant offboarding" \\
+  --operator-reference "incident-or-ticket-reference" \\
+  --change-reference "approved-change-reference" \\
+  --confirm-revoke
+```
+
+The command refuses active firms, requires explicit confirmation and operator/change references, and rolls back all status changes if any audit write fails. Do not delete invitation rows. Retain the report and policy/legal approval evidence in the restricted operations record.
 
 ## Create a coordinated encrypted bundle
 
