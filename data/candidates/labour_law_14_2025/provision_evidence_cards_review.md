@@ -640,7 +640,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** What workplace conduct does Article 4 expressly prohibit?
 
-**Pinpoint:** القانون المرافق, المادة 4, printed Gazette page 12 (PDF page index 9).
+**Pinpoint:** القانون المرافق, المادة 4, printed Gazette page 11 (PDF page index 9).
 
 **Provisional summary (Arabic):**
 
@@ -648,7 +648,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Primary-source leads:**
 
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; استخراج نص المادة 4 من الصفحة المطبوعة 12؛ لم يُنزّل الملف أو يُفحص بصرياً (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; استخراج نص المادة 4 من الصفحة المطبوعة 11؛ لم يُنزّل الملف أو يُفحص بصرياً (checked 2026-10-28).
 - [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; صفحة النص الرسمي للقانون؛ يلزم التحقق الموضعي عند التطبيق (checked 2026-10-28).
 
 **Cross-checks:**
@@ -669,7 +669,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** What employment-related discrimination does Article 5 address?
 
-**Pinpoint:** القانون المرافق, المادة 5, printed Gazette page 12 (PDF page index 9).
+**Pinpoint:** القانون المرافق, المادة 5, printed Gazette page 11 (PDF page index 9).
 
 **Provisional summary (Arabic):**
 
@@ -677,7 +677,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Primary-source leads:**
 
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; استخراج نص المادة 5 من الصفحة المطبوعة 12؛ لم يُنزّل الملف أو يُفحص بصرياً (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; استخراج نص المادة 5 من الصفحة المطبوعة 11؛ لم يُنزّل الملف أو يُفحص بصرياً؛ تمتد المادة عبر حد الصفحة (checked 2026-10-28).
 - [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; صفحة النص الرسمي للقانون؛ يلزم التحقق الموضعي عند التطبيق (checked 2026-10-28).
 
 **Cross-checks:**
@@ -698,7 +698,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** What kinds of contractual terms or waivers does Article 6 treat as void?
 
-**Pinpoint:** القانون المرافق, المادة 6, printed Gazette page 12 (PDF page index 9).
+**Pinpoint:** القانون المرافق, المادة 6, printed Gazette page 12 (PDF page index 10).
 
 **Provisional summary (Arabic):**
 
@@ -727,7 +727,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** What fee and cost treatment does Article 7 describe for labour disputes?
 
-**Pinpoint:** القانون المرافق, المادة 7, printed Gazette page 13 (PDF page index 10).
+**Pinpoint:** القانون المرافق, المادة 7, printed Gazette page 12 (PDF page index 10).
 
 **Provisional summary (Arabic):**
 
@@ -735,7 +735,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Primary-source leads:**
 
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; استخراج نص المادة 7 من الصفحة المطبوعة 13؛ لم يُنزّل الملف أو يُفحص بصرياً (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; استخراج نص المادة 7 من الصفحة المطبوعة 12؛ لم يُنزّل الملف أو يُفحص بصرياً؛ يستمر النص في الصفحة التالية (checked 2026-10-28).
 - [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; صفحة النص الرسمي للقانون؛ يلزم التحقق الموضعي عند التطبيق (checked 2026-10-28).
 
 **Cross-checks:**
@@ -756,7 +756,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** What priority does Article 8 give certain worker dues?
 
-**Pinpoint:** القانون المرافق, المادة 8, printed Gazette page 13 (PDF page index 10).
+**Pinpoint:** القانون المرافق, المادة 8, printed Gazette page 13 (PDF page index 11).
 
 **Provisional summary (Arabic):**
 
@@ -785,7 +785,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** Does closing or liquidating an establishment by itself remove its labour-law obligations?
 
-**Pinpoint:** القانون المرافق, المادة 9, printed Gazette page 13 (PDF page index 10).
+**Pinpoint:** القانون المرافق, المادة 9, printed Gazette page 13 (PDF page index 11).
 
 **Provisional summary (Arabic):**
 
