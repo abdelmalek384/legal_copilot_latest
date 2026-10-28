@@ -64,6 +64,16 @@ The --quiesced flag is an operator assertion, not an automated lock on all appli
 7. Verify corpus lookup and FTS behavior against known test records. Check that a firm's case/document/chunk sentinels are present only in that firm's database and absent from other firm databases.
 8. Record the tested bundle, application revision, restore duration, checks performed, discrepancies, and pass/fail result. Delete or quarantine the rehearsal copy according to the approved retention policy after the exercise.
 
+## Automated isolated restore smoke test
+
+Before scheduling the witnessed staging exercise, run the automated restore smoke test against a known encrypted bundle from a protected maintenance host. It restores into a private temporary directory, validates SQLite/profile/catalog bindings, reconciles restored original-file metadata against the restored local object store, checks runtime routing for each active firm, and verifies that identities without active membership are denied. It reports only bounded findings and removes its temporary directory when it exits; cleanup is not guaranteed secure erasure.
+
+Set the key through the protected environment, never as a command-line argument:
+
+    COPILOT_BACKUP_FERNET_KEY="$BACKUP_KEY" python tools/run_database_recovery_drill.py --bundle /protected/backup-directory/backup-file.bundle.enc --temp-parent /protected/recovery-temp --json
+
+The temporary parent must already exist, must not be a symlink, and must be protected for plaintext database staging. Do not run this command inside the production application process. A nonzero exit, any reported finding, or missing output is a **NO-GO** for the next stage. A passing smoke test is useful automated evidence only: it does not prove reverse-proxy behavior, real application startup, HTTP cross-firm denial, live rollback, key recovery, retention controls, or reviewer sign-off. Continue with the full witnessed staging drill below.
+
 ## Cutover and rollback gates
 
 Do not change live environment paths merely because the restore command succeeded. Require all of the following:
