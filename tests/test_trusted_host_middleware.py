@@ -1,6 +1,7 @@
 import unittest
 
 import httpx
+import os
 
 # The app reads host policy and the database path at import time. Keep this test
 # isolated from developer data and exercise the actual ASGI middleware stack.
