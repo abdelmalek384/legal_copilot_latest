@@ -136,6 +136,25 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
                 self.assertTrue(card["not_usable_for"])
         self.assertFalse(self.data["instrument"]["search_eligible"])
 
+    def test_sickness_and_infectious_contact_leave_cards_fail_closed(self):
+        cards = {card["card_id"]: card for card in self.data["cards"]}
+        expected = {
+            "EG-LABOUR-14-2025-ART-131-SICK-LEAVE-AND-WAGE-COMPENSATION": ("المادة 131", 56),
+            "EG-LABOUR-14-2025-ART-132-INFECTIOUS-DISEASE-CONTACT-LEAVE": ("المادة 132", 57),
+        }
+        for card_id, (article, printed_page) in expected.items():
+            with self.subTest(card_id=card_id):
+                card = cards[card_id]
+                self.assertEqual(card["pinpoint"]["article"], article)
+                self.assertEqual(card["pinpoint"]["official_gazette_printed_page"], printed_page)
+                self.assertTrue(any("alamiria.com" in item["url"] for item in card["primary_evidence"]))
+                self.assertTrue(any("portal.eta.gov.eg" in item["url"] for item in card["primary_evidence"]))
+                self.assertTrue(card["cross_checks"])
+                self.assertEqual(card["review_state"], "provisional_primary_text_extract_reviewed")
+                self.assertIn("لا توجد مراجعة محامٍ", " ".join(card["limitations"]))
+                self.assertTrue(card["not_usable_for"])
+        self.assertFalse(self.data["instrument"]["search_eligible"])
+
     def test_exam_leave_cards_have_pinpoints_and_fail_closed(self):
         cards = {card["card_id"]: card for card in self.data["cards"]}
         expected = {
