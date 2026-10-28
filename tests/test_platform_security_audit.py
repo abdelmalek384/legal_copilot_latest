@@ -57,7 +57,7 @@ class PlatformSecurityAuditTests(unittest.TestCase):
         self.assertEqual(event["target_user_id"], self.reset_user_id)
         self.assertEqual(event["event_type"], "password_reset_cli")
         self.assertIn('"sessions_revoked": true', event["detail_json"])
-        self.assertTrue(control.execute("SELECT password_hash FROM users WHERE id=?", (self.user_id,)).fetchone()[0] != "old-password-hash")
+        self.assertTrue(control.execute("SELECT password_hash FROM users WHERE id=?", (self.reset_user_id,)).fetchone()[0] != "old-password-hash")
 
     def test_audit_write_failure_rolls_back_password_change_and_session_revocation(self):
         control = self.runtime.control_connection()
@@ -68,7 +68,7 @@ class PlatformSecurityAuditTests(unittest.TestCase):
         control.commit()
         old_hash = control.execute("SELECT password_hash FROM users WHERE id=?", (self.reset_user_id,)).fetchone()[0]
         with patch("manage.read_password", return_value="NewStrongPassphrase_2026"):
-            with self.assertRaisesRegex(Exception, "audit unavailable"):
+            with self.assertRaisesRegex(SystemExit, "Password reset failed"):
                 manage.resetpw(Namespace(email="audit-reset@example.test"))
         control = self.runtime.control_connection()
         self.assertEqual(control.execute("SELECT password_hash FROM users WHERE id=?", (self.reset_user_id,)).fetchone()[0], old_hash)
