@@ -71,3 +71,6 @@ This session cannot access or modify the user's local SQLite database. The regis
 
 
 Further targeted extracted-text review on 2026-10-28 also covered printed page 43 (PDF page index 41), containing accompanying-law Articles 89–90 on written employment contracts and probation. This adds two provision pinpoints to the provisional review seed; it does not change the pending authenticity, currentness, amendment-history, permission, or lawyer-review statuses.
+
+
+Further targeted text review on 2026-10-28 covered printed page 52 (Articles 117 and 121: ordinary working hours and overtime) and printed pages 54–55 (Article 124: annual leave). These are provision summaries for review, not lawyer-approved advice; no full-law comparison or currentness certification is claimed.
