@@ -16,6 +16,7 @@ from tools.mfa_primitives import (
 from tools.mfa_crypto import MFAConfigurationError, encrypt_totp_secret, decrypt_totp_secret
 from storage import SQLiteConnectionProvider
 from identity import normalize_email
+from identity_email import IdentityEmailError, send_identity_email
 from db_migrations import apply_migrations
 from database_runtime import DatabaseRuntime, DatabaseRuntimeError
 from tenant_context import FirmContext, FirmContextError
@@ -1624,6 +1625,39 @@ class UserCreateIn(BaseModel):
 class ExistingMembershipIn(BaseModel):
     email: str = Field(min_length=3, max_length=200)
     role: str = Field(pattern=r"^(lawyer|junior)$")
+
+class InvitationCreateIn(BaseModel):
+    email: str = Field(min_length=3, max_length=200)
+    role: str = Field(pattern=r"^(lawyer|junior)$")
+
+
+class InvitationAcceptNewIn(BaseModel):
+    token: str = Field(min_length=32, max_length=200)
+    name: str = Field(min_length=1, max_length=120)
+    password: str = Field(min_length=12, max_length=200)
+
+    @field_validator("password")
+    @classmethod
+    def validate_invited_password(cls, value):
+        return validate_password_strength(value)
+
+
+class InvitationAcceptExistingIn(BaseModel):
+    token: str = Field(min_length=32, max_length=200)
+
+
+class RecoveryRequestIn(BaseModel):
+    email: str = Field(min_length=3, max_length=200)
+
+
+class RecoveryConsumeIn(BaseModel):
+    token: str = Field(min_length=32, max_length=200)
+    new_password: str = Field(min_length=12, max_length=200)
+
+    @field_validator("new_password")
+    @classmethod
+    def validate_recovery_password(cls, value):
+        return validate_password_strength(value)
 class CaseIn(BaseModel):
     title: str = Field(min_length=1, max_length=200); client: str = Field("", max_length=200); stage: str = Field("", max_length=200)
     case_number: str = Field("", max_length=100); case_year: str = Field("", max_length=20)
