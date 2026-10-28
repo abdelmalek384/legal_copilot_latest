@@ -20,6 +20,10 @@ class LabourLawSupplementCardTests(unittest.TestCase):
             self.assertTrue(card["provisional_answer_ar"])
             self.assertTrue(card["pinpoint"]["article"])
             self.assertTrue(card["primary_evidence"])
+            for source in card["primary_evidence"]:
+                self.assertTrue(source.get("supports"))
+                self.assertTrue(source.get("retrieved_or_checked_on"))
+                self.assertTrue(source["url"].startswith("https://"))
             self.assertTrue(card["limitations"])
             self.assertFalse(card["search_eligible"])
         return payload
