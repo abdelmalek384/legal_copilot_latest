@@ -13,7 +13,7 @@ class LabourLawProvisionalReviewQuestionTests(unittest.TestCase):
         rows = [json.loads(line) for line in QUESTIONS.read_text(encoding="utf-8").splitlines() if line.strip()]
         provisions = json.loads(PROVISIONS.read_text(encoding="utf-8"))["provisions"]
         provision_ids = {item["provision_id"] for item in provisions}
-        self.assertEqual(len(rows), 24)
+        self.assertEqual(len(rows), 27)
         self.assertEqual(len({row["id"] for row in rows}), len(rows))
         for row in rows:
             self.assertTrue(row["question_ar"])
@@ -24,15 +24,20 @@ class LabourLawProvisionalReviewQuestionTests(unittest.TestCase):
             self.assertTrue(row["supporting_source_urls"])
             provision = next(item for item in provisions if item["provision_id"] == row["provision_id"])
             pinpoint = provision["page_pinpoint"]
-            if "printed_pages" in pinpoint:
-                page_text = "-".join(pinpoint["printed_pages"])
-                index_text = ", ".join(str(value) for value in pinpoint["pdf_page_indices_zero_based"])
+            if pinpoint.get("source_type") == "official_text_page":
+                self.assertEqual(pinpoint["source_url"], "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D")
+                self.assertEqual(row["source_page_ref"], "الهيئة العامة لشئون المطابع الأميرية، النص الرسمي الإلكتروني، مادة (" + pinpoint["pinpoint"].replace("مادة (", "").replace(")", "") + ")؛ لم تتم مراجعة صفحة ممسوحة من الجريدة الرسمية")
+                self.assertFalse(row["targeted_pdf_text_reviewed"])
             else:
-                page_text = pinpoint["printed_page"]
-                index_text = str(pinpoint["pdf_page_index_zero_based"])
-            expected_page = "الجريدة الرسمية، العدد 18 (تابع)، ص. " + page_text + " (PDF page index " + index_text + ")"
-            self.assertEqual(row["source_page_ref"], expected_page)
-            self.assertTrue(row["targeted_pdf_text_reviewed"])
+                if "printed_pages" in pinpoint:
+                    page_text = "-".join(pinpoint["printed_pages"])
+                    index_text = ", ".join(str(value) for value in pinpoint["pdf_page_indices_zero_based"])
+                else:
+                    page_text = pinpoint["printed_page"]
+                    index_text = str(pinpoint["pdf_page_index_zero_based"])
+                expected_page = "الجريدة الرسمية، العدد 18 (تابع)، ص. " + page_text + " (PDF page index " + index_text + ")"
+                self.assertEqual(row["source_page_ref"], expected_page)
+                self.assertTrue(row["targeted_pdf_text_reviewed"])
             self.assertFalse(row["original_pdf_downloaded"])
             for url in row["supporting_source_urls"]:
                 parsed = urlparse(url)
