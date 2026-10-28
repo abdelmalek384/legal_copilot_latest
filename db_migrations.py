@@ -56,7 +56,10 @@ def _migration_files(directory: Path) -> list[tuple[int, str, Path, str]]:
     found: list[tuple[int, str, Path, str]] = []
     versions: set[int] = set()
     for path in sorted(directory.glob("*.sql")):
-        # Migration SQL is executable schema input; reject links and all special files.
+        # Preserve the specific symlink rejection before resolving its target.
+        if path.is_symlink():
+            raise MigrationError(f"Migration file must not be a symlink: {path.name}")
+        # Migration SQL is executable schema input; reject all other special files too.
         if path.resolve().parent != directory.resolve():
             raise MigrationError(f"Migration file escapes its directory: {path.name}")
         match = _MIGRATION_NAME.fullmatch(path.name)
