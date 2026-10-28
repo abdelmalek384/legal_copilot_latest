@@ -3796,47 +3796,12 @@ def create_user(b: UserCreateIn, u: dict = Depends(user)):
     require_admin(u)
     if _separate_runtime_enabled():
         raise HTTPException(410, "direct user creation is disabled; send an email invitation instead")
-    if _separate_runtime_enabled():
-        c = control_conn()
-        try:
-            c.execute("BEGIN IMMEDIATE")
-            firm = c.execute(
-                "SELECT status FROM firms WHERE id=?", (u["firm_id"],)
-            ).fetchone()
-            if firm is None or firm["status"] != "active":
-                c.rollback()
-                raise HTTPException(409, "cannot create a membership for an inactive firm")
-            cur = c.execute(
-                "INSERT INTO users(name,email_display,email_normalized,password_hash,status) "
-                "VALUES(?,?,?,?,'active')",
-                (b.name.strip(), b.email.strip(), normalize_email(b.email), hash_pw(b.password)),
-            )
-            user_id = cur.lastrowid
-            c.execute(
-                "INSERT INTO firm_memberships(user_id,firm_id,firm_role,status,created_by_user_id) "
-                "VALUES(?,?,?,'active',?)",
-                (user_id, u["firm_id"], b.role, u["id"]),
-            )
-            try:
-                c.execute(
-                    "INSERT INTO platform_security_events(actor_user_id,target_user_id,firm_id,event_type,detail_json) "
-                    "VALUES(?,?,?,'membership_created',?)",
-                    (u["id"], user_id, u["firm_id"], json.dumps({"method": "web", "firm_role": b.role}, sort_keys=True)),
-                )
-            except sqlite3.Error as exc:
-                raise HTTPException(503, "membership was not created because audit logging failed") from exc
-            c.commit()
-        except HTTPException:
-            c.rollback()
-            raise
-        except sqlite3.IntegrityError:
-            c.rollback()
-            raise HTTPException(409, "email already exists or membership is invalid")
-        return {"id": user_id, "name": b.name.strip(), "role": b.role}
     c = conn()
     try:
-        cur = c.execute("INSERT INTO users(name,email,pw,role,firm_id) VALUES(?,?,?,?,?)",
-                         (b.name.strip(), normalize_email(b.email), hash_pw(b.password), b.role, u["firm_id"]))
+        cur = c.execute(
+            "INSERT INTO users(name,email,pw,role,firm_id) VALUES(?,?,?,?,?)",
+            (b.name.strip(), normalize_email(b.email), hash_pw(b.password), b.role, u["firm_id"]),
+        )
         c.commit()
     except sqlite3.IntegrityError:
         c.rollback()
