@@ -89,6 +89,33 @@ class ProductionDatabaseModeTests(unittest.TestCase):
             )
             self.assertEqual(result.returncode, 0, result.stderr)
 
+    def test_production_startup_blocks_missing_acceptance_even_with_other_settings_valid(self):
+        from cryptography.fernet import Fernet
+        with __import__("tempfile").TemporaryDirectory() as temp:
+            env = os.environ.copy()
+            for key in ("COPILOT_DB", "COPILOT_DATABASE_ACCEPTANCE_FILE"):
+                env.pop(key, None)
+            env.update({
+                "COPILOT_ENV": "production",
+                "COPILOT_CONTROL_DB": os.path.join(temp, "control.sqlite3"),
+                "COPILOT_TENANT_DB_ROOT": os.path.join(temp, "tenants"),
+                "COPILOT_CORPUS_DB": os.path.join(temp, "corpus.sqlite3"),
+                "COPILOT_ALLOWED_HOSTS": "legal.example.test",
+                "COPILOT_SECURE_COOKIES": "1",
+                "COPILOT_PUBLIC_ORIGIN": "https://legal.example.test",
+                "ADMIN_TOKEN": "A" * 48,
+                "BACKUP_KEY": Fernet.generate_key().decode("ascii"),
+            })
+            result = subprocess.run(
+                [sys.executable, "-c", "import app"],
+                env=env, capture_output=True, text=True, timeout=30,
+            )
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn(
+            "COPILOT_DATABASE_ACCEPTANCE_FILE must reference a complete accepted database operational evidence manifest",
+            result.stderr,
+        )
+
     def test_app_refuses_legacy_shared_database_in_production(self):
         env = os.environ.copy()
         for key in ("COPILOT_CONTROL_DB", "COPILOT_TENANT_DB_ROOT", "COPILOT_CORPUS_DB"):
