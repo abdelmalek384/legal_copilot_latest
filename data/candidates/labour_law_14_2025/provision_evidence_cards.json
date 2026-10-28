@@ -2554,6 +2554,90 @@
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
       "not_usable_for": "final advice or authoritative retrieval"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-126-EXAM-LEAVE",
+      "question": "What notice and evidence conditions apply to annual-leave scheduling and paid exam leave under Article 126?",
+      "provisional_answer_ar": "تقرر المادة 126 للعامل المتقدم لامتحان في إحدى مراحل التعليم حق تحديد موعد إجازته السنوية بشرط إخطار صاحب العمل قبلها بخمسة عشر يوماً على الأقل. كما تقرر إجازة دراسية بأجر عن أيام الامتحان الفعلية لا تخصم من رصيد الإجازة السنوية، بشرط الإخطار قبلها بعشرة أيام على الأقل وتقديم ما يثبت دخول الامتحان فعلاً. يلزم فحص النص الكامل واللوائح والوقائع قبل تقرير الاستحقاق في حالة بعينها.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 126",
+        "official_gazette_printed_page": 55,
+        "pdf_page_index_zero_based": 53
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "النص الرسمي القابل للبحث؛ مراجعة موضعية للمادة مطلوبة عند التطبيق",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص الصفحة المطبوعة 55؛ يظهر نص المادة 126، ولم يُنزّل الملف الأصلي أو يُفحص بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted Official Gazette PDF search result",
+          "supports": "يعرض نص المادتين 126 و127 على الصفحة المطبوعة 55"
+        }
+      ],
+      "limitations": [
+        "تتوقف النتيجة على إثبات القيد التعليمي وموعد الامتحان والإخطار الفعلي",
+        "لم تُراجع القرارات المنفذة أو التعديلات اللاحقة بصورة شاملة",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "automatic approval or denial of a specific leave request"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-127-WORK-DURING-LEAVE",
+      "question": "What consequence does Article 127 state if a worker works for another party during leave?",
+      "provisional_answer_ar": "تجيز المادة 127 لصاحب العمل حرمان العامل من أجر مدة الإجازة أو استرداد ما دُفع عنها إذا ثبت أن العامل اشتغل خلالها لدى الغير، دون إخلال بالجزاء التأديبي. لا تكفي البطاقة وحدها لتقرير ثبوت المخالفة أو تحديد الإجراء المناسب؛ يلزم التحقق من الوقائع والنصوص المرتبطة وأي أحكام لاحقة.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 127",
+        "official_gazette_printed_page": 55,
+        "pdf_page_index_zero_based": 53
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "النص الرسمي القابل للبحث؛ مراجعة موضعية للمادة مطلوبة عند التطبيق",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص الصفحة المطبوعة 55؛ يظهر نص المادة 127، ولم يُنزّل الملف الأصلي أو يُفحص بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted Official Gazette PDF search result",
+          "supports": "يعرض نص المادتين 126 و127 على الصفحة المطبوعة 55"
+        }
+      ],
+      "limitations": [
+        "تطبيق الحكم يتطلب إثبات العمل لدى الغير خلال الإجازة وتحديد ما دُفع عنها",
+        "لم تُراجع التعديلات أو اللوائح ذات الصلة مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "final finding of misconduct or payroll recovery decision"
     }
   ],
   "activation_gates": [
