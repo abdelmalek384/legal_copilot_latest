@@ -362,6 +362,7 @@ def audit_source(source: str) -> dict[str, Any]:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--json", action="store_true", help="Emit the complete machine-readable map.")
+    parser.add_argument("--strict", action="store_true", help="Fail on unresolved SQL, unclassified SQL routes, or direct SQLite opens.")
     parser.add_argument("--app", type=Path, default=APP_FILE, help="Application source file to inspect.")
     args = parser.parse_args()
     report = audit_source(args.app.read_text(encoding="utf-8"))
@@ -391,7 +392,12 @@ def main() -> int:
             print(f"UNCLASSIFIED SQL: {item}")
         for item in report["routes_opening_sqlite_directly"]:
             print(f"DIRECT SQLITE OPEN: {item}")
-    return 1 if report["unclassified_sql_routes"] or report["routes_opening_sqlite_directly"] else 0
+    failed = bool(report["unclassified_sql_routes"] or report["routes_opening_sqlite_directly"])
+    if args.strict:
+        failed = failed or bool(report["unresolved_sql_call_count"])
+        if report["unresolved_sql_call_count"]:
+            print("STRICT AUDIT FAILED: unresolved SQL expressions require explicit review.")
+    return 1 if failed else 0
 
 
 if __name__ == "__main__":
