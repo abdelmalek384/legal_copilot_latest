@@ -4,6 +4,7 @@ import getpass
 import glob
 import json
 import os
+import re
 import sqlite3
 import tempfile
 import time
@@ -459,6 +460,99 @@ def revoke_platform_role(a):
     _change_platform_role(a, grant=False)
 
 
+def bootstrap_platform_admin_cli(a):
+    """One-time operator-controlled bootstrap for the first platform administrator."""
+    if not app._separate_runtime_enabled():
+        raise SystemExit("Platform-admin bootstrap requires separate-database mode.")
+    if not a.confirm_bootstrap:
+        raise SystemExit("Explicit --confirm-bootstrap is required.")
+    if isinstance(a.target_user_id, bool) or a.target_user_id <= 0:
+        raise SystemExit("--target-user-id must be a positive integer.")
+    reason = a.reason.strip() if isinstance(a.reason, str) else ""
+    if len(reason) < 8 or len(reason) > 500:
+        raise SystemExit("--reason must contain 8 to 500 characters; do not include secrets.")
+    reference_pattern = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._/-]{2,63}$")
+    operator_reference = a.operator_reference.strip() if isinstance(a.operator_reference, str) else ""
+    change_reference = a.change_reference.strip() if isinstance(a.change_reference, str) else ""
+    if not reference_pattern.fullmatch(operator_reference):
+        raise SystemExit("--operator-reference must be a 3-64 character restricted identifier.")
+    if not reference_pattern.fullmatch(change_reference):
+        raise SystemExit("--change-reference must be a 3-64 character restricted identifier.")
+
+    runtime = DatabaseRuntime.from_env()
+    try:
+        runtime.initialize()
+        control = runtime.control_connection()
+        control.execute("BEGIN IMMEDIATE")
+        try:
+            prior_bootstrap = control.execute(
+                "SELECT 1 FROM platform_security_events "
+                "WHERE event_type='platform_admin_bootstrap_cli' LIMIT 1"
+            ).fetchone()
+            if prior_bootstrap is not None:
+                raise SystemExit("A successful platform-admin bootstrap is already recorded; use the reviewed break-glass process.")
+            active_admin = control.execute(
+                "SELECT 1 FROM users u JOIN user_platform_roles r ON r.user_id=u.id "
+                "WHERE u.status='active' AND r.role_name='platform_admin' LIMIT 1"
+            ).fetchone()
+            if active_admin is not None:
+                raise SystemExit("An active platform administrator already exists.")
+            target = control.execute(
+                "SELECT id,status FROM users WHERE id=?", (a.target_user_id,)
+            ).fetchone()
+            if target is None or target["status"] != "active":
+                raise SystemExit("Target must be an existing active global identity.")
+            membership = control.execute(
+                "SELECT fm.firm_id FROM firm_memberships fm JOIN firms f ON f.id=fm.firm_id "
+                "WHERE fm.user_id=? AND fm.firm_role='admin' AND fm.status='active' "
+                "AND f.status='active' ORDER BY fm.firm_id LIMIT 1",
+                (a.target_user_id,),
+            ).fetchone()
+            if membership is None:
+                raise SystemExit("Target must have an active admin membership in an active firm.")
+            control.execute(
+                "INSERT INTO user_platform_roles(user_id,role_name,granted_by_user_id) "
+                "VALUES(?,'platform_admin',NULL)",
+                (a.target_user_id,),
+            )
+            control.execute(
+                "INSERT INTO platform_security_events("
+                "actor_user_id,target_user_id,firm_id,event_type,detail_json) "
+                "VALUES(NULL,?,?,'platform_admin_bootstrap_cli',?)",
+                (
+                    a.target_user_id,
+                    membership["firm_id"],
+                    json.dumps({
+                        "method": "manage.py bootstrap-platform-admin",
+                        "reason": reason,
+                        "operator_reference": operator_reference,
+                        "change_reference": change_reference,
+                    }, sort_keys=True),
+                ),
+            )
+            control.commit()
+        except SystemExit:
+            if control.in_transaction:
+                control.rollback()
+            raise
+        except sqlite3.Error as exc:
+            if control.in_transaction:
+                control.rollback()
+            raise SystemExit(
+                "Platform-admin bootstrap was not committed; role and audit event were rolled back."
+            ) from exc
+        print(json.dumps({
+            "status": "bootstrapped",
+            "target_user_id": int(a.target_user_id),
+            "firm_id": int(membership["firm_id"]),
+            "event_type": "platform_admin_bootstrap_cli",
+        }, sort_keys=True))
+    except (DatabaseRuntimeError, sqlite3.Error, ValueError) as exc:
+        raise SystemExit("Platform-admin bootstrap could not safely complete.") from exc
+    finally:
+        runtime.close_current_thread()
+
+
 def mfa_reset_cli(a):
     """Operator break-glass reset, authorized by a second active MFA-enabled platform admin."""
     if not app._separate_runtime_enabled():
@@ -697,6 +791,13 @@ sp.add_parser("gen-mfa-key", help="Generate a dedicated MFA secret-encryption ke
 )
 x = sp.add_parser("backup"); x.add_argument("dir"); x.add_argument("--keep", type=int, default=14); x.set_defaults(f=backup)
 x = sp.add_parser("backup-tenancy"); x.add_argument("dir"); x.add_argument("--keep", type=int, default=14); x.add_argument("--quiesced", action="store_true", help="Assert application writes are paused for the full bundle snapshot"); x.set_defaults(f=backup_tenancy)
+x = sp.add_parser("bootstrap-platform-admin", help="One-time CLI bootstrap of the first platform administrator")
+x.add_argument("--target-user-id", type=int, required=True)
+x.add_argument("--reason", required=True)
+x.add_argument("--operator-reference", required=True)
+x.add_argument("--change-reference", required=True)
+x.add_argument("--confirm-bootstrap", action="store_true", help="Explicitly confirm this irreversible first-admin bootstrap")
+x.set_defaults(f=bootstrap_platform_admin_cli)
 x = sp.add_parser("grant-platform-role", help="Grant a platform role; requires an active platform_admin actor")
 x.add_argument("--actor-email", required=True)
 x.add_argument("--target-email", required=True)
@@ -723,7 +824,7 @@ x = sp.add_parser("platform-audit", help="Read recent platform security events o
 x.add_argument("--limit", type=int, default=50)
 x.add_argument("--firm-id", type=int)
 x.add_argument("--target-user-id", type=int)
-x.add_argument("--event-type", choices=["password_reset_cli", "identity_created_cli", "password_changed_web", "firm_provisioned", "firm_disabled", "membership_created", "membership_suspended", "initial_owner_bootstrapped", "platform_role_granted", "platform_role_revoked"])
+x.add_argument("--event-type", choices=["password_reset_cli", "identity_created_cli", "password_changed_web", "firm_provisioned", "firm_disabled", "membership_created", "membership_suspended", "initial_owner_bootstrapped", "platform_role_granted", "platform_role_revoked", "platform_admin_bootstrap_cli"])
 x.set_defaults(f=platform_audit)
 x = sp.add_parser("restore-tenancy"); x.add_argument("file"); x.add_argument("--target-root", required=True); x.set_defaults(f=restore_tenancy)
 x = sp.add_parser("verify-backup-tenancy", help="Verify an encrypted tenancy bundle using temporary protected storage"); x.add_argument("file"); x.set_defaults(f=verify_tenancy_backup)
