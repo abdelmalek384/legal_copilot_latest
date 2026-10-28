@@ -585,6 +585,130 @@
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
       "not_usable_for": "final notice-pay calculation or legal advice"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-128-CASUAL-LEAVE",
+      "question": "What limits does Article 128 state for casual absence and birth-related emergency leave?",
+      "provisional_answer_ar": "تسمح المادة 128 للعامل بالانقطاع لسبب عارض لمدة لا تجاوز سبعة أيام في السنة، وبحد أقصى يومين في المرة، وتُحسب من رصيد الإجازة السنوية. كما تقرر يوماً طارئاً مدفوع الأجر عند ولادة مولود، لا يخصم من الرصيد السنوي، وبحد أقصى ثلاث مرات طوال الخدمة.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 128",
+        "official_gazette_printed_page": 56,
+        "pdf_page_index_zero_based": 54
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "النص الرسمي القابل للبحث؛ مراجعة موضعية مطلوبة عند التطبيق",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص الصفحة المطبوعة 56؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً. يعرض النص المستخرج المادة 128.",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted official Gazette PDF search result",
+          "supports": "نص المادة 128 على الصفحة المطبوعة 56"
+        }
+      ],
+      "limitations": [
+        "يجب فحص أحكام الإجازة السنوية ذات الصلة والوقائع الخاصة",
+        "لا توجد مراجعة محامٍ مسجلة ولا تحقق شامل من أي تعديل لاحق"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "leave-balance calculation or final advice"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-130-PILGRIMAGE-LEAVE",
+      "question": "What eligibility conditions does Article 130 state for paid pilgrimage leave?",
+      "provisional_answer_ar": "تقرر المادة 130 للعامل الذي أمضى خمس سنوات متصلة في خدمة صاحب العمل إجازة بأجر لمدة شهر لأداء فريضة الحج أو زيارة بيت المقدس، وتكون مرة واحدة طوال مدة خدمته. يلزم فحص النص الكامل وظروف الخدمة وأي قواعد تنفيذية قبل تأكيد الاستحقاق الفردي.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 130",
+        "official_gazette_printed_page": 56,
+        "pdf_page_index_zero_based": 54
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "النص الرسمي القابل للبحث؛ مراجعة موضعية مطلوبة عند التطبيق",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص الصفحة المطبوعة 56؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً. يعرض النص المستخرج المادة 130.",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted official Gazette PDF search result",
+          "supports": "نص المادة 130 على الصفحة المطبوعة 56"
+        }
+      ],
+      "limitations": [
+        "تتوقف الأهلية على مدة الخدمة المتصلة وعدم الاستفادة السابقة",
+        "لا توجد مراجعة محامٍ مسجلة ولا تحقق شامل من أي تعديل لاحق"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "final eligibility determination or legal advice"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-131-SICK-LEAVE",
+      "question": "How does Article 131 frame sick-leave entitlement and wage compensation?",
+      "provisional_answer_ar": "تقرر المادة 131 حق العامل الذي يثبت مرضه أو إصابته بما يمنعه من أداء العمل في إجازة مرضية تحددها الجهة الطبية المختصة، ويُحدد التعويض عن الأجر ونسبته ومدته وفق قانون التأمينات الاجتماعية والمعاشات المشار إليه. لا تكفي هذه البطاقة لحساب التعويض دون مراجعة قانون التأمينات والقواعد الطبية المنطبقة.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 131",
+        "official_gazette_printed_page": 56,
+        "pdf_page_index_zero_based": 54
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "النص الرسمي القابل للبحث؛ مراجعة موضعية مطلوبة عند التطبيق",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص الصفحة المطبوعة 56؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً. يعرض النص المستخرج بداية المادة 131؛ التفاصيل المتعلقة بالمنشآت الصناعية والقواعد الخاصة تحتاج إلى مراجعة النص الكامل.",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted official Gazette PDF search result",
+          "supports": "بداية المادة 131 على الصفحة المطبوعة 56"
+        }
+      ],
+      "limitations": [
+        "قانون التأمينات والقواعد الطبية ذات الصلة لازمة لتحديد النسبة والمدة",
+        "قد توجد أحكام خاصة لبعض المنشآت أو الحالات",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "sick-pay calculation or final advice"
     }
   ],
   "activation_gates": [
