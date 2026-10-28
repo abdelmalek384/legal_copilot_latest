@@ -445,9 +445,44 @@
           "provisions": [
             "القانون المرافق، المادة 124"
           ]
+        },
+        {
+          "pdf_page_index_zero_based": 66,
+          "printed_page_label": "68",
+          "provisions": [
+            "القانون المرافق، المادة 165"
+          ]
+        },
+        {
+          "pdf_page_index_zero_based": 67,
+          "printed_page_label": "69",
+          "provisions": [
+            "القانون المرافق، المادة 165"
+          ]
+        },
+        {
+          "pdf_page_index_zero_based": 68,
+          "printed_page_label": "70",
+          "provisions": [
+            "القانون المرافق، المادة 165"
+          ]
+        },
+        {
+          "pdf_page_index_zero_based": 71,
+          "printed_page_label": "73",
+          "provisions": [
+            "القانون المرافق، المادة 177"
+          ]
+        },
+        {
+          "pdf_page_index_zero_based": 72,
+          "printed_page_label": "74",
+          "provisions": [
+            "القانون المرافق، المادة 177"
+          ]
         }
       ],
-      "notes": "Targeted PDF text extraction was reviewed for the listed pages. The original file was not downloaded, hashed, or visually inspected. This does not establish a complete article-by-article match, amendment history, current status, or permission for systematic retrieval/commercial use. Additional targeted pages reviewed: printed page 52 (Articles 117 and 121), and printed pages 54-55 (Article 124)."
+      "notes": "Targeted PDF text extraction was reviewed for the listed pages. The original file was not downloaded, hashed, or visually inspected. This does not establish a complete article-by-article match, amendment history, current status, or permission for systematic retrieval/commercial use. Additional targeted pages reviewed: printed page 52 (Articles 117 and 121), and printed pages 54-55 (Article 124). Additional targeted pages reviewed: printed pages 68-70 (Article 165) and 73-74 (Article 177)."
     }
   ],
   "document_records_to_create_from_batch": [
