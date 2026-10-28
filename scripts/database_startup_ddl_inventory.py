@@ -9,8 +9,12 @@ import argparse
 import ast
 import json
 import re
+import sys
 from pathlib import Path
 from typing import Any
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from db_migrations import MigrationError, read_migration_file
 
 DDL_PATTERN = re.compile(
     r"\b(CREATE\s+VIRTUAL\s+TABLE|CREATE\s+TABLE|CREATE\s+INDEX|ALTER\s+TABLE|DROP\s+TABLE|DROP\s+INDEX)\b",
@@ -83,7 +87,11 @@ def inventory(app_path: str | Path, migrations_dir: str | Path) -> dict[str, Any
     migration_entries = []
     directory = Path(migrations_dir)
     for path in sorted(directory.rglob("*.sql")):
-        classified = _classify(path.read_text(encoding="utf-8"))
+        try:
+            sql = read_migration_file(path)
+        except MigrationError as exc:
+            raise ValueError(f"unsafe migration input: {path.name}") from exc
+        classified = _classify(sql)
         migration_entries.append({
             "file": path.relative_to(directory).as_posix(),
             **classified,
