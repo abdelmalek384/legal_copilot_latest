@@ -17,7 +17,7 @@ The validator in tools/validate_phase2_document_inventory.py and tests/test_phas
 - A record cannot be marked verified without explicit collection permission, commercial reuse permission, and permission evidence.
 - A record cannot be labelled in force without verified review and an effective date.
 
-The current inventory has 71 unique instrument candidates across 13 source records. That count describes registry candidates only; it is not a count of laws covered or legal texts acquired.
+The current inventory has 72 unique instrument candidates across 13 source records. That count describes registry candidates only; it is not a count of laws covered or legal texts acquired.
 
 ## Operating rules
 
