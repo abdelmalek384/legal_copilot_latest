@@ -1843,6 +1843,9 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             ("get", "/finance/overview", None),
             ("get", "/research/conversations", None),
             ("get", "/invitations", None),
+            ("get", "/audit/case-deletions", None),
+            ("get", "/audit/security-events", None),
+            ("get", "/audit/security-events.csv", None),
             ("post", "/search", {"q": "FIRM_B_PRIVATE_SENTINEL"}),
             ("post", "/ask", {"q": "FIRM_B_PRIVATE_SENTINEL"}),
         ]
