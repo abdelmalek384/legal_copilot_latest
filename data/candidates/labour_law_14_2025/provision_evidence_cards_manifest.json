@@ -27,14 +27,25 @@
         298
       ],
       "role": "supplemental provisional inventory"
+    },
+    {
+      "path": "data/candidates/labour_law_14_2025/provision_evidence_cards_promulgation_2_11.json",
+      "expected_cards": 10,
+      "article_range": [
+        2,
+        11
+      ],
+      "role": "promulgation-provisions supplement",
+      "note": "Article-level pinpoints only; Gazette page numbers intentionally left unverified."
     }
   ],
-  "combined_expected_cards": 240,
+  "combined_expected_cards": 250,
   "loader_requirement": "Any inventory reader or report builder must explicitly read all listed files, validate unique card IDs across files, and preserve each card's search_eligible=false/review_state/limitations. Do not activate this inventory for authoritative retrieval.",
   "known_gaps": [
     "Main inventory could not be re-read through the current GitHub Contents API because of file size.",
     "Supplemental cards have inferred Gazette page pinpoints, not visually verified.",
     "Some penalty summaries and implementing-decision mappings are secondary-source cross-checks only.",
-    "Currentness, full amendments, reuse rights and Egyptian-lawyer review remain incomplete."
+    "Currentness, full amendments, reuse rights and Egyptian-lawyer review remain incomplete.",
+    "Promulgation Articles 2–11 are represented in a separate supplement; official Gazette page pinpoints are intentionally null until visually verified."
   ]
 }
