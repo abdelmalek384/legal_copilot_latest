@@ -966,7 +966,7 @@
       "pinpoint": {
         "part": "القانون المرافق",
         "article": "المادة 4",
-        "official_gazette_printed_page": 12,
+        "official_gazette_printed_page": 11,
         "pdf_page_index_zero_based": 9
       },
       "primary_evidence": [
@@ -974,7 +974,7 @@
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf_text_extraction",
-          "supports": "استخراج نص المادة 4 من الصفحة المطبوعة 12؛ لم يُنزّل الملف أو يُفحص بصرياً",
+          "supports": "استخراج نص المادة 4 من الصفحة المطبوعة 11؛ لم يُنزّل الملف أو يُفحص بصرياً",
           "retrieved_or_checked_on": "2026-10-28"
         },
         {
@@ -1008,7 +1008,7 @@
       "pinpoint": {
         "part": "القانون المرافق",
         "article": "المادة 5",
-        "official_gazette_printed_page": 12,
+        "official_gazette_printed_page": 11,
         "pdf_page_index_zero_based": 9
       },
       "primary_evidence": [
@@ -1016,7 +1016,7 @@
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf_text_extraction",
-          "supports": "استخراج نص المادة 5 من الصفحة المطبوعة 12؛ لم يُنزّل الملف أو يُفحص بصرياً",
+          "supports": "استخراج نص المادة 5 من الصفحة المطبوعة 11؛ لم يُنزّل الملف أو يُفحص بصرياً؛ تمتد المادة عبر حد الصفحة",
           "retrieved_or_checked_on": "2026-10-28"
         },
         {
@@ -1051,7 +1051,7 @@
         "part": "القانون المرافق",
         "article": "المادة 6",
         "official_gazette_printed_page": 12,
-        "pdf_page_index_zero_based": 9
+        "pdf_page_index_zero_based": 10
       },
       "primary_evidence": [
         {
@@ -1092,7 +1092,7 @@
       "pinpoint": {
         "part": "القانون المرافق",
         "article": "المادة 7",
-        "official_gazette_printed_page": 13,
+        "official_gazette_printed_page": 12,
         "pdf_page_index_zero_based": 10
       },
       "primary_evidence": [
@@ -1100,7 +1100,7 @@
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf_text_extraction",
-          "supports": "استخراج نص المادة 7 من الصفحة المطبوعة 13؛ لم يُنزّل الملف أو يُفحص بصرياً",
+          "supports": "استخراج نص المادة 7 من الصفحة المطبوعة 12؛ لم يُنزّل الملف أو يُفحص بصرياً؛ يستمر النص في الصفحة التالية",
           "retrieved_or_checked_on": "2026-10-28"
         },
         {
@@ -1135,7 +1135,7 @@
         "part": "القانون المرافق",
         "article": "المادة 8",
         "official_gazette_printed_page": 13,
-        "pdf_page_index_zero_based": 10
+        "pdf_page_index_zero_based": 11
       },
       "primary_evidence": [
         {
@@ -1177,7 +1177,7 @@
         "part": "القانون المرافق",
         "article": "المادة 9",
         "official_gazette_printed_page": 13,
-        "pdf_page_index_zero_based": 10
+        "pdf_page_index_zero_based": 11
       },
       "primary_evidence": [
         {
