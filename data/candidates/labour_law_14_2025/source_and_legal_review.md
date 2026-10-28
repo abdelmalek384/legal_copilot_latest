@@ -83,3 +83,6 @@ Further targeted extracted-text review on 2026-10-28 covered printed pages 61–
 
 
 Further targeted extracted-text review on 2026-10-28 covered printed pages 52–53 for Article 120 (weekly rest period and limited aggregation exception). The summary remains provisional and requires review against the full text and applicable implementing rules.
+
+
+Further targeted extracted-text review on 2026-10-28 covered printed page 52 (Articles 118–119: meal/rest breaks and daily presence span) and printed pages 53–54 (Article 122: posted work schedule and notice of changes). These summaries remain provisional and require counsel review.

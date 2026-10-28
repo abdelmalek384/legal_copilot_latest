@@ -430,14 +430,16 @@
           "printed_page_label": "52",
           "provisions": [
             "القانون المرافق، المادتان 117 و121",
-            "القانون المرافق، المادة 120"
+            "القانون المرافق، المادة 120",
+            "القانون المرافق، المواد 117-121"
           ]
         },
         {
           "pdf_page_index_zero_based": 52,
           "printed_page_label": "54",
           "provisions": [
-            "القانون المرافق، المادة 124"
+            "القانون المرافق، المادة 124",
+            "القانون المرافق، المادة 122"
           ]
         },
         {
@@ -514,11 +516,12 @@
           "pdf_page_index_zero_based": 51,
           "printed_page_label": "53",
           "provisions": [
-            "القانون المرافق، المادتان 120 و121"
+            "القانون المرافق، المادتان 120 و121",
+            "القانون المرافق، المواد 120 و122"
           ]
         }
       ],
-      "notes": "Targeted PDF text extraction was reviewed for the listed pages. The original file was not downloaded, hashed, or visually inspected. This does not establish a complete article-by-article match, amendment history, current status, or permission for systematic retrieval/commercial use. Additional targeted pages reviewed: printed page 52 (Articles 117 and 121), and printed pages 54-55 (Article 124). Additional targeted pages reviewed: printed pages 68-70 (Article 165) and 73-74 (Article 177). Additional targeted pages reviewed: printed pages 61-62 (Article 141) and 63-64 (Article 148). Additional targeted review covers Article 120 on printed pages 52-53."
+      "notes": "Targeted PDF text extraction was reviewed for the listed pages. The original file was not downloaded, hashed, or visually inspected. This does not establish a complete article-by-article match, amendment history, current status, or permission for systematic retrieval/commercial use. Additional targeted pages reviewed: printed page 52 (Articles 117 and 121), and printed pages 54-55 (Article 124). Additional targeted pages reviewed: printed pages 68-70 (Article 165) and 73-74 (Article 177). Additional targeted pages reviewed: printed pages 61-62 (Article 141) and 63-64 (Article 148). Additional targeted review covers Article 120 on printed pages 52-53. Additional targeted review covers Articles 118-119 and 122 on printed pages 52-54."
     }
   ],
   "document_records_to_create_from_batch": [
