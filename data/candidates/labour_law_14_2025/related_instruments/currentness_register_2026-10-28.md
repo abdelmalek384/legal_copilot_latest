@@ -36,4 +36,5 @@ Article 11 of the issuing provisions of Law 14/2025 states, in the official-text
 - Direct binary download attempts for the Law 14/2025 PDF from the State Information Service and ILO NATLEX endpoints failed in this environment. No hash is claimed.
 - The Gazette publisher's Decree 162/2026 repository item exposes copy-request links rather than direct public PDF access; no request was submitted.
 - No official primary text for Decrees 290/2025 and 291/2025 was located in this review.
+- Visually checked page map: Arts. 117–120 p.52; 121–122 p.53; 123–124 p.54; 125–127 p.55; 128–130 p.56; 131–132 p.57. The prior provisional pinpoints for new cards on Arts. 125 and 131 were corrected accordingly.
 - These are evidence-discovery results, not proof that the source set is complete or that all cards are current.
