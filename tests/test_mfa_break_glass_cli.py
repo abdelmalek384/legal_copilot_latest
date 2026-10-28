@@ -34,7 +34,7 @@ class MFABreakGlassCLITests(unittest.TestCase):
         self.temp = tempfile.TemporaryDirectory()
         self.root = Path(self.temp.name)
         self.names = ("COPILOT_CONTROL_DB", "COPILOT_TENANT_DB_ROOT", "COPILOT_CORPUS_DB",
-                      "MFA_ENCRYPTION_KEY", "MFA_ENFORCEMENT", "COPILOT_ENV")
+                      "COPILOT_DB", "MFA_ENCRYPTION_KEY", "MFA_ENFORCEMENT", "COPILOT_ENV")
         self.old = {name: os.environ.get(name) for name in self.names}
         os.environ["COPILOT_CONTROL_DB"] = str(self.root / "control.sqlite3")
         os.environ["COPILOT_TENANT_DB_ROOT"] = str(self.root / "tenants")
@@ -42,6 +42,7 @@ class MFABreakGlassCLITests(unittest.TestCase):
         os.environ["MFA_ENCRYPTION_KEY"] = Fernet.generate_key().decode()
         os.environ["MFA_ENFORCEMENT"] = "admins_required"
         os.environ["COPILOT_ENV"] = "development"
+        os.environ.pop("COPILOT_DB", None)
         self.runtime = DatabaseRuntime.from_env()
         self.runtime.initialize()
         self.firm_id, _ = self.runtime.provision_firm("Break Glass Firm")
