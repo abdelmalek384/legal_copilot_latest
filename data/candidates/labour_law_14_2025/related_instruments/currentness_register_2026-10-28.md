@@ -175,3 +175,7 @@ A focused test was added for the crosswalk's source, currentness and reuse gates
 
 The article-number gap audit has been addressed across two JSON files: **294 cards** in the main evidence file plus **15 supplemental cards** for Articles 1–3, 14–15, 17–21, 24, 26, 35, and 38–39. The supplemental test now asserts that the combined files contain at least one card for every accompanying-law article number from 1 through 298. This test has been authored but **not executed**. Thus, statutory article-number coverage is drafted across the two files; it is not the same as fully verified legal knowledge. Text/currentness, page accuracy, implementing decisions, reuse rights and qualified lawyer review remain incomplete. Both files retain `search_eligible=false`.
 
+## Consolidated implementing-decision crosswalk (2026-10-28)
+
+The public-text crosswalk now contains **eight** implementing-decision records: Decisions 49/2026, 162/2026, 187/2025, 214/2025, 290/2025, 291/2025, 292/2025 and 294/2025. For each, it separates the official primary-source lead from public secondary text or summaries, lists the relevant Law 14/2025 article crosswalk, and states what must not be inferred from incomplete evidence. A focused test was updated to require all eight records and preserve `reuse_rights=unknown`, `currentness=not verified`, and authoritative retrieval disabled. The test has not been run.
+
