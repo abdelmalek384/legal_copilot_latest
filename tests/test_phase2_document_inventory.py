@@ -20,6 +20,18 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         self.assertEqual(len(self.inventory["documents"]), 72)
         self.assertTrue(all(d["review_status"] != "verified" for d in self.inventory["documents"]))
         self.assertTrue(all(d["legal_status"] in {"unknown", "not_applicable"} for d in self.inventory["documents"]))
+        register = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        register_ids = {source["source_id"] for source in register["sources"]}
+        self.assertIn("EG-MINISTRY-LABOUR-LAWS", register_ids)
+        self.assertIn("EG-MINISTRY-LABOUR-LAWS", self.inventory["source_ids"])
+        self.assertNotIn("EG-MINISTRY-OF-LABOUR", self.inventory["source_ids"])
+        for document_id in (
+            "EG-LABOUR-WORK-REGULATION-RULES-2026",
+            "EG-LABOUR-DECISION-49-2026",
+            "EG-LABOUR-DECISION-294-2025",
+        ):
+            record = next(d for d in self.inventory["documents"] if d["document_id"] == document_id)
+            self.assertEqual(record["source_id"], "EG-MINISTRY-LABOUR-LAWS")
 
     def test_2026_labour_work_regulation_rules_remain_discovery_only(self):
         record = next(
