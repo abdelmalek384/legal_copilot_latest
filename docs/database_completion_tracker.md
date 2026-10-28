@@ -227,7 +227,7 @@ This is a planning estimate across fresh-install schema/migrations, tenant isola
 ## Remaining database work
 
 ### 1. Finish versioned schema migrations
-- [ ] Retire the explicitly configured shared-database compatibility path only if the product decision is to remove it. Its inline `SCHEMA` and `ALTER TABLE` bootstrap are not part of the approved fresh-install runtime; no legacy database has been deployed or used.
+- [ ] Remove the remaining shared-database compatibility implementation after the test harnesses are migrated to the approved profile-separated runtime. This PR restricts `COPILOT_DB` to explicit development/test mode and documents that it is not a legacy import path; no legacy database has been deployed or used.
 - [x] Keep the approved fresh-install control-plane, firm, and legal-corpus schemas under versioned profile migrations. Remove runtime DDL fallbacks for the tenant catalog and immutable firm binding (PR #524 CI run #1372 passed; PR #525 CI run #1388 passed). Continue moving any remaining schema prerequisites used by the approved profiles into ordered migrations.
 - [x] Add a read-only FTS5 internal index-integrity check on a disposable copy, detecting stale inverted indexes without mutating the source database (PR #388 merged; CI passed).
 - [x] Add a controlled rebuild-on-a-new-copy procedure for legacy and firm/corpus profile databases, preserving external-content schema and synchronization triggers (PR #399 merged; CI passed).
