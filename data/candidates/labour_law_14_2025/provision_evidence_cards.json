@@ -958,6 +958,173 @@
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
       "not_usable_for": "full remote-work compliance checklist or final advice"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-155-SPECIFIC-WORK-CONTRACT",
+      "question": "When does a contract for completing a specified work end under Article 155?",
+      "provisional_answer_ar": "تنص المادة 155 على انتهاء العقد المبرم لإنجاز عمل معين بإتمام ذلك العمل، مع جواز تجديده باتفاق صريح لأعمال أخرى مماثلة. وإذا استمر الطرفان في التنفيذ بعد انتهاء العمل، يعد ذلك تجديداً وفق النص؛ وإذا استغرق العمل الأصلي أو الأعمال المجددة أكثر من خمس سنوات، تقيد المادة إنهاء العامل للعقد قبل إتمامها.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 155",
+        "official_gazette_printed_page": 67,
+        "pdf_page_index_zero_based": 65
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "النص الرسمي القابل للبحث؛ مراجعة موضعية مطلوبة عند التطبيق",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص الصفحة المطبوعة 67؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً. يعرض النص المستخرج المادة 155.",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted official Gazette PDF search result",
+          "supports": "نص المادة 155 على الصفحة المطبوعة 67"
+        }
+      ],
+      "limitations": [
+        "يتوقف التكييف على طبيعة العمل المتفق عليه واستمرارية التنفيذ",
+        "يجب قراءة الأحكام الأخرى الخاصة بانتهاء العقد مع هذه المادة",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "classifying an individual contract or final legal advice"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-156-INDEFINITE-NOTICE",
+      "question": "What notice does Article 156 generally require to end an indefinite-term contract?",
+      "provisional_answer_ar": "مع مراعاة الإحالة الواردة إلى المادة 165، تجيز المادة 156 لأي من طرفي العقد غير محدد المدة إنهاءه بشرط إخطار الطرف الآخر كتابة قبل الإنهاء بثلاثة أشهر. يجب قراءة هذه القاعدة مع القيود والإجراءات والآثار الواردة في المواد التالية.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 156",
+        "official_gazette_printed_page": 67,
+        "pdf_page_index_zero_based": 65
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "النص الرسمي القابل للبحث؛ مراجعة موضعية مطلوبة عند التطبيق",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص الصفحة المطبوعة 67؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً. يعرض النص المستخرج المادة 156.",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted official Gazette PDF search result",
+          "supports": "نص المادة 156 على الصفحة المطبوعة 67"
+        }
+      ],
+      "limitations": [
+        "الإخطار ليس القاعدة الوحيدة؛ يجب فحص المبرر المشروع والقيود والإجراءات",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "calculating a specific notice deadline or deciding legality of termination"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-157-JUST-CAUSE",
+      "question": "What substantive condition does Article 157 impose on ending an indefinite-term contract?",
+      "provisional_answer_ar": "تقرر المادة 157، مع مراعاة الإحالات والاستثناءات الواردة فيها، أنه لا يجوز لصاحب العمل أو العامل إنهاء العقد غير محدد المدة إلا بمبرر مشروع وكاف، ويراعى أن يقع الإنهاء في وقت مناسب لظروف العمل. يتطلب تطبيق ذلك فحص الوقائع والنصوص المرتبطة.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 157",
+        "official_gazette_printed_page": 67,
+        "pdf_page_index_zero_based": 65
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "النص الرسمي القابل للبحث؛ مراجعة موضعية مطلوبة عند التطبيق",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص الصفحة المطبوعة 67؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً. يعرض النص المستخرج المادة 157.",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted official Gazette PDF search result",
+          "supports": "نص المادة 157 على الصفحة المطبوعة 67"
+        }
+      ],
+      "limitations": [
+        "المبرر المشروع والكافي معيار تطبيقي يتوقف على الوقائع والقضاء ذي الصلة",
+        "توجد إحالات إلى مواد أخرى يجب مراجعتها",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "predicting case outcome or giving final termination advice"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-159-160-NOTICE-TIMING",
+      "question": "How do Articles 159–160 affect the timing and effect of a notice period?",
+      "provisional_answer_ar": "تمنع المادة 159 توجيه الإخطار للعامل أثناء إجازته، وتؤجل احتساب المهلة إلى اليوم التالي لانتهاء الإجازة؛ كما توقف المهلة إذا حصل العامل على إجازة مرضية خلالها حتى اليوم التالي لانتهائها. وتقرر المادة 160 استمرار عقد العمل والتزامات الطرفين طوال مهلة الإخطار وانتهاء العقد بانقضائها.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادتان 159–160",
+        "official_gazette_printed_page": 68,
+        "pdf_page_index_zero_based": 66
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "النص الرسمي القابل للبحث؛ مراجعة موضعية مطلوبة عند التطبيق",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص الصفحة المطبوعة 68؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً. يعرض النص المستخرج المادتين 159 و160.",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government-hosted official Gazette PDF search result",
+          "supports": "نص المادتين 159–160 على الصفحة المطبوعة 68"
+        }
+      ],
+      "limitations": [
+        "يتطلب حساب المهلة معرفة تواريخ الإجازات والإخطار الفعلية",
+        "يجب فحص أحكام الإنهاء الأخرى والقرارات ذات الصلة",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "automated deadline calculation or final advice"
     }
   ],
   "activation_gates": [
