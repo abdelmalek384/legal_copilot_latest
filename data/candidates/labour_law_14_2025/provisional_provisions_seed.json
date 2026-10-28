@@ -1,0 +1,139 @@
+{
+  "schema_version": "1.0",
+  "record_id": "EG-LABOUR-LAW-14-2025-PROVISIONAL-PROVISION-SEED",
+  "title_ar": "قانون رقم 14 لسنة 2025 بإصدار قانون العمل",
+  "jurisdiction": "Egypt",
+  "language": "ar",
+  "purpose": "Small, source-linked provision seed for evaluation and review. Not an approved/search-enabled legal corpus.",
+  "source_assessment": {
+    "official_gazette_issue": "18 (تابع)",
+    "publication_date": "2025-05-03",
+    "source_urls": [
+      "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+      "https://sis.gov.eg/media/760267/%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86-%D8%B1%D9%82%D9%85-14-%D9%84%D8%B3%D9%86%D8%A9-2025-%D8%A8%D8%A5%D8%B5%D8%AF%D8%A7%D8%B1-%D9%82%D8%A7%D9%86%D9%88%D9%86-%D8%A7%D9%84%D8%B9%D9%85%D9%84.pdf",
+      "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf"
+    ],
+    "evidence_method": "Official Amiri Press text page and government-hosted Official Gazette PDF text surfaced through search indexing; issue metadata independently listed by the IDSC repository.",
+    "official_pdf_downloaded": false,
+    "official_pdf_sha256": null,
+    "page_level_review": false,
+    "full_article_by_article_comparison": false,
+    "permission_status": "unknown",
+    "lawyer_review_status": "pending",
+    "amendment_history_verified": false,
+    "current_status_verified": false,
+    "search_eligible": false,
+    "limitations": [
+      "These records capture selected provisions only and do not establish that the complete law or amendment chain is current.",
+      "No page numbers are assigned because the original PDF has not been downloaded and page-reviewed.",
+      "Public availability is not treated as permission for bulk collection, indexing, embeddings, display, redistribution or commercial use.",
+      "Do not treat this seed as a substitute for the original Gazette, a complete currentness check, or qualified Egyptian-lawyer review."
+    ]
+  },
+  "provisions": [
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-PROMULGATION-ART-1",
+      "provision_ref": "مواد الإصدار، المادة الأولى",
+      "topic": "scope_and_exclusions",
+      "summary_ar": "يحدد نطاق تطبيق قانون العمل والقانون المرافق، ويقرر سريان الأحكام على العاملين الأجانب عند عدم وجود نص خاص في عقد العمل الفردي أو اتفاقية العمل الجماعية، مع استثناء العاملين بأجهزة الدولة وعمال الخدمة المنزلية ومن في حكمهم ما لم يرد نص خاص.",
+      "source_refs": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "basis": "indexed official text page"
+        },
+        {
+          "url": "https://sis.gov.eg/media/760267/%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86-%D8%B1%D9%82%D9%85-14-%D9%84%D8%B3%D9%86%D8%A9-2025-%D8%A8%D8%A5%D8%B5%D8%AF%D8%A7%D8%B1-%D9%82%D8%A7%D9%86%D9%88%D9%86-%D8%A7%D9%84%D8%B9%D9%85%D9%84.pdf",
+          "basis": "government-hosted Official Gazette PDF; indexed text"
+        }
+      ],
+      "confidence": "provisional_source_text_observed",
+      "human_review": "pending"
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-4",
+      "provision_ref": "القانون المرافق، المادة 4",
+      "topic": "forced_labour_harassment_and_violence",
+      "summary_ar": "تحظر المادة تشغيل العامل سخرة أو جبراً، كما تحظر التحرش والتنمر والعنف اللفظي أو الجسدي أو النفسي على العامل.",
+      "source_refs": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "basis": "indexed official text page"
+        },
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "basis": "government-hosted Gazette PDF; indexed text"
+        }
+      ],
+      "confidence": "provisional_source_text_observed",
+      "human_review": "pending"
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-5",
+      "provision_ref": "القانون المرافق، المادة 5",
+      "topic": "equal_treatment_and_non_discrimination",
+      "summary_ar": "تحظر المادة التمييز في التدريب والإعلان عن الوظائف وشغلها وشروط العمل وحقوقه وواجباته لأسباب متعددة، منها الدين أو العقيدة أو الجنس أو الأصل أو العرق أو اللون أو اللغة أو الإعاقة، مع استثناء المزايا والحماية التي يقررها القانون لتحقيق غرض مشروع وبالقدر اللازم له.",
+      "source_refs": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "basis": "indexed official text page"
+        }
+      ],
+      "confidence": "provisional_source_text_observed",
+      "human_review": "pending"
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-ART-6",
+      "provision_ref": "القانون المرافق، المادة 6",
+      "topic": "waiver_and_more_favourable_terms",
+      "summary_ar": "تقرر المادة بطلان الشرط أو الاتفاق الذي ينتقص من حقوق العامل المقررة في القانون أو يتضمن إبراءً من حقوق ناشئة عن عقد العمل خلال سريانه أو خلال الأشهر الثلاثة التالية لانتهائه، مع استمرار المزايا أو الشروط الأفضل المقررة للعامل.",
+      "source_refs": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "basis": "indexed official text page"
+        }
+      ],
+      "confidence": "provisional_source_text_observed",
+      "human_review": "pending"
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-PROMULGATION-ART-12",
+      "provision_ref": "مواد الإصدار، المادة 12",
+      "topic": "repeal_clause",
+      "summary_ar": "تنص مادة الإصدار على إلغاء قانون العمل الصادر بالقانون رقم 12 لسنة 2003 والقانون رقم 125 لسنة 2010 بشأن امتياز حقوق العمال، كما تلغي كل حكم يخالف القانون الجديد والقانون المرافق.",
+      "source_refs": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "basis": "indexed official text page"
+        },
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "basis": "government-hosted Gazette PDF; indexed text"
+        }
+      ],
+      "confidence": "provisional_source_text_observed",
+      "human_review": "pending"
+    },
+    {
+      "provision_id": "EG-LABOUR-LAW-14-2025-PROMULGATION-ART-13",
+      "provision_ref": "مواد الإصدار، المادة 13",
+      "topic": "commencement",
+      "summary_ar": "تحدد المادة 13 بدء العمل بالقانون من أول الشهر التالي لانقضاء تسعين يوماً من تاريخ النشر، وتحدد بدء العمل به فيما يتعلق بالمحاكم العمالية المتخصصة اعتباراً من أول أكتوبر التالي للعمل بالقانون المرافق. التاريخان المحسوبان مبدئياً هما 1 سبتمبر 2025 و1 أكتوبر 2025 على الترتيب، ويظلان بحاجة إلى مراجعة بشرية متخصصة.",
+      "derived_dates": {
+        "general_commencement_candidate": "2025-09-01",
+        "specialized_labour_courts_candidate": "2025-10-01"
+      },
+      "source_refs": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "basis": "indexed official text page"
+        },
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "basis": "government-hosted Gazette PDF; indexed text"
+        }
+      ],
+      "confidence": "provisional_source_text_observed",
+      "human_review": "pending"
+    }
+  ]
+}
