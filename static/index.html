@@ -807,7 +807,7 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
    lead&&h('div',{className:'row'},mu,mr,btn(uiText('إضافة / تحديث','Add / update'),async()=>{await api('/cases/'+id+'/members','POST',{user_id:+mu.value,role:mr.value});again()})))}
  if(TAB==='ask')body=h('div',{className:'card'},askBox(id));
  if(TAB==='log')body=h('div',{className:'card'},c.events.map(e=>h('div',{className:'row'},h('span',{textContent:e.text}),h('span',{className:'mut',textContent:e.who+' · '+new Date(e.at.replace(' ','T')+'Z').toLocaleString(LANG==='ar'?'ar-EG':'en-US',{dateStyle:'short',timeStyle:'short'})}))));
- shell(c.title,h('div',{},h('span',{className:'mut',textContent:'العميل: '+(c.client||'—')+' '}),pill(c.status==='open'?'مفتوحة':'مغلقة',c.status==='open'?'open':'closed')),
+ shell(c.title,h('div',{},h('span',{className:'mut',textContent:uiText('العميل: ','Client: ')+(c.client||'—')+' '}),pill(c.status==='open'?'مفتوحة':'مغلقة',c.status==='open'?'open':'closed')),
   h('div',{className:'tabs'},tabs.map(([k,t])=>h('a',{className:TAB===k?'on':'',textContent:t,onclick:()=>{TAB=k;again()}}))),body)}
 
 // Bilingual UI: interface labels are translated; user-entered case/legal text is never translated.
