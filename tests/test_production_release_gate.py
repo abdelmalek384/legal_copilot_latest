@@ -22,6 +22,13 @@ class ProductionReleaseGateTests(unittest.TestCase):
             "reviewer_id": "reviewer-test",
             "display_name": "Qualified Egyptian counsel",
             "status": "approved",
+            "professional_role": "qualified_egyptian_counsel",
+            "jurisdiction": "Egypt",
+            "practice_areas": [
+                "rent_and_tenancy", "personal_status", "civil_procedure", "civil_law",
+                "criminal_procedure", "commercial_law", "tax_law", "social_insurance",
+                "real_estate", "data_protection",
+            ],
             "qualification_basis": "Synthetic fixture: counsel qualification checked",
             "evidence_reference": "private-test-reference",
             "verified_by": "test-operator",
