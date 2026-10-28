@@ -165,7 +165,7 @@ class PurgeApprovedOriginalFilesTests(unittest.TestCase):
             self.object_root, self.firm_id,
         )
         self.assertFalse(preflight["purge_preflight_clear"])
-        self.assertIn("missing_original_object", {item["code"] for item in preflight["findings"]})
+        self.assertIn("missing_object", {item["code"] for item in preflight["findings"]})
 
     def test_purge_operation_rejects_production_mode_before_touching_storage(self):
         with patch.dict("os.environ", {
