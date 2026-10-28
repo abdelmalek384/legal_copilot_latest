@@ -1,3 +1,4 @@
+import datetime as dt
 import importlib.util
 import json
 import unittest
@@ -289,8 +290,11 @@ class AmendmentRelationshipValidatorTests(unittest.TestCase):
                 "gazette_publication_date": "2026-09-30",
                 "gazette_page_range": "12-15",
                 "reviewed_on": "2026-10-02",
+                "reviewer_id": "EG-COUNSEL-001",
                 "reviewer_role": "qualified_egyptian_lawyer",
                 "review_basis": "Compared complete official issue, provision text, commencement clause, and later amendments.",
+                "evidence_url": "https://gazette.example.gov/issue-42.pdf",
+                "evidence_sha256": "a" * 64,
             },
         }
         report = MODULE.validate(
@@ -305,6 +309,71 @@ class AmendmentRelationshipValidatorTests(unittest.TestCase):
             "confirmed_relationship_effective_date_unresolved",
         }
         self.assertFalse(any(item["code"] in confirmation_errors for item in report["errors"]))
+
+    def test_reviewed_confirmed_requires_traceable_evidence_and_qualified_counsel(self):
+        relationship = {
+            "relationship_id": "REL-CONFIRMED-EVIDENCE",
+            "source_instrument_id": "LAW-A",
+            "target_instrument_id": "LAW-B",
+            "relationship_type": "amends_specified_provisions",
+            "status": "reviewed_confirmed",
+            "source_url": "https://gazette.example.gov/law.pdf",
+            "required_evidence": ["Official Gazette text"],
+            "affected_provisions": ["Article 3"],
+            "instrument_effective_date": "2026-10-01",
+            "confirmation_evidence": {
+                "gazette_issue": "Official Gazette issue 42",
+                "gazette_publication_date": "2026-09-30",
+                "gazette_page_range": "12-15",
+                "reviewed_on": "2026-10-02",
+                "reviewer_id": "EG-COUNSEL-001",
+                "reviewer_role": "qualified_egyptian_lawyer",
+                "review_basis": "Compared official issue and commencement clause.",
+                "evidence_url": "https://gazette.example.gov/issue-42.pdf",
+                "evidence_sha256": "a" * 64,
+            },
+        }
+        relationship["confirmation_evidence"]["reviewer_role"] = "unqualified"
+        relationship["confirmation_evidence"]["evidence_url"] = "http://gazette.example.gov/issue-42.pdf"
+        relationship["confirmation_evidence"]["evidence_sha256"] = "not-a-hash"
+        report = MODULE.validate(
+            {"relationships": [relationship]},
+            {"documents": [{"document_id": "LAW-A"}, {"document_id": "LAW-B"}]},
+        )
+        codes = {item["code"] for item in report["errors"]}
+        self.assertIn("confirmed_relationship_reviewer_not_qualified", codes)
+        self.assertIn("confirmed_relationship_missing_traceable_evidence_url", codes)
+        self.assertIn("confirmed_relationship_invalid_evidence_sha256", codes)
+
+    def test_reviewed_confirmed_rejects_future_review_dates(self):
+        future = (dt.date.today() + dt.timedelta(days=1)).isoformat()
+        relationship = {
+            "relationship_id": "REL-CONFIRMED-FUTURE",
+            "source_instrument_id": "LAW-A",
+            "target_instrument_id": "LAW-B",
+            "relationship_type": "amends_specified_provisions",
+            "status": "reviewed_confirmed",
+            "source_url": "https://gazette.example.gov/law.pdf",
+            "required_evidence": ["Official Gazette text"],
+            "affected_provisions": ["Article 3"],
+            "instrument_effective_date": "2026-10-01",
+            "confirmation_evidence": {
+                "gazette_issue": "Official Gazette issue 42",
+                "gazette_publication_date": "2026-09-30",
+                "gazette_page_range": "12-15",
+                "reviewed_on": future,
+                "reviewer_id": "EG-COUNSEL-001",
+                "reviewer_role": "qualified_egyptian_lawyer",
+                "review_basis": "Compared official issue and commencement clause.",
+                "evidence_url": "https://gazette.example.gov/issue-42.pdf",
+                "evidence_sha256": "a" * 64,
+            },
+        }
+        report = MODULE.validate(
+            {"relationships": [relationship]},
+            {"documents": [{"document_id": "LAW-A"}, {"document_id": "LAW-B"}]},
+        )
+        self.assertTrue(any(item["code"] == "confirmed_relationship_future_confirmation_date" for item in report["errors"]))
 
     def test_reviewed_confirmed_rejects_impossible_review_dates(self):
         relationship = {
