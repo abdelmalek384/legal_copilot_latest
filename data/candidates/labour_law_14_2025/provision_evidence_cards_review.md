@@ -2,7 +2,7 @@
 
 **Record:** `EG-LABOUR-LAW-14-2025-EVIDENCE-CARDS-2026-10-28`  
 **Prepared on:** 2026-10-28  
-**Cards in this report:** 240
+**Cards in this report:** 250
 
 ## Status and limits
 
@@ -7484,6 +7484,306 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** undefined.
+
+### 241. EG-LABOUR-14-2025-PROMULGATION-ART-2-PROMULGATION-TRAINING-FUND-TRANSITION
+
+**Question:** ما مصير صندوق تمويل التدريب والدعاوى المتعلقة بنسبة 1%؟
+
+**Pinpoint:** مواد إصدار القانون رقم 14 لسنة 2025, المادة 2, Official Gazette page pinpoint not verified.
+
+**Provisional summary (Arabic):**
+
+تقرر المادة الثانية استمرار صندوق تمويل التدريب والتأهيل المنشأ بالقانون السابق بشخصيته الاعتبارية العامة وتبعيته للوزير المختص، وتنظم انقضاء الخصومة في دعاوى تحصيل نسبة 1% إذا لم تتمسك المنشأة باستمرارها خلال ستة أشهر من تاريخ العمل بالقانون. ولا ينشأ عن انقضاء الخصومة حق في استرداد ما سبق سداده. يجب فحص ملف الدعوى وتاريخ بدء سريان القانون قبل التطبيق.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; نص مواد إصدار قانون العمل رقم 14 لسنة 2025؛ يلزم مطابقة صورة الجريدة الرسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة نصية لمواد الإصدار 2–11، وليست بديلاً عن مطابقة الجريدة الرسمية.
+
+**Limitations:**
+
+- الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق
+- المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة
+- لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري
+- حقوق إعادة الاستخدام التجاري غير محسومة
+
+**Review state:** `provisional_secondary_crosscheck`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** final determination of transitional deadlines or case disposition until official text and case dates are checked.
+
+### 242. EG-LABOUR-14-2025-PROMULGATION-ART-3-PROMULGATION-SOCIAL-HEALTH-FUND-AND-WAGES-COUNCIL
+
+**Question:** ما وضع صندوق الخدمات الاجتماعية والصحية والمجلس القومي للأجور بعد صدور القانون؟
+
+**Pinpoint:** مواد إصدار القانون رقم 14 لسنة 2025, المادة 3, Official Gazette page pinpoint not verified.
+
+**Provisional summary (Arabic):**
+
+تقرر المادة الثالثة استمرار صندوق الخدمات الاجتماعية والصحية والثقافية وتبعيته للوزير المختص، كما تستمر عضوية/وظيفة المجلس القومي للأجور ويُشكّل ويمارس اختصاصاته وفق القانون المرافق. يلزم الرجوع إلى القرارات التنظيمية السارية لتحديد التشكيل والاختصاص الحالي.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; نص مواد إصدار قانون العمل رقم 14 لسنة 2025؛ يلزم مطابقة صورة الجريدة الرسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة نصية لمواد الإصدار 2–11، وليست بديلاً عن مطابقة الجريدة الرسمية.
+
+**Limitations:**
+
+- الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق
+- المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة
+- لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري
+- حقوق إعادة الاستخدام التجاري غير محسومة
+
+**Review state:** `provisional_secondary_crosscheck`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** final determination of transitional deadlines or case disposition until official text and case dates are checked.
+
+### 243. EG-LABOUR-14-2025-PROMULGATION-ART-4-PROMULGATION-PRESERVATION-OF-BETTER-BENEFITS
+
+**Question:** هل يحتفظ العمال بالمزايا السابقة الأفضل؟
+
+**Pinpoint:** مواد إصدار القانون رقم 14 لسنة 2025, المادة 4, Official Gazette page pinpoint not verified.
+
+**Provisional summary (Arabic):**
+
+تحافظ المادة الرابعة على الحقوق والمزايا التي سبق حصول العمال عليها من الأجور واللوائح والنظم والاتفاقيات والقرارات الداخلية السابقة. كما تبقي أحكام التشريعات الخاصة ببعض فئات العمال سارية إلى أن تبرم الاتفاقيات الجماعية وتنفذ، وتعد مزايا تلك التشريعات حداً أدنى للتفاوض. التطبيق يتطلب مقارنة المستندات السابقة ومصدر الميزة ونطاقها.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; نص مواد إصدار قانون العمل رقم 14 لسنة 2025؛ يلزم مطابقة صورة الجريدة الرسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة نصية لمواد الإصدار 2–11، وليست بديلاً عن مطابقة الجريدة الرسمية.
+
+**Limitations:**
+
+- الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق
+- المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة
+- لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري
+- حقوق إعادة الاستخدام التجاري غير محسومة
+
+**Review state:** `provisional_secondary_crosscheck`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** final determination of transitional deadlines or case disposition until official text and case dates are checked.
+
+### 244. EG-LABOUR-14-2025-PROMULGATION-ART-5-PROMULGATION-INDUSTRIAL-LICENSING-LAW-SAVINGS
+
+**Question:** هل يلغي قانون العمل أحكام قانون تراخيص المنشآت الصناعية؟
+
+**Pinpoint:** مواد إصدار القانون رقم 14 لسنة 2025, المادة 5, Official Gazette page pinpoint not verified.
+
+**Provisional summary (Arabic):**
+
+تقرر المادة الخامسة أن أحكام قانون العمل والقانون المرافق لا تخل بأحكام قانون تيسير إجراءات منح تراخيص المنشآت الصناعية رقم 15 لسنة 2017. يجب تطبيق النظامين معاً بحسب موضوع الترخيص دون افتراض إلغاء أحدهما.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; نص مواد إصدار قانون العمل رقم 14 لسنة 2025؛ يلزم مطابقة صورة الجريدة الرسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة نصية لمواد الإصدار 2–11، وليست بديلاً عن مطابقة الجريدة الرسمية.
+
+**Limitations:**
+
+- الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق
+- المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة
+- لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري
+- حقوق إعادة الاستخدام التجاري غير محسومة
+
+**Review state:** `provisional_secondary_crosscheck`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** final determination of transitional deadlines or case disposition until official text and case dates are checked.
+
+### 245. EG-LABOUR-14-2025-PROMULGATION-ART-6-PROMULGATION-TRANSITIONAL-PROFESSION-LICENSING
+
+**Question:** ما المهل الانتقالية لتوفيق أوضاع ترخيص المهن والحرف والتشغيل؟
+
+**Pinpoint:** مواد إصدار القانون رقم 14 لسنة 2025, المادة 6, Official Gazette page pinpoint not verified.
+
+**Provisional summary (Arabic):**
+
+تجيز المادة السادسة مؤقتاً تشغيل العمال دون ترخيص مزاولة المهنة أو الحرفة المشار إليه بالمادة 27، على أن توفق الأوضاع خلال مدة لا تجاوز ثلاث سنوات من صدور القرارات المنظمة، مع جواز مدها ضمن الحد الإجمالي الوارد بالنص، وإعفاء من عمل لدى صاحب العمل أكثر من سنة قبل صدور القانون. كما تلزم الجهات المشار إليها بالمادتين 22 و41 بتوفيق أوضاعها خلال سنة من بدء العمل مع إمكان المد وفق النص. يجب التحقق من القرارات وتواريخ صدورها والتمديدات.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; نص مواد إصدار قانون العمل رقم 14 لسنة 2025؛ يلزم مطابقة صورة الجريدة الرسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة نصية لمواد الإصدار 2–11، وليست بديلاً عن مطابقة الجريدة الرسمية.
+
+**Limitations:**
+
+- الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق
+- المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة
+- لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري
+- حقوق إعادة الاستخدام التجاري غير محسومة
+
+**Review state:** `provisional_secondary_crosscheck`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** final determination of transitional deadlines or case disposition until official text and case dates are checked.
+
+### 246. EG-LABOUR-14-2025-PROMULGATION-ART-7-PROMULGATION-TRANSFER-IRREGULAR-WORKER-FUNDS
+
+**Question:** إلى أين تؤول أموال حسابات الرعاية الاجتماعية والصحية للعمالة غير المنتظمة؟
+
+**Pinpoint:** مواد إصدار القانون رقم 14 لسنة 2025, المادة 7, Official Gazette page pinpoint not verified.
+
+**Provisional summary (Arabic):**
+
+تقرر المادة السابعة انتقال الأموال النقدية والعينية والحقوق والالتزامات والموارد الخاصة بحسابات الرعاية الاجتماعية والصحية للعمالة غير المنتظمة المنشأة بوزارة العمل ومديرياتها إلى صندوق إعانات الطوارئ والخدمات الاجتماعية والصحية للعمالة غير المنتظمة المنشأ وفق القانون المرافق. التفاصيل المحاسبية والتنفيذية تحتاج إلى قرارات وسجلات الصندوق.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; نص مواد إصدار قانون العمل رقم 14 لسنة 2025؛ يلزم مطابقة صورة الجريدة الرسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة نصية لمواد الإصدار 2–11، وليست بديلاً عن مطابقة الجريدة الرسمية.
+
+**Limitations:**
+
+- الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق
+- المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة
+- لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري
+- حقوق إعادة الاستخدام التجاري غير محسومة
+
+**Review state:** `provisional_secondary_crosscheck`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** final determination of transitional deadlines or case disposition until official text and case dates are checked.
+
+### 247. EG-LABOUR-14-2025-PROMULGATION-ART-8-PROMULGATION-EMPLOYER-EMPLOYEE-ROSTER-DEADLINE
+
+**Question:** ما البيان الذي يجب على المنشأة تقديمه خلال 30 يوماً؟
+
+**Pinpoint:** مواد إصدار القانون رقم 14 لسنة 2025, المادة 8, Official Gazette page pinpoint not verified.
+
+**Provisional summary (Arabic):**
+
+تلزم المادة الثامنة المنشآت الخاضعة للقانون بإرسال بيان مفصل إلى الوزارة المختصة خلال ثلاثين يوماً من تاريخ العمل به، يشمل عدد العمال وجنسياتهم وأعمارهم ومؤهلاتهم ومهنهم وأنواعهم والأجور التي يتقاضونها. لتقييم مخالفة تاريخية يلزم تحديد تاريخ بدء السريان وأي قرارات أو تمديدات رسمية.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; نص مواد إصدار قانون العمل رقم 14 لسنة 2025؛ يلزم مطابقة صورة الجريدة الرسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة نصية لمواد الإصدار 2–11، وليست بديلاً عن مطابقة الجريدة الرسمية.
+
+**Limitations:**
+
+- الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق
+- المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة
+- لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري
+- حقوق إعادة الاستخدام التجاري غير محسومة
+
+**Review state:** `provisional_secondary_crosscheck`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** final determination of transitional deadlines or case disposition until official text and case dates are checked.
+
+### 248. EG-LABOUR-14-2025-PROMULGATION-ART-9-PROMULGATION-TRANSFER-PENDING-LABOUR-CASES
+
+**Question:** كيف تُعامل الدعاوى القائمة التي أصبحت من اختصاص المحاكم العمالية المتخصصة؟
+
+**Pinpoint:** مواد إصدار القانون رقم 14 لسنة 2025, المادة 9, Official Gazette page pinpoint not verified.
+
+**Provisional summary (Arabic):**
+
+توجب المادة التاسعة إحالة المحاكم من تلقاء نفسها للمنازعات والدعاوى القائمة التي أصبحت من اختصاص المحاكم العمالية المتخصصة، بالحالة التي تكون عليها ودون رسوم، مع إعلان الخصوم وتكليفهم بالحضور. ويستثني النص الدعاوى المحجوزة للحكم أو المحدد لها جلسة للنطق به قبل بدء العمل بالقانون. يلزم فحص مرحلة الدعوى وتاريخ بدء نظام المحاكم.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; نص مواد إصدار قانون العمل رقم 14 لسنة 2025؛ يلزم مطابقة صورة الجريدة الرسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة نصية لمواد الإصدار 2–11، وليست بديلاً عن مطابقة الجريدة الرسمية.
+
+**Limitations:**
+
+- الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق
+- المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة
+- لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري
+- حقوق إعادة الاستخدام التجاري غير محسومة
+
+**Review state:** `provisional_secondary_crosscheck`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** final determination of transitional deadlines or case disposition until official text and case dates are checked.
+
+### 249. EG-LABOUR-14-2025-PROMULGATION-ART-10-PROMULGATION-APPEALS-TRANSITION
+
+**Question:** من يستمر في نظر الطعون القائمة عند بدء نظام المحاكم العمالية؟
+
+**Pinpoint:** مواد إصدار القانون رقم 14 لسنة 2025, المادة 10, Official Gazette page pinpoint not verified.
+
+**Provisional summary (Arabic):**
+
+تقرر المادة العاشرة استمرار محكمة النقض ومحاكم الاستئناف في نظر الطعون على الأحكام الصادرة في المنازعات المشار إليها بالمادة التاسعة إذا رفعت قبل تاريخ العمل بنظام المحاكم العمالية المتخصصة وفق المادة 13. التطبيق يتطلب التحقق من تاريخ رفع الطعن ونوع الحكم والمرحلة الإجرائية.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; نص مواد إصدار قانون العمل رقم 14 لسنة 2025؛ يلزم مطابقة صورة الجريدة الرسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة نصية لمواد الإصدار 2–11، وليست بديلاً عن مطابقة الجريدة الرسمية.
+
+**Limitations:**
+
+- الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق
+- المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة
+- لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري
+- حقوق إعادة الاستخدام التجاري غير محسومة
+
+**Review state:** `provisional_secondary_crosscheck`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** final determination of transitional deadlines or case disposition until official text and case dates are checked.
+
+### 250. EG-LABOUR-14-2025-PROMULGATION-ART-11-PROMULGATION-IMPLEMENTING-DECISIONS-TRANSITION
+
+**Question:** ما مصير القرارات التنفيذية السابقة وما مهلة إصدار القرارات الجديدة؟
+
+**Pinpoint:** مواد إصدار القانون رقم 14 لسنة 2025, المادة 11, Official Gazette page pinpoint not verified.
+
+**Provisional summary (Arabic):**
+
+تلزم المادة الحادية عشرة الوزير المختص بإصدار القرارات المنفذة للقانون والقانون المرافق خلال تسعين يوماً من تاريخ بدء العمل، وتُبقي القرارات السارية قائمة إلى أن تصدر القرارات الجديدة بالقدر الذي لا يتعارض مع القانون. كما تصدر قرارات وزير العدل اللازمة للمحاكم العمالية المتخصصة. تحديد القرار الواجب التطبيق يتطلب مقارنة موضوعه وتاريخه ومضمونه بالنص الجديد.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; نص مواد إصدار قانون العمل رقم 14 لسنة 2025؛ يلزم مطابقة صورة الجريدة الرسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة نصية لمواد الإصدار 2–11، وليست بديلاً عن مطابقة الجريدة الرسمية.
+
+**Limitations:**
+
+- الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق
+- المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة
+- لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري
+- حقوق إعادة الاستخدام التجاري غير محسومة
+
+**Review state:** `provisional_secondary_crosscheck`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** final determination of transitional deadlines or case disposition until official text and case dates are checked.
 
 ## Activation gates
 
