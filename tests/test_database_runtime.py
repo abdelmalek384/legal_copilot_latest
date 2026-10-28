@@ -475,6 +475,23 @@ class DatabaseRuntimeTests(unittest.TestCase):
             ).fetchone()[0],
             1,
         )
+        tenant_path = self.runtime.retry_failed_firm_provisioning(
+            firm_id,
+            reason="retry after file-less interrupted provisioning was reconciled",
+            operator_reference="operator-retry-after-reconcile",
+            change_reference="change-retry-after-reconcile",
+        )
+        self.assertTrue(tenant_path.is_file())
+        self.assertEqual(
+            control.execute("SELECT status FROM firms WHERE id=?", (firm_id,)).fetchone()[0],
+            "active",
+        )
+        self.assertEqual(
+            control.execute(
+                "SELECT status FROM tenant_database_catalog WHERE firm_id=?", (firm_id,)
+            ).fetchone()[0],
+            "provisioned",
+        )
 
     def test_reconcile_interrupted_provisioning_refuses_any_existing_database_file(self):
         control = self.runtime.control_connection()
