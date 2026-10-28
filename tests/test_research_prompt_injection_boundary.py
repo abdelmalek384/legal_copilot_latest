@@ -65,6 +65,43 @@ class ResearchPromptInjectionBoundaryTests(unittest.TestCase):
         self.assertEqual([record["citation_index"] for record in records], [1, 2])
         self.assertEqual(records[1]["reference"], "Second source")
 
+    def test_case_scoped_prompt_is_blocked_without_firm_approval_even_if_hits_are_public(self):
+        with patch.dict("os.environ", {"LLM_FIRM_DATA_PROCESSING_APPROVED": ""}):
+            with patch.object(app, "search", return_value=[self.hit]), patch.object(
+                app, "LLM", return_value="This would be a generated answer [1]."
+            ) as llm:
+                result = app.ask(
+                    object(),
+                    "Question includes confidential case details",
+                    case_id=123,
+                    firm_id=1,
+                )
+
+        self.assertTrue(result["found"])
+        self.assertIsNone(result["answer"])
+        self.assertTrue(result["abstained"])
+        self.assertIn("تُعرض المصادر فقط", result["message"])
+        llm.assert_not_called()
+
+    def test_followup_context_is_blocked_without_firm_approval_even_if_hits_are_public(self):
+        with patch.dict("os.environ", {"LLM_FIRM_DATA_PROCESSING_APPROVED": ""}):
+            with patch.object(app, "search", return_value=[self.hit]), patch.object(
+                app, "LLM", return_value="This would be a generated answer [1]."
+            ) as llm:
+                result = app.ask(
+                    object(),
+                    "What about the next step?",
+                    conversation_context="Earlier question includes confidential client facts",
+                    case_id=None,
+                    firm_id=1,
+                )
+
+        self.assertTrue(result["found"])
+        self.assertIsNone(result["answer"])
+        self.assertTrue(result["abstained"])
+        self.assertIn("تُعرض المصادر فقط", result["message"])
+        llm.assert_not_called()
+
     def test_answer_validation_still_fails_closed_for_uncited_model_output(self):
         with patch.object(app, "search", return_value=[self.hit]), patch.object(
             app, "LLM", return_value="The source says this, but no citation is provided."
