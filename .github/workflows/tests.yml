@@ -50,7 +50,7 @@ jobs:
       - name: Test isolated database recovery drill
         run: PYTHONPATH=. python tests/test_database_recovery_drill.py
       - name: Test S3/KMS storage preflight
-        run: python tests/test_s3_storage_preflight.py
+        run: PYTHONPATH=. python tests/test_s3_storage_preflight.py
       - name: Test restored original-file S3 import
         run: PYTHONPATH=. python tests/test_import_restored_originals_to_s3.py
       - name: Test migration history ordering guard
