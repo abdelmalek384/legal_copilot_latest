@@ -1053,7 +1053,7 @@ x = sp.add_parser("platform-audit", help="Read recent platform security events o
 x.add_argument("--limit", type=int, default=50)
 x.add_argument("--firm-id", type=int)
 x.add_argument("--target-user-id", type=int)
-x.add_argument("--event-type", choices=["password_reset_cli", "identity_created_cli", "password_changed_web", "firm_provisioned", "firm_disabled", "membership_created", "membership_suspended", "initial_owner_bootstrapped", "platform_role_granted", "platform_role_revoked", "platform_admin_bootstrap_cli", "password_reset_assisted_cli"])
+x.add_argument("--event-type", choices=["password_reset_cli", "identity_created_cli", "password_changed_web", "firm_provisioned", "firm_provisioning_retried", "firm_disabled", "membership_created", "membership_suspended", "initial_owner_bootstrapped", "platform_role_granted", "platform_role_revoked", "platform_admin_bootstrap_cli", "password_reset_assisted_cli"])
 x.set_defaults(f=platform_audit)
 x = sp.add_parser("restore-tenancy"); x.add_argument("file"); x.add_argument("--target-root", required=True); x.set_defaults(f=restore_tenancy)
 x = sp.add_parser("verify-backup-tenancy", help="Verify an encrypted tenancy bundle using temporary protected storage"); x.add_argument("file"); x.set_defaults(f=verify_tenancy_backup)
