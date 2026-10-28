@@ -25,8 +25,11 @@ class TenancyCommandTests(unittest.TestCase):
             "COPILOT_CONTROL_DB": str(self.root / "control.sqlite3"),
             "COPILOT_TENANT_DB_ROOT": str(self.root / "tenants"),
             "COPILOT_CORPUS_DB": str(self.root / "corpus.sqlite3"),
+            "COPILOT_ENV": "test",
             "PYTHONPATH": str(ROOT),
         })
+        # These subprocesses exercise the approved fresh-install runtime only.
+        self.env.pop("COPILOT_DB", None)
         self.runtime = DatabaseRuntime(
             self.env["COPILOT_CONTROL_DB"],
             self.env["COPILOT_TENANT_DB_ROOT"],
