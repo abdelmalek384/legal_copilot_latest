@@ -20,6 +20,9 @@ class PlatformSecurityAuditTests(unittest.TestCase):
             "COPILOT_CORPUS_DB": str(self.root / "corpus.sqlite3"),
         }, clear=False)
         self.env.start()
+        # The CI job exports COPILOT_DB for the legacy API harness; these
+        # tests exercise the profile-separated CLI and must not inherit it.
+        os.environ.pop("COPILOT_DB", None)
         self.runtime = DatabaseRuntime.from_env()
         self.runtime.initialize()
         self.firm_id, _ = self.runtime.provision_firm("Audit test firm")
