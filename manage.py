@@ -188,7 +188,7 @@ def retry_failed_provisioning_cli(a):
             "database_file": database_path.name,
             "recovery": "retried_failed_provisioning",
         }, ensure_ascii=False, sort_keys=True))
-    except (DatabaseRuntimeError, ValueError, sqlite3.Error) as exc:
+    except (RuntimeError, ValueError, OSError, sqlite3.Error) as exc:
         raise SystemExit("Failed-firm provisioning recovery refused or failed: " + str(exc)) from exc
     finally:
         runtime.close_current_thread()
