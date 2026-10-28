@@ -41,13 +41,13 @@ One JSON object per question in `runs.example.jsonl`:
 }
 ```
 
-Both boolean fields are required explicitly; malformed source-ID lists, citation objects, booleans, or dates are reported and excluded rather than interpreted as zero-quality results. This is a schema example, not a real result. Do not copy placeholder IDs into the measured dataset.
+Both boolean fields are required explicitly; malformed source-ID lists, citation objects, booleans, or dates are reported and excluded rather than interpreted as zero-quality results. This is a schema example, not a real result. Do not copy placeholder IDs into the measured dataset. If the optional `invalid_citation_indices` field is supplied, it must be a list of unique positive integers; those markers count against citation precision and are reported separately.
 
 ## Metrics
 
 - **Recall@k:** mean fraction of reviewer-labelled relevant source IDs found in the top k unique retrieved sources.
 - **MRR@k:** mean reciprocal rank of the first relevant source, with zero if no relevant source appears in the first k.
-- **Citation precision:** fraction of emitted citations whose source ID is in the reviewed expected-source set. This is a source-match metric, not proof the proposition is legally correct. If no citations are emitted, precision is `null` rather than zero.
+- **Citation precision:** fraction of emitted citation records and invalid visible citation indices that are supported. A source citation is correct only if its ID is both in the reviewed expected-source set and in the retrieved source set; invalid indices count as incorrect. This is a source-match metric, not proof the proposition is legally correct. If no citation markers are emitted, precision is `null` rather than zero.
 - **Citation coverage:** fraction of answerable reviewed cases that emit at least one citation to an expected source. This prevents a run with no citations from looking healthy simply because its remaining citations are all correct.
 - **Pin-cite accuracy (precision):** fraction of emitted citation records that match a reviewer-labelled source ID and exact pin-cite, scored only for questions with expected pin-cites.
 - **Expected pin-cite recall:** fraction of distinct reviewer-expected source-ID/pin-cite pairs that were emitted exactly. A missing citation counts against recall.
