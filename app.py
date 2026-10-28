@@ -3795,6 +3795,8 @@ def disable_user(uid: int, u: dict = Depends(user)):
 def create_user(b: UserCreateIn, u: dict = Depends(user)):
     require_admin(u)
     if _separate_runtime_enabled():
+        raise HTTPException(410, "direct user creation is disabled; send an email invitation instead")
+    if _separate_runtime_enabled():
         c = control_conn()
         try:
             c.execute("BEGIN IMMEDIATE")
