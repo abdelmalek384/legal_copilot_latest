@@ -2075,6 +2075,180 @@
           "status": "discovered_not_downloaded"
         }
       ]
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-214-2025",
+      "official_title_ar": "قرار وزير العمل رقم 214 لسنة 2025 بشأن ضوابط وآليات تحرير عقود العمل",
+      "practice_areas": [
+        "labour"
+      ],
+      "document_type": "ministerial_decision",
+      "instrument_number": 214,
+      "instrument_year": 2025,
+      "source_id": "EG-MINISTRY-LABOUR-LAWS",
+      "source_status": "official_publisher_text_found_currentness_and_reuse_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "full article-by-article primary-text comparison",
+        "Gazette issue and effective date",
+        "relationship to Labour Law Arts. 86–89 and later amendments",
+        "source-specific reuse review",
+        "qualified Egyptian-lawyer review"
+      ],
+      "notes": "Official Amiri Press searchable text was found for Decision 214/2025, including the Arabic-language written contract in four copies, distribution to employer/worker/social insurance/competent administrative entity, and advice guidance. Gazette repository metadata lists the decision issued 2025-10-05. The full text is publicly searchable at the official publisher page, but the source binary has not been downloaded or hashed and reuse terms remain unknown. Do not treat source availability as reuse permission; verify Gazette publication/effective date, all articles and amendments before activation.",
+      "source_urls": [
+        {
+          "url": "https://alamiria.com/Sec/TashTxt?id=5EinXV37k4w%3D",
+          "source_role": "official Amiri Press searchable decision text",
+          "status": "official_text_searchable_not_downloaded_or_hashed"
+        },
+        {
+          "url": "https://dspace.id.com.eg/items/8ebcec10-0c45-4fbf-9a56-44ca409dc6c4/full",
+          "source_role": "Official Gazette repository metadata and file listing",
+          "status": "metadata_found_files_not_independently_reviewed"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-187-2025",
+      "official_title_ar": "قرار وزير العمل رقم 187 لسنة 2025 بشأن وضع آليات وضوابط لاعتماد الاستقالات العمالية من جانب مكتب العمل",
+      "practice_areas": [
+        "labour"
+      ],
+      "document_type": "ministerial_decision",
+      "instrument_number": 187,
+      "instrument_year": 2025,
+      "source_id": "EG-MINISTRY-LABOUR-LAWS",
+      "source_status": "official_metadata_or_text_lead_found_primary_comparison_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "complete official decision text and Gazette issue/pages",
+        "exact procedure and scope of Office of Labour Relations authentication",
+        "relation to Law 14/2025 Article 167",
+        "later amendment/repeal/currentness",
+        "reuse review",
+        "qualified Egyptian-lawyer review"
+      ],
+      "notes": "Public Ministry statements describe Decision 187/2025 as regulating Labour Office authentication of worker resignations; a secondary full-text landing page on Eastlaws gives partial article headings/text but restricts full access. This is relevant to Law 14/2025 Article 167, but do not conflate the decision's administrative authentication procedure with the statute's substantive resignation requirements. Exact official Gazette issue/pages, complete text, commencement, amendments and reuse rights remain unverified.",
+      "source_urls": [
+        {
+          "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/14-09-2025/no-187?id=2177898&type=1",
+          "source_role": "secondary legal database; partial public preview",
+          "status": "partial_preview_full_text_restricted"
+        },
+        {
+          "url": "https://www.almasryalyoum.com/news/details/3550680",
+          "source_role": "news report summarizing Ministry announcement",
+          "status": "secondary_summary_only"
+        },
+        {
+          "url": "https://www.youm7.com/story/2025/9/15/وزير-العمل-يُصدر-قرارا-لضبط-آليات-اعتماد-الاستقالات-العمالية-طبقا/7122177",
+          "source_role": "news report summarizing Ministry announcement",
+          "status": "secondary_summary_only"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-290-2025",
+      "official_title_ar": "قرار وزير العمل رقم 290 لسنة 2025 بتحديد الأعمال المتقطعة بطبيعتها التي يجوز تواجد العامل فيها أكثر من عشر ساعات ولا تتجاوز اثنتي عشرة ساعة في اليوم الواحد",
+      "practice_areas": [
+        "labour"
+      ],
+      "document_type": "ministerial_decision",
+      "instrument_number": 290,
+      "instrument_year": 2025,
+      "source_id": "EG-MINISTRY-LABOUR-LAWS",
+      "source_status": "official_metadata_or_text_lead_found_primary_comparison_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "complete official text and Article 2 list of intermittent work",
+        "Gazette issue/date/page range and commencement",
+        "relation to Law 14/2025 Articles 117–119",
+        "later amendments/repeal",
+        "reuse review",
+        "qualified Egyptian-lawyer review"
+      ],
+      "notes": "Official Gazette repository metadata for Decision 290/2025 was found; its public abstract reproduces Article 1's ten-hour daily presence rule and the exception for specified intermittent work with a twelve-hour presence cap. The detailed Article 2 work list and complete operative text must be checked against the Gazette PDF. This decision may affect cards concerning working hours and presence time; currentness and reuse remain unknown.",
+      "source_urls": [
+        {
+          "url": "https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829",
+          "source_role": "Official Gazette repository record and abstract",
+          "status": "metadata_and_partial_abstract_found"
+        },
+        {
+          "url": "https://dspace.id.com.eg/handle/123456789/6142",
+          "source_role": "repository item URI",
+          "status": "metadata_lead"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-291-2025",
+      "official_title_ar": "قرار وزير العمل رقم 291 لسنة 2025 بشأن ضوابط التشغيل الإضافي ومبرراته",
+      "practice_areas": [
+        "labour"
+      ],
+      "document_type": "ministerial_decision",
+      "instrument_number": 291,
+      "instrument_year": 2025,
+      "source_id": "EG-MINISTRY-LABOUR-LAWS",
+      "source_status": "official_metadata_or_text_lead_found_primary_comparison_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "complete decision text",
+        "Gazette pages and effective date",
+        "relation to Law 14/2025 Articles 117–121 and Decision 162/2026",
+        "later amendments/repeal",
+        "reuse review",
+        "qualified Egyptian-lawyer review"
+      ],
+      "notes": "Official Gazette repository metadata for the Gazette Supplement issue 295 (تابع د), dated 2025-12-30, lists Decision 291/2025 on controls and justifications for overtime. Full operative text and detailed exceptions were not verified in this review. Keep as a discovery lead; do not infer the allowed reasons, procedures or limits from the title alone.",
+      "source_urls": [
+        {
+          "url": "https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1",
+          "source_role": "Official Gazette supplement metadata",
+          "status": "metadata_found_full_text_not_reviewed"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-292-2025",
+      "official_title_ar": "قرار وزير العمل رقم 292 لسنة 2025 بشأن تحديد الحد الأقصى لساعات العمل الفعلية والإضافية في الأعمال التجهيزية والتكميلية وأعمال الحراسة والنظافة",
+      "practice_areas": [
+        "labour"
+      ],
+      "document_type": "ministerial_decision",
+      "instrument_number": 292,
+      "instrument_year": 2025,
+      "source_id": "EG-MINISTRY-LABOUR-LAWS",
+      "source_status": "official_metadata_or_text_lead_found_primary_comparison_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "complete decision text and exact hourly limits",
+        "Gazette pages and commencement",
+        "relation to Law 14/2025 Articles 117–121",
+        "later amendments/repeal",
+        "reuse review",
+        "qualified Egyptian-lawyer review"
+      ],
+      "notes": "Official Gazette repository metadata for Supplement issue 291 (تابع), dated 2025-12-25, lists Decision 292/2025 on maximum actual/overtime hours for preparatory/complementary, guarding and cleaning work. Full text, exact limits, commencement and later changes remain unverified; do not use the title or summary to compute hours or overtime.",
+      "source_urls": [
+        {
+          "url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc/full",
+          "source_role": "Official Gazette supplement metadata",
+          "status": "metadata_found_full_text_not_reviewed"
+        }
+      ]
     }
   ],
   "next_actions": [
