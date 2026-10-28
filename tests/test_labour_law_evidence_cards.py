@@ -64,6 +64,12 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
                 self.assertEqual(documents[item["document_id"]]["review_status"], "discovery_only")
                 self.assertEqual(documents[item["document_id"]]["legal_status"], "unknown")
                 self.assertIn("not verified", item["status"])
+                if item["document_id"] == "EG-LABOUR-DECISION-294-2025":
+                    gazette = item["official_gazette_metadata"]
+                    self.assertEqual(gazette["publication_date"], "2025-12-25")
+                    self.assertIn("291", gazette["gazette_publication"])
+                    self.assertIn("dspace.id.com.eg", gazette["source_url"])
+                    self.assertIn("not been obtained", gazette["full_text_status"])
 
 if __name__ == "__main__":
     unittest.main()
