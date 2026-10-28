@@ -39,10 +39,13 @@ def _read_regular_migration(path: Path) -> str:
             raise MigrationError(f"Migration file must be a regular file: {path.name}")
         if metadata.st_size > 5_000_000:
             raise MigrationError(f"Migration file exceeds the 5 MB safety limit: {path.name}")
-        stream = os.fdopen(descriptor, "r", encoding="utf-8")
+        stream = os.fdopen(descriptor, "rb")
         descriptor = None  # ownership transferred to the stream
         with stream:
-            return stream.read()
+            data = stream.read(5_000_001)
+        if len(data) > 5_000_000:
+            raise MigrationError(f"Migration file exceeds the 5 MB safety limit: {path.name}")
+        return data.decode("utf-8")
     except MigrationError:
         raise
     except (OSError, UnicodeError) as exc:
