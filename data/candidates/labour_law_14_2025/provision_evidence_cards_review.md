@@ -2,7 +2,7 @@
 
 **Record:** `EG-LABOUR-LAW-14-2025-EVIDENCE-CARDS-2026-10-28`  
 **Prepared on:** 2026-10-28  
-**Cards in this report:** 35
+**Cards in this report:** 39
 
 ## Status and limits
 
@@ -14,7 +14,7 @@
 - Collection permission: `unknown`; commercial reuse: `unknown`.
 - Authoritative search eligibility: `false`.
 
-Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF has not been downloaded, hashed, or visually inspected; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording. Additional cards for accompanying-law Articles 4–9 were prepared from text extraction of the government-hosted Official Gazette PDF on 2026-10-28. The PDF has not been downloaded, hashed, or visually inspected; page pinpointing is provisional and all cards remain non-authoritative. Additional cards for accompanying-law Articles 10–12 were prepared from the government-hosted Official Gazette PDF text extraction on 2026-10-28. Page references are based on the extracted page labels; the PDF has not been downloaded, hashed, or visually inspected. Cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 16, 22, 23, 25 and 27 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; these cards remain provisional and non-authoritative.
+Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF has not been downloaded, hashed, or visually inspected; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording. Additional cards for accompanying-law Articles 4–9 were prepared from text extraction of the government-hosted Official Gazette PDF on 2026-10-28. The PDF has not been downloaded, hashed, or visually inspected; page pinpointing is provisional and all cards remain non-authoritative. Additional cards for accompanying-law Articles 10–12 were prepared from the government-hosted Official Gazette PDF text extraction on 2026-10-28. Page references are based on the extracted page labels; the PDF has not been downloaded, hashed, or visually inspected. Cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 16, 22, 23, 25 and 27 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; these cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 28–31 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative.
 
 ## Provision cards
 
@@ -1036,6 +1036,122 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 - يتوقف التطبيق على وجود قرار وزاري يحدد المهنة وعلى شروطه وحالات الإعفاء
 - لم يُراجع سجل القرارات الوزارية الحالية أو سجل التراخيص
+- لا توجد مراجعة محامٍ مسجلة
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** final advice or authoritative retrieval.
+
+### 36. EG-LABOUR-14-2025-ART-28-APPRENTICE-MINIMUM-AGE
+
+**Question:** What minimum age does Article 28 set for an apprentice?
+
+**Pinpoint:** القانون المرافق, المادة 28, printed Gazette page 21 (PDF page index 19).
+
+**Provisional summary (Arabic):**
+
+تشترط المادة 28 ألا يقل سن المتدرج عن أربعة عشر عاماً، وتترك للوزير المختص إصدار القواعد والإجراءات المنظمة للتدرج المهني لدى صاحب العمل. يلزم التحقق من القواعد التنفيذية ومن الأحكام الأخرى الخاصة بحماية الأطفال والعمل قبل تقييم حالة بعينها.
+
+**Primary-source leads:**
+
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; استخراج نص المادة 28 من الصفحة المطبوعة 21؛ الملف لم يُنزّل أو يُفحص بصرياً (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; صفحة النص الرسمي للقانون؛ يلزم التحقق الموضعي عند التطبيق (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
+
+**Limitations:**
+
+- الحد الأدنى الوارد هنا لا يحسم جميع القيود الخاصة بعمل الأطفال أو الأعمال المحظورة
+- لم تُراجع القرارات التنفيذية السارية أو التشريعات المكملة
+- لا توجد مراجعة محامٍ مسجلة
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** final advice or authoritative retrieval.
+
+### 37. EG-LABOUR-14-2025-ART-29-WRITTEN-APPRENTICESHIP-AGREEMENT
+
+**Question:** What must an apprenticeship agreement cover under Article 29?
+
+**Pinpoint:** القانون المرافق, المادة 29, printed Gazette page 22 (PDF page index 20).
+
+**Provisional summary (Arabic):**
+
+توجب المادة 29 أن يكون اتفاق التدرج مكتوباً، وأن يحدد على الأقل مدة تعلم المهنة أو الصنعة أو الحرفة ومراحله المتتابعة والمكافأة في كل مرحلة. وتقرر ألا تقل المكافأة في المرحلة الأخيرة عن الحد الأدنى للأجر المقرر لفئة العمال في المهنة أو الحرفة ذاتها. يجب مراجعة الاتفاق والقواعد المنظمة لتقييم استيفاء هذه المتطلبات.
+
+**Primary-source leads:**
+
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; استخراج نص المادة 29 من الصفحة المطبوعة 22؛ الملف لم يُنزّل أو يُفحص بصرياً (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; صفحة النص الرسمي للقانون؛ يلزم التحقق الموضعي عند التطبيق (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
+
+**Limitations:**
+
+- لا تقدم البطاقة قائمة كاملة بكل البيانات أو الشروط التي قد تتطلبها القواعد التنفيذية
+- لم تُراجع القرارات التنفيذية أو نماذج الاتفاقات المعتمدة
+- لا توجد مراجعة محامٍ مسجلة
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** final advice or authoritative retrieval.
+
+### 38. EG-LABOUR-14-2025-ART-30-APPRENTICESHIP-TERMINATION
+
+**Question:** When may an apprenticeship agreement be terminated under Article 30?
+
+**Pinpoint:** القانون المرافق, المادة 30, printed Gazette page 22 (PDF page index 20).
+
+**Provisional summary (Arabic):**
+
+تجيز المادة 30 لصاحب العمل إنهاء اتفاق التدرج إذا ثبت عدم صلاحية المتدرج أو عدم استعداده لتعلم المهنة أو الصنعة أو الحرفة بصورة حسنة، كما تجيز للمتدرج إنهاء الاتفاق. وتشترط إخطار الطرف الآخر قبل الإنهاء بثلاثة أيام على الأقل. يلزم فحص الوقائع والإخطار والقواعد الخاصة قبل تقييم إنهاء محدد.
+
+**Primary-source leads:**
+
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; استخراج نص المادة 30 من الصفحة المطبوعة 22؛ الملف لم يُنزّل أو يُفحص بصرياً (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; صفحة النص الرسمي للقانون؛ يلزم التحقق الموضعي عند التطبيق (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
+
+**Limitations:**
+
+- لا تحسم البطاقة ما يكفي لإثبات عدم الصلاحية أو عدم الاستعداد في واقعة معينة
+- لم تُراجع أي قواعد أو إجراءات إضافية واجبة التطبيق
+- لا توجد مراجعة محامٍ مسجلة
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** final advice or authoritative retrieval.
+
+### 39. EG-LABOUR-14-2025-ART-31-APPRENTICE-HOURS-REST-LEAVE
+
+**Question:** Which working-time, rest and leave rules apply to apprentices under Article 31?
+
+**Pinpoint:** القانون المرافق, المادة 31, printed Gazette page 22 (PDF page index 20).
+
+**Provisional summary (Arabic):**
+
+تقرر المادة 31 سريان الأحكام الخاصة بالإجازات وساعات العمل وفترات الراحة الواردة في الباب المشار إليه على المتدرجين، مع مراعاة الفصل المستثنى بنص المادة. يجب مراجعة الأحكام المحال إليها وأي استثناءات أو قواعد خاصة قبل حساب ساعات العمل أو الإجازة في حالة فردية.
+
+**Primary-source leads:**
+
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; استخراج نص المادة 31 من الصفحة المطبوعة 22؛ الملف لم يُنزّل أو يُفحص بصرياً (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; صفحة النص الرسمي للقانون؛ يلزم التحقق الموضعي عند التطبيق (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [ILO NATLEX-hosted Arabic legal text](https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf) — نص عربي للمقارنة الموضعية فقط؛ شروط إعادة الاستخدام غير مثبتة ولا يحل محل مراجعة الجريدة الرسمية.
+
+**Limitations:**
+
+- هذه إحالة تشريعية وليست تحديداً مستقلاً لكل حد زمني أو استحقاق
+- لم تُراجع جميع المواد المحال إليها أو القرارات المكملة
 - لا توجد مراجعة محامٍ مسجلة
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
