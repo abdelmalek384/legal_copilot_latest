@@ -2,7 +2,7 @@
 
 **Record:** `EG-LABOUR-LAW-14-2025-EVIDENCE-CARDS-2026-10-28`  
 **Prepared on:** 2026-10-28  
-**Cards in this report:** 142
+**Cards in this report:** 172
 
 ## Status and limits
 
@@ -14,7 +14,7 @@
 - Collection permission: `unknown`; commercial reuse: `unknown`.
 - Authoritative search eligibility: `false`.
 
-Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF binary has not been downloaded or hashed; only specifically listed page images have been visually inspected, and the full PDF has not been comprehensively reviewed; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording. Additional cards for accompanying-law Articles 4–9 were prepared from text extraction of the government-hosted Official Gazette PDF on 2026-10-28. The PDF binary has not been downloaded or hashed; only specifically listed page images have been visually inspected, and the full PDF has not been comprehensively reviewed; page pinpointing is provisional and all cards remain non-authoritative. Additional cards for accompanying-law Articles 10–12 were prepared from the government-hosted Official Gazette PDF text extraction on 2026-10-28. Page references are based on the extracted page labels; the PDF binary has not been downloaded or hashed; only explicitly recorded page images have been visually inspected. Cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 16, 22, 23, 25 and 27 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; these cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 28–31 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 32–34 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 36–37 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshot checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 40–43 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 44–48 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 49–54 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 126 and 127 were added from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 55. The original PDF remains undownloaded and unhashed, and both cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 121 and 122 were prepared from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 53. Article 121 was cross-checked against a secondary English translation, and Article 122 against a secondary legal text copy. The original PDF remains undownloaded and unhashed; both cards remain provisional and non-authoritative. An additional card for accompanying-law Article 123 was added from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 53. It is cross-checked against a secondary English translation, but the implementing ministerial decision has not been identified and reviewed in this task. The original PDF remains undownloaded and unhashed; the card is provisional and non-authoritative. Additional provisional cards for accompanying-law Articles 117–120 and 124–125 were added on 2026-10-28 from indexed official Amiri Press / government-hosted Gazette text leads, cross-checked against a secondary transcription. Gazette printed-page pinpoints are provisional (52 for Articles 117–120; 54 for Articles 124–125); the original PDF remains undownloaded, unhashed, and not visually inspected. These additions do not establish currentness, completeness, reuse rights, or lawyer approval. Additional provisional cards for accompanying-law Articles 128–130 were added on 2026-10-28 using indexed text from the government-hosted Official Gazette PDF (printed page 56; provisional pinpoint) and a secondary transcription cross-check. The official publisher page is recorded as a source lead but was not directly opened in this round. The Gazette PDF remains undownloaded, unhashed, and not visually inspected; cards remain non-authoritative. Additional provisional cards for accompanying-law Articles 131–132 were added on 2026-10-28 from indexed government-hosted Gazette text with a secondary transcription cross-check. Printed-page pinpoints are provisional; the source PDF remains undownloaded, unhashed, and not visually inspected. The sick-leave card distinguishes the general medical-authority rule from the special industrial-establishment tiers; implementing decisions and related social-insurance rules remain unresolved. PAGE-LEVEL VISUAL CHECK UPDATE (2026-10-28): the official Gazette PDF at the ETA portal is accessible through the web PDF viewer (110 pages) and rendered page images were visually checked for printed Gazette pages 52–57. The article-to-page mapping is: Arts. 117–120 p.52; 121–122 p.53; 123–124 p.54; 125–127 p.55; 128–130 p.56; 131–132 p.57. This corrects the prior provisional page assignments for Article 125 (p.55, not p.54) and Article 131 (p.57, not p.56). PDF page indices are printed page minus 2. The source binary still could not be downloaded in the runtime, so no SHA-256 is claimed; only the listed pages were visually checked, not the entire instrument or amendment history. CURRENTNESS LEAD (2026-10-28): Ministry of Labour announcement dated 2026-10-01 identifies Circular 22/2026 for the 8 October 2026 private-sector holiday and confirms that Decision 294/2025 lists Armed Forces Day (6 October) as a paid holiday. This is event-specific implementation evidence, not proof of a general amendment or a complete current holiday list. Additional provisional cards for Articles 133–136 were added after visual inspection of official Gazette printed pages 57–59 (PDF indices 55–57) on 2026-10-28. Article 134 begins on printed page 57 and continues onto page 58. The PDF binary remains undownloaded and unhashed; summaries are provisional and no lawyer review or currentness certification is claimed. Additional provisional disciplinary/work-regulation cards for Articles 137–141 were added after visual inspection of official Gazette printed pages 60–61 (PDF indices 58–59) on 2026-10-28. These cards summarize statutory framework only; the current general workplace-regulation decision (162/2026), each employer's actual regulation, full amendment history, and legal review remain outstanding. Additional provisional disciplinary cards for Articles 142–148 were added after visual inspection of official Gazette printed pages 62–63 (PDF indices 60–61) on 2026-10-28. These summaries cover investigation assignment, deduction caps, repeated violations, temporary suspension, suspension grievances/extensions, and authority to impose discipline. They remain provisional and require full text/currentness/legal review. Additional provisional individual-dispute cards for Articles 149–150 were added after visual inspection of official Gazette printed pages 64–65 (PDF indices 62–63) on 2026-10-28. Procedural deadlines and financial consequences require full-text extraction and legal review before any case-specific use. Additional provisional cards for Articles 151–158 were added after visual inspection of official Gazette printed pages 65–67 (PDF indices 63–65) on 2026-10-28. They cover worker liability for damage, union protections, disciplinary-fine accounting, expiry/renewal of fixed-term or specific-work contracts, and notice/justification rules for indefinite-term termination. They remain provisional; case-specific calculations require full-text and legal review. Additional provisional termination-notice cards for Articles 159–164 were added after visual inspection of official Gazette printed pages 68–69 (PDF indices 66–67) on 2026-10-28. They cover notice during leave, contract continuity, notice-period constraints, paid job-search time, employer waiver of work, and payment in lieu of unserved notice. These cards remain provisional and require full legal review. Additional provisional termination and end-of-service cards for accompanying-law Articles 165–175 were added on 2026-10-28 from the searchable extraction of the government-hosted Official Gazette PDF. The extracted lines place Article 165 on printed page 69/PDF index 67; Articles 166–169 begin on printed page 70/PDF index 68; Articles 170–171 appear on printed page 71/PDF index 69; and Articles 172–175 appear on printed page 72/PDF index 70. Page locations are text-extraction pinpoints, not independent visual inspection of every cited page. Cards remain provisional; source binary hash, comprehensive currentness/amendment review, reuse review and Egyptian-lawyer review remain outstanding. Additional provisional procedural cards for accompanying-law Articles 176–187 were added on 2026-10-28 from searchable text extraction of the government-hosted Official Gazette PDF. The extracted viewer pages place Articles 176–180 on printed page 73/PDF index 71; Articles 181–185 on printed page 74/PDF index 72; and Articles 186–187 on printed page 75/PDF index 73. These are text-extraction pinpoints, not independent visual inspection of every cited page. The source PDF binary remains unavailable for hashing, and currentness, amendment history, reuse rights and qualified legal review remain unresolved. On 2026-10-28, added provisional cards for accompanying-law Articles 188–200 (social consultation and collective bargaining). Their article text was checked against a public secondary transcription of Law 14/2025 at Law Hub; official publisher and government Gazette links remain attached as primary-source leads. The printed-page mapping (Arts. 188–193 p.76/index 74; Arts. 194–198 p.77/index 75; Arts. 199–200 p.78/index 76) is an inferred text-extraction map, not a visual page-by-page verification. The source PDF remains unavailable locally for hashing; currentness, amendments, reuse rights, and lawyer review remain unresolved.
+Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF binary has not been downloaded or hashed; only specifically listed page images have been visually inspected, and the full PDF has not been comprehensively reviewed; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording. Additional cards for accompanying-law Articles 4–9 were prepared from text extraction of the government-hosted Official Gazette PDF on 2026-10-28. The PDF binary has not been downloaded or hashed; only specifically listed page images have been visually inspected, and the full PDF has not been comprehensively reviewed; page pinpointing is provisional and all cards remain non-authoritative. Additional cards for accompanying-law Articles 10–12 were prepared from the government-hosted Official Gazette PDF text extraction on 2026-10-28. Page references are based on the extracted page labels; the PDF binary has not been downloaded or hashed; only explicitly recorded page images have been visually inspected. Cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 16, 22, 23, 25 and 27 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; these cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 28–31 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 32–34 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 36–37 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshot checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 40–43 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 44–48 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 49–54 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 126 and 127 were added from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 55. The original PDF remains undownloaded and unhashed, and both cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 121 and 122 were prepared from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 53. Article 121 was cross-checked against a secondary English translation, and Article 122 against a secondary legal text copy. The original PDF remains undownloaded and unhashed; both cards remain provisional and non-authoritative. An additional card for accompanying-law Article 123 was added from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 53. It is cross-checked against a secondary English translation, but the implementing ministerial decision has not been identified and reviewed in this task. The original PDF remains undownloaded and unhashed; the card is provisional and non-authoritative. Additional provisional cards for accompanying-law Articles 117–120 and 124–125 were added on 2026-10-28 from indexed official Amiri Press / government-hosted Gazette text leads, cross-checked against a secondary transcription. Gazette printed-page pinpoints are provisional (52 for Articles 117–120; 54 for Articles 124–125); the original PDF remains undownloaded, unhashed, and not visually inspected. These additions do not establish currentness, completeness, reuse rights, or lawyer approval. Additional provisional cards for accompanying-law Articles 128–130 were added on 2026-10-28 using indexed text from the government-hosted Official Gazette PDF (printed page 56; provisional pinpoint) and a secondary transcription cross-check. The official publisher page is recorded as a source lead but was not directly opened in this round. The Gazette PDF remains undownloaded, unhashed, and not visually inspected; cards remain non-authoritative. Additional provisional cards for accompanying-law Articles 131–132 were added on 2026-10-28 from indexed government-hosted Gazette text with a secondary transcription cross-check. Printed-page pinpoints are provisional; the source PDF remains undownloaded, unhashed, and not visually inspected. The sick-leave card distinguishes the general medical-authority rule from the special industrial-establishment tiers; implementing decisions and related social-insurance rules remain unresolved. PAGE-LEVEL VISUAL CHECK UPDATE (2026-10-28): the official Gazette PDF at the ETA portal is accessible through the web PDF viewer (110 pages) and rendered page images were visually checked for printed Gazette pages 52–57. The article-to-page mapping is: Arts. 117–120 p.52; 121–122 p.53; 123–124 p.54; 125–127 p.55; 128–130 p.56; 131–132 p.57. This corrects the prior provisional page assignments for Article 125 (p.55, not p.54) and Article 131 (p.57, not p.56). PDF page indices are printed page minus 2. The source binary still could not be downloaded in the runtime, so no SHA-256 is claimed; only the listed pages were visually checked, not the entire instrument or amendment history. CURRENTNESS LEAD (2026-10-28): Ministry of Labour announcement dated 2026-10-01 identifies Circular 22/2026 for the 8 October 2026 private-sector holiday and confirms that Decision 294/2025 lists Armed Forces Day (6 October) as a paid holiday. This is event-specific implementation evidence, not proof of a general amendment or a complete current holiday list. Additional provisional cards for Articles 133–136 were added after visual inspection of official Gazette printed pages 57–59 (PDF indices 55–57) on 2026-10-28. Article 134 begins on printed page 57 and continues onto page 58. The PDF binary remains undownloaded and unhashed; summaries are provisional and no lawyer review or currentness certification is claimed. Additional provisional disciplinary/work-regulation cards for Articles 137–141 were added after visual inspection of official Gazette printed pages 60–61 (PDF indices 58–59) on 2026-10-28. These cards summarize statutory framework only; the current general workplace-regulation decision (162/2026), each employer's actual regulation, full amendment history, and legal review remain outstanding. Additional provisional disciplinary cards for Articles 142–148 were added after visual inspection of official Gazette printed pages 62–63 (PDF indices 60–61) on 2026-10-28. These summaries cover investigation assignment, deduction caps, repeated violations, temporary suspension, suspension grievances/extensions, and authority to impose discipline. They remain provisional and require full text/currentness/legal review. Additional provisional individual-dispute cards for Articles 149–150 were added after visual inspection of official Gazette printed pages 64–65 (PDF indices 62–63) on 2026-10-28. Procedural deadlines and financial consequences require full-text extraction and legal review before any case-specific use. Additional provisional cards for Articles 151–158 were added after visual inspection of official Gazette printed pages 65–67 (PDF indices 63–65) on 2026-10-28. They cover worker liability for damage, union protections, disciplinary-fine accounting, expiry/renewal of fixed-term or specific-work contracts, and notice/justification rules for indefinite-term termination. They remain provisional; case-specific calculations require full-text and legal review. Additional provisional termination-notice cards for Articles 159–164 were added after visual inspection of official Gazette printed pages 68–69 (PDF indices 66–67) on 2026-10-28. They cover notice during leave, contract continuity, notice-period constraints, paid job-search time, employer waiver of work, and payment in lieu of unserved notice. These cards remain provisional and require full legal review. Additional provisional termination and end-of-service cards for accompanying-law Articles 165–175 were added on 2026-10-28 from the searchable extraction of the government-hosted Official Gazette PDF. The extracted lines place Article 165 on printed page 69/PDF index 67; Articles 166–169 begin on printed page 70/PDF index 68; Articles 170–171 appear on printed page 71/PDF index 69; and Articles 172–175 appear on printed page 72/PDF index 70. Page locations are text-extraction pinpoints, not independent visual inspection of every cited page. Cards remain provisional; source binary hash, comprehensive currentness/amendment review, reuse review and Egyptian-lawyer review remain outstanding. Additional provisional procedural cards for accompanying-law Articles 176–187 were added on 2026-10-28 from searchable text extraction of the government-hosted Official Gazette PDF. The extracted viewer pages place Articles 176–180 on printed page 73/PDF index 71; Articles 181–185 on printed page 74/PDF index 72; and Articles 186–187 on printed page 75/PDF index 73. These are text-extraction pinpoints, not independent visual inspection of every cited page. The source PDF binary remains unavailable for hashing, and currentness, amendment history, reuse rights and qualified legal review remain unresolved. On 2026-10-28, added provisional cards for accompanying-law Articles 188–200 (social consultation and collective bargaining). Their article text was checked against a public secondary transcription of Law 14/2025 at Law Hub; official publisher and government Gazette links remain attached as primary-source leads. The printed-page mapping (Arts. 188–193 p.76/index 74; Arts. 194–198 p.77/index 75; Arts. 199–200 p.78/index 76) is an inferred text-extraction map, not a visual page-by-page verification. The source PDF remains unavailable locally for hashing; currentness, amendments, reuse rights, and lawyer review remain unresolved. Added 14 provisional cards for accompanying-law Articles 201–214 on 2026-10-28: language, renewal, filing and challenge of collective agreements, display, joining, registry updates, good-faith implementation, hardship, enforcement, representative actions, dispute procedures, scope of collective disputes, and the one-month negotiation-to-conciliation threshold. Cross-checked against a public secondary transcription; official-source links remain attached. Inferred Gazette page map: Arts. 201–205 printed p.78/PDF index 76; Arts. 206–212 p.79/index 77; Arts. 213–214 p.80/index 78. These page pinpoints are not visually verified. No source binary hash, complete currentness audit, reuse clearance or lawyer review is claimed. Added 16 provisional cards for accompanying-law Articles 215–230 (conciliation timing, settlement documentation, mediation/arbitration referral, centre structure, mediator/arbitrator lists and eligibility, selection and replacement deadlines, mediation recommendations, arbitration composition/submission/award and review). Cross-checked against the public Law Hub transcription; official-source leads remain attached. Inferred Gazette page map: Arts. 215–218 printed p.80–81/PDF index 78–79; Arts. 219–224 p.81–82/index 79–80; Arts. 225–228 p.82/index 80; Arts. 229–230 p.83/index 81. These page pinpoints are not visually verified; no PDF hash, currentness audit, reuse clearance or lawyer review is claimed.
 
 ## Provision cards
 
@@ -4539,6 +4539,906 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - إعلان بطلان الاتفاقية بأكملها أو تحديد الحكم الأكثر فائدة دون تحليل النصوص المتعارضة كاملة
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً لكل صفحة
 - لم تُراجع التعديلات والأحكام القضائية واللوائح التنفيذية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 143. EG-LABOUR-14-2025-ART-201-COLLECTIVE-AGREEMENT-ARABIC-LANGUAGE
+
+**Question:** ما اللغة التي يجب أن تحرر بها اتفاقية العمل الجماعية؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 201, printed Gazette page 78 (PDF page index 76).
+
+**Provisional summary (Arabic):**
+
+توجب المادة 201 كتابة اتفاقية العمل الجماعية باللغة العربية، وتجيز إعداد نسخة بلغة أجنبية، وعند التعارض أو الخلاف يُعتد بالنص العربي. يلزم فحص النسخ الموقعة وأي قواعد خاصة تنطبق على الاتفاقية محل النزاع.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 201؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 201؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 201–214؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تحديد النص الحاكم دون مقارنة النسخ الموقعة أو فحص الاتفاقية كاملة
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع التعديلات والقرارات التنفيذية والأحكام القضائية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 144. EG-LABOUR-14-2025-ART-202-COLLECTIVE-AGREEMENT-RENEWAL-TIMELINE
+
+**Question:** متى يجب التفاوض لتجديد اتفاقية العمل الجماعية؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 202, printed Gazette page 78 (PDF page index 76).
+
+**Provisional summary (Arabic):**
+
+توجب المادة 202 بدء مسار التفاوض للتجديد قبل انتهاء الاتفاقية بثلاثة أشهر. وإذا انقضت المدة دون اتفاق، يمتد العمل بها ثلاثة أشهر مع استمرار التفاوض؛ وإذا مضى شهران دون اتفاق، جاز لأي طرف عرض الأمر على الجهة الإدارية لاتخاذ إجراءات الوساطة وفق القانون. يلزم التحقق من تاريخ الانتهاء وأي اتفاق أو إجراء لاحق قبل حساب المواعيد.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 202؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 202؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 201–214؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- حساب الميعاد دون مراجعة الاتفاقية وتاريخ انتهائها والتفاوض السابق
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع التعديلات والقرارات التنفيذية والأحكام القضائية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 145. EG-LABOUR-14-2025-ART-203-COLLECTIVE-AGREEMENT-FILING-AND-OBJECTION
+
+**Question:** ما إجراءات إيداع اتفاقية العمل الجماعية وقيدها؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 203, printed Gazette page 78 (PDF page index 76).
+
+**Provisional summary (Arabic):**
+
+تقرر المادة 203 أن الاتفاقية تصبح نافذة وملزمة لطرفيها بعد التوقيع، ويجب إيداعها لدى الجهة الإدارية المختصة لقيدها خلال ثلاثين يوماً. ويجوز للجهة الاعتراض لأسباب المادة 200 وإخطار الطرفين بأسباب الاعتراض، وإذا انقضت المدة دون اعتراض وجب القيد وفق النص. يلزم فحص المستندات وتاريخ التوقيع والإيداع والإخطار.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 203؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 203؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 201–214؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تقرير نفاذ اتفاقية أو صحة القيد دون مراجعة التوقيع والإيداع والاعتراضات
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع التعديلات والقرارات التنفيذية والأحكام القضائية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 146. EG-LABOUR-14-2025-ART-204-COLLECTIVE-AGREEMENT-REGISTRATION-COURT-CHALLENGE
+
+**Question:** ما الإجراء عند رفض الجهة الإدارية قيد اتفاقية جماعية؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 204, printed Gazette page 78 (PDF page index 76).
+
+**Provisional summary (Arabic):**
+
+تجيز المادة 204 لأي من الطرفين اللجوء إلى قاضي الأمور المستعجلة بالمحكمة العمالية المختصة التي يقع في دائرتها محل العمل خلال ثلاثين يوماً من تاريخ الإخطار بالاعتراض، فإذا حكم بالقيد وجب على الجهة الإدارية إجراءه. هذا الملخص لا يكفي لحساب ميعاد في قضية فعلية دون مراجعة الإخطار وتاريخه والاختصاص والإجراءات.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 204؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 204؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 201–214؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- حساب ميعاد الثلاثين يوماً أو تحديد المحكمة دون مراجعة الإخطار والاختصاص
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع التعديلات والقرارات التنفيذية والأحكام القضائية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 147. EG-LABOUR-14-2025-ART-205-COLLECTIVE-AGREEMENT-WORKPLACE-DISPLAY
+
+**Question:** ما واجب صاحب العمل بشأن إظهار الاتفاقية الجماعية في مكان العمل؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 205, printed Gazette page 78 (PDF page index 76).
+
+**Provisional summary (Arabic):**
+
+تلزم المادة 205 صاحب العمل بوضع اتفاقية العمل الجماعية في مكان ظاهر بمحل العمل، متضمنة نصوصها والموقعين عليها وتاريخ إيداعها لدى الجهة الإدارية المختصة. التحقق من الامتثال يتطلب معاينة النسخة المعروضة ومقارنتها بالاتفاقية الموقعة والمودعة.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 205؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 205؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 201–214؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- إثبات الامتثال أو المخالفة دون معاينة النسخة المعروضة ومقارنتها بالأصل
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع التعديلات والقرارات التنفيذية والأحكام القضائية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 148. EG-LABOUR-14-2025-ART-206-COLLECTIVE-AGREEMENT-JOINING-AFTER-REGISTRATION
+
+**Question:** كيف تنضم أطراف جديدة إلى اتفاقية عمل جماعية قائمة؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 206, printed Gazette page 79 (PDF page index 77).
+
+**Provisional summary (Arabic):**
+
+تجيز المادة 206 للعمال ومنظماتهم النقابية وأصحاب الأعمال ومنظماتهم من غير الأطراف الأصليين الانضمام بعد قيد الاتفاقية، باتفاق بين الراغبين في الانضمام ودون حاجة لموافقة الطرفين الأصليين، بطلب موقع يقدم إلى الجهة الإدارية المختصة. يجب التحقق من القيد والصفة والتوقيع والطلب الفعلي.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 206؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 206؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 201–214؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- القول بانضمام طرف دون اتفاق موقع أو طلب وإجراءات القيد
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع التعديلات والقرارات التنفيذية والأحكام القضائية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 149. EG-LABOUR-14-2025-ART-207-COLLECTIVE-AGREEMENT-REGISTER-UPDATES
+
+**Question:** ما التزام الجهة الإدارية عند تجديد أو تعديل اتفاقية جماعية أو انضمام طرف جديد؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 207, printed Gazette page 79 (PDF page index 77).
+
+**Provisional summary (Arabic):**
+
+تلزم المادة 207 الجهة الإدارية المختصة بالتأشير في هامش السجل المشار إليه بالمادة 203 بما يطرأ على الاتفاقية من تجديد أو انضمام أو تعديل خلال خمسة عشر يوماً من حدوثه. يلزم التحقق من تاريخ التغيير والسجل والإجراء الإداري الفعلي.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 207؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 207؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 201–214؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- الجزم بإتمام التأشير أو احتساب الميعاد دون سجل وتاريخ مستند التغيير
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع التعديلات والقرارات التنفيذية والأحكام القضائية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 150. EG-LABOUR-14-2025-ART-208-COLLECTIVE-AGREEMENT-GOOD-FAITH-IMPLEMENTATION
+
+**Question:** ما واجب الطرفين في تنفيذ الاتفاقية الجماعية؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 208, printed Gazette page 79 (PDF page index 77).
+
+**Provisional summary (Arabic):**
+
+توجب المادة 208 تنفيذ الاتفاقية الجماعية بحسن نية والامتناع عن أي عمل أو إجراء من شأنه تعطيل تنفيذ أحكامها. تحديد وجود إخلال يتطلب مقارنة الفعل محل الشكوى بنص الاتفاقية وسياقه والأدلة ذات الصلة.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 208؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 208؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 201–214؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تقرير الإخلال أو التعويض دون تحليل نص الاتفاقية والوقائع والأدلة
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع التعديلات والقرارات التنفيذية والأحكام القضائية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 151. EG-LABOUR-14-2025-ART-209-COLLECTIVE-AGREEMENT-UNFORESEEN-HARDSHIP
+
+**Question:** ماذا إذا طرأت ظروف استثنائية غير متوقعة جعلت تنفيذ الاتفاقية مرهقاً؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 209, printed Gazette page 79 (PDF page index 77).
+
+**Provisional summary (Arabic):**
+
+توجب المادة 209 سلوك طريق المفاوضة الجماعية لمناقشة الظروف الاستثنائية غير المتوقعة التي تجعل التنفيذ مرهقاً ومحاولة الوصول إلى اتفاق متوازن. وإذا لم يتفق الطرفان، يعرضان الأمر على الجهة الإدارية لاتخاذ إجراءات التوفيق أو الوساطة والتحكيم وفق القانون. يجب التحقق من تحقق الشروط والمرحلة الإجرائية.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 209؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 209؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 201–214؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- افتراض تحقق الظروف الاستثنائية أو فرض تعديل الاتفاقية دون فحص الشروط والإجراءات
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع التعديلات والقرارات التنفيذية والأحكام القضائية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 152. EG-LABOUR-14-2025-ART-210-COLLECTIVE-AGREEMENT-ENFORCEMENT-AND-COMPENSATION
+
+**Question:** من يجوز له طلب تنفيذ الاتفاقية الجماعية أو التعويض عن مخالفتها؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 210, printed Gazette page 79 (PDF page index 77).
+
+**Provisional summary (Arabic):**
+
+تجيز المادة 210 لكل طرف في الاتفاقية، ولكل ذي مصلحة من العمال أو أصحاب الأعمال، طلب الحكم بتنفيذ حكم من أحكامها أو التعويض عن عدم التنفيذ أو المخالفة. وتقيد مسؤولية المنظمة النقابية أو منظمة أصحاب الأعمال عن التعويض بأن يكون التصرف الضار صادراً عن مجلس إدارتها أو ممثلها القانوني. يلزم التحقق من الصفة والمصلحة والوقائع.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 210؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 210؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 201–214؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تحديد الصفة أو مسؤولية منظمة أو استحقاق التعويض دون مراجعة النص والوقائع
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع التعديلات والقرارات التنفيذية والأحكام القضائية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 153. EG-LABOUR-14-2025-ART-211-COLLECTIVE-AGREEMENT-UNION-REPRESENTATIVE-ACTIONS
+
+**Question:** هل تستطيع المنظمة النقابية أو منظمة أصحاب الأعمال رفع دعوى لمصلحة عضو؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 211, printed Gazette page 79 (PDF page index 77).
+
+**Provisional summary (Arabic):**
+
+تجيز المادة 211 للمنظمة النقابية العمالية أو منظمة أصحاب الأعمال الطرف في الاتفاقية رفع الدعاوى الناشئة عن الإخلال بها لمصلحة أي عضو من أعضائها. ويجوز للعضو التدخل في الدعوى أو رفعها ابتداءً مستقلاً عن المنظمة. يجب التحقق من عضوية الشخص وصفة المنظمة وارتباط المطالبة بالاتفاقية.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 211؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 211؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 201–214؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- الجزم بقبول دعوى ممثلة دون إثبات العضوية وصفة المنظمة ونطاق الاتفاقية
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع التعديلات والقرارات التنفيذية والأحكام القضائية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 154. EG-LABOUR-14-2025-ART-212-COLLECTIVE-AGREEMENT-DISPUTE-PROCEDURES
+
+**Question:** كيف تسوى المنازعات الناشئة عن اتفاقية عمل جماعية؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 212, printed Gazette page 79 (PDF page index 77).
+
+**Provisional summary (Arabic):**
+
+تقرر المادة 212، مع عدم الإخلال بحق التقاضي، خضوع المنازعات الناشئة عن الاتفاقية للإجراءات التي يتفق عليها الطرفان مع مراعاة أحكام الباب الثالث من الكتاب الثالث من القانون. يلزم فحص شرط تسوية المنازعات والمواد القانونية المحال إليها قبل اختيار المسار.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 212؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 212؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 201–214؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تقرير وجوب وسيلة تسوية بعينها دون قراءة الاتفاقية والمواد المحال إليها
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع التعديلات والقرارات التنفيذية والأحكام القضائية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 155. EG-LABOUR-14-2025-ART-213-COLLECTIVE-LABOUR-DISPUTE-SCOPE
+
+**Question:** ما المنازعات التي تدخل ضمن أحكام منازعات العمل الجماعية؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 213, printed Gazette page 80 (PDF page index 78).
+
+**Provisional summary (Arabic):**
+
+تسري أحكام الفصل وفق المادة 213 على النزاع المتعلق بشروط العمل أو ظروفه أو أحكام التشغيل بين صاحب عمل أو مجموعة أصحاب أعمال أو منظماتهم وبين جميع العمال أو فريق منهم أو منظماتهم، مع عدم الإخلال بحق التقاضي. يتطلب التكييف فحص أطراف النزاع وموضوعه وطلبات كل طرف.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 213؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 213؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 201–214؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تصنيف نزاع فردي أو جماعي نهائياً دون فحص الأطراف والطلبات والوقائع
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع التعديلات والقرارات التنفيذية والأحكام القضائية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 156. EG-LABOUR-14-2025-ART-214-COLLECTIVE-DISPUTE-CONCILIATION-THRESHOLD
+
+**Question:** متى يجوز إحالة نزاع العمل الجماعي إلى إجراءات التوفيق؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 214, printed Gazette page 80 (PDF page index 78).
+
+**Provisional summary (Arabic):**
+
+تجيز المادة 214 للطرفين أو لأحدهما اللجوء إلى الجهة الإدارية المختصة لبدء إجراءات التوفيق إذا انقضى شهر من تاريخ بدء المفاوضة دون الوصول إلى اتفاق. حساب الميعاد يتطلب إثبات تاريخ بدء المفاوضة ومراجعة الإجراءات اللاحقة في المواد 215 وما بعدها.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 214؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 214؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 201–214؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- حساب ميعاد أو بدء إجراء التوفيق دون إثبات بدء التفاوض وفحص النصوص الإجرائية التالية
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع التعديلات والقرارات التنفيذية والأحكام القضائية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 157. EG-LABOUR-14-2025-ART-215-COLLECTIVE-DISPUTE-CONCILIATION-HEARING
+
+**Question:** متى يجب تحديد جلسة التوفيق وإخطار طرفي النزاع؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 215, printed Gazette page 80 (PDF page index 78).
+
+**Provisional summary (Arabic):**
+
+توجب المادة 215 على الجهة الإدارية المختصة تحديد جلسة للتوفيق خلال مدة لا تتجاوز خمسة أيام من تقديم الطلب، وإخطار طرفي النزاع قبل الموعد المحدد بثلاثة أيام على الأقل. ويصدر الوزير المختص قراراً بإجراءات وقواعد التوفيق. تحقق من تاريخ الطلب والإخطار والقرار التنظيمي الساري.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 215؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 215؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 215–230؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- حساب المواعيد دون إثبات تاريخ الطلب والإخطار والقرارات التنظيمية
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع القرارات التنفيذية أو التعديلات والأحكام القضائية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 158. EG-LABOUR-14-2025-ART-216-COLLECTIVE-DISPUTE-CONCILIATION-SETTLEMENT
+
+**Question:** ما أثر اتفاق الطرفين على تسوية النزاع الجماعي ودياً؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 216, printed Gazette page 80 (PDF page index 78).
+
+**Provisional summary (Arabic):**
+
+تنص المادة 216 على تحرير التسوية الودية وتوقيع الطرفين عليها في اتفاقية عمل جماعية، مع اتباع إجراءات القانون، وتكون الاتفاقية ملزمة لهما. يجب التحقق من استيفاء الكتابة والتوقيع والإيداع أو الإجراءات الأخرى الواجبة وفق القانون.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 216؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 216؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 215–230؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- اعتبار تفاهم غير موثق تسوية ملزمة دون فحص مستند الاتفاق والإجراءات
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع القرارات التنفيذية أو التعديلات والأحكام القضائية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 159. EG-LABOUR-14-2025-ART-217-COLLECTIVE-DISPUTE-REFERRAL-TO-MEDIATION-ARBITRATION
+
+**Question:** متى يمكن إحالة النزاع الجماعي إلى مركز الوساطة والتحكيم؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 217, printed Gazette page 80 (PDF page index 78).
+
+**Provisional summary (Arabic):**
+
+مع مراعاة قانون التحكيم، تجيز المادة 217 للطرفين اللجوء إلى الجهة الإدارية المختصة لاتخاذ إجراءات إحالة النزاع إلى مركز الوساطة والتحكيم إذا لم تتم تسويته خلال واحد وعشرين يوماً من بدء التوفيق. يلزم التحقق من تاريخ بدء التوفيق، وما إذا تمت تسوية، وشروط الإحالة وموقف الطرفين.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 217؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 217؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 215–230؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- إحالة نزاع إلى التحكيم أو حساب الميعاد دون التحقق من الشروط وموافقة الأطراف
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع القرارات التنفيذية أو التعديلات والأحكام القضائية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 160. EG-LABOUR-14-2025-ART-218-LABOUR-MEDIATION-ARBITRATION-CENTRE
+
+**Question:** ما مركز الوساطة والتحكيم العمالي الذي ينص عليه القانون؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 218, printed Gazette page 81 (PDF page index 79).
+
+**Provisional summary (Arabic):**
+
+تنشئ المادة 218 بالوزارة المختصة مركزاً للوساطة والتحكيم له شخصية اعتبارية ويتبع الوزير المختص، ويتكون من قسمي الوساطة والتحكيم. وتنظم المادة تعيين رئيسه التنفيذي وصدور قرارات بشأن هيكله ونظام عمله والرسوم وحدودها. يلزم التحقق من القرارات التنفيذية والتشغيل الفعلي للمركز.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 218؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 218؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 215–230؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تأكيد تشغيل المركز أو رسومه الحالية دون قرارات التنظيم السارية
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع القرارات التنفيذية أو التعديلات والأحكام القضائية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 161. EG-LABOUR-14-2025-ART-219-LABOUR-MEDIATOR-AND-ARBITRATOR-LISTS
+
+**Question:** كيف تُعد قوائم الوسطاء والمحكمين وما واجب السرية؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 219, printed Gazette page 81 (PDF page index 79).
+
+**Provisional summary (Arabic):**
+
+تقرر المادة 219 إعداد المركز قائمتين للوسطاء والمحكمين المستوفين للشروط القانونية، وأداء كل منهم القسم المنصوص عليه قبل مباشرة المهمة، ويتضمن الالتزام بالأمانة والصدق وعدم إفشاء أسرار العمل. يلزم الرجوع إلى القوائم الرسمية الحالية وشروط القيد الكاملة.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 219؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 219؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 215–230؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تأكيد أهلية وسيط أو محكم بعينه دون مراجعة القيد والقسم والشروط
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع القرارات التنفيذية أو التعديلات والأحكام القضائية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 162. EG-LABOUR-14-2025-ART-220-JUDICIAL-MEMBERS-MEDIATION-ARBITRATION
+
+**Question:** هل يجوز للمركز الاستعانة بأعضاء الجهات والهيئات القضائية؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 220, printed Gazette page 81 (PDF page index 79).
+
+**Provisional summary (Arabic):**
+
+تجيز المادة 220، استثناءً من شروط المادتين 221 و226، استعانة مركز الوساطة والتحكيم بأعضاء من الجهات والهيئات القضائية بعد موافقة مجالسهم الخاصة. يجب التحقق من الموافقة المطلوبة وحالة الشخص والقرار الفعلي قبل الاعتماد على هذا الاستثناء.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 220؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 220؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 215–230؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- اعتبار الاستعانة صحيحة دون التحقق من موافقة المجلس المختص
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع القرارات التنفيذية أو التعديلات والأحكام القضائية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 163. EG-LABOUR-14-2025-ART-221-LABOUR-MEDIATOR-ELIGIBILITY
+
+**Question:** ما شروط القيد في قائمة الوسطاء العمالية؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 221, printed Gazette page 81 (PDF page index 79).
+
+**Provisional summary (Arabic):**
+
+تعدد المادة 221 شروطاً تشمل مؤهلاً عالياً، حسن السيرة والسمعة، عدم الإدانة في الجرائم المحددة ما لم يرد الاعتبار، وألا يكون الشخص من العاملين بالجهاز الإداري للدولة أو سبق فصله تأديبياً، إضافة إلى التدريب واجتياز اختبار بنسبة لا تقل عن 70%. يجب مراجعة النص الكامل وشروط القيد الرسمية عند تقييم مرشح.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 221؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 221؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 215–230؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تقرير أهلية شخص دون مستندات التحقق والتدريب والاختبار والقواعد الحالية
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع القرارات التنفيذية أو التعديلات والأحكام القضائية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 164. EG-LABOUR-14-2025-ART-222-LABOUR-MEDIATOR-SELECTION-DEADLINE
+
+**Question:** كيف يختار طرفا النزاع الوسيط وما المهلة عند عدم الاتفاق؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 222, printed Gazette page 81 (PDF page index 79).
+
+**Provisional summary (Arabic):**
+
+تمنح المادة 222 طرفي النزاع مهلة أقصاها سبعة أيام من تقديم طلب الوساطة لاختيار وسيط من القائمة. وإذا لم يتفقا، يتولى المركز اختياره خلال ثلاثة أيام من انتهاء المهلة. حساب المواعيد يتطلب إثبات تاريخ تقديم طلب الوساطة وتطبيق قواعد احتساب المواعيد.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 222؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 222؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 215–230؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- حساب موعد الاختيار دون تاريخ طلب الوساطة أو القواعد الإجرائية
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع القرارات التنفيذية أو التعديلات والأحكام القضائية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 165. EG-LABOUR-14-2025-ART-223-LABOUR-MEDIATOR-TASK-AND-DURATION
+
+**Question:** ما مدة مهمة الوسيط وما صلاحياته؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 223, printed Gazette page 82 (PDF page index 80).
+
+**Provisional summary (Arabic):**
+
+تبدأ مهمة الوسيط من تاريخ إحالة النزاع إليه، ويلزمه النص بإنجازها خلال شهر. وله سماع الطرفين والاطلاع على المستندات اللازمة وطلب البيانات والمعلومات التي تعينه. يلزم التحقق من تاريخ الإحالة وأي قرارات إجرائية مرتبطة بالملف.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 223؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 223؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 215–230؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- حساب انتهاء المهمة أو وصف صلاحيات تتجاوز النص دون مراجعة ملف الإحالة
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع القرارات التنفيذية أو التعديلات والأحكام القضائية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 166. EG-LABOUR-14-2025-ART-224-LABOUR-MEDIATOR-REPLACEMENT
+
+**Question:** هل يجوز طلب استبدال الوسيط وما المواعيد؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 224, printed Gazette page 82 (PDF page index 80).
+
+**Provisional summary (Arabic):**
+
+تجيز المادة 224 لأي من الطرفين خلال خمسة عشر يوماً طلب استبدال الوسيط لمرة واحدة. وإذا رفض الطرف الآخر، يفصل المركز في الطلب خلال مدة لا تجاوز يومين؛ وإذا اختير وسيط جديد تبدأ مدة عمله من تاريخ تسلمه المهمة. يجب التحقق من تاريخ الإحالة والطلب والرفض والتسلم.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 224؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 224؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 215–230؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- حساب المواعيد أو الجزم بقبول الاستبدال دون مراجعة الوقائع والقرار
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع القرارات التنفيذية أو التعديلات والأحكام القضائية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 167. EG-LABOUR-14-2025-ART-225-LABOUR-MEDIATION-RECOMMENDATIONS-AND-REPORT
+
+**Question:** ما أثر توصيات الوسيط إذا قبلها الطرفان أو رفضاها؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 225, printed Gazette page 82 (PDF page index 80).
+
+**Provisional summary (Arabic):**
+
+توجب المادة 225 على الوسيط السعي للتقريب بين الطرفين، وإذا تعذر ذلك يقدم توصيات مكتوبة. إذا قبلاها، يثبت الاتفاق بتوقيع الطرفين والوسيط ويصبح ملزماً في حدود ما اتفق عليه؛ وإذا رفضا التوصيات أو بعضها يعرض الوسيط التحكيم، فإذا وافقا أحيل النزاع إلى قسم التحكيم. كما يرفع تقريراً خلال خمسة أيام من انتهاء مهمته. يلزم فحص التوصيات والتوقيعات والتقرير.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 225؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 225؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 215–230؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- اعتبار توصية الوسيط ملزمة دون قبول وتوقيع الطرفين أو افتراض التحكيم دون موافقتهما
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع القرارات التنفيذية أو التعديلات والأحكام القضائية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 168. EG-LABOUR-14-2025-ART-226-LABOUR-ARBITRATOR-ELIGIBILITY
+
+**Question:** ما شروط القيد في قائمة المحكمين العمالية؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 226, printed Gazette page 82 (PDF page index 80).
+
+**Provisional summary (Arabic):**
+
+تشترط المادة 226 إجازة الحقوق من جامعة مصرية أو ما يعادلها، وحسن السيرة والسمعة، وعدم الإدانة في الجرائم المحددة ما لم يرد الاعتبار، وألا يكون الشخص من العاملين بالجهاز الإداري للدولة أو سبق فصله تأديبياً، فضلاً عن تدريب التحكيم واجتياز الاختبار بنسبة لا تقل عن 75%. يجب التحقق من القيد الرسمي واستيفاء جميع الشروط.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 226؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 226؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 215–230؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تقرير أهلية محكم دون مراجعة الشهادات والتدريب والاختبار والقائمة الرسمية
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع القرارات التنفيذية أو التعديلات والأحكام القضائية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 169. EG-LABOUR-14-2025-ART-227-LABOUR-ARBITRATION-TRIBUNAL-COMPOSITION
+
+**Question:** كيف تتشكل هيئة التحكيم العمالية؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 227, printed Gazette page 82 (PDF page index 80).
+
+**Provisional summary (Arabic):**
+
+تقرر المادة 227 تشكيل هيئة التحكيم باتفاق الطرفين من محكم واحد أو أكثر على أن يكون العدد فردياً، خلال خمسة عشر يوماً من إحالة النزاع إلى قسم التحكيم. وإذا لم يتفقا خلال المدة، يتولى المركز اختيار المحكمين وفق لوائحه. يلزم مراجعة مشارطة التحكيم وتاريخ الإحالة واللائحة السارية.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 227؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 227؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 215–230؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تقرير صحة تشكيل الهيئة دون اتفاق الطرفين أو تطبيق قواعد المركز
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع القرارات التنفيذية أو التعديلات والأحكام القضائية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 170. EG-LABOUR-14-2025-ART-228-LABOUR-ARBITRATION-SUBMISSION
+
+**Question:** ما الذي يجب أن تتضمنه مشارطة التحكيم العمالي؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 228, printed Gazette page 82 (PDF page index 80).
+
+**Provisional summary (Arabic):**
+
+توجب المادة 228 توقيع طرفي النزاع على مشارطة تحكيم تتضمن موضوع النزاع والشروط والإجراءات التي يجري عليها التحكيم. وفيما لم تتضمنه المشارطة، تطبق أحكام قانون التحكيم في المواد المدنية والتجارية المشار إليه. يجب فحص المشارطة والنصوص الإجرائية المحال إليها معاً.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 228؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 228؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 215–230؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- اعتبار التحكيم صحيحاً أو تحديد نطاقه دون مراجعة المشارطة والقواعد المكملة
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع القرارات التنفيذية أو التعديلات والأحكام القضائية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 171. EG-LABOUR-14-2025-ART-229-LABOUR-ARBITRAL-AWARD-RULES-AND-DEADLINE
+
+**Question:** ما القواعد والمهلة لإصدار حكم التحكيم العمالي؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 229, printed Gazette page 83 (PDF page index 81).
+
+**Provisional summary (Arabic):**
+
+تلزم المادة 229 المحكمين بمراعاة التشريعات المعمول بها والاتفاقيات الدولية المصدق عليها ومبادئ القانون الطبيعي والعرف والعدالة الاجتماعية مع مراعاة الحالة الاقتصادية والاجتماعية لمنطقة المنشأة. يصدر الحكم بالأغلبية عند تعدد المحكمين خلال ثلاثين يوماً من الإحالة، ويكون نهائياً وقابلاً للتنفيذ بعد وضع الصيغة التنفيذية من المحكمة العمالية المختصة. يلزم فحص مشارطة التحكيم والملف والإجراءات.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 229؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 229؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 215–230؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- حساب الميعاد أو تقرير قابلية التنفيذ دون تاريخ الإحالة والحكم والصيغة التنفيذية
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع القرارات التنفيذية أو التعديلات والأحكام القضائية مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 172. EG-LABOUR-14-2025-ART-230-LABOUR-ARBITRAL-AWARD-REVIEW
+
+**Question:** متى يمكن عرض حكم التحكيم العمالي على دائرة إعادة النظر؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الجماعية, المادة 230, printed Gazette page 83 (PDF page index 81).
+
+**Provisional summary (Arabic):**
+
+تجيز المادة 230 إنشاء دائرة عليا أو أكثر من خمسة محكمين للنظر في الطعن على أحكام المادة 229. وإذا نص شرط أو مشارطة التحكيم على درجتين، يحال النزاع إلى الدائرة خلال خمسة عشر يوماً من صدور حكم الدرجة الأولى، ويتعين الفصل خلال خمسة وأربعين يوماً من الإحالة. يلزم فحص شرط التحكيم والحكم وتواريخ صدوره وإحالته.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 230؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 230؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 215–230؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- افتراض وجود مراجعة من درجتين دون شرط صريح أو حساب المواعيد دون المستندات
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع القرارات التنفيذية أو التعديلات والأحكام القضائية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 
 **Review state:** `provisional_text_extract_crosschecked`.
