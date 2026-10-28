@@ -1,0 +1,161 @@
+#!/usr/bin/env python3
+"""Validate explicit operational evidence required before production database release."""
+from __future__ import annotations
+
+import json
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+
+REQUIRED_GATES = {
+    "original_file_storage": {
+        "description": "Live object-storage, KMS/key policy, authorization, integrity, and reconciliation validation",
+        "fields": ("verified_at", "verified_by"),
+        "witness_required": False,
+    },
+    "backup_restore_rollback": {
+        "description": "Witnessed staging restore, rollback, staged-upload recovery, and deletion-recovery drill",
+        "fields": ("verified_at", "verified_by", "witnessed_by"),
+        "witness_required": True,
+    },
+    "retention_export_deletion_policy": {
+        "description": "Approved retention, tenant export, and deletion policy",
+        "fields": ("approved_at", "approved_by"),
+        "witness_required": False,
+    },
+    "production_identity_email": {
+        "description": "Production email delivery, recovery messaging, and multi-host rate-limit validation",
+        "fields": ("verified_at", "verified_by"),
+        "witness_required": False,
+    },
+    "privileged_recovery_bootstrap": {
+        "description": "Privileged-account recovery and first-platform-admin bootstrap rehearsal",
+        "fields": ("verified_at", "verified_by", "witnessed_by"),
+        "witness_required": True,
+    },
+    "independent_security_review": {
+        "description": "Independent security review with no unresolved critical/high findings",
+        "fields": ("reviewed_at", "reviewer"),
+        "witness_required": False,
+    },
+}
+
+
+def _timestamp(value: object) -> datetime | None:
+    if not isinstance(value, str) or not value.strip():
+        return None
+    try:
+        parsed = datetime.fromisoformat(value.strip().replace("Z", "+00:00"))
+    except ValueError:
+        return None
+    if parsed.tzinfo is None or parsed.utcoffset() is None:
+        return None
+    return parsed.astimezone(timezone.utc)
+
+
+def validate_acceptance_manifest(manifest: object, *, now: datetime | None = None) -> dict:
+    """Return a sanitized decision; never echo evidence references or secret values."""
+    blockers: list[dict[str, str]] = []
+    if not isinstance(manifest, dict):
+        return {
+            "ready": False,
+            "decision": "blocked",
+            "passed_count": 0,
+            "required_count": len(REQUIRED_GATES),
+            "blockers": [{"gate": "manifest", "code": "invalid_manifest_shape"}],
+        }
+    if type(manifest.get("schema_version")) is not int or manifest.get("schema_version") != 1:
+        blockers.append({"gate": "manifest", "code": "unsupported_schema_version"})
+    gates = manifest.get("gates")
+    if not isinstance(gates, dict):
+        gates = {}
+        blockers.append({"gate": "manifest", "code": "gates_object_missing"})
+    for name in sorted(set(gates) - set(REQUIRED_GATES)):
+        blockers.append({"gate": name, "code": "unexpected_gate"})
+    current = now or datetime.now(timezone.utc)
+    if current.tzinfo is None or current.utcoffset() is None:
+        raise ValueError("now must be timezone-aware")
+    current = current.astimezone(timezone.utc)
+    passed_count = 0
+    for name, spec in REQUIRED_GATES.items():
+        item = gates.get(name)
+        if not isinstance(item, dict):
+            blockers.append({"gate": name, "code": "evidence_missing"})
+            continue
+        if item.get("status") != "passed":
+            blockers.append({"gate": name, "code": "not_passed"})
+            continue
+        required_fields = ("evidence_ref",) + spec["fields"]
+        missing_fields = [
+            field for field in required_fields
+            if not isinstance(item.get(field), str) or not item[field].strip()
+        ]
+        if missing_fields:
+            blockers.append({"gate": name, "code": "required_evidence_fields_missing"})
+            continue
+        evidence_ref = item["evidence_ref"].strip()
+        if len(evidence_ref) > 500 or evidence_ref.lower() in {"todo", "tbd", "pending", "n/a"}:
+            blockers.append({"gate": name, "code": "invalid_evidence_reference"})
+            continue
+        timestamp_fields = [field for field in spec["fields"] if field.endswith("_at")]
+        timestamps_valid = True
+        for field in timestamp_fields:
+            parsed = _timestamp(item.get(field))
+            if parsed is None:
+                blockers.append({"gate": name, "code": "invalid_or_timezone_free_timestamp"})
+                timestamps_valid = False
+                break
+            if parsed > current + timedelta(minutes=5):
+                blockers.append({"gate": name, "code": "evidence_timestamp_in_future"})
+                timestamps_valid = False
+                break
+        if not timestamps_valid:
+            continue
+        if spec["witness_required"]:
+            actor = item.get("verified_by")
+            witness = item.get("witnessed_by")
+            if not isinstance(actor, str) or not isinstance(witness, str) or actor.strip().casefold() == witness.strip().casefold():
+                blockers.append({"gate": name, "code": "independent_witness_required"})
+                continue
+        if name == "independent_security_review":
+            unresolved = item.get("unresolved_critical_high")
+            if type(unresolved) is not int or unresolved != 0:
+                blockers.append({"gate": name, "code": "unresolved_critical_or_high_findings"})
+                continue
+        passed_count += 1
+    return {
+        "ready": not blockers and passed_count == len(REQUIRED_GATES),
+        "decision": "ready" if not blockers and passed_count == len(REQUIRED_GATES) else "blocked",
+        "passed_count": passed_count,
+        "required_count": len(REQUIRED_GATES),
+        "blockers": blockers,
+    }
+
+
+def load_acceptance_manifest(path: str | Path | None, *, now: datetime | None = None) -> dict:
+    if path is None:
+        return {
+            "ready": False,
+            "decision": "blocked",
+            "passed_count": 0,
+            "required_count": len(REQUIRED_GATES),
+            "blockers": [{"gate": "manifest", "code": "manifest_path_required"}],
+        }
+    try:
+        manifest = json.loads(Path(path).read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        return {
+            "ready": False,
+            "decision": "blocked",
+            "passed_count": 0,
+            "required_count": len(REQUIRED_GATES),
+            "blockers": [{"gate": "manifest", "code": "manifest_not_found"}],
+        }
+    except (OSError, json.JSONDecodeError):
+        return {
+            "ready": False,
+            "decision": "blocked",
+            "passed_count": 0,
+            "required_count": len(REQUIRED_GATES),
+            "blockers": [{"gate": "manifest", "code": "manifest_unreadable_or_invalid_json"}],
+        }
+    return validate_acceptance_manifest(manifest, now=now)
