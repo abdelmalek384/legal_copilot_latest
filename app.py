@@ -661,8 +661,10 @@ def _original_file_store():
         try:
             import boto3
             client = boto3.client("s3", region_name=region, endpoint_url=endpoint_url)
+            kms_client = boto3.client("kms", region_name=region)
             return S3PrivateObjectStore(
-                client, bucket=bucket, kms_key_id=kms_key_id, max_bytes=15_000_000
+                client, bucket=bucket, kms_key_id=kms_key_id,
+                max_bytes=15_000_000, kms_client=kms_client,
             )
         except ImportError as exc:
             raise HTTPException(503, "S3 storage SDK is unavailable") from exc
