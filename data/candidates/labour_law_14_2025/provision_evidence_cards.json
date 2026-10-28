@@ -407,6 +407,11 @@
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government-hosted official Gazette PDF search result",
           "supports": "يعرض المادة 129 والقاعدة الخاصة بالعمل في العطلات"
+        },
+        {
+          "url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc",
+          "source_type": "Official Gazette issue metadata hosted by IDSC",
+          "supports": "Issue metadata dated 2025-12-25 identifies Amiri Press as publisher and explicitly lists Decision 294/2025; not a substitute for the full instrument."
         }
       ],
       "related_instruments_to_review": [
@@ -415,14 +420,25 @@
           "title_ar": "قرار وزير العمل رقم 294 لسنة 2025 بشأن تحديد العطلات والأعياد والمناسبات التي تعتبر إجازة بأجر كامل للعمال",
           "relationship": "possible implementing instrument under Article 129",
           "source_url": "https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A7%D9%84%D8%A3%D8%B1%D8%A8%D8%B9%D8%A7%D8%A1-%D8%A7%D9%84%D9%85%D9%82%D8%A8%D9%84-%D8%A5%D8%AC%D8%A7%D8%B2%D8%A9-%D9%85%D8%AF%D9%81%D9%88%D8%B9%D8%A9-%D8%A7%D9%84%D8%A3%D8%AC%D8%B1-%D9%84%D9%84%D8%B9%D8%A7%D9%85%D9%84%D9%8A%D9%86-%D8%A8%D8%A7%D9%84%D9%82%D8%B7%D8%A7%D8%B9-%D8%A7%D9%84%D8%AE%D8%A7%D8%B5-%D8%A8%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%A9-%D8%B9%D9%8A%D8%AF-%D8%A7%D9%84%D9%85%D9%8A%D9%84%D8%A7%D8%AF-%D8%A7%D9%84%D9%85%D8%AC%D9%8A%D8%AF-%D8%AC%D8%A8%D8%B1%D8%A7%D9%86-%D9%88%D8%AD%D8%AF%D8%A9-%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D9%8A%D9%86-%D9%88%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A7%D9%84%D9%85%D8%B4%D8%AA%D8%B1%D9%83-%D8%A3%D8%B3%D8%A7%D8%B3-%D9%82%D9%88%D8%A9-%D8%A7%D9%84%D9%88%D8%B7%D9%86/",
-          "status": "discovery_only; ministry announcement located, complete decision text/Gazette evidence not verified",
-          "note": "Do not present a complete holiday list until Decision 294/2025 is obtained and reviewed."
+          "status": "discovery_only; Official Gazette issue metadata found for issue 291 supplement dated 2025-12-25, but full decision text, page range, commencement, currentness, and reuse permission remain unverified",
+          "note": "Do not present a complete holiday list until Decision 294/2025 is obtained and reviewed.",
+          "official_gazette_metadata": {
+            "source_url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc",
+            "source_type": "Amiri Press Official Gazette supplement metadata hosted by IDSC repository",
+            "gazette_publication": "الوقائع المصرية، ملحق العدد 291 (تابع)",
+            "publication_date": "2025-12-25",
+            "publisher": "المطابع الأميرية",
+            "metadata_supports": "The repository abstract explicitly lists Ministerial Decision 294/2025 among the contents of this issue.",
+            "full_text_status": "The record lists a PDF through a request-a-copy workflow; the full decision text has not been obtained or page-reviewed.",
+            "reuse_terms_status": "The source register records IDSC terms as personal non-commercial use and bars commercial exploitation/systematic database compilation without written permission; do not acquire or republish the PDF absent authorization."
+          }
         }
       ],
       "limitations": [
         "قائمة العطلات نفسها لا ترد كاملة في هذه البطاقة وتحتاج إلى القرار الوزاري",
         "لم يُثبت الوضع الحالي أو التعديلات أو الشروط التنفيذية للقرار 294/2025",
-        "لا توجد مراجعة محامٍ مسجلة"
+        "لا توجد مراجعة محامٍ مسجلة",
+        "Official Gazette issue metadata now identifies Decision 294/2025 in the supplement to Egyptian Gazette issue 291 dated 2025-12-25; exact page range and operative text still need an authorized review."
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
