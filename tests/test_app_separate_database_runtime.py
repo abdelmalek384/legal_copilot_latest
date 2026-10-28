@@ -1215,6 +1215,71 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             self.assertEqual(retrieved.status_code, 200, retrieved.text)
             self.assertNotIn("PRIVATE_FIRM_ONLY_DISCOVERY_SENTINEL", retrieved.text)
 
+    def test_same_firm_nonmember_cannot_search_or_ask_private_case_documents(self):
+        owner_login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(owner_login.status_code, 200, owner_login.text)
+        created = self._mutate(
+            "post", "/cases", json={"title": "Same-firm private search boundary matter"}
+        )
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+        uploaded = self._mutate(
+            "post", f"/cases/{case_id}/docs",
+            json={
+                "name": "same-firm-private-search.txt",
+                "text": "SAME_FIRM_NONMEMBER_PRIVATE_SENTINEL " * 12,
+            },
+        )
+        self.assertEqual(uploaded.status_code, 200, uploaded.text)
+
+        nonmember_id = self.runtime.create_global_identity(
+            "Same Firm Nonmember",
+            "same-firm-search-nonmember@example.test",
+            app.hash_pw(self.password),
+        )
+        self.runtime.create_firm_membership(nonmember_id, self.firm_a, "lawyer")
+        nonmember = TestClient(app.app)
+        try:
+            login = nonmember.post(
+                "/login",
+                json={"email": "same-firm-search-nonmember@example.test", "password": self.password},
+            )
+            self.assertEqual(login.status_code, 200, login.text)
+            csrf = nonmember.cookies.get("lc_csrf") or ""
+            headers = {"X-CSRF-Token": csrf}
+
+            # Explicit matter scope must authorize the case before retrieval.
+            for endpoint in ("/search", "/ask"):
+                denied = nonmember.post(
+                    endpoint,
+                    json={
+                        "q": "SAME_FIRM_NONMEMBER_PRIVATE_SENTINEL",
+                        "case_id": case_id,
+                        "scope": "firm_documents",
+                    },
+                    headers=headers,
+                )
+                self.assertEqual(denied.status_code, 404, f"{endpoint}: {denied.text}")
+                self.assertNotIn("SAME_FIRM_NONMEMBER_PRIVATE_SENTINEL", denied.text)
+
+            # Broad scope means all *permitted* matter context, not all documents
+            # owned by the firm; a same-firm nonmember still cannot retrieve this case.
+            for endpoint in ("/search", "/ask"):
+                response = nonmember.post(
+                    endpoint,
+                    json={
+                        "q": "SAME_FIRM_NONMEMBER_PRIVATE_SENTINEL",
+                        "scope": "all_permitted",
+                    },
+                    headers=headers,
+                )
+                self.assertEqual(response.status_code, 200, f"{endpoint}: {response.text}")
+                self.assertNotIn("SAME_FIRM_NONMEMBER_PRIVATE_SENTINEL", response.text)
+        finally:
+            nonmember.close()
+
     def test_search_and_ask_reject_case_ids_from_another_firm(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
