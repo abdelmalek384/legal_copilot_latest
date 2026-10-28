@@ -105,7 +105,7 @@ CREATE TABLE identity_lifecycle_events (
         'invitation_created','invitation_sent','invitation_delivery_failed',
         'invitation_revoked','invitation_accepted','invitation_expired',
         'recovery_requested','recovery_sent','recovery_delivery_failed',
-        'recovery_consumed','recovery_expired','recovery_rate_limited'
+        'recovery_consumed','recovery_expired','recovery_revoked','recovery_rate_limited'
     )),
     detail_json TEXT NOT NULL DEFAULT '{}',
     created_at INTEGER NOT NULL CHECK(created_at > 0),
