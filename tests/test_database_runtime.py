@@ -491,6 +491,42 @@ class DatabaseRuntimeTests(unittest.TestCase):
             0,
         )
 
+    def test_failed_firm_provisioning_retry_refuses_existing_membership_history(self):
+        control = self.runtime.control_connection()
+        firm_id = int(control.execute(
+            "INSERT INTO firms(name,status) VALUES('Failed Firm With Membership','disabled')"
+        ).lastrowid)
+        control.execute(
+            "INSERT INTO tenant_database_catalog(firm_id,database_file,status) VALUES(?,NULL,'failed')",
+            (firm_id,),
+        )
+        user_id = self.runtime.create_global_identity(
+            "Preexisting Member", "preexisting-member@example.test", "test-hash"
+        )
+        control.execute(
+            "INSERT INTO firm_memberships(user_id,firm_id,firm_role,status) "
+            "VALUES(?,?,'lawyer','suspended')",
+            (user_id, firm_id),
+        )
+        control.commit()
+        with self.assertRaisesRegex(DatabaseRuntimeError, "no existing memberships or invitations"):
+            self.runtime.retry_failed_firm_provisioning(
+                firm_id,
+                reason="must not reactivate a firm with prior identity links",
+                operator_reference="operator-ticket-111",
+                change_reference="change-222",
+            )
+        self.assertEqual(
+            control.execute("SELECT status FROM firms WHERE id=?", (firm_id,)).fetchone()[0],
+            "disabled",
+        )
+        self.assertEqual(
+            control.execute(
+                "SELECT status FROM tenant_database_catalog WHERE firm_id=?", (firm_id,)
+            ).fetchone()[0],
+            "failed",
+        )
+
     def test_failed_firm_provisioning_retry_rejects_nonfailed_lifecycle_states(self):
         firm_id, _ = self.runtime.provision_firm("Already Provisioned Firm")
         with self.assertRaisesRegex(DatabaseRuntimeError, "Only a disabled firm"):
