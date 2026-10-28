@@ -94,6 +94,24 @@ def seed(data, db):
     db.commit()
     return source_count,document_count
 
+def seed_configured_corpus(data):
+    """Write candidate metadata only to the configured shared legal-corpus profile."""
+    if os.environ.get("COPILOT_DB", "").strip():
+        raise RuntimeError(
+            "COPILOT_DB is the legacy shared database and is not accepted; "
+            "configure COPILOT_CONTROL_DB, COPILOT_TENANT_DB_ROOT, and COPILOT_CORPUS_DB"
+        )
+    sys.path.insert(0, str(ROOT))
+    from database_runtime import DatabaseRuntime
+
+    runtime = DatabaseRuntime.from_env()
+    runtime.initialize()
+    try:
+        return seed(data, runtime.legal_corpus_connection())
+    finally:
+        runtime.close_current_thread()
+
+
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument("--apply",action="store_true",help="write candidates to the configured SQLite registry")
@@ -104,10 +122,7 @@ def main():
     if not args.apply:
         print("Dry run only; no database was opened or changed. Add --apply to seed metadata.")
         return
-    sys.path.insert(0,str(ROOT))
-    import app
-    db=app.conn()
-    sources,documents=seed(data,db)
+    sources,documents=seed_configured_corpus(data)
     print(f"Inserted {sources} new source records and {documents} new document candidates.")
     print("No legal text was downloaded, no legal version was created, and no source was marked permitted or verified.")
 
