@@ -54,3 +54,19 @@ The provisional inventory now extends through accompanying-law Article 187 (129 
 
 The location pinpoints come from searchable text extraction in the government-hosted Gazette PDF: Arts. 176–180, printed page 73/PDF index 71; Arts. 181–185, printed page 74/PDF index 72; Arts. 186–187, printed page 75/PDF index 73. These are not independent visual checks of every cited page. No SHA-256 is claimed, and the actual implementing judicial decisions, present court locations, procedural amendments, limitation periods, and case-specific applicability have not been verified. These cards are procedural research leads only, remain search_eligible=false, and must not be used to calculate filing deadlines or determine jurisdiction without checking the full current procedural rules and the actual order/judgment.
 
+## New public text lead for Ministerial Decision 162/2026 (2026-10-28)
+
+**Identity confirmed at Gazette-metadata level:** Decision No. 162/2026, titled "قرار رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل", is listed in the Official Gazette Supplement issue 176 (تابع), issued 2026-08-13. The Gazette repository's bilingual metadata record identifies the Ministry of Labour and lists Arabic and English PDF files, but the file-download actions route to a request-a-copy form. No request was submitted, consistent with the project instruction not to contact source holders.
+
+**Secondary full-text cross-check found:** a publicly accessible transcription is available at https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html. It identifies the same decision and Gazette issue/date and provides text for Articles 1–66. This is not the official Gazette file and has not been fully compared with the official PDF; it must not be promoted as primary evidence or used as the sole basis for authoritative retrieval. The Ministry of Labour also published an official summary on 2026-09-05 at https://www.labour.gov.eg/ar/الأخبار/وزير-العمل-يعلن-نص-القواعد-العامة-للائحة-تنظيم-العمل-بالقطاع-الخاص/.
+
+**High-value crosswalk candidates from the transcription (pending official-text comparison):**
+- Decision Arts. 2–10: requirement for employers with 10 or more workers to prepare workplace regulations; expected contents; submission to the competent Labour Directorate; union-comment period; review and approval process; central committee to unify principles.
+- Decision Arts. 11–19: scope across the establishment and branches; continuity on changes in ownership/management; better-benefit rule; prohibitions on forced labour, document retention, harassment, bullying, discrimination, and reduction of acquired benefits.
+- Decision Arts. 22–27: written employment contracts, worker service files, confidentiality, training, and training-cost provisions.
+- Decision Arts. 35–41: wage protection, equal pay, permitted payment methods, working hours, overtime, flexible/remote work, and leave rules.
+- Decision Arts. 46–59: worker duties, investigation safeguards, disciplinary penalties, dismissal only by the competent Labour Court, and separate recording/accounting of financial penalties.
+- Decision Arts. 60–65: distinct termination grounds, no resignation notice period in workplace regulations, union-activity protection, periodic review and amendment of workplace regulations.
+
+The above article mapping is a research crosswalk from the secondary transcription only. It may identify areas where cards on Labour Law Arts. 4–6, 117–148, 154–175, and 137 require cross-reference, but it does not establish that the decision amends those Law articles. No amendment or repeal is asserted. Effective-date wording in the transcription says the decision takes effect the day after publication; that date remains pending comparison with the official PDF. Keep legal_status unknown, reuse permission unknown, and authoritative retrieval disabled until the primary text can be lawfully obtained and checked.
+
