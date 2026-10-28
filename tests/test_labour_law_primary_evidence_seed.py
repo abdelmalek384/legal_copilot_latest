@@ -67,6 +67,11 @@ class LabourLawPrimaryEvidenceSeedTests(unittest.TestCase):
         self.assertIn("52", pages)
         self.assertIn("54", pages)
         self.assertIn("55", pages)
+        self.assertIn("68", pages)
+        self.assertIn("69", pages)
+        self.assertIn("70", pages)
+        self.assertIn("73", pages)
+        self.assertIn("74", pages)
         for provision in self.seed["provisions"]:
             pinpoint = provision["page_pinpoint"]
             self.assertEqual(pinpoint["gazette_issue"], "18 (تابع)")
