@@ -21,6 +21,7 @@ class RecoverStagedOriginalFilesTests(unittest.TestCase):
             CREATE TABLE original_file_objects(
                 object_id TEXT PRIMARY KEY,
                 firm_id INTEGER NOT NULL,
+                storage_backend TEXT NOT NULL DEFAULT 'local',
                 sha256 TEXT NOT NULL,
                 byte_size INTEGER NOT NULL,
                 state TEXT NOT NULL,
