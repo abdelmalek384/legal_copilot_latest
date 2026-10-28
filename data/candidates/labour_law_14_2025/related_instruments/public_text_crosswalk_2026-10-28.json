@@ -1,0 +1,110 @@
+{
+  "record_id": "EG-LABOUR-IMPLEMENTING-DECISIONS-PUBLIC-TEXT-CROSSWALK-2026-10-28",
+  "created_on": "2026-10-28",
+  "status": "research crosswalk; not authoritative",
+  "search_eligible": false,
+  "method": "Use publicly accessible repository metadata, official Ministry announcements and secondary full-text/indexed transcriptions as discovery/cross-check sources where original Gazette PDF access is limited. No access controls bypassed; no permission inferred from public availability.",
+  "decisions": [
+    {
+      "document_id": "EG-LABOUR-DECISION-290-2025",
+      "number": 290,
+      "year": 2025,
+      "related_law_articles": [
+        117,
+        118,
+        119
+      ],
+      "title_ar": "قرار وزير العمل رقم 290 لسنة 2025 بشأن الأعمال المتقطعة بطبيعتها التي يجوز تواجد العامل فيها أكثر من عشر ساعات ولا تتجاوز اثنتي عشرة ساعة في اليوم الواحد",
+      "primary_lead": {
+        "url": "https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829",
+        "status": "Official Gazette repository metadata and abstract; original Arabic PDF listed"
+      },
+      "secondary_text": {
+        "url": "https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829",
+        "status": "Public abstract provides Article 1 in Arabic and English; lists Arabic and English PDF files",
+        "verified_excerpt_ar": "الأصل ألا تجاوز الفترة بين بداية ساعات العمل ونهايتها عشر ساعات يومياً، وتحسب الراحة ضمن ساعات التواجد إذا بقي العامل في مكان العمل؛ ويستثنى العمل المتقطع المحدد بالمادة الثانية على ألا تزيد مدة التواجد في المنشأة على 12 ساعة يومياً."
+      },
+      "gazette_date": "2025-12-11 (repository item date; verify exact publication/effective date against Gazette)",
+      "effective_date": "unknown",
+      "article_2_schedule_status": "not yet transcribed or verified",
+      "reuse_rights": "unknown",
+      "currentness": "not verified",
+      "card_action": "cross-reference lead only; do not classify a job as intermittent without Article 2 list and actual duties"
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-291-2025",
+      "number": 291,
+      "year": 2025,
+      "related_law_articles": [
+        117,
+        118,
+        119,
+        121
+      ],
+      "title_ar": "قرار وزير العمل رقم 291 لسنة 2025 بشأن ضوابط التشغيل الإضافي ومبرراته",
+      "primary_lead": {
+        "url": "https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1",
+        "status": "Official Gazette supplement metadata lead; full text not reviewed"
+      },
+      "secondary_text": {
+        "url": "https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1",
+        "status": "No usable full text identified in the current research"
+      },
+      "gazette_date": "2025-12-30 (Supplement issue 295 تابع د; metadata lead)",
+      "effective_date": "unknown",
+      "article_2_schedule_status": "full operative provisions not yet transcribed",
+      "reuse_rights": "unknown",
+      "currentness": "not verified",
+      "card_action": "metadata only; do not infer permissible overtime reasons, caps or process from title"
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-292-2025",
+      "number": 292,
+      "year": 2025,
+      "related_law_articles": [
+        117,
+        118,
+        119,
+        121
+      ],
+      "title_ar": "قرار وزير العمل رقم 292 لسنة 2025 بشأن تحديد الحد الأقصى لساعات العمل الفعلية والإضافية في الأعمال التجهيزية والتكميلية وأعمال الحراسة والنظافة",
+      "primary_lead": {
+        "url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc/full",
+        "status": "Official Gazette Supplement issue 291 (تابع), dated 2025-12-25, metadata and PDF bundle listed"
+      },
+      "secondary_text": {
+        "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/25-12-2025/no-292?id=5042304&type=1",
+        "status": "Search-indexed secondary legal text shows decision date 2025-12-04, Gazette publication 2025-12-25, effective 2025-12-26, and article headings/partial text for preparatory, complementary, guarding and cleaning work; full detailed limits require full-text comparison"
+      },
+      "gazette_date": "2025-12-25",
+      "effective_date": "2025-12-26 (secondary source; verify against Gazette)",
+      "article_2_schedule_status": "partial secondary article text surfaced; full detailed limits and all provisions not verified",
+      "reuse_rights": "unknown",
+      "currentness": "not verified",
+      "card_action": "cross-reference only; no hour calculations until full exact provisions are checked"
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-294-2025",
+      "number": 294,
+      "year": 2025,
+      "related_law_articles": [
+        129
+      ],
+      "title_ar": "قرار وزير العمل رقم 294 لسنة 2025 بشأن تحديد العطلات والأعياد والمناسبات التي تعتبر إجازة بأجر كامل للعمال",
+      "primary_lead": {
+        "url": "https://dspace.id.com.eg/items/f66386dd-dcb6-4ba9-b231-23f3f5a0c68f/full",
+        "status": "Official Gazette repository metadata identifies Decision 294/2025; PDF files listed"
+      },
+      "secondary_text": {
+        "url": "https://lawhub.info/eg/?p=17019",
+        "status": "Public secondary full-text transcription found; lists official holidays under Article 1. A separate repository abstract lists 12 days including Hijri New Year, Mawlid, Eid al-Fitr first two days, Eid al-Adha Arafah and first two days, Coptic Christmas, 25 January, Sham El-Nessim, Sinai Liberation Day, Labour Day, 30 June, 23 July and Armed Forces Day."
+      },
+      "gazette_date": "2025-12-25 (Supplement issue 291 تابع; metadata)",
+      "effective_date": "2025-12-26 (secondary legal database; verify official Gazette)",
+      "article_2_schedule_status": "Article 1 list found in secondary transcription; full text and all operative clauses still need primary comparison",
+      "reuse_rights": "unknown",
+      "currentness": "not verified; event-specific Ministry circulars can affect a particular holiday date but do not themselves prove permanent amendment",
+      "card_action": "cross-reference only; check full current text and any current-year holiday guidance before answering a specific date"
+    }
+  ]
+}
