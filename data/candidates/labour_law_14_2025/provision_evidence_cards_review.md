@@ -2,7 +2,7 @@
 
 **Record:** `EG-LABOUR-LAW-14-2025-EVIDENCE-CARDS-2026-10-28`  
 **Prepared on:** 2026-10-28  
-**Cards in this report:** 61
+**Cards in this report:** 63
 
 ## Status and limits
 
@@ -14,7 +14,7 @@
 - Collection permission: `unknown`; commercial reuse: `unknown`.
 - Authoritative search eligibility: `false`.
 
-Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF has not been downloaded, hashed, or visually inspected; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording. Additional cards for accompanying-law Articles 4–9 were prepared from text extraction of the government-hosted Official Gazette PDF on 2026-10-28. The PDF has not been downloaded, hashed, or visually inspected; page pinpointing is provisional and all cards remain non-authoritative. Additional cards for accompanying-law Articles 10–12 were prepared from the government-hosted Official Gazette PDF text extraction on 2026-10-28. Page references are based on the extracted page labels; the PDF has not been downloaded, hashed, or visually inspected. Cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 16, 22, 23, 25 and 27 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; these cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 28–31 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 32–34 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 36–37 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshot checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 40–43 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 44–48 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 49–54 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 126 and 127 were added from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 55. The original PDF remains undownloaded and unhashed, and both cards remain provisional and non-authoritative.
+Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF has not been downloaded, hashed, or visually inspected; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording. Additional cards for accompanying-law Articles 4–9 were prepared from text extraction of the government-hosted Official Gazette PDF on 2026-10-28. The PDF has not been downloaded, hashed, or visually inspected; page pinpointing is provisional and all cards remain non-authoritative. Additional cards for accompanying-law Articles 10–12 were prepared from the government-hosted Official Gazette PDF text extraction on 2026-10-28. Page references are based on the extracted page labels; the PDF has not been downloaded, hashed, or visually inspected. Cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 16, 22, 23, 25 and 27 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; these cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 28–31 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 32–34 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 36–37 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshot checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 40–43 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 44–48 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 49–54 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 126 and 127 were added from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 55. The original PDF remains undownloaded and unhashed, and both cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 121 and 122 were prepared from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 53. Article 121 was cross-checked against a secondary English translation, and Article 122 against a secondary legal text copy. The original PDF remains undownloaded and unhashed; both cards remain provisional and non-authoritative.
 
 ## Provision cards
 
@@ -1795,6 +1795,64 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final finding of misconduct or payroll recovery decision.
+
+### 62. EG-LABOUR-14-2025-ART-121-OVERTIME-EXCEPTION
+
+**Question:** What minimum overtime compensation and notification rules does Article 121 state for exceptional work?
+
+**Pinpoint:** القانون المرافق, المادة 121, printed Gazette page 53 (PDF page index 51).
+
+**Provisional summary (Arabic):**
+
+تسمح المادة 121، في ضرورات العمل غير العادية أو الظروف الاستثنائية، بعدم التقيد ببعض قواعد ساعات العمل والراحة، بشرط إبلاغ الجهة الإدارية خلال سبعة أيام مع بيان المبررات والمدة اللازمة. وتقرر مقابلاً إضافياً لا يقل عن 35٪ فوق أجر الساعة الأصلية للعمل النهاري و70٪ للعمل الليلي؛ والعمل في يوم الراحة يستلزم تعويضاً يعادل أجر هذا اليوم ويوم راحة بديل خلال الأسبوع التالي. ولا يجوز أن تزيد مدة وجود العامل بالمنشأة على 12 ساعة. يلزم فحص القرار المنفذ والوقائع قبل احتساب المستحقات.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; النص الرسمي القابل للبحث؛ يلزم فحص موضع المادة قبل التطبيق (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 53؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary English translation](https://eg.andersen.com/wp-content/uploads/2025/05/Translation-of-Labor-law-No.-14-of-2025.pdf) — ترجمة ثانوية للمادة 121 تتضمن إخطار السبعة أيام وحدود 35٪ و70٪ وحد 12 ساعة؛ لا تحل محل النص العربي الرسمي.
+
+**Limitations:**
+
+- تتعلق القاعدة باستثناءات العمل غير العادي أو الظروف الاستثنائية وليست إذناً عاماً بتجاوز ساعات العمل
+- قد تؤثر القرارات الوزارية المنفذة والوقائع والتعديلات اللاحقة في التطبيق
+- لا توجد مراجعة محامٍ مسجلة
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** automated overtime payroll calculation or final legal advice.
+
+### 63. EG-LABOUR-14-2025-ART-122-WORK-SCHEDULE-DISPLAY
+
+**Question:** What workplace schedule and notification duties does Article 122 impose?
+
+**Pinpoint:** القانون المرافق, المادة 122, printed Gazette page 53 (PDF page index 51).
+
+**Provisional summary (Arabic):**
+
+تلزم المادة 122 صاحب العمل بعرض جدول في المداخل الرئيسية التي يستخدمها العمال أو في مكان ظاهر بالمنشأة، يبين يوم الراحة الأسبوعية وساعات العمل وفترات الراحة لكل العاملين. كما تلزمه بإخطار الجهة الإدارية بصورة من الجدول أو تعديلاته خلال سبعة أيام على الأكثر من تنفيذ الجدول أو التعديل. يلزم التحقق من ظروف المنشأة وأي متطلبات تنظيمية إضافية.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; النص الرسمي القابل للبحث؛ يلزم فحص موضع المادة قبل التطبيق (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 53؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary legal text copy](https://manshurat.org/content/qnwn-lml-ljdyd-2025) — يعرض نص المادة 122؛ يستخدم للمقارنة فقط وليس بديلاً عن المصدر الرسمي.
+
+**Limitations:**
+
+- يلزم التحقق من تعليمات الجهة الإدارية ذات الصلة وإثبات تاريخ تنفيذ الجدول أو تعديله
+- لم يُفحص الملف الأصلي بصرياً ولم تكتمل مقارنة القانون مادةً بمادة
+- لا توجد مراجعة محامٍ مسجلة
+
+**Review state:** `provisional_primary_text_extract_reviewed`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** final compliance determination for a specific establishment.
 
 ## Activation gates
 
