@@ -350,7 +350,11 @@ class DatabaseRuntime:
             control.execute(
                 "INSERT INTO platform_security_events(actor_user_id,firm_id,event_type,detail_json) "
                 "VALUES(NULL,?,'firm_provisioned',?)",
-                (firm_id, json.dumps({"database_file": path.name, "status": "active"}, sort_keys=True)),
+                (firm_id, json.dumps({
+                    "database_file": path.name,
+                    "status": "active",
+                    **{key: value.strip() for key, value in audit_fields.items()},
+                }, sort_keys=True)),
             )
             control.commit()
             return firm_id, path
@@ -375,10 +379,24 @@ class DatabaseRuntime:
             if catalog is not None:
                 catalog.close()
 
-    def retry_failed_firm_provisioning(self, firm_id: int) -> Path:
+    def retry_failed_firm_provisioning(
+        self,
+        firm_id: int,
+        *,
+        reason: str,
+        operator_reference: str,
+        change_reference: str,
+    ) -> Path:
         """Retry only a disabled firm whose catalog explicitly records failed provisioning."""
         if isinstance(firm_id, bool) or not isinstance(firm_id, int) or firm_id <= 0:
             raise ValueError("firm_id must be a positive integer")
+        audit_fields = {
+            "reason": reason,
+            "operator_reference": operator_reference,
+            "change_reference": change_reference,
+        }
+        if any(not isinstance(value, str) or not value.strip() for value in audit_fields.values()):
+            raise ValueError("reason, operator_reference, and change_reference are required")
         self._require_initialized()
         control = self.control_connection()
         control.execute("BEGIN IMMEDIATE")
