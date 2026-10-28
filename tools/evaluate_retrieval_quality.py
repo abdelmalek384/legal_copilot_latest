@@ -111,6 +111,32 @@ def validate_run_record(run):
                 continue
             if "pin_cite" in citation and not _nonempty_string(citation.get("pin_cite")):
                 errors.append(f"citations[{index}].pin_cite must be a non-empty string when supplied")
+    source_summary = run.get("source_summary")
+    if source_summary is not None:
+        if not isinstance(source_summary, list):
+            errors.append("source_summary must be a list when supplied")
+        else:
+            summary_by_id = {}
+            for index, item in enumerate(source_summary):
+                if not isinstance(item, dict) or not _nonempty_string(item.get("source_id")):
+                    errors.append(f"source_summary[{index}] must contain a non-empty source_id")
+                    continue
+                source_id = item["source_id"].strip()
+                status = item.get("source_status")
+                if status is not None and not _nonempty_string(status):
+                    errors.append(f"source_summary[{index}].source_status must be non-empty when supplied")
+                if source_id in summary_by_id and summary_by_id[source_id] != status:
+                    errors.append("source_summary contains conflicting statuses for " + source_id)
+                summary_by_id[source_id] = status
+            if isinstance(citations, list):
+                for citation in citations:
+                    if not isinstance(citation, dict) or not _nonempty_string(citation.get("source_id")):
+                        continue
+                    source_id = citation["source_id"].strip()
+                    if source_id not in summary_by_id:
+                        errors.append("cited source is missing from source_summary: " + source_id)
+                    elif summary_by_id[source_id] != "verified_operative_text" and run.get("used_unverified_source") is False:
+                        errors.append("used_unverified_source is false but cited source is not verified: " + source_id)
     if "invalid_citation_indices" in run:
         invalid_indices = run["invalid_citation_indices"]
         if not isinstance(invalid_indices, list) or any(type(index) is not int or index < 1 for index in invalid_indices):
@@ -125,6 +151,29 @@ def validate_run_record(run):
 
 def _unique_ids(values):
     return list(dict.fromkeys(x.strip() for x in values if _nonempty_string(x)))
+
+
+def _effective_unverified_source(run):
+    """Fail closed when a cited source lacks explicit verified-status evidence."""
+    if run.get("used_unverified_source") is True:
+        return True
+    citations = run.get("citations") if isinstance(run.get("citations"), list) else []
+    cited_ids = {
+        citation["source_id"].strip()
+        for citation in citations
+        if isinstance(citation, dict) and _nonempty_string(citation.get("source_id"))
+    }
+    if not cited_ids:
+        return False
+    summary = run.get("source_summary")
+    if not isinstance(summary, list):
+        return True
+    statuses = {
+        item["source_id"].strip(): item.get("source_status")
+        for item in summary
+        if isinstance(item, dict) and _nonempty_string(item.get("source_id"))
+    }
+    return any(statuses.get(source_id) != "verified_operative_text" for source_id in cited_ids)
 
 
 def score_evaluation(questions, runs, k_values=(1, 3, 5)):
@@ -211,6 +260,7 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5)):
         metrics[f"mrr_at_{k}"] = round(sum(reciprocal_ranks) / len(reciprocal_ranks), 4) if reviewed else None
 
     citation_total = citation_correct = pin_cite_total = pin_cite_correct = 0
+    source_status_evidence_missing_count = 0
     invalid_citation_index_count = 0
     invalid_citation_index_records = []
     expected_pin_cite_total = expected_pin_cite_correct = 0
@@ -220,6 +270,8 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5)):
     for question, run in reviewed:
         expected_sources = set(_expected_source_ids(question))
         expected_pin_cites = question.get("expected_pin_cites") or []
+        if run.get("citations") and not isinstance(run.get("source_summary"), list):
+            source_status_evidence_missing_count += 1
         invalid_indices = run.get("invalid_citation_indices", [])
         invalid_citation_index_count += len(invalid_indices)
         if invalid_indices:
@@ -275,7 +327,7 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5)):
             abstention_cases += 1
             if run["abstained"] is True and run["used_unverified_source"] is not True:
                 abstention_correct += 1
-        if run["used_unverified_source"] is True and run["abstained"] is not True:
+        if _effective_unverified_source(run) and run["abstained"] is not True:
             unsafe_unverified_uses += 1
 
     return {
@@ -307,6 +359,7 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5)):
         "abstention_correct": abstention_correct,
         "unanswerable_reviewed_cases": abstention_cases,
         "unsafe_unverified_source_uses": unsafe_unverified_uses,
+        "source_status_evidence_missing_count": source_status_evidence_missing_count,
         "limitations": [
             "Scores cover only lawyer-reviewed cases with explicit expected source IDs and a matching valid run.",
             "Malformed records and duplicate question/run IDs are excluded and listed; resolve them before relying on a score.",
