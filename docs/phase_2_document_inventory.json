@@ -399,6 +399,11 @@
           "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
           "relationship": "implements_or_supports",
           "relationship_status": "official_ministry_report_pending_exact_instrument_and_Gazette_verification"
+        },
+        {
+          "document_id": "EG-LABOUR-DECISION-49-2026",
+          "relationship": "implements_or_supports",
+          "relationship_status": "official_ministry_announcement_pending_decision_text_and_Gazette_verification"
         }
       ]
     },
@@ -1978,6 +1983,38 @@
           "status": "discovered_not_downloaded"
         }
       ]
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-49-2026",
+      "official_title_ar": "قرار وزير العمل رقم 49 لسنة 2026 بشأن تحديد الأعمال الخطرة والصعبة والمناطق النائية التي يستحق العاملون فيها زيادة الإجازة السنوية سبعة أيام",
+      "practice_areas": [
+        "labour"
+      ],
+      "document_type": "ministerial_decision",
+      "instrument_number": 49,
+      "instrument_year": 2026,
+      "source_id": "EG-MINISTRY-OF-LABOUR",
+      "source_status": "official_index_discovered_primary_text_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "official decision text and signature/publication details",
+        "Official Gazette issue, publication date and page range",
+        "effective/commencement date",
+        "exact scope of hazardous/difficult work and remote-area schedules",
+        "later amendments, replacement or repeal",
+        "qualified Egyptian labour-lawyer review",
+        "source-specific collection and commercial reuse terms"
+      ],
+      "notes": "Discovery-only candidate. The Ministry of Labour announced on 2026-03-26 that Ministerial Decision 49/2026 identifies hazardous/difficult work and remote areas entitling covered workers to seven additional annual-leave days, under Labour Law 14/2025. The announcement is not the decision text or Gazette evidence; do not infer full scope, commencement, currentness, or reuse rights until the instrument is obtained and reviewed.",
+      "source_urls": [
+        {
+          "url": "https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%84%D8%AA%D8%AD%D9%82%D9%82-%D8%A7%D9%84%D8%AA%D9%88%D8%A7%D8%B2%D9%86-%D8%A8%D9%8A%D9%86-%D9%85%D8%AA%D8%B7%D9%84%D8%A8%D8%A7%D8%AA-%D8%A7%D9%84%D8%A5%D9%86%D8%AA%D8%A7%D8%AC-%D9%88%D8%B5%D9%88%D9%86-%D8%AD%D9%82%D9%88%D9%82-%D8%A7%D9%84%D9%82%D9%88%D9%89-%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D9%84%D8%A9-%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D9%8A%D8%B5%D8%AF%D8%B1-%D9%82%D8%B1%D8%A7%D8%B1-%D8%A7-%D9%88%D8%B2%D8%A7%D8%B1%D9%8A-%D8%A7-%D8%A8%D8%AA%D8%AD%D8%AF%D9%8A%D8%AF-%D8%A7%D9%84%D8%A3%D8%B9%D9%85%D8%A7%D9%84-%D8%A7%D9%84%D8%AE%D8%B7%D8%B1%D8%A9-%D9%88%D8%A7%D9%84%D9%85%D9%86%D8%A7%D8%B7%D9%82-%D8%A7%D9%84%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D8%A7%D9%84%D8%AA%D9%8A-%D8%AA-%D8%B2%D8%A7%D8%AF-%D9%81%D9%8A%D9%87%D8%A7-%D8%A7%D9%84%D8%A5%D8%AC%D8%A7%D8%B2%D8%A7%D8%AA-%D8%A7%D9%84%D8%B3%D9%86%D9%88%D9%8A%D8%A9-7-%D8%A3%D9%8A%D8%A7%D9%85-%D9%84%D9%84%D8%B9%D8%A7%D9%85%D9%84%D9%8A%D9%86/",
+          "source_role": "official Ministry of Labour announcement; discovery evidence only",
+          "status": "discovered_not_downloaded"
+        }
+      ]
     }
   ],
   "next_actions": [
@@ -2025,6 +2062,12 @@
     {
       "id": "ACT-LABOUR-DECISION-264-2026-STANDARDS-VERIFY",
       "action": "Retrieve the official text/publication reference for the 2026 standards reported under Labour Decision 264/2025; establish whether they are a separate instrument, record exact title/number and effective date, and keep legal status and reuse permission unresolved until reviewed.",
+      "owner": "legal corpus lead",
+      "status": "not_started"
+    },
+    {
+      "id": "ACT-LABOUR-DECISION-49-2026-VERIFY",
+      "action": "Obtain and verify the full official text, Gazette issue/pages, effective date and any later amendments/repeal for Ministerial Decision 49/2026; keep permission and legal status unknown until evidence and qualified review are complete.",
       "owner": "legal corpus lead",
       "status": "not_started"
     }
