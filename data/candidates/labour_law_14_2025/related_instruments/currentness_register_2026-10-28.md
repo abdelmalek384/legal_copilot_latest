@@ -160,3 +160,14 @@ The main evidence-card JSON had 294 cards and an article-number audit identified
 
 The supplemental file contains 15 unique article numbers and keeps `search_eligible=false`. This brings the **combined drafted inventory to 309 cards across the main file and the supplement**, but the 15 cards are not yet merged into the canonical JSON/report. The main report remains at 294 until a safe merge can be made with complete file contents. This is a tooling limitation, not a legal-source access restriction. The new page numbers are inferred and not visually verified; currentness, amendment history, reuse rights and qualified Egyptian-lawyer review remain outstanding.
 
+## Alternative public-text route — working-time and holiday decisions (2026-10-28)
+
+Rather than repeatedly retrying blocked Gazette download actions, a separate crosswalk now records available public metadata and secondary text for Decisions 290, 291, 292 and 294/2025 at `data/candidates/labour_law_14_2025/related_instruments/public_text_crosswalk_2026-10-28.json`.
+
+- **Decision 290/2025:** public repository abstract exposes Article 1 in Arabic/English and lists PDF files; the key unresolved item is the complete Article 2 schedule of qualifying intermittent work.
+- **Decision 291/2025:** Gazette metadata identifies the decision, but no usable complete public text was found in this pass. No overtime limits or permitted reasons are inferred.
+- **Decision 292/2025:** an indexed secondary text surfaces issue/publication/effective-date details and article headings for preparatory, complementary, guarding and cleaning work; exact complete limits remain unverified against the official PDF.
+- **Decision 294/2025:** a public secondary transcription lists the paid holiday set and the Gazette repository abstract lists the same categories. The current-year holiday announcements must be checked separately for specific dates; they do not by themselves prove a permanent amendment.
+
+A focused test was added for the crosswalk's source, currentness and reuse gates. It has not been run. All four records keep reuse rights unknown, currentness unverified, and authoritative retrieval disabled. Public access is used as a research alternative, not as a bypass of access controls and not as evidence of permission for commercial reuse.
+
