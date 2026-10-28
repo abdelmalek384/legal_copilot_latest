@@ -3312,15 +3312,18 @@ def create_firm_invitation(b: InvitationCreateIn, u: dict = Depends(user)):
                 control, "invitation_revoked", actor_user_id=u["id"], firm_id=u["firm_id"],
                 invitation_id=old["id"], detail={"reason": "superseded_by_resend"}, now=now,
             )
-        cursor = control.execute(
-            "INSERT INTO identity_invitations("
-            "firm_id,email_normalized,email_display,invited_role,token_hash,invited_by_user_id,"
-            "created_at,expires_at,status,updated_at) VALUES(?,?,?,?,?,?,?,?,'pending',?)",
-            (
-                u["firm_id"], email_normalized, email_display, b.role, token_hash,
-                u["id"], now, now + 24 * 60 * 60, now,
-            ),
-        )
+        try:
+            cursor = control.execute(
+                "INSERT INTO identity_invitations("
+                "firm_id,email_normalized,email_display,invited_role,token_hash,invited_by_user_id,"
+                "created_at,expires_at,status,updated_at) VALUES(?,?,?,?,?,?,?,?,'pending',?)",
+                (
+                    u["firm_id"], email_normalized, email_display, b.role, token_hash,
+                    u["id"], now, now + 24 * 60 * 60, now,
+                ),
+            )
+        except sqlite3.IntegrityError as exc:
+            raise HTTPException(409, "invitation could not be created; an active invitation already exists") from exc
         invitation_id = int(cursor.lastrowid)
         _identity_event(
             control, "invitation_created", actor_user_id=u["id"], firm_id=u["firm_id"],
@@ -3332,10 +3335,6 @@ def create_firm_invitation(b: InvitationCreateIn, u: dict = Depends(user)):
         if control.in_transaction:
             control.rollback()
         raise
-    except sqlite3.IntegrityError as exc:
-        if control.in_transaction:
-            control.rollback()
-        raise HTTPException(409, "invitation could not be created; review the identity and membership state") from exc
     except sqlite3.Error as exc:
         if control.in_transaction:
             control.rollback()
@@ -3420,17 +3419,23 @@ def accept_invitation_new_identity(b: InvitationAcceptNewIn):
         ).fetchone()
         if existing is not None:
             raise HTTPException(409, "sign in to the existing identity and accept this invitation")
-        cursor = control.execute(
-            "INSERT INTO users(name,email_display,email_normalized,password_hash,status) "
-            "VALUES(?,?,?,?,'active')",
-            (b.name.strip(), invitation["email_display"], invitation["email_normalized"], hash_pw(b.password)),
-        )
+        try:
+            cursor = control.execute(
+                "INSERT INTO users(name,email_display,email_normalized,password_hash,status) "
+                "VALUES(?,?,?,?,'active')",
+                (b.name.strip(), invitation["email_display"], invitation["email_normalized"], hash_pw(b.password)),
+            )
+        except sqlite3.IntegrityError as exc:
+            raise HTTPException(409, "the invited identity already exists; sign in to accept the invitation") from exc
         user_id = int(cursor.lastrowid)
-        control.execute(
-            "INSERT INTO firm_memberships(user_id,firm_id,firm_role,status,created_by_user_id) "
-            "VALUES(?,?,?,'active',?)",
-            (user_id, invitation["firm_id"], invitation["invited_role"], invitation["invited_by_user_id"]),
-        )
+        try:
+            control.execute(
+                "INSERT INTO firm_memberships(user_id,firm_id,firm_role,status,created_by_user_id) "
+                "VALUES(?,?,?,'active',?)",
+                (user_id, invitation["firm_id"], invitation["invited_role"], invitation["invited_by_user_id"]),
+            )
+        except sqlite3.IntegrityError as exc:
+            raise HTTPException(409, "the invited identity already has a membership") from exc
         control.execute(
             "UPDATE identity_invitations SET status='consumed',consumed_by_user_id=?,"
             "consumed_at=?,updated_at=? WHERE id=? AND status='sent'",
@@ -3452,10 +3457,6 @@ def accept_invitation_new_identity(b: InvitationAcceptNewIn):
         if control.in_transaction:
             control.rollback()
         raise
-    except sqlite3.IntegrityError as exc:
-        if control.in_transaction:
-            control.rollback()
-        raise HTTPException(409, "invitation could not be accepted; the identity or membership already exists") from exc
     except sqlite3.Error as exc:
         if control.in_transaction:
             control.rollback()
@@ -3504,11 +3505,14 @@ def accept_invitation_existing_identity(b: InvitationAcceptExistingIn, u: dict =
         ).fetchone()
         if existing is not None:
             raise HTTPException(409, "this identity already has a membership; invitations do not reactivate memberships")
-        control.execute(
-            "INSERT INTO firm_memberships(user_id,firm_id,firm_role,status,created_by_user_id) "
-            "VALUES(?,?,?,'active',?)",
-            (u["id"], invitation["firm_id"], invitation["invited_role"], invitation["invited_by_user_id"]),
-        )
+        try:
+            control.execute(
+                "INSERT INTO firm_memberships(user_id,firm_id,firm_role,status,created_by_user_id) "
+                "VALUES(?,?,?,'active',?)",
+                (u["id"], invitation["firm_id"], invitation["invited_role"], invitation["invited_by_user_id"]),
+            )
+        except sqlite3.IntegrityError as exc:
+            raise HTTPException(409, "this identity already has a membership; invitations do not reactivate memberships") from exc
         control.execute(
             "UPDATE identity_invitations SET status='consumed',consumed_by_user_id=?,"
             "consumed_at=?,updated_at=? WHERE id=? AND status='sent'",
@@ -3530,10 +3534,6 @@ def accept_invitation_existing_identity(b: InvitationAcceptExistingIn, u: dict =
         if control.in_transaction:
             control.rollback()
         raise
-    except sqlite3.IntegrityError as exc:
-        if control.in_transaction:
-            control.rollback()
-        raise HTTPException(409, "invitation could not be accepted; the membership already exists") from exc
     except sqlite3.Error as exc:
         if control.in_transaction:
             control.rollback()
