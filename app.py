@@ -1652,6 +1652,14 @@ class InvitationAcceptExistingIn(BaseModel):
 class InvitationRevokeIn(BaseModel):
     reason: str = Field(min_length=5, max_length=500)
 
+    @field_validator("reason")
+    @classmethod
+    def validate_revoke_reason(cls, value):
+        value = value.strip()
+        if len(value) < 5:
+            raise ValueError("revocation reason must contain at least five non-space characters")
+        return value
+
 
 class RecoveryRequestIn(BaseModel):
     email: str = Field(min_length=3, max_length=200)
