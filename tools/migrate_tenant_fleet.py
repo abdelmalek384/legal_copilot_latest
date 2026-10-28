@@ -141,6 +141,8 @@ def build_plan(control_db: str | Path, tenant_root: str | Path, migrations_root:
             ).fetchone()
             if profile is None or profile["profile"] != "control_plane":
                 raise FleetMigrationError("Control database is not immutably bound to control_plane")
+            if control.execute("PRAGMA foreign_key_check").fetchall():
+                raise FleetMigrationError("Control-plane catalog has foreign-key violations")
             rows = control.execute(
                 "SELECT c.firm_id,c.database_file,c.status,f.status AS firm_status "
                 "FROM tenant_database_catalog c JOIN firms f ON f.id=c.firm_id "
