@@ -2,6 +2,7 @@ import hashlib
 import sqlite3
 import tempfile
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
 import app
@@ -107,6 +108,23 @@ class PurgeApprovedOriginalFilesTests(unittest.TestCase):
         )
         firm_db.commit()
         return staged, request_id
+
+    def test_purge_operation_rejects_production_mode_before_touching_storage(self):
+        with patch.dict("os.environ", {
+            "COPILOT_ENV": "production",
+            "COPILOT_OBJECT_STORAGE_BACKEND": "local",
+        }):
+            with self.assertRaisesRegex(RuntimeError, "disabled in production"):
+                purge_approved_requests(
+                    self.tenant_path,
+                    self.object_root,
+                    self.firm_id,
+                    self.operator_id,
+                    apply=True,
+                    control_database_path=self.control_path,
+                    tenant_root=self.tenant_root,
+                    corpus_database_path=self.corpus_path,
+                )
 
     def test_purge_operation_rejects_active_firm_even_when_request_is_approved(self):
         staged, _ = self._create_approved_request()
