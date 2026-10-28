@@ -19,7 +19,7 @@
     "commercial_reuse_permission": "unknown",
     "search_eligible": false
   },
-  "source_method_note": "Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF has not been downloaded, hashed, or visually inspected; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording. Additional cards for accompanying-law Articles 4–9 were prepared from text extraction of the government-hosted Official Gazette PDF on 2026-10-28. The PDF has not been downloaded, hashed, or visually inspected; page pinpointing is provisional and all cards remain non-authoritative. Additional cards for accompanying-law Articles 10–12 were prepared from the government-hosted Official Gazette PDF text extraction on 2026-10-28. Page references are based on the extracted page labels; the PDF has not been downloaded, hashed, or visually inspected. Cards remain provisional and non-authoritative.",
+  "source_method_note": "Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF has not been downloaded, hashed, or visually inspected; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording. Additional cards for accompanying-law Articles 4–9 were prepared from text extraction of the government-hosted Official Gazette PDF on 2026-10-28. The PDF has not been downloaded, hashed, or visually inspected; page pinpointing is provisional and all cards remain non-authoritative. Additional cards for accompanying-law Articles 10–12 were prepared from the government-hosted Official Gazette PDF text extraction on 2026-10-28. Page references are based on the extracted page labels; the PDF has not been downloaded, hashed, or visually inspected. Cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 16, 22, 23, 25 and 27 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; these cards remain provisional and non-authoritative.",
   "cards": [
     {
       "card_id": "EG-LABOUR-14-2025-PROMULGATION-ART-1-SCOPE",
@@ -1331,6 +1331,216 @@
       "limitations": [
         "لا تثبت البطاقة وحدها انطباق القانون على العامل أو اكتمال شروط الاستحقاق",
         "لم تُراجع قرارات المجلس القومي للأجور أو أي تطبيقات لاحقة",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "final advice or authoritative retrieval"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-16-TRAINING-SCOPE",
+      "question": "Which groups and training centres are covered by the training chapter in Article 16?",
+      "provisional_answer_ar": "تسري أحكام باب التدريب على مراكز التدريب الخاضعة للقانون، وعلى الفئات التي يعددها النص، ومنها الراغبون في التدريب، والأشخاص ذوو الإعاقة والأقزام والفئات الأولى بالرعاية، والمتدرجون، والراغبون في التأهيل الأعلى أو المستمر، وعمال التلمذة الصناعية. يلزم التحقق من نطاق القانون والتعريفات والقرارات المنظمة قبل تصنيف جهة أو شخص بعينه.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 16",
+        "official_gazette_printed_page": 15,
+        "pdf_page_index_zero_based": 13
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص المادة 16 من الصفحة المطبوعة 15؛ الملف لم يُنزّل أو يُفحص بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "صفحة النص الرسمي للقانون؛ يلزم التحقق الموضعي عند التطبيق",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf",
+          "source_type": "ILO NATLEX-hosted Arabic legal text",
+          "supports": "مصدر مقارنة/اكتشاف ثانوي؛ لا يحل محل التحقق من النص الرسمي، وشروط إعادة الاستخدام غير مثبتة"
+        }
+      ],
+      "limitations": [
+        "هذه الخلاصة لا تحدد جميع شروط الخضوع أو الاستثناءات في القانون",
+        "لم تُراجع القرارات التنفيذية المنظمة للتدريب أو التعديلات اللاحقة",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "final advice or authoritative retrieval"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-22-ELIGIBLE-TRAINING-ENTITIES",
+      "question": "Which legal forms may conduct training operations, and what exceptions does Article 22 list?",
+      "provisional_answer_ar": "تقيد المادة 22 مزاولة عمليات التدريب بأشكال قانونية معينة، وتورد استثناءات تشمل منظمات أصحاب الأعمال والمنظمات النقابية والجمعيات والمؤسسات الأهلية وفق القوانين المنظمة، وجهات تدريب تنشئها وحدات الجهاز الإداري للدولة والهيئات العامة ووحدات الإدارة المحلية لتدريب موظفيها، والمنشآت التي تتولى تدريب عمالها، وكيانات تأهيل وتدريب الأشخاص ذوي الإعاقة والأقزام والفئات الأولى بالرعاية. يجب فحص كل استثناء وشروطه قبل تقرير جواز نشاط جهة معينة.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 22",
+        "official_gazette_printed_page": 19,
+        "pdf_page_index_zero_based": 17
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص المادة 22 من الصفحة المطبوعة 19؛ الملف لم يُنزّل أو يُفحص بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "صفحة النص الرسمي للقانون؛ يلزم التحقق الموضعي عند التطبيق",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf",
+          "source_type": "ILO NATLEX-hosted Arabic legal text",
+          "supports": "مصدر مقارنة/اكتشاف ثانوي؛ لا يحل محل التحقق من النص الرسمي، وشروط إعادة الاستخدام غير مثبتة"
+        }
+      ],
+      "limitations": [
+        "الاستثناءات مرتبطة بصياغة المادة وشروطها ولا تعني إعفاء كل جهة من كل متطلب",
+        "لم تُراجع التراخيص الخاصة أو القرارات المنظمة لكل فئة",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "final advice or authoritative retrieval"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-23-TRAINING-CENTRE-LICENCE",
+      "question": "What licensing framework does Article 23 establish for training operations?",
+      "provisional_answer_ar": "تشترط المادة 23 ترخيصاً من الوزارة المختصة لمزاولة عمليات التدريب، مع استثناء الجهات المحددة في بعض بنود المادة 22. وتفوض الوزير في تحديد شروط الترخيص ومدته وتجديده وإلغائه والرسوم، مع حد أقصى للرسوم قدره مائة ألف جنيه، كما تتناول قواعد إنشاء مراكز التدريب واعتمادها والسجل الخاص بالجهات المرخصة. يجب الرجوع إلى القرار التنفيذي الساري قبل تحديد المتطلبات العملية أو الرسوم الفعلية.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 23",
+        "official_gazette_printed_page": 19,
+        "pdf_page_index_zero_based": 17
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص المادة 23 من الصفحة المطبوعة 19؛ الملف لم يُنزّل أو يُفحص بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "صفحة النص الرسمي للقانون؛ يلزم التحقق الموضعي عند التطبيق",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf",
+          "source_type": "ILO NATLEX-hosted Arabic legal text",
+          "supports": "مصدر مقارنة/اكتشاف ثانوي؛ لا يحل محل التحقق من النص الرسمي، وشروط إعادة الاستخدام غير مثبتة"
+        }
+      ],
+      "limitations": [
+        "المادة تحيل تفاصيل مهمة إلى قرار وزاري لم يُثبت هنا نصه الحالي",
+        "الحد الأقصى للرسوم لا يساوي الرسوم الفعلية المستحقة",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "final advice or authoritative retrieval"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-25-TRAINER-LICENCE",
+      "question": "Does Article 25 require trainers to be licensed?",
+      "provisional_answer_ar": "تشترط المادة 25 ترخيص المدربين الذين يزاولون أعمال التدريب، وتفوض الوزير في تحديد شروط الترخيص وإجراءاته ورسومه، بحد أقصى خمسة آلاف جنيه، مع حالات استثناء مرتبطة ببعض الجهات الواردة في المادة 22 عندما يقتصر التدريب على العمل داخلها. يلزم مراجعة القرار الوزاري وقيد المدرب وحالة الجهة قبل تقرير وجوب الترخيص أو الإعفاء.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 25",
+        "official_gazette_printed_page": 20,
+        "pdf_page_index_zero_based": 18
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص المادة 25 من الصفحة المطبوعة 20؛ الملف لم يُنزّل أو يُفحص بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "صفحة النص الرسمي للقانون؛ يلزم التحقق الموضعي عند التطبيق",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf",
+          "source_type": "ILO NATLEX-hosted Arabic legal text",
+          "supports": "مصدر مقارنة/اكتشاف ثانوي؛ لا يحل محل التحقق من النص الرسمي، وشروط إعادة الاستخدام غير مثبتة"
+        }
+      ],
+      "limitations": [
+        "يتوقف الإعفاء على الفئة القانونية للجهة ونطاق التدريب الفعلي",
+        "لم يُراجع القرار التنفيذي الساري أو سجل الترخيص",
+        "لا توجد مراجعة محامٍ مسجلة"
+      ],
+      "review_state": "provisional_primary_text_extract_reviewed",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "final advice or authoritative retrieval"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-27-OCCUPATIONAL-PRACTICE-LICENCE",
+      "question": "When does Article 27 require a licence to practise a profession or craft?",
+      "provisional_answer_ar": "تلزم المادة 27 من يرغب في مزاولة مهنة أو حرفة يحددها قرار من الوزير المختص بالتقدم إلى الجهة الإدارية المختصة للحصول على ترخيص، وتمنع تشغيل العامل ما لم يكن حاصلاً على الترخيص المطلوب. ويحدد القرار الشروط والإجراءات والرسوم، بحد أقصى خمسمائة جنيه، وحالات الإعفاء. لا يعني ذلك أن كل مهنة في مصر تتطلب هذا الترخيص؛ يجب أولاً تحديد ما إذا كانت المهنة مشمولة بقرار الوزير الساري.",
+      "pinpoint": {
+        "part": "القانون المرافق",
+        "article": "المادة 27",
+        "official_gazette_printed_page": 21,
+        "pdf_page_index_zero_based": 19
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf_text_extraction",
+          "supports": "استخراج نص المادة 27 من الصفحة المطبوعة 21؛ الملف لم يُنزّل أو يُفحص بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "صفحة النص الرسمي للقانون؛ يلزم التحقق الموضعي عند التطبيق",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/118430/qnwn_lml_ljdyd_14_lsn_2025_m_q.pdf",
+          "source_type": "ILO NATLEX-hosted Arabic legal text",
+          "supports": "مصدر مقارنة/اكتشاف ثانوي؛ لا يحل محل التحقق من النص الرسمي، وشروط إعادة الاستخدام غير مثبتة"
+        }
+      ],
+      "limitations": [
+        "يتوقف التطبيق على وجود قرار وزاري يحدد المهنة وعلى شروطه وحالات الإعفاء",
+        "لم يُراجع سجل القرارات الوزارية الحالية أو سجل التراخيص",
         "لا توجد مراجعة محامٍ مسجلة"
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
