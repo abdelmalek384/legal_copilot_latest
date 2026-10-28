@@ -2064,6 +2064,12 @@
       "action": "Retrieve the official text/publication reference for the 2026 standards reported under Labour Decision 264/2025; establish whether they are a separate instrument, record exact title/number and effective date, and keep legal status and reuse permission unresolved until reviewed.",
       "owner": "legal corpus lead",
       "status": "not_started"
+    },
+    {
+      "id": "ACT-LABOUR-DECISION-49-2026-VERIFY",
+      "action": "Obtain and verify the full official text, Gazette issue/pages, effective date and any later amendments/repeal for Ministerial Decision 49/2026; keep permission and legal status unknown until evidence and qualified review are complete.",
+      "owner": "legal corpus lead",
+      "status": "not_started"
     }
   ],
   "research_log": {
