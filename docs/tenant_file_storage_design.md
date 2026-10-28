@@ -1,6 +1,6 @@
 # Tenant-scoped original document storage — design proposal
 
-**Status:** Partially implemented in PR #671; not production-ready. The branch adds a local development adapter, firm-scoped metadata migration, upload retention and audited authorized downloads in separate-database mode. This is not a production object-store/KMS integration, and restore/retention acceptance gates remain open. Do not treat it as production-ready or as a complete retention policy. The deployment/release preflight now fails closed while no production KMS-backed object-storage adapter is implemented and verified across upload, reconciliation, backup, restore, and deletion.
+**Status:** Partially implemented in PR #671; not production-ready. The branch now includes a local development adapter and an S3-compatible adapter that requests SSE-KMS, plus firm-scoped metadata and audited authorized downloads. The S3 adapter has mocked-client regression tests, but the operational reconciler, staged-object recovery, encrypted backup/restore, deletion drills, bucket policy, KMS policy, and real-provider acceptance have not been completed. Application production uploads intentionally remain fail-closed until those paths support the same backend and pass witnessed recovery tests. This is not a complete retention policy.
 
 ## Goal and security boundary
 
@@ -17,11 +17,11 @@ The approved database architecture remains:
 
 ### Storage adapter and key namespace
 
-The initial adapter interface is implemented in `original_file_storage.py`: stage an object, finalize it, open it for an authorized read, delete it, and verify its digest. The local adapter is development-only and uses restrictive permissions, opaque IDs, symlink rejection, size limits, and non-overwriting finalization. The adapter receives a trusted firm context resolved by the application; it must not accept a tenant ID or storage path from request payloads.
+The local adapter interface is implemented in `original_file_storage.py`, and the S3-compatible adapter in `s3_original_file_storage.py` provides stage/finalize/open/delete/integrity operations. The S3 adapter requires a bucket and managed KMS key ID, uses firm-namespaced opaque keys, conditional creation/copy, and SSE-KMS request parameters. It never creates public URLs. The local adapter is development-only and uses restrictive permissions, opaque IDs, symlink rejection, size limits, and non-overwriting finalization. Both adapters receive a firm ID resolved from trusted server-side context, never from request payloads.
 
 For local development, use a dedicated storage root separate from the database root. Derive each firm's namespace from the trusted catalog binding and an opaque generated object ID. For production, use a private encrypted volume or private object-storage bucket with server-side encryption/KMS, least-privilege service access, and no public object URLs. Keep original filenames as metadata only; never use them as path components.
 
-Do not reuse `BACKUP_KEY` for document encryption. The production backend and key-management method must be chosen before implementing encryption; the storage adapter should allow the local and production implementations to differ without changing authorization logic.
+Do not reuse `BACKUP_KEY` for document encryption. S3 backend configuration uses `COPILOT_S3_BUCKET`, `COPILOT_S3_REGION`, `COPILOT_S3_KMS_KEY_ID`, and optional `COPILOT_S3_ENDPOINT_URL`; the AWS SDK uses its standard credential chain. A successful API request is not proof that bucket policy, KMS grants, retention/versioning, or provider-specific conditional writes are correctly configured. Those settings require independent review and live staging tests. Production remains disabled until reconciliation, recovery, encrypted backup/restore, and deletion are tested against S3 end to end.
 
 ### Tenant database metadata
 
