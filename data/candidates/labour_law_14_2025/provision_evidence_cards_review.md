@@ -7575,3 +7575,7 @@ Created `related_instruments/implementing_decisions_inventory_2026-10-28.json` w
 
 Each entry separates source leads from verified operative text, records article mapping as provisional, and keeps authoritative retrieval disabled. Added a focused test file for the instrument register. The register itself was structurally built with seven unique IDs, HTTPS sources, article mappings, and no search-eligible items; tests have not been run in a repository runtime.
 
+## Source rights and reuse gate formalized
+
+Added `related_instruments/source_rights_register_2026-10-28.json` for nine sources: Amiri Press, ETA-hosted Gazette PDF, Ministry of Labour catalogue and announcements, Wikisource, Fahm Qanun, Law Hub, EastLaws and the IDSC/Gazette metadata repository. It separates public accessibility from redistribution/commercial reuse permission and records the original Gazette PDF as not yet downloaded/hashed. The register explicitly forbids bypassing access restrictions and prefers source links, short factual summaries, pinpoint citations and provenance metadata until reuse terms are established. A focused test was added; it has not been executed in a repository runtime.
+
