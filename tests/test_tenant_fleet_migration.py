@@ -149,6 +149,21 @@ class TenantFleetMigrationTests(unittest.TestCase):
                 self.migrations_root,
             )
 
+    def test_preflight_refuses_unreferenced_tenant_database_file(self):
+        orphan = self.root / "tenant-999-" + Path("a" * 32 + ".sqlite3")
+        # Keep the orphan filename in the tenant naming family so the test
+        # proves catalog reconciliation, not filename parsing, catches it.
+        orphan_path = self.root / ("tenant-999-" + "a" * 32 + ".sqlite3")
+        sqlite3.connect(orphan_path).close()
+        if os.name == "posix":
+            os.chmod(orphan_path, 0o600)
+        with self.assertRaisesRegex(FleetMigrationError, "unreferenced files"):
+            build_plan(
+                self.runtime.paths.control_plane,
+                self.runtime.paths.tenant_root,
+                self.migrations_root,
+            )
+
     def test_preflight_refuses_missing_provisioned_tenant_database(self):
         self.tenant_path.unlink()
         with self.assertRaisesRegex(FleetMigrationError, "missing or unsafe"):
