@@ -18,7 +18,19 @@ class FakeS3Error(RuntimeError):
         self.response = {"Error": {"Code": code}, "ResponseMetadata": {"HTTPStatusCode": 404 if code == "NoSuchKey" else 500}}
 
 
+class FakeKMSClient:
+    def describe_key(self, *, KeyId):
+        if KeyId not in {"alias/legal-files", "key-1234", "arn:aws:kms:us-east-1:123456789012:key/key-1234"}:
+            raise RuntimeError("unknown KMS key")
+        return {"KeyMetadata": {
+            "KeyId": "key-1234",
+            "Arn": "arn:aws:kms:us-east-1:123456789012:key/key-1234",
+        }}
+
+
 class FakeS3Client:
+    CANONICAL_KMS_ARN = "arn:aws:kms:us-east-1:123456789012:key/key-1234"
+
     def __init__(self):
         self.objects = {}
         self.calls = []
@@ -40,7 +52,7 @@ class FakeS3Client:
             "Metadata": dict(kwargs.get("Metadata", {})),
             "ETag": '"' + hashlib.md5(data).hexdigest() + '"',
             "ServerSideEncryption": kwargs.get("ServerSideEncryption"),
-            "SSEKMSKeyId": kwargs.get("SSEKMSKeyId"),
+            "SSEKMSKeyId": self.CANONICAL_KMS_ARN,
         }
         return {}
 
@@ -66,7 +78,7 @@ class FakeS3Client:
         self.objects[destination] = {
             **value,
             "ServerSideEncryption": kwargs.get("ServerSideEncryption"),
-            "SSEKMSKeyId": kwargs.get("SSEKMSKeyId"),
+            "SSEKMSKeyId": self.CANONICAL_KMS_ARN,
         }
         return {}
 
@@ -90,7 +102,10 @@ class FakeS3Client:
 class S3PrivateObjectStoreTests(unittest.TestCase):
     def setUp(self):
         self.client = FakeS3Client()
-        self.store = S3PrivateObjectStore(self.client, "private-matter-files", "alias/legal-files", max_bytes=1024)
+        self.store = S3PrivateObjectStore(
+            self.client, "private-matter-files", "alias/legal-files",
+            max_bytes=1024, kms_client=FakeKMSClient(),
+        )
 
     def test_stage_uses_firm_namespace_and_kms_encryption(self):
         payload = b"confidential original\x00bytes"
@@ -101,7 +116,7 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
         value = self.client.objects[key]
         self.assertEqual(value["Body"], payload)
         self.assertEqual(value["ServerSideEncryption"], "aws:kms")
-        self.assertEqual(value["SSEKMSKeyId"], "alias/legal-files")
+        self.assertEqual(value["SSEKMSKeyId"], self.client.CANONICAL_KMS_ARN)
         call = next(kwargs for name, kwargs in self.client.calls if name == "put_object")
         self.assertEqual(call["IfNoneMatch"], "*")
         self.assertEqual(call["Metadata"]["firm-id"], "12")
@@ -131,6 +146,24 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
         self.assertEqual(copy_call["ServerSideEncryption"], "aws:kms")
         self.assertEqual(copy_call["SSEKMSKeyId"], "alias/legal-files")
         self.assertEqual(copy_call["IfNoneMatch"], "*")
+
+    def test_rejects_objects_encrypted_with_a_different_kms_key(self):
+        staged = self.store.stage(12, b"confidential")
+        self.store.finalize(12, staged.object_id)
+        key = ("private-matter-files", f"firms/12/originals/{staged.object_id}.blob")
+        self.client.objects[key]["SSEKMSKeyId"] = "arn:aws:kms:us-east-1:123456789012:key/other-key"
+        with self.assertRaises(ObjectStorageError):
+            self.store.open(12, staged.object_id)
+        self.assertFalse(self.store.verify(
+            12, staged.object_id, expected_sha256=staged.sha256,
+            expected_size=staged.byte_size,
+        ))
+        with self.assertRaises(ObjectStorageError):
+            self.store.object_presence(12, staged.object_id)
+
+    def test_kms_alias_requires_key_resolution_client(self):
+        with self.assertRaises(ValueError):
+            S3PrivateObjectStore(self.client, "private-matter-files", "alias/legal-files")
 
     def test_rejects_unencrypted_or_non_kms_objects_on_read_and_verify(self):
         staged = self.store.stage(12, b"confidential")
