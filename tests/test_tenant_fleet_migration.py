@@ -58,6 +58,18 @@ class TenantFleetMigrationTests(unittest.TestCase):
                 "SELECT name FROM sqlite_master WHERE type='table' AND name='fleet_migration_test'"
             ).fetchone())
 
+    def test_preflight_rejects_migration_fifo_without_blocking(self):
+        if not hasattr(os, "mkfifo") or os.name != "posix":
+            self.skipTest("FIFO behavior is POSIX-specific")
+        fifo = self.migrations_root / "firm" / "9999_wait_forever.sql"
+        os.mkfifo(fifo)
+        with self.assertRaisesRegex(FleetMigrationError, "Unsafe migration input"):
+            build_plan(
+                self.runtime.paths.control_plane,
+                self.runtime.paths.tenant_root,
+                self.migrations_root,
+            )
+
     def test_apply_requires_explicit_worker_stop_confirmation(self):
         self._add_pending_migration()
         with self.assertRaisesRegex(FleetMigrationError, "worker-stop confirmation"):

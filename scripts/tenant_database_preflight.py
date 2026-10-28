@@ -20,6 +20,10 @@ import sys
 from pathlib import Path
 from typing import Any
 
+# Support importing shared safe migration-input validation when run as a script.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from db_migrations import MigrationError, read_migration_file
+
 _FILENAME = re.compile(r"^tenant-(?P<firm_id>[1-9][0-9]*)-(?P<nonce>[0-9a-f]{32})\.sqlite3$")
 
 
@@ -54,7 +58,10 @@ def _expected_profile_migrations(profile: str) -> dict[int, tuple[str, str]]:
         if match is None:
             raise ValueError(f"invalid {profile} migration filename: {path.name}")
         version = int(match.group(1))
-        sql = path.read_text(encoding="utf-8")
+        try:
+            sql = read_migration_file(path)
+        except MigrationError as exc:
+            raise ValueError(f"unsafe {profile} migration input: {path.name}") from exc
         if version in expected:
             raise ValueError(f"duplicate {profile} migration version: {version}")
         expected[version] = (path.name, hashlib.sha256(sql.encode("utf-8")).hexdigest())

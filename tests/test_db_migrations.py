@@ -30,6 +30,20 @@ class DatabaseMigrationTests(unittest.TestCase):
         self.assertEqual(columns, ["id", "value"])
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM schema_migrations").fetchone()[0], 2)
 
+    def test_crlf_migration_preserves_text_mode_checksum_semantics(self):
+        import hashlib
+
+        path = self.path / "0001_crlf_schema.sql"
+        path.write_bytes(b"CREATE TABLE sample(id INTEGER);\r\n")
+        self.assertEqual(apply_migrations(self.db, self.path), [1])
+        expected = hashlib.sha256(
+            "CREATE TABLE sample(id INTEGER);\n".encode("utf-8")
+        ).hexdigest()
+        recorded = self.db.execute(
+            "SELECT checksum_sha256 FROM schema_migrations WHERE version=1"
+        ).fetchone()[0]
+        self.assertEqual(recorded, expected)
+
     def test_multiple_statements_per_line_and_trigger_bodies(self):
         self.write(
             "0001_compact_schema.sql",
@@ -191,6 +205,30 @@ class DatabaseMigrationTests(unittest.TestCase):
         self.assertIsNone(self.db.execute(
             "SELECT name FROM sqlite_master WHERE type='table' AND name='unexpected'"
         ).fetchone())
+
+    def test_non_regular_migration_fifo_is_rejected_without_blocking(self):
+        import os
+
+        if not hasattr(os, "mkfifo") or os.name != "posix":
+            self.skipTest("FIFO behavior is POSIX-specific")
+        fifo = self.path / "0001_wait_forever.sql"
+        os.mkfifo(fifo)
+        with self.assertRaisesRegex(MigrationError, "must be a regular file"):
+            apply_migrations(self.db, self.path)
+        self.assertEqual(
+            self.db.execute("SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='schema_migrations'").fetchone()[0],
+            0,
+        )
+
+    def test_oversized_migration_is_rejected(self):
+        path = self.path / "0001_oversized.sql"
+        path.write_text(" " * (5_000_001), encoding="utf-8")
+        with self.assertRaisesRegex(MigrationError, "5 MB safety limit"):
+            apply_migrations(self.db, self.path)
+        self.assertEqual(
+            self.db.execute("SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='schema_migrations'").fetchone()[0],
+            0,
+        )
 
     def test_symlinked_migration_directory_is_rejected(self):
         actual = self.path / "actual"

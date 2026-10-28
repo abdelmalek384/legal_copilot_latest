@@ -40,6 +40,21 @@ class DatabaseStartupDDLInventoryTests(unittest.TestCase):
         self.assertIn("firm/0001_firm_matter_foundation.sql", migration_files)
         self.assertIn("legal_corpus/0001_shared_legal_corpus.sql", migration_files)
 
+    def test_inventory_rejects_migration_fifo_without_blocking(self):
+        import os
+
+        if not hasattr(os, "mkfifo") or os.name != "posix":
+            self.skipTest("FIFO behavior is POSIX-specific")
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            app = root / "app.py"
+            migrations = root / "migrations"
+            migrations.mkdir()
+            app.write_text('SCHEMA = """CREATE TABLE sample(id INTEGER);"""\n', encoding="utf-8")
+            os.mkfifo(migrations / "0001_wait_forever.sql")
+            with self.assertRaisesRegex(ValueError, "unsafe migration input"):
+                inventory(app, migrations)
+
     def test_inventory_uses_explicit_paths_and_does_not_require_a_database(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
