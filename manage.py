@@ -4,6 +4,7 @@ import getpass
 import glob
 import json
 import os
+import re
 import sqlite3
 import tempfile
 import time
@@ -223,40 +224,62 @@ def addmembership_cli(a):
         runtime.close_current_thread()
 
 
+def _is_privileged_identity(control, user_id: int) -> bool:
+    return control.execute(
+        "SELECT 1 FROM user_platform_roles WHERE user_id=? "
+        "UNION ALL SELECT 1 FROM firm_memberships WHERE user_id=? AND firm_role='admin' LIMIT 1",
+        (user_id, user_id),
+    ).fetchone() is not None
+
+
 def resetpw(a):
-    pw = read_password("كلمة المرور الجديدة: ")
     if app._separate_runtime_enabled():
         runtime = DatabaseRuntime.from_env()
         try:
             runtime.initialize()
             c = runtime.control_connection()
             email = app.normalize_email(a.email)
-            c.execute("BEGIN IMMEDIATE")
-            account = c.execute("SELECT id FROM users WHERE email_normalized=?", (email,)).fetchone()
+            account = c.execute(
+                "SELECT id,status FROM users WHERE email_normalized=?", (email,)
+            ).fetchone()
             if not account:
-                c.rollback()
                 raise SystemExit("لا يوجد حساب بهذا البريد الإلكتروني.")
+            if _is_privileged_identity(c, int(account["id"])):
+                raise SystemExit(
+                    "Privileged identities require the MFA-authorized resetpw-assisted procedure."
+                )
+            pw = read_password("كلمة المرور الجديدة: ")
+            c.execute("BEGIN IMMEDIATE")
+            current = c.execute(
+                "SELECT id,status FROM users WHERE id=?", (account["id"],)
+            ).fetchone()
+            if current is None or current["status"] != "active" or _is_privileged_identity(c, int(account["id"])):
+                c.rollback()
+                raise SystemExit("Identity state changed; no password reset was performed.")
             c.execute(
-                "UPDATE users SET password_hash=?,updated_at=datetime('now') WHERE id=?",
+                "UPDATE users SET password_hash=?,updated_at=datetime('now') WHERE id=? AND status='active'",
                 (app.hash_pw(pw), account["id"]),
             )
-            c.execute("DELETE FROM auth_sessions WHERE user_id=?", (account["id"],))
+            revoked = c.execute("DELETE FROM auth_sessions WHERE user_id=?", (account["id"],)).rowcount
             c.execute(
                 "INSERT INTO platform_security_events(actor_user_id,target_user_id,event_type,detail_json) "
                 "VALUES(NULL,?,'password_reset_cli',?)",
-                (account["id"], json.dumps({"method": "manage.py resetpw", "sessions_revoked": True}, sort_keys=True)),
+                (account["id"], json.dumps({"method": "manage.py resetpw", "sessions_revoked": revoked}, sort_keys=True)),
             )
             c.commit()
             print("تم تحديث كلمة المرور وإبطال جميع الجلسات؛ سجّل الدخول من جديد.")
             return
-        except Exception:
+        except SystemExit:
+            raise
+        except Exception as exc:
             try:
                 runtime.control_connection().rollback()
             except Exception:
                 pass
-            raise
+            raise SystemExit("Password reset failed; no success is reported.") from exc
         finally:
             runtime.close_current_thread()
+    pw = read_password("كلمة المرور الجديدة: ")
     c = app.conn()
     email = a.email.strip().lower()
     c.execute("BEGIN IMMEDIATE")
@@ -270,6 +293,171 @@ def resetpw(a):
               (account["firm_id"], account["id"], "password_reset_cli_sessions_revoked"))
     c.commit()
     print("تم تحديث كلمة المرور؛ سجّل الدخول من جديد.")
+
+
+def resetpw_assisted_cli(a):
+    """Reset a privileged identity only after a distinct active MFA-enabled platform admin authorizes it."""
+    if not app._separate_runtime_enabled():
+        raise SystemExit("Assisted privileged password recovery requires separate-database mode.")
+    if not getattr(a, "confirm_reset", False):
+        raise SystemExit("Explicit --confirm-reset is required.")
+    if isinstance(a.target_user_id, bool) or a.target_user_id <= 0:
+        raise SystemExit("--target-user-id must be a positive integer.")
+    reason = a.reason.strip() if isinstance(a.reason, str) else ""
+    if len(reason) < 8 or len(reason) > 500:
+        raise SystemExit("--reason must contain 8 to 500 characters; do not include secrets.")
+    reference_pattern = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._/-]{2,63}$")
+    operator_reference = a.operator_reference.strip() if isinstance(a.operator_reference, str) else ""
+    change_reference = a.change_reference.strip() if isinstance(a.change_reference, str) else ""
+    if not reference_pattern.fullmatch(operator_reference):
+        raise SystemExit("--operator-reference must be a 3-64 character restricted identifier.")
+    if not reference_pattern.fullmatch(change_reference):
+        raise SystemExit("--change-reference must be a 3-64 character restricted identifier.")
+    actor_email = app.normalize_email(a.actor_email)
+    if not actor_email:
+        raise SystemExit("--actor-email must identify an existing global identity.")
+
+    actor_password = getpass.getpass("Authorizing platform administrator password: ")
+    actor_code = getpass.getpass("Authorizing platform administrator TOTP code: ")
+    new_password = read_password("New password for privileged account: ")
+    new_password_hash = app.hash_pw(new_password)
+    runtime = DatabaseRuntime.from_env()
+    try:
+        runtime.initialize()
+        control = runtime.control_connection()
+        now = int(time.time())
+        control.execute("BEGIN IMMEDIATE")
+
+        def abort(message):
+            if control.in_transaction:
+                control.rollback()
+            raise SystemExit(message)
+
+        actor = control.execute(
+            "SELECT id,password_hash,status FROM users WHERE email_normalized=?",
+            (actor_email,),
+        ).fetchone()
+        if (
+            actor is None or actor["status"] != "active"
+            or not app.check_pw(actor_password, actor["password_hash"])
+        ):
+            abort("Assisted recovery actor authentication failed.")
+        actor_id = int(actor["id"])
+        if actor_id == a.target_user_id:
+            abort("The authorizing platform administrator must differ from the target.")
+        authorized = control.execute(
+            "SELECT 1 FROM user_platform_roles WHERE user_id=? AND role_name='platform_admin'",
+            (actor_id,),
+        ).fetchone()
+        if authorized is None:
+            abort("Only an active platform_admin may authorize privileged password recovery.")
+        actor_mfa = control.execute(
+            "SELECT status,locked_until FROM mfa_credentials WHERE user_id=?",
+            (actor_id,),
+        ).fetchone()
+        if actor_mfa is None or actor_mfa["status"] != "enabled":
+            abort("The authorizing platform administrator must have enabled MFA.")
+        if int(actor_mfa["locked_until"] or 0) > now:
+            abort("The authorizing administrator's MFA is temporarily locked.")
+        try:
+            factor = app._mfa_verify_factor_in_transaction(
+                control, actor_id, code=actor_code, recovery_code=None, now=now,
+            )
+        except app.MFAConfigurationError as exc:
+            abort("MFA encryption key is unavailable or invalid.")
+        if factor != "totp":
+            app._mfa_record_failure(control, actor_id, now)
+            control.commit()
+            raise SystemExit("Assisted recovery actor MFA verification failed.")
+
+        target = control.execute(
+            "SELECT id,status,password_hash FROM users WHERE id=?",
+            (a.target_user_id,),
+        ).fetchone()
+        if target is None or target["status"] != "active":
+            abort("Target must be an existing active global identity.")
+        if not _is_privileged_identity(control, int(target["id"])):
+            abort("This command is restricted to firm-admin or platform-role identities.")
+        active_access = control.execute(
+            "SELECT 1 FROM firm_memberships fm JOIN firms f ON f.id=fm.firm_id "
+            "WHERE fm.user_id=? AND fm.status='active' AND f.status='active' "
+            "UNION ALL SELECT 1 FROM user_platform_roles WHERE user_id=? LIMIT 1",
+            (target["id"], target["id"]),
+        ).fetchone()
+        if active_access is None:
+            abort("Target has no active firm membership or platform role; no reset was performed.")
+        if app.check_pw(new_password, target["password_hash"]):
+            abort("Choose a new password different from the current password.")
+        if control.execute(
+            "SELECT 1 FROM user_platform_roles WHERE user_id=? AND role_name='platform_admin'",
+            (target["id"],),
+        ).fetchone():
+            active_admins = control.execute(
+                "SELECT COUNT(DISTINCT u.id) FROM users u JOIN user_platform_roles r ON r.user_id=u.id "
+                "WHERE u.status='active' AND r.role_name='platform_admin'"
+            ).fetchone()[0]
+            if active_admins <= 1:
+                abort("Cannot reset the last active platform administrator through this command.")
+
+        revoked = control.execute(
+            "DELETE FROM auth_sessions WHERE user_id=?", (target["id"],)
+        ).rowcount
+        control.execute(
+            "UPDATE users SET password_hash=?,updated_at=datetime('now') "
+            "WHERE id=? AND status='active'",
+            (new_password_hash, target["id"]),
+        )
+        firm = control.execute(
+            "SELECT fm.firm_id FROM firm_memberships fm JOIN firms f ON f.id=fm.firm_id "
+            "WHERE fm.user_id=? AND fm.firm_role='admin' AND fm.status='active' AND f.status='active' "
+            "ORDER BY fm.firm_id LIMIT 1",
+            (target["id"],),
+        ).fetchone()
+        control.execute(
+            "INSERT INTO platform_security_events("
+            "actor_user_id,target_user_id,firm_id,event_type,detail_json) "
+            "VALUES(?,?,?,'password_reset_assisted_cli',?)",
+            (
+                actor_id, target["id"], int(firm["firm_id"]) if firm else None,
+                json.dumps({
+                    "method": "manage.py resetpw-assisted",
+                    "reason": reason,
+                    "operator_reference": operator_reference,
+                    "change_reference": change_reference,
+                    "sessions_revoked": revoked,
+                }, sort_keys=True, separators=(",", ":")),
+            ),
+        )
+        control.execute(
+            "INSERT INTO mfa_security_events(actor_user_id,target_user_id,event_type,detail_json) "
+            "VALUES(?,?,'administrator_reset',?)",
+            (
+                actor_id, target["id"],
+                json.dumps({
+                    "reason": "assisted_privileged_password_recovery",
+                    "method": "manage.py resetpw-assisted",
+                    "sessions_revoked": revoked,
+                }, sort_keys=True, separators=(",", ":")),
+            ),
+        )
+        control.commit()
+        print(json.dumps({
+            "status": "password_reset_assisted",
+            "actor_user_id": actor_id,
+            "target_user_id": int(target["id"]),
+            "sessions_revoked": revoked,
+            "event_type": "password_reset_assisted_cli",
+        }, sort_keys=True))
+    except SystemExit:
+        raise
+    except (DatabaseRuntimeError, sqlite3.Error, ValueError) as exc:
+        try:
+            runtime.control_connection().rollback()
+        except Exception:
+            pass
+        raise SystemExit("Assisted privileged password recovery failed; no success is reported.") from exc
+    finally:
+        runtime.close_current_thread()
 
 
 def backup(a):
@@ -457,6 +645,99 @@ def grant_platform_role(a):
 
 def revoke_platform_role(a):
     _change_platform_role(a, grant=False)
+
+
+def bootstrap_platform_admin_cli(a):
+    """One-time operator-controlled bootstrap for the first platform administrator."""
+    if not app._separate_runtime_enabled():
+        raise SystemExit("Platform-admin bootstrap requires separate-database mode.")
+    if not a.confirm_bootstrap:
+        raise SystemExit("Explicit --confirm-bootstrap is required.")
+    if isinstance(a.target_user_id, bool) or a.target_user_id <= 0:
+        raise SystemExit("--target-user-id must be a positive integer.")
+    reason = a.reason.strip() if isinstance(a.reason, str) else ""
+    if len(reason) < 8 or len(reason) > 500:
+        raise SystemExit("--reason must contain 8 to 500 characters; do not include secrets.")
+    reference_pattern = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._/-]{2,63}$")
+    operator_reference = a.operator_reference.strip() if isinstance(a.operator_reference, str) else ""
+    change_reference = a.change_reference.strip() if isinstance(a.change_reference, str) else ""
+    if not reference_pattern.fullmatch(operator_reference):
+        raise SystemExit("--operator-reference must be a 3-64 character restricted identifier.")
+    if not reference_pattern.fullmatch(change_reference):
+        raise SystemExit("--change-reference must be a 3-64 character restricted identifier.")
+
+    runtime = DatabaseRuntime.from_env()
+    try:
+        runtime.initialize()
+        control = runtime.control_connection()
+        control.execute("BEGIN IMMEDIATE")
+        try:
+            prior_bootstrap = control.execute(
+                "SELECT 1 FROM platform_security_events "
+                "WHERE event_type='platform_admin_bootstrap_cli' LIMIT 1"
+            ).fetchone()
+            if prior_bootstrap is not None:
+                raise SystemExit("A successful platform-admin bootstrap is already recorded; use the reviewed break-glass process.")
+            active_admin = control.execute(
+                "SELECT 1 FROM users u JOIN user_platform_roles r ON r.user_id=u.id "
+                "WHERE u.status='active' AND r.role_name='platform_admin' LIMIT 1"
+            ).fetchone()
+            if active_admin is not None:
+                raise SystemExit("An active platform administrator already exists.")
+            target = control.execute(
+                "SELECT id,status FROM users WHERE id=?", (a.target_user_id,)
+            ).fetchone()
+            if target is None or target["status"] != "active":
+                raise SystemExit("Target must be an existing active global identity.")
+            membership = control.execute(
+                "SELECT fm.firm_id FROM firm_memberships fm JOIN firms f ON f.id=fm.firm_id "
+                "WHERE fm.user_id=? AND fm.firm_role='admin' AND fm.status='active' "
+                "AND f.status='active' ORDER BY fm.firm_id LIMIT 1",
+                (a.target_user_id,),
+            ).fetchone()
+            if membership is None:
+                raise SystemExit("Target must have an active admin membership in an active firm.")
+            control.execute(
+                "INSERT INTO user_platform_roles(user_id,role_name,granted_by_user_id) "
+                "VALUES(?,'platform_admin',NULL)",
+                (a.target_user_id,),
+            )
+            control.execute(
+                "INSERT INTO platform_security_events("
+                "actor_user_id,target_user_id,firm_id,event_type,detail_json) "
+                "VALUES(NULL,?,?,'platform_admin_bootstrap_cli',?)",
+                (
+                    a.target_user_id,
+                    membership["firm_id"],
+                    json.dumps({
+                        "method": "manage.py bootstrap-platform-admin",
+                        "reason": reason,
+                        "operator_reference": operator_reference,
+                        "change_reference": change_reference,
+                    }, sort_keys=True),
+                ),
+            )
+            control.commit()
+        except SystemExit:
+            if control.in_transaction:
+                control.rollback()
+            raise
+        except sqlite3.Error as exc:
+            if control.in_transaction:
+                control.rollback()
+            raise SystemExit(
+                "Platform-admin bootstrap was not committed; role and audit event were rolled back."
+            ) from exc
+        print(json.dumps({
+            "status": "bootstrapped",
+            "target_user_id": int(a.target_user_id),
+            "firm_id": int(membership["firm_id"]),
+            "event_type": "platform_admin_bootstrap_cli",
+        }, sort_keys=True))
+    except (DatabaseRuntimeError, sqlite3.Error, ValueError) as exc:
+        raise SystemExit("Platform-admin bootstrap could not safely complete.") from exc
+    finally:
+        runtime.close_current_thread()
 
 
 def mfa_reset_cli(a):
@@ -697,6 +978,13 @@ sp.add_parser("gen-mfa-key", help="Generate a dedicated MFA secret-encryption ke
 )
 x = sp.add_parser("backup"); x.add_argument("dir"); x.add_argument("--keep", type=int, default=14); x.set_defaults(f=backup)
 x = sp.add_parser("backup-tenancy"); x.add_argument("dir"); x.add_argument("--keep", type=int, default=14); x.add_argument("--quiesced", action="store_true", help="Assert application writes are paused for the full bundle snapshot"); x.set_defaults(f=backup_tenancy)
+x = sp.add_parser("bootstrap-platform-admin", help="One-time CLI bootstrap of the first platform administrator")
+x.add_argument("--target-user-id", type=int, required=True)
+x.add_argument("--reason", required=True)
+x.add_argument("--operator-reference", required=True)
+x.add_argument("--change-reference", required=True)
+x.add_argument("--confirm-bootstrap", action="store_true", help="Explicitly confirm this irreversible first-admin bootstrap")
+x.set_defaults(f=bootstrap_platform_admin_cli)
 x = sp.add_parser("grant-platform-role", help="Grant a platform role; requires an active platform_admin actor")
 x.add_argument("--actor-email", required=True)
 x.add_argument("--target-email", required=True)
@@ -709,6 +997,14 @@ x.add_argument("--target-email", required=True)
 x.add_argument("--role", required=True, choices=["platform_admin", "platform_reviewer"])
 x.add_argument("--reason", required=True)
 x.set_defaults(f=revoke_platform_role)
+x = sp.add_parser("resetpw-assisted", help="MFA-authorized password reset for a privileged identity")
+x.add_argument("--actor-email", required=True)
+x.add_argument("--target-user-id", type=int, required=True)
+x.add_argument("--reason", required=True)
+x.add_argument("--operator-reference", required=True)
+x.add_argument("--change-reference", required=True)
+x.add_argument("--confirm-reset", action="store_true", help="Explicitly confirm this privileged password reset")
+x.set_defaults(f=resetpw_assisted_cli)
 x = sp.add_parser("mfa-reset", help="Reset a lost authenticator using a second active MFA-enabled platform administrator")
 x.add_argument("--actor-email", required=True)
 x.add_argument("--target-email", required=True)
@@ -723,7 +1019,7 @@ x = sp.add_parser("platform-audit", help="Read recent platform security events o
 x.add_argument("--limit", type=int, default=50)
 x.add_argument("--firm-id", type=int)
 x.add_argument("--target-user-id", type=int)
-x.add_argument("--event-type", choices=["password_reset_cli", "identity_created_cli", "password_changed_web", "firm_provisioned", "firm_disabled", "membership_created", "membership_suspended", "initial_owner_bootstrapped", "platform_role_granted", "platform_role_revoked"])
+x.add_argument("--event-type", choices=["password_reset_cli", "identity_created_cli", "password_changed_web", "firm_provisioned", "firm_disabled", "membership_created", "membership_suspended", "initial_owner_bootstrapped", "platform_role_granted", "platform_role_revoked", "platform_admin_bootstrap_cli", "password_reset_assisted_cli"])
 x.set_defaults(f=platform_audit)
 x = sp.add_parser("restore-tenancy"); x.add_argument("file"); x.add_argument("--target-root", required=True); x.set_defaults(f=restore_tenancy)
 x = sp.add_parser("verify-backup-tenancy", help="Verify an encrypted tenancy bundle using temporary protected storage"); x.add_argument("file"); x.set_defaults(f=verify_tenancy_backup)

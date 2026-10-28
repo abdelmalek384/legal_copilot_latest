@@ -30,10 +30,17 @@ class TenantRouteInventoryCoverageTests(unittest.TestCase):
         )
 
     def test_every_non_public_route_requires_authenticated_user_dependency(self):
-        # Only the landing page and credential-entry endpoint are intentionally
-        # public. All other routes must resolve the current identity through the
-        # shared user dependency before accessing tenant or platform data.
-        public_routes = {("GET", "/"), ("POST", "/login")}
+        # These public routes are intentionally token-bound or return only a
+        # generic response: credential entry, invitation acceptance, and password
+        # recovery. Firm administration and acceptance by an existing identity still
+        # require app.user (including CSRF/session checks).
+        public_routes = {
+            ("GET", "/"), ("POST", "/login"),
+            ("GET", "/invite/accept"), ("GET", "/account/recovery"),
+            ("POST", "/invitations/accept/new"),
+            ("POST", "/account/recovery/request"),
+            ("POST", "/account/recovery/consume"),
+        }
 
         def has_user_dependency(dependant):
             if getattr(dependant, "call", None) is app.user:

@@ -1,6 +1,6 @@
 # First platform administrator bootstrap — proposal
 
-**Status:** Decision required; no bootstrap command or web endpoint is implemented by this proposal. The existing platform-role grant/revoke CLI is intentionally actor-authorized and cannot grant the first platform administrator when no platform administrator exists.
+**Status:** The approved one-time CLI default is implemented in PR #690 as manage.py bootstrap-platform-admin. It remains unmerged and must not be treated as production-ready until the full CI suite passes on the updated PR head and an independent reviewer/witness validates the first deployment procedure.
 
 ## Recommended default
 
@@ -37,4 +37,4 @@ Approve or change these recommended defaults before implementation:
 3. Should a successful bootstrap event permanently disable the bootstrap command even if every platform-admin role is later revoked? Recommended: yes; recovery from loss of all platform administrators should be a separate break-glass procedure.
 4. Should the operator identify the target by immutable user ID only, or may normalized email be accepted as a lookup input? Either way, the audit event should store the target user ID, not raw email.
 
-Until these decisions are approved, do not add a bootstrap bypass or grant platform roles through direct SQL. The current first-platform-admin bootstrap blocker remains open.
+The implementation requires an existing active global identity with an active firm-admin membership, explicit confirmation, a non-empty reason, and restricted operator/change references. It refuses an existing active platform administrator and any prior successful bootstrap event, and writes the role plus append-only audit event atomically. It does not authenticate the human operator cryptographically; the trusted operator host, recorded change, and independent witness remain required. No web route or direct-SQL bypass is added. The bootstrap remains a release gate until PR #690 is merged and the operational procedure is witnessed.
