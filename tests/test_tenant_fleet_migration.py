@@ -144,6 +144,26 @@ class TenantFleetMigrationTests(unittest.TestCase):
                 self.migrations_root,
             )
 
+    def test_preflight_refuses_missing_tenant_binding_guard(self):
+        with sqlite3.connect(self.tenant_path) as tenant:
+            tenant.execute("DROP TRIGGER tenant_database_binding_no_update")
+        with self.assertRaisesRegex(FleetMigrationError, "immutable firm binding guard for update"):
+            build_plan(
+                self.runtime.paths.control_plane,
+                self.runtime.paths.tenant_root,
+                self.migrations_root,
+            )
+
+    def test_preflight_refuses_missing_control_plane_profile_guard(self):
+        with sqlite3.connect(self.runtime.paths.control_plane) as control:
+            control.execute("DROP TRIGGER database_profile_no_delete")
+        with self.assertRaisesRegex(FleetMigrationError, "Control-plane database is missing its immutable profile guard for delete"):
+            build_plan(
+                self.runtime.paths.control_plane,
+                self.runtime.paths.tenant_root,
+                self.migrations_root,
+            )
+
     def test_preflight_refuses_tenant_firm_binding_mismatch(self):
         connection = sqlite3.connect(self.tenant_path)
         connection.execute("DROP TRIGGER tenant_database_binding_no_update")
