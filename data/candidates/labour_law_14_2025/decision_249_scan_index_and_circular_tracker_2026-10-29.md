@@ -46,6 +46,8 @@ The Ministry's 27 October clarification says:
 
 **Search outcome as of 2026-10-29:** the official clarification is located, but no separate periodic implementation circular was found in targeted searches of the Ministry site or indexed public sources. Do not claim that the circulars do not exist; record them as “announced but not located publicly.” The official clarification is an administrative interpretation, not a substitute for any circular or the operative text.
 
+**Additional targeted search pass (2026-10-29):** searched the Ministry domain and indexed public results for combinations of “كتب دورية”, “توفيق الأوضاع”, “أخصائي السلامة والصحة المهنية”, “قرار 249 لسنة 2026”, and terms for circulars/implementation. The results continued to surface the 27 October clarification and the 19 October decision announcement, but no standalone circular number, date, PDF, or official circular text. Also checked the Ministry’s publicly indexed recent OSH news. This supports the precise status “promised by Ministry; no separate public circular located in this search pass,” not “no circular exists.” A later search is warranted because the promise is recent.
+
 ## Targeted remaining extraction
 
 1. Transcribe Table 1 sector/risk rows into structured data with source page and exact Arabic.
