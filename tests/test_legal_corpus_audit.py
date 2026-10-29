@@ -110,6 +110,32 @@ class CorpusAuditTests(unittest.TestCase):
             self.assertEqual(report["report_type"], "legal_corpus_audit")
             self.assertEqual(report["chunk_quality"]["unlinked_to_version"], 1)
             self.assertEqual(report["chunk_quality"]["missing_source"], 0)
+            self.assertEqual(report["sqlite_integrity_check"], ["ok"])
+            self.assertEqual(report["foreign_key_violation_count"], 0)
+
+    def test_audit_reports_foreign_key_violations_without_modifying_database(self):
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "foreign-keys.db"
+            db = sqlite3.connect(path)
+            bind_profile(db)
+            db.executescript("""
+                CREATE TABLE parent(id INTEGER PRIMARY KEY);
+                CREATE TABLE child(id INTEGER PRIMARY KEY, parent_id INTEGER REFERENCES parent(id));
+                INSERT INTO child(id,parent_id) VALUES(1,999);
+            """)
+            db.commit()
+            db.close()
+
+            report = MODULE.audit(path)
+            self.assertEqual(report["sqlite_integrity_check"], ["ok"])
+            self.assertEqual(report["foreign_key_violation_count"], 1)
+            self.assertIn(
+                "sqlite_foreign_key_violations",
+                {issue["code"] for issue in report["issues"]},
+            )
+            db = sqlite3.connect(path)
+            self.assertEqual(db.execute("SELECT parent_id FROM child WHERE id=1").fetchone()[0], 999)
+            db.close()
 
     def test_full_registry_quality_counts_are_reported(self):
         with tempfile.TemporaryDirectory() as td:
