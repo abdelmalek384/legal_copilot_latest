@@ -41,6 +41,16 @@ These are **reported announcement details only**. They are not a substitute for 
 | Has the decision's Gazette issue, publication date, commencement, amendments or repeal status been fully verified? | Not in this check. | **Unresolved.** |
 | Is the source text approved for redistribution/commercial use? | No separate affirmative licence was identified in this check. | Rights review remains open. |
 
+## Gazette-catalogue discovery result (2026-10-29)
+
+A catalogue record was located for **الوقائع المصرية ملحق الجريدة الرسمية العدد 64 تابع**, dated **2026-03-18**, with metadata explicitly listing Decree 49/2026 among Ministry of Labour instruments:
+https://dspace.id.com.eg/items/f32b4a07-6598-4ed8-a170-60d631a57221
+
+A separate item record names the decree and exposes Arabic and English PDF file entries:
+https://dspace.id.com.eg/items/6e700208-61d6-4beb-8629-19fa7b6195fb
+
+**Access outcome:** selecting the PDF file link routed to a request-a-copy endpoint and timed out. The file contents were not obtained. No access control was bypassed and no request was submitted. The catalogue metadata strengthens the identity/issue-date lead but does not verify the operative text or annexes.
+
 ## Next lawful route
 
 1. Search the public Official Gazette/IDSC catalogue for the exact decision title/number and its issue/date. The existing repository register records that Gazette metadata may identify the relevant supplement, but metadata alone does not supply the full text.
