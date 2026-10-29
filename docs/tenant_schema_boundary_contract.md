@@ -59,7 +59,7 @@ The older compatibility schema can contain mixed data and is not the approved mu
 
 ## External resource ownership
 
-- Original binary files: local private filesystem adapter is for development/testing only. Production object storage with managed KMS/envelope-key lifecycle is not implemented; production upload/purge must remain fail-closed until the chosen provider is reviewed and verified end-to-end.
+- Original binary files: the local private filesystem adapter is for development/testing only. The S3/KMS object-storage adapter, integrity checks, reconciliation, backup/restore staging, and guarded live-acceptance probe are implemented. This does not mean the deployment is accepted: production uploads must remain fail-closed until the actual bucket/key/IAM policy passes live validation, a witnessed recovery/deletion drill is complete, and the mandatory current acceptance manifest is approved. Production enablement requires a reviewed configuration/code change after those gates close.
 - Encrypted backup bundles: separate from the database paths and backup key; verify and restore before treating a bundle as a recovery point.
 - Email invitations/recovery: SMTP delivery and the public HTTPS origin are deployment-configured; no credentials belong in source control.
 - Temporary extraction, OCR, upload staging and recovery directories: must be private, bounded, reconciled after interrupted work and excluded from public serving.
