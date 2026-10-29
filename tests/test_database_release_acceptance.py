@@ -8,6 +8,7 @@ from pathlib import Path
 from tools.database_release_acceptance import (
     REQUIRED_GATES,
     load_acceptance_manifest,
+    original_storage_config_fingerprint,
     validate_acceptance_manifest,
 )
 
@@ -56,6 +57,21 @@ class DatabaseReleaseAcceptanceTests(unittest.TestCase):
         self.assertEqual(report["passed_count"], len(REQUIRED_GATES))
         self.assertEqual(report["required_count"], len(REQUIRED_GATES))
         self.assertEqual(report["blockers"], [])
+
+    def test_storage_config_fingerprint_is_stable_and_changes_with_target(self):
+        config = {
+            "COPILOT_OBJECT_STORAGE_BACKEND": "s3",
+            "COPILOT_S3_BUCKET": "bucket-a",
+            "COPILOT_S3_REGION": "us-east-1",
+            "COPILOT_S3_KMS_KEY_ID": "key-a",
+            "COPILOT_S3_ENDPOINT_URL": "",
+        }
+        first = original_storage_config_fingerprint(config)
+        self.assertRegex(first or "", r"^[0-9a-f]{64}$")
+        self.assertEqual(first, original_storage_config_fingerprint(dict(config)))
+        changed = dict(config, COPILOT_S3_BUCKET="bucket-b")
+        self.assertNotEqual(first, original_storage_config_fingerprint(changed))
+        self.assertIsNone(original_storage_config_fingerprint({}))
 
     def test_storage_acceptance_is_bound_to_current_s3_kms_configuration(self):
         matched = validate_acceptance_manifest(
