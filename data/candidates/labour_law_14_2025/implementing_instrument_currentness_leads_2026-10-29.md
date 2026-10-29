@@ -42,3 +42,20 @@ Until the complete official Decision 49/2026 and its annexes are compared, do no
 - Located secondary publication/effective-date metadata for Decision 74/2026 and archive metadata for Decision 75/2026.
 - Identified a temporal-status trap: the September remote-work extension is time-limited, and later news reports describe Cabinet approval of a draft to stop the scheme. The signed published termination instrument still needs to be located.
 - Did not mark any item lawyer-approved or claim a complete amendment/currentness chain.
+
+
+## E. Primary-publisher follow-up — publication dates and a correction lead (2026-10-29)
+
+A further targeted search of the Amiri Press searchable text and IDSC Gazette metadata improves the publication metadata for Decisions 74/2026 and 75/2026:
+
+- **Decision 74/2026 (Labour Ministry, labour-market observatories):** Amiri Press text confirms the decision's operative articles and final Article 17, which says it is published in Egyptian Proceedings and takes effect on the day after publication. IDSC metadata identifies *Egyptian Proceedings*, issue 108, dated **2026-05-17**, and lists Decisions 74 and 75/2026. EastLaws metadata states an effective date of **2026-05-18**. Record that date as supported by publisher metadata plus secondary date indexing; retain a source-review flag until the official issue/page and complete text are inspected. Official text: https://www.alamiria.com/Sec/TashTxt?id=7RH1OgZLsC8%3D. Issue metadata: https://dspace.id.com.eg/items/26264957-bfd5-4f7a-ba09-46268c28c87f. Secondary date cross-check: https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/17-05-2026/no-74?id=5638752&type=1.
+- **Decision 75/2026 (women's work, maternity, and occupational safety):** Amiri Press Article 15 says publication in Egyptian Proceedings and commencement the day after publication. IDSC metadata identifies issue 108 dated **2026-05-17**, and a secondary news report also says the decision was published that day. Therefore **2026-05-18 is a supported candidate commencement date**, pending page-level official-issue review and confirmation that no corrigendum changes any relevant detail. Official text: https://alamiria.com/Sec/TashTxt?id=82Iv%2FEE2jDk%3D. Issue metadata: https://dspace.id.com.eg/items/26264957-bfd5-4f7a-ba09-46268c28c87f. Decision-specific archive record: https://dspace.id.com.eg/items/56225e63-270d-4486-8336-e9d92cf6ecc9.
+- **Decision 75/2026 — substantive review leads from the official publisher text:** The decision addresses hazardous work during pregnancy/lactation, a provision for alternative daytime work during at least **16 weeks** before/after childbirth including at least **8 weeks** before the expected delivery date, industrial night work described as **10 p.m. to 7 a.m.**, and an additional medically supported period. These are source-discovery facts, not individualized legal advice. The exact full provisions, exceptions, annexes and interaction with Law 14/2025 Article 54 require legal review.
+- **Possible correction notice:** A secondary legal-news source reports that an official notice corrected a ministerial title in Decision 75/2026 as published in issue 108. The correction's own official issue/page has not yet been located. Track as possible_corrigendum_pending_primary_copy; do not assume it changes substantive terms or ignore it. Lead: https://blog.iqrar.ai/news/gnews_gaz_456d23c27d61_0000/. Search for the notice in the official publisher and issue archive before finalizing the source record.
+
+### Currentness status after this follow-up
+
+- Publication date and issue number for Decisions 74/2026 and 75/2026 are now better supported by IDSC issue metadata.
+- Decision 75/2026's next-day commencement is a supported candidate date of 2026-05-18, not a lawyer-certified conclusion.
+- A potential correction notice has been identified but not verified from its own primary issue copy.
+- No item is lawyer-approved; none is promoted to authoritative retrieval.
