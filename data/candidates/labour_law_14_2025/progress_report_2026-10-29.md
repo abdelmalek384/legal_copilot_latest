@@ -1,5 +1,7 @@
 # Legal knowledge progress report — 2026-10-29
 
+**Last updated:** 2026-10-30. The filename preserves the original report path; see the date above for the latest update.
+
 **Scope:** Evidence-backed Egyptian Labour Law 14/2025 workstream and the related OSH implementing Decisions 248–252/2026.  
 **Current branch:** `legal-knowledge-evidence-2026-10-29`  
 **Draft PR:** [#840](https://github.com/abdelmalek384/legal_copilot_latest/pull/840)
