@@ -9,6 +9,7 @@ from unittest.mock import patch
 
 from fastapi import HTTPException
 from fastapi.testclient import TestClient
+from pydantic import ValidationError
 
 import app
 from database_runtime import DatabaseRuntime
@@ -3538,6 +3539,23 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             self.assertIn("RESEARCH_MEMO_PRIVATE_ANSWER_SENTINEL", note["text"])
         finally:
             researcher.close()
+
+
+    def test_date_models_reject_impossible_calendar_dates(self):
+        cases = (
+            (app.SessIn, {"date": "2024-02-29"}, "date", "2025-02-29"),
+            (app.DeadlineIn, {"title": "deadline", "due": "2024-02-29"}, "due", "2025-02-29"),
+            (app.TaskIn, {"title": "task", "due": "2024-02-29"}, "due", "2024-13-01"),
+            (app.FeeIn, {"title": "fee", "amount": 10, "paid": 0, "due": "2024-02-29"}, "due", "2024-04-31"),
+            (app.LawRow, {"law": "synthetic", "article": "1", "text": "synthetic", "as_of": "2024-02-29"}, "as_of", "2024-02-30"),
+        )
+        for model, valid_payload, field, impossible_date in cases:
+            with self.subTest(model=model.__name__, impossible_date=impossible_date):
+                model(**valid_payload)
+                invalid_payload = dict(valid_payload)
+                invalid_payload[field] = impossible_date
+                with self.assertRaises(ValidationError):
+                    model(**invalid_payload)
 
 
 if __name__ == "__main__":
