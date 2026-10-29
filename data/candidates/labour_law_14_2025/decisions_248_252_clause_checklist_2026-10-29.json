@@ -87,7 +87,7 @@
     {"id":"252-D","instrument":"252/2026","topic":"licensing_fees_renewal_suspension_and_annexes","secondary_value":"not present in captured page excerpt; must obtain full text","risk":"critical","primary_match":"not_checked","currentness":"not_checked","counsel":"not_reviewed"}
   ],
   "counts": {
-    "checklist_items": 31,
+    "checklist_items": 32,
     "primary_source_match_complete": 0,
     "currentness_review_complete": 0,
     "counsel_approved": 0,
