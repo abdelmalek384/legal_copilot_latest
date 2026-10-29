@@ -13,28 +13,575 @@
   "authoritative_retrieval_eligible": false,
   "units_note": "The table appears to express quantity in kilograms and pounds (1 lb = 0.4535 kg); verify the column heading and all values against the official file before use.",
   "rows": [
-    {"row":1,"name_en":"Acetaldehyde","name_ar":"الأسيتالدهيد","cas":"75-07-0","quantity_kg":1134,"quantity_lb":2500,"status":"scan_candidate_pending_match"},
-    {"row":2,"name_en":"Acrolein (2-Propenal)","name_ar":"الأكرولين (2-بروبينال)","cas":"107-02-8","quantity_kg":68,"quantity_lb":150,"status":"scan_candidate_pending_match"},
-    {"row":3,"name_en":"Acrylyl Chloride","name_ar":"كلوريد الأكريليل","cas":"814-68-6","quantity_kg":113,"quantity_lb":250,"status":"scan_candidate_pending_match"},
-    {"row":4,"name_en":"Allyl Chloride","name_ar":"كلوريد الأليل","cas":"107-05-1","quantity_kg":454,"quantity_lb":1000,"status":"scan_candidate_pending_match"},
-    {"row":5,"name_en":"Allylamine","name_ar":"أليل أمين","cas":"107-11-9","quantity_kg":454,"quantity_lb":1000,"status":"scan_candidate_pending_match"},
-    {"row":6,"name_en":"Alkylaluminums","name_ar":"ألكيل الألومنيوم","cas":null,"quantity_kg":2268,"quantity_lb":5000,"status":"scan_candidate_pending_match"},
-    {"row":7,"name_en":"Ammonia, anhydrous","name_ar":"الأمونيا اللامائية","cas":"7664-41-7","quantity_kg":4535,"quantity_lb":10000,"status":"scan_candidate_pending_match"},
-    {"row":8,"name_en":"Ammonia solutions (>44% ammonia by weight)","name_ar":"محاليل الأمونيا (>44% أمونيا)","cas":"7664-41-7","quantity_kg":6803,"quantity_lb":15000,"status":"scan_candidate_pending_match"},
-    {"row":9,"name_en":"Ammonium Perchlorate","name_ar":"بيركلورات الأمونيوم","cas":"7790-98-9","quantity_kg":3401,"quantity_lb":7500,"status":"scan_candidate_pending_match"},
-    {"row":10,"name_en":"Ammonium Permanganate","name_ar":"برمنجنات الأمونيوم","cas":"7787-36-2","quantity_kg":3401,"quantity_lb":7500,"status":"scan_candidate_pending_match"},
-    {"row":11,"name_en":"Arsine (Arsenic Hydride)","name_ar":"الأرسين (هيدريد الزرنيخ)","cas":"7784-42-1","quantity_kg":45,"quantity_lb":100,"status":"scan_candidate_pending_match"},
-    {"row":12,"name_en":"Bis(Chloromethyl) Ether","name_ar":"ثنائي (كلوروميثيل) إيثر","cas":"542-88-1","quantity_kg":45,"quantity_lb":100,"status":"scan_candidate_pending_match"},
-    {"row":13,"name_en":"Boron Trichloride","name_ar":"ثلاثي كلوريد البورون","cas":"10294-34-5","quantity_kg":1134,"quantity_lb":2500,"status":"scan_candidate_pending_match"},
-    {"row":14,"name_en":"Boron Trifluoride","name_ar":"ثلاثي فلوريد البورون","cas":"7637-07-2","quantity_kg":113,"quantity_lb":250,"status":"scan_candidate_pending_match"},
-    {"row":15,"name_en":"Bromine","name_ar":"البروم","cas":"7726-95-6","quantity_kg":680,"quantity_lb":1500,"status":"scan_candidate_pending_match"},
-    {"row":16,"name_en":"Bromine Chloride","name_ar":"كلوريد البروم","cas":"13863-41-7","quantity_kg":680,"quantity_lb":1500,"status":"scan_candidate_pending_match"},
-    {"row":17,"name_en":"Bromine Pentafluoride","name_ar":"خماسي فلوريد البروم","cas":"7789-30-2","quantity_kg":1134,"quantity_lb":2500,"status":"scan_candidate_pending_match"},
-    {"row":18,"name_en":"Bromine Trifluoride","name_ar":"ثلاثي فلوريد البروم","cas":"7787-71-5","quantity_kg":6803,"quantity_lb":15000,"status":"scan_candidate_pending_match"},
-    {"row":19,"name_en":"3-Bromopropyne (Propargyl Bromide)","name_ar":"3-بروموبروباين","cas":"106-96-7","quantity_kg":45,"quantity_lb":100,"status":"scan_candidate_pending_match"},
-    {"row":20,"name_en":"Butyl Hydroperoxide (Tertiary)","name_ar":"هيدروبيروكسيد البوتيل (ثالثي)","cas":"75-91-2","quantity_kg":2268,"quantity_lb":5000,"status":"scan_candidate_pending_match"}
+    {
+      "row": 1,
+      "name_en": "Acetaldehyde",
+      "name_ar": "الأسيتالدهيد",
+      "cas": "75-07-0",
+      "quantity_kg": 1134,
+      "quantity_lb": 2500,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 2,
+      "name_en": "Acrolein (2-Propenal)",
+      "name_ar": "الأكرولين (2-بروبينال)",
+      "cas": "107-02-8",
+      "quantity_kg": 68,
+      "quantity_lb": 150,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 3,
+      "name_en": "Acrylyl Chloride",
+      "name_ar": "كلوريد الأكريليل",
+      "cas": "814-68-6",
+      "quantity_kg": 113,
+      "quantity_lb": 250,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 4,
+      "name_en": "Allyl Chloride",
+      "name_ar": "كلوريد الأليل",
+      "cas": "107-05-1",
+      "quantity_kg": 454,
+      "quantity_lb": 1000,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 5,
+      "name_en": "Allylamine",
+      "name_ar": "أليل أمين",
+      "cas": "107-11-9",
+      "quantity_kg": 454,
+      "quantity_lb": 1000,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 6,
+      "name_en": "Alkylaluminums",
+      "name_ar": "ألكيل الألومنيوم",
+      "cas": null,
+      "quantity_kg": 2268,
+      "quantity_lb": 5000,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 7,
+      "name_en": "Ammonia, anhydrous",
+      "name_ar": "الأمونيا اللامائية",
+      "cas": "7664-41-7",
+      "quantity_kg": 4535,
+      "quantity_lb": 10000,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 8,
+      "name_en": "Ammonia solutions (>44% ammonia by weight)",
+      "name_ar": "محاليل الأمونيا (>44% أمونيا)",
+      "cas": "7664-41-7",
+      "quantity_kg": 6803,
+      "quantity_lb": 15000,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 9,
+      "name_en": "Ammonium Perchlorate",
+      "name_ar": "بيركلورات الأمونيوم",
+      "cas": "7790-98-9",
+      "quantity_kg": 3401,
+      "quantity_lb": 7500,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 10,
+      "name_en": "Ammonium Permanganate",
+      "name_ar": "برمنجنات الأمونيوم",
+      "cas": "7787-36-2",
+      "quantity_kg": 3401,
+      "quantity_lb": 7500,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 11,
+      "name_en": "Arsine (Arsenic Hydride)",
+      "name_ar": "الأرسين (هيدريد الزرنيخ)",
+      "cas": "7784-42-1",
+      "quantity_kg": 45,
+      "quantity_lb": 100,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 12,
+      "name_en": "Bis(Chloromethyl) Ether",
+      "name_ar": "ثنائي (كلوروميثيل) إيثر",
+      "cas": "542-88-1",
+      "quantity_kg": 45,
+      "quantity_lb": 100,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 13,
+      "name_en": "Boron Trichloride",
+      "name_ar": "ثلاثي كلوريد البورون",
+      "cas": "10294-34-5",
+      "quantity_kg": 1134,
+      "quantity_lb": 2500,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 14,
+      "name_en": "Boron Trifluoride",
+      "name_ar": "ثلاثي فلوريد البورون",
+      "cas": "7637-07-2",
+      "quantity_kg": 113,
+      "quantity_lb": 250,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 15,
+      "name_en": "Bromine",
+      "name_ar": "البروم",
+      "cas": "7726-95-6",
+      "quantity_kg": 680,
+      "quantity_lb": 1500,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 16,
+      "name_en": "Bromine Chloride",
+      "name_ar": "كلوريد البروم",
+      "cas": "13863-41-7",
+      "quantity_kg": 680,
+      "quantity_lb": 1500,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 17,
+      "name_en": "Bromine Pentafluoride",
+      "name_ar": "خماسي فلوريد البروم",
+      "cas": "7789-30-2",
+      "quantity_kg": 1134,
+      "quantity_lb": 2500,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 18,
+      "name_en": "Bromine Trifluoride",
+      "name_ar": "ثلاثي فلوريد البروم",
+      "cas": "7787-71-5",
+      "quantity_kg": 6803,
+      "quantity_lb": 15000,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 19,
+      "name_en": "3-Bromopropyne (Propargyl Bromide)",
+      "name_ar": "3-بروموبروباين",
+      "cas": "106-96-7",
+      "quantity_kg": 45,
+      "quantity_lb": 100,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 20,
+      "name_en": "Butyl Hydroperoxide (Tertiary)",
+      "name_ar": "هيدروبيروكسيد البوتيل (ثالثي)",
+      "cas": "75-91-2",
+      "quantity_kg": 2268,
+      "quantity_lb": 5000,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 21,
+      "name_en": "Butyl Perbenzoate (Tertiary)",
+      "name_ar": "بيوتيل بيربنزوات (ثالثي)",
+      "cas": "614-45-9",
+      "quantity_kg": 3401,
+      "quantity_lb": 7500,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 22,
+      "name_en": "Carbonyl Chloride (see Phosgene)",
+      "name_ar": "كلوريد الكربونيل (انظر الفوسجين)",
+      "cas": "75-44-5",
+      "quantity_kg": 45,
+      "quantity_lb": 100,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 23,
+      "name_en": "Carbonyl Fluoride",
+      "name_ar": "فلوريد الكربونيل",
+      "cas": "353-50-4",
+      "quantity_kg": 1134,
+      "quantity_lb": 2500,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 24,
+      "name_en": "Cellulose Nitrate (concentration >12.6% nitrogen)",
+      "name_ar": "نترات السليلوز (تركيز نيتروجين أكبر من 12.6%)",
+      "cas": "9004-70-0",
+      "quantity_kg": 1134,
+      "quantity_lb": 2500,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 25,
+      "name_en": "Chlorine",
+      "name_ar": "الكلور",
+      "cas": "7782-50-5",
+      "quantity_kg": 680,
+      "quantity_lb": 1500,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 26,
+      "name_en": "Chlorine Dioxide",
+      "name_ar": "ثاني أكسيد الكلور",
+      "cas": "10049-04-4",
+      "quantity_kg": 454,
+      "quantity_lb": 1000,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 27,
+      "name_en": "Chlorine Pentafluoride",
+      "name_ar": "خماسي فلوريد الكلور",
+      "cas": "13637-63-3",
+      "quantity_kg": 454,
+      "quantity_lb": 1000,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 28,
+      "name_en": "Chlorine Trifluoride",
+      "name_ar": "ثلاثي فلوريد الكلور",
+      "cas": "7790-91-2",
+      "quantity_kg": 454,
+      "quantity_lb": 1000,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 29,
+      "name_en": "Chlorodiethylaluminum (Diethylaluminum Chloride)",
+      "name_ar": "كلورودي إيثيل الألومنيوم",
+      "cas": "96-10-6",
+      "quantity_kg": 2268,
+      "quantity_lb": 5000,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 30,
+      "name_en": "1-Chloro-2,4-Dinitrobenzene",
+      "name_ar": "1-كلورو-2,4-ثنائي نيتروبنزين",
+      "cas": "97-00-7",
+      "quantity_kg": 2268,
+      "quantity_lb": 5000,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 31,
+      "name_en": "Chloromethyl Methyl Ether",
+      "name_ar": "كلوروميثيل ميثيل إيثر",
+      "cas": "107-30-2",
+      "quantity_kg": 227,
+      "quantity_lb": 500,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 32,
+      "name_en": "Chloropicrin",
+      "name_ar": "كلوروبيكرين",
+      "cas": "76-06-2",
+      "quantity_kg": 227,
+      "quantity_lb": 500,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 33,
+      "name_en": "Chloropicrin and Methyl Bromide mixture",
+      "name_ar": "خليط كلوروبيكرين وبروميد الميثيل",
+      "cas": null,
+      "quantity_kg": 680,
+      "quantity_lb": 1500,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 34,
+      "name_en": "Chloropicrin and Methyl Chloride mixture",
+      "name_ar": "خليط كلوروبيكرين وكلوريد الميثيل",
+      "cas": null,
+      "quantity_kg": 680,
+      "quantity_lb": 1500,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 35,
+      "name_en": "Cumene Hydroperoxide",
+      "name_ar": "هيدروبيروكسيد الكومين",
+      "cas": "80-15-9",
+      "quantity_kg": 3401,
+      "quantity_lb": 7500,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 36,
+      "name_en": "Cyanogen",
+      "name_ar": "السيانوجين",
+      "cas": "460-19-5",
+      "quantity_kg": 1134,
+      "quantity_lb": 2500,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 37,
+      "name_en": "Cyanogen Chloride",
+      "name_ar": "كلوريد السيانوجين",
+      "cas": "506-77-4",
+      "quantity_kg": 227,
+      "quantity_lb": 500,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 38,
+      "name_en": "Cyanuric Fluoride",
+      "name_ar": "فلوريد السيانوريك",
+      "cas": "675-14-9",
+      "quantity_kg": 45,
+      "quantity_lb": 100,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 39,
+      "name_en": "Diacetyl Peroxide (concentration >70%)",
+      "name_ar": "بيروكسيد ثنائي الأسيتيل (>70%)",
+      "cas": "110-22-5",
+      "quantity_kg": 2268,
+      "quantity_lb": 5000,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 40,
+      "name_en": "Diazomethane",
+      "name_ar": "ديازوميثان",
+      "cas": "334-88-3",
+      "quantity_kg": 227,
+      "quantity_lb": 500,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 41,
+      "name_en": "Dibenzoyl Peroxide",
+      "name_ar": "بيروكسيد ثنائي البنزويل",
+      "cas": "94-36-0",
+      "quantity_kg": 3401,
+      "quantity_lb": 7500,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 42,
+      "name_en": "Diborane",
+      "name_ar": "ثنائي البوران",
+      "cas": "19287-45-7",
+      "quantity_kg": 45,
+      "quantity_lb": 100,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 43,
+      "name_en": "Dibutyl Peroxide (Tertiary)",
+      "name_ar": "بيروكسيد ثنائي البوتيل (ثالثي)",
+      "cas": "110-05-4",
+      "quantity_kg": 2268,
+      "quantity_lb": 5000,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 44,
+      "name_en": "Dichloroacetylene",
+      "name_ar": "ثنائي كلورو الأسيتيلين",
+      "cas": "7572-29-4",
+      "quantity_kg": 113,
+      "quantity_lb": 250,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 45,
+      "name_en": "Dichlorosilane",
+      "name_ar": "ثنائي كلورو السيلان",
+      "cas": "4109-96-0",
+      "quantity_kg": 1134,
+      "quantity_lb": 2500,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 46,
+      "name_en": "Diethylzinc",
+      "name_ar": "ثنائي إيثيل الزنك",
+      "cas": "557-20-0",
+      "quantity_kg": 4535,
+      "quantity_lb": 10000,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 47,
+      "name_en": "Diisopropyl Peroxydicarbonate",
+      "name_ar": "بيروكسيد ثنائي إيزوبروبيل ديكربونات",
+      "cas": "105-74-8",
+      "quantity_kg": 3401,
+      "quantity_lb": 7500,
+      "status": "low_confidence_scan_reading_pending_official_match"
+    },
+    {
+      "row": 48,
+      "name_en": "Dilauroyl Peroxide",
+      "name_ar": "بيروكسيد ثنائي اللورويل",
+      "cas": "105-74-8",
+      "quantity_kg": 3401,
+      "quantity_lb": 7500,
+      "status": "low_confidence_scan_reading_pending_official_match"
+    },
+    {
+      "row": 49,
+      "name_en": "Dimethyldichlorosilane",
+      "name_ar": "ثنائي ميثيل ثنائي كلورو السيلان",
+      "cas": "75-78-5",
+      "quantity_kg": 454,
+      "quantity_lb": 1000,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 50,
+      "name_en": "1,1-Dimethylhydrazine",
+      "name_ar": "1,1-ثنائي ميثيل هيدرازين",
+      "cas": "57-14-7",
+      "quantity_kg": 454,
+      "quantity_lb": 1000,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 51,
+      "name_en": "Anhydrous Dimethylamine",
+      "name_ar": "ثنائي ميثيل أمين لامائي",
+      "cas": "124-40-3",
+      "quantity_kg": 1134,
+      "quantity_lb": 2500,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 52,
+      "name_en": "2,4-Dinitroaniline",
+      "name_ar": "2,4-ثنائي نيترو أنيلين",
+      "cas": "97-02-9",
+      "quantity_kg": 2268,
+      "quantity_lb": 5000,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 53,
+      "name_en": "Methyl Ethyl Ketone Peroxide (>60%)",
+      "name_ar": "بيروكسيد ميثيل إيثيل كيتون (>60%)",
+      "cas": "1338-23-4",
+      "quantity_kg": 2268,
+      "quantity_lb": 5000,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 54,
+      "name_en": "Ethyl Nitrite",
+      "name_ar": "نتريت الإيثيل",
+      "cas": "109-95-5",
+      "quantity_kg": 2268,
+      "quantity_lb": 5000,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 55,
+      "name_en": "Ethylamine",
+      "name_ar": "إيثيل أمين",
+      "cas": "75-04-7",
+      "quantity_kg": 3401,
+      "quantity_lb": 7500,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 56,
+      "name_en": "Ethylene Fluorohydrin",
+      "name_ar": "فلوروهيدرين الإيثيلين",
+      "cas": "371-62-0",
+      "quantity_kg": 45,
+      "quantity_lb": 100,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 57,
+      "name_en": "Ethylene Oxide",
+      "name_ar": "أكسيد الإيثيلين",
+      "cas": "75-21-8",
+      "quantity_kg": 2268,
+      "quantity_lb": 5000,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 58,
+      "name_en": "Ethyleneimine",
+      "name_ar": "إيثيلين إيمين",
+      "cas": "151-56-4",
+      "quantity_kg": 454,
+      "quantity_lb": 1000,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 59,
+      "name_en": "Fluorine",
+      "name_ar": "الفلور",
+      "cas": "7782-41-4",
+      "quantity_kg": 454,
+      "quantity_lb": 1000,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 60,
+      "name_en": "Formaldehyde (Formalin)",
+      "name_ar": "الفورمالدهيد (الفورمالين)",
+      "cas": "50-00-0",
+      "quantity_kg": 454,
+      "quantity_lb": 1000,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 61,
+      "name_en": "Furan",
+      "name_ar": "فوران",
+      "cas": "110-00-9",
+      "quantity_kg": 227,
+      "quantity_lb": 500,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 62,
+      "name_en": "Hexafluoroacetone",
+      "name_ar": "سداسي فلورو أسيتون",
+      "cas": "684-16-2",
+      "quantity_kg": 2268,
+      "quantity_lb": 5000,
+      "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 63,
+      "name_en": "Hydrochloric Acid",
+      "name_ar": "حمض الهيدروكلوريك",
+      "cas": "7647-01-0",
+      "quantity_kg": 2268,
+      "quantity_lb": 5000,
+      "status": "scan_candidate_pending_match"
+    }
   ],
-  "count": 20,
-  "coverage_note": "This is only the first visible page of Table 23 (rows 1–20), not the full hazardous-substance inventory. Do not infer a threshold for unlisted substances.",
+  "count": 63,
+  "coverage_note": "Rows 1–63 transcribed from printed pp.242–244 (three visible pages of Table 23). Rows 47–48 have potentially ambiguous CAS-number readings and require higher-resolution/official-file confirmation. This is only a partial table inventory; do not infer a threshold for unlisted substances.",
   "release_rule": "Verify Arabic/English names, CAS numbers, quantity columns, concentration qualifiers and exact thresholds against the official Gazette file. Check currentness and have qualified Egyptian OSH counsel review before authoritative retrieval."
 }
