@@ -126,7 +126,10 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
         self.assertTrue(result["cleanup_pending"])
         self.assertTrue(result["object_id"])
         self.assertIn("error_type", result)
-        self.assertEqual(self.store.object_presence(12, result["object_id"]), (True, True))
+        staged_key = ("private-matter-files", f"firms/12/originals/{result['object_id']}.staged")
+        final_key = ("private-matter-files", f"firms/12/originals/{result['object_id']}.blob")
+        self.assertIn(staged_key, self.client.objects)
+        self.assertIn(final_key, self.client.objects)
 
     def test_stage_uses_firm_namespace_and_kms_encryption(self):
         payload = b"confidential original\x00bytes"
