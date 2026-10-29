@@ -15,25 +15,38 @@ if str(ROOT) not in sys.path:
 class LegalVersionedRegistryTests(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
-        os.environ["COPILOT_DB"] = str(Path(self.tmp.name) / "registry.db")
+        self.env_names = (
+            "COPILOT_DB", "COPILOT_CONTROL_DB", "COPILOT_TENANT_DB_ROOT",
+            "COPILOT_CORPUS_DB", "COPILOT_ENV", "ALLOW_UNLINKED_LEGACY_LAW_SEARCH",
+        )
+        self.old_env = {name: os.environ.get(name) for name in self.env_names}
+        root = Path(self.tmp.name)
+        os.environ.pop("COPILOT_DB", None)
+        os.environ["COPILOT_ENV"] = "development"
+        os.environ["COPILOT_CONTROL_DB"] = str(root / "control.sqlite3")
+        os.environ["COPILOT_TENANT_DB_ROOT"] = str(root / "tenants")
+        os.environ["COPILOT_CORPUS_DB"] = str(root / "corpus.sqlite3")
         os.environ.pop("ALLOW_UNLINKED_LEGACY_LAW_SEARCH", None)
         import importlib
         import app
         self.app = importlib.reload(app)
-        self.db = self.app.conn()
+        self.runtime = self.app.get_database_runtime()
+        self.runtime.initialize()
+        self.db = self.app.corpus_conn()
 
     def tearDown(self):
         try:
-            self.db.close()
+            self.runtime.close_current_thread()
         finally:
-            import app
-            app._t.c = None
-            app._schema_ready = False
+            self.app._database_runtime = None
+            for name, value in self.old_env.items():
+                if value is None:
+                    os.environ.pop(name, None)
+                else:
+                    os.environ[name] = value
             self.tmp.cleanup()
-            os.environ.pop("COPILOT_DB", None)
-            os.environ.pop("ALLOW_UNLINKED_LEGACY_LAW_SEARCH", None)
 
-    def test_registry_tables_exist_and_legacy_chunks_are_linkable(self):
+    def test_corpus_profile_exposes_versioned_legal_registry_schema(self):
         tables = {r[0] for r in self.db.execute("SELECT name FROM sqlite_master WHERE type='table'")}
         for name in ("legal_sources", "legal_documents", "legal_document_versions", "legal_version_relations", "legal_review_events"):
             self.assertIn(name, tables)
