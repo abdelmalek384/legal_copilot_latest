@@ -16,6 +16,7 @@ import re
 import sqlite3
 import stat
 import sys
+import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -116,16 +117,34 @@ def _schema_object_inventory(connection: sqlite3.Connection) -> tuple:
 def _validate_schema_against_migrations(
     source: sqlite3.Connection, profile: str, migrations_root: Path, label: str
 ) -> None:
-    """Validate a disposable, migration-upgraded copy against a fresh trusted schema."""
-    actual = sqlite3.connect(":memory:")
+    """Compare source schema with its recorded migration prefix without copying data."""
     expected = sqlite3.connect(":memory:")
     try:
-        source.backup(actual)
-        apply_profile_migrations(actual, profile, migrations_root)
-        apply_profile_migrations(expected, profile, migrations_root)
-        if _schema_object_inventory(actual) != _schema_object_inventory(expected):
+        recorded_versions = [
+            int(row[0]) for row in source.execute("SELECT version FROM schema_migrations")
+        ]
+        if not recorded_versions:
+            raise FleetMigrationError(f"{label} migration history is empty")
+        latest_applied = max(recorded_versions)
+        trusted_directory = migrations_root / profile
+        prefix_inventory = [
+            item for item in _migration_inventory(trusted_directory)
+            if item[0] <= latest_applied
+        ]
+        with tempfile.TemporaryDirectory(prefix="fleet-schema-prefix-") as temporary:
+            temporary_root = Path(temporary) / "migrations"
+            prefix_directory = temporary_root / profile
+            prefix_directory.mkdir(parents=True, mode=0o700)
+            for _version, name, _checksum in prefix_inventory:
+                sql = read_migration_file(trusted_directory / name)
+                with (prefix_directory / name).open(
+                    "w", encoding="utf-8", newline=""
+                ) as migration_copy:
+                    migration_copy.write(sql)
+            apply_profile_migrations(expected, profile, temporary_root)
+        if _schema_object_inventory(source) != _schema_object_inventory(expected):
             raise FleetMigrationError(
-                f"{label} schema objects differ from the trusted migration result"
+                f"{label} schema objects differ from the trusted applied migration prefix"
             )
     except FleetMigrationError:
         raise
@@ -134,7 +153,6 @@ def _validate_schema_against_migrations(
             f"{label} schema could not be validated against trusted migrations"
         ) from exc
     finally:
-        actual.close()
         expected.close()
 
 
