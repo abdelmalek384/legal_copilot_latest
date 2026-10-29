@@ -11,14 +11,17 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from tools.database_release_acceptance import load_acceptance_manifest
+from tools.database_release_acceptance import load_acceptance_manifest, original_storage_config_fingerprint
 
 
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--manifest", type=Path, help="Controlled operational acceptance manifest outside the repository.")
     args = parser.parse_args(argv)
-    report = load_acceptance_manifest(args.manifest)
+    report = load_acceptance_manifest(
+        args.manifest,
+        expected_storage_config_sha256=original_storage_config_fingerprint() or "",
+    )
     print(json.dumps(report, ensure_ascii=False, indent=2) + "\n", end="")
     return 0 if report["ready"] else 1
 
