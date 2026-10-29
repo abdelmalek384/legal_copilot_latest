@@ -2157,8 +2157,20 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             "post", "/session/firm", json={"firm_id": self.firm_b}
         )
         self.assertEqual(switched.status_code, 200, switched.text)
-        # Prime the tenant connection cache before revoking membership.
+        # Prime the tenant connection cache and create case-scoped resources before
+        # revocation so direct resource routes are tested with a stale session too.
         self.assertEqual(self.client.get("/cases").status_code, 200)
+        created_case = self._mutate(
+            "post", "/cases", json={"title": "REVOKED_MEMBERSHIP_CASE_SENTINEL"}
+        )
+        self.assertEqual(created_case.status_code, 200, created_case.text)
+        case_id = created_case.json()["id"]
+        created_document = self._mutate(
+            "post", f"/cases/{case_id}/docs",
+            json={"name": "revoked-membership.txt", "text": "REVOKED_MEMBERSHIP_DOCUMENT_SENTINEL"},
+        )
+        self.assertEqual(created_document.status_code, 200, created_document.text)
+        document_id = created_document.json()["id"]
 
         control = self.runtime.control_connection()
         control.execute(
@@ -2182,6 +2194,12 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             ("get", "/finance/overview", None),
             ("get", "/research/conversations", None),
             ("get", "/invitations", None),
+            ("get", f"/cases/{case_id}", None),
+            ("get", f"/cases/{case_id}/docs/{document_id}/reviews", None),
+            ("get", f"/cases/{case_id}/docs/{document_id}/original", None),
+            ("get", f"/cases/{case_id}/docs/{document_id}/original/legal-hold/events", None),
+            ("get", f"/cases/{case_id}/docs/{document_id}/original/deletion-requests", None),
+            ("post", f"/cases/{case_id}/tasks", {"title": "must be denied"}),
             ("get", "/audit/case-deletions", None),
             ("get", "/audit/security-events", None),
             ("get", "/audit/security-events.csv", None),
