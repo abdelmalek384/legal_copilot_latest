@@ -180,6 +180,7 @@ def build_plan(control_db: str | Path, tenant_root: str | Path, migrations_root:
             ).fetchone()
             if profile is None or profile["profile"] != "control_plane":
                 raise FleetMigrationError("Control database is not immutably bound to control_plane")
+            _require_immutable_binding_guards(control, profile="Control-plane")
             if control.execute("PRAGMA foreign_key_check").fetchall():
                 raise FleetMigrationError("Control-plane catalog has foreign-key violations")
             rows = control.execute(
@@ -258,6 +259,9 @@ def build_plan(control_db: str | Path, tenant_root: str | Path, migrations_root:
                 raise FleetMigrationError(f"Tenant {firm_id} has an invalid immutable schema profile")
             if binding is None or int(binding["firm_id"]) != firm_id:
                 raise FleetMigrationError(f"Tenant {firm_id} immutable firm binding does not match catalog")
+            _require_immutable_binding_guards(
+                tenant, profile=f"Tenant {firm_id}", firm_binding=True
+            )
             integrity = tenant.execute("PRAGMA integrity_check").fetchone()
             if integrity is None or integrity[0] != "ok":
                 raise FleetMigrationError(f"Tenant {firm_id} failed integrity_check")
