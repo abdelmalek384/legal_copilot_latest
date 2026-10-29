@@ -25,7 +25,7 @@ These ledgers are review aids made from targeted extracted official-text evidenc
 - [Batch 3 — NL-061 to NL-072](numerical_rule_evidence_ledger_batch3_2026-10-29.md): 12 additional candidates, including private employment agency capital/security thresholds and reporting deadlines; some items need exact sentence recapture.
 - [Official-text copyright and access review lead](official_text_copyright_and_access_review_lead_2026-10-29.md): Article 141 research lead; does not grant permission to bypass access workflows or clear the corpus for commercial use.
 - Checklist progress: **72/120 candidate slots (60% by count)**. This is not 60% legal verification: lawyer-approved 0/72; currentness-complete 0/72; reuse/rights-cleared 0/72.
-- Related currentness leads: [implementing-instrument currentness leads](implementing_instrument_currentness_leads_2026-10-29.md), [structured related-instrument candidate records](related_instruments_candidates.json), and [source reconciliation addendum](../../../docs/labour_law_14_2025_source_reconciliation_addendum_2026-10-29.md).
+- Related currentness leads: [implementing-instrument currentness leads](implementing_instrument_currentness_leads_2026-10-29.md), [structured related-instrument candidate records](related_instruments_candidates.json), [Decision 162/2026 candidate record](decision_162_2026_candidate.json), and [source reconciliation addendum](../../../docs/labour_law_14_2025_source_reconciliation_addendum_2026-10-29.md).
 
 ## Safe handling
 
