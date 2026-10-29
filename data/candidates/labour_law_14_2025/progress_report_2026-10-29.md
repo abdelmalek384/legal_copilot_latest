@@ -31,6 +31,7 @@ Table 24 candidate extraction now covers **617/745 numbered entries (82.8%)**; *
 11. Prepared `lawyer_in_app_acceptance_plan_2026-10-29.md` for a later hands-on review in the running app. This makes lawyer review a separate release gate; it does not claim any lawyer approval.
 12. Decision 250 Table 23 remains at **137/137 candidate labels**. Labels are transcribed from secondary text and still require official page matching.
    A 2026-10-30 structural audit confirmed rows 1–137 are unique and complete, with 137 Arabic/English labels and kg/lb pairs that are arithmetically consistent within 1.5%. Three group/mixed-substance rows have no CAS identifier, which remains null; the unit check is not legal verification.
+   Added a fail-closed validator and regression tests for row coverage, unit-pair anomalies, fabricated official-hash claims and promotion flags; these checks are included in the dedicated legal-knowledge CI workflow.
 13. Decision 251 has 17 candidate licensing/experience/fee assertions; Decision 252 has 40 candidate assertions. They remain secondary/unverified pending official comparison.
    A separate 2026-10-30 audit records that 32 Decision 252 assertions have secondary scan/page locators and 8 are summary-only leads; all 40 remain ineligible for authoritative retrieval.
    A parallel Decision 251 audit records 17 unique assertions: 12 with secondary scan image locators and 5 with page locators only. All 17 remain unverified and ineligible for authoritative retrieval.
