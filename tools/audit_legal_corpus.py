@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Read-only audit of Legal Copilot's SQLite legal corpus."""
 from __future__ import annotations
-import argparse, hashlib, json, sqlite3
+import argparse, hashlib, json, os, sqlite3
 from collections import Counter
 from datetime import date, datetime, timezone
 from pathlib import Path
@@ -456,10 +456,19 @@ def render_markdown(report):
 
 def main(argv=None):
     p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--db",type=Path,required=True,help="Path to SQLite database")
+    p.add_argument(
+        "--db",
+        type=Path,
+        default=Path(os.environ["COPILOT_CORPUS_DB"]) if os.environ.get("COPILOT_CORPUS_DB", "").strip() else None,
+        help="legal-corpus database (defaults to COPILOT_CORPUS_DB)",
+    )
     p.add_argument("--out-dir",type=Path,required=True,help="Directory for JSON and Markdown reports")
     p.add_argument("--strict",action="store_true",help="exit non-zero when high-severity metadata issues are found")
     a=p.parse_args(argv)
+    if os.environ.get("COPILOT_DB", "").strip():
+        p.error("COPILOT_DB compatibility mode is not supported; configure COPILOT_CORPUS_DB or pass --db")
+    if a.db is None:
+        p.error("a legal-corpus database is required; configure COPILOT_CORPUS_DB or pass --db")
     try:
         report=audit(a.db)
     except (FileNotFoundError, sqlite3.Error, ValueError) as exc:
