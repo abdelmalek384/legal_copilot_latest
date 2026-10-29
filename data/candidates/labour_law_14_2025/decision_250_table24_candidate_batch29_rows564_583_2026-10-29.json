@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "record_type": "secondary_source_candidate_extraction",
+  "instrument": "Egyptian Minister of Labour Decision 250/2026",
+  "table": "24",
+  "table_title_ar": "الحدود العتبية للمواد الكيميائية الخطرة",
+  "research_date": "2026-10-29",
+  "source": {
+    "class": "secondary_transcription",
+    "url": "https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html",
+    "publication_date": "2026-10-26",
+    "source_lines": "5424-5456",
+    "official_gazette_match": "not_performed",
+    "official_pdf_sha256": null
+  },
+  "status": "candidate_only_not_for_authoritative_retrieval",
+  "important_limits": [
+    "Secondary transcription only; no official Gazette page-image comparison.",
+    "Raw limits, units and symbols are not normalized.",
+    "Malformed formula/CAS strings are preserved and flagged; no candidate limit is approved.",
+    "Not for workplace safety decisions or compliance advice."
+  ],
+  "declared_top_level_row_range": {"start": 564, "end": 583},
+  "rows": [
+    {"row":564,"name_ar":"بيرفلورو أيزوبيوتيلين","name_en":"Perfluoroisobutylene","cas":"382-21-8","source_line":5424,"raw_limit_and_note_text":"C4F8؛ 200,04؛ 0,01 جزء/مليون؛ تهيج المسالك التنفسية العليا وتأثيرات دموية","status":"pending_official_match"},
+    {"row":565,"name_ar":"بيرليت، زجاج بركاني من السليكات","name_en":"Perlite (volcanic silicate glass)","cas":"93763-70-3","source_line":5425,"raw_limit_and_note_text":"(CF3)2C2F2؛ 10 ملجم/م3 total dust؛ crystalline silica not more than 1% and no asbestos","status":"pending_official_match","anomaly":"Formula token appears inconsistent with the mineral name and may be shifted from an adjacent row; preserve and verify against official page."},
+    {"row":566,"name_ar":"فوق الكبريتات مقدرة كفوق الكبريتات","name_en":"Persulfates, as persulfate","cas":"7727-21-1; 7727-54-0; 7775-27-1","source_line":5427,"raw_limit_and_note_text":"Variable; variable; 0,1 ملجم/م3؛ تهيج الجلد","status":"pending_official_match"},
+    {"row":567,"name_ar":"فينول","name_en":"Phenol","cas":"108-95-2","source_line":5429,"raw_limit_and_note_text":"C6H6O؛ 94,11؛ 5 جزء/مليون؛ Skin; A4; BEI؛ جلد، م4، مؤشر التعرض الحيوي؛ تهيج المسالك التنفسية العليا، تلف الرئة والجهاز العصبي المركزي","status":"pending_official_match"},
+    {"row":568,"name_ar":"فينوثيازين","name_en":"Phenothiazine","cas":"92-84-2","source_line":5430,"raw_limit_and_note_text":"C12H9NS؛ 199,27؛ 0,5 ملجم/م3(I)؛ Skin; DSEN; A4؛ جلد، تحسس جلدي، م4؛ سمية العين للضوء، سمية للكبد ونخاع العظم والطحال، أنيميا","status":"pending_official_match"},
+    {"row":569,"name_ar":"إن-فينيل-بيتا-نفثيل أمين","name_en":"N-Phenyl-beta-naphthylamine","cas":"135-88-6","source_line":5432,"raw_limit_and_note_text":"C16H13N؛ 219,29؛ (L)؛ م4؛ A4؛ سرطان","status":"pending_official_match","risk_note":"Potential carcinogenicity entry; no operational limit approved."},
+    {"row":570,"name_ar":"ميتا-فينيلين داي أمين","name_en":"m-Phenylenediamine","cas":"108-45-2","source_line":5434,"raw_limit_and_note_text":"C6H8N2؛ 108,05؛ 0,1 ملجم/م3؛ م4؛ A4؛ تلف الكبد وتهيج الجلد","status":"pending_official_match"},
+    {"row":571,"name_ar":"أورثو-فينيلين داي أمين","name_en":"o-Phenylenediamine","cas":"95-54-5","source_line":5436,"raw_limit_and_note_text":"C6H8N2؛ 108,05؛ 0,1 ملجم/م3؛ م3؛ A3؛ أنيميا","status":"pending_official_match"},
+    {"row":572,"name_ar":"بارا-فينيلين داي أمين","name_en":"p-Phenylenediamine","cas":"106-50-3","source_line":5437,"raw_limit_and_note_text":"C6H8N2؛ 108,05؛ 0,1 ملجم/م3؛ م4؛ A4؛ تهيج المسالك التنفسية العليا وحساسية الجلد","status":"pending_official_match"},
+    {"row":573,"name_ar":"فينيل إيثر، بخار","name_en":"Phenyl ether, vapor","cas":"101-84-8","source_line":5439,"raw_limit_and_note_text":"C12H10O؛ 170,20؛ 1 جزء/مليون(V)؛ 2 جزء/مليون(V)؛ تهيج المسالك التنفسية العليا والعين، غثيان","status":"pending_official_match","anomaly":"Two vapor limit values are shown; verify column meanings from the official page."},
+    {"row":574,"name_ar":"كحول فينيل إيثانول","name_en":"Phenylethyl alcohol","cas":"60-12-8","source_line":5441,"raw_limit_and_note_text":"C8H10O؛ 122,2؛ 0,5 جزء/مليون؛ جلد Skin؛ تلف الأجنة","status":"pending_official_match"},
+    {"row":575,"name_ar":"فينيل جليسيديل إيثر","name_en":"Phenyl glycidyl ether","cas":"122-60-1","source_line":5442,"raw_limit_and_note_text":"C9H10O2؛ 150,17؛ 0,1 جزء/مليون؛ Skin; DSEN; A3؛ جلد، تحسس جلدي، م3؛ تلف الخصية","status":"pending_official_match"},
+    {"row":576,"name_ar":"فينيل هيدرازين","name_en":"Phenylhydrazine","cas":"100-63-0","source_line":5444,"raw_limit_and_note_text":"C6H5NHNH2؛ 108,14؛ 0,1 جزء/مليون؛ Skin; A3؛ جلد، م3؛ أنيميا وتهيج المسالك التنفسية العليا والجلد","status":"pending_official_match"},
+    {"row":577,"name_ar":"فينيل إيزوسيانات","name_en":"Phenyl isocyanate","cas":"103-71-9","source_line":5446,"raw_limit_and_note_text":"C6H5NCO؛ 119,10؛ 0,005 جزء/مليون؛ 0,015 جزء/مليون؛ Skin; DSEN; RSEN؛ جلد، تحسس جلدي وتنفس؛ تهيج المسالك التنفسية العليا","status":"pending_official_match"},
+    {"row":578,"name_ar":"فينيل ميركابتان","name_en":"Phenyl mercaptan","cas":"108-98-5","source_line":5447,"raw_limit_and_note_text":"C6H5SH؛ 110,18؛ 0,1 جزء/مليون؛ جلد Skin؛ ضعف الجهاز العصبي المركزي وتهيج العين والجلد","status":"pending_official_match"},
+    {"row":579,"name_ar":"فينيل فوسفين","name_en":"Phenylphosphine","cas":"638-21-1","source_line":5449,"raw_limit_and_note_text":"C6H5PH2؛ 110,10؛ 0,05 جزء/مليون؛ التهاب الجلد، تأثيرات دموية، تلف الخصية","status":"pending_official_match"},
+    {"row":580,"name_ar":"فورات","name_en":"Phorate","cas":"298-02-2","source_line":5451,"raw_limit_and_note_text":"C7H17O2PS3؛ 260,4؛ 0,05 ملجم/م3(IFV)؛ Skin; A4; BEIC؛ جلد، م4، مؤشر التعرض الحيوي للمبيدات المثبطة للكولينستيراز؛ مثبط لإنزيم الكولينستيراز","status":"pending_official_match","anomaly":"Parentheses around the limit/footnote are malformed in the source text."},
+    {"row":581,"name_ar":"فوسجين","name_en":"Phosgene","cas":"75-44-5","source_line":5452,"raw_limit_and_note_text":"COCl2؛ 98,92؛ 0,02 جزء/مليون؛ تهيج المسالك التنفسية العليا، تجمع مياه على الرئة، انتفاخ الرئة","status":"pending_official_match"},
+    {"row":582,"name_ar":"فوسفين","name_en":"Phosphine","cas":"7803-51-2","source_line":5454,"raw_limit_and_note_text":"PH3؛ 34,00؛ 0,05 جزء/مليون؛ 0,15 جزء/مليون؛ م4؛ A4؛ تهيج المسالك التنفسية وتجمع مياه على الرئة","status":"pending_official_match"},
+    {"row":583,"name_ar":"حمض الفوسفوريك","name_en":"Phosphoric acid","cas":"7664-38-2","source_line":5456,"raw_limit_and_note_text":"H3PO4؛ 98؛ 1 ملجم/م3؛ 3 ملجم/م3؛ تهيج المسالك التنفسية العليا والعين والجلد","status":"pending_official_match"}
+  ]
+}
