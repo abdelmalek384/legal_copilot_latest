@@ -26,6 +26,7 @@ This directory tracks the supplied Arabic JSONL corpus and its source review. Th
 - [Decision 250 Table 24 candidate batch 2, rows 21–40](decision_250_table24_candidate_batch2_rows021_040_2026-10-29.json): source-pinned candidate records; nested rows and CAS anomalies preserved for primary-source review.
 - [Decision 250 Table 24 candidate batch 3, rows 41–60](decision_250_table24_candidate_batch3_rows041_060_2026-10-29.json): additional source-pinned candidates; nested isomer rows and apparent transcription anomalies are preserved for primary-source review.
 - [Decision 250 Table 24 candidate batch 4, rows 61–80](decision_250_table24_candidate_batch4_rows061_080_2026-10-29.json): source-pinned candidates including nested chemical variants and an extraction anomaly; no exposure limit is approved.
+- [Decision 250 Table 24 candidate batch 5, rows 81–99](decision_250_table24_candidate_batch5_rows081_100_2026-10-29.json): source-pinned candidates including nested entries and raw transcription anomalies; JSON parse checked, all rows remain pending official match.
 - [Decision 250 Table 23 candidate rows](decision_250_table23_first_page_candidate_rows_2026-10-29.json): 137/137 rows now have Arabic labels; the last 74 labels and two CAS entries were added from secondary text and remain pending official-Gazette matching.
 
 - [Source and legal-status review](source_and_legal_review.md)
