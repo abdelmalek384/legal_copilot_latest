@@ -1,6 +1,6 @@
 # Database completion tracker
 
-**Last updated:** 2026-10-28  
+**Last updated:** 2026-10-29  
 **Estimated completion:** 73%  
 **Status:** In progress — not production-ready for confidential multi-firm matter data.
 
@@ -14,6 +14,7 @@ This is a planning estimate across fresh-install schema/migrations, tenant isola
 
 - [x] Validate live production schema objects against a fresh schema built from trusted migrations, including table columns, indexes, foreign keys, and trigger definitions for control-plane, legal-corpus, and every cataloged firm database; refuse startup on drift without silently repairing it (PR #802 merged; Tests #2740 passed).
 - [x] Verify extraction-review routes bind case, document, and chunk IDs even when the caller is authorized for both cases in the same firm; mismatched identifiers return 404 and leave extracted text/review rows unchanged (PR #818 merged; Tests #2862 passed).
+- [x] Verify original-file download, legal-hold, hold-history, and deletion-request routes bind the document to the case in the URL even when the caller can access both cases; denied requests return 404 and leave object/hold/deletion state unchanged (PR #819 merged; Tests #2866 passed).
 - [x] Extend schema drift checks to compare stored DDL for all non-internal tables, indexes, views, and triggers, including CHECK constraints and partial/expression-index definitions that PRAGMA metadata alone cannot prove unchanged (PR #813 merged; Tests #2841 passed).
 - [x] Extend tenant-fleet release preflight to reconcile all tenant-root SQLite files with catalog bindings, validate each catalog filename against its firm ID, and reject orphaned control-plane catalog rows/foreign-key violations rather than omitting them from planning (PR #804 merged; Tests #2759 passed).
 - [x] Add endpoint-level MFA recovery hardening regressions: rotation invalidates prior recovery codes while storing only salted hashes, and lost-authenticator replacement requires the current password plus recent MFA verification and remains pending until confirmed (PR #806 merged; Tests #2794 passed after correcting the expected password-denial status).
