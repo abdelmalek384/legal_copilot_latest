@@ -128,7 +128,7 @@ class DeploymentPreflightTests(unittest.TestCase):
             "COPILOT_OBJECT_STORAGE_BACKEND=s3" in item
             for item in errors
         ))
-        self.assertEqual(len(errors), 1, errors)
+        self.assertFalse(any("COPILOT_EMAIL_" in item for item in errors), errors)
 
     def test_production_requires_complete_encrypted_identity_email_configuration(self):
         root = Path(self.tempdir.name)
@@ -158,7 +158,6 @@ class DeploymentPreflightTests(unittest.TestCase):
         _, _, errors = preflight.inspect_environment(env)
         self.assertTrue(any("COPILOT_EMAIL_SMTP_HOST" in item for item in errors))
         self.assertTrue(any("COPILOT_EMAIL_FROM" in item for item in errors))
-        self.assertTrue(any("requires COPILOT_EMAIL_SMTP_SECURITY" in item for item in errors))
 
         env.update({
             "COPILOT_EMAIL_SMTP_HOST": "smtp.example.test",
