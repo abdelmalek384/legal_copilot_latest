@@ -1266,6 +1266,29 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             "SELECT COUNT(*) FROM docs WHERE case_id=?", (case_id,)
         ).fetchone()[0], 0)
 
+    def test_original_storage_access_rechecks_target_fingerprint_before_s3_client(self):
+        config = {
+            "COPILOT_ENV": "production",
+            "COPILOT_OBJECT_STORAGE_BACKEND": "s3",
+            "COPILOT_DATABASE_ACCEPTANCE_FILE": "/protected/accepted-database-evidence.json",
+            "COPILOT_S3_BUCKET": "changed-bucket",
+            "COPILOT_S3_REGION": "us-east-1",
+            "COPILOT_S3_KMS_KEY_ID": "arn:aws:kms:us-east-1:123456789012:key/changed-key",
+            "COPILOT_S3_ENDPOINT_URL": "",
+        }
+        with patch.dict(os.environ, config, clear=False), \
+             patch.object(app, "load_acceptance_manifest", return_value={"ready": False}) as load_manifest, \
+             patch("boto3.client") as boto_client:
+            with self.assertRaises(HTTPException) as raised:
+                app._original_file_store()
+        self.assertEqual(raised.exception.status_code, 503)
+        load_manifest.assert_called_once()
+        self.assertEqual(
+            load_manifest.call_args.kwargs.get("expected_storage_config_sha256"),
+            app.original_storage_config_fingerprint(),
+        )
+        boto_client.assert_not_called()
+
     def test_production_original_storage_requires_complete_acceptance_and_s3_backend(self):
         sentinel = object()
         config = {
