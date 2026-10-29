@@ -1,7 +1,7 @@
 # Clause-level discrepancy checklist — Labour Ministry Decisions 248–252/2026
 
 Research date: 2026-10-29  
-Status: secondary-text extraction and comparison queue. **Not primary-source verified; not for authoritative retrieval.**
+Status: secondary-text extraction and comparison queue. Decision 250 now has a full secondary transcription route, but **none of Decisions 248–252 has been compared clause-by-clause against official Gazette bytes; not for authoritative retrieval.**
 
 ## Primary-source anchor for all five decisions
 
@@ -71,7 +71,7 @@ Official title: rules/standards and safety limits at workplaces, conditions and 
 | 250-B | Article 2 says publication in Egyptian Proceedings and effect from the day following publication | Verify date of publication and whether any separate commencement clause applies | Secondary transcription of Article 2 |
 | 250-C | News summary describes machinery, hazardous materials, fire/explosion, radiation, pollutants and other occupational hazards | This is a topic summary, not a clause-level list. Extract each annex heading, numerical limit, measurement unit, exception, responsible person and inspection frequency from the actual schedules | Unverified summary only |
 
-**Critical annex gap:** the Al-Masdar page exposes article 1/2 as text and image placeholders for the rest. Do not claim that numeric exposure limits or engineering controls have been extracted. The schedules/record templates are likely the operative substance and need full-text acquisition by an authorized route.
+**Updated source finding (2026-10-29):** a full secondary transcription is now available at https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html. Its table of contents maps Table 23 (hazardous substances/threshold quantities) to printed p.242 and Table 24 (chemical exposure limits) to pp.249–360; register templates begin at p.361. This covers the previously missing printed pp.296–370 at the secondary-text discovery layer. It exposes thousands of lines, including hundreds of chemical-exposure entries, but no complete row-by-row structured extraction or official Gazette byte comparison has been completed. See [Decision 250 full secondary transcription access review](decision_250_full_secondary_transcription_access_review_2026-10-29.md). The Riwaq transcription is secondary, not primary authority; do not promote values to authoritative retrieval.
 
 ## Decision 251/2026 — OSH expert/consultant licensing
 
@@ -117,8 +117,8 @@ Official title: rules for licensing and training systems in OSH/workplace enviro
 
 - Official Ministry announcement found for all five decisions: yes.
 - Official Gazette catalogue record found for issue/date/titles: yes.
-- Secondary article-level text found: partial for Decision 248; summary for 249; Arts. 1–2 plus image placeholders for 250; Arts. 1–3 excerpt plus reported details for 251; Article 1 excerpt for 252.
-- Complete official text compared clause-by-clause: 0/5.
+- Secondary article-level text found: partial for Decision 248; scan-derived text/pages 19–44 plus summary for 249; full secondary transcription for Decision 250 (including Tables 1–24 and register templates); Arts. 1–3 excerpt plus reported details for 251; Article 1 excerpt for 252.
+- Complete official text compared clause-by-clause: 0/5. Full secondary transcription discovered for Decision 250: yes; all-row structured extraction: incomplete.
 - Exact discrepancies resolved against primary text: 0 confirmed.
 - Lawyer-approved: 0/5.
 - Eligible for authoritative retrieval: 0/5.
