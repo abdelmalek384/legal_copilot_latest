@@ -431,19 +431,19 @@
       "row": 47,
       "name_en": "Diisopropyl Peroxydicarbonate",
       "name_ar": "بيروكسيد ثنائي إيزوبروبيل ديكربونات",
-      "cas": "105-74-8",
+      "cas": null,
       "quantity_kg": 3401,
       "quantity_lb": 7500,
-      "status": "low_confidence_scan_reading_pending_official_match"
+      "status": "CAS_unreadable_or_ambiguous_in_scan_pending_official_match"
     },
     {
       "row": 48,
       "name_en": "Dilauroyl Peroxide",
       "name_ar": "بيروكسيد ثنائي اللورويل",
-      "cas": "105-74-8",
+      "cas": null,
       "quantity_kg": 3401,
       "quantity_lb": 7500,
-      "status": "low_confidence_scan_reading_pending_official_match"
+      "status": "CAS_unreadable_or_ambiguous_in_scan_pending_official_match"
     },
     {
       "row": 49,
@@ -582,6 +582,6 @@
     }
   ],
   "count": 63,
-  "coverage_note": "Rows 1–63 transcribed from printed pp.242–244 (three visible pages of Table 23). Rows 47–48 have potentially ambiguous CAS-number readings and require higher-resolution/official-file confirmation. This is only a partial table inventory; do not infer a threshold for unlisted substances.",
+  "coverage_note": "Rows 1–63 transcribed from printed pp.242–244 (three visible pages of Table 23). CAS numbers for rows 47–48 are intentionally null because the scan reading is ambiguous; do not guess them. This is only a partial table inventory; do not infer a threshold for unlisted substances.",
   "release_rule": "Verify Arabic/English names, CAS numbers, quantity columns, concentration qualifiers and exact thresholds against the official Gazette file. Check currentness and have qualified Egyptian OSH counsel review before authoritative retrieval."
 }
