@@ -184,6 +184,26 @@ class CompareLegalVersionsTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "different legal documents"):
                 compare_registered_versions(path, 1, 3)
 
+    def test_rejects_unbound_or_wrong_profile_database(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            wrong = Path(tmp) / "wrong-profile.sqlite"
+            self._database(wrong)
+            db = sqlite3.connect(wrong)
+            db.execute("UPDATE database_profile SET profile='firm' WHERE singleton=1")
+            db.commit()
+            db.close()
+            with self.assertRaisesRegex(ValueError, "legal_corpus profile"):
+                compare_registered_versions(wrong, 1, 2)
+
+            unbound = Path(tmp) / "unbound.sqlite"
+            self._database(unbound)
+            db = sqlite3.connect(unbound)
+            db.execute("DROP TABLE database_profile")
+            db.commit()
+            db.close()
+            with self.assertRaisesRegex(ValueError, "legal_corpus profile"):
+                compare_registered_versions(unbound, 1, 2)
+
     def test_missing_schema_and_missing_version_fail_clearly(self):
         with tempfile.TemporaryDirectory() as tmp:
             empty = Path(tmp) / "empty.sqlite"
