@@ -124,6 +124,50 @@ class DeploymentPreflightTests(unittest.TestCase):
         ))
         self.assertEqual(len(errors), 1, errors)
 
+    def test_production_requires_complete_encrypted_identity_email_configuration(self):
+        root = Path(self.tempdir.name)
+        env = dict(self.env)
+        env.pop("COPILOT_DB", None)
+        env.update({
+            "COPILOT_ENV": "production",
+            "COPILOT_CONTROL_DB": str(root / "control.sqlite3"),
+            "COPILOT_TENANT_DB_ROOT": str(root / "tenants"),
+            "COPILOT_CORPUS_DB": str(root / "corpus.sqlite3"),
+            "COPILOT_ALLOWED_HOSTS": "legal.example.test",
+            "COPILOT_SECURE_COOKIES": "1",
+            "COPILOT_PUBLIC_ORIGIN": "https://legal.example.test",
+            "BACKUP_KEY": Fernet.generate_key().decode(),
+            "MFA_ENFORCEMENT": "admins_required",
+            "MFA_ENCRYPTION_KEY": Fernet.generate_key().decode(),
+            "COPILOT_OBJECT_STORAGE_BACKEND": "s3",
+        })
+        _, _, errors = preflight.inspect_environment(env)
+        self.assertTrue(any("COPILOT_EMAIL_SMTP_HOST" in item for item in errors))
+        self.assertTrue(any("COPILOT_EMAIL_FROM" in item for item in errors))
+        self.assertTrue(any("requires COPILOT_EMAIL_SMTP_SECURITY" in item for item in errors))
+
+        env.update({
+            "COPILOT_EMAIL_SMTP_HOST": "smtp.example.test",
+            "COPILOT_EMAIL_FROM": "noreply@example.test",
+            "COPILOT_EMAIL_SMTP_PORT": "587",
+            "COPILOT_EMAIL_SMTP_SECURITY": "starttls",
+            "COPILOT_EMAIL_SMTP_USERNAME": "smtp-user",
+            "COPILOT_EMAIL_SMTP_PASSWORD": "smtp-password",
+        })
+        _, _, errors = preflight.inspect_environment(env)
+        self.assertFalse(any("COPILOT_EMAIL_" in item for item in errors), errors)
+
+        for overrides in (
+            {"COPILOT_EMAIL_SMTP_SECURITY": "plain"},
+            {"COPILOT_EMAIL_SMTP_PORT": "70000"},
+            {"COPILOT_EMAIL_SMTP_PORT": "not-a-port"},
+            {"COPILOT_EMAIL_SMTP_PASSWORD": ""},
+        ):
+            with self.subTest(overrides=overrides):
+                invalid = dict(env, **overrides)
+                _, _, errors = preflight.inspect_environment(invalid)
+                self.assertTrue(any("COPILOT_EMAIL_" in item for item in errors), errors)
+
     def test_production_requires_host_and_secure_cookie_settings(self):
         env = dict(self.env)
         env.pop("COPILOT_DB", None)
