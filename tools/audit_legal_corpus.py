@@ -91,7 +91,14 @@ def audit(db_path: Path):
         if len(profile_rows) != 1 or profile_rows[0]["profile"] != "legal_corpus":
             raise ValueError("database is not bound to the legal_corpus profile")
         integrity_messages = [str(row[0]) for row in db.execute("PRAGMA integrity_check").fetchall()]
-        foreign_key_rows = db.execute("PRAGMA foreign_key_check").fetchall()
+        foreign_key_violation_count = 0
+        foreign_key_violations = []
+        for row in db.execute("PRAGMA foreign_key_check"):
+            foreign_key_violation_count += 1
+            if len(foreign_key_violations) < 100:
+                foreign_key_violations.append(
+                    {"table": row[0], "rowid": row[1], "parent_table": row[2], "fk_index": row[3]}
+                )
         result = {
             "report_type":"legal_corpus_audit",
             "generated_at":datetime.now(timezone.utc).isoformat(),
@@ -100,11 +107,8 @@ def audit(db_path: Path):
             "sqlite_sidecars":sidecars,
             "read_only":True, "counts":{}, "issues":[],
             "sqlite_integrity_check": integrity_messages,
-            "foreign_key_violation_count": len(foreign_key_rows),
-            "foreign_key_violations": [
-                {"table": row[0], "rowid": row[1], "parent_table": row[2], "fk_index": row[3]}
-                for row in foreign_key_rows[:100]
-            ],
+            "foreign_key_violation_count": foreign_key_violation_count,
+            "foreign_key_violations": foreign_key_violations,
             "notes":["Metadata audit only; does not establish legal correctness.",
                      "Missing dates are unknown, not evidence that a law is in force.",
                      "This audit never promotes records to verified.",
@@ -117,11 +121,11 @@ def audit(db_path: Path):
                 "code": "sqlite_integrity_check_failed",
                 "detail": integrity_messages[:20],
             })
-        if foreign_key_rows:
+        if foreign_key_violation_count:
             result["issues"].append({
                 "severity": "high",
                 "code": "sqlite_foreign_key_violations",
-                "count": len(foreign_key_rows),
+                "count": foreign_key_violation_count,
                 "detail": "Only the first 100 structural violation descriptors are included.",
             })
         for table in ("chunks","legal_sources","legal_documents","legal_document_versions","legal_version_relations","legal_review_events"):
