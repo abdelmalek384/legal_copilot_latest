@@ -27,7 +27,7 @@ Scope: only the Labour Law 14/2025 evidence-backed legal-knowledge workstream an
 | Alternative source inventory | Added and linked | 100% for the inventory document | New source leads can still be added |
 | 35-item cross-instrument discrepancy checklist | Structured and count-validated | 100% for checklist structure | Legal text still needs primary-file match |
 | Decision 249 scan discovery | pp.19–44 and Tables 1–3 located | 75% source discovery | Official PDF hash, exact Table 1/2 transcription, currentness and counsel |
-| Decision 250 scan discovery | pp.45–240 inspected (196 of roughly 326 pages in the instrument span) | 60% of the long scan-index task | Hundreds of remaining pages/tables; all technical tables and numerical limits |
+| Decision 250 scan discovery | pp.45–255 inspected (211 of roughly 326 pages in the instrument span) | 65% of the long scan-index task | Hundreds of remaining pages/tables; all technical tables and numerical limits |
 | Decision 251 scan extraction | pp.371–377 indexed; Articles 1–11 summarized from reproduced scans | 65% extraction work | Official-file comparison, currentness, counsel, exact procedural day-count check |
 | Decision 252 scan extraction | pp.378–398 indexed; 32 numerical candidates structured | 70% extraction work | Official-file comparison; ambiguous table cells; currentness and counsel |
 | Decision 249 implementation circulars | Ministry says circulars will be issued; separate circular not located publicly | 35% | Find a public circular or preserve the unresolved gap |
