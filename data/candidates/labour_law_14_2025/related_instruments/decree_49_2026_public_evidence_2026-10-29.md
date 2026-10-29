@@ -51,6 +51,32 @@ https://dspace.id.com.eg/items/6e700208-61d6-4beb-8629-19fa7b6195fb
 
 **Access outcome:** selecting the PDF file link routed to a request-a-copy endpoint and timed out. The file contents were not obtained. No access control was bypassed and no request was submitted. The catalogue metadata strengthens the identity/issue-date lead but does not verify the operative text or annexes.
 
+## Additional publicly accessible Gazette-copy fallback found (2026-10-29)
+
+A 28-page PDF of *الوقائع المصرية، العدد 64 (تابع)، 18 مارس 2026* is publicly indexed at:
+https://www.cairo24.com/Upload/libfiles/180/1/188.pdf
+
+The PDF text layer contains Decree 49/2026 beginning at PDF page index 5 (printed page 6) and continues through the list of work categories and remote areas. **Caution:** the PDF's own first page includes the warning `صورة إلكترونية لا يعتد بها عند التداول` (electronic image not to be relied on for circulation). It is a useful public cross-check copy, not a substitute for a certified/officially served source file. No original-file hash has been calculated.
+
+A second accessible legal-blog transcription reproduces the decree:
+https://ahmedazimelgamel.blogspot.com/2026/03/49-2026-7.html?m=0
+
+### Material discrepancy discovered
+
+- The Ministry's 26 March 2026 announcement describes the remote-area strip as starting from **أبو رمادة / رأس غارب**.
+- The accessible Gazette-copy PDF text and the legal-blog transcription instead read **الزعفرانة / رأس غارب** in Article 3.
+
+This is a substantive geographic-name discrepancy, not a spelling normalization issue. Do **not** silently harmonize the sources or use the Ministry announcement's place name to determine coverage. The Article 3 wording needs verification against an authoritative Gazette copy before any worker or site is classified as eligible.
+
+### Additional provisions visible in the fallback copy
+
+- Article 3 lists remote areas, including North Sinai, South Sinai, Red Sea, Matrouh, New Valley, Toshka and surrounding areas, East Oweinat, a strip from الزعفرانة / رأس غارب toward the Sudanese border in the Halayeb area to a depth of five kilometres, and new industrial areas designated by a Prime Minister's decision.
+- Article 4 says the competent administrations review the listed work/areas periodically and update them at intervals no longer than three years.
+- Article 5 says the decision is published in *الوقائع المصرية* and takes effect the day after publication. The accessible issue is dated 18 March 2026; the decision signature date shown in the copy is 3 March 2026. The calculated next-day effective date is 19 March 2026, subject to confirmation against the authoritative publication copy.
+- Article 2's lists include individual industrial activities, not merely broad sectors. The Ministry announcement's summary counts are insufficient to establish whether a specific job falls within the exact list.
+
+These observations are **secondary-copy cross-check findings**, not a final official-text certification.
+
 ## Next lawful route
 
 1. Search the public Official Gazette/IDSC catalogue for the exact decision title/number and its issue/date. The existing repository register records that Gazette metadata may identify the relevant supplement, but metadata alone does not supply the full text.
