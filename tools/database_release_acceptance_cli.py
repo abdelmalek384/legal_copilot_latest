@@ -11,14 +11,28 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from tools.database_release_acceptance import load_acceptance_manifest
+from tools.database_release_acceptance import load_acceptance_manifest, original_storage_config_fingerprint
 
 
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--manifest", type=Path, help="Controlled operational acceptance manifest outside the repository.")
+    parser.add_argument(
+        "--print-storage-config-fingerprint",
+        action="store_true",
+        help="print the non-secret fingerprint of the configured S3/KMS target and exit",
+    )
     args = parser.parse_args(argv)
-    report = load_acceptance_manifest(args.manifest)
+    if args.print_storage_config_fingerprint:
+        fingerprint = original_storage_config_fingerprint()
+        if fingerprint is None:
+            parser.error("configure the S3/KMS backend, bucket, region, and key ID before computing the fingerprint")
+        print(fingerprint)
+        return 0
+    report = load_acceptance_manifest(
+        args.manifest,
+        expected_storage_config_sha256=original_storage_config_fingerprint() or "",
+    )
     print(json.dumps(report, ensure_ascii=False, indent=2) + "\n", end="")
     return 0 if report["ready"] else 1
 

@@ -2,6 +2,7 @@
 """Validate explicit operational evidence required before production database release."""
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import stat
@@ -11,7 +12,7 @@ from pathlib import Path
 REQUIRED_GATES = {
     "original_file_storage": {
         "description": "Live object-storage, KMS/key policy, authorization, integrity, and reconciliation validation",
-        "fields": ("verified_at", "verified_by"),
+        "fields": ("verified_at", "verified_by", "storage_config_sha256"),
         "witness_required": False,
         "max_age_days": 90,
     },
@@ -48,6 +49,28 @@ REQUIRED_GATES = {
 }
 
 
+def original_storage_config_fingerprint(env: object | None = None) -> str | None:
+    """Fingerprint non-secret S3/KMS target settings so evidence cannot be reused for another target."""
+    source = os.environ if env is None else env
+    if not hasattr(source, "get"):
+        return None
+    values = {
+        "backend": str(source.get("COPILOT_OBJECT_STORAGE_BACKEND", "")).strip().lower(),
+        "bucket": str(source.get("COPILOT_S3_BUCKET", "")).strip(),
+        "region": str(source.get("COPILOT_S3_REGION", "")).strip(),
+        "kms_key_id": str(source.get("COPILOT_S3_KMS_KEY_ID", "")).strip(),
+        "endpoint_url": str(source.get("COPILOT_S3_ENDPOINT_URL", "")).strip(),
+    }
+    if values["backend"] != "s3" or not values["bucket"] or not values["region"] or not values["kms_key_id"]:
+        return None
+    payload = json.dumps(values, sort_keys=True, separators=(",", ":"), ensure_ascii=True).encode("utf-8")
+    return hashlib.sha256(payload).hexdigest()
+
+
+def _valid_sha256(value: object) -> bool:
+    return isinstance(value, str) and len(value) == 64 and all(ch in "0123456789abcdef" for ch in value.lower())
+
+
 def _timestamp(value: object) -> datetime | None:
     if not isinstance(value, str) or not value.strip():
         return None
@@ -60,7 +83,7 @@ def _timestamp(value: object) -> datetime | None:
     return parsed.astimezone(timezone.utc)
 
 
-def validate_acceptance_manifest(manifest: object, *, now: datetime | None = None) -> dict:
+def validate_acceptance_manifest(manifest: object, *, now: datetime | None = None, expected_storage_config_sha256: str | None = None) -> dict:
     """Return a sanitized decision; never echo evidence references or secret values."""
     blockers: list[dict[str, str]] = []
     if not isinstance(manifest, dict):
@@ -100,6 +123,18 @@ def validate_acceptance_manifest(manifest: object, *, now: datetime | None = Non
         if missing_fields:
             blockers.append({"gate": name, "code": "required_evidence_fields_missing"})
             continue
+        if name == "original_file_storage":
+            recorded_fingerprint = item.get("storage_config_sha256")
+            if not _valid_sha256(recorded_fingerprint):
+                blockers.append({"gate": name, "code": "invalid_storage_configuration_fingerprint"})
+                continue
+            if expected_storage_config_sha256 is not None:
+                if not _valid_sha256(expected_storage_config_sha256):
+                    blockers.append({"gate": name, "code": "storage_configuration_unavailable"})
+                    continue
+                if recorded_fingerprint.lower() != expected_storage_config_sha256.lower():
+                    blockers.append({"gate": name, "code": "storage_configuration_mismatch"})
+                    continue
         evidence_ref = item["evidence_ref"].strip()
         if len(evidence_ref) > 500 or evidence_ref.lower() in {"todo", "tbd", "pending", "n/a"}:
             blockers.append({"gate": name, "code": "invalid_evidence_reference"})
@@ -180,7 +215,7 @@ def _read_acceptance_manifest_file(path: Path) -> object:
         return json.load(stream)
 
 
-def load_acceptance_manifest(path: str | Path | None, *, now: datetime | None = None) -> dict:
+def load_acceptance_manifest(path: str | Path | None, *, now: datetime | None = None, expected_storage_config_sha256: str | None = None) -> dict:
     if path is None:
         return {
             "ready": False,
@@ -216,4 +251,4 @@ def load_acceptance_manifest(path: str | Path | None, *, now: datetime | None = 
             "required_count": len(REQUIRED_GATES),
             "blockers": [{"gate": "manifest", "code": "manifest_unreadable_or_invalid_json"}],
         }
-    return validate_acceptance_manifest(manifest, now=now)
+    return validate_acceptance_manifest(manifest, now=now, expected_storage_config_sha256=expected_storage_config_sha256)

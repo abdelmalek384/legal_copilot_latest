@@ -22,7 +22,7 @@ from identity_email import IdentityEmailError, send_identity_email
 from db_migrations import apply_migrations
 from database_runtime import DatabaseRuntime, DatabaseRuntimeError
 from tenant_context import FirmContext, FirmContextError
-from tools.database_release_acceptance import load_acceptance_manifest
+from tools.database_release_acceptance import load_acceptance_manifest, original_storage_config_fingerprint
 from fastapi import Request
 from fastapi.responses import JSONResponse, HTMLResponse, Response
 
@@ -218,7 +218,10 @@ if _environment_mode in {"prod", "production"}:
     except (ValueError, TypeError, UnicodeError):
         startup_errors.append("BACKUP_KEY must be a valid Fernet key in production.")
     acceptance_path = os.environ.get("COPILOT_DATABASE_ACCEPTANCE_FILE", "").strip()
-    acceptance_report = load_acceptance_manifest(acceptance_path or None)
+    acceptance_report = load_acceptance_manifest(
+        acceptance_path or None,
+        expected_storage_config_sha256=original_storage_config_fingerprint() or "",
+    )
     if not acceptance_report["ready"]:
         startup_errors.append(
             "COPILOT_DATABASE_ACCEPTANCE_FILE must reference a complete accepted database operational evidence manifest."
@@ -648,7 +651,10 @@ def _original_file_store():
         # Recheck the manifest at use time so a removed, expired, or edited
         # acceptance record fails closed instead of leaving object storage enabled.
         acceptance_path = os.environ.get("COPILOT_DATABASE_ACCEPTANCE_FILE", "").strip()
-        acceptance = load_acceptance_manifest(acceptance_path or None)
+        acceptance = load_acceptance_manifest(
+            acceptance_path or None,
+            expected_storage_config_sha256=original_storage_config_fingerprint() or "",
+        )
         if not acceptance.get("ready"):
             raise HTTPException(
                 503,

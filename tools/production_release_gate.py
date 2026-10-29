@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools.deployment_preflight import inspect_environment
-from tools.database_release_acceptance import load_acceptance_manifest
+from tools.database_release_acceptance import load_acceptance_manifest, original_storage_config_fingerprint
 from tools.migrate_tenant_fleet import FleetMigrationError, build_plan as build_tenant_migration_plan
 from tools.evaluate_legal_answers import APPROVED, EvaluationError, _validate_reviewed_question, read_jsonl
 from tools.evaluate_legal_answer_reviews import validate_reviewer_registry
@@ -143,7 +143,10 @@ def evaluate_release(
     acceptance_environment = os.environ if env is None else env
     if database_acceptance_path is None:
         database_acceptance_path = acceptance_environment.get("COPILOT_DATABASE_ACCEPTANCE_FILE")
-    database_acceptance = load_acceptance_manifest(database_acceptance_path)
+    database_acceptance = load_acceptance_manifest(
+        database_acceptance_path,
+        expected_storage_config_sha256=original_storage_config_fingerprint(acceptance_environment) or "",
+    )
     tenant_migration_report = {"configured": False, "pending_database_count": 0, "pending_migration_count": 0}
     control_db = acceptance_environment.get("COPILOT_CONTROL_DB")
     tenant_root = acceptance_environment.get("COPILOT_TENANT_DB_ROOT")

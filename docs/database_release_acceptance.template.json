@@ -5,7 +5,8 @@
       "status": "pending",
       "evidence_ref": "",
       "verified_at": "",
-      "verified_by": ""
+      "verified_by": "",
+      "storage_config_sha256": ""
     },
     "backup_restore_rollback": {
       "status": "pending",
