@@ -217,8 +217,9 @@ class DatabaseRuntimeTests(unittest.TestCase):
             connection.close()
         runtime = DatabaseRuntime(control, tenant_root, corpus)
         with patch.dict(os.environ, {"COPILOT_ENV": "production"}):
-            with self.assertRaisesRegex(DatabaseRuntimeError, "schema objects or constraints differ"):
+            with self.assertRaisesRegex(DatabaseRuntimeError, "failed read-only preflight") as caught:
                 runtime.initialize()
+            self.assertRegex(str(caught.exception.__cause__), "immutable firm binding guard for update")
         with sqlite3.connect(corpus) as check:
             self.assertIsNone(check.execute(
                 "SELECT name FROM sqlite_master WHERE type='index' "
