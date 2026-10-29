@@ -3566,6 +3566,112 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
 
 
+    def test_legal_corpus_coverage_counts_only_permission_complete_versions(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        control = self.runtime.control_connection()
+        control.execute(
+            "INSERT INTO user_platform_roles(user_id,role_name) VALUES(?,?)",
+            (self.user_id, "platform_reviewer"),
+        )
+        control.commit()
+
+        before = self.client.get("/legal-review/coverage")
+        self.assertEqual(before.status_code, 200, before.text)
+        verified_before = before.json()["metrics"]["verified_operational_versions"]
+
+        corpus = self.runtime.legal_corpus_connection()
+        corpus.execute(
+            "INSERT INTO legal_sources(source_id,authority,source_page,access_status,"
+            "collection_permission,commercial_reuse_permission,permission_evidence) "
+            "VALUES(?,?,?,?,?,?,?)",
+            ("RUNTIME-COVERAGE-SOURCE", "Coverage test authority",
+             "https://example.test/coverage-source", "reviewed", "allowed", "allowed",
+             "synthetic source permission evidence"),
+        )
+        corpus.execute(
+            "INSERT INTO legal_documents(document_id,source_id,official_title,document_type,practice_area) "
+            "VALUES(?,?,?,?,?)",
+            ("RUNTIME-COVERAGE-DOC", "RUNTIME-COVERAGE-SOURCE",
+             "Coverage test instrument", "law", "labour"),
+        )
+        corpus.execute(
+            "INSERT INTO legal_document_versions(document_id,version_label,source_url,publication_date,"
+            "effective_date,legal_status,review_status,authenticity_verified,status_verified,"
+            "amendment_history_verified,permission_evidence) VALUES(?,?,?,?,?,?,?,?,?,?,?)",
+            ("RUNTIME-COVERAGE-DOC", "verified-version", "https://example.test/coverage-v1",
+             "2020-01-01", "2020-01-01", "in_force", "verified", 1, 1, 1,
+             "synthetic version permission evidence"),
+        )
+        corpus.execute(
+            "INSERT INTO legal_document_versions(document_id,version_label,source_url,publication_date,"
+            "effective_date,legal_status,review_status,authenticity_verified,status_verified,"
+            "amendment_history_verified) VALUES(?,?,?,?,?,?,?,?,?,?)",
+            ("RUNTIME-COVERAGE-DOC", "missing-permission-evidence",
+             "https://example.test/coverage-v2", "2021-01-01", "2021-01-01",
+             "in_force", "verified", 1, 1, 1),
+        )
+        corpus.execute(
+            "INSERT INTO legal_sources(source_id,authority,source_page) VALUES(?,?,?)",
+            ("RUNTIME-COVERAGE-METADATA-SOURCE", "Metadata-only authority",
+             "https://example.test/metadata-only"),
+        )
+        corpus.execute(
+            "INSERT INTO legal_documents(document_id,source_id,official_title,document_type) "
+            "VALUES(?,?,?,?)",
+            ("RUNTIME-COVERAGE-METADATA-DOC", "RUNTIME-COVERAGE-METADATA-SOURCE",
+             "Metadata-only instrument", "law"),
+        )
+        corpus.commit()
+
+        response = self.client.get("/legal-review/coverage")
+        self.assertEqual(response.status_code, 200, response.text)
+        metrics = response.json()["metrics"]
+        self.assertGreaterEqual(metrics["source_count"], 2)
+        self.assertGreaterEqual(metrics["metadata_only_documents"], 1)
+        self.assertEqual(metrics["verified_operational_versions"], verified_before + 1)
+        self.assertGreaterEqual(metrics["permission_or_evidence_blocked_versions"], 1)
+        self.assertTrue(any(
+            row["practice_area"] == "labour"
+            and row["documents_with_verified_operational_text"] == 1
+            for row in response.json()["coverage_by_practice_area"]
+        ))
+        self.assertTrue(any(
+            "not total Egyptian-law coverage" in warning
+            for warning in response.json()["warnings"]
+        ))
+
+        blocked_before_unknown = metrics["permission_or_evidence_blocked_versions"]
+        corpus.execute(
+            "INSERT INTO legal_sources(source_id,authority,source_page,collection_permission,"
+            "commercial_reuse_permission,permission_evidence) VALUES(?,?,?,?,?,?)",
+            ("RUNTIME-COVERAGE-UNKNOWN-SOURCE", "Unknown permission authority",
+             "https://example.test/unknown", "unknown", "unknown",
+             "permission classification awaiting review"),
+        )
+        corpus.execute(
+            "INSERT INTO legal_documents(document_id,source_id,official_title,document_type) "
+            "VALUES(?,?,?,?)",
+            ("RUNTIME-COVERAGE-UNKNOWN-DOC", "RUNTIME-COVERAGE-UNKNOWN-SOURCE",
+             "Unknown permission instrument", "law"),
+        )
+        corpus.execute(
+            "INSERT INTO legal_document_versions(document_id,version_label,source_url,legal_status,"
+            "review_status,permission_evidence) VALUES(?,?,?,?,?,?)",
+            ("RUNTIME-COVERAGE-UNKNOWN-DOC", "pending", "https://example.test/unknown-version",
+             "under_review", "pending_source_review", "synthetic review evidence"),
+        )
+        corpus.commit()
+        after_unknown = self.client.get("/legal-review/coverage")
+        self.assertEqual(after_unknown.status_code, 200, after_unknown.text)
+        self.assertEqual(
+            after_unknown.json()["metrics"]["permission_or_evidence_blocked_versions"],
+            blocked_before_unknown + 1,
+        )
+
+
     def test_platform_reviewer_catalog_queries_are_metadata_only_and_bounded(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
