@@ -1,0 +1,58 @@
+name: Legal Knowledge Validation
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'data/candidates/labour_law_14_2025/**'
+      - 'tools/validate_decision250_table24_candidates.py'
+      - 'tools/build_decision250_table24_review_queue.py'
+      - 'tools/build_decision250_table24_primary_match_register.py'
+      - 'tests/test_decision250_table24_candidate_validation.py'
+      - 'tests/test_decision250_table24_review_queue.py'
+      - 'tests/test_decision250_table24_primary_match_register.py'
+      - 'tests/test_compare_corpus_to_reference.py'
+      - 'tests/test_legal_source_review_queue.py'
+      - '.github/workflows/legal-knowledge-validation.yml'
+  push:
+    branches:
+      - 'legal-knowledge-evidence-*'
+    paths:
+      - 'data/candidates/labour_law_14_2025/**'
+      - 'tools/validate_decision250_table24_candidates.py'
+      - 'tools/build_decision250_table24_review_queue.py'
+      - 'tools/build_decision250_table24_primary_match_register.py'
+      - 'tests/test_decision250_table24_candidate_validation.py'
+      - 'tests/test_decision250_table24_review_queue.py'
+      - 'tests/test_decision250_table24_primary_match_register.py'
+      - 'tests/test_compare_corpus_to_reference.py'
+      - 'tests/test_legal_source_review_queue.py'
+      - '.github/workflows/legal-knowledge-validation.yml'
+
+jobs:
+  legal-knowledge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate Decision 250 Table 24 candidate batches
+        run: python tools/validate_decision250_table24_candidates.py
+      - name: Test Decision 250 Table 24 candidate validator
+        run: PYTHONPATH=. python tests/test_decision250_table24_candidate_validation.py
+      - name: Test Decision 250 Table 24 review queue
+        run: PYTHONPATH=. python tests/test_decision250_table24_review_queue.py
+      - name: Test Decision 250 Table 24 primary-match register
+        run: PYTHONPATH=. python tests/test_decision250_table24_primary_match_register.py
+      - name: Test Labour Law candidate-to-reference comparison
+        run: PYTHONPATH=. python tests/test_compare_corpus_to_reference.py
+      - name: Test legal source review queue
+        run: PYTHONPATH=. python tests/test_legal_source_review_queue.py
+      - name: Build complete Table 24 human review queue
+        run: python tools/build_decision250_table24_review_queue.py --output /tmp/decision250-table24-review-queue.md
+      - name: Build fail-closed Table 24 primary-match register
+        run: python tools/build_decision250_table24_primary_match_register.py --output /tmp/decision250-table24-primary-match-register.jsonl
