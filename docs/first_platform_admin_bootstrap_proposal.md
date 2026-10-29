@@ -1,12 +1,12 @@
 # First platform administrator bootstrap — proposal
 
-**Status:** The approved one-time CLI default is implemented in PR #690 as manage.py bootstrap-platform-admin. It remains unmerged and must not be treated as production-ready until the full CI suite passes on the updated PR head and an independent reviewer/witness validates the first deployment procedure.
+**Status:** The one-time CLI implementation is merged (PR #729) and its automated tests pass. It is not yet operationally accepted for production: an authorized operator must rehearse the first bootstrap on the target deployment, have an independent witness verify the resulting role and audit event, and complete the separate privileged-recovery acceptance gate.
 
-## Recommended default
+## Implemented behavior
 
 Use a one-time, CLI-only bootstrap command on an authorized operator host after a clean control-plane install. Do not add a public or authenticated web route for first-platform-admin creation.
 
-The command should:
+The command implements the following controls:
 
 1. Resolve an existing global identity by normalized email or explicit user ID; do not create a global identity implicitly.
 2. Require that identity to be active and have an active firm membership with the **admin** firm role. Firm-admin status does not itself grant platform privileges; it is only an eligibility precondition for this one-time bootstrap.
@@ -19,22 +19,15 @@ The command should:
 
 The initial bootstrap should be performed under a recorded change with an independent reviewer/witness. The operator should verify the resulting role and audit event through the bounded read-only platform audit command, then secure the control-plane file and operator access.
 
-## Required implementation and test gates
+## Verified code controls
 
-- A migration-managed audit event type for the initial bootstrap, preserving prior platform audit rows and append-only triggers.
-- Atomic role-plus-event transaction, with failure-injection coverage proving neither row persists if audit insertion fails.
-- Refusal tests for an existing platform administrator, prior bootstrap event, disabled identity, suspended/inactive firm membership, missing reason, missing confirmation, and a target without an active firm-admin membership.
-- No HTTP route or self-service flow for initial platform-admin creation.
-- Audit output must not include raw email, passwords, session cookies, tokens, or database paths.
-- A second platform administrator must be created through the normal audited grant CLI after the first bootstrap, before routine platform administration is handed over.
+- [x] The bootstrap audit event is migration-managed and append-only.
+- [x] Role creation and the audit event commit atomically; failure-injection tests cover rollback.
+- [x] Tests cover prior bootstrap/admin state, inactive identities or memberships, missing reason/confirmation, and ineligible targets.
+- [x] No HTTP route or self-service flow exists for initial platform-admin creation.
+- [x] Output and audit data avoid raw email, passwords, session cookies, tokens, and database paths.
+- [ ] Operationally create and verify a second platform administrator through the normal audited grant CLI before routine platform administration is handed over.
 
-## Decisions needed from the product owner
+## Remaining operational acceptance
 
-Approve or change these recommended defaults before implementation:
-
-1. Must the initial target be an active firm administrator, or may another active global identity be selected?
-2. Is an independent reviewer/witness in the change record sufficient, or must the CLI require a second operator's signed approval artifact?
-3. Should a successful bootstrap event permanently disable the bootstrap command even if every platform-admin role is later revoked? Recommended: yes; recovery from loss of all platform administrators should be a separate break-glass procedure.
-4. Should the operator identify the target by immutable user ID only, or may normalized email be accepted as a lookup input? Either way, the audit event should store the target user ID, not raw email.
-
-The implementation requires an existing active global identity with an active firm-admin membership, explicit confirmation, a non-empty reason, and restricted operator/change references. It refuses an existing active platform administrator and any prior successful bootstrap event, and writes the role plus append-only audit event atomically. It does not authenticate the human operator cryptographically; the trusted operator host, recorded change, and independent witness remain required. No web route or direct-SQL bypass is added. The bootstrap remains a release gate until PR #690 is merged and the operational procedure is witnessed.
+The implemented command requires an existing active global identity with an active firm-admin membership, explicit confirmation, a non-empty reason, and restricted operator/change references. It refuses an existing active platform administrator and any prior successful bootstrap event, and writes the role plus append-only audit event atomically. It does not cryptographically authenticate the human operator. The trusted operator host, recorded change, independent witness, privileged-account recovery rehearsal, and first-deployment sign-off remain mandatory before production use.
