@@ -119,6 +119,8 @@ def validate(root: Path = DATA_DIR) -> list[str]:
                 errors.append(f"{filename}: row {number} missing Arabic name/label")
             if row.get("status") != "pending_official_match":
                 errors.append(f"{filename}: row {number} must remain pending_official_match")
+            if row.get("retrieval_eligible") is True or row.get("verified") is True or row.get("approved") is True:
+                errors.append(f"{filename}: row {number} contains a forbidden promotion/approval flag in candidate-only data")
 
     expected = set(range(1, 618))
     actual = set(observed)
