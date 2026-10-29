@@ -836,6 +836,82 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
         self.assertEqual(denied_history.status_code, 404, denied_history.text)
 
+    def test_original_file_routes_require_document_to_match_path_case(self):
+        import hashlib
+        from original_file_storage import LocalPrivateObjectStore
+
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        case_one = self._mutate("post", "/cases", json={"title": "Original file owner case"})
+        case_two = self._mutate("post", "/cases", json={"title": "Different original path case"})
+        self.assertEqual(case_one.status_code, 200, case_one.text)
+        self.assertEqual(case_two.status_code, 200, case_two.text)
+        case_one_id, case_two_id = case_one.json()["id"], case_two.json()["id"]
+
+        context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        firm_db = self.runtime.firm_connection(context)
+        original = b"synthetic original evidence bound to case one"
+        _doc_id, document_id = app.save_doc(
+            firm_db,
+            {"id": self.user_id, "firm_id": self.firm_a, "name": "First Owner"},
+            case_one_id,
+            "case-one-evidence.txt",
+            "Synthetic extracted text only",
+            content_hash=hashlib.sha256(original).hexdigest(),
+            content_type="text/plain",
+            byte_size=len(original),
+        )
+        store = LocalPrivateObjectStore(self.root / "objects")
+        staged = store.stage(self.firm_a, original)
+        store.finalize(self.firm_a, staged.object_id)
+        firm_db.execute(
+            "INSERT INTO original_file_objects("
+            "object_id,document_id,firm_id,storage_backend,sha256,byte_size,content_type,state"
+            ") VALUES(?,?,?,'local',?,?,?,'ready')",
+            (
+                staged.object_id, document_id, self.firm_a, staged.sha256,
+                staged.byte_size, "text/plain",
+            ),
+        )
+        firm_db.commit()
+
+        # This user can access both cases, but the document belongs only to case one.
+        base = f"/cases/{case_two_id}/docs/{document_id}/original"
+        for method, path, kwargs in (
+            ("get", base, {}),
+            ("post", base + "/legal-hold", {"json": {"reason": "mismatched path case"}}),
+            ("post", base + "/legal-hold/release", {"json": {"reason": "mismatched path case"}}),
+            ("get", base + "/legal-hold/events", {}),
+            ("post", base + "/deletion-requests", {"json": {"reason": "mismatched path case"}}),
+            ("get", base + "/deletion-requests", {}),
+        ):
+            response = self._mutate(method, path, **kwargs) if method == "post" else self.client.get(path)
+            self.assertEqual(response.status_code, 404, f"{path}: {response.text}")
+
+        self.assertEqual(
+            firm_db.execute(
+                "SELECT state FROM original_file_objects WHERE document_id=? AND firm_id=?",
+                (document_id, self.firm_a),
+            ).fetchone()["state"],
+            "ready",
+        )
+        self.assertEqual(
+            firm_db.execute(
+                "SELECT COUNT(*) FROM original_file_legal_holds WHERE document_id=?",
+                (document_id,),
+            ).fetchone()[0],
+            0,
+        )
+        self.assertEqual(
+            firm_db.execute(
+                "SELECT COUNT(*) FROM original_file_deletion_requests WHERE document_id=?",
+                (document_id,),
+            ).fetchone()[0],
+            0,
+        )
+
     def test_original_file_hold_and_deletion_routes_cannot_cross_firm_boundaries(self):
         import hashlib
         from original_file_storage import LocalPrivateObjectStore
