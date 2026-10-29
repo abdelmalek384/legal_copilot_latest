@@ -3541,6 +3541,13 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             researcher.close()
 
 
+    def test_calendar_text_escaping_prevents_crlf_line_injection(self):
+        self.assertEqual(
+            app._ics_escape("a\\b,c;d\\r\\ne\\rf\\ng"),
+            "a\\\\b\\,c\\;d\\ne\\nf\\ng",
+        )
+
+
     def test_date_models_reject_impossible_calendar_dates(self):
         cases = (
             (app.SessIn, {"date": "2024-02-29"}, "date", "2025-02-29"),
