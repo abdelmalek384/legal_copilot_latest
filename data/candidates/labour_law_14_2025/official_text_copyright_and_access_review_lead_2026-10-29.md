@@ -5,7 +5,7 @@
 
 ## Finding: Egyptian copyright law excludes official legal documents from protection
 
-WIPO Lex's consolidated record for Egypt's Law No. 82 of 2002 on the Protection of Intellectual Property Rights, amended through Law No. 178 of 2020, reproduces Article 141. Article 141 states that protection does not cover official documents, whatever their source or target language, including laws, regulations, resolutions and decisions, international conventions, court decisions, arbitral awards, and decisions of administrative committees with judicial competence. It also states that creative selection/arrangement of collections may be protected.
+WIPO Lex's consolidated record for Egypt's Law No. 82 of 2002 on the Protection of Intellectual Property Rights, amended through Law No. 178 of 2020, reproduces Article 141. Because that consolidation is current only through 2020, any post-2020 amendments and current Egyptian-law interpretation must be checked before relying on this exclusion for a commercial product. Article 141 states that protection does not cover official documents, whatever their source or target language, including laws, regulations, resolutions and decisions, international conventions, court decisions, arbitral awards, and decisions of administrative committees with judicial competence. It also states that creative selection/arrangement of collections may be protected.
 
 Sources:
 - WIPO Lex English record and consolidated statutory text: https://www.wipo.int/wipolex/en/legislation/details/22066
