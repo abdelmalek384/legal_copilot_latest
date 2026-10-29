@@ -28,6 +28,7 @@ Table 24 candidate extraction now covers **617/745 numbered entries (82.8%)**. T
 12. Decision 250 Table 23 remains at **137/137 candidate labels**. Labels are transcribed from secondary text and still require official page matching.
 13. Decision 251 has 17 candidate licensing/experience/fee assertions; Decision 252 has 40 candidate assertions. They remain secondary/unverified pending official comparison.
 14. The Decisions 248–252 clause discrepancy checklist and related source-route/currentness notes remain candidate evidence, not verified legal conclusions.
+15. Inspected the current separate-database legal-search SQL and bulk-import path: imports go to `legal_import_staging`, while corpus search/exact-article retrieval requires verified chunks linked to a version whose source permissions, authenticity/status/amendment checks, required review events and effective dates pass. This is a static code inspection, not a runtime/CI test; it does not change any candidate's eligibility.
 
 ## Current subtask status
 
