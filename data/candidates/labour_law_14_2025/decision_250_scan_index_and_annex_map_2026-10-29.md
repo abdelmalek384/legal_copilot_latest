@@ -11,7 +11,7 @@ The article page's HTML text only exposes Articles 1 and 2, while the full decis
 
 - First inspected page: printed Gazette p. 45 (image URL: https://www.almasdar.com/WebP/libfiles/46/3/737.webp)
 - Next page: printed Gazette p. 46 (image URL: https://www.almasdar.com/WebP/libfiles/46/3/738.webp)
-- Inspected through printed Gazette p. 75 (image URL: https://www.almasdar.com/WebP/libfiles/46/3/767.webp)
+- Inspected through printed Gazette p. 90 (image URL: https://www.almasdar.com/WebP/libfiles/46/3/782.webp); inspected image sequence currently covers pp. 45–90, not the whole decision
 - Decision 251 starts at printed p. 371 in the same issue (page image sequence on https://www.almasdar.com/175152). This indicates Decision 250 and its annexes occupy a very large span between the beginning at p.45 and the next instrument at p.371. Do not assume every intervening page has been reviewed merely because a sequence is available.
 
 The image files are hosted by a secondary publisher and carry its watermark. They appear to reproduce Gazette pages, but the official Gazette PDF bytes have not been acquired or hashed. This is a reproduced scan route, not a certified official download.
@@ -32,7 +32,11 @@ The decision's Article 1 expressly says the decision operates together with its 
 | pp. 69–70 | Heat stress | Monitoring, work/rest arrangements, drinking water, acclimatization and controls; relative humidity guidance; seasonal direct-sun work restriction is visible in the scan | Numerical details must be captured and checked against tables |
 | pp. 71–72 | Cold stress and noise | Cold-exposure controls, clothing, warm-up/rest measures; noise exposure monitoring, engineering controls and protective equipment | Numeric exposure limits are referenced to later tables, not extracted here |
 | pp. 73–74 | Mechanical vibration and illumination | Monitoring, engineering/maintenance controls, anti-vibration equipment, lighting level, glare and UGR | Numeric exposure/illumination tables remain unextracted |
-| p. 75 | Ionizing radiation and radioactive materials | Recordkeeping, prohibitions on unauthorized handling/import/transport/disposal, licensing, exposure monitoring and incident reporting | Partial; radiation tables/limits still open |
+| pp. 75–78 | Ionizing radiation and radioactive materials | Recordkeeping, prohibitions on unauthorized handling/import/transport/disposal, licensing, exposure monitoring and incident reporting | Partial; radiation tables/limits still open |
+| pp. 79–83 | Laser radiation; non-ionizing radiation / IR / UV | Laser class requirements, licensing/training, interlocks, protective equipment, emergency response; infrared and ultraviolet controls and exposure-duration limits tied to tables | Partial; numeric exposure limits referenced to tables 14–18 not extracted |
+| pp. 84–85 | Explosion hazards and safe use/storage of flammable/explosive materials | Pressure vessels, safety valves, testing/maintenance, ignition control, storage, grounding/bonding, ventilation and explosion prevention | Partial |
+| pp. 86–88 | Construction, demolition and engineering hazards | Risk assessment, work permits, approved plans, supervision, ground/soil conditions, access, protective barriers and emergency arrangements | Partial |
+| pp. 89–90 | Excavation and trenching | Work permits, soil/groundwater assessment, cave-in prevention, protective barriers, safe access/egress, gas monitoring and emergency controls | Partial; exact numeric dimensions and exceptions need confirmation |
 
 ## Key technical-table/annex inventory still to extract
 
@@ -42,7 +46,7 @@ The inspected pages explicitly refer to accompanying tables, including:
 - permissible noise levels and exposure duration;
 - mechanical vibration thresholds;
 - illumination levels and Unified Glare Rating (UGR);
-- radiation exposure tables and controlled-area rules;
+- radiation exposure tables and controlled-area rules (laser/non-ionizing radiation sections also reference tables 14–18);
 - machinery, equipment, hazardous substances, excavations, demolition, scaffolds, cranes/lifting, hot work, confined spaces, electrical safety, and other task-specific standards referenced in the Ministry's announcement;
 - mandatory registers/forms (Article 1 expressly incorporates forms/register models).
 
