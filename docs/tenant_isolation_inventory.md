@@ -29,7 +29,7 @@ The strict route-to-SQL gate now also rejects unresolved SQL expressions and any
 
 ## Route inventory
 
-Routes are grouped by the data boundary they should preserve. "Tested" means there are relevant assertions in `api_test.py` and/or `tests/test_app_separate_database_runtime.py`; it does not mean every branch, role, and failure mode has been exhaustively tested. PR #881 extends stale-membership denial checks across direct case, document-review, original-file, legal-hold-history, and deletion-request routes.
+Routes are grouped by the data boundary they should preserve. "Tested" means there are relevant assertions in `api_test.py` and/or `tests/test_app_separate_database_runtime.py`; it does not mean every branch, role, and failure mode has been exhaustively tested. PR #881 extends stale-membership denial checks across direct case, document-review, original-file, legal-hold-history, and deletion-request routes. PR #884 adds successful case-deletion coverage: a same-firm junior is denied, the firm owner deletes the case, and the immutable firm-scoped audit snapshot retains the case, event history, and related-row counts.
 
 | Route(s) | Boundary / expected authorization | Current coverage and remaining concern |
 |---|---|---|
