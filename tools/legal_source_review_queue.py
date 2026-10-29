@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Read-only reviewer queue for legal-source provenance and version checks."""
 from __future__ import annotations
-import argparse, json, sqlite3
+import argparse, json, os, sqlite3
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlparse
@@ -60,6 +60,13 @@ def review_queue(db_path: Path) -> dict:
         if missing:
             report["issues"].append({"severity":"high","code":"review_schema_tables_missing","detail":missing})
             return report
+        if "database_profile" not in present:
+            raise ValueError("database is not bound to the legal_corpus profile")
+        profile_rows = db.execute(
+            "SELECT profile FROM database_profile WHERE singleton=1"
+        ).fetchall()
+        if len(profile_rows) != 1 or profile_rows[0]["profile"] != "legal_corpus":
+            raise ValueError("database is not bound to the legal_corpus profile")
         required = {
           "legal_sources":{"source_id","authority","source_page","collection_permission","commercial_reuse_permission","permission_evidence","terms_url"},
           "legal_documents":{"document_id","source_id","official_title","document_type"},
@@ -116,11 +123,20 @@ def review_queue(db_path: Path) -> dict:
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--db",required=True,type=Path)
+    p.add_argument(
+        "--db",
+        type=Path,
+        default=Path(os.environ["COPILOT_CORPUS_DB"]) if os.environ.get("COPILOT_CORPUS_DB", "").strip() else None,
+        help="legal-corpus database (defaults to COPILOT_CORPUS_DB)",
+    )
     p.add_argument("--out",type=Path)
     args=p.parse_args()
+    if os.environ.get("COPILOT_DB", "").strip():
+        p.error("COPILOT_DB compatibility mode is not supported; configure COPILOT_CORPUS_DB or pass --db")
+    if args.db is None:
+        p.error("a legal-corpus database is required; configure COPILOT_CORPUS_DB or pass --db")
     try: report=review_queue(args.db)
-    except (FileNotFoundError,sqlite3.Error) as exc: p.error(str(exc))
+    except (FileNotFoundError,sqlite3.Error,ValueError) as exc: p.error(str(exc))
     text=json.dumps(report,ensure_ascii=False,indent=2)+"\n"
     if args.out:
         args.out.parent.mkdir(parents=True,exist_ok=True); args.out.write_text(text,encoding="utf-8")
