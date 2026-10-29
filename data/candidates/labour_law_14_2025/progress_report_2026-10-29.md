@@ -10,7 +10,7 @@
 
 **Legal-knowledge preparation progress is estimated at 7%; strict authoritative legal-content readiness is 0%.** The 7% is a conservative phase estimate for the overall evidence/provenance workflow, not a percentage of verified statutes or approved rules. No Table 24 exposure limit has passed official Gazette matching, complete currentness review, source-use assessment, and qualified Egyptian OSH counsel approval.
 
-Table 24 candidate extraction now covers **617/745 numbered entries (82.8%)**. This is extraction coverage only, not verified-law coverage. The official Gazette PDF bytes/hash and row-by-row primary-source comparison remain unavailable. No Table 24 row is approved for authoritative retrieval.
+Table 24 candidate extraction now covers **617/745 numbered entries (82.8%)**; **128 entries remain unextracted**. This is extraction coverage only, not verified-law coverage. The remaining entries must be captured from actual source text, not inferred from chemical databases or model memory. The official Gazette PDF bytes/hash and row-by-row primary-source comparison remain unavailable. No Table 24 row is approved for authoritative retrieval.
 
 ## Latest work completed
 
@@ -64,7 +64,7 @@ Table 24 candidate extraction now covers **617/745 numbered entries (82.8%)**. T
 
 ## Next work items, in order
 
-1. Continue candidate extraction from Table 24 row 618 onward, using only source text actually available; do not invent missing entries.
+1. Continue candidate extraction from Table 24 row 618 onward when the actual source text is available; 128 numbered entries remain. Do not infer or invent missing entries from external chemical reference lists.
 2. Complete the remaining Table 24 numbered entries and validate the continuous row-number sequence.
 3. Obtain the official Gazette PDF and record its SHA-256, retrieval date and source URL.
 4. Compare each Table 24 row and footnote against the official page image. Resolve all units, limits, CAS/formula tokens, parent-child relationships and surface/air distinctions; leave ambiguous rows quarantined.
