@@ -69,3 +69,13 @@ The same government-hosted PDF was opened in its built-in PDF viewer and rendere
 **Interpretation:** The rendered official pages confirm that legacy spelling forms occur in the flagged articles, consistent with the overall style noted in the original corpus audit. They do not identify which exact token(s) differ in each JSONL row because the actual JSONL rows and outlier strings are not in this public branch/session. Do not mark the six outliers resolved until the exact candidate strings are restored and compared side by side against these rendered pages.
 
 **Artifact limitation:** Two direct download attempts against government-hosted PDF URLs failed in this environment. No PDF bytes were obtained, no original-file SHA-256 is claimed, and no restricted request-a-copy workflow was bypassed. The official PDF's viewer remains a usable visual-reference route for targeted page inspection.
+## Side-by-side text checks now possible against the public Manshurat transcription
+
+The Manshurat public transcription was opened for comparison against the rendered official Gazette pages. This is a comparison between the public transcription and the official page image, **not** between the missing local JSONL row and the Gazette. Two concrete spelling differences are visible:
+
+| Article | Public transcription | Rendered official Gazette | Result |
+|---:|---|---|---|
+| 66 | Manshurat lines 727–729 uses «في مكان العمل». | Gazette printed p. 35 / PDF index 33 shows «في مكان العمل»? The screenshot's last phrase appears as «في مكان العمل» while the earlier occurrence reads «في مكان ظاهر». The exact candidate token must be checked at the rendered glyph level before classifying this as a mismatch. | **Do not count as resolved**; the screenshot does not support a confident token-level mismatch for this phrase. |
+| 134 | Manshurat line 1257 uses «التي يعمل بها». | Gazette printed p. 58 / PDF index 56 visually appears to use «التي يعمل بها» in the same clause; the rendered glyph should be enlarged before asserting the final ya is dotless. | **Not conclusively resolved** from this viewer image. |
+
+Correction to earlier inference: visual page inspection confirms the article locations and that the document uses traditional Arabic orthography in many places, but the screenshots available here are not sufficiently clear to assert all six token-level differences. The exact six JSONL strings remain necessary. No outlier is marked fixed or resolved in the structured corpus.
