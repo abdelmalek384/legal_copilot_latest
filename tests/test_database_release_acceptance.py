@@ -22,6 +22,7 @@ class DatabaseReleaseAcceptanceTests(unittest.TestCase):
                 "original_file_storage": {
                     "status": "passed", "evidence_ref": "private-evidence://storage",
                     "verified_at": stamp, "verified_by": "operator-a",
+                    "storage_config_sha256": "a" * 64,
                 },
                 "backup_restore_rollback": {
                     "status": "passed", "evidence_ref": "private-evidence://restore",
@@ -55,6 +56,30 @@ class DatabaseReleaseAcceptanceTests(unittest.TestCase):
         self.assertEqual(report["passed_count"], len(REQUIRED_GATES))
         self.assertEqual(report["required_count"], len(REQUIRED_GATES))
         self.assertEqual(report["blockers"], [])
+
+    def test_storage_acceptance_is_bound_to_current_s3_kms_configuration(self):
+        matched = validate_acceptance_manifest(
+            self.manifest, now=self.now, expected_storage_config_sha256="a" * 64
+        )
+        self.assertTrue(matched["ready"], matched["blockers"])
+
+        changed = validate_acceptance_manifest(
+            self.manifest, now=self.now, expected_storage_config_sha256="b" * 64
+        )
+        self.assertFalse(changed["ready"])
+        self.assertIn(
+            ("original_file_storage", "storage_configuration_mismatch"),
+            {(item["gate"], item["code"]) for item in changed["blockers"]},
+        )
+
+        unavailable = validate_acceptance_manifest(
+            self.manifest, now=self.now, expected_storage_config_sha256=""
+        )
+        self.assertFalse(unavailable["ready"])
+        self.assertIn(
+            ("original_file_storage", "storage_configuration_unavailable"),
+            {(item["gate"], item["code"]) for item in unavailable["blockers"]},
+        )
 
     def test_missing_or_pending_gates_block_release(self):
         manifest = json.loads(json.dumps(self.manifest))
