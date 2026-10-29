@@ -135,7 +135,7 @@ jobs:
       - name: Test read-only legal version comparison
         run: python tests/test_compare_legal_versions.py
       - name: Test legal corpus audit
-        run: python tests/test_legal_corpus_audit.py
+        run: PYTHONPATH=. python tests/test_legal_corpus_audit.py
       - name: Test legal source review queue
         run: python tests/test_legal_source_review_queue.py
       - name: Test multi-area lawyer-review benchmark draft
