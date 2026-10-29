@@ -7,7 +7,7 @@ from pathlib import Path
 
 from original_file_storage import ObjectStorageError
 from s3_original_file_storage import S3PrivateObjectStore
-from tools.verify_s3_original_file_roundtrip import run_s3_roundtrip
+from tools.verify_s3_original_file_roundtrip import build_acceptance_report, run_s3_roundtrip
 from original_file_reconciliation import TenantDatabase
 from original_file_s3_reconciliation import reconcile_s3_original_file_storage
 from database_backup import _copy_s3_original_objects, _scan_s3_original_object_inventory
@@ -105,6 +105,25 @@ class FakeS3Client:
 
 
 class S3PrivateObjectStoreTests(unittest.TestCase):
+    def test_acceptance_report_binds_evidence_to_non_secret_storage_target_fingerprint(self):
+        from unittest.mock import patch
+
+        configured = {
+            "COPILOT_OBJECT_STORAGE_BACKEND": "s3",
+            "COPILOT_S3_BUCKET": "acceptance-private-bucket",
+            "COPILOT_S3_REGION": "eu-central-1",
+            "COPILOT_S3_KMS_KEY_ID": "arn:aws:kms:eu-central-1:123456789012:key/example",
+            "COPILOT_S3_ENDPOINT_URL": "",
+        }
+        with patch.dict("os.environ", configured, clear=True):
+            report = build_acceptance_report()
+            self.assertRegex(report["storage_config_sha256"], r"^[0-9a-f]{64}$")
+            self.assertFalse(report["production_approval"])
+            configured["COPILOT_S3_BUCKET"] = "different-bucket"
+            with patch.dict("os.environ", configured, clear=True):
+                changed = build_acceptance_report()
+            self.assertNotEqual(report["storage_config_sha256"], changed["storage_config_sha256"])
+
     def setUp(self):
         self.client = FakeS3Client()
         self.store = S3PrivateObjectStore(
