@@ -16,6 +16,7 @@ from typing import Any
 from database_runtime import DatabaseRuntime
 from s3_original_file_storage import S3PrivateObjectStore
 from tools.validate_s3_original_file_storage import validate_s3_configuration
+from tools.database_release_acceptance import original_storage_config_fingerprint
 
 
 def verify_synthetic_firm(runtime: DatabaseRuntime, firm_id: int) -> dict[str, Any]:
@@ -130,6 +131,20 @@ def run_s3_roundtrip(store: S3PrivateObjectStore, firm_id: int, payload: bytes |
         }
 
 
+def build_acceptance_report() -> dict[str, Any]:
+    """Create a sanitized report bound to the exact configured S3/KMS target."""
+    return {
+        "production_approval": False,
+        "storage_config_sha256": original_storage_config_fingerprint(),
+        "manual_review_required": [
+            "independent review of bucket policy and IAM/KMS grants",
+            "witnessed backup/restore and rollback rehearsal",
+            "retention/export/deletion policy approval",
+            "independent security review",
+        ],
+    }
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
         description="Run a synthetic S3/KMS round trip; never treats this as production approval."
@@ -159,12 +174,7 @@ def main() -> int:
         parser.error("COPILOT_DB must be unset; configure the three separate database paths")
 
     runtime = None
-    report: dict[str, Any] = {"production_approval": False, "manual_review_required": [
-        "independent review of bucket policy and IAM/KMS grants",
-        "witnessed backup/restore and rollback rehearsal",
-        "retention/export/deletion policy approval",
-        "independent security review",
-    ]}
+    report = build_acceptance_report()
     try:
         import boto3
         runtime = DatabaseRuntime.from_env()
