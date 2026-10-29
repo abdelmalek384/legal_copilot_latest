@@ -74,7 +74,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             app._active_firm_context.reset(token)
 
     def test_disabling_firm_revokes_cached_tenant_connection(self):
-        from tenant_storage import TenantConnectionError
+        from tenant_context import FirmContextError
 
         context = self.runtime.resolve_context(self.user_id, self.firm_a)
         token = app._active_firm_context.set(context)
@@ -82,7 +82,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             cached = app.conn()
             self.assertEqual(cached.execute("SELECT COUNT(*) FROM cases").fetchone()[0], 0)
             self.assertTrue(self.runtime.disable_firm(self.firm_a))
-            with self.assertRaises(TenantConnectionError):
+            with self.assertRaises(FirmContextError):
                 app.conn()
             with self.assertRaises(sqlite3.ProgrammingError):
                 cached.execute("SELECT 1")
