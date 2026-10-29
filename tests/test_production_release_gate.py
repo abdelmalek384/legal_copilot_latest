@@ -8,11 +8,19 @@ from unittest.mock import patch
 
 from tools import production_release_gate as gate
 from tools.migrate_tenant_fleet import FleetMigrationError
+from tools.database_release_acceptance import original_storage_config_fingerprint
 
 
 class ProductionReleaseGateTests(unittest.TestCase):
     def setUp(self):
-        self.clean_env = {"COPILOT_ENV": "production"}
+        self.clean_env = {
+            "COPILOT_ENV": "production",
+            "COPILOT_OBJECT_STORAGE_BACKEND": "s3",
+            "COPILOT_S3_BUCKET": "acceptance-test-bucket",
+            "COPILOT_S3_REGION": "us-east-1",
+            "COPILOT_S3_KMS_KEY_ID": "test-kms-key",
+            "COPILOT_S3_ENDPOINT_URL": "",
+        }
         self.legal_report = {
             "ready_count": 1,
             "blocked_count": 0,
@@ -86,6 +94,7 @@ class ProductionReleaseGateTests(unittest.TestCase):
                 "original_file_storage": {
                     "status": "passed", "evidence_ref": "synthetic-test-evidence",
                     "verified_at": verified_at, "verified_by": "test-operator",
+                    "storage_config_sha256": original_storage_config_fingerprint(self.clean_env),
                 },
                 "backup_restore_rollback": {
                     "status": "passed", "evidence_ref": "synthetic-test-evidence",
