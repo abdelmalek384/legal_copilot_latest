@@ -8,6 +8,13 @@ Source route: Al-Masdar reproduces page images of *Egyptian Proceedings, supplem
 - Official catalogue confirms issue/date and lists both instruments: https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full
 - Official Ministry announcement confirms the five decisions' broad subjects: https://www.labour.gov.eg/ar/الأخبار/وزير-العمل-يصدر-5-قرارات-تنفيذية-لتعزيز-منظومة-السلامة-والصحة-المهنية-وتأمين-بيئة-العمل/
 
+## Independent full-document routes located
+
+- Law Hub Decision 251 page and embedded PDF preview: https://lawhub.info/eg/?p=19707 and https://drive.google.com/file/d/186XzKlQRzxILk07Fkyu4Xru6WG6gFyTE/preview
+- Law Hub Decision 252 page and embedded PDF preview: https://lawhub.info/eg/?p=19708 and https://drive.google.com/file/d/1xomhpGnE2rqopVujZK9fmcPcdEQyORPo/preview
+
+The preview page loads in this research interface, but the individual Google Drive page-image request returned 403. No access control was bypassed, and no file bytes/hash are claimed. These are useful alternate full-document links for ordinary browser access; if a PDF is downloadable through the visible page, compare and hash the exact downloaded file.
+
 ## Decision 251/2026 — consultant licensing
 
 ### Visible scan-derived clauses
