@@ -113,7 +113,7 @@ class SecurityAuditExportTests(unittest.TestCase):
         rows = list(csv.reader(io.StringIO(response.text.lstrip("\\ufeff"))))
         events = [row[3] for row in rows[1:]]
         self.assertNotIn("other_firm_private_event", events)
-        self.assertIn(''=HYPERLINK("https://example.invalid")', events)
+        self.assertIn("'=HYPERLINK(\\"https://example.invalid\\")", events)
         self.assertEqual(self.app._csv_safe_cell("  =1+1"), "'  =1+1")
         self.assertEqual(self.app._csv_safe_cell("\\t=1+1"), "'\\t=1+1")
 
