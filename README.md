@@ -100,9 +100,9 @@ Search works on the language of the data: English texts are found by English que
 
 ## Arabic law text (Labour Law 14/2025)
 
-`python tools/fetch_arabic_law.py out_dir` creates a **candidate extraction** from an unofficial republication and writes `law_rows_ar.jsonl` plus `import_report_ar.md`. It does not verify the law, establish reuse rights, or load the data into the app.
+`python tools/fetch_arabic_law.py out_dir` creates a **candidate extraction** from an unofficial republication and writes `law_rows_ar.jsonl` plus `import_report_ar.md`. It does not verify the law, establish reuse rights, or itself load the data into the app.
 
-**Do not run an `importlaws` command:** the current `manage.py` does not provide that command. Before any legal text is used authoritatively, compare the complete extracted text against the original Official Gazette (issue 18 bis, 3 May 2025), record provenance/currentness and source-use findings, and obtain qualified Egyptian-lawyer review. If the download is blocked, a page saved manually in a browser can be supplied with `--file saved_page.html`; do not bypass access controls or source restrictions.
+`python manage.py importlaws out_dir/law_rows_ar.jsonl` is a separate command that stages rows in `legal_import_staging`; it requires the profile-separated database runtime. Staging is not legal verification or authorization for authoritative retrieval. Do not stage or promote unverified content merely to make it searchable. Before legal text is used authoritatively, compare the complete extraction against the original Official Gazette (issue 18 bis, 3 May 2025), record provenance/currentness and source-use findings, and obtain qualified Egyptian-lawyer review. If the download is blocked, a page saved manually in a browser can be supplied with `--file saved_page.html`; do not bypass access controls or source restrictions.
 
 
 ## Arabic law dataset (not bundled)
