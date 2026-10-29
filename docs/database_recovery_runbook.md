@@ -116,6 +116,11 @@ The --quiesced flag is an operator assertion, not an automated lock on all appli
        python tools/validate_s3_original_file_storage.py --json
 
    This command always reports `production_ready: false`; passing its structural checks is not production approval. Confirm the dedicated bucket, customer-managed key, public-access-block settings, ownership controls, versioning, and default SSE-KMS encryption. Bucket/IAM policy, KMS grants, and live behavior still require independent review.
+7. After the read-only preflight passes, run the live synthetic-object round trip against a dedicated, active, empty firm whose name begins `SYNTHETIC-ACCEPTANCE-`. Do not use a firm with client matters. With the operator environment configured for staging or production and the approved S3/KMS values, run:
+
+       python tools/verify_s3_original_file_roundtrip.py --firm-id 123 --confirm-synthetic-firm --json
+
+   The command verifies the firm is a dedicated empty acceptance tenant, then stages synthetic bytes, checks staged integrity/KMS identity, finalizes and verifies the destination, reads the bytes back, and deletes the active probe keys. It never sets production approval to true. Require every configuration and round-trip check to pass and `cleanup_pending: false`. If cleanup is pending, stop and reconcile the reported opaque object ID before retrying. With bucket versioning enabled, deletion leaves version history subject to the approved lifecycle policy.
 6. Run the restored-original importer in dry-run mode against the isolated restore root:
 
        python tools/import_restored_originals_to_s3.py --restore-root /protected/restore-rehearsal-unique
