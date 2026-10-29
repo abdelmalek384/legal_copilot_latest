@@ -1758,6 +1758,8 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         tenant_path = self.root / "tenants" / catalog["database_file"]
         unavailable_path = tenant_path.with_name(tenant_path.name + ".temporarily-unavailable")
         self.assertTrue(tenant_path.is_file())
+        context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        firm_db = self.runtime.firm_connection(context)
         os.replace(tenant_path, unavailable_path)
         try:
             detail = self.client.get(f"/cases/{case_id}")
@@ -1770,8 +1772,6 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
 
             # The still-open trusted connection sees the original tenant inode.
             # No write may have reached it while catalog resolution was failing.
-            context = self.runtime.resolve_context(self.user_id, self.firm_a)
-            firm_db = self.runtime.firm_connection(context)
             self.assertEqual(
                 firm_db.execute("SELECT COUNT(*) FROM cases").fetchone()[0],
                 1,
