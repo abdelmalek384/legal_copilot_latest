@@ -90,6 +90,8 @@ def audit(db_path: Path):
         ).fetchall()
         if len(profile_rows) != 1 or profile_rows[0]["profile"] != "legal_corpus":
             raise ValueError("database is not bound to the legal_corpus profile")
+        integrity_messages = [str(row[0]) for row in db.execute("PRAGMA integrity_check").fetchall()]
+        foreign_key_rows = db.execute("PRAGMA foreign_key_check").fetchall()
         result = {
             "report_type":"legal_corpus_audit",
             "generated_at":datetime.now(timezone.utc).isoformat(),
@@ -97,12 +99,31 @@ def audit(db_path: Path):
             "database_sha256":sha256_file(db_path),
             "sqlite_sidecars":sidecars,
             "read_only":True, "counts":{}, "issues":[],
+            "sqlite_integrity_check": integrity_messages,
+            "foreign_key_violation_count": len(foreign_key_rows),
+            "foreign_key_violations": [
+                {"table": row[0], "rowid": row[1], "parent_table": row[2], "fk_index": row[3]}
+                for row in foreign_key_rows[:100]
+            ],
             "notes":["Metadata audit only; does not establish legal correctness.",
                      "Missing dates are unknown, not evidence that a law is in force.",
                      "This audit never promotes records to verified.",
                      "database_sha256 hashes the main database file; WAL/journal sidecar hashes are listed separately when present.",
                      "Database queries run in one read-only SQLite transaction; file hashes are provenance metadata, not an atomic filesystem snapshot."]
         }
+        if integrity_messages != ["ok"]:
+            result["issues"].append({
+                "severity": "high",
+                "code": "sqlite_integrity_check_failed",
+                "detail": integrity_messages[:20],
+            })
+        if foreign_key_rows:
+            result["issues"].append({
+                "severity": "high",
+                "code": "sqlite_foreign_key_violations",
+                "count": len(foreign_key_rows),
+                "detail": "Only the first 100 structural violation descriptors are included.",
+            })
         for table in ("chunks","legal_sources","legal_documents","legal_document_versions","legal_version_relations","legal_review_events"):
             if table in tables: result["counts"][table] = count(db,table)
         if "legal_review_events" in tables:
