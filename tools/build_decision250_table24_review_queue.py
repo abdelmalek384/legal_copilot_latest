@@ -12,12 +12,15 @@ from pathlib import Path
 from typing import Any
 
 try:
-    from validate_decision250_table24_candidates import BATCHES, DATA_DIR, flatten_rows
+    from validate_decision250_table24_candidates import BATCHES, DATA_DIR, flatten_rows, validate
 except ImportError:  # package-style import in test runners
-    from tools.validate_decision250_table24_candidates import BATCHES, DATA_DIR, flatten_rows
+    from tools.validate_decision250_table24_candidates import BATCHES, DATA_DIR, flatten_rows, validate
 
 
 def load_rows(root: Path = DATA_DIR) -> list[dict[str, Any]]:
+    errors = validate(root)
+    if errors:
+        raise ValueError("candidate batches failed validation; refusing to build a partial review queue: " + "; ".join(errors[:10]))
     records: list[dict[str, Any]] = []
     for filename in BATCHES:
         path = root / filename
@@ -95,7 +98,10 @@ def main() -> int:
     parser.add_argument("--output", type=Path, default=None,
                         help="Output Markdown path (default: stdout)")
     args = parser.parse_args()
-    rows = load_rows(args.root)
+    try:
+        rows = load_rows(args.root)
+    except (OSError, ValueError) as exc:
+        parser.error(str(exc))
     result = render(rows)
     if args.output:
         args.output.parent.mkdir(parents=True, exist_ok=True)
