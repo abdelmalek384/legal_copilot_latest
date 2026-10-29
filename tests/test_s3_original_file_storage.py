@@ -150,6 +150,33 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
         self.assertNotIn(staged_key, self.client.objects)
         self.assertNotIn(final_key, self.client.objects)
 
+    def test_acceptance_firm_gate_rejects_orphaned_tenant_audit_data(self):
+        from database_runtime import DatabaseRuntime
+        from tools.verify_s3_original_file_roundtrip import verify_synthetic_firm
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            runtime = DatabaseRuntime(
+                root / "control.sqlite3", root / "tenants", root / "corpus.sqlite3"
+            )
+            runtime.initialize()
+            firm_id, _ = runtime.provision_firm("SYNTHETIC-ACCEPTANCE-orphan-audit")
+            user_id = runtime.create_initial_firm_owner(
+                firm_id, "Acceptance Owner", "orphan-audit-owner@example.test", "test-hash"
+            )
+            context = runtime.resolve_context(user_id, firm_id)
+            tenant = runtime.firm_connection(context)
+            tenant.execute(
+                "INSERT INTO case_deletion_audit "
+                "(firm_id,case_id,actor_user_id,actor_name,case_snapshot_json,events_snapshot_json,related_counts_json) "
+                "VALUES(?,?,?,?,?,?,?)",
+                (firm_id, 999, user_id, "synthetic", "{}", "[]", "{}"),
+            )
+            tenant.commit()
+            with self.assertRaisesRegex(ValueError, "no tenant matter data"):
+                verify_synthetic_firm(runtime, firm_id)
+            runtime.close_current_thread()
+
     def test_acceptance_firm_gate_requires_dedicated_empty_synthetic_tenant(self):
         from database_runtime import DatabaseRuntime
         from tools.verify_s3_original_file_roundtrip import verify_synthetic_firm
@@ -168,6 +195,7 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
             self.assertEqual(report["firm_id"], firm_id)
             self.assertEqual(report["case_count"], 0)
             self.assertEqual(report["original_file_metadata_count"], 0)
+            self.assertEqual(report["nonempty_tenant_tables"], {})
 
             context = runtime.resolve_context(user_id, firm_id)
             tenant = runtime.firm_connection(context)
