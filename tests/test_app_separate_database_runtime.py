@@ -1993,6 +1993,66 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             0,
         )
 
+    def test_document_review_routes_require_document_to_match_path_case(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+
+        case_one = self._mutate("post", "/cases", json={"title": "Document owner case"})
+        case_two = self._mutate("post", "/cases", json={"title": "Different path case"})
+        self.assertEqual(case_one.status_code, 200, case_one.text)
+        self.assertEqual(case_two.status_code, 200, case_two.text)
+        case_one_id, case_two_id = case_one.json()["id"], case_two.json()["id"]
+        uploaded = self._mutate(
+            "post", f"/cases/{case_one_id}/docs",
+            json={"name": "bound-document.txt", "text": "CASE_DOCUMENT_BINDING_SENTINEL " * 12},
+        )
+        self.assertEqual(uploaded.status_code, 200, uploaded.text)
+        document_id = uploaded.json()["document_id"]
+
+        context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        firm_db = self.runtime.firm_connection(context)
+        chunk = firm_db.execute(
+            "SELECT id,text FROM chunks WHERE document_id=? AND case_id=? ORDER BY id LIMIT 1",
+            (document_id, case_one_id),
+        ).fetchone()
+        self.assertIsNotNone(chunk)
+        chunk_id, original_text = int(chunk["id"]), str(chunk["text"])
+        import hashlib
+        digest = hashlib.sha256(original_text.encode("utf-8")).hexdigest()
+
+        # The user is authorized for both cases. A caller must still not be able
+        # to pair a document/chunk ID from one case with another case's URL.
+        for method, path, kwargs in (
+            ("get", f"/cases/{case_two_id}/docs/{document_id}/reviews", {}),
+            ("get", f"/cases/{case_two_id}/docs/{document_id}/chunks", {}),
+            ("post", f"/cases/{case_two_id}/docs/{document_id}/chunks/{chunk_id}/review", {
+                "json": {
+                    "outcome": "corrected",
+                    "corrected_text": "UNAUTHORIZED-CROSS-CASE-CORRECTION",
+                    "expected_text_sha256": digest,
+                },
+            }),
+        ):
+            response = self._mutate(method, path, **kwargs) if method != "get" else self.client.get(path)
+            self.assertEqual(response.status_code, 404, f"{path}: {response.text}")
+
+        self.assertEqual(
+            firm_db.execute(
+                "SELECT text FROM chunks WHERE id=? AND document_id=? AND case_id=?",
+                (chunk_id, document_id, case_one_id),
+            ).fetchone()["text"],
+            original_text,
+        )
+        self.assertEqual(
+            firm_db.execute(
+                "SELECT COUNT(*) FROM document_extraction_reviews WHERE chunk_id=?",
+                (chunk_id,),
+            ).fetchone()[0],
+            0,
+        )
+
     def test_same_firm_nonmember_cannot_read_or_mutate_extraction_reviews(self):
         owner_login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
