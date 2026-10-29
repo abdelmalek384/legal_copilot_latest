@@ -203,19 +203,42 @@ def inspect_environment(env=None, *, require_separate=False):
     # adapter is useful for development but is not a production storage boundary.
     # Keep this allowlist empty until a KMS-backed remote adapter is implemented
     # end-to-end, including backup, restore, reconciliation, and purge acceptance.
-    production_object_storage_backends = frozenset()
+    production_object_storage_backends = frozenset({"s3"})
     object_storage_backend = env.get("COPILOT_OBJECT_STORAGE_BACKEND", "local").strip().lower()
     if production or require_separate:
         if object_storage_backend not in production_object_storage_backends:
             errors.append(
-                "Production/release preflight is blocked: no production object-storage/KMS "
-                "backend is implemented and verified end-to-end; the local filesystem "
-                "adapter is development-only."
+                "Production/release preflight requires COPILOT_OBJECT_STORAGE_BACKEND=s3; "
+                "the local filesystem and unknown backends are not approved."
             )
+        else:
+            missing_s3 = [
+                name for name in ("COPILOT_S3_BUCKET", "COPILOT_S3_REGION", "COPILOT_S3_KMS_KEY_ID")
+                if not env.get(name, "").strip()
+            ]
+            if missing_s3:
+                errors.append(
+                    "S3/KMS production configuration is incomplete; set "
+                    "COPILOT_S3_BUCKET, COPILOT_S3_REGION, and COPILOT_S3_KMS_KEY_ID."
+                )
+            else:
+                passed.append(
+                    "S3/KMS backend and bucket/region/key settings are configured; "
+                    "live provider acceptance remains a separate mandatory gate."
+                )
+    elif object_storage_backend == "s3":
+        missing_s3 = [
+            name for name in ("COPILOT_S3_BUCKET", "COPILOT_S3_REGION", "COPILOT_S3_KMS_KEY_ID")
+            if not env.get(name, "").strip()
+        ]
+        if missing_s3:
+            warnings.append(
+                "S3/KMS backend is selected but bucket/region/key configuration is incomplete."
+            )
+        else:
+            passed.append("S3/KMS backend and bucket/region/key settings are configured.")
     elif object_storage_backend != "local":
-        warnings.append(
-            "A non-local object-storage backend is configured but is not supported by this build."
-        )
+        warnings.append("An unknown object-storage backend is configured.")
 
     mfa_mode = env.get("MFA_ENFORCEMENT", "optional").strip().lower()
     if mfa_mode not in {"optional", "admins_required", "all_required"}:
