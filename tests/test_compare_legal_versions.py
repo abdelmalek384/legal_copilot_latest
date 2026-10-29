@@ -122,6 +122,12 @@ class CompareLegalVersionsTests(unittest.TestCase):
     def _database(self, path):
         db = sqlite3.connect(path)
         db.executescript("""
+            CREATE TABLE database_profile(
+                singleton INTEGER PRIMARY KEY CHECK(singleton=1),
+                profile TEXT NOT NULL CHECK(profile IN ('control_plane','firm','legal_corpus')),
+                bound_at TEXT NOT NULL DEFAULT (datetime('now'))
+            );
+            INSERT INTO database_profile(singleton,profile) VALUES(1,'legal_corpus');
             CREATE TABLE legal_documents(
                 document_id TEXT PRIMARY KEY, official_title TEXT NOT NULL,
                 law_number TEXT, law_year INTEGER
