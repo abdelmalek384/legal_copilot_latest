@@ -13,6 +13,8 @@
 - Preserved the nested relationship for Aluminum metal and insoluble compounds and subentries (rows 28–33).
 - Added explicit machine-readable warnings that no candidate is suitable for authoritative retrieval, compliance advice, or safety decisions.
 - Added `tools/validate_decision250_table24_candidates.py` to fail closed on missing/duplicate row numbers, malformed batch JSON, missing source pinpoints, or a candidate row marked as reviewed prematurely; its expected range now covers rows 1–543.
+- Added `tools/build_decision250_table24_review_queue.py` to generate a human triage queue for text/identifier anomalies, high-risk entries, currentness leads, group rows, and possible surface/air-unit ambiguity; it never repairs a candidate automatically.
+- Prepared `lawyer_in_app_acceptance_plan_2026-10-29.md` so the later in-app lawyer review is a distinct, testable release gate. This preparation does not count as lawyer approval.
 - Parsed all five batch files and structurally checked row numbers 1–543: 543 unique numbers, no gaps/duplicates, all flattened rows source-pinned and pending official match. This was a structural audit of the fetched JSON, not execution of the Python validator or legal verification.
 
 ## Current subtask completion estimates
