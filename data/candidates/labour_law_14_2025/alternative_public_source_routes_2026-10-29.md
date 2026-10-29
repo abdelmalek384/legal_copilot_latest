@@ -52,6 +52,16 @@ Law Hub now has individual pages linking PDF previews for Decisions 249–252/20
 
 For Decision 250, 251 and 252, the embedded Drive preview opens but the page-image endpoint returned 403 in the current research interface. This is recorded as an interface/access limitation, not a reason to bypass controls. No bytes were downloaded or hashed. Use the visible PDF/Word links on each Law Hub page through an ordinary browser; if the file is downloadable, save and upload that exact file for hashing and complete comparison. For Decision 249, use the visible PDF link on its page; its embedded file ID was not independently confirmed in this session and is deliberately not guessed.
 
+
+## Newly found full secondary transcription — Decision 250/2026
+
+- Riwaq Al-Jamal full text: https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html
+- The browser exposes 6,454 extracted lines and a contents map for the complete instrument, including technical Tables 1–24 and register templates. The map places Table 23 at printed p.242, Table 24 at p.249 through p.360, and register templates from p.361. This means printed pp.296–370 are now covered by a secondary text route (Table 24 plus the beginning of the register templates), although not by a verified official scan comparison.
+- Table 24 contains hundreds of chemical exposure-limit entries. Table 23 lists hazardous substances and threshold quantities. These values are high-risk and must retain raw source text, units, source-line pinpoints, and transcription confidence.
+- Dedicated assessment: [Decision 250 full secondary transcription access review](decision_250_full_secondary_transcription_access_review_2026-10-29.md).
+- This route is a secondary legal blog, not the Official Gazette. The official catalogue's 6.13 MB bundle opens a request-a-copy form. No original PDF bytes or SHA-256 have been obtained, and no access control was bypassed.
+- Source access does not settle reproduction/commercial-use rights. Keep this material in candidate/review state until source-use assessment, primary comparison, currentness and counsel review are completed.
+
 ## Actionable alternative workflow
 
 1. **Build a source inventory before importing rules.** Capture instrument number/year, issuing authority, official URL, publication date/issue/page when known, effective date, amendment/repeal relation, access mode, retrieval date, and a content hash only when the bytes were actually downloaded.
