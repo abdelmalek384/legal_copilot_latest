@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "record_type": "secondary_source_candidate_extraction",
+  "instrument": "Egyptian Minister of Labour Decision 250/2026",
+  "table": "24",
+  "table_title_ar": "الحدود العتبية للمواد الكيميائية الخطرة",
+  "research_date": "2026-10-29",
+  "source": {
+    "class": "secondary_transcription",
+    "url": "https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html",
+    "publication_date": "2026-10-26",
+    "source_lines": "5491-5513",
+    "official_gazette_match": "not_performed",
+    "official_pdf_sha256": null
+  },
+  "status": "candidate_only_not_for_authoritative_retrieval",
+  "important_limits": [
+    "Secondary transcription only; no official Gazette page-image comparison.",
+    "Raw limits, units and symbols are not normalized.",
+    "Rows in this batch are limited to the lines actually visible in the captured source segment.",
+    "Not for workplace safety decisions or compliance advice."
+  ],
+  "declared_top_level_row_range": {"start": 604, "end": 617},
+  "rows": [
+    {"row":604,"name_ar":"بروميتون","name_en":"Prometon","cas":"1610-18-0","source_line":5491,"raw_limit_and_note_text":"C10H19N5O؛ 225,29؛ 0,5 ملجم/م3(I)؛ A4؛ م4؛ تناقص لوزن الجسم","status":"pending_official_match"},
+    {"row":605,"name_ar":"بروميتيرين","name_en":"Prometryn","cas":"7287-19-6","source_line":5492,"raw_limit_and_note_text":"C10H19N5S؛ 241,37؛ 1 ملجم/م3(I)؛ A4؛ م4؛ تلف الكبد والكلى، تأثير على نخاع العظم، تسمم الأجنة","status":"pending_official_match"},
+    {"row":606,"name_ar":"بروبان","name_en":"Propane","cas":"74-98-6","source_line":5494,"raw_limit_and_note_text":"C3H8؛ 44,10؛ simple asphyxiant (D, EX)؛ اختناق","status":"pending_official_match"},
+    {"row":607,"name_ar":"بروبان سلتون","name_en":"Propane sultone","cas":"1120-71-4","source_line":5496,"raw_limit_and_note_text":"C3H6O3S؛ 122,14؛ (L)؛ م3؛ A3؛ السرطان","status":"pending_official_match","risk_note":"Potential carcinogenicity entry; no operational limit approved."},
+    {"row":608,"name_ar":"كحول بروبيلي عادي","name_en":"n-Propanol (n-propyl alcohol)","cas":"71-23-8","source_line":5498,"raw_limit_and_note_text":"CH3CH2CH2OH؛ 60,9؛ 100 جزء/مليون؛ A4؛ م4؛ تهيج العين والمسالك التنفسية العليا","status":"pending_official_match"},
+    {"row":609,"name_ar":"كحول بروبيلي 2-بروبانول","name_en":"2-Propanol","cas":"67-63-0","source_line":5499,"raw_limit_and_note_text":"CH3CH2CH2OH؛ 60,09؛ 200 جزء/مليون؛ 400 جزء/مليون؛ A4; BEI؛ م4، مؤشر التعرض الحيوي؛ تهيج العين والمسالك التنفسية العليا، ضعف الجهاز العصبي المركزي","status":"pending_official_match","anomaly":"The displayed formula/name association may be inconsistent in the secondary text; preserve and verify from official page."},
+    {"row":610,"name_ar":"كحول بروبارجيل","name_en":"Propargyl alcohol","cas":"107-19-7","source_line":5501,"raw_limit_and_note_text":"HC≡CCH2OH؛ 56,06؛ 1 جزء/مليون؛ تهيج العين، تلف الكبد والكلى","status":"pending_official_match"},
+    {"row":611,"name_ar":"بيتا-بروبيولاكتون","name_en":"beta-Propiolactone","cas":"57-57-8","source_line":5503,"raw_limit_and_note_text":"OCH2CH2CO؛ 72,06؛ 0,5 جزء/مليون؛ م3؛ A3؛ تهيج المسالك التنفسية العليا، سرطان الجلد","status":"pending_official_match","risk_note":"Potential carcinogenicity entry; no operational limit approved."},
+    {"row":612,"name_ar":"بروبيونالدهيد","name_en":"Propionaldehyde","cas":"123-38-6","source_line":5504,"raw_limit_and_note_text":"CH3CH2CHO؛ 58,10؛ 20 جزء/مليون؛ تهيج المسالك التنفسية العليا","status":"pending_official_match"},
+    {"row":613,"name_ar":"حمض البروبيونيك","name_en":"Propionic acid","cas":"79-09-4","source_line":5506,"raw_limit_and_note_text":"CH3CH2COOH؛ 74,08؛ 10 جزء/مليون؛ تهيج العين والجلد والمسالك التنفسية العليا","status":"pending_official_match"},
+    {"row":614,"name_ar":"بروبوكسور","name_en":"Propoxur","cas":"114-26-1","source_line":5508,"raw_limit_and_note_text":"C11H15NO3؛ 209,24؛ 0,5 ملجم/م3 (inhalable vapors and particles)؛ A3; BEI؛ م3، مؤشر التعرض الحيوي؛ cholinesterase inhibitor","status":"pending_official_match"},
+    {"row":615,"name_ar":"إيزومرات خلات البروبيل","name_en":"Propyl acetate isomers","cas":"108-21-4; 109-60-4","source_line":5509,"raw_limit_and_note_text":"C5H10O2؛ 102,13؛ 100 جزء/مليون؛ 150 جزء/مليون؛ تهيج العين والمسالك التنفسية العليا، ضعف الجهاز العصبي المركزي","status":"pending_official_match"},
+    {"row":616,"name_ar":"بروبيلين","name_en":"Propylene","cas":"115-07-1","source_line":5511,"raw_limit_and_note_text":"CH3CH=CH2؛ 42,08؛ 500 جزء/مليون؛ A4؛ م4؛ تهيج المسالك التنفسية العليا، اختناق","status":"pending_official_match"},
+    {"row":617,"name_ar":"ثنائي كلوريد البروبيلين","name_en":"Propylene dichloride","cas":"78-87-5","source_line":5513,"raw_limit_and_note_text":"C3H6Cl2؛ 112,99؛ 10 جزء/مليون؛ DSEN; A4؛ م4، تحسس جلدي؛ تهيج المسالك التنفسية العليا، تأثير على وزن الجسم","status":"pending_official_match","anomaly":"The source text has unmatched date parentheses; preserve and verify against the official page."}
+  ]
+}
