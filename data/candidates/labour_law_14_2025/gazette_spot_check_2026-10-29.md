@@ -52,3 +52,20 @@ The missing `law_rows_ar.jsonl` is deliberately not distributed in the repositor
 **Partial progress:** six article/page locators now have official-PDF text-layer support.  
 **Still blocked:** the six exact spelling comparisons, all 311 JSONL-to-Gazette comparisons, the 120-item numeric checklist, original-PDF SHA-256, full currentness/reuse review, and qualified lawyer sign-off.  
 **Safety:** no card is activated by this log.
+
+## Additional visual scan spot-check via official PDF viewer (2026-10-29)
+
+The same government-hosted PDF was opened in its built-in PDF viewer and rendered page images were inspected for the six flagged articles. This adds a **visual page spot-check** beyond the searchable text layer; it is not an original-byte download and does not produce a SHA-256.
+
+| Article | Rendered PDF page index (zero-based) | Printed Gazette page | Visual observation |
+|---:|---:|---:|---|
+| 66 | 33 | 35 | The printed page shows Article 66; visible source typography uses legacy forms including «الآتى» and «التى» in the provision text. |
+| 103 | 46 | 48 | The printed page shows Articles 102–103; the last line of Article 103 uses the legacy form «الذى». |
+| 124 | 52 | 54 | The printed page shows Article 124 and its leave figures; the lead-in reads «على الوجه الآتى», and the text includes legacy-form «التى». |
+| 134 | 56 | 58 | The printed page shows Article 134 duties; the provision uses legacy-form «التى» in the duties text. |
+| 141 | 59 | 61 | The printed page shows Article 141 investigation timing; the visible text includes «الذى» and «التى» in the disciplinary-investigation provision. |
+| 278 | 104 | 106 | The printed page shows Article 278; its text includes the legacy form «التى» in the attendance-request clause. |
+
+**Interpretation:** The rendered official pages confirm that legacy spelling forms occur in the flagged articles, consistent with the overall style noted in the original corpus audit. They do not identify which exact token(s) differ in each JSONL row because the actual JSONL rows and outlier strings are not in this public branch/session. Do not mark the six outliers resolved until the exact candidate strings are restored and compared side by side against these rendered pages.
+
+**Artifact limitation:** Two direct download attempts against government-hosted PDF URLs failed in this environment. No PDF bytes were obtained, no original-file SHA-256 is claimed, and no restricted request-a-copy workflow was bypassed. The official PDF's viewer remains a usable visual-reference route for targeted page inspection.
