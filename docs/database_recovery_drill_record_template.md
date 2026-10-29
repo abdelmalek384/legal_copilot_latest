@@ -72,7 +72,36 @@ Record each result as `PASS`, `FAIL`, or `N/A`. Attach evidence references; reda
 | Rollback target/configuration restored and smoke-tested | | |
 | Failed candidate retained or disposed of according to policy | | |
 
-## 6. Findings and approval
+## 6. Staged-upload recovery
+
+| Check | Result | Evidence reference / notes |
+|---|---|---|
+| All application, scheduler, and worker writes stopped before recovery | | |
+| Dry-run of tools/recover_staged_original_files.py reviewed | | |
+| Every recoverable candidate matched recorded SHA-256 and byte size | | |
+| No manual-review, missing-object, integrity-mismatch, or concurrent-change findings remain | | |
+| Apply mode used only with explicit --apply and --quiesced after approval | | |
+| Recovery output reports zero unresolved findings | | |
+| Follow-up dry-run reports no remaining recovery candidates | | |
+| Backend-specific local/S3 reconciliation reports clean with zero findings | | |
+
+## 7. Deletion-recovery scenario
+
+| Check | Result | Evidence reference / notes |
+|---|---|---|
+| Dedicated synthetic firm/matter/object used; no client data involved | | |
+| Known-good encrypted bundle created before the synthetic deletion | | |
+| Distinct firm-admin request and second-admin approval recorded | | |
+| Legal-hold behavior checked; held object cannot be purged | | |
+| Purge operator is a distinct active platform administrator | | |
+| Deletion/tombstone and immutable event history verified | | |
+| Known-good bundle restored to a new isolated destination | | |
+| Pre-deletion synthetic matter, metadata, and original bytes recovered with matching SHA-256/size | | |
+| S3 versioning, delete-marker, KMS, and lifecycle behavior reviewed | | |
+
+**Production S3 limitation:** the current purge CLI and offboarding preflight support local development storage only and explicitly reject production/S3. For an S3 deployment, mark the deletion-recovery scenario BLOCKED until an S3-aware purge path is implemented and independently reviewed. Do not manually delete S3 objects or mark this scenario passed based on a local-only rehearsal.
+
+## 8. Findings and approval
 
 - Findings / deviations:
 - Severity and owner for each finding:
