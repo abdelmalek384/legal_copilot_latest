@@ -103,9 +103,16 @@ class LegalVersionedRegistryTests(unittest.TestCase):
                 "INSERT INTO legal_review_events(version_id,reviewer,review_type,outcome,notes,evidence_url) VALUES(?,?,?,?,?,?)",
                 (cur.lastrowid, "Reviewer", review_type, "pass", "Reviewed against evidence.", "https://example.gov/review"),
             )
-        self.app.add_chunks(self.db, [{"ref":"Test law - article 1","article":"1","text":text,"in_force":chunk_in_force,"verified":1,"source":"https://example.gov"}])
-        chunk_id = self.db.execute("SELECT id FROM chunks WHERE ref='Test law - article 1' ORDER BY id DESC LIMIT 1").fetchone()[0]
-        self.db.execute("UPDATE chunks SET document_version_id=? WHERE id=?", (cur.lastrowid, chunk_id))
+        chunk = self.db.execute(
+            "INSERT INTO chunks(ref,article,page,text,norm,document_version_id,in_force,as_of,source,verified) "
+            "VALUES(?,?,?,?,?,?,?,?,?,?)",
+            (
+                "Test law - article 1", "1", None, text, self.app.norm(text),
+                cur.lastrowid, int(chunk_in_force), effective_date,
+                "https://example.gov", 1,
+            ),
+        )
+        chunk_id = chunk.lastrowid
         self.db.commit()
         return chunk_id, cur.lastrowid
 
@@ -284,18 +291,17 @@ class LegalVersionedRegistryTests(unittest.TestCase):
         self.assertEqual(p["relations"][0]["relation_type"], "amends")
         self.assertEqual(p["relations"][0]["to_version_id"], amended_version_id)
 
-    def test_unlinked_legacy_law_search_fails_closed_by_default(self):
-        self.app.add_chunks(self.db, [{"ref":"Legacy source","article":"1","text":"legacyprobe passage","in_force":1,"verified":1,"source":"legacy"}])
+    def test_corpus_profile_rejects_unlinked_legacy_chunks(self):
+        with self.assertRaises(sqlite3.IntegrityError):
+            self.db.execute(
+                "INSERT INTO chunks(ref,article,text,norm,in_force,source,verified) "
+                "VALUES(?,?,?,?,?,?,?)",
+                ("Legacy source", "1", "legacyprobe passage",
+                 self.app.norm("legacyprobe passage"), 1, "legacy", 1),
+            )
+        self.db.rollback()
         self.assertEqual(self.app.search(self.db, "legacyprobe"), [])
         self.assertEqual(self.app.search(self.db, "المادة 1"), [])
-
-    def test_unlinked_legacy_search_requires_explicit_temporary_opt_in(self):
-        self.app.add_chunks(self.db, [{"ref":"Legacy source","article":"1","text":"legacyprobe passage","in_force":1,"verified":1,"source":"legacy"}])
-        os.environ["ALLOW_UNLINKED_LEGACY_LAW_SEARCH"] = "1"
-        hit = self.app.search(self.db, "legacyprobe")[0]
-        self.assertEqual(hit["provenance"]["status"], "legacy_unlinked")
-        exact = self.app.search(self.db, "المادة 1")
-        self.assertTrue(any(item["provenance"]["status"] == "legacy_unlinked" for item in exact))
 
 if __name__ == "__main__":
     unittest.main()
