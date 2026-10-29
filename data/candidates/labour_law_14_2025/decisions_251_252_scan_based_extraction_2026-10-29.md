@@ -15,6 +15,16 @@ Source route: Al-Masdar reproduces page images of *Egyptian Proceedings, supplem
 
 The preview page loads in this research interface, but the individual Google Drive page-image request returned 403. No access control was bypassed, and no file bytes/hash are claimed. These are useful alternate full-document links for ordinary browser access; if a PDF is downloadable through the visible page, compare and hash the exact downloaded file.
 
+
+## Additional public secondary summary found — Decision 251/252
+
+A public LinkedIn profile/post associated with the Ministry of Labour Egypt provides a more detailed summary of Decisions 251 and 252 than the initial news articles: https://eg.linkedin.com/in/ehab-abdelatty-alian. It is **not the operative decision text** and must be treated as a secondary lead only.
+
+- For Decision 251 it repeats the consultant A/B qualification and experience thresholds, three-year licence, fees, 50% fee reduction for covered persons with disabilities, and adds a reported requirement to submit work history covering the previous three years on renewal plus possible licence-cancellation grounds. Most of these are already represented in the 17-item candidate JSON; the new summary is an independent comparison lead, not a second primary source.
+- For Decision 252 it reports a six-month transition period for existing training providers; minimum training-centre net area of 90 m²; training room of at least 30 m² and 1.5 m² per trainee; trainer qualification including a suitable higher degree, eight years of OSH experience and an accredited TOT course; trainer-licence fee EGP 5,000 and three-year validity; and exemptions for establishments training only their own workers if programmes are approved and provided free of charge.
+- These additional values are appended as candidate assertions 252-N033–252-N040. JSON parsed successfully and the assertion count is now 40. They are marked `secondary_profile_summary_only` / `needs_scan_and_official_file_confirmation`, not verified legal requirements.
+- The profile is not a Gazette, Ministry circular, or signed decision. Confirm every value against the reproduced Gazette pages and then against the official Gazette file; do not use the summary as an authoritative source.
+
 ## Decision 251/2026 — consultant licensing
 
 ### Visible scan-derived clauses
