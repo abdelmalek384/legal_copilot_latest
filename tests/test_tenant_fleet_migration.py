@@ -58,6 +58,39 @@ class TenantFleetMigrationTests(unittest.TestCase):
                 "SELECT name FROM sqlite_master WHERE type='table' AND name='fleet_migration_test'"
             ).fetchone())
 
+    def test_preflight_rejects_symlinked_tenant_sidecar(self):
+        sidecar = Path(str(self.tenant_path) + "-wal")
+        sidecar.unlink(missing_ok=True)
+        self.runtime.close_current_thread()
+        sidecar.symlink_to(self.tenant_path)
+        try:
+            with self.assertRaisesRegex(FleetMigrationError, "Unsafe SQLite sidecar"):
+                build_plan(
+                    self.runtime.paths.control_plane,
+                    self.runtime.paths.tenant_root,
+                    self.migrations_root,
+                )
+        finally:
+            sidecar.unlink(missing_ok=True)
+
+    def test_preflight_rejects_tenant_sidecar_with_broad_permissions(self):
+        if os.name != "posix":
+            self.skipTest("POSIX permission checks are platform-specific")
+        sidecar = Path(str(self.tenant_path) + "-shm")
+        sidecar.unlink(missing_ok=True)
+        self.runtime.close_current_thread()
+        sidecar.write_bytes(b"synthetic sidecar fixture")
+        os.chmod(sidecar, 0o644)
+        try:
+            with self.assertRaisesRegex(FleetMigrationError, "sidecar permissions are too broad"):
+                build_plan(
+                    self.runtime.paths.control_plane,
+                    self.runtime.paths.tenant_root,
+                    self.migrations_root,
+                )
+        finally:
+            sidecar.unlink(missing_ok=True)
+
     def test_preflight_rejects_migration_fifo_without_blocking(self):
         if not hasattr(os, "mkfifo") or os.name != "posix":
             self.skipTest("FIFO behavior is POSIX-specific")
