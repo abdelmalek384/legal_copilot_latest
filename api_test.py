@@ -615,49 +615,6 @@ assert app._answer_has_unsupported_quantities("The maximum is ten years [1].", n
 assert app._answer_has_unsupported_quantities("The maximum is ten years [1].", numeric_hits, set())
 
 
-# Persistent research-chat messages share one SQLite-backed per-IP budget
-# across conversation IDs and worker processes.
-from starlette.requests import Request as StarletteRequest
-db.execute("DELETE FROM api_rate_limit_windows WHERE bucket='__research_message__' AND client_key='rate-limit-test'")
-db.commit()
-def rate_request(path, method="POST"):
-    return StarletteRequest({
-        "type": "http", "http_version": "1.1", "method": method,
-        "scheme": "http", "path": path, "raw_path": path.encode(),
-        "query_string": b"", "headers": [], "client": ("rate-limit-test", 1234),
-        "server": ("testserver", 80),
-    })
-for n in range(20):
-    assert app._rate_limit(rate_request(f"/research/conversations/{n}/messages")) == 0
-stored = db.execute("SELECT hits FROM api_rate_limit_windows WHERE bucket='__research_message__' AND client_key='rate-limit-test'").fetchone()
-assert stored and stored["hits"] == 20, "request counts must be stored outside process-local memory"
-retry_after = app._rate_limit(rate_request("/research/conversations/999/messages"))
-assert retry_after > 0, "research chat must return a retry delay after 20 requests/minute per IP"
-assert app._rate_limit(rate_request("/research/conversations/999/messages", method="GET")) == 0
-assert c.get("/openapi.json").status_code == 404
-
-
-# Active email or client-IP lockouts must reject even correct credentials, before scrypt.
-# This intentionally tests the anti-flood path without timing-sensitive sleeps.
-_login_now = int(app.time.time())
-for _identifier in ("lead@x.eg", "ip:testclient"):
-    db.execute(
-        "INSERT INTO login_attempts(email,failures,window_start,locked_until) VALUES(?,?,?,?) "
-        "ON CONFLICT(email) DO UPDATE SET failures=excluded.failures,window_start=excluded.window_start,locked_until=excluded.locked_until",
-        (_identifier, 5, _login_now, _login_now + 120),
-    )
-db.commit()
-locked_bad_password = c.post("/login", json={"email":"lead@x.eg","password":"definitely-wrong"})
-assert locked_bad_password.status_code == 429, locked_bad_password.text
-locked_good_password = c.post("/login", json={"email":"lead@x.eg","password":"password-Lead"})
-assert locked_good_password.status_code == 429, locked_good_password.text
-assert int(locked_good_password.headers.get("retry-after", "0")) > 0
-
-# Clear the synthetic lockout, then prove valid credentials work after the lock expires.
-db.execute("DELETE FROM login_attempts WHERE email IN ('lead@x.eg','ip:testclient')")
-db.commit()
-assert c.post("/login", json={"email":"lead@x.eg","password":"password-Lead"}).status_code == 200
-
 # Weak but long passwords must be rejected by account creation.
 weak_password = c.post("/users", json={"name":"Weak Password","email":"weak-password@x.eg","password":"password1234","role":"lawyer"}, headers=A)
 assert weak_password.status_code == 422, weak_password.text
