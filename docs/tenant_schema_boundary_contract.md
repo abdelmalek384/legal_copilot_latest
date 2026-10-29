@@ -69,7 +69,7 @@ The older compatibility schema can contain mixed data and is not the approved mu
 
 - [ ] Complete route-by-route and SQL-query-by-query authorization review, including exports, audit, search, corpus review, CLI commands and background/maintenance tools.
 - [ ] Keep route inventory synchronized with every registered route and confirm non-public routes authenticate through the shared identity dependency; then test route-specific firm/case/platform authorization and failure branches.
-- [ ] Finish invitation, recovery, first-platform-admin bootstrap and privileged-account recovery acceptance. Code in open PR #690 is not considered merged/release-complete.
+- [ ] Complete operational acceptance for invitations, recovery, first-platform-admin bootstrap and privileged-account recovery. The implementation is merged in PR #729; live email/provider validation, multi-host rate-limit validation, witnessed bootstrap/recovery drills and independent review remain open.
 - [ ] Validate the merged original-file lifecycle with a production object-storage/KMS provider before enabling production matter uploads; live-provider, witnessed recovery, retention, and independent-review gates remain open.
 - [ ] Approve jurisdiction-appropriate retention periods, export/deletion semantics and legal-hold policy; test that held material cannot be purged and every purge preserves a tombstone/audit event.
 - [ ] Run the automated isolated recovery smoke test, then conduct a witnessed staging restore/startup/isolation/rollback drill with independent reviewer sign-off.
