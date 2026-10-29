@@ -11,7 +11,7 @@ The article page's HTML text only exposes Articles 1 and 2, while the full decis
 
 - First inspected page: printed Gazette p. 45 (image URL: https://www.almasdar.com/WebP/libfiles/46/3/737.webp)
 - Next page: printed Gazette p. 46 (image URL: https://www.almasdar.com/WebP/libfiles/46/3/738.webp)
-- Inspected through printed Gazette p. 195 (image URL: https://www.almasdar.com/WebP/libfiles/46/3/887.webp); inspected image sequence currently covers pp. 45–195, not the whole decision
+- Inspected through printed Gazette p. 210 (image URL: https://www.almasdar.com/WebP/libfiles/46/3/902.webp); inspected image sequence currently covers pp. 45–210, not the whole decision
 - Decision 251 starts at printed p. 371 in the same issue (page image sequence on https://www.almasdar.com/175152). This indicates Decision 250 and its annexes occupy a very large span between the beginning at p.45 and the next instrument at p.371. Do not assume every intervening page has been reviewed merely because a sequence is available.
 
 The image files are hosted by a secondary publisher and carry its watermark. They appear to reproduce Gazette pages, but the official Gazette PDF bytes have not been acquired or hashed. This is a reproduced scan route, not a certified official download.
@@ -55,6 +55,8 @@ The inspected pages explicitly refer to accompanying tables, including:
 - electric-field/current-frequency exposure tables and related safe-distance requirements referenced around pp.158–160;
 - heat-stress and thermal-exposure tables around pp.184–188;
 - whole-body vibration exposure tables and duration-based values around pp.192–195;
+- illumination (lux) table 11 around pp.196–202;
+- chemical exposure-limit tables around pp.203–210;
 - machinery, equipment, hazardous substances, excavations, demolition, scaffolds, cranes/lifting, hot work, confined spaces, electrical safety, and other task-specific standards referenced in the Ministry's announcement;
 - mandatory registers/forms (Article 1 expressly incorporates forms/register models).
 
