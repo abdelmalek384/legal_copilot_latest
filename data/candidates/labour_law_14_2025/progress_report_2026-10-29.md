@@ -29,7 +29,7 @@ Scope: only the Labour Law 14/2025 evidence-backed legal-knowledge workstream an
 | Decision 249 scan discovery | pp.19–44 and Tables 1–3 located | 75% source discovery | Official PDF hash, exact Table 1/2 transcription, currentness and counsel |
 | Decision 250 scan discovery | pp.45–295 inspected (251 of roughly 326 pages in the instrument span) | 77% of the long scan-index task | Hundreds of remaining pages/tables; all technical tables and numerical limits |
 | Decision 251 scan extraction | pp.371–377 indexed; Articles 1–11 summarized from reproduced scans | 65% extraction work | Official-file comparison, currentness, counsel, exact procedural day-count check |
-| Decision 252 scan extraction | pp.378–398 indexed; 32 numerical candidates structured | 70% extraction work | Official-file comparison; ambiguous table cells; currentness and counsel |
+| Decision 252 scan extraction | pp.378–398 indexed; page-pinned article map plus 32 numerical candidates structured | 75% extraction work | Official-file comparison; ambiguous table cells; currentness and counsel |
 | Decision 249 implementation circulars | Ministry says circulars will be issued; separate circular not located publicly | 35% | Find a public circular or preserve the unresolved gap |
 | Original Gazette PDF hash / full official-byte comparison | Not completed | 0% | Obtain original PDF bytes through ordinary authorized access |
 | 311-row candidate JSONL comparison | Candidate file unavailable in current runtime | 0% | User must provide original JSONL for exact comparison; do not reconstruct it |
