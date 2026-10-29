@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "record_type": "secondary_source_candidate_extraction",
+  "instrument": "Egyptian Minister of Labour Decision 250/2026",
+  "table": "24",
+  "table_title_ar": "الحدود العتبية للمواد الكيميائية الخطرة",
+  "research_date": "2026-10-29",
+  "source": {
+    "class": "secondary_transcription",
+    "url": "https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html",
+    "publication_date": "2026-10-26",
+    "source_lines": "5289-5321",
+    "official_gazette_match": "not_performed",
+    "official_pdf_sha256": null
+  },
+  "status": "candidate_only_not_for_authoritative_retrieval",
+  "important_limits": [
+    "Secondary transcription only; no official Gazette page-image comparison.",
+    "Raw limits, units and symbols are not normalized.",
+    "Group-level mineral/oil entries and multi-limit records require page-level association checks.",
+    "Not for workplace safety decisions or compliance advice."
+  ],
+  "declared_top_level_row_range": {"start": 484, "end": 503},
+  "rows": [
+    {"row":484,"name_ar":"ميثاكريلات الميثيل","name_en":"Methyl methacrylate","cas":"80-62-6","source_line":5289,"raw_limit_and_note_text":"C5H8O2؛ 100,13؛ 50 جزء/مليون؛ 100 جزء/مليون؛ DSEN; A4؛ تحسس جلدي، م4؛ تهيج المسالك التنفسية العليا والعين؛ تأثير على وزن الجسم، وذمة رئوية","status":"pending_official_match"},
+    {"row":485,"name_ar":"ميثيل النفثالين، كل النظائر","name_en":"Methylnaphthalene, all isomers","cas":"1321-94-4; 90-12-0; 91-57-6","source_line":5291,"raw_limit_and_note_text":"C11H10؛ 142,20؛ 0,05 جزء/مليون؛ 3 مجم/100سم2(SL)؛ Skin; A4؛ جلد، م4؛ تهيج المسالك التنفسية العليا، تلف الرئة، تأثير على الكبد","status":"pending_official_match","anomaly":"Air limit and surface limit appear in the same row; confirm exact columns and units from the official page."},
+    {"row":486,"name_ar":"ميثيل باراثيون","name_en":"Methyl parathion","cas":"298-00-0","source_line":5292,"raw_limit_and_note_text":"C8H10NO5PS؛ 263,02؛ 0,02 ملجم/م3(IFV)؛ Skin; A4; BEIC؛ جلد، م4، مؤشر التعرض الحيوي للمبيدات المثبطة للكولينستيراز","status":"pending_official_match"},
+    {"row":487,"name_ar":"ميثيل بروبيل كيتون","name_en":"Methyl propyl ketone","cas":"107-87-9","source_line":5294,"raw_limit_and_note_text":"C5H10O؛ 86,17؛ 150 جزء/مليون؛ تأثر وظائف الرئتين، تهيج العين","status":"pending_official_match"},
+    {"row":488,"name_ar":"سيليكات الميثيل","name_en":"Methyl silicate","cas":"681-84-5","source_line":5296,"raw_limit_and_note_text":"C4H12O4Si؛ 152,22؛ 1 جزء/مليون؛ تهيج المسالك التنفسية العليا، تلف العين","status":"pending_official_match"},
+    {"row":489,"name_ar":"ألفا ميثيل ستيرين","name_en":"alpha-Methylstyrene","cas":"98-83-9","source_line":5297,"raw_limit_and_note_text":"C9H10؛ 118,18؛ 10 جزء/مليون؛ م3؛ A3؛ تهيج المسالك التنفسية العليا، تلف الكلى والجهاز التناسلي للمرأة","status":"pending_official_match"},
+    {"row":490,"name_ar":"أنهيدريد ميثيل رباعي هيدرو فثاليك ونظائره","name_en":"Methyltetrahydrophthalic anhydride isomers","cas":"3425-89-6; 5333-84-6; 11070-44-3; 19438-63-2; 19438-64-3; 26590-20-5; 42498-58-8","source_line":5299,"raw_limit_and_note_text":"C9H10O3؛ 166,70؛ 0,07 جزء/بليون؛ 0,7 مجم/100سم3(SL)؛ 0,3 جزء/مليون؛ Skin; DSEN; RSEN؛ جلد، تحسس جلدي وتنفس؛ تحسس تنفسي","status":"pending_official_match","anomaly":"Multiple limit values and surface/air units are interleaved; verify each column before any interpretation."},
+    {"row":491,"name_ar":"ميثيل فينيل كيتون","name_en":"Methyl vinyl ketone","cas":"78-94-4","source_line":5300,"raw_limit_and_note_text":"C4H6O؛ 70,10؛ 0.01 جزء/مليون؛ تلف المسالك التنفسية العليا، نقص كرات الدم البيضاء","status":"pending_official_match"},
+    {"row":492,"name_ar":"ميتري بيوزين","name_en":"Metribuzin","cas":"9-64-21087","source_line":5302,"raw_limit_and_note_text":"C8H14N4OS؛ 214,28؛ 5 ملجم/م3؛ A4؛ م4؛ تلف الكبد، تأثير على الدم","status":"pending_official_match","anomaly":"CAS token appears malformed in the text layer; preserve exactly and compare with official page."},
+    {"row":493,"name_ar":"ميفينفوس","name_en":"Mevinphos","cas":"7-34-7786","source_line":5304,"raw_limit_and_note_text":"C7H13O6P؛ 224,16؛ 0,01 ملجم/م3؛ (IFV)؛ Skin; A4; BEIC؛ جلد، م4، مؤشر التعرض الحيوي للمبيدات المثبطة للكولينستيراز","status":"pending_official_match","anomaly":"CAS token and limit parentheses appear malformed in the secondary transcription; do not correct without primary-source evidence."},
+    {"row":494,"name_ar":"ميكا","name_en":"Mica","cas":"2-26-12001","source_line":5305,"raw_limit_and_note_text":"Phyllosilicate minerals؛ 0,1 ملجم/م3(R)؛ التهاب الغبار الرئوي","status":"pending_official_match","anomaly":"CAS token appears malformed and should be checked against the official page."},
+    {"row":495,"name_ar":"زيوت معدنية باستثناء السوائل المستخدمة في تشغيل المعادن","name_en":"Mineral oil, excluding metal-working fluids","source_line":5307,"raw_limit_and_note_text":"متغير؛ متغير؛ 5 ملجم/م3(I)؛ (L)؛ تهيج المسالك التنفسية العليا","status":"pending_official_match","anomaly":"Group-level entry has no CAS displayed; null is intentional."},
+    {"row":496,"name_ar":"موليبدينوم مقدر Mo","name_en":"Molybdenum, as Mo","cas":"7439-98-7","source_line":5309,"raw_limit_and_note_text":"Mo؛ 95,95؛ group heading; subentries below","status":"pending_official_match","children":[
+      {"row":497,"name_ar":"المركبات الذائبة","name_en":"Soluble compounds","source_line":5311,"raw_limit_and_note_text":"0,5 ملجم/م3(R)؛ A3؛ م3","status":"pending_official_match"},
+      {"row":498,"name_ar":"المعادن والمركبات غير الذائبة","name_en":"Metal and insoluble compounds","source_line":5312,"raw_limit_and_note_text":"10 ملجم/م3(I)؛ 3 ملجم/م3(R)","status":"pending_official_match","anomaly":"Two values/notations appear interleaved; confirm the official column mapping."}
+    ]},
+    {"row":499,"name_ar":"حمض أحادي كلورو الخليك","name_en":"Monochloroacetic acid","cas":"79-11-8","source_line":5314,"raw_limit_and_note_text":"ClCH2COOH؛ 94,5؛ 0,5 جزء/مليون؛ (IFV)؛ Skin; A4؛ جلد، م4؛ تهيج المسالك التنفسية العليا","status":"pending_official_match"},
+    {"row":500,"name_ar":"أحادي كروتوفوس","name_en":"Monocrotophos","cas":"6923-22-4","source_line":5316,"raw_limit_and_note_text":"C7H14NO5P؛ 223,16؛ 0,05 ملجم/م3؛ (IFV)؛ Skin; A4; BEIC؛ جلد، م4، مؤشر التعرض الحيوي للمبيدات المثبطة للكولينستيراز","status":"pending_official_match"},
+    {"row":501,"name_ar":"أحادي ميثيل الفورماميد","name_en":"Monomethylformamide","cas":"123-39-7","source_line":5317,"raw_limit_and_note_text":"C2H5NO؛ 59,07؛ 1 جزء/مليون؛ الجلد (Skin)؛ تلف الأجنة والكبد، تأثير ماسخ","status":"pending_official_match"},
+    {"row":502,"name_ar":"مورفولين","name_en":"Morpholine","cas":"110-91-8","source_line":5319,"raw_limit_and_note_text":"C4H9NO؛ 87,12؛ 20 جزء/مليون؛ Skin; A4؛ جلد، م4؛ تلف العين، تهيج المسالك التنفسية العليا","status":"pending_official_match"},
+    {"row":503,"name_ar":"نالد","name_en":"Naled","cas":"300-76-5","source_line":5321,"raw_limit_and_note_text":"C4H7Br2Cl2O4P؛ 380,79؛ 0,1 ملجم/م3؛ (IFV)؛ Skin; DSEN; A4; BEIC؛ جلد، تحسس جلدي، م4، مؤشر التعرض الحيوي للمبيدات المثبطة للكولينستيراز","status":"pending_official_match"}
+  ]
+}
