@@ -284,3 +284,10 @@ print("ملاحظة: اختبار النسخ والاستعادة متعدد ق�
 print("لم يُختبر هنا: صحة الرأي القانوني، صحة مواعيد قانونية حقيقية، رفع ملفات PDF فعليًا، أو اختبار اختراق مستقل.")
 
 # CI execution is enabled for the audit/ branch family.
+
+# Close test-only connections and remove all temporary profile databases.
+client.close()
+other_client.close()
+anonymous.close()
+runtime.close_current_thread()
+_ARABIC_TEST_ROOT.cleanup()
