@@ -1,4 +1,6 @@
 import importlib.util
+import json
+import shutil
 from pathlib import Path
 import tempfile
 import unittest
@@ -35,6 +37,32 @@ class Decision250Table24CandidateValidationTests(unittest.TestCase):
             errors = MODULE.validate(Path(tmp))
         self.assertTrue(any("missing batch file" in error for error in errors))
         self.assertTrue(any("missing Table 24 row numbers" in error for error in errors))
+
+    def _copy_batches(self, target):
+        for filename in MODULE.BATCHES:
+            shutil.copy2(MODULE.DATA_DIR / filename, target / filename)
+
+    def test_candidate_cannot_claim_retrieval_eligibility(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self._copy_batches(root)
+            path = root / MODULE.BATCHES[0]
+            data = json.loads(path.read_text(encoding="utf-8"))
+            data["rows"][0]["retrieval_eligible"] = True
+            path.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+            errors = MODULE.validate(root)
+        self.assertTrue(any("forbidden promotion/approval flag" in error for error in errors))
+
+    def test_candidate_cannot_claim_official_pdf_hash(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self._copy_batches(root)
+            path = root / MODULE.BATCHES[0]
+            data = json.loads(path.read_text(encoding="utf-8"))
+            data["source"]["official_pdf_sha256"] = "fake-hash"
+            path.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+            errors = MODULE.validate(root)
+        self.assertTrue(any("must not claim an official PDF hash" in error for error in errors))
 
 
 if __name__ == "__main__":
