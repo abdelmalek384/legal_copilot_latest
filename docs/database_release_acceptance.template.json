@@ -13,7 +13,8 @@
       "evidence_ref": "",
       "verified_at": "",
       "verified_by": "",
-      "witnessed_by": ""
+      "witnessed_by": "",
+      "verified_scenarios": []
     },
     "retention_export_deletion_policy": {
       "status": "pending",
