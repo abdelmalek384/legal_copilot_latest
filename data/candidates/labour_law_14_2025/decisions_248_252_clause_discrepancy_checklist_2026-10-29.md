@@ -48,6 +48,17 @@ Official title in catalogue: establishments/branches required to establish funct
 
 **Open gap:** the accessible report provides a summary rather than complete article-level text for Decision 249. Do not invent the required number/qualifications of specialists, committee membership, meeting cadence, or risk-category thresholds.
 
+### New official Ministry clarification — Decision 249 (published 2026-10-27)
+
+Official source: https://www.labour.gov.eg/ar/الأخبار/بيان-توضيحي-هام-بشأن-القرار-الوزاري-رقم-249-لسنة-2026-الخاص-بالسلامة-والصحة-المهنية-وزارة-العمل-لن-ي-ضار-أي-عامل-يعمل-بمهنة-أخصائي-السلامة-والصحة-المهنية-ولا-مساس-بالمراكز-القانونية-المكتسبة-وأهمية-المهنة-تستوجب-منتهى-الدقة-في-اختيار-شاغليها/
+
+The Ministry's clarification is important evidence about administrative interpretation, but it is not itself a substitute for the decision or a later binding circular. It says that current OSH specialists are not to be harmed or excluded solely due to the decision; previously recognized qualifications and acquired legal positions are to be respected; other university graduates with specialized postgraduate diplomas, extended experience or recognized certificates may be considered under level-specific rules; and the Ministry's central administration was directed to issue periodic circulars to standardize implementation and transitional arrangements.
+
+Add these checks:
+- **249-H — incumbent workers/acquired positions:** locate the exact decision transitional clauses and verify the Ministry's clarification does not conflict with the operative text. Record the clarification as an official administrative interpretation, not as a decision article.
+- **249-I — future circulars:** search for the promised periodic circulars and any implementation/regularization guidance. Until located, the detail of transition rules remains open; do not infer that all current workers are automatically exempt from every qualification.
+- **249-J — specialist classification:** distinguish the decision's required establishment-level staffing rules from professional licensing/qualification categories. Do not conflate “أخصائي” with “استشاري” without textual support.
+
 ## Decision 250/2026 — safety standards, limits, precautions and annexes
 
 Secondary source: Al-Masdar, 2026-10-19  
