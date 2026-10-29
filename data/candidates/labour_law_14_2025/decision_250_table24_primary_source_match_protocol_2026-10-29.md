@@ -18,6 +18,8 @@ shasum -a 256 "/path/to/original-gazette.pdf"
 
 ## 2. Compare each candidate row
 
+**Important fidelity warning:** The candidate field named `raw_limit_and_note_text` is not guaranteed to be verbatim. It may contain manually assembled, translated, normalized or text-layer fragments. Treat it as a comparison lead only; transcribe the official page independently and compare field by field.
+
 For each numbered Table 24 entry:
 
 1. Open the official page image containing the row. Record both the PDF page index and the printed page number if they differ.
