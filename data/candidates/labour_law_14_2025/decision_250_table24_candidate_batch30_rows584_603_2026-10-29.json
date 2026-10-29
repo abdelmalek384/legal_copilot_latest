@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "record_type": "secondary_source_candidate_extraction",
+  "instrument": "Egyptian Minister of Labour Decision 250/2026",
+  "table": "24",
+  "table_title_ar": "الحدود العتبية للمواد الكيميائية الخطرة",
+  "research_date": "2026-10-29",
+  "source": {
+    "class": "secondary_transcription",
+    "url": "https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html",
+    "publication_date": "2026-10-26",
+    "source_lines": "5457-5489",
+    "official_gazette_match": "not_performed",
+    "official_pdf_sha256": null
+  },
+  "status": "candidate_only_not_for_authoritative_retrieval",
+  "important_limits": [
+    "Secondary transcription only; no official Gazette page-image comparison.",
+    "Raw limits, units and symbols are not normalized.",
+    "Platinum subentries and the blank numbered slot 599 are preserved rather than silently renumbered.",
+    "Not for workplace safety decisions or compliance advice."
+  ],
+  "declared_top_level_row_range": {"start": 584, "end": 603},
+  "rows": [
+    {"row":584,"name_ar":"فوسفور أصفر","name_en":"Phosphorus, yellow","cas":"12185-10-3","source_line":5457,"raw_limit_and_note_text":"P4؛ 123,92؛ 0,1 ملجم/م3؛ تهيج المسالك التنفسية العليا والسفلى والجهاز الهضمي، تلف الكبد","status":"pending_official_match"},
+    {"row":585,"name_ar":"أوكسي كلوريد الفوسفور","name_en":"Phosphorus oxychloride","cas":"10025-87-3","source_line":5459,"raw_limit_and_note_text":"POCl3؛ 153,35؛ 0,1 جزء/مليون؛ تهيج المسالك التنفسية العليا","status":"pending_official_match"},
+    {"row":586,"name_ar":"خامس كلوريد الفوسفور","name_en":"Phosphorus pentachloride","cas":"10026-13-8","source_line":5461,"raw_limit_and_note_text":"PCl5؛ 208,24؛ 0,1 جزء/مليون؛ تهيج العين والمسالك التنفسية العليا","status":"pending_official_match"},
+    {"row":587,"name_ar":"خامس كبريتيد الفوسفور","name_en":"Phosphorus pentasulfide","cas":"1314-80-3","source_line":5462,"raw_limit_and_note_text":"P2S5/P4S10؛ 222,29؛ 1 ملجم/م3؛ 3 ملجم/م3؛ تهيج المسالك التنفسية العليا","status":"pending_official_match"},
+    {"row":588,"name_ar":"ثالث كلوريد الفوسفور","name_en":"Phosphorus trichloride","cas":"7719-12-2","source_line":5464,"raw_limit_and_note_text":"PCl3؛ 137,35؛ 0,2 جزء/مليون؛ 0,5 جزء/مليون؛ تهيج الجلد والعين والمسالك التنفسية العليا","status":"pending_official_match"},
+    {"row":589,"name_ar":"أورثو-فثالالدهيد","name_en":"o-Phthalaldehyde","cas":"643-79-8","source_line":5465,"raw_limit_and_note_text":"C6H4(CHO)2؛ 134,10؛ 25 ميكروجرام/100سم2(SL)؛ 0,1 جزء/بليون (vapor)؛ Skin; DSEN; RSEN؛ جلد، تحسس جلدي وتنفس؛ تهيج الجلد والعين والمسالك التنفسية، حساسية مفرطة","status":"pending_official_match","anomaly":"Surface and vapor limits appear together; preserve the values and verify the exact column positions."},
+    {"row":590,"name_ar":"أنهيدريد الفثاليك","name_en":"Phthalic anhydride","cas":"85-44-9","source_line":5467,"raw_limit_and_note_text":"C6H4(CO2)O؛ 148,12؛ 0,002 ملجم/م3(IFV)؛ 0,05 ملجم/100سم2(SL)؛ 0,005 ملجم/م3(IFV)؛ Skin; DSEN; RSEN؛ تحسس جلدي وتنفس؛ الربو","status":"pending_official_match","anomaly":"Three numeric limit tokens mix air and surface units; official column matching is mandatory."},
+    {"row":591,"name_ar":"ميتا-فثالو ثنائي نيتريل","name_en":"m-Phthalodinitrile","cas":"626-17-5","source_line":5468,"raw_limit_and_note_text":"C6H4(CH)2؛ 128,14؛ 5 ملجم/م3(IFV)؛ تهيج العين والمسالك التنفسية العليا","status":"pending_official_match","anomaly":"Formula token may be flattened/misaligned in the source text; verify against official page."},
+    {"row":592,"name_ar":"أورثو-فثالو ثنائي نيتريل","name_en":"o-Phthalodinitrile","cas":"91-15-6","source_line":5470,"raw_limit_and_note_text":"C6H4(CH)2؛ 128,13؛ 1 ملجم/م3(IFV)؛ تشنجات الجهاز العصبي المركزي، تأثير على وزن الجسم","status":"pending_official_match","anomaly":"Formula token may be flattened/misaligned in the source text; verify against official page."},
+    {"row":593,"name_ar":"بيكلورام","name_en":"Picloram","cas":"1918-02-1","source_line":5472,"raw_limit_and_note_text":"C6H3Cl3N2O2؛ 241,48؛ 10 ملجم/م3؛ A4؛ م4؛ تلف الكبد والكلى","status":"pending_official_match"},
+    {"row":594,"name_ar":"حمض البيكريك","name_en":"Picric acid","cas":"88-89-1","source_line":5473,"raw_limit_and_note_text":"C6H2OH(NO2)3؛ 229,11؛ 0,1 ملجم/م3؛ تهيج العين، التهاب وتحسس الجلد","status":"pending_official_match"},
+    {"row":595,"name_ar":"بيندون","name_en":"Pindone","cas":"83-26-1","source_line":5475,"raw_limit_and_note_text":"C14H14O3؛ 230,25؛ 0,1 ملجم/م3؛ تجلط","status":"pending_official_match"},
+    {"row":596,"name_ar":"بيبيرازين وأملاح البيبيرازين مقدرة كبيبيرازين","name_en":"Piperazine and salts, as piperazine","cas":"110-85-0","source_line":5477,"raw_limit_and_note_text":"C4H10N2؛ 86,14؛ 0,03 جزء/مليون؛ (IFV)؛ A4؛ م4؛ Skin; DSEN; RSEN؛ جلد، تحسس جلدي وتنفس؛ تحسس الجهاز التنفسي والجلد، الربو","status":"pending_official_match","anomaly":"Parentheses/units appear misordered in the source text; verify official table columns."},
+    {"row":597,"name_ar":"بلاتين","name_en":"Platinum","cas":"7440-06-4","source_line":5479,"raw_limit_and_note_text":"Pt؛ parent heading; child rows below","status":"pending_official_match","children":[
+      {"row":598,"name_ar":"المعدن","name_en":"Metal","source_line":5481,"raw_limit_and_note_text":"195,09؛ 1 ملجم/م3؛ no clear additional category/effect text","status":"pending_official_match"},
+      {"row":599,"name_ar":"خانة مرقمة فارغة في النص الثانوي","name_en":"Unresolved blank numbered slot 599","source_line":5483,"raw_limit_and_note_text":"No substantive row text is visible in the secondary transcription at this numbered slot.","status":"pending_official_match","anomaly":"Explicit placeholder only; not a chemical rule and must not be used for retrieval. Check the official page to determine whether this is a pagination/OCR artifact."},
+      {"row":600,"name_ar":"الأملاح القابلة للذوبان مقدرة كبلاتين","name_en":"Soluble salts, as Pt","source_line":5484,"raw_limit_and_note_text":"Variable؛ 0,002 ملجم/م3؛ تهيج المسالك التنفسية العليا، الربو","status":"pending_official_match"}
+    ]},
+    {"row":601,"name_ar":"بولي كلوريد الفينيل","name_en":"Polyvinyl chloride (PVC)","cas":"9002-86-2","source_line":5486,"raw_limit_and_note_text":"(C2H3Cl)n؛ variable؛ 1 ملجم/م3 respirable dust؛ A4؛ م4؛ التهاب رئوي، تهيج المسالك التنفسية السفلى، يؤثر على وظائف الرئة","status":"pending_official_match"},
+    {"row":602,"name_ar":"إسمنت بورتلاندي","name_en":"Portland cement","cas":"65997-15-1","source_line":5487,"raw_limit_and_note_text":"Multiple clinker compounds/formulae and molecular weights; 1 ملجم/م3 respirable dust; crystalline silica not more than 1% and no asbestos; A4; m4; lung function effects/asthma","status":"pending_official_match","anomaly":"Several mineral formulae/weights are concatenated in one row; verify the official page before interpreting."},
+    {"row":603,"name_ar":"هيدروكسيد البوتاسيوم","name_en":"Potassium hydroxide","cas":"1310-58-3","source_line":5489,"raw_limit_and_note_text":"KOH؛ 56,10؛ 2 ملجم/م3؛ تهيج الجلد والعين والمسالك التنفسية العليا","status":"pending_official_match"}
+  ]
+}
