@@ -3543,7 +3543,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
 
     def test_calendar_text_escaping_prevents_crlf_line_injection(self):
         self.assertEqual(
-            app._ics_escape("a\\b,c;d\\r\\ne\\rf\\ng"),
+            app._ics_escape("a\\b,c;d\r\ne\rf\ng"),
             "a\\\\b\\,c\\;d\\ne\\nf\\ng",
         )
 
