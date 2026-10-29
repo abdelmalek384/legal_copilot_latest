@@ -9,6 +9,7 @@ from unittest.mock import patch
 
 from fastapi import HTTPException
 from fastapi.testclient import TestClient
+from pydantic import ValidationError
 
 import app
 from database_runtime import DatabaseRuntime
@@ -3538,6 +3539,111 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             self.assertIn("RESEARCH_MEMO_PRIVATE_ANSWER_SENTINEL", note["text"])
         finally:
             researcher.close()
+
+
+    def test_calendar_text_escaping_prevents_crlf_line_injection(self):
+        self.assertEqual(
+            app._ics_escape("a\\b,c;d\r\ne\rf\ng"),
+            "a\\\\b\\,c\\;d\\ne\\nf\\ng",
+        )
+
+
+    def test_platform_reviewer_catalog_queries_are_metadata_only_and_bounded(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+
+        control = self.runtime.control_connection()
+        control.execute(
+            "INSERT INTO user_platform_roles(user_id,role_name) VALUES(?,?)",
+            (self.user_id, "platform_reviewer"),
+        )
+        control.commit()
+
+        corpus = self.runtime.legal_corpus_connection()
+        corpus.execute(
+            "INSERT INTO legal_sources(source_id,authority,source_page,collection_permission,"
+            "commercial_reuse_permission,permission_evidence) VALUES(?,?,?,?,?,?)",
+            ("RUNTIME-CATALOG-SOURCE", "Runtime catalog authority",
+             "https://example.test/catalog", "unknown", "unknown", "permission not yet verified"),
+        )
+        corpus.execute(
+            "INSERT INTO legal_documents(document_id,source_id,official_title,document_type) "
+            "VALUES(?,?,?,?)",
+            ("RUNTIME-CATALOG-METADATA-DOC", "RUNTIME-CATALOG-SOURCE",
+             "Metadata-only runtime instrument", "law"),
+        )
+        corpus.execute(
+            "INSERT INTO legal_documents(document_id,source_id,official_title,document_type) "
+            "VALUES(?,?,?,?)",
+            ("RUNTIME-CATALOG-VERSIONED-DOC", "RUNTIME-CATALOG-SOURCE",
+             "Versioned runtime instrument", "law"),
+        )
+        corpus.execute(
+            "INSERT INTO legal_document_versions(document_id,version_label,source_url,legal_status,"
+            "review_status,permission_evidence) VALUES(?,?,?,?,?,?)",
+            ("RUNTIME-CATALOG-VERSIONED-DOC", "pending", "https://example.test/version",
+             "under_review", "pending_source_review", "synthetic review evidence"),
+        )
+        corpus.commit()
+
+        sources = self.client.get(
+            "/legal-review/catalog?kind=sources&q=RUNTIME-CATALOG-SOURCE"
+        )
+        self.assertEqual(sources.status_code, 200, sources.text)
+        self.assertTrue(any(
+            row["source_id"] == "RUNTIME-CATALOG-SOURCE" for row in sources.json()["items"]
+        ))
+        self.assertTrue(all("text" not in row for row in sources.json()["items"]))
+
+        metadata = self.client.get(
+            "/legal-review/catalog?kind=metadata_only_documents&q=RUNTIME-CATALOG-METADATA-DOC"
+        )
+        self.assertEqual(metadata.status_code, 200, metadata.text)
+        self.assertTrue(any(
+            row["document_id"] == "RUNTIME-CATALOG-METADATA-DOC"
+            and row["version_count"] == 0 for row in metadata.json()["items"]
+        ))
+        self.assertTrue(all("text" not in row for row in metadata.json()["items"]))
+
+        permission_filtered = self.client.get(
+            "/legal-review/catalog?kind=sources&collection_permission=unknown"
+            "&commercial_reuse_permission=unknown"
+        )
+        self.assertEqual(permission_filtered.status_code, 200, permission_filtered.text)
+        self.assertTrue(any(
+            row["source_id"] == "RUNTIME-CATALOG-SOURCE"
+            for row in permission_filtered.json()["items"]
+        ))
+
+        bounded = self.client.get("/legal-review/catalog?kind=sources&limit=999")
+        self.assertEqual(bounded.status_code, 200, bounded.text)
+        self.assertEqual(bounded.json()["limit"], 200)
+        self.assertLessEqual(len(bounded.json()["items"]), 200)
+        minimum = self.client.get("/legal-review/catalog?kind=sources&limit=0")
+        self.assertEqual(minimum.status_code, 200, minimum.text)
+        self.assertEqual(minimum.json()["limit"], 1)
+        self.assertEqual(
+            self.client.get("/legal-review/catalog?kind=unknown").status_code, 422
+        )
+
+
+    def test_date_models_reject_impossible_calendar_dates(self):
+        cases = (
+            (app.SessIn, {"date": "2024-02-29"}, "date", "2025-02-29"),
+            (app.DeadlineIn, {"title": "deadline", "due": "2026-10-23"}, "due", "2026-02-30"),
+            (app.TaskIn, {"title": "task", "due": "2024-02-29"}, "due", "2024-13-01"),
+            (app.FeeIn, {"title": "fee", "amount": 10, "paid": 0, "due": "2024-02-29"}, "due", "2024-04-31"),
+            (app.LawRow, {"law": "synthetic", "article": "1", "text": "synthetic", "as_of": "2024-02-29"}, "as_of", "2024-02-30"),
+        )
+        for model, valid_payload, field, impossible_date in cases:
+            with self.subTest(model=model.__name__, impossible_date=impossible_date):
+                model(**valid_payload)
+                invalid_payload = dict(valid_payload)
+                invalid_payload[field] = impossible_date
+                with self.assertRaises(ValidationError):
+                    model(**invalid_payload)
 
 
 if __name__ == "__main__":
