@@ -186,6 +186,37 @@ class ProductionReleaseGateTests(unittest.TestCase):
         self.assertEqual(report["benchmark"]["practice_area_count"], gate.MIN_PRACTICE_AREAS)
         self.assertEqual(report["benchmark"]["ready_source_count"], 1)
 
+    def test_changed_s3_bucket_invalidates_previously_accepted_storage_evidence(self):
+        questions = self._approved_questions()
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            candidate = self._candidate_file(root)
+            acceptance_path = root / "database-acceptance.json"
+            acceptance_path.write_text(
+                json.dumps(self._database_acceptance_manifest()), encoding="utf-8"
+            )
+            changed_env = {
+                **self.clean_env,
+                "COPILOT_S3_BUCKET": "different-bucket",
+                "COPILOT_DATABASE_ACCEPTANCE_FILE": str(acceptance_path),
+            }
+            with patch.object(gate, "inspect_environment", return_value=(["environment okay"], [], [])), \
+                 patch.object(gate, "build_legal_report", return_value=self._ready_report(candidate)), \
+                 patch.object(gate, "read_jsonl", return_value=questions):
+                report = gate.evaluate_release(
+                    env=changed_env,
+                    candidate_paths=[candidate],
+                    benchmark_path=Path("approved-benchmark.jsonl"),
+                    reviewer_registry=self._reviewer_registry(),
+                )
+        self.assertFalse(report["ready"])
+        acceptance = report["database_operational_acceptance"]
+        self.assertFalse(acceptance["ready"])
+        self.assertIn(
+            ("original_file_storage", "storage_configuration_mismatch"),
+            {(item["gate"], item["code"]) for item in acceptance["blockers"]},
+        )
+
     def test_release_report_cannot_overwrite_environment_configured_acceptance_manifest(self):
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
