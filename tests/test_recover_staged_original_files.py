@@ -1,6 +1,7 @@
 import sqlite3
 import tempfile
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
 from original_file_storage import LocalPrivateObjectStore
@@ -115,6 +116,20 @@ class RecoverStagedOriginalFilesTests(unittest.TestCase):
         self.assertEqual(self._state(staged.object_id), "staged")
         self.assertTrue(staged_path.exists())
         self.assertTrue(final_path.exists())
+
+
+    def test_finalization_failure_rolls_back_metadata_and_preserves_staged_bytes(self):
+        staged = self._add_staged_metadata(b"keep recovery bytes")
+        staged_path = self.object_root / "firm-7" / f"{staged.object_id}.staged"
+
+        with patch.object(self.store, "finalize", side_effect=OSError("injected storage failure")):
+            with self.assertRaisesRegex(OSError, "injected storage failure"):
+                _process_tenant(self.db, 7, self.store, apply=True)
+
+        self.assertEqual(self._state(staged.object_id), "staged")
+        self.assertTrue(staged_path.is_file())
+        self.assertEqual(staged_path.read_bytes(), b"keep recovery bytes")
+        self.assertEqual(self.store.object_presence(7, staged.object_id), (True, False))
 
 
 if __name__ == "__main__":
