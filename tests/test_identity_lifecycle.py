@@ -197,6 +197,50 @@ class IdentityLifecycleTests(unittest.TestCase):
             ("new.lawyer@example.test",),
         ).fetchone()[0], 1)
 
+    def test_invitation_acceptance_fails_closed_if_firm_is_disabled_after_issue(self):
+        self.assertEqual(self._login(self.client, "invitation-owner@example.test", self.password).status_code, 200)
+        with patch.object(app, "send_identity_email") as send:
+            created = self._mutate(
+                "post", "/invitations",
+                json={"email": "DisabledFirmCandidate@example.test", "role": "lawyer"},
+            )
+        self.assertEqual(created.status_code, 200, created.text)
+        token = self._token_from_email(send)
+        control = self.runtime.control_connection()
+        control.execute("UPDATE firms SET status='disabled' WHERE id=?", (self.firm_a,))
+        control.commit()
+
+        accepted = self.client.post(
+            "/invitations/accept/new",
+            json={
+                "token": token, "name": "Disabled Firm Candidate",
+                "password": "DisabledFirmStrongPassphrase-2026!",
+            },
+        )
+        self.assertEqual(accepted.status_code, 409, accepted.text)
+        self.assertEqual(
+            control.execute(
+                "SELECT COUNT(*) FROM users WHERE email_normalized=?",
+                ("disabledfirmcandidate@example.test",),
+            ).fetchone()[0],
+            0,
+        )
+        self.assertEqual(
+            control.execute(
+                "SELECT COUNT(*) FROM firm_memberships WHERE firm_id=? AND user_id IN "
+                "(SELECT id FROM users WHERE email_normalized=?)",
+                (self.firm_a, "disabledfirmcandidate@example.test"),
+            ).fetchone()[0],
+            0,
+        )
+        self.assertEqual(
+            control.execute(
+                "SELECT status FROM identity_invitations WHERE id=?",
+                (created.json()["invitation_id"],),
+            ).fetchone()["status"],
+            "sent",
+        )
+
     def test_resending_invitation_revokes_previous_token(self):
         self.assertEqual(self._login(self.client, "invitation-owner@example.test", self.password).status_code, 200)
         with patch.object(app, "send_identity_email") as send:
