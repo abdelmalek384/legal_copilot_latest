@@ -8,10 +8,12 @@ on:
       - 'data/candidates/labour_law_14_2025/**'
       - 'tools/validate_decision250_table24_candidates.py'
       - 'tools/validate_decision250_table23_candidates.py'
+      - 'tools/validate_decisions_251_252_candidates.py'
       - 'tools/build_decision250_table24_review_queue.py'
       - 'tools/build_decision250_table24_primary_match_register.py'
       - 'tests/test_decision250_table24_candidate_validation.py'
       - 'tests/test_decision250_table23_candidate_validation.py'
+      - 'tests/test_decisions_251_252_candidate_validation.py'
       - 'tests/test_decision250_table24_review_queue.py'
       - 'tests/test_decision250_table24_primary_match_register.py'
       - 'tests/test_compare_corpus_to_reference.py'
@@ -24,10 +26,12 @@ on:
       - 'data/candidates/labour_law_14_2025/**'
       - 'tools/validate_decision250_table24_candidates.py'
       - 'tools/validate_decision250_table23_candidates.py'
+      - 'tools/validate_decisions_251_252_candidates.py'
       - 'tools/build_decision250_table24_review_queue.py'
       - 'tools/build_decision250_table24_primary_match_register.py'
       - 'tests/test_decision250_table24_candidate_validation.py'
       - 'tests/test_decision250_table23_candidate_validation.py'
+      - 'tests/test_decisions_251_252_candidate_validation.py'
       - 'tests/test_decision250_table24_review_queue.py'
       - 'tests/test_decision250_table24_primary_match_register.py'
       - 'tests/test_compare_corpus_to_reference.py'
@@ -52,6 +56,10 @@ jobs:
         run: python tools/validate_decision250_table23_candidates.py
       - name: Test Decision 250 Table 23 candidate validator
         run: PYTHONPATH=. python tests/test_decision250_table23_candidate_validation.py
+      - name: Validate Decisions 251/252 candidate assertions
+        run: python tools/validate_decisions_251_252_candidates.py
+      - name: Test Decisions 251/252 candidate validator
+        run: PYTHONPATH=. python tests/test_decisions_251_252_candidate_validation.py
       - name: Test Decision 250 Table 24 review queue
         run: PYTHONPATH=. python tests/test_decision250_table24_review_queue.py
       - name: Test Decision 250 Table 24 primary-match register
