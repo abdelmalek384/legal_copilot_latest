@@ -73,6 +73,7 @@ Table 24 candidate extraction now covers **617/745 numbered entries (82.8%)**. T
 - Currentness-complete Table 24 rows: **0**
 - Lawyer-approved Table 24 rows: **0**
 - Table 24 rows eligible for authoritative retrieval: **0**
-- Legal-knowledge preparation progress (phase estimate): **7%**\n- Strict authoritative legal-content readiness (all release gates passed): **0%**
+- Legal-knowledge preparation progress (phase estimate): **7%**
+- Strict authoritative legal-content readiness (all release gates passed): **0%**
 
 These figures intentionally separate preparation, extraction, and legal verification. The 7% phase estimate is not a count of verified legal rules. Since zero rows have completed all release gates, strict authoritative legal-content readiness is 0%. A nearly complete transcription is not a nearly verified legal corpus.
