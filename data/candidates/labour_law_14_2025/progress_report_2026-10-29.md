@@ -20,11 +20,12 @@ Table 24 candidate extraction now covers **617/745 numbered entries (82.8%)**. T
 4. Added `tools/validate_decision250_table24_candidates.py` and a unit test. The validator is fail-closed on missing/duplicate row numbers, invalid JSON, missing source pinpoints, missing names, wrong source metadata, or a row prematurely marked reviewed.
 5. Added `tools/build_decision250_table24_review_queue.py` and tests. It creates a triage queue for anomalies, high-risk rows, currentness leads, group-level entries and possible surface/air-unit ambiguity without auto-correcting source data.
 6. Added `tools/build_decision250_table24_primary_match_register.py` and tests. It creates a fail-closed row-level register for all 617 extracted candidates; official page/hash, text-match, currentness, source-use and counsel fields start blank/not started, and retrieval eligibility is false.
-7. Added CI workflow steps to validate the candidate batches, test the validator/review queue/primary-match register, and build both review artifacts. A completed CI result for the latest head has **not** been confirmed; no passing CI claim is made.
-8. Prepared `lawyer_in_app_acceptance_plan_2026-10-29.md` for a later hands-on review in the running app. This makes lawyer review a separate release gate; it does not claim any lawyer approval.
-9. Decision 250 Table 23 remains at **137/137 candidate labels**. Labels are transcribed from secondary text and still require official page matching.
-10. Decision 251 has 17 candidate licensing/experience/fee assertions; Decision 252 has 40 candidate assertions. They remain secondary/unverified pending official comparison.
-11. The Decisions 248–252 clause discrepancy checklist and related source-route/currentness notes remain candidate evidence, not verified legal conclusions.
+7. Added `decision_250_table24_primary_source_match_protocol_2026-10-29.md`, a row-by-row matching procedure for the original Gazette PDF, including source hash, printed/PDF page identity, field-level match outcomes, separate currentness/source-use/counsel gates, and strict stop conditions.
+8. Added CI workflow steps to validate the candidate batches, test the validator/review queue/primary-match register, and build both review artifacts. A completed CI result for the latest head has **not** been confirmed; no passing CI claim is made.
+9. Prepared `lawyer_in_app_acceptance_plan_2026-10-29.md` for a later hands-on review in the running app. This makes lawyer review a separate release gate; it does not claim any lawyer approval.
+10. Decision 250 Table 23 remains at **137/137 candidate labels**. Labels are transcribed from secondary text and still require official page matching.
+11. Decision 251 has 17 candidate licensing/experience/fee assertions; Decision 252 has 40 candidate assertions. They remain secondary/unverified pending official comparison.
+12. The Decisions 248–252 clause discrepancy checklist and related source-route/currentness notes remain candidate evidence, not verified legal conclusions.
 
 ## Current subtask status
 
