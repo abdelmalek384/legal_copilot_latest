@@ -7,11 +7,17 @@ Accessible reproduced page-image sequence: https://www.almasdar.com/175151
 
 ## Workaround found
 
+### Independent full-document link found
+
+Law Hub lists a full PDF copy for Decision 250 and embeds a Google Drive preview: https://lawhub.info/eg/?p=19706 (PDF preview: https://drive.google.com/file/d/1cfdkIR6MlAXJwMJNB8flmvxKKd1Es4gm/preview). This is an independent full-document route beyond the Al-Masdar page-image sequence. In this research session, the Drive preview loaded but its individual page-image endpoint returned 403; no access control was bypassed and no PDF bytes were downloaded or hashed. The user can try the visible PDF/Word links on the Law Hub page in a normal browser; if a file is downloadable, upload that exact file to enable full comparison and hashing.
+
+
+
 The article page's HTML text only exposes Articles 1 and 2, while the full decision is rendered as sequential page images of the Gazette. Clicking the first images opens scans that visibly show the Gazette issue header, printed page numbers, instrument title and Arabic legal text. This is substantially more useful than the article text alone.
 
 - First inspected page: printed Gazette p. 45 (image URL: https://www.almasdar.com/WebP/libfiles/46/3/737.webp)
 - Next page: printed Gazette p. 46 (image URL: https://www.almasdar.com/WebP/libfiles/46/3/738.webp)
-- Inspected through printed Gazette p. 285 (image URL: https://www.almasdar.com/WebP/libfiles/46/3/977.webp); inspected image sequence currently covers pp. 45–285, not the whole decision
+- Inspected through printed Gazette p. 295 (image URL: https://www.almasdar.com/WebP/libfiles/46/3/987.webp); inspected image sequence currently covers pp. 45–295, not the whole decision
 - Decision 251 starts at printed p. 371 in the same issue (page image sequence on https://www.almasdar.com/175152). This indicates Decision 250 and its annexes occupy a very large span between the beginning at p.45 and the next instrument at p.371. Do not assume every intervening page has been reviewed merely because a sequence is available.
 
 The image files are hosted by a secondary publisher and carry its watermark. They appear to reproduce Gazette pages, but the official Gazette PDF bytes have not been acquired or hashed. This is a reproduced scan route, not a certified official download.
