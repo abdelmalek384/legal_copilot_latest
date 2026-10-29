@@ -88,6 +88,29 @@ class CorpusAuditTests(unittest.TestCase):
             self.assertEqual(db.execute("SELECT COUNT(*) FROM chunks").fetchone()[0], 1)
             db.close()
 
+    def test_current_corpus_schema_without_case_id_is_audited(self):
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "profile-corpus.db"
+            db = sqlite3.connect(path)
+            bind_profile(db)
+            db.executescript("""
+                CREATE TABLE chunks(id INTEGER PRIMARY KEY, ref TEXT, article TEXT, page TEXT, text TEXT, norm TEXT, document_version_id INTEGER, in_force INTEGER, as_of TEXT, source TEXT, verified INTEGER);
+                CREATE TABLE legal_sources(source_id TEXT PRIMARY KEY);
+                CREATE TABLE legal_documents(document_id TEXT PRIMARY KEY);
+                CREATE TABLE legal_document_versions(version_id INTEGER PRIMARY KEY);
+                CREATE TABLE legal_version_relations(relation_id INTEGER PRIMARY KEY);
+                CREATE TABLE legal_review_events(review_event_id INTEGER PRIMARY KEY);
+                INSERT INTO chunks(ref,article,text,norm,document_version_id,source,verified,in_force)
+                    VALUES('law','1','text','text',NULL,'https://example.gov/law',0,0);
+            """)
+            db.commit()
+            db.close()
+
+            report = MODULE.audit(path)
+            self.assertEqual(report["report_type"], "legal_corpus_audit")
+            self.assertEqual(report["chunk_quality"]["unlinked_to_version"], 1)
+            self.assertEqual(report["chunk_quality"]["missing_source"], 0)
+
     def test_full_registry_quality_counts_are_reported(self):
         with tempfile.TemporaryDirectory() as td:
             db_path = Path(td) / "sample.db"
