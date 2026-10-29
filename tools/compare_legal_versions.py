@@ -196,6 +196,16 @@ def compare_registered_versions(db_path, left_version_id, right_version_id):
         missing = sorted(required - tables)
         if missing:
             raise ValueError("database is missing required tables: " + ", ".join(missing))
+        profile_table = connection.execute(
+            "SELECT name FROM sqlite_master WHERE type='table' AND name='database_profile'"
+        ).fetchone()
+        if profile_table is None:
+            raise ValueError("database is not bound to the legal_corpus profile")
+        profile_rows = connection.execute(
+            "SELECT profile FROM database_profile WHERE singleton=1"
+        ).fetchall()
+        if len(profile_rows) != 1 or profile_rows[0]["profile"] != "legal_corpus":
+            raise ValueError("database is not bound to the legal_corpus profile")
         version_sql = (
             "SELECT v.version_id,v.document_id,v.version_label,v.source_url,"
             "v.publication_date,v.effective_date,v.repeal_date,v.legal_status,v.review_status,"
@@ -248,10 +258,19 @@ def compare_registered_versions(db_path, left_version_id, right_version_id):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--db", type=Path, default=Path(os.environ.get("COPILOT_DB", "copilot.db")))
+    parser.add_argument(
+        "--db",
+        type=Path,
+        default=Path(os.environ["COPILOT_CORPUS_DB"]) if os.environ.get("COPILOT_CORPUS_DB", "").strip() else None,
+        help="read-only legal-corpus database (defaults to COPILOT_CORPUS_DB)",
+    )
     parser.add_argument("--left-version-id", type=int, required=True, help="baseline version ID")
     parser.add_argument("--right-version-id", type=int, required=True, help="version to compare against baseline")
     args = parser.parse_args()
+    if os.environ.get("COPILOT_DB", "").strip():
+        parser.error("COPILOT_DB compatibility mode is not supported; configure COPILOT_CORPUS_DB or pass --db")
+    if args.db is None:
+        parser.error("a legal-corpus database is required; configure COPILOT_CORPUS_DB or pass --db")
     try:
         result = compare_registered_versions(args.db, args.left_version_id, args.right_version_id)
     except ValueError as exc:
