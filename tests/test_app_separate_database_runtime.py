@@ -1285,7 +1285,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         load_manifest.assert_called_once()
         self.assertEqual(
             load_manifest.call_args.kwargs.get("expected_storage_config_sha256"),
-            app.original_storage_config_fingerprint(),
+            app.original_storage_config_fingerprint(config),
         )
         boto_client.assert_not_called()
 
