@@ -899,8 +899,8 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
         self.assertEqual(
             firm_db.execute(
-                "SELECT COUNT(*) FROM original_file_legal_holds WHERE document_id=?",
-                (document_id,),
+                "SELECT legal_hold FROM original_file_objects WHERE document_id=? AND firm_id=?",
+                (document_id, self.firm_a),
             ).fetchone()[0],
             0,
         )
