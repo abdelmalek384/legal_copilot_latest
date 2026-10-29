@@ -62,3 +62,16 @@ A further targeted search of the Amiri Press searchable text and IDSC Gazette me
 
 
 **Access limitation update (2026-10-29):** The official archive metadata confirms a “تنويه 108.pdf” attachment for issue 108, but attempting to open that attachment redirects to a request-a-copy workflow. The notice's actual text, exact correction wording, and legal effect remain unverified. No access restriction was bypassed.
+
+
+## F. High-priority newly discovered instrument — Labour Ministry Decision 162/2026
+
+The official-publisher archive index identifies **Labour Ministry Decision 162/2026 on the general rules for workplace rules-of-work regulations**. IDSC metadata for *Egyptian Proceedings*, supplementary issue 176, gives the date **2026-08-13** and identifies the decision by number/title. The decision's scope includes procedural rules for preparing and ratifying workplace regulations and substantive topics covering contracts, worker files, training, job classification, evaluation, promotion/assignment, wage protection, hours/rest/leave, work environment, investigations, discipline, termination, and updating workplace regulations.
+
+- Decision-specific archive record (two PDF language files listed): https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb
+- Official Gazette supplement metadata: https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full
+- Source status: **official-publisher/archive metadata located; full text has not been opened and article-by-article reviewed in this task**. The archive file listing is not itself proof that every operative article, annex, commencement clause, or transitional provision has been captured.
+- Relation to Law 14/2025: candidate implementing instrument under the law's workplace-regulations and disciplinary framework; do not mark it as an amendment to the statute without text supporting that relation.
+- Priority: obtain the full text through an authorized route, record issue/page and file hash, extract provisions affecting workplace policies and disciplinary procedures, and check for later amendments/corrigenda before relying on it.
+
+This is a currentness lead, not a verified rule set. Do not import or activate its contents based only on archive metadata.
