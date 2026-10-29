@@ -32,6 +32,35 @@ class CorpusAuditTests(unittest.TestCase):
             with self.subTest(value=value):
                 self.assertFalse(MODULE.valid_evidence_url(value), value)
 
+    def test_optional_fts_index_audit_detects_corruption_without_repairing_source(self):
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "corpus.sqlite3"
+            db = sqlite3.connect(path)
+            bind_profile(db)
+            db.executescript("""
+                CREATE TABLE chunks(
+                    id INTEGER PRIMARY KEY, ref TEXT, article TEXT, text TEXT,
+                    source TEXT, verified INTEGER, in_force INTEGER, norm TEXT
+                );
+                CREATE VIRTUAL TABLE chunks_fts USING fts5(norm, content='chunks', content_rowid='id');
+                INSERT INTO chunks(id,ref,article,text,source,verified,in_force,norm)
+                VALUES(1,'Law - Article 1','1','hello world','synthetic-source',1,1,'hello world');
+                INSERT INTO chunks_fts(chunks_fts) VALUES('rebuild');
+                INSERT INTO chunks_fts(chunks_fts) VALUES('delete-all');
+            """)
+            db.commit()
+            db.close()
+
+            report = MODULE.audit(path, check_fts_index=True)
+            codes = {issue["code"] for issue in report["issues"]}
+            self.assertIn("fts_fts_internal_index_integrity_failed", codes)
+            self.assertEqual(report["fts_index_audit"]["status"], "review_required")
+
+            db = sqlite3.connect(path)
+            self.assertEqual(db.execute("SELECT COUNT(*) FROM chunks").fetchone()[0], 1)
+            self.assertEqual(db.execute("SELECT COUNT(*) FROM chunks_fts").fetchone()[0], 1)
+            db.close()
+
     def test_strict_cli_fails_on_high_severity_issues_and_supports_special_paths(self):
         with tempfile.TemporaryDirectory() as td:
             db_path = Path(td) / "sample ?audit.db"
