@@ -6,13 +6,14 @@
 
 ## Run
 
-Use a database copy that contains the version registry and linked chunks:
+Use the approved legal-corpus database or a protected copy that preserves its immutable `legal_corpus` profile marker:
 
 ```bash
-python tools/compare_legal_versions.py --db copilot.db --left-version-id 12 --right-version-id 18
+export COPILOT_CORPUS_DB="/absolute/path/to/legal-corpus.sqlite3"
+python tools/compare_legal_versions.py --left-version-id 12 --right-version-id 18
 ```
 
-The left version is the baseline and the right version is compared against it. IDs must refer to two distinct versions of the same `legal_documents.document_id`. The tool opens SQLite in read-only mode and does not run migrations or update records.
+Alternatively, pass an explicit `--db` path to a database bound to the `legal_corpus` profile. The CLI refuses to run when `COPILOT_DB` compatibility mode is set, and the comparison refuses unbound databases or databases bound to the control-plane or firm profile. The left version is the baseline and the right version is compared against it. IDs must refer to two distinct versions of the same `legal_documents.document_id`. The tool opens SQLite in read-only mode and does not run migrations or update records.
 
 ## Output
 

@@ -1,14 +1,16 @@
 import hashlib
+import os
 import sqlite3
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from tools.compare_legal_versions import compare_registered_versions, compare_version_chunks
+from tools.compare_legal_versions import compare_registered_versions, compare_version_chunks, main
 
 
 class CompareLegalVersionsTests(unittest.TestCase):
@@ -122,6 +124,12 @@ class CompareLegalVersionsTests(unittest.TestCase):
     def _database(self, path):
         db = sqlite3.connect(path)
         db.executescript("""
+            CREATE TABLE database_profile(
+                singleton INTEGER PRIMARY KEY CHECK(singleton=1),
+                profile TEXT NOT NULL CHECK(profile IN ('control_plane','firm','legal_corpus')),
+                bound_at TEXT NOT NULL DEFAULT (datetime('now'))
+            );
+            INSERT INTO database_profile(singleton,profile) VALUES(1,'legal_corpus');
             CREATE TABLE legal_documents(
                 document_id TEXT PRIMARY KEY, official_title TEXT NOT NULL,
                 law_number TEXT, law_year INTEGER
@@ -177,6 +185,42 @@ class CompareLegalVersionsTests(unittest.TestCase):
             db.close()
             with self.assertRaisesRegex(ValueError, "different legal documents"):
                 compare_registered_versions(path, 1, 3)
+
+    def test_cli_refuses_implicit_or_legacy_database_path(self):
+        with patch.dict(os.environ, {}, clear=True), patch(
+            "sys.argv", ["compare_legal_versions.py", "--left-version-id", "1", "--right-version-id", "2"]
+        ):
+            with self.assertRaises(SystemExit) as missing_path:
+                main()
+            self.assertEqual(missing_path.exception.code, 2)
+
+        with patch.dict(os.environ, {"COPILOT_DB": "/tmp/compat.sqlite3"}, clear=True), patch(
+            "sys.argv", ["compare_legal_versions.py", "--db", "/tmp/corpus.sqlite3",
+                         "--left-version-id", "1", "--right-version-id", "2"]
+        ):
+            with self.assertRaises(SystemExit) as legacy_path:
+                main()
+            self.assertEqual(legacy_path.exception.code, 2)
+
+    def test_rejects_unbound_or_wrong_profile_database(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            wrong = Path(tmp) / "wrong-profile.sqlite"
+            self._database(wrong)
+            db = sqlite3.connect(wrong)
+            db.execute("UPDATE database_profile SET profile='firm' WHERE singleton=1")
+            db.commit()
+            db.close()
+            with self.assertRaisesRegex(ValueError, "legal_corpus profile"):
+                compare_registered_versions(wrong, 1, 2)
+
+            unbound = Path(tmp) / "unbound.sqlite"
+            self._database(unbound)
+            db = sqlite3.connect(unbound)
+            db.execute("DROP TABLE database_profile")
+            db.commit()
+            db.close()
+            with self.assertRaisesRegex(ValueError, "legal_corpus profile"):
+                compare_registered_versions(unbound, 1, 2)
 
     def test_missing_schema_and_missing_version_fail_clearly(self):
         with tempfile.TemporaryDirectory() as tmp:
