@@ -218,6 +218,14 @@ def build_plan(control_db: str | Path, tenant_root: str | Path, migrations_root:
             if profile is None or profile["profile"] != "control_plane":
                 raise FleetMigrationError("Control database is not immutably bound to control_plane")
             _require_immutable_binding_guards(control, profile="Control-plane")
+            pending_control = _pending_versions(control, migrations, "control_plane")
+            if pending_control:
+                raise FleetMigrationError(
+                    "Control-plane database has pending migrations; migrate it separately"
+                )
+            _validate_schema_against_migrations(
+                control, "control_plane", migrations, "Control-plane"
+            )
             if control.execute("PRAGMA foreign_key_check").fetchall():
                 raise FleetMigrationError("Control-plane catalog has foreign-key violations")
             rows = control.execute(
@@ -306,6 +314,9 @@ def build_plan(control_db: str | Path, tenant_root: str | Path, migrations_root:
             if foreign_key_errors:
                 raise FleetMigrationError(f"Tenant {firm_id} failed foreign_key_check")
             pending = _pending_versions(tenant, migrations)
+            _validate_schema_against_migrations(
+                tenant, "firm", migrations, f"Tenant {firm_id}"
+            )
         metadata = path.stat()
         targets.append({
             "firm_id": firm_id,
