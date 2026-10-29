@@ -45,7 +45,7 @@ Law Hub now has individual pages linking PDF previews for Decisions 249–252/20
 
 | Decision | Law Hub page | Embedded PDF preview |
 |---|---|---|
-| 249/2026 | https://lawhub.info/eg/?p=19705 | https://drive.google.com/file/d/1mJ4L0bYQ4jCj8c8t9xZ9h2a1xVw3kQp/preview (placeholder only if not confirmed; use the page's visible PDF link instead) |
+| 249/2026 | https://lawhub.info/eg/?p=19705 | Use the visible PDF link on the page; embedded file ID not captured/confirmed |
 | 250/2026 | https://lawhub.info/eg/?p=19706 | https://drive.google.com/file/d/1cfdkIR6MlAXJwMJNB8flmvxKKd1Es4gm/preview |
 | 251/2026 | https://lawhub.info/eg/?p=19707 | https://drive.google.com/file/d/186XzKlQRzxILk07Fkyu4Xru6WG6gFyTE/preview |
 | 252/2026 | https://lawhub.info/eg/?p=19708 | https://drive.google.com/file/d/1xomhpGnE2rqopVujZK9fmcPcdEQyORPo/preview |
