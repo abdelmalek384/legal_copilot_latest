@@ -75,6 +75,31 @@ python manage.py revoke-firm-invitations \\
 
 The command refuses active firms, requires explicit confirmation and operator/change references, and rolls back all status changes if any audit write fails. Do not delete invitation rows. Retain the report and policy/legal approval evidence in the restricted operations record.
 
+## Recover staged original-file uploads before backup
+
+A backup bundle must not be created while any tenant original-file metadata remains in the staged state. Resolve interrupted uploads first, while all application and background writers are stopped.
+
+1. Keep all application, scheduler, and worker writes paused. Confirm the configured object backend and the intended staging bucket/root.
+2. Run the recovery command in dry-run mode:
+
+       python tools/recover_staged_original_files.py --json
+
+   For the local development backend, ensure COPILOT_OBJECT_STORAGE_ROOT points to the private object directory. For S3, set COPILOT_OBJECT_STORAGE_BACKEND=s3 and the approved bucket, region, KMS key, and AWS credentials from the protected environment. The command never prints credentials.
+3. Review every finding. recoverable_candidate means the staged bytes match the recorded SHA-256 and size; it is not permission to mutate. Any manual_review_required, missing bytes, digest mismatch, or concurrent-change finding is a NO-GO. Investigate it manually; do not delete the staged object or rewrite metadata to make the report clean.
+4. Only after the operator confirms quiescence and approves the recovery change, run:
+
+       python tools/recover_staged_original_files.py --apply --quiesced --json
+
+   The command requires both flags together. It finalizes verified staged bytes and updates tenant metadata transactionally. If storage finalization fails, the metadata transaction rolls back and the staged bytes must remain available for another reviewed attempt.
+5. Re-run the command without --apply. Require recovered_count to be zero, manual_review_required to be false, and no remaining recovery candidates. Then run the backend-appropriate read-only reconciliation:
+   - Local staging: python tools/reconcile_original_file_storage.py --json
+   - S3 staging: python tools/reconcile_s3_original_file_storage.py --json
+
+   Require a clean report with zero findings before creating the coordinated backup bundle.
+6. Record the dry-run report, apply report, post-recovery reconciliation report, operator, witness, and staging commit in the restricted evidence store. Redact object IDs if they are treated as sensitive by the deployment.
+
+This recovery command is not a substitute for the backup/restore drill. Production local-filesystem recovery is disabled; use the configured S3 backend for a production deployment. Never use direct SQL updates or manual object copies to bypass the recovery checks.
+
 ## Create a coordinated encrypted bundle
 
 1. Put the application into maintenance mode or stop all application/background workers that can write to any of the three database areas. Wait for active requests and jobs to finish. Keep writes paused for the full bundle snapshot window.
@@ -149,6 +174,19 @@ Set the key through the protected environment, never as a command-line argument:
     COPILOT_BACKUP_FERNET_KEY="$BACKUP_KEY" python tools/run_database_recovery_drill.py --bundle /protected/backup-directory/backup-file.bundle.enc --temp-parent /protected/recovery-temp --json
 
 The temporary parent must already exist, must not be a symlink, and must be protected for plaintext database staging. Do not run this command inside the production application process. A nonzero exit, any reported finding, or missing output is a **NO-GO** for the next stage. A passing smoke test is useful automated evidence only: it does not prove reverse-proxy behavior, real application startup, HTTP cross-firm denial, live rollback, key recovery, retention controls, or reviewer sign-off. Continue with the full witnessed staging drill below.
+
+## Deletion-recovery exercise and production S3 limitation
+
+Perform deletion-recovery rehearsal only in an isolated staging environment with a dedicated synthetic firm and synthetic matter/original file. Never use a client matter or a production firm for this exercise.
+
+1. Create a known-good encrypted bundle while the synthetic original is finalized and its tenant metadata is ready. Record the original object's SHA-256 and byte size in the restricted evidence record.
+2. Exercise the supported deletion request and distinct second-admin approval workflow in staging. Record the request ID, requester, approver, and reasons. Confirm an active legal hold blocks the request/purge path.
+3. The current tools/purge_approved_original_files.py and tools/firm_offboarding_preflight.py are local-development-only. They explicitly reject COPILOT_ENV=production and S3 storage. There is currently no production S3 purge path. Do not manually delete S3 objects to simulate a successful production purge, and do not mark the production deletion-recovery scenario passed on the basis of a local-only test.
+4. For a local staging rehearsal only, use the approved two-admin workflow and the local purge CLI with all preflight requirements met, then verify the tombstone and immutable deletion/hold history. Restore the known-good bundle into a separate new destination and verify that the pre-deletion synthetic case, original metadata, and original bytes are recovered with the recorded SHA-256/size. Never restore over the active staging paths.
+5. For S3 deployments, mark the deletion-recovery scenario BLOCKED until an S3-aware offboarding preflight and purge implementation is delivered and independently reviewed, including bucket-versioning/delete-marker behavior, KMS identity, retention/lifecycle controls, and restore of the known-good bundle.
+6. Preserve before/after reports, bundle identity, synthetic object digest/size, request/approval evidence, tombstone/history checks, restore result, and witness sign-off in the restricted evidence store.
+
+A local staging rehearsal does not satisfy production S3 deletion acceptance. The retention_export_deletion_policy and backup_restore_rollback gates remain blocked until the approved production deletion workflow and the witnessed recovery scenarios are actually accepted.
 
 ## Cutover and rollback gates
 
