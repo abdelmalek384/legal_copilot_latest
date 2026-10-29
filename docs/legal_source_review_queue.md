@@ -1,11 +1,14 @@
 # Legal source review queue
 
-Run a read-only queue against a local Legal Copilot SQLite database:
+Run the read-only queue against the approved legal-corpus database or a protected copy bound to the immutable `legal_corpus` profile:
 
 ```bash
-python tools/legal_source_review_queue.py --db path/to/legal.db --out reports/legal-source-review-queue.json
+export COPILOT_CORPUS_DB="/absolute/path/to/legal-corpus.sqlite3"
+python tools/legal_source_review_queue.py --out reports/legal-source-review-queue.json
 python tests/test_legal_source_review_queue.py
 ```
+
+You may pass an explicit `--db` path instead. The tool refuses unbound databases, databases bound to another profile, and any run with the old `COPILOT_DB` compatibility variable configured.
 
 The report prioritizes version records that need evidence for source authenticity, extraction quality, legal status, amendment history, licensing, and lawyer approval. It also lists source records with unresolved collection/commercial reuse permission, restricted commercial reuse, or limited reuse scope, as well as missing terms links or missing permission evidence. Commercial reuse is considered unrestricted only when the recorded value is exactly `allowed`; `allowed_limited`, prohibited, and unknown states stay visible for review.
 

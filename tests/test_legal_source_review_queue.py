@@ -1,7 +1,9 @@
 import importlib.util
+import os
 import sqlite3
 import tempfile
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -12,6 +14,8 @@ SPEC.loader.exec_module(MODULE)
 def make_db(path):
     db=sqlite3.connect(path)
     db.executescript("""
+    CREATE TABLE database_profile(singleton INTEGER PRIMARY KEY CHECK(singleton=1), profile TEXT NOT NULL, bound_at TEXT NOT NULL DEFAULT (datetime('now')));
+    INSERT INTO database_profile(singleton,profile) VALUES(1,'legal_corpus');
     CREATE TABLE legal_sources(source_id TEXT PRIMARY KEY,authority TEXT,source_page TEXT,collection_permission TEXT,commercial_reuse_permission TEXT,terms_url TEXT,permission_evidence TEXT);
     CREATE TABLE legal_documents(document_id TEXT PRIMARY KEY,source_id TEXT,official_title TEXT,document_type TEXT);
     CREATE TABLE legal_document_versions(version_id INTEGER PRIMARY KEY,document_id TEXT,version_label TEXT,source_url TEXT,original_sha256 TEXT,publication_date TEXT,effective_date TEXT,repeal_date TEXT,legal_status TEXT,review_status TEXT,authenticity_verified INTEGER,status_verified INTEGER,amendment_history_verified INTEGER,permission_evidence TEXT);
@@ -126,6 +130,40 @@ class LegalSourceReviewQueueTests(unittest.TestCase):
             with self.subTest(value=value):
                 self.assertFalse(MODULE.valid_evidence_url(value))
         self.assertTrue(MODULE.valid_evidence_url("https://example.gov/evidence"))
+
+    def test_rejects_unbound_or_wrong_profile_database(self):
+        with tempfile.TemporaryDirectory() as td:
+            wrong=Path(td)/"wrong.db"
+            make_db(wrong)
+            db=sqlite3.connect(wrong)
+            db.execute("UPDATE database_profile SET profile='firm' WHERE singleton=1")
+            db.commit()
+            db.close()
+            with self.assertRaisesRegex(ValueError,"legal_corpus profile"):
+                MODULE.review_queue(wrong)
+
+            unbound=Path(td)/"unbound.db"
+            make_db(unbound)
+            db=sqlite3.connect(unbound)
+            db.execute("DROP TABLE database_profile")
+            db.commit()
+            db.close()
+            with self.assertRaisesRegex(ValueError,"legal_corpus profile"):
+                MODULE.review_queue(unbound)
+
+    def test_cli_refuses_implicit_and_compatibility_database_paths(self):
+        with patch.dict(os.environ, {}, clear=True), patch(
+            "sys.argv", ["legal_source_review_queue.py"]
+        ):
+            with self.assertRaises(SystemExit) as missing:
+                MODULE.main()
+            self.assertEqual(missing.exception.code, 2)
+        with patch.dict(os.environ, {"COPILOT_DB": "/tmp/compat.sqlite3"}, clear=True), patch(
+            "sys.argv", ["legal_source_review_queue.py", "--db", "/tmp/corpus.sqlite3"]
+        ):
+            with self.assertRaises(SystemExit) as legacy:
+                MODULE.main()
+            self.assertEqual(legacy.exception.code, 2)
 
     def test_missing_registry_tables_report_schema_issue(self):
         with tempfile.TemporaryDirectory() as td:
