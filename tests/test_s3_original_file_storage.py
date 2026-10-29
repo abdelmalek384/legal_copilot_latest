@@ -7,6 +7,7 @@ from pathlib import Path
 
 from original_file_storage import ObjectStorageError
 from s3_original_file_storage import S3PrivateObjectStore
+from tools.verify_s3_original_file_roundtrip import run_s3_roundtrip
 from original_file_reconciliation import TenantDatabase
 from original_file_s3_reconciliation import reconcile_s3_original_file_storage
 from database_backup import _copy_s3_original_objects, _scan_s3_original_object_inventory
@@ -110,6 +111,22 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
             self.client, "private-matter-files", "alias/legal-files",
             max_bytes=1024, kms_client=FakeKMSClient(),
         )
+
+    def test_live_acceptance_roundtrip_verifies_and_cleans_up_synthetic_object(self):
+        result = run_s3_roundtrip(self.store, 12, b"synthetic acceptance payload")
+        self.assertTrue(result["passed"], result)
+        self.assertFalse(result["cleanup_pending"])
+        self.assertEqual(result["checks"][-1]["name"], "cleanup")
+        self.assertEqual(self.store.object_presence(12, result["object_id"]), (False, False))
+
+    def test_live_acceptance_reports_manual_cleanup_when_destination_kms_is_wrong(self):
+        self.client.copy_kms_key_id = "arn:aws:kms:us-east-1:123456789012:key/wrong-key"
+        result = run_s3_roundtrip(self.store, 12, b"synthetic acceptance payload")
+        self.assertFalse(result["passed"])
+        self.assertTrue(result["cleanup_pending"])
+        self.assertTrue(result["object_id"])
+        self.assertIn("error_type", result)
+        self.assertEqual(self.store.object_presence(12, result["object_id"]), (True, True))
 
     def test_stage_uses_firm_namespace_and_kms_encryption(self):
         payload = b"confidential original\x00bytes"
