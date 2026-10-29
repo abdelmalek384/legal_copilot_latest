@@ -125,6 +125,58 @@ class ProductionDatabaseModeTests(unittest.TestCase):
             )
             self.assertEqual(result.returncode, 0, result.stderr)
 
+    def test_production_startup_rejects_acceptance_for_changed_storage_target(self):
+        from cryptography.fernet import Fernet
+        with __import__("tempfile").TemporaryDirectory() as temp:
+            env = os.environ.copy()
+            env.pop("COPILOT_DB", None)
+            acceptance_path = self._write_acceptance_manifest(Path(temp) / "database-acceptance.json")
+            env["COPILOT_DATABASE_ACCEPTANCE_FILE"] = str(acceptance_path)
+            env.update(self._storage_config())
+            # Evidence was recorded for the fixture bucket; production is now pointed
+            # at a different bucket and must reject that stale acceptance.
+            env["COPILOT_S3_BUCKET"] = "changed-after-acceptance"
+            env.update({
+                "COPILOT_ENV": "production",
+                "COPILOT_CONTROL_DB": os.path.join(temp, "control.sqlite3"),
+                "COPILOT_TENANT_DB_ROOT": os.path.join(temp, "tenants"),
+                "COPILOT_CORPUS_DB": os.path.join(temp, "corpus.sqlite3"),
+                "COPILOT_ALLOWED_HOSTS": "legal.example.test",
+                "COPILOT_SECURE_COOKIES": "1",
+                "COPILOT_PUBLIC_ORIGIN": "https://legal.example.test",
+                "ADMIN_TOKEN": "A" * 48,
+                "BACKUP_KEY": Fernet.generate_key().decode("ascii"),
+            })
+            bootstrap_env = dict(env)
+            bootstrap_env["COPILOT_ENV"] = "development"
+            bootstrap = subprocess.run(
+                [
+                    sys.executable, "-c",
+                    "from database_runtime import DatabaseRuntime; "
+                    "runtime = DatabaseRuntime.from_env(); runtime.initialize()",
+                ],
+                env=bootstrap_env, capture_output=True, text=True, timeout=60,
+            )
+            self.assertEqual(bootstrap.returncode, 0, bootstrap.stderr)
+            tenant_root = Path(env["COPILOT_TENANT_DB_ROOT"])
+            if os.name == "posix":
+                os.chmod(tenant_root, 0o700)
+            result = subprocess.run(
+                [
+                    sys.executable, "-c",
+                    "from fastapi.testclient import TestClient; import app; "
+                    "from database_runtime import DatabaseRuntime; "
+                    "runtime = DatabaseRuntime.from_env(); runtime.initialize(); "
+                    "client = TestClient(app.app); client.__enter__(); client.__exit__(None, None, None)",
+                ],
+                env=env, capture_output=True, text=True, timeout=60,
+            )
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn(
+                "complete accepted database operational evidence manifest",
+                result.stderr,
+            )
+
     def test_production_startup_refuses_unprovisioned_database_profiles(self):
         with __import__("tempfile").TemporaryDirectory() as temp:
             acceptance_path = self._write_acceptance_manifest(
