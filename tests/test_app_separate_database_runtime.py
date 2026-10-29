@@ -19,9 +19,10 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.temp = tempfile.TemporaryDirectory()
         self.root = Path(self.temp.name)
         self.env_names = ("COPILOT_CONTROL_DB", "COPILOT_TENANT_DB_ROOT", "COPILOT_CORPUS_DB",
-                          "COPILOT_OBJECT_STORAGE_ROOT", "COPILOT_OBJECT_STORAGE_BACKEND",
+                          "COPILOT_DB", "COPILOT_OBJECT_STORAGE_ROOT", "COPILOT_OBJECT_STORAGE_BACKEND",
                           "COPILOT_ENV", "ADMIN_TOKEN")
         self.old_env = {name: os.environ.get(name) for name in self.env_names}
+        os.environ.pop("COPILOT_DB", None)
         os.environ["COPILOT_CONTROL_DB"] = str(self.root / "control.sqlite3")
         os.environ["COPILOT_TENANT_DB_ROOT"] = str(self.root / "tenants")
         os.environ["COPILOT_CORPUS_DB"] = str(self.root / "corpus.sqlite3")
@@ -61,6 +62,16 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         headers = dict(kwargs.pop("headers", {}) or {})
         headers["X-CSRF-Token"] = csrf or ""
         return getattr(self.client, method)(url, headers=headers, **kwargs)
+
+    def test_firm_connection_requires_trusted_context_and_never_falls_back(self):
+        token = app._active_firm_context.set(None)
+        try:
+            with self.assertRaises(HTTPException) as raised:
+                app.conn()
+            self.assertEqual(raised.exception.status_code, 401)
+            self.assertTrue(app._separate_runtime_enabled())
+        finally:
+            app._active_firm_context.reset(token)
 
     def test_security_audit_exports_require_firm_admin(self):
         login = self.client.post(
