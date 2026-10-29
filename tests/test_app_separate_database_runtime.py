@@ -1182,6 +1182,56 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             expected_sha256=staged.sha256, expected_size=staged.byte_size,
         ))
 
+    def test_production_original_storage_requires_complete_acceptance_manifest(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate("post", "/cases", json={"title": "Production Evidence Gate"})
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+
+        from docx import Document
+        import io
+        buffer = io.BytesIO()
+        document = Document()
+        document.add_paragraph("Production evidence gate test content")
+        document.save(buffer)
+
+        original_env = {
+            key: os.environ.get(key)
+            for key in (
+                "COPILOT_ENV",
+                "COPILOT_OBJECT_STORAGE_BACKEND",
+                "COPILOT_DATABASE_ACCEPTANCE_FILE",
+            )
+        }
+        os.environ["COPILOT_ENV"] = "production"
+        os.environ["COPILOT_OBJECT_STORAGE_BACKEND"] = "s3"
+        os.environ.pop("COPILOT_DATABASE_ACCEPTANCE_FILE", None)
+        try:
+            with patch.object(app, "_mfa_required_for_user", return_value=False):
+                response = self._mutate(
+                    "post", f"/cases/{case_id}/upload",
+                    files={"file": ("production-evidence-gate.docx", buffer.getvalue(),
+                                    "application/vnd.openxmlformats-officedocument.wordprocessingml.document")},
+                )
+        finally:
+            for key, value in original_env.items():
+                if value is None:
+                    os.environ.pop(key, None)
+                else:
+                    os.environ[key] = value
+
+        self.assertEqual(response.status_code, 503, response.text)
+        context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        firm_db = self.runtime.firm_connection(context)
+        self.assertEqual(
+            firm_db.execute("SELECT COUNT(*) FROM docs WHERE case_id=?", (case_id,)).fetchone()[0],
+            0,
+            "production uploads must not create metadata without accepted operational evidence",
+        )
+
     def test_original_file_storage_fails_closed_in_production_until_backend_is_available(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
@@ -1199,7 +1249,8 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         os.environ["COPILOT_ENV"] = "production"
         os.environ["COPILOT_OBJECT_STORAGE_BACKEND"] = "s3"
         try:
-            with patch.object(app, "_mfa_required_for_user", return_value=False):
+            with patch.object(app, "load_acceptance_manifest", return_value={"ready": False}), \
+                 patch.object(app, "_mfa_required_for_user", return_value=False):
                 response = self._mutate(
                     "post", f"/cases/{case_id}/upload",
                     files={"file": ("production-gate.docx", buffer.getvalue(),
@@ -1214,6 +1265,40 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(firm_db.execute(
             "SELECT COUNT(*) FROM docs WHERE case_id=?", (case_id,)
         ).fetchone()[0], 0)
+
+    def test_production_original_storage_requires_complete_acceptance_and_s3_backend(self):
+        sentinel = object()
+        config = {
+            "COPILOT_ENV": "production",
+            "COPILOT_OBJECT_STORAGE_BACKEND": "s3",
+            "COPILOT_DATABASE_ACCEPTANCE_FILE": "/protected/accepted-database-evidence.json",
+            "COPILOT_S3_BUCKET": "private-originals-test",
+            "COPILOT_S3_REGION": "us-east-1",
+            "COPILOT_S3_KMS_KEY_ID": "arn:aws:kms:us-east-1:123456789012:key/test-key",
+            "COPILOT_S3_ENDPOINT_URL": "",
+        }
+        with patch.dict(os.environ, config, clear=False), \
+             patch.object(app, "load_acceptance_manifest", return_value={"ready": True}), \
+             patch("boto3.client") as boto_client, \
+             patch.object(app, "S3PrivateObjectStore", return_value=sentinel) as store_factory:
+            result = app._original_file_store()
+        self.assertIs(result, sentinel)
+        self.assertEqual([call.args[0] for call in boto_client.call_args_list], ["s3", "kms"])
+        store_factory.assert_called_once()
+        self.assertEqual(store_factory.call_args.kwargs["bucket"], "private-originals-test")
+        self.assertEqual(store_factory.call_args.kwargs["kms_key_id"], config["COPILOT_S3_KMS_KEY_ID"])
+
+        local_config = {
+            "COPILOT_ENV": "production",
+            "COPILOT_OBJECT_STORAGE_BACKEND": "local",
+            "COPILOT_DATABASE_ACCEPTANCE_FILE": "/protected/accepted-database-evidence.json",
+        }
+        with patch.dict(os.environ, local_config, clear=False), \
+             patch.object(app, "load_acceptance_manifest", return_value={"ready": True}):
+            with self.assertRaises(HTTPException) as raised:
+                app._original_file_store()
+        self.assertEqual(raised.exception.status_code, 503)
+        self.assertIn("requires the accepted S3/KMS backend", raised.exception.detail)
 
     def test_cross_firm_document_and_membership_writes_are_denied(self):
         login = self.client.post(
