@@ -2170,7 +2170,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             json={"name": "revoked-membership.txt", "text": "REVOKED_MEMBERSHIP_DOCUMENT_SENTINEL"},
         )
         self.assertEqual(created_document.status_code, 200, created_document.text)
-        document_id = created_document.json()["id"]
+        document_id = created_document.json()["document_id"]
 
         control = self.runtime.control_connection()
         control.execute(
