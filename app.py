@@ -644,13 +644,21 @@ def _original_file_store():
     production = os.environ.get("COPILOT_ENV", "").strip().lower() in {"prod", "production"}
     backend = os.environ.get("COPILOT_OBJECT_STORAGE_BACKEND", "local").strip().lower()
     if production:
-        # Do not enable confidential originals until S3 inventory/reconciliation,
-        # encrypted backup/restore, staged-upload recovery, and deletion drills
-        # operate against the same production backend.
-        raise HTTPException(
-            503,
-            "production original-file storage is blocked pending S3 recovery and backup acceptance",
-        )
+        # The production startup gate validates every required operational gate.
+        # Recheck the manifest at use time so a removed, expired, or edited
+        # acceptance record fails closed instead of leaving object storage enabled.
+        acceptance_path = os.environ.get("COPILOT_DATABASE_ACCEPTANCE_FILE", "").strip()
+        acceptance = load_acceptance_manifest(acceptance_path or None)
+        if not acceptance.get("ready"):
+            raise HTTPException(
+                503,
+                "production original-file storage is blocked pending complete accepted database evidence",
+            )
+        if backend != "s3":
+            raise HTTPException(
+                503,
+                "production original-file storage requires the accepted S3/KMS backend",
+            )
     if backend == "s3":
         bucket = os.environ.get("COPILOT_S3_BUCKET", "").strip()
         region = os.environ.get("COPILOT_S3_REGION", "").strip()
