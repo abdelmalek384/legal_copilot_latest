@@ -447,6 +447,82 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             [(firm_c, "admin", "active")],
         )
 
+    def test_successful_case_deletion_preserves_firm_scoped_audit_snapshot(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate(
+            "post", "/cases",
+            json={"title": "CASE_DELETION_AUDIT_SENTINEL", "client": "Synthetic client"},
+        )
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+
+        junior_id = self.runtime.create_global_identity(
+            "Deletion Test Junior", "deletion-junior@example.test", app.hash_pw(self.password)
+        )
+        self.runtime.create_firm_membership(junior_id, self.firm_a, "junior")
+        added = self._mutate(
+            "post", f"/cases/{case_id}/members",
+            json={"user_id": junior_id, "role": "junior"},
+        )
+        self.assertEqual(added.status_code, 200, added.text)
+
+        task = self._mutate(
+            "post", f"/cases/{case_id}/tasks", json={"title": "Deletion snapshot task"}
+        )
+        self.assertEqual(task.status_code, 200, task.text)
+        deadline = self._mutate(
+            "post", f"/cases/{case_id}/deadlines",
+            json={"title": "Deletion snapshot deadline", "due": "2026-11-15", "note": ""},
+        )
+        self.assertEqual(deadline.status_code, 200, deadline.text)
+        document = self._mutate(
+            "post", f"/cases/{case_id}/docs",
+            json={"name": "deletion-snapshot.txt", "text": "Synthetic document retained in audit counts"},
+        )
+        self.assertEqual(document.status_code, 200, document.text)
+
+        junior_client = TestClient(app.app)
+        try:
+            junior_login = junior_client.post(
+                "/login",
+                json={"email": "deletion-junior@example.test", "password": self.password},
+            )
+            self.assertEqual(junior_login.status_code, 200, junior_login.text)
+            denied = junior_client.delete(
+                f"/cases/{case_id}",
+                headers={"X-CSRF-Token": junior_client.cookies.get("lc_csrf") or ""},
+            )
+            self.assertEqual(denied.status_code, 404, denied.text)
+        finally:
+            junior_client.close()
+
+        deleted = self._mutate("delete", f"/cases/{case_id}")
+        self.assertEqual(deleted.status_code, 200, deleted.text)
+        self.assertTrue(deleted.json()["deleted"])
+
+        tenant = self.runtime.firm_connection(
+            self.runtime.resolve_context(self.user_id, self.firm_a)
+        )
+        self.assertIsNone(tenant.execute(
+            "SELECT id FROM cases WHERE id=?", (case_id,)
+        ).fetchone())
+        audit = self.client.get("/audit/case-deletions")
+        self.assertEqual(audit.status_code, 200, audit.text)
+        row = next(item for item in audit.json()["items"] if item["case_id"] == case_id)
+        self.assertEqual(row["firm_id"], self.firm_a)
+        self.assertEqual(row["actor_user_id"], self.user_id)
+        self.assertEqual(row["actor_name"], "First Owner")
+        self.assertEqual(row["case_snapshot"]["title"], "CASE_DELETION_AUDIT_SENTINEL")
+        self.assertEqual(row["case_snapshot"]["firm_id"], self.firm_a)
+        self.assertGreaterEqual(len(row["events_snapshot"]), 3)
+        self.assertGreaterEqual(row["related_counts"]["tasks"], 1)
+        self.assertGreaterEqual(row["related_counts"]["deadlines"], 1)
+        self.assertGreaterEqual(row["related_counts"]["docs"], 1)
+
+
     def test_case_delete_audit_failure_rolls_back_entire_deletion(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
