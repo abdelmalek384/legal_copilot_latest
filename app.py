@@ -923,7 +923,11 @@ def _search_separate(c, q, case_id, k, firm_id, as_of, scope):
                     corpus_rows.append(row)
                     seen.add(row["id"])
         for row in corpus_rows:
-            rows_with_origin.append((dict(row), "corpus", bool(article_match and str(row.get("article") or "") == article_match.group(1))))
+            row_dict = dict(row)
+            rows_with_origin.append((
+                row_dict, "corpus",
+                bool(article_match and str(row_dict.get("article") or "") == article_match.group(1)),
+            ))
 
     if not rows_with_origin:
         return []
