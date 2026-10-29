@@ -121,24 +121,24 @@ The --quiesced flag is an operator assertion, not an automated lock on all appli
        python tools/verify_s3_original_file_roundtrip.py --firm-id 123 --confirm-synthetic-firm --json
 
    The command verifies the firm is a dedicated empty acceptance tenant, then stages synthetic bytes, checks staged integrity/KMS identity, finalizes and verifies the destination, reads the bytes back, and deletes the active probe keys. It never sets production approval to true. Require every configuration and round-trip check to pass and `cleanup_pending: false`. If cleanup is pending, stop and reconcile the reported opaque object ID before retrying. With bucket versioning enabled, deletion leaves version history subject to the approved lifecycle policy.
-6. Run the restored-original importer in dry-run mode against the isolated restore root:
+8. Run the restored-original importer in dry-run mode against the isolated restore root:
 
        python tools/import_restored_originals_to_s3.py --restore-root /protected/restore-rehearsal-unique
 
    Set `COPILOT_OBJECT_STORAGE_BACKEND=s3`, `COPILOT_S3_BUCKET`, `COPILOT_S3_REGION`, and `COPILOT_S3_KMS_KEY_ID` from the approved secret/configuration source. Review the report for every object and confirm zero integrity or conflict errors. Only under a separately approved change, rerun with `--apply`; the command must continue to use the current live database paths for overlap protection and will mutate only the isolated restore directory and configured S3 bucket.
-7. After import, point the operator environment's three database paths at the restored staging control-plane, tenant root, and legal-corpus paths, then run the read-only S3 reconciliation against those restored databases:
+9. After import, point the operator environment's three database paths at the restored staging control-plane, tenant root, and legal-corpus paths, then run the read-only S3 reconciliation against those restored databases:
 
        python tools/reconcile_s3_original_file_storage.py --json
 
    Require `clean: true` and zero findings before starting the restored staging application. Restore/import/reconciliation commands do not themselves authorize cutover.
-8. Before considering a cutover, run deployment preflight in strict mode against the staging configuration:
+10. Before considering a cutover, run deployment preflight in strict mode against the staging configuration:
 
        python tools/deployment_preflight.py --strict
 
    The environment must contain all three separate database paths, must not contain the legacy shared COPILOT_DB path, and must point to the restored staging locations.
-9. Start only a staging instance. Verify that migration startup succeeds, the catalog resolves each expected firm, active memberships still work, disabled/revoked memberships remain denied, and a synthetic case created in one firm cannot be read from another.
-10. Verify corpus lookup and FTS behavior against known test records. Check that a firm's case/document/chunk sentinels are present only in that firm's database and absent from other firm databases.
-11. Record the tested bundle, application revision, restore duration, checks performed, discrepancies, and pass/fail result. Delete or quarantine the rehearsal copy according to the approved retention policy after the exercise.
+11. Start only a staging instance. Verify that migration startup succeeds, the catalog resolves each expected firm, active memberships still work, disabled/revoked memberships remain denied, and a synthetic case created in one firm cannot be read from another.
+12. Verify corpus lookup and FTS behavior against known test records. Check that a firm's case/document/chunk sentinels are present only in that firm's database and absent from other firm databases.
+13. Record the tested bundle, application revision, restore duration, checks performed, discrepancies, and pass/fail result. Delete or quarantine the rehearsal copy according to the approved retention policy after the exercise.
 
 ## Automated isolated restore smoke test
 
