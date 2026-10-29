@@ -46,12 +46,45 @@ def verify_synthetic_firm(runtime: DatabaseRuntime, firm_id: int) -> dict[str, A
         raise ValueError("synthetic acceptance firm needs an active membership for trusted routing")
     context = runtime.resolve_context(int(membership["user_id"]), firm_id)
     tenant = runtime.firm_connection(context)
-    case_count = int(tenant.execute("SELECT COUNT(*) FROM cases").fetchone()[0])
-    object_count = int(tenant.execute("SELECT COUNT(*) FROM original_file_objects").fetchone()[0])
-    if case_count or object_count:
-        raise ValueError("synthetic acceptance firm must contain no cases or original-file metadata")
-    return {"firm_id": firm_id, "firm_name": str(firm["name"]), "case_count": case_count,
-            "original_file_metadata_count": object_count}
+    # Count every application table, not just cases and object metadata. A tenant
+    # with orphaned chunks, documents, audit rows, or lifecycle records is not an
+    # empty acceptance target and must never be used for a live probe.
+    metadata_tables = {"database_profile", "schema_migrations", "tenant_database_binding"}
+    table_names = [
+        str(row[0]) for row in tenant.execute(
+            "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%' ORDER BY name"
+        ).fetchall()
+        if str(row[0]) not in metadata_tables and not str(row[0]).startswith("chunks_fts_")
+    ]
+    tenant_data_counts: dict[str, int] = {}
+    for table_name in table_names:
+        quoted = '"' + table_name.replace('"', '""') + '"'
+        count = int(tenant.execute(f"SELECT COUNT(*) FROM {quoted}").fetchone()[0])
+        if count:
+            tenant_data_counts[table_name] = count
+    case_count = tenant_data_counts.get("cases", 0)
+    object_count = tenant_data_counts.get("original_file_objects", 0)
+    if case_count:
+        raise ValueError("synthetic acceptance firm must contain no cases")
+    if object_count:
+        raise ValueError("synthetic acceptance firm must contain no original-file metadata")
+    unexpected_data = {
+        table: count for table, count in tenant_data_counts.items()
+        if table not in {"cases", "original_file_objects"}
+    }
+    if unexpected_data:
+        table_list = ", ".join(sorted(unexpected_data))
+        raise ValueError(
+            "synthetic acceptance firm must contain no tenant matter data; "
+            f"non-empty tables: {table_list}"
+        )
+    return {
+        "firm_id": firm_id,
+        "firm_name": str(firm["name"]),
+        "case_count": case_count,
+        "original_file_metadata_count": object_count,
+        "nonempty_tenant_tables": tenant_data_counts,
+    }
 
 
 def run_s3_roundtrip(store: S3PrivateObjectStore, firm_id: int, payload: bytes | None = None) -> dict[str, Any]:
