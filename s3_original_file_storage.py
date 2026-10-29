@@ -158,7 +158,12 @@ class S3PrivateObjectStore:
                 ServerSideEncryption="aws:kms",
                 SSEKMSKeyId=self.kms_key_id,
             )
-            # If this delete fails, reconciliation can safely detect both keys.
+            # Never delete the recoverable staged copy until the destination is
+            # independently observed and its encryption/key identity is verified.
+            # A failed copy or provider-policy mismatch must remain recoverable.
+            destination = self._head(final)
+            if destination is None:
+                raise ObjectStorageError("finalized object is missing")
             self.client.delete_object(Bucket=self.bucket, Key=staged)
         except Exception as exc:
             raise ObjectStorageError("could not finalize original object") from exc
