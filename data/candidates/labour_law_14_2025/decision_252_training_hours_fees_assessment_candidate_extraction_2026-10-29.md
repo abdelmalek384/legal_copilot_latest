@@ -29,13 +29,14 @@ The specialized-programme table on p.394 (image URL https://www.almasdar.com/Web
 | Lifting / cranes | 16 | 394 | Scan-extracted, official-file match pending |
 | First aid | 16 | 394 | Scan-extracted, official-file match pending |
 | Hazardous chemical materials | 16 | 394 | Scan-extracted, official-file match pending |
-| Confined-space work | 12 | 394 | Scan-extracted, official-file match pending |
+| Use and maintenance of personal protective equipment | 12 | 394 | Scan-extracted, official-file match pending |
+| Work in confined / enclosed spaces | 12 | 394 | Scan-extracted, official-file match pending |
 | Risk assessment and analysis of workplace risks | 16 | 394 | Scan-extracted, official-file match pending |
 | Preparing / implementing emergency plans | 16 | 394 | Scan-extracted, official-file match pending |
 | OSH in welding work | 12 | 394 | Scan-extracted, official-file match pending |
 | Introduction to ISO 45001:2018 OSH management system | 12 | 394 | Scan-extracted, official-file match pending |
 
-One specialized-programme row in the image is not clear enough to transcribe with confidence; keep it unresolved.
+All 11 visible specialized-programme rows are listed above; verify every row label and hour cell against a higher-resolution/official copy before promotion.
 
 ## Test and attendance thresholds visible on printed Gazette pages 395–396
 
