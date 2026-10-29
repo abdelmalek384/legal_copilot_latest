@@ -1,65 +1,95 @@
-import os, json, tempfile
-os.environ["COPILOT_DB"] = os.path.join(tempfile.mkdtemp(), "t.db")
-# This self-test deliberately exercises the fictional legacy corpus during migration.
-os.environ["ALLOW_UNLINKED_LEGACY_LAW_SEARCH"] = "1"
-import app
-c = app.conn()
-app.import_law(c, [json.loads(l) for l in open("sample_law.jsonl", encoding="utf-8")])
-# The search fixture is fictional test data; explicitly mark only its first two rows as reviewed.
-c.execute("UPDATE chunks SET verified=1,in_force=1 WHERE case_id IS NULL AND source='FICTIONAL-TEST-DATA' AND article IN ('1','2')")
-c.commit()
-assert app.norm("المَادَّة") == app.norm("الماده") and app.norm("ﻻ") == app.norm("لا")  # diacritics, PDF ligatures
-assert app.search(c, "اجازة سنوية")[0]["ref"].endswith("المادة 1")
-assert app.search(c, "الإجازةُ السَّنَويّة")[0]["ref"].endswith("المادة 1")
-# Curated synonym expansion improves paraphrase recall while retaining the source passage as evidence.
-synonym_hits = app.search(c, "عطلة سنوية")
-assert synonym_hits and synonym_hits[0]["ref"].endswith("المادة 1")
-assert "literal_match" in synonym_hits[0] and "expanded_match" in synonym_hits[0]
-assert app.stem(app.norm("إجازة")) in app.expanded_tokens("عطلة سنوية")
+"""Small smoke test for the approved profile-separated runtime.
 
-assert app.search(c, "المادة ٢")[0]["ref"].endswith("المادة 2")
-assert app.search(c, "للعاملين") and app.tokens("في من على") == []
-assert app.ask(c, "qwerty zzz")["found"] is False
-assert app.ask(c, "كيفية تسجيل علامة تجارية في الجمارك")["found"] is False
-assert app.ask(c, "ما هي الاجازة السنوية للعامل؟")["found"] is True
-app.LLM = lambda p: "تستحق اجازة [1]"; assert app.ask(c, "اجازة سنوية")["answer"]
-app.LLM = lambda p: "اجابة بلا مصدر صالح [9]"; assert app.ask(c, "اجازة سنوية")["answer"] is None
-# Unverified article 3 must not be returned as legal authority.
-assert app.ask(c, "المادة 3")["found"] is False
-# Matter-document passages require a separate approval, even when general LLM use is enabled.
-_matter_id = c.execute("INSERT INTO cases(title,firm_id) VALUES(?,?)", ("Private LLM gate fixture", 1)).lastrowid
-app.add_doc(c, _matter_id, "Private LLM gate fixture", "مدة العقد سنتان")
-os.environ["LLM_URL"] = "https://llm.example.test/v1/chat/completions"
-os.environ["LLM_DATA_PROCESSING_APPROVED"] = "1"
-os.environ.pop("LLM_FIRM_DATA_PROCESSING_APPROVED", None)
-_llm_called = []
-app.LLM = lambda p: _llm_called.append(p) or "إجابة [1]"
-_matter_result = app.ask(c, "مدة العقد", case_id=_matter_id, firm_id=1, scope="firm_documents")
-assert _matter_result["found"] is True and _matter_result["answer"] is None
-assert "تُعرض المصادر فقط" in _matter_result["message"] and not _llm_called
-# LLM transmission is fail-closed unless the deployment operator explicitly approves it.
-from unittest.mock import patch
+Detailed retrieval, citation, identity, and authorization cases live in tests/.
+This smoke test must not revive the shared COPILOT_DB compatibility harness.
+"""
 import io
-_saved_llm_env = {k: os.environ.get(k) for k in ("LLM_URL", "LLM_MODEL", "LLM_KEY", "LLM_DATA_PROCESSING_APPROVED", "LLM_FIRM_DATA_PROCESSING_APPROVED")}
+import json
+import os
+import tempfile
+from pathlib import Path
+from unittest.mock import patch
+
+_tmp = tempfile.TemporaryDirectory(prefix="legal-copilot-selftest-")
+_root = Path(_tmp.name)
+os.environ.pop("COPILOT_DB", None)
+os.environ["COPILOT_ENV"] = "development"
+os.environ["COPILOT_CONTROL_DB"] = str(_root / "control.sqlite3")
+os.environ["COPILOT_TENANT_DB_ROOT"] = str(_root / "tenants")
+os.environ["COPILOT_CORPUS_DB"] = str(_root / "corpus.sqlite3")
+os.environ["COPILOT_OBJECT_STORAGE_ROOT"] = str(_root / "objects")
+os.environ["COPILOT_OBJECT_STORAGE_BACKEND"] = "local"
+os.environ.pop("ALLOW_UNLINKED_LEGACY_LAW_SEARCH", None)
+
+import app
+from database_runtime import DatabaseRuntime
+
+runtime = DatabaseRuntime.from_env()
+runtime.initialize()
+firm_id, _ = runtime.provision_firm("Selftest synthetic firm")
+user_id = runtime.create_initial_firm_owner(
+    firm_id, "Selftest Owner", "selftest-owner@example.test", app.hash_pw("Selftest-Unique-Passphrase-2026!")
+)
+context = runtime.resolve_context(user_id, firm_id)
+context_token = app._active_firm_context.set(context)
 try:
-    os.environ["LLM_URL"] = "https://llm.example.test/v1/chat/completions"
-    os.environ["LLM_MODEL"] = "test-model"
-    os.environ["LLM_KEY"] = "test-key"
-    os.environ.pop("LLM_DATA_PROCESSING_APPROVED", None)
-    with patch("app._llm_open") as open_url:
-        assert app.llm("CONFIDENTIAL-SENTINEL") is None
-        open_url.assert_not_called()
-    os.environ["LLM_DATA_PROCESSING_APPROVED"] = "1"
-    fake_response = io.BytesIO(json.dumps({"choices": [{"message": {"content": "test answer"}}]}).encode())
-    with patch("app._llm_open", return_value=fake_response) as open_url:
-        assert app.llm("CONFIDENTIAL-SENTINEL") == "test answer"
-        sent_request = open_url.call_args.args[0]
-        assert b"CONFIDENTIAL-SENTINEL" in sent_request.data
+    matter = runtime.firm_connection(context)
+    case_id = matter.execute(
+        "INSERT INTO cases(title,firm_id) VALUES(?,?)",
+        ("Synthetic matter retrieval fixture", firm_id),
+    ).lastrowid
+    app.add_doc(matter, case_id, "Synthetic matter document", "مدة العقد سنتان")
+    hits = app.search(
+        matter, "مدة العقد", case_id=case_id, firm_id=firm_id, scope="firm_documents"
+    )
+    assert hits and hits[0]["scope"] == "firm_documents"
+    assert hits[0]["text"] == "مدة العقد سنتان"
+    assert app.search(
+        matter, "إجازة سنوية", firm_id=firm_id, scope="verified_corpus"
+    ) == [], "an empty legal corpus must not return unreviewed or fictional authority"
+
+    assert app.norm("المَادَّة") == app.norm("الماده")
+    assert app.norm("ﻻ") == app.norm("لا")  # Arabic diacritics and compatibility ligatures
+    assert app.stem(app.norm("إجازة")) in app.expanded_tokens("عطلة سنوية")
+    assert app.tokens("في من على") == []
+    assert app.search(matter, "qwerty zzz", case_id=case_id, firm_id=firm_id,
+                      scope="firm_documents") == []
+
+    # LLM transmission is fail-closed unless the deployment operator explicitly approves it.
+    saved = {
+        key: os.environ.get(key)
+        for key in ("LLM_URL", "LLM_MODEL", "LLM_KEY", "LLM_DATA_PROCESSING_APPROVED")
+    }
+    try:
+        os.environ["LLM_URL"] = "https://llm.example.test/v1/chat/completions"
+        os.environ["LLM_MODEL"] = "test-model"
+        os.environ["LLM_KEY"] = "test-key"
+        os.environ.pop("LLM_DATA_PROCESSING_APPROVED", None)
+        with patch("app._llm_open") as open_url:
+            assert app.llm("CONFIDENTIAL-SENTINEL") is None
+            open_url.assert_not_called()
+        os.environ["LLM_DATA_PROCESSING_APPROVED"] = "1"
+        fake_response = io.BytesIO(
+            json.dumps({"choices": [{"message": {"content": "test answer"}}]}).encode()
+        )
+        with patch("app._llm_open", return_value=fake_response) as open_url:
+            assert app.llm("CONFIDENTIAL-SENTINEL") == "test answer"
+            sent_request = open_url.call_args.args[0]
+            assert b"CONFIDENTIAL-SENTINEL" in sent_request.data
+    finally:
+        for key, value in saved.items():
+            if value is None:
+                os.environ.pop(key, None)
+            else:
+                os.environ[key] = value
+
+    assert app.check_pw(
+        "correct horse 12", app.hash_pw("correct horse 12")
+    ) and not app.check_pw("x", app.hash_pw("y"))
+    print("ALL OK")
 finally:
-    for _key, _value in _saved_llm_env.items():
-        if _value is None:
-            os.environ.pop(_key, None)
-        else:
-            os.environ[_key] = _value
-assert app.check_pw("correct horse 12", app.hash_pw("correct horse 12")) and not app.check_pw("x", app.hash_pw("y"))
-print("ALL OK")
+    app._active_firm_context.reset(context_token)
+    try:
+        runtime.close_current_thread()
+    finally:
+        _tmp.cleanup()
