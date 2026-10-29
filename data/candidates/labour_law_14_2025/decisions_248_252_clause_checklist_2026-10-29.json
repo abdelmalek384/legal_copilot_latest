@@ -20,6 +20,16 @@
       "full_decision_text": false
     }
   ],
+  "official_clarifications": [
+    {
+      "kind": "ministry_clarification",
+      "instrument": "249/2026",
+      "publication_date": "2026-10-27",
+      "url": "https://www.labour.gov.eg/ar/الأخبار/بيان-توضيحي-هام-بشأن-القرار-الوزاري-رقم-249-لسنة-2026-الخاص-بالسلامة-والصحة-المهنية-وزارة-العمل-لن-ي-ضار-أي-عامل-يعمل-بمهنة-أخصائي-السلامة-والصحة-المهنية-ولا-مساس-بالمراكز-القانونية-المكتسبة-وأهمية-المهنة-تستوجب-منتهى-الدقة-في-اختيار-شاغليها/",
+      "supports": "official_administrative_interpretation_on_incumbent_workers_acquired_positions_qualification_categories_and_future_periodic_circulars",
+      "is_decision_text": false
+    }
+  ],
   "secondary_sources": [
     {
       "id": "secondary_248_youm7",
@@ -70,6 +80,9 @@
     {"id":"249-E","instrument":"249/2026","topic":"osh_policy","secondary_value":"policy appropriate to activity and legal requirements","risk":"medium_high","primary_match":"not_checked","currentness":"not_checked","counsel":"not_reviewed"},
     {"id":"249-F","instrument":"249/2026","topic":"resources_and_worker_participation","secondary_value":"human/financial/technical resources, roles, awareness, training and worker participation","risk":"medium","primary_match":"not_checked","currentness":"not_checked","counsel":"not_reviewed"},
     {"id":"249-G","instrument":"249/2026","topic":"risk_categories","secondary_value":"high, medium and limited risk categories mentioned; criteria not extracted","risk":"high","primary_match":"not_checked","currentness":"not_checked","counsel":"not_reviewed"},
+    {"id":"249-H","instrument":"249/2026","topic":"incumbent_workers_and_acquired_positions","secondary_value":"Ministry clarification says current specialists are not to be harmed/excluded solely due to the decision and acquired legal positions are respected","risk":"critical","primary_match":"not_checked","currentness":"not_checked","counsel":"not_reviewed"},
+    {"id":"249-I","instrument":"249/2026","topic":"promised_implementation_circulars","secondary_value":"Ministry says central administration was directed to issue periodic circulars on implementation and transitional arrangements; circulars not yet located","risk":"high","primary_match":"not_checked","currentness":"not_checked","counsel":"not_reviewed"},
+    {"id":"249-J","instrument":"249/2026","topic":"specialist_vs_consultant_categories","secondary_value":"Keep establishment-level specialist staffing categories distinct from consultant licensing under Decision 251; legal relationship needs text review","risk":"high","primary_match":"not_checked","currentness":"not_checked","counsel":"not_reviewed"},
     {"id":"250-A","instrument":"250/2026","topic":"decision_and_annexes_scope","secondary_value":"Article 1 says decision, tables and register forms govern workplace safety rules/limits/precautions","risk":"high","primary_match":"not_checked","currentness":"not_checked","counsel":"not_reviewed"},
     {"id":"250-B","instrument":"250/2026","topic":"commencement","secondary_value":"Article 2 reportedly effective day after publication","risk":"high","primary_match":"not_checked","currentness":"not_checked","counsel":"not_reviewed"},
     {"id":"250-C","instrument":"250/2026","topic":"technical_limits_and_schedules","secondary_value":"news summary names machinery, hazardous materials, fire/explosion, radiation and pollutants; numeric annexes not extracted","risk":"critical","primary_match":"not_checked","currentness":"not_checked","counsel":"not_reviewed"},
@@ -87,7 +100,7 @@
     {"id":"252-D","instrument":"252/2026","topic":"licensing_fees_renewal_suspension_and_annexes","secondary_value":"not present in captured page excerpt; must obtain full text","risk":"critical","primary_match":"not_checked","currentness":"not_checked","counsel":"not_reviewed"}
   ],
   "counts": {
-    "checklist_items": 32,
+    "checklist_items": 35,
     "primary_source_match_complete": 0,
     "currentness_review_complete": 0,
     "counsel_approved": 0,
