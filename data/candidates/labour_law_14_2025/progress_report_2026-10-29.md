@@ -17,8 +17,9 @@ Scope: only the Labour Law 14/2025 evidence-backed legal-knowledge workstream an
    - Decision 252: printed pp. 378–398.
 4. Added a structured candidate extraction for Decision 249 Table 3: 12 activity/pollutant combinations.
 5. Added a scan-based Decision 251/252 article map and 32 structured numerical candidate assertions for Decision 252. The JSON was parsed and its declared count matches the 32 records.
-6. Located the Ministry's official clarification dated 2026-10-27 about Decision 249. It says existing specialists/acquired positions should not be harmed and directs the competent administration to issue periodic circulars.
-7. Targeted searches on 2026-10-29 did not locate a separate public implementation circular. This is “announced but not located”, not proof none exists.
+6. Transcribed 137 candidate rows from Decision 250 Table 23 (printed pp.242–248) into JSON with quantity/CAS fields. JSON/count validated (137/137); Arabic transcription remains blank for rows 64–137, and CAS values for rows 47–48 remain unresolved rather than guessed.
+7. Located the Ministry's official clarification dated 2026-10-27 about Decision 249. It says existing specialists/acquired positions should not be harmed and directs the competent administration to issue periodic circulars.
+8. Targeted searches on 2026-10-29 did not locate a separate public implementation circular. This is “announced but not located”, not proof none exists.
 
 ## Subtask status
 
