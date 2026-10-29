@@ -39,6 +39,12 @@ These are **secondary transcription line ranges**, not official Gazette PDF page
 - Riwaq is an independent secondary transcription. It is useful for broad extraction and cross-checking, but it is not a substitute for exact comparison with the original official Gazette file.
 - Do not infer that the full text transcription grants permission to bulk-copy, redistribute, or commercially reuse the source. Complete a source-use assessment before moving its content into a public product corpus.
 
+## New extraction milestone — Table 23
+
+The candidate JSON at [decision_250_table23_first_page_candidate_rows_2026-10-29.json](decision_250_table23_first_page_candidate_rows_2026-10-29.json) now has Arabic labels for **137/137** listed rows. Rows 64–137 were filled from Riwaq's secondary text, and CAS values for rows 47–48 were recorded from that same text. Each newly transcribed row carries the secondary URL and a text-line range. The text's raw defects were preserved: row 96 has malformed Arabic, and row 137 has a mismatch between the Arabic label and English name. This is extraction completeness by row count, not legal correctness or official matching.
+
+Table 24 exposes 745 numbered chemical entries in the secondary text, but a complete structured row-by-row Table 24 dataset has not been built yet. No values from Table 24 are cleared for operational/legal use.
+
 ## Remaining work
 
 1. Export/structure Table 23 and Table 24 rows into machine-readable records while preserving the raw Arabic and source-line pinpoints.
