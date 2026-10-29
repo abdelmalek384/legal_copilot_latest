@@ -1,4 +1,4 @@
-# Labour-law knowledge progress update — Table 24 extraction batches 1–2
+# Labour-law knowledge progress update — Table 24 extraction batches 1–5
 
 **Date:** 2026-10-29  
 **Scope:** Decision 250/2026, Table 24 only. This is a delta report, not a replacement for the full progress report.
@@ -7,10 +7,13 @@
 
 - Added structured candidate transcription for Table 24 numbered entries **1–20** in `decision_250_table24_candidate_batch1_rows001_020_2026-10-29.json`.
 - Added structured candidate transcription for numbered entries **21–40** in `decision_250_table24_candidate_batch2_rows021_040_2026-10-29.json`.
+- Added structured candidate transcription for entries **41–60**, **61–80**, and **81–99** in batches 3–5, retaining parent/child rows for isomers and chemical variants.
 - Preserved the secondary-source line pinpoint for each row; kept raw limit strings and units rather than pretending the flattened text has reliable column alignment.
 - Preserved an apparent CAS formatting anomaly for Aluminum oxide (`1344-281`) instead of silently correcting it.
 - Preserved the nested relationship for Aluminum metal and insoluble compounds and subentries (rows 28–33).
 - Added explicit machine-readable warnings that no candidate is suitable for authoritative retrieval, compliance advice, or safety decisions.
+- Added `tools/validate_decision250_table24_candidates.py` to fail closed on missing/duplicate row numbers, malformed batch JSON, missing source pinpoints, or a candidate row marked as reviewed prematurely.
+- Parsed all five batch files and structurally checked row numbers 1–99: 99 unique numbers, no gaps/duplicates, all flattened rows source-pinned and pending official match. This was a structural audit of the fetched JSON, not execution of the Python validator or legal verification.
 
 ## Current subtask completion estimates
 
@@ -36,14 +39,11 @@ https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full
 
 ## Next work items, in order
 
-1. Continue Table 24 in batches of 20–40 numbered entries, preserving source-line pinpoints and parent/child rows.
-2. Continue in batches, with the new rows 41–60 saved in `decision_250_table24_candidate_batch3_rows041_060_2026-10-29.json`.
-3. Continue with rows 61–80 saved in `decision_250_table24_candidate_batch4_rows061_080_2026-10-29.json`.
-4. Continue with entries 81–99 saved in `decision_250_table24_candidate_batch5_rows081_100_2026-10-29.json`; JSON syntax was repaired and the five batch files parsed successfully.
-5. Build validation checks for duplicate CAS values, malformed CAS strings, blank fields, suspicious unit shifts, and repeated chemicals under alternate names; report anomalies without auto-correcting them.
-6. Cross-check Table 24 terminology and units against the decision's own explanation of TWA/STEL/C, skin notation, biological exposure indices, carcinogenicity labels, and footnotes before attempting normalization.
-7. When the original Gazette PDF is provided, hash the actual bytes and compare each extracted row to the relevant page image. Do not substitute the secondary text for the official scan.
-8. Have the qualified Egyptian OSH lawyer review the source-matched high-risk exposure limits before any are exposed as authoritative answers.
+1. Continue Table 24 extraction from row 100 onward in batches, preserving source-line pinpoints and parent/child rows.
+2. Extend the structural validator to detect duplicate/malformed CAS strings, blank values, and suspicious row/field shifts without auto-correcting the source.
+3. Cross-check terminology and units against the decision's own explanation of TWA/STEL/C, skin notation, biological exposure indices, carcinogenicity labels, and footnotes before attempting normalization.
+4. When the original Gazette PDF is provided, hash the actual bytes and compare each extracted row to the relevant page image. Do not substitute secondary text for the official scan.
+5. Have qualified Egyptian OSH counsel review the source-matched high-risk exposure limits before any are exposed as authoritative answers.
 
 ## Overall status
 
