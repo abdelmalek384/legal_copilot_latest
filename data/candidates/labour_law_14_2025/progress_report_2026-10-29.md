@@ -35,6 +35,7 @@ Table 24 candidate extraction now covers **617/745 numbered entries (82.8%)**; *
    A parallel Decision 251 audit records 17 unique assertions: 12 with secondary scan image locators and 5 with page locators only. All 17 remain unverified and ineligible for authoritative retrieval.
 14. The Decisions 248–252 clause discrepancy checklist and related source-route/currentness notes remain candidate evidence, not verified legal conclusions.
 15. Inspected the current separate-database legal-search SQL and bulk-import path: imports go to `legal_import_staging`, while corpus search/exact-article retrieval requires verified chunks linked to a version whose source permissions, authenticity/status/amendment checks, required review events and effective dates pass. This is a static code inspection, not a runtime/CI test; it does not change any candidate's eligibility.
+16. Added a consolidated printed-page locator map for Decisions 248–252, with a prioritized comparison order for the original PDF expected from the user. The page ranges are explicitly marked as secondary-source locators and must be confirmed against the uploaded file.
 
 ## Current subtask status
 
