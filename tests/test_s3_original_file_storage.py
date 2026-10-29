@@ -131,6 +131,33 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
         self.assertIn(staged_key, self.client.objects)
         self.assertIn(final_key, self.client.objects)
 
+    def test_acceptance_firm_gate_requires_dedicated_empty_synthetic_tenant(self):
+        from database_runtime import DatabaseRuntime
+        from tools.verify_s3_original_file_roundtrip import verify_synthetic_firm
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            runtime = DatabaseRuntime(
+                root / "control.sqlite3", root / "tenants", root / "corpus.sqlite3"
+            )
+            runtime.initialize()
+            firm_id, _ = runtime.provision_firm("SYNTHETIC-ACCEPTANCE-storage-check")
+            user_id = runtime.create_initial_firm_owner(
+                firm_id, "Acceptance Owner", "acceptance-owner@example.test", "test-hash"
+            )
+            report = verify_synthetic_firm(runtime, firm_id)
+            self.assertEqual(report["firm_id"], firm_id)
+            self.assertEqual(report["case_count"], 0)
+            self.assertEqual(report["original_file_metadata_count"], 0)
+
+            context = runtime.resolve_context(user_id, firm_id)
+            tenant = runtime.firm_connection(context)
+            tenant.execute("INSERT INTO cases(title,firm_id) VALUES(?,?)", ("must block probe", firm_id))
+            tenant.commit()
+            with self.assertRaisesRegex(ValueError, "no cases"):
+                verify_synthetic_firm(runtime, firm_id)
+            runtime.close_current_thread()
+
     def test_stage_uses_firm_namespace_and_kms_encryption(self):
         payload = b"confidential original\x00bytes"
         staged = self.store.stage(12, payload)
