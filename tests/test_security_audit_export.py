@@ -100,7 +100,7 @@ class SecurityAuditExportTests(unittest.TestCase):
             response.headers.get("content-disposition", ""),
         )
         self.assertEqual(response.headers.get("cache-control"), "no-store")
-        rows = list(csv.reader(io.StringIO(response.text.lstrip("\\ufeff"))))
+        rows = list(csv.reader(io.StringIO(response.text.lstrip("\ufeff"))))
         self.assertEqual(rows[0], ["id", "firm_id", "user_id", "event", "created_at"])
         self.assertEqual(len(rows), 2)
         self.assertEqual(rows[1][3], "password_changed_sessions_revoked")
@@ -110,7 +110,7 @@ class SecurityAuditExportTests(unittest.TestCase):
         self.login("admin-export@example.test", self.admin_password)
         response = self.client.get("/audit/security-events.csv?limit=100")
         self.assertEqual(response.status_code, 200, response.text)
-        rows = list(csv.reader(io.StringIO(response.text.lstrip("\\ufeff"))))
+        rows = list(csv.reader(io.StringIO(response.text.lstrip("\ufeff"))))
         events = [row[3] for row in rows[1:]]
         self.assertNotIn("other_firm_private_event", events)
         self.assertIn("'=HYPERLINK(" + chr(34) + "https://example.invalid" + chr(34) + ")", events)
