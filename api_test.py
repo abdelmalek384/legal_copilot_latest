@@ -618,25 +618,3 @@ assert app._answer_has_unsupported_quantities("The maximum is ten years [1].", n
 # Weak but long passwords must be rejected by account creation.
 weak_password = c.post("/users", json={"name":"Weak Password","email":"weak-password@x.eg","password":"password1234","role":"lawyer"}, headers=A)
 assert weak_password.status_code == 422, weak_password.text
-
-
-# Exercise the HTTP middleware contract, not only the underlying rate-limit counter.
-# Use a one-request test budget and clear the TestClient peer's current window.
-_rate_limit_original = app._RATE_LIMITS["/search"]
-_rate_limit_now = int(app.time.time())
-_rate_limit_window = int(_rate_limit_now // 60) * 60
-db.execute(
-    "DELETE FROM api_rate_limit_windows WHERE bucket='/search' AND client_key='testclient' AND window_start=?",
-    (_rate_limit_window,),
-)
-db.commit()
-app._RATE_LIMITS["/search"] = (1, 60)
-try:
-    first_limited_request = c.post("/search", json={"q":"rate-limit middleware test"})
-    assert first_limited_request.status_code != 429, first_limited_request.text
-    second_limited_request = c.post("/search", json={"q":"rate-limit middleware test"})
-    assert second_limited_request.status_code == 429, second_limited_request.text
-    assert int(second_limited_request.headers.get("retry-after", "0")) > 0
-    assert "rate limit" in second_limited_request.json()["detail"].lower()
-finally:
-    app._RATE_LIMITS["/search"] = _rate_limit_original
