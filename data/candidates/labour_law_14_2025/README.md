@@ -1,8 +1,8 @@
 # Labour Law No. 14 of 2025 — candidate corpus
 
-**Status: pending source permission, full Official Gazette comparison, and Egyptian-lawyer review. Not approved for authoritative retrieval.**
+**Status: pending full Official Gazette comparison, source-use assessment, and Egyptian-lawyer review. Not approved for authoritative retrieval.**
 
-This directory tracks the supplied Arabic JSONL corpus and its source review. The file is **not** committed to this public repository because redistribution and commercial-reuse permission have not been established.
+This directory tracks the supplied Arabic JSONL corpus and its source review. The supplied file is **not** committed to this public repository. Its source-use and redistribution conditions have not been fully assessed; this is an unresolved review item, not a claim that permission is necessarily required.
 
 ## Inspected artifact
 
@@ -14,6 +14,10 @@ This directory tracks the supplied Arabic JSONL corpus and its source review. Th
 - Source: [Manshurat text copy](https://manshurat.org/content/qnwn-lml-ljdyd-rqm-14-lsn-2025)
 - Claimed primary publication: Official Gazette issue 18 (supplement), 2025-05-03
 - Review result: structural checks and selected text spot checks only; no full article-by-article comparison against the exact Gazette PDF.
+
+## Candidate transcription fidelity warning
+
+Decision 250 Table 24 JSON batches are **secondary-source candidate transcriptions**, not byte-for-byte quotations. The field `raw_limit_and_note_text` is a working transcription aid; it may contain manually assembled, translated, normalized, or text-layer fragments and must not be treated as verbatim official wording. Every label, formula, CAS token, number, unit, footnote and column association requires comparison against the original Gazette page image before any row can be used authoritatively.
 
 ## Current review documents
 
