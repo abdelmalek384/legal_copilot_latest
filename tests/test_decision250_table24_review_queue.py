@@ -1,6 +1,8 @@
+import tempfile
 import unittest
+from pathlib import Path
 
-from tools.build_decision250_table24_review_queue import categories, render
+from tools.build_decision250_table24_review_queue import categories, load_rows, render
 
 
 class Decision250Table24ReviewQueueTests(unittest.TestCase):
@@ -22,6 +24,11 @@ class Decision250Table24ReviewQueueTests(unittest.TestCase):
         self.assertIn("CURRENTNESS CHECK", tags)
         self.assertIn("NO CAS / GROUP ENTRY", tags)
         self.assertIn("POSSIBLE SURFACE/AIR UNIT REVIEW", tags)
+
+    def test_loader_refuses_partial_queue_when_batches_are_missing(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            with self.assertRaisesRegex(ValueError, "refusing to build a partial review queue"):
+                load_rows(Path(tmp))
 
     def test_render_keeps_queue_as_unverified_triage(self):
         result = render([{
