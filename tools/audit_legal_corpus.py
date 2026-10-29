@@ -90,7 +90,7 @@ def audit(db_path: Path):
         ).fetchall()
         if len(profile_rows) != 1 or profile_rows[0]["profile"] != "legal_corpus":
             raise ValueError("database is not bound to the legal_corpus profile")
-        integrity_messages = [str(row[0]) for row in db.execute("PRAGMA integrity_check").fetchall()]
+        integrity_messages = [str(row[0]) for row in db.execute("PRAGMA integrity_check(100)").fetchall()]
         foreign_key_violation_count = 0
         foreign_key_violations = []
         for row in db.execute("PRAGMA foreign_key_check"):
