@@ -97,3 +97,29 @@ A targeted search located the Ministry of Labour's official announcement dated *
 ## Acquisition attempt record — official Law 14/2025 Gazette PDF
 
 On 2026-10-29, a direct byte-download attempt from the government-hosted ETA portal URL https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf failed in this environment. No local original PDF was obtained and **no SHA-256 is claimed**. This is an environment/download blocker, not evidence that the source is unavailable or that the user lacks access. Do not repeatedly retry the same download route or substitute a hash from another copy. Continue using the accessible Amiri Press searchable official text for targeted work; for the original-file hash/visual-comparison gate, obtain the PDF through a normal authorized browser/manual download route, then hash that exact file and record the retrieval date. No access controls were bypassed.
+
+## E. Newly located October 2026 implementing instruments — priority currentness update
+
+### Prime Minister's Decree 3165/2026 — National Council for Wages
+
+The Amiri Press searchable official text is now located: https://www.alamiria.com/Sec/TashTxt?id=EreMgz%2FNoYY%3D. The publisher's index identifies it as Prime Minister's Decree 3165/2026 on the work system and competencies of the National Council for Wages, issued 2026-10-12; the Amiri Press home page lists it in Official Gazette issue 41 bis (و), dated 2026-10-12. The text expressly cites Labour Law 14/2025, Articles 102–103, and sets out the Council's powers, annual minimum-wage review, annual-increment minimum (3% of insurance wage), 30-day decision period for reduction/exemption applications, six-month meeting cadence, technical secretariat and repeal of Prime Minister's Decree 2659/2020.
+
+**Currentness significance:** Article 102's six-month deadline for a Prime Minister's decision is a separate statutory deadline. Decree 3165 is a strong candidate for the implementing instrument, but its issuance/publication timing appears later than six months after the general commencement date. Record the timing issue for qualified counsel; do not infer invalidity or retroactive effect. Article 106's 30-day challenge rule and NL-071's implementation deadline should link to this decree as an implements relation, not a statutory amendment. Official source: https://www.alamiria.com/Sec/TashTxt?id=EreMgz%2FNoYY%3D. Issue locator: https://alamiria.com/Sec/Home. Full page-by-page Gazette copy/hash and lawyer review remain outstanding.
+
+### Labour Ministry Decisions 74/2026 and 75/2026 — issue 108
+
+The official Amiri Press search index now returns full text leads for both decisions:
+- Decision 74/2026, labour-market observatories: https://www.alamiria.com/Sec/TashTxt?id=7RH1OgZLsC8%3D
+- Decision 75/2026, prohibited work for women to protect maternity and occupational safety/health: https://alamiria.com/Sec/TashTxt?id=82Iv%2FEE2jDk%3D
+
+The official archive record for Egyptian Proceedings supplementary issue 108, dated 2026-05-17, lists both decisions and three files, including the file named تنويه 108.pdf: https://dspace.id.com.eg/items/26264957-bfd5-4f7a-ba09-46268c28c87f. The archive's request-a-copy page explicitly marks the files as restricted access. A request for the correction notice is not being bypassed. Its contents are not accessible in this review, so we cannot determine whether it corrects Decision 74, Decision 75, or another part of issue 108. Keep any possible corrigendum relation unknown; do not assert no corrigendum exists. Direct official text pages time out/return 502 when opened, despite indexed text being available. Article/annex completeness, exact issue page numbers, the notice's relevance, and lawyer review remain pending.
+
+### Labour Ministry Decisions 248–252/2026 — newly indexed safety-and-health instruments
+
+The official archive index for Egyptian Proceedings supplementary issue 225 (تابع أ), dated 2026-10-12, identifies five Ministry of Labour decisions: 248/2026 (forms/statistics for ordinary, chronic and occupational disease, serious accidents and injuries); 249/2026 (establishments required to form occupational-safety/health units and committees); 250/2026 (workplace safety limits, standards, precautions and risk controls); 251/2026 (licensing expert/advisory work in occupational safety and health); and 252/2026 (licensing and training systems in occupational safety and health). Official archive metadata: https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657.
+
+These are relevant currentness leads for Law 14/2025's occupational-safety framework. In this search, direct Amiri Press text URLs were not located for 248–252. The issue metadata is not enough to extract obligations, commencement, annexes, or repeal clauses. Register as archive-metadata-only; do not create authoritative rules until the text and any corrections are obtained through an authorized route.
+
+### Corrigendum / amendment-search state as of 2026-10-29
+
+A targeted web search for amendments/corrigenda to Law 14/2025 did not locate a direct amending statute or a correction notice to the law itself. The official Ministry laws index continues to list Law 14/2025 and Law 12/2003, but it is not a complete amendment-history database. This is a limited negative search, not proof that no later amendment, correction, or interpretive instrument exists. For issue 108 specifically, the indexed correction notice is confirmed to exist but its text is behind a request-a-copy workflow; no claim about its subject or contents is made.
