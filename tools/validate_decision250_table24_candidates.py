@@ -83,6 +83,10 @@ def validate(root: Path = DATA_DIR) -> list[str]:
         source = data.get("source")
         if not isinstance(source, dict) or source.get("url") != EXPECTED_SOURCE:
             errors.append(f"{filename}: missing expected secondary source URL")
+        if not isinstance(source, dict) or source.get("class") != "secondary_transcription":
+            errors.append(f"{filename}: source must be classified as secondary_transcription")
+        if isinstance(source, dict) and source.get("official_pdf_sha256") is not None:
+            errors.append(f"{filename}: must not claim an official PDF hash before obtaining the original bytes")
         if not isinstance(source, dict) or source.get("official_gazette_match") != "not_performed":
             errors.append(f"{filename}: must explicitly state official Gazette match was not performed")
         if data.get("status") != "candidate_only_not_for_authoritative_retrieval":
