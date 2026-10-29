@@ -39,6 +39,7 @@ This directory tracks the supplied Arabic JSONL corpus and its source review. Th
 - [Decision 250 Table 24 candidate batch 15, rows 281–300](decision_250_table24_candidate_batch15_rows281_300_2026-10-29.json): additional candidates, including complex multi-CAS entries; raw anomalies remain pending page-level verification.
 - [Decision 250 Table 24 candidate batch 16, rows 301–320](decision_250_table24_candidate_batch16_rows301_320_2026-10-29.json): further candidates; multi-value entries and possible column alignment issues remain unverified.
 - [Decision 250 Table 24 candidate batch 17, rows 321–340](decision_250_table24_candidate_batch17_rows321_340_2026-10-29.json): further candidates including multi-substance/surface-limit records; all remain pending official-page comparison.
+- [Decision 250 Table 24 candidate batch 18, rows 341–360](decision_250_table24_candidate_batch18_rows341_360_2026-10-29.json): additional candidates including dust/group rows and multi-compound entries; all remain pending official-page comparison.
 - [Table 24 candidate structure validator](../../../tools/validate_decision250_table24_candidates.py): checks JSON batches, row-number continuity, nested rows, source pinpoints, and the hard pending-review status; it does not validate legal correctness.
 - [Decision 250 Table 23 candidate rows](decision_250_table23_first_page_candidate_rows_2026-10-29.json): 137/137 rows now have Arabic labels; the last 74 labels and two CAS entries were added from secondary text and remain pending official-Gazette matching.
 
