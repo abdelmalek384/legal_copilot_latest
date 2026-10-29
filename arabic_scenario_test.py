@@ -9,18 +9,30 @@ import os
 import tempfile
 from datetime import date, timedelta
 
-os.environ["COPILOT_DB"] = os.path.join(tempfile.mkdtemp(prefix="legal_copilot_arabic_test_"), "test.db")
+_ARABIC_TEST_ROOT = tempfile.TemporaryDirectory(prefix="legal_copilot_arabic_test_")
+_ARABIC_TEST_PATH = _ARABIC_TEST_ROOT.name
+os.environ.pop("COPILOT_DB", None)
+os.environ["COPILOT_ENV"] = "development"
+os.environ["COPILOT_CONTROL_DB"] = os.path.join(_ARABIC_TEST_PATH, "control.sqlite3")
+os.environ["COPILOT_TENANT_DB_ROOT"] = os.path.join(_ARABIC_TEST_PATH, "tenants")
+os.environ["COPILOT_CORPUS_DB"] = os.path.join(_ARABIC_TEST_PATH, "corpus.sqlite3")
 os.environ["ADMIN_TOKEN"] = "arabic-scenario-test-token-long-enough-32-chars"
 from fastapi.testclient import TestClient
 import app
 
-client = TestClient(app.app)
-db = app.conn()
-db.execute(
-    "INSERT INTO users(name,email,pw,role,firm_id) VALUES(?,?,?,?,?)",
-    ("مسؤول الاختبار", "arabic-test@example.invalid", app.hash_pw("Arabic-test-password-2026"), "admin", 1),
+runtime = app.get_database_runtime()
+runtime.initialize()
+firm_a, _ = runtime.provision_firm("مكتب اختبار عربي أول")
+firm_b, _ = runtime.provision_firm("مكتب اختبار عربي ثانٍ")
+owner_password = "Arabic-test-password-2026"
+runtime.create_initial_firm_owner(
+    firm_a, "مسؤول الاختبار", "arabic-test@example.invalid", app.hash_pw(owner_password)
 )
-db.commit()
+runtime.create_initial_firm_owner(
+    firm_b, "محامٍ من مكتب آخر", "other-firm-test@example.invalid",
+    app.hash_pw("Other-firm-test-password-2026"),
+)
+client = TestClient(app.app)
 
 login = client.post("/login", json={
     "email": "arabic-test@example.invalid",
@@ -145,15 +157,6 @@ doc_detail = client.get(f"/cases/{created[0][0]}", headers=headers).json()
 assert any(d["name"] == "مستند عقد توريد تجريبي" for d in doc_detail.get("docs", [])), "المستند لا يظهر في ملف القضية"
 
 # Cross-firm isolation: a user in another firm must not read this firm's case.
-db.execute(
-    "INSERT INTO firms(id,name) VALUES(?,?)",
-    (2, "مكتب تجريبي ثانٍ"),
-)
-db.execute(
-    "INSERT INTO users(name,email,pw,role,firm_id) VALUES(?,?,?,?,?)",
-    ("محامٍ من مكتب آخر", "other-firm-test@example.invalid", app.hash_pw("Other-firm-test-password-2026"), "admin", 2),
-)
-db.commit()
 other_client = TestClient(app.app)
 other_login = other_client.post("/login", json={
     "email": "other-firm-test@example.invalid",
