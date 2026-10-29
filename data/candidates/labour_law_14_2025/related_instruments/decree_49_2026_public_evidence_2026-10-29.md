@@ -1,0 +1,54 @@
+# Ministerial Decree 49/2026 — public evidence note for Labour Law Article 124
+
+**Research checked:** 2026-10-29  
+**Related provision:** Article 124, Law No. 14 of 2025 (annual leave).  
+**Status:** Official Ministry announcement located; full operative decision and schedules not obtained. This is not an eligibility list and must not be used to decide an individual worker's entitlement.
+
+## Official public source
+
+Ministry of Labour announcement, dated 26 March 2026:
+https://www.labour.gov.eg/ar/الأخبار/لتحقق-التوازن-بين-متطلبات-الإنتاج-وصون-حقوق-القوى-العاملة-وزير-العمل-يصدر-قرار-ا-وزاري-ا-بتحديد-الأعمال-الخطرة-والمناطق-النائية-التي-ت-زاد-فيها-الإجازات-السنوية-7-أيام-للعاملين/
+
+The Ministry states that Ministerial Decree No. 49 of 2026 was issued to identify hazardous/difficult work and remote areas whose workers receive an additional seven annual-leave days under Article 124.
+
+## What the announcement specifically reports
+
+The Ministry's summary identifies categories of work, including:
+- Chemical industries (37 listed jobs, as summarized by the Ministry).
+- Engineering/heavy-metal industries and their warehouses (7 jobs).
+- High-risk food industries (8 jobs).
+- Spinning, weaving and dyeing (9 jobs).
+- Precision electronics (5 jobs).
+- Extraction of natural/non-metallic resources and energy from the ground (6 jobs).
+- Energy and radiation (7 jobs).
+- Environment and waste management (5 jobs).
+- Certain agricultural, animal, agricultural-research, laboratory and research-farm activities.
+- Health-sector workers directly and continually exposed to infection or occupational biological, chemical or radiation hazards.
+
+The announcement also summarizes remote-area coverage as including, in particular, North Sinai, South Sinai, Red Sea, Matrouh and New Valley governorates; Toshka and surrounding areas; East Oweinat; a five-kilometre-deep strip from Abu Ramada/Ras Gharib toward the Sudanese border in the Halayeb area; and new industrial areas designated by a Prime Minister's decision.
+
+These are **reported announcement details only**. They are not a substitute for the decision's operative wording, annexes, definitions, exceptions, commencement clause, or later amendments.
+
+## Legal-source assessment
+
+| Question | Current evidence | Decision |
+|---|---|---|
+| Does an official source confirm that Decree 49/2026 exists and concerns Article 124? | Yes — Ministry of Labour announcement dated 26 March 2026. | Record as an official announcement lead. |
+| Does the accessible announcement provide a useful outline of sectors/areas? | Yes — summary and counts/categories above. | May support discovery and manual review only. |
+| Is the complete signed decision and all schedules available in the source reviewed here? | Not located in the accessible announcement. | **Unresolved.** |
+| Can a worker's entitlement be concluded from the announcement alone? | No. Individual coverage depends on exact operative lists and facts. | Do not answer yes/no from this note. |
+| Does the announcement prove a later amendment to Article 124? | No; it describes an implementing decision under Article 124. | Do not label Article 124 amended on this evidence alone. |
+| Has the decision's Gazette issue, publication date, commencement, amendments or repeal status been fully verified? | Not in this check. | **Unresolved.** |
+| Is the source text approved for redistribution/commercial use? | No separate affirmative licence was identified in this check. | Rights review remains open. |
+
+## Next lawful route
+
+1. Search the public Official Gazette/IDSC catalogue for the exact decision title/number and its issue/date. The existing repository register records that Gazette metadata may identify the relevant supplement, but metadata alone does not supply the full text.
+2. Use the Ministry announcement and public secondary copies only to identify exact title, number and date; do not infer missing operative clauses.
+3. If the full decision remains unavailable publicly, leave the decision marked unresolved. Do not bypass access controls, scrape prohibited pages, or claim the press release is the decision.
+4. Once the complete public official text is found, record the exact source URL, retrieval date, original file size and SHA-256; compare every annex/schedule against the announcement; record any Article 124 eligibility conditions separately.
+5. Keep all Article 124 cards disabled for authoritative retrieval until the complete decision, currentness, reuse, and qualified Egyptian-lawyer review gates pass.
+
+## Release rule
+
+This note improves source discovery, not legal certainty. It does not change `search_eligible: false` for any evidence card and does not certify the law as current or lawyer-reviewed.
