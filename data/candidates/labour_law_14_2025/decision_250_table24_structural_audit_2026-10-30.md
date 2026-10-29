@@ -1,0 +1,66 @@
+# Decision 250 Table 24 — full candidate-batch structural audit
+
+**Audit date:** 2026-10-30  
+**Branch:** `legal-knowledge-evidence-2026-10-29`  
+**Purpose:** Record an independent structural pass over all committed Table 24 candidate JSON files. This is not legal verification.
+
+## Result
+
+- Batch files parsed: **31/31**
+- Flattened top-level and nested child records: **617**
+- Unique row numbers: **617**
+- Number range: **1–617**
+- Missing row numbers in that range: **0**
+- Duplicate row numbers: **0**
+- Every batch reports source class `secondary_transcription`.
+- Every batch reports `official_gazette_match=not_performed`.
+- Every batch has a null `official_pdf_sha256`; no original Gazette hash is claimed.
+
+## Batch count reconciliation
+
+| Batch range | Flattened records |
+|---|---:|
+| 1–20 | 20 |
+| 21–40 | 20 |
+| 41–60 | 20 |
+| 61–80 | 20 |
+| 81–99 | 19 |
+| 100–120 | 21 |
+| 121–140 | 20 |
+| 141–160 | 20 |
+| 161–180 | 20 |
+| 181–200 | 20 |
+| 201–220 | 20 |
+| 221–240 | 20 |
+| 241–260 | 20 |
+| 261–280 | 20 |
+| 281–300 | 20 |
+| 301–320 | 20 |
+| 321–340 | 20 |
+| 341–360 | 20 |
+| 361–380 | 20 |
+| 381–403 | 23 |
+| 404–423 | 20 |
+| 424–443 | 20 |
+| 444–463 | 20 |
+| 464–483 | 20 |
+| 484–503 | 20 |
+| 504–523 | 20 |
+| 524–543 | 20 |
+| 544–563 | 20 |
+| 564–583 | 20 |
+| 584–603 | 20 |
+| 604–617 | 14 |
+| **Total** | **617** |
+
+The unusual file-name ranges around batches 5–6 and 19–20 reflect the actual flattened row grouping: batch 5 contains rows 81–99, batch 6 rows 100–120, and batch 20 contains parent/child records covering 381–403. The structural audit found no overlap or gap in the final flattened row sequence.
+
+## Explicit limitations
+
+This audit checks JSON parsing, row-number continuity and source metadata as read from the repository. It does **not** establish that any label, CAS number, formula, molecular weight, limit, unit, footnote, column association or health-effect description accurately transcribes the secondary page or the Official Gazette. It does not establish currentness, source-use rights, or legal/safety correctness.
+
+All candidates must remain `pending_official_match`. Table 24 rows officially matched: **0**. Counsel-approved rows: **0**. Rows eligible for authoritative retrieval: **0**.
+
+## Next gate
+
+Obtain the original Gazette supplement through authorized access, record the actual file hash, compare each candidate against the exact page image, resolve anomalies, assess currentness and source-use, and obtain qualified Egyptian OSH counsel review before enabling any row for authoritative retrieval.
