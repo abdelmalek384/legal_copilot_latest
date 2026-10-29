@@ -11,7 +11,7 @@ The article page's HTML text only exposes Articles 1 and 2, while the full decis
 
 - First inspected page: printed Gazette p. 45 (image URL: https://www.almasdar.com/WebP/libfiles/46/3/737.webp)
 - Next page: printed Gazette p. 46 (image URL: https://www.almasdar.com/WebP/libfiles/46/3/738.webp)
-- Inspected through printed Gazette p. 90 (image URL: https://www.almasdar.com/WebP/libfiles/46/3/782.webp); inspected image sequence currently covers pp. 45–90, not the whole decision
+- Inspected through printed Gazette p. 105 (image URL: https://www.almasdar.com/WebP/libfiles/46/3/797.webp); inspected image sequence currently covers pp. 45–105, not the whole decision
 - Decision 251 starts at printed p. 371 in the same issue (page image sequence on https://www.almasdar.com/175152). This indicates Decision 250 and its annexes occupy a very large span between the beginning at p.45 and the next instrument at p.371. Do not assume every intervening page has been reviewed merely because a sequence is available.
 
 The image files are hosted by a secondary publisher and carry its watermark. They appear to reproduce Gazette pages, but the official Gazette PDF bytes have not been acquired or hashed. This is a reproduced scan route, not a certified official download.
@@ -37,6 +37,11 @@ The decision's Article 1 expressly says the decision operates together with its 
 | pp. 84–85 | Explosion hazards and safe use/storage of flammable/explosive materials | Pressure vessels, safety valves, testing/maintenance, ignition control, storage, grounding/bonding, ventilation and explosion prevention | Partial |
 | pp. 86–88 | Construction, demolition and engineering hazards | Risk assessment, work permits, approved plans, supervision, ground/soil conditions, access, protective barriers and emergency arrangements | Partial |
 | pp. 89–90 | Excavation and trenching | Work permits, soil/groundwater assessment, cave-in prevention, protective barriers, safe access/egress, gas monitoring and emergency controls | Partial; exact numeric dimensions and exceptions need confirmation |
+| p. 91 | Demolition | Structural inspection, competent supervision, securing unstable walls/parts, controlled removal and debris handling | Partial |
+| pp. 92–96 | Scaffolds and suspended scaffolds | Design/assembly/inspection, guardrails and fall protection, platform dimensions, anchorage, load limits, weather restrictions and inspection records | Partial; exact dimensions/load limits need high-resolution verification |
+| pp. 97–99 | Rope access / spider systems | Qualified workers, approved equipment, anchor points, backup systems, weather limits, rescue planning, inspections and records | Partial |
+| pp. 100–102 | Concrete and formwork/shoring | Formwork design, loading limits, bracing, inspections, pouring sequence, stripping, emergency response and records | Partial |
+| pp. 103–105 | Work at height and machinery/equipment hazards | Fall prevention, rescue, machine guarding, preventive maintenance and isolation before repair/cleaning | Partial
 
 ## Key technical-table/annex inventory still to extract
 
