@@ -22,6 +22,7 @@ Decision 250 Table 24 JSON batches are **secondary-source candidate transcriptio
 ## Current review documents
 
 - [Legal-knowledge progress report (2026-10-29)](progress_report_2026-10-29.md): current subtask completion estimates, new scan-based source routes, blockers and release-gate counts.
+- [Decision 250 Table 24 full structural audit (2026-10-30)](decision_250_table24_structural_audit_2026-10-30.md): independent parse of all 31 batches; 617 unique rows 1–617, no gaps/duplicates, with zero official matches claimed.
 
 - [Alternative public source routes and instrument inventory (2026-10-29)](alternative_public_source_routes_2026-10-29.md): maps official searchable Amiri Press texts, Ministry of Labour publications, Gazette catalogue metadata and secondary comparison routes; clearly separates full text from metadata-only leads and records currentness limits.
 - [Decision 250 full secondary transcription access review (2026-10-29)](decision_250_full_secondary_transcription_access_review_2026-10-29.md): records the newly found full secondary text, Table 23/Table 24 page map and recovery of the previously missing printed pp.296–370; clearly marks official-file comparison, complete table extraction, currentness and counsel review as open.
