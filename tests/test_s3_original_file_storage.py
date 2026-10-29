@@ -123,13 +123,13 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
         self.client.copy_kms_key_id = "arn:aws:kms:us-east-1:123456789012:key/wrong-key"
         result = run_s3_roundtrip(self.store, 12, b"synthetic acceptance payload")
         self.assertFalse(result["passed"])
-        self.assertTrue(result["cleanup_pending"])
+        self.assertFalse(result["cleanup_pending"])
         self.assertTrue(result["object_id"])
         self.assertIn("error_type", result)
         staged_key = ("private-matter-files", f"firms/12/originals/{result['object_id']}.staged")
         final_key = ("private-matter-files", f"firms/12/originals/{result['object_id']}.blob")
-        self.assertIn(staged_key, self.client.objects)
-        self.assertIn(final_key, self.client.objects)
+        self.assertNotIn(staged_key, self.client.objects)
+        self.assertNotIn(final_key, self.client.objects)
 
     def test_acceptance_firm_gate_requires_dedicated_empty_synthetic_tenant(self):
         from database_runtime import DatabaseRuntime
