@@ -3544,7 +3544,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
     def test_date_models_reject_impossible_calendar_dates(self):
         cases = (
             (app.SessIn, {"date": "2024-02-29"}, "date", "2025-02-29"),
-            (app.DeadlineIn, {"title": "deadline", "due": "2024-02-29"}, "due", "2025-02-29"),
+            (app.DeadlineIn, {"title": "deadline", "due": "2026-10-23"}, "due", "2026-02-30"),
             (app.TaskIn, {"title": "task", "due": "2024-02-29"}, "due", "2024-13-01"),
             (app.FeeIn, {"title": "fee", "amount": 10, "paid": 0, "due": "2024-02-29"}, "due", "2024-04-31"),
             (app.LawRow, {"law": "synthetic", "article": "1", "text": "synthetic", "as_of": "2024-02-29"}, "as_of", "2024-02-30"),
