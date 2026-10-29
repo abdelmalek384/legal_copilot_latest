@@ -34,7 +34,7 @@ Do not write lifecycle status values manually, reuse a database file across firm
 - Keep the control-plane database and catalog restricted to the application/operator identities. Protect database files and sidecars with host ACLs, encryption at rest, backups, and monitoring; POSIX mode bits alone are not a deployment boundary.
 - Static route-to-SQL checks are a regression gate, not proof that every query is correctly scoped. Behavioral authorization review and negative cross-firm tests remain required.
 - `COPILOT_DB` is not the approved database architecture and is not a legacy import path. No legacy database has been deployed or used. Remaining compatibility-dependent test harnesses must be migrated before the compatibility implementation can be removed.
-- The production startup gate requires the three separate database paths and a complete accepted operational evidence manifest. Production original-file uploads remain fail-closed until the deployed S3/KMS backend has passed live acceptance.
+- The production startup gate requires the three separate database paths and a complete accepted operational evidence manifest. Production original-file uploads are currently fail-closed; enabling them requires a reviewed code/configuration change after the deployed S3/KMS backend passes live acceptance.
 
 ## Release blockers
 
