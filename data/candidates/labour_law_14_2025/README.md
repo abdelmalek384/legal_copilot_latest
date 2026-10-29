@@ -29,6 +29,19 @@ The accessible promulgation text states general commencement from 2025-09-01, sp
 
 Later official-source leads include Prime Minister's Decree 2652/2026 and Labour Ministry Decisions 74/2026 and 75/2026. They are tracked separately as possible implementing/related instruments, not assumed to be formal amendments.
 
+## Evidence-backed knowledge progress (2026-10-29)
+
+The following work is a review aid only. It does not change the 311-row candidate corpus to verified/current status and does not enable authoritative retrieval.
+
+- [Numerical evidence ledger batch 1 — NL-001 to NL-036](numerical_rule_evidence_ledger_batch1_2026-10-29.md): 36 candidate numeric assertions with searchable-PDF text-line pinpoints.
+- [Numerical evidence ledger batch 2 — NL-037 to NL-060](numerical_rule_evidence_ledger_batch2_2026-10-29.md): 24 additional candidates with printed-page/article pinpoints from provisional cards.
+- [Numerical evidence ledger batch 3 — NL-061 to NL-072](numerical_rule_evidence_ledger_batch3_2026-10-29.md): 12 additional candidates, including recruitment-agency capital/security thresholds and deadlines.
+- Numerical checklist: **72/120 candidate slots (60% by count)**. Lawyer-approved: **0/72**; complete currentness review: **0/72**. This is not 60% legal verification.
+- [Implementing-instrument currentness register](implementing_instrument_currentness_leads_2026-10-29.md), [structured Decision 162/2026 candidate](decision_162_2026_candidate.json), [13 Gazette-indexed instrument leads](related_instruments_gazette_discovery_batch_2026-10-29.json), and [Decision 49/2026 location reconciliation](decision_49_2026_article124_location_reconciliation_2026-10-29.md).
+- [Official-text copyright and source-access review lead](official_text_copyright_and_access_review_lead_2026-10-29.md): Egyptian IP Law Article 141 appears to exclude official legal documents from copyright protection, subject to Egyptian-counsel confirmation; source-site access terms and bulk-retrieval controls remain separate issues.
+
+**Evidence gaps remain:** the official Gazette PDF has not been downloaded, hashed and visually inspected end-to-end; the 311-row candidate comparison is incomplete; later implementing instruments and possible corrections require full text review; source-access/reuse questions and Egyptian-lawyer review remain open. Keep every candidate out of authoritative retrieval until the applicable gates pass.
+
 ## Permission and import safeguards
 
 The IDSC repository [End User Agreement](https://dspace.id.com.eg/info/end-user-agreement) says commercial exploitation and systematic retrieval to compile a database require express written permission. No permission has been obtained. Public accessibility is not treated as a license.
