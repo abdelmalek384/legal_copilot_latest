@@ -16,10 +16,11 @@ Scope: only the Labour Law 14/2025 evidence-backed legal-knowledge workstream an
    - Decision 251: printed pp. 371–377.
    - Decision 252: printed pp. 378–398.
 4. Added a structured candidate extraction for Decision 249 Table 3: 12 activity/pollutant combinations.
-5. Added a scan-based Decision 251/252 article map and 32 structured numerical candidate assertions for Decision 252. The JSON was parsed and its declared count matches the 32 records.
-6. Transcribed 137 candidate rows from Decision 250 Table 23 (printed pp.242–248) into JSON with quantity/CAS fields. JSON/count validated (137/137); Arabic transcription remains blank for rows 64–137, and CAS values for rows 47–48 remain unresolved rather than guessed.
-7. Located the Ministry's official clarification dated 2026-10-27 about Decision 249. It says existing specialists/acquired positions should not be harmed and directs the competent administration to issue periodic circulars.
-8. Targeted searches on 2026-10-29 did not locate a separate public implementation circular. This is “announced but not located”, not proof none exists.
+5. Added 17 structured candidate requirements/values for Decision 251 licensing, experience, fees, notification timing and licence terms. JSON/count validated (17/17).
+6. Added a scan-based Decision 251/252 article map and 32 structured numerical candidate assertions for Decision 252. The JSON was parsed and its declared count matches the 32 records.
+7. Transcribed 137 candidate rows from Decision 250 Table 23 (printed pp.242–248) into JSON with quantity/CAS fields. JSON/count validated (137/137); Arabic transcription remains blank for rows 64–137, and CAS values for rows 47–48 remain unresolved rather than guessed.
+8. Located the Ministry's official clarification dated 2026-10-27 about Decision 249. It says existing specialists/acquired positions should not be harmed and directs the competent administration to issue periodic circulars.
+9. Targeted searches on 2026-10-29 did not locate a separate public implementation circular. This is “announced but not located”, not proof none exists.
 
 ## Subtask status
 
@@ -29,7 +30,7 @@ Scope: only the Labour Law 14/2025 evidence-backed legal-knowledge workstream an
 | 35-item cross-instrument discrepancy checklist | Structured and count-validated | 100% for checklist structure | Legal text still needs primary-file match |
 | Decision 249 scan discovery | pp.19–44 and Tables 1–3 located | 75% source discovery | Official PDF hash, exact Table 1/2 transcription, currentness and counsel |
 | Decision 250 scan discovery | pp.45–295 inspected (251 of roughly 326 pages in the instrument span) | 77% of the long scan-index task | Hundreds of remaining pages/tables; all technical tables and numerical limits |
-| Decision 251 scan extraction | pp.371–377 indexed; Articles 1–11 summarized from reproduced scans | 65% extraction work | Official-file comparison, currentness, counsel, exact procedural day-count check |
+| Decision 251 scan extraction | pp.371–377 indexed; Articles 1–11 summarized and 17 candidate assertions structured | 70% extraction work | Official-file comparison, currentness, counsel, exact procedural day-count check |
 | Decision 252 scan extraction | pp.378–398 indexed; page-pinned article map plus 32 numerical candidates structured | 75% extraction work | Official-file comparison; ambiguous table cells; currentness and counsel |
 | Decision 249 implementation circulars | Ministry says circulars will be issued; separate circular not located publicly | 35% | Find a public circular or preserve the unresolved gap |
 | Original Gazette PDF hash / full official-byte comparison | Not completed | 0% | Obtain original PDF bytes through ordinary authorized access |
