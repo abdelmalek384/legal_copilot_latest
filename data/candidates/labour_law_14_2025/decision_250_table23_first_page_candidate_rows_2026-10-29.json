@@ -579,9 +579,675 @@
       "quantity_kg": 2268,
       "quantity_lb": 5000,
       "status": "scan_candidate_pending_match"
+    },
+    {
+      "row": 64,
+      "name_en": "Hydrofluoric Acid Anhydrous",
+      "name_ar": null,
+      "cas": "7664-39-3",
+      "quantity_kg": 454,
+      "quantity_lb": 1000,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 65,
+      "name_en": "Hydrogen Bromide",
+      "name_ar": null,
+      "cas": "10035-10-6",
+      "quantity_kg": 2268,
+      "quantity_lb": 5000,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 66,
+      "name_en": "Hydrogen Chloride",
+      "name_ar": null,
+      "cas": "7647-01-0",
+      "quantity_kg": 2268,
+      "quantity_lb": 5000,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 67,
+      "name_en": "Hydrogen Cyanide Anhydrous",
+      "name_ar": null,
+      "cas": "74-90-8",
+      "quantity_kg": 454,
+      "quantity_lb": 1000,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 68,
+      "name_en": "Hydrogen Fluoride",
+      "name_ar": null,
+      "cas": "7664-39-3",
+      "quantity_kg": 454,
+      "quantity_lb": 1000,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 69,
+      "name_en": "Hydrogen Peroxide (52% by weight or greater)",
+      "name_ar": null,
+      "cas": "7722-84-1",
+      "quantity_kg": 3401,
+      "quantity_lb": 7500,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 70,
+      "name_en": "Hydrogen Selenide",
+      "name_ar": null,
+      "cas": "7783-07-5",
+      "quantity_kg": 68,
+      "quantity_lb": 150,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 71,
+      "name_en": "Hydrogen Sulfide",
+      "name_ar": null,
+      "cas": "7783-06-4",
+      "quantity_kg": 680,
+      "quantity_lb": 1500,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 72,
+      "name_en": "Hydroxylamine",
+      "name_ar": null,
+      "cas": "7803-49-8",
+      "quantity_kg": 1134,
+      "quantity_lb": 2500,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 73,
+      "name_en": "Pentacarbonyl Iron",
+      "name_ar": null,
+      "cas": "13463-40-6",
+      "quantity_kg": 113,
+      "quantity_lb": 250,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 74,
+      "name_en": "Isopropylamine",
+      "name_ar": null,
+      "cas": "75-31-0",
+      "quantity_kg": 2268,
+      "quantity_lb": 5000,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 75,
+      "name_en": "Ketene",
+      "name_ar": null,
+      "cas": "463-51-4",
+      "quantity_kg": 45,
+      "quantity_lb": 100,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 76,
+      "name_en": "Methacrylaldehyde",
+      "name_ar": null,
+      "cas": "78-85-3",
+      "quantity_kg": 454,
+      "quantity_lb": 1000,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 77,
+      "name_en": "Methacryloyl Chloride",
+      "name_ar": null,
+      "cas": "920-46-7",
+      "quantity_kg": 68,
+      "quantity_lb": 150,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 78,
+      "name_en": "Methacryloyloxyethyl Isocyanate",
+      "name_ar": null,
+      "cas": "30674-80-7",
+      "quantity_kg": 45,
+      "quantity_lb": 100,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 79,
+      "name_en": "Methyl Acrylonitrile",
+      "name_ar": null,
+      "cas": "126-98-7",
+      "quantity_kg": 113,
+      "quantity_lb": 250,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 80,
+      "name_en": "Anhydrous Methylamine",
+      "name_ar": null,
+      "cas": "74-89-5",
+      "quantity_kg": 454,
+      "quantity_lb": 1000,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 81,
+      "name_en": "Methyl Bromide",
+      "name_ar": null,
+      "cas": "74-83-9",
+      "quantity_kg": 1134,
+      "quantity_lb": 2500,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 82,
+      "name_en": "Methyl Chloride",
+      "name_ar": null,
+      "cas": "74-87-3",
+      "quantity_kg": 6803,
+      "quantity_lb": 15000,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 83,
+      "name_en": "Methyl Chloroformate",
+      "name_ar": null,
+      "cas": "79-22-1",
+      "quantity_kg": 227,
+      "quantity_lb": 500,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 84,
+      "name_en": "Methyl Ethyl Ketone Peroxide (>60%)",
+      "name_ar": null,
+      "cas": "1338-23-4",
+      "quantity_kg": 2268,
+      "quantity_lb": 5000,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 85,
+      "name_en": "Methyl Fluoroacetate",
+      "name_ar": null,
+      "cas": "453-18-9",
+      "quantity_kg": 45,
+      "quantity_lb": 100,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 86,
+      "name_en": "Methyl Fluorosulfate",
+      "name_ar": null,
+      "cas": "421-20-5",
+      "quantity_kg": 45,
+      "quantity_lb": 100,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 87,
+      "name_en": "Methyl Hydrazine",
+      "name_ar": null,
+      "cas": "60-34-4",
+      "quantity_kg": 45,
+      "quantity_lb": 100,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 88,
+      "name_en": "Methyl Iodide",
+      "name_ar": null,
+      "cas": "74-88-4",
+      "quantity_kg": 3401,
+      "quantity_lb": 7500,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 89,
+      "name_en": "Methyl Isocyanate",
+      "name_ar": null,
+      "cas": "624-83-9",
+      "quantity_kg": 113,
+      "quantity_lb": 250,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 90,
+      "name_en": "Methyl Mercaptan",
+      "name_ar": null,
+      "cas": "74-93-1",
+      "quantity_kg": 2268,
+      "quantity_lb": 5000,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 91,
+      "name_en": "Methyl Vinyl Ketone",
+      "name_ar": null,
+      "cas": "78-94-4",
+      "quantity_kg": 45,
+      "quantity_lb": 100,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 92,
+      "name_en": "Methyltrichlorosilane",
+      "name_ar": null,
+      "cas": "75-79-6",
+      "quantity_kg": 227,
+      "quantity_lb": 500,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 93,
+      "name_en": "Nickel Carbonyl",
+      "name_ar": null,
+      "cas": "13463-39-3",
+      "quantity_kg": 68,
+      "quantity_lb": 150,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 94,
+      "name_en": "Nitric Acid (94.5% by weight or greater)",
+      "name_ar": null,
+      "cas": "7697-37-2",
+      "quantity_kg": 227,
+      "quantity_lb": 500,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 95,
+      "name_en": "Nitric Oxide",
+      "name_ar": null,
+      "cas": "10102-43-9",
+      "quantity_kg": 113,
+      "quantity_lb": 250,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 96,
+      "name_en": "p-Nitroaniline",
+      "name_ar": null,
+      "cas": "100-01-6",
+      "quantity_kg": 2268,
+      "quantity_lb": 5000,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 97,
+      "name_en": "Nitromethane",
+      "name_ar": null,
+      "cas": "75-52-5",
+      "quantity_kg": 1134,
+      "quantity_lb": 2500,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 98,
+      "name_en": "Nitrogen Dioxide",
+      "name_ar": null,
+      "cas": "10102-44-0",
+      "quantity_kg": 113,
+      "quantity_lb": 250,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 99,
+      "name_en": "Nitrogen Oxides (NO; NO2; N2O4; N2O3)",
+      "name_ar": null,
+      "cas": "10102-44-0",
+      "quantity_kg": 113,
+      "quantity_lb": 250,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 100,
+      "name_en": "Nitrogen Tetroxide (Nitrogen Peroxide)",
+      "name_ar": null,
+      "cas": "10544-72-6",
+      "quantity_kg": 113,
+      "quantity_lb": 250,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 101,
+      "name_en": "Nitrogen Trifluoride",
+      "name_ar": null,
+      "cas": "7783-54-2",
+      "quantity_kg": 2268,
+      "quantity_lb": 5000,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 102,
+      "name_en": "Nitrogen Trichloride",
+      "name_ar": null,
+      "cas": "10544-73-7",
+      "quantity_kg": 113,
+      "quantity_lb": 250,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 103,
+      "name_en": "Oleum (65% to 80% by weight; fuming sulfuric acid)",
+      "name_ar": null,
+      "cas": "8014-95-7",
+      "quantity_kg": 454,
+      "quantity_lb": 1000,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 104,
+      "name_en": "Osmium Tetroxide",
+      "name_ar": null,
+      "cas": "20816-12-0",
+      "quantity_kg": 45,
+      "quantity_lb": 100,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 105,
+      "name_en": "Oxygen Difluoride (Fluorine Monoxide)",
+      "name_ar": null,
+      "cas": "7783-41-7",
+      "quantity_kg": 45,
+      "quantity_lb": 100,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 106,
+      "name_en": "Ozone",
+      "name_ar": null,
+      "cas": "10028-15-6",
+      "quantity_kg": 45,
+      "quantity_lb": 100,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 107,
+      "name_en": "Pentaborane",
+      "name_ar": null,
+      "cas": "19624-22-7",
+      "quantity_kg": 45,
+      "quantity_lb": 100,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 108,
+      "name_en": "Peracetic Acid (>60% acetic acid)",
+      "name_ar": null,
+      "cas": "79-21-0",
+      "quantity_kg": 454,
+      "quantity_lb": 1000,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 109,
+      "name_en": "Perchloric Acid (>60% by weight)",
+      "name_ar": null,
+      "cas": "7601-90-3",
+      "quantity_kg": 2268,
+      "quantity_lb": 5000,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 110,
+      "name_en": "Perchloromethyl Mercaptan",
+      "name_ar": null,
+      "cas": "594-42-3",
+      "quantity_kg": 68,
+      "quantity_lb": 150,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 111,
+      "name_en": "Perchloryl Fluoride",
+      "name_ar": null,
+      "cas": "7616-94-6",
+      "quantity_kg": 2268,
+      "quantity_lb": 5000,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 112,
+      "name_en": "Peroxyacetic Acid (>60% acetic acid)",
+      "name_ar": null,
+      "cas": "79-21-0",
+      "quantity_kg": 454,
+      "quantity_lb": 1000,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 113,
+      "name_en": "Phosgene (Carbonyl Chloride)",
+      "name_ar": null,
+      "cas": "75-44-5",
+      "quantity_kg": 45,
+      "quantity_lb": 100,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 114,
+      "name_en": "Phosphine (Hydrogen Phosphide)",
+      "name_ar": null,
+      "cas": "7803-51-2",
+      "quantity_kg": 45,
+      "quantity_lb": 100,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 115,
+      "name_en": "Phosphorus Oxychloride",
+      "name_ar": null,
+      "cas": "10025-87-3",
+      "quantity_kg": 454,
+      "quantity_lb": 1000,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 116,
+      "name_en": "Phosphorus Trichloride",
+      "name_ar": null,
+      "cas": "7719-12-2",
+      "quantity_kg": 454,
+      "quantity_lb": 1000,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 117,
+      "name_en": "Phosphoryl Chloride",
+      "name_ar": null,
+      "cas": "10025-87-3",
+      "quantity_kg": 454,
+      "quantity_lb": 1000,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 118,
+      "name_en": "Propargyl Bromide",
+      "name_ar": null,
+      "cas": "106-96-7",
+      "quantity_kg": 45,
+      "quantity_lb": 100,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 119,
+      "name_en": "Propyl Nitrate",
+      "name_ar": null,
+      "cas": "627-13-4",
+      "quantity_kg": 1134,
+      "quantity_lb": 2500,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 120,
+      "name_en": "Sarin",
+      "name_ar": null,
+      "cas": "107-44-8",
+      "quantity_kg": 45,
+      "quantity_lb": 100,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 121,
+      "name_en": "Selenium Hexafluoride",
+      "name_ar": null,
+      "cas": "7783-79-1",
+      "quantity_kg": 454,
+      "quantity_lb": 1000,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 122,
+      "name_en": "Stibine (Antimony Hydride)",
+      "name_ar": null,
+      "cas": "7803-52-3",
+      "quantity_kg": 227,
+      "quantity_lb": 500,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 123,
+      "name_en": "Sulfur Dioxide (liquid)",
+      "name_ar": null,
+      "cas": "7446-09-5",
+      "quantity_kg": 454,
+      "quantity_lb": 1000,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 124,
+      "name_en": "Sulfur Pentafluoride",
+      "name_ar": null,
+      "cas": "5714-22-7",
+      "quantity_kg": 113,
+      "quantity_lb": 250,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 125,
+      "name_en": "Sulfur Tetrafluoride",
+      "name_ar": null,
+      "cas": "7783-60-0",
+      "quantity_kg": 113,
+      "quantity_lb": 250,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 126,
+      "name_en": "Sulfur Trioxide (Sulfuric Anhydride)",
+      "name_ar": null,
+      "cas": "7446-11-9",
+      "quantity_kg": 454,
+      "quantity_lb": 1000,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 127,
+      "name_en": "Sulfuric Anhydride (Sulfur Trioxide)",
+      "name_ar": null,
+      "cas": "7446-11-9",
+      "quantity_kg": 454,
+      "quantity_lb": 1000,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 128,
+      "name_en": "Tellurium Hexafluoride",
+      "name_ar": null,
+      "cas": "7783-80-4",
+      "quantity_kg": 113,
+      "quantity_lb": 250,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 129,
+      "name_en": "Tetrafluoroethylene",
+      "name_ar": null,
+      "cas": "116-14-3",
+      "quantity_kg": 2268,
+      "quantity_lb": 5000,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 130,
+      "name_en": "Tetrafluorohydrazine",
+      "name_ar": null,
+      "cas": "10036-47-2",
+      "quantity_kg": 2268,
+      "quantity_lb": 5000,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 131,
+      "name_en": "Tetramethyl Lead",
+      "name_ar": null,
+      "cas": "75-74-1",
+      "quantity_kg": 454,
+      "quantity_lb": 1000,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 132,
+      "name_en": "Thionyl Chloride",
+      "name_ar": null,
+      "cas": "7719-09-7",
+      "quantity_kg": 113,
+      "quantity_lb": 250,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 133,
+      "name_en": "Trichloro(chloromethyl)silane",
+      "name_ar": null,
+      "cas": "1558-25-4",
+      "quantity_kg": 45,
+      "quantity_lb": 100,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 134,
+      "name_en": "Trichloro(dichlorophenyl)silane",
+      "name_ar": null,
+      "cas": "27137-85-5",
+      "quantity_kg": 1134,
+      "quantity_lb": 2500,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 135,
+      "name_en": "Trichlorosilane",
+      "name_ar": null,
+      "cas": "10025-78-2",
+      "quantity_kg": 2268,
+      "quantity_lb": 5000,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 136,
+      "name_en": "Trifluorochloroethylene",
+      "name_ar": null,
+      "cas": "79-38-9",
+      "quantity_kg": 680,
+      "quantity_lb": 1500,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
+    },
+    {
+      "row": 137,
+      "name_en": "Trimethoxysilane",
+      "name_ar": null,
+      "cas": "2487-90-3",
+      "quantity_kg": 680,
+      "quantity_lb": 1500,
+      "status": "scan_candidate_pending_official_match_arabic_transcription"
     }
   ],
-  "count": 63,
-  "coverage_note": "Rows 1–63 transcribed from printed pp.242–244 (three visible pages of Table 23). CAS numbers for rows 47–48 are intentionally null because the scan reading is ambiguous; do not guess them. This is only a partial table inventory; do not infer a threshold for unlisted substances.",
+  "count": 137,
+  "coverage_note": "Rows 1–137 transcribed from printed pp.242–248 (seven visible pages of Table 23). Rows 47–48 have ambiguous CAS readings and are intentionally null; row 6 and mixture entries 33–34 have no CAS shown in the source. Arabic names for rows 64–137 have not yet been transcribed and are null rather than invented. This remains a partial table inventory.",
   "release_rule": "Verify Arabic/English names, CAS numbers, quantity columns, concentration qualifiers and exact thresholds against the official Gazette file. Check currentness and have qualified Egyptian OSH counsel review before authoritative retrieval."
 }
