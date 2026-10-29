@@ -34,6 +34,7 @@ class FakeS3Client:
     def __init__(self):
         self.objects = {}
         self.calls = []
+        self.copy_kms_key_id = self.CANONICAL_KMS_ARN
 
     def _read(self, bucket, key):
         try:
@@ -78,7 +79,7 @@ class FakeS3Client:
         self.objects[destination] = {
             **value,
             "ServerSideEncryption": kwargs.get("ServerSideEncryption"),
-            "SSEKMSKeyId": self.CANONICAL_KMS_ARN,
+            "SSEKMSKeyId": self.copy_kms_key_id,
         }
         return {}
 
@@ -146,6 +147,28 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
         self.assertEqual(copy_call["ServerSideEncryption"], "aws:kms")
         self.assertEqual(copy_call["SSEKMSKeyId"], "alias/legal-files")
         self.assertEqual(copy_call["IfNoneMatch"], "*")
+
+    def test_finalize_preserves_staged_object_when_destination_kms_key_is_wrong(self):
+        staged = self.store.stage(12, b"recoverable original bytes")
+        self.client.copy_kms_key_id = "arn:aws:kms:us-east-1:123456789012:key/wrong-key"
+
+        with self.assertRaises(ObjectStorageError):
+            self.store.finalize(12, staged.object_id)
+
+        staged_key = ("private-matter-files", f"firms/12/originals/{staged.object_id}.staged")
+        final_key = ("private-matter-files", f"firms/12/originals/{staged.object_id}.blob")
+        self.assertIn(staged_key, self.client.objects)
+        self.assertIn(final_key, self.client.objects)
+        self.assertEqual(
+            self.client.objects[staged_key]["Body"],
+            b"recoverable original bytes",
+            "staged bytes must remain available for safe retry or operator recovery",
+        )
+        self.assertFalse(
+            any(name == "delete_object" and kwargs.get("Key") == staged_key[1]
+                for name, kwargs in self.client.calls),
+            "staged object must not be deleted before destination KMS verification",
+        )
 
     def test_rejects_objects_encrypted_with_a_different_kms_key(self):
         staged = self.store.stage(12, b"confidential")
