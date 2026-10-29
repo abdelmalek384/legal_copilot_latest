@@ -80,6 +80,29 @@ def _has_immutable_trigger(
     )
 
 
+def _require_immutable_binding_guards(
+    connection: sqlite3.Connection, *, profile: str, firm_binding: bool = False
+) -> None:
+    for operation in ("update", "delete"):
+        if not _has_immutable_trigger(
+            connection, f"database_profile_no_{operation}", "database_profile",
+            operation, "database profile binding is immutable",
+        ):
+            raise FleetMigrationError(
+                f"{profile} database is missing its immutable profile guard for {operation}"
+            )
+    if firm_binding:
+        for operation in ("update", "delete"):
+            if not _has_immutable_trigger(
+                connection, f"tenant_database_binding_no_{operation}", "tenant_database_binding",
+                operation, "tenant database firm binding is immutable",
+            ):
+                raise FleetMigrationError(
+                    "Tenant database is missing its immutable firm binding guard "
+                    f"for {operation}"
+                )
+
+
 def _migration_inventory(directory: Path) -> list[tuple[int, str, str]]:
     if directory.is_symlink() or not directory.is_dir():
         raise FleetMigrationError("Trusted firm migration directory is missing or unsafe")
