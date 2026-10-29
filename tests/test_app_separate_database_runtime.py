@@ -1182,6 +1182,56 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             expected_sha256=staged.sha256, expected_size=staged.byte_size,
         ))
 
+    def test_production_original_storage_requires_complete_acceptance_manifest(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate("post", "/cases", json={"title": "Production Evidence Gate"})
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+
+        from docx import Document
+        import io
+        buffer = io.BytesIO()
+        document = Document()
+        document.add_paragraph("Production evidence gate test content")
+        document.save(buffer)
+
+        original_env = {
+            key: os.environ.get(key)
+            for key in (
+                "COPILOT_ENV",
+                "COPILOT_OBJECT_STORAGE_BACKEND",
+                "COPILOT_DATABASE_ACCEPTANCE_FILE",
+            )
+        }
+        os.environ["COPILOT_ENV"] = "production"
+        os.environ["COPILOT_OBJECT_STORAGE_BACKEND"] = "s3"
+        os.environ.pop("COPILOT_DATABASE_ACCEPTANCE_FILE", None)
+        try:
+            with patch.object(app, "_mfa_required_for_user", return_value=False):
+                response = self._mutate(
+                    "post", f"/cases/{case_id}/upload",
+                    files={"file": ("production-evidence-gate.docx", buffer.getvalue(),
+                                    "application/vnd.openxmlformats-officedocument.wordprocessingml.document")},
+                )
+        finally:
+            for key, value in original_env.items():
+                if value is None:
+                    os.environ.pop(key, None)
+                else:
+                    os.environ[key] = value
+
+        self.assertEqual(response.status_code, 503, response.text)
+        context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        firm_db = self.runtime.firm_connection(context)
+        self.assertEqual(
+            firm_db.execute("SELECT COUNT(*) FROM docs WHERE case_id=?", (case_id,)).fetchone()[0],
+            0,
+            "production uploads must not create metadata without accepted operational evidence",
+        )
+
     def test_original_file_storage_fails_closed_in_production_until_backend_is_available(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
