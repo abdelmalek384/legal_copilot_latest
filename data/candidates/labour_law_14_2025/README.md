@@ -17,6 +17,8 @@ This directory tracks the supplied Arabic JSONL corpus and its source review. Th
 
 ## Current review documents
 
+- [Legal-knowledge progress report (2026-10-29)](progress_report_2026-10-29.md): current subtask completion estimates, new scan-based source routes, blockers and release-gate counts.
+
 - [Alternative public source routes and instrument inventory (2026-10-29)](alternative_public_source_routes_2026-10-29.md): maps official searchable Amiri Press texts, Ministry of Labour publications, Gazette catalogue metadata and secondary comparison routes; clearly separates full text from metadata-only leads and records currentness limits.
 
 - [Source and legal-status review](source_and_legal_review.md)
