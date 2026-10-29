@@ -121,9 +121,9 @@ def inspect_environment(env=None, *, require_separate=False):
             smtp_port = int(env.get("COPILOT_EMAIL_SMTP_PORT", "587"))
         except ValueError:
             smtp_port = 0
-        if not smtp_host or any(char in smtp_host for char in "\\r\\n"):
+        if not smtp_host or any(char in smtp_host for char in "\r\n"):
             errors.append("COPILOT_EMAIL_SMTP_HOST must be configured as a valid SMTP hostname.")
-        if not smtp_from or any(char in smtp_from for char in "\\r\\n") or "@" not in smtp_from:
+        if not smtp_from or any(char in smtp_from for char in "\r\n") or "@" not in smtp_from:
             errors.append("COPILOT_EMAIL_FROM must be configured as a valid sender address.")
         if not 1 <= smtp_port <= 65535:
             errors.append("COPILOT_EMAIL_SMTP_PORT must be an integer from 1 to 65535.")
