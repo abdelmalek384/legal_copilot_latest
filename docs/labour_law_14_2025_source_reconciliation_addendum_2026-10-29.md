@@ -48,3 +48,19 @@ Until the evidence package is complete, all related cards must remain search_eli
 - Ministry of Labour announcement for Decision 49/2026: https://www.labour.gov.eg/ar/الأخبار/لتَحقِق-التوازن-بين-متطلبات-الإنتاج-وصون-حقوق-القوى-العاملة-وزير-العمل-يصدر-قرارًا-وزاريًا-بتحديد-الأعمال-الخطرة-والمناطق-النائية-التي-تُزاد-فيها-الإجازات-السنوية-7-أيام-للعاملين/
 
 **Rights note:** These links are source leads, not a blanket licence to scrape, store, index, commercially process, display, or redistribute their contents. No access restrictions should be bypassed.
+
+
+## Follow-up from inspecting the archive and the Decision 49 transcription
+
+**Archive access outcome:** The IDSC record exposes a “Request a copy of the file” page for the 3 May 2025 Gazette PDF and marks the files as restricted access. This is not a public direct-download route. No request was submitted and no restriction was bypassed. The archive metadata remains a locator only until an authorized copy is obtained.
+
+**Decision 49/2026 secondary-text pinpoint:** The accessible legal transcription states:
+- It identifies the instrument as Ministerial Decision No. 49/2026.
+- It reports publication in Egyptian Proceedings on 18 March 2026.
+- Its closing lines state the decision was issued on 3 March 2026.
+- Article 3, lines 256–273 of the accessible transcription lists the remote areas and uses the wording “من قرية الزعفرانة / رأس غارب حتى الحدود المصرية السودانية بمنطقة حلايب جنوبًا وبعمق خمسة كيلومترات”.
+- Article 5, lines 275–282 says the decision is published in Egyptian Proceedings and takes effect the day after publication.
+
+These are pinpointed observations from a **secondary transcription**, not a source-authenticity finding. They make the geographic discrepancy concrete but do not resolve it against the official instrument. The Ministry news page is an official announcement, yet it is not the full schedule. Therefore, do not mark Article 124's implementing area list as fully verified.
+
+**Current disposition:** The primary-copy request page is a genuine acquisition blocker for the Gazette PDF. Continue with the official searchable Amiri Press text and accessible secondary transcription for comparison work, but preserve the distinct source labels and unresolved primary-source gate. Do not claim a Gazette-byte hash when the bytes have not been obtained.
