@@ -67,39 +67,58 @@ For every route, review authentication and role checks, tenant derivation from t
 
 ## Database table inventory
 
-The inventory includes the FTS5 virtual table `chunks_fts`; SQLite's internal FTS shadow tables are implementation details and are excluded from the application-owned object list.
+The inventory is the union of the current `control_plane`, `firm`, and `legal_corpus` migration profiles. Names such as `database_profile`, `schema_migrations`, `chunks`, and `chunks_fts` may appear in more than one profile but remain physically separate. The inventory includes the FTS5 virtual table `chunks_fts`; SQLite internal tables and FTS shadow tables are excluded.
 
 The table list below is a schema-review queue. “Needs schema-level review” is deliberately not a finding that a table is vulnerable. For each table, inspect its actual columns, indexes, foreign keys, insert/update/delete paths, firm ownership, and backup/restore/deletion behavior. Shared statutory-law data may be global and read-only only where explicitly intended; firm/client data must be tenant-scoped.
 
-| Table | Initial status | Required review |
+| Table | Schema profile(s) | Required review |
 |---|---|---|
-| `chunks_fts` | Virtual table | FTS5 search index over normalized chunk text; inspect index rebuild and consistency behavior |
-| `chunks` | Needs schema-level review | Confirm firm ownership / global-law status, foreign keys, access paths, retention and backup treatment |
-| `firms` | Needs schema-level review | Confirm firm ownership / global-law status, foreign keys, access paths, retention and backup treatment |
-| `users` | Needs schema-level review | Confirm firm ownership / global-law status, foreign keys, access paths, retention and backup treatment |
-| `auth_sessions` | Needs schema-level review | Confirm firm ownership / global-law status, foreign keys, access paths, retention and backup treatment |
-| `security_audit_events` | Needs schema-level review | Confirm firm ownership / global-law status, foreign keys, access paths, retention and backup treatment |
-| `login_attempts` | Needs schema-level review | Confirm firm ownership / global-law status, foreign keys, access paths, retention and backup treatment |
-| `cases` | Needs schema-level review | Confirm firm ownership / global-law status, foreign keys, access paths, retention and backup treatment |
-| `notes` | Needs schema-level review | Confirm firm ownership / global-law status, foreign keys, access paths, retention and backup treatment |
-| `deadlines` | Needs schema-level review | Confirm firm ownership / global-law status, foreign keys, access paths, retention and backup treatment |
-| `fees` | Needs schema-level review | Confirm firm ownership / global-law status, foreign keys, access paths, retention and backup treatment |
-| `members` | Needs schema-level review | Confirm firm ownership / global-law status, foreign keys, access paths, retention and backup treatment |
-| `tasks` | Needs schema-level review | Confirm firm ownership / global-law status, foreign keys, access paths, retention and backup treatment |
-| `events` | Needs schema-level review | Confirm firm ownership / global-law status, foreign keys, access paths, retention and backup treatment |
-| `case_deletion_audit` | Needs schema-level review | Confirm firm ownership / global-law status, foreign keys, access paths, retention and backup treatment |
-| `api_rate_limit_windows` | Needs schema-level review | Confirm firm ownership / global-law status, foreign keys, access paths, retention and backup treatment |
-| `sessions` | Needs schema-level review | Confirm firm ownership / global-law status, foreign keys, access paths, retention and backup treatment |
-| `docs` | Needs schema-level review | Confirm firm ownership / global-law status, foreign keys, access paths, retention and backup treatment |
-| `legal_sources` | Needs schema-level review | Confirm firm ownership / global-law status, foreign keys, access paths, retention and backup treatment |
-| `legal_documents` | Needs schema-level review | Confirm firm ownership / global-law status, foreign keys, access paths, retention and backup treatment |
-| `legal_document_versions` | Needs schema-level review | Confirm firm ownership / global-law status, foreign keys, access paths, retention and backup treatment |
-| `legal_version_relations` | Needs schema-level review | Confirm firm ownership / global-law status, foreign keys, access paths, retention and backup treatment |
-| `legal_review_events` | Needs schema-level review | Confirm firm ownership / global-law status, foreign keys, access paths, retention and backup treatment |
-| `research_conversations` | Needs schema-level review | Confirm firm ownership / global-law status, foreign keys, access paths, retention and backup treatment |
-| `research_messages` | Needs schema-level review | Confirm firm ownership / global-law status, foreign keys, access paths, retention and backup treatment |
-| `document_extraction_reviews` | Needs schema-level review | Confirm firm ownership / global-law status, foreign keys, access paths, retention and backup treatment |
-
+| `api_rate_limit_windows` | control_plane | Rate-limit state; confirm retention, key normalization, and cross-process behavior. |
+| `auth_sessions` | control_plane | Global authenticated-session state; verify revocation, expiry, and credential-change invalidation. |
+| `case_deletion_audit` | firm | Matter-deletion snapshots; enforce tenant/case scope, immutable audit behavior, and retention. |
+| `cases` | firm | Confidential matter records; enforce firm/case ownership and safe export/deletion behavior. |
+| `chunks` | firm, legal_corpus | Physically separate matter extraction from legal-reference text; verify FTS and access boundaries. |
+| `chunks_fts` | firm, legal_corpus | Profile-local FTS5 indexes; verify synchronization, rebuild, and integrity checks. |
+| `database_profile` | control_plane, firm, legal_corpus | Immutable profile marker; startup and migration preflight must reject missing or altered guards. |
+| `deadlines` | firm | Matter deadlines; enforce case membership, tenant scope, and reminder lifecycle rules. |
+| `docs` | firm | Document metadata and extraction state; enforce case linkage and atomic audit persistence. |
+| `document_extraction_reviews` | firm | Append-only extraction review history; enforce case/document/chunk binding and integrity. |
+| `events` | firm | Matter event history; enforce case scope, audit atomicity, and retention. |
+| `fees` | firm | Financial matter data; enforce case membership and aggregate isolation. |
+| `firm_memberships` | control_plane | Global identity-to-firm access grants; audit creation, suspension, and revocation. |
+| `firms` | control_plane | Tenant lifecycle state; enforce provisioning, disablement, and recovery transitions. |
+| `identity_invitations` | control_plane | Single-use firm-scoped invitations; enforce expiry, revocation, and audit behavior. |
+| `identity_lifecycle_events` | control_plane | Identity and membership lifecycle audit; protect integrity and limit sensitive details. |
+| `legal_document_versions` | legal_corpus | Versioned legal sources; require review evidence before verified/current status. |
+| `legal_documents` | legal_corpus | Global legal-source registry metadata; respect source permissions and licensing decisions. |
+| `legal_import_staging` | legal_corpus | Unverified import staging; ensure staged passages are not searchable as verified law. |
+| `legal_review_events` | legal_corpus | Global legal-review evidence; require platform roles and atomic writes. |
+| `legal_sources` | legal_corpus | Source provenance and reuse permissions; preserve reviewed licensing decisions. |
+| `legal_version_relations` | legal_corpus | Version relationship metadata; validate relation endpoints and provenance. |
+| `login_attempts` | control_plane | Authentication throttling state; validate normalized-email and distributed rate limits. |
+| `members` | firm | Case membership; enforce row-scope guards and atomic task reassignment on member removal. |
+| `mfa_credentials` | control_plane | Authenticator secrets and state; protect encryption, re-enrollment, and revocation. |
+| `mfa_recovery_codes` | control_plane | Single-use recovery-code hashes; never store plaintext codes. |
+| `mfa_security_events` | control_plane | MFA security history; enforce append-only audit and safe access. |
+| `notes` | firm | Matter notes; enforce case membership and atomic audit writes. |
+| `original_file_deletion_events` | firm | Original-file deletion audit; preserve append-only lifecycle evidence. |
+| `original_file_deletion_requests` | firm | Original-file deletion workflow; require authorization, legal-hold checks, and atomic approvals. |
+| `original_file_hold_events` | firm | Legal-hold event ledger; preserve immutable hold/release evidence. |
+| `original_file_objects` | firm | Opaque original-file references and lifecycle state; validate object integrity and tenant binding. |
+| `password_recovery_tokens` | control_plane | Hashed, single-use recovery tokens; enforce expiry and session revocation. |
+| `platform_security_events` | control_plane | Privileged platform security audit; ensure atomic writes and restricted access. |
+| `reminder_deliveries` | firm | Durable reminder outbox; prevent duplicate sends and suppress disabled accounts/firms. |
+| `reminder_delivery_attempts` | firm | Reminder delivery attempt history; ensure safe retry and audit behavior. |
+| `research_conversations` | firm | User-owned research conversations; enforce owner and firm scope. |
+| `research_messages` | firm | Research messages and answer payloads; enforce conversation ownership and safe retention. |
+| `schema_migrations` | control_plane, firm, legal_corpus | Immutable migration ledger; verify checksums, ordering, and missing applied files. |
+| `security_audit_events` | firm | Firm-scoped security audit exports; enforce admin access and CSV formula neutralization. |
+| `sessions` | firm | Matter/session data; verify scope, lifecycle, and retention. |
+| `tasks` | firm | Matter task state; enforce case membership and prevent dashboard/calendar disclosure. |
+| `tenant_database_binding` | firm | Immutable firm ID binding; require database-level update/delete guards. |
+| `tenant_database_catalog` | control_plane | Trusted database filename and lifecycle catalog; reject orphan rows/files and binding mismatch. |
+| `user_platform_roles` | control_plane | Privileged platform roles; enforce explicit grant governance, revocation, and audit. |
+| `users` | control_plane | Global identities and credentials; enforce canonical email uniqueness, MFA, disablement, and recovery. |
 ## Cross-cutting surfaces not fully represented by route decorators
 
 - **Document upload and extraction:** `POST /cases/{cid}/upload`, document metadata, chunks, extraction-review audit, correction writes, temporary buffers, file retention and cleanup.
