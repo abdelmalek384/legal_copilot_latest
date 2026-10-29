@@ -129,5 +129,40 @@ class SeparateRuntimeAuthenticationRateLimitTests(unittest.TestCase):
         self.assertEqual(recovered.status_code, 200, recovered.text)
 
 
+    def test_upload_throttle_runs_before_authentication_and_persists_in_control_plane(self):
+        control = self.runtime.control_connection()
+        now = int(app.time.time())
+        window_start = int(now // 3600) * 3600
+        control.execute(
+            "DELETE FROM api_rate_limit_windows WHERE bucket='upload' "
+            "AND client_key='testclient' AND window_start=?",
+            (window_start,),
+        )
+        control.commit()
+
+        original_limit = app._UPLOAD_RATE_LIMIT
+        app._UPLOAD_RATE_LIMIT = (1, 3600)
+        try:
+            first = self.client.post(
+                "/cases/1/upload", files={"file": ("rate-limit.docx", b"x")}
+            )
+            self.assertNotEqual(first.status_code, 429, first.text)
+            second = self.client.post(
+                "/cases/1/upload", files={"file": ("rate-limit.docx", b"x")}
+            )
+            self.assertEqual(second.status_code, 429, second.text)
+            self.assertGreater(int(second.headers.get("Retry-After", "0")), 0)
+        finally:
+            app._UPLOAD_RATE_LIMIT = original_limit
+
+        stored = control.execute(
+            "SELECT hits FROM api_rate_limit_windows WHERE bucket='upload' "
+            "AND client_key='testclient' AND window_start=?",
+            (window_start,),
+        ).fetchone()
+        self.assertIsNotNone(stored)
+        self.assertEqual(stored["hits"], 2)
+
+
 if __name__ == "__main__":
     unittest.main()
