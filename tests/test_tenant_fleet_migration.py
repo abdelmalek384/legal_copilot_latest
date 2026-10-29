@@ -164,6 +164,39 @@ class TenantFleetMigrationTests(unittest.TestCase):
                 self.migrations_root,
             )
 
+    def test_preflight_refuses_tenant_schema_object_drift(self):
+        with sqlite3.connect(self.tenant_path) as tenant:
+            tenant.execute("DROP INDEX idx_cases_firm")
+        with self.assertRaisesRegex(FleetMigrationError, "Tenant .* schema objects differ"):
+            build_plan(
+                self.runtime.paths.control_plane,
+                self.runtime.paths.tenant_root,
+                self.migrations_root,
+            )
+
+    def test_preflight_refuses_control_plane_schema_object_drift(self):
+        with sqlite3.connect(self.runtime.paths.control_plane) as control:
+            control.execute("DROP INDEX idx_tenant_database_catalog_status")
+        with self.assertRaisesRegex(FleetMigrationError, "Control-plane schema objects differ"):
+            build_plan(
+                self.runtime.paths.control_plane,
+                self.runtime.paths.tenant_root,
+                self.migrations_root,
+            )
+
+    def test_preflight_refuses_pending_control_plane_migrations(self):
+        pending = self.migrations_root / "control_plane" / "9999_fleet_test_table.sql"
+        pending.write_text(
+            "CREATE TABLE fleet_control_migration_test (id INTEGER PRIMARY KEY);\\n",
+            encoding="utf-8",
+        )
+        with self.assertRaisesRegex(FleetMigrationError, "Control-plane database has pending migrations"):
+            build_plan(
+                self.runtime.paths.control_plane,
+                self.runtime.paths.tenant_root,
+                self.migrations_root,
+            )
+
     def test_preflight_refuses_tenant_firm_binding_mismatch(self):
         connection = sqlite3.connect(self.tenant_path)
         connection.execute("DROP TRIGGER tenant_database_binding_no_update")

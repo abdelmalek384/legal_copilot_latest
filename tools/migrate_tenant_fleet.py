@@ -103,6 +103,41 @@ def _require_immutable_binding_guards(
                 )
 
 
+def _schema_object_inventory(connection: sqlite3.Connection) -> tuple:
+    return tuple(
+        (str(row[0]), str(row[1]), str(row[2]), row[3])
+        for row in connection.execute(
+            "SELECT type,name,tbl_name,sql FROM sqlite_master "
+            "WHERE name NOT GLOB 'sqlite_*' ORDER BY type,name"
+        )
+    )
+
+
+def _validate_schema_against_migrations(
+    source: sqlite3.Connection, profile: str, migrations_root: Path, label: str
+) -> None:
+    """Validate a disposable, migration-upgraded copy against a fresh trusted schema."""
+    actual = sqlite3.connect(":memory:")
+    expected = sqlite3.connect(":memory:")
+    try:
+        source.backup(actual)
+        apply_profile_migrations(actual, profile, migrations_root)
+        apply_profile_migrations(expected, profile, migrations_root)
+        if _schema_object_inventory(actual) != _schema_object_inventory(expected):
+            raise FleetMigrationError(
+                f"{label} schema objects differ from the trusted migration result"
+            )
+    except FleetMigrationError:
+        raise
+    except Exception as exc:
+        raise FleetMigrationError(
+            f"{label} schema could not be validated against trusted migrations"
+        ) from exc
+    finally:
+        actual.close()
+        expected.close()
+
+
 def _migration_inventory(directory: Path) -> list[tuple[int, str, str]]:
     if directory.is_symlink() or not directory.is_dir():
         raise FleetMigrationError("Trusted firm migration directory is missing or unsafe")
@@ -129,8 +164,10 @@ def _migration_inventory(directory: Path) -> list[tuple[int, str, str]]:
     return sorted(inventory)
 
 
-def _pending_versions(connection: sqlite3.Connection, migrations_root: Path) -> list[int]:
-    inventory = _migration_inventory(migrations_root / "firm")
+def _pending_versions(
+    connection: sqlite3.Connection, migrations_root: Path, profile: str = "firm"
+) -> list[int]:
+    inventory = _migration_inventory(migrations_root / profile)
     try:
         recorded = {
             int(row["version"]): (str(row["name"]), str(row["checksum_sha256"]))
@@ -181,6 +218,14 @@ def build_plan(control_db: str | Path, tenant_root: str | Path, migrations_root:
             if profile is None or profile["profile"] != "control_plane":
                 raise FleetMigrationError("Control database is not immutably bound to control_plane")
             _require_immutable_binding_guards(control, profile="Control-plane")
+            pending_control = _pending_versions(control, migrations, "control_plane")
+            if pending_control:
+                raise FleetMigrationError(
+                    "Control-plane database has pending migrations; migrate it separately"
+                )
+            _validate_schema_against_migrations(
+                control, "control_plane", migrations, "Control-plane"
+            )
             if control.execute("PRAGMA foreign_key_check").fetchall():
                 raise FleetMigrationError("Control-plane catalog has foreign-key violations")
             rows = control.execute(
@@ -269,6 +314,9 @@ def build_plan(control_db: str | Path, tenant_root: str | Path, migrations_root:
             if foreign_key_errors:
                 raise FleetMigrationError(f"Tenant {firm_id} failed foreign_key_check")
             pending = _pending_versions(tenant, migrations)
+            _validate_schema_against_migrations(
+                tenant, "firm", migrations, f"Tenant {firm_id}"
+            )
         metadata = path.stat()
         targets.append({
             "firm_id": firm_id,
