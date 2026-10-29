@@ -41,6 +41,6 @@
     {"row":96,"name_ar":"1- بروموبروبان","name_en":"1-Bromopropane","cas":"106-94-5","source_line":4646,"raw_limit_and_note_text":"C3H7Br؛ 122,99؛ 0,1 جزء / مليون؛ م3؛ A3؛ تلف الجهاز العصبي المركزي، الاعتلال العصبي المحيطي - التأثير على الدم - يؤثر على النمو - سمية الجهاز التناسلي (للذكور والإناث)","status":"pending_official_match"},
     {"row":97,"name_ar":"بوبروفيزين","name_en":"Buprofezin","cas":"69327-76-0","source_line":4648,"raw_limit_and_note_text":"C16H23N3OS؛ 305,4؛ 0,5 مجم/ م3(IFV)؛ DSEN; A4؛ م4، تحسس الجلد؛ تأثيرات على الكبد والغدة الدرقية","status":"pending_official_match"},
     {"row":98,"name_ar":"1,3- بيوتاديين","name_en":"1,3-Butadiene","cas":"106-99-0","source_line":4650,"raw_limit_and_note_text":"C4H6؛ 54,09؛ 2 جزء / مليون؛ A2; BEI؛ م2، مؤشر التعرض الحيوي؛ سرطان","status":"pending_official_match"},
-    {"row":99,"name_ar":"بيوتان، النظائر","name_en":"Butane, isomers","cas":"75-28-5; 106-97-8","source_line":4651,"raw_limit_and_note_text":"C4H10؛ 58,12؛ 1000 جزء / مليون (EX)؛ تلف الجهاز العصبي المركزي","status":"pending_official_match"},
+    {"row":99,"name_ar":"بيوتان، النظائر","name_en":"Butane, isomers","cas":"75-28-5; 106-97-8","source_line":4651,"raw_limit_and_note_text":"C4H10؛ 58,12؛ 1000 جزء / مليون (EX)؛ تلف الجهاز العصبي المركزي" ,"status":"pending_official_match"}
   ]
 }
