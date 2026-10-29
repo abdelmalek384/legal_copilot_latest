@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "record_type": "secondary_source_candidate_extraction",
+  "instrument": "Egyptian Minister of Labour Decision 250/2026",
+  "table": "24",
+  "table_title_ar": "الحدود العتبية للمواد الكيميائية الخطرة",
+  "research_date": "2026-10-29",
+  "source": {
+    "class": "secondary_transcription",
+    "url": "https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html",
+    "publication_date": "2026-10-26",
+    "source_lines": "5224-5255",
+    "official_gazette_match": "not_performed",
+    "official_pdf_sha256": null
+  },
+  "status": "candidate_only_not_for_authoritative_retrieval",
+  "important_limits": [
+    "Secondary transcription only; no official Gazette page-image comparison.",
+    "Raw limits, units and symbols are not normalized.",
+    "Multi-isomer and mixed-substance entries require primary-page association checks.",
+    "Not for workplace safety decisions or compliance advice."
+  ],
+  "declared_top_level_row_range": {"start": 444, "end": 463},
+  "rows": [
+    {"row":444,"name_ar":"ميثوكسي كلور","name_en":"Methoxychlor","cas":"72-43-5","source_line":5224,"raw_limit_and_note_text":"C16H15Cl3O2؛ 345,65؛ 10 مجم/م3؛ م4؛ A4؛ تلف الكبد - خلل الجهاز العصبي المركزي","status":"pending_official_match"},
+    {"row":445,"name_ar":"2-ميثوكسي إيثانول","name_en":"2-Methoxyethanol","cas":"109-86-4","source_line":5226,"raw_limit_and_note_text":"C3H8O2؛ 76,09؛ 0,1 جزء/مليون؛ Skin; BEI؛ جلد، مؤشر التعرض الحيوي؛ تأثير على الدم والجهاز التناسلي","status":"pending_official_match"},
+    {"row":446,"name_ar":"2-ميثوكسي خلات الإيثيل","name_en":"2-Methoxyethyl acetate","cas":"110-49-6","source_line":5227,"raw_limit_and_note_text":"C5H10O3؛ 118,13؛ 0,1 جزء/مليون؛ Skin; BEI؛ جلد، مؤشر التعرض الحيوي؛ تأثير على الدم والجهاز التناسلي","status":"pending_official_match"},
+    {"row":447,"name_ar":"4-ميثوكسي فينول","name_en":"4-Methoxyphenol","cas":"150-76-5","source_line":5229,"raw_limit_and_note_text":"C7H8O2؛ 124,15؛ 5 مجم/م3؛ تهيج العين - تلف الجلد","status":"pending_official_match"},
+    {"row":448,"name_ar":"1-ميثوكسي-2-بروبانول","name_en":"1-Methoxy-2-propanol","cas":"107-98-2","source_line":5231,"raw_limit_and_note_text":"C4H10O2؛ 90,12؛ 50 جزء/مليون؛ 100 جزء/مليون؛ م4؛ A4؛ تهيج العين والمسالك التنفسية العليا","status":"pending_official_match"},
+    {"row":449,"name_ar":"خلات الميثيل","name_en":"Methyl acetate","cas":"79-20-9","source_line":5232,"raw_limit_and_note_text":"C3H6O2؛ 74,08؛ 200 جزء/مليون؛ 250 جزء/مليون؛ صداع - دوخة - غثيان - تلف العين (انحلال الخلايا العقدية في شبكية العين)","status":"pending_official_match"},
+    {"row":450,"name_ar":"ميثيل أسيتيلين","name_en":"Methylacetylene","cas":"74-99-7","source_line":5234,"raw_limit_and_note_text":"C3H4؛ 40,07؛ 1000 جزء/مليون(EX)؛ خلل الجهاز العصبي المركزي","status":"pending_official_match"},
+    {"row":451,"name_ar":"خليط ميثيل أسيتيلين-بروبادين","name_en":"Methylacetylene-propadiene mixture","cas":"59355-75-8","source_line":5236,"raw_limit_and_note_text":"C3H4 isomers؛ 40,07؛ 1000 جزء/مليون(EX)؛ 1250 جزء/مليون(EX)؛ خلل الجهاز العصبي المركزي","status":"pending_official_match"},
+    {"row":452,"name_ar":"أكريلات الميثيل","name_en":"Methyl acrylate","cas":"96-33-3","source_line":5237,"raw_limit_and_note_text":"C4H6O2؛ 86,09؛ 2 جزء/مليون؛ Skin; DSEN; A4؛ جلد، تحسس جلدي، م4؛ تهيج العين والجلد والمسالك التنفسية العليا - تلف العين","status":"pending_official_match"},
+    {"row":453,"name_ar":"ميثيل أكريلو نايترايل","name_en":"Methylacrylonitrile","cas":"126-98-7","source_line":5239,"raw_limit_and_note_text":"C4H5N؛ 67,09؛ 1 جزء/مليون؛ Skin; A4؛ جلد، م4؛ خلل الجهاز العصبي المركزي؛ تهيج العين والجلد","status":"pending_official_match"},
+    {"row":454,"name_ar":"ميثيلال","name_en":"Methylal","cas":"109-87-5","source_line":5241,"raw_limit_and_note_text":"C3H8O2؛ 76,10؛ 1000 جزء/مليون؛ تهيج العين؛ خلل الجهاز العصبي المركزي","status":"pending_official_match"},
+    {"row":455,"name_ar":"ميثيل أمين","name_en":"Methylamine","cas":"74-89-5","source_line":5242,"raw_limit_and_note_text":"CH3NH2؛ 31,06؛ 5 جزء/مليون؛ 15 جزء/مليون؛ تهيج العين والجلد والمسالك التنفسية العلوية","status":"pending_official_match"},
+    {"row":456,"name_ar":"ميثيل ن-أميل كيتون","name_en":"Methyl n-amyl ketone","cas":"110-43-0","source_line":5244,"raw_limit_and_note_text":"C7H14O؛ 114,18؛ 50 جزء/مليون؛ تهيج العين والجلد","status":"pending_official_match"},
+    {"row":457,"name_ar":"إن-ميثيل أنيلين","name_en":"N-Methylaniline","cas":"100-61-8","source_line":5246,"raw_limit_and_note_text":"C7H9N؛ 107,15؛ 0,5 جزء/مليون؛ Skin; BEIM؛ جلد، مؤشر التعرض الحيوي للمواد المحفزة للميتهيموجلوبين؛ ميتهيموجلوبينية - خلل الجهاز العصبي المركزي","status":"pending_official_match"},
+    {"row":458,"name_ar":"2-ميثيل-2-بيوتين","name_en":"2-Methyl-2-butene","cas":"513-35-9","source_line":5247,"raw_limit_and_note_text":"C5H10؛ 70,13؛ 10 جزء/مليون؛ تأثيرات تسبب تشوهات صبغية","status":"pending_official_match"},
+    {"row":459,"name_ar":"بروميد الميثيل","name_en":"Methyl bromide","cas":"74-83-9","source_line":5249,"raw_limit_and_note_text":"CH3Br؛ 94,95؛ 1 جزء/مليون؛ Skin; A4؛ جلد، م4؛ تهيج المسالك التنفسية العلوية والجلد","status":"pending_official_match"},
+    {"row":460,"name_ar":"ميثيل ثالثي بيوتيل إيثر","name_en":"Methyl tert-butyl ether","cas":"1634-04-4","source_line":5251,"raw_limit_and_note_text":"C5H12O؛ 88,17؛ 50 جزء/مليون؛ م3 A3؛ تهيج المسالك التنفسية العليا وتلف الكلية","status":"pending_official_match","anomaly":"The category token 'م 33A' is garbled in the source extraction; not interpreted here."},
+    {"row":461,"name_ar":"ميثيل ن-بيوتيل كيتون","name_en":"Methyl n-butyl ketone","cas":"591-78-6","source_line":5252,"raw_limit_and_note_text":"C6H12O؛ 100,16؛ 5 جزء/مليون؛ 10 جزء/مليون؛ جلد Skin؛ الاعتلال العصبي المحيطي والأعصاب الطرفية وتلف الخصيتين","status":"pending_official_match"},
+    {"row":462,"name_ar":"كلوريد الميثيل","name_en":"Methyl chloride","cas":"74-87-3","source_line":5254,"raw_limit_and_note_text":"CH3Cl؛ 50,49؛ 50 جزء/مليون؛ 100 جزء/مليون؛ Skin; A4؛ جلد، م4؛ خلل الجهاز العصبي المركزي، تلف الكبد والكلى والخصيتين، وتأثيرات مشوهة للجنين","status":"pending_official_match"},
+    {"row":463,"name_ar":"ميثيل الكلوروفورم","name_en":"Methyl chloroform","cas":"71-55-6","source_line":5255,"raw_limit_and_note_text":"CH3CCl3؛ 133,42؛ 350 جزء/مليون؛ 450 جزء/مليون؛ A4; BEI؛ م4، مؤشر التعرض الحيوي؛ تلف الجهاز العصبي المركزي، تلف الكبد","status":"pending_official_match"}
+  ]
+}
