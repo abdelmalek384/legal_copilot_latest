@@ -116,8 +116,8 @@ def run_s3_roundtrip(store: S3PrivateObjectStore, firm_id: int, payload: bytes |
                 presence = store.object_presence(firm_id, staged.object_id)
                 cleanup_pending = presence != (False, False)
             except Exception:
-                # Wrong-key or policy-denied objects may not be safely removable
-                # through the same verified adapter; leave them for operator review.
+                # Provider policy or transport failures can prevent cleanup;
+                # leave the opaque object ID for operator reconciliation.
                 cleanup_pending = True
         return {
             "passed": False,
