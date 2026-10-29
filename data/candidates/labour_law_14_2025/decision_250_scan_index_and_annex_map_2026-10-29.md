@@ -60,8 +60,9 @@ The inspected pages explicitly refer to accompanying tables, including:
 - radiation exposure tables and controlled-area rules (laser/non-ionizing radiation sections also reference tables 14–18);
 - electric-field/current-frequency exposure tables and related safe-distance requirements referenced around pp.158–160;
 - heat-stress and thermal-exposure tables around pp.184–188;
+- cold-stress Tables 4–6 (provisional pp.189–190), noise Tables 7–8 (pp.191–192), and vibration Tables 9–10 (pp.193–195);
 - whole-body vibration exposure tables and duration-based values around pp.192–195;
-- illumination (lux) table 11 around pp.196–202;
+- illumination (lux) table 11 across pp.196–213;
 - chemical exposure-limit tables around pp.203–210;
 - ionizing-radiation table 12 (p.214), laser tables 13–15 (pp.215–219), infrared table 16 (p.220), UV tables 17–18 (pp.221–224), electromagnetic-field table 19 (p.225), radiofrequency/hot-surface/electrical-clearance tables 20–22 (pp.226–228), and chemical TLV tables (pp.229–235);
 - machinery, equipment, hazardous substances, excavations, demolition, scaffolds, cranes/lifting, hot work, confined spaces, electrical safety, and other task-specific standards referenced in the Ministry's announcement;
