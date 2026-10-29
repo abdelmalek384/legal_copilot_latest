@@ -20,7 +20,7 @@
     "Nested subentries and multiple CAS identifiers are retained; no exposure limits are approved.",
     "Not for safety decisions or compliance advice."
   ],
-  "declared_top_level_row_range": {"start": 81, "end": 100},
+  "declared_top_level_row_range": {"start": 81, "end": 99},
   "rows": [
     {"row":81,"name_ar":"ثنائي الفينيل","name_en":"Biphenyl","cas":"92-52-4","source_line":4620,"raw_limit_and_note_text":"C6H5)2)؛ 154,20؛ 0,2 جزء / مليون؛ يؤثر على وظائف الرئة","status":"pending_official_match"},
     {"row":82,"name_ar":"إثير ثنائي (2 ثنائي ميثيل أمينو إيثيل)","name_en":"Bis (2-dimethylaminoethyl)ether (DMAEE)","cas":"3033-62-3","source_line":4622,"raw_limit_and_note_text":"C8H20N2O؛ 160,26؛ 0,05 جزء / مليون؛ 0,15 جزء / مليون؛ جلد","status":"pending_official_match"},
@@ -42,6 +42,5 @@
     {"row":97,"name_ar":"بوبروفيزين","name_en":"Buprofezin","cas":"69327-76-0","source_line":4648,"raw_limit_and_note_text":"C16H23N3OS؛ 305,4؛ 0,5 مجم/ م3(IFV)؛ DSEN; A4؛ م4، تحسس الجلد؛ تأثيرات على الكبد والغدة الدرقية","status":"pending_official_match"},
     {"row":98,"name_ar":"1,3- بيوتاديين","name_en":"1,3-Butadiene","cas":"106-99-0","source_line":4650,"raw_limit_and_note_text":"C4H6؛ 54,09؛ 2 جزء / مليون؛ A2; BEI؛ م2، مؤشر التعرض الحيوي؛ سرطان","status":"pending_official_match"},
     {"row":99,"name_ar":"بيوتان، النظائر","name_en":"Butane, isomers","cas":"75-28-5; 106-97-8","source_line":4651,"raw_limit_and_note_text":"C4H10؛ 58,12؛ 1000 جزء / مليون (EX)؛ تلف الجهاز العصبي المركزي","status":"pending_official_match"},
-    {"row":100,"name_ar":"نطاق المتابعة","name_en":"Next table entry pending extraction","source_line":null,"raw_limit_and_note_text":null,"status":"placeholder_not_extracted"}
   ]
 }
