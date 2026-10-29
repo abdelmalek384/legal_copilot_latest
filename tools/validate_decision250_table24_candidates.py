@@ -36,6 +36,7 @@ BATCHES = [
     "decision_250_table24_candidate_batch17_rows321_340_2026-10-29.json",
     "decision_250_table24_candidate_batch18_rows341_360_2026-10-29.json",
     "decision_250_table24_candidate_batch19_rows361_380_2026-10-29.json",
+    "decision_250_table24_candidate_batch20_rows381_403_2026-10-29.json",
 ]
 
 
@@ -104,7 +105,7 @@ def validate(root: Path = DATA_DIR) -> list[str]:
             if row.get("status") != "pending_official_match":
                 errors.append(f"{filename}: row {number} must remain pending_official_match")
 
-    expected = set(range(1, 381))
+    expected = set(range(1, 404))
     actual = set(observed)
     missing = sorted(expected - actual)
     unexpected = sorted(actual - expected)
@@ -126,7 +127,7 @@ def main() -> int:
         for error in errors:
             print(f"- {error}")
         return 1
-    print("OK: rows 1–380 are structurally present exactly once; every row remains pending official match.")
+    print("OK: rows 1–403 are structurally present exactly once; every row remains pending official match.")
     print("LIMIT: this does not establish authenticity, legal status, reuse permission, or retrieval eligibility.")
     return 0
 
