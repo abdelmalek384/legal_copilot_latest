@@ -1,66 +1,74 @@
 # Legal knowledge progress report — 2026-10-29
 
-Scope: only the Labour Law 14/2025 evidence-backed legal-knowledge workstream and the related OSH implementing Decisions 248–252/2026.
+**Scope:** Evidence-backed Egyptian Labour Law 14/2025 workstream and the related OSH implementing Decisions 248–252/2026.  
+**Current branch:** `legal-knowledge-evidence-2026-10-29`  
+**Draft PR:** [#840](https://github.com/abdelmalek384/legal_copilot_latest/pull/840)
 
 ## Headline
 
-**Overall evidence-backed legal-content readiness remains 7%.** A full secondary transcription of Decision 250 has now been found, including the technical tables and register templates, materially reducing the text-discovery gap. The legal-release gates remain open: official-file authenticity/hash, exact row extraction and primary-source comparison, complete currentness, source-use assessment and qualified Egyptian-lawyer approval.
+**Overall evidence-backed legal-content readiness remains 7%.** The source-discovery and candidate-extraction work has advanced, but no Table 24 exposure limit has passed official Gazette matching, complete currentness review, source-use assessment, and qualified Egyptian OSH counsel approval.
 
-## Work completed in this work session
+Table 24 candidate extraction now covers **617/745 numbered entries (82.8%)**. This is extraction coverage only, not verified-law coverage. The official Gazette PDF bytes/hash and row-by-row primary-source comparison remain unavailable. No Table 24 row is approved for authoritative retrieval.
 
-1. Added a reusable inventory of alternative public-source routes (official searchable text, Ministry pages, Gazette catalogue, secondary transcriptions).
-2. Built 35 clause/value checks for Decisions 248–252/2026 and stored them both as Markdown and machine-readable JSON. JSON was parsed; 35 clause records match the declared count.
-3. Located reproduced Gazette page-image sequences hosted by Al-Masdar:
-   - Decision 249: printed pp. 19–44, including Articles 1–22 and Tables 1–3.
-   - Decision 250: printed pp. 45–90 inspected so far; definitions, fire, risk assessment, emergency plans, heat/cold stress, noise, vibration, illumination, ionizing/non-ionizing radiation, laser, explosion and excavation sections. A new full secondary transcription was found at Riwaq Al-Jamal: https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html. It maps Table 24 (chemical exposure limits) to printed pp.249–360 and register templates from p.361, covering the previously missing pp.296–370 at the text-discovery layer. This is not an official Gazette file and has not been compared row-by-row to official bytes.
-   - Decision 251: printed pp. 371–377.
-   - Decision 252: printed pp. 378–398.
-4. Added a structured candidate extraction for Decision 249 Table 3: 12 activity/pollutant combinations.
-5. Added 17 structured candidate requirements/values for Decision 251 licensing, experience, fees, notification timing and licence terms. JSON/count validated (17/17).
-6. Added a machine-readable index of 25 Decision 250 technical tables and transcribed 137 candidate rows from Table 23 (pp.242–248). The table-index JSON (25/25) and Table 23 JSON (137/137) parse and match their declared counts. After finding Riwaq's full secondary transcription, all 137 Table 23 candidate rows now have Arabic labels; the last 74 labels and CAS values for rows 47–48 were filled from that secondary text, with source-line ranges and pending-official-match statuses. Raw anomalies (including row 96's malformed Arabic and row 137's Arabic/English name mismatch) were preserved rather than silently corrected. The same source exposes Table 24's 745 numbered chemical-exposure entries and covers pp.296–370, but the complete Table 24 rows have not yet been normalized into structured data.
-7. Found independent Law Hub full-PDF preview routes for Decisions 250, 251 and 252. The preview pages load, but individual Google Drive page-image requests returned 403 in this research interface; no access control was bypassed and no PDF bytes/hash are claimed.
-8. Added a scan-based Decision 251/252 article map and 40 structured numerical candidate assertions for Decision 252. The JSON was parsed and its declared count matches the 32 records.
-9. Transcribed 137 candidate rows from Decision 250 Table 23 (printed pp.242–248) into JSON with quantity/CAS fields. JSON/count validated (137/137); Arabic transcription remains blank for rows 64–137, and CAS values for rows 47–48 remain unresolved rather than guessed.
-10. Located the Ministry's official clarification dated 2026-10-27 about Decision 249. It says existing specialists/acquired positions should not be harmed and directs the competent administration to issue periodic circulars.
-11. Targeted searches on 2026-10-29 did not locate a separate public implementation circular. This is “announced but not located”, not proof none exists.
+## Latest work completed
 
-## Subtask status
+1. Found the full secondary transcription of Decision 250/2026 at:
+   https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html
+   It exposes Table 24 and the previously missing printed pages 296–370 at the text-discovery layer, but is not the Official Gazette file.
+2. Added **31 structured candidate JSON batches** covering Table 24 numbered entries 1–617. Source-line pinpoints are recorded; parent/child chemical variants are preserved; suspicious CAS strings, formulas, decimal/unit ordering, surface/air limits and text-layer anomalies are flagged rather than silently corrected.
+3. Performed structural audits across successive ranges. The checked records cover a continuous row-number sequence through 617, with no gaps or duplicates found in those audits. Each candidate remains `pending_official_match`; this is a structural check, not legal verification.
+4. Added `tools/validate_decision250_table24_candidates.py` and a unit test. The validator is fail-closed on missing/duplicate row numbers, invalid JSON, missing source pinpoints, missing names, wrong source metadata, or a row prematurely marked reviewed.
+5. Added `tools/build_decision250_table24_review_queue.py` and tests. It creates a triage queue for anomalies, high-risk rows, currentness leads, group-level entries and possible surface/air-unit ambiguity without auto-correcting source data.
+6. Added CI workflow steps to validate the candidate batches, test the validator and review-queue behavior, and build the review queue. A completed CI result for the latest head has **not** been confirmed; no passing CI claim is made.
+7. Prepared `lawyer_in_app_acceptance_plan_2026-10-29.md` for a later hands-on review in the running app. This makes lawyer review a separate release gate; it does not claim any lawyer approval.
+8. Decision 250 Table 23 remains at **137/137 candidate labels**. Labels are transcribed from secondary text and still require official page matching.
+9. Decision 251 has 17 candidate licensing/experience/fee assertions; Decision 252 has 40 candidate assertions. They remain secondary/unverified pending official comparison.
+10. The Decisions 248–252 clause discrepancy checklist and related source-route/currentness notes remain candidate evidence, not verified legal conclusions.
 
-| Subtask | Status | Completion estimate | Remaining gate |
-|---|---|---:|---|
-| Alternative source inventory | Added and linked | 100% for the inventory document | New source leads can still be added |
-| 35-item cross-instrument discrepancy checklist | Structured and count-validated | 100% for checklist structure | Legal text still needs primary-file match |
-| Decision 249 scan discovery | pp.19–44 and Tables 1–3 located | 75% source discovery | Official PDF hash, exact Table 1/2 transcription, currentness and counsel |
-| Decision 250 source discovery | Full secondary transcription found; Tables 1–24 and register templates exposed; missing pp.296–370 covered at text-discovery layer | 90% source discovery | Structured extraction of all rows, primary Gazette comparison, official PDF bytes/hash, currentness and counsel |
-| Decision 251 scan extraction | pp.371–377 indexed; Articles 1–11 summarized and 17 candidate assertions structured | 70% extraction work | Official-file comparison, currentness, counsel, exact procedural day-count check |
-| Decision 252 scan extraction | pp.378–398 indexed; page-pinned article map plus 32 numerical candidates structured | 75% extraction work | Official-file comparison; ambiguous table cells; currentness and counsel |
-| Decision 249 implementation circulars | Ministry says circulars will be issued; separate circular not located publicly | 35% | Find a public circular or preserve the unresolved gap |
-| Original Gazette PDF hash / full official-byte comparison | Not completed | 0% | Obtain original PDF bytes through ordinary authorized access |
-| 311-row candidate JSONL comparison | Candidate file unavailable in current runtime | 0% | User must provide original JSONL for exact comparison; do not reconstruct it |
-| Qualified counsel approval | No review recorded | 0% | Qualified Egyptian labour/OSH lawyer review |
-| Reuse/access assessment | Open | 0% | Assess rights and conditions for each source/asset before redistribution |
+## Current subtask status
 
-Percentages above describe the completion of the *subtask work product*, not legal certainty. They do not add up to the headline score.
+| Subtask | Completion estimate | Current status | Remaining gate |
+|---|---:|---|---|
+| Decision 250 source discovery | 90% | Full secondary transcription located | Official Gazette bytes/hash and complete primary-source match |
+| Decision 250 Table 23 candidate labels | 100% candidate-label coverage | 137/137 Arabic labels present | Official page matching, currentness, source-use review, counsel |
+| Decision 250 Table 24 candidate extraction | **82.8%** | 617/745 numbered entries structured in 31 batches | Extract remaining entries; primary-source match; currentness and counsel |
+| Table 24 official Gazette row matches | 0% | No row-by-row official match completed | Obtain official file/page images and compare every candidate row |
+| Table 24 currentness review | 0% complete | Not established by secondary transcription | Confirm applicable amendments, corrigenda and current status |
+| Table 24 qualified counsel approval | 0% | No entries approved | Qualified Egyptian OSH lawyer must review source-matched rows |
+| Decision 249 implementation circular | 35% search work | Ministry announced periodic circulars; separate public circular not located | Find and verify the circular, or preserve the unresolved gap |
+| Decision 251 candidate extraction | 70% extraction work | 17 candidate assertions structured | Official-source comparison, currentness and counsel |
+| Decision 252 candidate extraction | 75% extraction work | 40 candidate assertions structured | Official-source comparison, ambiguous table cells, currentness and counsel |
+| Original Official Gazette PDF hash | 0% | Original PDF bytes/hash not obtained | Obtain the PDF through ordinary authorized access and hash actual bytes |
+| Original 311-row `law_rows_ar.jsonl` reconciliation | 0% in this runtime | File is not available here; historical hash only | User to upload the original file; do not reconstruct it or claim a new hash |
+| Source-use/access assessment | Open | No blanket commercial reuse conclusion | Assess official-text status, website terms, compilation rights and intended use |
+| Lawyer in-app acceptance | Prepared; review not started | Test plan linked from the corpus README | Run after technical completion, before production release |
 
-## Non-negotiable release state
+## Source and safety boundaries
 
-- Candidate numerical ledger: 120/120 candidate entries exist, but this is not verification.
-- Lawyer-approved numerical candidates: 0/120.
-- Fully currentness-reviewed numerical candidates: 0/120.
-- Eligible for authoritative retrieval: 0/120.
-- Decisions 248–252: full secondary text is now available for Decision 250; the other decisions remain partially transcribed/indexed. No complete comparison to the original official PDF and no counsel approval have been recorded.
-- No restricted request-a-copy route was bypassed.
-- The PR is open and draft; the current head had no reported combined-status checks when checked.
+- The Table 24 candidate source is a secondary transcription. It is useful for discovery, not proof of official wording.
+- The Official Gazette catalogue identifies Decisions 248–252/2026 in the supplement to Egyptian Proceedings issue 225(A), dated 2026-10-12:
+  https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full
+- Previous access attempts did not obtain the original Gazette PDF bytes. No original-file SHA-256 is claimed.
+- The source text contains apparent transcription anomalies, including reversed or malformed numeric/unit tokens, suspicious formulas/CAS identifiers, mixed surface and air limits, and entries marked as removed. Those remain flagged and must not be presented as current legal/safety guidance.
+- The review queue and validator do not authenticate the source, determine currentness, settle reuse rights, or approve a legal rule.
+- Lawyer approval must be recorded against the exact app version, corpus version, and tested scope. Reviewing the app is separate from, and does not replace, official-source comparison.
 
-## Next highest-value actions
+## Next work items, in order
 
-1. Finish transcribing Decision 249 Table 1 and Table 2, especially risk classification and required OSH staffing counts, without guessing low-resolution cells.
-2. Use the newly found Riwaq transcription to structure Table 24 (printed pp.249–360) and validate all rows/units/identifiers; then compare high-risk values and Table 23 against the official Gazette when bytes become available. Keep every exposure limit source-pinned.
-3. Complete the remaining legible Decision 252 tables and verify ambiguous cells from higher-resolution images or official file.
-4. Continue targeted public searches for Decision 249 implementation circulars; if none surface, keep the gate explicitly unresolved.
-5. Reconcile all reproduced scans to the official Gazette file if available and record the file hash only after the bytes are actually obtained.
-6. Do not activate rules until currentness, source-use and qualified counsel gates pass.
+1. Continue candidate extraction from Table 24 row 618 onward, using only source text actually available; do not invent missing entries.
+2. Complete the remaining Table 24 numbered entries and validate the continuous row-number sequence.
+3. Obtain the official Gazette PDF and record its SHA-256, retrieval date and source URL.
+4. Compare each Table 24 row and footnote against the official page image. Resolve all units, limits, CAS/formula tokens, parent-child relationships and surface/air distinctions; leave ambiguous rows quarantined.
+5. Build the final row-level currentness and source-use review records.
+6. Run the in-app counsel acceptance plan on the actual staging app after technical completion; fix defects and rerun the whole regression set.
+7. Keep authoritative retrieval disabled for candidate-only content until the applicable release gates are satisfied.
 
-## Current conclusion
+## Release status
 
-The alternate-source work has moved Decision 250 from partial page images to a full secondary text transcription, including the previously missing printed pages 296–370. It has **not** made the five decisions fully verified law for the product. The honest overall readiness estimate therefore remains **7%**.
+- Official Gazette matched Table 24 rows: **0**
+- Currentness-complete Table 24 rows: **0**
+- Lawyer-approved Table 24 rows: **0**
+- Table 24 rows eligible for authoritative retrieval: **0**
+- Overall evidence-backed legal-content readiness: **7%**
+
+These figures intentionally separate extraction progress from legal verification. A nearly complete transcription is not a nearly verified legal corpus.
