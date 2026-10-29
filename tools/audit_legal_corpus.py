@@ -74,7 +74,7 @@ def existing_sqlite_sidecars(db_path: Path):
             sidecars[path.name] = {"sha256": sha256_file(path), "size_bytes": path.stat().st_size}
     return sidecars
 
-def audit(db_path: Path):
+def audit(db_path: Path, *, check_fts_index: bool = False):
     if not db_path.exists():
         raise FileNotFoundError(f"Database not found: {db_path}")
     db = sqlite3.connect(db_path.resolve().as_uri() + "?mode=ro", uri=True)
@@ -453,6 +453,34 @@ def audit(db_path: Path):
                         "count":q["relations_touching_unreviewed_amendment_history"],
                         "detail":"Relation exists in metadata but one or both version histories have not been reviewed."
                     })
+        if check_fts_index:
+            # This stronger FTS5 index-vs-content check runs on a disposable in-memory
+            # backup through the dedicated read-only preflight; it is opt-in because
+            # memory use scales with the corpus database size.
+            from scripts.chunks_fts_preflight import audit_path as audit_fts_path
+            try:
+                fts_report = audit_fts_path(db_path)
+                result["fts_index_audit"] = {
+                    "status": fts_report["status"],
+                    "chunks_row_count": fts_report["chunks_row_count"],
+                    "fts_row_count": fts_report["fts_row_count"],
+                    "finding_count": fts_report["finding_count"],
+                    "findings": fts_report["findings"],
+                }
+                for finding in fts_report["findings"]:
+                    result["issues"].append({
+                        "severity": finding.get("severity", "high"),
+                        "code": "fts_" + str(finding.get("code", "audit_finding")),
+                        "count": finding.get("count", 1),
+                        "detail": str(finding.get("detail", "FTS index review required"))[:500],
+                    })
+            except (OSError, sqlite3.Error, ValueError) as exc:
+                result["fts_index_audit"] = {"status": "error", "finding_count": 1}
+                result["issues"].append({
+                    "severity": "high",
+                    "code": "fts_index_audit_failed",
+                    "detail": str(exc)[:500],
+                })
         result["issue_count"]=len(result["issues"])
         result["issue_counts_by_severity"]=dict(Counter(i["severity"] for i in result["issues"]))
         return result
@@ -489,13 +517,14 @@ def main(argv=None):
     )
     p.add_argument("--out-dir",type=Path,required=True,help="Directory for JSON and Markdown reports")
     p.add_argument("--strict",action="store_true",help="exit non-zero when high-severity metadata issues are found")
+    p.add_argument("--check-fts-index",action="store_true",help="run FTS5 index-vs-content integrity checks on a disposable in-memory database copy; memory use scales with database size")
     a=p.parse_args(argv)
     if os.environ.get("COPILOT_DB", "").strip():
         p.error("COPILOT_DB compatibility mode is not supported; configure COPILOT_CORPUS_DB or pass --db")
     if a.db is None:
         p.error("a legal-corpus database is required; configure COPILOT_CORPUS_DB or pass --db")
     try:
-        report=audit(a.db)
+        report=audit(a.db, check_fts_index=a.check_fts_index)
     except (FileNotFoundError, sqlite3.Error, ValueError) as exc:
         p.error(str(exc))
     a.out_dir.mkdir(parents=True,exist_ok=True)
