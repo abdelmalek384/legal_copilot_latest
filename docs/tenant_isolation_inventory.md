@@ -11,7 +11,7 @@ The application has a separate-database runtime when all three paths (`COPILOT_C
 
 ## Current automated coverage
 
-The API suite uses synthetic records and two firms. The separate-runtime integration suite verifies that a guessed case ID cannot be read, modified, or deleted after switching firms; same-firm nonmembers cannot read or mutate case/document/child-resource routes; assigned tasks, deadlines, and hearing data do not bypass case-membership authorization in dashboard/calendar responses; nonmember matter fees do not enter finance aggregates; and a clean separate-database install preserves firm data, corpus data, and lifecycle metadata across restart. Denied writes are checked against source row counts. Tenant mutation wrappers roll back uncommitted firm-database writes when a route fails; document metadata, chunks/FTS, and the case event are also one atomic unit. Shared-corpus import and review-event routes have a separate rollback wrapper, including partial-batch failure coverage. A route-inventory test requires mutation endpoints under case/task/deadline/research-conversation paths to declare the tenant guard and the legal-import/review-event writes to declare the corpus guard (PR #593). A shared response middleware sets `Cache-Control: no-store`, `Pragma: no-cache`, and `Expires: 0` for normal responses, handled errors, and generic unhandled-500 responses; PR #609 tests the latter. Existing assertions include:
+The compatibility API smoke script still uses synthetic records in a temporary `COPILOT_DB` database; it is not the approved architecture and must be retired after its remaining unique assertions are migrated. The separate-runtime integration suite uses the control-plane, per-firm, and shared-corpus profiles and verifies that a guessed case ID cannot be read, modified, or deleted after switching firms; same-firm nonmembers cannot read or mutate case/document/child-resource routes; assigned tasks, deadlines, and hearing data do not bypass case-membership authorization in dashboard/calendar responses; nonmember matter fees do not enter finance aggregates; and a clean separate-database install preserves firm data, corpus data, and lifecycle metadata across restart. Denied writes are checked against source row counts. Tenant mutation wrappers roll back uncommitted firm-database writes when a route fails; document metadata, chunks/FTS, and the case event are also one atomic unit. Shared-corpus import and review-event routes have a separate rollback wrapper, including partial-batch failure coverage. A route-inventory test requires mutation endpoints under case/task/deadline/research-conversation paths to declare the tenant guard and the legal-import/review-event writes to declare the corpus guard (PR #593). A shared response middleware sets `Cache-Control: no-store`, `Pragma: no-cache`, and `Expires: 0` for normal responses, handled errors, and generic unhandled-500 responses; PR #609 tests the latter. Existing assertions include:
 - case list/detail/update/delete and membership/task boundaries;
 - dashboard tasks/deadlines and conflict checks;
 - user listing/creation/disablement and session revocation;
@@ -19,7 +19,7 @@ The API suite uses synthetic records and two firms. The separate-runtime integra
 - case-scoped search and answer requests;
 - research conversation list/detail/rename/delete/message and matter export;
 - admin-only case deletion and security audit endpoints;
-- legal-review queue/coverage/event authorization and legacy law-import gates.
+- legal-review queue/coverage/event authorization, metadata-only catalog queries, bounded filters, and unknown-permission counting; PR #879 and PR #883 moved these assertions into the separate-runtime suite.
 
 Merged PR #439 verifies Firm B cannot see Firm A's security events or case-deletion snapshots. Merged PR #465 adds database-level row-scope guards and separate-runtime cross-firm case CRUD plus fresh-install/restart tests. PR #543 behaviorally verifies that wrong-firm UPDATEs abort for cases, documents, extraction reviews, research conversations, and case-deletion audit rows; PR #530 covers wrong-firm INSERT rejection for those tables. The test suite's synthetic setup is not a substitute for a deployment-specific review.
 
@@ -29,7 +29,7 @@ The strict route-to-SQL gate now also rejects unresolved SQL expressions and any
 
 ## Route inventory
 
-Routes are grouped by the data boundary they should preserve. "Tested" means there are relevant assertions in `api_test.py`; it does not mean every branch, role, and failure mode has been exhaustively tested.
+Routes are grouped by the data boundary they should preserve. "Tested" means there are relevant assertions in `api_test.py` and/or `tests/test_app_separate_database_runtime.py`; it does not mean every branch, role, and failure mode has been exhaustively tested. PR #881 extends stale-membership denial checks across direct case, document-review, original-file, legal-hold-history, and deletion-request routes.
 
 | Route(s) | Boundary / expected authorization | Current coverage and remaining concern |
 |---|---|---|
