@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Read-only audit of Legal Copilot's SQLite legal corpus."""
 from __future__ import annotations
-import argparse, hashlib, json, sqlite3
+import argparse, hashlib, json, os, sqlite3
 from collections import Counter
 from datetime import date, datetime, timezone
 from pathlib import Path
@@ -83,6 +83,13 @@ def audit(db_path: Path):
         db.execute("BEGIN")  # Pin all audit queries to one read-only SQLite snapshot.
         sidecars = existing_sqlite_sidecars(db_path)
         tables = table_names(db)
+        if "database_profile" not in tables:
+            raise ValueError("database is not bound to the legal_corpus profile")
+        profile_rows = db.execute(
+            "SELECT profile FROM database_profile WHERE singleton=1"
+        ).fetchall()
+        if len(profile_rows) != 1 or profile_rows[0]["profile"] != "legal_corpus":
+            raise ValueError("database is not bound to the legal_corpus profile")
         result = {
             "report_type":"legal_corpus_audit",
             "generated_at":datetime.now(timezone.utc).isoformat(),
@@ -136,13 +143,14 @@ def audit(db_path: Path):
             if needed-cc:
                 result["issues"].append({"severity":"high","code":"chunk_columns_missing","detail":str(sorted(needed-cc))})
             else:
+                chunk_scope = "case_id IS NULL AND " if "case_id" in cc else ""
                 q={
-                  "missing_source":db.execute("SELECT COUNT(*) FROM chunks WHERE case_id IS NULL AND (source IS NULL OR trim(source)='')").fetchone()[0],
-                  "empty_text":db.execute("SELECT COUNT(*) FROM chunks WHERE case_id IS NULL AND (text IS NULL OR trim(text)='')").fetchone()[0],
-                  "unverified":db.execute("SELECT COUNT(*) FROM chunks WHERE case_id IS NULL AND COALESCE(verified,0)=0").fetchone()[0],
-                  "marked_in_force_but_unverified":db.execute("SELECT COUNT(*) FROM chunks WHERE case_id IS NULL AND COALESCE(in_force,0)=1 AND COALESCE(verified,0)=0").fetchone()[0],
-                  "no_article_number":db.execute("SELECT COUNT(*) FROM chunks WHERE case_id IS NULL AND (article IS NULL OR trim(article)='')").fetchone()[0],
-                  "unlinked_to_version":db.execute("SELECT COUNT(*) FROM chunks WHERE case_id IS NULL AND document_version_id IS NULL").fetchone()[0] if "document_version_id" in cc else None
+                  "missing_source":db.execute(f"SELECT COUNT(*) FROM chunks WHERE {chunk_scope}(source IS NULL OR trim(source)='')").fetchone()[0],
+                  "empty_text":db.execute(f"SELECT COUNT(*) FROM chunks WHERE {chunk_scope}(text IS NULL OR trim(text)='')").fetchone()[0],
+                  "unverified":db.execute(f"SELECT COUNT(*) FROM chunks WHERE {chunk_scope}COALESCE(verified,0)=0").fetchone()[0],
+                  "marked_in_force_but_unverified":db.execute(f"SELECT COUNT(*) FROM chunks WHERE {chunk_scope}COALESCE(in_force,0)=1 AND COALESCE(verified,0)=0").fetchone()[0],
+                  "no_article_number":db.execute(f"SELECT COUNT(*) FROM chunks WHERE {chunk_scope}(article IS NULL OR trim(article)='')").fetchone()[0],
+                  "unlinked_to_version":db.execute(f"SELECT COUNT(*) FROM chunks WHERE {chunk_scope}document_version_id IS NULL").fetchone()[0] if "document_version_id" in cc else None
                 }
                 result["chunk_quality"]=q
                 for key,sev in (("missing_source","high"),("empty_text","high"),("unverified","medium"),("marked_in_force_but_unverified","high"),("no_article_number","medium"),("unlinked_to_version","high")):
@@ -345,18 +353,19 @@ def audit(db_path: Path):
         if "chunks" in tables and "legal_document_versions" in tables:
             cc = columns(db, "chunks")
             vc = columns(db, "legal_document_versions")
-            chunk_required = {"id", "case_id", "document_version_id", "verified", "in_force"}
+            chunk_required = {"id", "document_version_id", "verified", "in_force"}
             version_required = {"version_id", "review_status", "authenticity_verified", "status_verified", "legal_status", "effective_date", "repeal_date"}
             if chunk_required.issubset(cc) and version_required.issubset(vc):
                 today = datetime.now(timezone.utc).date()
                 mismatch_verified = 0
                 mismatch_in_force = 0
+                chunk_scope = "c.case_id IS NULL AND " if "case_id" in cc else ""
                 linked_rows = db.execute(
                     "SELECT c.verified, c.in_force, c.document_version_id, v.version_id, "
                     "v.review_status, v.authenticity_verified, v.status_verified, v.legal_status, "
                     "v.effective_date, v.repeal_date "
                     "FROM chunks c LEFT JOIN legal_document_versions v ON v.version_id=c.document_version_id "
-                    "WHERE c.case_id IS NULL AND (COALESCE(c.verified,0)=1 OR COALESCE(c.in_force,0)=1)"
+                    f"WHERE {chunk_scope}(COALESCE(c.verified,0)=1 OR COALESCE(c.in_force,0)=1)"
                 ).fetchall()
                 for row in linked_rows:
                     version_missing = row["version_id"] is None
@@ -447,11 +456,23 @@ def render_markdown(report):
 
 def main(argv=None):
     p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--db",type=Path,required=True,help="Path to SQLite database")
+    p.add_argument(
+        "--db",
+        type=Path,
+        default=Path(os.environ["COPILOT_CORPUS_DB"]) if os.environ.get("COPILOT_CORPUS_DB", "").strip() else None,
+        help="legal-corpus database (defaults to COPILOT_CORPUS_DB)",
+    )
     p.add_argument("--out-dir",type=Path,required=True,help="Directory for JSON and Markdown reports")
     p.add_argument("--strict",action="store_true",help="exit non-zero when high-severity metadata issues are found")
     a=p.parse_args(argv)
-    report=audit(a.db)
+    if os.environ.get("COPILOT_DB", "").strip():
+        p.error("COPILOT_DB compatibility mode is not supported; configure COPILOT_CORPUS_DB or pass --db")
+    if a.db is None:
+        p.error("a legal-corpus database is required; configure COPILOT_CORPUS_DB or pass --db")
+    try:
+        report=audit(a.db)
+    except (FileNotFoundError, sqlite3.Error, ValueError) as exc:
+        p.error(str(exc))
     a.out_dir.mkdir(parents=True,exist_ok=True)
     (a.out_dir/"legal_corpus_audit.json").write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding="utf-8")
     (a.out_dir/"legal_corpus_audit.md").write_text(render_markdown(report),encoding="utf-8")

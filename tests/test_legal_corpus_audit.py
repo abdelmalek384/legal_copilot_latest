@@ -10,6 +10,11 @@ SPEC = importlib.util.spec_from_file_location("audit_legal_corpus", ROOT / "tool
 MODULE = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(MODULE)
 
+def bind_profile(db, profile="legal_corpus"):
+    db.execute("CREATE TABLE database_profile(singleton INTEGER PRIMARY KEY CHECK(singleton=1), profile TEXT NOT NULL, bound_at TEXT NOT NULL DEFAULT (datetime('now')))")
+    db.execute("INSERT INTO database_profile(singleton,profile) VALUES(1,?)", (profile,))
+
+
 class CorpusAuditTests(unittest.TestCase):
     def test_evidence_url_validator_rejects_malformed_https_urls(self):
         self.assertTrue(MODULE.valid_evidence_url("https://example.gov/evidence"))
@@ -31,6 +36,8 @@ class CorpusAuditTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             db_path = Path(td) / "sample ?audit.db"
             db = sqlite3.connect(db_path)
+
+            bind_profile(db)
             db.execute("CREATE TABLE chunks(id INTEGER PRIMARY KEY, ref TEXT, article TEXT, text TEXT, source TEXT, verified INT, in_force INT, case_id INT)")
             db.execute("INSERT INTO chunks(ref,article,text,source,verified,in_force,case_id) VALUES('law','1','text','',0,1,NULL)")
             db.commit()
@@ -46,10 +53,27 @@ class CorpusAuditTests(unittest.TestCase):
             self.assertEqual(db.execute("SELECT COUNT(*) FROM chunks").fetchone()[0], 1)
             db.close()
 
+    def test_audit_rejects_unbound_and_wrong_profile_databases(self):
+        with tempfile.TemporaryDirectory() as td:
+            unbound = Path(td) / "unbound.db"
+            sqlite3.connect(unbound).close()
+            with self.assertRaisesRegex(ValueError, "legal_corpus profile"):
+                MODULE.audit(unbound)
+
+            wrong = Path(td) / "wrong.db"
+            db = sqlite3.connect(wrong)
+            bind_profile(db, "firm")
+            db.commit()
+            db.close()
+            with self.assertRaisesRegex(ValueError, "legal_corpus profile"):
+                MODULE.audit(wrong)
+
     def test_missing_registry_is_reported_and_database_is_read_only(self):
         with tempfile.TemporaryDirectory() as td:
             db_path = Path(td) / "sample.db"
             db = sqlite3.connect(db_path)
+
+            bind_profile(db)
             db.execute("CREATE TABLE chunks(id INTEGER PRIMARY KEY, ref TEXT, article TEXT, text TEXT, source TEXT, verified INT, in_force INT, case_id INT)")
             db.execute("INSERT INTO chunks(ref,article,text,source,verified,in_force,case_id) VALUES('law - article 1','1','text','',0,1,NULL)")
             db.commit()
@@ -64,10 +88,35 @@ class CorpusAuditTests(unittest.TestCase):
             self.assertEqual(db.execute("SELECT COUNT(*) FROM chunks").fetchone()[0], 1)
             db.close()
 
+    def test_current_corpus_schema_without_case_id_is_audited(self):
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "profile-corpus.db"
+            db = sqlite3.connect(path)
+            bind_profile(db)
+            db.executescript("""
+                CREATE TABLE chunks(id INTEGER PRIMARY KEY, ref TEXT, article TEXT, page TEXT, text TEXT, norm TEXT, document_version_id INTEGER, in_force INTEGER, as_of TEXT, source TEXT, verified INTEGER);
+                CREATE TABLE legal_sources(source_id TEXT PRIMARY KEY);
+                CREATE TABLE legal_documents(document_id TEXT PRIMARY KEY);
+                CREATE TABLE legal_document_versions(version_id INTEGER PRIMARY KEY);
+                CREATE TABLE legal_version_relations(relation_id INTEGER PRIMARY KEY);
+                CREATE TABLE legal_review_events(review_event_id INTEGER PRIMARY KEY);
+                INSERT INTO chunks(ref,article,text,norm,document_version_id,source,verified,in_force)
+                    VALUES('law','1','text','text',NULL,'https://example.gov/law',0,0);
+            """)
+            db.commit()
+            db.close()
+
+            report = MODULE.audit(path)
+            self.assertEqual(report["report_type"], "legal_corpus_audit")
+            self.assertEqual(report["chunk_quality"]["unlinked_to_version"], 1)
+            self.assertEqual(report["chunk_quality"]["missing_source"], 0)
+
     def test_full_registry_quality_counts_are_reported(self):
         with tempfile.TemporaryDirectory() as td:
             db_path = Path(td) / "sample.db"
             db = sqlite3.connect(db_path)
+
+            bind_profile(db)
             db.executescript("""
             CREATE TABLE chunks(id INTEGER PRIMARY KEY, ref TEXT, article TEXT, text TEXT, source TEXT, verified INT, in_force INT, case_id INT, document_version_id INT);
             CREATE TABLE legal_sources(source_id TEXT PRIMARY KEY, collection_permission TEXT);
@@ -91,6 +140,8 @@ class CorpusAuditTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             db_path = Path(td) / "evidence.db"
             db = sqlite3.connect(db_path)
+
+            bind_profile(db)
             db.executescript("""
             CREATE TABLE legal_sources(source_id TEXT PRIMARY KEY, collection_permission TEXT, commercial_reuse_permission TEXT, permission_evidence TEXT, terms_url TEXT, source_page TEXT, terms_checked_on TEXT);
             CREATE TABLE legal_documents(document_id TEXT PRIMARY KEY);
@@ -138,6 +189,8 @@ class CorpusAuditTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             db_path = Path(td) / "verification-events.db"
             db = sqlite3.connect(db_path)
+
+            bind_profile(db)
             db.executescript("""
             CREATE TABLE legal_document_versions(
               version_id INTEGER PRIMARY KEY, source_url TEXT, original_path TEXT, original_sha256 TEXT,
@@ -171,6 +224,8 @@ class CorpusAuditTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             db_path = Path(td) / "review-event-integrity.db"
             db = sqlite3.connect(db_path)
+
+            bind_profile(db)
             db.executescript("""
             CREATE TABLE legal_document_versions(version_id INTEGER PRIMARY KEY);
             CREATE TABLE legal_review_events(
@@ -200,6 +255,8 @@ class CorpusAuditTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             db_path = Path(td) / "chunk-version-consistency.db"
             db = sqlite3.connect(db_path)
+
+            bind_profile(db)
             db.executescript("""
             CREATE TABLE chunks(
               id INTEGER PRIMARY KEY, ref TEXT, article TEXT, text TEXT, source TEXT,
@@ -230,6 +287,8 @@ class CorpusAuditTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             db_path = Path(td) / "versions.db"
             db = sqlite3.connect(db_path)
+
+            bind_profile(db)
             db.executescript("""
             CREATE TABLE chunks(id INTEGER PRIMARY KEY, ref TEXT, article TEXT, text TEXT, source TEXT, verified INT, in_force INT, case_id INT, document_version_id INT);
             CREATE TABLE legal_sources(source_id TEXT PRIMARY KEY, collection_permission TEXT);
