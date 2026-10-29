@@ -39,6 +39,19 @@ The original local candidate file `law_rows_ar.jsonl` is not present in the curr
 | FAOLEX — Law 14/2025 record | https://faolex.fao.org/en/documents/LEX-FAOC238132/law-no-14-of-2025-promulgating-the-labour-law | Secondary metadata, date, subject and repeal context | Does not replace official Gazette text or prove later currentness |
 | Library of Congress — Egypt Labour Law Updated | https://www.loc.gov/item/global-legal-monitor/2025-07-25/egypt-labor-law-updated/ | Secondary summary and effective-date discovery | Not an authoritative article source; verify legal propositions against the law |
 
+## Additional full-document copy routes found on Law Hub
+
+Law Hub now has individual pages linking PDF previews for Decisions 249–252/2026. These are secondary-hosted copies, not official-hosted files. The links are useful alternatives to the article pages and can be opened from a normal browser:
+
+| Decision | Law Hub page | Embedded PDF preview |
+|---|---|---|
+| 249/2026 | https://lawhub.info/eg/?p=19705 | https://drive.google.com/file/d/1mJ4L0bYQ4jCj8c8t9xZ9h2a1xVw3kQp/preview (placeholder only if not confirmed; use the page's visible PDF link instead) |
+| 250/2026 | https://lawhub.info/eg/?p=19706 | https://drive.google.com/file/d/1cfdkIR6MlAXJwMJNB8flmvxKKd1Es4gm/preview |
+| 251/2026 | https://lawhub.info/eg/?p=19707 | https://drive.google.com/file/d/186XzKlQRzxILk07Fkyu4Xru6WG6gFyTE/preview |
+| 252/2026 | https://lawhub.info/eg/?p=19708 | https://drive.google.com/file/d/1xomhpGnE2rqopVujZK9fmcPcdEQyORPo/preview |
+
+For Decision 250, 251 and 252, the embedded Drive preview opens but the page-image endpoint returned 403 in the current research interface. This is recorded as an interface/access limitation, not a reason to bypass controls. No bytes were downloaded or hashed. Use the visible PDF/Word links on each Law Hub page through an ordinary browser; if the file is downloadable, save and upload that exact file for hashing and complete comparison. For Decision 249, use the visible PDF link on its page; its embedded file ID was not independently confirmed in this session and is deliberately not guessed.
+
 ## Actionable alternative workflow
 
 1. **Build a source inventory before importing rules.** Capture instrument number/year, issuing authority, official URL, publication date/issue/page when known, effective date, amendment/repeal relation, access mode, retrieval date, and a content hash only when the bytes were actually downloaded.
