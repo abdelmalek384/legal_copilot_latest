@@ -4368,6 +4368,7 @@ def upload(cid: int, file: UploadFile, u: dict = Depends(user)):
     name = "".join(ch for ch in raw_name if ord(ch) >= 32 and ch not in "\x7f").strip()[:200] or "doc"
     store = _original_file_store() if _separate_runtime_enabled() else None
     staged = None
+    finalization_failed = False
     if store is not None:
         try:
             staged = store.stage(u["firm_id"], data)
@@ -4416,7 +4417,13 @@ def upload(cid: int, file: UploadFile, u: dict = Depends(user)):
                 c, u, cid, name, text, content_hash=digest, content_type=content_type,
                 byte_size=len(data), extraction_status=extraction_status, ocr_used=ocr_used,
                 original_file=staged, storage_backend=("s3" if isinstance(store, S3PrivateObjectStore) else "local"), commit=False)
-            store.finalize(u["firm_id"], staged.object_id)
+            try:
+                store.finalize(u["firm_id"], staged.object_id)
+            except ObjectStorageError:
+                # Preserve both staged/final objects for read-only reconciliation when
+                # publication fails; deleting here could destroy the only recoverable copy.
+                finalization_failed = True
+                raise
             updated = c.execute(
                 "UPDATE original_file_objects SET state='ready',updated_at=datetime('now') "
                 "WHERE object_id=? AND firm_id=? AND state='staged'",
@@ -4431,13 +4438,13 @@ def upload(cid: int, file: UploadFile, u: dict = Depends(user)):
     except ObjectStorageError as exc:
         if c.in_transaction:
             c.rollback()
-        if staged is not None:
+        if staged is not None and not finalization_failed:
             _cleanup_original_file(store, u["firm_id"], staged.object_id)
         raise HTTPException(503, "original-file storage is unavailable") from exc
     except Exception:
         if c.in_transaction:
             c.rollback()
-        if staged is not None:
+        if staged is not None and not finalization_failed:
             _cleanup_original_file(store, u["firm_id"], staged.object_id)
         raise
 
