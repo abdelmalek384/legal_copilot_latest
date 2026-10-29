@@ -40,36 +40,46 @@ The preview page loads in this research interface, but the individual Google Dri
 
 ## Decision 252/2026 — training-provider and trainer licensing
 
-### Definitions and general rules
+### Page-pinned article map from the reproduced scans
 
-| Article/page | Extracted content | Verification point |
-|---|---|---|
-| Art. 1, p. 380 | Defines Ministry, competent authority, Labour Law 14/2025, competent administration, training programmes, licensing committee, programmes/curricula committee, training provider, and accredited trainer | Verify exact scope of each definition |
-| Arts. 2–3, p. 381 | Governs licensing of OSH training activity; aims to regulate programmes, unify levels/curricula/tests/certificates, and organize training providers and trainers | Compare with enabling-law scope |
-| Arts. 4–5, p. 381 | No training without Ministry licence; in-person or electronic training requires licence and prescribed fee; detailed modalities coordinated with competent digital administration | Confirm any transitional exceptions |
-| Arts. 6–9, pp. 381–382 | Eligible training entities include governmental/public bodies and educational institutions under applicable rules, NGOs, and companies/institutions specializing in OSH training; some internal establishment training may be allowed subject to conditions (activity connection, Ministry-approved programme, no fee/compensation, equal access) | Determine exact entity types and limits of in-house training exemption |
-| Arts. 10–13, pp. 382–384 | Creates licensing committee and technical secretariat; sets application review, completeness notices, decision/appeal processes, and competent administration duties | Confirm all day counts, deemed decisions and appeal route |
-| Arts. 14–16, pp. 384–385 | General licensing conditions and facility requirements, including legal status, premises, equipment, records and administrative/technical setup; limited exemptions may be granted if adequate training capability is demonstrated | Verify each mandatory facility requirement and exemption scope |
-| Arts. 17–20, pp. 386–389 | Fees, licence duration/renewal, lists of authorized providers/programmes, suspension/revocation triggers and notification/appeal | Extract exact fee amounts and deadlines into numeric ledger; cross-check official source |
-| Arts. 21–23, pp. 389–390 | Administrative review/appeal provisions and transition/oversight matters; enforcement and follow-up by competent administration | Confirm article-level deadlines and whether the decision preserves other legal liability |
-| Arts. 22–24, pp. 389–390 | Creates/organizes the programmes-and-curricula committee and its duties, membership and decisions | Confirm exact article sequence and membership; article overlap here requires final page-by-page transcription |
-| Arts. 25–27, pp. 391–392 | Provider obligations and grounds for trainer licensing suspension/revocation, including loss of conditions, false documents/data and material breaches | Preserve the exact statutory conditions and due-process sequence |
-| Arts. 28–30, pp. 392–394 | Trainer qualification requirements and approved programme types/durations; includes basic, advanced, and specialized training categories | Transcribe every table row, programme title and duration exactly |
-| Arts. 31–34, pp. 395–397 | Testing/certification requirements, evaluation percentages, attendance thresholds, repeat tests, recordkeeping and provider obligations during training | Exact percentages and minimum attendance are high-impact and must be checked against the scan/official PDF before operational use |
-| Arts. 35–36, p. 398 | Certificate conditions, issue/validation requirements, publication and commencement; Art. 36 reportedly takes effect the day after publication and repeals any conflicting earlier provision | Verify certificate details and exact repeal wording |
+The image sequence covers printed Gazette pp. 378–398. The map below replaces the earlier broad/overlapping article ranges with page-level review anchors. It is an index, not a verbatim legal transcription.
 
-### Numerical and annex extraction queue for Decision 252
+| Printed page / scan | Article(s) visible | Topic to extract | Confidence / next check |
+|---|---|---|---|
+| p. 378 — https://www.almasdar.com/WebP/libfiles/46/4/75.webp | Preamble / instrument opening | Enabling law, issuance basis and instrument title | Check complete opening text and issue citation |
+| p. 379 — https://www.almasdar.com/WebP/libfiles/46/4/76.webp | Art. 1 | Definitions: Ministry, competent authority/administration, training programme, licensing committee, curriculum committee, provider, accredited trainer | Definition list visible; transcribe exact Arabic terms |
+| p. 380 — https://www.almasdar.com/WebP/libfiles/46/4/77.webp | Arts. 2–4 | Scope and objectives; prohibition on conducting OSH training without licence; programme standardization and training modes | Check exact scope and any exemptions |
+| p. 381 — https://www.almasdar.com/WebP/libfiles/46/4/78.webp | Arts. 5–8 | Eligible training entities and licensing route; public/educational bodies, NGOs and specialized companies; limited internal-training conditions | Verify legal entity categories and all exception conditions |
+| p. 382 — https://www.almasdar.com/WebP/libfiles/46/4/79.webp | Arts. 9–11 | Licensing committee, technical secretariat, application submission and document review | Exact membership, application form and review deadlines needed |
+| p. 383 — https://www.almasdar.com/WebP/libfiles/46/4/80.webp | Arts. 12–13 | Completion requests, decision/notification process, duties of competent administration | Confirm calendar vs working-day language and consequences of delay |
+| p. 384 — https://www.almasdar.com/WebP/libfiles/46/4/81.webp | Arts. 14–15 | General licence conditions and training-facility requirements | Extract each condition, room/equipment requirements and exemptions |
+| p. 385 — https://www.almasdar.com/WebP/libfiles/46/4/82.webp | Art. 15 continuation / Art. 16 opening | Inspection and facility qualification requirements; transition to fees/inspection process | Confirm article boundary on high-resolution scan |
+| p. 386 — https://www.almasdar.com/WebP/libfiles/46/4/83.webp | Arts. 16–17 | Inspection/reinspection and programme-material review fees; initial provider licence and renewal | Numeric fees are candidates only; official-file match required |
+| p. 387 — https://www.almasdar.com/WebP/libfiles/46/4/84.webp | Arts. 17–18 | Provider licence term, renewal timing, programme lists and provider obligations | Verify exact renewal lead time and all required records |
+| p. 388 — https://www.almasdar.com/WebP/libfiles/46/4/85.webp | Arts. 19–20 | Provider duties, suspension/cancellation or related compliance provisions | Capture exact triggers and procedure |
+| p. 389 — https://www.almasdar.com/WebP/libfiles/46/4/86.webp | Arts. 21–22 | Trainer licensing / curriculum committee provisions | Verify article sequence and licensing requirements |
+| p. 390 — https://www.almasdar.com/WebP/libfiles/46/4/87.webp | Arts. 23–24 | Programme/curriculum committee, training-provider obligations or related implementation provisions | Transcribe article headings before assigning final topic labels |
+| p. 391 — https://www.almasdar.com/WebP/libfiles/46/4/88.webp | Arts. 25–26 | Trainer licence fee, trainer licence validity and renewal | Numeric terms are scan candidates; verify exact conditions |
+| p. 392 — https://www.almasdar.com/WebP/libfiles/46/4/89.webp | Arts. 27–28 | Trainer qualification and eligibility conditions | Extract degree/experience requirements by trainer category |
+| p. 393 — https://www.almasdar.com/WebP/libfiles/46/4/90.webp | Arts. 29–30 | Basic and advanced training programmes; target groups and course-hour table | Basic programme hour cells visible; some advanced cells unclear |
+| p. 394 — https://www.almasdar.com/WebP/libfiles/46/4/91.webp | Art. 31 | Specialized course types and durations | Eleven visible course rows; preserve exact names and hours |
+| p. 395 — https://www.almasdar.com/WebP/libfiles/46/4/92.webp | Art. 32 | Theoretical/practical evaluation requirements by programme type | Exact percentages require image-to-official-file check |
+| p. 396 — https://www.almasdar.com/WebP/libfiles/46/4/93.webp | Art. 33 | Attendance, pass threshold, exam retakes, record retention | High-impact numeric values; verify every number and trigger |
+| p. 397 — https://www.almasdar.com/WebP/libfiles/46/4/94.webp | Arts. 34–35 | Certification, programme completion, trainer/provider obligations and/or related final requirements | Transcribe exact headings and clauses |
+| p. 398 — https://www.almasdar.com/WebP/libfiles/46/4/95.webp | Art. 36 | Publication, commencement and repeal/conflict clause | Verify exact commencement and repeal wording |
 
-The scan sequence visibly includes tables for programme durations (p. 393–394) and test/evaluation percentages (p. 395–396). They should be transcribed as individual numerical assertions, each with:
-- exact programme/trainee category;
-- hours or percentage and unit;
-- article and printed page;
-- exact Arabic label;
-- image URL and captured date;
-- official-PDF match status;
-- currentness and counsel-review status.
+### Key extracted candidate rules
 
-Do not rely on the summary table above for live compliance decisions; the purpose is to index the full scan sequence and direct the next extraction.
+- **Training hours:** the basic table shows 80 hours for OSH specialists, 80 for supervisors, 80 for technicians, 40 for OSH committee members and 16 for employers/persons supervising OSH activity.
+- **Specialized courses:** the table on p.394 contains eleven rows; visible hours include 16-hour courses (fire/explosion, work at heights/scaffolds, lifting/cranes, first aid, hazardous chemicals, risk assessment, emergency plans) and 12-hour courses (PPE use/maintenance, confined/enclosed spaces, welding safety, ISO 45001 introduction). These remain scan-derived candidates.
+- **Provider fees:** p.387 appears to show EGP 7,000 for inspection, EGP 2,000 for reinspection, EGP 4,000 for review/approval of each programme's training material, EGP 3,000 for initial provider licence and EGP 1,500 for renewal.
+- **Trainer fee:** p.391 appears to show EGP 5,000 for initial trainer licensing.
+- **Facility dimensions:** p.386 appears to specify at least 1.5 square metres per trainee and 30 square metres per classroom; verify exact scope and exceptions.
+- **Attendance/evaluation:** p.396 appears to set a 65% total evaluation threshold, minimum 80% attendance, exclusion from exam when absence exceeds 20% of combined theoretical/practical hours, at most two repeat exams, and five-year retention for training/evaluation records. All are provisional pending official-file match.
+
+### Avoiding false precision
+
+The image scans provide a route around the HTML text-layer gap, but some cells are low resolution and the page images are watermarked. Do not treat any of the numeric candidates as a final legal rule. Keep raw scan-derived text separate from reviewed transcription, preserve the exact image/page pinpoint, compare to the official Gazette bundle, check subsequent amendments, and obtain qualified Egyptian OSH counsel approval.
 
 ## Current status
 
