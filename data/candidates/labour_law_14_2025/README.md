@@ -22,7 +22,8 @@ These ledgers are review aids made from targeted extracted official-text evidenc
 
 - [Batch 1 — NL-001 to NL-036](numerical_rule_evidence_ledger_batch1_2026-10-29.md): 36 candidate numerical assertions with searchable PDF text-line pinpoints.
 - [Batch 2 — NL-037 to NL-060](numerical_rule_evidence_ledger_batch2_2026-10-29.md): 24 additional candidates with printed-page/article pinpoints from provisional evidence cards; no line-level pinpoints in this batch.
-- Checklist progress: **60/120 candidate slots (50% by count)**. This is not 50% legal verification: lawyer-approved 0/60; currentness-complete 0/60; reuse/rights-cleared 0/60.
+- [Batch 3 — NL-061 to NL-072](numerical_rule_evidence_ledger_batch3_2026-10-29.md): 12 additional candidates, including private employment agency capital/security thresholds and reporting deadlines; some items need exact sentence recapture.
+- Checklist progress: **72/120 candidate slots (60% by count)**. This is not 60% legal verification: lawyer-approved 0/72; currentness-complete 0/72; reuse/rights-cleared 0/72.
 - Related currentness leads: [implementing-instrument currentness leads](implementing_instrument_currentness_leads_2026-10-29.md) and [source reconciliation addendum](../../../docs/labour_law_14_2025_source_reconciliation_addendum_2026-10-29.md).
 
 ## Safe handling
