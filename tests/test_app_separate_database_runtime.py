@@ -73,6 +73,22 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         finally:
             app._active_firm_context.reset(token)
 
+    def test_disabling_firm_revokes_cached_tenant_connection(self):
+        from tenant_storage import TenantConnectionError
+
+        context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        token = app._active_firm_context.set(context)
+        try:
+            cached = app.conn()
+            self.assertEqual(cached.execute("SELECT COUNT(*) FROM cases").fetchone()[0], 0)
+            self.assertTrue(self.runtime.disable_firm(self.firm_a))
+            with self.assertRaises(TenantConnectionError):
+                app.conn()
+            with self.assertRaises(sqlite3.ProgrammingError):
+                cached.execute("SELECT 1")
+        finally:
+            app._active_firm_context.reset(token)
+
     def test_security_audit_exports_require_firm_admin(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
