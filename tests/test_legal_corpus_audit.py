@@ -50,8 +50,6 @@ class CorpusAuditTests(unittest.TestCase):
             self.assertEqual(report["database_sha256"], MODULE.sha256_file(db_path))
             self.assertIn("sqlite_sidecars", report)
             db = sqlite3.connect(db_path)
-
-            bind_profile(db)
             self.assertEqual(db.execute("SELECT COUNT(*) FROM chunks").fetchone()[0], 1)
             db.close()
 
@@ -87,8 +85,6 @@ class CorpusAuditTests(unittest.TestCase):
             self.assertIn("chunks_missing_source", codes)
             self.assertIn("chunks_marked_in_force_but_unverified", codes)
             db = sqlite3.connect(db_path)
-
-            bind_profile(db)
             self.assertEqual(db.execute("SELECT COUNT(*) FROM chunks").fetchone()[0], 1)
             db.close()
 
