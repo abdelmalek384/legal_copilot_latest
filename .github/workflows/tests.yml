@@ -146,6 +146,10 @@ jobs:
         run: PYTHONPATH=. python tests/test_decision250_table24_review_queue.py
       - name: Build Decision 250 Table 24 human review queue
         run: python tools/build_decision250_table24_review_queue.py --output /tmp/decision250-table24-review-queue.md
+      - name: Test Decision 250 Table 24 primary-match register
+        run: PYTHONPATH=. python tests/test_decision250_table24_primary_match_register.py
+      - name: Build fail-closed Decision 250 Table 24 primary-match register
+        run: python tools/build_decision250_table24_primary_match_register.py --output /tmp/decision250-table24-primary-match-register.jsonl
       - name: Test multi-area lawyer-review benchmark draft
         run: PYTHONPATH=. python tests/test_multi_area_eval_draft.py
       - name: Test Arabic OCR quality evaluator
