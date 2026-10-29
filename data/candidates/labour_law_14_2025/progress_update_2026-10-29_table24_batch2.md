@@ -7,13 +7,13 @@
 
 - Added structured candidate transcription for Table 24 numbered entries **1–20** in `decision_250_table24_candidate_batch1_rows001_020_2026-10-29.json`.
 - Added structured candidate transcription for numbered entries **21–40** in `decision_250_table24_candidate_batch2_rows021_040_2026-10-29.json`.
-- Added structured candidate transcription for entries **41–60**, **61–80**, **81–99**, **100–120**, and **121–140** in batches 3–7, retaining parent/child rows for isomers and chemical variants.
+- Added structured candidate transcription for entries **41–60**, **61–80**, **81–99**, **100–120**, **121–140**, and **141–160** in batches 3–8, retaining parent/child rows for isomers and chemical variants.
 - Preserved the secondary-source line pinpoint for each row; kept raw limit strings and units rather than pretending the flattened text has reliable column alignment.
 - Preserved an apparent CAS formatting anomaly for Aluminum oxide (`1344-281`) instead of silently correcting it.
 - Preserved the nested relationship for Aluminum metal and insoluble compounds and subentries (rows 28–33).
 - Added explicit machine-readable warnings that no candidate is suitable for authoritative retrieval, compliance advice, or safety decisions.
-- Added `tools/validate_decision250_table24_candidates.py` to fail closed on missing/duplicate row numbers, malformed batch JSON, missing source pinpoints, or a candidate row marked as reviewed prematurely; its expected range now covers rows 1–140.
-- Parsed all five batch files and structurally checked row numbers 1–140: 140 unique numbers, no gaps/duplicates, all flattened rows source-pinned and pending official match. This was a structural audit of the fetched JSON, not execution of the Python validator or legal verification.
+- Added `tools/validate_decision250_table24_candidates.py` to fail closed on missing/duplicate row numbers, malformed batch JSON, missing source pinpoints, or a candidate row marked as reviewed prematurely; its expected range now covers rows 1–160.
+- Parsed all five batch files and structurally checked row numbers 1–160: 160 unique numbers, no gaps/duplicates, all flattened rows source-pinned and pending official match. This was a structural audit of the fetched JSON, not execution of the Python validator or legal verification.
 
 ## Current subtask completion estimates
 
@@ -21,25 +21,25 @@
 |---|---|---:|---|
 | Decision 250 source discovery | Full secondary transcription found | 90% | Official Gazette bytes/hash and full primary-source comparison |
 | Table 23 hazardous-substance threshold quantities | 137/137 candidate labels exist | 100% candidate-label coverage | Primary-source match; resolve anomalies; currentness and counsel |
-| Table 24 chemical-exposure limits | 140/745 numbered entries structured as candidates | 18.8% by numbered-entry count | Extract remaining entries; preserve row hierarchy/units/footnotes; primary-source comparison |
+| Table 24 chemical-exposure limits | 160/745 numbered entries structured as candidates | 21.5% by numbered-entry count | Extract remaining entries; preserve row hierarchy/units/footnotes; primary-source comparison |
 | Decision 249 circulars | Ministry announced future periodic circulars; separate public circular not located | 35% search work | Find circular or leave unresolved |
 | Authoritative retrieval eligibility | None approved | 0% | Primary match, currentness, source-use assessment, and qualified Egyptian OSH counsel approval |
 
-Percentages are work-product coverage only, not legal certainty. For Table 24, 140/745 = 18.79%, rounded to 18.8%. Some entries contain subordinate rows; counts should be reconciled against the full table structure before claiming final completeness.
+Percentages are work-product coverage only, not legal certainty. For Table 24, 160/745 = 21.48%, rounded to 21.5%. Some entries contain subordinate rows; counts should be reconciled against the full table structure before claiming final completeness.
 
 ## Source and safety boundary
 
 The Table 24 transcription is from a secondary reproduction dated 2026-10-26:
 https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html
 
-The page's table header begins at extracted source line 4475; entries 1–20 are around lines 4484–4516 and entries 21–40 around lines 4518–4551; entries 41–60 around lines 4553–4585; entries 61–80 around lines 4586–4618; entries 81–99 around lines 4620–4651; entries 100–120 around lines 4653–4686; entries 121–140 around lines 4688–4720. This is useful for discovery and candidate extraction, but it is **not** an official Gazette file and has not been compared row-by-row with the Gazette. No official PDF hash is claimed.
+The page's table header begins at extracted source line 4475; entries 1–20 are around lines 4484–4516 and entries 21–40 around lines 4518–4551; entries 41–60 around lines 4553–4585; entries 61–80 around lines 4586–4618; entries 81–99 around lines 4620–4651; entries 100–120 around lines 4653–4686; entries 121–140 around lines 4688–4720; entries 141–160 around lines 4722–4754. This is useful for discovery and candidate extraction, but it is **not** an official Gazette file and has not been compared row-by-row with the Gazette. No official PDF hash is claimed.
 
 The Official Gazette catalogue identifies Decisions 248–252/2026 in the supplement to Egyptian Proceedings issue 225(A), dated 2026-10-12:
 https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full
 
 ## Next work items, in order
 
-1. Continue Table 24 extraction from row 141 onward in batches, preserving source-line pinpoints and parent/child rows.
+1. Continue Table 24 extraction from row 161 onward in batches, preserving source-line pinpoints and parent/child rows.
 2. Extend the structural validator to detect duplicate/malformed CAS strings, blank values, and suspicious row/field shifts without auto-correcting the source.
 3. Cross-check terminology and units against the decision's own explanation of TWA/STEL/C, skin notation, biological exposure indices, carcinogenicity labels, and footnotes before attempting normalization.
 4. When the original Gazette PDF is provided, hash the actual bytes and compare each extracted row to the relevant page image. Do not substitute secondary text for the official scan.
