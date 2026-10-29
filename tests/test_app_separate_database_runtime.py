@@ -580,6 +580,48 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             "Firm A child-write boundary",
         )
 
+    def test_upload_preserves_staged_object_when_finalization_fails(self):
+        import io
+        from docx import Document
+
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate("post", "/cases", json={"title": "Finalize Failure Recovery"})
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+
+        buffer = io.BytesIO()
+        document = Document()
+        document.add_paragraph("Confidential original contract text for failure recovery.")
+        document.save(buffer)
+        payload = buffer.getvalue()
+
+        with patch.object(
+            app.LocalPrivateObjectStore,
+            "finalize",
+            side_effect=app.ObjectStorageError("simulated destination verification failure"),
+        ), patch.object(app, "_mfa_required_for_user", return_value=False):
+            response = self._mutate(
+                "post", f"/cases/{case_id}/upload",
+                files={"file": ("recovery-test.docx", payload,
+                                "application/vnd.openxmlformats-officedocument.wordprocessingml.document")},
+            )
+
+        self.assertEqual(response.status_code, 503, response.text)
+        staged_files = list((self.root / "objects").glob("firm-*/*.staged"))
+        self.assertEqual(len(staged_files), 1, "failed finalization must preserve the staged recovery object")
+        self.assertEqual(staged_files[0].read_bytes(), payload)
+
+        context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        firm_db = self.runtime.firm_connection(context)
+        self.assertEqual(
+            firm_db.execute("SELECT COUNT(*) FROM original_file_objects").fetchone()[0],
+            0,
+            "rolled-back metadata must not advertise the failed upload as ready",
+        )
+
     def test_original_file_upload_download_integrity_and_cross_firm_denial(self):
         import hashlib
         import io
