@@ -108,6 +108,32 @@ def inspect_environment(env=None, *, require_separate=False):
         else:
             warnings.append("COPILOT_SECURE_COOKIES=1 is not set; if TLS terminates at a reverse proxy, session cookies may lack Secure and HSTS may be omitted. Set it only when the public endpoint is HTTPS.")
 
+    # Identity lifecycle (verification, invitation, and recovery) depends on
+    # outbound email. Catch incomplete/insecure SMTP configuration before release;
+    # this is configuration validation, not a live delivery test.
+    if production:
+        smtp_host = env.get("COPILOT_EMAIL_SMTP_HOST", "").strip()
+        smtp_from = env.get("COPILOT_EMAIL_FROM", "").strip()
+        smtp_security = env.get("COPILOT_EMAIL_SMTP_SECURITY", "starttls").strip().lower()
+        smtp_username = env.get("COPILOT_EMAIL_SMTP_USERNAME", "").strip()
+        smtp_password = env.get("COPILOT_EMAIL_SMTP_PASSWORD", "")
+        try:
+            smtp_port = int(env.get("COPILOT_EMAIL_SMTP_PORT", "587"))
+        except ValueError:
+            smtp_port = 0
+        if not smtp_host or any(char in smtp_host for char in "\r\n"):
+            errors.append("COPILOT_EMAIL_SMTP_HOST must be configured as a valid SMTP hostname.")
+        if not smtp_from or any(char in smtp_from for char in "\r\n") or "@" not in smtp_from:
+            errors.append("COPILOT_EMAIL_FROM must be configured as a valid sender address.")
+        if not 1 <= smtp_port <= 65535:
+            errors.append("COPILOT_EMAIL_SMTP_PORT must be an integer from 1 to 65535.")
+        if smtp_security not in {"starttls", "ssl"}:
+            errors.append("Production identity email requires COPILOT_EMAIL_SMTP_SECURITY=starttls or ssl.")
+        if bool(smtp_username) != bool(smtp_password):
+            errors.append("COPILOT_EMAIL_SMTP_USERNAME and COPILOT_EMAIL_SMTP_PASSWORD must be configured together.")
+        if smtp_host and smtp_from and 1 <= smtp_port <= 65535 and smtp_security in {"starttls", "ssl"} and bool(smtp_username) == bool(smtp_password):
+            passed.append("Production identity email has complete encrypted SMTP configuration; live delivery remains unverified.")
+
     public_origin = env.get("COPILOT_PUBLIC_ORIGIN", "").strip()
     if public_origin:
         try:
