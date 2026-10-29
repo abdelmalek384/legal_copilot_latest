@@ -64,6 +64,22 @@ def _open_readonly(path: Path) -> sqlite3.Connection:
     return connection
 
 
+def _has_immutable_trigger(
+    connection: sqlite3.Connection, name: str, table: str, operation: str, message: str
+) -> bool:
+    row = connection.execute(
+        "SELECT sql FROM sqlite_master WHERE type='trigger' AND name=?", (name,)
+    ).fetchone()
+    if row is None or not isinstance(row[0], str):
+        return False
+    sql = " ".join(row[0].lower().split())
+    return (
+        f"before {operation} on {table}" in sql
+        and "raise(abort" in sql
+        and message in sql
+    )
+
+
 def _migration_inventory(directory: Path) -> list[tuple[int, str, str]]:
     if directory.is_symlink() or not directory.is_dir():
         raise FleetMigrationError("Trusted firm migration directory is missing or unsafe")
