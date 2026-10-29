@@ -47,7 +47,7 @@ Table 24 candidate extraction now covers **617/745 numbered entries (82.8%)**. T
 
 ## Source and safety boundaries
 
-- The Table 24 candidate source is a secondary transcription. It is useful for discovery, not proof of official wording.
+- The Table 24 candidate source is a secondary transcription. It is useful for discovery, not proof of official wording. The JSON field `raw_limit_and_note_text` is a working transcription aid, **not a guarantee of verbatim source text**; it may include manually assembled, translated, normalized or text-layer fragments. Every field must be compared with the official page image.
 - The Official Gazette catalogue identifies Decisions 248–252/2026 in the supplement to Egyptian Proceedings issue 225(A), dated 2026-10-12:
   https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full
 - Previous access attempts did not obtain the original Gazette PDF bytes. No original-file SHA-256 is claimed.
