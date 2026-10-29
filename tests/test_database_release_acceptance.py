@@ -29,6 +29,9 @@ class DatabaseReleaseAcceptanceTests(unittest.TestCase):
                     "status": "passed", "evidence_ref": "private-evidence://restore",
                     "verified_at": stamp, "verified_by": "operator-a",
                     "witnessed_by": "witness-b",
+                    "verified_scenarios": [
+                        "staging_restore", "rollback", "staged_upload_recovery", "deletion_recovery",
+                    ],
                 },
                 "retention_export_deletion_policy": {
                     "status": "passed", "evidence_ref": "private-evidence://policy",
@@ -106,6 +109,30 @@ class DatabaseReleaseAcceptanceTests(unittest.TestCase):
         codes = {(item["gate"], item["code"]) for item in report["blockers"]}
         self.assertIn(("backup_restore_rollback", "not_passed"), codes)
         self.assertIn(("production_identity_email", "evidence_missing"), codes)
+
+
+    def test_backup_restore_gate_requires_each_recovery_scenario(self):
+        manifest = json.loads(json.dumps(self.manifest))
+        manifest["gates"]["backup_restore_rollback"]["verified_scenarios"].remove(
+            "staged_upload_recovery"
+        )
+        report = validate_acceptance_manifest(manifest, now=self.now)
+        self.assertFalse(report["ready"])
+        self.assertIn(
+            ("backup_restore_rollback", "required_scenarios_missing"),
+            {(item["gate"], item["code"]) for item in report["blockers"]},
+        )
+
+    def test_backup_restore_gate_rejects_malformed_scenario_evidence(self):
+        manifest = json.loads(json.dumps(self.manifest))
+        manifest["gates"]["backup_restore_rollback"]["verified_scenarios"] = "all passed"
+        report = validate_acceptance_manifest(manifest, now=self.now)
+        self.assertFalse(report["ready"])
+        self.assertIn(
+            ("backup_restore_rollback", "invalid_verified_scenarios"),
+            {(item["gate"], item["code"]) for item in report["blockers"]},
+        )
+
 
     def test_witness_must_be_distinct_from_operator(self):
         manifest = json.loads(json.dumps(self.manifest))

@@ -34,6 +34,9 @@ class ProductionDatabaseModeTests(unittest.TestCase):
                     "status": "passed", "evidence_ref": "synthetic-test-evidence",
                     "verified_at": stamp, "verified_by": "test-operator",
                     "witnessed_by": "independent-test-witness",
+                    "verified_scenarios": [
+                        "staging_restore", "rollback", "staged_upload_recovery", "deletion_recovery",
+                    ],
                 },
                 "retention_export_deletion_policy": {
                     "status": "passed", "evidence_ref": "synthetic-test-evidence",

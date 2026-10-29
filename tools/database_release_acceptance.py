@@ -20,6 +20,7 @@ REQUIRED_GATES = {
         "description": "Witnessed staging restore, rollback, staged-upload recovery, and deletion-recovery drill",
         "fields": ("verified_at", "verified_by", "witnessed_by"),
         "witness_required": True,
+        "required_scenarios": ("staging_restore", "rollback", "staged_upload_recovery", "deletion_recovery"),
         "max_age_days": 90,
     },
     "retention_export_deletion_policy": {
@@ -123,6 +124,19 @@ def validate_acceptance_manifest(manifest: object, *, now: datetime | None = Non
         if missing_fields:
             blockers.append({"gate": name, "code": "required_evidence_fields_missing"})
             continue
+        required_scenarios = spec.get("required_scenarios", ())
+        if required_scenarios:
+            verified_scenarios = item.get("verified_scenarios")
+            if (
+                not isinstance(verified_scenarios, list)
+                or any(not isinstance(value, str) or not value.strip() for value in verified_scenarios)
+            ):
+                blockers.append({"gate": name, "code": "invalid_verified_scenarios"})
+                continue
+            missing_scenarios = sorted(set(required_scenarios) - set(verified_scenarios))
+            if missing_scenarios:
+                blockers.append({"gate": name, "code": "required_scenarios_missing"})
+                continue
         if name == "original_file_storage":
             recorded_fingerprint = item.get("storage_config_sha256")
             if not _valid_sha256(recorded_fingerprint):
