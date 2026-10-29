@@ -17,7 +17,7 @@ class LegalVersionedRegistryTests(unittest.TestCase):
         self.tmp = tempfile.TemporaryDirectory()
         self.env_names = (
             "COPILOT_DB", "COPILOT_CONTROL_DB", "COPILOT_TENANT_DB_ROOT",
-            "COPILOT_CORPUS_DB", "COPILOT_ENV", "ALLOW_UNLINKED_LEGACY_LAW_SEARCH",
+            "COPILOT_CORPUS_DB", "COPILOT_ENV",
         )
         self.old_env = {name: os.environ.get(name) for name in self.env_names}
         root = Path(self.tmp.name)
@@ -26,7 +26,6 @@ class LegalVersionedRegistryTests(unittest.TestCase):
         os.environ["COPILOT_CONTROL_DB"] = str(root / "control.sqlite3")
         os.environ["COPILOT_TENANT_DB_ROOT"] = str(root / "tenants")
         os.environ["COPILOT_CORPUS_DB"] = str(root / "corpus.sqlite3")
-        os.environ.pop("ALLOW_UNLINKED_LEGACY_LAW_SEARCH", None)
         import importlib
         import app
         self.app = importlib.reload(app)
