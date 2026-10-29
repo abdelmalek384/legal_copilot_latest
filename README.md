@@ -152,3 +152,7 @@ Administrators can inspect registered legal document versions and review-event h
 ## Safe legacy law imports
 
 The legacy bulk import endpoint forces imported passages to remain unverified and not in force until reviewed; caller-supplied flags cannot make an unlinked passage searchable as verified law. See [`docs/safe_legacy_law_imports.md`](docs/safe_legacy_law_imports.md). This does not retroactively repair existing unlinked records.
+
+## Legal knowledge candidate validation
+
+The `Legal Knowledge Validation` GitHub Actions workflow checks the quarantined Decision 250 Table 24 candidate batches, fail-closed review queue/register builders, and corpus-to-reference comparison tests. It runs when relevant legal-knowledge files change and can also be started manually from **Actions → Legal Knowledge Validation → Run workflow**. A passing workflow validates structure and tooling only; it does not authenticate a source, prove currentness or reuse rights, or replace Egyptian-lawyer review.
