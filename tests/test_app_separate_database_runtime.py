@@ -1740,6 +1740,48 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             "Firm A confidential task",
         )
 
+    def test_missing_tenant_catalog_entry_fails_closed_without_fallback(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate("post", "/cases", json={"title": "Missing Catalog Guard"})
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+
+        control = self.runtime.control_connection()
+        catalog = control.execute(
+            "SELECT database_file,status FROM tenant_database_catalog WHERE firm_id=?",
+            (self.firm_a,),
+        ).fetchone()
+        self.assertIsNotNone(catalog)
+        context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        firm_db = self.runtime.firm_connection(context)
+        control.execute("DELETE FROM tenant_database_catalog WHERE firm_id=?", (self.firm_a,))
+        control.commit()
+        try:
+            detail = self.client.get(f"/cases/{case_id}")
+            self.assertEqual(detail.status_code, 503, detail.text)
+            create_attempt = self._mutate(
+                "post", "/cases", json={"title": "Must not bypass missing catalog"}
+            )
+            self.assertEqual(create_attempt.status_code, 503, create_attempt.text)
+            self.assertEqual(
+                firm_db.execute("SELECT COUNT(*) FROM cases").fetchone()[0],
+                1,
+                "missing catalog entries must not trigger shared-database fallback writes",
+            )
+        finally:
+            control.execute(
+                "INSERT INTO tenant_database_catalog(firm_id,database_file,status) VALUES(?,?,?)",
+                (self.firm_a, catalog["database_file"], catalog["status"]),
+            )
+            control.commit()
+
+        recovered = self.client.get(f"/cases/{case_id}")
+        self.assertEqual(recovered.status_code, 200, recovered.text)
+        self.assertEqual(recovered.json()["id"], case_id)
+
     def test_unavailable_tenant_database_fails_closed_without_fallback(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
