@@ -21,6 +21,9 @@ This directory tracks the supplied Arabic JSONL corpus and its source review. Th
 
 - [Alternative public source routes and instrument inventory (2026-10-29)](alternative_public_source_routes_2026-10-29.md): maps official searchable Amiri Press texts, Ministry of Labour publications, Gazette catalogue metadata and secondary comparison routes; clearly separates full text from metadata-only leads and records currentness limits.
 - [Decision 250 full secondary transcription access review (2026-10-29)](decision_250_full_secondary_transcription_access_review_2026-10-29.md): records the newly found full secondary text, Table 23/Table 24 page map and recovery of the previously missing printed pp.296–370; clearly marks official-file comparison, complete table extraction, currentness and counsel review as open.
+- [Table 24 extraction progress update (2026-10-29)](progress_update_2026-10-29_table24_batch2.md): records the first 40/745 candidate entries extracted from the full secondary transcription and the unresolved official-source/counsel gates.
+- [Decision 250 Table 24 candidate batch 1, rows 1–20](decision_250_table24_candidate_batch1_rows001_020_2026-10-29.json): source-pinned secondary candidate records; raw limit strings retained and not approved for safety/compliance use.
+- [Decision 250 Table 24 candidate batch 2, rows 21–40](decision_250_table24_candidate_batch2_rows021_040_2026-10-29.json): source-pinned candidate records; nested rows and CAS anomalies preserved for primary-source review.
 - [Decision 250 Table 23 candidate rows](decision_250_table23_first_page_candidate_rows_2026-10-29.json): 137/137 rows now have Arabic labels; the last 74 labels and two CAS entries were added from secondary text and remain pending official-Gazette matching.
 
 - [Source and legal-status review](source_and_legal_review.md)
