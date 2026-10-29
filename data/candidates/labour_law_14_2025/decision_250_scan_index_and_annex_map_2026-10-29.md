@@ -11,7 +11,7 @@ The article page's HTML text only exposes Articles 1 and 2, while the full decis
 
 - First inspected page: printed Gazette p. 45 (image URL: https://www.almasdar.com/WebP/libfiles/46/3/737.webp)
 - Next page: printed Gazette p. 46 (image URL: https://www.almasdar.com/WebP/libfiles/46/3/738.webp)
-- Inspected through printed Gazette p. 225 (image URL: https://www.almasdar.com/WebP/libfiles/46/3/917.webp); inspected image sequence currently covers pp. 45–225, not the whole decision
+- Inspected through printed Gazette p. 240 (image URL: https://www.almasdar.com/WebP/libfiles/46/3/932.webp); inspected image sequence currently covers pp. 45–240, not the whole decision
 - Decision 251 starts at printed p. 371 in the same issue (page image sequence on https://www.almasdar.com/175152). This indicates Decision 250 and its annexes occupy a very large span between the beginning at p.45 and the next instrument at p.371. Do not assume every intervening page has been reviewed merely because a sequence is available.
 
 The image files are hosted by a secondary publisher and carry its watermark. They appear to reproduce Gazette pages, but the official Gazette PDF bytes have not been acquired or hashed. This is a reproduced scan route, not a certified official download.
@@ -57,7 +57,7 @@ The inspected pages explicitly refer to accompanying tables, including:
 - whole-body vibration exposure tables and duration-based values around pp.192–195;
 - illumination (lux) table 11 around pp.196–202;
 - chemical exposure-limit tables around pp.203–210;
-- ionizing-radiation table 12 (p.214), laser tables 13–15 (pp.215–219), infrared table 16 (p.220), UV tables 17–18 (pp.221–224), and electromagnetic-field table 19 (p.225);
+- ionizing-radiation table 12 (p.214), laser tables 13–15 (pp.215–219), infrared table 16 (p.220), UV tables 17–18 (pp.221–224), electromagnetic-field table 19 (p.225), radiofrequency/hot-surface/electrical-clearance tables 20–22 (pp.226–228), and chemical TLV tables (pp.229–235);
 - machinery, equipment, hazardous substances, excavations, demolition, scaffolds, cranes/lifting, hot work, confined spaces, electrical safety, and other task-specific standards referenced in the Ministry's announcement;
 - mandatory registers/forms (Article 1 expressly incorporates forms/register models).
 
