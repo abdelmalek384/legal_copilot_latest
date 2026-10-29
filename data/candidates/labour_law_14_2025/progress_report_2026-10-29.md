@@ -12,7 +12,7 @@ Scope: only the Labour Law 14/2025 evidence-backed legal-knowledge workstream an
 2. Built 35 clause/value checks for Decisions 248–252/2026 and stored them both as Markdown and machine-readable JSON. JSON was parsed; 35 clause records match the declared count.
 3. Located reproduced Gazette page-image sequences hosted by Al-Masdar:
    - Decision 249: printed pp. 19–44, including Articles 1–22 and Tables 1–3.
-   - Decision 250: printed pp. 45–90 inspected so far; definitions, fire, risk assessment, emergency plans, heat/cold stress, noise, vibration, illumination, ionizing/non-ionizing radiation, laser, explosion and excavation sections. The instrument's full span is much longer and remains incomplete.
+   - Decision 250: printed pp. 45–90 inspected so far; definitions, fire, risk assessment, emergency plans, heat/cold stress, noise, vibration, illumination, ionizing/non-ionizing radiation, laser, explosion and excavation sections. The final 75 pages (pp.296–370) are not exposed in the current image-link list; Law Hub provides a full-document PDF preview route, but the page-image endpoint returned 403 in this research interface and no bytes were downloaded.
    - Decision 251: printed pp. 371–377.
    - Decision 252: printed pp. 378–398.
 4. Added a structured candidate extraction for Decision 249 Table 3: 12 activity/pollutant combinations.
@@ -27,7 +27,7 @@ Scope: only the Labour Law 14/2025 evidence-backed legal-knowledge workstream an
 | Alternative source inventory | Added and linked | 100% for the inventory document | New source leads can still be added |
 | 35-item cross-instrument discrepancy checklist | Structured and count-validated | 100% for checklist structure | Legal text still needs primary-file match |
 | Decision 249 scan discovery | pp.19–44 and Tables 1–3 located | 75% source discovery | Official PDF hash, exact Table 1/2 transcription, currentness and counsel |
-| Decision 250 scan discovery | pp.45–285 inspected (241 of roughly 326 pages in the instrument span) | 74% of the long scan-index task | Hundreds of remaining pages/tables; all technical tables and numerical limits |
+| Decision 250 scan discovery | pp.45–295 inspected (251 of roughly 326 pages in the instrument span) | 77% of the long scan-index task | Hundreds of remaining pages/tables; all technical tables and numerical limits |
 | Decision 251 scan extraction | pp.371–377 indexed; Articles 1–11 summarized from reproduced scans | 65% extraction work | Official-file comparison, currentness, counsel, exact procedural day-count check |
 | Decision 252 scan extraction | pp.378–398 indexed; 32 numerical candidates structured | 70% extraction work | Official-file comparison; ambiguous table cells; currentness and counsel |
 | Decision 249 implementation circulars | Ministry says circulars will be issued; separate circular not located publicly | 35% | Find a public circular or preserve the unresolved gap |
