@@ -6,7 +6,7 @@
 
 ## Headline
 
-**Overall evidence-backed legal-content readiness remains 7%.** The source-discovery and candidate-extraction work has advanced, but no Table 24 exposure limit has passed official Gazette matching, complete currentness review, source-use assessment, and qualified Egyptian OSH counsel approval.
+**Legal-knowledge preparation progress is estimated at 7%; strict authoritative legal-content readiness is 0%.** The 7% is a conservative phase estimate for the overall evidence/provenance workflow, not a percentage of verified statutes or approved rules. No Table 24 exposure limit has passed official Gazette matching, complete currentness review, source-use assessment, and qualified Egyptian OSH counsel approval.
 
 Table 24 candidate extraction now covers **617/745 numbered entries (82.8%)**. This is extraction coverage only, not verified-law coverage. The official Gazette PDF bytes/hash and row-by-row primary-source comparison remain unavailable. No Table 24 row is approved for authoritative retrieval.
 
@@ -73,6 +73,6 @@ Table 24 candidate extraction now covers **617/745 numbered entries (82.8%)**. T
 - Currentness-complete Table 24 rows: **0**
 - Lawyer-approved Table 24 rows: **0**
 - Table 24 rows eligible for authoritative retrieval: **0**
-- Overall evidence-backed legal-content readiness: **7%**
+- Legal-knowledge preparation progress (phase estimate): **7%**\n- Strict authoritative legal-content readiness (all release gates passed): **0%**
 
-These figures intentionally separate extraction progress from legal verification. A nearly complete transcription is not a nearly verified legal corpus.
+These figures intentionally separate preparation, extraction, and legal verification. The 7% phase estimate is not a count of verified legal rules. Since zero rows have completed all release gates, strict authoritative legal-content readiness is 0%. A nearly complete transcription is not a nearly verified legal corpus.
