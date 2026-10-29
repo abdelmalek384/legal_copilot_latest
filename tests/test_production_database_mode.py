@@ -6,8 +6,20 @@ import unittest
 from datetime import datetime, timezone
 from pathlib import Path
 
+from tools.database_release_acceptance import original_storage_config_fingerprint
+
 
 class ProductionDatabaseModeTests(unittest.TestCase):
+    @staticmethod
+    def _storage_config():
+        return {
+            "COPILOT_OBJECT_STORAGE_BACKEND": "s3",
+            "COPILOT_S3_BUCKET": "acceptance-test-bucket",
+            "COPILOT_S3_REGION": "us-east-1",
+            "COPILOT_S3_KMS_KEY_ID": "test-kms-key",
+            "COPILOT_S3_ENDPOINT_URL": "",
+        }
+
     def _write_acceptance_manifest(self, path):
         stamp = datetime.now(timezone.utc).isoformat()
         manifest = {
@@ -16,6 +28,7 @@ class ProductionDatabaseModeTests(unittest.TestCase):
                 "original_file_storage": {
                     "status": "passed", "evidence_ref": "synthetic-test-evidence",
                     "verified_at": stamp, "verified_by": "test-operator",
+                    "storage_config_sha256": original_storage_config_fingerprint(self._storage_config()),
                 },
                 "backup_restore_rollback": {
                     "status": "passed", "evidence_ref": "synthetic-test-evidence",
@@ -72,6 +85,7 @@ class ProductionDatabaseModeTests(unittest.TestCase):
             env.pop("COPILOT_DB", None)
             acceptance_path = self._write_acceptance_manifest(Path(temp) / "database-acceptance.json")
             env["COPILOT_DATABASE_ACCEPTANCE_FILE"] = str(acceptance_path)
+            env.update(self._storage_config())
             env.update({
                 "COPILOT_ENV": "production",
                 "COPILOT_CONTROL_DB": os.path.join(temp, "control.sqlite3"),
@@ -119,6 +133,7 @@ class ProductionDatabaseModeTests(unittest.TestCase):
             env = os.environ.copy()
             for key in ("COPILOT_DB",):
                 env.pop(key, None)
+            env.update(self._storage_config())
             env.update({
                 "COPILOT_ENV": "production",
                 "COPILOT_DATABASE_ACCEPTANCE_FILE": str(acceptance_path),
