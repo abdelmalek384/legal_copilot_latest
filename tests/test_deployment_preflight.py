@@ -119,7 +119,7 @@ class DeploymentPreflightTests(unittest.TestCase):
         env["MFA_ENCRYPTION_KEY"] = Fernet.generate_key().decode()
         _, _, errors = preflight.inspect_environment(env)
         self.assertTrue(any(
-            "no production object-storage/KMS backend is implemented and verified end-to-end" in item
+            "COPILOT_OBJECT_STORAGE_BACKEND=s3" in item
             for item in errors
         ))
         self.assertEqual(len(errors), 1, errors)
@@ -167,7 +167,7 @@ class DeploymentPreflightTests(unittest.TestCase):
                     dict(base, COPILOT_OBJECT_STORAGE_BACKEND=backend)
                 )
                 self.assertTrue(any(
-                    "no production object-storage/KMS backend is implemented and verified end-to-end" in item
+                    "COPILOT_OBJECT_STORAGE_BACKEND=s3" in item
                     for item in errors
                 ))
 
@@ -188,9 +188,44 @@ class DeploymentPreflightTests(unittest.TestCase):
         }
         _, _, errors = preflight.inspect_environment(env, require_separate=True)
         self.assertTrue(any(
-            "no production object-storage/KMS backend is implemented and verified end-to-end" in item
+            "COPILOT_OBJECT_STORAGE_BACKEND=s3" in item
             for item in errors
         ))
+
+    def test_production_s3_backend_requires_bucket_region_and_key_configuration(self):
+        root = Path(self.tempdir.name)
+        tenant_root = root / "tenants-s3"
+        tenant_root.mkdir()
+        if os.name == "posix":
+            os.chmod(tenant_root, 0o700)
+        (root / "control-s3").mkdir()
+        (root / "corpus-s3").mkdir()
+        env = {
+            "ADMIN_TOKEN": "a" * 40,
+            "MIN_SCORE": "0.3",
+            "COPILOT_ENV": "production",
+            "COPILOT_OBJECT_STORAGE_BACKEND": "s3",
+            "COPILOT_CONTROL_DB": str(root / "control-s3" / "control.sqlite3"),
+            "COPILOT_TENANT_DB_ROOT": str(tenant_root),
+            "COPILOT_CORPUS_DB": str(root / "corpus-s3" / "corpus.sqlite3"),
+            "COPILOT_ALLOWED_HOSTS": "legal.example.test",
+            "COPILOT_SECURE_COOKIES": "1",
+            "COPILOT_PUBLIC_ORIGIN": "https://legal.example.test",
+            "BACKUP_KEY": Fernet.generate_key().decode(),
+            "MFA_ENFORCEMENT": "admins_required",
+            "MFA_ENCRYPTION_KEY": Fernet.generate_key().decode(),
+        }
+        _, _, errors = preflight.inspect_environment(env)
+        self.assertTrue(any("S3/KMS production configuration is incomplete" in item for item in errors))
+
+        env.update({
+            "COPILOT_S3_BUCKET": "private-originals-test",
+            "COPILOT_S3_REGION": "us-east-1",
+            "COPILOT_S3_KMS_KEY_ID": "arn:aws:kms:us-east-1:123456789012:key/test-key",
+        })
+        passed, _, errors = preflight.inspect_environment(env)
+        self.assertFalse(any("S3/KMS production configuration is incomplete" in item for item in errors))
+        self.assertTrue(any("live provider acceptance remains a separate mandatory gate" in item for item in passed))
 
     def test_accepts_complete_separate_database_path_configuration_without_shared_warning(self):
         root = Path(self.tempdir.name)
