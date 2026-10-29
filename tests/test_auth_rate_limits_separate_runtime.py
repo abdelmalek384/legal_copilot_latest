@@ -33,6 +33,7 @@ class SeparateRuntimeAuthenticationRateLimitTests(unittest.TestCase):
 
         self.runtime = DatabaseRuntime.from_env()
         self.runtime.initialize()
+        app._database_runtime = self.runtime
         self.firm_id, _ = self.runtime.provision_firm("Rate Limit Firm")
         self.password = "SeparateRuntimeRateLimitPassphrase-2026!"
         self.user_id = self.runtime.create_initial_firm_owner(
