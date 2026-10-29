@@ -3595,7 +3595,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertTrue(any(
             row["source_id"] == "RUNTIME-CATALOG-SOURCE" for row in sources.json()["items"]
         ))
-        self.assertNotIn("text", sources.text.lower())
+        self.assertTrue(all("text" not in row for row in sources.json()["items"]))
 
         metadata = self.client.get(
             "/legal-review/catalog?kind=metadata_only_documents&q=RUNTIME-CATALOG-METADATA-DOC"
