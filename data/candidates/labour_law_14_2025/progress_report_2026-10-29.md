@@ -48,6 +48,7 @@ Table 24 candidate extraction now covers **617/745 numbered entries (82.8%)**; *
 | Decision 250 source discovery | 90% | Full secondary transcription located | Official Gazette bytes/hash and complete primary-source match |
 | Decision 250 Table 23 candidate labels | 100% candidate-label coverage | 137/137 Arabic labels present | Official page matching, currentness, source-use review, counsel |
 | Decision 250 Table 24 candidate extraction | **82.8%** | 617/745 numbered entries structured in 31 batches | Extract remaining entries; primary-source match; currentness and counsel |
+| Candidate data validation/triage tooling | **100% for current candidate files** | Table 23/24 and Decisions 251/252 validators, review queue, primary-match register, and focused CI passed | This closes tooling/structure checks only; source matching, currentness, reuse and counsel remain open |
 | Table 24 official Gazette row matches | 0% | No row-by-row official match completed | Obtain official file/page images and compare every candidate row |
 | Table 24 currentness review | 0% complete | Not established by secondary transcription | Confirm applicable amendments, corrigenda and current status |
 | Table 24 qualified counsel approval | 0% | No entries approved | Qualified Egyptian OSH lawyer must review source-matched rows |
