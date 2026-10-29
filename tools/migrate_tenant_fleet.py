@@ -64,6 +64,45 @@ def _open_readonly(path: Path) -> sqlite3.Connection:
     return connection
 
 
+def _has_immutable_trigger(
+    connection: sqlite3.Connection, name: str, table: str, operation: str, message: str
+) -> bool:
+    row = connection.execute(
+        "SELECT sql FROM sqlite_master WHERE type='trigger' AND name=?", (name,)
+    ).fetchone()
+    if row is None or not isinstance(row[0], str):
+        return False
+    sql = " ".join(row[0].lower().split())
+    return (
+        f"before {operation} on {table}" in sql
+        and "raise(abort" in sql
+        and message in sql
+    )
+
+
+def _require_immutable_binding_guards(
+    connection: sqlite3.Connection, *, profile: str, firm_binding: bool = False
+) -> None:
+    for operation in ("update", "delete"):
+        if not _has_immutable_trigger(
+            connection, f"database_profile_no_{operation}", "database_profile",
+            operation, "database profile binding is immutable",
+        ):
+            raise FleetMigrationError(
+                f"{profile} database is missing its immutable profile guard for {operation}"
+            )
+    if firm_binding:
+        for operation in ("update", "delete"):
+            if not _has_immutable_trigger(
+                connection, f"tenant_database_binding_no_{operation}", "tenant_database_binding",
+                operation, "tenant database firm binding is immutable",
+            ):
+                raise FleetMigrationError(
+                    "Tenant database is missing its immutable firm binding guard "
+                    f"for {operation}"
+                )
+
+
 def _migration_inventory(directory: Path) -> list[tuple[int, str, str]]:
     if directory.is_symlink() or not directory.is_dir():
         raise FleetMigrationError("Trusted firm migration directory is missing or unsafe")
@@ -141,6 +180,7 @@ def build_plan(control_db: str | Path, tenant_root: str | Path, migrations_root:
             ).fetchone()
             if profile is None or profile["profile"] != "control_plane":
                 raise FleetMigrationError("Control database is not immutably bound to control_plane")
+            _require_immutable_binding_guards(control, profile="Control-plane")
             if control.execute("PRAGMA foreign_key_check").fetchall():
                 raise FleetMigrationError("Control-plane catalog has foreign-key violations")
             rows = control.execute(
@@ -219,6 +259,9 @@ def build_plan(control_db: str | Path, tenant_root: str | Path, migrations_root:
                 raise FleetMigrationError(f"Tenant {firm_id} has an invalid immutable schema profile")
             if binding is None or int(binding["firm_id"]) != firm_id:
                 raise FleetMigrationError(f"Tenant {firm_id} immutable firm binding does not match catalog")
+            _require_immutable_binding_guards(
+                tenant, profile=f"Tenant {firm_id}", firm_binding=True
+            )
             integrity = tenant.execute("PRAGMA integrity_check").fetchone()
             if integrity is None or integrity[0] != "ok":
                 raise FleetMigrationError(f"Tenant {firm_id} failed integrity_check")
