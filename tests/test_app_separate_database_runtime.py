@@ -1740,6 +1740,50 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             "Firm A confidential task",
         )
 
+    def test_unavailable_tenant_database_fails_closed_without_fallback(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate("post", "/cases", json={"title": "Unavailable Tenant Guard"})
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+
+        control = self.runtime.control_connection()
+        catalog = control.execute(
+            "SELECT database_file FROM tenant_database_catalog WHERE firm_id=?",
+            (self.firm_a,),
+        ).fetchone()
+        self.assertIsNotNone(catalog)
+        tenant_path = self.root / "tenants" / catalog["database_file"]
+        unavailable_path = tenant_path.with_name(tenant_path.name + ".temporarily-unavailable")
+        self.assertTrue(tenant_path.is_file())
+        os.replace(tenant_path, unavailable_path)
+        try:
+            detail = self.client.get(f"/cases/{case_id}")
+            self.assertEqual(detail.status_code, 503, detail.text)
+
+            create_attempt = self._mutate(
+                "post", "/cases", json={"title": "Must not fall back to another database"}
+            )
+            self.assertEqual(create_attempt.status_code, 503, create_attempt.text)
+
+            # The still-open trusted connection sees the original tenant inode.
+            # No write may have reached it while catalog resolution was failing.
+            context = self.runtime.resolve_context(self.user_id, self.firm_a)
+            firm_db = self.runtime.firm_connection(context)
+            self.assertEqual(
+                firm_db.execute("SELECT COUNT(*) FROM cases").fetchone()[0],
+                1,
+                "unavailable tenant reads/writes must fail before any fallback write",
+            )
+        finally:
+            os.replace(unavailable_path, tenant_path)
+
+        recovered = self.client.get(f"/cases/{case_id}")
+        self.assertEqual(recovered.status_code, 200, recovered.text)
+        self.assertEqual(recovered.json()["id"], case_id)
+
     def test_disabled_firm_is_denied_at_api_and_retains_its_database(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
