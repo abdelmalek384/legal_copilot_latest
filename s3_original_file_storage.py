@@ -158,7 +158,29 @@ class S3PrivateObjectStore:
                 ServerSideEncryption="aws:kms",
                 SSEKMSKeyId=self.kms_key_id,
             )
-            # If this delete fails, reconciliation can safely detect both keys.
+            # Never delete the recoverable staged copy until the destination is
+            # independently observed and its encryption/key identity is verified.
+            # Also verify the copied bytes against the digest/size recorded at stage
+            # time: a successful copy API response is not an integrity guarantee.
+            expected_digest = source.get("Metadata", {}).get("sha256")
+            expected_size = source.get("ContentLength")
+            if (
+                not isinstance(expected_digest, str)
+                or not _SHA256_RE.fullmatch(expected_digest)
+                or isinstance(expected_size, bool)
+                or not isinstance(expected_size, int)
+                or expected_size < 0
+            ):
+                raise ObjectStorageError("staged object has invalid integrity metadata")
+            destination = self._head(final)
+            if destination is None:
+                raise ObjectStorageError("finalized object is missing")
+            if not self.verify(
+                firm_id, object_id,
+                expected_sha256=expected_digest,
+                expected_size=expected_size,
+            ):
+                raise ObjectStorageError("finalized object failed integrity verification")
             self.client.delete_object(Bucket=self.bucket, Key=staged)
         except Exception as exc:
             raise ObjectStorageError("could not finalize original object") from exc
