@@ -3942,5 +3942,201 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
                     model(**invalid_payload)
 
 
+    def test_original_upload_preserves_duplicate_records_and_ocr_provenance(self):
+        import hashlib
+
+        payload = b"%PDF-1.4 synthetic scanned contract"
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate("post", "/cases", json={"title": "OCR provenance test"})
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+        recognized = "Recognized scanned contract text requiring human review. " * 3
+
+        with (
+            patch.object(app, "extract", return_value=""),
+            patch.object(app, "ocr_pdf_text", return_value=recognized),
+            patch.object(app, "_mfa_required_for_user", return_value=False),
+        ):
+            first = self._mutate(
+                "post", f"/cases/{case_id}/upload",
+                files={"file": ("scan-one.pdf", payload, "application/pdf")},
+            )
+            second = self._mutate(
+                "post", f"/cases/{case_id}/upload",
+                files={"file": ("renamed-scan.pdf", payload, "application/pdf")},
+            )
+
+        self.assertEqual(first.status_code, 200, first.text)
+        self.assertEqual(second.status_code, 200, second.text)
+        first_body, second_body = first.json(), second.json()
+        self.assertTrue(first_body["ocr_used"])
+        self.assertEqual(first_body["text_status"], "ocr_unverified")
+        self.assertTrue(first_body["original_file_retained"])
+        self.assertTrue(second_body["ocr_used"])
+        self.assertEqual(second_body["text_status"], "ocr_unverified")
+        self.assertTrue(second_body["original_file_retained"])
+        self.assertNotEqual(first_body["document_id"], second_body["document_id"])
+        expected_digest = hashlib.sha256(payload).hexdigest()
+        self.assertEqual(first_body["sha256"], expected_digest)
+        self.assertEqual(second_body["sha256"], expected_digest)
+
+        context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        firm_db = self.runtime.firm_connection(context)
+        document_ids = (first_body["document_id"], second_body["document_id"])
+        documents = firm_db.execute(
+            "SELECT id,firm_id,uploader_user_id,sha256,content_type,byte_size,extraction_status,ocr_used "
+            "FROM docs WHERE id IN (?,?) ORDER BY id",
+            document_ids,
+        ).fetchall()
+        self.assertEqual(len(documents), 2)
+        for document in documents:
+            self.assertEqual(document["firm_id"], self.firm_a)
+            self.assertEqual(document["uploader_user_id"], self.user_id)
+            self.assertEqual(document["sha256"], expected_digest)
+            self.assertEqual(document["content_type"], "application/pdf")
+            self.assertEqual(document["byte_size"], len(payload))
+            self.assertEqual(document["extraction_status"], "ocr_unverified")
+            self.assertEqual(document["ocr_used"], 1)
+
+        objects = firm_db.execute(
+            "SELECT document_id,object_id,sha256,byte_size,state FROM original_file_objects "
+            "WHERE document_id IN (?,?) ORDER BY document_id",
+            document_ids,
+        ).fetchall()
+        self.assertEqual(len(objects), 2)
+        self.assertNotEqual(objects[0]["object_id"], objects[1]["object_id"])
+        for stored in objects:
+            self.assertEqual(stored["sha256"], expected_digest)
+            self.assertEqual(stored["byte_size"], len(payload))
+            self.assertEqual(stored["state"], "ready")
+            self.assertTrue(
+                (self.root / "objects" / f"firm-{self.firm_a}" /
+                 (stored["object_id"] + ".blob")).is_file()
+            )
+
+    def test_document_review_rejects_stale_correction_digest(self):
+        import hashlib
+
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate("post", "/cases", json={"title": "Stale review test"})
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+        uploaded = self._mutate(
+            "post", f"/cases/{case_id}/docs",
+            json={"name": "review-source.txt", "text": "Original extracted text for stale review protection. " * 3},
+        )
+        self.assertEqual(uploaded.status_code, 200, uploaded.text)
+        document_id = uploaded.json()["document_id"]
+
+        context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        firm_db = self.runtime.firm_connection(context)
+        chunk = firm_db.execute(
+            "SELECT id,text FROM chunks WHERE document_id=? AND case_id=? ORDER BY id LIMIT 1",
+            (document_id, case_id),
+        ).fetchone()
+        self.assertIsNotNone(chunk)
+        chunk_id = int(chunk["id"])
+        original_text = str(chunk["text"])
+        original_digest = hashlib.sha256(original_text.encode("utf-8")).hexdigest()
+        review_url = f"/cases/{case_id}/docs/{document_id}/chunks/{chunk_id}/review"
+
+        accepted = self._mutate(
+            "post", review_url,
+            json={
+                "outcome": "corrected",
+                "corrected_text": original_text + " [reviewed correction]",
+                "expected_text_sha256": original_digest,
+                "page_reference": "PDF p. 4",
+                "note": "Current digest accepted",
+            },
+        )
+        self.assertEqual(accepted.status_code, 201, accepted.text)
+        self.assertTrue(accepted.json()["text_updated"])
+        self.assertEqual(accepted.json()["page_reference"], "PDF p. 4")
+
+        stale = self._mutate(
+            "post", review_url,
+            json={
+                "outcome": "corrected",
+                "corrected_text": "stale overwrite must not win",
+                "expected_text_sha256": original_digest,
+            },
+        )
+        self.assertEqual(stale.status_code, 409, stale.text)
+        current = firm_db.execute(
+            "SELECT text FROM chunks WHERE id=? AND document_id=? AND case_id=?",
+            (chunk_id, document_id, case_id),
+        ).fetchone()
+        self.assertEqual(current["text"], original_text + " [reviewed correction]")
+        reviews = firm_db.execute(
+            "SELECT outcome,original_text,reviewed_text,page_reference FROM document_extraction_reviews "
+            "WHERE chunk_id=? ORDER BY id",
+            (chunk_id,),
+        ).fetchall()
+        self.assertEqual(len(reviews), 1)
+        self.assertEqual(reviews[0]["outcome"], "corrected")
+        self.assertEqual(reviews[0]["original_text"], original_text)
+        self.assertEqual(reviews[0]["reviewed_text"], original_text + " [reviewed correction]")
+        self.assertEqual(reviews[0]["page_reference"], "PDF p. 4")
+
+    def test_research_followups_use_only_prior_user_questions_as_context(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate("post", "/research/conversations", json={})
+        self.assertEqual(created.status_code, 200, created.text)
+        conversation_id = created.json()["id"]
+        captured = []
+        assistant_only_sentinel = "ASSISTANT-ANSWER-MUST-NOT-BECOME-RETRIEVAL-CONTEXT"
+
+        def fake_ask(db_conn, question, case_id=None, firm_id=None, as_of=None,
+                     conversation_context=None, scope="verified_corpus"):
+            captured.append({
+                "question": question,
+                "context": conversation_context,
+                "firm_id": firm_id,
+                "scope": scope,
+            })
+            return {
+                "found": False,
+                "answer": None,
+                "sources": [],
+                "message": assistant_only_sentinel,
+            }
+
+        with patch.object(app, "ask", side_effect=fake_ask):
+            first = self._mutate(
+                "post", f"/research/conversations/{conversation_id}/messages",
+                json={"message": "مدة العقد"},
+            )
+            followup = self._mutate(
+                "post", f"/research/conversations/{conversation_id}/messages",
+                json={"message": "وهل توجد استثناءات؟"},
+            )
+
+        self.assertEqual(first.status_code, 200, first.text)
+        self.assertEqual(followup.status_code, 200, followup.text)
+        self.assertEqual(len(captured), 2)
+        self.assertEqual(captured[1]["question"], "وهل توجد استثناءات؟")
+        self.assertIn("مدة العقد", captured[1]["context"] or "")
+        self.assertNotIn(assistant_only_sentinel, captured[1]["context"] or "")
+        self.assertEqual(captured[1]["firm_id"], self.firm_a)
+        self.assertEqual(captured[1]["scope"], "verified_corpus")
+
+        conversation = self.client.get(f"/research/conversations/{conversation_id}")
+        self.assertEqual(conversation.status_code, 200, conversation.text)
+        messages = conversation.json()["messages"]
+        self.assertEqual([item["role"] for item in messages], ["user", "assistant", "user", "assistant"])
+        self.assertEqual(messages[-1]["sources"], [])
+        self.assertEqual(messages[-1]["content"], assistant_only_sentinel)
+
+
 if __name__ == "__main__":
     unittest.main()
