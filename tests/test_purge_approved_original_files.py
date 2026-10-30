@@ -385,8 +385,19 @@ class PurgeApprovedOriginalFilesTests(unittest.TestCase):
         tenant = sqlite3.connect(self.tenant_path)
         try:
             tenant.execute(
-                "UPDATE original_file_objects SET storage_backend='s3',legal_hold=? WHERE object_id=?",
-                (1 if legal_hold else 0, staged.object_id),
+                """UPDATE original_file_objects
+                   SET storage_backend='s3', legal_hold=?,
+                       hold_reason=CASE WHEN ?=1 THEN 'synthetic test legal hold' ELSE hold_reason END,
+                       hold_set_by=CASE WHEN ?=1 THEN ? ELSE hold_set_by END,
+                       hold_set_at=CASE WHEN ?=1 THEN datetime('now') ELSE hold_set_at END
+                   WHERE object_id=?""",
+                (
+                    1 if legal_hold else 0,
+                    1 if legal_hold else 0,
+                    1 if legal_hold else 0, self.operator_id,
+                    1 if legal_hold else 0,
+                    staged.object_id,
+                ),
             )
             tenant.commit()
         finally:
