@@ -75,7 +75,7 @@ The monitor flags stale queued rows, expired or missing sender leases, failed/am
 
 ## Operator checks
 
-    PYTHONPATH=. python tools/test_reminder_schedule.py
+    PYTHONPATH=. python tests/test_reminder_schedule.py
     PYTHONPATH=. python tests/test_reminder_email.py
     PYTHONPATH=. python tests/test_reminder_outbox.py
     PYTHONPATH=. python tests/test_reminder_service.py
