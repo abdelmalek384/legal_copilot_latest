@@ -603,5 +603,6 @@
       "status": "candidate_only_pending_official_match",
       "retrieval_eligible": false
     }
-  ]
+  ],
+  "validation_note": "2026-10-30: 26 secondary image locators mapped; structural validator checks article/table coverage and enforces candidate-only quarantine. No original Gazette match is claimed."
 }
