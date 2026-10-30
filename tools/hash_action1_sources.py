@@ -16,7 +16,9 @@ from typing import Any
 
 
 def inspect_file(path: Path) -> dict[str, Any]:
-    if not path.is_file():
+    if path.is_symlink():
+        raise ValueError(f"Source input must not be a symbolic link: {path.name}")
+    if not path.exists() or not path.is_file():
         raise FileNotFoundError(path)
     digest = hashlib.sha256()
     size = 0
