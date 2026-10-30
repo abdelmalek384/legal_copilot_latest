@@ -26,6 +26,8 @@ Each JSON sidecar must be an object with these fields:
 ```json
 {
   "document_id": "labour_law_14_2025",
+  "official_title": "قانون العمل رقم 14 لسنة 2025",
+  "language": "ar",
   "source_url": "https://example.gov.eg/publication/item",
   "retrieved_at": "2026-10-30T10:30:00+02:00",
   "content_sha256": "64-character SHA-256 of the exact PDF bytes",
@@ -34,6 +36,7 @@ Each JSON sidecar must be an object with these fields:
 ```
 
 The example URL is illustrative only. Replace it with the actual source URL. Use the SHA-256 of the exact local PDF, not a hash copied from a webpage or a different edition. The importer accepts an ISO date or datetime for `retrieved_at`, requires an HTTPS URL without embedded credentials, fragments, or signed/credential query parameters, and rejects symbolic links, mismatched file pairs, invalid PDF signatures, duplicate document IDs, and hash mismatches before extraction begins.
+ The language field is required and must be `ar` (Arabic), `en` (English text/translation), or `ar-en` (bilingual). An optional official_title preserves the instrument's Arabic title in candidate rows. Arabic article headings such as المادة (١) and مادة رقم ٢ مكرر, as well as English Article 3 headings, are segmented; do not treat segmentation or OCR as legal verification.
 
 ## 3. Install optional extraction dependencies
 
