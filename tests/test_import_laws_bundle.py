@@ -37,6 +37,11 @@ class LegalImportBundleTests(unittest.TestCase):
         (self.source / f"{stem}.json").write_text(json.dumps(metadata), encoding="utf-8")
         return pdf
 
+    def test_readme_links_to_existing_runbook_not_a_missing_downloader(self):
+        readme = (Path(__file__).resolve().parents[1] / "README.md").read_text(encoding="utf-8")
+        self.assertNotIn("download_egypt_laws.py", readme)
+        self.assertIn("docs/legal_pdf_import_runbook.md", readme)
+
     def test_valid_pair_returns_actual_hash_and_metadata(self):
         prepared = validate_inputs(self.source, self.output)
         self.assertEqual(len(prepared), 1)
