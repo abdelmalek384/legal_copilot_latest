@@ -83,6 +83,8 @@ Table 24 candidate extraction now covers **781/781 numbered entries (100% second
 
 46. Improved the Table 24 human review queue so secondary-image discrepancies are explicit high-priority flags and each candidate row displays its printed-page/image locator. Partial spot-checks and page-locator-only rows now have distinct queue labels. Added a regression test for the row-34 CAS discrepancy and its locator. Focused CI and full Tests were triggered on the code change and are pending at this update; no pass is claimed yet.
 
+47. Focused Legal Knowledge Validation passed on commit `4f8b5ab6741388e09b81bfd00bc85ecdeb474af8` (run `41022775815`; all 26 steps succeeded). The run includes the revised Table 24 review-queue generator and discrepancy regression test. The full `Tests` workflow on this commit is still running; the full suite has not yet been claimed as passing for this change. This CI result confirms the review-tool code and candidate safeguards, not legal correctness.
+
 ## Current subtask status
 
 | Subtask | Completion estimate | Current status | Remaining gate |
