@@ -6,6 +6,16 @@
 - `.github/workflows/dependency-audit.yml` runs `pip-audit --strict` against the direct and resolved transitive Python dependency tree on pull requests, pushes to main, and a weekly schedule.
 - A failing or unavailable audit is a release blocker until the result is understood. Do not suppress an advisory merely to make CI green; document a narrowly scoped exception, affected versions, compensating controls, owner, and expiry if a temporary exception is unavoidable.
 
+## Hash-locked deployment requirements
+
+The `Resolve Python 3.12 deployment lock` workflow generates `requirements-py312.lock` from `requirements.txt` with pinned transitive versions and artifact SHA-256 hashes. It validates installation in a clean Python 3.12 virtual environment with `pip install --require-hashes`. For same-repository pull requests, a separate write-scoped job commits only the generated lockfile; the resolver job has read-only repository permissions and does not persist checkout credentials.
+
+- Treat `requirements.txt` as the reviewed direct-dependency input and `requirements-py312.lock` as the exact Python 3.12 deployment set.
+- Do not hand-edit lock versions or hashes. Change the direct requirements, let the resolver regenerate the lock, and review the diff.
+- Run the strict vulnerability audit against the locked set and run the full application tests before merge.
+- The lock is specific to Python 3.12. If another runtime/platform becomes supported, generate and validate a separate lock for that target rather than reusing this one.
+- Keep the resolver action versions and pip-tools version under review; the lock records package artifact hashes, not provenance attestations for the resolver itself.
+
 ## Updating dependencies
 
 1. Review the package's upstream release notes, supported Python versions, security advisories, and license.
