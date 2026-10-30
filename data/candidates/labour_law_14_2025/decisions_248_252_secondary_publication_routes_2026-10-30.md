@@ -92,7 +92,7 @@ https://www.almasdar.com/keyword/5037?page=1
 ### Independent secondary synthesis: Youm7, 28 October 2026
 
 A single secondary news analysis was published on 28 October 2026 and discusses all five decisions together:
-https://www.youm7.com/story/2026/10/28/حماية-أرواح-العمال-أولوية-وزارة-العمل-تحدد-مهلة-24-ساعة-للإبلاغ-عن-الحوادث-داخل-مواقع-الإنتاج-وتلزم-المنشآت-بإعداد-تقارير-دورية-عن-إصابات-العمال-وتحدد-موعد-تقديم-الإحصائيات-في-يناير-ويوليو-وتضع-قواعد-جديدة/7590406
+https://www.youm7.com/story/2026/10/28/%D8%AD%D9%85%D8%A7%D9%8A%D8%A9-%D8%A3%D8%B1%D9%88%D8%A7%D8%AD-%D8%A7%D9%84%D8%B9%D9%85%D8%A7%D9%84-%D8%A3%D9%88%D9%84%D9%88%D9%8A%D8%A9-%D9%88%D8%B2%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%AA%D8%AD%D8%AF%D8%AF-%D9%85%D9%87%D9%84%D8%A9-24-%D8%B3%D8%A7%D8%B9%D8%A9/7590406
 
 The article supplies additional secondary detail beyond the partial Almasdar pages:
 
