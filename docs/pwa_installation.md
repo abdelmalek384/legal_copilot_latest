@@ -12,7 +12,7 @@ Legal Copilot can be installed as a Progressive Web App (PWA) from a compatible 
 
 - **Android (Chrome):** open the HTTPS application URL, open the browser menu, and choose **Install app** or **Add to Home screen** when offered.
 - **Windows/macOS/Linux (supported Chrome or Edge):** open the HTTPS application URL and use the install icon in the address bar or the browser menu's **Install app** action when offered.
-- **iPhone/iPad (Safari):** open the HTTPS application URL, use **Share**, then choose **Add to Home Screen**. A dedicated 180×180 PNG home-screen icon is supplied; available options and icon rendering still vary by iOS version, so confirm on the target device.
+- **iPhone/iPad (Safari):** open the HTTPS application URL, use **Share**, choose **Add to Home Screen**, enable **Open as Web App** when offered, then tap **Add**. A dedicated 180×180 PNG home-screen icon is supplied; available options and icon rendering still vary by iOS version, so confirm on the target device.
 
 ## Offline and privacy behavior
 
