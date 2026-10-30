@@ -6,10 +6,10 @@
 
 ## Result
 
-- Batch files parsed: **32/32**
-- Flattened top-level and nested child records: **642**
-- Unique row numbers: **642**
-- Number range: **1–642**
+- Batch files parsed: **33/33**
+- Flattened top-level and nested child records: **668**
+- Unique row numbers: **668**
+- Number range: **1–668**
 - Missing row numbers in that range: **0**
 - Duplicate row numbers: **0**
 - Every batch reports source class `secondary_transcription`.
@@ -52,9 +52,10 @@
 | 584–603 | 20 |
 | 604–617 | 14 |
 | 618–642 | 25 |
-| **Total** | **642** |
+| 643–668 | 26 |
+| **Total** | **668** |
 
-Batch 32 (618–642) extends the flattened sequence. Its source lines 5514–5555 include group headings and numbered subentries; hierarchy is not inferred beyond the labels recorded. The unusual file-name ranges around batches 5–6 and 19–20 reflect the actual flattened row grouping: batch 5 contains rows 81–99, batch 6 rows 100–120, and batch 20 contains parent/child records covering 381–403. The structural audit found no overlap or gap in the final flattened row sequence.
+Batches 32–33 (618–668) extend the flattened sequence. Batch 33 source lines 5557–5600 include silver and sodium group headings/subentries; hierarchy is not inferred beyond the labels recorded. Its source lines 5514–5555 include group headings and numbered subentries; hierarchy is not inferred beyond the labels recorded. The unusual file-name ranges around batches 5–6 and 19–20 reflect the actual flattened row grouping: batch 5 contains rows 81–99, batch 6 rows 100–120, and batch 20 contains parent/child records covering 381–403. The structural audit found no overlap or gap in the final flattened row sequence.
 
 ## Explicit limitations
 
