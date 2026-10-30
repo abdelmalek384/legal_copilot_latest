@@ -4044,6 +4044,8 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         chunk_id = int(chunk["id"])
         original_text = str(chunk["text"])
         original_digest = hashlib.sha256(original_text.encode("utf-8")).hexdigest()
+        # Release the read snapshot before the API worker commits the correction.
+        firm_db.commit()
         review_url = f"/cases/{case_id}/docs/{document_id}/chunks/{chunk_id}/review"
 
         accepted = self._mutate(
@@ -4069,6 +4071,8 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             },
         )
         self.assertEqual(stale.status_code, 409, stale.text)
+        # The test connection is thread-local and must refresh after API-worker commits.
+        firm_db.commit()
         current = firm_db.execute(
             "SELECT text FROM chunks WHERE id=? AND document_id=? AND case_id=?",
             (chunk_id, document_id, case_id),
