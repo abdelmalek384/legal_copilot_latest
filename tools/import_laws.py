@@ -155,7 +155,10 @@ def validate_inputs(src: str | pathlib.Path, out: str | pathlib.Path):
         sensitive_query_keys = {
             "token", "access_token", "auth", "authorization", "password", "secret",
             "signature", "sig", "api_key", "apikey", "session", "sessionid",
-            "credential", "x-amz-signature", "x-amz-credential", "x-amz-security-token",
+            "credential", "api-key", "auth_token", "session_token",
+            "x-amz-signature", "x-amz-credential", "x-amz-security-token",
+            "x-amz-algorithm", "x-amz-date", "x-amz-expires", "x-amz-signedheaders",
+            "x-goog-signature", "x-goog-credential", "x-goog-date", "x-goog-expires",
         }
         query_keys = {key.casefold() for key, _ in parse_qsl(parsed_url.query, keep_blank_values=True)}
         if query_keys & sensitive_query_keys:
