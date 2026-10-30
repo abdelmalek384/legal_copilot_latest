@@ -33,6 +33,8 @@ on:
       - 'tests/test_decision250_table24_primary_match_register.py'
       - 'tests/test_compare_corpus_to_reference.py'
       - 'tests/test_legal_source_review_queue.py'
+      - 'tools/compare_action1_gazette.py'
+      - 'tests/test_compare_action1_gazette.py'
       - '.github/workflows/legal-knowledge-validation.yml'
   push:
     branches:
@@ -58,6 +60,8 @@ on:
       - 'tests/test_decision250_table24_primary_match_register.py'
       - 'tests/test_compare_corpus_to_reference.py'
       - 'tests/test_legal_source_review_queue.py'
+      - 'tools/compare_action1_gazette.py'
+      - 'tests/test_compare_action1_gazette.py'
       - '.github/workflows/legal-knowledge-validation.yml'
 
 jobs:
@@ -70,6 +74,8 @@ jobs:
         run: python tools/validate_phase2_document_inventory.py
       - name: Test Phase 2 instrument inventory and temporal-chain safeguards
         run: PYTHONPATH=. python tests/test_phase2_document_inventory.py
+      - name: Test Action 1 Gazette article text-layer comparison
+        run: PYTHONPATH=. python tests/test_compare_action1_gazette.py
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
