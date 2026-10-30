@@ -218,6 +218,40 @@ class LegalImportBundleTests(unittest.TestCase):
             with self.assertRaisesRegex(SystemExit, "LEGAL_OCR_LANG"):
                 import_laws._ocr_language()
 
+    def test_ocr_passes_arabic_english_language_and_200_dpi_to_tesseract(self):
+        import sys
+        from types import SimpleNamespace
+        from tools import import_laws
+
+        class Pixmap:
+            def tobytes(self, image_format):
+                self.image_format = image_format
+                return b"png-bytes"
+
+        class Page:
+            def get_pixmap(self, *, dpi):
+                self.dpi = dpi
+                return Pixmap()
+
+        class Document:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *args):
+                return False
+
+            def __getitem__(self, index):
+                self.page_index = index
+                return Page()
+
+        tesseract = SimpleNamespace(image_to_string=mock.Mock(return_value="نص قانوني"))
+        fake_pymupdf = SimpleNamespace(open=mock.Mock(return_value=Document()))
+        fake_pil = SimpleNamespace(Image=SimpleNamespace(open=mock.Mock(return_value="image")))
+        with mock.patch.dict(sys.modules, {"pymupdf": fake_pymupdf, "pytesseract": tesseract, "PIL": fake_pil}):
+            with mock.patch.dict(os.environ, {}, clear=True):
+                self.assertEqual(import_laws._ocr((self.pdf_bytes, 0)), "نص قانوني")
+        tesseract.image_to_string.assert_called_once_with("image", lang="ara+eng")
+
     def test_ocr_cache_is_bound_to_pdf_hash_and_rejects_page_symlinks(self):
         import sys
         from types import SimpleNamespace
