@@ -38,6 +38,10 @@ jobs:
           python -m venv /tmp/legal-copilot-lock-check
           /tmp/legal-copilot-lock-check/bin/python -m pip install --upgrade pip
           /tmp/legal-copilot-lock-check/bin/python -m pip install --require-hashes -r requirements-py312.lock
+      - name: Audit the exact hash-locked dependency set
+        run: |
+          python -m pip install --upgrade pip-audit
+          pip-audit --strict --progress-spinner off -r requirements-py312.lock
       - name: Upload resolved deployment lock
         uses: actions/upload-artifact@v4
         with:
