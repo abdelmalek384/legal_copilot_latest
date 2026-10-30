@@ -217,3 +217,10 @@ Completed a high-value consistency pass over the full Table 24 secondary extract
 **Boundary:** this is structural completeness against a secondary transcription only. Official Gazette comparison remains **0/781**, lawyer approval 0/781, and authoritative retrieval eligibility 0/781. No chemical name, CAS identifier, formula, exposure limit, unit, footnote or safety instruction was promoted. The official Gazette supplement catalog record is now identified, but its original 6.13 MB PDF is request-copy restricted.
 
 The earlier 745-row and 617-row progress statements in older notes are superseded by the corrected 781-entry secondary inventory. Table 24 structural extraction is now **100% complete**; primary-source verification remains **0%**.
+
+
+## Article 141 source-use currentness refinement — 2026-10-30
+
+Expanded the source-use memo to distinguish the statutory exclusion of official legal documents from protection that may attach to creative compilations, third-party databases, scan packaging, annotations and editorial presentation. Added the explicit WIPO Lex limitation: its Arabic consolidated Law 82/2002 record is amended through Law 178/2020 (effective 5 September 2020), not certified current through October 2026. A government-hosted GAFI copy of the original 2002 law is also recorded. Targeted searches did not locate a later amendment to Article 141; this is not proof none exists. The January 2026 State Information Service report on IP-system reform is recorded only as institutional/policy context, not as an enacted amendment.
+
+This supports the no-permission-outreach strategy only as a **provisional legal basis** for the underlying text of official laws/decisions. It does not clear a third-party scan, a private compilation, access restrictions, or the commercial ingestion/display model. Official Gazette amendment search through 2026 and qualified Egyptian counsel confirmation remain release gates. No source or candidate rule was marked reuse-cleared.
