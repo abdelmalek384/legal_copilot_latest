@@ -38,3 +38,13 @@ This instrument expressly concerns working hours, rest periods and leaves, so it
 - The Gazette repository catalogue and Ministry announcements support the existence, recorded date, subject, and relevance of this instrument.
 - They do not substitute for inspecting the Gazette PDF itself.
 - No PDF hash, page pinpoint, complete text verification, legal-currentness determination, reuse clearance, or lawyer review is claimed in this record.
+
+## Additional secondary metadata cross-check — 2026-10-30
+
+The public legal-document archive's *نشرة الذاكرة القانونية*, issue 38, lists Minister of Labour Decision No. 162 of 2026 with decision date 13/08/2026 and the description بشأن القواعد العامة للائحة قواعد تنظيم العمل:
+
+https://www.mksegypt.org/public/index.php/ar/nashras/48
+
+This independently corroborates the instrument number, year, issuing authority, date and general subject already present in the Official Gazette repository metadata. It does **not** provide the complete decision text in this newsletter entry, prove current legal status, identify later amendments, or replace the official Gazette copy. It is a secondary metadata cross-check only. The archive's CC BY 4.0 statement and Article 141 rights context are recorded in the central source permission register; no reuse permission is inferred for the database compilation, and no text is imported from this newsletter.
+
+**Disposition:** retain the exact Gazette record as the primary-source locator; preserve the newsletter as secondary metadata evidence. The official Gazette PDF remains request-copy restricted and has not been obtained or hashed. Keep the decision discovery-only and retrieval-ineligible until the original full text, commencement, currentness and rights gates are satisfied.
