@@ -40,7 +40,7 @@ python tools/inspect_action1_labour_intake.py \
   > action1_intake_receipt.json
 ```
 
-If `law_rows_ar.jsonl` is not supplied, omit the `--law-rows-jsonl` argument. The receipt records filenames, byte sizes, SHA-256 hashes, a PDF signature/EOF check, JSONL object count, top-level field frequencies, and a duplicate-ID diagnostic only when every row has a candidate stable key (`row_id`, `record_id`, or `id`). It rejects symlink inputs, malformed JSONL and non-object JSONL records.
+If `law_rows_ar.jsonl` is not supplied, omit the `--law-rows-jsonl` argument. The receipt records filenames, byte sizes, SHA-256 hashes, a PDF signature/EOF check, JSONL object count, top-level field frequencies, and a duplicate-ID diagnostic only when every row has a candidate stable key (`row_id`, `record_id`, or `id`). For `law_rows_ar.jsonl`, it also compares the observed hash, byte size and record count against the historical reference (SHA-256 `3e964de5c9cc994aefcc29c031712e85d664febd97c428e61c2eacdccaf1c600`, 393,861 bytes, 311 records). A mismatch is reported, not silently repaired or rejected as a different source version. It rejects symlink inputs, malformed JSONL and non-object JSONL records.
 
 The tool does **not** extract PDF text, alter either input, embed legal source contents in the report, upload files, determine authenticity/currentness/reuse rights, or enable retrieval. Its report explicitly marks all legal and release-verification flags false. Keep the original files unchanged; the receipt is a separate derived metadata artifact.
 
