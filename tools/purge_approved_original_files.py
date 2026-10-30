@@ -5,11 +5,14 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import sqlite3
 import sys
 from pathlib import Path
+from urllib.parse import urlsplit
 
 from original_file_storage import LocalPrivateObjectStore, ObjectStorageError
+from s3_original_file_storage import S3PrivateObjectStore
 from tenant_catalog import (
     TenantCatalogError,
     initialize_catalog,
@@ -34,6 +37,89 @@ def _eligible_operator(control: sqlite3.Connection, operator_user_id: int) -> bo
         (operator_user_id,),
     ).fetchone()
     return row is not None and row["status"] == "active"
+
+
+
+def _is_standard_aws_s3_endpoint(endpoint: str | None) -> bool:
+    """Accept only HTTPS AWS S3 service hostnames, not arbitrary AWS subdomains."""
+    try:
+        parsed = urlsplit(str(endpoint or ""))
+        port = parsed.port
+        host = (parsed.hostname or "").lower().rstrip(".")
+    except ValueError:
+        return False
+    if (
+        parsed.scheme != "https"
+        or parsed.username is not None
+        or parsed.password is not None
+        or port not in (None, 443)
+        or parsed.path not in ("", "/")
+        or parsed.query
+        or parsed.fragment
+    ):
+        return False
+    region = r"[a-z]{2}(?:-gov)?-[a-z]+-\d+"
+    service = rf"s3(?:\.dualstack)?(?:\.{region})?"
+    bucket_service = rf"[a-z0-9][a-z0-9.-]*\.{service}"
+    return bool(re.fullmatch(rf"(?:{service}|{bucket_service})\.amazonaws\.com(?:\.cn)?", host))
+
+
+def _validate_s3_apply_authorization(firm_id: int, store: S3PrivateObjectStore, *, staging_drill: bool) -> None:
+    """Revalidate release evidence and the exact S3 target inside the destructive state machine."""
+    from tools.database_release_acceptance import (
+        load_acceptance_manifest,
+        load_staging_purge_acceptance_manifest,
+        original_storage_config_fingerprint,
+    )
+
+    environment = os.environ.get("COPILOT_ENV", "").strip().lower()
+    if os.environ.get("COPILOT_OBJECT_STORAGE_BACKEND", "").strip().lower() != "s3":
+        raise RuntimeError("S3 physical purge requires the configured S3 storage backend")
+    bucket = os.environ.get("COPILOT_S3_BUCKET", "").strip()
+    region = os.environ.get("COPILOT_S3_REGION", "").strip()
+    kms_key_id = os.environ.get("COPILOT_S3_KMS_KEY_ID", "").strip()
+    endpoint = os.environ.get("COPILOT_S3_ENDPOINT_URL", "").strip()
+    fingerprint = original_storage_config_fingerprint()
+    if (
+        not bucket or not region or not kms_key_id or not fingerprint
+        or store.bucket != bucket or store.kms_key_id != kms_key_id
+    ):
+        raise RuntimeError("S3 purge store does not match the configured accepted storage target")
+    client_meta = getattr(store.client, "meta", None)
+    if client_meta is None or getattr(client_meta, "region_name", None) != region:
+        raise RuntimeError("S3 purge client region cannot be bound to the configured storage target")
+    client_endpoint = getattr(client_meta, "endpoint_url", None)
+    if endpoint:
+        if client_endpoint != endpoint:
+            raise RuntimeError("S3 purge client endpoint does not match the configured storage target")
+    else:
+        if not _is_standard_aws_s3_endpoint(client_endpoint):
+            raise RuntimeError("S3 purge client must use the configured endpoint or an AWS S3 endpoint")
+    kms_meta = getattr(store.kms_client, "meta", None)
+    if kms_meta is None or getattr(kms_meta, "region_name", None) != region:
+        raise RuntimeError("KMS purge client region cannot be bound to the configured storage target")
+
+    manifest_path = os.environ.get("COPILOT_DATABASE_ACCEPTANCE_FILE", "").strip() or None
+    if environment in {"prod", "production"} and not staging_drill:
+        report = load_acceptance_manifest(
+            manifest_path,
+            expected_storage_config_sha256=fingerprint,
+        )
+    elif environment == "staging" and staging_drill:
+        if (
+            os.environ.get("COPILOT_S3_PURGE_STAGING_BUCKET", "").strip() != bucket
+            or os.environ.get("COPILOT_S3_PURGE_STAGING_FIRM_ID", "").strip() != str(firm_id)
+        ):
+            raise RuntimeError("staging purge target does not match the explicit bucket/firm allowlist")
+        report = load_staging_purge_acceptance_manifest(
+            manifest_path,
+            expected_storage_config_sha256=fingerprint,
+        )
+    else:
+        raise RuntimeError("S3 physical purge is restricted to accepted production or allowlisted synthetic staging")
+
+    if not report.get("ready"):
+        raise RuntimeError("S3 physical purge is blocked by incomplete or stale acceptance evidence")
 
 
 def _inspect_request(connection, store, firm_id: int, request_id: int):
@@ -78,6 +164,9 @@ def purge_approved_requests(
     control_database_path: str | Path,
     tenant_root: str | Path,
     corpus_database_path: str | Path,
+    object_store=None,
+    quiesced: bool = False,
+    staging_drill: bool = False,
 ) -> dict:
     """Purge approved requests only after revalidating the trusted offboarding gate.
 
@@ -87,10 +176,19 @@ def purge_approved_requests(
     The authority checks live here as well as in the CLI so an internal caller cannot
     bypass disabled-firm, active-platform-admin, or clean-preflight requirements.
     """
-    if os.environ.get("COPILOT_ENV", "").strip().lower() in {"prod", "production"}:
+    backend = os.environ.get("COPILOT_OBJECT_STORAGE_BACKEND", "local").strip().lower()
+    if object_store is None and os.environ.get("COPILOT_ENV", "").strip().lower() in {"prod", "production"}:
         raise RuntimeError("local filesystem purge is disabled in production mode")
-    if os.environ.get("COPILOT_OBJECT_STORAGE_BACKEND", "local").strip().lower() != "local":
-        raise RuntimeError("this purge operation supports only the local development storage backend")
+    if object_store is None and backend != "local":
+        raise RuntimeError("local purge requires the local development storage backend")
+    if object_store is not None and (backend != "s3" or not isinstance(object_store, S3PrivateObjectStore)):
+        raise RuntimeError("injected production purge store must be the configured S3 adapter")
+    if object_store is not None and apply:
+        if quiesced is not True:
+            raise RuntimeError("S3 physical purge requires an explicit quiescence assertion")
+        if staging_drill is not True and os.environ.get("COPILOT_ENV", "").strip().lower() == "staging":
+            raise RuntimeError("staging S3 purge requires the synthetic staging-drill mode")
+        _validate_s3_apply_authorization(firm_id, object_store, staging_drill=staging_drill)
     if isinstance(firm_id, bool) or not isinstance(firm_id, int) or firm_id <= 0:
         raise ValueError("firm_id must be a positive integer")
     if (isinstance(operator_user_id, bool) or not isinstance(operator_user_id, int)
@@ -106,7 +204,11 @@ def purge_approved_requests(
         initialize_catalog(control)
         if not _eligible_operator(control, operator_user_id):
             raise RuntimeError("Purge operator must be an active platform administrator")
-        firm = control.execute("SELECT status FROM firms WHERE id=?", (firm_id,)).fetchone()
+        firm = control.execute("SELECT status,name FROM firms WHERE id=?", (firm_id,)).fetchone()
+        if staging_drill and (
+            firm is None or not str(firm["name"]).startswith("SYNTHETIC-ACCEPTANCE-")
+        ):
+            raise RuntimeError("staging purge is restricted to SYNTHETIC-ACCEPTANCE- firms")
         catalog = control.execute(
             "SELECT status FROM tenant_database_catalog WHERE firm_id=?", (firm_id,)
         ).fetchone()
@@ -131,12 +233,14 @@ def purge_approved_requests(
         raise RuntimeError("Supplied tenant database does not match the trusted catalog")
     database_path = trusted_database_path
     preflight = inspect_firm_offboarding(
-        control_path, tenant_root_path, corpus_path, object_root, firm_id
+        control_path, tenant_root_path, corpus_path,
+        None if object_store is not None else object_root, firm_id,
+        s3_store=object_store,
     )
     if not preflight["purge_preflight_clear"]:
         raise RuntimeError("Original-file purge is blocked by offboarding preflight findings")
 
-    store = LocalPrivateObjectStore(object_root)
+    store = object_store or LocalPrivateObjectStore(object_root)
     connection = sqlite3.connect(database_path, timeout=30)
     connection.row_factory = sqlite3.Row
     connection.execute("PRAGMA foreign_keys=ON")
@@ -198,7 +302,13 @@ def purge_approved_requests(
                 )
                 if started.rowcount != 1:
                     raise RuntimeError("deletion request changed during purge")
-                removed = store.delete(firm_id, row["object_id"])
+                if isinstance(store, S3PrivateObjectStore):
+                    removed = store.purge_unversioned(
+                        firm_id, row["object_id"],
+                        expected_sha256=row["sha256"], expected_size=int(row["byte_size"]),
+                    )
+                else:
+                    removed = store.delete(firm_id, row["object_id"])
                 if not removed:
                     raise RuntimeError("original object disappeared during purge")
                 reason = (
