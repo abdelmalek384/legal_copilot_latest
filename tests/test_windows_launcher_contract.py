@@ -15,6 +15,14 @@ class WindowsLauncherContractTests(unittest.TestCase):
         self.assertIn("if defined COPILOT_DB", script)
         self.assertIn("This launcher refuses the legacy shared-database mode", script)
 
+    def test_windows_launcher_refuses_old_existing_venv_without_deleting_it(self):
+        script = (ROOT / "start_windows.bat").read_text(encoding="utf-8")
+        self.assertIn("sys.version_info >= (3, 12)", script)
+        self.assertIn("existing .venv does not use Python 3.12 or newer", script.lower())
+        self.assertIn("this launcher will not delete it", script.lower())
+        self.assertNotIn("rmdir /s", script.lower())
+        self.assertNotIn("del /s", script.lower())
+
     def test_launcher_uses_three_separate_profile_paths(self):
         script = (ROOT / "start_windows.bat").read_text(encoding="utf-8")
         for variable in (
