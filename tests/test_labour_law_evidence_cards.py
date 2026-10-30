@@ -1,7 +1,23 @@
 import importlib.util
+from urllib.parse import urlsplit
 import json
 import unittest
 from pathlib import Path
+
+def _has_https_host(url, expected_host):
+    try:
+        parsed = urlsplit(url)
+    except ValueError:
+        return False
+    hostname = (parsed.hostname or "").lower()
+    expected_host = expected_host.lower()
+    return (
+        parsed.scheme == "https"
+        and not parsed.username
+        and not parsed.password
+        and (hostname == expected_host or hostname.endswith("." + expected_host))
+    )
+
 
 ROOT = Path(__file__).resolve().parents[1]
 CARDS_PATH = ROOT / "data" / "candidates" / "labour_law_14_2025" / "provision_evidence_cards.json"
@@ -10,6 +26,13 @@ CARDS_PATH = ROOT / "data" / "candidates" / "labour_law_14_2025" / "provision_ev
 class LabourLawEvidenceCardsTests(unittest.TestCase):
     def setUp(self):
         self.data = json.loads(CARDS_PATH.read_text(encoding="utf-8"))
+
+    def test_source_host_assertions_reject_lookalike_and_userinfo_urls(self):
+        self.assertTrue(_has_https_host("https://www.alamiria.com/Sec/TashTxt?id=x", "alamiria.com"))
+        self.assertFalse(_has_https_host("https://alamiria.com.attacker.test/path", "alamiria.com"))
+        self.assertFalse(_has_https_host("https://attacker.test/?next=alamiria.com", "alamiria.com"))
+        self.assertFalse(_has_https_host("https://alamiria.com@attacker.test/path", "alamiria.com"))
+        self.assertFalse(_has_https_host("http://alamiria.com/path", "alamiria.com"))
 
     def test_cards_have_primary_pinpoints_and_secondary_cross_checks(self):
         self.assertEqual(self.data["instrument"]["document_id"], "EG-LABOUR-LAW-14-2025")
@@ -23,8 +46,8 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
                 self.assertTrue(card["provisional_answer_ar"].strip())
                 self.assertTrue(card["pinpoint"]["article"])
                 self.assertGreaterEqual(card["pinpoint"]["official_gazette_printed_page"], 1)
-                self.assertTrue(any("alamiria.com" in s["url"] for s in card["primary_evidence"]))
-                self.assertTrue(any("portal.eta.gov.eg" in s["url"] for s in card["primary_evidence"]))
+                self.assertTrue(any(_has_https_host(s["url"], "alamiria.com") for s in card["primary_evidence"]))
+                self.assertTrue(any(_has_https_host(s["url"], "portal.eta.gov.eg") for s in card["primary_evidence"]))
                 self.assertTrue(card["cross_checks"])
                 self.assertTrue(card["limitations"])
                 self.assertIn(card["review_state"], {"provisional_primary_text_extract_reviewed", "provisional_text_extract_crosschecked"})
