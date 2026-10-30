@@ -1,10 +1,14 @@
 """Unit tests for the read-only live deployment HTTP smoke probe."""
 import json
+import sys
+import tempfile
 import unittest
+from pathlib import Path
+from unittest import mock
 
 import httpx
 
-from tools.deployment_http_smoke import normalize_base_url, run_smoke
+from tools.deployment_http_smoke import main, normalize_base_url, run_smoke
 
 
 def fake_transport(*, omit_worker_csp=False, bad_status=None):
@@ -82,6 +86,15 @@ class DeploymentHttpSmokeTests(unittest.TestCase):
             report = run_smoke("https://legal.example.com", client=client)
         self.assertFalse(report["ready"])
         self.assertGreater(report["failed"], 0)
+
+    def test_optional_report_creates_missing_parent_directory(self):
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "nested" / "report.json"
+            with mock.patch.object(sys, "argv", ["deployment_http_smoke.py", "--base-url", "https://legal.example.com", "--out", str(output)]):
+                with mock.patch("tools.deployment_http_smoke.run_smoke", return_value={"ready": True, "checks": []}):
+                    self.assertEqual(main(), 0)
+            self.assertTrue(output.is_file())
+            self.assertTrue(json.loads(output.read_text(encoding="utf-8"))["ready"])
 
     def test_non_200_public_asset_fails(self):
         with httpx.Client(transport=fake_transport(bad_status=503), base_url="https://legal.example.com") as client:
