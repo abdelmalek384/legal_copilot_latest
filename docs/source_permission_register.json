@@ -358,6 +358,28 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
       "required_next_action": "Use as a discovery and cross-reference source. Inspect each item for original-source citations and item-level rights/terms; verify texts against Official Gazette or court originals before authoritative use."
+    },
+    {
+      "source_id": "EG-MKSEGYPT-LEGAL-REPOSITORY",
+      "authority": "Althakira wa al-Ma'rifa for Studies (الذاكرة والمعرفة للدراسات), self-described Egyptian registered company",
+      "source_page": "https://www.mksegypt.org/ar/documents",
+      "material_types": [
+        "Court of Cassation judgments and published principles",
+        "Supreme Constitutional Court judgments",
+        "Supreme Administrative Court judgments",
+        "laws",
+        "ministerial and other decisions",
+        "legal-document metadata and classifications"
+      ],
+      "access_status": "public search and individual full-text pages located; site footer states Creative Commons Attribution 4.0 (CC BY 4.0); scope for underlying legal texts not independently confirmed",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://creativecommons.org/licenses/by/4.0/",
+      "permission_evidence": "The public documents catalogue and an individual Court of Cassation judgment page both display the statement: محتوى الموقع منشور برخصة المشاع الإبداعي — نَسب المُصنَّف 4.0 (Creative Commons Attribution 4.0). The About page describes the operator as a company registered under Egyptian law and established in 2021. The site presents full text and metadata for judgments, laws and decisions. This is a site-level licence statement only; it has not been established whether it covers every underlying judgment, statutory text, third-party reproduction, editorial annotation, metadata field, or source-derived compilation, nor whether the operator holds rights sufficient to license all of those elements. No collection or commercial reuse permission is claimed.",
+      "permission_evidence_url": "https://www.mksegypt.org/ar/documents",
+      "terms_checked_on": "2026-10-30",
+      "bulk_download_or_api": "No public API or bulk-export facility established in this review; public search, section filters and pagination are visible. Do not crawl or bulk extract.",
+      "required_next_action": "Manually review the stated CC BY 4.0 licence and any record-level rights notices; sample provenance, completeness and citation metadata across each document section; compare selected judgments against official court records where accessible; determine whether the licence covers the site's transcriptions and underlying legal texts. Keep collection and commercial reuse unknown and do not bulk-ingest until the scope and chain of rights are clear. If the licence scope remains ambiguous, do not contact the source holder under the current project constraint; keep the site as a discovery/cross-reference source only."
     }
   ]
 }
