@@ -22,6 +22,7 @@ PUBLIC_ASSETS = {
     "/service-worker.js": "javascript",
     "/offline.html": "text/html",
     "/app-icon.svg": "image/svg+xml",
+    "/apple-touch-icon.png": "image/png",
 }
 
 
