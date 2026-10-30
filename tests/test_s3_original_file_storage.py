@@ -426,10 +426,10 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
             "COPILOT_DATABASE_ACCEPTANCE_FILE": "/nonexistent/acceptance.json",
         }
         output = io.StringIO()
-        with patch.dict("os.environ", environment, clear=True), \\
-             patch.object(sys, "argv", ["purge-s3", "--firm-id", "12", "--operator-user-id", "7"]), \\
-             contextlib.redirect_stdout(output):
-            self.assertEqual(main(), 2)
+        with patch.dict("os.environ", environment, clear=True):
+            with patch.object(sys, "argv", ["purge-s3", "--firm-id", "12", "--operator-user-id", "7"]):
+                with contextlib.redirect_stdout(output):
+                    self.assertEqual(main(), 2)
         payload = json.loads(output.getvalue())
         self.assertEqual(payload["decision"], "blocked")
         self.assertEqual(payload["reason"], "database_release_acceptance_incomplete")
