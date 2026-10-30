@@ -33,7 +33,8 @@ class TenantRouteInventoryCoverageTests(unittest.TestCase):
         public_routes = {
             ("GET", "/"), ("GET", "/manifest.webmanifest"),
             ("GET", "/service-worker.js"), ("GET", "/offline.html"),
-            ("GET", "/app-icon.svg"), ("POST", "/login"),
+            ("GET", "/app-icon.svg"), ("GET", "/apple-touch-icon.png"),
+            ("POST", "/login"),
             ("GET", "/invite/accept"), ("GET", "/account/recovery"),
             ("POST", "/invitations/accept/new"),
             ("POST", "/account/recovery/request"),
