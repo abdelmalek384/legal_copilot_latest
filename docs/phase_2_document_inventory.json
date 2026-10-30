@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "inventory_id": "EG-PHASE2-LEGAL-DOCUMENT-INVENTORY",
-  "prepared_on": "2026-10-28",
+  "prepared_on": "2026-10-30",
   "purpose": "Structured discovery inventory for Phase 2. Entries are research leads, not collected files, verified current law, permission to collect, or lawyer-approved legal advice.",
   "policy": {
     "default_collection_permission": "unknown",
@@ -2025,7 +2025,7 @@
         "qualified Egyptian labour-lawyer review",
         "source-specific collection and commercial reuse terms"
       ],
-      "notes": "Official Gazette repository metadata identifies the decision in الوقائع المصرية, Supplement issue 64 (تابع), dated 2026-03-18. The official Ministry of Labour announcement dated 2026-03-26 confirms Decision 49/2026 concerns an additional seven annual-leave days for workers in specified hazardous/difficult work and remote areas. A publicly accessible secondary transcription was found at https://ahmedazimelgamel.blogspot.com/2026/03/49-2026-7.html and includes Articles 1–5 and detailed work/area schedules. The Gazette PDF itself is hosted in the repository but has not been downloaded or independently compared; do not treat the secondary transcription as primary evidence. The transcription states the decision was signed 2026-03-03 and takes effect the day after publication; verify these details against the official Gazette PDF before authoritative use. Keep legal_status and collection/commercial reuse permission unknown; no source-holder copy request was submitted.",
+      "notes": "Official Gazette repository metadata identifies the decision in الوقائع المصرية, Supplement issue 64 (تابع), dated 2026-03-18. The official Ministry of Labour announcement dated 2026-03-26 confirms Decision 49/2026 concerns an additional seven annual-leave days for workers in specified hazardous/difficult work and remote areas. A publicly accessible secondary transcription was found at https://ahmedazimelgamel.blogspot.com/2026/03/49-2026-7.html and includes Articles 1–5 and detailed work/area schedules. The Gazette PDF itself is hosted in the repository but has not been downloaded or independently compared; do not treat the secondary transcription as primary evidence. The transcription states the decision was signed 2026-03-03 and takes effect the day after publication; verify these details against the official Gazette PDF before authoritative use. Keep legal_status and collection/commercial reuse permission unknown; no source-holder copy request was submitted. A third-party-hosted Gazette-scan candidate was located at https://www.cairo24.com/Upload/libfiles/180/1/188.pdf. Extracted text identifies issue 64 (تابع), 2026-03-18; Decision 49 begins at PDF index 5 / printed page 6; Article 3 geographic wording appears at PDF index 11 / printed page 12 as قرية الزعفرانة / رأس غارب ... بمنطقة حلايب جنوبًا وبعمق خمسة كيلومترات; Article 5 states day-after-publication commencement; signature date shown is 2026-03-03. This narrows but does not resolve the earlier conflict with the Ministry announcement's أبو رمادة wording. The file is third-party-hosted, includes a watermark that the electronic copy is not accepted for تداول, and has not been authenticated, visually reviewed, or hashed. Keep status and permissions pending.",
       "source_urls": [
         {
           "url": "https://dspace.id.com.eg/items/f32b4a07-6598-4ed8-a170-60d631a57221",
@@ -2041,6 +2041,11 @@
           "url": "https://ahmedazimelgamel.blogspot.com/2026/03/49-2026-7.html",
           "source_role": "public secondary full-text transcription; cross-check only",
           "status": "discovered_not_primary"
+        },
+        {
+          "url": "https://www.cairo24.com/Upload/libfiles/180/1/188.pdf",
+          "source_role": "third-party-hosted 28-page scan candidate of Egyptian Proceedings issue 64 supplement; Article 3 geographic wording and Article 5 commencement pinpoint",
+          "status": "third_party_scan_candidate_not_authenticated_or_hashed"
         }
       ]
     },
@@ -2269,6 +2274,52 @@
           "status": "partial_indexed_text_currentness_and_primary_comparison_pending"
         }
       ]
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-50-2026",
+      "official_title_ar": "قرار وزير العمل رقم 50 لسنة 2026 بشأن تحديد قواعد وظروف وأحوال تشغيل الأطفال وتدريبهم والأعمال والمهن والصناعات التي يحظر تشغيلهم أو تدريبهم فيها",
+      "practice_areas": [
+        "labour"
+      ],
+      "document_type": "ministerial_decision",
+      "instrument_number": 50,
+      "instrument_year": 2026,
+      "source_id": "EG-MINISTRY-LABOUR-LAWS",
+      "source_status": "third_party_hosted_gazette_scan_candidate",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "official Gazette issue identity and complete Arabic text; preserve exact bytes and SHA-256 through an authorized route",
+        "visual review of all 28 pages and all annexed prohibited-work tables/schedules",
+        "compare third-party-hosted scan against the official Gazette archive record and any official Ministry publication",
+        "verify publication date, signature date, commencement clause, age thresholds, working-time limits, prohibited work schedules and later amendments",
+        "assess source-specific collection, indexing, display and commercial reuse rights",
+        "qualified Egyptian labour-lawyer review and child-labour specialist review before authoritative use"
+      ],
+      "notes": "Official Gazette repository metadata identifies Decision 50/2026 under Ministry of Labour and links it to Egyptian Proceedings Supplement issue 64 (تابع), dated 2026-03-18. The same issue is represented by a 28-page PDF hosted by Cairo24; extracted text shows Decision 50 beginning after Decisions 48 and 49, around printed page 13 / PDF index 12, with annex material. A public secondary transcription exists, but neither it nor the third-party-hosted scan is treated as authenticated primary evidence. Provenance, completeness, page integrity and reuse rights have not been established. No legal text is copied into the inventory; do not enable retrieval.",
+      "source_urls": [
+        {
+          "url": "https://dspace.id.com.eg/items/73e51760-61b7-4091-8ca1-fd9505f530ae",
+          "source_role": "Official Gazette repository metadata for Ministry of Labour Decision 50/2026 and listed files",
+          "status": "metadata_verified_file_access_restricted"
+        },
+        {
+          "url": "https://dspace.id.com.eg/items/f32b4a07-6598-4ed8-a170-60d631a57221",
+          "source_role": "Official Gazette repository metadata for issue 64 (تابع), listing Decisions 48, 49 and 50",
+          "status": "metadata_verified_file_access_restricted"
+        },
+        {
+          "url": "https://www.cairo24.com/Upload/libfiles/180/1/188.pdf",
+          "source_role": "third-party-hosted Gazette scan candidate; not independently authenticated",
+          "status": "third_party_scan_candidate_not_authenticated_or_hashed"
+        },
+        {
+          "url": "https://ahmedazimelgamel.blogspot.com/2026/03/50-2026.html?hl=ar",
+          "source_role": "public secondary full-text transcription; cross-check only",
+          "status": "secondary_text_not_primary"
+        }
+      ]
     }
   ],
   "next_actions": [
@@ -2334,6 +2385,12 @@
     {
       "id": "ACT-LABOUR-LAW-14-2025-EXEC-REGS-VERIFY",
       "action": "Independently determine whether the full executive regulations for Labour Law 14/2025 have been issued; search official Gazette/ministerial publication and record exact number, publication/effective date, source text and amendment history. The Ministry index snapshot did not show a separate entry, which is not proof of non-existence.",
+      "owner": "legal corpus lead",
+      "status": "not_started"
+    },
+    {
+      "id": "ACT-LABOUR-DECISION-50-2026-VERIFY",
+      "action": "Authenticate and review Ministerial Decision 50/2026 on child employment and training: establish Official Gazette issue/pages, obtain or verify complete Arabic text and annexed prohibited-work schedules through an authorized route, hash original bytes, confirm publication/commencement and later amendments, assess reuse rights, and obtain qualified Egyptian-lawyer review; keep search eligibility disabled until all gates pass.",
       "owner": "legal corpus lead",
       "status": "not_started"
     }
