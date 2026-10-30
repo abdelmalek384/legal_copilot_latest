@@ -41,6 +41,8 @@ class PwaShellTests(unittest.TestCase):
         self.assertIn('cache.add(OFFLINE_URL)', SERVICE_WORKER)
         self.assertNotIn("caches.put(", SERVICE_WORKER)
         self.assertNotIn("cache.addAll(", SERVICE_WORKER)
+        self.assertNotIn("caches.match(OFFLINE_URL)", SERVICE_WORKER)
+        self.assertIn("cache.match(OFFLINE_URL)", SERVICE_WORKER)
         self.assertIn('request.mode === "navigate" && url.pathname === "/"', SERVICE_WORKER)
         self.assertIn('if (request.method !== "GET") return;', SERVICE_WORKER)
         self.assertIn("request.mode === \"navigate\"", SERVICE_WORKER)
