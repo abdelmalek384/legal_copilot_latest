@@ -104,6 +104,11 @@ class SourcePermissionRegisterTests(unittest.TestCase):
             with self.subTest(url=url):
                 self.assertTrue(any("source_page must be an HTTPS URL without credentials" in error for error in errors))
 
+    def test_one_day_local_date_ahead_of_utc_is_accepted(self):
+        import datetime as dt
+        tomorrow = (dt.date.today() + dt.timedelta(days=1)).isoformat()
+        self.assertTrue(MODULE._valid_review_date(tomorrow))
+
     def test_invalid_or_future_permission_review_dates_are_rejected(self):
         import json
         data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
