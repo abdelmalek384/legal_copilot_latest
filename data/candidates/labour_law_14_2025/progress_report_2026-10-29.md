@@ -69,6 +69,8 @@ Table 24 candidate extraction now covers **781/781 numbered entries (100% second
 
 39. The focused Legal Knowledge Validation workflow passed after the 327 row-level Table 24 secondary image locators were attached and the validator/test were extended: commit `245e5f3d86e9dcc08c4270494277ab5023bbef12`, run `41021684315` (all 24 validation steps succeeded). The run checks all 38 batches, requires exact image/page locators for rows 1–327, rejects false field-match status, and rejects scan locators beyond row 327; it also reruns Decision 249/251/252 candidate-map checks and the eight official Law 14 excerpts. The full `Tests` workflow on this commit is still running in the profile-separated application-routing test, with no failures reported at the last check.
 
+40. Opened the actual Almasdar page images for Table 24 pages 249–251 and compared candidate rows 1–18 against the reproduced Gazette images for chemical name, CAS identifier, primary exposure-limit token and unit. No obvious mismatch was found in those checked fields. Marked only these fields as `secondary_image_spot_check_partial_fields`; ancillary notations, all footnotes, column semantics and the original Gazette remain unchecked. Extended the validator to require the exact field list and check date for this partial state, and added a negative test. This is secondary-image corroboration only, not an official Gazette match or legal approval.
+
 ## Current subtask status
 
 | Subtask | Completion estimate | Current status | Remaining gate |
