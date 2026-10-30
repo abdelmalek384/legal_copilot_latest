@@ -265,3 +265,14 @@ The overall legal-knowledge preparation estimate remains **15%** rather than bei
 ## Global source manifest updated — 2026-10-30
 
 Updated docs/source_manifest.json for EG-OFFICIAL-GAZETTE with the exact Supplement 225(A) DSpace catalog identity, original bundle filename/size, public catalog vs restricted request-copy access status, and a no-bypass requirement. The source remains commercial-reuse-unconfirmed and the original bytes remain unobtained. This makes the new source discovery visible in the project's global source registry rather than only in the Labour Law candidate folder.
+
+
+## Final validation after evidence-regression fixes — 2026-10-30
+
+The source-manifest regression initially failed because the test expected the DSpace URL in the source notes, while the manifest correctly stores it in verification_requirements. Corrected the test to check the actual field; no source-manifest access or reuse gate was weakened.
+
+Current head `d42bc551825a5a93e19e2db99dc9dd2552d2c557` now passes:
+- Full Tests: **103/103 steps, zero failures** — https://github.com/abdelmalek384/legal_copilot_latest/actions/runs/41030728675
+- Legal Knowledge Validation: **28/28 steps** — https://github.com/abdelmalek384/legal_copilot_latest/actions/runs/41030728643
+
+The passing regression verifies the 781-row nested Table 24 inventory, Article 296 exact source ordering and fine wording while quarantined, and the Official Gazette manifest's request-copy restriction and unconfirmed commercial reuse. This is engineering/data-integrity validation only; primary-source comparison and counsel approval remain outstanding.
