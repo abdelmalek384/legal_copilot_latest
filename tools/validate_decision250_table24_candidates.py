@@ -166,8 +166,19 @@ def validate(root: Path = DATA_DIR) -> list[str]:
                         errors.append(f"{filename}: row {number} has incomplete secondary image spot-check fields")
                     if row.get("secondary_scan_checked_on") != "2026-10-30":
                         errors.append(f"{filename}: row {number} missing secondary image spot-check date")
+                elif scan_status == "secondary_image_discrepancy_found":
+                    required_fields = {"chemical_name", "cas_identifier", "primary_exposure_limit_token", "unit"}
+                    discrepancy = row.get("secondary_scan_discrepancy")
+                    if not required_fields.issubset(set(row.get("secondary_scan_fields_checked", []))):
+                        errors.append(f"{filename}: row {number} has incomplete discrepancy spot-check fields")
+                    if row.get("secondary_scan_checked_on") != "2026-10-30":
+                        errors.append(f"{filename}: row {number} missing discrepancy spot-check date")
+                    if not isinstance(discrepancy, dict) or not discrepancy.get("field") or not discrepancy.get("candidate_transcription") or not discrepancy.get("secondary_image_observed_tentative"):
+                        errors.append(f"{filename}: row {number} missing explicit discrepancy evidence")
+                    elif discrepancy.get("status") != "pending_original_gazette_confirmation":
+                        errors.append(f"{filename}: row {number} discrepancy must remain pending original Gazette confirmation")
                 elif scan_status != "page_locator_assigned_pending_field_comparison":
-                    errors.append(f"{filename}: row {number} must remain pending field comparison or use the explicit partial spot-check state")
+                    errors.append(f"{filename}: row {number} must remain pending field comparison or use an explicit partial/discrepancy state")
             elif row.get("secondary_scan_image_url") is not None:
                 errors.append(f"{filename}: row {number} has an unexpected secondary scan image locator beyond row 327")
 
