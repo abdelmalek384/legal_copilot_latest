@@ -58,6 +58,8 @@ class ContainerDeploymentContractTests(unittest.TestCase):
         docs = (ROOT / "docs" / "container_deployment.md").read_text(encoding="utf-8")
         self.assertIn("one application replica", docs)
         self.assertIn("liveness only", docs)
+        self.assertIn("tools/deployment_preflight.py --strict --require-separate", docs)
+        self.assertIn("tools/production_release_gate.py", docs)
         self.assertIn("witnessed", docs)
 
 
