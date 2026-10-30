@@ -75,7 +75,6 @@ ProtectSystem=strict
 ReadOnlyPaths=/var/lib/legal-copilot
 RestrictSUIDSGID=true
 LockPersonality=true
-EOF
 ```
 
 Create `/etc/systemd/system/legal-copilot-reminder-health.timer`:
