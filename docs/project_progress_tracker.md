@@ -5,6 +5,11 @@
 
 ## Overall status
 
+## Current whole-project completion
+
+See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **47% technical completion** as of 2026-10-30 (rounded from 46.5%). Final Egyptian-counsel acceptance is **not started** and remains a separate post-build release gate. Open PRs are not counted as completed work.
+
+
 ## Current workstream snapshot — 2026-10-27
 
 **Important:** These percentages are rough, reviewable workstream estimates—not a claim that the product is market-ready. They measure visible engineering/evidence progress and are not directly additive. The legacy 7/20 tally below is not refreshed to include every recent workstream and must not be quoted as the current overall project completion percentage.
