@@ -79,6 +79,10 @@ Table 24 candidate extraction now covers **781/781 numbered entries (100% second
 
 44. Reran the focused legal-knowledge and full test workflows after the row-34 discrepancy evidence was synchronized with the validator. On commit `328a46d958ea934cff19bed014f3839c4f3ae9ab`, Legal Knowledge Validation passed (run `41022331790`, 26 completed steps; also run `41022323728`), and the full `Tests` workflow passed (run `41022331793`, 102 completed steps, zero failed). This verifies the candidate-map/validator/build workflow and application regression suite at that commit; it does not verify the Gazette text, legal currentness, source-use rights or lawyer approval. The newer documentation-only progress-report commit does not change application code or candidate data.
 
+45. Added `instrument_release_gate_matrix_2026-10-30.md`, a single instrument-by-instrument matrix for Law 14/2025 and Decisions 248–252/2026. It separates provenance, operative-text matching, currentness, source-use, qualified-counsel approval and retrieval release, and states the precise current evidence and gaps for each instrument. It deliberately does not increase the 15% preparation estimate because this is a control/planning artifact, not additional verified legal coverage.
+
+46. Improved the Table 24 human review queue so secondary-image discrepancies are explicit high-priority flags and each candidate row displays its printed-page/image locator. Partial spot-checks and page-locator-only rows now have distinct queue labels. Added a regression test for the row-34 CAS discrepancy and its locator. Focused CI and full Tests were triggered on the code change and are pending at this update; no pass is claimed yet.
+
 ## Current subtask status
 
 | Subtask | Completion estimate | Current status | Remaining gate |
