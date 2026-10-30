@@ -17,7 +17,7 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
 
     def test_current_inventory_is_metadata_only_and_structurally_valid(self):
         self.assertEqual(validate_inventory(self.inventory), [])
-        self.assertEqual(len(self.inventory["documents"]), 77)
+        self.assertEqual(len(self.inventory["documents"]), 78)
         self.assertTrue(all(d["review_status"] != "verified" for d in self.inventory["documents"]))
         self.assertTrue(all(d["legal_status"] in {"unknown", "not_applicable"} for d in self.inventory["documents"]))
         register = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
@@ -116,6 +116,16 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
             self.assertEqual(record["collection_permission"], "unknown")
             self.assertEqual(record["legal_status"], "unknown")
             self.assertEqual(record["review_status"], "discovery_only")
+        self.assertEqual(validate_inventory(self.inventory), [])
+
+    def test_decision_50_2026_remains_discovery_only_scan_candidate(self):
+        record = next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-DECISION-50-2026")
+        self.assertEqual(record["source_status"], "third_party_hosted_gazette_scan_candidate")
+        self.assertEqual(record["collection_permission"], "unknown")
+        self.assertEqual(record["legal_status"], "unknown")
+        self.assertEqual(record["review_status"], "discovery_only")
+        self.assertTrue(any("cairo24.com" in item["url"] for item in record["source_urls"]))
+        self.assertTrue(any(a["id"] == "ACT-LABOUR-DECISION-50-2026-VERIFY" for a in self.inventory["next_actions"]))
         self.assertEqual(validate_inventory(self.inventory), [])
 
     def test_unknown_source_and_duplicate_instrument_ids_are_rejected(self):
