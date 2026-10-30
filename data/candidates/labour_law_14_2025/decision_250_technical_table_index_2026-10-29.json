@@ -9,7 +9,7 @@
   "counsel_review": "not_reviewed",
   "authoritative_retrieval_eligible": false,
   "inspected_printed_pages": "45-295",
-  "uninspected_span": "296-370 (current image-link list stops at p.295; Law Hub Drive preview's page-image endpoint returned 403 in the research interface)",
+  "uninspected_span": "Official Gazette visual comparison remains pending for all pages. Secondary full-text transcription covers the Table 24 section through printed page 360; the secondary image gallery located for this review stops at printed page 295.",
   "tables": [
     {
       "table": 1,
@@ -197,20 +197,13 @@
     },
     {
       "table": 24,
-      "topic": "Chemical exposure limits / TLV basis",
-      "printed_pages": "249-250",
-      "source_discovery": "located",
-      "values_extracted": "no",
-      "status": "large_structured_inventory"
-    },
-    {
-      "table": 25,
-      "topic": "Chemical exposure limits (TLV/TWA/STEL/ceiling, skin notes)",
-      "printed_pages": "249-295 and continuing",
-      "source_discovery": "partially inspected",
-      "values_extracted": "no",
-      "status": "large_structured_inventory; later pages need alternate file route"
+      "topic": "Hazardous chemical exposure threshold limits (TWA/STEL/ceiling and related notes)",
+      "printed_pages": "249-360",
+      "source_discovery": "located_in_secondary_full_text; official Gazette page comparison pending",
+      "values_extracted": "secondary candidate records structured separately; official values not verified",
+      "status": "large_structured_inventory; primary_match_pending"
     }
   ],
-  "release_rule": "This is an index of where tables were observed/referenced in reproduced page images. It is not a verified transcription of table values. All numerical rules require exact source-pinned extraction, official-file match, currentness check, source-use assessment and qualified Egyptian OSH counsel approval."
+  "release_rule": "This is an index of where tables were observed/referenced in reproduced page images. It is not a verified transcription of table values. All numerical rules require exact source-pinned extraction, official-file match, currentness check, source-use assessment and qualified Egyptian OSH counsel approval.",
+  "reconciliation_note": "The source transcription's contents map explicitly identifies Table 24 at printed page 249 and the records chapter begins at printed page 361. There is no Table 25 in the table-of-contents map. The former duplicate Table 25 index entry was erroneous and has been removed; Table 24's section range is 249-360."
 }
