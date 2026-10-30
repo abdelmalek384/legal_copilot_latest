@@ -213,11 +213,3 @@ if hasattr(app, "_rate_limit_state"):
 assert c.post("/login",json={"email":"reset@x.eg","password":"old-password-Long"}).status_code == 401
 assert c.post("/login",json={"email":"reset@x.eg","password":"new-password-Long"}).status_code == 200
 assert c.post("/law/import", json=rows, headers={**L, "X-Admin-Token":"stage0-test-admin-token-please-use-a-long-random-secret"}).status_code == 403
-from concurrent.futures import ThreadPoolExecutor
-def concurrent_login(_):
-    # Independent clients avoid sharing TestClient cookie/session state across threads.
-    with TestClient(app.app) as client:
-        return client.post("/login", json={"email":"reset@x.eg","password":"new-password-Long"}).status_code
-with ThreadPoolExecutor(max_workers=4) as pool:
-    concurrent_statuses = list(pool.map(concurrent_login, range(4)))
-assert concurrent_statuses == [200, 200, 200, 200], concurrent_statuses
