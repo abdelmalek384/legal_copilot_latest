@@ -30,6 +30,13 @@ class WindowsLauncherContractTests(unittest.TestCase):
         self.assertNotIn("--host 0.0.0.0", script)
         self.assertNotIn("--reload", script)
 
+    def test_mac_launcher_requires_supported_python_without_deleting_existing_venv(self):
+        mac = (ROOT / "start_mac.command").read_text(encoding="utf-8")
+        self.assertIn("sys.version_info >= (3, 12)", mac)
+        self.assertIn("Existing .venv must use Python 3.12 or newer", mac)
+        self.assertNotIn("rm -rf", mac)
+        self.assertNotIn("rm -r ", mac)
+
     def test_mac_and_windows_launchers_share_the_same_bootstrap_helper(self):
         mac = (ROOT / "start_mac.command").read_text(encoding="utf-8")
         windows = (ROOT / "start_windows.bat").read_text(encoding="utf-8")
