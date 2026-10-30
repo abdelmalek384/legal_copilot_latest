@@ -119,6 +119,9 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
             self.assertEqual(record["review_status"], "discovery_only")
             self.assertTrue(record["required_related_records"])
             self.assertTrue(record["source_urls"])
+        self.assertTrue(any("dspace.id.com.eg/items/90a235e2" in u["url"] for u in next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-PM-DECISION-1305-2026")["source_urls"]))
+        self.assertTrue(any("dspace.id.com.eg/items/3ce63ac9" in u["url"] for u in next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-PM-DECISION-1572-2026")["source_urls"]))
+        self.assertTrue(any("dspace.id.com.eg/items/080b6ab2" in u["url"] for u in next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-PM-DECISION-2033-2026")["source_urls"]))
         self.assertEqual(validate_inventory(self.inventory), [])
 
     def test_unknown_source_and_duplicate_instrument_ids_are_rejected(self):
