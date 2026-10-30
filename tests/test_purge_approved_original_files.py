@@ -490,6 +490,29 @@ class PurgeApprovedOriginalFilesTests(unittest.TestCase):
         finally:
             tenant.close()
 
+        # A subsequent run must not infer that a missing S3 key proves a
+        # completed purge. The inconsistent state stays blocked for manual review.
+        with patch.dict("os.environ", {
+            "COPILOT_OBJECT_STORAGE_BACKEND": "s3",
+            "COPILOT_ENV": "test",
+        }):
+            with patch("tools.purge_approved_original_files._validate_s3_apply_authorization"):
+                with self.assertRaisesRegex(RuntimeError, "offboarding preflight findings"):
+                    purge_approved_requests(
+                        self.tenant_path, None, self.firm_id, self.operator_id,
+                        apply=True, control_database_path=self.control_path,
+                        tenant_root=self.tenant_root, corpus_database_path=self.corpus_path,
+                        object_store=store, quiesced=True,
+                    )
+        self.assertNotIn((bucket, key), client.objects)
+        tenant = original_connect(self.tenant_path)
+        try:
+            request = tenant.execute(
+                "SELECT status FROM original_file_deletion_requests WHERE id=?", (request_id,)
+            ).fetchone()
+            self.assertEqual(request[0], "approved")
+        finally:
+            tenant.close()
 
     def test_s3_state_machine_rejects_wrong_firm_database_binding(self):
         staged, _, store, client, bucket, key = self._prepare_s3_purge()
