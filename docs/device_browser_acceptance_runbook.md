@@ -56,6 +56,7 @@ Using synthetic data, perform and record each operation:
 8. Upload a small synthetic PDF and Word document; review extracted chunks and OCR status before relying on the text.
 9. Confirm activity history records the relevant actor and action without exposing another firm's events.
 10. Remove a case member and confirm access is revoked immediately.
+11. Delete only a synthetic test case; confirm the immutable deletion snapshot preserves the expected audit metadata and that its retrieval/export remains firm-scoped and admin-only.
 
 ### D. Legal research and abstention
 
