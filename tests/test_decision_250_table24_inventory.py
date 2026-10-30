@@ -63,8 +63,13 @@ class Decision250Table24InventoryTests(unittest.TestCase):
         self.assertEqual(record["source_use_status"], "provisional_official_document_exclusion_candidate_pending_counsel")
         self.assertFalse(record["retrieval_eligible"])
         self.assertIn("مادة (٢٩٦)", record["source_text_ar"])
+        self.assertIn("٢٧٢، ٢٧١، ٢٧٠", record["source_text_ar"])
+        self.assertIn("٢٦٧، ٢٦٨، ٢٦٩", record["source_text_ar"])
         self.assertIn("٢٦٠", record["source_text_ar"])
         self.assertIn("٢٦١", record["source_text_ar"])
+        self.assertIn("خمسة آلاف جنيه", record["source_text_ar"])
+        self.assertIn("مائة ألف جنيه", record["source_text_ar"])
+        self.assertIn("تضاعف الغرامة في حالة العود", record["source_text_ar"])
 
     def test_secondary_candidate_inventory_is_contiguous_and_quarantined(self):
         batches = sorted(CANDIDATE_DIR.glob("decision_250_table24_candidate_batch*_2026-*.json"))
