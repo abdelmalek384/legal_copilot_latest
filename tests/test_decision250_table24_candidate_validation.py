@@ -64,6 +64,19 @@ class Decision250Table24CandidateValidationTests(unittest.TestCase):
             errors = MODULE.validate(root)
         self.assertTrue(any("missing/wrong secondary scan image URL" in error for error in errors))
 
+    def test_partial_secondary_image_spot_check_requires_field_list(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self._copy_batches(root)
+            path = root / MODULE.BATCHES[0]
+            data = json.loads(path.read_text(encoding="utf-8"))
+            data["rows"][0]["secondary_scan_match_status"] = "secondary_image_spot_check_partial_fields"
+            data["rows"][0]["secondary_scan_fields_checked"] = ["chemical_name"]
+            data["rows"][0]["secondary_scan_checked_on"] = "2026-10-30"
+            path.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+            errors = MODULE.validate(root)
+        self.assertTrue(any("incomplete secondary image spot-check fields" in error for error in errors))
+
     def test_candidate_cannot_claim_official_pdf_hash(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
