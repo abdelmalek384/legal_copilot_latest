@@ -133,8 +133,8 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
                 card = cards[card_id]
                 self.assertEqual(card["pinpoint"]["article"], article)
                 self.assertEqual(card["pinpoint"]["official_gazette_printed_page"], printed_page)
-                self.assertTrue(any("alamiria.com" in item["url"] for item in card["primary_evidence"]))
-                self.assertTrue(any("portal.eta.gov.eg" in item["url"] for item in card["primary_evidence"]))
+                self.assertTrue(any(_has_https_host(item["url"], "alamiria.com") for item in card["primary_evidence"]))
+                self.assertTrue(any(_has_https_host(item["url"], "portal.eta.gov.eg") for item in card["primary_evidence"]))
                 self.assertTrue(card["cross_checks"])
                 self.assertEqual(card["review_state"], "provisional_primary_text_extract_reviewed")
                 self.assertIn("لا توجد مراجعة محامٍ مصر", " ".join(card["limitations"]))
@@ -152,8 +152,8 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
                 card = cards[card_id]
                 self.assertEqual(card["pinpoint"]["article"], article)
                 self.assertEqual(card["pinpoint"]["official_gazette_printed_page"], printed_page)
-                self.assertTrue(any("alamiria.com" in item["url"] for item in card["primary_evidence"]))
-                self.assertTrue(any("portal.eta.gov.eg" in item["url"] for item in card["primary_evidence"]))
+                self.assertTrue(any(_has_https_host(item["url"], "alamiria.com") for item in card["primary_evidence"]))
+                self.assertTrue(any(_has_https_host(item["url"], "portal.eta.gov.eg") for item in card["primary_evidence"]))
                 self.assertTrue(card["cross_checks"])
                 self.assertEqual(card["review_state"], "provisional_primary_text_extract_reviewed")
                 self.assertIn("لا توجد مراجعة محامٍ", " ".join(card["limitations"]))
@@ -171,8 +171,8 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
                 card = cards[card_id]
                 self.assertEqual(card["pinpoint"]["article"], article)
                 self.assertEqual(card["pinpoint"]["official_gazette_printed_page"], printed_page)
-                self.assertTrue(any("alamiria.com" in item["url"] for item in card["primary_evidence"]))
-                self.assertTrue(any("portal.eta.gov.eg" in item["url"] for item in card["primary_evidence"]))
+                self.assertTrue(any(_has_https_host(item["url"], "alamiria.com") for item in card["primary_evidence"]))
+                self.assertTrue(any(_has_https_host(item["url"], "portal.eta.gov.eg") for item in card["primary_evidence"]))
                 self.assertTrue(card["cross_checks"])
                 self.assertEqual(card["review_state"], "provisional_primary_text_extract_reviewed")
                 self.assertIn("لا توجد مراجعة محامٍ", " ".join(card["limitations"]))
@@ -199,7 +199,7 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
                 self.assertEqual(card["pinpoint"]["pdf_page_index_zero_based"], expected_pages[article] - 2)
                 pdf_evidence = [
                     item for item in card["primary_evidence"]
-                    if "portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf" in item["url"]
+                    if _has_https_host(item["url"], "portal.eta.gov.eg") and urlsplit(item["url"]).path == "/sites/default/files/2026-03/law.no_.14.of_.2025.pdf"
                 ]
                 self.assertTrue(pdf_evidence)
                 self.assertIn("visually checked", pdf_evidence[0]["supports"])
@@ -218,10 +218,10 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
                 card = cards[card_id]
                 self.assertEqual(card["pinpoint"]["article"], article)
                 self.assertEqual(card["pinpoint"]["official_gazette_printed_page"], printed_page)
-                self.assertTrue(any("alamiria.com" in item["url"] for item in card["primary_evidence"]))
+                self.assertTrue(any(_has_https_host(item["url"], "alamiria.com") for item in card["primary_evidence"]))
                 gazette = [
                     item for item in card["primary_evidence"]
-                    if "portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf" in item["url"]
+                    if _has_https_host(item["url"], "portal.eta.gov.eg") and urlsplit(item["url"]).path == "/sites/default/files/2026-03/law.no_.14.of_.2025.pdf"
                 ]
                 self.assertTrue(gazette)
                 self.assertIn("روجعت بصرياً", gazette[0]["supports"])
@@ -244,10 +244,10 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
                 card = cards[card_id]
                 self.assertEqual(card["pinpoint"]["article"], article)
                 self.assertEqual(card["pinpoint"]["official_gazette_printed_page"], printed_page)
-                self.assertTrue(any("alamiria.com" in item["url"] for item in card["primary_evidence"]))
+                self.assertTrue(any(_has_https_host(item["url"], "alamiria.com") for item in card["primary_evidence"]))
                 gazette = [
                     item for item in card["primary_evidence"]
-                    if "portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf" in item["url"]
+                    if _has_https_host(item["url"], "portal.eta.gov.eg") and urlsplit(item["url"]).path == "/sites/default/files/2026-03/law.no_.14.of_.2025.pdf"
                 ]
                 self.assertTrue(gazette)
                 self.assertIn("روجعت بصرياً", gazette[0]["supports"])
@@ -268,8 +268,8 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
                 self.assertTrue(matching)
                 card = matching[-1]
                 self.assertEqual(card["pinpoint"]["official_gazette_printed_page"], page)
-                self.assertTrue(any("alamiria.com" in item["url"] for item in card["primary_evidence"]))
-                self.assertTrue(any("portal.eta.gov.eg" in item["url"] for item in card["primary_evidence"]))
+                self.assertTrue(any(_has_https_host(item["url"], "alamiria.com") for item in card["primary_evidence"]))
+                self.assertTrue(any(_has_https_host(item["url"], "portal.eta.gov.eg") for item in card["primary_evidence"]))
                 self.assertTrue(card["limitations"])
         self.assertFalse(self.data["instrument"]["search_eligible"])
 
@@ -282,8 +282,8 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
                 self.assertTrue(matching)
                 card = matching[-1]
                 self.assertEqual(card["pinpoint"]["official_gazette_printed_page"], page)
-                self.assertTrue(any("alamiria.com" in item["url"] for item in card["primary_evidence"]))
-                self.assertTrue(any("portal.eta.gov.eg" in item["url"] for item in card["primary_evidence"]))
+                self.assertTrue(any(_has_https_host(item["url"], "alamiria.com") for item in card["primary_evidence"]))
+                self.assertTrue(any(_has_https_host(item["url"], "portal.eta.gov.eg") for item in card["primary_evidence"]))
                 self.assertTrue(card["limitations"])
         self.assertFalse(self.data["instrument"]["search_eligible"])
 
@@ -296,8 +296,8 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
                 self.assertTrue(matching)
                 card = matching[-1]
                 self.assertEqual(card["pinpoint"]["official_gazette_printed_page"], page)
-                self.assertTrue(any("alamiria.com" in item["url"] for item in card["primary_evidence"]))
-                self.assertTrue(any("portal.eta.gov.eg" in item["url"] for item in card["primary_evidence"]))
+                self.assertTrue(any(_has_https_host(item["url"], "alamiria.com") for item in card["primary_evidence"]))
+                self.assertTrue(any(_has_https_host(item["url"], "portal.eta.gov.eg") for item in card["primary_evidence"]))
                 self.assertTrue(card["limitations"])
         self.assertFalse(self.data["instrument"]["search_eligible"])
 
@@ -310,8 +310,8 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
                 self.assertTrue(matching)
                 card = matching[-1]
                 self.assertEqual(card["pinpoint"]["official_gazette_printed_page"], page)
-                self.assertTrue(any("alamiria.com" in item["url"] for item in card["primary_evidence"]))
-                self.assertTrue(any("portal.eta.gov.eg" in item["url"] for item in card["primary_evidence"]))
+                self.assertTrue(any(_has_https_host(item["url"], "alamiria.com") for item in card["primary_evidence"]))
+                self.assertTrue(any(_has_https_host(item["url"], "portal.eta.gov.eg") for item in card["primary_evidence"]))
                 self.assertTrue(card["limitations"])
         self.assertFalse(self.data["instrument"]["search_eligible"])
 
@@ -329,8 +329,8 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
                 card = cards[card_id]
                 self.assertEqual(card["pinpoint"]["article"], article)
                 self.assertEqual(card["pinpoint"]["official_gazette_printed_page"], printed_page)
-                self.assertTrue(any("alamiria.com" in item["url"] for item in card["primary_evidence"]))
-                self.assertTrue(any("portal.eta.gov.eg" in item["url"] for item in card["primary_evidence"]))
+                self.assertTrue(any(_has_https_host(item["url"], "alamiria.com") for item in card["primary_evidence"]))
+                self.assertTrue(any(_has_https_host(item["url"], "portal.eta.gov.eg") for item in card["primary_evidence"]))
                 self.assertEqual(card["review_state"], "provisional_primary_text_extract_reviewed")
                 self.assertIn("لا توجد مراجعة محامٍ مسجلة", " ".join(card["limitations"]))
                 self.assertTrue(card["not_usable_for"])
