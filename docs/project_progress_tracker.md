@@ -465,10 +465,10 @@ This checkpoint supersedes the earlier 47%/42% estimates recorded above. The who
 
 ### Current non-database legal-knowledge work
 
-- **#782 — canonical Labour Law evidence inventory:** 294 cards exist in the main JSON file. The manifest and README had stale counts and loaded overlapping split snapshots. They are being corrected so the manifest loads only the canonical 294-card file; split snapshots remain archived until their unique content is reconciled. Missing non-authoritative-use boundaries were added to all affected cards, and the 294-card review report was regenerated. Cards remain search-ineligible. Full CI is still required before merge.
+- **#782 — long-lived Labour Law branch:** the branch contains a larger 294-card expansion but is 198 commits ahead and 234 behind current main; it is not safe to merge as a whole. The unique Articles 256–298 and Articles 1–39/promulgation 2–11 material was selectively ported through #937 and #939. Current main now has 127 canonical cards, not 294. The remaining branch material still requires selective reconciliation. All 127 cards are search_eligible=false; 43 OSH/inspection cards and 15 coverage-gap page pinpoints are inferred/not visually verified, and 10 promulgation cards have no established Gazette page pinpoint.
 - **#840 — Decisions 248–252 / Table 24:** secondary transcription cross-checks are recorded for rows 34, 61 and 64. The raw CAS/value discrepancies remain unresolved, the original Gazette issue 225(A) is still request-copy restricted, and official Gazette matches remain 0/781. No values are approved for occupational exposure or compliance use.
 - **#784 — Decision 162:** currentness and publication-date reconciliation remains draft/open.
-- **#931 — case-law source lead:** catalogue snapshot reports 1,135 Court of Cassation judgments, 983 Supreme Constitutional Court judgments, 2,456 Supreme Administrative Court judgments, 10,259 decisions and 1,090 laws. Five representative full-text pages were sampled. These counts and pages are discovery evidence, not proof of completeness, official provenance or licence scope.
+- **#931 — case-law source lead:** catalogue snapshot reports 1,135 Court of Cassation judgments, 983 Supreme Constitutional Court judgments, 2,456 Supreme Administrative Court judgments, 10,259 decisions and 1,090 laws. Five representative full-text pages were sampled. These counts and pages are discovery evidence, not proof of completeness, official provenance or licence scope. PR #935 separately registered the official Court of Cassation Legal Heritage Library as a browse-only primary verification route; its scans are watermarked against republication and reuse permissions remain unknown.
 
 ### Remaining release gates
 
@@ -482,3 +482,44 @@ This checkpoint supersedes the earlier 47%/42% estimates recorded above. The who
 
 **Completion remains 48%, not 49%:** recent work improves discovery, data integrity and CI, but the verified Egyptian legal corpus remains at 6% and counsel acceptance remains 0%. More candidate records or secondary-source cross-checks do not count as verified law.
 
+
+
+## Latest checkpoint — 2026-10-30 (127 Labour Law cards and official-source discovery)
+
+**Whole-project technical completion remains 48%** (47.95/100 weighted estimate). This does not increase from provisional cards or source-discovery records. The verified Egyptian legal corpus remains **6%** and final Egyptian-counsel acceptance remains **0% / not started**.
+
+### Completed and merged
+
+- **#935 — official Court of Cassation heritage library:** registered the Court's historical legal-document library and direct record routes. The announcement reports 27 scanned volumes, 13,275 pages, 3,533 indexed documents and 12,577 index entries for the core 1899–1933 series. Sample 1899, 1933, 1936 and 1937 record pages were located. The scans carry a watermark intended to prevent republication; collection and commercial reuse remain unknown. The current judgments/principles search portal is recorded separately with its published restrictions. No scans were ingested.
+- **#937 — Labour Law occupational-safety/inspection expansion:** added 43 non-duplicate cards for selected Articles 256–298; canonical inventory grew from 59 to 102. Full Tests, CodeQL and dependency audit passed before merge.
+- **#939 — Labour Law coverage and promulgation expansion:** added 15 coverage-gap cards for accompanying-law Articles 1–39 and 10 promulgation cards for Articles 2–11; canonical inventory is now 127. The report renderer explicitly says “not established” when Gazette page pinpoints are unavailable. Full Tests, CodeQL and dependency audit passed before merge.
+- **#940 — Dataflare Egyptian Legal Corpus source audit:** registered a public 2,434-row/25M-token dataset whose card claims MIT licensing. Its schema lacks record-level source URLs, dates, Gazette pinpoints and currentness; the underlying source/rights chain is not established. Full Tests, CodeQL, dependency audit and non-database safety regression passed before merge. No Parquet or legal text was downloaded or imported.
+- **#914 and #917 — dependency updates:** Boto3 and Pillow updates merged after Tests, CodeQL and dependency audit passed.
+
+### Current legal-knowledge boundaries
+
+- The 127 Labour Law cards are **provisional research leads only**. Every card has search_eligible=false; the instrument authenticity, currentness, amendment history, reuse rights and Egyptian-lawyer review gates remain pending.
+- The 43 occupational-safety/inspection cards and 15 coverage-gap cards contain inferred page pinpoints that were not visually compared with the original Gazette. The 10 promulgation cards for Articles 2–11 have no established Gazette page pinpoints. Do not use them to calculate transitional deadlines, determine pending-case treatment, set exposure thresholds, or decide penalties.
+- The original Gazette issue 225(A) for Decisions 248–252 remains request-copy restricted. Table 24 discrepancies in rows 34, 61 and 64 remain unresolved; official Gazette matches remain 0/781. Do not bypass access restrictions or use tentative values for compliance advice.
+- The Dataflare MIT claim is not treated as blanket permission for underlying texts or embedded compilations. The dataset remains a provenance/quality candidate only.
+- The MKSEgypt archive's CC BY 4.0 statement remains subject to rights-scope and provenance review; no bulk collection or ingestion is authorized by the register.
+
+### Open work and blockers
+
+- **#782:** remains open but diverged 198 commits ahead / 234 behind current main; do not merge as a whole. Continue selective reconciliation only.
+- **#840:** draft/open; Decisions 248–252 and Table 24 evidence ledger remains secondary-only until original Gazette comparison and legal review.
+- **#784:** draft/open; Decision 162 publication/currentness reconciliation remains unresolved.
+- **#922:** open; Tests failed in test_scans_multiple_firms_and_aggregates_without_cross_firm_data because the health report was unexpectedly healthy. Do not weaken the cross-firm isolation assertion; diagnose and rerun before merging the Docker build-action update.
+- **#898:** S3 physical-purge state machine remains with the separate database/storage workstream. No destructive purge without independent review, live S3/KMS/IAM evidence, approved retention policy and witnessed recovery.
+- **Database/tenant architecture:** remains assigned to the other AI. No duplicate schema, migration, identity or destructive storage work was performed here.
+
+### Next highest-value priorities
+
+1. Continue primary-source comparison and provenance work for Labour Law 14/2025 and its implementing decisions; keep all unverified cards out of authoritative retrieval.
+2. Continue selectively reconciling the remaining #782 branch material onto current main; do not merge the stale branch wholesale.
+3. Diagnose #922's cross-firm reminder-healthcheck failure without weakening isolation guarantees.
+4. Resolve the official Gazette access gap lawfully; no user input is currently required and no request-copy bypass will be attempted.
+5. Complete real lawyer-labelled retrieval/citation evaluation, manual Arabic RTL/LTR/accessibility/browser QA, staging operations, and witnessed backup/restore.
+6. Obtain qualified Egyptian counsel's actual application acceptance after technical completion.
+
+**No completion-percentage increase is claimed:** more provisional cards and source leads improve research preparation, but they do not establish a verified Egyptian legal corpus or counsel-approved answers.
