@@ -298,7 +298,8 @@
         {
           "url": "https://dspace.id.com.eg/handle/123456789/4666",
           "source_role": "Official Gazette issue metadata repository candidate",
-          "status": "discovered_terms_unreviewed"
+          "status": "discovered_terms_unreviewed",
+          "source_id": "EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE"
         },
         {
           "url": "https://natlex.ilo.org/dyn/natlex2/r/natlex/fe/details?p3_isn=119035",
@@ -337,7 +338,8 @@
         {
           "url": "https://dspace.id.com.eg/handle/123456789/8851",
           "source_role": "Official Gazette issue metadata repository candidate",
-          "status": "discovered_terms_unreviewed"
+          "status": "discovered_terms_unreviewed",
+          "source_id": "EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE"
         },
         {
           "url": "https://parliament.gov.eg/News_Show.aspx?frm=5874",
@@ -1048,7 +1050,8 @@
         {
           "url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc",
           "source_role": "Egyptian Proceedings issue metadata candidate",
-          "status": "metadata_discovered_pdf_listed_not_downloaded"
+          "status": "metadata_discovered_pdf_listed_not_downloaded",
+          "source_id": "EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE"
         }
       ],
       "source_status": "discovery_only",
@@ -1078,7 +1081,8 @@
         {
           "url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc",
           "source_role": "Egyptian Proceedings issue metadata candidate",
-          "status": "metadata_discovered_pdf_listed_not_downloaded"
+          "status": "metadata_discovered_pdf_listed_not_downloaded",
+          "source_id": "EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE"
         }
       ],
       "source_status": "discovery_only",
@@ -1108,7 +1112,8 @@
         {
           "url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc",
           "source_role": "Egyptian Proceedings issue metadata candidate",
-          "status": "metadata_discovered_pdf_listed_not_downloaded"
+          "status": "metadata_discovered_pdf_listed_not_downloaded",
+          "source_id": "EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE"
         },
         {
           "url": "https://sis.gov.eg/ar/%D8%A7%D9%84%D9%85%D8%B1%D9%83%D8%B2-%D8%A7%D9%84%D8%A5%D8%B9%D9%84%D8%A7%D9%85%D9%8A/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D9%8A%D8%B9%D8%AA%D9%85%D8%AF-%D9%85%D8%B9%D8%A7%D9%8A%D9%8A%D8%B1-%D9%85%D9%86%D8%AD-%D8%AA%D8%B1%D8%AE%D9%8A%D8%B5-%D9%85%D8%B1%D8%A7%D9%83%D8%B2-%D8%A7%D9%84%D8%AA%D8%AF%D8%B1%D9%8A%D8%A8-%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A-%D8%A7%D9%84%D8%AE%D8%A7%D8%B5%D8%A9-%D9%84%D8%AA%D8%AF%D8%B1%D9%8A%D8%A8-%D9%85%D8%B3%D8%A7%D8%B9%D8%AF%D9%8A-%D8%A7%D9%84%D8%AE%D8%AF%D9%85%D8%A7%D8%AA-%D8%A7%D9%84%D8%B5%D8%AD%D9%8A%D8%A9/",
@@ -1146,7 +1151,8 @@
         {
           "url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc",
           "source_role": "Egyptian Proceedings issue metadata candidate",
-          "status": "metadata_discovered_pdf_listed_not_downloaded"
+          "status": "metadata_discovered_pdf_listed_not_downloaded",
+          "source_id": "EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE"
         }
       ],
       "source_status": "discovery_only",
