@@ -51,7 +51,7 @@ The product cannot be called production-ready or legally approved until all appl
 ## Current open implementation items
 
 - **PR #840** — Labour Law 14/2025 / Decisions 248–252 evidence ledger; remains draft/open. It is metadata and comparison-workflow work only; original Gazette issue 225(A) copy remains request-copy restricted, so no full Decision 248–252 source verification or verified-law coverage increase is claimed.
-- **PR #926** — discovery-only additions for the Ministry of Parliamentary Affairs enacted-laws index, IDSC Gazette repository, and Manshurat Qanuneya. Collection and commercial reuse remain unknown; no legal text was downloaded or made retrieval-eligible. Tests and CodeQL are running; dependency audit passed.
+- **PR #926 — merged** — added discovery-only records for the Ministry of Parliamentary Affairs enacted-laws index, IDSC Gazette repository, and Manshurat Qanuneya. Collection and commercial reuse remain unknown; no legal text was downloaded or made retrieval-eligible. Full Tests, CodeQL and dependency audit passed.
 - **PR #928** — current-main PDF importer resource limits (100 MiB PDF, 1,000 pages, 1 MiB metadata sidecars; bounded reads and fail-closed environment configuration). Full Tests, CodeQL and dependency audit are queued; do not merge until all pass.
 - **PR #918, #919, #922** — routine FastAPI, CodeQL action and Docker build action dependency updates; review CI and dependency compatibility before merging.
 - **PR #898** — S3 physical-purge state machine; separate database/storage workstream. Do not enable destructive purge without independent review, live S3/KMS/IAM evidence, approved retention policy and witnessed recovery.
