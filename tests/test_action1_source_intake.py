@@ -4,6 +4,10 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
+import sys
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
 
 from tools.hash_action1_sources import build_manifest, inspect_file
 
