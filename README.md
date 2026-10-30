@@ -38,7 +38,7 @@ embedding model such as bge-m3 or multilingual-e5, stored in pgvector), and MIN_
 
 ## Install on a phone or desktop
 
-The web app includes an installable PWA shell for compatible browsers. Serve it over HTTPS, then use the browser's **Install app** or **Add to Home Screen** action. The service worker caches only a static offline notice; case data, uploaded files, account/session data, and research responses are never cached. See [PWA installation and privacy limits](docs/pwa_installation.md).
+The web app includes an installable PWA shell for compatible browsers. Serve it over HTTPS, then use the browser's **Install app** or **Add to Home Screen** action. The service worker caches only a static offline notice; case data, uploaded files, account/session data, and research responses are never cached. See [PWA installation and privacy limits](docs/pwa_installation.md) and the [manual device/browser acceptance runbook](docs/device_browser_acceptance_runbook.md).
 
 ## Setup and security
 
