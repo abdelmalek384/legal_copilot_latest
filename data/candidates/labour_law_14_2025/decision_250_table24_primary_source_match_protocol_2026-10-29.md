@@ -1,6 +1,6 @@
 # Decision 250/2026 Table 24 — primary-source matching protocol
 
-**Purpose:** Convert the 617 secondary-transcription candidates into auditable, row-by-row comparisons when the original Official Gazette PDF is available.  
+**Purpose:** Convert the 642 currently extracted secondary-transcription candidates into auditable, row-by-row comparisons when the original Official Gazette PDF is available.  
 **Current status:** Template/protocol only. No official PDF hash or Table 24 row match is claimed.
 
 ## 1. Preserve and identify the source file
@@ -20,7 +20,7 @@ shasum -a 256 "/path/to/original-gazette.pdf"
 
 **Important fidelity warning:** The candidate field named `raw_limit_and_note_text` is not guaranteed to be verbatim. It may contain manually assembled, translated, normalized or text-layer fragments. Treat it as a comparison lead only; transcribe the official page independently and compare field by field.
 
-For each numbered Table 24 entry:
+For each numbered Table 24 entry, including the newly extracted secondary-source candidates through row 642:
 
 1. Open the official page image containing the row. Record both the PDF page index and the printed page number if they differ.
 2. Compare the Arabic label, English label, CAS identifier(s), formula, molecular weight, every numeric limit, units, footnote markers, classification labels, and health-effect text.
@@ -81,3 +81,8 @@ Never fill missing values by inference. Keep the register and the original candi
 ## Release stop conditions
 
 Any unresolved mismatch, unverified numeric limit, unknown unit/column, uncertain currentness, unresolved source-use question, or missing counsel approval blocks authoritative retrieval of that row. A review session in the app is a separate final acceptance gate; it does not replace primary-source matching.
+
+
+## 2026-10-30 extraction extension
+
+A secondary-source candidate batch now covers rows 618–642, with source-line locators 5514–5555. The entries include group headings and numbered subentries (including rhodium, crystalline silica and silicon carbide groupings). These have been preserved as separately numbered candidates without inferring hierarchy or assigning parent limits to subentries. The candidate batch remains secondary-only, has no official Gazette match or PDF hash, and every row remains pending official match. The primary-source comparison protocol and all release gates remain unchanged.
