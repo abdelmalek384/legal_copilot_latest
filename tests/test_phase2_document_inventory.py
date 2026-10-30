@@ -100,9 +100,9 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
     def test_2026_labour_remote_work_and_wages_decisions_are_separate_discovery_records(self):
         expected = {
             "EG-LABOUR-PM-DECISION-982-2026": "official_text_candidate",
-            "EG-LABOUR-PM-DECISION-1305-2026": "official_reference_candidate_primary_text_not_located",
-            "EG-LABOUR-PM-DECISION-1572-2026": "official_reference_candidate_primary_text_not_located",
-            "EG-LABOUR-PM-DECISION-2033-2026": "official_reference_candidate_primary_text_not_located",
+            "EG-LABOUR-PM-DECISION-1305-2026": "later_official_citation_only",
+            "EG-LABOUR-PM-DECISION-1572-2026": "later_official_citation_only",
+            "EG-LABOUR-PM-DECISION-2033-2026": "later_official_citation_only",
             "EG-LABOUR-PM-DECISION-2377-2026": "official_text_candidate",
             "EG-LABOUR-PM-DECISION-2590-2026": "official_text_candidate",
             "EG-LABOUR-PM-DECISION-3165-2026": "official_text_candidate",
