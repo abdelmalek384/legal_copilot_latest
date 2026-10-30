@@ -234,17 +234,17 @@ def reconcile_original_file_storage(
                     "object_integrity_mismatch", firm_id, object_id,
                     "stored bytes do not match metadata SHA-256 and byte size",
                 ))
-            if suffix == "staged" and state != "staged":
+            if suffix == ".staged" and state != "staged":
                 findings.append(ReconciliationFinding(
                     "unexpected_staged_copy", firm_id, object_id,
                     "staged bytes remain although metadata is not in staged state",
                 ))
-            if suffix == "staged" and state == "staged":
+            if suffix == ".staged" and state == "staged":
                 findings.append(ReconciliationFinding(
                     "staged_upload_requires_review", firm_id, object_id,
                     "staged bytes and staged metadata remain; verify whether upload finalization was interrupted",
                 ))
-            if suffix == "blob" and state == "staged":
+            if suffix == ".blob" and state == "staged":
                 findings.append(ReconciliationFinding(
                     "finalized_object_state_not_committed", firm_id, object_id,
                     "final blob exists but metadata still says staged; inspect upload crash window",
