@@ -73,6 +73,8 @@ Table 24 candidate extraction now covers **781/781 numbered entries (100% second
 
 41. Extended the partial secondary-image spot-check to Table 24 rows 19–25 using the page 252 reproduction. Chemical names, CAS identifiers, primary limit tokens and units show no obvious mismatch in the checked fields. These seven rows are now marked with the same explicit partial-field status; formulae, molecular weights, footnotes, carcinogenicity annotations and original Gazette comparison remain unchecked. Partial spot-check coverage is now 25/781 (3.2%); no official Gazette match is claimed.
 
+42. Continued secondary-image field spot-checks through Table 24 rows 26–79 using printed pages 253–260. Candidate rows 26–33, 35–63 and 65–79 now have partial checks for chemical name, CAS identifier, primary limit token and unit. Three discrepancies were explicitly quarantined rather than silently corrected: row 34 CAS appears as 1344-28-1 in the page image versus 1344-281 in the secondary transcription; row 61's limit appears tentatively 0.3 mg/m3 versus 1 mg/m3 in the transcription; row 64's limit appears tentatively 0.5 ppm versus 0.02 ppm in the transcription. Rows 61/64 readings are tentative due rotated/small text and require original Gazette confirmation. The validator now requires evidence fields and pending-original status for discrepancy records. Partial checks: 76/781 (9.7%); discrepancy flags: 3; full field-by-field comparison: 0; official Gazette matches: 0.
+
 ## Current subtask status
 
 | Subtask | Completion estimate | Current status | Remaining gate |
