@@ -25,7 +25,7 @@ class Decisions251252FeeCeilingCandidateTests(unittest.TestCase):
             item["value"] = 50_001
             path.write_text(json.dumps(record, ensure_ascii=False), encoding="utf-8")
             errors = MODULE.validate(root)
-        self.assertTrue(any("differs from the recorded cross-check" in error or "exceeds the EGP 50000" in error for error in errors))
+        self.assertTrue(any("exceeds the EGP 50000" in error for error in errors))
 
     def test_rejects_non_licence_charge_being_relabelled_as_licence_fee(self):
         with tempfile.TemporaryDirectory() as tmp:
