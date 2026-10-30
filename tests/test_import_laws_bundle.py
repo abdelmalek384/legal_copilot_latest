@@ -151,6 +151,63 @@ class LegalImportBundleTests(unittest.TestCase):
         with self.assertRaisesRegex(SystemExit, "symbolic link"):
             validate_inputs(self.source, self.output)
 
+    def test_output_file_and_ocr_cache_symlinks_are_rejected(self):
+        if not hasattr(os, "symlink"):
+            self.skipTest("symlinks are unavailable")
+        self.output.mkdir()
+        outside = self.root / "outside.txt"
+        outside.write_text("keep", encoding="utf-8")
+        (self.output / "law_rows.jsonl").symlink_to(outside)
+        with self.assertRaisesRegex(SystemExit, "symbolic link"):
+            validate_inputs(self.source, self.output)
+        (self.output / "law_rows.jsonl").unlink()
+        (self.output / ".ocr_cache").symlink_to(self.root, target_is_directory=True)
+        with self.assertRaisesRegex(SystemExit, "symbolic link"):
+            validate_inputs(self.source, self.output)
+
+    def test_ocr_cache_is_bound_to_pdf_hash_and_rejects_page_symlinks(self):
+        import sys
+        from types import SimpleNamespace
+        from tools import import_laws
+
+        class Page:
+            def get_text(self):
+                return "\\ue000" * 10
+
+        class Document:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *args):
+                return False
+
+            def __iter__(self):
+                return iter([Page()])
+
+        fake_pymupdf = SimpleNamespace(open=lambda _path: Document())
+        cache_root = self.output / ".ocr_cache"
+        pdf_path = self.source / "sample_law.pdf"
+        with mock.patch.dict(sys.modules, {"pymupdf": fake_pymupdf}):
+            with mock.patch.object(import_laws, "_ocr", return_value="recognized page") as ocr:
+                pages, used = import_laws.page_texts(pdf_path, cache_root, "a" * 64)
+                self.assertTrue(used)
+                self.assertEqual(pages, ["recognized page"])
+                ocr.assert_called_once()
+            with mock.patch.object(import_laws, "_ocr", side_effect=AssertionError("cache should be reused")):
+                pages, used = import_laws.page_texts(pdf_path, cache_root, "a" * 64)
+                self.assertEqual(pages, ["recognized page"])
+            with mock.patch.object(import_laws, "_ocr", return_value="new source text"):
+                pages, used = import_laws.page_texts(pdf_path, cache_root, "b" * 64)
+                self.assertEqual(pages, ["new source text"])
+
+            cache_dir = cache_root / ("sample_law-" + "c" * 16)
+            cache_dir.mkdir(parents=True)
+            external = self.root / "external-cache.txt"
+            external.write_text("outside", encoding="utf-8")
+            (cache_dir / "0.txt").symlink_to(external)
+            with self.assertRaisesRegex(SystemExit, "OCR cache page"):
+                import_laws.page_texts(pdf_path, cache_root, "c" * 64)
+
     def test_source_and_output_paths_must_be_separate_regular_directories(self):
         with self.assertRaisesRegex(SystemExit, "separate"):
             validate_inputs(self.source, self.source / "out")
