@@ -401,6 +401,25 @@
       "terms_checked_on": "2026-10-30",
       "bulk_download_or_api": "not established; use public browsing only and respect watermark/no-republication statement",
       "required_next_action": "Use individual public record pages for manual primary-source verification of historical citations and pinpoint references. Do not scrape, bulk download, remove watermarks, republish images, or ingest scans until explicit collection and commercial reuse permissions are established. Preserve printed volume/page references and mark uncertain readings exactly as the Court does. Treat the announced 1899–1933 heritage collection, the 1936 historical periodical and any later surfaced records as distinct series with record-specific dates. Keep current judgments search and heritage scans under separate source records if their access or terms differ."
+    },
+    {
+      "source_id": "EG-DATAFLARE-LEGAL-CORPUS",
+      "authority": "Dataflare dataset publisher on Hugging Face; underlying source authorities not identified per record",
+      "source_page": "https://huggingface.co/datasets/dataflare/egypt-legal-corpus",
+      "material_types": [
+        "Arabic Egyptian legislation text candidates",
+        "ministerial-decision and legal-reference compilations",
+        "legal document taxonomy and token-count metadata"
+      ],
+      "access_status": "public Hugging Face dataset; dataset card declares MIT; 2,434 Parquet rows and approximately 24.9 MB; dataset card reports 25,054,372 tokens; individual source URLs, publication dates and Gazette pinpoints are not provided in the published schema",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://huggingface.co/datasets/dataflare/egypt-legal-corpus",
+      "permission_evidence": "The public dataset card declares an MIT license and says the corpus contains 2,434 Arabic legal-text records with 25,054,372 tokens. The visible schema contains law_name, categories, text and tokens; no record-level source URL, publication date, Gazette issue/page, effective date, amendment status or reviewer field is documented. The dataset's own description says texts were extracted from official Egyptian legal documents, but does not identify an upstream source or chain of rights for each record. Public preview samples include broad compilations such as قوانين الأحوال الشخصية, القرارات الوزارية الخاصة بالجمارك and موسوعة المواعيد, rather than only individually identified statutes; some visible text prefixes appear to contain extraction/noise artifacts. An independent fetcher description for this dataset maps every record to the same dataset homepage URL and sets date=null, confirming that it cannot provide source-level citation provenance as-is. The MIT declaration is evidence of the dataset publisher's stated license for the dataset package, not proof that every underlying legal text, third-party compilation, editorial material or source-derived database is covered by rights the publisher can grant. No records were downloaded or ingested in this review.",
+      "permission_evidence_url": "https://huggingface.co/datasets/dataflare/egypt-legal-corpus",
+      "terms_checked_on": "2026-10-30",
+      "bulk_download_or_api": "Hugging Face Parquet file is publicly listed; bulk download is technically available through the platform, but no content acquisition is approved pending provenance, rights-scope and quality review",
+      "required_next_action": "Treat as a candidate discovery and extraction-quality benchmark only. Before any content import, inspect a representative sample across categories for duplicates, mixed compilations, extraction corruption and missing text; identify upstream source and publication metadata for each record; compare each candidate against official Gazette or publisher sources; verify currentness/amendment status and whether the MIT license covers underlying material and compilation rights. Keep collection and commercial reuse unknown and search eligibility false until these checks are complete."
     }
   ]
 }
