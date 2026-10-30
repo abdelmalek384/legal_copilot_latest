@@ -172,7 +172,7 @@ class LegalImportBundleTests(unittest.TestCase):
 
         class Page:
             def get_text(self):
-                return "\\ue000" * 10
+                return "\ue000" * 10
 
         class Document:
             def __enter__(self):
