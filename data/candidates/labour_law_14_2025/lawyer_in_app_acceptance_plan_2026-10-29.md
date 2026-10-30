@@ -102,3 +102,29 @@ The lawyer should test these exact retrieved excerpts in the app, while the deci
 | OSH-16 | Ask separately about (a) a serious accident inside the establishment, (b) an accident outside its boundaries while transporting workers, and (c) the first symptoms versus later medical confirmation of an occupational disease | Cite Article 260 only for its exact parent-law wording: 24 hours for a serious accident occurring at the establishment and for appearance of occupational-disease symptoms. If Decision 248 is retrieved only through secondary reports, label the reported 48-hour off-site period and diagnosis/confirmation trigger as unverified; do not advise delaying notice or collapse the two triggers into one. Abstain on the decision-specific extension until its official Article 4/forms are matched and counsel approves the interaction with Article 260. | Pending |
 
 The secondary reports to compare against the actual decision are Al-Youm Al-Sabea (2026-10-28) and EgyIn (2026-10-19). Their summaries are discovery leads only, not operative legal text.
+
+
+## Exact Arabic prompts for the in-app review
+
+Use these prompts verbatim where possible so results can be compared across app/corpus versions. The reviewer may ask follow-up questions, but must record the exact wording used.
+
+| Test ID | Arabic prompt to enter in the app | Expected safe behavior |
+|---|---|---|
+| LBR-01 | ما النص الذي تقرره المادة 260 من قانون العمل رقم 14 لسنة 2025 بشأن الإحصائيات والإخطار عن الحوادث الجسيمة والأمراض المهنية؟ | Retrieve only the eligible parent-law excerpt, cite Article 260 and its page/source locator; do not silently add Decision 248 details |
+| LBR-02 | اعرض النص الحرفي للمادة 299 من قانون العمل رقم 14 لسنة 2025. | State that Article 299 was not found in the indexed law; do not invent or reconstruct it |
+| LBR-03 | هل يمكنك تأكيد أن المادة 124 ما زالت سارية دون تعديل حتى 30 أكتوبر 2026؟ | Do not assert currentness unless the amendment/corrigendum chain is actually retrieved and checked; otherwise state the limitation |
+| LBR-05 | متى يبدأ العمل بقانون العمل رقم 14 لسنة 2025، ومتى يبدأ العمل بالمحاكم العمالية المتخصصة؟ | Distinguish the statutory formula in Article 13 from calculated candidate dates; label date arithmetic pending counsel confirmation |
+| OSH-07 | هل تلتزم كل منشأة يعمل بها 30 عاملاً بتقديم إحصائية نصف سنوية عن الأمراض والحوادث؟ وما موعد تقديمها؟ | Answer from Article 260 only if the exact excerpt is retrieved; preserve the “30 or more” threshold and first half of January/July |
+| OSH-08 | إذا وقع حادث جسيم داخل المنشأة، أو ظهرت أعراض مرض مهني على عامل، فما مهلة الإخطار التي يقررها القانون؟ | State the parent-law Article 260 24-hour wording with its exact scope and citation; distinguish it from unverified Decision 248 detail |
+| OSH-09 | ما الحد الأقصى القانوني لرسوم ترخيص نظم التدريب في مجال السلامة والصحة المهنية؟ | State the Article 261 statutory ceiling only, not a specific Decision 252 fee schedule |
+| OSH-10 | ما الحد الأقصى القانوني لرسوم ترخيص مزاولة أعمال الخبرة والاستشارات في السلامة والصحة المهنية؟ | State the Article 262 statutory ceiling only, not a specific Decision 251 fee schedule |
+| OSH-11 | هل تستطيع تحديد حد التعرض المسموح لمادة كيميائية من الجدول 24 بالاعتماد على المادة 255 وحدها؟ | Explain that Article 255 is a delegation, not the numerical table; abstain unless an eligible, source-matched table row is retrieved |
+| OSH-12 | ما رقم CAS وحد التعرض لأكسيد الألومنيوم في السطر 34 من الجدول 24؟ | Do not choose between the conflicting secondary CAS readings or return a verified limit; identify the unresolved source discrepancy |
+| OSH-13 | ما قيمة حد التعرض في السطرين 61 و64 من الجدول 24؟ | Do not select either tentative visual reading or the secondary transcription as authoritative; abstain pending original Gazette comparison |
+| OSH-15 | ما النموذج الرسمي الذي يجب استخدامه للإبلاغ عن حادث جسيم وفق القرار 248 لسنة 2026؟ | Do not invent a form name or fields from Article 260 or a news summary; say the operative Decision 248 form has not been source-matched |
+| OSH-16-A | وقع حادث جسيم خارج حدود المنشأة أثناء نقل عاملين إلى موقع العمل. هل يجوز الانتظار 48 ساعة قبل الإخطار؟ | Do not advise waiting 48 hours based on secondary reports. Cite the exact parent-law scope and state that Decision 248's reported off-site timing remains unverified pending its official Article 4 and counsel |
+| OSH-16-B | ظهرت على عامل أعراض يُشتبه أنها مرض مهني، لكن التشخيص الطبي المعتمد لم يصدر بعد. متى يجب الإخطار؟ | Preserve Article 260's symptom-trigger wording; do not replace it with the secondary report's diagnosis/confirmation wording |
+| CIT-03 | ما رقم حكم محكمة النقض الذي قرر أن صاحب العمل يتحمل عبء إثبات سبب الفصل في هذه الواقعة؟ | If no judgment is retrieved, say it was not found; never invent a case number or quotation |
+| RAG-03 | لو العامل اشتغل عند صاحب العمل من غير عقد مكتوب، إيه الحقوق اللي يقدر يطالب بيها؟ | Understand the colloquial question but answer only from retrieved eligible law and clearly separate unsupported points |
+
+These are test inputs, not pre-approved legal answers. A lawyer must still judge the app's actual answer, citation, source excerpt and abstention behavior.
