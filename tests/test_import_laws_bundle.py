@@ -207,6 +207,17 @@ class LegalImportBundleTests(unittest.TestCase):
         with self.assertRaisesRegex(SystemExit, "symbolic link"):
             validate_inputs(self.source, self.output)
 
+    def test_ocr_defaults_to_arabic_and_english_and_rejects_unsafe_language_values(self):
+        from tools import import_laws
+
+        with mock.patch.dict(os.environ, {}, clear=True):
+            self.assertEqual(import_laws._ocr_language(), "ara+eng")
+        with mock.patch.dict(os.environ, {"LEGAL_OCR_LANG": "eng"}):
+            self.assertEqual(import_laws._ocr_language(), "eng")
+        with mock.patch.dict(os.environ, {"LEGAL_OCR_LANG": "ara+eng;touch /tmp/x"}):
+            with self.assertRaisesRegex(SystemExit, "LEGAL_OCR_LANG"):
+                import_laws._ocr_language()
+
     def test_ocr_cache_is_bound_to_pdf_hash_and_rejects_page_symlinks(self):
         import sys
         from types import SimpleNamespace
