@@ -130,6 +130,14 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         for document_id in ("EG-LABOUR-PM-DECISION-1572-2026", "EG-LABOUR-PM-DECISION-2033-2026"):
             record = next(d for d in self.inventory["documents"] if d["document_id"] == document_id)
             self.assertTrue(any(u["status"].endswith("request_copy_restricted") for u in record["source_urls"] if "dspace.id.com.eg" in u["url"]))
+        repository_source = self.inventory["source_ids"]["EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE"]
+        self.assertEqual(repository_source["permission"], "unknown")
+        self.assertEqual(repository_source["source_class"], "third_party_repository_metadata_only")
+        for document_id in expected:
+            record = next(d for d in self.inventory["documents"] if d["document_id"] == document_id)
+            for source_url in record["source_urls"]:
+                if "dspace.id.com.eg/" in source_url["url"]:
+                    self.assertEqual(source_url["source_id"], "EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE")
         self.assertEqual(validate_inventory(self.inventory), [])
 
     def test_unknown_source_and_duplicate_instrument_ids_are_rejected(self):
