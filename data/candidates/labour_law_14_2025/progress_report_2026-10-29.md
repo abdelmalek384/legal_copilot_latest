@@ -306,3 +306,14 @@ Pinned the three previously identified high-priority Table 24 discrepancies into
 - **Row 64 — benzene:** candidate limit `0.02 ppm`; the secondary image tentatively appears to show `0.5 ppm`; the row is explicitly tagged high-risk due to carcinogenicity.
 
 These are discrepancies between a secondary transcription and a secondary image only. Neither reading is treated as authoritative, and the candidate strings remain unchanged. Added regression coverage that all three rows remain flagged for original Gazette comparison and that row 64 retains its high-risk flag. The Action 1 intake protocol now prioritizes these three rows once the original Gazette PDF is supplied.
+
+
+## Latest full validation including real Table 24 discrepancies — 2026-10-30
+
+The Action 1 checklist now carries the exact raw candidate strings and tentative secondary-image readings for rows 34, 61 and 64. Regression coverage checks that the source transcription remains unchanged, each row retains its secondary-image discrepancy flag, and benzene row 64 retains its high-risk flag. The test deliberately checks the Arabic raw text substring rather than assuming the full raw field contains only the English limit token.
+
+Latest branch head `0c647e291af99b12283e0a99c6050a1468f345b7` passed:
+- Full Tests **103/103, zero failures**: https://github.com/abdelmalek384/legal_copilot_latest/actions/runs/41031944987
+- Legal Knowledge Validation **28/28**: https://github.com/abdelmalek384/legal_copilot_latest/actions/runs/41031945000
+
+All three discrepancies remain unresolved pending original Gazette page matching. The secondary image is not a substitute for the official issue.
