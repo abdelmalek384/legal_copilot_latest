@@ -11,7 +11,7 @@ import httpx
 from tools.deployment_http_smoke import main, normalize_base_url, run_smoke
 
 
-def fake_transport(*, omit_worker_csp=False, bad_status=None):
+def fake_transport(*, omit_worker_csp=False, bad_status=None, bad_png=False):
     def handler(request):
         path = request.url.path
         bodies = {
@@ -26,7 +26,7 @@ def fake_transport(*, omit_worker_csp=False, bad_status=None):
             ),
             "/offline.html": "<p>Case files and account data are not stored for offline use.</p>",
             "/app-icon.svg": "<svg></svg>",
-            "/apple-touch-icon.png": bytes([137, 80, 78, 71, 13, 10, 26, 10]),
+            "/apple-touch-icon.png": b"not a PNG" if bad_png else bytes([137, 80, 78, 71, 13, 10, 26, 10]),
         }
         headers = {
             "Content-Type": {
@@ -101,6 +101,12 @@ class DeploymentHttpSmokeTests(unittest.TestCase):
                     self.assertEqual(main(), 0)
             self.assertTrue(output.is_file())
             self.assertTrue(json.loads(output.read_text(encoding="utf-8"))["ready"])
+
+    def test_invalid_apple_icon_png_signature_fails(self):
+        with httpx.Client(transport=fake_transport(bad_png=True), base_url="https://legal.example.com") as client:
+            report = run_smoke("https://legal.example.com", client=client)
+        self.assertFalse(report["ready"])
+        self.assertTrue(any(item["name"] == "Apple touch icon PNG signature" and not item["passed"] for item in report["checks"]))
 
     def test_non_200_public_asset_fails(self):
         with httpx.Client(transport=fake_transport(bad_status=503), base_url="https://legal.example.com") as client:
