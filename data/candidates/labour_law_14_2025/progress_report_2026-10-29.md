@@ -47,6 +47,8 @@ Table 24 candidate extraction now covers **781/781 numbered entries (100% second
 
 28. Expanded the official Law 14/2025 primary excerpt ledger to include Articles 11, 12 and 13 (PDF page index 3, printed Gazette page 5), in addition to Articles 255 and 259–262. These capture the implementing-decision transition rule, repeal of Labour Law 12/2003 and Law 125/2010/conflicting provisions, and the law's commencement formula/specialized labour-court date. Added a transparent candidate date calculation (general commencement 2025-09-01; specialized labour courts 2025-10-01; 90-day ministerial decision deadline candidate 2025-11-30), explicitly pending counsel confirmation of time computation and any extensions. The validator now requires all eight article records and their exact page locators; CI is running on the update.
 
+29. Located separate LAW HUB metadata pages for all five Decisions 248–252/2026, each linking to a Google Drive PDF preview. Captured the five metadata URLs and preview URLs in `decisions_248_252_secondary_publication_routes_2026-10-30.md`. Anonymous browser access returned loading/sign-in shells and no PDF/image bytes; no sign-in, access bypass or direct-download workaround was attempted. These are secondary-source discovery leads, not official Gazette copies. If the user can access a preview through normal sign-in, an ordinary user-facing download/upload could provide the file for primary-page matching; until then all five decisions remain unmatched.
+
 ## Current subtask status
 
 | Subtask | Completion estimate | Current status | Remaining gate |
