@@ -2,6 +2,7 @@ import base64
 import hashlib
 import hmac
 import os
+import sqlite3
 import struct
 import tempfile
 import time
@@ -285,6 +286,90 @@ class MFAAccountSecurityTests(unittest.TestCase):
         self.assertIsNotNone(self.runtime.control_connection().execute(
             "SELECT 1 FROM mfa_credentials WHERE user_id=? AND status='enabled'", (self.user_id,)
         ).fetchone())
+
+
+    def test_mfa_enrollment_audit_failure_rolls_back_pending_credential(self):
+        failure_client = TestClient(app.app, raise_server_exceptions=False)
+        try:
+            login = failure_client.post(
+                "/login", json={"email": "MFA-OWNER@example.test", "password": self.password}
+            )
+            self.assertEqual(login.status_code, 200, login.text)
+            control = self.runtime.control_connection()
+            control.execute("""
+                CREATE TRIGGER reject_mfa_enrollment_audit
+                BEFORE INSERT ON mfa_security_events
+                WHEN NEW.event_type='enrollment_started'
+                BEGIN SELECT RAISE(ABORT, 'injected MFA audit failure'); END
+            """)
+            control.commit()
+            response = failure_client.post(
+                "/account/mfa/enroll",
+                json={"current_password": self.password},
+                headers={"X-CSRF-Token": failure_client.cookies.get("lc_csrf") or ""},
+            )
+            self.assertEqual(response.status_code, 500, response.text)
+            self.assertIsNone(control.execute(
+                "SELECT user_id FROM mfa_credentials WHERE user_id=?", (self.user_id,)
+            ).fetchone())
+            self.assertEqual(control.execute(
+                "SELECT COUNT(*) FROM mfa_security_events WHERE actor_user_id=? AND event_type='enrollment_started'",
+                (self.user_id,),
+            ).fetchone()[0], 0)
+        finally:
+            failure_client.close()
+
+    def test_mfa_confirmation_audit_failure_preserves_pending_state_and_session(self):
+        self.enroll()
+        failure_client = TestClient(app.app, raise_server_exceptions=False)
+        try:
+            login = failure_client.post(
+                "/login", json={"email": "MFA-OWNER@example.test", "password": self.password}
+            )
+            self.assertEqual(login.status_code, 200, login.text)
+            control = self.runtime.control_connection()
+            credential = control.execute(
+                "SELECT secret_ciphertext,status FROM mfa_credentials WHERE user_id=?",
+                (self.user_id,),
+            ).fetchone()
+            self.assertEqual(credential["status"], "pending")
+            secret = app.decrypt_totp_secret(credential["secret_ciphertext"])
+            control.execute("""
+                CREATE TRIGGER reject_mfa_confirmation_audit
+                BEFORE INSERT ON mfa_security_events
+                WHEN NEW.event_type='enrollment_completed'
+                BEGIN SELECT RAISE(ABORT, 'injected MFA audit failure'); END
+            """)
+            control.commit()
+            session_token = failure_client.cookies.get("lc_session")
+            response = failure_client.post(
+                "/account/mfa/confirm",
+                json={
+                    "current_password": self.password,
+                    "code": totp_code(secret, (int(time.time()) // 30) * 30),
+                },
+                headers={"X-CSRF-Token": failure_client.cookies.get("lc_csrf") or ""},
+            )
+            self.assertEqual(response.status_code, 500, response.text)
+            current = control.execute(
+                "SELECT status,last_accepted_step FROM mfa_credentials WHERE user_id=?",
+                (self.user_id,),
+            ).fetchone()
+            self.assertEqual(current["status"], "pending")
+            self.assertIsNone(current["last_accepted_step"])
+            self.assertEqual(control.execute(
+                "SELECT COUNT(*) FROM mfa_recovery_codes WHERE user_id=?", (self.user_id,)
+            ).fetchone()[0], 0)
+            session = control.execute(
+                "SELECT mfa_verified FROM auth_sessions WHERE token_hash=?", (app.sha(session_token),)
+            ).fetchone()
+            self.assertEqual(session["mfa_verified"], 0)
+            self.assertEqual(control.execute(
+                "SELECT COUNT(*) FROM mfa_security_events WHERE actor_user_id=? AND event_type='enrollment_completed'",
+                (self.user_id,),
+            ).fetchone()[0], 0)
+        finally:
+            failure_client.close()
 
 
 if __name__ == "__main__":
