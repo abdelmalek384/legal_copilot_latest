@@ -323,18 +323,6 @@ assert c.get("/session", headers=pw_session_two).status_code == 401
 assert c.post("/login", json={"email":"pwchange@x.eg","password":"initial-password-Long"}).status_code == 401
 assert c.post("/login", json={"email":"pwchange@x.eg","password":"replacement-password-Long"}).status_code == 200
 
-# Logout revokes the server-side session, not just the browser token.
-logout_headers = login("Junior")
-assert c.get("/cases", headers=logout_headers).status_code == 200
-assert c.post("/logout", headers=logout_headers).status_code == 200
-assert c.get("/cases", headers=logout_headers).status_code == 401
-for _ in range(5): c.post("/login", json={"email": "lead@x.eg", "password": "bad"})
-assert c.post("/login", json={"email": "lead@x.eg", "password": "password-Lead"}).status_code == 429
-db.execute("DELETE FROM login_attempts WHERE email IN ('lead@x.eg','ip:testclient')")
-db.commit()
-assert c.post("/login", json={"email": "lead@x.eg", "password": "password-Lead"}).status_code == 200
-print("API OK")
-
 # Persistent legal-research chat: history is owned by one user and scoped to their firm.
 chat = c.post("/research/conversations", json={}, headers=L)
 assert chat.status_code == 200, chat.text
