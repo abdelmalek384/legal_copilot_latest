@@ -188,17 +188,25 @@ def validate_inputs(src: str | pathlib.Path, out: str | pathlib.Path):
     return prepared
 
 
+def _ocr_language() -> str:
+    """Use Arabic+English by default; accept only explicit supported Tesseract language sets."""
+    language = os.environ.get("LEGAL_OCR_LANG", "ara+eng").strip().lower()
+    if language not in {"ara", "eng", "ara+eng", "eng+ara"}:
+        _fail("LEGAL_OCR_LANG must be one of ara, eng, ara+eng, or eng+ara")
+    return language
+
+
 def _ocr(args):
     try:
         import pymupdf
         import pytesseract
         from PIL import Image
     except ImportError as exc:
-        raise SystemExit("OCR dependencies are missing; install requirements-ocr.txt and the Tesseract executable.") from exc
+        raise SystemExit("OCR dependencies are missing; install requirements-ocr.txt and the Tesseract executable with Arabic and English traineddata.") from exc
     pdf_bytes, page_index = args
     with pymupdf.open(stream=pdf_bytes, filetype="pdf") as document:
-        image_bytes = document[page_index].get_pixmap(dpi=130).tobytes("png")
-    return pytesseract.image_to_string(Image.open(io.BytesIO(image_bytes)), lang="eng")
+        image_bytes = document[page_index].get_pixmap(dpi=200).tobytes("png")
+    return pytesseract.image_to_string(Image.open(io.BytesIO(image_bytes)), lang=_ocr_language())
 
 
 def page_texts(pdf_bytes, cache_root, content_sha256, cache_key="document"):
