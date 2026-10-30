@@ -147,6 +147,9 @@ class TenantSQLiteConnectionRouterTests(unittest.TestCase):
         with self._catalog() as catalog:
             path = resolve_tenant_database(catalog, 101, self.root)
         with sqlite3.connect(path) as db:
+            # Simulate on-disk corruption by removing the immutable guard first;
+            # ordinary application SQL must not be able to rebind this marker.
+            db.execute("DROP TRIGGER database_profile_no_update")
             db.execute(
                 "UPDATE database_profile SET profile='legal_corpus' WHERE singleton=1"
             )
