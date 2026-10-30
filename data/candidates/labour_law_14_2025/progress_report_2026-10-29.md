@@ -85,6 +85,28 @@ Table 24 candidate extraction now covers **781/781 numbered entries (100% second
 
 47. Focused Legal Knowledge Validation passed on commit `4f8b5ab6741388e09b81bfd00bc85ecdeb474af8` (run `41022775815`; all 26 steps succeeded). The run includes the revised Table 24 review-queue generator and discrepancy regression test. The full `Tests` workflow on this commit is still running; the full suite has not yet been claimed as passing for this change. This CI result confirms the review-tool code and candidate safeguards, not legal correctness.
 
+## Action 1 workstream scorecard — 2026-10-30
+
+| Major task | Measured completion | What this means / remaining blocker |
+|---|---:|---|
+| Decision 250 Table 24 secondary transcription | 781/781 (100% of identified secondary sequence) | Denominator and table structure still require Gazette confirmation |
+| Table 24 candidate structural validation | 100% of committed candidate sequence | Focused CI checks structure and quarantine flags; not legal accuracy |
+| Table 24 secondary image page locators | 327/781 (41.9%) | Watermarked secondary reproductions only; no official match |
+| Table 24 partial visual spot-checks | 76/781 (9.7%) | Only selected fields checked; three discrepancies remain quarantined |
+| Table 24 complete field-by-field comparison | 0/781 (0%) | Original Gazette source and complete comparison required |
+| Decision 250 Table 23 candidate labels | 137/137 (100% candidate labels) | Secondary transcription only; no official page match |
+| Decision 249 candidate article/annex map | Candidate map captured | Original Gazette comparison, currentness and counsel remain open |
+| Decision 251 candidate article/assertion map | 11 article records / 17 assertions | Secondary only; official comparison remains 0 |
+| Decision 252 candidate article/assertion map | 36 article records / 40 assertions | Secondary only; official comparison remains 0 |
+| Labour Law 14/2025 parent-law excerpts | 8/8 targeted articles captured | This is a selected subset, not full-law corpus completion; original bytes/hash and currentness remain open |
+| Official Gazette matches for Decisions 248–252 | 0% | Full operative decision bundle not obtained |
+| Currentness/amendment review | 0% complete | Must review all relevant amendments, corrections, repeals and effective dates |
+| Source-use/legal reuse clearance | 0% complete | Article 141 is only a research lead; exact product use needs qualified review |
+| Qualified Egyptian counsel approval | 0% | Separate in-app acceptance review after technical completion |
+| Retrieval eligibility of candidate decision rules | 0% | Fail-closed by design until every release gate passes |
+
+**Overall phase estimate remains 15%; authoritative legal-content readiness remains 0%.** The scorecard deliberately reports candidate preparation separately from legal verification and does not average unlike measures into a misleading “verified corpus” percentage.
+
 ## Current subtask status
 
 | Subtask | Completion estimate | Current status | Remaining gate |
