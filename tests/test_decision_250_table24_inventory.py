@@ -42,6 +42,16 @@ class Decision250Table24InventoryTests(unittest.TestCase):
         for test_id in ("OSH-17", "OSH-18", "OSH-19", "OSH-20", "OSH-21", "OSH-22"):
             self.assertIn(f"| {test_id} |", plan)
 
+    def test_acceptance_plan_covers_2026_remote_work_and_wages_currentness(self):
+        plan = (
+            CANDIDATE_DIR / "lawyer_in_app_acceptance_plan_2026-10-29.md"
+        ).read_text(encoding="utf-8")
+        for test_id in ("OSH-23", "OSH-24", "OSH-25", "OSH-26"):
+            self.assertIn(f"| {test_id} |", plan)
+        self.assertIn("خلال شهر أكتوبر 2026", plan)
+        self.assertIn("3165 لسنة 2026", plan)
+        self.assertIn("لا تفترض استمرار القرار أو انتهاءه", plan)
+
     def test_decisions_249_251_252_candidate_maps_remain_quarantined(self):
         expected = {
             "decision_249_secondary_article_table_map_2026-10-30.json": {"article": 22, "table": 3, "appendix": 1},
