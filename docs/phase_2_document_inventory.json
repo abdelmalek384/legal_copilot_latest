@@ -2289,12 +2289,17 @@
         "source-use review",
         "qualified Egyptian labour-lawyer review"
       ],
-      "notes": "Amiri Press searchable text states that Decision 982/2026 continues during September 2026 and gives 1 September 2026 as its date. It does not establish the status after September.",
+      "notes": "Amiri Press searchable text states that Decision 982/2026 continues during September 2026 and gives 1 September 2026 as its date. It does not establish the status after September. The official Gazette 2026 collection listing shows issue 35 (مكرر), dated 1 September 2026, with Decision 2590/2026 among the issue abstracts; the exact item record has not yet been pinned.",
       "source_urls": [
         {
           "url": "https://alamiria.com/Sec/TashTxt?id=HAJdFlN7HCw%3D",
           "source_role": "official Amiri Press searchable text candidate",
           "status": "discovered_not_downloaded"
+        },
+        {
+          "url": "https://dspace.id.com.eg/collections/bb4a4122-9215-48e2-a8a5-b622ffa5eeb6",
+          "source_role": "Official Gazette 2026 collection listing; issue 35 (مكرر), 2026-09-01, abstract includes Decision 2590/2026; exact item record not pinned",
+          "status": "official_collection_listing_candidate_not_item_pinned"
         }
       ]
     },
