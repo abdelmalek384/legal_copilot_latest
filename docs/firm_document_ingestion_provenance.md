@@ -18,4 +18,4 @@ This change does not implement retention schedules, a binary archive, malware sc
 
 ## Validation
 
-Run `python api_test.py` and the repository CI workflow. Tests cover metadata/hash persistence, chunk linkage, intentionally separate duplicate uploads, OCR status, and cross-firm matter access denial.
+Run `python tests/test_app_separate_database_runtime.py`, `python tests/test_original_file_storage.py`, and the repository CI workflow. The profile-separated tests cover metadata/hash persistence, chunk linkage, intentionally separate duplicate uploads, OCR status, original-file lifecycle, and cross-firm matter access denial.

@@ -68,7 +68,7 @@ The repository now includes a tenant-local durable outbox, atomic idempotency cl
 Run the repository's documented checks in a clean environment:
 
     python selftest.py
-    python api_test.py
+    python tests/test_app_separate_database_runtime.py
 
 Also run the CI workflow and confirm all jobs pass for the exact commit being deployed. These checks are necessary but do not establish production readiness.
 
