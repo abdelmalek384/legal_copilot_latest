@@ -80,6 +80,7 @@ def purge_approved_requests(
     tenant_root: str | Path,
     corpus_database_path: str | Path,
     object_store=None,
+    quiesced: bool = False,
 ) -> dict:
     """Purge approved requests only after revalidating the trusted offboarding gate.
 
@@ -96,6 +97,8 @@ def purge_approved_requests(
         raise RuntimeError("local purge requires the local development storage backend")
     if object_store is not None and (backend != "s3" or not isinstance(object_store, S3PrivateObjectStore)):
         raise RuntimeError("injected production purge store must be the configured S3 adapter")
+    if object_store is not None and apply and quiesced is not True:
+        raise RuntimeError("S3 physical purge requires an explicit quiescence assertion")
     if isinstance(firm_id, bool) or not isinstance(firm_id, int) or firm_id <= 0:
         raise ValueError("firm_id must be a positive integer")
     if (isinstance(operator_user_id, bool) or not isinstance(operator_user_id, int)
