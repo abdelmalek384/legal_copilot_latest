@@ -224,6 +224,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_manual_capture_validator.py
       - name: Test original file storage
         run: PYTHONPATH=. python tests/test_original_file_storage.py
+      - name: Test original file reconciliation
+        run: PYTHONPATH=. python tests/test_original_file_reconciliation.py
       - name: Test platform access
         run: PYTHONPATH=. python tests/test_platform_access.py
       - name: Test recover staged original files
