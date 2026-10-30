@@ -3636,7 +3636,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             "post", f"/cases/{case_id}/docs",
             json={
                 "name": "page-pinpoint-fixture.txt",
-                "text": "[[PDF_PAGE:17]]\\n\\nمدة التقادم في المثال التشغيلي سبع سنوات",
+                "text": "[[PDF_PAGE:17]]\n\nThe limitation period in this example is seven years.",
             },
         )
         self.assertEqual(uploaded.status_code, 200, uploaded.text)
@@ -3658,7 +3658,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         conversation_id = conversation.json()["id"]
         missing_case = self._mutate(
             "post", f"/research/conversations/{conversation_id}/messages",
-            json={"message": "مدة التقادم", "scope": "firm_documents"},
+            json={"message": "limitation period example", "scope": "firm_documents"},
         )
         self.assertEqual(missing_case.status_code, 422, missing_case.text)
 
@@ -3685,7 +3685,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         page_search = self._mutate(
             "post", "/search",
             json={
-                "q": "التقادم المثال التشغيلي",
+                "q": "limitation period example",
                 "case_id": case_id,
                 "scope": "firm_documents",
             },
@@ -3697,7 +3697,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
         self.assertEqual(page_hit["page"], "17")
         self.assertEqual(page_hit["article"], "12")
-        self.assertIn("التقادم", page_hit["matched_terms"])
+        self.assertIn("limitation", page_hit["matched_terms"])
         self.assertIn("Page 17", page_hit["citation"])
         self.assertIn("Article 12", page_hit["citation"])
 
