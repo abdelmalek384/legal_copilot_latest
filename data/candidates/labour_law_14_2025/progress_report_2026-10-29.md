@@ -107,6 +107,8 @@ Table 24 candidate extraction now covers **781/781 numbered entries (100% second
 
 **Overall phase estimate remains 15%; authoritative legal-content readiness remains 0%.** The scorecard deliberately reports candidate preparation separately from legal verification and does not average unlike measures into a misleading “verified corpus” percentage.
 
+48. Expanded the in-app lawyer acceptance plan with five targeted tests: row 34's conflicting CAS, rows 61/64's tentative limit discrepancies, page-locator-only rows, Decision 248 forms/fields unavailable from operative text, and secondary-source citation labeling. These are explicit fail-closed checks for the actual app session. No lawyer outcome is claimed and the 15% preparation estimate is unchanged.
+
 ## Current subtask status
 
 | Subtask | Completion estimate | Current status | Remaining gate |
