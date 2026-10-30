@@ -114,7 +114,7 @@ class LegalImportBundleTests(unittest.TestCase):
             validate_inputs(self.source, self.output)
 
     def test_duplicate_document_ids_are_rejected(self):
-        self._write_pair("second_law", "DOC-001", self.pdf_bytes)
+        self._write_pair("second_law", "doc-001", self.pdf_bytes)
         with self.assertRaisesRegex(SystemExit, "duplicate document_id"):
             validate_inputs(self.source, self.output)
 
