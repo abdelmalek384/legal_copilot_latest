@@ -1,12 +1,33 @@
 # Legal Copilot — Project Progress Tracker
 
-**Last updated:** 2026-10-30 (current whole-product checkpoint; historical snapshots retained; workstream percentages are not additive)
+**Last updated:** 2026-10-31 (current whole-product checkpoint; historical snapshots retained; workstream percentages are not additive)
 **Tracking method:** deliverable-level checklist, not an estimate of engineering hours. A task is “complete” only when its change is merged and its acceptance criteria are met. Open PRs are in progress, not complete.
 
 ## Overall status
 
 See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **48% technical completion** (47.95/100, rounded) as of 2026-10-30. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
 
+
+## Latest whole-product checkpoint — 2026-10-31
+
+The current source of truth is [the weighted whole-project completion scorecard](project_completion_scorecard.md): **48% technical completion** (47.90/100, rounded). Qualified Egyptian-counsel acceptance remains **0% / not started** and is still a mandatory post-build release gate.
+
+### Merged since the 30 October checkpoint
+
+- **#945:** patched pypdf to 6.21.4 and refreshed the hash-locked Python 3.12 deployment lock. Tests, dependency audit, CodeQL and container build passed.
+- **#946:** identified Ministerial Decision 162/2026 and added a secondary-text crosswalk to Labour Law 14/2025. The original Gazette PDF remains unhashed/uninspected; the record remains discovery-only.
+- **#944:** recorded the Supreme Constitutional Court public recent-judgments page and a third-party-described API lead. No API calls or bulk collection were made; rights remain unknown.
+- **#931:** registered الذاكرة والمعرفة للدراسات as a legal-document discovery source. Its stated CC BY 4.0 scope over underlying texts and database compilation remains unresolved; no text was imported.
+- **#784:** closed as superseded by #946.
+
+### Current non-database priorities
+
+1. Reconcile the long-lived Labour Law evidence-card work in #782 onto current main; do not merge the stale branch wholesale or weaken evidence gates to satisfy tests.
+2. Advance #840's Decision 248–252/2026 source comparison. Secondary public full/partial text routes are now located for all five decisions, but original Gazette matches remain 0/5 and Table 24 matches remain 0/781.
+3. Continue primary-source discovery and provenance checks for Egyptian legislation and Court of Cassation / Constitutional Court decisions. Keep secondary sources out of authoritative retrieval.
+4. Complete real lawyer-labelled retrieval evaluation, manual Arabic RTL/LTR and accessibility QA, staging operations and witnessed backup/restore after the separate DB/storage workstream is ready.
+
+Database/tenant schema, migration, identity and destructive storage changes remain assigned to the separate DB workstream and are not duplicated here.
 
 ## Current workstream snapshot — 2026-10-27
 
