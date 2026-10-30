@@ -57,7 +57,7 @@ class LabourLawSupplementCardTests(unittest.TestCase):
         for card in payload["cards"]:
             self.assertFalse(card["search_eligible"])
             self.assertIsNone(card["pinpoint"]["official_gazette_printed_page"])
-            self.assertIn("not verified", card["pinpoint"]["pinpoint_status"])
+            self.assertIn("not_verified", card["pinpoint"]["pinpoint_status"])
             self.assertTrue(card["limitations"])
 
     def test_all_supplement_cards_are_explicitly_non_authoritative(self):
