@@ -102,9 +102,10 @@ def validate_inputs(src: str | pathlib.Path, out: str | pathlib.Path):
         document_id = metadata.get("document_id")
         if not isinstance(document_id, str) or not DOCUMENT_ID.fullmatch(document_id):
             _fail(f"invalid or missing document_id in {sidecar.name}")
-        if document_id in seen_ids:
+        normalized_id = document_id.casefold()
+        if normalized_id in seen_ids:
             _fail(f"duplicate document_id: {document_id}")
-        seen_ids.add(document_id)
+        seen_ids.add(normalized_id)
 
         source_url = metadata.get("source_url")
         try:
