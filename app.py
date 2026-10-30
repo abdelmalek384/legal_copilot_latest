@@ -2277,7 +2277,7 @@ def home(request: Request):
         '});}'
         '</script>'
     )
-    page = page.replace("</body>", registration + "</body>", 1)
+    page = page.replace("</html>", registration + "</html>", 1)
     return HTMLResponse(page)
 
 
