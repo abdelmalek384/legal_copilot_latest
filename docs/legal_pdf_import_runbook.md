@@ -33,7 +33,7 @@ Each JSON sidecar must be an object with these fields:
 }
 ```
 
-The example URL is illustrative only. Replace it with the actual source URL. Use the SHA-256 of the exact local PDF, not a hash copied from a webpage or a different edition. The importer accepts an ISO date or datetime for `retrieved_at`, requires an HTTPS URL without embedded credentials or a fragment, and rejects symbolic links, mismatched file pairs, invalid PDF signatures, duplicate document IDs, and hash mismatches before extraction begins.
+The example URL is illustrative only. Replace it with the actual source URL. Use the SHA-256 of the exact local PDF, not a hash copied from a webpage or a different edition. The importer accepts an ISO date or datetime for `retrieved_at`, requires an HTTPS URL without embedded credentials, fragments, or signed/credential query parameters, and rejects symbolic links, mismatched file pairs, invalid PDF signatures, duplicate document IDs, and hash mismatches before extraction begins.
 
 ## 3. Install optional extraction dependencies
 
