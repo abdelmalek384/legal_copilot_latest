@@ -103,7 +103,14 @@ class LegalImportBundleTests(unittest.TestCase):
         self.assertFalse(self.output.exists())
 
     def test_http_or_credential_bearing_source_urls_are_rejected(self):
-        for source_url in ("http://example.gov.eg/item", "https://user:pass@example.gov.eg/item", "https://example.gov.eg/item?token=secret"):
+        for source_url in (
+            "http://example.gov.eg/item",
+            "https://user:pass@example.gov.eg/item",
+            "https://example.gov.eg/item?token=secret",
+            "https://example.gov.eg/item?api-key=secret",
+            "https://example.gov.eg/item?auth_token=secret",
+            "https://example.gov.eg/item?X-Goog-Signature=secret",
+        ):
             with self.subTest(source_url=source_url):
                 sidecar = self.source / "sample_law.json"
                 metadata = json.loads(sidecar.read_text(encoding="utf-8"))
