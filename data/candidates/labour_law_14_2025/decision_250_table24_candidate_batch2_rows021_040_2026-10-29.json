@@ -283,6 +283,13 @@
         "status": "pending_original_gazette_confirmation",
         "note": "The watermarked page 254 reproduction visibly includes the additional hyphen. Keep the original candidate string unchanged until the original Gazette is checked; do not silently correct it.",
         "secondary_image_observed_tentative": "1344-28-1"
+      },
+      "secondary_transcription_crosscheck": {
+        "url": "https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html",
+        "source_line": 4541,
+        "transcribed_cas": "1344-281",
+        "status": "secondary_transcription_matches_raw_candidate_but_cas_format_unresolved",
+        "note": "The secondary transcription itself preserves the malformed/nonstandard string 1344-281. Do not insert a hyphen, normalize, or infer 1344-28-1 without an authenticated Gazette page."
       }
     },
     {
