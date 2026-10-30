@@ -28,7 +28,7 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         self.assertTrue(any("almasdar.com/175352" in u["url"] and u["status"] == "secondary_fuller_article_summary_and_gazette_issue_lead_not_primary_match" for u in wages["source_urls"]))
         self.assertEqual(wages["review_status"], "discovery_only")
         self.assertEqual(validate_inventory(self.inventory), [])
-        self.assertEqual(len(self.inventory["documents"]), 79)
+        self.assertEqual(len(self.inventory["documents"]), 80)
         self.assertTrue(all(d["review_status"] != "verified" for d in self.inventory["documents"]))
         self.assertTrue(all(d["legal_status"] in {"unknown", "not_applicable"} for d in self.inventory["documents"]))
         register = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
@@ -155,6 +155,18 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
             for source_url in record.get("source_urls", []):
                 if "dspace.id.com.eg/" in source_url["url"]:
                     self.assertEqual(source_url["source_id"], "EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE")
+        self.assertEqual(validate_inventory(self.inventory), [])
+
+    def test_decision_3165_repeal_relationship_to_2659_is_explicit_but_effective_date_unverified(self):
+        current = next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-PM-DECISION-3165-2026")
+        old = next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-PM-DECISION-2659-2020")
+        relation = next(x for x in current["related_instruments"] if x["document_id"] == old["document_id"])
+        self.assertIn("repeals_under_article_7", relation["relationship"])
+        self.assertEqual(old["source_status"], "later_official_citation_only")
+        self.assertEqual(old["legal_status"], "unknown")
+        self.assertEqual(old["review_status"], "discovery_only")
+        self.assertIn("do not assign a verified repeal effective date", old["notes"])
+        self.assertTrue(any("manshurat.org/node/70956" in u["url"] for u in old["source_urls"]))
         self.assertEqual(validate_inventory(self.inventory), [])
 
     def test_unknown_source_and_duplicate_instrument_ids_are_rejected(self):
