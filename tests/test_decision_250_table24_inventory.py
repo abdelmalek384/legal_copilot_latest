@@ -50,6 +50,7 @@ class Decision250Table24InventoryTests(unittest.TestCase):
             self.assertIn(f"| {test_id} |", plan)
         self.assertIn("خلال شهر أكتوبر 2026", plan)
         self.assertIn("3165 لسنة 2026", plan)
+        self.assertIn("Do not invent a decree number or effective date.", plan)
         self.assertIn("Do not assume continuation or expiry.", plan)
 
     def test_decisions_249_251_252_candidate_maps_remain_quarantined(self):
