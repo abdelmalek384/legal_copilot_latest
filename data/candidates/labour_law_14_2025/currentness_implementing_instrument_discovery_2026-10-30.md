@@ -26,6 +26,7 @@ The status of Law 14/2025 cannot be inferred from a copy of the original law alo
 2. The Amiri Press searchable text for Law 14/2025 was discoverable. Search also surfaced the above 2026 Prime Minister decisions expressly citing Law 14/2025.
 3. The Ministry announcement dated 20 October 2026 identifies Ministerial Decisions 248–252/2026 as executive decisions under Law 14/2025. The original Supplement 225(A) PDF remains request-copy restricted in the checked DSpace record; see the source manifest and Action 1 intake protocol.
 4. The search did not establish a later statute amending the text of Law 14/2025. This is **not** a finding that no amendment exists: search-index coverage is incomplete and the Gazette sequence has not been exhaustively checked.
+5. The targeted Amiri Press search for an October 2026 continuation of Decision 982 surfaced Decision 2590/2026, which expressly continues it through September 2026, but did not surface an October continuation. This is only a search result, not proof that no October instrument exists or that Decision 982's legal status can be conclusively stated; continue checking the Gazette sequence and other official indexes.
 
 ## Required classification rules
 
