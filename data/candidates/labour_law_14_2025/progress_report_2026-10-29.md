@@ -49,6 +49,8 @@ Table 24 candidate extraction now covers **781/781 numbered entries (100% second
 
 29. Located separate LAW HUB metadata pages for all five Decisions 248–252/2026, each linking to a Google Drive PDF preview. Captured the five metadata URLs and preview URLs in `decisions_248_252_secondary_publication_routes_2026-10-30.md`. Anonymous browser access returned loading/sign-in shells and no PDF/image bytes; no sign-in, access bypass or direct-download workaround was attempted. These are secondary-source discovery leads, not official Gazette copies. If the user can access a preview through normal sign-in, an ordinary user-facing download/upload could provide the file for primary-page matching; until then all five decisions remain unmatched.
 
+30. The full `Tests` workflow passed on commit `903694b2eb0697ec9d3f60d321a46a6555b7c662` (run `41020009968`): 102 steps completed, zero failures. The focused Legal Knowledge Validation workflow also passed on the same commit (run `41020009962`; all 20 steps succeeded), including the expanded eight-article primary excerpt validator. Subsequent changes to the progress report and secondary-source route memo are documentation-only. These results validate code and evidence-record safeguards, not the legal conclusions or 2026 decision texts.
+
 ## Current subtask status
 
 | Subtask | Completion estimate | Current status | Remaining gate |
