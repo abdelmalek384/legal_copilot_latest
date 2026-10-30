@@ -209,7 +209,9 @@ def main(argv: list[str] | None = None) -> int:
     rendered = json.dumps(report, ensure_ascii=False, indent=2)
     print(rendered)
     if args.out:
-        Path(args.out).write_text(rendered + "\n", encoding="utf-8")
+        output_path = Path(args.out)
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        output_path.write_text(rendered + "\n", encoding="utf-8")
     return 0 if report["ready"] else 1
 
 
