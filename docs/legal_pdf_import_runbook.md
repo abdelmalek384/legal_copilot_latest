@@ -55,7 +55,7 @@ The output directory must be outside the source directory. The tool writes:
 
 - `law_rows.jsonl` — article-level candidate rows for staging.
 - `import_report.md` — page counts, OCR use, article ranges, missing article numbers, and source/hash metadata.
-- `.ocr_cache/` — resumable local OCR text, if OCR is needed.
+- `.ocr_cache/` — resumable local OCR text, if OCR is needed. Cache directories are keyed to the exact PDF SHA-256, so a changed source file does not silently reuse old OCR; symlinked cache paths/pages are rejected.
 
 Every generated row is explicitly `verified: 0`, `in_force: 0`, and `as_of: null`. The recorded SHA-256 confirms that the local PDF matches its sidecar hash; it does not prove that the PDF is an authentic Gazette publication or that reuse is permitted.
 
