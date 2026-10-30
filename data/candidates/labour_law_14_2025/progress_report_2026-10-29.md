@@ -193,3 +193,12 @@ No Decision 248 rule was promoted, no currentness/source-use/counsel gate change
 Expanded the in-app lawyer acceptance plan with exact Arabic prompts for the core Labour Law and OSH cases, including missing Article 299, commencement/currentness, Article 260 reporting duties, statutory fee ceilings, Table 24 abstention, the known row-34/61/64 discrepancies, Decision 248's secondary-only off-site reporting/occupational-disease triggers, and missing Court of Cassation citations. The new OSH-16-A/B prompts explicitly prevent the app from advising a user to wait 48 hours based only on a secondary Decision 248 summary or from replacing Article 260's symptom-trigger wording with a diagnosis-trigger summary.
 
 The prompts are test inputs, not approved answers. The lawyer must still evaluate the app's actual retrieved evidence, citation, abstention, and currentness wording. The acceptance plan remains a later, separate release gate after technical completion. No legal rule was promoted; preparation remains **15%**, strict authoritative legal-content readiness **0%**.
+
+
+## Exact Official Gazette supplement catalog identified — 2026-10-30
+
+A material source-discovery milestone: located the DSpace Gazette-repository catalog record for **الوقائع المصرية - ملحق الجريدة الرسمية العدد 225 تابع (أ)**, issue date 12 October 2026, publisher المطابع الأميرية, contributing authority وزارة العمل. Its abstract identifies Decisions 248–252/2026, and it lists the original 6.13 MB PDF bundle **العدد 225 تابع أ - مؤمن.pdf**. Record: https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full ; persistent handle: https://dspace.id.com.eg/handle/123456789/8906.
+
+The original PDF and item-specific license file are access-restricted: the visible download redirects to a request-copy form. I did not bypass the gate or submit a request. This confirms the exact Gazette issue and provides an actionable authorized access route, but it is **not** primary-text access. Decisions 248–252 remain 0/5 fully matched against the original Gazette pages; no rule was promoted. Page map and publication-route documents record the evidence and limitation.
+
+The official record is a stronger source-discovery result than the prior secondary-only locator, but it does not alter strict legal-content readiness. Current preparation estimate remains **15%**; authoritative legal-content readiness **0%**. Next work: continue exploiting lawful public mirrors and official publisher/ministry pages, while keeping all unverified candidate rules quarantined.
