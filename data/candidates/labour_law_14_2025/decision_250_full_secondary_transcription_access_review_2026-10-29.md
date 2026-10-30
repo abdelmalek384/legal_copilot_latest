@@ -64,3 +64,10 @@ Table 24 exposes 745 numbered chemical entries in the secondary text, but a comp
 - Source-use clearance: not completed.
 - Counsel approval: not completed.
 - Authoritative retrieval eligibility: no.
+
+
+## Superseding Table 24 extraction status — 2026-10-30
+
+The earlier statements above that Table 24 exposed 745 entries or that the structured extraction was incomplete are historical and superseded. The complete secondary transcription was subsequently reconciled to a numbered sequence of **1–781**, and 38 candidate JSON batches now contain all 781 entries with no numbering gaps or duplicates. See `decision_250_table24_structural_audit_2026-10-30.md` and `decision_250_table24_secondary_source_count_discrepancy_2026-10-30.md`.
+
+The same secondary contents map identifies Table 24 at printed page 249 and the records chapter beginning at page 361; therefore the secondary-text section spans pp. 249–360. This does not imply that every printed page was visually inspected, nor that the original Gazette file was obtained. All 781 entries remain candidate-only, 0/781 official Gazette matches, 0 counsel-approved, and 0 retrieval-eligible.
