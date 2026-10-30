@@ -87,7 +87,7 @@ class Decision250Table24InventoryTests(unittest.TestCase):
         self.assertEqual(repository["license_status"], "unknown")
         requirements = " ".join(repository["verification_requirements"])
         self.assertIn("dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full", requirements)
-        self.assertIn("Do not bypass login/request-copy controls", requirements)
+        self.assertIn("Do not bypass login or request-copy controls", requirements)
 
     def test_article296_penalty_excerpt_remains_quarantined(self):
         path = CANDIDATE_DIR / "official_primary_text_article296_2026-10-30.jsonl"
