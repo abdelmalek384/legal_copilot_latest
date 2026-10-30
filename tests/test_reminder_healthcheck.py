@@ -109,8 +109,8 @@ class ReminderHealthcheckTests(unittest.TestCase):
         self._insert("j", "queued")
         second.execute(
             "INSERT INTO reminder_deliveries "
-            "(idempotency_key,recipient_user_id,event_type,event_id,due_date,reminder_window,status) "
-            "VALUES(?,1,'task','second','2026-10-31','due_soon','queued')",
+            "(idempotency_key,recipient_user_id,event_type,event_id,due_date,reminder_window,status,created_at,updated_at) "
+            "VALUES(?,1,'task','second','2026-10-31','due_soon','queued','2026-10-30 12:00:00','2026-10-30 12:00:00')",
             ("j" * 64,),
         )
         self.tenant.commit()
