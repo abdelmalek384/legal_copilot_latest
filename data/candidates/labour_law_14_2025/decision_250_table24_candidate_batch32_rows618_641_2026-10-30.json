@@ -1,0 +1,254 @@
+{
+  "schema_version": 1,
+  "record_type": "secondary_source_candidate_extraction",
+  "instrument": "Egyptian Minister of Labour Decision 250/2026",
+  "table": "24",
+  "table_title_ar": "الحدود العتبية للمواد الكيميائية الخطرة",
+  "research_date": "2026-10-30",
+  "source": {
+    "class": "secondary_transcription",
+    "url": "https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html",
+    "publication_date": "2026-10-26",
+    "source_lines": "5514-5555",
+    "official_gazette_match": "not_performed",
+    "official_pdf_sha256": null
+  },
+  "status": "candidate_only_not_for_authoritative_retrieval",
+  "important_limits": [
+    "Secondary transcription only; no official Gazette page-image comparison.",
+    "Raw limits, units and symbols are copied as discovery text and are not normalized or interpreted.",
+    "Some numbered entries are group headings whose following numbered rows specify subcategories; hierarchy is not inferred beyond the source labels.",
+    "No candidate row may be used for workplace safety decisions or compliance advice."
+  ],
+  "declared_top_level_row_range": {
+    "start": 618,
+    "end": 642
+  },
+  "rows": [
+    {
+      "row": 618,
+      "name_ar": "ثنائي نترات البروبيلينجليكول",
+      "name_en": "Propylene glycol dinitrate",
+      "cas": "6423-43-4",
+      "source_line": 5514,
+      "raw_limit_and_note_text": "C3H6N2O6 166,09 0,02 ملجم/100سم2 (SL) 0,01جزء/ مليون جزء - Skin; BEIM جلد, مؤشر التعرض الحيوي:للمواد المحفزة للميثهيموجلوبين توسع الأوعية الدموية، صداع، انخفاض ضغط الدم، يُسبب أمراض الأوعية الدموية القلبية والدماغية",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 619,
+      "name_ar": "ايثيلايثيرالبروبيلينجليكول",
+      "name_en": "Propylene glycol ethyl ether",
+      "cas": "1569-02-4",
+      "source_line": 5516,
+      "raw_limit_and_note_text": "C5H12O2 104,17 50 جزء/ مليون جزء 200 جزء/ مليون جزء - الجلد Skin تهيج للعين والمسالك التنفسية العليا- يُسبب ضعف الجهاز العصبي المركزي",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 620,
+      "name_ar": "أكسيد البروبيلين",
+      "name_en": "Propylene oxide",
+      "cas": "75-56-9",
+      "source_line": 5517,
+      "raw_limit_and_note_text": "CH3CHOCH3 58,08 2 جزء/ مليون جزء - - DSEN; A3 م3,تحسس جلدي تهيج للعين والمسالك التنفسية العليا",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 621,
+      "name_ar": "بروبيلين ايمين",
+      "name_en": "Propyleneimine",
+      "cas": "75-55-8",
+      "source_line": 5519,
+      "raw_limit_and_note_text": "C6H5N 57,09 0,2 جزء/ مليون جزء 0,4جزء/ مليون جزء - Skin; A3 جلد,م3 تهيج للمسالك التنفسية العليا- يُسبب تلف الكلى",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 622,
+      "name_ar": "نترات البروبيل العادي",
+      "name_en": "n-Propyl nitrate",
+      "cas": "627-13-4",
+      "source_line": 5521,
+      "raw_limit_and_note_text": "C3H7NO3 105,09 5 جزء/ مليون جزء - - BEIM مؤشر التعرض الحيوي:للمواد المحفزة للميثهيموجلوبين يُسبب الانيميا- ميثهيموجلوبنية الدم",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 623,
+      "name_ar": "بيريثرم",
+      "name_en": "Pyrethrum",
+      "cas": "8003-34-7",
+      "source_line": 5522,
+      "raw_limit_and_note_text": "C20-22H28-30O3-5 345 (متوسط) 5 ملجم/م3 - - A4 م4 تهيج للمسالك التنفسية السفلى- يُسبب تلف الكبد",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 624,
+      "name_ar": "بيريدين",
+      "name_en": "Pyridine",
+      "cas": "110-86-1",
+      "source_line": 5524,
+      "raw_limit_and_note_text": "C5H5N 79,10 1جزء/ مليون جزء - - A3 م3 تهيج للجلد- يُسبب تلف الكبد والكلى",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 625,
+      "name_ar": "احماض راتنجية",
+      "name_en": "Resin acids, as total resin acids",
+      "cas": "8050-09-7",
+      "source_line": 5526,
+      "raw_limit_and_note_text": "C19H29COOH - 0,001 ملجم/م3 (I) - - DSEN; RSEN تحسس جلدي,تحسس تنفسي يُسبب الربو- تهيج للعين والتنفس- يُسبب تحسس تنفسي وجلدي",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 626,
+      "name_ar": "ريزورسينول",
+      "name_en": "Resorcinol",
+      "cas": "108-46-3",
+      "source_line": 5527,
+      "raw_limit_and_note_text": "C6H4(OH)2 110,11 10 جزء/ مليون جزء 20 جزء/ مليون جزء - A4 م4 تهيج للعين والجلد",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 627,
+      "name_ar": "روديوم مقدرة كراديوم",
+      "name_en": "Rhodium as Rh",
+      "cas": "7440-16-6",
+      "source_line": 5529,
+      "raw_limit_and_note_text": "Rh 102,91 (parent heading; following numbered subentries specify forms)",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 628,
+      "name_ar": "المعدن والمركبات غير القابلة للذوبان",
+      "name_en": "Metal and Insoluble compounds",
+      "cas": null,
+      "source_line": 5531,
+      "raw_limit_and_note_text": "متغير 1 ملجم/م3 - - A4 م4 المعدن: تهيج للمسالك التنفسية العليا المركبات غير القابلة للذوبان: تهيج للمسالك التنفسية السفلى",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 629,
+      "name_ar": "المركبات القابلة للذوبان",
+      "name_en": "Soluble compounds",
+      "cas": null,
+      "source_line": 5533,
+      "raw_limit_and_note_text": "متغير 0,01 ملجم/م3 - - A4 م4 يُسبب الربو",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 630,
+      "name_ar": "رونيل",
+      "name_en": "Ronnel",
+      "cas": "299-84-3",
+      "source_line": 5534,
+      "raw_limit_and_note_text": "C8H8O3Cl3PS 321,57 5 ملجم/م3 (IFV) - - A4; BEIC م4,مؤشر التعرض الحيوي للمبيدات المثبطةللكولينستيريز مثبط إنزيم الكولينستيريز",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 631,
+      "name_ar": "روتينون (تجاري)",
+      "name_en": "Rotenone (commercial)",
+      "cas": "83-79-4",
+      "source_line": 5536,
+      "raw_limit_and_note_text": "C23H22O6 391,41 5 ملجم/م3 - - A4 م4 تهيج للعين والمسالك التنفسية العليا- يُسبب ضعف للجهاز العصبي المركزي",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 632,
+      "name_ar": "سيلينيوم ومركباته",
+      "name_en": "Selenium and compounds, as Se",
+      "cas": "7782-49-2",
+      "source_line": 5538,
+      "raw_limit_and_note_text": "Se 78,96 0,2 ملجم/م3 - - - تهيج للعين والمسالك التنفسية العليا",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 633,
+      "name_ar": "سداسي فلوريد السلينيوم",
+      "name_en": "Selenium hexafluoride",
+      "cas": "7783-79-1",
+      "source_line": 5539,
+      "raw_limit_and_note_text": "SeF6 192,96 0,05جزء/ مليون جزء - - - يُسبب داء الوذمة الرئوية",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 634,
+      "name_ar": "سيسون",
+      "name_en": "Sesone",
+      "cas": "136-78-7",
+      "source_line": 5541,
+      "raw_limit_and_note_text": "C8H7O5Cl2SNa 309,13 10 ملجم/م3 - - A4 م4 تهيج للجهاز الهضمي",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 635,
+      "name_ar": "سيفوفلوران",
+      "name_en": "Sevoflurane",
+      "cas": "28523-86-6",
+      "source_line": 5543,
+      "raw_limit_and_note_text": "C4H3F7O 200,05 50 جزء/ مليون جزء - - - يُسبب ضعف الجهاز العصبي المركزي",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 636,
+      "name_ar": "سليكا متبلورة",
+      "name_en": "Silica, crystalline",
+      "cas": null,
+      "source_line": 5545,
+      "raw_limit_and_note_text": "(parent heading; following numbered subentries specify crystalline forms)",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 637,
+      "name_ar": "كوارتز",
+      "name_en": "Quartz",
+      "cas": "1317-95-9; 14808-60-7",
+      "source_line": 5547,
+      "raw_limit_and_note_text": "SiO2 Trigonal and hexagonal crystal system 60,09 0,025 ملجم/م3 (R) - - م2 A2 تليف الرئة- سرطان الرئة",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 638,
+      "name_ar": "كريستوبالايت",
+      "name_en": "Cristobalite",
+      "cas": "14464-46-1",
+      "source_line": 5548,
+      "raw_limit_and_note_text": "SiO2 Tetragonal crystal system 60,09 0,025 ملجم/م3 (R) - - م2 A2 تليف الرئة- سرطان الرئة",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 639,
+      "name_ar": "كربيد السليكون",
+      "name_en": "Silicon carbide",
+      "cas": "409-21-2",
+      "source_line": 5550,
+      "raw_limit_and_note_text": "SiC 40,10 (heading; following numbered subentries specify forms)",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 640,
+      "name_ar": "غير الليفي",
+      "name_en": "Nonfibrous",
+      "cas": null,
+      "source_line": 5552,
+      "raw_limit_and_note_text": "10ملجم/م3(I) 3 ملجم/م3 (R) - - - يُسبب تلف الرئة",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 641,
+      "name_ar": "الليفي (متضمنا الشوارب)",
+      "name_en": "Fibrous (including whiskers)",
+      "cas": null,
+      "source_line": 5553,
+      "raw_limit_and_note_text": "0,1ليفة/سم3 - - م2 A2 تليف الرئة- سرطان الرئة",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 642,
+      "name_ar": "رباعي هيدريد السليكون",
+      "name_en": "Silicon tetrahydride",
+      "cas": "7803-62-5",
+      "source_line": 5555,
+      "raw_limit_and_note_text": "SiH4 32,12 5 جزء/ مليون جزء - - - تهيج للمسالك التنفسية العليا",
+      "status": "pending_official_match"
+    }
+  ]
+}
