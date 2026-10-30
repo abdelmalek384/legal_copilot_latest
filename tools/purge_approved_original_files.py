@@ -8,6 +8,7 @@ import os
 import sqlite3
 import sys
 from pathlib import Path
+from urllib.parse import urlsplit
 
 from original_file_storage import LocalPrivateObjectStore, ObjectStorageError
 from s3_original_file_storage import S3PrivateObjectStore
@@ -61,8 +62,18 @@ def _validate_s3_apply_authorization(firm_id: int, store: S3PrivateObjectStore, 
     client_meta = getattr(store.client, "meta", None)
     if client_meta is None or getattr(client_meta, "region_name", None) != region:
         raise RuntimeError("S3 purge client region cannot be bound to the configured storage target")
-    if endpoint and getattr(client_meta, "endpoint_url", None) != endpoint:
-        raise RuntimeError("S3 purge client endpoint does not match the configured storage target")
+    client_endpoint = getattr(client_meta, "endpoint_url", None)
+    if endpoint:
+        if client_endpoint != endpoint:
+            raise RuntimeError("S3 purge client endpoint does not match the configured storage target")
+    else:
+        host = urlsplit(str(client_endpoint or "")).hostname or ""
+        labels = host.split(".")
+        if not host.endswith(("amazonaws.com", "amazonaws.com.cn")) or "s3" not in labels:
+            raise RuntimeError("S3 purge client must use the configured endpoint or an AWS S3 endpoint")
+    kms_meta = getattr(store.kms_client, "meta", None)
+    if kms_meta is None or getattr(kms_meta, "region_name", None) != region:
+        raise RuntimeError("KMS purge client region cannot be bound to the configured storage target")
 
     manifest_path = os.environ.get("COPILOT_DATABASE_ACCEPTANCE_FILE", "").strip() or None
     if environment in {"prod", "production"} and not staging_drill:
