@@ -7,8 +7,18 @@ if ! command -v python3 >/dev/null 2>&1; then
   read -r -p "اضغط Enter للإغلاق..."
   exit 1
 fi
+if ! python3 -c 'import sys; raise SystemExit(0 if sys.version_info >= (3, 12) else 1)'; then
+  echo "يلزم Python 3.12 أو أحدث. / Python 3.12 or newer is required."
+  read -r -p "اضغط Enter للإغلاق..."
+  exit 1
+fi
 if [ ! -d ".venv" ]; then
   python3 -m venv .venv
+fi
+if [ ! -x ".venv/bin/python" ] || ! ".venv/bin/python" -c 'import sys; raise SystemExit(0 if sys.version_info >= (3, 12) else 1)'; then
+  echo "بيئة .venv الحالية لا تستخدم Python 3.12 أو أحدث. أعد تسميتها يدوياً بعد حفظ أي تغييرات؛ لن يحذفها هذا المشغل. / Existing .venv must use Python 3.12 or newer. Rename it manually after preserving any changes; this launcher will not delete it."
+  read -r -p "اضغط Enter للإغلاق..."
+  exit 1
 fi
 source .venv/bin/activate
 python -m pip install --upgrade pip
@@ -22,13 +32,7 @@ export COPILOT_TENANT_DB_ROOT="${COPILOT_TENANT_DB_ROOT:-$PWD/data/tenants}"
 export COPILOT_CORPUS_DB="${COPILOT_CORPUS_DB:-$PWD/data/legal_corpus.sqlite3}"
 python -c "from database_runtime import DatabaseRuntime; DatabaseRuntime.from_env().initialize()"
 
-if ! python -c "from database_runtime import DatabaseRuntime; r=DatabaseRuntime.from_env(); c=r.control_connection(); n=c.execute(\"SELECT COUNT(*) FROM users u JOIN firm_memberships fm ON fm.user_id=u.id JOIN firms f ON f.id=fm.firm_id WHERE u.status='active' AND fm.status='active' AND f.status='active'\").fetchone()[0]; raise SystemExit(0 if n else 1)" >/dev/null 2>&1; then
-  echo "لا يوجد حساب مرتبط بمكتب نشط. أنشئ المكتب ومديره الأول."
-  read -r -p "اسم المكتب: " firm_name
-  read -r -p "اسم المدير الأول: " user_name
-  read -r -p "البريد الإلكتروني: " user_email
-  python manage.py init-tenancy --firm-name "$firm_name" --owner-name "$user_name" --owner-email "$user_email"
-fi
+python tools/bootstrap_first_firm.py
 echo "سيفتح Legal Copilot على http://127.0.0.1:8000"
 echo "لإيقافه، ارجع إلى هذه النافذة واضغط Control+C."
 python -m uvicorn app:app --host 127.0.0.1 --port 8000
