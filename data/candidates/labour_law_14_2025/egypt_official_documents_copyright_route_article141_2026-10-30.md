@@ -42,3 +42,21 @@ No source-use approval is recorded for Decisions 248–252/2026. The underlying 
 - Candidate legal rules approved for authoritative retrieval by this memo: **none**
 
 This memo is a research and source-routing artifact, not a legal opinion. It must not be used to mark a source or legal row verified.
+
+
+## Currentness limitation and follow-up search — 2026-10-30
+
+The WIPO Lex Arabic consolidated record expressly says it incorporates amendments through **Law 178/2020**, effective 5 September 2020; it is not a consolidation certified current through 30 October 2026. The official GAFI-hosted Arabic PDF of Law 82/2002 also reproduces Article 141, but the indexed file is the original law text rather than proof of a complete 2026 consolidation.
+
+Targeted searches for amendments to Law 82/2002 / Article 141 during 2021–2026 did not identify a later amendment to Article 141. A 10 January 2026 State Information Service report describes a broader IP-system overhaul and the Egyptian IP Authority; that policy/institutional development is **not itself proof that Article 141 was amended**. Search absence is not proof of non-existence.
+
+Accordingly, record the currentness state as:
+- Article 141 wording supported by the WIPO consolidated version through 2020 and the original government-hosted 2002 text.
+- No later Article 141 amendment located in this targeted search.
+- Full Official Gazette amendment/corrigendum search through 2026 and qualified counsel confirmation remain outstanding.
+- Do not label the Article 141 commercial-use route “verified current” or treat it as a blanket commercial licence.
+
+Sources:
+- WIPO Lex Arabic consolidated record (amended through Law 178/2020): https://www.wipo.int/wipolex/ar/legislation/details/22066
+- GAFI official-hosted Arabic Law 82/2002 PDF: https://www.gafi.gov.eg/Arabic/StartaBusiness/Laws-and-Regulations/SiteAssets/Pages/BusinessLaws/قانون%20رقم%2082%20لسنة%202002.pdf
+- State Information Service report, 10 January 2026 (IP system reform context only): https://sis.gov.eg/en/media-center/news/egypt-launches-sweeping-overhaul-of-intellectual-property-system/
