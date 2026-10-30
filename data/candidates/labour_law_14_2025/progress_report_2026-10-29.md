@@ -51,6 +51,8 @@ Table 24 candidate extraction now covers **781/781 numbered entries (100% second
 
 30. The full `Tests` workflow passed on commit `903694b2eb0697ec9d3f60d321a46a6555b7c662` (run `41020009968`): 102 steps completed, zero failures. The focused Legal Knowledge Validation workflow also passed on the same commit (run `41020009962`; all 20 steps succeeded), including the expanded eight-article primary excerpt validator. Subsequent changes to the progress report and secondary-source route memo are documentation-only. These results validate code and evidence-record safeguards, not the legal conclusions or 2026 decision texts.
 
+31. Expanded the in-app lawyer acceptance plan with seven targeted tests for the newly captured official parent-law excerpts: commencement/repeal, Article 260's 30-worker reporting threshold and 24-hour notification, Article 255's safety-limit delegation, and the EGP 50,000 statutory fee ceilings in Articles 261/262. The plan explicitly distinguishes parent-law text from the unavailable operative text of Decisions 248–252 and labels calculated dates as pending counsel confirmation. The lawyer can run these tests in the app after technical completion; no approval is claimed.
+
 ## Current subtask status
 
 | Subtask | Completion estimate | Current status | Remaining gate |
