@@ -156,8 +156,8 @@ def validate_inputs(src: str | pathlib.Path, out: str | pathlib.Path):
         if pdf_path.stat().st_size < 5:
             _fail(f"PDF is empty or too short: {pdf_path.name}")
         with pdf_path.open("rb") as pdf_file:
-            if pdf_file.read(5) != b"%PDF-":
-                _fail(f"file does not have a PDF signature: {pdf_path.name}")
+            if b"%PDF-" not in pdf_file.read(1024):
+                _fail(f"file does not have a PDF signature in the first 1024 bytes: {pdf_path.name}")
         actual_hash = _sha256_file(pdf_path)
         if actual_hash.lower() != expected_hash.lower():
             _fail(f"SHA-256 mismatch for {pdf_path.name}")
