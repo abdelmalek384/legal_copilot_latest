@@ -294,7 +294,12 @@ class S3PrivateObjectStore:
             versioning = self.client.get_bucket_versioning(Bucket=self.bucket)
         except Exception as exc:
             raise ObjectStorageError("bucket versioning state could not be verified") from exc
-        if not isinstance(versioning, dict) or versioning.get("Status") is not None:
+        if not isinstance(versioning, dict):
+            raise ObjectStorageError("physical purge requires a confirmed never-versioned bucket")
+        status = versioning.get("Status")
+        if status in ("Enabled", "Suspended"):
+            raise ObjectStorageError("physical purge is blocked for a versioned or suspended bucket")
+        if status is not None:
             raise ObjectStorageError("physical purge requires a confirmed never-versioned bucket")
         staged_key = self._key(firm_id, object_id, "staged")
         final_key = self._key(firm_id, object_id, "blob")
