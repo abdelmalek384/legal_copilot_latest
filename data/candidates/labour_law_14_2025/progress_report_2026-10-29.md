@@ -115,6 +115,8 @@ Table 24 candidate extraction now covers **781/781 numbered entries (100% second
 
 51. Added `tools/validate_decisions_251_252_fee_ceiling_candidates.py` and regression tests. The validator checks the recorded candidate licence-fee amounts against the EGP 50,000 parent-law ceilings, ensures the Decision 252 programme-review/inspection/reinspection fees remain separately classified (not automatically treated as licence fees), and rejects any promotion/currentness/counsel status changes. The validator itself passed focused CI on commit `6b07c1ffd2a8981978dcf96e3767b761f62bdb38` (run `41023151415`, 26 steps). The new regression tests and workflow integration were added in later commits; their CI is pending. This verifies only the arithmetic and quarantine safeguards, not the fee clauses' legal validity.
 
+52. The expanded fee-ceiling validator, its four regression tests and the focused workflow integration passed Legal Knowledge Validation on commit `168830c5f929a291083267de1e83abb8ab6fd70c` (run `41023177014`; all 28 steps succeeded). Tests include rejecting an amount above EGP 50,000, rejecting relabelling programme/inspection charges as licence fees, and rejecting retrieval promotion. The full application `Tests` workflow for this commit is still pending; this focused pass is the result currently confirmed.
+
 ## Current subtask status
 
 | Subtask | Completion estimate | Current status | Remaining gate |
