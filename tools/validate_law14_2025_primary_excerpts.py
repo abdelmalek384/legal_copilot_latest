@@ -12,10 +12,10 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_FILE = ROOT / "data" / "candidates" / "labour_law_14_2025" / "official_primary_text_articles255_259_260_261_262_2026-10-30.jsonl"
+DEFAULT_FILE = ROOT / "data" / "candidates" / "labour_law_14_2025" / "official_primary_text_articles11_12_13_255_259_260_261_262_2026-10-30.jsonl"
 EXPECTED_URL = "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf"
-EXPECTED_ARTICLES = {255, 259, 260, 261, 262}
-EXPECTED_PAGES = {255: (94, 96), 259: (96, 98), 260: (97, 99), 261: (97, 99), 262: (97, 99)}
+EXPECTED_ARTICLES = {11, 12, 13, 255, 259, 260, 261, 262}
+EXPECTED_PAGES = {11: (3, 5), 12: (3, 5), 13: (3, 5), 255: (94, 96), 259: (96, 98), 260: (97, 99), 261: (97, 99), 262: (97, 99)}
 
 
 def validate(path: Path = DEFAULT_FILE) -> list[str]:
@@ -84,7 +84,7 @@ def main() -> int:
         for error in errors:
             print(f"- {error}")
         return 1
-    print("OK: Articles 255, 259, 260, 261 and 262 have source/page metadata and remain quarantined.")
+    print("OK: Articles 11, 12, 13, 255, 259, 260, 261 and 262 have source/page metadata and remain quarantined.")
     print("LIMIT: no original PDF hash, currentness determination, counsel approval, or retrieval eligibility is claimed.")
     return 0
 
