@@ -46,18 +46,18 @@ def has_active_owner() -> bool:
 def main() -> int:
     try:
         if has_active_owner():
-            print("An active firm owner already exists; no bootstrap action is needed.")
+            print("يوجد بالفعل مدير نشط لمكتب؛ لا يلزم إجراء تهيئة. / An active firm owner already exists; no bootstrap action is needed.")
             return 0
     except Exception as exc:
-        print(f"Could not safely inspect the control plane: {type(exc).__name__}", file=sys.stderr)
+        print(f"تعذر فحص قاعدة التحكم بأمان ({type(exc).__name__}). / Could not safely inspect the control plane ({type(exc).__name__}).", file=sys.stderr)
         return 2
 
-    print("No active firm owner was found. Create the first firm administrator.")
-    firm_name = input("Firm name: ").strip()
-    owner_name = input("Owner name: ").strip()
-    owner_email = input("Owner email: ").strip()
+    print("لم يتم العثور على مدير نشط؛ أنشئ المكتب ومديره الأول. / No active firm owner was found; create the first firm administrator.")
+    firm_name = input("اسم المكتب / Firm name: ").strip()
+    owner_name = input("اسم المدير / Owner name: ").strip()
+    owner_email = input("البريد الإلكتروني / Owner email: ").strip()
     if not firm_name or not owner_name or not owner_email:
-        print("Firm name, owner name, and owner email are all required.", file=sys.stderr)
+        print("اسم المكتب واسم المدير والبريد الإلكتروني مطلوبة. / Firm name, owner name, and owner email are all required.", file=sys.stderr)
         return 2
 
     command = build_init_command(sys.executable, firm_name, owner_name, owner_email)
