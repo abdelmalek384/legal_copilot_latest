@@ -153,6 +153,7 @@ def main() -> int:
             corpus_database_path=runtime.paths.legal_corpus,
             object_store=store,
             quiesced=args.quiesced,
+            staging_drill=staging_drill,
         )
         report = {
             "decision": "completed" if args.apply else "dry_run",
