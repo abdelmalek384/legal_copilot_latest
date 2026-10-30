@@ -7,8 +7,18 @@ if ! command -v python3 >/dev/null 2>&1; then
   read -r -p "اضغط Enter للإغلاق..."
   exit 1
 fi
+if ! python3 -c 'import sys; raise SystemExit(0 if sys.version_info >= (3, 12) else 1)'; then
+  echo "يلزم Python 3.12 أو أحدث. / Python 3.12 or newer is required."
+  read -r -p "اضغط Enter للإغلاق..."
+  exit 1
+fi
 if [ ! -d ".venv" ]; then
   python3 -m venv .venv
+fi
+if [ ! -x ".venv/bin/python" ] || ! ".venv/bin/python" -c 'import sys; raise SystemExit(0 if sys.version_info >= (3, 12) else 1)'; then
+  echo "بيئة .venv الحالية لا تستخدم Python 3.12 أو أحدث. أعد تسميتها يدوياً بعد حفظ أي تغييرات؛ لن يحذفها هذا المشغل. / Existing .venv must use Python 3.12 or newer. Rename it manually after preserving any changes; this launcher will not delete it."
+  read -r -p "اضغط Enter للإغلاق..."
+  exit 1
 fi
 source .venv/bin/activate
 python -m pip install --upgrade pip
