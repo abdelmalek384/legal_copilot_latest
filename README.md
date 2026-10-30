@@ -42,7 +42,7 @@ For a fresh installation, use the separate-database architecture. Do not follow 
 
 ### Mac quick start
 
-Run `./start_mac.command` from the repository folder (or double-click it in Finder). The script creates a virtual environment, installs dependencies, initializes separate control-plane, per-firm, and shared-legal-corpus databases, and prompts for the first firm and owner if no active membership exists.
+Install Python **3.12 or newer**, then run `./start_mac.command` from the repository folder (or double-click it in Finder). The script creates a virtual environment, verifies that both the host Python and any existing `.venv` meet the version requirement, installs dependencies, initializes separate control-plane, per-firm, and shared-legal-corpus databases, and uses the shared bilingual first-firm bootstrap helper when no active membership exists. It will not delete an existing `.venv` if its Python version is too old.
 
 ### Windows quick start
 
