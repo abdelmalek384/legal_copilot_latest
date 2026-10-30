@@ -23,6 +23,8 @@ Use a supported Linux host with Docker Engine and the Docker Compose plugin. Cre
 
 Edit .env.production using a secret manager or a protected operator session. Replace every placeholder. Generate the backup and MFA keys independently with the documented commands; keep them separate and backed up securely. Prefer an instance/task role for AWS access instead of static access keys. The application process must be able to read the mounted acceptance manifest as UID 10001.
 
+Install the approved database-acceptance manifest as a regular file owned by UID/GID 10001 with mode 0400, for example: sudo install -o 10001 -g 10001 -m 0400 /protected/path/database-acceptance.json secrets/database-acceptance.json. Do not create an empty or fabricated manifest to bypass a release gate; the production release gate must validate the actual completed evidence.
+
 Create the external proxy network and attach the TLS reverse proxy to it:
 
     docker network create legal-copilot-proxy
