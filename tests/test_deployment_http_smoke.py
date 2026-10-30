@@ -15,7 +15,7 @@ def fake_transport(*, omit_worker_csp=False, bad_status=None):
     def handler(request):
         path = request.url.path
         bodies = {
-            "/": '<html><link rel="manifest" href="/manifest.webmanifest"><script>navigator.serviceWorker.register("/service-worker.js")</script></html>',
+            "/": '<html><link rel="manifest" href="/manifest.webmanifest"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><script>navigator.serviceWorker.register("/service-worker.js")</script></html>',
             "/manifest.webmanifest": json.dumps({
                 "lang": "ar", "dir": "rtl", "display": "standalone",
                 "start_url": "/", "icons": [{"src": "/app-icon.svg"}],
