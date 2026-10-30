@@ -109,6 +109,8 @@ Table 24 candidate extraction now covers **781/781 numbered entries (100% second
 
 48. Expanded the in-app lawyer acceptance plan with five targeted tests: row 34's conflicting CAS, rows 61/64's tentative limit discrepancies, page-locator-only rows, Decision 248 forms/fields unavailable from operative text, and secondary-source citation labeling. These are explicit fail-closed checks for the actual app session. No lawyer outcome is claimed and the 15% preparation estimate is unchanged.
 
+49. Added `decisions_251_252_statutory_fee_ceiling_candidate_crosscheck_2026-10-30.md`. Compared the candidate fee amounts for Decision 251/2026 (EGP 20,000–30,000) and the candidate licence-related fees in Decision 252/2026 (EGP 1,500–5,000) with the EGP 50,000 statutory ceilings in Labour Law Articles 261–262. All listed candidate licence amounts are arithmetically below the relevant ceiling. Decision 252 programme-material review, inspection and reinspection charges are deliberately not treated as licence fees; whether the statutory cap applies to them remains unresolved. This is a secondary-candidate arithmetic/scope cross-check, not confirmation of the decision text or fees. No release gate has passed and the overall estimate remains 15%.
+
 ## Current subtask status
 
 | Subtask | Completion estimate | Current status | Remaining gate |
