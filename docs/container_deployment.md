@@ -43,8 +43,8 @@ The Compose service does not publish port 8000 to the host. Configure the extern
 
 ## Operational gates before client data
 
-1. Run python tools/deployment_preflight.py --strict --require-separate in the exact deployment environment and retain the sanitized output.
-2. Run the aggregate release gate and verify every database/storage acceptance gate against the exact image and configuration.
+1. Run docker compose --env-file .env.production -f compose.production.yaml exec legal-copilot python tools/deployment_preflight.py --strict --require-separate in the exact deployment environment and retain the sanitized output.
+2. Run docker compose --env-file .env.production -f compose.production.yaml exec legal-copilot python tools/production_release_gate.py --database-acceptance /run/secrets/database-acceptance.json and verify every legal, benchmark, and database/storage acceptance gate against the exact image and configuration.
 3. Verify the S3 bucket policy, KMS key policy, workload identity, versioning, retention and deletion controls using the approved non-destructive acceptance procedure.
 4. Complete a witnessed encrypted backup, restore, rollback, staged-upload recovery and original-file recovery drill on a protected staging copy.
 5. Test two-firm isolation, session revocation, upload/download authorization, background jobs, reminder monitoring and SMTP behavior against staging.
