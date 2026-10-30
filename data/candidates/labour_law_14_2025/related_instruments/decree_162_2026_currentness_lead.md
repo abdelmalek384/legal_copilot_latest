@@ -22,6 +22,14 @@ Status: **candidate source register; not verified legal advice or authoritative 
 
 This instrument expressly concerns working hours, rest periods and leaves, so it is a relevant currentness/interpretation lead for the provisional cards on Law 14/2025 Articles 121–123 and 126–127. The catalogue metadata alone does **not** establish that Decree 162 amends, overrides, or changes any of those articles. A provision-by-provision comparison is required before recording an effect.
 
+## Exact identity and secondary full-text crosswalk — 2026-10-31
+
+The official Gazette catalogue identifies the instrument as Ministerial Decision No. 162/2026 in *الوقائع المصرية*, issue 176 (تابع), dated 13 August 2026, with the General Authority for Amiri Press as publisher. A complete 66-article secondary transcription was located and inspected. Its Article 66 states that the decision takes effect the day after publication; 14 August 2026 is therefore a candidate effective date, still awaiting visual confirmation against the original Gazette PDF. The separate MELES bilingual catalogue is a copy-host record and is not the Gazette publisher.
+
+A provision crosswalk has been prepared at `decree_162_2026_secondary_text_crosswalk_2026-10-31.md`. It maps Articles 38–41 to Labour Law Articles 117–129, Article 2 to Article 137, and Articles 46–48 to Article 141 and related disciplinary safeguards. It records a priority counsel question about Article 46's investigation-extension wording and preserves the statutory union-representative safeguard. The crosswalk is secondary-only and does not assert that the decree changes statutory numerical limits or entitlements.
+
+The structured Phase 2 inventory now records the exact instrument number/title, Gazette issue/date/publisher, source URLs and currentness actions. Legal status, collection permission and commercial reuse permission remain unknown; the record remains discovery-only and retrieval-ineligible.
+
 ## Verification tasks still open
 
 1. Retrieve the original Arabic Gazette PDF from the Gazette repository; preserve the exact bytes and calculate SHA-256.
