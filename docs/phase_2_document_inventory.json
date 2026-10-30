@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "inventory_id": "EG-PHASE2-LEGAL-DOCUMENT-INVENTORY",
-  "prepared_on": "2026-10-28",
+  "prepared_on": "2026-10-30",
   "purpose": "Structured discovery inventory for Phase 2. Entries are research leads, not collected files, verified current law, permission to collect, or lawyer-approved legal advice.",
   "policy": {
     "default_collection_permission": "unknown",
@@ -409,6 +409,41 @@
           "document_id": "EG-LABOUR-DECISION-294-2025",
           "relationship": "implements_or_supports",
           "relationship_status": "official_ministry_reference_pending_decision_text_and_Gazette_verification"
+        },
+        {
+          "document_id": "EG-LABOUR-PM-DECISION-982-2026",
+          "relationship": "implements_or_supports",
+          "relationship_status": "discovery_only_primary_Gazette_and_currentness_pending"
+        },
+        {
+          "document_id": "EG-LABOUR-PM-DECISION-1305-2026",
+          "relationship": "extends_or_continues",
+          "relationship_status": "discovery_only_primary_Gazette_and_currentness_pending"
+        },
+        {
+          "document_id": "EG-LABOUR-PM-DECISION-1572-2026",
+          "relationship": "extends_or_continues",
+          "relationship_status": "discovery_only_primary_Gazette_and_currentness_pending"
+        },
+        {
+          "document_id": "EG-LABOUR-PM-DECISION-2033-2026",
+          "relationship": "extends_or_continues",
+          "relationship_status": "discovery_only_primary_Gazette_and_currentness_pending"
+        },
+        {
+          "document_id": "EG-LABOUR-PM-DECISION-2377-2026",
+          "relationship": "extends_or_continues",
+          "relationship_status": "discovery_only_primary_Gazette_and_currentness_pending"
+        },
+        {
+          "document_id": "EG-LABOUR-PM-DECISION-2590-2026",
+          "relationship": "extends_or_continues",
+          "relationship_status": "discovery_only_primary_Gazette_and_currentness_pending"
+        },
+        {
+          "document_id": "EG-LABOUR-PM-DECISION-3165-2026",
+          "relationship": "implements_or_supports",
+          "relationship_status": "discovery_only_primary_Gazette_and_currentness_pending"
         }
       ]
     },
@@ -2049,6 +2084,222 @@
         {
           "url": "https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A7%D9%84%D8%A3%D8%B1%D8%A8%D8%B9%D8%A7%D8%A1-%D8%A7%D9%84%D9%85%D9%82%D8%A8%D9%84-%D8%A5%D8%AC%D8%A7%D8%B2%D8%A9-%D9%85%D8%AF%D9%81%D9%88%D8%B9%D8%A9-%D8%A7%D9%84%D8%A3%D8%AC%D8%B1-%D9%84%D9%84%D8%B9%D8%A7%D9%85%D9%84%D9%8A%D9%86-%D8%A8%D8%A7%D9%84%D9%82%D8%B7%D8%A7%D8%B9-%D8%A7%D9%84%D8%AE%D8%A7%D8%B5-%D8%A8%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%A9-%D8%B9%D9%8A%D8%AF-%D8%A7%D9%84%D9%85%D9%8A%D9%84%D8%A7%D8%AF-%D8%A7%D9%84%D9%85%D8%AC%D9%8A%D8%AF-%D8%AC%D8%A8%D8%B1%D8%A7%D9%86-%D9%88%D8%AD%D8%AF%D8%A9-%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D9%8A%D9%86-%D9%88%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A7%D9%84%D9%85%D8%B4%D8%AA%D8%B1%D9%83-%D8%A3%D8%B3%D8%A7%D8%B3-%D9%82%D9%88%D8%A9-%D8%A7%D9%84%D9%88%D8%B7%D9%86/",
           "source_role": "official Ministry announcement citing Decision 294/2025; discovery evidence only",
+          "status": "discovered_not_downloaded"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LABOUR-PM-DECISION-982-2026",
+      "official_title_ar": "قرار رئيس مجلس الوزراء رقم 982 لسنة 2026 بشأن تطبيق نظام العمل عن بعد",
+      "practice_areas": [
+        "labour"
+      ],
+      "document_type": "prime_ministerial_decision",
+      "instrument_number": 982,
+      "instrument_year": 2026,
+      "source_id": "EG-AMIRI-PRESS",
+      "source_status": "official_text_candidate",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "original Official Gazette issue/date/pages",
+        "complete original text and SHA-256",
+        "commencement and expiry/supersession dates",
+        "all extension or amendment instruments",
+        "relationship to Law 14/2025",
+        "source-specific collection and commercial reuse review",
+        "qualified Egyptian labour-lawyer review"
+      ],
+      "notes": "Discovery-only. Amiri Press searchable text identifies this decision as applying a remote-work system to establishments/entities subject to Labour Law 14/2025. Later official Amiri Press decisions cite it and extend its operation month-by-month. Do not infer that it remains operative after the last evidenced extension.",
+      "source_urls": [
+        {
+          "url": "https://alamiria.com/Sec/TashTxt?id=X+ynf8GR0jI%3D",
+          "source_role": "official Amiri Press searchable text candidate",
+          "status": "discovered_not_downloaded"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LABOUR-PM-DECISION-1305-2026",
+      "official_title_ar": "قرار رئيس مجلس الوزراء رقم 1305 لسنة 2026 (التمديد الشهري لقرار 982/2026؛ العنوان الكامل قيد التحقق)",
+      "practice_areas": [
+        "labour"
+      ],
+      "document_type": "prime_ministerial_extension_decision",
+      "instrument_number": 1305,
+      "instrument_year": 2026,
+      "source_id": "EG-AMIRI-PRESS",
+      "source_status": "official_reference_candidate_primary_text_not_located",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "own Official Gazette record and complete title",
+        "original Gazette issue/date/pages and SHA-256",
+        "exact extension period and commencement",
+        "later extensions/supersession",
+        "source-use review",
+        "qualified lawyer review"
+      ],
+      "notes": "Only discovered as a cited predecessor in the official Amiri Press text of Decision 2377/2026, which describes it as extending Decision 982/2026 during May 2026. No independent original text or Gazette page was located in this check.",
+      "source_urls": [
+        {
+          "url": "https://alamiria.com/Sec/TashTxt?id=OHEywmUwNf8%3D",
+          "source_role": "official later decision citing Decision 1305/2026",
+          "status": "referenced_not_independently_located"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LABOUR-PM-DECISION-1572-2026",
+      "official_title_ar": "قرار رئيس مجلس الوزراء رقم 1572 لسنة 2026 (التمديد الشهري لقرار 982/2026؛ العنوان الكامل قيد التحقق)",
+      "practice_areas": [
+        "labour"
+      ],
+      "document_type": "prime_ministerial_extension_decision",
+      "instrument_number": 1572,
+      "instrument_year": 2026,
+      "source_id": "EG-AMIRI-PRESS",
+      "source_status": "official_reference_candidate_primary_text_not_located",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "own Official Gazette record and complete title",
+        "original Gazette issue/date/pages and SHA-256",
+        "exact extension period and commencement",
+        "later extensions/supersession",
+        "source-use review",
+        "qualified lawyer review"
+      ],
+      "notes": "Only discovered as a cited predecessor in the official Amiri Press text of Decision 2377/2026, which describes it as extending Decision 982/2026 during June 2026. No independent original text or Gazette page was located in this check.",
+      "source_urls": [
+        {
+          "url": "https://alamiria.com/Sec/TashTxt?id=OHEywmUwNf8%3D",
+          "source_role": "official later decision citing Decision 1572/2026",
+          "status": "referenced_not_independently_located"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LABOUR-PM-DECISION-2033-2026",
+      "official_title_ar": "قرار رئيس مجلس الوزراء رقم 2033 لسنة 2026 (التمديد الشهري لقرار 982/2026؛ العنوان الكامل قيد التحقق)",
+      "practice_areas": [
+        "labour"
+      ],
+      "document_type": "prime_ministerial_extension_decision",
+      "instrument_number": 2033,
+      "instrument_year": 2026,
+      "source_id": "EG-AMIRI-PRESS",
+      "source_status": "official_reference_candidate_primary_text_not_located",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "own Official Gazette record and complete title",
+        "original Gazette issue/date/pages and SHA-256",
+        "exact extension period and commencement",
+        "later extensions/supersession",
+        "source-use review",
+        "qualified lawyer review"
+      ],
+      "notes": "Only discovered as a cited predecessor in the official Amiri Press text of Decision 2377/2026, which describes it as extending Decision 982/2026 during July 2026. No independent original text or Gazette page was located in this check.",
+      "source_urls": [
+        {
+          "url": "https://alamiria.com/Sec/TashTxt?id=OHEywmUwNf8%3D",
+          "source_role": "official later decision citing Decision 2033/2026",
+          "status": "referenced_not_independently_located"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LABOUR-PM-DECISION-2377-2026",
+      "official_title_ar": "قرار رئيس مجلس الوزراء رقم 2377 لسنة 2026 بشأن استمرار العمل بقرار 982 لسنة 2026 خلال أغسطس 2026",
+      "practice_areas": [
+        "labour"
+      ],
+      "document_type": "prime_ministerial_extension_decision",
+      "instrument_number": 2377,
+      "instrument_year": 2026,
+      "source_id": "EG-AMIRI-PRESS",
+      "source_status": "official_text_candidate",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "original Official Gazette issue/date/pages and SHA-256",
+        "exact commencement/expiry period",
+        "subsequent extension or replacement decisions",
+        "source-use review",
+        "qualified Egyptian labour-lawyer review"
+      ],
+      "notes": "Amiri Press searchable text states that Decision 982/2026 continues during August 2026 and cites Decisions 1305, 1572 and 2033/2026 as earlier monthly extensions. This is a separate time-limited instrument, not evidence of amendment to Law 14/2025.",
+      "source_urls": [
+        {
+          "url": "https://alamiria.com/Sec/TashTxt?id=OHEywmUwNf8%3D",
+          "source_role": "official Amiri Press searchable text candidate",
+          "status": "discovered_not_downloaded"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LABOUR-PM-DECISION-2590-2026",
+      "official_title_ar": "قرار رئيس مجلس الوزراء رقم 2590 لسنة 2026 بشأن استمرار العمل بقرار 982 لسنة 2026 خلال سبتمبر 2026",
+      "practice_areas": [
+        "labour"
+      ],
+      "document_type": "prime_ministerial_extension_decision",
+      "instrument_number": 2590,
+      "instrument_year": 2026,
+      "source_id": "EG-AMIRI-PRESS",
+      "source_status": "official_text_candidate",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "original Official Gazette issue/date/pages and SHA-256",
+        "exact commencement/expiry period",
+        "later extension or replacement decisions after September",
+        "source-use review",
+        "qualified Egyptian labour-lawyer review"
+      ],
+      "notes": "Amiri Press searchable text states that Decision 982/2026 continues during September 2026 and gives 1 September 2026 as its date. It does not establish the status after September.",
+      "source_urls": [
+        {
+          "url": "https://alamiria.com/Sec/TashTxt?id=HAJdFlN7HCw%3D",
+          "source_role": "official Amiri Press searchable text candidate",
+          "status": "discovered_not_downloaded"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LABOUR-PM-DECISION-3165-2026",
+      "official_title_ar": "قرار رئيس مجلس الوزراء رقم 3165 لسنة 2026 بشأن نظام عمل المجلس القومي للأجور وتحديد اختصاصاته",
+      "practice_areas": [
+        "labour"
+      ],
+      "document_type": "prime_ministerial_decision",
+      "instrument_number": 3165,
+      "instrument_year": 2026,
+      "source_id": "EG-AMIRI-PRESS",
+      "source_status": "official_text_candidate",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "original Official Gazette issue/date/pages and SHA-256",
+        "complete operative text and commencement",
+        "relationship to Law 14/2025 and prior Council instruments",
+        "later amendments/replacement",
+        "source-use review",
+        "qualified Egyptian labour-lawyer review"
+      ],
+      "notes": "Amiri Press searchable text identifies the subject as the National Wages Council's work system and competences and cites Law 14/2025 in its preamble. This is a related implementing/institutional instrument, not an amendment to the Labour Law on current evidence.",
+      "source_urls": [
+        {
+          "url": "https://alamiria.com/Sec/TashTxt?id=EreMgz%2FNoYY%3D",
+          "source_role": "official Amiri Press searchable text candidate",
           "status": "discovered_not_downloaded"
         }
       ]
