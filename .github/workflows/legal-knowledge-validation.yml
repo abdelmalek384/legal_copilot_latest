@@ -13,6 +13,7 @@ on:
       - 'tools/validate_decision249_candidate_map.py'
       - 'tools/validate_decision251_candidate_map.py'
       - 'tools/validate_decision252_candidate_map.py'
+      - 'tools/validate_decisions_251_252_fee_ceiling_candidates.py'
       - 'tools/build_decision250_table24_review_queue.py'
       - 'tools/build_decision250_table24_primary_match_register.py'
       - 'tests/test_decision250_table24_candidate_validation.py'
@@ -22,6 +23,7 @@ on:
       - 'tests/test_decision249_candidate_map.py'
       - 'tests/test_decision251_candidate_map.py'
       - 'tests/test_decision252_candidate_map.py'
+      - 'tests/test_decisions_251_252_fee_ceiling_candidates.py'
       - 'tests/test_decision250_table24_review_queue.py'
       - 'tests/test_decision250_table24_primary_match_register.py'
       - 'tests/test_compare_corpus_to_reference.py'
@@ -82,6 +84,10 @@ jobs:
         run: PYTHONPATH=. python tests/test_decision250_table23_candidate_validation.py
       - name: Validate Decisions 251/252 candidate assertions
         run: python tools/validate_decisions_251_252_candidates.py
+      - name: Validate Decisions 251/252 candidate fee ceilings
+        run: python tools/validate_decisions_251_252_fee_ceiling_candidates.py
+      - name: Test Decisions 251/252 candidate fee ceiling safeguards
+        run: PYTHONPATH=. python tests/test_decisions_251_252_fee_ceiling_candidates.py
       - name: Test Decisions 251/252 candidate validator
         run: PYTHONPATH=. python tests/test_decisions_251_252_candidate_validation.py
       - name: Test Decision 250 Table 24 review queue
