@@ -31,3 +31,22 @@ This is a provisional denominator correction, not a legal-text or source-authent
 ## Evidence boundary
 
 This is a secondary-source structure observation only. The page is not the Official Gazette PDF, no original Gazette bytes/hash were obtained, and no row-by-row primary-source match, currentness review, reuse assessment, or counsel approval is complete.
+
+
+## Updated candidate inventory after extraction completion — 2026-10-30
+
+The earlier “31 batches / 617 rows” figure above is historical and has been superseded by batches 32–38. A complete secondary candidate sequence is now structured:
+
+- Candidate batches: **38/38**
+- Flattened numbered entries: **781**
+- Range: **1–781**
+- Gaps: **0**
+- Duplicates: **0**
+- Secondary-source entries structured: **781/781 (100%)**
+- Official Gazette row matches: **0/781**
+- Counsel-approved rows: **0/781**
+- Retrieval-eligible rows: **0/781**
+
+The contents map in the secondary transcription places Table 24 at printed page 249 and the next chapter (records) at printed page 361, so the candidate section's secondary-text page span is 249–360. The technical table index has been corrected to one Table 24 spanning those pages; the accidental duplicate “Table 25” index entry was removed.
+
+The denominator correction is now resolved for the secondary transcription's numbered sequence. It is **not** resolved against the original Gazette. The 781 entries include group headings/subentries and must retain their source numbering/hierarchy as recorded; no legal meaning or limit is inferred from this structural result.
