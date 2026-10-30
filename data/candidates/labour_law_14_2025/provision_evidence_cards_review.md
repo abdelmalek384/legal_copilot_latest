@@ -225,7 +225,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Related instruments requiring separate review:**
 
 - `EG-LABOUR-DECISION-49-2026` — قرار وزير العمل رقم 49 لسنة 2026 بشأن تحديد الأعمال الخطرة والصعبة والمناطق النائية التي يستحق العاملون فيها زيادة الإجازة السنوية سبعة أيام; Official Gazette metadata found for issue 64 supplement dated 2026-03-18; public secondary transcription found but not verified against primary PDF; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/03/49-2026-7.html](https://ahmedazimelgamel.blogspot.com/2026/03/49-2026-7.html).
-  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 64 تابع, 2026-03-18; A public secondary transcription contains Articles 1–5 and schedules; the official PDF has not been downloaded, hashed, or fully compared.
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 64 تابع, 2026-03-18; no original file has been downloaded; A public secondary transcription contains Articles 1–5 and schedules; the official PDF has not been downloaded, hashed, or fully compared.
 - `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
   - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
 
@@ -299,7 +299,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Related instruments requiring separate review:**
 
 - `EG-LABOUR-DECISION-294-2025` — قرار وزير العمل رقم 294 لسنة 2025 بشأن تحديد العطلات والأعياد والمناسبات التي تعتبر إجازة بأجر كامل للعمال; Official Ministry reference and Gazette metadata found; complete decision text, currentness and reuse are not verified. Source: [https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A7%D9%84%D8%A3%D8%B1%D8%A8%D8%B9%D8%A7%D8%A1-%D8%A7%D9%84%D9%85%D9%82%D8%A8%D9%84-%D8%A5%D8%AC%D8%A7%D8%B2%D8%A9-%D9%85%D8%AF%D9%81%D9%88%D8%B9%D8%A9-%D8%A7%D9%84%D8%A3%D8%AC%D8%B1-%D9%84%D9%84%D8%B9%D8%A7%D9%85%D9%84%D9%8A%D9%86-%D8%A8%D8%A7%D9%84%D9%82%D8%B7%D8%A7%D8%B9-%D8%A7%D9%84%D8%AE%D8%A7%D8%B5-%D8%A8%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%A9-%D8%B9%D9%8A%D8%AF-%D8%A7%D9%84%D9%85%D9%8A%D9%84%D8%A7%D8%AF-%D8%A7%D9%84%D9%85%D8%AC%D9%8A%D8%AF-%D8%AC%D8%A8%D8%B1%D8%A7%D9%86-%D9%88%D8%AD%D8%AF%D8%A9-%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D9%8A%D9%86-%D9%88%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A7%D9%84%D9%85%D8%B4%D8%AA%D8%B1%D9%83-%D8%A3%D8%B3%D8%A7%D8%B3-%D9%82%D9%88%D8%A9-%D8%A7%D9%84%D9%88%D8%B7%D9%86/](https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A7%D9%84%D8%A3%D8%B1%D8%A8%D8%B9%D8%A7%D8%A1-%D8%A7%D9%84%D9%85%D9%82%D8%A8%D9%84-%D8%A5%D8%AC%D8%A7%D8%B2%D8%A9-%D9%85%D8%AF%D9%81%D9%88%D8%B9%D8%A9-%D8%A7%D9%84%D8%A3%D8%AC%D8%B1-%D9%84%D9%84%D8%B9%D8%A7%D9%85%D9%84%D9%8A%D9%86-%D8%A8%D8%A7%D9%84%D9%82%D8%B7%D8%A7%D8%B9-%D8%A7%D9%84%D8%AE%D8%A7%D8%B5-%D8%A8%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%A9-%D8%B9%D9%8A%D8%AF-%D8%A7%D9%84%D9%85%D9%8A%D9%84%D8%A7%D8%AF-%D8%A7%D9%84%D9%85%D8%AC%D9%8A%D8%AF-%D8%AC%D8%A8%D8%B1%D8%A7%D9%86-%D9%88%D8%AD%D8%AF%D8%A9-%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D9%8A%D9%86-%D9%88%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A7%D9%84%D9%85%D8%B4%D8%AA%D8%B1%D9%83-%D8%A3%D8%B3%D8%A7%D8%B3-%D9%82%D9%88%D8%A9-%D8%A7%D9%84%D9%88%D8%B7%D9%86/).
-  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 291 تابع, 2025-12-25; The Gazette issue PDF is listed in the repository, but the original file has not been downloaded, hashed, or fully compared in this task; a secondary legal-database page is available but its full text is restricted.
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 291 تابع, 2025-12-25; no original file has been downloaded; The Gazette issue PDF is listed in the repository, but the original file has not been downloaded, hashed, or fully compared in this task; a secondary legal-database page is available but its full text is restricted.
 - `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
   - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
 
@@ -1974,6 +1974,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - يلزم العثور على القرار الوزاري المحدد للحد الأقصى للساعات للفئات الواردة في المادة ومراجعته مستقلاً
 - لا يُفهم الاستثناء على أنه إعفاء شامل من جميع حقوق العمل أو أجر العمل الإضافي
 - PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -2012,6 +2013,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع جميع القرارات الوزارية أو الأحكام القضائية ذات الصلة أو التعديلات اللاحقة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -2050,6 +2052,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع جميع القرارات الوزارية أو الأحكام القضائية ذات الصلة أو التعديلات اللاحقة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -2088,6 +2091,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع جميع القرارات الوزارية أو الأحكام القضائية ذات الصلة أو التعديلات اللاحقة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -2123,6 +2127,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع جميع القرارات الوزارية أو الأحكام القضائية ذات الصلة أو التعديلات اللاحقة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -2150,7 +2155,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Related instruments requiring separate review:**
 
 - `EG-LABOUR-DECISION-49-2026` — قرار وزير العمل رقم 49 لسنة 2026 بشأن تحديد الأعمال الخطرة والصعبة والمناطق النائية التي يستحق العاملون فيها زيادة الإجازة السنوية سبعة أيام; Official Gazette metadata found for issue 64 supplement dated 2026-03-18; public secondary transcription found but not verified against primary PDF; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/03/49-2026-7.html](https://ahmedazimelgamel.blogspot.com/2026/03/49-2026-7.html).
-  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 64 تابع, 2026-03-18; A public secondary transcription contains Articles 1–5 and schedules; the official PDF has not been downloaded, hashed, or fully compared.
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 64 تابع, 2026-03-18; no original file has been downloaded; A public secondary transcription contains Articles 1–5 and schedules; the official PDF has not been downloaded, hashed, or fully compared.
 - `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
   - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
 
@@ -2160,6 +2165,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع جميع القرارات الوزارية أو الأحكام القضائية ذات الصلة أو التعديلات اللاحقة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -2195,6 +2201,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع جميع القرارات الوزارية أو الأحكام القضائية ذات الصلة أو التعديلات اللاحقة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -2230,6 +2237,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع جميع القرارات المنفذة أو التعديلات اللاحقة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -2260,7 +2268,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - `EG-LABOUR-WORK-REGULATION-RULES-2026` — قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل; Official Gazette metadata identified for issue 176 supplement dated 2026-08-13; primary PDF requires copy request and was not obtained; secondary transcription not verified against primary text; currentness and reuse remain unverified. Source: [https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html](https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html).
   - Gazette metadata lead: الوقائع المصرية، ملحق العدد 176 تابع, 2026-08-13; PDF download action leads to a request-a-copy form; no copy was requested. A secondary transcription exists but has not been fully compared with the primary Gazette PDF.
 - `EG-LABOUR-DECISION-294-2025` — قرار وزير العمل رقم 294 لسنة 2025 بشأن تحديد العطلات والأعياد والمناسبات التي تعتبر إجازة بأجر كامل للعمال; Official Ministry reference and Gazette metadata found; complete decision text, currentness and reuse are not verified. Source: [https://www.labour.gov.eg/ar/الأخبار/وزير-العمل-الأربعاء-المقبل-إجازة-مدفوعة-الأجر-للعاملين-بالقطاع-الخاص-بمناسبة-عيد-الميلاد-المجيد-جبران-وحدة-المصريين-والعمل-المشترك-أساس-قوة-الوطن/](https://www.labour.gov.eg/ar/الأخبار/وزير-العمل-الأربعاء-المقبل-إجازة-مدفوعة-الأجر-للعاملين-بالقطاع-الخاص-بمناسبة-عيد-الميلاد-المجيد-جبران-وحدة-المصريين-والعمل-المشترك-أساس-قوة-الوطن/).
-  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 291 تابع, 2025-12-25; The Gazette issue PDF is listed in the repository, but the original file has not been downloaded, hashed, or fully compared in this task; a secondary legal-database page is available but its full text is restricted.
+  - Gazette metadata lead: الوقائع المصرية، ملحق العدد 291 تابع, 2025-12-25; no original file has been downloaded; The Gazette issue PDF is listed in the repository, but the original file has not been downloaded, hashed, or fully compared in this task; a secondary legal-database page is available but its full text is restricted.
 
 **Limitations:**
 
@@ -2269,6 +2277,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لا توجد مراجعة محامٍ مصري مسجلة
 - PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
 - الكتاب الدوري رقم 22 لسنة 2026 مرتبط بعطلة محددة في أكتوبر 2026؛ لا يُعامل كتعديل دائم لقائمة العطلات أو بديلاً عن النص الكامل للقرار 294/2025.
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -2299,6 +2308,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والقرارات التنفيذية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -2329,6 +2339,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والقرارات التنفيذية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - PDF viewer page-level check completed for this statutory page on 2026-10-28; original binary download and SHA-256 remain unavailable, and full amendment/currentness review is incomplete.
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -2359,6 +2370,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والقرارات المنفذة والأحكام القضائية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق البصري اقتصر على الصفحة أو الصفحات المحددة، ولم يُحسب SHA-256 للملف الأصلي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -2389,6 +2401,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والقرارات المنفذة والأحكام القضائية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق البصري اقتصر على الصفحة أو الصفحات المحددة، ولم يُحسب SHA-256 للملف الأصلي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -2419,6 +2432,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والقرارات المنفذة والأحكام القضائية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق البصري اقتصر على الصفحة أو الصفحات المحددة، ولم يُحسب SHA-256 للملف الأصلي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -2449,6 +2463,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والقرارات المنفذة والأحكام القضائية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق البصري اقتصر على الصفحة أو الصفحات المحددة، ولم يُحسب SHA-256 للملف الأصلي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -2484,6 +2499,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والقرارات المنفذة والأحكام القضائية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق البصري اقتصر على الصفحة المحددة؛ لم يُحسب SHA-256 للملف الأصلي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -2519,6 +2535,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والقرارات المنفذة والأحكام القضائية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق البصري اقتصر على الصفحة المحددة؛ لم يُحسب SHA-256 للملف الأصلي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -2554,6 +2571,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والقرارات المنفذة والأحكام القضائية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق البصري اقتصر على الصفحة المحددة؛ لم يُحسب SHA-256 للملف الأصلي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -2589,6 +2607,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والقرارات المنفذة والأحكام القضائية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق البصري اقتصر على الصفحة المحددة؛ لم يُحسب SHA-256 للملف الأصلي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -2624,6 +2643,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والقرارات المنفذة والأحكام القضائية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق البصري اقتصر على الصفحة المحددة؛ لم يُحسب SHA-256 للملف الأصلي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -2659,6 +2679,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والقرارات المنفذة والأحكام القضائية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق البصري اقتصر على الصفحة المحددة؛ لم يُحسب SHA-256 للملف الأصلي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -2694,6 +2715,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والقرارات المنفذة والأحكام القضائية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق البصري اقتصر على الصفحة المحددة؛ لم يُحسب SHA-256 للملف الأصلي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -2729,6 +2751,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والقرارات المنفذة والأحكام القضائية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق البصري اقتصر على الصفحة المحددة؛ لم يُحسب SHA-256 للملف الأصلي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -2764,6 +2787,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والقرارات المنفذة والأحكام القضائية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق البصري اقتصر على الصفحة المحددة؛ لم يُحسب SHA-256 للملف الأصلي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -2799,6 +2823,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والقرارات المنفذة والأحكام القضائية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق البصري اقتصر على الصفحة المحددة؛ لم يُحسب SHA-256 للملف الأصلي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -2834,6 +2859,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والقرارات المنفذة والأحكام القضائية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق البصري اقتصر على الصفحة المحددة؛ لم يُحسب SHA-256 للملف الأصلي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -2869,6 +2895,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والقرارات المنفذة والأحكام القضائية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق البصري اقتصر على الصفحة المحددة؛ لم يُحسب SHA-256 للملف الأصلي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -2899,6 +2926,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والأحكام القضائية والقرارات الإجرائية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق البصري اقتصر على الصفحة المحددة؛ لم يُحسب SHA-256 للملف الأصلي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -2929,6 +2957,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والأحكام القضائية والقرارات الإجرائية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق البصري اقتصر على الصفحة المحددة؛ لم يُحسب SHA-256 للملف الأصلي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -2959,6 +2988,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والأحكام القضائية والقرارات ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق البصري اقتصر على الصفحة أو الصفحات المحددة؛ لم يُحسب SHA-256 للملف الأصلي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -2989,6 +3019,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والأحكام القضائية والقرارات ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق البصري اقتصر على الصفحة أو الصفحات المحددة؛ لم يُحسب SHA-256 للملف الأصلي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -3019,6 +3050,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والأحكام القضائية والقرارات ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق البصري اقتصر على الصفحة أو الصفحات المحددة؛ لم يُحسب SHA-256 للملف الأصلي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -3054,6 +3086,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والأحكام القضائية والقرارات ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق البصري اقتصر على الصفحة أو الصفحات المحددة؛ لم يُحسب SHA-256 للملف الأصلي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -3089,6 +3122,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والأحكام القضائية والقرارات ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق البصري اقتصر على الصفحة أو الصفحات المحددة؛ لم يُحسب SHA-256 للملف الأصلي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -3124,6 +3158,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والأحكام القضائية والقرارات ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق البصري اقتصر على الصفحة أو الصفحات المحددة؛ لم يُحسب SHA-256 للملف الأصلي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -3159,6 +3194,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والأحكام القضائية والقرارات ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق البصري اقتصر على الصفحة أو الصفحات المحددة؛ لم يُحسب SHA-256 للملف الأصلي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -3194,6 +3230,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والأحكام القضائية والقرارات ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق البصري اقتصر على الصفحة أو الصفحات المحددة؛ لم يُحسب SHA-256 للملف الأصلي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -3229,6 +3266,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والأحكام القضائية والقرارات ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق البصري اقتصر على الصفحة المحددة؛ لم يُحسب SHA-256 للملف الأصلي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -3264,6 +3302,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والأحكام القضائية والقرارات ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق البصري اقتصر على الصفحة المحددة؛ لم يُحسب SHA-256 للملف الأصلي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -3299,6 +3338,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والأحكام القضائية والقرارات ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق البصري اقتصر على الصفحة المحددة؛ لم يُحسب SHA-256 للملف الأصلي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -3334,6 +3374,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والأحكام القضائية والقرارات ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق البصري اقتصر على الصفحة المحددة؛ لم يُحسب SHA-256 للملف الأصلي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -3369,6 +3410,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والأحكام القضائية والقرارات ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق البصري اقتصر على الصفحة المحددة؛ لم يُحسب SHA-256 للملف الأصلي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -3404,6 +3446,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والأحكام القضائية والقرارات ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق البصري اقتصر على الصفحة المحددة؛ لم يُحسب SHA-256 للملف الأصلي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -3439,6 +3482,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والأحكام القضائية والقرارات التنفيذية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق من النص في عارض PDF لا يساوي مطابقة الملف الأصلي كاملاً أو التحقق من الوضع القانوني الحالي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -3474,6 +3518,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والأحكام القضائية والقرارات التنفيذية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق من النص في عارض PDF لا يساوي مطابقة الملف الأصلي كاملاً أو التحقق من الوضع القانوني الحالي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -3510,6 +3555,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والأحكام القضائية والقرارات التنفيذية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق من النص في عارض PDF لا يساوي مطابقة الملف الأصلي كاملاً أو التحقق من الوضع القانوني الحالي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -3545,6 +3591,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والأحكام القضائية والقرارات التنفيذية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق من النص في عارض PDF لا يساوي مطابقة الملف الأصلي كاملاً أو التحقق من الوضع القانوني الحالي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -3580,6 +3627,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والأحكام القضائية والقرارات التنفيذية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق من النص في عارض PDF لا يساوي مطابقة الملف الأصلي كاملاً أو التحقق من الوضع القانوني الحالي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -3615,6 +3663,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والأحكام القضائية والقرارات التنفيذية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق من النص في عارض PDF لا يساوي مطابقة الملف الأصلي كاملاً أو التحقق من الوضع القانوني الحالي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -3650,6 +3699,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والأحكام القضائية والقرارات التنفيذية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق من النص في عارض PDF لا يساوي مطابقة الملف الأصلي كاملاً أو التحقق من الوضع القانوني الحالي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -3685,6 +3735,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والأحكام القضائية والقرارات التنفيذية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق من النص في عارض PDF لا يساوي مطابقة الملف الأصلي كاملاً أو التحقق من الوضع القانوني الحالي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -3720,6 +3771,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والأحكام القضائية والقرارات التنفيذية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق من النص في عارض PDF لا يساوي مطابقة الملف الأصلي كاملاً أو التحقق من الوضع القانوني الحالي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -3755,6 +3807,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والأحكام القضائية والقرارات التنفيذية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق من النص في عارض PDF لا يساوي مطابقة الملف الأصلي كاملاً أو التحقق من الوضع القانوني الحالي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -3790,6 +3843,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والأحكام القضائية والقرارات التنفيذية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - التحقق من النص في عارض PDF لا يساوي مطابقة الملف الأصلي كاملاً أو التحقق من الوضع القانوني الحالي
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -3820,6 +3874,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والأحكام القضائية والقرارات التنفيذية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - هذه إحالة إجرائية أولية ولا تكفي وحدها لحسم الاختصاص أو الميعاد في قضية فعلية
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -3850,6 +3905,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والأحكام القضائية والقرارات التنفيذية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - هذه إحالة إجرائية أولية ولا تكفي وحدها لحسم الاختصاص أو الميعاد في قضية فعلية
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -3880,6 +3936,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والأحكام القضائية والقرارات التنفيذية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - هذه إحالة إجرائية أولية ولا تكفي وحدها لحسم الاختصاص أو الميعاد في قضية فعلية
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -3910,6 +3967,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والأحكام القضائية والقرارات التنفيذية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - هذه إحالة إجرائية أولية ولا تكفي وحدها لحسم الاختصاص أو الميعاد في قضية فعلية
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -3940,6 +3998,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والأحكام القضائية والقرارات التنفيذية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - هذه إحالة إجرائية أولية ولا تكفي وحدها لحسم الاختصاص أو الميعاد في قضية فعلية
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -3970,6 +4029,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والأحكام القضائية والقرارات التنفيذية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - هذه إحالة إجرائية أولية ولا تكفي وحدها لحسم الاختصاص أو الميعاد في قضية فعلية
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -4000,6 +4060,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والأحكام القضائية والقرارات التنفيذية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - هذه إحالة إجرائية أولية ولا تكفي وحدها لحسم الاختصاص أو الميعاد في قضية فعلية
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -4030,6 +4091,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والأحكام القضائية والقرارات التنفيذية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - هذه إحالة إجرائية أولية ولا تكفي وحدها لحسم الاختصاص أو الميعاد في قضية فعلية
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -4060,6 +4122,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والأحكام القضائية والقرارات التنفيذية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - هذه إحالة إجرائية أولية ولا تكفي وحدها لحسم الاختصاص أو الميعاد في قضية فعلية
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -4090,6 +4153,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والأحكام القضائية والقرارات التنفيذية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - هذه إحالة إجرائية أولية ولا تكفي وحدها لحسم الاختصاص أو الميعاد في قضية فعلية
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -4120,6 +4184,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والأحكام القضائية والقرارات التنفيذية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - هذه إحالة إجرائية أولية ولا تكفي وحدها لحسم الاختصاص أو الميعاد في قضية فعلية
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -4150,6 +4215,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - لم تُراجع التعديلات والأحكام القضائية والقرارات التنفيذية ذات الصلة مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - هذه إحالة إجرائية أولية ولا تكفي وحدها لحسم الاختصاص أو الميعاد في قضية فعلية
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_primary_text_extract_reviewed`.
 **Usable for:** source-linked research lead and manual verification.
@@ -4180,6 +4246,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً لكل صفحة
 - لم تُراجع التعديلات والأحكام القضائية واللوائح التنفيذية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -4210,6 +4277,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً لكل صفحة
 - لم تُراجع التعديلات والأحكام القضائية واللوائح التنفيذية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -4240,6 +4308,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً لكل صفحة
 - لم تُراجع التعديلات والأحكام القضائية واللوائح التنفيذية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -4270,6 +4339,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً لكل صفحة
 - لم تُراجع التعديلات والأحكام القضائية واللوائح التنفيذية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -4300,6 +4370,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً لكل صفحة
 - لم تُراجع التعديلات والأحكام القضائية واللوائح التنفيذية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -4330,6 +4401,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً لكل صفحة
 - لم تُراجع التعديلات والأحكام القضائية واللوائح التنفيذية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -4360,6 +4432,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً لكل صفحة
 - لم تُراجع التعديلات والأحكام القضائية واللوائح التنفيذية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -4390,6 +4463,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً لكل صفحة
 - لم تُراجع التعديلات والأحكام القضائية واللوائح التنفيذية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -4420,6 +4494,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً لكل صفحة
 - لم تُراجع التعديلات والأحكام القضائية واللوائح التنفيذية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -4450,6 +4525,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً لكل صفحة
 - لم تُراجع التعديلات والأحكام القضائية واللوائح التنفيذية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -4480,6 +4556,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً لكل صفحة
 - لم تُراجع التعديلات والأحكام القضائية واللوائح التنفيذية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -4510,6 +4587,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً لكل صفحة
 - لم تُراجع التعديلات والأحكام القضائية واللوائح التنفيذية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -4540,6 +4618,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً لكل صفحة
 - لم تُراجع التعديلات والأحكام القضائية واللوائح التنفيذية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -4570,6 +4649,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع التعديلات والقرارات التنفيذية والأحكام القضائية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -4600,6 +4680,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع التعديلات والقرارات التنفيذية والأحكام القضائية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -4630,6 +4711,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع التعديلات والقرارات التنفيذية والأحكام القضائية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -4660,6 +4742,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع التعديلات والقرارات التنفيذية والأحكام القضائية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -4690,6 +4773,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع التعديلات والقرارات التنفيذية والأحكام القضائية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -4720,6 +4804,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع التعديلات والقرارات التنفيذية والأحكام القضائية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -4750,6 +4835,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع التعديلات والقرارات التنفيذية والأحكام القضائية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -4780,6 +4866,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع التعديلات والقرارات التنفيذية والأحكام القضائية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -4810,6 +4897,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع التعديلات والقرارات التنفيذية والأحكام القضائية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -4840,6 +4928,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع التعديلات والقرارات التنفيذية والأحكام القضائية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -4870,6 +4959,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع التعديلات والقرارات التنفيذية والأحكام القضائية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -4900,6 +4990,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع التعديلات والقرارات التنفيذية والأحكام القضائية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -4930,6 +5021,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع التعديلات والقرارات التنفيذية والأحكام القضائية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -4960,6 +5052,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع التعديلات والقرارات التنفيذية والأحكام القضائية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -4990,6 +5083,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع القرارات التنفيذية أو التعديلات والأحكام القضائية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -5020,6 +5114,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع القرارات التنفيذية أو التعديلات والأحكام القضائية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -5050,6 +5145,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع القرارات التنفيذية أو التعديلات والأحكام القضائية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -5080,6 +5176,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع القرارات التنفيذية أو التعديلات والأحكام القضائية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -5110,6 +5207,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع القرارات التنفيذية أو التعديلات والأحكام القضائية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -5140,6 +5238,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع القرارات التنفيذية أو التعديلات والأحكام القضائية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -5170,6 +5269,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع القرارات التنفيذية أو التعديلات والأحكام القضائية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -5200,6 +5300,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع القرارات التنفيذية أو التعديلات والأحكام القضائية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -5230,6 +5331,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع القرارات التنفيذية أو التعديلات والأحكام القضائية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -5260,6 +5362,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع القرارات التنفيذية أو التعديلات والأحكام القضائية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -5290,6 +5393,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع القرارات التنفيذية أو التعديلات والأحكام القضائية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -5320,6 +5424,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع القرارات التنفيذية أو التعديلات والأحكام القضائية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -5350,6 +5455,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع القرارات التنفيذية أو التعديلات والأحكام القضائية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -5380,6 +5486,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع القرارات التنفيذية أو التعديلات والأحكام القضائية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -5410,6 +5517,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع القرارات التنفيذية أو التعديلات والأحكام القضائية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -5440,6 +5548,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع القرارات التنفيذية أو التعديلات والأحكام القضائية مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -5470,6 +5579,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع القرارات التنفيذية والأحكام القضائية والتعديلات مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -5500,6 +5610,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع القرارات التنفيذية والأحكام القضائية والتعديلات مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -5530,6 +5641,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع القرارات التنفيذية والأحكام القضائية والتعديلات مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -5560,6 +5672,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع القرارات التنفيذية والأحكام القضائية والتعديلات مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -5590,6 +5703,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع القرارات التنفيذية والأحكام القضائية والتعديلات مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -5620,6 +5734,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع القرارات التنفيذية والأحكام القضائية والتعديلات مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -5650,6 +5765,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع القرارات التنفيذية والأحكام القضائية والتعديلات مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -5680,6 +5796,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع القرارات التنفيذية والأحكام القضائية والتعديلات مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -5710,6 +5827,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع القرارات التنفيذية والأحكام القضائية والتعديلات مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -5740,6 +5858,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع القرارات التنفيذية والأحكام القضائية والتعديلات مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -5770,6 +5889,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع القرارات التنفيذية والأحكام القضائية والتعديلات مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -5800,6 +5920,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات الفنية والتنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -5830,6 +5951,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات الفنية والتنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -5860,6 +5982,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات الفنية والتنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -5890,6 +6013,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات الفنية والتنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -5920,6 +6044,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات الفنية والتنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -5950,6 +6075,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات الفنية والتنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -5980,6 +6106,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات الفنية والتنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -6010,6 +6137,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات الفنية والتنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -6040,6 +6168,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات الفنية والتنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -6070,6 +6199,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات الفنية والتنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -6100,6 +6230,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات الفنية والتنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -6130,6 +6261,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات الفنية والتنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -6160,6 +6292,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات الفنية والتنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -6190,6 +6323,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات الفنية والتنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -6220,6 +6354,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -6250,6 +6385,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -6280,6 +6416,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -6310,6 +6447,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -6340,6 +6478,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -6370,6 +6509,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -6400,6 +6540,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -6430,6 +6571,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -6460,6 +6602,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -6490,6 +6633,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -6520,6 +6664,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -6550,6 +6695,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -6580,6 +6726,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -6610,6 +6757,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -6640,6 +6788,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -6670,6 +6819,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -6700,6 +6850,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -6730,6 +6881,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -6760,6 +6912,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -6790,6 +6943,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -6820,6 +6974,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -6850,6 +7005,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -6880,6 +7036,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -6910,6 +7067,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -6940,6 +7098,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -6970,6 +7129,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -7000,6 +7160,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -7030,6 +7191,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -7060,6 +7222,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -7090,6 +7253,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -7120,6 +7284,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -7150,6 +7315,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -7180,6 +7346,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -7210,6 +7377,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -7240,6 +7408,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -7270,6 +7439,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -7300,6 +7470,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -7330,6 +7501,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -7360,6 +7532,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -7390,6 +7563,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -7420,6 +7594,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -7450,6 +7625,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -7480,6 +7656,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -7510,6 +7687,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -7540,6 +7718,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -7570,6 +7749,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -7600,6 +7780,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -7630,6 +7811,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -7660,6 +7842,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -7690,6 +7873,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -7720,6 +7904,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -7750,6 +7935,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -7780,6 +7966,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -7810,6 +7997,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -7840,6 +8028,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -7870,6 +8059,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -7900,6 +8090,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -7930,6 +8121,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -7960,6 +8152,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -7990,6 +8183,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -8020,6 +8214,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -8050,6 +8245,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -8080,6 +8276,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -8110,6 +8307,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -8140,6 +8338,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -8170,6 +8369,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -8200,6 +8400,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -8230,6 +8431,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -8260,6 +8462,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -8290,6 +8493,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -8320,6 +8524,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -8350,6 +8555,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -8380,6 +8586,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -8410,6 +8617,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -8440,6 +8648,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -8470,6 +8679,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -8500,6 +8710,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -8530,6 +8741,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -8560,6 +8772,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -8590,6 +8803,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -8620,6 +8834,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -8650,6 +8865,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -8680,6 +8896,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -8710,6 +8927,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -8740,6 +8958,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -8770,6 +8989,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -8800,6 +9020,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -8830,6 +9051,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -8860,6 +9082,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -8890,6 +9113,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -8920,6 +9144,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -8950,6 +9175,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -8980,6 +9206,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -9010,6 +9237,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -9040,6 +9268,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -9070,6 +9299,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
@@ -9100,6 +9330,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 - موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
+- لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
