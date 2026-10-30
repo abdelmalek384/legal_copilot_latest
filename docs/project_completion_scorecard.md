@@ -52,7 +52,7 @@ The product cannot be called production-ready or legally approved until all appl
 
 - **PR #840** — legal-source evidence work; draft/open, not merged. Its metadata and candidate structures do not increase verified-law coverage.
 - **PR #900** — Windows first-run launcher and shared Mac/Windows bootstrap helper; draft/open; latest Full Tests run #41049381581 passed 123/123 after the shared Mac/Windows bootstrap and Python-version checks; physical Windows/macOS smoke tests pending.
-- **PR #903** — privacy-safe installable PWA shell and live deployment HTTP smoke probe; draft/open; Full Tests 125/125 and Non-database safety regression 23/23 passed on the previous validated head; follow-up iOS metadata and smoke-report refinements are awaiting a fresh CI run. Manual Android/iOS/desktop install and offline checks remain pending.
+- **PR #903** — privacy-safe installable PWA shell and live deployment HTTP smoke probe; draft/open; latest Full Tests run #41049653740 passed 125/125 and latest Non-database safety regression #41049653696 passed 23/23. Manual Android/iOS/desktop install and offline checks remain pending.
 - **Database/storage workstream** — remains assigned separately; do not duplicate or modify it here.
 - **Action 1 primary-source intake** — awaiting the user's original Gazette PDF and optional `law_rows_ar.jsonl`; source bytes must remain private and must not be committed.
 
