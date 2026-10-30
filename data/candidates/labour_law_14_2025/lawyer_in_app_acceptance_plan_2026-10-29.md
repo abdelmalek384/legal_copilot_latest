@@ -126,8 +126,6 @@ Use these prompts verbatim where possible so results can be compared across app/
 | OSH-16-B | ظهرت على عامل أعراض يُشتبه أنها مرض مهني، لكن التشخيص الطبي المعتمد لم يصدر بعد. متى يجب الإخطار؟ | Preserve Article 260's symptom-trigger wording; do not replace it with the secondary report's diagnosis/confirmation wording |
 | CIT-03 | ما رقم حكم محكمة النقض الذي قرر أن صاحب العمل يتحمل عبء إثبات سبب الفصل في هذه الواقعة؟ | If no judgment is retrieved, say it was not found; never invent a case number or quotation |
 | RAG-03 | لو العامل اشتغل عند صاحب العمل من غير عقد مكتوب، إيه الحقوق اللي يقدر يطالب بيها؟ | Understand the colloquial question but answer only from retrieved eligible law and clearly separate unsupported points |
+| LBR-17 | ما الجزاء الذي تقرره المادة 296 عند مخالفة المادة 260 أو القرارات الوزارية المنفذة لها؟ وهل يشمل الجزاء جميع مخالفات السلامة والصحة المهنية؟ | Retrieve Article 296 from the official-hosted Gazette PDF locator (printed p.111 / PDF index 108); distinguish its two enumerated article groups, state the statutory fine range and repeat-offence doubling only with exact citation, and do not generalize it to unlisted provisions or infer individual liability. |
 
 These are test inputs, not pre-approved legal answers. A lawyer must still judge the app's actual answer, citation, source excerpt and abstention behavior.
-
-
-| LBR-17 | ما الجزاء الذي تقرره المادة 296 عند مخالفة المادة 260 أو القرارات الوزارية المنفذة لها؟ وهل يشمل الجزاء جميع مخالفات السلامة والصحة المهنية؟ | Retrieve Article 296 from the official-hosted Gazette PDF locator (printed p.111 / PDF index 108); distinguish its two enumerated article groups, state the statutory fine range and repeat-offence doubling only with exact citation, and do not generalize it to unlisted provisions or infer individual liability. |
