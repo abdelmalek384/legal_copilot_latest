@@ -11,11 +11,17 @@ import httpx
 from tools.deployment_http_smoke import main, normalize_base_url, run_smoke
 
 
-def fake_transport(*, omit_worker_csp=False, bad_status=None, bad_png=False):
+def fake_transport(*, omit_worker_csp=False, bad_status=None, bad_png=False, missing_nonce=False, weak_hsts=False):
     def handler(request):
         path = request.url.path
         bodies = {
-            "/": '<html><link rel="manifest" href="/manifest.webmanifest"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><script>navigator.serviceWorker.register("/service-worker.js")</script></html>',
+            "/": (
+                '<html><link rel="manifest" href="/manifest.webmanifest">'
+                '<link rel="apple-touch-icon" href="/apple-touch-icon.png">'
+                + ('<script>navigator.serviceWorker.register("/service-worker.js")</script>' if missing_nonce else
+                   '<script nonce="test-nonce">navigator.serviceWorker.register("/service-worker.js")</script>')
+                + '</html>'
+            ),
             "/manifest.webmanifest": json.dumps({
                 "lang": "ar", "dir": "rtl", "display": "standalone",
                 "start_url": "/", "icons": [{"src": "/app-icon.svg"}],
@@ -41,12 +47,16 @@ def fake_transport(*, omit_worker_csp=False, bad_status=None, bad_png=False):
             "X-Content-Type-Options": "nosniff",
             "X-Frame-Options": "DENY",
             "Referrer-Policy": "no-referrer",
-            "Content-Security-Policy": "default-src 'self'; worker-src 'self'; script-src 'self'",
-            "Strict-Transport-Security": "max-age=31536000",
+            "Content-Security-Policy": (
+                "default-src 'self'; base-uri 'self'; object-src 'none'; "
+                "frame-ancestors 'none'; form-action 'self'; worker-src 'self'; "
+                "script-src 'self' 'nonce-test-nonce'"
+            ),
+            "Strict-Transport-Security": "max-age=31536000" if weak_hsts else "max-age=31536000; includeSubDomains",
             "Service-Worker-Allowed": "/",
         }
         if omit_worker_csp:
-            headers["Content-Security-Policy"] = "default-src 'self'; script-src 'self'"
+            headers["Content-Security-Policy"] = "default-src 'self'; script-src 'self' 'nonce-test-nonce'"
         status = bad_status if path == "/manifest.webmanifest" and bad_status else 200
         body = bodies[path]
         content = body if isinstance(body, bytes) else body.encode("utf-8")
@@ -92,6 +102,24 @@ class DeploymentHttpSmokeTests(unittest.TestCase):
             report = run_smoke("https://legal.example.com", client=client)
         self.assertFalse(report["ready"])
         self.assertGreater(report["failed"], 0)
+
+    def test_inline_script_without_matching_csp_nonce_fails_closed(self):
+        with httpx.Client(transport=fake_transport(missing_nonce=True), base_url="https://legal.example.com") as client:
+            report = run_smoke("https://legal.example.com", client=client)
+        self.assertFalse(report["ready"])
+        self.assertTrue(any(
+            item["name"] == "root inline script CSP nonces" and not item["passed"]
+            for item in report["checks"]
+        ))
+
+    def test_hsts_without_include_subdomains_fails_closed(self):
+        with httpx.Client(transport=fake_transport(weak_hsts=True), base_url="https://legal.example.com") as client:
+            report = run_smoke("https://legal.example.com", client=client)
+        self.assertFalse(report["ready"])
+        self.assertTrue(any(
+            item["name"] == "strict-transport-security /" and not item["passed"]
+            for item in report["checks"]
+        ))
 
     def test_optional_report_creates_missing_parent_directory(self):
         with tempfile.TemporaryDirectory() as directory:
