@@ -39,6 +39,41 @@ class LegalImportBundleTests(unittest.TestCase):
         (self.source / f"{stem}.json").write_text(json.dumps(metadata), encoding="utf-8")
         return pdf
 
+    def test_pdf_size_limit_is_checked_before_hashing_or_extraction(self):
+        oversized = self.pdf_bytes + (b"x" * 64)
+        self._write_pair("sample_law", "DOC-001", oversized)
+        with mock.patch.dict(os.environ, {"LEGAL_IMPORT_MAX_PDF_BYTES": "32"}):
+            with self.assertRaisesRegex(SystemExit, "configured 32-byte size limit"):
+                validate_inputs(self.source, self.output)
+
+    def test_invalid_pdf_resource_limits_fail_closed(self):
+        with mock.patch.dict(os.environ, {"LEGAL_IMPORT_MAX_PDF_BYTES": "0"}):
+            with self.assertRaisesRegex(SystemExit, "LEGAL_IMPORT_MAX_PDF_BYTES"):
+                validate_inputs(self.source, self.output)
+
+    def test_page_limit_is_checked_before_extracting_page_text(self):
+        import sys
+        from types import SimpleNamespace
+        from tools import import_laws
+
+        class Document:
+            page_count = 3
+
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *args):
+                return False
+
+            def __iter__(self):
+                raise AssertionError("page text extraction must not start over the limit")
+
+        fake_pymupdf = SimpleNamespace(open=lambda **kwargs: Document())
+        with mock.patch.dict(sys.modules, {"pymupdf": fake_pymupdf}):
+            with mock.patch.dict(os.environ, {"LEGAL_IMPORT_MAX_PAGES": "2"}):
+                with self.assertRaisesRegex(SystemExit, "configured 2-page limit"):
+                    import_laws.page_texts(self.pdf_bytes, self.output / ".ocr_cache", "a" * 64)
+
     def test_readme_links_to_existing_runbook_not_a_missing_downloader(self):
         readme = (Path(__file__).resolve().parents[1] / "README.md").read_text(encoding="utf-8")
         self.assertNotIn("download_egypt_laws.py", readme)
