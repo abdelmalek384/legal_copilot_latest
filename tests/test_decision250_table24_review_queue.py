@@ -65,8 +65,8 @@ class Decision250Table24ReviewQueueTests(unittest.TestCase):
             self.assertEqual(row["secondary_scan_discrepancy"]["status"], "pending_original_gazette_confirmation")
             self.assertIn("SECONDARY IMAGE DISCREPANCY — ORIGINAL GAZETTE REQUIRED", categories(row))
         self.assertEqual(rows[34]["cas"], "1344-281")
-        self.assertEqual(rows[61]["raw_limit_and_note_text"], "1 mg/m3 (I)")
-        self.assertEqual(rows[64]["raw_limit_and_note_text"], "0.02 ppm")
+        self.assertIn("1 مجم/ م3(I)", rows[61]["raw_limit_and_note_text"])
+        self.assertIn("0,02 جزء / مليون", rows[64]["raw_limit_and_note_text"])
         self.assertIn("HIGH-RISK REVIEW", categories(rows[64]))
 
     def test_loader_refuses_partial_queue_when_batches_are_missing(self):
