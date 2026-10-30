@@ -29,7 +29,7 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
 
     def test_cards_have_primary_pinpoints_and_secondary_cross_checks(self):
         self.assertEqual(self.data["instrument"]["document_id"], "EG-LABOUR-LAW-14-2025")
-        self.assertGreaterEqual(len(self.data["cards"]), 21)
+        self.assertEqual(len(self.data["cards"]), 127)
         ids = set()
         for card in self.data["cards"]:
             with self.subTest(card=card.get("card_id")):
@@ -139,6 +139,7 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
         self.assertEqual(actual, expected)
         self.assertIn("Not authoritative legal advice", actual)
         self.assertIn("Authoritative search eligibility: `false`", actual)
+        self.assertIn("printed Gazette page not established (PDF page index not established)", actual)
         self.assertIn("EG-LABOUR-DECISION-49-2026", actual)
         self.assertIn("EG-LABOUR-DECISION-294-2025", actual)
         for card in self.data["cards"]:
