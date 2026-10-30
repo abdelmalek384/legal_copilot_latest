@@ -84,3 +84,16 @@ A new regression test, `tests/test_decision_250_table24_inventory.py`, checks th
 - all candidate batches remain secondary-only, have no official PDF hash, and remain retrieval-ineligible.
 
 This cross-check is against the secondary transcription's own contents map and structure. It does not establish the original Gazette's exact pagination or validate any exposure value. Official Table 24 matches remain 0/781.
+## Targeted high-risk row cross-check against secondary transcription — 2026-10-30
+
+The full secondary transcription was searched for the three previously flagged rows. It confirms the transcription's own raw strings and makes the remaining image conflicts explicit:
+
+| Table 24 row | Secondary transcription line | Transcribed value | Separate watermarked-image spot-check | Disposition |
+|---:|---:|---|---|---|
+| 34 — Aluminium oxide | 4541 | CAS string `1344-281` | Earlier tentative image read suggested `1344-28-1` | Still unresolved. The transcription itself preserves a malformed/nonstandard CAS string; do not normalize or infer the intended identifier. |
+| 61 — Benomyl | 4586 | `1 مجم/ م3(I)` | Earlier tentative image read appeared to show `0.3 mg/m3` | Still unresolved. Do not select a value or infer the exposure-limit column. |
+| 64 — Benzene | 4591 | `0,02 جزء / مليون` | Earlier tentative image read appeared to show `0.5 ppm` | Still unresolved. Do not select a value or infer the exposure-limit column. |
+
+Secondary source: https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html. The exact transcription line references are secondary-text line numbers, not Official Gazette page citations. The image spot-check is itself a watermarked third-party reproduction and is not the original Gazette. The new cross-check fields were added to candidate batches 2 and 4; they do not alter raw values, status, or eligibility.
+
+**Disposition:** all three rows remain `pending_official_match`; official Gazette matches remain 0/781; counsel-approved rows remain 0; retrieval-eligible rows remain 0. Obtain and compare the original issue before resolving any discrepancy. Do not use these values for occupational exposure advice or compliance decisions.
