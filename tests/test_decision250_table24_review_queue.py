@@ -25,6 +25,30 @@ class Decision250Table24ReviewQueueTests(unittest.TestCase):
         self.assertIn("NO CAS / GROUP ENTRY", tags)
         self.assertIn("POSSIBLE SURFACE/AIR UNIT REVIEW", tags)
 
+    def test_flags_secondary_image_discrepancy_and_shows_locator(self):
+        row = {
+            "row": 34,
+            "name_en": "Aluminum oxide",
+            "source_line": 4541,
+            "cas": "1344-281",
+            "status": "pending_official_match",
+            "secondary_scan_match_status": "secondary_image_discrepancy_found",
+            "secondary_scan_printed_page": 254,
+            "secondary_scan_image_url": "https://example.invalid/page-254.webp",
+            "secondary_scan_discrepancy": {
+                "field": "cas_identifier",
+                "candidate_transcription": "1344-281",
+                "secondary_image_observed_tentative": "1344-28-1",
+                "status": "pending_original_gazette_confirmation",
+                "note": "Do not correct pending original Gazette confirmation.",
+            },
+        }
+        tags = categories(row)
+        self.assertIn("SECONDARY IMAGE DISCREPANCY — ORIGINAL GAZETTE REQUIRED", tags)
+        rendered = render([row])
+        self.assertIn("p. 254: https://example.invalid/page-254.webp", rendered)
+        self.assertIn("Do not correct pending original Gazette confirmation.", rendered)
+
     def test_loader_refuses_partial_queue_when_batches_are_missing(self):
         with tempfile.TemporaryDirectory() as tmp:
             with self.assertRaisesRegex(ValueError, "refusing to build a partial review queue"):
