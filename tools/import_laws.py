@@ -16,6 +16,7 @@ import json
 import os
 import pathlib
 import re
+import stat
 import sys
 from datetime import date, datetime
 from urllib.parse import parse_qsl, urlsplit
@@ -37,15 +38,32 @@ def _fail(message: str) -> None:
     raise SystemExit("Import bundle rejected: " + message)
 
 
-def _sha256_file(path: pathlib.Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as source:
-        while True:
-            block = source.read(1024 * 1024)
-            if not block:
-                break
-            digest.update(block)
-    return digest.hexdigest()
+def _read_regular_file(path: pathlib.Path, label: str) -> bytes:
+    """Read one regular file through a stable descriptor; never reopen it by path later."""
+    try:
+        before = path.lstat()
+        if not stat.S_ISREG(before.st_mode):
+            _fail(f"{label} must be a regular file, not a symbolic link")
+        flags = os.O_RDONLY | getattr(os, "O_BINARY", 0) | getattr(os, "O_NOFOLLOW", 0)
+        descriptor = os.open(path, flags)
+        with os.fdopen(descriptor, "rb") as source:
+            opened = os.fstat(source.fileno())
+            if (
+                not stat.S_ISREG(opened.st_mode)
+                or (before.st_dev, before.st_ino) != (opened.st_dev, opened.st_ino)
+            ):
+                _fail(f"{label} changed identity while being opened")
+            content = source.read()
+            after = os.fstat(source.fileno())
+            if (
+                len(content) != after.st_size
+                or (opened.st_size, opened.st_mtime_ns, opened.st_ctime_ns)
+                != (after.st_size, after.st_mtime_ns, after.st_ctime_ns)
+            ):
+                _fail(f"{label} changed while being read")
+        return content
+    except OSError as exc:
+        _fail(f"cannot safely read {label}: {type(exc).__name__}")
 
 
 def _valid_retrieval_date(value: object) -> bool:
@@ -104,7 +122,7 @@ def validate_inputs(src: str | pathlib.Path, out: str | pathlib.Path):
         if sidecar.is_symlink() or not sidecar.is_file():
             _fail(f"metadata sidecar must be a regular file, not a symbolic link: {sidecar.name}")
         try:
-            metadata = json.loads(sidecar.read_text(encoding="utf-8"))
+            metadata = json.loads(_read_regular_file(sidecar, "metadata sidecar").decode("utf-8"))
         except (OSError, UnicodeError, json.JSONDecodeError) as exc:
             _fail(f"invalid JSON sidecar {sidecar.name}: {type(exc).__name__}")
         if not isinstance(metadata, dict):
@@ -153,16 +171,16 @@ def validate_inputs(src: str | pathlib.Path, out: str | pathlib.Path):
         pdf_path = sidecar.with_suffix(".pdf")
         if pdf_path.is_symlink() or not pdf_path.is_file():
             _fail(f"PDF must be a regular file, not a symbolic link: {pdf_path.name}")
-        if pdf_path.stat().st_size < 5:
+        pdf_bytes = _read_regular_file(pdf_path, "PDF")
+        if len(pdf_bytes) < 5:
             _fail(f"PDF is empty or too short: {pdf_path.name}")
-        with pdf_path.open("rb") as pdf_file:
-            if b"%PDF-" not in pdf_file.read(1024):
-                _fail(f"file does not have a PDF signature in the first 1024 bytes: {pdf_path.name}")
-        actual_hash = _sha256_file(pdf_path)
+        if b"%PDF-" not in pdf_bytes[:1024]:
+            _fail(f"file does not have a PDF signature in the first 1024 bytes: {pdf_path.name}")
+        actual_hash = hashlib.sha256(pdf_bytes).hexdigest()
         if actual_hash.lower() != expected_hash.lower():
             _fail(f"SHA-256 mismatch for {pdf_path.name}")
 
-        prepared.append((sidecar, metadata, pdf_path, actual_hash))
+        prepared.append((sidecar, metadata, pdf_path, pdf_bytes, actual_hash))
 
     return prepared
 
@@ -174,25 +192,25 @@ def _ocr(args):
         from PIL import Image
     except ImportError as exc:
         raise SystemExit("OCR dependencies are missing; install requirements-ocr.txt and the Tesseract executable.") from exc
-    path, page_index = args
-    with pymupdf.open(path) as document:
+    pdf_bytes, page_index = args
+    with pymupdf.open(stream=pdf_bytes, filetype="pdf") as document:
         image_bytes = document[page_index].get_pixmap(dpi=130).tobytes("png")
     return pytesseract.image_to_string(Image.open(io.BytesIO(image_bytes)), lang="eng")
 
 
-def page_texts(path, cache_root, content_sha256):
+def page_texts(pdf_bytes, cache_root, content_sha256, cache_key="document"):
     try:
         import pymupdf
     except ImportError as exc:
         raise SystemExit("PyMuPDF is missing; install optional dependencies with: python -m pip install -r requirements-ocr.txt") from exc
-    with pymupdf.open(path) as document:
+    with pymupdf.open(stream=pdf_bytes, filetype="pdf") as document:
         pages = [page.get_text() for page in document]
     joined = "".join(pages)
     if sum(0xE000 <= ord(ch) <= 0xF8FF for ch in joined) > 0.2 * max(len(joined), 1):
         if cache_root.is_symlink() or (cache_root.exists() and not cache_root.is_dir()):
             _fail("OCR cache root must be a regular directory")
         cache_root.mkdir(parents=True, exist_ok=True)
-        cache = cache_root / (path.stem + "-" + content_sha256[:16])
+        cache = cache_root / (cache_key + "-" + content_sha256[:16])
         if cache.is_symlink() or (cache.exists() and not cache.is_dir()):
             _fail("per-document OCR cache must be a regular directory")
         cache.mkdir(parents=True, exist_ok=True)
@@ -205,7 +223,7 @@ def page_texts(path, cache_root, content_sha256):
             if not cached_page.exists():
                 if budget <= 0:
                     raise SystemExit("OCR in progress (%d/%d pages done): run again" % (index, len(pages)))
-                cached_page.write_text(_ocr((str(path), index)), encoding="utf-8")
+                cached_page.write_text(_ocr((pdf_bytes, index)), encoding="utf-8")
                 budget -= 1
             if cached_page.stat().st_size == 0:
                 _fail("OCR cache page is empty: " + cached_page.name)
@@ -259,8 +277,8 @@ def main(src, out):
     output_dir.mkdir(parents=True, exist_ok=True)
     all_rows = []
     report = ["# Import report", ""]
-    for sidecar, metadata, pdf_path, actual_hash in inputs:
-        pages, ocr_used = page_texts(pdf_path, output_dir / ".ocr_cache", actual_hash)
+    for sidecar, metadata, pdf_path, pdf_bytes, actual_hash in inputs:
+        pages, ocr_used = page_texts(pdf_bytes, output_dir / ".ocr_cache", actual_hash, pdf_path.stem)
         parts = split(clean(pages))
         name = NAMES.get(metadata["document_id"], metadata["document_id"])
         source = (
