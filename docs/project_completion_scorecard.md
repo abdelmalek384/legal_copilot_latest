@@ -48,33 +48,32 @@ The product cannot be called production-ready or legally approved until all appl
 - [ ] A permission-cleared primary legal corpus and lawyer-approved benchmark meet the legal release gate.
 - [ ] Qualified Egyptian counsel tests the actual application and records approval or required corrections.
 
-## Latest merged progress — 2026-10-30
+## Latest merged progress — 2026-10-30 (127-card corpus and source discovery)
 
-- **PR #931 merged:** registered الذاكرة والمعرفة للدراسات as a public Egyptian legal-document archive discovery lead. Its pages state CC BY 4.0 and expose full-text records across Court of Cassation, Supreme Constitutional Court, Supreme Administrative Court, laws and decisions. Collection/commercial reuse remain **unknown** because licence scope, underlying rights and provenance are not fully established. No legal text was imported.
-- **PR #750 merged:** added five provisional Labour Law Articles 237–241 review questions; they remain non-authoritative and require source/counsel review.
-- **PR #797 merged:** added the Labour Law implementing-decision verification matrix and restricted-source fallback documentation.
-- **PR #926 and #928 remain merged:** metadata-only source discovery and PDF importer resource bounds.
-- **CI/security dependency updates merged:** #911 checkout v7, #912 setup-python v7, #913 upload-artifact v7, #915 PyMuPDF 2.0.0, #916 pypdf update, #918 FastAPI 0.162.0, and #919 CodeQL Action v4. Their relevant tests/security checks passed before merge.
-- **No percentage increase is claimed:** the legal source additions are discovery/provisional work, not verified or counsel-approved legal content. The verified Egyptian legal corpus remains at 6%.
+- **PR #931 merged:** registered الذاكرة والمعرفة للدراسات as a legal-document archive discovery lead. The site states CC BY 4.0 and exposes full text across three court sections, laws and decisions. Collection/commercial reuse remain unknown because the scope of the licence over underlying texts, third-party reproductions, annotations and the database compilation is unresolved. No legal text was imported.
+- **PR #935 merged:** registered the official Court of Cassation Legal Heritage Library as a manual primary-source verification route. The Court's announcement reports 27 scanned volumes, 13,275 pages, 3,533 indexed documents and 12,577 index entries for the core 1899–1933 series. Individual 1899, 1933, 1936 and 1937 catalogue records were located. Scans are watermarked to prevent republication; collection and commercial reuse remain unknown. The current judgments/principles search portal is tracked separately with its published restrictions. No scans were ingested.
+- **PR #937 merged:** added 43 non-duplicate Labour Law 14/2025 occupational-safety and inspection cards for selected Articles 256–298, expanding the canonical inventory from 59 to 102.
+- **PR #939 merged:** added 15 coverage-gap cards for accompanying-law Articles 1–39 and 10 promulgation cards for Articles 2–11, expanding the canonical inventory to 127. The report renderer now displays missing Gazette pinpoints as “not established.” Every card remains search_eligible=false.
+- **PR #940 merged:** registered the public Dataflare Egyptian Legal Corpus dataset (2,434 records, 25M+ tokens, dataset card claims MIT) as a provenance-gated candidate. It lacks record-level source URLs, dates, Gazette pinpoints and currentness metadata; underlying provenance and rights scope remain unknown. No Parquet file or legal text was downloaded or imported.
+- **PR #914 and #917 merged:** Boto3 and Pillow dependency updates passed Tests, CodeQL and dependency audit before merge.
+- **No completion-percentage increase is claimed:** provisional cards and source-discovery metadata improve research preparation, but do not establish verified law or counsel-approved answers. The verified Egyptian legal corpus remains 6%.
 
 ## Current open implementation items
 
-- **PR #782 — Labour Law evidence inventory:** open, non-DB work. The canonical main file contains 294 cards; manifest and report have been aligned to that actual count. Split snapshots are excluded until duplicate/divergent records are reconciled. The cards remain provisional and search-ineligible. Latest full CI is running; do not merge until Tests, CodeQL and dependency audit pass on the final head.
-- **PR #840 — Decisions 248–252 / Table 24:** remains draft/open. Secondary transcription line cross-checks are now recorded for Table 24 rows 34, 61 and 64, but all three discrepancies remain unresolved. Original Gazette issue 225(A) is still request-copy restricted; official matches 0/781, counsel-approved rows 0, retrieval-eligible rows 0.
-- **PR #784 — Decision 162 currentness lead:** remains draft/open. Keep signature date, Gazette publication date, commencement and later amendments separate until primary-source reconciliation is complete.
-- **PR #922 — Docker build-action update:** open but blocked by a failing cross-firm reminder-healthcheck test. Do not bypass or weaken the tenant-isolation assertion.
-- **PR #914 — Boto3 update:** held for review alongside the separate S3/storage workstream.
-- **PR #917 — Pillow update:** tests passed on its branch, but it has a merge conflict against current main; synchronize and rerun checks before merging.
+- **PR #782 — long-lived Labour Law branch:** open, but 198 commits ahead and 234 behind current main. Do not merge the branch wholesale. Its non-duplicate Articles 256–298 and coverage/promulgation material has been selectively ported through #937 and #939. Current main contains 127 canonical cards; remaining branch content needs separate reconciliation.
+- **PR #840 — Decisions 248–252 / Table 24:** draft/open. Secondary transcription comparisons are recorded for rows 34, 61 and 64, but discrepancies remain unresolved. Original Gazette issue 225(A) remains request-copy restricted; official Gazette matches 0/781, counsel-approved rows 0, retrieval-eligible rows 0.
+- **PR #784 — Decision 162 currentness lead:** draft/open. Keep signature date, Gazette publication date, commencement and later amendments separate until primary-source reconciliation is complete.
+- **PR #922 — Docker build-action update:** open. Tests failed in the cross-firm reminder-healthcheck test because the report was unexpectedly healthy. Do not weaken the cross-firm isolation assertion; diagnose and rerun before merge.
 - **PR #898 — S3 physical-purge state machine:** separate database/storage workstream. Do not enable destructive purge without independent review, live S3/KMS/IAM evidence, approved retention policy and witnessed recovery.
-- **Database/storage workstream:** remains assigned separately. Do not duplicate schema, migration, identity or destructive storage changes here.
+- **Database/tenant work:** remains assigned to the separate workstream. No duplicate schema, migration, identity or destructive storage changes were made here.
 
 ## Next highest-value priorities
 
-1. Complete the 294-card canonical Labour Law inventory validation and merge PR #782 only after all required checks pass.
-2. Continue obtaining lawful primary Gazette evidence for Decisions 248–252 and other implementing instruments; keep secondary transcriptions and third-party scans quarantined.
-3. Assess the new Egyptian case-law archive's CC BY 4.0 scope and Article 141 rights context without bulk scraping or assuming official provenance; use it as discovery/cross-reference material until source and rights gates are clear.
-4. Close production operations gaps: real staging configuration, monitoring/alert routing, scheduler ownership/reconciliation, and witnessed backup/restore.
-5. Complete manual Arabic RTL/LTR, mobile, desktop, keyboard, screen-reader and lawyer-workflow acceptance.
-6. Complete the separate database/storage workstream and validate integration without unsafe cutover.
-7. Obtain qualified Egyptian counsel's actual application acceptance after technical completion.
+1. Continue primary-source comparison and provenance work for Labour Law 14/2025 and its implementing decisions; keep all unverified cards out of authoritative retrieval.
+2. Continue selective reconciliation of the remaining PR #782 branch material onto current main; do not merge the stale branch wholesale.
+3. Diagnose PR #922's cross-firm reminder-healthcheck failure without weakening isolation guarantees.
+4. Resolve the official Gazette access gap lawfully; do not bypass request-copy restrictions.
+5. Complete real lawyer-labelled retrieval/citation evaluation, manual Arabic RTL/LTR/accessibility/browser QA, staging operations and witnessed backup/restore.
+6. Obtain qualified Egyptian counsel's actual application acceptance after technical completion.
 
+**Technical completion remains 48%** (47.95/100). Final Egyptian-counsel acceptance remains **0% / not started**. More provisional records or secondary-source cross-checks do not count as verified law or market readiness.
