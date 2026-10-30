@@ -2378,7 +2378,7 @@
         "source-use review",
         "qualified Egyptian labour-lawyer review"
       ],
-      "notes": "Official Amiri Press searchable text identifies Decision 3165/2026 and its subject. Its first operative article permits the National Wages Council to form specialized subcommittees, with balanced representation of government, employers' organizations and trade unions. Multiple secondary reports state that it was published in Official Gazette issue 41 مكرر (و), dated 12 October 2026; the exact Official Gazette DSpace item and original PDF bytes/hash have not yet been located. Secondary reports further describe powers to set national sectoral minimum wages, review the minimum at least annually, set the annual periodic allowance floor at 3% of insured wage, and decide employer requests for reduction/exemption within 30 days. These substantive details are secondary-only until the full official text is acquired and matched. The reported Gazette issue/date is a discovery lead, not yet independently anchored to the Official Gazette item.",
+      "notes": "Official Amiri Press searchable text identifies Decision 3165/2026 and its subject. Its first operative article permits the National Wages Council to form specialized subcommittees, with balanced representation of government, employers' organizations and trade unions. Multiple secondary reports state that it was published in Official Gazette issue 41 مكرر (و), dated 12 October 2026; the exact Official Gazette DSpace item and original PDF bytes/hash have not yet been located. Secondary reports further describe powers to set national sectoral minimum wages, review the minimum at least annually, set the annual periodic allowance floor at 3% of insured wage, and decide employer requests for reduction/exemption within 30 days. These substantive details are secondary-only until the full official text is acquired and matched. The reported Gazette issue/date is a discovery lead, not yet independently anchored to the Official Gazette item. Article 8 makes commencement the day after publication, not the day after signature or merely the issue date. A secondary report dated 26 October 2026 states that Gazette issue 41 مكرر (و), bearing the date 12 October 2026, was released on 26 October 2026. This is a secondary timing lead only; the actual publication event/date has not been independently verified from the original Gazette issue or an official publication record. Do not set an effective date of 13 October from the signature/issue date, and do not set 27 October from the secondary report until the original publication evidence is matched. Keep effective_date and legal_status unknown and the instrument quarantined.",
       "source_urls": [
         {
           "url": "https://alamiria.com/Sec/TashTxt?id=EreMgz%2FNoYY%3D",
@@ -2394,6 +2394,11 @@
           "url": "https://www.almasdar.com/175352",
           "source_role": "Secondary report dated 2026-10-26 quoting Articles 1-2 and reporting Official Gazette issue 41 مكرر (و), dated 2026-10-12; candidate cross-check only",
           "status": "secondary_fuller_article_summary_and_gazette_issue_lead_not_primary_match"
+        },
+        {
+          "url": "https://www.sinai.news/news/3-%D9%82%D8%B1%D8%A7%D8%B1%D8%A7%D8%AA-%D8%AC%D8%AF%D9%8A%D8%AF%D8%A9-%D9%84%D8%B1%D8%A6%D9%8A%D8%B3-%D8%A7%D9%84%D9%88%D8%B2%D8%B1%D8%A7%D8%A1-%D8%AA%D8%B9%D8%AF%D9%8A%D9%84-%D8%B7%D9%88%D9%84/",
+          "source_role": "Secondary news report dated 2026-10-26; reports issue 41 مكرر (و) bears date 2026-10-12 and was released on 2026-10-26; timing lead only",
+          "status": "secondary_reported_issue_date_and_release_date_not_officially_verified"
         }
       ],
       "related_instruments": [
@@ -2514,7 +2519,7 @@
     }
   ],
   "research_log": {
-    "checked_on": "2026-10-23",
+    "checked_on": "2026-10-30",
     "purpose": "Public-web source discovery and temporal-risk identification. These findings do not grant collection permission, establish a complete amendment chain, or constitute lawyer approval.",
     "evidence": [
       {
@@ -2728,6 +2733,16 @@
         "observed_title": "Official text on public business sector companies referencing Law 159/1981",
         "finding": "Official text references Companies Law 159/1981 and its executive regulations for merger and division matters. This is a supporting cross-reference only, not a consolidated copy of Law 159/1981.",
         "status": "supporting_reference_discovered"
+      },
+      {
+        "evidence_id": "SRC-SECONDARY-3165-GAZETTE-RELEASE-TIMING",
+        "document_id": "EG-LABOUR-PM-DECISION-3165-2026",
+        "source_type": "secondary news report for publication-timing lead only",
+        "url": "https://www.sinai.news/news/3-%D9%82%D8%B1%D8%A7%D8%B1%D8%A7%D8%AA-%D8%AC%D8%AF%D9%8A%D8%AF%D8%A9-%D9%84%D8%B1%D8%A6%D9%8A%D8%B3-%D8%A7%D9%84%D9%88%D8%B2%D8%B1%D8%A7%D8%A1-%D8%AA%D8%B9%D8%AF%D9%8A%D9%84-%D8%B7%D9%88%D9%84/",
+        "publisher": "Sinai News",
+        "observed_title": "3 قرارات جديدة لرئيس الوزراء.. تعديل طول مشروع الدائري وتحديد اختصاصات المجلس القومي للأجور",
+        "finding": "The report dated 26 October 2026 says Official Gazette issue 41 مكرر (و) bears the date 12 October 2026 and was released on 26 October 2026. Decision 3165/2026 Article 8, in the official Amiri Press searchable text, commences the day after publication. The report is not an official publication record and does not establish the operative publication date; do not calculate an effective date from it.",
+        "status": "secondary_timing_lead_not_primary_publication_evidence"
       }
     ],
     "temporal_review_alerts": [
