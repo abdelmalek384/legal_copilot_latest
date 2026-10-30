@@ -202,3 +202,18 @@ A material source-discovery milestone: located the DSpace Gazette-repository cat
 The original PDF and item-specific license file are access-restricted: the visible download redirects to a request-copy form. I did not bypass the gate or submit a request. This confirms the exact Gazette issue and provides an actionable authorized access route, but it is **not** primary-text access. Decisions 248–252 remain 0/5 fully matched against the original Gazette pages; no rule was promoted. Page map and publication-route documents record the evidence and limitation.
 
 The official record is a stronger source-discovery result than the prior secondary-only locator, but it does not alter strict legal-content readiness. Current preparation estimate remains **15%**; authoritative legal-content readiness **0%**. Next work: continue exploiting lawful public mirrors and official publisher/ministry pages, while keeping all unverified candidate rules quarantined.
+
+
+## Decision 250 Table 24 structural completion and index correction — 2026-10-30
+
+Completed a high-value consistency pass over the full Table 24 secondary extraction:
+
+- **38/38** candidate batch files parsed.
+- **781/781** numbered entries structured, sequence 1–781, no gaps or duplicates.
+- Corrected the technical table index: it had accidentally duplicated Table 24 as a nonexistent Table 25 and limited Table 24 to pp. 249–250. The secondary transcription's contents map identifies Table 24 at p. 249 and the records chapter at p. 361, so the corrected secondary section span is pp. 249–360.
+- Removed the erroneous duplicate Table 25 index record and added a regression test checking table numbering, page span, full row sequence, and continued quarantine metadata.
+- Added `tests/test_decision_250_table24_inventory.py` to the Tests workflow.
+
+**Boundary:** this is structural completeness against a secondary transcription only. Official Gazette comparison remains **0/781**, lawyer approval 0/781, and authoritative retrieval eligibility 0/781. No chemical name, CAS identifier, formula, exposure limit, unit, footnote or safety instruction was promoted. The official Gazette supplement catalog record is now identified, but its original 6.13 MB PDF is request-copy restricted.
+
+The earlier 745-row and 617-row progress statements in older notes are superseded by the corrected 781-entry secondary inventory. Table 24 structural extraction is now **100% complete**; primary-source verification remains **0%**.
