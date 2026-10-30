@@ -318,7 +318,7 @@
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
       "permission_evidence": "Official portal exposes a search page titled القوانين الصادرة with legislative-session and term filters. This establishes a discovery/index endpoint only; it does not establish that linked texts are complete, primary Gazette copies, or licensed for reuse.",
-      "terms_checked_on": "2026-10-30",
+      "terms_checked_on": null,
       "bulk_download_or_api": "not established",
       "required_next_action": "Use for discovery of enacted-law identifiers and cross-check against the promulgated Official Gazette text. Inspect item-level terms and preserve source provenance; do not bulk collect or promote linked text without rights and authenticity review."
     },
@@ -336,7 +336,7 @@
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
       "permission_evidence": "Public item pages expose bibliographic metadata and PDF listings; individual items may include an item-specific license bundle. Example records identify Amiri Press as publisher. An item page or download control alone does not establish unrestricted download or commercial reuse rights.",
-      "terms_checked_on": "2026-10-30",
+      "terms_checked_on": null,
       "bulk_download_or_api": "not established; item-level access controls and licenses must be checked",
       "required_next_action": "For each issue, inspect its license.txt and download/access state, retain issue metadata only where rights are unclear, and do not bypass request-copy restrictions. Record issue number, publication date, publisher, document IDs, exact file hash, and item-specific license evidence."
     },
@@ -355,7 +355,7 @@
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
       "permission_evidence": "AUC Law and Society Research Unit describes Manshurat Qanuneya as an open-access database of Arabic primary legal materials focused on Egypt and reports broad archive coverage. Open access describes public availability, not a blanket licence for bulk extraction, commercial use, or redistribution.",
-      "terms_checked_on": "2026-10-30",
+      "terms_checked_on": null,
       "bulk_download_or_api": "not established",
       "required_next_action": "Use as a discovery and cross-reference source. Inspect each item for original-source citations and item-level rights/terms; verify texts against Official Gazette or court originals before authoritative use."
     }
