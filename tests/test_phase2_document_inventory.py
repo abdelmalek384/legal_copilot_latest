@@ -51,6 +51,7 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         self.assertTrue(any("secondary_full_text" in item["status"] for item in record["source_urls"]))
         self.assertIn("14 August 2026", record["notes"])
         self.assertIn("Article 46", record["notes"])
+        self.assertIn("decree_162_2026_secondary_text_crosswalk_2026-10-31.md", record["notes"])
         self.assertEqual(next(a for a in self.inventory["next_actions"] if a["id"] == "ACT-LABOUR-RULES-2026-VERIFY")["status"], "in_progress")
         self.assertEqual(validate_inventory(self.inventory), [])
 
