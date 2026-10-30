@@ -83,7 +83,18 @@
       "source_use_review": "not_started",
       "counsel_review": "not_started",
       "status": "candidate_only_pending_official_match",
-      "retrieval_eligible": false
+      "retrieval_eligible": false,
+      "candidate_eligibility_details": {
+        "bachelor_fields": "Engineering, pharmacy, human medicine, veterinary medicine, science, applied health sciences, and environment/waste management (as visibly listed)",
+        "experience_years": 20,
+        "doctorate_reduced_experience_years": 15,
+        "other_conditions": [
+          "international OSH certificate(s)",
+          "ICDL or digital transformation basics certificate",
+          "pass the competent administration's examination",
+          "no final conviction for an offence involving honour/trust unless rehabilitated"
+        ]
+      }
     },
     {
       "record_type": "article",
@@ -105,7 +116,18 @@
       "source_use_review": "not_started",
       "counsel_review": "not_started",
       "status": "candidate_only_pending_official_match",
-      "retrieval_eligible": false
+      "retrieval_eligible": false,
+      "candidate_eligibility_details": {
+        "experience_years": 15,
+        "doctorate_reduced_experience_years": 10,
+        "other_conditions": [
+          "bachelor in listed relevant fields",
+          "international OSH certificate(s)",
+          "ICDL or digital transformation basics certificate",
+          "pass the competent administration's examination",
+          "no final conviction for an offence involving honour/trust unless rehabilitated"
+        ]
+      }
     },
     {
       "record_type": "article",
@@ -169,7 +191,15 @@
       "source_use_review": "not_started",
       "counsel_review": "not_started",
       "status": "candidate_only_pending_official_match",
-      "retrieval_eligible": false
+      "retrieval_eligible": false,
+      "candidate_procedure_periods": {
+        "initial_review_days": 15,
+        "notice_of_result_business_days": 3,
+        "completion_of_missing_documents_days": 30,
+        "decision_after_complete_application_days": 30,
+        "nonresponse_effect": "appears to be deemed rejection",
+        "note": "Candidate reading from secondary page image 376; exact wording, starting events and legal computation require original Gazette comparison."
+      }
     },
     {
       "record_type": "article",
@@ -190,7 +220,18 @@
       "source_use_review": "not_started",
       "counsel_review": "not_started",
       "status": "candidate_only_pending_official_match",
-      "retrieval_eligible": false
+      "retrieval_eligible": false,
+      "candidate_fee_table_egp": {
+        "consultant_A": {
+          "initial_license": 3000,
+          "renewal": 2500
+        },
+        "consultant_B": {
+          "initial_license": 2500,
+          "renewal": 2000
+        },
+        "note": "Values transcribed from secondary page image 376; confirm the table cells against original Gazette."
+      }
     },
     {
       "record_type": "article",
@@ -211,7 +252,8 @@
       "source_use_review": "not_started",
       "counsel_review": "not_started",
       "status": "candidate_only_pending_official_match",
-      "retrieval_eligible": false
+      "retrieval_eligible": false,
+      "candidate_license_validity_years": 3
     },
     {
       "record_type": "article",
