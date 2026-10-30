@@ -138,6 +138,10 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
             for source_url in record["source_urls"]:
                 if "dspace.id.com.eg/" in source_url["url"]:
                     self.assertEqual(source_url["source_id"], "EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE")
+        for record in self.inventory["documents"]:
+            for source_url in record.get("source_urls", []):
+                if "dspace.id.com.eg/" in source_url["url"]:
+                    self.assertEqual(source_url["source_id"], "EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE")
         self.assertEqual(validate_inventory(self.inventory), [])
 
     def test_unknown_source_and_duplicate_instrument_ids_are_rejected(self):
