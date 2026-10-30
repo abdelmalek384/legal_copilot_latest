@@ -175,3 +175,14 @@ Table 24 candidate extraction now covers **781/781 numbered entries (100% second
 - Strict authoritative legal-content readiness (all release gates passed): **0%**
 
 These figures intentionally separate extraction and evidence preparation from legal verification. The 15% phase estimate is not a count of verified legal rules. Since zero rows have completed all release gates, strict authoritative legal-content readiness is 0%. A complete secondary transcription is not a verified legal corpus.
+
+
+## Decision 248 reporting-trigger comparison — 2026-10-30
+
+Two additional secondary reports now provide more detailed candidate wording for Decision 248/2026: Al-Youm Al-Sabea (2026-10-28) and EgyIn (2026-10-19). They report 24-hour notification for serious accidents inside an establishment, 48 hours for accidents outside its boundaries, and notification of occupational disease after diagnosis/confirmation by an approved medical report. They also describe serious-accident categories, 30+ worker semi-annual statistics, January/July submission, 15 days to provide certified copies after request, and three-year record retention.
+
+Compared with the preserved official-parent-law Article 260 excerpt, this raises a precise legal-review issue: Article 260 states 24-hour notification for serious accidents occurring at the establishment and for the appearance of occupational-disease symptoms. The secondary Decision 248 summaries appear to add off-site accident coverage with a 48-hour period and describe a different disease-notification trigger. This is not yet a confirmed conflict or a verified extension; the decision's original Article 4 and forms are still unavailable. The new crosswalk and discrepancy checklist explicitly preserve the two source layers, prohibit advising users to delay notification based on the 48-hour secondary summary, and require counsel to determine the interaction. The in-app lawyer acceptance plan now includes test OSH-16 for these exact scenarios.
+
+Sources: https://www.youm7.com/story/2026/10/28/حماية-أرواح-العمال-أولوية-وزارة-العمل-تحدد-مهلة-24-ساعة/7590406 and https://www.egyin.com/article/154732/. Both remain secondary reports, not the operative Gazette text.
+
+No Decision 248 rule was promoted, no currentness/source-use/counsel gate changed, and the legal-knowledge preparation estimate remains **15%** with strict authoritative legal-content readiness at **0%**.
