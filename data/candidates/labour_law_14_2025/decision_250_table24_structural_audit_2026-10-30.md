@@ -51,7 +51,8 @@
 | 564–583 | 20 |
 | 584–603 | 20 |
 | 604–617 | 14 |
-| **Total** | **617** |
+| 618–642 | 25 |
+| **Total** | **642** |
 
 Batch 32 (618–642) extends the flattened sequence. Its source lines 5514–5555 include group headings and numbered subentries; hierarchy is not inferred beyond the labels recorded. The unusual file-name ranges around batches 5–6 and 19–20 reflect the actual flattened row grouping: batch 5 contains rows 81–99, batch 6 rows 100–120, and batch 20 contains parent/child records covering 381–403. The structural audit found no overlap or gap in the final flattened row sequence.
 
