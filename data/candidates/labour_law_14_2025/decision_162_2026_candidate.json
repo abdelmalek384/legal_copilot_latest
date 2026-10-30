@@ -26,6 +26,12 @@
     "legal_review": "pending",
     "publication_date": "2026-08-13",
     "official_ministry_announcement_url": "https://www.labour.gov.eg/ar/الأخبار/وزير-العمل-يعلن-نص-القواعد-العامة-للائحة-تنظيم-العمل-بالقطاع-الخاص/",
-    "secondary_full_text_transcription_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html"
+    "secondary_full_text_transcription_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+    "effective_date_status": "candidate_secondary_inference",
+    "effective_date_verified": false,
+    "effective_date_basis": "Official Gazette catalogue publication date 2026-08-13 plus Article 66 commencement clause in secondary transcription only; original Gazette text not inspected.",
+    "original_gazette_file_access": "restricted_request_copy",
+    "original_gazette_pdf_obtained": false,
+    "original_gazette_pdf_sha256": null
   }
 }
