@@ -141,3 +141,6 @@ The report is a review aid only; it does not change any source-permission, legal
 
 
 - **Decision 250 Table 24 status (2026-10-30):** 38/38 secondary candidate batches; 781/781 numbered entries structurally present with no gaps/duplicates. The technical table index is corrected to a single Table 24 spanning secondary printed pages 249–360 (no Table 25). Regression coverage: `tests/test_decision_250_table24_inventory.py`. Official Gazette matches remain 0/781 and retrieval eligibility 0/781; the original Gazette PDF is listed in the DSpace catalog but request-copy restricted.
+
+
+- [Egypt official-document Article 141 source-use route](egypt_official_documents_copyright_route_article141_2026-10-30.md): records the official-document exclusion, the creative-compilation exception, the distinction between underlying legal text and scan/third-party database rights, and the WIPO consolidation's 2020 currentness cutoff.
