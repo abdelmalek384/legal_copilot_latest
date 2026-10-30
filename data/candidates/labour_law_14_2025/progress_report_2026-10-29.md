@@ -260,3 +260,8 @@ The user does **not** need to arrange the lawyer review separately now. That rev
 | Legal Knowledge Validation | **Passed** | Latest run 28/28 |
 
 The overall legal-knowledge preparation estimate remains **15%** rather than being inflated by secondary extraction. The highest-value unfinished work is primary-source comparison and currentness/reuse/counsel review. Strict authoritative legal-content readiness remains **0%** for the Decision 248–252 package and Table 24 candidates.
+
+
+## Global source manifest updated — 2026-10-30
+
+Updated docs/source_manifest.json for EG-OFFICIAL-GAZETTE with the exact Supplement 225(A) DSpace catalog identity, original bundle filename/size, public catalog vs restricted request-copy access status, and a no-bypass requirement. The source remains commercial-reuse-unconfirmed and the original bytes remain unobtained. This makes the new source discovery visible in the project's global source registry rather than only in the Labour Law candidate folder.
