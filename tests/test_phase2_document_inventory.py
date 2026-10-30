@@ -169,6 +169,21 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         self.assertTrue(any("manshurat.org/node/70956" in u["url"] for u in old["source_urls"]))
         self.assertEqual(validate_inventory(self.inventory), [])
 
+    def test_decision_982_temporal_chain_separates_monthly_extensions_from_draft_suspension(self):
+        remote = next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-PM-DECISION-982-2026")
+        self.assertIn("decision_982_remote_work_temporal_chain_2026-10-30.md", remote["notes"])
+        timeline = (ROOT / "data" / "candidates" / "labour_law_14_2025" / "decision_982_remote_work_temporal_chain_2026-10-30.md").read_text(encoding="utf-8")
+        for month, number in (("May", 1305), ("June", 1572), ("July", 2033), ("August", 2377), ("September", 2590)):
+            self.assertIn(f"Decision {number}/2026", timeline)
+            self.assertIn(month, timeline)
+        self.assertIn("draft", timeline)
+        self.assertIn("not the operative published instrument", timeline)
+        self.assertIn("Do not infer an October 2026 extension", timeline)
+        self.assertIn("Gazette byte verification 0/6", timeline)
+        self.assertEqual(remote["legal_status"], "unknown")
+        self.assertEqual(remote["review_status"], "discovery_only")
+        self.assertEqual(validate_inventory(self.inventory), [])
+
     def test_unknown_source_and_duplicate_instrument_ids_are_rejected(self):
         data = copy.deepcopy(self.inventory)
         data["documents"][0]["source_id"] = "EG-NOT-REGISTERED"
