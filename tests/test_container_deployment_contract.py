@@ -49,6 +49,9 @@ class ContainerDeploymentContractTests(unittest.TestCase):
         ):
             self.assertIn(required_setting, example)
         self.assertNotIn("AKIA", example)
+        gitignore = (ROOT / ".gitignore").read_text(encoding="utf-8")
+        for private_path in ("runtime-data/", "secrets/", "backups/"):
+            self.assertIn(private_path, gitignore)
 
     def test_ci_builds_both_supported_container_architectures(self):
         workflow = (ROOT / ".github" / "workflows" / "container-image.yml").read_text(encoding="utf-8")
