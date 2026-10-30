@@ -73,7 +73,7 @@ def run_smoke(
         origin = normalize_base_url(base_url, allow_http_loopback=allow_http_loopback)
     except ValueError as exc:
         record("base_url", False, str(exc))
-        return {"ready": False, "base_url": "", "checks": checks}
+        return {"ready": False, "base_url": "", "checks": checks, "passed": 0, "failed": 1}
 
     own_client = client is None
     http = client or httpx.Client(timeout=10.0, follow_redirects=False)
