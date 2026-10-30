@@ -53,6 +53,17 @@ class Decision250Table24CandidateValidationTests(unittest.TestCase):
             errors = MODULE.validate(root)
         self.assertTrue(any("forbidden promotion/approval flag" in error for error in errors))
 
+    def test_rows_1_to_327_require_secondary_scan_page_locator(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self._copy_batches(root)
+            path = root / MODULE.BATCHES[0]
+            data = json.loads(path.read_text(encoding="utf-8"))
+            data["rows"][0].pop("secondary_scan_image_url", None)
+            path.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+            errors = MODULE.validate(root)
+        self.assertTrue(any("missing/wrong secondary scan image URL" in error for error in errors))
+
     def test_candidate_cannot_claim_official_pdf_hash(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
