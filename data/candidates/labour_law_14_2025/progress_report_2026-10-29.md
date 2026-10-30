@@ -276,3 +276,13 @@ Current head `d42bc551825a5a93e19e2db99dc9dd2552d2c557` now passes:
 - Legal Knowledge Validation: **28/28 steps** — https://github.com/abdelmalek384/legal_copilot_latest/actions/runs/41030728643
 
 The passing regression verifies the 781-row nested Table 24 inventory, Article 296 exact source ordering and fine wording while quarantined, and the Official Gazette manifest's request-copy restriction and unconfirmed commercial reuse. This is engineering/data-integrity validation only; primary-source comparison and counsel approval remain outstanding.
+
+
+## Decision 249/251/252 lawyer coverage expanded — 2026-10-30
+
+Added six exact Arabic in-app lawyer prompts (OSH-17 through OSH-22) covering:
+- Decision 249: the 50-worker/separate-site question and Table 2 staffing ratios.
+- Decision 251: non-engineering qualifications, years of experience, licence term and fees, with the Article 262 parent-law ceiling kept distinct.
+- Decision 252: training-provider/trainer eligibility, programme hours, fees, examinations and attendance requirements.
+
+Each prompt explicitly requires the app to abstain from treating secondary article summaries or low-resolution tables as verified legal rules. Added regression checks that the Decisions 249/251/252 candidate maps contain 22+3+1, 11, and 36+1 records respectively, and that every record remains secondary-only, without an original PDF hash, with currentness/source-use/counsel review outstanding and retrieval disabled. A further regression ensures all six new lawyer prompts remain in the acceptance plan.
