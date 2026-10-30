@@ -48,6 +48,19 @@ class LegalDataFoundationMalformedInputTests(unittest.TestCase):
             "expected_sources": [], "must_abstain_if_unverified": True,
         }
 
+    def test_official_publisher_and_dspace_catalogue_are_separate_sources(self):
+        manifest = json.loads((ROOT / "docs" / "source_manifest.json").read_text(encoding="utf-8"))
+        sources = {item["id"]: item for item in manifest["sources"]}
+        publisher = sources["EG-OFFICIAL-GAZETTE"]
+        repository = sources["EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE"]
+        self.assertIn("alamiria.com", publisher["url"])
+        self.assertNotIn("dspace.id.com.eg", publisher["url"])
+        self.assertIn("dspace.id.com.eg", repository["url"])
+        self.assertEqual(repository["category"], "third_party_repository_metadata")
+        self.assertEqual(repository["license_status"], "unknown")
+        self.assertEqual(repository["commercial_reuse"], "not_confirmed")
+        self.assertIn("Do not automate downloads", repository["automation_policy"])
+
     def test_non_object_source_fails_with_controlled_validation_error(self):
         result = self._run_with_inputs({"sources": ["not-an-object"]}, json.dumps(self._valid_question(), ensure_ascii=False))
         self.assertNotEqual(result.returncode, 0)
