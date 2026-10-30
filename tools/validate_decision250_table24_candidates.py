@@ -159,8 +159,15 @@ def validate(root: Path = DATA_DIR) -> list[str]:
                     errors.append(f"{filename}: row {number} missing/wrong secondary scan page locator")
                 if row.get("secondary_scan_image_url") != expected_url:
                     errors.append(f"{filename}: row {number} missing/wrong secondary scan image URL")
-                if row.get("secondary_scan_match_status") != "page_locator_assigned_pending_field_comparison":
-                    errors.append(f"{filename}: row {number} must remain pending field-by-field image comparison")
+                scan_status = row.get("secondary_scan_match_status")
+                if scan_status == "secondary_image_spot_check_partial_fields":
+                    required_fields = {"chemical_name", "cas_identifier", "primary_exposure_limit_token", "unit"}
+                    if not required_fields.issubset(set(row.get("secondary_scan_fields_checked", []))):
+                        errors.append(f"{filename}: row {number} has incomplete secondary image spot-check fields")
+                    if row.get("secondary_scan_checked_on") != "2026-10-30":
+                        errors.append(f"{filename}: row {number} missing secondary image spot-check date")
+                elif scan_status != "page_locator_assigned_pending_field_comparison":
+                    errors.append(f"{filename}: row {number} must remain pending field comparison or use the explicit partial spot-check state")
             elif row.get("secondary_scan_image_url") is not None:
                 errors.append(f"{filename}: row {number} has an unexpected secondary scan image locator beyond row 327")
 
