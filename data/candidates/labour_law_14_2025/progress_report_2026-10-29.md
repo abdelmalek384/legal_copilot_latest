@@ -71,6 +71,8 @@ Table 24 candidate extraction now covers **781/781 numbered entries (100% second
 
 40. Opened the actual Almasdar page images for Table 24 pages 249–251 and compared candidate rows 1–18 against the reproduced Gazette images for chemical name, CAS identifier, primary exposure-limit token and unit. No obvious mismatch was found in those checked fields. Marked only these fields as `secondary_image_spot_check_partial_fields`; ancillary notations, all footnotes, column semantics and the original Gazette remain unchecked. Extended the validator to require the exact field list and check date for this partial state, and added a negative test. This is secondary-image corroboration only, not an official Gazette match or legal approval.
 
+41. Extended the partial secondary-image spot-check to Table 24 rows 19–25 using the page 252 reproduction. Chemical names, CAS identifiers, primary limit tokens and units show no obvious mismatch in the checked fields. These seven rows are now marked with the same explicit partial-field status; formulae, molecular weights, footnotes, carcinogenicity annotations and original Gazette comparison remain unchecked. Partial spot-check coverage is now 25/781 (3.2%); no official Gazette match is claimed.
+
 ## Current subtask status
 
 | Subtask | Completion estimate | Current status | Remaining gate |
