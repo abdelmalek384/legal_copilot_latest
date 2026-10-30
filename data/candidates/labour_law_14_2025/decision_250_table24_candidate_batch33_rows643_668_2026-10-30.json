@@ -187,7 +187,8 @@
       "cas": "1395-21-7; 9014-01-1",
       "source_line": 5586,
       "raw_limit_and_note_text": "- - - - 0<00006ملجم/م3 - تهيج للمسالك التنفسية العليا والسفلى والجلد، الربو",
-      "status": "pending_official_match"
+      "status": "pending_official_match",
+      "anomaly": "The secondary text contains malformed numeric-looking token `0<00006` in the exposure field. Do not infer a decimal or threshold; exact Official Gazette image comparison is mandatory."
     },
     {
       "row": 661,
