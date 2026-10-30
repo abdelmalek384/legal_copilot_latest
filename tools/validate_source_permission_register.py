@@ -59,7 +59,10 @@ def _valid_review_date(value: object) -> bool:
         parsed = dt.date.fromisoformat(value)
     except ValueError:
         return False
-    return parsed.isoformat() == value and parsed <= dt.date.today()
+    # Reviewers may record the local Cairo date while GitHub-hosted CI still
+    # runs on the previous UTC date. Allow only that one-day timezone skew;
+    # genuinely future-dated evidence remains invalid.
+    return parsed.isoformat() == value and parsed <= dt.date.today() + dt.timedelta(days=1)
 
 
 def validate(data: object) -> list[str]:
