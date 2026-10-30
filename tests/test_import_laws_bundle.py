@@ -28,6 +28,8 @@ class LegalImportBundleTests(unittest.TestCase):
         pdf.write_bytes(pdf_bytes)
         metadata = {
             "document_id": document_id,
+            "official_title": "قانون تجريبي",
+            "language": "ar",
             "source_url": "https://example.gov.eg/gazette/item?id=123",
             "retrieved_at": "2026-10-30T10:30:00+02:00",
             "content_sha256": hashlib.sha256(pdf_bytes).hexdigest(),
@@ -47,6 +49,8 @@ class LegalImportBundleTests(unittest.TestCase):
         self.assertEqual(len(prepared), 1)
         _, metadata, pdf, pdf_bytes, actual_hash = prepared[0]
         self.assertEqual(metadata["document_id"], "DOC-001")
+        self.assertEqual(metadata["language"], "ar")
+        self.assertEqual(metadata["official_title"], "قانون تجريبي")
         self.assertEqual(pdf.name, "sample_law.pdf")
         self.assertEqual(pdf_bytes, self.pdf_bytes)
         self.assertEqual(actual_hash, hashlib.sha256(pdf_bytes).hexdigest())
@@ -55,7 +59,7 @@ class LegalImportBundleTests(unittest.TestCase):
     def test_extracted_rows_remain_unverified_and_report_full_hash(self):
         from tools import import_laws
 
-        with mock.patch.object(import_laws, "page_texts", return_value=(["Article 1\nCandidate article text"], False)):
+        with mock.patch.object(import_laws, "page_texts", return_value=(["المادة 1\nCandidate article text"], False)):
             import_laws.main(self.source, self.output)
         rows = [json.loads(line) for line in (self.output / "law_rows.jsonl").read_text(encoding="utf-8").splitlines()]
         self.assertEqual(len(rows), 1)
@@ -64,6 +68,7 @@ class LegalImportBundleTests(unittest.TestCase):
         self.assertEqual(rows[0]["in_force"], 0)
         self.assertIsNone(rows[0]["as_of"])
         self.assertIn(hashlib.sha256(self.pdf_bytes).hexdigest(), rows[0]["source"])
+        self.assertIn("Arabic-language source text", rows[0]["source"])
         report = (self.output / "import_report.md").read_text(encoding="utf-8")
         self.assertIn("verified PDF SHA-256", report)
 
@@ -80,7 +85,7 @@ class LegalImportBundleTests(unittest.TestCase):
             observed["bytes"] = pdf_bytes
             observed["hash"] = content_sha256
             observed["cache_key"] = cache_key
-            return ["Article 1\\nValidated original bytes"], False
+            return ["المادة 1\\nValidated original bytes"], False
 
         with mock.patch.object(import_laws, "validate_inputs", return_value=prepared):
             with mock.patch.object(import_laws, "page_texts", side_effect=capture):
@@ -159,6 +164,32 @@ class LegalImportBundleTests(unittest.TestCase):
         (self.source / "orphan.json").unlink()
         with self.assertRaisesRegex(SystemExit, "missing sidecars"):
             validate_inputs(self.source, self.output)
+
+    def test_source_language_metadata_is_required_and_closed_set(self):
+        sidecar = self.source / "sample_law.json"
+        metadata = json.loads(sidecar.read_text(encoding="utf-8"))
+        metadata.pop("language")
+        sidecar.write_text(json.dumps(metadata), encoding="utf-8")
+        with self.assertRaisesRegex(SystemExit, "language must be one of"):
+            validate_inputs(self.source, self.output)
+        metadata["language"] = "xx"
+        sidecar.write_text(json.dumps(metadata), encoding="utf-8")
+        with self.assertRaisesRegex(SystemExit, "language must be one of"):
+            validate_inputs(self.source, self.output)
+
+    def test_arabic_and_english_article_headings_split_with_arabic_indic_numbers(self):
+        from tools.import_laws import split
+
+        rows = split(
+            "مقدمة القانون\n"
+            "المادة (١)\nالنص الأول\n"
+            "مادة رقم ٢ مكرر\nالنص المكرر\n"
+            "Article 3\nEnglish text"
+        )
+        self.assertEqual([row[0] for row in rows], ["preamble", "١", "٢ مكرر", "3"])
+        self.assertIn("النص الأول", rows[1][2])
+        self.assertIn("النص المكرر", rows[2][2])
+        self.assertIn("English text", rows[3][2])
 
     def test_duplicate_document_ids_are_rejected(self):
         self._write_pair("second_law", "doc-001", self.pdf_bytes)
