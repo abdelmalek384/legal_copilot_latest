@@ -70,6 +70,12 @@ These are collection categories, not confirmation that every agency provides a p
 
 Sample page inspected: https://www.mksegypt.org/ar/court-of-cassation-rulings/21623 — Appeal No. 309, Judicial Year 60, dated 8 May 1991. The page contains the judgment's reasoning and facts, not merely a search-result title. This sample demonstrates full-text availability but does not prove the accuracy or completeness of the entire archive.
 
+Two additional court-section samples were inspected:
+- Supreme Constitutional Court: https://www.mksegypt.org/ar/judgments-of-the-supreme-constitutional-court/15539 — Case 179 of Judicial Year 19 (constitutional), dated 4 April 1998. The page includes the court/case identifiers, parties, procedural history, reasoning and disposition.
+- Supreme Administrative Court: https://www.mksegypt.org/ar/judgments-of-the-supreme-administrative-court/21609 — Appeal 8698 of Judicial Year 44, dated 19 November 2000. The page includes chamber and judge details, procedural history, submissions, reasoning and disposition.
+
+Both additional individual pages also display the CC BY 4.0 footer statement. These three samples support the conclusion that the archive exposes substantive full-text records across all three court sections; they do not establish that every catalogue entry is complete, accurate, current, or traceable to an official original.
+
 **Required handling:** keep collection and commercial reuse permission as unknown in the central register until the CC BY 4.0 scope and chain of rights are clear. Preserve attribution requirements if the licence is relied upon. Manually sample records across all sections and compare selected case identifiers/dates/citations against official court sources. Do not bulk scrape, crawl, or import legal texts while rights scope or provenance remains unresolved. If ambiguity remains, retain the site as a discovery/cross-reference source only; do not contact source holders under the current project constraint.
 
 ### Tier 4 — books, journals and practitioner materials
