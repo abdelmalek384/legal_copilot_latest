@@ -34,7 +34,7 @@ class WindowsLauncherContractTests(unittest.TestCase):
         mac = (ROOT / "start_mac.command").read_text(encoding="utf-8")
         windows = (ROOT / "start_windows.bat").read_text(encoding="utf-8")
         self.assertIn("python tools/bootstrap_first_firm.py", mac)
-        self.assertIn(r"python tools\\bootstrap_first_firm.py", windows)
+        self.assertIn(r"python tools\bootstrap_first_firm.py", windows)
 
     def test_bootstrap_command_passes_user_values_without_shell_interpolation(self):
         command = build_init_command(
