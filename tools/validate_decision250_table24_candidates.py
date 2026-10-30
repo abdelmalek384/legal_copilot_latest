@@ -58,6 +58,30 @@ BATCHES = [
 ]
 
 
+SECONDARY_SCAN_PAGE_RANGES = [
+    (249, 1, 5), (250, 6, 12), (251, 13, 18), (252, 19, 25),
+    (253, 26, 33), (254, 34, 41), (255, 42, 48), (256, 49, 55),
+    (257, 56, 60), (258, 61, 65), (259, 66, 72), (260, 73, 79),
+    (261, 80, 87), (262, 88, 95), (263, 96, 101), (264, 102, 107),
+    (265, 108, 115), (266, 116, 122), (267, 123, 129), (268, 130, 137),
+    (269, 138, 146), (270, 147, 154), (271, 155, 161), (272, 162, 168),
+    (273, 169, 175), (274, 176, 181), (275, 182, 187), (276, 188, 192),
+    (277, 193, 199), (278, 200, 207), (279, 208, 214), (280, 215, 221),
+    (281, 222, 229), (282, 230, 237), (283, 238, 244), (284, 245, 251),
+    (285, 252, 258), (286, 259, 265), (287, 266, 272), (288, 273, 280),
+    (289, 281, 287), (290, 288, 293), (291, 294, 301), (292, 302, 306),
+    (293, 307, 314), (294, 315, 321), (295, 322, 327),
+]
+SECONDARY_SCAN_BASE = "https://www.almasdar.com/WebP/libfiles/46/3/"
+
+
+def expected_secondary_scan_page(row_number: int) -> int | None:
+    for page, first, last in SECONDARY_SCAN_PAGE_RANGES:
+        if first <= row_number <= last:
+            return page
+    return None
+
+
 def flatten_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     flattened: list[dict[str, Any]] = []
     for row in rows:
@@ -128,6 +152,17 @@ def validate(root: Path = DATA_DIR) -> list[str]:
                 errors.append(f"{filename}: row {number} must remain pending_official_match")
             if row.get("retrieval_eligible") is True or row.get("verified") is True or row.get("approved") is True:
                 errors.append(f"{filename}: row {number} contains a forbidden promotion/approval flag in candidate-only data")
+            expected_page = expected_secondary_scan_page(number)
+            if expected_page is not None:
+                expected_url = f"{SECONDARY_SCAN_BASE}{expected_page + 692}.webp"
+                if row.get("secondary_scan_printed_page") != expected_page:
+                    errors.append(f"{filename}: row {number} missing/wrong secondary scan page locator")
+                if row.get("secondary_scan_image_url") != expected_url:
+                    errors.append(f"{filename}: row {number} missing/wrong secondary scan image URL")
+                if row.get("secondary_scan_match_status") != "page_locator_assigned_pending_field_comparison":
+                    errors.append(f"{filename}: row {number} must remain pending field-by-field image comparison")
+            elif row.get("secondary_scan_image_url") is not None:
+                errors.append(f"{filename}: row {number} has an unexpected secondary scan image locator beyond row 327")
 
     expected = set(range(1, 782))
     actual = set(observed)
