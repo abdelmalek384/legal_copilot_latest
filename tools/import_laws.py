@@ -71,6 +71,17 @@ def validate_inputs(src: str | pathlib.Path, out: str | pathlib.Path):
         _fail("source directory must be an existing regular directory, not a symbolic link")
     if output_dir.is_symlink():
         _fail("output directory must not be a symbolic link")
+    if output_dir.exists() and not output_dir.is_dir():
+        _fail("output path must be a directory")
+    if output_dir.exists():
+        for name in ("law_rows.jsonl", "import_report.md", ".ocr_cache"):
+            existing = output_dir / name
+            if existing.is_symlink():
+                _fail(f"output path must not be a symbolic link: {name}")
+            if existing.exists() and name == ".ocr_cache" and not existing.is_dir():
+                _fail("OCR cache path must be a directory")
+            if existing.exists() and name != ".ocr_cache" and not existing.is_file():
+                _fail(f"output file path is not a regular file: {name}")
     source_resolved = source_dir.resolve()
     output_resolved = output_dir.resolve()
     if source_resolved == output_resolved or source_resolved in output_resolved.parents:
