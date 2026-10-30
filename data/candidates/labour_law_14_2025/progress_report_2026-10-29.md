@@ -317,3 +317,14 @@ Latest branch head `0c647e291af99b12283e0a99c6050a1468f345b7` passed:
 - Legal Knowledge Validation **28/28**: https://github.com/abdelmalek384/legal_copilot_latest/actions/runs/41031945000
 
 All three discrepancies remain unresolved pending original Gazette page matching. The secondary image is not a substitute for the official issue.
+
+
+## Latest Action 1 source-handling and CI confirmation — 2026-10-30
+
+The Action 1 intake protocol now explicitly prohibits committing the raw Gazette PDF or raw law_rows_ar.jsonl into the public repository while access/source-use conditions remain unresolved. Originals are to be preserved byte-for-byte in a controlled working environment; commit only hashes, bibliographic metadata, citations and legally cleared excerpts.
+
+Latest branch head `a5108cdbbbfc2438bbbf6c28c072b07600a9e0e4` passed:
+- Full Tests: **103/103, zero failures** — https://github.com/abdelmalek384/legal_copilot_latest/actions/runs/41032333808
+- Legal Knowledge Validation: **28/28** — https://github.com/abdelmalek384/legal_copilot_latest/actions/runs/41032333801
+
+The three Table 24 discrepancy rows remain preserved without correction and are prioritized for the original Gazette comparison.
