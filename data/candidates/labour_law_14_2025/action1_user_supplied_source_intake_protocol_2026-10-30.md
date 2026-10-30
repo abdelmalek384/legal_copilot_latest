@@ -44,6 +44,24 @@ If `law_rows_ar.jsonl` is not supplied, omit the `--law-rows-jsonl` argument. Th
 
 The tool does **not** extract PDF text, alter either input, embed legal source contents in the report, upload files, determine authenticity/currentness/reuse rights, or enable retrieval. Its report explicitly marks all legal and release-verification flags false. Keep the original files unchanged; the receipt is a separate derived metadata artifact.
 
+## 2B. Local article-to-Gazette comparison (text layer only)
+
+After preserving the original files and recording the metadata-only receipt, install the optional PDF dependency and run:
+
+```bash
+python -m pip install -r requirements-ocr.txt
+python tools/compare_action1_gazette.py \
+  --gazette-pdf "/path/to/original_gazette_supplement_225A.pdf" \
+  --law-rows-jsonl "/path/to/law_rows_ar.jsonl" \
+  --out "/path/to/controlled-intake/action1-text-match-report.json"
+```
+
+The comparison groups JSONL chunks by law/article, extracts the PDF's existing text layer with PyMuPDF, applies limited Arabic/digit/whitespace normalization, and reports exact normalized matches, repeated exact matches, prefix/suffix anchor matches, partial matches, and articles with no text match. It records zero-based PDF page indices and hashes/character counts only; it never writes extracted legal text to the report or modifies either source file.
+
+**Interpretation:** an exact normalized text match is a useful transcription comparison signal, not proof of Gazette authenticity, legal completeness, source permission, currentness, or legal correctness. Anchor-only results are weaker and require full page review. Repeated matches are ambiguous. A PDF with no usable text layer is reported as `no_pdf_text_layer`; this tool does not silently OCR it. OCR, if later needed, must be a separate reviewed derivation using Arabic Tesseract data and page-image comparison. The tool does not infer printed Gazette page numbers; reviewers must map printed labels manually.
+
+No comparison result changes `verified`, `in_force`, `as_of`, source permission, or retrieval eligibility. Keep all report and source files in the controlled workspace until source-use review permits any minimal metadata to be committed.
+
 ## 3. Gazette PDF execution order
 
 1. Verify identity and hash.
