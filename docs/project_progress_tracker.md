@@ -450,3 +450,5 @@ This checkpoint records discovery and engineering safeguards, not verified-law c
 - Latest workflow change commit: `9285236732f39b9b390284e59d4d5da543e6a456`; latest inventory/test/guide commits: `72948e5d36f60ee7a450c991a17dce285f603a06`, `cc1e72c957728c43c290b962e147c40b7667fb2e2`, `fbdbd508ad13dce3e526177b172dfbb03c9e2fe8`.
 - Validation remains pending: the connector has not returned a PR-triggered workflow run for the latest head. Do not claim CI pass until a run is visible and successful. The general Tests workflow already contains the Phase 2 validator/test and both Action 1 intake utility tests; the focused legal workflow now also covers the Phase 2 temporal-chain safeguards.
 - No database/runtime changes and no legal status, permission, currentness, lawyer approval or retrieval eligibility were promoted.
+
+- Hardened the Action 1 source-hashing utility to reject symbolic-link inputs instead of silently following them; added a regression test. This protects the provenance receipt from hashing an unintended target path. CI validation is pending.
