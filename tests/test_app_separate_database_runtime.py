@@ -3632,16 +3632,25 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(created.status_code, 200, created.text)
         case_id = created.json()["id"]
 
+        uploaded = self._mutate(
+            "post", f"/cases/{case_id}/docs",
+            json={
+                "name": "page-pinpoint-fixture.txt",
+                "text": "[[PDF_PAGE:17]]\\n\\nمدة التقادم في المثال التشغيلي سبع سنوات",
+            },
+        )
+        self.assertEqual(uploaded.status_code, 200, uploaded.text)
         context = self.runtime.resolve_context(self.user_id, self.firm_a)
         firm_db = self.runtime.firm_connection(context)
-        app.add_chunks(firm_db, [{
-            "ref": "Page pinpoint fixture",
-            "text": "مدة التقادم في المثال التشغيلي سبع سنوات",
-            "case_id": case_id,
-            "source": "case-file",
-            "article": "12",
-            "page": "17",
-        }])
+        chunk = firm_db.execute(
+            "SELECT id FROM chunks WHERE document_id=? AND case_id=? ORDER BY id LIMIT 1",
+            (uploaded.json()["document_id"], case_id),
+        ).fetchone()
+        self.assertIsNotNone(chunk)
+        firm_db.execute(
+            "UPDATE chunks SET ref=?,article=? WHERE id=?",
+            ("Page pinpoint fixture", "12", chunk["id"]),
+        )
         firm_db.commit()
 
         conversation = self._mutate("post", "/research/conversations", json={})
