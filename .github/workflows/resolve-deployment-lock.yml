@@ -49,33 +49,3 @@ jobs:
           path: requirements-py312.lock
           if-no-files-found: error
           retention-days: 7
-
-  commit-lock:
-    name: Commit generated lock to same-repository PR branch
-    permissions:
-      contents: write
-    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
-    needs: resolve
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out PR branch
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
-      - name: Download generated lock
-        uses: actions/download-artifact@v4
-        with:
-          name: requirements-py312-lock
-      - name: Commit only the generated lockfile
-        env:
-          HEAD_REF: ${{ github.event.pull_request.head.ref }}
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add requirements-py312.lock
-          if git diff --cached --quiet; then
-            echo "Lockfile is already current."
-          else
-            git commit -m "Add Python 3.12 hash-locked deployment dependencies"
-            git push origin "HEAD:${HEAD_REF}"
-          fi
