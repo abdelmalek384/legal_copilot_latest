@@ -24,6 +24,8 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         register_ids = {source["source_id"] for source in register["sources"]}
         self.assertIn("EG-MINISTRY-LABOUR-LAWS", register_ids)
         self.assertIn("EG-MINISTRY-LABOUR-LAWS", self.inventory["source_ids"])
+        self.assertIn("EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE", register_ids)
+        self.assertIn("EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE", self.inventory["source_ids"])
         self.assertNotIn("EG-MINISTRY-OF-LABOUR", self.inventory["source_ids"])
         for document_id in (
             "EG-LABOUR-WORK-REGULATION-RULES-2026",
