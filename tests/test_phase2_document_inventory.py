@@ -125,6 +125,7 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         self.assertTrue(any("dspace.id.com.eg/items/3ce63ac9" in u["url"] for u in next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-PM-DECISION-1572-2026")["source_urls"]))
         self.assertTrue(any("dspace.id.com.eg/items/080b6ab2" in u["url"] for u in next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-PM-DECISION-2033-2026")["source_urls"]))
         self.assertTrue(any("dspace.id.com.eg/collections/bb4a4122" in u["url"] and u["status"] == "official_collection_listing_candidate_not_item_pinned" for u in next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-PM-DECISION-2590-2026")["source_urls"]))
+        self.assertTrue(any("business.ahram.org.eg/News/134866.aspx" in u["url"] and u["status"] == "secondary_reported_gazette_issue_not_officially_pinned" for u in next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-PM-DECISION-3165-2026")["source_urls"]))
         self.assertTrue(any(u["status"].endswith("requires_DSpace_login") for u in next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-PM-DECISION-1305-2026")["source_urls"] if "dspace.id.com.eg" in u["url"]))
         for document_id in ("EG-LABOUR-PM-DECISION-1572-2026", "EG-LABOUR-PM-DECISION-2033-2026"):
             record = next(d for d in self.inventory["documents"] if d["document_id"] == document_id)
