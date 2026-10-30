@@ -35,6 +35,29 @@ class Decision250Table24InventoryTests(unittest.TestCase):
         self.assertFalse(index["official_pdf_bytes_downloaded_and_hashed"])
         self.assertFalse(index["authoritative_retrieval_eligible"])
 
+    def test_decisions_249_251_252_candidate_maps_remain_quarantined(self):
+        expected = {
+            "decision_249_secondary_article_table_map_2026-10-30.json": {"article": 22, "table": 3, "appendix": 1},
+            "decision_251_secondary_article_candidate_map_2026-10-30.json": {"article": 11},
+            "decision_252_secondary_article_candidate_map_2026-10-30.json": {"article": 36, "table": 1},
+        }
+        for filename, expected_types in expected.items():
+            payload = json.loads((CANDIDATE_DIR / filename).read_text(encoding="utf-8"))
+            records = payload["records"]
+            actual_types = {}
+            for record in records:
+                kind = record["record_type"]
+                actual_types[kind] = actual_types.get(kind, 0) + 1
+                self.assertEqual(record["source_class"], "secondary_scan_image_reproduction")
+                self.assertEqual(record["official_gazette_match"], "not_performed")
+                self.assertIsNone(record["official_pdf_sha256"])
+                self.assertEqual(record["currentness_review"], "not_started")
+                self.assertEqual(record["source_use_review"], "not_started")
+                self.assertEqual(record["counsel_review"], "not_started")
+                self.assertEqual(record["status"], "candidate_only_pending_official_match")
+                self.assertFalse(record["retrieval_eligible"])
+            self.assertEqual(actual_types, expected_types)
+
     def test_official_gazette_manifest_preserves_restricted_access_and_rights_status(self):
         manifest = json.loads((ROOT / "docs" / "source_manifest.json").read_text(encoding="utf-8"))
         source = next(item for item in manifest["sources"] if item["id"] == "EG-OFFICIAL-GAZETTE")
