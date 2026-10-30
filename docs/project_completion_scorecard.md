@@ -48,21 +48,33 @@ The product cannot be called production-ready or legally approved until all appl
 - [ ] A permission-cleared primary legal corpus and lawyer-approved benchmark meet the legal release gate.
 - [ ] Qualified Egyptian counsel tests the actual application and records approval or required corrections.
 
+## Latest merged progress — 2026-10-30
+
+- **PR #931 merged:** registered الذاكرة والمعرفة للدراسات as a public Egyptian legal-document archive discovery lead. Its pages state CC BY 4.0 and expose full-text records across Court of Cassation, Supreme Constitutional Court, Supreme Administrative Court, laws and decisions. Collection/commercial reuse remain **unknown** because licence scope, underlying rights and provenance are not fully established. No legal text was imported.
+- **PR #750 merged:** added five provisional Labour Law Articles 237–241 review questions; they remain non-authoritative and require source/counsel review.
+- **PR #797 merged:** added the Labour Law implementing-decision verification matrix and restricted-source fallback documentation.
+- **PR #926 and #928 remain merged:** metadata-only source discovery and PDF importer resource bounds.
+- **CI/security dependency updates merged:** #911 checkout v7, #912 setup-python v7, #913 upload-artifact v7, #915 PyMuPDF 2.0.0, #916 pypdf update, #918 FastAPI 0.162.0, and #919 CodeQL Action v4. Their relevant tests/security checks passed before merge.
+- **No percentage increase is claimed:** the legal source additions are discovery/provisional work, not verified or counsel-approved legal content. The verified Egyptian legal corpus remains at 6%.
+
 ## Current open implementation items
 
-- **PR #840** — Labour Law 14/2025 / Decisions 248–252 evidence ledger; remains draft/open. It is metadata and comparison-workflow work only; original Gazette issue 225(A) copy remains request-copy restricted, so no full Decision 248–252 source verification or verified-law coverage increase is claimed.
-- **PR #926 — merged** — added discovery-only records for the Ministry of Parliamentary Affairs enacted-laws index, IDSC Gazette repository, and Manshurat Qanuneya. Collection and commercial reuse remain unknown; no legal text was downloaded or made retrieval-eligible. Full Tests, CodeQL and dependency audit passed.
-- **PR #928 — merged** — current-main PDF importer resource limits (100 MiB PDF, 1,000 pages, 1 MiB metadata sidecars; bounded reads and fail-closed environment configuration). Full Tests, CodeQL and dependency audit passed.
-- **PR #918, #919, #922** — routine FastAPI, CodeQL action and Docker build action dependency updates; review CI and dependency compatibility before merging.
-- **PR #898** — S3 physical-purge state machine; separate database/storage workstream. Do not enable destructive purge without independent review, live S3/KMS/IAM evidence, approved retention policy and witnessed recovery.
-- **Database/storage workstream** — remains assigned separately; PR #925 merged the MFA lifecycle audit-failure rollback regression. Do not duplicate schema/migration/runtime changes or perform irreversible storage actions here.
-- **Superseded PRs** — #900 was replaced by merged #909; #903 merged; #904 was replaced by merged #923; #924 was superseded by current-main PR #928; #906 was superseded by merged #910.
+- **PR #782 — Labour Law evidence inventory:** open, non-DB work. The canonical main file contains 294 cards; manifest and report have been aligned to that actual count. Split snapshots are excluded until duplicate/divergent records are reconciled. The cards remain provisional and search-ineligible. Latest full CI is running; do not merge until Tests, CodeQL and dependency audit pass on the final head.
+- **PR #840 — Decisions 248–252 / Table 24:** remains draft/open. Secondary transcription line cross-checks are now recorded for Table 24 rows 34, 61 and 64, but all three discrepancies remain unresolved. Original Gazette issue 225(A) is still request-copy restricted; official matches 0/781, counsel-approved rows 0, retrieval-eligible rows 0.
+- **PR #784 — Decision 162 currentness lead:** remains draft/open. Keep signature date, Gazette publication date, commencement and later amendments separate until primary-source reconciliation is complete.
+- **PR #922 — Docker build-action update:** open but blocked by a failing cross-firm reminder-healthcheck test. Do not bypass or weaken the tenant-isolation assertion.
+- **PR #914 — Boto3 update:** held for review alongside the separate S3/storage workstream.
+- **PR #917 — Pillow update:** tests passed on its branch, but it has a merge conflict against current main; synchronize and rerun checks before merging.
+- **PR #898 — S3 physical-purge state machine:** separate database/storage workstream. Do not enable destructive purge without independent review, live S3/KMS/IAM evidence, approved retention policy and witnessed recovery.
+- **Database/storage workstream:** remains assigned separately. Do not duplicate schema, migration, identity or destructive storage changes here.
 
 ## Next highest-value priorities
 
-1. Complete the product-wide manual QA and release smoke-test evidence, including physical Windows/macOS launcher tests and Arabic-first workflows on phone, tablet and desktop.
-2. Close production operations gaps: staging configuration, monitoring, scheduler ownership/reconciliation, and witnessed recovery.
-3. Complete the separate database/storage workstream and validate the integration without unsafe cutover.
-4. Continue lawful primary-source discovery using public official indexes and item-level metadata; keep text quarantined until source rights, authenticity, currentness and counsel review are evidenced.
-5. Finish independent security review and the post-build Egyptian-counsel acceptance.
+1. Complete the 294-card canonical Labour Law inventory validation and merge PR #782 only after all required checks pass.
+2. Continue obtaining lawful primary Gazette evidence for Decisions 248–252 and other implementing instruments; keep secondary transcriptions and third-party scans quarantined.
+3. Assess the new Egyptian case-law archive's CC BY 4.0 scope and Article 141 rights context without bulk scraping or assuming official provenance; use it as discovery/cross-reference material until source and rights gates are clear.
+4. Close production operations gaps: real staging configuration, monitoring/alert routing, scheduler ownership/reconciliation, and witnessed backup/restore.
+5. Complete manual Arabic RTL/LTR, mobile, desktop, keyboard, screen-reader and lawyer-workflow acceptance.
+6. Complete the separate database/storage workstream and validate integration without unsafe cutover.
+7. Obtain qualified Egyptian counsel's actual application acceptance after technical completion.
 
