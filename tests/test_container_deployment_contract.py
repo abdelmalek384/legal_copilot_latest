@@ -35,13 +35,19 @@ class ContainerDeploymentContractTests(unittest.TestCase):
         self.assertIn(".env", ignore)
         self.assertIn(".env.*", ignore)
         example = (ROOT / ".env.production.example").read_text(encoding="utf-8")
-        for placeholder in (
-            "REPLACE_WITH_RANDOM_SECRET",
-            "REPLACE_WITH_FERNET_BACKUP_KEY",
-            "REPLACE_WITH_DIFFERENT_FERNET_MFA_KEY",
-            "REPLACE_WITH_PRIVATE_BUCKET",
+        self.assertIn("ADMIN_TOKEN=PLACEHOLDER_SET_IN_SECRET_MANAGER", example)
+        for required_setting in (
+            "COPILOT_ALLOWED_HOSTS=",
+            "COPILOT_PUBLIC_ORIGIN=",
+            "BACKUP_KEY=",
+            "MFA_ENCRYPTION_KEY=",
+            "COPILOT_S3_BUCKET=",
+            "COPILOT_S3_REGION=",
+            "COPILOT_S3_KMS_KEY_ID=",
+            "COPILOT_EMAIL_SMTP_HOST=",
+            "COPILOT_EMAIL_FROM=",
         ):
-            self.assertIn(placeholder, example)
+            self.assertIn(required_setting, example)
         self.assertNotIn("AKIA", example)
 
     def test_ci_builds_both_supported_container_architectures(self):
