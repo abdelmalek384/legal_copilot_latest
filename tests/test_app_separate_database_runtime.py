@@ -2323,7 +2323,14 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
 
         # The same stale cookie must not retain access through other route
         # families after the control-plane membership is revoked.
+        identity_before = control.execute(
+            "SELECT password_hash FROM users WHERE id=?", (self.user_id,)
+        ).fetchone()["password_hash"]
+        mfa_event_count_before = control.execute(
+            "SELECT COUNT(*) FROM mfa_security_events WHERE actor_user_id=?", (self.user_id,)
+        ).fetchone()[0]
         revoked_route_attempts = [
+            ("get", "/session", None),
             ("get", "/dashboard", None),
             ("get", "/calendar.ics", None),
             ("get", "/finance/overview", None),
@@ -2340,6 +2347,24 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             ("get", "/audit/security-events.csv", None),
             ("post", "/search", {"q": "FIRM_B_PRIVATE_SENTINEL"}),
             ("post", "/ask", {"q": "FIRM_B_PRIVATE_SENTINEL"}),
+            # Revocation must also block identity/account-security operations,
+            # not merely matter and research endpoints.
+            ("post", "/account/password", {
+                "current_password": self.password,
+                "new_password": "RevokedAccountNewPassword-2026!",
+            }),
+            ("post", "/account/mfa/enroll", {"current_password": self.password}),
+            ("post", "/account/mfa/confirm", {
+                "current_password": self.password, "code": "123456",
+            }),
+            ("post", "/account/mfa/verify", {"code": "123456"}),
+            ("post", "/account/mfa/recovery-codes/rotate", {
+                "current_password": self.password, "code": "123456",
+            }),
+            ("post", "/account/mfa/re-enroll", {"current_password": self.password}),
+            ("post", "/account/mfa/disable", {
+                "current_password": self.password, "code": "123456",
+            }),
         ]
         for method, path, payload in revoked_route_attempts:
             with self.subTest(method=method, path=path):
@@ -2356,6 +2381,19 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
                 self.runtime.resolve_context(self.user_id, self.firm_a)
             ).execute("SELECT COUNT(*) FROM cases").fetchone()[0],
             0,
+        )
+        self.assertEqual(
+            control.execute("SELECT password_hash FROM users WHERE id=?", (self.user_id,)).fetchone()["password_hash"],
+            identity_before,
+        )
+        self.assertIsNone(control.execute(
+            "SELECT user_id FROM mfa_credentials WHERE user_id=?", (self.user_id,)
+        ).fetchone())
+        self.assertEqual(
+            control.execute(
+                "SELECT COUNT(*) FROM mfa_security_events WHERE actor_user_id=?", (self.user_id,)
+            ).fetchone()[0],
+            mfa_event_count_before,
         )
 
     def test_audit_lists_and_csv_exports_are_scoped_to_active_firm(self):
