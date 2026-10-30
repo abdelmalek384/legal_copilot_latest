@@ -45,10 +45,11 @@ class LegalImportBundleTests(unittest.TestCase):
     def test_valid_pair_returns_actual_hash_and_metadata(self):
         prepared = validate_inputs(self.source, self.output)
         self.assertEqual(len(prepared), 1)
-        _, metadata, pdf, actual_hash = prepared[0]
+        _, metadata, pdf, pdf_bytes, actual_hash = prepared[0]
         self.assertEqual(metadata["document_id"], "DOC-001")
         self.assertEqual(pdf.name, "sample_law.pdf")
-        self.assertEqual(actual_hash, hashlib.sha256(self.pdf_bytes).hexdigest())
+        self.assertEqual(pdf_bytes, self.pdf_bytes)
+        self.assertEqual(actual_hash, hashlib.sha256(pdf_bytes).hexdigest())
         self.assertFalse(self.output.exists())
 
     def test_extracted_rows_remain_unverified_and_report_full_hash(self):
@@ -65,6 +66,32 @@ class LegalImportBundleTests(unittest.TestCase):
         self.assertIn(hashlib.sha256(self.pdf_bytes).hexdigest(), rows[0]["source"])
         report = (self.output / "import_report.md").read_text(encoding="utf-8")
         self.assertIn("verified PDF SHA-256", report)
+
+    def test_extraction_uses_the_exact_bytes_that_were_hashed(self):
+        from tools import import_laws
+
+        prepared = validate_inputs(self.source, self.output)
+        _, _, pdf_path, validated_bytes, validated_hash = prepared[0]
+        replacement = b"%PDF-1.7\\nreplacement bytes after validation"
+        pdf_path.write_bytes(replacement)
+        observed = {}
+
+        def capture(pdf_bytes, cache_root, content_sha256, cache_key):
+            observed["bytes"] = pdf_bytes
+            observed["hash"] = content_sha256
+            observed["cache_key"] = cache_key
+            return ["Article 1\\nValidated original bytes"], False
+
+        with mock.patch.object(import_laws, "validate_inputs", return_value=prepared):
+            with mock.patch.object(import_laws, "page_texts", side_effect=capture):
+                import_laws.main(self.source, self.output)
+
+        self.assertEqual(observed["bytes"], validated_bytes)
+        self.assertEqual(observed["hash"], validated_hash)
+        self.assertEqual(observed["cache_key"], "sample_law")
+        self.assertNotEqual(observed["bytes"], replacement)
+        rows = [json.loads(line) for line in (self.output / "law_rows.jsonl").read_text(encoding="utf-8").splitlines()]
+        self.assertIn(validated_hash, rows[0]["source"])
 
     def test_hash_mismatch_is_rejected_before_output_creation(self):
         sidecar = self.source / "sample_law.json"
@@ -104,7 +131,8 @@ class LegalImportBundleTests(unittest.TestCase):
         pdf_bytes = b"\xef\xbb\xbf" + b"%" + b"PDF-1.7\nbody"
         self._write_pair("sample_law", "DOC-001", pdf_bytes)
         prepared = validate_inputs(self.source, self.output)
-        self.assertEqual(prepared[0][3], hashlib.sha256(pdf_bytes).hexdigest())
+        self.assertEqual(prepared[0][4], hashlib.sha256(prepared[0][3]).hexdigest())
+        self.assertEqual(prepared[0][3], pdf_bytes)
 
     def test_non_pdf_signature_is_rejected(self):
         pdf = self.source / "sample_law.pdf"
@@ -191,12 +219,12 @@ class LegalImportBundleTests(unittest.TestCase):
             def __iter__(self):
                 return iter([Page()])
 
-        fake_pymupdf = SimpleNamespace(open=lambda _path: Document())
+        fake_pymupdf = SimpleNamespace(open=lambda **kwargs: Document())
         cache_root = self.output / ".ocr_cache"
         pdf_path = self.source / "sample_law.pdf"
         with mock.patch.dict(sys.modules, {"pymupdf": fake_pymupdf}):
             with mock.patch.object(import_laws, "_ocr", return_value="recognized page") as ocr:
-                pages, used = import_laws.page_texts(pdf_path, cache_root, "a" * 64)
+                pages, used = import_laws.page_texts(self.pdf_bytes, cache_root, "a" * 64, "sample_law")
                 self.assertTrue(used)
                 self.assertEqual(pages, ["recognized page"])
                 ocr.assert_called_once()
@@ -204,7 +232,7 @@ class LegalImportBundleTests(unittest.TestCase):
                 pages, used = import_laws.page_texts(pdf_path, cache_root, "a" * 64)
                 self.assertEqual(pages, ["recognized page"])
             with mock.patch.object(import_laws, "_ocr", return_value="new source text"):
-                pages, used = import_laws.page_texts(pdf_path, cache_root, "b" * 64)
+                pages, used = import_laws.page_texts(self.pdf_bytes, cache_root, "b" * 64, "sample_law")
                 self.assertEqual(pages, ["new source text"])
 
             cache_dir = cache_root / ("sample_law-" + "c" * 16)
@@ -213,7 +241,7 @@ class LegalImportBundleTests(unittest.TestCase):
             external.write_text("outside", encoding="utf-8")
             (cache_dir / "0.txt").symlink_to(external)
             with self.assertRaisesRegex(SystemExit, "OCR cache page"):
-                import_laws.page_texts(pdf_path, cache_root, "c" * 64)
+                import_laws.page_texts(self.pdf_bytes, cache_root, "c" * 64, "sample_law")
 
     def test_source_and_output_paths_must_be_separate_regular_directories(self):
         with self.assertRaisesRegex(SystemExit, "separate"):
