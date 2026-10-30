@@ -185,6 +185,7 @@ def main() -> int:
             tenant_root=runtime.paths.tenant_root,
             corpus_database_path=runtime.paths.legal_corpus,
             object_store=store,
+            quiesced=args.quiesced,
         )
         report = {
             "decision": "completed" if args.apply else "dry_run",
