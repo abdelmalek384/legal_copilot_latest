@@ -55,6 +55,7 @@ class TenantSQLiteConnectionRouterTests(unittest.TestCase):
                 "INSERT INTO firms(id,name) VALUES(?,?)",
                 [(101, "Firm A"), (202, "Firm B")],
             )
+            db.commit()
             initialize_catalog(db)
 
     def _catalog(self):
