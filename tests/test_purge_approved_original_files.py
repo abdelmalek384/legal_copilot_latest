@@ -16,6 +16,55 @@ from original_file_storage import LocalPrivateObjectStore
 from tools.purge_approved_original_files import purge_approved_requests
 
 
+
+class _PurgeStateMachineMissingObject(Exception):
+    response = {"Error": {"Code": "NoSuchKey"}, "ResponseMetadata": {"HTTPStatusCode": 404}}
+
+
+class _PurgeStateMachineFakeS3:
+    def __init__(self):
+        self.objects = {}
+
+    def head_object(self, *, Bucket, Key):
+        item = self.objects.get((Bucket, Key))
+        if item is None:
+            raise _PurgeStateMachineMissingObject(Key)
+        return {
+            "ContentLength": len(item["Body"]),
+            "Metadata": dict(item["Metadata"]),
+            "ServerSideEncryption": "aws:kms",
+            "SSEKMSKeyId": "test-kms-key",
+            "ETag": '"synthetic-etag"',
+        }
+
+    def get_object(self, *, Bucket, Key):
+        import io
+        item = self.objects.get((Bucket, Key))
+        if item is None:
+            raise _PurgeStateMachineMissingObject(Key)
+        return {
+            "Body": io.BytesIO(item["Body"]),
+            "ServerSideEncryption": "aws:kms",
+            "SSEKMSKeyId": "test-kms-key",
+        }
+
+    def list_objects_v2(self, *, Bucket, Prefix, **kwargs):
+        return {
+            "Contents": [
+                {"Key": key} for (bucket, key) in self.objects
+                if bucket == Bucket and key.startswith(Prefix)
+            ],
+            "IsTruncated": False,
+        }
+
+    def get_bucket_versioning(self, *, Bucket):
+        return {}
+
+    def delete_object(self, *, Bucket, Key):
+        self.objects.pop((Bucket, Key), None)
+        return {}
+
+
 class PurgeApprovedOriginalFilesTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
@@ -318,6 +367,199 @@ class PurgeApprovedOriginalFilesTests(unittest.TestCase):
             self.assertEqual(tombstone[1], self.operator_id)
         finally:
             connection.close()
+
+
+    def _prepare_s3_purge(self, *, legal_hold=False):
+        import io
+        from s3_original_file_storage import S3PrivateObjectStore
+
+        staged, request_id = self._create_approved_request()
+        client = _PurgeStateMachineFakeS3()
+        bucket = "purge-state-machine-test"
+        key = f"firms/{self.firm_id}/originals/{staged.object_id}.blob"
+        payload = b"approved purge original bytes"
+        client.objects[(bucket, key)] = {
+            "Body": payload,
+            "Metadata": {"sha256": staged.sha256, "firm-id": str(self.firm_id)},
+        }
+        tenant = sqlite3.connect(self.tenant_path)
+        try:
+            tenant.execute(
+                """UPDATE original_file_objects
+                   SET storage_backend='s3', legal_hold=?,
+                       hold_reason=CASE WHEN ?=1 THEN 'synthetic test legal hold' ELSE hold_reason END,
+                       hold_set_by=CASE WHEN ?=1 THEN ? ELSE hold_set_by END,
+                       hold_set_at=CASE WHEN ?=1 THEN datetime('now') ELSE hold_set_at END
+                   WHERE object_id=?""",
+                (
+                    1 if legal_hold else 0,
+                    1 if legal_hold else 0,
+                    1 if legal_hold else 0, self.operator_id,
+                    1 if legal_hold else 0,
+                    staged.object_id,
+                ),
+            )
+            tenant.commit()
+        finally:
+            tenant.close()
+        local_path = self.object_root / f"firm-{self.firm_id}" / f"{staged.object_id}.blob"
+        if local_path.exists():
+            local_path.unlink()
+        store = S3PrivateObjectStore(client, bucket=bucket, kms_key_id="test-kms-key")
+        self.runtime.disable_firm(self.firm_id)
+        control = self.runtime.control_connection()
+        control.execute(
+            "UPDATE firm_memberships SET status='suspended',updated_at=datetime('now') WHERE firm_id=?",
+            (self.firm_id,),
+        )
+        control.commit()
+        self.runtime.close_current_thread()
+        return staged, request_id, store, client, bucket, key
+
+    def test_s3_state_machine_refuses_legal_hold_without_deleting_object(self):
+        staged, request_id, store, client, bucket, key = self._prepare_s3_purge(legal_hold=True)
+        with patch.dict("os.environ", {
+            "COPILOT_OBJECT_STORAGE_BACKEND": "s3",
+            "COPILOT_ENV": "test",
+        }):
+            with patch("tools.purge_approved_original_files._validate_s3_apply_authorization"):
+                with self.assertRaisesRegex(RuntimeError, "offboarding preflight findings"):
+                    purge_approved_requests(
+                        self.tenant_path, None, self.firm_id, self.operator_id,
+                        apply=True, control_database_path=self.control_path,
+                        tenant_root=self.tenant_root, corpus_database_path=self.corpus_path,
+                        object_store=store, quiesced=True,
+                    )
+        self.assertIn((bucket, key), client.objects)
+        tenant = sqlite3.connect(self.tenant_path)
+        try:
+            request = tenant.execute(
+                "SELECT status,cancelled_by_user_id,cancellation_reason "
+                "FROM original_file_deletion_requests WHERE id=?", (request_id,)
+            ).fetchone()
+            metadata = tenant.execute(
+                "SELECT legal_hold,purged_at FROM original_file_objects WHERE object_id=?",
+                (staged.object_id,),
+            ).fetchone()
+            self.assertEqual(request[0], "cancelled")
+            self.assertEqual(request[1], self.operator_id)
+            self.assertEqual(request[2], "Automatically cancelled by legal hold")
+            self.assertEqual(metadata, (1, None))
+            event = tenant.execute(
+                "SELECT action,actor_user_id FROM original_file_deletion_events "
+                "WHERE request_id=? ORDER BY id DESC LIMIT 1", (request_id,)
+            ).fetchone()
+            self.assertEqual(event, ("cancelled", self.operator_id))
+        finally:
+            tenant.close()
+
+    def test_s3_state_machine_commit_failure_records_manual_review_after_delete(self):
+        staged, request_id, store, client, bucket, key = self._prepare_s3_purge()
+        original_connect = sqlite3.connect
+
+        class CommitFailureConnection:
+            def __init__(self, connection):
+                self._connection = connection
+
+            def __setattr__(self, name, value):
+                if name == "_connection":
+                    object.__setattr__(self, name, value)
+                else:
+                    setattr(self._connection, name, value)
+
+            def commit(self):
+                raise sqlite3.OperationalError("injected tenant commit failure")
+
+            def __getattr__(self, name):
+                return getattr(self._connection, name)
+
+        def connect_with_commit_failure(database, *args, **kwargs):
+            try:
+                is_tenant = Path(database).resolve() == self.tenant_path.resolve()
+            except (TypeError, ValueError):
+                is_tenant = False
+            connection = original_connect(database, *args, **kwargs)
+            return CommitFailureConnection(connection) if is_tenant else connection
+
+        with patch.dict("os.environ", {
+            "COPILOT_OBJECT_STORAGE_BACKEND": "s3",
+            "COPILOT_ENV": "test",
+        }):
+            with patch("tools.purge_approved_original_files._validate_s3_apply_authorization"):
+                with patch("tools.purge_approved_original_files.sqlite3.connect", side_effect=connect_with_commit_failure):
+                    result = purge_approved_requests(
+                        self.tenant_path, None, self.firm_id, self.operator_id,
+                        apply=True, control_database_path=self.control_path,
+                        tenant_root=self.tenant_root, corpus_database_path=self.corpus_path,
+                        object_store=store, quiesced=True,
+                    )
+        self.assertEqual(result["purged_count"], 0)
+        self.assertEqual(result["results"][0]["status"], "manual_review_required")
+        self.assertNotIn((bucket, key), client.objects)
+        tenant = original_connect(self.tenant_path)
+        try:
+            request = tenant.execute(
+                "SELECT status FROM original_file_deletion_requests WHERE id=?", (request_id,)
+            ).fetchone()
+            metadata = tenant.execute(
+                "SELECT purged_at FROM original_file_objects WHERE object_id=?", (staged.object_id,)
+            ).fetchone()
+            self.assertEqual(request[0], "approved")
+            self.assertIsNone(metadata[0])
+        finally:
+            tenant.close()
+
+        # A subsequent run must not infer that a missing S3 key proves a
+        # completed purge. The inconsistent state stays blocked for manual review.
+        with patch.dict("os.environ", {
+            "COPILOT_OBJECT_STORAGE_BACKEND": "s3",
+            "COPILOT_ENV": "test",
+        }):
+            with patch("tools.purge_approved_original_files._validate_s3_apply_authorization"):
+                with self.assertRaisesRegex(RuntimeError, "offboarding preflight findings"):
+                    purge_approved_requests(
+                        self.tenant_path, None, self.firm_id, self.operator_id,
+                        apply=True, control_database_path=self.control_path,
+                        tenant_root=self.tenant_root, corpus_database_path=self.corpus_path,
+                        object_store=store, quiesced=True,
+                    )
+        self.assertNotIn((bucket, key), client.objects)
+        tenant = original_connect(self.tenant_path)
+        try:
+            request = tenant.execute(
+                "SELECT status FROM original_file_deletion_requests WHERE id=?", (request_id,)
+            ).fetchone()
+            self.assertEqual(request[0], "approved")
+        finally:
+            tenant.close()
+
+    def test_s3_state_machine_rejects_wrong_firm_database_binding(self):
+        staged, _, store, client, bucket, key = self._prepare_s3_purge()
+        wrong_firm_id, _ = self.runtime.provision_firm("Wrong Firm Purge Target")
+        self.runtime.disable_firm(wrong_firm_id)
+        self.runtime.close_current_thread()
+        with patch.dict("os.environ", {
+            "COPILOT_OBJECT_STORAGE_BACKEND": "s3",
+            "COPILOT_ENV": "test",
+        }):
+            with patch("tools.purge_approved_original_files._validate_s3_apply_authorization"):
+                with self.assertRaisesRegex(RuntimeError, "does not match the trusted catalog"):
+                    purge_approved_requests(
+                        self.tenant_path, None, wrong_firm_id, self.operator_id,
+                        apply=True, control_database_path=self.control_path,
+                        tenant_root=self.tenant_root, corpus_database_path=self.corpus_path,
+                        object_store=store, quiesced=True,
+                    )
+        self.assertIn((bucket, key), client.objects)
+        tenant = sqlite3.connect(self.tenant_path)
+        try:
+            request = tenant.execute(
+                "SELECT status FROM original_file_deletion_requests WHERE object_id=?",
+                (staged.object_id,),
+            ).fetchone()
+            self.assertEqual(request[0], "approved")
+        finally:
+            tenant.close()
 
 
 if __name__ == "__main__":
