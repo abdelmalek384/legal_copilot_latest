@@ -1,5 +1,6 @@
 import hashlib
 import io
+import json
 import sqlite3
 import tempfile
 import unittest
@@ -355,7 +356,7 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
         staged = self.store.stage(12, b"physical purge payload")
         self.store.finalize(12, staged.object_id)
         self.client.versioning_status = "Enabled"
-        with self.assertRaisesRegex(ObjectStorageError, "versioned or suspended"):
+        with self.assertRaisesRegex(ObjectStorageError, "never-versioned"):
             self.store.purge_unversioned(
                 12, staged.object_id, expected_sha256=staged.sha256,
                 expected_size=staged.byte_size,
