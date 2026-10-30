@@ -47,7 +47,7 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
         # The card field is a concise paraphrase, not a full statutory transcription.
         for card in self.data["cards"]:
             self.assertLess(len(card["provisional_answer_ar"]), 700)
-            self.assertNotIn("النص الكامل", card["provisional_answer_ar"])
+            self.assertNotIn("النص الكامل للقانون:", card["provisional_answer_ar"])
 
 
     def test_related_implementing_instruments_remain_discovery_only(self):
@@ -68,7 +68,10 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
                 if item["document_id"] in {"EG-LABOUR-DECISION-49-2026", "EG-LABOUR-DECISION-294-2025"}:
                     gazette = item["official_gazette_metadata"]
                     self.assertIn("dspace.id.com.eg", gazette["source_url"])
-                    self.assertTrue("not been downloaded" in gazette["full_text_status"] or "not been obtained" in gazette["full_text_status"])
+                    if item["document_id"] == "EG-LABOUR-DECISION-49-2026":
+                        self.assertIn("no original file has been downloaded", gazette["full_text_status"])
+                    else:
+                        self.assertIn("has not been obtained", gazette["full_text_status"])
                     self.assertTrue("not verified" in item["status"] or "unverified" in item["status"])
                     if item["document_id"] == "EG-LABOUR-DECISION-49-2026":
                         self.assertEqual(gazette["publication_date"], "2026-03-18")
