@@ -2194,9 +2194,10 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
         self.assertEqual(login.status_code, 200, login.text)
 
-        for malformed in ("", "garbage", "Bearer", "Basic abc", "Bearer not-a-real-token"):
-            response = self.client.get("/cases", headers={"Authorization": malformed})
-            self.assertEqual(response.status_code, 401, malformed)
+        with TestClient(app.app) as unauthenticated:
+            for malformed in ("", "garbage", "Bearer", "Basic abc", "Bearer not-a-real-token"):
+                response = unauthenticated.get("/cases", headers={"Authorization": malformed})
+                self.assertEqual(response.status_code, 401, malformed)
 
         missing_csrf = self.client.post("/cases", json={"title": "Missing CSRF"})
         self.assertEqual(missing_csrf.status_code, 403, missing_csrf.text)
