@@ -87,3 +87,21 @@ https://www.almasdar.com/keyword/5037?page=1
 - None of these pages is the issuing authority or official Gazette publisher. No source PDF was downloaded, hashed or visually compared; no access restriction was bypassed.
 
 **Updated source counts:** Decisions 248–252 secondary public full/partial text routes: 5/5 located (248 and 250 full secondary transcriptions; 249, 251 and 252 partial public text); original Gazette matches remain 0/5; counsel approvals remain none; retrieval eligibility remains false.
+
+
+### Independent secondary synthesis: Youm7, 28 October 2026
+
+A single secondary news analysis was published on 28 October 2026 and discusses all five decisions together:
+https://www.youm7.com/story/2026/10/28/حماية-أرواح-العمال-أولوية-وزارة-العمل-تحدد-مهلة-24-ساعة-للإبلاغ-عن-الحوادث-داخل-مواقع-الإنتاج-وتلزم-المنشآت-بإعداد-تقارير-دورية-عن-إصابات-العمال-وتحدد-موعد-تقديم-الإحصائيات-في-يناير-ويوليو-وتضع-قواعد-جديدة/7590406
+
+The article supplies additional secondary detail beyond the partial Almasdar pages:
+
+- **248/2026:** describes the 24-hour / 48-hour reporting split, categories of serious incidents (including fatality, expected permanent disability of 35% or more, third-degree-or-worse burns, multiple simultaneous injuries, and specified fires/collapses/explosions/hazardous leaks), and a 30-worker threshold for semiannual statistics. It also reports January/July submission windows, a 15-day response after request, and three-year retention of records.
+- **249/2026:** reports a 50-worker threshold for required OSH units and committees, and treats a geographically or administratively separate site as a separate establishment for the threshold. It also summarizes risk categories and the employer's policy/resource responsibilities.
+- **250/2026:** confirms the decision's broad scope across workplace safety limits, machinery, hazardous substances, fire/explosion, radiation and pollutants. This supports the broad candidate comparison range of Labour Law Articles 246–253, not a final article mapping.
+- **251/2026:** reports Consultant A/B licensing, degree and experience pathways (including 20 years for Consultant A, with a 15-year PhD route; 15 years for Consultant B, with a 10-year PhD route), certificates/tests, application review timelines, three-year licence term, and fee tiers. These are high-risk quantitative details and must remain unverified.
+- **252/2026:** describes basic, advanced, specialised and targeted training programmes for OSH specialists, technicians, committee members and candidates.
+
+**Cross-check status:** This article independently corroborates the subject mapping and provides more detailed secondary leads. It is not the Ministry's decision text, the Official Gazette, or a substitute for the original annexes. Do not use the reported thresholds, qualifications, fees, deadlines, incident definitions or retention period in authoritative answers until the original Gazette PDFs and annexes are obtained, hashed, visually reviewed and compared.
+
+The page does not establish a reuse licence. Preserve only bibliographic metadata and short paraphrased research notes; do not copy the full article or underlying decision text into the repository.
