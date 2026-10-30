@@ -44,7 +44,7 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         self.assertEqual(record["legal_status"], "unknown")
         self.assertEqual(record["review_status"], "discovery_only")
         self.assertTrue(any(a["id"] == "ACT-LABOUR-DECISION-49-2026-VERIFY" for a in self.inventory["next_actions"]))
-        self.assertIsNone(record["instrument_number"])
+        self.assertEqual(record["instrument_number"], 162)
         self.assertIn("official Gazette text/pages", record["notes"])
         self.assertEqual(validate_inventory(self.inventory), [])
 
