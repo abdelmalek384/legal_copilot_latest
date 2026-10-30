@@ -434,14 +434,22 @@ class PurgeApprovedOriginalFilesTests(unittest.TestCase):
         tenant = sqlite3.connect(self.tenant_path)
         try:
             request = tenant.execute(
-                "SELECT status FROM original_file_deletion_requests WHERE id=?", (request_id,)
+                "SELECT status,cancelled_by_user_id,cancellation_reason "
+                "FROM original_file_deletion_requests WHERE id=?", (request_id,)
             ).fetchone()
             metadata = tenant.execute(
                 "SELECT legal_hold,purged_at FROM original_file_objects WHERE object_id=?",
                 (staged.object_id,),
             ).fetchone()
-            self.assertEqual(request[0], "approved")
+            self.assertEqual(request[0], "cancelled")
+            self.assertEqual(request[1], self.operator_id)
+            self.assertEqual(request[2], "Automatically cancelled by legal hold")
             self.assertEqual(metadata, (1, None))
+            event = tenant.execute(
+                "SELECT action,actor_user_id FROM original_file_deletion_events "
+                "WHERE request_id=? ORDER BY id DESC LIMIT 1", (request_id,)
+            ).fetchone()
+            self.assertEqual(event, ("cancelled", self.operator_id))
         finally:
             tenant.close()
 
