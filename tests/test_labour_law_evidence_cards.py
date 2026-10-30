@@ -1,7 +1,23 @@
 import importlib.util
+from urllib.parse import urlsplit
 import json
 import unittest
 from pathlib import Path
+
+def _has_https_host(url, expected_host):
+    try:
+        parsed = urlsplit(url)
+    except ValueError:
+        return False
+    hostname = (parsed.hostname or "").lower()
+    expected_host = expected_host.lower()
+    return (
+        parsed.scheme == "https"
+        and not parsed.username
+        and not parsed.password
+        and (hostname == expected_host or hostname.endswith("." + expected_host))
+    )
+
 
 ROOT = Path(__file__).resolve().parents[1]
 CARDS_PATH = ROOT / "data" / "candidates" / "labour_law_14_2025" / "provision_evidence_cards.json"
@@ -23,11 +39,11 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
                 self.assertTrue(card["provisional_answer_ar"].strip())
                 self.assertTrue(card["pinpoint"]["article"])
                 self.assertGreaterEqual(card["pinpoint"]["official_gazette_printed_page"], 1)
-                self.assertTrue(any("alamiria.com" in s["url"] for s in card["primary_evidence"]))
-                self.assertTrue(any("portal.eta.gov.eg" in s["url"] for s in card["primary_evidence"]))
+                self.assertTrue(any(_has_https_host(s["url"], "alamiria.com") for s in card["primary_evidence"]))
+                self.assertTrue(any(_has_https_host(s["url"], "portal.eta.gov.eg") for s in card["primary_evidence"]))
                 self.assertTrue(card["cross_checks"])
                 self.assertTrue(card["limitations"])
-                self.assertEqual(card["review_state"], "provisional_primary_text_extract_reviewed")
+                self.assertIn(card["review_state"], {"provisional_primary_text_extract_reviewed", "provisional_secondary_crosscheck"})
 
     def test_evidence_cards_fail_closed_and_are_not_authoritative_corpus(self):
         instrument = self.data["instrument"]
@@ -38,10 +54,22 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
         self.assertEqual(instrument["collection_permission"], "unknown")
         self.assertEqual(instrument["commercial_reuse_permission"], "unknown")
         self.assertFalse(instrument["search_eligible"])
+        self.assertTrue(all(card.get("search_eligible") is False for card in self.data["cards"]))
         self.assertGreaterEqual(len(self.data["activation_gates"]), 5)
         for card in self.data["cards"]:
             self.assertIn("not_usable_for", card)
             self.assertIn("usable_for", card)
+
+    def test_secondary_crosschecked_cards_remain_explicitly_non_authoritative(self):
+        cards = [card for card in self.data["cards"] if card["review_state"] == "provisional_secondary_crosscheck"]
+        self.assertEqual(len(cards), 43)
+        for card in cards:
+            with self.subTest(card_id=card["card_id"]):
+                self.assertFalse(card["search_eligible"])
+                self.assertEqual(card["pinpoint"]["pinpoint_status"], "inferred_not_visually_verified")
+                self.assertTrue(card["limitations"])
+                self.assertIn("لا توجد مراجعة محامٍ", " ".join(card["limitations"]))
+                self.assertTrue(card["not_usable_for"])
 
     def test_cards_do_not_embed_copied_statutory_text(self):
         # The card field is a concise paraphrase, not a full statutory transcription.
