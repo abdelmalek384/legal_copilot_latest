@@ -25,8 +25,8 @@
 These are discovery notes from a secondary reproduction. Verify all wording, numbers, qualifications and fees against the original Gazette before legal use:
 
 1. **Articles 1–2:** define OSH expertise/consultancy and prohibit practising those services without a Ministry of Labour licence. The decision creates two levels: Consultant A and Consultant B.
-2. **Article 3 — Consultant A:** the page image lists eligible bachelor-level disciplines, a long practical-experience requirement (shown as 20 years, with a reduction where the applicant holds a relevant doctorate), an accredited OSH certificate, digital-skills certification/ICDL route, an administrative examination, and a criminal-record/fitness condition.
-3. **Article 4 — Consultant B:** the image shows a similar but lower practical-experience threshold (shown as 15 years, with a reduction for a relevant doctorate), alongside the listed education, certification, examination and integrity conditions.
+2. **Article 3 — Consultant A:** the page image lists eligible bachelor-level disciplines, a practical-experience requirement shown as 20 years, reduced to 15 years for a relevant doctorate, an accredited OSH certificate, digital-skills certification/ICDL route, an administrative examination, and a criminal-record/fitness condition.
+3. **Article 4 — Consultant B:** the image shows a practical-experience requirement shown as 15 years, reduced to 10 years for a relevant doctorate, alongside the listed education, certification, examination and integrity conditions.
 4. **Article 5:** provides a document checklist for the licence application, including application form, CV, qualification evidence, identity, photographs, criminal record, experience proof and relevant certificates/attestations.
 5. **Article 6:** establishes a ministry-level technical/licensing committee and identifies its membership.
 6. **Article 7:** sets the application review/decision workflow and time periods. Exact day counts and deemed-rejection/notification consequences must be transcribed from the page image and compared with the official original before use.
@@ -53,3 +53,14 @@ Article 262 of Labour Law 14/2025 authorizes licensing rules for OSH expertise/c
 ## Next action
 
 Convert the page-level assertions into a row-by-row candidate register, preserving exact page/image locator, raw text, uncertainty flags and separate A/B licence classes. Compare all fields against the original Gazette supplement when it becomes ordinarily accessible.
+
+
+## Candidate detail captured from the reproduced pages
+
+- Consultant A experience: 20 years, apparently reduced to 15 years for a relevant doctorate.
+- Consultant B experience: 15 years, apparently reduced to 10 years for a relevant doctorate.
+- Article 7 candidate procedure: 15-day initial examination, 3 business days to notify the result, 30 days to complete missing documents, and a 30-day decision period after a complete application; non-response appears to be deemed rejection. The starting events and exact legal effect are not approved.
+- Article 8 candidate fees: A = EGP 3,000 initial / EGP 2,500 renewal; B = EGP 2,500 initial / EGP 2,000 renewal.
+- Article 9 candidate licence validity: three years.
+
+These are secondary scan observations only. They are below the parent-law Article 262 statutory fee ceiling of EGP 50,000, but that arithmetic does not verify the decision's legal status or the precise fee schedule.
