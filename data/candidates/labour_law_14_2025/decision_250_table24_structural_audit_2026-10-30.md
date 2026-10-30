@@ -2,7 +2,7 @@
 
 **Audit date:** 2026-10-30  
 **Branch:** `legal-knowledge-evidence-2026-10-29`  
-**Purpose:** Record an independent structural pass over all committed Table 24 candidate JSON files through row 694. This is not legal verification.
+**Purpose:** Record an independent structural pass over all 38 committed Table 24 candidate JSON files through row 781. This is not legal verification.
 
 ## Result
 
@@ -71,3 +71,16 @@ All candidates must remain `pending_official_match`. Table 24 rows officially ma
 ## Next gate
 
 Obtain the original Gazette supplement through authorized access, record the actual file hash, compare each candidate against the exact page image, resolve anomalies, assess currentness and source-use, and obtain qualified Egyptian OSH counsel review before enabling any row for authoritative retrieval.
+
+
+## Technical table-index cross-check — 2026-10-30
+
+The secondary transcription's contents map explicitly lists Table 24 at printed page 249 and the next chapter (records) at printed page 361. The same transcription labels the chemical exposure limits at its Table 24 heading; no Table 25 is listed. The technical table index had accidentally split this single table into entries 24 and 25 and incorrectly limited entry 24 to pages 249–250. The index is corrected: one Table 24, pp. 249–360, with the duplicate Table 25 entry removed.
+
+A new regression test, `tests/test_decision_250_table24_inventory.py`, checks that:
+- the technical index contains exactly 24 numbered tables and one Table 24 only;
+- Table 24's candidate section range is 249–360;
+- all 38 secondary candidate batches contain exactly rows 1–781 with no gaps/duplicates;
+- all candidate batches remain secondary-only, have no official PDF hash, and remain retrieval-ineligible.
+
+This cross-check is against the secondary transcription's own contents map and structure. It does not establish the original Gazette's exact pagination or validate any exposure value. Official Table 24 matches remain 0/781.
