@@ -22,6 +22,8 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         self.assertIn("exact decision number, publication, effective date", remote["notes"])
         wages = next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-PM-DECISION-3165-2026")
         self.assertIn("subcommittees", wages["notes"])
+        self.assertIn("41 مكرر (و)", wages["notes"])
+        self.assertTrue(any("almasdar.com/175352" in u["url"] and u["status"] == "secondary_fuller_article_summary_and_gazette_issue_lead_not_primary_match" for u in wages["source_urls"]))
         self.assertEqual(wages["review_status"], "discovery_only")
         self.assertEqual(validate_inventory(self.inventory), [])
         self.assertEqual(len(self.inventory["documents"]), 79)
