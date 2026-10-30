@@ -2269,6 +2269,9 @@ def home(request: Request):
         page = f.read()
     pwa_head = (
         '<meta name="theme-color" content="#14284B">'
+        '<meta name="apple-mobile-web-app-capable" content="yes">'
+        '<meta name="apple-mobile-web-app-title" content="المساعد القانوني">'
+        '<meta name="apple-mobile-web-app-status-bar-style" content="default">'
         '<link rel="manifest" href="/manifest.webmanifest">'
         '<link rel="icon" href="/app-icon.svg" type="image/svg+xml">'
         '<link rel="apple-touch-icon" href="/apple-touch-icon.png">'
