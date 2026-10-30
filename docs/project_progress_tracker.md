@@ -376,3 +376,39 @@ The Phase 2 metadata-only inventory now contains 71 candidates across 13 source 
 7. Leave tenant database, migrations, storage adapters and identity lifecycle to the assigned database workstream.
 
 Overall readiness remains 42% ± 8%. The recent work improves traceability and identifies current implementation leads; it does not establish verified legal content or production readiness.
+
+
+## Latest checkpoint — 2026-10-30 (PR #840 legal-knowledge evidence work)
+
+This checkpoint records discovery and engineering safeguards, not verified-law coverage. Percentages remain conservative and are not additive.
+
+| Workstream | Estimate / count | Current state |
+|---|---:|---|
+| Overall product readiness | 42% ± 8 pp (last recorded estimate; not recalculated by this evidence-only work) | Not market-ready. DB/tenant, deployment, security acceptance and manual UX review remain separate gates. |
+| Verified Egyptian legal corpus | 6% (unchanged) | No new legal rule was promoted to verified or retrieval-eligible. Original Gazette bytes, item-specific reuse evidence and qualified counsel review remain missing. |
+| Legal-knowledge preparation | 15% (planning/evidence preparation estimate only) | More source relationships, candidate inventories, discrepancy controls and reproducible checks are prepared; this is not verified-law coverage. |
+| Phase 2 metadata inventory | 79 instrument candidates / 13 source records | Seven new 2026 Prime Minister decision candidates (982, 1305, 1572, 2033, 2377, 2590, 3165) linked to Labour Law 14/2025. All remain discovery-only. |
+| Decision 250 Table 24 | 781 secondary candidate rows | Structural inventory is complete (781/781); original Gazette row matches remain 0/781. Rows 34, 61 and 64 remain explicitly unresolved/high-priority. |
+| Decisions 248–252 | 0/5 fully compared with original Gazette | Supplement 225(A) original PDF remains request-copy restricted in the checked DSpace record; Action 1 user-supplied intake is pending. |
+| Lawyer in-app review | Not started | Separate post-technical-completion release gate. The review plan now includes OSH-23–26 for later implementing-decision/currentness behavior. |
+
+### New evidence work completed
+
+- Identified official Amiri Press searchable-text leads and Gazette metadata for Prime Minister Decisions 982, 1305, 1572, 2033, 2377, 2590 and 3165/2026. These are distinct implementing/extension candidates, not amendments to Law 14/2025 merely because they cite it.
+- Added seven separate instrument records and parent-law relationships to `docs/phase_2_document_inventory.json`; the metadata-only inventory now contains 79 records.
+- Checked the DSpace download routes for Gazette issues containing Decisions 1305, 1572 and 2033: the 1305 PDF route requires DSpace login; the 1572 and 2033 routes require a copy request. No login was attempted, no access control was bypassed, and no copy request was submitted.
+- Recorded that Decision 2590/2026 continues Decision 982/2026 through September 2026. A targeted search did not locate an October extension; this is not proof that no October instrument exists and does not establish expiry/currentness.
+- Added an explicit currentness discovery log and four future in-app lawyer prompts (OSH-23–26) to test October status, original Gazette citation, Decision 3165 and the distinction between parent-law amendment and implementing-decision extension.
+- Added regression assertions for the seven instrument records, parent relationships, DSpace metadata and access restrictions. A local structural/schema-equivalent check found 79 records, 13 source records, no duplicate IDs, no unsupported states and no invalid URLs.
+- Latest GitHub Actions for the current PR head are running; do not claim them passed until completed. The preceding validated branch checkpoint remains 103/103 Full Tests and 28/28 Legal Knowledge Validation.
+
+### Next gates
+
+1. Receive the user's original Official Gazette Supplement 225(A) PDF and optional `law_rows_ar.jsonl`; preserve/hash originals and compare all available candidate records without committing restricted raw files.
+2. Continue acquiring official Gazette pages for other Labour Law implementing instruments only through permitted routes; record login/request-copy restrictions rather than bypassing them.
+3. Reconcile Decision 250 Table 24 rows 34, 61 and 64 first, then the remaining 781 rows.
+4. Verify currentness, amendments, extensions and commencement separately for each instrument; no conclusion from search absence.
+5. Complete technical work before scheduling the lawyer's in-app review; obtain sign-off only for the exact app commit, corpus version and legal scope actually tested.
+6. Keep all candidate-only and rights-unclear material out of authoritative retrieval. Leave DB/tenant/storage work to the assigned workstream.
+
+**Percentage rule:** the 79-record inventory and seven new source leads improve discovery completeness, not the verified Egyptian legal corpus percentage. Keep the verified-corpus estimate at 6% until the actual release gates pass.
