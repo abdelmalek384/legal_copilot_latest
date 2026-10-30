@@ -38,7 +38,15 @@
       "secondary_scan_printed_page": 254,
       "secondary_scan_page_row_range": "34-41",
       "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/946.webp",
-      "secondary_scan_match_status": "page_locator_assigned_pending_field_comparison"
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
     },
     {
       "row": 42,
@@ -51,7 +59,15 @@
       "secondary_scan_printed_page": 255,
       "secondary_scan_page_row_range": "42-48",
       "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/947.webp",
-      "secondary_scan_match_status": "page_locator_assigned_pending_field_comparison"
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
     },
     {
       "row": 43,
@@ -64,7 +80,15 @@
       "secondary_scan_printed_page": 255,
       "secondary_scan_page_row_range": "42-48",
       "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/947.webp",
-      "secondary_scan_match_status": "page_locator_assigned_pending_field_comparison"
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
     },
     {
       "row": 44,
@@ -85,7 +109,15 @@
           "secondary_scan_printed_page": 255,
           "secondary_scan_page_row_range": "42-48",
           "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/947.webp",
-          "secondary_scan_match_status": "page_locator_assigned_pending_field_comparison"
+          "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+          "secondary_scan_fields_checked": [
+            "chemical_name",
+            "cas_identifier",
+            "primary_exposure_limit_token",
+            "unit"
+          ],
+          "secondary_scan_checked_on": "2026-10-30",
+          "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
         },
         {
           "row": 46,
@@ -98,13 +130,29 @@
           "secondary_scan_printed_page": 255,
           "secondary_scan_page_row_range": "42-48",
           "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/947.webp",
-          "secondary_scan_match_status": "page_locator_assigned_pending_field_comparison"
+          "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+          "secondary_scan_fields_checked": [
+            "chemical_name",
+            "cas_identifier",
+            "primary_exposure_limit_token",
+            "unit"
+          ],
+          "secondary_scan_checked_on": "2026-10-30",
+          "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
         }
       ],
       "secondary_scan_printed_page": 255,
       "secondary_scan_page_row_range": "42-48",
       "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/947.webp",
-      "secondary_scan_match_status": "page_locator_assigned_pending_field_comparison"
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
     },
     {
       "row": 47,
@@ -117,7 +165,15 @@
       "secondary_scan_printed_page": 255,
       "secondary_scan_page_row_range": "42-48",
       "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/947.webp",
-      "secondary_scan_match_status": "page_locator_assigned_pending_field_comparison"
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
     },
     {
       "row": 48,
@@ -130,7 +186,15 @@
       "secondary_scan_printed_page": 255,
       "secondary_scan_page_row_range": "42-48",
       "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/947.webp",
-      "secondary_scan_match_status": "page_locator_assigned_pending_field_comparison"
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
     },
     {
       "row": 49,
@@ -144,7 +208,15 @@
       "secondary_scan_printed_page": 256,
       "secondary_scan_page_row_range": "49-55",
       "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/948.webp",
-      "secondary_scan_match_status": "page_locator_assigned_pending_field_comparison"
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
     },
     {
       "row": 50,
@@ -157,7 +229,15 @@
       "secondary_scan_printed_page": 256,
       "secondary_scan_page_row_range": "49-55",
       "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/948.webp",
-      "secondary_scan_match_status": "page_locator_assigned_pending_field_comparison"
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
     },
     {
       "row": 51,
@@ -171,7 +251,15 @@
       "secondary_scan_printed_page": 256,
       "secondary_scan_page_row_range": "49-55",
       "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/948.webp",
-      "secondary_scan_match_status": "page_locator_assigned_pending_field_comparison"
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
     },
     {
       "row": 52,
@@ -184,7 +272,15 @@
       "secondary_scan_printed_page": 256,
       "secondary_scan_page_row_range": "49-55",
       "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/948.webp",
-      "secondary_scan_match_status": "page_locator_assigned_pending_field_comparison"
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
     },
     {
       "row": 53,
@@ -197,7 +293,15 @@
       "secondary_scan_printed_page": 256,
       "secondary_scan_page_row_range": "49-55",
       "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/948.webp",
-      "secondary_scan_match_status": "page_locator_assigned_pending_field_comparison"
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
     },
     {
       "row": 54,
@@ -210,7 +314,15 @@
       "secondary_scan_printed_page": 256,
       "secondary_scan_page_row_range": "49-55",
       "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/948.webp",
-      "secondary_scan_match_status": "page_locator_assigned_pending_field_comparison"
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
     },
     {
       "row": 55,
@@ -223,7 +335,15 @@
       "secondary_scan_printed_page": 256,
       "secondary_scan_page_row_range": "49-55",
       "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/948.webp",
-      "secondary_scan_match_status": "page_locator_assigned_pending_field_comparison"
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
     },
     {
       "row": 56,
@@ -236,7 +356,15 @@
       "secondary_scan_printed_page": 257,
       "secondary_scan_page_row_range": "56-60",
       "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/949.webp",
-      "secondary_scan_match_status": "page_locator_assigned_pending_field_comparison"
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
     },
     {
       "row": 57,
@@ -249,7 +377,15 @@
       "secondary_scan_printed_page": 257,
       "secondary_scan_page_row_range": "56-60",
       "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/949.webp",
-      "secondary_scan_match_status": "page_locator_assigned_pending_field_comparison"
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
     },
     {
       "row": 58,
@@ -262,7 +398,15 @@
       "secondary_scan_printed_page": 257,
       "secondary_scan_page_row_range": "56-60",
       "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/949.webp",
-      "secondary_scan_match_status": "page_locator_assigned_pending_field_comparison"
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
     },
     {
       "row": 59,
@@ -275,7 +419,15 @@
       "secondary_scan_printed_page": 257,
       "secondary_scan_page_row_range": "56-60",
       "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/949.webp",
-      "secondary_scan_match_status": "page_locator_assigned_pending_field_comparison"
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
     },
     {
       "row": 60,
@@ -288,7 +440,15 @@
       "secondary_scan_printed_page": 257,
       "secondary_scan_page_row_range": "56-60",
       "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/949.webp",
-      "secondary_scan_match_status": "page_locator_assigned_pending_field_comparison"
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
     }
   ]
 }
