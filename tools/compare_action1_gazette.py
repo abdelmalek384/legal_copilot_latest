@@ -110,7 +110,7 @@ def compare_articles(candidates: list[dict[str, Any]], pages: list[str]) -> dict
     for page in pages:
         starts.append(cursor)
         cursor += len(page) + 1
-    joined = "\n".join(pages)
+    joined = " ".join(pages)
     text_layer_pages = sum(bool(page) for page in pages)
     matches = []
     counts = {
