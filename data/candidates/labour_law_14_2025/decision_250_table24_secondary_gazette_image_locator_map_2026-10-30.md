@@ -18,7 +18,60 @@
 | 290 | https://www.almasdar.com/WebP/libfiles/46/3/982.webp | Rows 288–293 |
 | 295 | https://www.almasdar.com/WebP/libfiles/46/3/987.webp | Rows 322–327 |
 
-The Almasdar article page exposes a continuous image-link sequence for printed Gazette pages 45–295. The Table 24 images begin at printed page 249 and continue through page 295. The confirmed examples show the candidate table numbering progressing from rows 1–5 (page 249) through rows 322–327 (page 295). This supports a **secondary visual locator range of rows 1–327**, but the row boundaries on every intermediate page have not yet been recorded.
+The Almasdar article page exposes a continuous image-link sequence for printed Gazette pages 45–295. The Table 24 images begin at printed page 249 and continue through page 295. The complete 47-page map now records exact printed row ranges from rows 1–327. This supports a **secondary visual locator range of rows 1–327**. Each candidate row can now be assigned a page locator, but its names, CAS, formula, limits, units, footnotes and column values still require field-by-field visual comparison.
+
+## Complete page-to-row mapping for the 47-page image sequence
+
+The following row boundaries were visually read from the table's printed row numbers on each secondary page image. They are page locators, not a field-by-field verification of every candidate entry.
+
+| Printed page | Candidate rows | Image URL |
+| 249 | 1–5 | https://www.almasdar.com/WebP/libfiles/46/3/941.webp |
+| 250 | 6–12 | https://www.almasdar.com/WebP/libfiles/46/3/942.webp |
+| 251 | 13–18 | https://www.almasdar.com/WebP/libfiles/46/3/943.webp |
+| 252 | 19–25 | https://www.almasdar.com/WebP/libfiles/46/3/944.webp |
+| 253 | 26–33 | https://www.almasdar.com/WebP/libfiles/46/3/945.webp |
+| 254 | 34–41 | https://www.almasdar.com/WebP/libfiles/46/3/946.webp |
+| 255 | 42–48 | https://www.almasdar.com/WebP/libfiles/46/3/947.webp |
+| 256 | 49–55 | https://www.almasdar.com/WebP/libfiles/46/3/948.webp |
+| 257 | 56–60 | https://www.almasdar.com/WebP/libfiles/46/3/949.webp |
+| 258 | 61–65 | https://www.almasdar.com/WebP/libfiles/46/3/950.webp |
+| 259 | 66–72 | https://www.almasdar.com/WebP/libfiles/46/3/951.webp |
+| 260 | 73–79 | https://www.almasdar.com/WebP/libfiles/46/3/952.webp |
+| 261 | 80–87 | https://www.almasdar.com/WebP/libfiles/46/3/953.webp |
+| 262 | 88–95 | https://www.almasdar.com/WebP/libfiles/46/3/954.webp |
+| 263 | 96–101 | https://www.almasdar.com/WebP/libfiles/46/3/955.webp |
+| 264 | 102–107 | https://www.almasdar.com/WebP/libfiles/46/3/956.webp |
+| 265 | 108–115 | https://www.almasdar.com/WebP/libfiles/46/3/957.webp |
+| 266 | 116–122 | https://www.almasdar.com/WebP/libfiles/46/3/958.webp |
+| 267 | 123–129 | https://www.almasdar.com/WebP/libfiles/46/3/959.webp |
+| 268 | 130–137 | https://www.almasdar.com/WebP/libfiles/46/3/960.webp |
+| 269 | 138–146 | https://www.almasdar.com/WebP/libfiles/46/3/961.webp |
+| 270 | 147–154 | https://www.almasdar.com/WebP/libfiles/46/3/962.webp |
+| 271 | 155–161 | https://www.almasdar.com/WebP/libfiles/46/3/963.webp |
+| 272 | 162–168 | https://www.almasdar.com/WebP/libfiles/46/3/964.webp |
+| 273 | 169–175 | https://www.almasdar.com/WebP/libfiles/46/3/965.webp |
+| 274 | 176–181 | https://www.almasdar.com/WebP/libfiles/46/3/966.webp |
+| 275 | 182–187 | https://www.almasdar.com/WebP/libfiles/46/3/967.webp |
+| 276 | 188–192 | https://www.almasdar.com/WebP/libfiles/46/3/968.webp |
+| 277 | 193–199 | https://www.almasdar.com/WebP/libfiles/46/3/969.webp |
+| 278 | 200–207 | https://www.almasdar.com/WebP/libfiles/46/3/970.webp |
+| 279 | 208–214 | https://www.almasdar.com/WebP/libfiles/46/3/971.webp |
+| 280 | 215–221 | https://www.almasdar.com/WebP/libfiles/46/3/972.webp |
+| 281 | 222–229 | https://www.almasdar.com/WebP/libfiles/46/3/973.webp |
+| 282 | 230–237 | https://www.almasdar.com/WebP/libfiles/46/3/974.webp |
+| 283 | 238–244 | https://www.almasdar.com/WebP/libfiles/46/3/975.webp |
+| 284 | 245–251 | https://www.almasdar.com/WebP/libfiles/46/3/976.webp |
+| 285 | 252–258 | https://www.almasdar.com/WebP/libfiles/46/3/977.webp |
+| 286 | 259–265 | https://www.almasdar.com/WebP/libfiles/46/3/978.webp |
+| 287 | 266–272 | https://www.almasdar.com/WebP/libfiles/46/3/979.webp |
+| 288 | 273–280 | https://www.almasdar.com/WebP/libfiles/46/3/980.webp |
+| 289 | 281–287 | https://www.almasdar.com/WebP/libfiles/46/3/981.webp |
+| 290 | 288–293 | https://www.almasdar.com/WebP/libfiles/46/3/982.webp |
+| 291 | 294–301 | https://www.almasdar.com/WebP/libfiles/46/3/983.webp |
+| 292 | 302–306 | https://www.almasdar.com/WebP/libfiles/46/3/984.webp |
+| 293 | 307–314 | https://www.almasdar.com/WebP/libfiles/46/3/985.webp |
+| 294 | 315–321 | https://www.almasdar.com/WebP/libfiles/46/3/986.webp |
+| 295 | 322–327 | https://www.almasdar.com/WebP/libfiles/46/3/987.webp |
 
 ## Image URL pattern for the full available sequence
 
