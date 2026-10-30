@@ -111,7 +111,7 @@ class ManualCaptureRecordTests(unittest.TestCase):
         self.assertTrue(any("collection_permission" in error for error in result["errors"]))
         self.assertTrue(any("commercial_reuse_permission" in error for error in result["errors"]))
 
-    def test_limited_or_permission-required_states_never_pass_unrestricted_gates(self):
+    def test_limited_or_permission_required_states_never_pass_unrestricted_gates(self):
         self.record.update({
             "collection_permission": "allowed_limited",
             "commercial_reuse_permission": "prior_written_permission_required_per_published_terms",
