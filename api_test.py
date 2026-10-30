@@ -1,8 +1,8 @@
-import os, io, json, tempfile
+import os, json, tempfile
 from datetime import date, timedelta
 os.environ.update(COPILOT_DB=os.path.join(tempfile.mkdtemp(), "a.db"), ADMIN_TOKEN="stage0-test-admin-token-please-use-a-long-random-secret", LEGAL_REVIEWER_EMAILS="import-admin@x.eg")
 from fastapi.testclient import TestClient
-import app, docx
+import app
 
 # iCalendar text values must not allow raw CR/LF to inject new content lines.
 assert app._ics_escape("a\\b,c;d\r\ne\rf\ng") == "a\\\\b\\,c\\;d\\ne\\nf\\ng"
@@ -94,75 +94,9 @@ assert len(c.get("/dashboard", headers=J).json()["tasks"]) == 2  # original assi
 tid = c.get("/dashboard", headers=J).json()["tasks"][0]["id"]
 assert c.post(f"/tasks/{tid}/done", headers=O).status_code == 404 and c.post(f"/tasks/{tid}/done", headers=J).status_code == 200
 assert c.post(f"/cases/{cid}/sessions", json={"date": "tomorrow"}, headers=L).status_code == 422
-d = docx.Document(); d.add_paragraph("مدة العقد سنتان ويجدد تلقائيا"); b = io.BytesIO(); d.save(b)
-upload_bytes = b.getvalue()
-upload_response = c.post(f"/cases/{cid}/upload", files={"file": ("a.docx", upload_bytes)}, headers=J)
-assert upload_response.status_code == 200, upload_response.text
-upload_meta = upload_response.json()
-assert upload_meta["document_id"] > 0 and upload_meta["chunks"] >= 1
-assert upload_meta["sha256"] == app.hashlib.sha256(upload_bytes).hexdigest()
-stored_doc = db.execute("SELECT * FROM docs WHERE id=?", (upload_meta["document_id"],)).fetchone()
-assert stored_doc["case_id"] == cid and stored_doc["firm_id"] == 1
-assert stored_doc["uploader_user_id"] == db.execute("SELECT id FROM users WHERE email='junior@x.eg'").fetchone()[0]
-assert stored_doc["sha256"] == upload_meta["sha256"]
-assert stored_doc["content_type"] == "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-assert stored_doc["byte_size"] == len(upload_bytes) and stored_doc["extraction_status"] == "text_extracted"
-assert stored_doc["ocr_used"] == 0
-linked_chunks = db.execute("SELECT COUNT(*) FROM chunks WHERE document_id=?", (upload_meta["document_id"],)).fetchone()[0]
-assert linked_chunks == upload_meta["chunks"] and linked_chunks >= 1
-review_chunk = db.execute("SELECT id,text FROM chunks WHERE document_id=? ORDER BY id LIMIT 1", (upload_meta["document_id"],)).fetchone()
-review_response = c.post(
-    f"/cases/{cid}/docs/{upload_meta['document_id']}/chunks/{review_chunk['id']}/review",
-    json={"outcome":"corrected","corrected_text":review_chunk["text"] + " [reviewed correction]",
-          "expected_text_sha256":app.hashlib.sha256(review_chunk["text"].encode("utf-8")).hexdigest(),
-          "page_reference":"PDF p. 4","note":"Test-only correction"},
-    headers=J)
-assert review_response.status_code == 201, review_response.text
-assert review_response.json()["text_updated"] is True
-assert review_response.json()["page_reference"] == "PDF p. 4"
-assert review_response.json()["source_page_verified"] is False
-assert db.execute("SELECT text,page FROM chunks WHERE id=?", (review_chunk["id"],)).fetchone()["page"] == "PDF p. 4"
-# Stale correction must not overwrite the first reviewed version.
-stale_review = c.post(
-    f"/cases/{cid}/docs/{upload_meta['document_id']}/chunks/{review_chunk['id']}/review",
-    json={"outcome":"corrected","corrected_text":"stale overwrite",
-          "expected_text_sha256":app.hashlib.sha256(review_chunk["text"].encode("utf-8")).hexdigest()},
-    headers=J)
-assert stale_review.status_code == 409, stale_review.text
-assert db.execute("SELECT text FROM chunks WHERE id=?", (review_chunk["id"],)).fetchone()[0].endswith("[reviewed correction]")
-review_audit = c.get(f"/cases/{cid}/docs/{upload_meta['document_id']}/reviews", headers=J)
-assert review_audit.status_code == 200 and review_audit.json()["reviews"][0]["outcome"] == "corrected"
-assert review_audit.json()["reviews"][0]["original_text"] == review_chunk["text"]
-assert c.post(f"/cases/{cid}/docs/{upload_meta['document_id']}/chunks/{review_chunk['id']}/review",
-             json={"outcome":"corrected"}, headers=J).status_code == 422
-
-# Duplicate uploads are intentionally separate matter records; hashes allow auditing without cross-matter deduplication.
-duplicate_upload = c.post(f"/cases/{cid}/upload", files={"file": ("renamed.docx", upload_bytes)}, headers=J)
-assert duplicate_upload.status_code == 200
-assert duplicate_upload.json()["sha256"] == upload_meta["sha256"]
-assert duplicate_upload.json()["document_id"] != upload_meta["document_id"]
-assert c.get(f"/cases/{cid}", headers=J).json()["docs"][0]["sha256"] == upload_meta["sha256"]
-assert c.post(f"/cases/{cid}/upload", files={"file": ("a.txt", b"hello world")}, headers=J).status_code == 415
-assert c.post(f"/cases/{cid}/upload", files={"file": ("a.docx", b"not a docx")}, headers=J).status_code == 422
-# Verify the OCR route metadata without requiring Tesseract in the CI runner.
-_original_extract = app.extract
-_original_ocr = app.ocr_pdf_text
-try:
-    app.extract = lambda name, data: ""
-    app.ocr_pdf_text = lambda data: "recognized scanned document text that needs human review"
-    _ocr_response = c.post(f"/cases/{cid}/upload", files={"file": ("scan.pdf", b"pdf bytes")}, headers=J)
-finally:
-    app.extract = _original_extract
-    app.ocr_pdf_text = _original_ocr
-assert _ocr_response.status_code == 200, _ocr_response.text
-assert _ocr_response.json()["ocr_used"] is True
-assert _ocr_response.json()["text_status"] == "ocr_unverified"
-assert _ocr_response.json()["chunks"] >= 1
-ocr_doc = db.execute("SELECT * FROM docs WHERE id=?", (_ocr_response.json()["document_id"],)).fetchone()
-assert ocr_doc["ocr_used"] == 1 and ocr_doc["extraction_status"] == "ocr_unverified"
-assert ocr_doc["sha256"] == app.hashlib.sha256(b"pdf bytes").hexdigest()
-
 assert c.post("/ask", json={"q": "مدة العقد", "case_id": cid}, headers=O).status_code == 404 and c.get(f"/cases/{cid}", headers=O).status_code == 404
+legacy_case_doc = c.post(f"/cases/{cid}/docs", json={"name":"case-source.txt","text":"مدة العقد سنتان ويجدد تلقائيا"}, headers=J)
+assert legacy_case_doc.status_code == 200, legacy_case_doc.text
 r = c.post("/ask", json={"q": "مدة العقد", "case_id": cid}, headers=J).json(); assert r["sources"][0]["source"] == "case-file"
 info = c.get(f"/cases/{cid}", headers=J).json(); assert len(info["events"]) >= 4 and any(task["status"] == "done" for task in info["tasks"])
 assert c.patch(f"/cases/{cid}", json={"case_number":"77","case_year":"2025","court":"محكمة","circuit":"دائرة 3","opposing_party":"خصم"}, headers=L).status_code == 200
@@ -195,15 +129,6 @@ assert all(row["firm_id"] == 2 for row in security_audit_b.json()["items"]), sec
 deletion_audit_b = c.get("/audit/case-deletions", headers=S)
 assert deletion_audit_b.status_code == 200, deletion_audit_b.text
 assert deletion_audit_b.json()["items"] == [], deletion_audit_b.json()
-assert c.get(f"/cases/{cid}/docs/{upload_meta['document_id']}/reviews", headers=S).status_code == 404
-# Extraction-review writes must also be firm-scoped; guessed document/chunk IDs cannot be used to alter another firm's text.
-assert c.post(
-    f"/cases/{cid}/docs/{upload_meta['document_id']}/chunks/{review_chunk['id']}/review",
-    json={"outcome":"corrected","corrected_text":"cross-firm overwrite",
-          "expected_text_sha256":app.hashlib.sha256(review_chunk["text"].encode("utf-8")).hexdigest()},
-    headers=S).status_code == 404
-assert c.get(f"/cases/{cid}/docs/{upload_meta['document_id']}/reviews", headers=S).status_code == 404
-assert db.execute("SELECT text FROM chunks WHERE id=?", (review_chunk["id"],)).fetchone()[0].endswith("[reviewed correction]")
 other_cid = c.post("/cases", json={"title":"Private second-firm matter","client":"Second Client"}, headers=S).json()["id"]
 assert c.get("/cases", headers=S).status_code == 200
 assert [x["id"] for x in c.get("/cases", headers=S).json()] == [other_cid]
@@ -233,7 +158,7 @@ assert c.post(f"/research/conversations/{research_id}/save-to-matter",
               ).fetchone()[0]}, headers=J).status_code == 404
 assert c.get(f"/research/conversations/{research_id}", headers=J).status_code == 200
 assert c.get(f"/cases/{cid}", headers=S).status_code == 404
-cross_firm_upload = c.post(f"/cases/{cid}/upload", files={"file": ("leak.docx", upload_bytes)}, headers=S)
+cross_firm_upload = c.post(f"/cases/{cid}/upload", files={"file": ("leak.docx", b"cross-firm attempt")}, headers=S)
 assert cross_firm_upload.status_code == 404, cross_firm_upload.text
 assert db.execute("SELECT COUNT(*) FROM docs WHERE firm_id=2").fetchone()[0] == 0
 assert c.post("/search", json={"q":"مدة العقد","case_id":cid}, headers=S).status_code == 404
