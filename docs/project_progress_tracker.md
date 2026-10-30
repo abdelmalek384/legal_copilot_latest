@@ -396,11 +396,11 @@ This checkpoint records discovery and engineering safeguards, not verified-law c
 
 - Identified official Amiri Press searchable-text leads and Gazette metadata for Prime Minister Decisions 982, 1305, 1572, 2033, 2377, 2590 and 3165/2026. These are distinct implementing/extension candidates, not amendments to Law 14/2025 merely because they cite it.
 - Added seven separate instrument records and parent-law relationships to `docs/phase_2_document_inventory.json`; the metadata-only inventory now contains 79 records.
-- Checked the DSpace download routes for Gazette issues containing Decisions 1305, 1572 and 2033: the 1305 PDF route requires DSpace login; the 1572 and 2033 routes require a copy request. No login was attempted, no access control was bypassed, and no copy request was submitted.
+- Checked the DSpace download routes for Gazette issues containing Decisions 982, 1305, 1572 and 2033: 982, 1572 and 2033 route to request-copy; 1305 requires DSpace login. The official Gazette collection listing also identifies Decision 2590 in issue 35 (مكرر), but its exact item record is not pinned. No login was attempted, no access control was bypassed, and no copy request was submitted.
 - Recorded that Decision 2590/2026 continues Decision 982/2026 through September 2026. A targeted search did not locate an October extension; this is not proof that no October instrument exists and does not establish expiry/currentness.
 - Added an explicit currentness discovery log and four future in-app lawyer prompts (OSH-23–26) to test October status, original Gazette citation, Decision 3165 and the distinction between parent-law amendment and implementing-decision extension.
 - Added regression assertions for the seven instrument records, parent relationships, DSpace metadata and access restrictions. A local structural/schema-equivalent check found 79 records, 13 source records, no duplicate IDs, no unsupported states and no invalid URLs.
-- Latest GitHub Actions for the current PR head are running; do not claim them passed until completed. The preceding validated branch checkpoint remains 103/103 Full Tests and 28/28 Legal Knowledge Validation.
+- Latest GitHub Actions for the current PR head are queued/running; do not claim them passed until completed. The preceding validated branch checkpoint remains 103/103 Full Tests and 28/28 Legal Knowledge Validation.
 
 ### Next gates
 
