@@ -49,7 +49,7 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         self.assertTrue(any("dspace.id.com.eg/items/dae71be0" in item["url"] for item in record["source_urls"]))
         self.assertTrue(any("ahmedazimelgamel.blogspot.com/2026/08/162-2026.html" in item["url"] for item in record["source_urls"]))
         self.assertTrue(any("secondary_full_text" in item["status"] for item in record["source_urls"]))
-        self.assertIn("14 August 2026", record["notes"])
+        self.assertIn("2026-08-14", record["notes"])
         self.assertIn("Article 46", record["notes"])
         self.assertIn("decree_162_2026_secondary_text_crosswalk_2026-10-31.md", record["notes"])
         self.assertEqual(next(a for a in self.inventory["next_actions"] if a["id"] == "ACT-LABOUR-RULES-2026-VERIFY")["status"], "in_progress")
