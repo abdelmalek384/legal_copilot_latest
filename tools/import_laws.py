@@ -102,7 +102,7 @@ def validate_inputs(src: str | pathlib.Path, out: str | pathlib.Path):
     seen_ids = set()
     for sidecar in sidecars:
         if sidecar.is_symlink() or not sidecar.is_file():
-            _fail(f"metadata sidecar must be a regular file: {sidecar.name}")
+            _fail(f"metadata sidecar must be a regular file, not a symbolic link: {sidecar.name}")
         try:
             metadata = json.loads(sidecar.read_text(encoding="utf-8"))
         except (OSError, UnicodeError, json.JSONDecodeError) as exc:
