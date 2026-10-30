@@ -14,7 +14,7 @@
     "document_id": "EG-LABOUR-DECISION-162-2026",
     "title_ar": "قرار وزارة العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
     "instrument_type": "ministerial_decision",
-    "official_source_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb",
+    "official_source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
     "issuance_date": "2026-07-28",
     "gazette_issue_and_pages": "Egyptian Proceedings supplementary issue 176, dated 2026-08-13; exact pages pending",
     "effective_date": "2026-08-14",
@@ -32,6 +32,8 @@
     "effective_date_basis": "Official Gazette catalogue publication date 2026-08-13 plus Article 66 commencement clause in secondary transcription only; original Gazette text not inspected.",
     "original_gazette_file_access": "restricted_request_copy",
     "original_gazette_pdf_obtained": false,
-    "original_gazette_pdf_sha256": null
+    "original_gazette_pdf_sha256": null,
+    "secondary_dspace_bundle_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+    "official_source_description": "Official Gazette catalogue record for Egyptian Proceedings supplementary issue 176 dated 2026-08-13; the PDF download action is request-copy restricted."
   }
 }
