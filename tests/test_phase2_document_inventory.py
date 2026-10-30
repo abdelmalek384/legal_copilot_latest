@@ -182,6 +182,14 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         self.assertIn("Gazette byte verification 0/6", timeline)
         self.assertEqual(remote["legal_status"], "unknown")
         self.assertEqual(remote["review_status"], "discovery_only")
+        # MELES is a secondary repository/copy host, not the issuing authority or Gazette publisher.
+        meles = self.inventory["source_ids"]["EG-MELES-ELECTRONIC"]
+        self.assertIn("not the issuing authority", meles["authority"])
+        self.assertEqual(meles["permission"], "unknown")
+        for decision in ("2377", "2590"):
+            record = next(d for d in self.inventory["documents"] if d["document_id"] == f"EG-LABOUR-PM-DECISION-{decision}-2026")
+            link = next(u for u in record["source_urls"] if u.get("source_id") == "EG-MELES-ELECTRONIC")
+            self.assertIn("not the Official Gazette item", link["source_role"])
         self.assertEqual(validate_inventory(self.inventory), [])
 
     def test_unknown_source_and_duplicate_instrument_ids_are_rejected(self):
