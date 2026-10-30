@@ -79,8 +79,8 @@ def load_inventory(input_path: Path) -> dict[str, Any]:
         )
     data["cards"] = cards
     data["source_method_note"] += (
-        f" Supplemental manifest loaded: {supplemental_count} cards from split files; "
-        "all supplemental records remain provisional and non-authoritative."
+        f" Canonical manifest inventory loaded: {len(cards)} cards; "
+        "archived split snapshots are excluded to avoid duplicate IDs and divergent records."
     )
     return data
 
