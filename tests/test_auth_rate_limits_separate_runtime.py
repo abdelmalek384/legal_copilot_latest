@@ -164,5 +164,37 @@ class SeparateRuntimeAuthenticationRateLimitTests(unittest.TestCase):
         self.assertEqual(stored["hits"], 2)
 
 
+    def test_search_middleware_rate_limit_returns_retry_after_in_separate_runtime(self):
+        control = self.runtime.control_connection()
+        now = int(app.time.time())
+        window_start = int(now // 60) * 60
+        control.execute(
+            "DELETE FROM api_rate_limit_windows WHERE bucket='/search' "
+            "AND client_key='testclient' AND window_start=?",
+            (window_start,),
+        )
+        control.commit()
+
+        original_limit = app._RATE_LIMITS["/search"]
+        app._RATE_LIMITS["/search"] = (1, 60)
+        try:
+            first = self.client.post("/search", json={"q": "rate-limit middleware test"})
+            self.assertNotEqual(first.status_code, 429, first.text)
+            second = self.client.post("/search", json={"q": "rate-limit middleware test"})
+            self.assertEqual(second.status_code, 429, second.text)
+            self.assertGreater(int(second.headers.get("Retry-After", "0")), 0)
+            self.assertIn("rate limit", second.json()["detail"].lower())
+        finally:
+            app._RATE_LIMITS["/search"] = original_limit
+
+        stored = control.execute(
+            "SELECT hits FROM api_rate_limit_windows WHERE bucket='/search' "
+            "AND client_key='testclient' AND window_start=?",
+            (window_start,),
+        ).fetchone()
+        self.assertIsNotNone(stored)
+        self.assertEqual(stored["hits"], 2)
+
+
 if __name__ == "__main__":
     unittest.main()
