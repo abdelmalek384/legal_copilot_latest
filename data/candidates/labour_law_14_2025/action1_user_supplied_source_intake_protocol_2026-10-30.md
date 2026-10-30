@@ -25,6 +25,7 @@
 - Record both PDF zero-based page index and printed Gazette page number; do not assume the secondary page map is correct.
 - If the supplied PDF differs from the catalog bundle, treat it as a distinct source version and preserve both identities.
 - Do not upload private client material or secrets into this public legal corpus branch.
+- Do not commit the raw Gazette PDF or the user's raw law_rows_ar.jsonl into the public repository while source-use and repository-access conditions are unresolved. Preserve originals in the controlled working environment; commit only hashes, metadata, exact citations, and excerpts after the source-use gate permits them.
 - Do not treat the user's provision of a file as a blanket commercial reuse opinion. The underlying official-document Article 141 route, scan/compilation distinctions, source-use review and counsel gate remain separate.
 
 ## 3. Gazette PDF execution order
