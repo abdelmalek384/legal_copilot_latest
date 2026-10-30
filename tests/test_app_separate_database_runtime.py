@@ -3,6 +3,7 @@ import os
 import sqlite3
 import tempfile
 import unittest
+from concurrent.futures import ThreadPoolExecutor
 from datetime import date, timedelta
 from pathlib import Path
 from unittest.mock import patch
@@ -63,6 +64,33 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         headers = dict(kwargs.pop("headers", {}) or {})
         headers["X-CSRF-Token"] = csrf or ""
         return getattr(self.client, method)(url, headers=headers, **kwargs)
+
+    def test_concurrent_logins_for_one_identity_issue_independent_sessions(self):
+        def login_once(_):
+            with TestClient(app.app) as client:
+                response = client.post(
+                    "/login",
+                    json={"email": "OWNER@example.test", "password": self.password},
+                )
+                if response.status_code != 200:
+                    return response.status_code, None
+                return response.status_code, response.cookies.get("lc_session")
+
+        with ThreadPoolExecutor(max_workers=4) as pool:
+            results = list(pool.map(login_once, range(4)))
+
+        self.assertEqual([status for status, _ in results], [200, 200, 200, 200])
+        session_tokens = [token for _, token in results]
+        self.assertTrue(all(session_tokens))
+        self.assertEqual(len(set(session_tokens)), 4, "concurrent logins must not reuse session tokens")
+
+        control = self.runtime.control_connection()
+        stored = control.execute(
+            "SELECT COUNT(*) FROM auth_sessions WHERE user_id=?",
+            (self.user_id,),
+        ).fetchone()[0]
+        self.assertGreaterEqual(stored, 4)
+
 
     def test_firm_connection_requires_trusted_context_and_never_falls_back(self):
         token = app._active_firm_context.set(None)
