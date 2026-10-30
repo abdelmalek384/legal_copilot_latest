@@ -127,6 +127,8 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         self.assertEqual(source["collection_permission"], "unknown")
         self.assertEqual(source["commercial_reuse_permission"], "unknown")
         self.assertIn("CC BY 4.0", source["permission_evidence"])
+        self.assertIn("Article 141", source["permission_evidence"])
+        self.assertIn("collections", source["permission_evidence"])
         self.assertEqual(source["permission_evidence_url"], "https://www.mksegypt.org/ar/documents")
         self.assertEqual(source["terms_checked_on"], "2026-10-30")
         self.assertEqual(MODULE.validate(data), [])
