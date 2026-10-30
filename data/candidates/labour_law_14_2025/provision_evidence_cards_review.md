@@ -1831,7 +1831,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified.
 
-### 63. EG-LABOUR-14-2025-ART-259-OSH-ACCIDENT-AND-OCCUPATIONAL-DISEASE-REPORTING
+### 63. EG-LABOUR-14-2025-ART-259-OSH-DEVICES-AND-COMMITTEES
 
 **Question:** متى يجب إنشاء أجهزة ولجان السلامة المهنية والتدريب؟
 
@@ -1893,7 +1893,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified.
 
-### 65. EG-LABOUR-14-2025-ART-261-OSH-STATUTORY-REGISTERS
+### 65. EG-LABOUR-14-2025-ART-261-OSH-TRAINING-LICENSING
 
 **Question:** من يجوز له تقديم التدريب المتخصص في السلامة والصحة المهنية؟
 
@@ -1924,7 +1924,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified.
 
-### 66. EG-LABOUR-14-2025-ART-262-OSH-PROTECTIVE-MEASURES-IMPLEMENTATION
+### 66. EG-LABOUR-14-2025-ART-262-OSH-CONSULTANT-LICENSING
 
 **Question:** هل يلزم ترخيص لممارسة الاستشارات في السلامة والصحة المهنية؟
 
@@ -1955,7 +1955,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified.
 
-### 67. EG-LABOUR-14-2025-ART-263-OSH-TRAINING-AND-AWARENESS
+### 67. EG-LABOUR-14-2025-ART-263-OSH-NATIONAL-CENTRE-RESEARCH-PLANS
 
 **Question:** ما اختصاص المركز القومي لدراسات السلامة والصحة المهنية؟
 
@@ -1986,7 +1986,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified.
 
-### 68. EG-LABOUR-14-2025-ART-264-OSH-WORKPLACE-SAFETY-OBLIGATIONS
+### 68. EG-LABOUR-14-2025-ART-264-OSH-SUPREME-COUNCIL
 
 **Question:** ما المجلس الأعلى للسلامة والصحة المهنية وما اختصاصه؟
 
@@ -2017,7 +2017,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified.
 
-### 69. EG-LABOUR-14-2025-ART-265-OSH-WORKER-HEALTH-PROTECTION
+### 69. EG-LABOUR-14-2025-ART-265-OSH-GOVERNORATE-SUBCOMMITTEES
 
 **Question:** كيف تُشكل اللجان الفرعية للمجلس الأعلى بالمحافظات؟
 
