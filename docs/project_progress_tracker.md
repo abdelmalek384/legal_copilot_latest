@@ -472,3 +472,12 @@ This checkpoint records discovery and engineering safeguards, not verified-law c
 - The revised source-ID assertions now distinguish official Gazette catalogue metadata from MELES secondary repository records based on each recorded source role.
 - The Decision 982 note now explicitly states that Cabinet approval of a draft is not the operative published instrument.
 - Legal Knowledge Validation is green on the latest head. The general full Tests workflow was not returned for this head; do not claim it passed.
+
+
+## Follow-up checkpoint — Decision 3165/2026 publication-date distinction (2026-10-30)
+
+- Added a dedicated evidence note at `data/candidates/labour_law_14_2025/decision_3165_wages_council_publication_timing_2026-10-30.md`.
+- The official Amiri Press searchable text states that Decision 3165/2026 was signed on 12 October 2026 and that Article 8 makes commencement the day after publication. Secondary reports state that Gazette issue 41 مكرر (و) bears the date 12 October but was released on 26 October.
+- The inventory now separates signature date, issue date, and reported release/publication date. The latter remains secondary-only; neither 13 October nor 27 October is entered as an effective date.
+- Added a regression test for this distinction. The decision remains `discovery_only`, with `legal_status=unknown`; Decision 2659/2020's repeal effective date remains unverified.
+- No Gazette PDF was acquired, no permission was inferred, no legal status was promoted, and no source text was copied into the corpus.
