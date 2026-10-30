@@ -78,12 +78,16 @@ class Decision250Table24InventoryTests(unittest.TestCase):
     def test_official_gazette_manifest_preserves_restricted_access_and_rights_status(self):
         manifest = json.loads((ROOT / "docs" / "source_manifest.json").read_text(encoding="utf-8"))
         source = next(item for item in manifest["sources"] if item["id"] == "EG-OFFICIAL-GAZETTE")
-        self.assertIn("request-copy restricted", source["access_status"])
+        repository = next(item for item in manifest["sources"] if item["id"] == "EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE")
+        self.assertIn("Amiri Press portal located", source["access_status"])
         self.assertEqual(source["commercial_reuse"], "not_confirmed")
         self.assertEqual(source["bulk_export"], "not_confirmed")
-        requirements = " ".join(source["verification_requirements"])
+        self.assertIn("dspace.id.com.eg", repository["url"])
+        self.assertIn("request-copy restricted", repository["access_status"])
+        self.assertEqual(repository["license_status"], "unknown")
+        requirements = " ".join(repository["verification_requirements"])
         self.assertIn("dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full", requirements)
-        self.assertIn("Do not bypass repository access controls", requirements)
+        self.assertIn("Do not bypass login/request-copy controls", requirements)
 
     def test_article296_penalty_excerpt_remains_quarantined(self):
         path = CANDIDATE_DIR / "official_primary_text_article296_2026-10-30.jsonl"
