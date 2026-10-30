@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
-  "assessment_date": "2026-10-27",
-  "note": "A register of source candidates and permission questions, not a claim that rights have been granted.",
+  "assessment_date": "2026-10-30",
+  "note": "A register of source candidates and permission questions, not a claim that rights have been granted. Public accessibility and open access do not by themselves establish bulk collection, commercial reuse, or redistribution rights.",
   "sources": [
     {
       "source_id": "EG-PRESIDENCY",
@@ -304,6 +304,60 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "one PDF URL located; no bulk-download/API permission established",
       "required_next_action": "Review applicable portal terms and access conditions; keep statutory copyright exclusion separate from access terms and systematic-retrieval limits; document any restrictions before bulk acquisition or indexing."
+    },
+    {
+      "source_id": "EG-MPA-ISSUED-LAWS",
+      "authority": "Ministry of Parliamentary Affairs, Arab Republic of Egypt",
+      "source_page": "https://www.mpa.gov.eg/legislative-results/parliament",
+      "material_types": [
+        "enacted-law index",
+        "parliamentary legislative references"
+      ],
+      "access_status": "official public search/index page located; individual records require inspection",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Official portal exposes a search page titled القوانين الصادرة with legislative-session and term filters. This establishes a discovery/index endpoint only; it does not establish that linked texts are complete, primary Gazette copies, or licensed for reuse.",
+      "terms_checked_on": "2026-10-30",
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Use for discovery of enacted-law identifiers and cross-check against the promulgated Official Gazette text. Inspect item-level terms and preserve source provenance; do not bulk collect or promote linked text without rights and authenticity review."
+    },
+    {
+      "source_id": "EG-IDSC-DSPACE-GAZETTE",
+      "authority": "Information and Decision Support Center (IDSC) digital repository; item metadata identifies Amiri Press as publisher",
+      "source_page": "https://dspace.id.com.eg/",
+      "material_types": [
+        "Official Gazette issue metadata",
+        "Egyptian Proceedings issue metadata",
+        "PDF listings"
+      ],
+      "access_status": "public repository item pages located; access varies by item and some copies are request-copy restricted",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Public item pages expose bibliographic metadata and PDF listings; individual items may include an item-specific license bundle. Example records identify Amiri Press as publisher. An item page or download control alone does not establish unrestricted download or commercial reuse rights.",
+      "terms_checked_on": "2026-10-30",
+      "bulk_download_or_api": "not established; item-level access controls and licenses must be checked",
+      "required_next_action": "For each issue, inspect its license.txt and download/access state, retain issue metadata only where rights are unclear, and do not bypass request-copy restrictions. Record issue number, publication date, publisher, document IDs, exact file hash, and item-specific license evidence."
+    },
+    {
+      "source_id": "EG-MANSHURAT-LEGAL-ARCHIVE",
+      "authority": "Manshurat Qanuneya / AUC Law and Society Research Unit",
+      "source_page": "https://manshurat.org/",
+      "material_types": [
+        "Egyptian legislation",
+        "selected judicial documents",
+        "presidential and ministerial decrees",
+        "legal research materials"
+      ],
+      "access_status": "open-access legal information archive publicly described by AUC; item-level access and terms require review",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "AUC Law and Society Research Unit describes Manshurat Qanuneya as an open-access database of Arabic primary legal materials focused on Egypt and reports broad archive coverage. Open access describes public availability, not a blanket licence for bulk extraction, commercial use, or redistribution.",
+      "terms_checked_on": "2026-10-30",
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Use as a discovery and cross-reference source. Inspect each item for original-source citations and item-level rights/terms; verify texts against Official Gazette or court originals before authoritative use."
     }
   ]
 }
