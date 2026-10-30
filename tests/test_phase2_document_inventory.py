@@ -44,8 +44,15 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         self.assertEqual(record["legal_status"], "unknown")
         self.assertEqual(record["review_status"], "discovery_only")
         self.assertTrue(any(a["id"] == "ACT-LABOUR-DECISION-49-2026-VERIFY" for a in self.inventory["next_actions"]))
-        self.assertIsNone(record["instrument_number"])
-        self.assertIn("official Gazette text/pages", record["notes"])
+        self.assertEqual(record["instrument_number"], 162)
+        self.assertEqual(record["official_title_ar"], "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل")
+        self.assertTrue(any("dspace.id.com.eg/items/dae71be0" in item["url"] for item in record["source_urls"]))
+        self.assertTrue(any("ahmedazimelgamel.blogspot.com/2026/08/162-2026.html" in item["url"] for item in record["source_urls"]))
+        self.assertTrue(any("secondary_full_text" in item["status"] for item in record["source_urls"]))
+        self.assertIn("2026-08-14", record["notes"])
+        self.assertIn("Article 46", record["notes"])
+        self.assertIn("decree_162_2026_secondary_text_crosswalk_2026-10-31.md", record["notes"])
+        self.assertEqual(next(a for a in self.inventory["next_actions"] if a["id"] == "ACT-LABOUR-RULES-2026-VERIFY")["status"], "in_progress")
         self.assertEqual(validate_inventory(self.inventory), [])
 
     def test_decision_264_has_2026_followup_without_claiming_text_or_status_verified(self):
