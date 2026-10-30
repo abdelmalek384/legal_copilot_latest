@@ -2375,6 +2375,54 @@
           "source_role": "Secondary report dated 2026-10-26 quoting Articles 1-2 and reporting Official Gazette issue 41 مكرر (و), dated 2026-10-12; candidate cross-check only",
           "status": "secondary_fuller_article_summary_and_gazette_issue_lead_not_primary_match"
         }
+      ],
+      "related_instruments": [
+        {
+          "document_id": "EG-LABOUR-PM-DECISION-2659-2020",
+          "relationship": "expressly_repeals_under_article_7; commencement_under_article_8_requires_publication_date_verification",
+          "status": "discovery_only"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LABOUR-PM-DECISION-2659-2020",
+      "official_title_ar": "قرار رئيس مجلس الوزراء رقم 2659 لسنة 2020 بشأن إعادة تشكيل المجلس القومي للأجور وتحديد اختصاصاته",
+      "practice_areas": [
+        "labour"
+      ],
+      "document_type": "prime_ministerial_decision",
+      "instrument_number": 2659,
+      "instrument_year": 2020,
+      "source_id": "EG-AMIRI-PRESS",
+      "source_status": "later_official_citation_only",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "original Official Gazette issue 51 مكرر (ج), reported date 2020-12-21, exact pages and SHA-256",
+        "complete original text and amendments before repeal",
+        "exact publication date of Decision 3165/2026 and effective date under its Article 8",
+        "confirm repeal under Article 7 of Decision 3165/2026 and identify any transitional effects",
+        "source-specific collection and commercial reuse review",
+        "qualified Egyptian labour-lawyer review"
+      ],
+      "notes": "Historical instrument candidate. The official Amiri Press text of Prime Minister Decision 3165/2026 cites Decision 2659/2020 and Article 7 expressly repeals it and any conflicting provision. Article 8 of Decision 3165/2026 says it takes effect the day after publication in the Official Gazette. Secondary sources identify Decision 2659/2020 as published in Official Gazette issue 51 مكرر (ج), dated 21 December 2020. The exact original Gazette item/PDF and the actual publication date of Decision 3165/2026 have not been independently pinned; do not assign a verified repeal effective date or present this record as current law.",
+      "source_urls": [
+        {
+          "url": "https://alamiria.com/Sec/TashTxt?id=EreMgz%2FNoYY%3D",
+          "source_role": "Official Amiri Press text of Decision 3165/2026; cites Decision 2659/2020 and Article 7 repeal clause, Article 8 commencement clause",
+          "status": "official_repeal_and_commencement_text_for_old_instrument"
+        },
+        {
+          "url": "https://manshurat.org/node/70956",
+          "source_role": "Secondary legal repository record for Decision 2659/2020; reports issue 51 مكرر (ج), 2020-12-21, and document metadata",
+          "status": "secondary_old_instrument_metadata_and_text_lead"
+        },
+        {
+          "url": "https://egyptianlaws.com/?p=152028",
+          "source_role": "Secondary legal database transcription and reported Official Gazette issue/date for Decision 2659/2020",
+          "status": "secondary_text_candidate_not_authoritative"
+        }
       ]
     }
   ],
