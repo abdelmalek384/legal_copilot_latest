@@ -27,6 +27,7 @@ SOURCE_STATES = {
     "discovery_only", "official_copy_candidate", "official_text_candidate",
     "later_official_citation_only", "official_court_candidate",
     "official_index_discovered_primary_text_pending",
+    "third_party_hosted_gazette_scan_candidate",
     # Descriptive discovery labels used by the Labour Law evidence inventory.
     # They record the strength/type of a source lead, never legal verification.
     "official_Gazette_metadata_verified_primary_text_restricted_secondary_full_text_crosscheck_found",
