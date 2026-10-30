@@ -96,7 +96,7 @@
       "title": "OSH functional unit establishment and staffing",
       "printed_gazette_pages": "24",
       "summary_candidate_arabic_source": "Secondary visual reproduction; see page image locators.",
-      "summary_candidate_en": "Requires covered high-risk establishments to establish an OSH functional unit; staffing is tied to Table 2 and establishment risk/workforce.",
+      "summary_candidate_en": "Requires an OSH functional unit in the establishments/branches covered by Article 2 (50 or more workers), with staffing numbers determined by risk category and workforce under Table 2.",
       "source_class": "secondary_scan_image_reproduction",
       "source_page_url": "https://www.almasdar.com/175150",
       "source_image_urls": [
@@ -208,7 +208,7 @@
       "title": "Committee meeting frequency and emergency meetings",
       "printed_gazette_pages": "29",
       "summary_candidate_arabic_source": "Secondary visual reproduction; see page image locators.",
-      "summary_candidate_en": "Sets periodic meeting frequencies by risk category and an emergency meeting requirement within 48 hours after a serious accident or confirmed occupational disease.",
+      "summary_candidate_en": "Requires at least monthly meetings for medium/high-risk establishments and at least every two months for limited-risk establishments; also requires a meeting within 48 hours after a serious accident or confirmed occupational disease.",
       "source_class": "secondary_scan_image_reproduction",
       "source_page_url": "https://www.almasdar.com/175150",
       "source_image_urls": [
@@ -473,7 +473,7 @@
       "title": "Repeal of prior ministerial decision",
       "printed_gazette_pages": "32",
       "summary_candidate_arabic_source": "Secondary visual reproduction; see page image locators.",
-      "summary_candidate_en": "Repeals a prior ministerial decision on establishments required to create OSH units/committees; exact prior decision number and scope must be verified from the original Gazette.",
+      "summary_candidate_en": "Appears to repeal Ministerial Decision 134/2003 concerning establishments required to establish OSH units/committees; confirm exact number, title and scope against original Gazette.",
       "source_class": "secondary_scan_image_reproduction",
       "source_page_url": "https://www.almasdar.com/175150",
       "source_image_urls": [
@@ -495,7 +495,7 @@
       "title": "Publication and commencement",
       "printed_gazette_pages": "32",
       "summary_candidate_arabic_source": "Secondary visual reproduction; see page image locators.",
-      "summary_candidate_en": "States commencement from the day following publication; the scan also shows an issue date of 2026-09-01. Confirm exact date and wording against the original Gazette before calculating the effective date.",
+      "summary_candidate_en": "States commencement on the day following publication; reproduced page shows decision signed/issued 2026-09-01. Based on Gazette publication 2026-10-12, 2026-10-13 is a candidate effective date, pending original Gazette confirmation.",
       "source_class": "secondary_scan_image_reproduction",
       "source_page_url": "https://www.almasdar.com/175150",
       "source_image_urls": [
@@ -509,7 +509,10 @@
       "source_use_review": "not_started",
       "counsel_review": "not_started",
       "status": "candidate_only_pending_official_match",
-      "retrieval_eligible": false
+      "retrieval_eligible": false,
+      "candidate_decision_date": "2026-09-01",
+      "candidate_effective_date": "2026-10-13",
+      "date_calculation_note": "Candidate only: publication 2026-10-12; Article 22 says day following publication. Confirm original Gazette date and exact wording."
     },
     {
       "record_type": "table",
