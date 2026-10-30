@@ -17,7 +17,7 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
 
     def test_current_inventory_is_metadata_only_and_structurally_valid(self):
         self.assertEqual(validate_inventory(self.inventory), [])
-        self.assertEqual(len(self.inventory["documents"]), 72)
+        self.assertEqual(len(self.inventory["documents"]), 77)
         self.assertTrue(all(d["review_status"] != "verified" for d in self.inventory["documents"]))
         self.assertTrue(all(d["legal_status"] in {"unknown", "not_applicable"} for d in self.inventory["documents"]))
         register = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
@@ -95,6 +95,27 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         action = next(a for a in self.inventory["next_actions"] if a["id"] == "ACT-LABOUR-LAW-14-2025-EXEC-REGS-VERIFY")
         self.assertIn("not proof of non-existence", action["action"])
         self.assertEqual(action["status"], "not_started")
+        self.assertEqual(validate_inventory(self.inventory), [])
+
+    def test_later_labour_source_labels_remain_discovery_only(self):
+        expected = {
+            "EG-LABOUR-WORK-REGULATION-RULES-2026",
+            "EG-LABOUR-DECISION-49-2026",
+            "EG-LABOUR-DECISION-294-2025",
+            "EG-LABOUR-DECISION-214-2025",
+            "EG-LABOUR-DECISION-187-2025",
+            "EG-LABOUR-DECISION-290-2025",
+            "EG-LABOUR-DECISION-291-2025",
+            "EG-LABOUR-DECISION-292-2025",
+        }
+        records = {d["document_id"]: d for d in self.inventory["documents"]}
+        self.assertTrue(expected.issubset(records))
+        for document_id in expected:
+            record = records[document_id]
+            self.assertNotEqual(record["source_status"], "verified")
+            self.assertEqual(record["collection_permission"], "unknown")
+            self.assertEqual(record["legal_status"], "unknown")
+            self.assertEqual(record["review_status"], "discovery_only")
         self.assertEqual(validate_inventory(self.inventory), [])
 
     def test_unknown_source_and_duplicate_instrument_ids_are_rejected(self):
