@@ -46,6 +46,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_app_separate_database_runtime.py
       - name: Test encrypted multi-database backup and restore
         run: PYTHONPATH=. python tests/test_database_backup_bundle.py
+      - name: Test approved original-file purge and tombstone backup
+        run: PYTHONPATH=. python tests/test_purge_approved_original_files.py
       - name: Test isolated database recovery drill
         run: PYTHONPATH=. python tests/test_database_recovery_drill.py
       - name: Test S3/KMS storage preflight
