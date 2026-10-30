@@ -186,3 +186,10 @@ Compared with the preserved official-parent-law Article 260 excerpt, this raises
 Sources: https://www.youm7.com/story/2026/10/28/حماية-أرواح-العمال-أولوية-وزارة-العمل-تحدد-مهلة-24-ساعة/7590406 and https://www.egyin.com/article/154732/. Both remain secondary reports, not the operative Gazette text.
 
 No Decision 248 rule was promoted, no currentness/source-use/counsel gate changed, and the legal-knowledge preparation estimate remains **15%** with strict authoritative legal-content readiness at **0%**.
+
+
+## Reproducible Arabic prompts for counsel acceptance — 2026-10-30
+
+Expanded the in-app lawyer acceptance plan with exact Arabic prompts for the core Labour Law and OSH cases, including missing Article 299, commencement/currentness, Article 260 reporting duties, statutory fee ceilings, Table 24 abstention, the known row-34/61/64 discrepancies, Decision 248's secondary-only off-site reporting/occupational-disease triggers, and missing Court of Cassation citations. The new OSH-16-A/B prompts explicitly prevent the app from advising a user to wait 48 hours based only on a secondary Decision 248 summary or from replacing Article 260's symptom-trigger wording with a diagnosis-trigger summary.
+
+The prompts are test inputs, not approved answers. The lawyer must still evaluate the app's actual retrieved evidence, citation, abstention, and currentness wording. The acceptance plan remains a later, separate release gate after technical completion. No legal rule was promoted; preparation remains **15%**, strict authoritative legal-content readiness **0%**.
