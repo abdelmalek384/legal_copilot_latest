@@ -44,3 +44,16 @@ The Table 24 candidate extraction (rows 1–781) was prepared from this secondar
 - Decision 250 secondary transcription: located; candidate extraction 781/781 of its identified numbering sequence.
 - Full Gazette text matched for Decisions 248–252: **0/5**.
 - Counsel approval/currentness/source-use clearance: **not started**.
+
+
+## Official Gazette catalog record — restricted original bundle (2026-10-30)
+
+The exact issue has been found in the DSpace-hosted Gazette repository:
+
+- Record: https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full
+- Handle: https://dspace.id.com.eg/handle/123456789/8906
+- Metadata identifies *الوقائع المصرية - ملحق الجريدة الرسمية العدد 225 تابع (أ)*, publisher المطابع الأميرية, contributing authority وزارة العمل, issue date 12 October 2026, and the five Decisions 248–252/2026.
+- The record lists the original bundle as **العدد 225 تابع أ - مؤمن.pdf** (6.13 MB).
+- The visible download endpoint redirects to a request-copy form; the PDF and item-specific license file are restricted. The original bytes have not been obtained. No access control was bypassed and no request was submitted.
+
+This resolves the catalog-identification question but not access, source-text comparison, or reuse rights. Keep the five decision records quarantined. A later authorized copy should be preserved byte-for-byte, hashed, and checked against the catalog metadata before any page comparison.
