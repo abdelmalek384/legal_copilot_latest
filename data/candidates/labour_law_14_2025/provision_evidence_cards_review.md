@@ -4183,7 +4183,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 131. EG-LABOUR-14-2025-ART-189-SOCIAL-CONSULTATION-COUNCIL-COMPETENCIES
 
@@ -4213,7 +4213,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 132. EG-LABOUR-14-2025-ART-190-SOCIAL-COUNCIL-COMPOSITION
 
@@ -4243,7 +4243,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 133. EG-LABOUR-14-2025-ART-191-SOCIAL-COUNCIL-TERM
 
@@ -4273,7 +4273,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 134. EG-LABOUR-14-2025-ART-192-SOCIAL-COUNCIL-BRANCHES-COMMITTEES
 
@@ -4303,7 +4303,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 135. EG-LABOUR-14-2025-ART-193-SOCIAL-COUNCIL-FUNDING-AND-AUDIT
 
@@ -4333,7 +4333,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 136. EG-LABOUR-14-2025-ART-194-COLLECTIVE-BARGAINING-PURPOSES
 
@@ -4363,7 +4363,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 137. EG-LABOUR-14-2025-ART-195-COLLECTIVE-BARGAINING-LEVELS
 
@@ -4393,7 +4393,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 138. EG-LABOUR-14-2025-ART-196-COLLECTIVE-DISPUTE-MANDATORY-NEGOTIATION
 
@@ -4423,7 +4423,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 139. EG-LABOUR-14-2025-ART-197-COLLECTIVE-AGREEMENT-FROM-NEGOTIATION
 
@@ -4453,7 +4453,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 140. EG-LABOUR-14-2025-ART-198-NO-UNILATERAL-ACTIONS-DURING-NEGOTIATION
 
@@ -4483,7 +4483,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 141. EG-LABOUR-14-2025-ART-199-COLLECTIVE-AGREEMENT-DURATION
 
@@ -4513,7 +4513,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 142. EG-LABOUR-14-2025-ART-200-COLLECTIVE-AGREEMENT-CONFLICT-AND-BETTER-BENEFIT
 
@@ -4543,7 +4543,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 143. EG-LABOUR-14-2025-ART-201-COLLECTIVE-AGREEMENT-ARABIC-LANGUAGE
 
@@ -4573,7 +4573,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 144. EG-LABOUR-14-2025-ART-202-COLLECTIVE-AGREEMENT-RENEWAL-TIMELINE
 
@@ -4603,7 +4603,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 145. EG-LABOUR-14-2025-ART-203-COLLECTIVE-AGREEMENT-FILING-AND-OBJECTION
 
@@ -4633,7 +4633,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 146. EG-LABOUR-14-2025-ART-204-COLLECTIVE-AGREEMENT-REGISTRATION-COURT-CHALLENGE
 
@@ -4663,7 +4663,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 147. EG-LABOUR-14-2025-ART-205-COLLECTIVE-AGREEMENT-WORKPLACE-DISPLAY
 
@@ -4693,7 +4693,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 148. EG-LABOUR-14-2025-ART-206-COLLECTIVE-AGREEMENT-JOINING-AFTER-REGISTRATION
 
@@ -4723,7 +4723,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 149. EG-LABOUR-14-2025-ART-207-COLLECTIVE-AGREEMENT-REGISTER-UPDATES
 
@@ -4753,7 +4753,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 150. EG-LABOUR-14-2025-ART-208-COLLECTIVE-AGREEMENT-GOOD-FAITH-IMPLEMENTATION
 
@@ -4783,7 +4783,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 151. EG-LABOUR-14-2025-ART-209-COLLECTIVE-AGREEMENT-UNFORESEEN-HARDSHIP
 
@@ -4813,7 +4813,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 152. EG-LABOUR-14-2025-ART-210-COLLECTIVE-AGREEMENT-ENFORCEMENT-AND-COMPENSATION
 
@@ -4843,7 +4843,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 153. EG-LABOUR-14-2025-ART-211-COLLECTIVE-AGREEMENT-UNION-REPRESENTATIVE-ACTIONS
 
@@ -4873,7 +4873,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 154. EG-LABOUR-14-2025-ART-212-COLLECTIVE-AGREEMENT-DISPUTE-PROCEDURES
 
@@ -4903,7 +4903,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 155. EG-LABOUR-14-2025-ART-213-COLLECTIVE-LABOUR-DISPUTE-SCOPE
 
@@ -4933,7 +4933,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 156. EG-LABOUR-14-2025-ART-214-COLLECTIVE-DISPUTE-CONCILIATION-THRESHOLD
 
@@ -4963,7 +4963,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 157. EG-LABOUR-14-2025-ART-215-COLLECTIVE-DISPUTE-CONCILIATION-HEARING
 
@@ -4993,7 +4993,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 158. EG-LABOUR-14-2025-ART-216-COLLECTIVE-DISPUTE-CONCILIATION-SETTLEMENT
 
@@ -5023,7 +5023,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 159. EG-LABOUR-14-2025-ART-217-COLLECTIVE-DISPUTE-REFERRAL-TO-MEDIATION-ARBITRATION
 
@@ -5053,7 +5053,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 160. EG-LABOUR-14-2025-ART-218-LABOUR-MEDIATION-ARBITRATION-CENTRE
 
@@ -5083,7 +5083,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 161. EG-LABOUR-14-2025-ART-219-LABOUR-MEDIATOR-AND-ARBITRATOR-LISTS
 
@@ -5113,7 +5113,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 162. EG-LABOUR-14-2025-ART-220-JUDICIAL-MEMBERS-MEDIATION-ARBITRATION
 
@@ -5143,7 +5143,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 163. EG-LABOUR-14-2025-ART-221-LABOUR-MEDIATOR-ELIGIBILITY
 
@@ -5173,7 +5173,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 164. EG-LABOUR-14-2025-ART-222-LABOUR-MEDIATOR-SELECTION-DEADLINE
 
@@ -5203,7 +5203,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 165. EG-LABOUR-14-2025-ART-223-LABOUR-MEDIATOR-TASK-AND-DURATION
 
@@ -5233,7 +5233,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 166. EG-LABOUR-14-2025-ART-224-LABOUR-MEDIATOR-REPLACEMENT
 
@@ -5263,7 +5263,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 167. EG-LABOUR-14-2025-ART-225-LABOUR-MEDIATION-RECOMMENDATIONS-AND-REPORT
 
@@ -5293,7 +5293,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 168. EG-LABOUR-14-2025-ART-226-LABOUR-ARBITRATOR-ELIGIBILITY
 
@@ -5323,7 +5323,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 169. EG-LABOUR-14-2025-ART-227-LABOUR-ARBITRATION-TRIBUNAL-COMPOSITION
 
@@ -5353,7 +5353,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 170. EG-LABOUR-14-2025-ART-228-LABOUR-ARBITRATION-SUBMISSION
 
@@ -5383,7 +5383,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 171. EG-LABOUR-14-2025-ART-229-LABOUR-ARBITRAL-AWARD-RULES-AND-DEADLINE
 
@@ -5413,7 +5413,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 172. EG-LABOUR-14-2025-ART-230-LABOUR-ARBITRAL-AWARD-REVIEW
 
@@ -5443,7 +5443,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 173. EG-LABOUR-14-2025-ART-231-WORKERS-STRIKE-PREREQUISITES
 
@@ -5473,7 +5473,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 174. EG-LABOUR-14-2025-ART-232-STRIKE-ADVANCE-NOTICE
 
@@ -5503,7 +5503,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 175. EG-LABOUR-14-2025-ART-233-STRIKE-DURING-COLLECTIVE-AGREEMENT
 
@@ -5533,7 +5533,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 176. EG-LABOUR-14-2025-ART-234-STRIKE-ESSENTIAL-SERVICES-AND-EXCEPTIONAL-CIRCUMSTANCES
 
@@ -5563,7 +5563,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 177. EG-LABOUR-14-2025-ART-235-STRIKE-EFFECT-ON-EMPLOYMENT-OBLIGATIONS
 
@@ -5593,7 +5593,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 178. EG-LABOUR-14-2025-ART-236-EMPLOYER-ECONOMIC-CLOSURE-OR-DOWNSIZING
 
@@ -5623,7 +5623,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 179. EG-LABOUR-14-2025-ART-237-ECONOMIC-CLOSURE-COMMITTEE-APPLICATION
 
@@ -5653,7 +5653,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 180. EG-LABOUR-14-2025-ART-238-ECONOMIC-CLOSURE-NOTICE-AND-IMPLEMENTATION
 
@@ -5683,7 +5683,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 181. EG-LABOUR-14-2025-ART-239-ECONOMIC-DOWNSIZING-SELECTION-CRITERIA
 
@@ -5713,7 +5713,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 182. EG-LABOUR-14-2025-ART-240-ECONOMIC-CLOSURE-DURING-COLLECTIVE-DISPUTE-OR-STRIKE
 
@@ -5743,7 +5743,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 183. EG-LABOUR-14-2025-ART-241-TEMPORARY-ECONOMIC-CHANGES-IN-EMPLOYMENT-TERMS
 
@@ -5773,7 +5773,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 184. EG-LABOUR-14-2025-ART-242-OCCUPATIONAL-SAFETY-CHAPTER-SCOPE
 
@@ -5803,7 +5803,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 185. EG-LABOUR-14-2025-ART-243-OCCUPATIONAL-SAFETY-ESTABLISHMENT-DEFINITION
 
@@ -5833,7 +5833,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 186. EG-LABOUR-14-2025-ART-244-OCCUPATIONAL-SAFETY-APPLICATION-SCOPE
 
@@ -5863,7 +5863,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 187. EG-LABOUR-14-2025-ART-245-OCCUPATIONAL-COMPLIANCE-OFFICES
 
@@ -5893,7 +5893,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 188. EG-LABOUR-14-2025-ART-246-OCCUPATIONAL-PHYSICAL-HAZARDS
 
@@ -5923,7 +5923,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 189. EG-LABOUR-14-2025-ART-247-OCCUPATIONAL-ENGINEERING-HAZARDS
 
@@ -5953,7 +5953,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 190. EG-LABOUR-14-2025-ART-248-OCCUPATIONAL-BIOLOGICAL-HAZARDS
 
@@ -5983,7 +5983,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 191. EG-LABOUR-14-2025-ART-249-OCCUPATIONAL-CHEMICAL-HAZARDS
 
@@ -6013,7 +6013,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 192. EG-LABOUR-14-2025-ART-250-OCCUPATIONAL-INDIRECT-HAZARDS
 
@@ -6043,7 +6043,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 193. EG-LABOUR-14-2025-ART-251-OCCUPATIONAL-FIRE-PREVENTION
 
@@ -6073,7 +6073,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 194. EG-LABOUR-14-2025-ART-252-OCCUPATIONAL-CONFINED-SPACE-SAFETY
 
@@ -6103,7 +6103,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 195. EG-LABOUR-14-2025-ART-253-OCCUPATIONAL-EMERGENCY-PLANS-AND-WORKER-WITHDRAWAL
 
@@ -6133,7 +6133,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 196. EG-LABOUR-14-2025-ART-254-WORKPLACE-HARASSMENT-BULLYING-VIOLENCE-PREVENTION
 
@@ -6163,7 +6163,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 197. EG-LABOUR-14-2025-ART-255-OCCUPATIONAL-SAFETY-TECHNICAL-STANDARDS
 
@@ -6193,7 +6193,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 198. EG-LABOUR-14-2025-ART-256-OCCUPATIONAL-SAFETY-INSPECTION-UNIT
 
@@ -6223,7 +6223,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 199. EG-LABOUR-14-2025-ART-257-OCCUPATIONAL-SAFETY-INSPECTOR-POWERS
 
@@ -6253,7 +6253,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 200. EG-LABOUR-14-2025-ART-258-OCCUPATIONAL-SAFETY-INSPECTOR-ACCESS
 
@@ -6283,7 +6283,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 201. EG-LABOUR-14-2025-ART-259-OCCUPATIONAL-SAFETY-INTERNAL-UNITS-COMMITTEES
 
@@ -6313,7 +6313,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 202. EG-LABOUR-14-2025-ART-260-OCCUPATIONAL-ACCIDENT-REPORTING-DEADLINES
 
@@ -6343,7 +6343,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 203. EG-LABOUR-14-2025-ART-261-OCCUPATIONAL-SAFETY-TRAINING-LICENSING
 
@@ -6373,7 +6373,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 204. EG-LABOUR-14-2025-ART-262-OCCUPATIONAL-SAFETY-CONSULTANT-LICENSE
 
@@ -6403,7 +6403,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 205. EG-LABOUR-14-2025-ART-263-NATIONAL-OCCUPATIONAL-SAFETY-CENTRE
 
@@ -6433,7 +6433,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 206. EG-LABOUR-14-2025-ART-264-SUPREME-OCCUPATIONAL-SAFETY-COUNCIL
 
@@ -6463,7 +6463,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 207. EG-LABOUR-14-2025-ART-265-GOVERNORATE-OCCUPATIONAL-SAFETY-COMMITTEES
 
@@ -6493,7 +6493,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 208. EG-LABOUR-14-2025-ART-266-PRE-EMPLOYMENT-MEDICAL-AND-CAPABILITY-EXAMS
 
@@ -6523,7 +6523,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 209. EG-LABOUR-14-2025-ART-267-EMPLOYER-TRAINING-AND-PPE-NO-CHARGE
 
@@ -6553,7 +6553,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 210. EG-LABOUR-14-2025-ART-268-WORKER-USE-AND-CARE-OF-PPE
 
@@ -6583,7 +6583,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 211. EG-LABOUR-14-2025-ART-269-WORKPLACE-DAILY-SAFETY-INSPECTIONS-AND-MEDICAL-CHECKS
 
@@ -6613,7 +6613,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 212. EG-LABOUR-14-2025-ART-270-WORKPLACE-FIRST-AID-AND-NURSING
 
@@ -6643,7 +6643,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 213. EG-LABOUR-14-2025-ART-271-REMOTE-WORKSITE-TRANSPORT-FOOD-HOUSING
 
@@ -6673,7 +6673,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 214. EG-LABOUR-14-2025-ART-272-SOCIAL-CULTURAL-SERVICES-50-WORKERS
 
@@ -6703,7 +6703,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 215. EG-LABOUR-14-2025-ART-273-SOCIAL-HEALTH-CULTURAL-SERVICES-FUND
 
@@ -6733,7 +6733,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 216. EG-LABOUR-14-2025-ART-274-SOCIAL-SERVICES-FUND-BENEFITS
 
@@ -6763,7 +6763,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 217. EG-LABOUR-14-2025-ART-275-LABOUR-INSPECTOR-JUDICIAL-POLICE-STATUS
 
@@ -6793,7 +6793,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 218. EG-LABOUR-14-2025-ART-276-LABOUR-INSPECTOR-ENTRY-AND-RECORDS
 
@@ -6823,7 +6823,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 219. EG-LABOUR-14-2025-ART-277-EMPLOYER-DUTY-TO-COOPERATE-WITH-INSPECTORS
 
@@ -6853,7 +6853,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 220. EG-LABOUR-14-2025-ART-278-EMPLOYER-ATTENDANCE-REQUESTS
 
@@ -6883,7 +6883,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 221. EG-LABOUR-14-2025-ART-279-PUBLIC-AUTHORITY-ASSISTANCE-TO-INSPECTORS
 
@@ -6913,7 +6913,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 222. EG-LABOUR-14-2025-ART-280-LABOUR-OFFENCES-PENALTY-INTRODUCTION
 
@@ -6943,7 +6943,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 223. EG-LABOUR-14-2025-ART-281-LABOUR-PENALTY-ARTICLES-4-5
 
@@ -6973,7 +6973,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 224. EG-LABOUR-14-2025-ART-282-LABOUR-PENALTY-ARTICLES-82-273-21
 
@@ -7003,7 +7003,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 225. EG-LABOUR-14-2025-ART-283-LABOUR-PENALTY-ARTICLES-37-48-153-137
 
@@ -7033,7 +7033,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 226. EG-LABOUR-14-2025-ART-284-LABOUR-PENALTY-ARTICLE-26
 
@@ -7063,7 +7063,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 227. EG-LABOUR-14-2025-ART-285-LABOUR-PENALTY-ARTICLE-23
 
@@ -7093,7 +7093,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 228. EG-LABOUR-14-2025-ART-286-LABOUR-PENALTY-ARTICLES-7-24-25-36-46-51-52-68
 
@@ -7123,7 +7123,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 229. EG-LABOUR-14-2025-ART-287-LABOUR-PENALTY-ARTICLES-45-104-108
 
@@ -7153,7 +7153,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 230. EG-LABOUR-14-2025-ART-288-LABOUR-PENALTY-MULTIPLE-WORKER-RIGHTS-ARTICLES
 
@@ -7183,7 +7183,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 231. EG-LABOUR-14-2025-ART-289-LABOUR-PENALTY-ARTICLES-62-66
 
@@ -7213,7 +7213,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 232. EG-LABOUR-14-2025-ART-290-LABOUR-PENALTY-ARTICLES-33-37-35-205
 
@@ -7243,7 +7243,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 233. EG-LABOUR-14-2025-ART-291-LABOUR-PENALTY-UNLICENSED-RECRUITMENT-AND-UNLAWFUL-CHARGES
 
@@ -7273,7 +7273,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 234. EG-LABOUR-14-2025-ART-292-LABOUR-PENALTY-ARTICLE-42
 
@@ -7303,7 +7303,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 235. EG-LABOUR-14-2025-ART-293-LABOUR-PENALTY-ARTICLES-70-74
 
@@ -7333,7 +7333,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 236. EG-LABOUR-14-2025-ART-294-LABOUR-PENALTY-DISCIPLINE-AND-RELATED-ARTICLES
 
@@ -7363,7 +7363,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 237. EG-LABOUR-14-2025-ART-295-LABOUR-PENALTY-ECONOMIC-CLOSURE-ARTICLES
 
@@ -7393,7 +7393,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 238. EG-LABOUR-14-2025-ART-296-LABOUR-PENALTY-OCCUPATIONAL-SAFETY-ARTICLES
 
@@ -7423,7 +7423,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 239. EG-LABOUR-14-2025-ART-297-LABOUR-PENALTY-INSPECTION-OBSTRUCTION
 
@@ -7453,7 +7453,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 240. EG-LABOUR-14-2025-ART-298-LABOUR-CORPORATE-MANAGER-AND-ENTITY-LIABILITY
 
@@ -7483,7 +7483,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 241. EG-LABOUR-14-2025-ART-55-MATERNITY-RETURN-AND-TERMINATION-PROTECTION
 
@@ -7513,7 +7513,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 242. EG-LABOUR-14-2025-ART-56-BREASTFEEDING-BREAKS
 
@@ -7543,7 +7543,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 243. EG-LABOUR-14-2025-ART-57-CHILDCARE-UNPAID-LEAVE
 
@@ -7573,7 +7573,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 244. EG-LABOUR-14-2025-ART-58-WOMAN-TERMINATION-MARRIAGE-PREGNANCY-CHILDBIRTH
 
@@ -7603,7 +7603,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 245. EG-LABOUR-14-2025-ART-59-WOMEN-EMPLOYMENT-RULES-AND-FLEXIBLE-WORK
 
@@ -7633,7 +7633,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 246. EG-LABOUR-14-2025-ART-60-WORKPLACE-CHILDCARE-100-WOMEN
 
@@ -7663,7 +7663,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 247. EG-LABOUR-14-2025-ART-61-CHILD-LABOUR-CHAPTER-CHILD-DEFINITION
 
@@ -7693,7 +7693,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 248. EG-LABOUR-14-2025-ART-62-CHILD-MINIMUM-EMPLOYMENT-AGE
 
@@ -7723,7 +7723,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 249. EG-LABOUR-14-2025-ART-63-CHILD-EMPLOYMENT-RULES-IMPLEMENTING-DECISION
 
@@ -7753,7 +7753,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 250. EG-LABOUR-14-2025-ART-64-CHILD-HAZARDOUS-WORK-PROHIBITION
 
@@ -7783,7 +7783,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 251. EG-LABOUR-14-2025-ART-65-CHILD-WORKING-HOURS-AND-NIGHT-WORK
 
@@ -7813,7 +7813,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 252. EG-LABOUR-14-2025-ART-66-CHILD-EMPLOYMENT-RECORDS-AND-NOTICES
 
@@ -7843,7 +7843,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 253. EG-LABOUR-14-2025-ART-67-CHILDREN-WITH-DISABILITIES-TRAINING-AND-PLACEMENT
 
@@ -7873,7 +7873,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 254. EG-LABOUR-14-2025-ART-68-PARENTS-PROHIBITED-CHILD-EMPLOYMENT
 
@@ -7903,7 +7903,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 255. EG-LABOUR-14-2025-ART-69-FOREIGN-WORKER-CHAPTER-DEFINITION
 
@@ -7933,7 +7933,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 256. EG-LABOUR-14-2025-ART-70-FOREIGN-WORKERS-SCOPE-AND-RECIPROCITY
 
@@ -7963,7 +7963,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 257. EG-LABOUR-14-2025-ART-71-FOREIGN-WORKER-PERMIT-AND-EMPLOYER-DUTY
 
@@ -7993,7 +7993,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 258. EG-LABOUR-14-2025-ART-72-FOREIGN-WORKER-ABSENCE-NOTICE
 
@@ -8023,7 +8023,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 259. EG-LABOUR-14-2025-ART-73-FOREIGN-WORKER-INVESTMENT-LAW-RULES
 
@@ -8053,7 +8053,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 260. EG-LABOUR-14-2025-ART-74-FOREIGN-WORKER-RETURN-TRAVEL-COSTS
 
@@ -8083,7 +8083,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 261. EG-LABOUR-14-2025-ART-75-IRREGULAR-AND-INFORMAL-WORKER-PROTECTION
 
@@ -8113,7 +8113,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 262. EG-LABOUR-14-2025-ART-76-IRREGULAR-WORKER-POLICY-AND-CATEGORIES
 
@@ -8143,7 +8143,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 263. EG-LABOUR-14-2025-ART-77-IRREGULAR-WORKER-REGISTRY-AND-DATABASE
 
@@ -8173,7 +8173,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 264. EG-LABOUR-14-2025-ART-78-IRREGULAR-WORKER-EMERGENCY-SERVICES-FUND
 
@@ -8203,7 +8203,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 265. EG-LABOUR-14-2025-ART-79-IRREGULAR-WORKER-FUND-BENEFITS
 
@@ -8233,7 +8233,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 266. EG-LABOUR-14-2025-ART-80-IRREGULAR-WORKER-FUND-REGULATIONS
 
@@ -8263,7 +8263,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 267. EG-LABOUR-14-2025-ART-81-EMERGENCY-AID-BY-PRESIDENTIAL-DECISION
 
@@ -8293,7 +8293,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 268. EG-LABOUR-14-2025-ART-82-IRREGULAR-WORKER-FUND-REVENUE-SOURCES
 
@@ -8323,7 +8323,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 269. EG-LABOUR-14-2025-ART-83-IRREGULAR-WORKER-FUND-ACCOUNTING-AND-AUDIT
 
@@ -8353,7 +8353,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 270. EG-LABOUR-14-2025-ART-84-IRREGULAR-WORKER-FUND-PUBLIC-MONEY-ENFORCEMENT
 
@@ -8383,7 +8383,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 271. EG-LABOUR-14-2025-ART-85-IRREGULAR-WORKER-FUND-ADMINISTRATION
 
@@ -8413,7 +8413,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 272. EG-LABOUR-14-2025-ART-86-INDIVIDUAL-EMPLOYMENT-CONTRACT-SCOPE
 
@@ -8443,7 +8443,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 273. EG-LABOUR-14-2025-ART-87-FIXED-TERM-AND-INDEFINITE-EMPLOYMENT-CONTRACTS
 
@@ -8473,7 +8473,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 274. EG-LABOUR-14-2025-ART-88-CONVERSION-TO-INDEFINITE-TERM-CONTRACT
 
@@ -8503,7 +8503,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 275. EG-LABOUR-14-2025-ART-97-NEW-WORK-PATTERN-EMPLOYMENT-RIGHTS
 
@@ -8533,7 +8533,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 276. EG-LABOUR-14-2025-ART-98-NEW-WORK-PATTERNS-MULTIPLE-EMPLOYERS
 
@@ -8563,7 +8563,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 277. EG-LABOUR-14-2025-ART-99-NEW-WORK-PATTERN-WRITTEN-CONTRACT-AND-PROOF
 
@@ -8593,7 +8593,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 278. EG-LABOUR-14-2025-ART-100-NEW-WORK-PATTERN-IMPLEMENTING-RULES
 
@@ -8623,7 +8623,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 279. EG-LABOUR-14-2025-ART-101-NATIONAL-WAGES-COUNCIL-COMPOSITION
 
@@ -8653,7 +8653,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 280. EG-LABOUR-14-2025-ART-102-NATIONAL-WAGES-COUNCIL-COMPETENCIES
 
@@ -8683,7 +8683,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 281. EG-LABOUR-14-2025-ART-103-NATIONAL-WAGES-COUNCIL-MEETINGS-AND-VOTING
 
@@ -8713,7 +8713,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 282. EG-LABOUR-14-2025-ART-104-NATIONAL-WAGES-COUNCIL-DECISION-COMPLIANCE
 
@@ -8743,7 +8743,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 283. EG-LABOUR-14-2025-ART-105-NATIONAL-WAGES-COUNCIL-INSPECTION-AND-PAYROLL-RECORDS
 
@@ -8773,7 +8773,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 284. EG-LABOUR-14-2025-ART-106-NATIONAL-WAGES-COUNCIL-DECISION-CHALLENGE
 
@@ -8803,7 +8803,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 285. EG-LABOUR-14-2025-ART-107-WAGE-DETERMINATION-HIERARCHY
 
@@ -8833,7 +8833,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 286. EG-LABOUR-14-2025-ART-108-WAGE-PAYMENT-FREQUENCY-AND-FINAL-DUES
 
@@ -8863,7 +8863,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 287. EG-LABOUR-14-2025-ART-109-DAILY-WAGE-AVERAGE-FOR-PRODUCTION-WORKERS
 
@@ -8893,7 +8893,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 288. EG-LABOUR-14-2025-ART-110-MONTHLY-WAGE-CATEGORY-CHANGE-CONSENT
 
@@ -8923,7 +8923,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 289. EG-LABOUR-14-2025-ART-111-WAGE-WHEN-WORK-PREVENTED
 
@@ -8953,7 +8953,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 290. EG-LABOUR-14-2025-ART-112-EMPLOYER-PROHIBITED-FORCED-PURCHASES
 
@@ -8983,7 +8983,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 291. EG-LABOUR-14-2025-ART-113-EMPLOYER-LOAN-DEDUCTION-LIMIT
 
@@ -9013,7 +9013,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 292. EG-LABOUR-14-2025-ART-114-WAGE-ATTACHMENT-AND-DEDUCTION-LIMITS
 
@@ -9043,7 +9043,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 293. EG-LABOUR-14-2025-ART-115-WAGE-RECEIPT-AND-PAYSLIP
 
@@ -9073,7 +9073,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ### 294. EG-LABOUR-14-2025-ART-116-CHILD-WAGE-PAYMENT
 
@@ -9103,7 +9103,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** undefined.
+**Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
 ## Activation gates
 
