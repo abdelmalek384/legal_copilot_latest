@@ -3412,6 +3412,28 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             0,
         )
 
+        owner_rename = self._mutate(
+            "patch", f"/research/conversations/{conversation_id}",
+            json={"title": "  Owner research title  "},
+        )
+        self.assertEqual(owner_rename.status_code, 200, owner_rename.text)
+        self.assertEqual(owner_rename.json()["title"], "Owner research title")
+        blank_rename = self._mutate(
+            "patch", f"/research/conversations/{conversation_id}",
+            json={"title": "   "},
+        )
+        self.assertEqual(blank_rename.status_code, 422, blank_rename.text)
+        deleted = self._mutate("delete", f"/research/conversations/{conversation_id}")
+        self.assertEqual(deleted.status_code, 200, deleted.text)
+        self.assertEqual(
+            self.client.get(f"/research/conversations/{conversation_id}").status_code,
+            404,
+        )
+        self.assertFalse(any(
+            item["id"] == conversation_id
+            for item in self.client.get("/research/conversations").json()
+        ))
+
 
     def test_failed_legal_review_event_write_rolls_back_and_returns_503(self):
         login = self.client.post(
@@ -3599,6 +3621,88 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
 
 
+    def test_firm_document_search_scope_requires_case_and_preserves_page_pinpoint(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate(
+            "post", "/cases", json={"title": "Firm-document search scope test"}
+        )
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+
+        context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        firm_db = self.runtime.firm_connection(context)
+        app.add_chunks(firm_db, [{
+            "ref": "Page pinpoint fixture",
+            "text": "مدة التقادم في المثال التشغيلي سبع سنوات",
+            "case_id": case_id,
+            "source": "case-file",
+            "article": "12",
+            "page": "17",
+        }])
+        firm_db.commit()
+
+        conversation = self._mutate("post", "/research/conversations", json={})
+        self.assertEqual(conversation.status_code, 200, conversation.text)
+        conversation_id = conversation.json()["id"]
+        missing_case = self._mutate(
+            "post", f"/research/conversations/{conversation_id}/messages",
+            json={"message": "مدة التقادم", "scope": "firm_documents"},
+        )
+        self.assertEqual(missing_case.status_code, 422, missing_case.text)
+
+        firm_scope = self._mutate(
+            "post", f"/research/conversations/{conversation_id}/messages",
+            json={
+                "message": "مدة التقادم",
+                "scope": "firm_documents",
+                "case_id": case_id,
+            },
+        )
+        self.assertEqual(firm_scope.status_code, 200, firm_scope.text)
+        self.assertEqual(firm_scope.json()["scope"], "firm_documents")
+        self.assertTrue(firm_scope.json().get("sources"), firm_scope.json())
+        self.assertTrue(all(
+            source.get("case_id") == case_id
+            for source in firm_scope.json().get("sources", [])
+        ))
+        self.assertTrue(all(
+            source.get("source_status") == "user_supplied_unverified"
+            for source in firm_scope.json().get("sources", [])
+        ))
+
+        page_search = self._mutate(
+            "post", "/search",
+            json={
+                "q": "التقادم المثال التشغيلي",
+                "case_id": case_id,
+                "scope": "firm_documents",
+            },
+        )
+        self.assertEqual(page_search.status_code, 200, page_search.text)
+        page_hit = next(
+            item for item in page_search.json()
+            if item["ref"] == "Page pinpoint fixture"
+        )
+        self.assertEqual(page_hit["page"], "17")
+        self.assertEqual(page_hit["article"], "12")
+        self.assertIn("التقادم", page_hit["matched_terms"])
+        self.assertIn("Page 17", page_hit["citation"])
+        self.assertIn("Article 12", page_hit["citation"])
+
+        verified_scope = self._mutate(
+            "post", "/search",
+            json={"q": "التقادم المثال التشغيلي", "scope": "verified_corpus"},
+        )
+        self.assertEqual(verified_scope.status_code, 200, verified_scope.text)
+        self.assertFalse(any(
+            item.get("ref") == "Page pinpoint fixture"
+            for item in verified_scope.json()
+        ))
+
+
     def test_research_discovery_escapes_like_wildcards_and_returns_metadata_only(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
@@ -3606,6 +3710,22 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(login.status_code, 200, login.text)
 
         corpus = self.runtime.legal_corpus_connection()
+
+        no_match = self._mutate(
+            "post", "/research/discover",
+            json={"q": "zz_no_catalog_match_2026"},
+        )
+        self.assertEqual(no_match.status_code, 200, no_match.text)
+        self.assertEqual(no_match.json()["scope"], "metadata_only")
+        self.assertFalse(no_match.json()["found"])
+        self.assertEqual(no_match.json()["results"], [])
+        self.assertIn("does not establish", no_match.json()["message"])
+        self.assertIn("No source page was scraped or downloaded", no_match.json()["warning"])
+        whitespace = self._mutate(
+            "post", "/research/discover", json={"q": "   "}
+        )
+        self.assertEqual(whitespace.status_code, 422, whitespace.text)
+
         corpus.execute(
             "INSERT INTO legal_sources(source_id,authority,source_page) VALUES(?,?,?)",
             ("literal-query-source", "Literal query test authority", "https://example.test/metadata"),
@@ -3644,6 +3764,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         result = body["results"][0]
         self.assertFalse(result["text_available"])
         self.assertEqual(result["status"], "metadata_only")
+        self.assertIn("no current-law status is implied", result["warning"])
         self.assertNotIn("text", result)
         self.assertNotIn("content", result)
         self.assertNotIn("passage", result)
@@ -3771,6 +3892,10 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
                 "SELECT text FROM notes WHERE id=?", (saved.json()["note_id"],)
             ).fetchone()
             self.assertIn("RESEARCH_MEMO_PRIVATE_ANSWER_SENTINEL", note["text"])
+            self.assertIn("LEGAL RESEARCH MEMO", note["text"])
+            self.assertIn("As of: 2026-10-28", note["text"])
+            self.assertIn("Search scope: verified_corpus", note["text"])
+            self.assertIn("not evidence that no applicable law exists", note["text"])
         finally:
             researcher.close()
 
@@ -4176,6 +4301,11 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         created = self._mutate("post", "/research/conversations", json={})
         self.assertEqual(created.status_code, 200, created.text)
         conversation_id = created.json()["id"]
+        blank = self._mutate(
+            "post", f"/research/conversations/{conversation_id}/messages",
+            json={"message": "   "},
+        )
+        self.assertEqual(blank.status_code, 422, blank.text)
         captured = []
         assistant_only_sentinel = "ASSISTANT-ANSWER-MUST-NOT-BECOME-RETRIEVAL-CONTEXT"
 
@@ -4219,6 +4349,10 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual([item["role"] for item in messages], ["user", "assistant", "user", "assistant"])
         self.assertEqual(messages[-1]["sources"], [])
         self.assertEqual(messages[-1]["content"], assistant_only_sentinel)
+        self.assertTrue(any(
+            item["id"] == conversation_id
+            for item in self.client.get("/research/conversations").json()
+        ))
 
 
 if __name__ == "__main__":
