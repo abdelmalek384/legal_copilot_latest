@@ -110,6 +110,13 @@
       "source_class": "third_party_repository_metadata_only",
       "permission": "unknown",
       "next_action": "Confirm repository operator identity and item-specific terms/access conditions. Treat catalogue metadata separately from the issuing publisher; do not bypass login or request-copy restrictions."
+    },
+    "EG-MELES-ELECTRONIC": {
+      "authority": "The Middle East Library for Economic Services (MELES) electronic repository; secondary repository/copy host, not the issuing authority",
+      "source_url": "https://dspace.id.com.eg/collections/51e4f2b6-b24b-44c0-9e40-8ea0a3a743ee",
+      "source_class": "secondary_repository_copy_candidate",
+      "permission": "unknown",
+      "next_action": "Treat item records as discovery/copy leads only; confirm item-specific access and reuse terms, and match every file against the Official Gazette before legal use."
     }
   },
   "documents": [
@@ -2150,7 +2157,8 @@
         {
           "url": "https://dspace.id.com.eg/items/ecbb04ef-5fc0-4f3b-9c89-85a4787f35bc/full",
           "source_role": "MELES Electronic 2026 DSpace record for bilingual Decision 982 PDFs; download routes to request-a-copy; item-specific license agreed upon submission",
-          "status": "alternate_text_copy_discovered_original_files_restricted_request_copy"
+          "status": "alternate_text_copy_discovered_original_files_restricted_request_copy",
+          "source_id": "EG-MELES-ELECTRONIC"
         }
       ]
     },
@@ -2297,6 +2305,12 @@
           "url": "https://alamiria.com/Sec/TashTxt?id=OHEywmUwNf8%3D",
           "source_role": "official Amiri Press searchable text candidate",
           "status": "discovered_not_downloaded"
+        },
+        {
+          "url": "https://dspace.id.com.eg/items/885cba3d-891d-413b-965a-cb3fb230c68f/request-a-copy?bitstream=3ea9a87d-f06e-4e18-a4c1-99b22a3a5a44",
+          "source_role": "MELES alternate repository file request page for bilingual Decision 2377/2026 PDF; not the Official Gazette item",
+          "status": "restricted_request_copy_no_request_submitted",
+          "source_id": "EG-MELES-ELECTRONIC"
         }
       ]
     },
@@ -2333,6 +2347,12 @@
           "source_role": "Official Gazette 2026 collection listing; issue 35 (مكرر), 2026-09-01, abstract includes Decision 2590/2026; exact item record not pinned",
           "status": "official_collection_listing_candidate_not_item_pinned",
           "source_id": "EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE"
+        },
+        {
+          "url": "https://dspace.id.com.eg/items/9e0f34a7-9106-4a2d-b7c4-a470967f0fc9/full",
+          "source_role": "MELES alternate repository item metadata for bilingual Decision 2590/2026 PDFs; not the Official Gazette item",
+          "status": "metadata_discovered_files_restricted_terms_not_verified",
+          "source_id": "EG-MELES-ELECTRONIC"
         }
       ]
     },
