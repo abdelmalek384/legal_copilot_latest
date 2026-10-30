@@ -50,6 +50,25 @@ class Decision250Table24ReviewQueueTests(unittest.TestCase):
         self.assertIn("Do not correct pending original Gazette confirmation.", rendered)
         self.assertIn("cas_identifier: 1344-281 vs 1344-28-1", rendered)
 
+    def test_real_high_priority_discrepancies_are_flagged_without_correction(self):
+        rows = {row["row"]: row for row in load_rows()}
+        expected = {
+            34: ("cas_identifier", "1344-281", "1344-28-1"),
+            61: ("primary_exposure_limit_token", "1 mg/m3 (I)", "appears to read 0.3 mg/m3"),
+            64: ("primary_exposure_limit_token", "0.02 ppm", "appears to read 0.5 ppm"),
+        }
+        for number, (field, candidate, tentative_image) in expected.items():
+            row = rows[number]
+            self.assertEqual(row["secondary_scan_discrepancy"]["field"], field)
+            self.assertEqual(row["secondary_scan_discrepancy"]["candidate_transcription"], candidate)
+            self.assertEqual(row["secondary_scan_discrepancy"]["secondary_image_observed_tentative"], tentative_image)
+            self.assertEqual(row["secondary_scan_discrepancy"]["status"], "pending_original_gazette_confirmation")
+            self.assertIn("SECONDARY IMAGE DISCREPANCY — ORIGINAL GAZETTE REQUIRED", categories(row))
+        self.assertEqual(rows[34]["cas"], "1344-281")
+        self.assertEqual(rows[61]["raw_limit_and_note_text"], "1 mg/m3 (I)")
+        self.assertEqual(rows[64]["raw_limit_and_note_text"], "0.02 ppm")
+        self.assertIn("HIGH-RISK REVIEW", categories(rows[64]))
+
     def test_loader_refuses_partial_queue_when_batches_are_missing(self):
         with tempfile.TemporaryDirectory() as tmp:
             with self.assertRaisesRegex(ValueError, "refusing to build a partial review queue"):
