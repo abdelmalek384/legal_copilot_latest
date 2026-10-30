@@ -1,7 +1,8 @@
 from pathlib import Path
 import unittest
+from unittest.mock import patch
 
-from tools.bootstrap_first_firm import build_init_command
+from tools.bootstrap_first_firm import build_init_command, has_active_owner
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -42,6 +43,31 @@ class WindowsLauncherContractTests(unittest.TestCase):
         windows = (ROOT / "start_windows.bat").read_text(encoding="utf-8")
         self.assertIn("python tools/bootstrap_first_firm.py", mac)
         self.assertIn(r"python tools\bootstrap_first_firm.py", windows)
+
+    def test_bootstrap_initializes_its_own_process_runtime_before_query(self):
+        class Control:
+            def execute(self, _sql):
+                return self
+
+            def fetchone(self):
+                return (1,)
+
+        class Runtime:
+            def __init__(self):
+                self.initialized = False
+
+            def initialize(self):
+                self.initialized = True
+
+            def control_connection(self):
+                if not self.initialized:
+                    raise AssertionError("runtime was not initialized in this process")
+                return Control()
+
+        runtime = Runtime()
+        with patch("tools.bootstrap_first_firm.DatabaseRuntime.from_env", return_value=runtime):
+            self.assertTrue(has_active_owner())
+        self.assertTrue(runtime.initialized)
 
     def test_bootstrap_command_passes_user_values_without_shell_interpolation(self):
         command = build_init_command(
