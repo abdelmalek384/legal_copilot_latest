@@ -92,7 +92,8 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
                     gazette = item["official_gazette_metadata"]
                     self.assertIn("dspace.id.com.eg", gazette["source_url"])
                     full_text_status = gazette["full_text_status"].casefold()
-                    self.assertTrue(any(phrase in full_text_status for phrase in ("not been downloaded", "not been obtained", "no original file")))
+                    self.assertIn("original file", full_text_status)
+                    self.assertIn("not been downloaded", full_text_status)
                     self.assertIn("not verified", item["status"])
                     if item["document_id"] == "EG-LABOUR-DECISION-49-2026":
                         self.assertEqual(gazette["publication_date"], "2026-03-18")
