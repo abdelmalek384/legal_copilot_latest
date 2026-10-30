@@ -19,7 +19,7 @@ Open pull requests do not count as completed deliverables. Their changes are tre
 | Legal research, retrieval and citation quality | 15% | 65% | 9.75 | Arabic/English lexical retrieval, source scoping, citation validation, abstention, provenance display and evaluation tooling exist. Remaining: real lawyer-labelled evaluation, retrieval tuning on reviewed material, and broader practice-area coverage. |
 | Verified Egyptian legal knowledge and source rights | 25% | 6% | 1.50 | Candidate catalogues, source registers, permission gates, version metadata, audit tools and review queues exist. The verified corpus remains very small; original primary-source matching, reuse rights, amendment/currentness review and qualified counsel sign-off are still blockers. Candidate counts and secondary copies do not count as verified law. |
 | Security, privacy and firm isolation | 15% | 70% | 10.50 | Separate profile architecture, access controls, MFA, audit events, backup tooling and numerous isolation tests exist. Remaining: complete DB/storage workstream, exhaustive route/job isolation evidence, independent security assessment, and witnessed recovery/rollback. |
-| UI, accessibility and device usability | 10% | 40% | 4.00 | Responsive Arabic-first interface and accessibility improvements exist. Manual RTL/LTR, keyboard, screen-reader, mobile/tablet and browser acceptance are not complete. Windows launcher PR #900 is open and not yet counted. |
+| UI, accessibility and device usability | 10% | 40% | 4.00 | Responsive Arabic-first interface and accessibility improvements exist. Manual RTL/LTR, keyboard, screen-reader, mobile/tablet and browser acceptance are not complete. Windows launcher PR #900 and privacy-safe installable PWA PR #903 are open and not yet counted. |
 | Automated testing and reliability | 10% | 60% | 6.00 | Broad CI coverage and focused regression suites exist. Remaining: fresh full-suite evidence for the current release candidate, stable test environment, operational smoke tests and resolution of all current failures. |
 | Production operations and deployment readiness | 10% | 35% | 3.50 | Strict preflight, release gates, encrypted backup/restore code, storage adapters and reminder outbox/scheduler foundations exist. Remaining: real staging configuration, live provider tests, monitoring/alerting, operator reconciliation, witnessed restore drill, and controlled deployment rehearsal. |
 | **Total** | **100%** |  | **46.50 / 100** | **Rounded technical completion: 47%.** |
@@ -51,7 +51,8 @@ The product cannot be called production-ready or legally approved until all appl
 ## Current open implementation items
 
 - **PR #840** — legal-source evidence work; draft/open, not merged. Its metadata and candidate structures do not increase verified-law coverage.
-- **PR #900** — Windows first-run launcher; draft/open, initial launcher contract test passed in CI, full workflow still running, physical Windows smoke test pending.
+- **PR #900** — Windows first-run launcher and shared Mac/Windows bootstrap helper; draft/open, full workflow passed before the latest shared-bootstrap refactor, fresh CI and physical Windows/macOS smoke tests pending.
+- **PR #903** — privacy-safe installable PWA shell and live deployment HTTP smoke probe; draft/open, Full Tests 125/125 and Non-database safety regression 23/23 passed; manual Android/iOS/desktop install and offline checks pending.
 - **Database/storage workstream** — remains assigned separately; do not duplicate or modify it here.
 - **Action 1 primary-source intake** — awaiting the user's original Gazette PDF and optional `law_rows_ar.jsonl`; source bytes must remain private and must not be committed.
 
