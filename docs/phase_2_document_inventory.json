@@ -2148,6 +2148,11 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=kkawTcVJE9I%3D",
           "source_role": "official Amiri Press searchable text candidate",
           "status": "discovered_not_downloaded"
+        },
+        {
+          "url": "https://dspace.id.com.eg/items/90a235e2-d98c-4c39-92ec-d7006cfd8427/full",
+          "source_role": "Official Gazette item metadata: issue 18 supplement, dated 2026-04-30; original bundle listed",
+          "status": "official_metadata_discovered_file_not_hashed"
         }
       ]
     },
@@ -2173,12 +2178,17 @@
         "source-use review",
         "qualified lawyer review"
       ],
-      "notes": "Only discovered as a cited predecessor in the official Amiri Press text of Decision 2377/2026, which describes it as extending Decision 982/2026 during June 2026. No independent original text or Gazette page was located in this check.",
+      "notes": "Official Gazette DSpace metadata identifies issue 21 supplement (A), dated 21 May 2026, publisher Amiri Press, and Decision 1572/2026; the listed original PDF currently routes to a request-copy page. Amiri Press Decision 2377/2026 independently cites it as extending Decision 982/2026 during June 2026. Original bytes/hash and full Gazette-page comparison remain outstanding.",
       "source_urls": [
         {
           "url": "https://alamiria.com/Sec/TashTxt?id=OHEywmUwNf8%3D",
           "source_role": "official later decision citing Decision 1572/2026",
           "status": "referenced_not_independently_located"
+        },
+        {
+          "url": "https://dspace.id.com.eg/items/3ce63ac9-1cc3-4bb7-a2c9-449c1c730831",
+          "source_role": "Official Gazette item metadata: issue 21 supplement (A), dated 2026-05-21; original bundle listed",
+          "status": "official_metadata_discovered_original_file_request_copy_restricted"
         }
       ]
     },
@@ -2204,12 +2214,22 @@
         "source-use review",
         "qualified lawyer review"
       ],
-      "notes": "Only discovered as a cited predecessor in the official Amiri Press text of Decision 2377/2026, which describes it as extending Decision 982/2026 during July 2026. No independent original text or Gazette page was located in this check.",
+      "notes": "Official Gazette DSpace metadata identifies issue 26 supplement (B), dated 30 June 2026, and its abstract identifies Decision 2033/2026. A secondary transcription states that it extends Decision 982/2026 during July 2026. Original Gazette bytes/hash, exact page anchor, terms, currentness and lawyer review remain outstanding.",
       "source_urls": [
         {
           "url": "https://alamiria.com/Sec/TashTxt?id=OHEywmUwNf8%3D",
           "source_role": "official later decision citing Decision 2033/2026",
           "status": "referenced_not_independently_located"
+        },
+        {
+          "url": "https://dspace.id.com.eg/items/080b6ab2-3969-46e5-a8bd-38f86305f6dd/full",
+          "source_role": "Official Gazette item metadata: issue 26 supplement (B), dated 2026-06-30; abstract identifies Decision 2033/2026",
+          "status": "official_metadata_discovered_file_not_hashed"
+        },
+        {
+          "url": "https://mksegypt.org/ar/decisions/34895",
+          "source_role": "Secondary legal database transcription with date and operative monthly extension; cross-check only",
+          "status": "secondary_text_candidate_not_authoritative"
         }
       ]
     },
