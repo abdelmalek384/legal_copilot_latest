@@ -11,6 +11,7 @@ on:
       - 'data/candidates/labour_law_14_2025/decision_982_remote_work_temporal_chain_2026-10-30.md'
       - 'tools/validate_phase2_document_inventory.py'
       - 'tests/test_phase2_document_inventory.py'
+      - 'tests/test_decision162_candidate_quarantine.py'
       - 'tools/validate_decision250_table24_candidates.py'
       - 'tools/validate_decision250_table23_candidates.py'
       - 'tools/validate_decisions_251_252_candidates.py'
@@ -78,6 +79,8 @@ jobs:
         run: python tools/validate_phase2_document_inventory.py
       - name: Test Phase 2 instrument inventory and temporal-chain safeguards
         run: PYTHONPATH=. python tests/test_phase2_document_inventory.py
+      - name: Test Decision 162 candidate quarantine
+        run: PYTHONPATH=. python tests/test_decision162_candidate_quarantine.py
       - name: Test Action 1 Gazette article text-layer comparison
         run: PYTHONPATH=. python tests/test_compare_action1_gazette.py
       - name: Validate Decision 252 secondary candidate map
