@@ -43,7 +43,7 @@ jobs:
           python -m pip install --upgrade pip-audit==2.10.1
           pip-audit --strict --progress-spinner off -r requirements-py312.lock
       - name: Upload resolved deployment lock
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: requirements-py312-lock
           path: requirements-py312.lock
