@@ -2124,7 +2124,7 @@
         "source-specific collection and commercial reuse review",
         "qualified Egyptian labour-lawyer review"
       ],
-      "notes": "Discovery-only. Amiri Press searchable text identifies this decision as applying a remote-work system to establishments/entities subject to Labour Law 14/2025. Later official Amiri Press decisions cite it and extend its operation month-by-month. Do not infer that it remains operative after the last evidenced extension. Official Gazette DSpace metadata identifies issue 14 supplement, dated 2 April 2026, with Decision 982/2026 in the abstract. The original PDF Download action routes to a request-a-copy form; no request was submitted. An official Ministry of Labour report dated 6 April 2026 describes the April implementation as remote work on Sundays each week; this is supporting announcement evidence, not a substitute for the decision's full operative text.",
+      "notes": "Discovery-only. Amiri Press searchable text identifies this decision as applying a remote-work system to establishments/entities subject to Labour Law 14/2025. Later official Amiri Press decisions cite it and extend its operation month-by-month. Do not infer that it remains operative after the last evidenced extension. Official Gazette DSpace metadata identifies issue 14 supplement, dated 2 April 2026, with Decision 982/2026 in the abstract. The original PDF Download action routes to a request-a-copy form; no request was submitted. An official Ministry of Labour report dated 6 April 2026 describes the April implementation as remote work on Sundays each week; this is supporting announcement evidence, not a substitute for the decision's full operative text. A later official State Information Service announcement dated 2026-09-30 reports Cabinet approval of a draft decision to suspend Decision 982/2026. This is a cabinet approval of a draft, not the published operative instrument; exact decision number, publication, effective date and scope remain unverified. Until the actual instrument is located, the app must not claim that the suspension legally took effect, nor claim that Decision 982 continued after September.",
       "source_urls": [
         {
           "url": "https://alamiria.com/Sec/TashTxt?id=X+ynf8GR0jI%3D",
@@ -2141,6 +2141,11 @@
           "url": "https://www.labour.gov.eg/ar/الأخبار/عن-طريق-الفيديو-كونفرانس-وزير-العمل-يتابع-مع-مديريات-العمل-بالمحافظات-تنفيذ-خطط-الوزارة-وتطبيق-الكتاب-الدوري-الخاص-بالعمل-عن-بعد-بالقطاع-الخاص/",
           "source_role": "Official Ministry of Labour report dated 2026-04-06 describing implementation of Decision 982/2026 and remote work on Sundays during April; supporting discovery only",
           "status": "official_announcement_not_decision_text"
+        },
+        {
+          "url": "https://sis.gov.eg/en/media-center/news/cabinet-approves-suspending-sunday-remote-work-system/",
+          "source_role": "Official State Information Service announcement dated 2026-09-30: Cabinet approved a draft decision to suspend Decision 982/2026; not the operative published instrument",
+          "status": "official_cabinet_draft_approval_announcement_not_promulgated_decision"
         }
       ]
     },
@@ -2348,7 +2353,7 @@
         "source-use review",
         "qualified Egyptian labour-lawyer review"
       ],
-      "notes": "Amiri Press searchable text identifies the subject as the National Wages Council's work system and competences and cites Law 14/2025 in its preamble. This is a related implementing/institutional instrument, not an amendment to the Labour Law on current evidence. Secondary reports dated 26 October 2026 state that Decision 3165/2026 appeared in Official Gazette issue 41 (مكرر و), reportedly dated 12 October 2026. The exact official Gazette DSpace item record and original PDF have not been located; do not treat the reported issue/date as independently verified.",
+      "notes": "Amiri Press searchable text identifies the subject as the National Wages Council's work system and competences and cites Law 14/2025 in its preamble. This is a related implementing/institutional instrument, not an amendment to the Labour Law on current evidence. Secondary reports dated 26 October 2026 state that Decision 3165/2026 appeared in Official Gazette issue 41 (مكرر و), reportedly dated 12 October 2026. The exact official Gazette DSpace item record and original PDF have not been located; do not treat the reported issue/date as independently verified. Official Amiri Press searchable text is available and its opening operative provision permits the National Wages Council to form specialized subcommittees, with balanced representation of government, employers' organizations and trade unions. The official Gazette item/page anchor and complete source-byte hash remain unverified; keep discovery-only.",
       "source_urls": [
         {
           "url": "https://alamiria.com/Sec/TashTxt?id=EreMgz%2FNoYY%3D",
