@@ -304,6 +304,24 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "one PDF URL located; no bulk-download/API permission established",
       "required_next_action": "Review applicable portal terms and access conditions; keep statutory copyright exclusion separate from access terms and systematic-retrieval limits; document any restrictions before bulk acquisition or indexing."
+    },
+    {
+      "source_id": "EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE",
+      "authority": "DSpace-hosted Ibrachy & Dermarkar Repository catalogue; individual item metadata identifies Amiri Press as Gazette publisher",
+      "source_page": "https://dspace.id.com.eg/collections/bb4a4122-9215-48e2-a8a5-b622ffa5eeb6",
+      "material_types": [
+        "Official Gazette catalogue metadata",
+        "restricted Gazette PDF listings",
+        "repository item metadata"
+      ],
+      "access_status": "catalogue_public_but_original_files_may_require_login_or_request_copy",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": null,
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established; item-specific PDF downloads observed as login- or request-copy-restricted",
+      "required_next_action": "Review repository operator identity and applicable DSpace/item-specific terms; preserve item-level access restrictions; do not bypass login or request-copy controls; do not infer permission from catalogue visibility or the Amiri Press publisher metadata."
     }
   ]
 }
