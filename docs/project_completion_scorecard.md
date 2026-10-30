@@ -1,11 +1,11 @@
 # Legal Copilot — Whole-project completion scorecard
 
-**As of:** 2026-10-30  
+**As of:** 2026-10-31  
 **Purpose:** One consistent, evidence-based percentage for technical project completion. This score is a planning estimate, not a certification or market-readiness claim.
 
 ## Current score
 
-<escape>**Technical project completion: 48%** (weighted estimate; rounded from 47.95%).</escape>
+<escape>**Technical project completion: 48%** (weighted estimate; rounded from 47.90%).</escape>
 
 **Final Egyptian-counsel acceptance: 0% / not started.** This is a separate post-build acceptance gate, as planned. It must be completed before the product is represented as legally approved or used for client-facing legal reliance.
 
@@ -18,11 +18,11 @@ Open pull requests do not count as completed deliverables. Their changes are tre
 | Core case-management and collaboration workflows | 15% | 75% | 11.25 | Case folders, teams, tasks, sessions, notes, files, fees, activity history and dashboard workflows exist. Remaining: end-to-end workflow acceptance, edge-case QA, and operational polish. |
 | Legal research, retrieval and citation quality | 15% | 65% | 9.75 | Arabic/English lexical retrieval, source scoping, citation validation, abstention, provenance display and evaluation tooling exist. Remaining: real lawyer-labelled evaluation, retrieval tuning on reviewed material, and broader practice-area coverage. |
 | Verified Egyptian legal knowledge and source rights | 25% | 6% | 1.50 | Candidate catalogues, source registers, permission gates, version metadata, audit tools and review queues exist. The verified corpus remains very small; original primary-source matching, reuse rights, amendment/currentness review and qualified counsel sign-off are still blockers. Candidate counts and secondary copies do not count as verified law. |
-| Security, privacy and firm isolation | 15% | 71% | 10.65 | Separate profile architecture, access controls, MFA, audit events, backup tooling and isolation tests exist. The MFA lifecycle audit-failure rollback regression merged in PR #925; CodeQL/Bandit security analysis merged in PR #907. Remaining: complete DB/storage workstream, exhaustive route/job isolation evidence, independent security assessment, and witnessed recovery/rollback. |
+| Security, privacy and firm isolation | 15% | 72% | 10.80 | Separate profile architecture, access controls, MFA, audit events, backup tooling and isolation tests exist. The MFA lifecycle audit-failure rollback regression merged in PR #925; CodeQL/Bandit security analysis merged in PR #907. Remaining: complete DB/storage workstream, exhaustive route/job isolation evidence, independent security assessment, and witnessed recovery/rollback. |
 | UI, accessibility and device usability | 10% | 45% | 4.50 | Responsive Arabic-first interface, installable privacy-safe PWA shell (PR #903 merged), and current-main Windows/Mac first-run launchers (PR #909 merged) exist. Physical Windows/macOS checks and manual RTL/LTR, keyboard, screen-reader, mobile/tablet and browser acceptance remain incomplete. |
-| Automated testing and reliability | 10% | 65% | 6.50 | Broad CI coverage, hash-locked Python dependency baseline (PR #910 merged), CodeQL/Bandit static analysis (PR #907 merged), and current-main legal PDF integrity/OCR regressions (PR #923 merged) exist. Remaining: fresh full-suite evidence for the exact release candidate, operational smoke tests, and resolution of any current failures. |
+| Automated testing and reliability | 10% | 66% | 6.60 | Broad CI coverage, hash-locked Python dependency baseline (PR #910 merged), CodeQL/Bandit static analysis (PR #907 merged), and current-main legal PDF integrity/OCR regressions (PR #923 merged) exist. Remaining: fresh full-suite evidence for the exact release candidate, operational smoke tests, and resolution of any current failures. |
 | Production operations and deployment readiness | 10% | 35% | 3.50 | Strict preflight, release gates, encrypted backup/restore code, storage adapters and reminder outbox/scheduler foundations exist. Remaining: real staging configuration, live provider tests, monitoring/alerting, operator reconciliation, witnessed restore drill, and controlled deployment rehearsal. |
-| **Total** | **100%** |  | **47.95 / 100** | **Rounded technical completion: 48%.** |
+| **Total** | **100%** |  | **47.90 / 100** | **Rounded technical completion: 48%.** |
 
 ## Completion rules
 
@@ -58,11 +58,20 @@ The product cannot be called production-ready or legally approved until all appl
 - **PR #914 and #917 merged:** Boto3 and Pillow dependency updates passed Tests, CodeQL and dependency audit before merge.
 - **No completion-percentage increase is claimed:** provisional cards and source-discovery metadata improve research preparation, but do not establish verified law or counsel-approved answers. The verified Egyptian legal corpus remains 6%.
 
+## Latest merged progress — 2026-10-31 (security and legal-source discovery)
+
+- **PR #945 merged:** upgraded the Python PDF parser to pypdf 6.21.4 and refreshed the hash-locked Python 3.12 deployment lock. The prior 6.21.2 pin triggered four dependency advisories; the updated branch passed the full Tests workflow, dependency audit, CodeQL and container image build.
+- **PR #946 merged:** resolved the identity of Ministerial Decision 162/2026, recorded the Official Gazette Supplement 176 metadata (13 August 2026), and added a secondary-text crosswalk against Labour Law 14/2025 Articles 117–129, 137 and 141. The candidate effective date 14 August 2026 is not verified against original Gazette bytes. Article 46's investigation-extension wording remains a counsel question. The instrument remains discovery-only and retrieval-ineligible.
+- **PR #944 merged:** recorded the Supreme Constitutional Court's public recent-judgments page and a third-party-described API lead. The API was not called or independently validated; official terms and collection/commercial reuse remain unknown. No judgments were ingested.
+- **PR #931 merged:** registered الذاكرة والمعرفة للدراسات as a discovery-only legal archive. Its site-level CC BY 4.0 statement does not resolve rights over underlying texts, third-party reproductions or database compilation. No legal text was imported.
+- **PR #784 closed as superseded by #946:** the exact Decree 162 record and crosswalk now live in current main.
+- **No increase is claimed for verified Egyptian legal knowledge:** all these changes improve source discovery, provenance and release safeguards, but no new Gazette original was hashed/visually matched and no lawyer-approved legal text was added. Verified-corpus completion remains 6%.
+
 ## Current open implementation items
 
 - **PR #782 — long-lived Labour Law branch:** open, but 198 commits ahead and 234 behind current main. Do not merge the branch wholesale. Its non-duplicate Articles 256–298 and coverage/promulgation material has been selectively ported through #937 and #939. Current main contains 127 canonical cards; remaining branch content needs separate reconciliation.
-- **PR #840 — Decisions 248–252 / Table 24:** draft/open. Secondary transcription comparisons are recorded for rows 34, 61 and 64, but discrepancies remain unresolved. Original Gazette issue 225(A) remains request-copy restricted; official Gazette matches 0/781, counsel-approved rows 0, retrieval-eligible rows 0.
-- **PR #784 — Decision 162 currentness lead:** draft/open. Keep signature date, Gazette publication date, commencement and later amendments separate until primary-source reconciliation is complete.
+- **PR #840 — Decisions 248–252 / Table 24:** draft/open. New public secondary full/partial transcriptions were located for all five decisions, but original Gazette comparisons remain 0/5. Table 24 remains 781 candidate rows with 0/781 original Gazette matches; discrepancies in rows 34, 61 and 64 remain unresolved. No counsel-approved or retrieval-eligible rows.
+- **PR #784 — Decision 162 currentness lead:** closed as superseded by merged PR #946. Original Gazette PDF/hash, visual review, amendment/currentness review, reuse review and counsel approval remain outstanding.
 - **PR #922 — Docker build-action update:** open. Tests failed in the cross-firm reminder-healthcheck test because the report was unexpectedly healthy. Do not weaken the cross-firm isolation assertion; diagnose and rerun before merge.
 - **PR #898 — S3 physical-purge state machine:** separate database/storage workstream. Do not enable destructive purge without independent review, live S3/KMS/IAM evidence, approved retention policy and witnessed recovery.
 - **Database/tenant work:** remains assigned to the separate workstream. No duplicate schema, migration, identity or destructive storage changes were made here.
@@ -76,4 +85,4 @@ The product cannot be called production-ready or legally approved until all appl
 5. Complete real lawyer-labelled retrieval/citation evaluation, manual Arabic RTL/LTR/accessibility/browser QA, staging operations and witnessed backup/restore.
 6. Obtain qualified Egyptian counsel's actual application acceptance after technical completion.
 
-**Technical completion remains 48%** (47.95/100). Final Egyptian-counsel acceptance remains **0% / not started**. More provisional records or secondary-source cross-checks do not count as verified law or market readiness.
+**Technical completion remains 48%** (47.90/100). Final Egyptian-counsel acceptance remains **0% / not started**. More provisional records or secondary-source cross-checks do not count as verified law or market readiness.
