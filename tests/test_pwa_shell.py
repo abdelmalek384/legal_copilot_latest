@@ -22,6 +22,7 @@ class PwaShellTests(unittest.TestCase):
 
     def test_home_injects_manifest_and_nonce_protected_registration(self):
         self.assertIn('href="/manifest.webmanifest"', APP)
+        self.assertIn('rel="apple-touch-icon" href="/apple-touch-icon.png"', APP)
         self.assertIn('name="apple-mobile-web-app-capable" content="yes"', APP)
         self.assertIn('name="apple-mobile-web-app-title" content="المساعد القانوني"', APP)
         self.assertIn('navigator.serviceWorker.register("/service-worker.js")', APP)
