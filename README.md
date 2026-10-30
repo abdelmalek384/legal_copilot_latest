@@ -74,6 +74,10 @@ Before any real-client deployment, follow the [production deployment checklist](
 
 A model endpoint must not receive prompts until its data-processing terms, retention, access controls, and matter-data suitability have been reviewed and `LLM_DATA_PROCESSING_APPROVED=1` is set. Case-scoped prompts, prior-question follow-up context, and matter-file passages additionally require `LLM_FIRM_DATA_PROCESSING_APPROVED=1`. These flags are deployment attestations, not client consent or a guarantee of provider compliance. See [LLM data-processing policy](docs/llm_data_processing_policy.md).
 
+### Automated security scanning
+
+The repository's CodeQL workflow analyzes Python and frontend JavaScript, and Bandit scans the backend/security tooling. Review code-scanning alerts and CI finding summaries; a successful scan is not proof of a vulnerability-free application. See [static security analysis and finding triage](docs/static_security_analysis.md). Independent security assessment remains a production release gate.
+
 ### Backup and restore
 
 The single-file `backup` / `restore` commands are disabled. Use encrypted tenancy bundles so the control plane, per-firm databases, and legal corpus are captured and restored together.

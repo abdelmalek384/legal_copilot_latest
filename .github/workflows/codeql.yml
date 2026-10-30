@@ -1,0 +1,78 @@
+name: CodeQL security analysis
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: "15 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+  security-events: write
+
+concurrency:
+  group: codeql-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  analyze:
+    name: Analyze (${{ matrix.language }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [python, javascript-typescript]
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+          queries: security-extended
+      - name: Perform CodeQL analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:${{ matrix.language }}"
+
+  bandit:
+    name: Bandit Python security lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install Bandit
+        run: python -m pip install --upgrade pip bandit
+      - name: Scan backend and security tooling
+        run: bandit -r app.py database_runtime.py tenant_catalog.py tools -ll -ii --exit-zero -f json -o /tmp/bandit-report.json
+      - name: Report findings and block high-severity issues
+        run: |
+          python - <<'PY'
+          import json
+          import sys
+          from collections import Counter
+
+          with open("/tmp/bandit-report.json", encoding="utf-8") as handle:
+              report = json.load(handle)
+          results = report.get("results", [])
+          counts = Counter(item.get("issue_severity", "UNDEFINED") for item in results)
+          print("Bandit findings by severity:", dict(counts))
+          for item in results:
+              print(
+                  item.get("issue_severity"), item.get("issue_confidence"),
+                  item.get("test_id"), item.get("filename"), item.get("line_number"),
+              )
+          high = [item for item in results if item.get("issue_severity") == "HIGH"]
+          if high:
+              print(f"Blocking: {len(high)} high-severity Bandit finding(s).", file=sys.stderr)
+              raise SystemExit(1)
+          print("No high-severity Bandit findings.")
+          PY
