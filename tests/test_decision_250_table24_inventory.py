@@ -87,7 +87,7 @@ class Decision250Table24InventoryTests(unittest.TestCase):
         self.assertEqual(source["bulk_export"], "not_confirmed")
         self.assertIn("dspace.id.com.eg", repository["url"])
         self.assertIn("request-copy restricted", repository["access_status"])
-        self.assertEqual(repository["license_status"], "unknown")
+        self.assertEqual(repository["license_status"], "unknown; item-specific terms not reviewed")
         requirements = " ".join(repository["verification_requirements"])
         self.assertIn("dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full", requirements)
         self.assertIn("Do not bypass login or request-copy controls", requirements)
