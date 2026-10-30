@@ -2130,7 +2130,7 @@
       "instrument_number": 1305,
       "instrument_year": 2026,
       "source_id": "EG-AMIRI-PRESS",
-      "source_status": "later_official_citation_only",
+      "source_status": "official_text_candidate",
       "collection_permission": "unknown",
       "legal_status": "unknown",
       "review_status": "discovery_only",
@@ -2142,12 +2142,12 @@
         "source-use review",
         "qualified lawyer review"
       ],
-      "notes": "Only discovered as a cited predecessor in the official Amiri Press text of Decision 2377/2026, which describes it as extending Decision 982/2026 during May 2026. No independent original text or Gazette page was located in this check.",
+      "notes": "Official Amiri Press searchable text was located on 2026-10-30. It states that Decision 982/2026 continues during May 2026 and gives 30 April 2026 as its date. Original Gazette issue/pages and bytes/hash, terms, full currentness chain and lawyer review remain outstanding. This is a separate time-limited extension, not an amendment to Law 14/2025.",
       "source_urls": [
         {
-          "url": "https://alamiria.com/Sec/TashTxt?id=OHEywmUwNf8%3D",
-          "source_role": "official later decision citing Decision 1305/2026",
-          "status": "referenced_not_independently_located"
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=kkawTcVJE9I%3D",
+          "source_role": "official Amiri Press searchable text candidate",
+          "status": "discovered_not_downloaded"
         }
       ]
     },
