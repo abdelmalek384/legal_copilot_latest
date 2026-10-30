@@ -46,7 +46,7 @@ class PwaHttpRouteTests(unittest.TestCase):
         offline = self.client.get("/offline.html")
         icon = self.client.get("/app-icon.svg")
         self.assertEqual(offline.status_code, 200)
-        self.assertIn("no data", offline.text.lower())
+        self.assertIn("not stored for offline use", offline.text.lower())
         self.assertEqual(icon.status_code, 200)
         self.assertIn("image/svg+xml", icon.headers.get("content-type", ""))
         self.assertIn("<svg", icon.text)
