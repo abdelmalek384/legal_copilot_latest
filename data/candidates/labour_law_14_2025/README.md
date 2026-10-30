@@ -138,3 +138,6 @@ The report is a review aid only; it does not change any source-permission, legal
 
 
 - [Official Gazette supplement catalog and access status](decisions_248_252_primary_source_page_map_2026-10-30.md): exact DSpace record for Gazette Supplement 225(A), 12 October 2026, listing Decisions 248–252 and the original 6.13 MB bundle; the PDF is request-copy restricted, so no primary text has yet been reviewed.
+
+
+- **Decision 250 Table 24 status (2026-10-30):** 38/38 secondary candidate batches; 781/781 numbered entries structurally present with no gaps/duplicates. The technical table index is corrected to a single Table 24 spanning secondary printed pages 249–360 (no Table 25). Regression coverage: `tests/test_decision_250_table24_inventory.py`. Official Gazette matches remain 0/781 and retrieval eligibility 0/781; the original Gazette PDF is listed in the DSpace catalog but request-copy restricted.
