@@ -1,3 +1,4 @@
+import json
 import sys
 import unittest
 from datetime import date
@@ -46,6 +47,23 @@ class FirstOfficialBatchManifestTests(unittest.TestCase):
         }
         with self.assertRaises(ValueError):
             check_permission(doc)
+
+
+    def test_criminal_procedure_commencement_stays_unverified_until_counsel_review(self):
+        candidates_path = ROOT / "docs" / "first_batch_candidates.json"
+        candidates = json.loads(candidates_path.read_text(encoding="utf-8"))["documents"]
+        by_id = {item["document_id"]: item for item in candidates}
+        law_174 = by_id["eg_criminal_procedure_law_174_2025_moj_pdf"]
+        law_160 = by_id["eg_criminal_procedure_law_160_2026_amiri_press"]
+
+        self.assertIsNone(law_174["effective_date"])
+        self.assertFalse(law_174["legal_authenticity_verified"])
+        self.assertFalse(law_174["current_legal_status_verified"])
+        self.assertFalse(law_174["amendment_history_verified"])
+        self.assertIn("commencement", law_174["reason_not_approved"].lower())
+        self.assertEqual(law_160["amends_document_id"], law_174["document_id"])
+        self.assertFalse(law_160["legal_authenticity_verified"])
+        self.assertFalse(law_160["current_legal_status_verified"])
 
 
 if __name__ == "__main__":
