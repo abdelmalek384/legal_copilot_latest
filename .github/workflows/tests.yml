@@ -123,6 +123,8 @@ jobs:
         run: python tools/validate_phase2_document_inventory.py
       - name: Test Phase 2 instrument inventory safeguards
         run: python tests/test_phase2_document_inventory.py
+      - name: Test metadata-only Action 1 Gazette and JSONL intake inspector
+        run: PYTHONPATH=. python tests/test_action1_labour_intake_inspector.py
       - name: Test permission outreach tracking guardrails
         run: python tests/test_permission_outreach_tracker.py
       - name: Validate source permission register
