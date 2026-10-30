@@ -148,3 +148,13 @@ The report is a review aid only; it does not change any source-permission, legal
 - [Official Gazette Article 296 penalty cross-reference](official_primary_text_article296_2026-10-30.jsonl): selected official-hosted Gazette PDF text, printed page 111 / PDF index 108; preserves the two enumerated article groups and remains pending original-byte hash, currentness and counsel review.
 
 - [Action 1 user-supplied source intake protocol](action1_user_supplied_source_intake_protocol_2026-10-30.md): prepared checklist for the original Gazette Supplement 225(A) PDF and the historical 311-row law_rows_ar.jsonl, including hashing, page mapping, comparison order and quarantine rules.
+
+
+## Reproducible Table 24 review artifacts
+
+The complete 781-entry candidate inventory has two validated generators:
+
+- `python tools/build_decision250_table24_review_queue.py --output /tmp/decision250-table24-review-queue.md` — produces a flagged human-triage Markdown queue (anomalies, partial image checks, missing CAS/group entries, high-risk notes, currentness leads and possible surface/air-unit issues).
+- `python tools/build_decision250_table24_primary_match_register.py --output /tmp/decision250-table24-primary-match-register.jsonl` — produces 781 fail-closed per-row records with official source URL/hash/page blank, all review states not started, and retrieval disabled.
+
+Both scripts refuse incomplete/malformed candidate batches and never repair a candidate value. The generated files are workflow aids only; the queue is not a legal verification result, and the register does not imply any original Gazette match.
