@@ -121,6 +121,24 @@ class Decision250Table24InventoryTests(unittest.TestCase):
         self.assertIn("مائة ألف جنيه", record["source_text_ar"])
         self.assertIn("تضاعف الغرامة في حالة العود", record["source_text_ar"])
 
+    def test_high_risk_table24_secondary_crosschecks_remain_unresolved(self):
+        batch2 = json.loads((CANDIDATE_DIR / "decision_250_table24_candidate_batch2_rows021_040_2026-10-29.json").read_text(encoding="utf-8"))
+        batch4 = json.loads((CANDIDATE_DIR / "decision_250_table24_candidate_batch4_rows061_080_2026-10-29.json").read_text(encoding="utf-8"))
+        row34 = next(row for row in batch2["rows"] if row["row"] == 34)
+        row61 = next(row for row in batch4["rows"] if row["row"] == 61)
+        row64 = next(row for row in batch4["rows"] if row["row"] == 64)
+        self.assertEqual(row34["secondary_transcription_crosscheck"]["source_line"], 4541)
+        self.assertEqual(row34["secondary_transcription_crosscheck"]["transcribed_cas"], "1344-281")
+        self.assertEqual(row34["status"], "pending_official_match")
+        self.assertEqual(row61["secondary_transcription_crosscheck"]["source_line"], 4586)
+        self.assertEqual(row61["secondary_transcription_crosscheck"]["transcribed_value"], "1 مجم/ م3(I)")
+        self.assertEqual(row61["status"], "pending_official_match")
+        self.assertEqual(row64["secondary_transcription_crosscheck"]["source_line"], 4591)
+        self.assertEqual(row64["secondary_transcription_crosscheck"]["transcribed_value"], "0,02 جزء / مليون")
+        self.assertEqual(row64["status"], "pending_official_match")
+        for row in (row34, row61, row64):
+            self.assertFalse(row.get("retrieval_eligible", False))
+
     def test_secondary_candidate_inventory_is_contiguous_and_quarantined(self):
         batches = sorted(CANDIDATE_DIR.glob("decision_250_table24_candidate_batch*_2026-*.json"))
         self.assertEqual(len(batches), 38)
