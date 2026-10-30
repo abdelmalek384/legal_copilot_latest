@@ -87,7 +87,8 @@
       "cas": "116-14-3",
       "source_line": 5655,
       "raw_limit_and_note_text": "C2F4 100,20 2جزء/ مليون م3 A3 تلف الكلى والكبد، سرطان الكبد والكلى",
-      "status": "pending_official_match"
+      "status": "pending_official_match",
+      "anomaly": "The secondary text line places `2 parts per million` adjacent to `m3 A3` without reliable column separation in the text layer. Preserve raw string and verify column/value association from the official page image."
     },
     {
       "row": 702,
