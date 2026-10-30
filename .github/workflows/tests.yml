@@ -89,7 +89,7 @@ jobs:
         run: PYTHONPATH=. python tests/test_legacy_chunk_evidence_manifest.py
       - name: Validate legal data registry and evaluation seeds
         run: python tools/validate_legal_data_foundation.py
-      - name: Test legal evidence inventory, Decisions 249/251/252 quarantine, source manifest, and Article 296
+      - name: Test legal evidence, lawyer prompts, source manifest, and Article 296 quarantine
         run: PYTHONPATH=. python tests/test_decision_250_table24_inventory.py
       - name: Test fail-closed legal release readiness gate
         run: PYTHONPATH=. python tests/test_legal_release_readiness.py
