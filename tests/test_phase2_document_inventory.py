@@ -188,6 +188,22 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         self.assertTrue(any("manshurat.org/node/70956" in u["url"] for u in old["source_urls"]))
         self.assertEqual(validate_inventory(self.inventory), [])
 
+    def test_decision_3165_publication_timing_note_keeps_effective_date_unresolved(self):
+        note = (ROOT / "data" / "candidates" / "labour_law_14_2025" / "decision_3165_wages_council_publication_timing_2026-10-30.md").read_text(encoding="utf-8")
+        for phrase in (
+            "Signature date:",
+            "Gazette issue date:",
+            "Reported release/publication date:",
+            "do not calculate commencement as 13 October",
+            "do not calculate 27 October",
+            "Do not mark Decision 3165/2026 verified or in force",
+        ):
+            self.assertIn(phrase, note)
+        wages = next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-PM-DECISION-3165-2026")
+        self.assertEqual(wages["legal_status"], "unknown")
+        self.assertEqual(wages["review_status"], "discovery_only")
+        self.assertEqual(validate_inventory(self.inventory), [])
+
     def test_decision_982_temporal_chain_separates_monthly_extensions_from_draft_suspension(self):
         remote = next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-PM-DECISION-982-2026")
         self.assertIn("decision_982_remote_work_temporal_chain_2026-10-30.md", remote["notes"])
