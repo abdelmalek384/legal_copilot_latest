@@ -52,6 +52,9 @@ BATCHES = [
     "decision_250_table24_candidate_batch33_rows643_668_2026-10-30.json",
     "decision_250_table24_candidate_batch34_rows669_694_2026-10-30.json",
     "decision_250_table24_candidate_batch35_rows695_720_2026-10-30.json",
+    "decision_250_table24_candidate_batch36_rows721_746_2026-10-30.json",
+    "decision_250_table24_candidate_batch37_rows747_772_2026-10-30.json",
+    "decision_250_table24_candidate_batch38_rows773_781_2026-10-30.json",
 ]
 
 
@@ -126,7 +129,7 @@ def validate(root: Path = DATA_DIR) -> list[str]:
             if row.get("retrieval_eligible") is True or row.get("verified") is True or row.get("approved") is True:
                 errors.append(f"{filename}: row {number} contains a forbidden promotion/approval flag in candidate-only data")
 
-    expected = set(range(1, 721))
+    expected = set(range(1, 782))
     actual = set(observed)
     missing = sorted(expected - actual)
     unexpected = sorted(actual - expected)
@@ -148,7 +151,7 @@ def main() -> int:
         for error in errors:
             print(f"- {error}")
         return 1
-    print("OK: rows 1–720 are structurally present exactly once; every row remains pending official match.")
+    print("OK: rows 1–781 are structurally present exactly once; every row remains pending official match.")
     print("LIMIT: this does not establish authenticity, legal status, reuse permission, or retrieval eligibility.")
     return 0
 
