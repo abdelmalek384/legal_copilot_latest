@@ -9,6 +9,8 @@ The repository's `.github/workflows/codeql.yml` runs GitHub CodeQL's `security-e
 
 The workflow runs on pull requests and pushes to `main`, weekly, and by manual dispatch. Findings are uploaded to GitHub code scanning; they are not silently suppressed or auto-dismissed by this workflow.
 
+See the dated [initial CodeQL/Bandit finding triage](static_analysis_triage_2026-10-30.md) for the first run's B608 source-level review and remaining manual CodeQL alert check.
+
 ## Bandit severity policy
 
 The Python scan runs with medium/high severity and medium/high confidence filters. It prints a machine-readable finding summary to the CI log and blocks high-severity findings. Medium findings remain visible for review; they are not silently suppressed or treated as confirmed vulnerabilities. Review SQL-construction alerts (for example, B608) by tracing the identifier source: table/column names must come from fixed allowlists or trusted schema metadata and be safely quoted; all untrusted values must remain bound parameters. If an identifier can be influenced by a request, document, tenant, or external file, treat it as a potential injection path and fix it.
