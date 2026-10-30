@@ -1,0 +1,264 @@
+{
+  "schema_version": 1,
+  "record_type": "secondary_source_candidate_extraction",
+  "instrument": "Egyptian Minister of Labour Decision 250/2026",
+  "table": "24",
+  "table_title_ar": "الحدود العتبية للمواد الكيميائية الخطرة",
+  "research_date": "2026-10-30",
+  "source": {
+    "class": "secondary_transcription",
+    "url": "https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html",
+    "publication_date": "2026-10-26",
+    "source_lines": "5601-5644",
+    "official_gazette_match": "not_performed",
+    "official_pdf_sha256": null
+  },
+  "status": "candidate_only_not_for_authoritative_retrieval",
+  "important_limits": [
+    "Secondary transcription only; no official Gazette page-image comparison.",
+    "Raw limits, units, formulae and symbols are preserved as discovery text and are not normalized or interpreted.",
+    "Some numbered entries are group headings whose following numbered rows specify subcategories; hierarchy is not inferred beyond source labels.",
+    "Source text contains apparent transcription/OCR anomalies; preserve and quarantine for primary-source comparison.",
+    "Not for workplace safety decisions or compliance advice."
+  ],
+  "declared_top_level_row_range": {
+    "start": 669,
+    "end": 694
+  },
+  "rows": [
+    {
+      "row": 669,
+      "name_ar": "رباعي فلوريد الكبريت",
+      "name_en": "Sulfur tetrafluoride",
+      "cas": "7783-60-0",
+      "source_line": 5601,
+      "raw_limit_and_note_text": "SF4 108,07 - - 0,1 جزء/ مليون جزء - تهيج للعين والمسالك التنفسية العليا، تلف للرئة",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 670,
+      "name_ar": "حمض الكبريتيك",
+      "name_en": "Sulfuric acid",
+      "cas": "7664-93-9",
+      "source_line": 5603,
+      "raw_limit_and_note_text": "H2SO4 98,08 0,2 ملجم/م3(T) - - A2 (M) يؤثر على وظائف الرئة",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 671,
+      "name_ar": "فلوريد السلفوريل",
+      "name_en": "Sulfuryl fluoride",
+      "cas": "2699-79-8",
+      "source_line": 5605,
+      "raw_limit_and_note_text": "SO2F2 102,07 5 جزء/ مليون جزء 10 جزء/ مليون جزء - - ضعف الجهاز العصبي المركزي",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 672,
+      "name_ar": "سلبروفوس",
+      "name_en": "Sulprofos",
+      "cas": "35400-43-2",
+      "source_line": 5606,
+      "raw_limit_and_note_text": "C12H19O2PS3 322,43 0,1 ملجم/م3(IFV) - - Skin; A4; BEIC جلد,م4,مؤشر التعرض الحيوي للمبيدات المثبطة للكولينيستيريز مثبط إنزيم الكولينيستيريز",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 673,
+      "name_ar": "ألياف زجاجية صناعية",
+      "name_en": "Synthetic vitreous fibers",
+      "cas": "",
+      "source_line": 5608,
+      "raw_limit_and_note_text": "MMVFS Man-made vitreous fibers (heading; following numbered subentries specify fiber types)",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 674,
+      "name_ar": "ألياف زجاجية خيوط مستمرة",
+      "name_en": "Continuous filament glass fibers",
+      "cas": "",
+      "source_line": 5610,
+      "raw_limit_and_note_text": "1 ليفة/سم3 (F) 5 ملجم/م3 (I) - - A4 م4 A4 م4 تهيج للمسالك التنفسية العليا تهيج للمسالك التنفسية العليا",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 675,
+      "name_ar": "ألياف صوف زجاجي",
+      "name_en": "Glass wool fibers",
+      "cas": "",
+      "source_line": 5611,
+      "raw_limit_and_note_text": "1 ليفة/سم3 (F) - - م 3 A3 تهيج للجلد والاغشية المخاطية",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 676,
+      "name_ar": "ألياف صوف صخري",
+      "name_en": "Rock wool fibers",
+      "cas": "",
+      "source_line": 5613,
+      "raw_limit_and_note_text": "1 ليفة/سم3 (F) - - م 3 A3 تهيج للجلد والاغشية المخاطية",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 677,
+      "name_ar": "ألياف صوف خبثي",
+      "name_en": "Slag wool fibers",
+      "cas": "",
+      "source_line": 5615,
+      "raw_limit_and_note_text": "1 ليفة/سم3 (F) - - م 3 A3 تهيج للجلد والاغشية المخاطية",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 678,
+      "name_ar": "ألياف زجاجية ذات أغراض خاصة",
+      "name_en": "Special purpose glass fibers",
+      "cas": "",
+      "source_line": 5617,
+      "raw_limit_and_note_text": "1 ليفة/سم3 (F) - - م3 A3 تهيج للجلد والاغشية المخاطية",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 679,
+      "name_ar": "ألياف خزف حراري",
+      "name_en": "Refractory ceramic fibers",
+      "cas": "",
+      "source_line": 5619,
+      "raw_limit_and_note_text": "0,2 ليفة/سم3 (F) - - م 2 A2 تليف رئوي, يؤثر على وظائف الرئة",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 680,
+      "name_ar": "ثلاثي كلوروفينوكس حمض الخليك",
+      "name_en": "2,4,5-Trichlorophenoxyacetic acid",
+      "cas": "93-76-5",
+      "source_line": 5620,
+      "raw_limit_and_note_text": "C8H5Cl3O3 255.49 10 ملجم/م3 - - A4 م4 ضعف الجهاز العصبي الطرفي",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 681,
+      "name_ar": "تلك",
+      "name_en": "Talc",
+      "cas": "14807-96-6",
+      "source_line": 5622,
+      "raw_limit_and_note_text": "Mg3Si4O10(OH)2 379.27 (heading; following numbered subentries specify asbestos content)",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 682,
+      "name_ar": "تلك لا يحتوي على ألياف أسبستوس",
+      "name_en": "Talc containing no asbestos fibers",
+      "cas": "",
+      "source_line": 5624,
+      "raw_limit_and_note_text": "2 ملجم/م3 (E,R) - - A4 م4 تليف رئوي، ويؤثر على وظائف الرئة",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 683,
+      "name_ar": "تلك يحتوي على ألياف أسبستوس",
+      "name_en": "Talc containing asbestos fibers",
+      "cas": "",
+      "source_line": 5626,
+      "raw_limit_and_note_text": "استخدم الحد المسموح للاسبستوس - - مA 1 1",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 684,
+      "name_ar": "تنتالم",
+      "name_en": "Tantalum metal dust",
+      "cas": "7440-25-7",
+      "source_line": 5627,
+      "raw_limit_and_note_text": "Ta 180.9 5 ملجم/م3 - - - تهيج للعين والجلد والمسالك التنفسية",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 685,
+      "name_ar": "أكسيد التنتالم",
+      "name_en": "Tantalum oxide dust",
+      "cas": "1314-61-0",
+      "source_line": 5629,
+      "raw_limit_and_note_text": "Ta2O5 441.89 5 ملجم/م3 - - - تهيج للعين والجلد والمسالك التنفسية",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 686,
+      "name_ar": "التلوريوم ومركباته كـ Te، باستثناء تيلوريد الهيدروجين (غير محدد بخلاف ذلك)",
+      "name_en": "Tellurium and compounds (NOS), as Te, excluding hydrogen telluride",
+      "cas": "13494-80-9",
+      "source_line": 5631,
+      "raw_limit_and_note_text": "Te 127,60 0,1 ملجم/م3(I) _ _ _ رائحة الفم الكريهة",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 687,
+      "name_ar": "سداسي فلوريد التيليريوم كـ Te",
+      "name_en": "Tellurium hexafluoride as Te",
+      "cas": "7783-80-4",
+      "source_line": 5632,
+      "raw_limit_and_note_text": "TeF6 241,61 0,02 جزء/ مليون _ _ _ تهيج المسالك التنفسية السفلى",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 688,
+      "name_ar": "تيميفوس",
+      "name_en": "Temephos",
+      "cas": "3383-96-5",
+      "source_line": 5634,
+      "raw_limit_and_note_text": "C16H20O6P2S3 466,46 1 مجم/م3((I _ _ Skin; A4 ; BEIC جلد,م4,مؤشر التعرض الحيوي للمبيدات المثبطةللكولينستيراز مثبط إنزيم كولينستيرييز",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 689,
+      "name_ar": "تيربوفس",
+      "name_en": "Terbufos",
+      "cas": "13071-79-9",
+      "source_line": 5636,
+      "raw_limit_and_note_text": "C9H21O2PS3 288,45 0,01 مجم/م3(IFV) _ _ Skin; A4 ; BEIC جلد,م4,مؤشر التعرض الحيوي للمبيدات المثبطةللكولينستيراز مثبط إنزيم كولينستيرييز",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 690,
+      "name_ar": "حمض تيرفثاليك",
+      "name_en": "Terephthalic acid",
+      "cas": "100-21-0",
+      "source_line": 5637,
+      "raw_limit_and_note_text": "C8H6O4 166,13 10مجم/م3 _ _ _ _",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 691,
+      "name_ar": "تيرفينيلات (النظائر أورثو-ميتا-بارا)",
+      "name_en": "Terphenyls (o-, m-, p-isomers)",
+      "cas": "26140-60-3",
+      "source_line": 5639,
+      "raw_limit_and_note_text": "C18H14 230,31 _ _ 5مجم/م3 _ تهيج المسالك التنفسية العليا والعين",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 692,
+      "name_ar": "1,1,2,2 رباعي برومو الإيثان",
+      "name_en": "1,1,2,2-Tetrabromoethane",
+      "cas": "79-27-6",
+      "source_line": 5641,
+      "raw_limit_and_note_text": "C2H2Br4 345,70 0,1 جزء/ مليون _ _ _ تهيج المسالك التنفسية العليا والعين، تراكم السوائل بالرئة تلف بالكبد",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 693,
+      "name_ar": "1,1,1,2 رباعي كلورو-2,2 ثنائي فلورو الإيثان",
+      "name_en": "1,1,1,2-Tetrachloro-2,2-difluoroethane",
+      "cas": "76-11-9",
+      "source_line": 5642,
+      "raw_limit_and_note_text": "C2Cl4F2 203,83 100جزء/ مليون _ _ _ تلف بالكلى والكبد، ضعف بالجهاز العصبي المركزي",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 694,
+      "name_ar": "1,1,2,2 رباعي كلورو-1,2 ثنائي فلورو الإيثان",
+      "name_en": "1,1,2,2-Tetrachloro-1,2-difluoroethane",
+      "cas": "76-12-0",
+      "source_line": 5644,
+      "raw_limit_and_note_text": "CCl2FCCl2F 203,83 50جزء/ مليون _ _ _ تلف بالكلى والكبد، ضعف بالجهاز العصبي المركزي",
+      "status": "pending_official_match"
+    }
+  ]
+}
