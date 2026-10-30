@@ -1959,33 +1959,52 @@
     },
     {
       "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
-      "official_title_ar": "القواعد العامة للائحة تنظيم العمل بالقطاع الخاص (العنوان كما ورد في إعلان وزارة العمل؛ الاسم الرسمي ورقم الأداة قيد التحقق)",
+      "official_title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
       "practice_areas": [
         "labour"
       ],
-      "document_type": "reported_implementing_rules",
-      "instrument_number": null,
+      "document_type": "ministerial_decision",
+      "instrument_number": 162,
       "instrument_year": 2026,
       "source_id": "EG-MINISTRY-LABOUR-LAWS",
-      "source_status": "official_index_discovered_primary_text_pending",
+      "source_status": "official_Gazette_catalogue_metadata_identified_secondary_full_text_crosscheck_found_primary_PDF_not_hash_compared",
       "collection_permission": "unknown",
       "legal_status": "unknown",
       "review_status": "discovery_only",
       "required_related_records": [
-        "exact legal instrument title and number",
-        "official Gazette issue, publication date and page range",
-        "official text and commencement/effective-date clause",
-        "scope and relationship to Labour Law 14/2025",
-        "later amendments, replacement or repeal",
-        "qualified Egyptian labour-lawyer review",
-        "source-specific collection and commercial reuse terms"
+        "original Arabic Official Gazette PDF bytes and SHA-256; visual page inspection and printed page range",
+        "exact article-by-article comparison against Labour Law 14/2025, especially Articles 117–123, 124–129, 137 and 141",
+        "resolve or obtain counsel opinion on any apparent difference between Decree Article 46 and Law Article 141 investigation-extension wording",
+        "later amendment, replacement, suspension or judicial interpretation through the review date",
+        "source-specific collection, extraction, indexing, excerpt display and commercial reuse terms",
+        "qualified Egyptian labour-lawyer review and approval"
       ],
-      "notes": "Discovery-only candidate. The Ministry of Labour reported publication/launch of general rules for private-sector work regulations in late August/early September 2026. The available announcement does not by itself establish the exact instrument number, official Gazette text/pages, commencement, currentness, or rights to copy/store/index/display the text. Do not download or promote this record; verify the underlying instrument and terms first.",
+      "notes": "Discovery-only. Exact identity is now supported by the Official Gazette DSpace catalogue: الوقائع المصرية, issue 176 (تابع), publication date 2026-08-13, issuing body Ministry of Labour, publisher General Authority for Amiri Press; the record describes Ministerial Decree 162/2026. A full 66-article secondary transcription was inspected and cross-checked against a separate legal archive newsletter entry. It states signature date 2026-07-28 and Article 66 commencement on the day after publication; 2026-08-14 is therefore a candidate effective date, not an authoritative conclusion until the original Gazette PDF is visually checked. Articles 38–41 regulate internal work-rule content for hours, rest, flexible/remote work, leave and exceptional overtime, but do not themselves state replacement numerical statutory limits. They appear operationally relevant to Labour Law Articles 117–123 and 124–129; Article 2 reflects the 10-worker threshold in Law Article 137. Articles 46–48 address investigations and discipline and require close comparison with Law Article 141; Article 46's wording on extension after new evidence does not expressly restate the statute's additional three-month extension. Do not infer that the decree overrides or narrows the statute. No source PDF bytes were obtained, hashed or visually inspected; the secondary transcription is not primary evidence. Keep legal status and collection/commercial reuse unknown, discovery-only and retrieval-ineligible.",
       "source_urls": [
         {
-          "url": "https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D9%8A%D8%B9%D9%84%D9%86-%D9%86%D8%B5-%D8%A7%D9%84%D9%82%D9%88%D8%A7%D8%B9%D8%AF-%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D8%A9-%D9%84%D9%84%D8%A7%D8%A6%D8%AD%D8%A9-%D8%AA%D9%86%D8%B8%D9%8A%D9%85-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A8%D8%A7%D9%84%D9%82%D8%B7%D8%A7%D8%B9-%D8%A7%D9%84%D8%AE%D8%A7%D8%B5/",
-          "source_role": "official Ministry of Labour announcement; discovery evidence only",
-          "status": "discovered_not_downloaded"
+          "url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+          "source_role": "Official Gazette Supplement 176 metadata; publisher Amiri Press; original Arabic PDF listed",
+          "status": "primary_catalogue_metadata_only_original_PDF_not_hashed_or_visually_reviewed"
+        },
+        {
+          "url": "https://www.labour.gov.eg/ar/الأخبار/وزير-العمل-يعلن-نص-القواعد-العامة-للائحة-تنظيم-العمل-بالقطاع-الخاص/",
+          "source_role": "Ministry of Labour announcement",
+          "status": "official_announcement_supporting_discovery_only"
+        },
+        {
+          "url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+          "source_role": "full 66-article secondary transcription used for provision crosswalk only",
+          "status": "secondary_full_text_not_primary_not_authoritative"
+        },
+        {
+          "url": "https://www.mksegypt.org/public/index.php/ar/nashras/48",
+          "source_role": "secondary legal archive newsletter listing Decision 162/2026 dated 13 August 2026",
+          "status": "secondary_metadata_crosscheck_only"
+        },
+        {
+          "url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+          "source_role": "MELES bilingual catalogue/copy-host record listing Arabic and English PDF files",
+          "status": "separate_secondary_repository_record_publisher_Meles_not_Official_Gazette_publisher"
         }
       ]
     },
@@ -2092,9 +2111,9 @@
     },
     {
       "id": "ACT-LABOUR-RULES-2026-VERIFY",
-      "action": "Verify the exact instrument number/title, Official Gazette issue/pages, commencement and relationship to Labour Law 14/2025 for the general private-sector work-regulation rules reported by the Ministry of Labour in 2026; keep permission and legal status unknown until independently reviewed.",
+      "action": "Obtain and visually inspect the original Arabic Gazette PDF for Ministerial Decree 162/2026; hash the exact bytes; verify printed pages and Article 66 commencement; complete the provision-level crosswalk to Law 14/2025 and resolve the Article 46/Article 141 investigation-extension issue with qualified Egyptian counsel; check subsequent amendment/currentness and source-specific reuse terms. Keep the record discovery-only until all gates pass.",
       "owner": "legal corpus lead",
-      "status": "not_started"
+      "status": "in_progress"
     },
     {
       "id": "ACT-LABOUR-DECISION-264-2026-STANDARDS-VERIFY",
