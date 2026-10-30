@@ -39,7 +39,7 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
             if d["document_id"] == "EG-LABOUR-WORK-REGULATION-RULES-2026"
         )
         self.assertEqual(record["source_id"], "EG-MINISTRY-LABOUR-LAWS")
-        self.assertEqual(record["source_status"], "official_index_discovered_primary_text_pending")
+        self.assertEqual(record["source_status"], "official_Gazette_metadata_verified_primary_text_restricted_secondary_full_text_crosscheck_found")
         self.assertEqual(record["collection_permission"], "unknown")
         self.assertEqual(record["legal_status"], "unknown")
         self.assertEqual(record["review_status"], "discovery_only")
@@ -72,7 +72,7 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         self.assertEqual(record["collection_permission"], "unknown")
         self.assertEqual(record["legal_status"], "unknown")
         self.assertEqual(record["review_status"], "discovery_only")
-        self.assertTrue(any("labour.gov.eg" in item["url"] for item in record["source_urls"]))
+        self.assertTrue(any("dspace.id.com.eg" in item["url"] for item in record["source_urls"]))
         self.assertEqual(validate_inventory(self.inventory), [])
 
     def test_2025_labour_decision_294_remains_discovery_only(self):
