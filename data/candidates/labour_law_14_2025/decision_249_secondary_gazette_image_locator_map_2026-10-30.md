@@ -45,11 +45,11 @@ These are discovery notes only; verify every item against the original Gazette P
 
 1. **Article 2 applicability:** the decision applies to establishments and branches with 50 or more workers, irrespective of the nature of the work or employment relationship. A geographically/administratively separate worksite is treated as a separate establishment where the statutory condition is met.
 2. **Article 3 employer duties:** a multi-part duty list covers safe work environment, policy, legal compliance, resources, roles, training/awareness, monitoring, emergency planning and accident/occupational-disease investigation.
-3. **Article 4 OSH functional units:** the decision requires an OSH functional unit in the covered high-risk establishments, with staffing linked to the accompanying table.
+3. **Article 4 OSH functional units:** the decision requires an OSH functional unit in the establishments/branches covered by Article 2 (50 or more workers), with staffing linked to risk category and workforce in Table 2.
 4. **Articles 5–6:** Article 5 sets the functional unit's duties. Article 6 provides alternative requirements for certain lower-staffed establishments, including training and supervision arrangements.
 5. **Articles 7–15:** establish OSH committees, their membership, duties, meeting/notification/record procedures and a central committee structure.
 6. **Articles 16–20:** set training/qualification requirements for OSH specialists, supervisors, committee members and other covered roles.
-7. **Articles 21–22:** include repeal and publication/effective-date provisions. The final page appears to state a decision date of 2026-09-01 and commencement on the day following publication; because the reproduced scan is secondary, confirm both details against the original Gazette before calculating an effective date.
+7. **Articles 21–22:** Article 21 appears to repeal Ministerial Decision 134/2003. Article 22 states commencement on the day following publication; the reproduced page shows a decision date of 2026-09-01. Given Gazette publication on 2026-10-12, 2026-10-13 is a candidate effective date, pending confirmation against the original Gazette.
 8. **Table 1:** classifies establishment activities by high, medium and limited risk; the list is extensive and must not be collapsed into a short generic category.
 9. **Table 2:** sets staffing numbers by risk level and workforce bands. It is safety-critical and must be transcribed cell-by-cell with the exact row/column structure.
 10. **Table 3:** identifies activities requiring continuous pollutant/hazard monitoring and lists the relevant substances/indicators. Preserve abbreviations and units exactly.
