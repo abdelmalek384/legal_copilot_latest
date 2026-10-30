@@ -25,6 +25,15 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         wages = next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-PM-DECISION-3165-2026")
         self.assertIn("subcommittees", wages["notes"])
         self.assertIn("41 مكرر (و)", wages["notes"])
+        self.assertIn("Article 8 makes commencement the day after publication", wages["notes"])
+        self.assertIn("Do not set an effective date of 13 October", wages["notes"])
+        self.assertTrue(any(
+            "sinai.news/news/3-" in u["url"]
+            and u["status"] == "secondary_reported_issue_date_and_release_date_not_officially_verified"
+            for u in wages["source_urls"]
+        ))
+        self.assertEqual(wages["legal_status"], "unknown")
+        self.assertEqual(wages["review_status"], "discovery_only")
         self.assertTrue(any("almasdar.com/175352" in u["url"] and u["status"] == "secondary_fuller_article_summary_and_gazette_issue_lead_not_primary_match" for u in wages["source_urls"]))
         self.assertEqual(wages["review_status"], "discovery_only")
         self.assertEqual(validate_inventory(self.inventory), [])
