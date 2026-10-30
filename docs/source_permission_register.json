@@ -380,6 +380,27 @@
       "terms_checked_on": "2026-10-30",
       "bulk_download_or_api": "No public API or bulk-export facility established in this review; public search, section filters and pagination are visible. Do not crawl or bulk extract.",
       "required_next_action": "Manually review the stated CC BY 4.0 licence and any record-level rights notices; sample provenance, completeness and citation metadata across each document section; compare selected judgments against official court records where accessible; determine whether the licence covers the site's transcriptions and underlying legal texts. Keep collection and commercial reuse unknown and do not bulk-ingest until the scope and chain of rights are clear. If the licence scope remains ambiguous, do not contact the source holder under the current project constraint; keep the site as a discovery/cross-reference source only."
+    },
+    {
+      "source_id": "EG-COURT-CASSATION-LEGAL-HERITAGE-LIBRARY",
+      "authority": "Egyptian Court of Cassation / Supreme Judicial Council",
+      "source_page": "https://cc.gov.eg/posts/739",
+      "material_types": [
+        "historical Court of Cassation and other court judgments",
+        "historical judicial decisions and circulars",
+        "historical legislation",
+        "official printed legal periodical pages",
+        "historical legal indexes and foreign-language summaries"
+      ],
+      "access_status": "official announcement confirms public browsing access to a digital heritage library of 27 scanned volumes and 3,533 indexed documents covering 1899–1933; original page images are watermarked to preserve them from republication; exact direct library catalogue URL and bulk access/API not established",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://cc.gov.eg/posts/739",
+      "permission_evidence": "The Court of Cassation's official announcement dated 26 August 2026 says its Legal Heritage Library became publicly available on 24 August 2026. It reports 27 scanned volumes, 13,275 scanned pages, 3,533 indexed documents and 12,577 index entries, covering 1899–1933 and documents from 316 courts/agencies. It describes original printed pages as browsable page-by-page, with judgment-level pages showing court, hearing date, cited provisions and printed principles. It says original text is transcribed verbatim in historical orthography and uncertain readings are flagged for review. It also explicitly says images carry a watermark to protect the originals from republication. This is strong primary-source discovery and a verification route, not a licence to copy, scrape, bulk-download, redistribute, or train on the scans. No reuse licence or API was identified.",
+      "permission_evidence_url": "https://cc.gov.eg/posts/739",
+      "terms_checked_on": "2026-10-30",
+      "bulk_download_or_api": "not established; use public browsing only and respect watermark/no-republication statement",
+      "required_next_action": "Use the library for manual primary-source verification of historical citations and pinpoint references. Do not scrape, bulk download, remove watermarks, republish images, or ingest scans until explicit collection and commercial reuse permissions are established. Preserve printed volume/page references and mark uncertain readings exactly as the Court does. Determine the direct catalogue URL and any record-level terms through ordinary public navigation only."
     }
   ]
 }
