@@ -462,3 +462,13 @@ This checkpoint records discovery and engineering safeguards, not verified-law c
 - Added regression tests for multi-page article matches, duplicate occurrences, partial anchors, JSONL grouping/validation, no text layer, and the non-promotion safety boundary; wired the test into the full Tests workflow.
 - Updated the Action 1 intake protocol with the exact command and interpretation rules. Anchor-only results remain weaker than exact matches; all legal text, page images, footnotes, tables, issue identity, rights, amendments/currentness, and lawyer review remain manual gates.
 - This is preparation only: the original Gazette PDF and optional `law_rows_ar.jsonl` have not yet been supplied or processed. No legal verification or retrieval eligibility is claimed.
+
+
+## Follow-up checkpoint — 2026-10-30 (Action 1 comparison CI and Phase 2 regression repair)
+
+- Legal Knowledge Validation on the current branch head passed **31/31 steps** in run [#41055140158](https://github.com/abdelmalek384/legal_copilot_latest/actions/runs/41055140158).
+- The new Action 1 article-to-Gazette comparison test passed in that workflow.
+- The first focused run surfaced two stale Phase 2 regression assertions: one still classified MELES secondary-copy DSpace records as Official Gazette catalogue records, and one expected an exact status phrase absent from the Decision 982 note. Both were corrected without promoting any legal status.
+- The revised source-ID assertions now distinguish official Gazette catalogue metadata from MELES secondary repository records based on each recorded source role.
+- The Decision 982 note now explicitly states that Cabinet approval of a draft is not the operative published instrument.
+- Legal Knowledge Validation is green on the latest head. The general full Tests workflow was not returned for this head; do not claim it passed.
