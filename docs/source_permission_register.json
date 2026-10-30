@@ -55,7 +55,7 @@
       "terms_checked_on": "2026-10-23",
       "bulk_download_or_api": "do not automate or bulk extract absent written authorization",
       "required_next_action": "Request an official API/licensed export and written permission. Do not scrape while permission is pending.",
-      "permission_evidence": "Published site policy reviewed on 2026-10-23: https://cc.gov.eg/terms. Policy prohibits automated/bulk extraction, restricts content to legal/academic/research/documentation uses, and requires prior written approval for commercial use/republication. This is a record of the restriction, not permission."
+      "permission_evidence": "Published site policy reviewed on 2026-10-23: https://cc.gov.eg/terms. Policy prohibits automated/bulk extraction, restricts content to legal/academic/research/documentation uses, and requires prior written approval for commercial use/republication. This is a record of the restriction, not permission. Rights-context note: WIPO Lex's consolidated record for Egyptian Law No. 82/2002, Article 141, excludes official court judgments from copyright protection but preserves protection for creative collections/selection/arrangement (https://www.wipo.int/wipolex/ar/legislation/details/22066). This does not override the portal's published terms, does not authorize automated/bulk extraction, and does not remove the stated prior-written-approval requirement for commercial use/republication. Keep the current restricted statuses unchanged."
     },
     {
       "source_id": "EG-WIPO-LEX",
