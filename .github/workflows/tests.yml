@@ -200,3 +200,45 @@ jobs:
         run: PYTHONPATH=. python tests/test_platform_security_audit.py
       - name: Test platform security audit migrations
         run: PYTHONPATH=. python tests/test_platform_security_audit_migrations.py
+      - name: Test arabic matching
+        run: PYTHONPATH=. python tests/test_arabic_matching.py
+      - name: Test auth rate limits separate runtime
+        run: PYTHONPATH=. python tests/test_auth_rate_limits_separate_runtime.py
+      - name: Test build legal draft
+        run: PYTHONPATH=. python tests/test_build_legal_draft.py
+      - name: Test evaluate arabic ocr
+        run: PYTHONPATH=. python tests/test_evaluate_arabic_ocr.py
+      - name: Test firm offboarding preflight
+        run: PYTHONPATH=. python tests/test_firm_offboarding_preflight.py
+      - name: Test identity
+        run: PYTHONPATH=. python tests/test_identity.py
+      - name: Test labour law candidate registry
+        run: PYTHONPATH=. python tests/test_labour_law_candidate_registry.py
+      - name: Test labour law draft set
+        run: PYTHONPATH=. python tests/test_labour_law_draft_set.py
+      - name: Test labour law provisional review questions
+        run: PYTHONPATH=. python tests/test_labour_law_provisional_review_questions.py
+      - name: Test legacy firm ownership migration
+        run: PYTHONPATH=. python tests/test_legacy_firm_ownership_migration.py
+      - name: Test manual capture validator
+        run: PYTHONPATH=. python tests/test_manual_capture_validator.py
+      - name: Test original file storage
+        run: PYTHONPATH=. python tests/test_original_file_storage.py
+      - name: Test platform access
+        run: PYTHONPATH=. python tests/test_platform_access.py
+      - name: Test recover staged original files
+        run: PYTHONPATH=. python tests/test_recover_staged_original_files.py
+      - name: Test report legal corpus inventory
+        run: PYTHONPATH=. python tests/test_report_legal_corpus_inventory.py
+      - name: Test review evidence url validation
+        run: PYTHONPATH=. python tests/test_review_evidence_url_validation.py
+      - name: Test security audit read separate runtime
+        run: PYTHONPATH=. python tests/test_security_audit_read_separate_runtime.py
+      - name: Test storage provider
+        run: PYTHONPATH=. python tests/test_storage_provider.py
+      - name: Test tenant context
+        run: PYTHONPATH=. python tests/test_tenant_context.py
+      - name: Test tenant fleet migration
+        run: PYTHONPATH=. python tests/test_tenant_fleet_migration.py
+      - name: Guard that every test file runs in CI or is explicitly tracked
+        run: PYTHONPATH=. python tests/test_ci_runs_all_tests.py
