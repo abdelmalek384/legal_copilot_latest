@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "assessment_date": "2026-10-30",
+  "assessment_date": "2026-10-31",
   "note": "A register of source candidates and permission questions, not a claim that rights have been granted. Public accessibility and open access do not by themselves establish bulk collection, commercial reuse, or redistribution rights.",
   "sources": [
     {
@@ -49,13 +49,13 @@
         "judgment principles",
         "case search"
       ],
-      "access_status": "public search portal for civil and criminal judgments/principles, with advanced search by keywords, years and circuits; published terms restrict automated/bulk extraction and commercial reuse",
+      "access_status": "public search portal, but content access requires a personal account created by the Court and a current subscription; use is subject to per-account daily viewing/request limits",
       "collection_permission": "not_allowed_without_explicit_exception_or_license",
       "commercial_reuse_permission": "prior_written_permission_required_per_published_terms",
-      "terms_checked_on": "2026-10-23",
+      "terms_checked_on": "2026-10-31",
       "bulk_download_or_api": "do not automate or bulk extract absent written authorization",
-      "required_next_action": "Request an official API/licensed export and written permission. Do not scrape while permission is pending.",
-      "permission_evidence": "Published site policy reviewed on 2026-10-23: https://cc.gov.eg/terms. Policy prohibits automated/bulk extraction, restricts content to legal/academic/research/documentation uses, and requires prior written approval for commercial use/republication. This is a record of the restriction, not permission. Rights-context note: WIPO Lex's consolidated record for Egyptian Law No. 82/2002, Article 141, excludes official court judgments from copyright protection but preserves protection for creative collections/selection/arrangement (https://www.wipo.int/wipolex/ar/legislation/details/22066). This does not override the portal's published terms, does not authorize automated/bulk extraction, and does not remove the stated prior-written-approval requirement for commercial use/republication. Keep the current restricted statuses unchanged. The direct public search route was confirmed at https://cc.gov.eg/judgments_search/. It exposes civil and criminal judgment/principle categories, including labour appeals, and advanced search criteria for keywords, years and circuits. This is a manual research route only; the published restrictions and prior-written-approval requirement remain in force."
+      "required_next_action": "For this product, do not ingest, scrape, bulk extract, republish, or commercially display Court of Cassation text without prior written permission. Since no permission outreach is planned, keep this source as manual research/link-out only; do not make full text a corpus dependency.",
+      "permission_evidence": "Rechecked 2026-10-31 against the Court's official policy (last updated May 2026): https://cc.gov.eg/terms. The policy requires a personal account created by the Court and a current subscription for content access; permits viewing/copying only for legal, academic, research and documentation purposes; prohibits commercial use or republication without prior written approval; expressly prohibits automated or bulk extraction, including crawlers, scripts and repeated programmed requests even from a subscribed account; sets per-account daily document and request limits; prohibits account sharing; and reserves enforcement rights. The current public search route exposes civil and criminal judgment/principle categories, including labour appeals, and advanced keyword/year/circuit search: https://cc.gov.eg/judgments_search/. For Legal Copilot, treat this as a manual lookup/link-out source only. No extraction or product reuse is authorized by the public search page. Rights-context note: WIPO Lex's consolidated record for Egyptian Law No. 82/2002, Article 141, excludes official court judgments from copyright protection but preserves protection for creative collections/selection/arrangement (https://www.wipo.int/wipolex/ar/legislation/details/22066). Article 141 does not override the Court's published access/use conditions or the explicit commercial written-approval requirement."
     },
     {
       "source_id": "EG-WIPO-LEX",
