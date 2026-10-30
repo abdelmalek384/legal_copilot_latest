@@ -400,7 +400,7 @@ This checkpoint records discovery and engineering safeguards, not verified-law c
 - Recorded that Decision 2590/2026 continues Decision 982/2026 through September 2026. A targeted search did not locate an October extension; this is not proof that no October instrument exists and does not establish expiry/currentness.
 - Added an explicit currentness discovery log and four future in-app lawyer prompts (OSH-23–26) to test October status, original Gazette citation, Decision 3165 and the distinction between parent-law amendment and implementing-decision extension.
 - Added regression assertions for the seven instrument records, parent relationships, DSpace metadata and access restrictions. A local structural/schema-equivalent check found 79 records, 13 source records, no duplicate IDs, no unsupported states and no invalid URLs.
-- Latest GitHub Actions for the current PR head are queued/running; do not claim them passed until completed. The preceding validated branch checkpoint remains 103/103 Full Tests and 28/28 Legal Knowledge Validation.
+- On head `ee7b98a1336a6a669c591e1ca7bb87b91ba24e14`, Legal Knowledge Validation passed (run 41034901325); Full Tests run 41034901090 is still running. Do not claim the full suite passed until it completes. The preceding validated branch checkpoint remains 103/103 Full Tests and 28/28 Legal Knowledge Validation.
 
 ### Next gates
 
