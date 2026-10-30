@@ -42,20 +42,20 @@
     {
       "source_id": "EG-COURT-CASSATION",
       "authority": "Egyptian Court of Cassation",
-      "source_page": "https://cc.gov.eg/",
+      "source_page": "https://cc.gov.eg/judgments_search/",
       "terms_url": "https://cc.gov.eg/terms",
       "material_types": [
         "judgments",
         "judgment principles",
         "case search"
       ],
-      "access_status": "public portal with access restrictions described in published terms",
+      "access_status": "public search portal for civil and criminal judgments/principles, with advanced search by keywords, years and circuits; published terms restrict automated/bulk extraction and commercial reuse",
       "collection_permission": "not_allowed_without_explicit_exception_or_license",
       "commercial_reuse_permission": "prior_written_permission_required_per_published_terms",
       "terms_checked_on": "2026-10-23",
       "bulk_download_or_api": "do not automate or bulk extract absent written authorization",
       "required_next_action": "Request an official API/licensed export and written permission. Do not scrape while permission is pending.",
-      "permission_evidence": "Published site policy reviewed on 2026-10-23: https://cc.gov.eg/terms. Policy prohibits automated/bulk extraction, restricts content to legal/academic/research/documentation uses, and requires prior written approval for commercial use/republication. This is a record of the restriction, not permission. Rights-context note: WIPO Lex's consolidated record for Egyptian Law No. 82/2002, Article 141, excludes official court judgments from copyright protection but preserves protection for creative collections/selection/arrangement (https://www.wipo.int/wipolex/ar/legislation/details/22066). This does not override the portal's published terms, does not authorize automated/bulk extraction, and does not remove the stated prior-written-approval requirement for commercial use/republication. Keep the current restricted statuses unchanged."
+      "permission_evidence": "Published site policy reviewed on 2026-10-23: https://cc.gov.eg/terms. Policy prohibits automated/bulk extraction, restricts content to legal/academic/research/documentation uses, and requires prior written approval for commercial use/republication. This is a record of the restriction, not permission. Rights-context note: WIPO Lex's consolidated record for Egyptian Law No. 82/2002, Article 141, excludes official court judgments from copyright protection but preserves protection for creative collections/selection/arrangement (https://www.wipo.int/wipolex/ar/legislation/details/22066). This does not override the portal's published terms, does not authorize automated/bulk extraction, and does not remove the stated prior-written-approval requirement for commercial use/republication. Keep the current restricted statuses unchanged. The direct public search route was confirmed at https://cc.gov.eg/judgments_search/. It exposes civil and criminal judgment/principle categories, including labour appeals, and advanced search criteria for keywords, years and circuits. This is a manual research route only; the published restrictions and prior-written-approval requirement remain in force."
     },
     {
       "source_id": "EG-WIPO-LEX",
