@@ -2155,6 +2155,39 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         finally:
             other_client.close()
 
+    def test_password_change_rejects_wrong_current_short_and_reused_passwords(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        control = self.runtime.control_connection()
+        before = control.execute(
+            "SELECT password_hash FROM users WHERE id=?", (self.user_id,)
+        ).fetchone()["password_hash"]
+
+        wrong = self._mutate(
+            "post", "/account/password",
+            json={"current_password": "incorrect-current-password",
+                  "new_password": "ReplacementPasswordPassphrase-2026!"},
+        )
+        self.assertEqual(wrong.status_code, 403, wrong.text)
+        short = self._mutate(
+            "post", "/account/password",
+            json={"current_password": self.password, "new_password": "short"},
+        )
+        self.assertEqual(short.status_code, 422, short.text)
+        reused = self._mutate(
+            "post", "/account/password",
+            json={"current_password": self.password, "new_password": self.password},
+        )
+        self.assertEqual(reused.status_code, 422, reused.text)
+
+        after = control.execute(
+            "SELECT password_hash FROM users WHERE id=?", (self.user_id,)
+        ).fetchone()["password_hash"]
+        self.assertEqual(after, before)
+        self.assertEqual(self.client.get("/session").status_code, 200)
+
     def test_deadline_action_cannot_mutate_another_firms_deadline(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
