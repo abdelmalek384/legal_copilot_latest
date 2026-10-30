@@ -10,11 +10,10 @@ class LabourLawCardManifestTests(unittest.TestCase):
         data = json.loads(MANIFEST.read_text(encoding="utf-8"))
         self.assertEqual(data["combined_expected_cards"], 250)
         self.assertFalse(data["authoritative_search_eligible"])
-        self.assertEqual(len(data["inventory_files"]), 4)
+        self.assertEqual(len(data["inventory_files"]), 1)
         self.assertEqual(sum(item["expected_cards"] for item in data["inventory_files"]), 250)
-        self.assertEqual(data["inventory_files"][1]["article_range"], [256, 274])
-        self.assertEqual(data["inventory_files"][2]["article_range"], [275, 298])
-        self.assertEqual(data["inventory_files"][3]["article_range"], [2, 11])
+        self.assertEqual(data["inventory_files"][0]["path"], "data/candidates/labour_law_14_2025/provision_evidence_cards.json")
+        self.assertEqual(data["inventory_files"][0]["expected_cards"], 250)
 
 if __name__ == "__main__":
     unittest.main()
