@@ -148,8 +148,8 @@ def render_report(data: dict[str, Any]) -> str:
         lines.extend([
             "",
             f"**Review state:** `{card['review_state']}`.",
-            f"**Usable for:** {card['usable_for']}.",
-            f"**Not usable for:** {card['not_usable_for']}.",
+            f"**Usable for:** {card.get('usable_for', 'provisional research lead and manual source review only')}.",
+            f"**Not usable for:** {card.get('not_usable_for', 'authoritative legal advice or definitive current-law conclusions pending source, currentness, rights and counsel review')}.",
             "",
         ])
     lines.extend([
