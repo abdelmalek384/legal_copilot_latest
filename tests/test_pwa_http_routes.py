@@ -45,11 +45,15 @@ class PwaHttpRouteTests(unittest.TestCase):
     def test_offline_and_icon_routes_return_only_static_assets(self):
         offline = self.client.get("/offline.html")
         icon = self.client.get("/app-icon.svg")
+        apple_icon = self.client.get("/apple-touch-icon.png")
         self.assertEqual(offline.status_code, 200)
         self.assertIn("not stored for offline use", offline.text.lower())
         self.assertEqual(icon.status_code, 200)
         self.assertIn("image/svg+xml", icon.headers.get("content-type", ""))
         self.assertIn("<svg", icon.text)
+        self.assertEqual(apple_icon.status_code, 200)
+        self.assertIn("image/png", apple_icon.headers.get("content-type", ""))
+        self.assertTrue(apple_icon.content.startswith(bytes([137, 80, 78, 71, 13, 10, 26, 10])))
 
     def test_home_injects_manifest_registration_and_worker_csp(self):
         response = self.client.get("/")
