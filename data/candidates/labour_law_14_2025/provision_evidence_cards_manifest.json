@@ -1,51 +1,25 @@
 {
   "instrument": "Egyptian Labour Law No. 14 of 2025",
   "manifest_version": 1,
-  "updated_on": "2026-10-28",
+  "updated_on": "2026-10-30",
   "authoritative_search_eligible": false,
   "inventory_files": [
     {
       "path": "data/candidates/labour_law_14_2025/provision_evidence_cards.json",
-      "expected_cards": 197,
-      "role": "main provisional inventory",
-      "note": "Large file exceeds GitHub Contents API readable-size limit; do not infer that it is absent."
-    },
-    {
-      "path": "data/candidates/labour_law_14_2025/provision_evidence_cards_256_274.json",
-      "expected_cards": 19,
-      "article_range": [
-        256,
-        274
-      ],
-      "role": "supplemental provisional inventory"
-    },
-    {
-      "path": "data/candidates/labour_law_14_2025/provision_evidence_cards_275_298.json",
-      "expected_cards": 24,
-      "article_range": [
-        275,
-        298
-      ],
-      "role": "supplemental provisional inventory"
-    },
-    {
-      "path": "data/candidates/labour_law_14_2025/provision_evidence_cards_promulgation_2_11.json",
-      "expected_cards": 10,
-      "article_range": [
-        2,
-        11
-      ],
-      "role": "promulgation-provisions supplement",
-      "note": "Article-level pinpoints only; Gazette page numbers intentionally left unverified."
+      "expected_cards": 250,
+      "role": "canonical provisional inventory",
+      "note": "The canonical main file already contains the complete 250-card report inventory. The split files 256_274, 275_298 and promulgation_2_11 are archival snapshots/alternate splits and overlap the canonical file; they are intentionally not loaded."
     }
   ],
   "combined_expected_cards": 250,
-  "loader_requirement": "Any inventory reader or report builder must explicitly read all listed files, validate unique card IDs across files, and preserve each card's search_eligible=false/review_state/limitations. Do not activate this inventory for authoritative retrieval.",
+  "loader_requirement": "Load the canonical main inventory only, validate unique card IDs, and preserve each card's search_eligible=false/review_state/limitations. Do not load archived split snapshots because their records overlap the canonical file. Any future split must first be reconciled and deduplicated against the canonical inventory.",
   "known_gaps": [
-    "Main inventory could not be re-read through the current GitHub Contents API because of file size.",
+    "The canonical main inventory is larger than the GitHub Contents API readable-size limit; the report/test runner reads it in the repository checkout.",
+    "The split files 256_274, 275_298 and promulgation_2_11 are archived review snapshots, not manifest inputs, because they overlap the canonical inventory and may contain divergent duplicates.",
+    "Some supplemental split-card content may not be represented in the canonical inventory; reconcile and selectively merge any unique improvements before re-enabling those files.",
     "Supplemental cards have inferred Gazette page pinpoints, not visually verified.",
     "Some penalty summaries and implementing-decision mappings are secondary-source cross-checks only.",
     "Currentness, full amendments, reuse rights and Egyptian-lawyer review remain incomplete.",
-    "Promulgation Articles 2–11 are represented in a separate supplement; official Gazette page pinpoints are intentionally null until visually verified."
+    "Promulgation Articles 2–11 page pinpoints are not visually verified."
   ]
 }
