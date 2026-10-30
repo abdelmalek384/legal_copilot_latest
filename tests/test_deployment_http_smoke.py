@@ -22,6 +22,7 @@ def fake_transport(*, omit_worker_csp=False, bad_status=None):
             ),
             "/offline.html": "<p>Case files and account data are not stored for offline use.</p>",
             "/app-icon.svg": "<svg></svg>",
+            "/apple-touch-icon.png": bytes([137, 80, 78, 71, 13, 10, 26, 10]),
         }
         headers = {
             "Content-Type": {
@@ -30,6 +31,7 @@ def fake_transport(*, omit_worker_csp=False, bad_status=None):
                 "/service-worker.js": "application/javascript",
                 "/offline.html": "text/html; charset=utf-8",
                 "/app-icon.svg": "image/svg+xml",
+                "/apple-touch-icon.png": "image/png",
             }[path],
             "Cache-Control": "no-store",
             "X-Content-Type-Options": "nosniff",
@@ -42,7 +44,9 @@ def fake_transport(*, omit_worker_csp=False, bad_status=None):
         if omit_worker_csp:
             headers["Content-Security-Policy"] = "default-src 'self'; script-src 'self'"
         status = bad_status if path == "/manifest.webmanifest" and bad_status else 200
-        return httpx.Response(status, headers=headers, text=bodies[path], request=request)
+        body = bodies[path]
+        content = body if isinstance(body, bytes) else body.encode("utf-8")
+        return httpx.Response(status, headers=headers, content=content, request=request)
     return httpx.MockTransport(handler)
 
 
