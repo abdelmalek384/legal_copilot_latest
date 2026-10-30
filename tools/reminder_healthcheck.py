@@ -88,12 +88,14 @@ def inspect_health(
                             firm["counts"][item["status"]] = int(item["total"])
                     firm["stale_queued"] = int(tenant.execute(
                         "SELECT COUNT(*) FROM reminder_deliveries WHERE status='queued' "
-                        "AND julianday(COALESCE(next_attempt_at,updated_at,created_at)) <= julianday(?)",
+                        "AND (julianday(COALESCE(next_attempt_at,updated_at,created_at)) IS NULL "
+                        "OR julianday(COALESCE(next_attempt_at,updated_at,created_at)) <= julianday(?))",
                         (cutoff.isoformat(),),
                     ).fetchone()[0])
                     firm["expired_sending"] = int(tenant.execute(
                         "SELECT COUNT(*) FROM reminder_deliveries WHERE status='sending' "
-                        "AND (lease_until IS NULL OR julianday(lease_until) <= julianday(?))",
+                        "AND (lease_until IS NULL OR julianday(lease_until) IS NULL "
+                        "OR julianday(lease_until) <= julianday(?))",
                         (current.isoformat(),),
                     ).fetchone()[0])
                 finally:
