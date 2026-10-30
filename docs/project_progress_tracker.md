@@ -412,6 +412,11 @@ This checkpoint records discovery and engineering safeguards, not verified-law c
 5. Complete technical work before scheduling the lawyer's in-app review; obtain sign-off only for the exact app commit, corpus version and legal scope actually tested.
 6. Keep all candidate-only and rights-unclear material out of authoritative retrieval. Leave DB/tenant/storage work to the assigned workstream.
 
+
+
+- Added Decision 2659/2020 as a separate historical candidate explicitly repealed by Article 7 of Decision 3165/2026. Article 8 makes Decision 3165 effective the day after Gazette publication, but the actual publication date has not been independently established. The inventory deliberately leaves the repeal effective date unverified and adds lawyer prompt OSH-28.
+- Added a metadata-only Action 1 intake hashing utility, its tests, and a dedicated CI step. It will generate SHA-256/size and JSONL structural counts without copying or extracting user source content.
+
 **Percentage rule:** the 79-record inventory and seven new source leads improve discovery completeness, not the verified Egyptian legal corpus percentage. Keep the verified-corpus estimate at 6% until the actual release gates pass.
 
 
@@ -421,5 +426,5 @@ This checkpoint records discovery and engineering safeguards, not verified-law c
 - **Decision 3165/2026:** Direct Amiri Press searchable text is recorded. Secondary reports identify Gazette issue 41 مكرر (و), dated 12 October 2026, and describe minimum-wage review, an annual allowance floor of 3% of insured wage, and a 30-day decision period for employer requests. These reported rules are explicitly secondary-only pending original Gazette acquisition and exact page matching.
 - **Acceptance coverage:** Added OSH-27 (Cabinet draft vs promulgated suspension instrument) and sharpened OSH-25 (Decision 3165 wage/allowance rules must not be answered as verified from secondary sources).
 - **No promotion:** Both instruments remain discovery-only; no new legal rule has become authoritative retrieval material.
-- **Metrics unchanged:** 79 candidate records / 13 source records; verified legal corpus remains 6%; Decision 250 Table 24 remains 781/781 secondary structural rows and 0/781 original Gazette matches; Decisions 248–252 remain 0/5 fully matched.
+- **Metrics unchanged:** 80 candidate records / 13 source records; verified legal corpus remains 6%; Decision 250 Table 24 remains 781/781 secondary structural rows and 0/781 original Gazette matches; Decisions 248–252 remain 0/5 fully matched.
 - **CI status:** The latest content-API commits currently have no associated workflow runs/status checks returned. Do not reuse the earlier 103/103 and 28/28 results as proof for these newest commits. Trigger/await fresh CI before merging.
