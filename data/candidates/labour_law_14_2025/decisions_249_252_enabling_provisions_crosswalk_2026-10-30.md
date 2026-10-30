@@ -1,7 +1,7 @@
 # Labour Law 14/2025 — enabling-provision crosswalk for Decisions 248–252/2026
 
 **Prepared:** 2026-10-30  
-**Primary searchable law-text route:** Amiri Press, Law No. 14 of 2025: https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D  
+**Primary official law-text route:** Egyptian Tax Authority government-hosted Official Gazette PDF, Issue 18 (Supplement), 2025-05-03: https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf\n**Additional official searchable route:** Amiri Press: https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D  
 **Corroborating instrument catalogue:** Amiri Press / DSpace, *Al-Waqa’i al-Misriya*, Supplement 225 (A), 2026-10-12: https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full
 
 ## Purpose and limits
@@ -19,7 +19,7 @@ This is a cross-reference between express ministerial-decision delegations in th
 
 ## Decision 248 — Article 260 cross-reference and limits\n\nThe catalogue describes Decision 248/2026 as concerning forms and statistics for ordinary, chronic and occupational diseases, serious accidents and injuries. Article 260 of Law 14/2025 expressly provides for ministerial decisions specifying the forms used for serious-accident and occupational-disease notifications and the data, reports and statistics to be submitted electronically. This is a strong subject-and-delegation match. The precise preamble citation, exact scope of each form, any additional legal basis, and operative requirements must still be checked against the complete Gazette text. Do not infer deadlines, fields, reporting thresholds or penalties from the catalogue description.\n\nThe law's Article 260 text is also reproduced in a public English translation (Andersen) and a public Arabic transcription (Wikisource); these are corroborating discovery sources, not substitutes for capturing the Amiri Press text or checking the Official Gazette page.\n\n## Statutory numerical caps to verify against the decision text
 
-The searchable Law 14/2025 text states:
+The official government-hosted Law 14/2025 PDF was opened and page images inspected for Articles 255, 259, 260, 261 and 262 (PDF page indices 94, 96 and 97; printed Gazette pages 96, 98 and 99). The article-to-decision crosswalk above is therefore now grounded in the official parent statute, not only the Amiri Press searchable-text route. The exact official text and page evidence are recorded in `law14_2025_official_pdf_articles255_262_evidence_2026-10-30.md`.\n\nThe official PDF confirms the statutory fee ceilings:
 - Article 261: the licence fee for the training systems described there must not exceed EGP 50,000.
 - Article 262: the licence fee for occupational safety and health expertise/consultancy must not exceed EGP 50,000.
 
@@ -27,7 +27,7 @@ These are statutory ceilings in the law text, not a claim about the fees actuall
 
 ## Evidence status and required next steps
 
-- The Amiri Press searchable law text is an official primary-text route; preserve its URL, retrieval date and captured text/hash if bytes are obtained.
+- The Egyptian Tax Authority PDF is an official government-hosted copy of the Official Gazette text; PDF page indices 94, 96 and 97 were visually inspected for Articles 255, 259–262. No file hash is claimed because original bytes were not obtained. The Amiri Press searchable route remains a second official route, but its page could not be fetched in this pass.
 - The DSpace record confirms the Gazette issue metadata and lists one 6.13 MB PDF bundle, but the Download control currently routes to a request-a-copy form. No copy request was submitted and no access control was bypassed.
 - The Ministry announcement corroborates issuance and broad subject matter, not article-level operative content.
 - No original Gazette PDF bytes/hash or full decision text were obtained in this pass.
@@ -35,4 +35,4 @@ These are statutory ceilings in the law text, not a claim about the fees actuall
 - Do not import this crosswalk as a decision text or enable any candidate assertion for authoritative retrieval.
 
 Before release, obtain an authorized full text, verify the exact decision preamble and every operative provision against its Gazette page, confirm the statutory delegation and temporal status, assess source-use rights, and obtain qualified Egyptian labour/OSH counsel approval.
-\n## Crosswalk evidence note (2026-10-30)\n\nThe Article 260 match was added after comparing the catalogue description of Decision 248 with Article 260's express delegation concerning forms, statistics and electronic reporting. Public corroborating routes: https://eg.andersen.com/wp-content/uploads/2025/06/Translation-of-Labor-law-No.-14-of-2025.pdf (English translation, Article 260) and https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر (Arabic transcription, Article 260). The official Amiri Press searchable law-text route remains https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D, but the page could not be fetched in this pass. Accordingly, the Article 260 cross-reference is a strong candidate mapping, not a final legal opinion or proof of the decision's full statutory basis.\n
+\n## Crosswalk evidence note (2026-10-30)\n\nThe official PDF capture confirms the parent statute's Articles 255 and 259–262. The Article 260 mapping is now primary-text-confirmed at the parent-law level; it is still not a verification of Decision 248's own wording or legality. No SHA-256 is claimed because original PDF bytes were not downloaded. The exact page locators and scope limits are in `law14_2025_official_pdf_articles255_262_evidence_2026-10-30.md`.\n
