@@ -29,7 +29,11 @@ NAMES = {
     "income_tax_law_91_2005_en": "Income Tax Law (Law No. 91 of 2005)",
     "env_regs_pm_decree_338_1995_en": "Executive Regulations of Environment Law 4/1994 (PM Decree 338 of 1995)",
 }
-HEAD = re.compile(r"(?m)^[ \t]*Article[ \t]*:?[ \t]*\(?[ \t]*(\d+)(?:[ \t]*(bis(?:[ \t]*\(?[A-Za-z]\)?)?))?[ \t]*\)?[ \t]*[:\-]?[ \t]*$")
+ARABIC_DIGITS = "0-9٠-٩۰-۹"
+HEAD = re.compile(
+    rf"(?m)^[ \t]*(?:Article|المادة|مادة)[ \t]*:?[ \t]*(?:رقم[ \t]*)?\(?[ \t]*([{ARABIC_DIGITS}]+)(?:[ \t]*(bis(?:[ \t]*\(?[A-Za-z]\)?)?|مكرر))?[ \t]*\)?[ \t]*[:\-]?[ \t]*$",
+    re.IGNORECASE,
+)
 DOCUMENT_ID = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$")
 SHA256 = re.compile(r"^[0-9a-fA-F]{64}$")
 
@@ -135,6 +139,18 @@ def validate_inputs(src: str | pathlib.Path, out: str | pathlib.Path):
         if normalized_id in seen_ids:
             _fail(f"duplicate document_id: {document_id}")
         seen_ids.add(normalized_id)
+
+        language = metadata.get("language")
+        if not isinstance(language, str) or language.strip().lower() not in {"ar", "en", "ar-en"}:
+            _fail(f"language must be one of ar, en, or ar-en: {sidecar.name}")
+        metadata["language"] = language.strip().lower()
+        official_title = metadata.get("official_title")
+        if official_title is not None and (
+            not isinstance(official_title, str) or not official_title.strip() or len(official_title.strip()) > 300
+        ):
+            _fail(f"official_title must be a non-empty string of at most 300 characters: {sidecar.name}")
+        if isinstance(official_title, str):
+            metadata["official_title"] = official_title.strip()
 
         source_url = metadata.get("source_url")
         try:
@@ -291,9 +307,14 @@ def main(src, out):
     for sidecar, metadata, pdf_path, pdf_bytes, actual_hash in inputs:
         pages, ocr_used = page_texts(pdf_bytes, output_dir / ".ocr_cache", actual_hash, pdf_path.stem)
         parts = split(clean(pages))
-        name = NAMES.get(metadata["document_id"], metadata["document_id"])
+        name = metadata.get("official_title") or NAMES.get(metadata["document_id"], metadata["document_id"])
+        language_label = {
+            "ar": "Arabic-language source text (official status and authority not yet verified)",
+            "en": "English-language text/translation (not authoritative; Arabic original governs when applicable)",
+            "ar-en": "Bilingual Arabic/English source text (official status and authority not yet verified)",
+        }[metadata["language"]]
         source = (
-            f"{metadata['source_url']} | English translation (not authoritative; the Arabic original governs) "
+            f"{metadata['source_url']} | {language_label} "
             f"| retrieved {metadata['retrieved_at'][:10]} | sha256 {actual_hash}"
             + (" | text recovered by OCR" if ocr_used else "")
         )
