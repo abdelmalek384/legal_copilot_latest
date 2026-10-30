@@ -38,6 +38,9 @@ def build_init_command(python_executable: str, firm_name: str, owner_name: str, 
 
 def has_active_owner() -> bool:
     runtime = DatabaseRuntime.from_env()
+    # This helper runs in a new process after the launcher initialized the
+    # databases; initialize this process-local runtime before opening a profile.
+    runtime.initialize()
     control = runtime.control_connection()
     row = control.execute(ACTIVE_OWNER_SQL).fetchone()
     return bool(row and int(row[0]) > 0)
