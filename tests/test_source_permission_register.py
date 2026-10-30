@@ -145,6 +145,19 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         self.assertEqual(source["permission_evidence_url"], "https://cc.gov.eg/posts/739")
         self.assertEqual(MODULE.validate(data), [])
 
+    def test_dataflare_egyptian_corpus_mit_claim_does_not_clear_underlying_records(self):
+        import json
+        data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        source = next(item for item in data["sources"] if item["source_id"] == "EG-DATAFLARE-LEGAL-CORPUS")
+        self.assertEqual(source["collection_permission"], "unknown")
+        self.assertEqual(source["commercial_reuse_permission"], "unknown")
+        self.assertIn("MIT", source["permission_evidence"])
+        self.assertIn("no record-level source URL", source["permission_evidence"])
+        self.assertIn("date=None", source["permission_evidence"])
+        self.assertEqual(source["permission_evidence_url"], "https://huggingface.co/datasets/dataflare/egypt-legal-corpus")
+        self.assertEqual(source["terms_checked_on"], "2026-10-30")
+        self.assertEqual(MODULE.validate(data), [])
+
     def test_mksegypt_archive_license_claim_is_recorded_without_overstating_permission(self):
         import json
         data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
