@@ -8,8 +8,11 @@ import unittest
 from unittest.mock import patch
 from pathlib import Path
 
+from schema_profiles import apply_profile_migrations
 from tenant_catalog import initialize_catalog, provision_tenant_database, resolve_tenant_database
 from tenant_storage import TenantConnectionError, TenantSQLiteConnectionRouter
+
+MIGRATIONS = Path(__file__).resolve().parents[1] / "migrations"
 
 
 class TenantSQLiteConnectionRouterTests(unittest.TestCase):
@@ -21,25 +24,9 @@ class TenantSQLiteConnectionRouterTests(unittest.TestCase):
 
         def initialize_tenant(db):
             db.execute("PRAGMA journal_mode=WAL")
+            apply_profile_migrations(db, "firm", MIGRATIONS)
             db.execute("CREATE TABLE marker (value TEXT NOT NULL)")
             db.execute("INSERT INTO marker(value) VALUES (?)", ("created",))
-            db.execute("""
-                CREATE TABLE database_profile (
-                    singleton INTEGER PRIMARY KEY CHECK(singleton=1),
-                    profile TEXT NOT NULL
-                )
-            """)
-            db.execute(
-                "INSERT INTO database_profile(singleton,profile) VALUES(1,'firm')"
-            )
-            db.executescript("""
-                CREATE TRIGGER database_profile_no_update
-                BEFORE UPDATE ON database_profile
-                BEGIN SELECT RAISE(ABORT, 'database profile binding is immutable'); END;
-                CREATE TRIGGER database_profile_no_delete
-                BEFORE DELETE ON database_profile
-                BEGIN SELECT RAISE(ABORT, 'database profile binding is immutable'); END;
-            """)
 
         with self._catalog() as catalog:
             provision_tenant_database(catalog, 101, self.root, initialize_tenant)
@@ -63,18 +50,11 @@ class TenantSQLiteConnectionRouterTests(unittest.TestCase):
 
     def _init_catalog(self):
         with self._catalog() as db:
-            db.execute("CREATE TABLE firms(id INTEGER PRIMARY KEY, name TEXT NOT NULL)")
-            db.executemany("INSERT INTO firms(id,name) VALUES(?,?)",
-                           [(101, "Firm A"), (202, "Firm B")])
-            db.execute("CREATE TABLE database_profile (singleton INTEGER PRIMARY KEY CHECK(singleton=1), profile TEXT NOT NULL)")
-            db.execute("INSERT INTO database_profile(singleton,profile) VALUES(1,'control_plane')")
-            db.executescript("""
-                CREATE TRIGGER database_profile_no_update BEFORE UPDATE ON database_profile
-                BEGIN SELECT RAISE(ABORT, 'database profile binding is immutable'); END;
-                CREATE TRIGGER database_profile_no_delete BEFORE DELETE ON database_profile
-                BEGIN SELECT RAISE(ABORT, 'database profile binding is immutable'); END;
-            """)
-            db.commit()
+            apply_profile_migrations(db, "control_plane", MIGRATIONS)
+            db.executemany(
+                "INSERT INTO firms(id,name) VALUES(?,?)",
+                [(101, "Firm A"), (202, "Firm B")],
+            )
             initialize_catalog(db)
 
     def _catalog(self):
