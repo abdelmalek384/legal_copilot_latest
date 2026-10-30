@@ -280,9 +280,9 @@
       "secondary_scan_discrepancy": {
         "field": "cas_identifier",
         "candidate_transcription": "1344-281",
-        "secondary_image_observed": "1344-28-1",
         "status": "pending_original_gazette_confirmation",
-        "note": "The watermarked page 254 reproduction visibly includes the additional hyphen. Keep the original candidate string unchanged until the original Gazette is checked; do not silently correct it."
+        "note": "The watermarked page 254 reproduction visibly includes the additional hyphen. Keep the original candidate string unchanged until the original Gazette is checked; do not silently correct it.",
+        "secondary_image_observed_tentative": "1344-28-1"
       }
     },
     {
