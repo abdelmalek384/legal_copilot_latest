@@ -48,7 +48,7 @@ BATCHES = [
     "decision_250_table24_candidate_batch29_rows564_583_2026-10-29.json",
     "decision_250_table24_candidate_batch30_rows584_603_2026-10-29.json",
     "decision_250_table24_candidate_batch31_rows604_617_2026-10-29.json",
-    "decision_250_table24_candidate_batch32_rows618_641_2026-10-30.json",
+    "decision_250_table24_candidate_batch32_rows618_642_2026-10-30.json",
 ]
 
 
