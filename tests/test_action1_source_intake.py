@@ -50,6 +50,16 @@ class Action1SourceIntakeTests(unittest.TestCase):
             self.assertNotIn("private bytes", serialized)
             self.assertNotIn('{"article":1}', serialized)
 
+    def test_symbolic_link_inputs_are_rejected(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            target = root / "original.pdf"
+            target.write_bytes(b"%PDF-1.4\\n%%EOF")
+            link = root / "linked.pdf"
+            link.symlink_to(target)
+            with self.assertRaisesRegex(ValueError, "symbolic link"):
+                inspect_file(link)
+
     def test_empty_inputs_and_duplicate_basenames_are_rejected(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
