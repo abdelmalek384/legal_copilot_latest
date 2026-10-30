@@ -1725,8 +1725,11 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             ("review-write-doc", "review-write-source", "Review write document", "statute"),
         )
         corpus.execute(
-            "INSERT INTO legal_document_versions(version_id,document_id,version_label,source_url) VALUES(?,?,?,?)",
-            (779, "review-write-doc", "v1", "https://example.test/source/v1"),
+            "INSERT INTO legal_document_versions(version_id,document_id,version_label,source_url,"
+            "legal_status,review_status,authenticity_verified,status_verified,amendment_history_verified) "
+            "VALUES(?,?,?,?,?,?,?,?,?)",
+            (779, "review-write-doc", "v1", "https://example.test/source/v1",
+             "under_review", "pending_lawyer_review", 0, 0, 0),
         )
         corpus.commit()
 
@@ -1749,6 +1752,47 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(allowed.status_code, 201, allowed.text)
         self.assertFalse(allowed.json()["status_changed"])
 
+        missing_evidence = self._mutate(
+            "post", endpoint,
+            json={"review_type": "legal_status", "outcome": "pass"},
+        )
+        self.assertEqual(missing_evidence.status_code, 422, missing_evidence.text)
+        credential_evidence = self._mutate(
+            "post", endpoint,
+            json={
+                "review_type": "legal_status",
+                "outcome": "pass",
+                "evidence_url": "https://reviewer:secret@example.test/status",
+            },
+        )
+        self.assertEqual(credential_evidence.status_code, 422, credential_evidence.text)
+
+        passing = self._mutate(
+            "post", endpoint,
+            json={
+                "review_type": "source_authenticity",
+                "outcome": "pass",
+                "evidence_url": "https://example.test/gazette/issue-123",
+                "notes": "Evidence URL recorded for authorized human review.",
+            },
+        )
+        self.assertEqual(passing.status_code, 201, passing.text)
+        self.assertFalse(passing.json()["status_changed"])
+        current = corpus.execute(
+            "SELECT review_status,legal_status,authenticity_verified,status_verified,"
+            "amendment_history_verified FROM legal_document_versions WHERE version_id=779"
+        ).fetchone()
+        self.assertEqual(
+            tuple(current),
+            ("pending_lawyer_review", "under_review", 0, 0, 0),
+            "review-event insertion must never auto-promote verification or legal status",
+        )
+        history = self.client.get(endpoint)
+        self.assertEqual(history.status_code, 200, history.text)
+        self.assertEqual(len(history.json()["events"]), 2)
+        self.assertEqual(history.json()["events"][0]["review_type"], "source_authenticity")
+        self.assertEqual(history.json()["events"][0]["reviewer"], "First Owner")
+
         control.execute(
             "DELETE FROM user_platform_roles WHERE user_id=? AND role_name='platform_reviewer'",
             (self.user_id,),
@@ -1760,7 +1804,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             corpus.execute(
                 "SELECT COUNT(*) FROM legal_review_events WHERE version_id=779"
             ).fetchone()[0],
-            1,
+            2,
             "revoked platform role must not append a review event",
         )
 
