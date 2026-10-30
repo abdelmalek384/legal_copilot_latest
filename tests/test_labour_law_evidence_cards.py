@@ -29,7 +29,7 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
 
     def test_cards_have_primary_pinpoints_and_secondary_cross_checks(self):
         self.assertEqual(self.data["instrument"]["document_id"], "EG-LABOUR-LAW-14-2025")
-        self.assertGreaterEqual(len(self.data["cards"]), 21)
+        self.assertEqual(len(self.data["cards"]), 127)
         ids = set()
         for card in self.data["cards"]:
             with self.subTest(card=card.get("card_id")):
@@ -38,12 +38,16 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
                 ids.add(card["card_id"])
                 self.assertTrue(card["provisional_answer_ar"].strip())
                 self.assertTrue(card["pinpoint"]["article"])
-                self.assertGreaterEqual(card["pinpoint"]["official_gazette_printed_page"], 1)
+                printed_page = card["pinpoint"].get("official_gazette_printed_page")
+                if printed_page is None:
+                    self.assertEqual(card["pinpoint"]["pinpoint_status"], "article_verified_in_public_transcription_page_not_verified")
+                else:
+                    self.assertGreaterEqual(printed_page, 1)
                 self.assertTrue(any(_has_https_host(s["url"], "alamiria.com") for s in card["primary_evidence"]))
                 self.assertTrue(any(_has_https_host(s["url"], "portal.eta.gov.eg") for s in card["primary_evidence"]))
                 self.assertTrue(card["cross_checks"])
                 self.assertTrue(card["limitations"])
-                self.assertIn(card["review_state"], {"provisional_primary_text_extract_reviewed", "provisional_secondary_crosscheck"})
+                self.assertIn(card["review_state"], {"provisional_primary_text_extract_reviewed", "provisional_text_extract_crosschecked", "provisional_secondary_crosscheck"})
 
     def test_evidence_cards_fail_closed_and_are_not_authoritative_corpus(self):
         instrument = self.data["instrument"]
@@ -62,12 +66,27 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
 
     def test_secondary_crosschecked_cards_remain_explicitly_non_authoritative(self):
         cards = [card for card in self.data["cards"] if card["review_state"] == "provisional_secondary_crosscheck"]
-        self.assertEqual(len(cards), 43)
+        self.assertEqual(len(cards), 53)
+        for card in cards:
+            with self.subTest(card_id=card["card_id"]):
+                self.assertFalse(card["search_eligible"])
+                if card["pinpoint"].get("official_gazette_printed_page") is None:
+                    self.assertEqual(card["pinpoint"]["pinpoint_status"], "article_verified_in_public_transcription_page_not_verified")
+                else:
+                    self.assertEqual(card["pinpoint"]["pinpoint_status"], "inferred_not_visually_verified")
+                self.assertTrue(card["limitations"])
+                self.assertIn("مراجعة محامٍ مصري", " ".join(card["limitations"]))
+                self.assertTrue(card["not_usable_for"])
+
+    def test_text_extract_crosschecked_coverage_cards_keep_inferred_pages(self):
+        cards = [card for card in self.data["cards"] if card["review_state"] == "provisional_text_extract_crosschecked"]
+        self.assertEqual(len(cards), 15)
         for card in cards:
             with self.subTest(card_id=card["card_id"]):
                 self.assertFalse(card["search_eligible"])
                 self.assertEqual(card["pinpoint"]["pinpoint_status"], "inferred_not_visually_verified")
-                self.assertTrue(card["limitations"])
+                self.assertGreaterEqual(card["pinpoint"]["official_gazette_printed_page"], 1)
+                self.assertIn("رقم الصفحة مستنتج", " ".join(card["limitations"]))
                 self.assertIn("لا توجد مراجعة محامٍ", " ".join(card["limitations"]))
                 self.assertTrue(card["not_usable_for"])
 
@@ -120,6 +139,7 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
         self.assertEqual(actual, expected)
         self.assertIn("Not authoritative legal advice", actual)
         self.assertIn("Authoritative search eligibility: `false`", actual)
+        self.assertIn("printed Gazette page not established (PDF page index not established)", actual)
         self.assertIn("EG-LABOUR-DECISION-49-2026", actual)
         self.assertIn("EG-LABOUR-DECISION-294-2025", actual)
         for card in self.data["cards"]:

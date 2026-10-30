@@ -19,7 +19,7 @@
     "commercial_reuse_permission": "unknown",
     "search_eligible": false
   },
-  "source_method_note": "Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF has not been downloaded, hashed, or visually inspected; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording. Additional cards for accompanying-law Articles 4–9 were prepared from text extraction of the government-hosted Official Gazette PDF on 2026-10-28. The PDF has not been downloaded, hashed, or visually inspected; page pinpointing is provisional and all cards remain non-authoritative. Additional cards for accompanying-law Articles 10–12 were prepared from the government-hosted Official Gazette PDF text extraction on 2026-10-28. Page references are based on the extracted page labels; the PDF has not been downloaded, hashed, or visually inspected. Cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 16, 22, 23, 25 and 27 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; these cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 28–31 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 32–34 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 36–37 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshot checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 40–43 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 44–48 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 49–54 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. On 2026-10-30, 43 additional occupational-safety and labour-inspection cards for Articles 256–298 were selectively reconciled from the previously split review snapshots. Their pinpoint pages are inferred and not visually verified; all 43 are secondary-cross-checked only, have explicit limitations and not-usable-for boundaries, and remain search_eligible=false. Article 266's supplemental card asks only for the identity of its implementing ministerial decision and abstains because the decision's text/currentness is not verified. The original Gazette PDF remains undownloaded/unhashed and the full article-by-article comparison, rights review and Egyptian-lawyer review remain open.",
+  "source_method_note": "Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF has not been downloaded, hashed, or visually inspected; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording. Additional cards for accompanying-law Articles 4–9 were prepared from text extraction of the government-hosted Official Gazette PDF on 2026-10-28. The PDF has not been downloaded, hashed, or visually inspected; page pinpointing is provisional and all cards remain non-authoritative. Additional cards for accompanying-law Articles 10–12 were prepared from the government-hosted Official Gazette PDF text extraction on 2026-10-28. Page references are based on the extracted page labels; the PDF has not been downloaded, hashed, or visually inspected. Cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 16, 22, 23, 25 and 27 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; these cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 28–31 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 32–34 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 36–37 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshot checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 40–43 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 44–48 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 49–54 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. On 2026-10-30, 43 additional occupational-safety and labour-inspection cards for Articles 256–298 were selectively reconciled from the previously split review snapshots. Their pinpoint pages are inferred and not visually verified; all 43 are secondary-cross-checked only, have explicit limitations and not-usable-for boundaries, and remain search_eligible=false. Article 266's supplemental card asks only for the identity of its implementing ministerial decision and abstains because the decision's text/currentness is not verified. The original Gazette PDF remains undownloaded/unhashed and the full article-by-article comparison, rights review and Egyptian-lawyer review remain open. On 2026-10-30, 15 additional coverage-gap cards for accompanying-law Articles 1–39 were selectively reconciled from the earlier review snapshot. Their printed-page numbers are inferred from extracted text sequence, not visually checked; each remains provisional_text_extract_crosschecked with explicit limitations. Ten separate promulgation cards for Articles 2–11 were also added as provisional_secondary_crosscheck records; the article identities are present in public transcriptions, but their Gazette page pinpoints are not established. These cards address transitional funds, preservation of benefits, licensing, worker data, pending cases and implementing decisions; their time limits and legal effects must not be applied without primary Gazette comparison, commencement-date verification, later-instrument review and qualified Egyptian-lawyer review. All cards remain search_eligible=false.",
   "cards": [
     {
       "card_id": "EG-LABOUR-14-2025-PROMULGATION-ART-1-SCOPE",
@@ -4715,6 +4715,1131 @@
       "search_eligible": false,
       "usable_for": "source-linked research lead and manual verification",
       "not_usable_for": "authoritative advice or criminal exposure calculation until official text and currentness are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-1-COVERAGE-GAP-DEFINED-TERMS",
+      "question": "ما أهم التعريفات التي يضعها قانون العمل؟",
+      "provisional_answer_ar": "تتضمن المادة الأولى تعريفات اصطلاحية لأغراض القانون، منها العامل وصاحب العمل والأجر وأنواع العمل والعمل الليلي والعمالة غير المنتظمة والتحرش والتنمر والمنشأة وموقع العمل والمهنة والجهة الإدارية المختصة. يجب الرجوع إلى التعريف الحرفي الكامل عند تفسير مصطلح محدد.",
+      "pinpoint": {
+        "part": "مواد الإصدار والأحكام العامة",
+        "article": "المادة 1",
+        "official_gazette_printed_page": 4,
+        "pdf_page_index_zero_based": 2,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 1؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 1؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "secondary transcription",
+          "supports": "Text cross-check only; not primary authority"
+        }
+      ],
+      "limitations": [
+        "تفسير مصطلح اعتماداً على ملخص بدلاً من التعريف الحرفي الكامل",
+        "رقم الصفحة مستنتج من تسلسل النص وليس فحصاً بصرياً مستقلاً",
+        "التعديلات والقرارات التنفيذية الحالية غير مكتملة المراجعة",
+        "لا توجد مراجعة محامٍ مصري مسجلة"
+      ],
+      "review_state": "provisional_text_extract_crosschecked",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "تفسير مصطلح اعتماداً على ملخص بدلاً من التعريف الحرفي الكامل",
+      "search_eligible": false
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-2-COVERAGE-GAP-TIME-CALCULATION-DEFAULTS",
+      "question": "كيف يحسب الشهر والسنة ما لم يوجد اتفاق مخالف؟",
+      "provisional_answer_ar": "تعتبر المادة الثانية السنة 365 يوماً والشهر ثلاثين يوماً ما لم يتم الاتفاق على خلاف ذلك. يلزم فحص النص الخاص وطبيعة الميعاد وأي قواعد إجرائية قبل حساب ميعاد قضية.",
+      "pinpoint": {
+        "part": "مواد الإصدار والأحكام العامة",
+        "article": "المادة 2",
+        "official_gazette_printed_page": 7,
+        "pdf_page_index_zero_based": 5,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 2؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 2؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "secondary transcription",
+          "supports": "Text cross-check only; not primary authority"
+        }
+      ],
+      "limitations": [
+        "حساب ميعاد فعلي دون فحص النص الخاص والاتفاق وقواعد احتساب المواعيد",
+        "رقم الصفحة مستنتج من تسلسل النص وليس فحصاً بصرياً مستقلاً",
+        "التعديلات والقرارات التنفيذية الحالية غير مكتملة المراجعة",
+        "لا توجد مراجعة محامٍ مصري مسجلة"
+      ],
+      "review_state": "provisional_text_extract_crosschecked",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "حساب ميعاد فعلي دون فحص النص الخاص والاتفاق وقواعد احتساب المواعيد",
+      "search_eligible": false
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-3-COVERAGE-GAP-GENERAL-LAW-STATUS",
+      "question": "ما موقع قانون العمل في تنظيم علاقات العمل؟",
+      "provisional_answer_ar": "تقرر المادة الثالثة أن قانون العمل هو القانون العام الذي يحكم علاقات العمل. ولا يعني ذلك استبعاد القوانين الخاصة أو النصوص المكملة دون فحصها.",
+      "pinpoint": {
+        "part": "مواد الإصدار والأحكام العامة",
+        "article": "المادة 3",
+        "official_gazette_printed_page": 7,
+        "pdf_page_index_zero_based": 5,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 3؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 3؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "secondary transcription",
+          "supports": "Text cross-check only; not primary authority"
+        }
+      ],
+      "limitations": [
+        "القول باستبعاد كل قانون خاص دون فحص النصوص الخاصة",
+        "رقم الصفحة مستنتج من تسلسل النص وليس فحصاً بصرياً مستقلاً",
+        "التعديلات والقرارات التنفيذية الحالية غير مكتملة المراجعة",
+        "لا توجد مراجعة محامٍ مصري مسجلة"
+      ],
+      "review_state": "provisional_text_extract_crosschecked",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "القول باستبعاد كل قانون خاص دون فحص النصوص الخاصة",
+      "search_eligible": false
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-14-COVERAGE-GAP-PENALTY-PROCEEDS-ALLOCATION",
+      "question": "كيف توزع حصيلة المبالغ المحكوم بها عن مخالفات القانون؟",
+      "provisional_answer_ar": "تخصص المادة 14 ثلث المبالغ المحكوم بها للوزارة المختصة للخدمات الاجتماعية والصحية والثقافية وتطوير التدريب المهني للفئات الأولى بالرعاية، خصوصاً العمالة غير المنتظمة، وفق قرار الوزير؛ وتؤول بقية الحصيلة للخزانة العامة.",
+      "pinpoint": {
+        "part": "مواد الإصدار والأحكام العامة",
+        "article": "المادة 14",
+        "official_gazette_printed_page": 10,
+        "pdf_page_index_zero_based": 8,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 14؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 14؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "secondary transcription",
+          "supports": "Text cross-check only; not primary authority"
+        }
+      ],
+      "limitations": [
+        "تحديد وجه صرف أو مستفيد دون قرار التوزيع الساري",
+        "رقم الصفحة مستنتج من تسلسل النص وليس فحصاً بصرياً مستقلاً",
+        "التعديلات والقرارات التنفيذية الحالية غير مكتملة المراجعة",
+        "لا توجد مراجعة محامٍ مصري مسجلة"
+      ],
+      "review_state": "provisional_text_extract_crosschecked",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "تحديد وجه صرف أو مستفيد دون قرار التوزيع الساري",
+      "search_eligible": false
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-15-COVERAGE-GAP-NONCASH-FEES",
+      "question": "كيف تحصل الرسوم ومقابل الخدمات المنصوص عليها في القانون؟",
+      "provisional_answer_ar": "تحيل المادة 15 تحصيل الرسوم ومقابل الخدمات إلى قانون تنظيم استخدام وسائل الدفع غير النقدي رقم 18 لسنة 2019. يلزم مراجعة التشريع المحال إليه والقرار المنظم للخدمة.",
+      "pinpoint": {
+        "part": "مواد الإصدار والأحكام العامة",
+        "article": "المادة 15",
+        "official_gazette_printed_page": 10,
+        "pdf_page_index_zero_based": 8,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 15؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 15؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "secondary transcription",
+          "supports": "Text cross-check only; not primary authority"
+        }
+      ],
+      "limitations": [
+        "تحديد وسيلة دفع أو إعفاء دون مراجعة القانون والقرار المختص",
+        "رقم الصفحة مستنتج من تسلسل النص وليس فحصاً بصرياً مستقلاً",
+        "التعديلات والقرارات التنفيذية الحالية غير مكتملة المراجعة",
+        "لا توجد مراجعة محامٍ مصري مسجلة"
+      ],
+      "review_state": "provisional_text_extract_crosschecked",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "تحديد وسيلة دفع أو إعفاء دون مراجعة القانون والقرار المختص",
+      "search_eligible": false
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-17-COVERAGE-GAP-VOCATIONAL-GUIDANCE",
+      "question": "من يتولى التوجيه المهني والتصنيف المهني الوطني؟",
+      "provisional_answer_ar": "تسند المادة 17 للجهة الإدارية التوجيه المهني للراغبين في التدريب وإعداد التصنيف المهني الوطني بالتنسيق مع الجهات المعنية وتحديثه وفق معايير الجودة والتغيرات التقنية والمناخية. التفاصيل والجهات المستفيدة تحدد بقرار وزاري.",
+      "pinpoint": {
+        "part": "الكتاب الثاني — التدريب والتشغيل",
+        "article": "المادة 17",
+        "official_gazette_printed_page": 11,
+        "pdf_page_index_zero_based": 9,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 17؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 17؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "secondary transcription",
+          "supports": "Text cross-check only; not primary authority"
+        }
+      ],
+      "limitations": [
+        "تحديد تصنيف أو شروط مستفيد دون التصنيف والقرار الحالي",
+        "رقم الصفحة مستنتج من تسلسل النص وليس فحصاً بصرياً مستقلاً",
+        "التعديلات والقرارات التنفيذية الحالية غير مكتملة المراجعة",
+        "لا توجد مراجعة محامٍ مصري مسجلة"
+      ],
+      "review_state": "provisional_text_extract_crosschecked",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "تحديد تصنيف أو شروط مستفيد دون التصنيف والقرار الحالي",
+      "search_eligible": false
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-18-COVERAGE-GAP-SKILLS-COUNCIL",
+      "question": "ما المجلس الأعلى لتنمية مهارات الموارد البشرية؟",
+      "provisional_answer_ar": "تنشئ المادة 18 مجلساً أعلى برئاسة الوزير المختص وعضوية جهات حكومية وممثلي أصحاب الأعمال والنقابات وخبراء، لوضع سياسات تنمية المهارات والتدريب والتأهيل وربط التعليم باحتياجات سوق العمل. يصدر قرار من رئيس مجلس الوزراء بتنظيمه.",
+      "pinpoint": {
+        "part": "الكتاب الثاني — التدريب والتشغيل",
+        "article": "المادة 18",
+        "official_gazette_printed_page": 12,
+        "pdf_page_index_zero_based": 10,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 18؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 18؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "secondary transcription",
+          "supports": "Text cross-check only; not primary authority"
+        }
+      ],
+      "limitations": [
+        "تحديد التشكيل أو الإجراء الحالي دون قرار التشكيل",
+        "رقم الصفحة مستنتج من تسلسل النص وليس فحصاً بصرياً مستقلاً",
+        "التعديلات والقرارات التنفيذية الحالية غير مكتملة المراجعة",
+        "لا توجد مراجعة محامٍ مصري مسجلة"
+      ],
+      "review_state": "provisional_text_extract_crosschecked",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "تحديد التشكيل أو الإجراء الحالي دون قرار التشكيل",
+      "search_eligible": false
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-19-COVERAGE-GAP-LOCAL-SKILLS-COUNCILS",
+      "question": "هل يجوز تشكيل مجالس تنفيذية محلية لتنمية المهارات؟",
+      "provisional_answer_ar": "تجيز المادة 19 للمجلس الأعلى تشكيل مجالس تنفيذية في المحافظات أو المناطق الجغرافية بتمثيل متوازن لأصحاب الأعمال والنقابات والجهات الحكومية لمتابعة الخطط والتوصيات. وجود مجلس محلي واختصاصاته يتطلب قرار تشكيل.",
+      "pinpoint": {
+        "part": "الكتاب الثاني — التدريب والتشغيل",
+        "article": "المادة 19",
+        "official_gazette_printed_page": 12,
+        "pdf_page_index_zero_based": 10,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 19؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 19؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "secondary transcription",
+          "supports": "Text cross-check only; not primary authority"
+        }
+      ],
+      "limitations": [
+        "افتراض وجود مجلس محلي أو تحديد اختصاصاته دون قرار",
+        "رقم الصفحة مستنتج من تسلسل النص وليس فحصاً بصرياً مستقلاً",
+        "التعديلات والقرارات التنفيذية الحالية غير مكتملة المراجعة",
+        "لا توجد مراجعة محامٍ مصري مسجلة"
+      ],
+      "review_state": "provisional_text_extract_crosschecked",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "افتراض وجود مجلس محلي أو تحديد اختصاصاته دون قرار",
+      "search_eligible": false
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-20-COVERAGE-GAP-TRAINING-FUND-FUNCTIONS",
+      "question": "ما اختصاصات صندوق تمويل التدريب والتأهيل؟",
+      "provisional_answer_ar": "تسند المادة 20 للصندوق تمويل تنمية المهارات والتدريب المهني والتقني ومراكز التدريب والبرامج وربط التعليم باحتياجات السوق ووضع قواعد التمويل ومتابعة المشروعات. ينظم قرار رئيس مجلس الوزراء مجلس الإدارة والنظام الأساسي والموارد.",
+      "pinpoint": {
+        "part": "الكتاب الثاني — التدريب والتشغيل",
+        "article": "المادة 20",
+        "official_gazette_printed_page": 12,
+        "pdf_page_index_zero_based": 10,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 20؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 20؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "secondary transcription",
+          "supports": "Text cross-check only; not primary authority"
+        }
+      ],
+      "limitations": [
+        "تقرير أهلية تمويل دون قواعد التمويل والقرارات",
+        "رقم الصفحة مستنتج من تسلسل النص وليس فحصاً بصرياً مستقلاً",
+        "التعديلات والقرارات التنفيذية الحالية غير مكتملة المراجعة",
+        "لا توجد مراجعة محامٍ مصري مسجلة"
+      ],
+      "review_state": "provisional_text_extract_crosschecked",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "تقرير أهلية تمويل دون قواعد التمويل والقرارات",
+      "search_eligible": false
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-21-COVERAGE-GAP-TRAINING-FUND-REVENUE",
+      "question": "ما موارد صندوق تمويل التدريب والتأهيل؟",
+      "provisional_answer_ar": "تحدد المادة 21 موارد منها مساهمة سنوية بنسبة 0.25% من الحد الأدنى للأجر التأميني في المنشآت التي يعمل بها ثلاثون عاملاً فأكثر، بحد أدنى وأقصى لكل عامل، مع إمكان الإعفاء وفق قرار وزاري عند تحقق شروط التدريب، إضافة إلى التبرعات وعوائد الاستثمار. يلزم فحص القرار الحالي وطريقة الحساب.",
+      "pinpoint": {
+        "part": "الكتاب الثاني — التدريب والتشغيل",
+        "article": "المادة 21",
+        "official_gazette_printed_page": 13,
+        "pdf_page_index_zero_based": 11,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 21؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 21؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "secondary transcription",
+          "supports": "Text cross-check only; not primary authority"
+        }
+      ],
+      "limitations": [
+        "حساب اشتراك أو إعفاء دون عدد العمال والقرار الساري",
+        "رقم الصفحة مستنتج من تسلسل النص وليس فحصاً بصرياً مستقلاً",
+        "التعديلات والقرارات التنفيذية الحالية غير مكتملة المراجعة",
+        "لا توجد مراجعة محامٍ مصري مسجلة"
+      ],
+      "review_state": "provisional_text_extract_crosschecked",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "حساب اشتراك أو إعفاء دون عدد العمال والقرار الساري",
+      "search_eligible": false
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-24-COVERAGE-GAP-TRAINING-PROGRAMME-APPROVAL",
+      "question": "ما البيانات المطلوبة لاعتماد البرامج التدريبية؟",
+      "provisional_answer_ar": "توجب المادة 24 على الجهات المحددة إخطار الوزارة بالبرامج لاعتمادها، مع بيانات شروط المتدربين وكفاية المحتوى والساعات ومستويات المدربين والمهارات المكتسبة. تحدد الإجراءات والمواعيد بقرار وزاري بالتنسيق مع هيئة إتقان.",
+      "pinpoint": {
+        "part": "الكتاب الثاني — التدريب والتشغيل",
+        "article": "المادة 24",
+        "official_gazette_printed_page": 15,
+        "pdf_page_index_zero_based": 13,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 24؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 24؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "secondary transcription",
+          "supports": "Text cross-check only; not primary authority"
+        }
+      ],
+      "limitations": [
+        "تقرير اعتماد برنامج أو إعفاء دون نوع الجهة والقرار التنفيذي",
+        "رقم الصفحة مستنتج من تسلسل النص وليس فحصاً بصرياً مستقلاً",
+        "التعديلات والقرارات التنفيذية الحالية غير مكتملة المراجعة",
+        "لا توجد مراجعة محامٍ مصري مسجلة"
+      ],
+      "review_state": "provisional_text_extract_crosschecked",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "تقرير اعتماد برنامج أو إعفاء دون نوع الجهة والقرار التنفيذي",
+      "search_eligible": false
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-26-COVERAGE-GAP-TRAINING-CERTIFICATE",
+      "question": "ما الشهادة التي تمنح للمتدرب بعد إتمام البرنامج؟",
+      "provisional_answer_ar": "تلزم المادة 26 الجهة التي تزاول التدريب بمنح المتدرب شهادة تفيد اجتيازه البرنامج والمستوى الذي بلغه، وتترك البيانات الأخرى وقواعد الاعتماد والرسم إلى قرار الوزير. يلزم التحقق من القرار والسجل والبرنامج.",
+      "pinpoint": {
+        "part": "الكتاب الثاني — التدريب والتشغيل",
+        "article": "المادة 26",
+        "official_gazette_printed_page": 15,
+        "pdf_page_index_zero_based": 13,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 26؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 26؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "secondary transcription",
+          "supports": "Text cross-check only; not primary authority"
+        }
+      ],
+      "limitations": [
+        "تحديد صلاحية شهادة أو رسم دون القرار والسجل",
+        "رقم الصفحة مستنتج من تسلسل النص وليس فحصاً بصرياً مستقلاً",
+        "التعديلات والقرارات التنفيذية الحالية غير مكتملة المراجعة",
+        "لا توجد مراجعة محامٍ مصري مسجلة"
+      ],
+      "review_state": "provisional_text_extract_crosschecked",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "تحديد صلاحية شهادة أو رسم دون القرار والسجل",
+      "search_eligible": false
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-35-COVERAGE-GAP-WORKER-REGISTRATION-CERTIFICATE",
+      "question": "ما واجب المنشأة بشأن شهادة قيد العامل؟",
+      "provisional_answer_ar": "تلزم المادة 35 المنشآت بإعادة شهادة قيد العامل للجهة الإدارية خلال 45 يوماً من تاريخ استلام العمل بعد استيفاء بياناتها، وتدوين رقم الشهادة وتاريخها في سجل العمال. يلزم إثبات تاريخ بدء العمل والشهادة والسجل.",
+      "pinpoint": {
+        "part": "الكتاب الثاني — التدريب والتشغيل",
+        "article": "المادة 35",
+        "official_gazette_printed_page": 18,
+        "pdf_page_index_zero_based": 16,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 35؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 35؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "secondary transcription",
+          "supports": "Text cross-check only; not primary authority"
+        }
+      ],
+      "limitations": [
+        "حساب مهلة الإعادة دون تاريخ بدء العمل والشهادة",
+        "رقم الصفحة مستنتج من تسلسل النص وليس فحصاً بصرياً مستقلاً",
+        "التعديلات والقرارات التنفيذية الحالية غير مكتملة المراجعة",
+        "لا توجد مراجعة محامٍ مصري مسجلة"
+      ],
+      "review_state": "provisional_text_extract_crosschecked",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "حساب مهلة الإعادة دون تاريخ بدء العمل والشهادة",
+      "search_eligible": false
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-38-COVERAGE-GAP-LABOUR-MARKET-DATA",
+      "question": "ما واجب المنشآت في تقديم بيانات سوق العمل؟",
+      "provisional_answer_ar": "تلزم المادة 38 المنشآت بتقديم بيانات تحديث قواعد بيانات العمالة ونظام معلومات سوق العمل خلال 30 يوماً من طلبها والتعاون في استيفاء الاستمارات. يلزم إثبات الطلب وتاريخه ونطاق البيانات المطلوبة.",
+      "pinpoint": {
+        "part": "الكتاب الثاني — التدريب والتشغيل",
+        "article": "المادة 38",
+        "official_gazette_printed_page": 19,
+        "pdf_page_index_zero_based": 17,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 38؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 38؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "secondary transcription",
+          "supports": "Text cross-check only; not primary authority"
+        }
+      ],
+      "limitations": [
+        "حساب مهلة أو تقرير عدم امتثال دون الطلب وتاريخه",
+        "رقم الصفحة مستنتج من تسلسل النص وليس فحصاً بصرياً مستقلاً",
+        "التعديلات والقرارات التنفيذية الحالية غير مكتملة المراجعة",
+        "لا توجد مراجعة محامٍ مصري مسجلة"
+      ],
+      "review_state": "provisional_text_extract_crosschecked",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "حساب مهلة أو تقرير عدم امتثال دون الطلب وتاريخه",
+      "search_eligible": false
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-39-COVERAGE-GAP-RECRUITMENT-EXCEPTIONS",
+      "question": "ما الاستثناءات من أحكام التشغيل في الداخل والخارج؟",
+      "provisional_answer_ar": "تستثني المادة 39 الأعمال العرضية وما في حكمها والوظائف الرئيسية التي يعد شاغلوها وكلاء مفوضين عن صاحب العمل، مع جواز مد نطاق الفصل بقرار وزاري. لا يكفي المسمى الوظيفي وحده لإثبات الاستثناء.",
+      "pinpoint": {
+        "part": "الكتاب الثاني — التدريب والتشغيل",
+        "article": "المادة 39",
+        "official_gazette_printed_page": 19,
+        "pdf_page_index_zero_based": 17,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مرجع للمادة 39؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع للمادة 39؛ pinpoint الصفحة مستنتج ولم يتحقق بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://lawhub.info/eg/?p=11848",
+          "source_type": "secondary transcription",
+          "supports": "Text cross-check only; not primary authority"
+        }
+      ],
+      "limitations": [
+        "اعتبار وظيفة مستثناة دون طبيعة العمل والقرار الساري",
+        "رقم الصفحة مستنتج من تسلسل النص وليس فحصاً بصرياً مستقلاً",
+        "التعديلات والقرارات التنفيذية الحالية غير مكتملة المراجعة",
+        "لا توجد مراجعة محامٍ مصري مسجلة"
+      ],
+      "review_state": "provisional_text_extract_crosschecked",
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "اعتبار وظيفة مستثناة دون طبيعة العمل والقرار الساري",
+      "search_eligible": false
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-PROMULGATION-ART-2-PROMULGATION-TRAINING-FUND-TRANSITION",
+      "question": "ما مصير صندوق تمويل التدريب والدعاوى المتعلقة بنسبة 1%؟",
+      "provisional_answer_ar": "تقرر المادة الثانية استمرار صندوق تمويل التدريب والتأهيل المنشأ بالقانون السابق بشخصيته الاعتبارية العامة وتبعيته للوزير المختص، وتنظم انقضاء الخصومة في دعاوى تحصيل نسبة 1% إذا لم تتمسك المنشأة باستمرارها خلال ستة أشهر من تاريخ العمل بالقانون. ولا ينشأ عن انقضاء الخصومة حق في استرداد ما سبق سداده. يجب فحص ملف الدعوى وتاريخ بدء سريان القانون قبل التطبيق.",
+      "pinpoint": {
+        "part": "مواد إصدار القانون رقم 14 لسنة 2025",
+        "article": "المادة 2",
+        "official_gazette_printed_page": null,
+        "pdf_page_index_zero_based": null,
+        "pinpoint_status": "article_verified_in_public_transcription_page_not_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "نص مواد إصدار قانون العمل رقم 14 لسنة 2025؛ يلزم مطابقة صورة الجريدة الرسمية",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription",
+          "supports": "مقارنة نصية لمواد الإصدار 2–11، وليست بديلاً عن مطابقة الجريدة الرسمية"
+        }
+      ],
+      "limitations": [
+        "الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق",
+        "المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة",
+        "لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري",
+        "حقوق إعادة الاستخدام التجاري غير محسومة"
+      ],
+      "review_state": "provisional_secondary_crosscheck",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "final determination of transitional deadlines or case disposition until official text and case dates are checked"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-PROMULGATION-ART-3-PROMULGATION-SOCIAL-HEALTH-FUND-AND-WAGES-COUNCIL",
+      "question": "ما وضع صندوق الخدمات الاجتماعية والصحية والمجلس القومي للأجور بعد صدور القانون؟",
+      "provisional_answer_ar": "تقرر المادة الثالثة استمرار صندوق الخدمات الاجتماعية والصحية والثقافية وتبعيته للوزير المختص، كما تستمر عضوية/وظيفة المجلس القومي للأجور ويُشكّل ويمارس اختصاصاته وفق القانون المرافق. يلزم الرجوع إلى القرارات التنظيمية السارية لتحديد التشكيل والاختصاص الحالي.",
+      "pinpoint": {
+        "part": "مواد إصدار القانون رقم 14 لسنة 2025",
+        "article": "المادة 3",
+        "official_gazette_printed_page": null,
+        "pdf_page_index_zero_based": null,
+        "pinpoint_status": "article_verified_in_public_transcription_page_not_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "نص مواد إصدار قانون العمل رقم 14 لسنة 2025؛ يلزم مطابقة صورة الجريدة الرسمية",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription",
+          "supports": "مقارنة نصية لمواد الإصدار 2–11، وليست بديلاً عن مطابقة الجريدة الرسمية"
+        }
+      ],
+      "limitations": [
+        "الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق",
+        "المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة",
+        "لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري",
+        "حقوق إعادة الاستخدام التجاري غير محسومة"
+      ],
+      "review_state": "provisional_secondary_crosscheck",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "final determination of transitional deadlines or case disposition until official text and case dates are checked"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-PROMULGATION-ART-4-PROMULGATION-PRESERVATION-OF-BETTER-BENEFITS",
+      "question": "هل يحتفظ العمال بالمزايا السابقة الأفضل؟",
+      "provisional_answer_ar": "تحافظ المادة الرابعة على الحقوق والمزايا التي سبق حصول العمال عليها من الأجور واللوائح والنظم والاتفاقيات والقرارات الداخلية السابقة. كما تبقي أحكام التشريعات الخاصة ببعض فئات العمال سارية إلى أن تبرم الاتفاقيات الجماعية وتنفذ، وتعد مزايا تلك التشريعات حداً أدنى للتفاوض. التطبيق يتطلب مقارنة المستندات السابقة ومصدر الميزة ونطاقها.",
+      "pinpoint": {
+        "part": "مواد إصدار القانون رقم 14 لسنة 2025",
+        "article": "المادة 4",
+        "official_gazette_printed_page": null,
+        "pdf_page_index_zero_based": null,
+        "pinpoint_status": "article_verified_in_public_transcription_page_not_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "نص مواد إصدار قانون العمل رقم 14 لسنة 2025؛ يلزم مطابقة صورة الجريدة الرسمية",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription",
+          "supports": "مقارنة نصية لمواد الإصدار 2–11، وليست بديلاً عن مطابقة الجريدة الرسمية"
+        }
+      ],
+      "limitations": [
+        "الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق",
+        "المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة",
+        "لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري",
+        "حقوق إعادة الاستخدام التجاري غير محسومة"
+      ],
+      "review_state": "provisional_secondary_crosscheck",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "final determination of transitional deadlines or case disposition until official text and case dates are checked"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-PROMULGATION-ART-5-PROMULGATION-INDUSTRIAL-LICENSING-LAW-SAVINGS",
+      "question": "هل يلغي قانون العمل أحكام قانون تراخيص المنشآت الصناعية؟",
+      "provisional_answer_ar": "تقرر المادة الخامسة أن أحكام قانون العمل والقانون المرافق لا تخل بأحكام قانون تيسير إجراءات منح تراخيص المنشآت الصناعية رقم 15 لسنة 2017. يجب تطبيق النظامين معاً بحسب موضوع الترخيص دون افتراض إلغاء أحدهما.",
+      "pinpoint": {
+        "part": "مواد إصدار القانون رقم 14 لسنة 2025",
+        "article": "المادة 5",
+        "official_gazette_printed_page": null,
+        "pdf_page_index_zero_based": null,
+        "pinpoint_status": "article_verified_in_public_transcription_page_not_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "نص مواد إصدار قانون العمل رقم 14 لسنة 2025؛ يلزم مطابقة صورة الجريدة الرسمية",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription",
+          "supports": "مقارنة نصية لمواد الإصدار 2–11، وليست بديلاً عن مطابقة الجريدة الرسمية"
+        }
+      ],
+      "limitations": [
+        "الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق",
+        "المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة",
+        "لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري",
+        "حقوق إعادة الاستخدام التجاري غير محسومة"
+      ],
+      "review_state": "provisional_secondary_crosscheck",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "final determination of transitional deadlines or case disposition until official text and case dates are checked"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-PROMULGATION-ART-6-PROMULGATION-TRANSITIONAL-PROFESSION-LICENSING",
+      "question": "ما المهل الانتقالية لتوفيق أوضاع ترخيص المهن والحرف والتشغيل؟",
+      "provisional_answer_ar": "تجيز المادة السادسة مؤقتاً تشغيل العمال دون ترخيص مزاولة المهنة أو الحرفة المشار إليه بالمادة 27، على أن توفق الأوضاع خلال مدة لا تجاوز ثلاث سنوات من صدور القرارات المنظمة، مع جواز مدها ضمن الحد الإجمالي الوارد بالنص، وإعفاء من عمل لدى صاحب العمل أكثر من سنة قبل صدور القانون. كما تلزم الجهات المشار إليها بالمادتين 22 و41 بتوفيق أوضاعها خلال سنة من بدء العمل مع إمكان المد وفق النص. يجب التحقق من القرارات وتواريخ صدورها والتمديدات.",
+      "pinpoint": {
+        "part": "مواد إصدار القانون رقم 14 لسنة 2025",
+        "article": "المادة 6",
+        "official_gazette_printed_page": null,
+        "pdf_page_index_zero_based": null,
+        "pinpoint_status": "article_verified_in_public_transcription_page_not_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "نص مواد إصدار قانون العمل رقم 14 لسنة 2025؛ يلزم مطابقة صورة الجريدة الرسمية",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription",
+          "supports": "مقارنة نصية لمواد الإصدار 2–11، وليست بديلاً عن مطابقة الجريدة الرسمية"
+        }
+      ],
+      "limitations": [
+        "الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق",
+        "المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة",
+        "لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري",
+        "حقوق إعادة الاستخدام التجاري غير محسومة"
+      ],
+      "review_state": "provisional_secondary_crosscheck",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "final determination of transitional deadlines or case disposition until official text and case dates are checked"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-PROMULGATION-ART-7-PROMULGATION-TRANSFER-IRREGULAR-WORKER-FUNDS",
+      "question": "إلى أين تؤول أموال حسابات الرعاية الاجتماعية والصحية للعمالة غير المنتظمة؟",
+      "provisional_answer_ar": "تقرر المادة السابعة انتقال الأموال النقدية والعينية والحقوق والالتزامات والموارد الخاصة بحسابات الرعاية الاجتماعية والصحية للعمالة غير المنتظمة المنشأة بوزارة العمل ومديرياتها إلى صندوق إعانات الطوارئ والخدمات الاجتماعية والصحية للعمالة غير المنتظمة المنشأ وفق القانون المرافق. التفاصيل المحاسبية والتنفيذية تحتاج إلى قرارات وسجلات الصندوق.",
+      "pinpoint": {
+        "part": "مواد إصدار القانون رقم 14 لسنة 2025",
+        "article": "المادة 7",
+        "official_gazette_printed_page": null,
+        "pdf_page_index_zero_based": null,
+        "pinpoint_status": "article_verified_in_public_transcription_page_not_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "نص مواد إصدار قانون العمل رقم 14 لسنة 2025؛ يلزم مطابقة صورة الجريدة الرسمية",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription",
+          "supports": "مقارنة نصية لمواد الإصدار 2–11، وليست بديلاً عن مطابقة الجريدة الرسمية"
+        }
+      ],
+      "limitations": [
+        "الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق",
+        "المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة",
+        "لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري",
+        "حقوق إعادة الاستخدام التجاري غير محسومة"
+      ],
+      "review_state": "provisional_secondary_crosscheck",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "final determination of transitional deadlines or case disposition until official text and case dates are checked"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-PROMULGATION-ART-8-PROMULGATION-EMPLOYER-EMPLOYEE-ROSTER-DEADLINE",
+      "question": "ما البيان الذي يجب على المنشأة تقديمه خلال 30 يوماً؟",
+      "provisional_answer_ar": "تلزم المادة الثامنة المنشآت الخاضعة للقانون بإرسال بيان مفصل إلى الوزارة المختصة خلال ثلاثين يوماً من تاريخ العمل به، يشمل عدد العمال وجنسياتهم وأعمارهم ومؤهلاتهم ومهنهم وأنواعهم والأجور التي يتقاضونها. لتقييم مخالفة تاريخية يلزم تحديد تاريخ بدء السريان وأي قرارات أو تمديدات رسمية.",
+      "pinpoint": {
+        "part": "مواد إصدار القانون رقم 14 لسنة 2025",
+        "article": "المادة 8",
+        "official_gazette_printed_page": null,
+        "pdf_page_index_zero_based": null,
+        "pinpoint_status": "article_verified_in_public_transcription_page_not_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "نص مواد إصدار قانون العمل رقم 14 لسنة 2025؛ يلزم مطابقة صورة الجريدة الرسمية",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription",
+          "supports": "مقارنة نصية لمواد الإصدار 2–11، وليست بديلاً عن مطابقة الجريدة الرسمية"
+        }
+      ],
+      "limitations": [
+        "الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق",
+        "المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة",
+        "لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري",
+        "حقوق إعادة الاستخدام التجاري غير محسومة"
+      ],
+      "review_state": "provisional_secondary_crosscheck",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "final determination of transitional deadlines or case disposition until official text and case dates are checked"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-PROMULGATION-ART-9-PROMULGATION-TRANSFER-PENDING-LABOUR-CASES",
+      "question": "كيف تُعامل الدعاوى القائمة التي أصبحت من اختصاص المحاكم العمالية المتخصصة؟",
+      "provisional_answer_ar": "توجب المادة التاسعة إحالة المحاكم من تلقاء نفسها للمنازعات والدعاوى القائمة التي أصبحت من اختصاص المحاكم العمالية المتخصصة، بالحالة التي تكون عليها ودون رسوم، مع إعلان الخصوم وتكليفهم بالحضور. ويستثني النص الدعاوى المحجوزة للحكم أو المحدد لها جلسة للنطق به قبل بدء العمل بالقانون. يلزم فحص مرحلة الدعوى وتاريخ بدء نظام المحاكم.",
+      "pinpoint": {
+        "part": "مواد إصدار القانون رقم 14 لسنة 2025",
+        "article": "المادة 9",
+        "official_gazette_printed_page": null,
+        "pdf_page_index_zero_based": null,
+        "pinpoint_status": "article_verified_in_public_transcription_page_not_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "نص مواد إصدار قانون العمل رقم 14 لسنة 2025؛ يلزم مطابقة صورة الجريدة الرسمية",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription",
+          "supports": "مقارنة نصية لمواد الإصدار 2–11، وليست بديلاً عن مطابقة الجريدة الرسمية"
+        }
+      ],
+      "limitations": [
+        "الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق",
+        "المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة",
+        "لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري",
+        "حقوق إعادة الاستخدام التجاري غير محسومة"
+      ],
+      "review_state": "provisional_secondary_crosscheck",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "final determination of transitional deadlines or case disposition until official text and case dates are checked"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-PROMULGATION-ART-10-PROMULGATION-APPEALS-TRANSITION",
+      "question": "من يستمر في نظر الطعون القائمة عند بدء نظام المحاكم العمالية؟",
+      "provisional_answer_ar": "تقرر المادة العاشرة استمرار محكمة النقض ومحاكم الاستئناف في نظر الطعون على الأحكام الصادرة في المنازعات المشار إليها بالمادة التاسعة إذا رفعت قبل تاريخ العمل بنظام المحاكم العمالية المتخصصة وفق المادة 13. التطبيق يتطلب التحقق من تاريخ رفع الطعن ونوع الحكم والمرحلة الإجرائية.",
+      "pinpoint": {
+        "part": "مواد إصدار القانون رقم 14 لسنة 2025",
+        "article": "المادة 10",
+        "official_gazette_printed_page": null,
+        "pdf_page_index_zero_based": null,
+        "pinpoint_status": "article_verified_in_public_transcription_page_not_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "نص مواد إصدار قانون العمل رقم 14 لسنة 2025؛ يلزم مطابقة صورة الجريدة الرسمية",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription",
+          "supports": "مقارنة نصية لمواد الإصدار 2–11، وليست بديلاً عن مطابقة الجريدة الرسمية"
+        }
+      ],
+      "limitations": [
+        "الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق",
+        "المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة",
+        "لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري",
+        "حقوق إعادة الاستخدام التجاري غير محسومة"
+      ],
+      "review_state": "provisional_secondary_crosscheck",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "final determination of transitional deadlines or case disposition until official text and case dates are checked"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-PROMULGATION-ART-11-PROMULGATION-IMPLEMENTING-DECISIONS-TRANSITION",
+      "question": "ما مصير القرارات التنفيذية السابقة وما مهلة إصدار القرارات الجديدة؟",
+      "provisional_answer_ar": "تلزم المادة الحادية عشرة الوزير المختص بإصدار القرارات المنفذة للقانون والقانون المرافق خلال تسعين يوماً من تاريخ بدء العمل، وتُبقي القرارات السارية قائمة إلى أن تصدر القرارات الجديدة بالقدر الذي لا يتعارض مع القانون. كما تصدر قرارات وزير العدل اللازمة للمحاكم العمالية المتخصصة. تحديد القرار الواجب التطبيق يتطلب مقارنة موضوعه وتاريخه ومضمونه بالنص الجديد.",
+      "pinpoint": {
+        "part": "مواد إصدار القانون رقم 14 لسنة 2025",
+        "article": "المادة 11",
+        "official_gazette_printed_page": null,
+        "pdf_page_index_zero_based": null,
+        "pinpoint_status": "article_verified_in_public_transcription_page_not_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "نص مواد إصدار قانون العمل رقم 14 لسنة 2025؛ يلزم مطابقة صورة الجريدة الرسمية",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription",
+          "supports": "مقارنة نصية لمواد الإصدار 2–11، وليست بديلاً عن مطابقة الجريدة الرسمية"
+        }
+      ],
+      "limitations": [
+        "الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق",
+        "المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة",
+        "لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري",
+        "حقوق إعادة الاستخدام التجاري غير محسومة"
+      ],
+      "review_state": "provisional_secondary_crosscheck",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "final determination of transitional deadlines or case disposition until official text and case dates are checked"
     }
   ],
   "activation_gates": [
