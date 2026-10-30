@@ -77,6 +77,8 @@ Table 24 candidate extraction now covers **781/781 numbered entries (100% second
 
 43. Reconciled the release-status block with the latest Table 24 work: it now reports 781/781 secondary text rows, 327/781 secondary image locators, 76/781 partial image spot-checks, three quarantined discrepancies, zero complete field comparisons, zero official Gazette matches, and zero retrieval-eligible rows. Removed the stale 7% release-status figure and stale '139 remaining' next-step. This is documentation reconciliation, not a legal-readiness increase.
 
+44. Reran the focused legal-knowledge and full test workflows after the row-34 discrepancy evidence was synchronized with the validator. On commit `328a46d958ea934cff19bed014f3839c4f3ae9ab`, Legal Knowledge Validation passed (run `41022331790`, 26 completed steps; also run `41022323728`), and the full `Tests` workflow passed (run `41022331793`, 102 completed steps, zero failed). This verifies the candidate-map/validator/build workflow and application regression suite at that commit; it does not verify the Gazette text, legal currentness, source-use rights or lawyer approval. The newer documentation-only progress-report commit does not change application code or candidate data.
+
 ## Current subtask status
 
 | Subtask | Completion estimate | Current status | Remaining gate |
