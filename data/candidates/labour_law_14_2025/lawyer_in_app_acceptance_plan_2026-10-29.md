@@ -94,3 +94,11 @@ The following parent-law excerpts were captured from the ETA-hosted Official Gaz
 - Article 262: OSH expertise/consultancy licensing and EGP 50,000 statutory fee ceiling.
 
 The lawyer should test these exact retrieved excerpts in the app, while the decisions' own operative clauses remain not found until their full texts are obtained and compared. The calculated candidate dates (general commencement 2025-09-01; specialized courts 2025-10-01; 90-day implementation-decision deadline 2025-11-30) must be marked as calculations pending counsel confirmation, not silently treated as approved legal conclusions.
+
+### Additional Decision 248 reporting-trigger test — OSH-16
+
+| ID | Test in the app | Expected safe behavior | Lawyer decision |
+|---|---|---|---|
+| OSH-16 | Ask separately about (a) a serious accident inside the establishment, (b) an accident outside its boundaries while transporting workers, and (c) the first symptoms versus later medical confirmation of an occupational disease | Cite Article 260 only for its exact parent-law wording: 24 hours for a serious accident occurring at the establishment and for appearance of occupational-disease symptoms. If Decision 248 is retrieved only through secondary reports, label the reported 48-hour off-site period and diagnosis/confirmation trigger as unverified; do not advise delaying notice or collapse the two triggers into one. Abstain on the decision-specific extension until its official Article 4/forms are matched and counsel approves the interaction with Article 260. | Pending |
+
+The secondary reports to compare against the actual decision are Al-Youm Al-Sabea (2026-10-28) and EgyIn (2026-10-19). Their summaries are discovery leads only, not operative legal text.
