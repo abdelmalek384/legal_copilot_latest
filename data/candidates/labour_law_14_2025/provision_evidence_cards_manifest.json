@@ -6,20 +6,20 @@
   "inventory_files": [
     {
       "path": "data/candidates/labour_law_14_2025/provision_evidence_cards.json",
-      "expected_cards": 250,
+      "expected_cards": 294,
       "role": "canonical provisional inventory",
-      "note": "The canonical main file already contains the complete 250-card report inventory. The split files 256_274, 275_298 and promulgation_2_11 are archival snapshots/alternate splits and overlap the canonical file; they are intentionally not loaded."
+      "note": "The canonical main file contains 294 unique cards. Split files 256_274, 275_298 and promulgation_2_11 are separate review snapshots; they overlap the canonical inventory and are excluded from the manifest until reconciled."
     }
   ],
-  "combined_expected_cards": 250,
-  "loader_requirement": "Load the canonical main inventory only, validate unique card IDs, and preserve each card's search_eligible=false/review_state/limitations. Do not load archived split snapshots because their records overlap the canonical file. Any future split must first be reconciled and deduplicated against the canonical inventory.",
+  "combined_expected_cards": 294,
+  "loader_requirement": "Load the canonical main inventory only, validate all 294 card IDs are unique, and preserve each card's search_eligible=false, review_state and limitations. Split snapshots are not manifest inputs; reconcile their unique content into the canonical file before any future re-inclusion.",
   "known_gaps": [
-    "The canonical main inventory is larger than the GitHub Contents API readable-size limit; the report/test runner reads it in the repository checkout.",
-    "The split files 256_274, 275_298 and promulgation_2_11 are archived review snapshots, not manifest inputs, because they overlap the canonical inventory and may contain divergent duplicates.",
-    "Some supplemental split-card content may not be represented in the canonical inventory; reconcile and selectively merge any unique improvements before re-enabling those files.",
-    "Supplemental cards have inferred Gazette page pinpoints, not visually verified.",
+    "The canonical main inventory contains 294 unique cards and is larger than the GitHub Contents API readable-size limit; the repository checkout and blob API can read it.",
+    "The split files 256_274, 275_298 and promulgation_2_11 are archived review snapshots, not manifest inputs. They overlap the canonical inventory and contain duplicate IDs; unique additions must be reconciled manually before re-enabling them.",
+    "The archived split files have not been fully reconciled against the canonical 294-card inventory; do not load them or count them as additional coverage.",
+    "Supplemental card pinpoints are inferred, not visually verified against the original Gazette pages.",
     "Some penalty summaries and implementing-decision mappings are secondary-source cross-checks only.",
-    "Currentness, full amendments, reuse rights and Egyptian-lawyer review remain incomplete.",
+    "Currentness, complete amendment history, reuse rights and Egyptian-lawyer review remain incomplete.",
     "Promulgation Articles 2–11 page pinpoints are not visually verified."
   ]
 }
