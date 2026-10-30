@@ -122,6 +122,10 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         self.assertTrue(any("dspace.id.com.eg/items/90a235e2" in u["url"] for u in next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-PM-DECISION-1305-2026")["source_urls"]))
         self.assertTrue(any("dspace.id.com.eg/items/3ce63ac9" in u["url"] for u in next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-PM-DECISION-1572-2026")["source_urls"]))
         self.assertTrue(any("dspace.id.com.eg/items/080b6ab2" in u["url"] for u in next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-PM-DECISION-2033-2026")["source_urls"]))
+        self.assertTrue(any(u["status"].endswith("requires_DSpace_login") for u in next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-PM-DECISION-1305-2026")["source_urls"] if "dspace.id.com.eg" in u["url"]))
+        for document_id in ("EG-LABOUR-PM-DECISION-1572-2026", "EG-LABOUR-PM-DECISION-2033-2026"):
+            record = next(d for d in self.inventory["documents"] if d["document_id"] == document_id)
+            self.assertTrue(any(u["status"].endswith("request_copy_restricted") for u in record["source_urls"] if "dspace.id.com.eg" in u["url"]))
         self.assertEqual(validate_inventory(self.inventory), [])
 
     def test_unknown_source_and_duplicate_instrument_ids_are_rejected(self):
