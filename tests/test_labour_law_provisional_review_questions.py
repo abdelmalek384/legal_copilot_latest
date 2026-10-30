@@ -13,7 +13,7 @@ class LabourLawProvisionalReviewQuestionTests(unittest.TestCase):
         rows = [json.loads(line) for line in QUESTIONS.read_text(encoding="utf-8").splitlines() if line.strip()]
         provisions = json.loads(PROVISIONS.read_text(encoding="utf-8"))["provisions"]
         provision_ids = {item["provision_id"] for item in provisions}
-        self.assertEqual(len(rows), 53)
+        self.assertEqual(len(rows), 58)
         self.assertEqual(len({row["id"] for row in rows}), len(rows))
         for row in rows:
             self.assertTrue(row["question_ar"])
