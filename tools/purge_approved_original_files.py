@@ -10,6 +10,7 @@ import sys
 from pathlib import Path
 
 from original_file_storage import LocalPrivateObjectStore, ObjectStorageError
+from s3_original_file_storage import S3PrivateObjectStore
 from tenant_catalog import (
     TenantCatalogError,
     initialize_catalog,
@@ -78,6 +79,7 @@ def purge_approved_requests(
     control_database_path: str | Path,
     tenant_root: str | Path,
     corpus_database_path: str | Path,
+    object_store=None,
 ) -> dict:
     """Purge approved requests only after revalidating the trusted offboarding gate.
 
@@ -87,10 +89,13 @@ def purge_approved_requests(
     The authority checks live here as well as in the CLI so an internal caller cannot
     bypass disabled-firm, active-platform-admin, or clean-preflight requirements.
     """
-    if os.environ.get("COPILOT_ENV", "").strip().lower() in {"prod", "production"}:
+    backend = os.environ.get("COPILOT_OBJECT_STORAGE_BACKEND", "local").strip().lower()
+    if object_store is None and os.environ.get("COPILOT_ENV", "").strip().lower() in {"prod", "production"}:
         raise RuntimeError("local filesystem purge is disabled in production mode")
-    if os.environ.get("COPILOT_OBJECT_STORAGE_BACKEND", "local").strip().lower() != "local":
-        raise RuntimeError("this purge operation supports only the local development storage backend")
+    if object_store is None and backend != "local":
+        raise RuntimeError("local purge requires the local development storage backend")
+    if object_store is not None and (backend != "s3" or not isinstance(object_store, S3PrivateObjectStore)):
+        raise RuntimeError("injected production purge store must be the configured S3 adapter")
     if isinstance(firm_id, bool) or not isinstance(firm_id, int) or firm_id <= 0:
         raise ValueError("firm_id must be a positive integer")
     if (isinstance(operator_user_id, bool) or not isinstance(operator_user_id, int)
@@ -131,12 +136,14 @@ def purge_approved_requests(
         raise RuntimeError("Supplied tenant database does not match the trusted catalog")
     database_path = trusted_database_path
     preflight = inspect_firm_offboarding(
-        control_path, tenant_root_path, corpus_path, object_root, firm_id
+        control_path, tenant_root_path, corpus_path,
+        None if object_store is not None else object_root, firm_id,
+        s3_store=object_store,
     )
     if not preflight["purge_preflight_clear"]:
         raise RuntimeError("Original-file purge is blocked by offboarding preflight findings")
 
-    store = LocalPrivateObjectStore(object_root)
+    store = object_store or LocalPrivateObjectStore(object_root)
     connection = sqlite3.connect(database_path, timeout=30)
     connection.row_factory = sqlite3.Row
     connection.execute("PRAGMA foreign_keys=ON")
@@ -198,7 +205,13 @@ def purge_approved_requests(
                 )
                 if started.rowcount != 1:
                     raise RuntimeError("deletion request changed during purge")
-                removed = store.delete(firm_id, row["object_id"])
+                if isinstance(store, S3PrivateObjectStore):
+                    removed = store.purge_unversioned(
+                        firm_id, row["object_id"],
+                        expected_sha256=row["sha256"], expected_size=int(row["byte_size"]),
+                    )
+                else:
+                    removed = store.delete(firm_id, row["object_id"])
                 if not removed:
                     raise RuntimeError("original object disappeared during purge")
                 reason = (
