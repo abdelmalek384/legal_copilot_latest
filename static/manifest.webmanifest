@@ -1,0 +1,22 @@
+{
+  "id": "/",
+  "name": "المساعد القانوني",
+  "short_name": "المساعد القانوني",
+  "description": "مساحة عمل قانونية عربية لإدارة القضايا والبحث القانوني",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#F5F7FB",
+  "theme_color": "#14284B",
+  "lang": "ar",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "/app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
