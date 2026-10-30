@@ -134,6 +134,8 @@ class TenantSQLiteConnectionRouterTests(unittest.TestCase):
         with self._catalog() as catalog:
             path = resolve_tenant_database(catalog, 101, self.root)
         sidecar = Path(str(path) + "-wal")
+        connection.execute("PRAGMA wal_checkpoint(TRUNCATE)")
+        sidecar.unlink(missing_ok=True)
         target = Path(self.temp.name) / "external-wal"
         target.write_text("synthetic WAL sidecar", encoding="utf-8")
         sidecar.symlink_to(target)
@@ -147,7 +149,10 @@ class TenantSQLiteConnectionRouterTests(unittest.TestCase):
         connection = self.router.connection_for_firm(101)
         with self._catalog() as catalog:
             path = resolve_tenant_database(catalog, 101, self.root)
-        os.mkfifo(Path(str(path) + "-wal"))
+        sidecar = Path(str(path) + "-wal")
+        connection.execute("PRAGMA wal_checkpoint(TRUNCATE)")
+        sidecar.unlink(missing_ok=True)
+        os.mkfifo(sidecar)
         with self.assertRaisesRegex(TenantConnectionError, "sidecar must be a regular file"):
             self.router.connection_for_firm(101)
         with self.assertRaisesRegex(sqlite3.ProgrammingError, "closed"):
