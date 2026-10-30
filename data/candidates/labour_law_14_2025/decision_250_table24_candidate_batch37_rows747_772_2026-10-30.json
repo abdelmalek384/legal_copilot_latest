@@ -195,7 +195,8 @@
       "cas": "75-38-7",
       "source_line": 5759,
       "raw_limit_and_note_text": "C2H2Cl2 64.04 500جزء/ مليون _ _ A4م4 تلف الكبد",
-      "status": "pending_official_match"
+      "status": "pending_official_match",
+      "anomaly": "The secondary text assigns formula C2H2Cl2 to Vinylidene fluoride; preserve the source token and verify the formula/chemical identity against the Official Gazette page image. Do not correct from external references."
     },
     {
       "row": 766,
