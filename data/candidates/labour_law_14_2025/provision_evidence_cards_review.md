@@ -2,7 +2,7 @@
 
 **Record:** `EG-LABOUR-LAW-14-2025-EVIDENCE-CARDS-2026-10-28`  
 **Prepared on:** 2026-10-28  
-**Cards in this report:** 250
+**Cards in this report:** 294
 
 ## Status and limits
 
@@ -14,7 +14,7 @@
 - Collection permission: `unknown`; commercial reuse: `unknown`.
 - Authoritative search eligibility: `false`.
 
-Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF binary has not been downloaded or hashed; only specifically listed page images have been visually inspected, and the full PDF has not been comprehensively reviewed; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording. Additional cards for accompanying-law Articles 4–9 were prepared from text extraction of the government-hosted Official Gazette PDF on 2026-10-28. The PDF binary has not been downloaded or hashed; only specifically listed page images have been visually inspected, and the full PDF has not been comprehensively reviewed; page pinpointing is provisional and all cards remain non-authoritative. Additional cards for accompanying-law Articles 10–12 were prepared from the government-hosted Official Gazette PDF text extraction on 2026-10-28. Page references are based on the extracted page labels; the PDF binary has not been downloaded or hashed; only explicitly recorded page images have been visually inspected. Cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 16, 22, 23, 25 and 27 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; these cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 28–31 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 32–34 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 36–37 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshot checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 40–43 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 44–48 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 49–54 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 126 and 127 were added from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 55. The original PDF remains undownloaded and unhashed, and both cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 121 and 122 were prepared from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 53. Article 121 was cross-checked against a secondary English translation, and Article 122 against a secondary legal text copy. The original PDF remains undownloaded and unhashed; both cards remain provisional and non-authoritative. An additional card for accompanying-law Article 123 was added from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 53. It is cross-checked against a secondary English translation, but the implementing ministerial decision has not been identified and reviewed in this task. The original PDF remains undownloaded and unhashed; the card is provisional and non-authoritative. Additional provisional cards for accompanying-law Articles 117–120 and 124–125 were added on 2026-10-28 from indexed official Amiri Press / government-hosted Gazette text leads, cross-checked against a secondary transcription. Gazette printed-page pinpoints are provisional (52 for Articles 117–120; 54 for Articles 124–125); the original PDF remains undownloaded, unhashed, and not visually inspected. These additions do not establish currentness, completeness, reuse rights, or lawyer approval. Additional provisional cards for accompanying-law Articles 128–130 were added on 2026-10-28 using indexed text from the government-hosted Official Gazette PDF (printed page 56; provisional pinpoint) and a secondary transcription cross-check. The official publisher page is recorded as a source lead but was not directly opened in this round. The Gazette PDF remains undownloaded, unhashed, and not visually inspected; cards remain non-authoritative. Additional provisional cards for accompanying-law Articles 131–132 were added on 2026-10-28 from indexed government-hosted Gazette text with a secondary transcription cross-check. Printed-page pinpoints are provisional; the source PDF remains undownloaded, unhashed, and not visually inspected. The sick-leave card distinguishes the general medical-authority rule from the special industrial-establishment tiers; implementing decisions and related social-insurance rules remain unresolved. PAGE-LEVEL VISUAL CHECK UPDATE (2026-10-28): the official Gazette PDF at the ETA portal is accessible through the web PDF viewer (110 pages) and rendered page images were visually checked for printed Gazette pages 52–57. The article-to-page mapping is: Arts. 117–120 p.52; 121–122 p.53; 123–124 p.54; 125–127 p.55; 128–130 p.56; 131–132 p.57. This corrects the prior provisional page assignments for Article 125 (p.55, not p.54) and Article 131 (p.57, not p.56). PDF page indices are printed page minus 2. The source binary still could not be downloaded in the runtime, so no SHA-256 is claimed; only the listed pages were visually checked, not the entire instrument or amendment history. CURRENTNESS LEAD (2026-10-28): Ministry of Labour announcement dated 2026-10-01 identifies Circular 22/2026 for the 8 October 2026 private-sector holiday and confirms that Decision 294/2025 lists Armed Forces Day (6 October) as a paid holiday. This is event-specific implementation evidence, not proof of a general amendment or a complete current holiday list. Additional provisional cards for Articles 133–136 were added after visual inspection of official Gazette printed pages 57–59 (PDF indices 55–57) on 2026-10-28. Article 134 begins on printed page 57 and continues onto page 58. The PDF binary remains undownloaded and unhashed; summaries are provisional and no lawyer review or currentness certification is claimed. Additional provisional disciplinary/work-regulation cards for Articles 137–141 were added after visual inspection of official Gazette printed pages 60–61 (PDF indices 58–59) on 2026-10-28. These cards summarize statutory framework only; the current general workplace-regulation decision (162/2026), each employer's actual regulation, full amendment history, and legal review remain outstanding. Additional provisional disciplinary cards for Articles 142–148 were added after visual inspection of official Gazette printed pages 62–63 (PDF indices 60–61) on 2026-10-28. These summaries cover investigation assignment, deduction caps, repeated violations, temporary suspension, suspension grievances/extensions, and authority to impose discipline. They remain provisional and require full text/currentness/legal review. Additional provisional individual-dispute cards for Articles 149–150 were added after visual inspection of official Gazette printed pages 64–65 (PDF indices 62–63) on 2026-10-28. Procedural deadlines and financial consequences require full-text extraction and legal review before any case-specific use. Additional provisional cards for Articles 151–158 were added after visual inspection of official Gazette printed pages 65–67 (PDF indices 63–65) on 2026-10-28. They cover worker liability for damage, union protections, disciplinary-fine accounting, expiry/renewal of fixed-term or specific-work contracts, and notice/justification rules for indefinite-term termination. They remain provisional; case-specific calculations require full-text and legal review. Additional provisional termination-notice cards for Articles 159–164 were added after visual inspection of official Gazette printed pages 68–69 (PDF indices 66–67) on 2026-10-28. They cover notice during leave, contract continuity, notice-period constraints, paid job-search time, employer waiver of work, and payment in lieu of unserved notice. These cards remain provisional and require full legal review. Additional provisional termination and end-of-service cards for accompanying-law Articles 165–175 were added on 2026-10-28 from the searchable extraction of the government-hosted Official Gazette PDF. The extracted lines place Article 165 on printed page 69/PDF index 67; Articles 166–169 begin on printed page 70/PDF index 68; Articles 170–171 appear on printed page 71/PDF index 69; and Articles 172–175 appear on printed page 72/PDF index 70. Page locations are text-extraction pinpoints, not independent visual inspection of every cited page. Cards remain provisional; source binary hash, comprehensive currentness/amendment review, reuse review and Egyptian-lawyer review remain outstanding. Additional provisional procedural cards for accompanying-law Articles 176–187 were added on 2026-10-28 from searchable text extraction of the government-hosted Official Gazette PDF. The extracted viewer pages place Articles 176–180 on printed page 73/PDF index 71; Articles 181–185 on printed page 74/PDF index 72; and Articles 186–187 on printed page 75/PDF index 73. These are text-extraction pinpoints, not independent visual inspection of every cited page. The source PDF binary remains unavailable for hashing, and currentness, amendment history, reuse rights and qualified legal review remain unresolved. On 2026-10-28, added provisional cards for accompanying-law Articles 188–200 (social consultation and collective bargaining). Their article text was checked against a public secondary transcription of Law 14/2025 at Law Hub; official publisher and government Gazette links remain attached as primary-source leads. The printed-page mapping (Arts. 188–193 p.76/index 74; Arts. 194–198 p.77/index 75; Arts. 199–200 p.78/index 76) is an inferred text-extraction map, not a visual page-by-page verification. The source PDF remains unavailable locally for hashing; currentness, amendments, reuse rights, and lawyer review remain unresolved. Added 14 provisional cards for accompanying-law Articles 201–214 on 2026-10-28: language, renewal, filing and challenge of collective agreements, display, joining, registry updates, good-faith implementation, hardship, enforcement, representative actions, dispute procedures, scope of collective disputes, and the one-month negotiation-to-conciliation threshold. Cross-checked against a public secondary transcription; official-source links remain attached. Inferred Gazette page map: Arts. 201–205 printed p.78/PDF index 76; Arts. 206–212 p.79/index 77; Arts. 213–214 p.80/index 78. These page pinpoints are not visually verified. No source binary hash, complete currentness audit, reuse clearance or lawyer review is claimed. Added 16 provisional cards for accompanying-law Articles 215–230 (conciliation timing, settlement documentation, mediation/arbitration referral, centre structure, mediator/arbitrator lists and eligibility, selection and replacement deadlines, mediation recommendations, arbitration composition/submission/award and review). Cross-checked against the public Law Hub transcription; official-source leads remain attached. Inferred Gazette page map: Arts. 215–218 printed p.80–81/PDF index 78–79; Arts. 219–224 p.81–82/index 79–80; Arts. 225–228 p.82/index 80; Arts. 229–230 p.83/index 81. These page pinpoints are not visually verified; no PDF hash, currentness audit, reuse clearance or lawyer review is claimed. Added 11 provisional cards for accompanying-law Articles 231–241 covering strike prerequisites and notice, strike restrictions, effect on employment obligations, economic closure/down-sizing, committee applications and deadlines, notice, selection criteria, closure restrictions during collective disputes/strikes, and temporary economic changes to employment terms. Public Law Hub transcription used as the text fallback while primary official links remain attached. Inferred Gazette page map: Arts. 231–236 printed p.83/PDF index 81; Arts. 237–241 p.84/index 82. These pinpoints are not visually verified; no PDF hash, currentness audit, reuse clearance or lawyer review is claimed. Added 14 provisional occupational safety, health and work-environment cards for accompanying-law Articles 242–255: chapter and establishment scope, compliance offices, physical/engineering/biological/chemical/indirect hazards, fire and confined spaces, emergency plans and worker withdrawal from imminent serious danger, harassment/bullying/violence prevention, and technical safety standards. Cross-checked against the public Law Hub transcription while retaining official publisher and government Gazette links. Inferred Gazette page map: Arts. 242–247 printed p.85/PDF index 83; Arts. 248–253 p.86/index 84; Arts. 254–255 p.87/index 85. These pinpoints are not visually verified; no hash, full currentness audit, reuse clearance or lawyer review is claimed. Added 19 provisional cards for accompanying-law Articles 256–274 covering occupational safety inspection powers, internal committees, incident reporting, licensed training/consulting, national and governorate safety bodies, pre-employment medical/capability exams, employer/worker PPE duties, daily inspection and medical checks, first aid and nursing thresholds, remote-worksite transport/food/housing, and social/health/cultural services and funding. Text cross-checked against the public Law Hub transcription; official links retained. Inferred Gazette page map: Arts. 256–259 printed p.87–88/PDF index 85–86; 260–265 p.88–89/index 86–87; 266–270 p.90/index 88; 271–274 p.91/index 89. These are not visually verified page-by-page. No PDF hash, currentness audit, reuse clearance or lawyer review is claimed. Added 24 provisional cards for accompanying-law Articles 275–298 covering labour inspector judicial-police status and powers, employer cooperation/attendance duties, general penalty framework, fine ranges for specified statutory violations, recruitment-related offences, occupational safety penalties, obstruction of inspection, and corporate/actual-manager liability. Cross-checked against the public Law Hub transcription; official links retained. Inferred Gazette page map: Arts. 275–279 printed p.92/PDF index 90; 280–288 p.93/index 91; 289–298 p.94/index 92. These pinpoints are not visually verified page-by-page. No PDF hash, full currentness audit, reuse clearance or lawyer review is claimed.
+Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF binary has not been downloaded or hashed; only specifically listed page images have been visually inspected, and the full PDF has not been comprehensively reviewed; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording. Additional cards for accompanying-law Articles 4–9 were prepared from text extraction of the government-hosted Official Gazette PDF on 2026-10-28. The PDF binary has not been downloaded or hashed; only specifically listed page images have been visually inspected, and the full PDF has not been comprehensively reviewed; page pinpointing is provisional and all cards remain non-authoritative. Additional cards for accompanying-law Articles 10–12 were prepared from the government-hosted Official Gazette PDF text extraction on 2026-10-28. Page references are based on the extracted page labels; the PDF binary has not been downloaded or hashed; only explicitly recorded page images have been visually inspected. Cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 16, 22, 23, 25 and 27 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; these cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 28–31 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 32–34 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 36–37 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshot checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 40–43 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 44–48 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 49–54 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF binary remains undownloaded and unhashed; selected pages are visually checked only where explicitly recorded; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 126 and 127 were added from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 55. The original PDF remains undownloaded and unhashed, and both cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 121 and 122 were prepared from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 53. Article 121 was cross-checked against a secondary English translation, and Article 122 against a secondary legal text copy. The original PDF remains undownloaded and unhashed; both cards remain provisional and non-authoritative. An additional card for accompanying-law Article 123 was added from searchable text extraction of the government-hosted Official Gazette PDF on 2026-10-28; printed-page pinpoint is 53. It is cross-checked against a secondary English translation, but the implementing ministerial decision has not been identified and reviewed in this task. The original PDF remains undownloaded and unhashed; the card is provisional and non-authoritative. Additional provisional cards for accompanying-law Articles 117–120 and 124–125 were added on 2026-10-28 from indexed official Amiri Press / government-hosted Gazette text leads, cross-checked against a secondary transcription. Gazette printed-page pinpoints are provisional (52 for Articles 117–120; 54 for Articles 124–125); the original PDF remains undownloaded, unhashed, and not visually inspected. These additions do not establish currentness, completeness, reuse rights, or lawyer approval. Additional provisional cards for accompanying-law Articles 128–130 were added on 2026-10-28 using indexed text from the government-hosted Official Gazette PDF (printed page 56; provisional pinpoint) and a secondary transcription cross-check. The official publisher page is recorded as a source lead but was not directly opened in this round. The Gazette PDF remains undownloaded, unhashed, and not visually inspected; cards remain non-authoritative. Additional provisional cards for accompanying-law Articles 131–132 were added on 2026-10-28 from indexed government-hosted Gazette text with a secondary transcription cross-check. Printed-page pinpoints are provisional; the source PDF remains undownloaded, unhashed, and not visually inspected. The sick-leave card distinguishes the general medical-authority rule from the special industrial-establishment tiers; implementing decisions and related social-insurance rules remain unresolved. PAGE-LEVEL VISUAL CHECK UPDATE (2026-10-28): the official Gazette PDF at the ETA portal is accessible through the web PDF viewer (110 pages) and rendered page images were visually checked for printed Gazette pages 52–57. The article-to-page mapping is: Arts. 117–120 p.52; 121–122 p.53; 123–124 p.54; 125–127 p.55; 128–130 p.56; 131–132 p.57. This corrects the prior provisional page assignments for Article 125 (p.55, not p.54) and Article 131 (p.57, not p.56). PDF page indices are printed page minus 2. The source binary still could not be downloaded in the runtime, so no SHA-256 is claimed; only the listed pages were visually checked, not the entire instrument or amendment history. CURRENTNESS LEAD (2026-10-28): Ministry of Labour announcement dated 2026-10-01 identifies Circular 22/2026 for the 8 October 2026 private-sector holiday and confirms that Decision 294/2025 lists Armed Forces Day (6 October) as a paid holiday. This is event-specific implementation evidence, not proof of a general amendment or a complete current holiday list. Additional provisional cards for Articles 133–136 were added after visual inspection of official Gazette printed pages 57–59 (PDF indices 55–57) on 2026-10-28. Article 134 begins on printed page 57 and continues onto page 58. The PDF binary remains undownloaded and unhashed; summaries are provisional and no lawyer review or currentness certification is claimed. Additional provisional disciplinary/work-regulation cards for Articles 137–141 were added after visual inspection of official Gazette printed pages 60–61 (PDF indices 58–59) on 2026-10-28. These cards summarize statutory framework only; the current general workplace-regulation decision (162/2026), each employer's actual regulation, full amendment history, and legal review remain outstanding. Additional provisional disciplinary cards for Articles 142–148 were added after visual inspection of official Gazette printed pages 62–63 (PDF indices 60–61) on 2026-10-28. These summaries cover investigation assignment, deduction caps, repeated violations, temporary suspension, suspension grievances/extensions, and authority to impose discipline. They remain provisional and require full text/currentness/legal review. Additional provisional individual-dispute cards for Articles 149–150 were added after visual inspection of official Gazette printed pages 64–65 (PDF indices 62–63) on 2026-10-28. Procedural deadlines and financial consequences require full-text extraction and legal review before any case-specific use. Additional provisional cards for Articles 151–158 were added after visual inspection of official Gazette printed pages 65–67 (PDF indices 63–65) on 2026-10-28. They cover worker liability for damage, union protections, disciplinary-fine accounting, expiry/renewal of fixed-term or specific-work contracts, and notice/justification rules for indefinite-term termination. They remain provisional; case-specific calculations require full-text and legal review. Additional provisional termination-notice cards for Articles 159–164 were added after visual inspection of official Gazette printed pages 68–69 (PDF indices 66–67) on 2026-10-28. They cover notice during leave, contract continuity, notice-period constraints, paid job-search time, employer waiver of work, and payment in lieu of unserved notice. These cards remain provisional and require full legal review. Additional provisional termination and end-of-service cards for accompanying-law Articles 165–175 were added on 2026-10-28 from the searchable extraction of the government-hosted Official Gazette PDF. The extracted lines place Article 165 on printed page 69/PDF index 67; Articles 166–169 begin on printed page 70/PDF index 68; Articles 170–171 appear on printed page 71/PDF index 69; and Articles 172–175 appear on printed page 72/PDF index 70. Page locations are text-extraction pinpoints, not independent visual inspection of every cited page. Cards remain provisional; source binary hash, comprehensive currentness/amendment review, reuse review and Egyptian-lawyer review remain outstanding. Additional provisional procedural cards for accompanying-law Articles 176–187 were added on 2026-10-28 from searchable text extraction of the government-hosted Official Gazette PDF. The extracted viewer pages place Articles 176–180 on printed page 73/PDF index 71; Articles 181–185 on printed page 74/PDF index 72; and Articles 186–187 on printed page 75/PDF index 73. These are text-extraction pinpoints, not independent visual inspection of every cited page. The source PDF binary remains unavailable for hashing, and currentness, amendment history, reuse rights and qualified legal review remain unresolved. On 2026-10-28, added provisional cards for accompanying-law Articles 188–200 (social consultation and collective bargaining). Their article text was checked against a public secondary transcription of Law 14/2025 at Law Hub; official publisher and government Gazette links remain attached as primary-source leads. The printed-page mapping (Arts. 188–193 p.76/index 74; Arts. 194–198 p.77/index 75; Arts. 199–200 p.78/index 76) is an inferred text-extraction map, not a visual page-by-page verification. The source PDF remains unavailable locally for hashing; currentness, amendments, reuse rights, and lawyer review remain unresolved. Added 14 provisional cards for accompanying-law Articles 201–214 on 2026-10-28: language, renewal, filing and challenge of collective agreements, display, joining, registry updates, good-faith implementation, hardship, enforcement, representative actions, dispute procedures, scope of collective disputes, and the one-month negotiation-to-conciliation threshold. Cross-checked against a public secondary transcription; official-source links remain attached. Inferred Gazette page map: Arts. 201–205 printed p.78/PDF index 76; Arts. 206–212 p.79/index 77; Arts. 213–214 p.80/index 78. These page pinpoints are not visually verified. No source binary hash, complete currentness audit, reuse clearance or lawyer review is claimed. Added 16 provisional cards for accompanying-law Articles 215–230 (conciliation timing, settlement documentation, mediation/arbitration referral, centre structure, mediator/arbitrator lists and eligibility, selection and replacement deadlines, mediation recommendations, arbitration composition/submission/award and review). Cross-checked against the public Law Hub transcription; official-source leads remain attached. Inferred Gazette page map: Arts. 215–218 printed p.80–81/PDF index 78–79; Arts. 219–224 p.81–82/index 79–80; Arts. 225–228 p.82/index 80; Arts. 229–230 p.83/index 81. These page pinpoints are not visually verified; no PDF hash, currentness audit, reuse clearance or lawyer review is claimed. Added 11 provisional cards for accompanying-law Articles 231–241 covering strike prerequisites and notice, strike restrictions, effect on employment obligations, economic closure/down-sizing, committee applications and deadlines, notice, selection criteria, closure restrictions during collective disputes/strikes, and temporary economic changes to employment terms. Public Law Hub transcription used as the text fallback while primary official links remain attached. Inferred Gazette page map: Arts. 231–236 printed p.83/PDF index 81; Arts. 237–241 p.84/index 82. These pinpoints are not visually verified; no PDF hash, currentness audit, reuse clearance or lawyer review is claimed. Added 14 provisional occupational safety, health and work-environment cards for accompanying-law Articles 242–255: chapter and establishment scope, compliance offices, physical/engineering/biological/chemical/indirect hazards, fire and confined spaces, emergency plans and worker withdrawal from imminent serious danger, harassment/bullying/violence prevention, and technical safety standards. Cross-checked against the public Law Hub transcription while retaining official publisher and government Gazette links. Inferred Gazette page map: Arts. 242–247 printed p.85/PDF index 83; Arts. 248–253 p.86/index 84; Arts. 254–255 p.87/index 85. These pinpoints are not visually verified; no hash, full currentness audit, reuse clearance or lawyer review is claimed. Added 19 provisional cards for accompanying-law Articles 256–274 covering occupational safety inspection powers, internal committees, incident reporting, licensed training/consulting, national and governorate safety bodies, pre-employment medical/capability exams, employer/worker PPE duties, daily inspection and medical checks, first aid and nursing thresholds, remote-worksite transport/food/housing, and social/health/cultural services and funding. Text cross-checked against the public Law Hub transcription; official links retained. Inferred Gazette page map: Arts. 256–259 printed p.87–88/PDF index 85–86; 260–265 p.88–89/index 86–87; 266–270 p.90/index 88; 271–274 p.91/index 89. These are not visually verified page-by-page. No PDF hash, currentness audit, reuse clearance or lawyer review is claimed. Added 24 provisional cards for accompanying-law Articles 275–298 covering labour inspector judicial-police status and powers, employer cooperation/attendance duties, general penalty framework, fine ranges for specified statutory violations, recruitment-related offences, occupational safety penalties, obstruction of inspection, and corporate/actual-manager liability. Cross-checked against the public Law Hub transcription; official links retained. Inferred Gazette page map: Arts. 275–279 printed p.92/PDF index 90; 280–288 p.93/index 91; 289–298 p.94/index 92. These pinpoints are not visually verified page-by-page. No PDF hash, full currentness audit, reuse clearance or lawyer review is claimed. Filled the first major statutory coverage gap by adding 20 provisional cards for accompanying-law Articles 55–74: maternity-return/termination protection, breastfeeding and childcare leave, woman worker termination notices, workplace childcare, child employment/training and safety limits, foreign-worker permits/absence/return duties. Text cross-checked against the public Law Hub transcription; official links retained. Inferred Gazette page map: Arts. 55–60 printed p.32/PDF index 30; 61–68 p.33/index 31; 69–74 p.34/index 32. These pinpoints are not visually verified; no PDF hash, currentness audit, reuse clearance or lawyer review is claimed. Added 14 cards for accompanying-law Articles 75–88 to fill the coverage gap in irregular/informal employment, emergency-aid fund, and individual-contract formation/type. Text cross-checked against the public Law Hub transcription; official links retained. Inferred Gazette page map: Arts. 75–76 printed p.35/PDF index 33; 77–78 p.36/index 34; 79–80 p.37/index 35; 81–82 p.38/index 36; 83 p.39/index 37; 84 p.40/index 38; 85 p.41/index 39; 86–88 p.42/index 40. These are not visually verified page-by-page. No PDF hash, currentness audit, reuse clearance or lawyer review is claimed. Filled the remaining broad gap in Articles 97–116 with 20 provisional cards covering new work patterns, national wages council, wage setting/payment, wage deduction limits, payroll evidence and children's wages. Text cross-checked against the public Law Hub transcription; official links retained. Inferred Gazette page map: Arts. 97–100 printed p.46/PDF index 44; 101–106 p.47–48/index 45–46; 107–111 p.48–49/index 46–47; 112–114 p.50/index 48; 115–116 p.51/index 49. These are not visually verified page-by-page. No PDF hash, currentness audit, reuse clearance or lawyer review is claimed.
 
 ## Provision cards
 
@@ -6195,162 +6195,157 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** undefined.
 
-### 198. EG-LABOUR-14-2025-ART-256-OSH-INSPECTION-UNIT
+### 198. EG-LABOUR-14-2025-ART-256-OCCUPATIONAL-SAFETY-INSPECTION-UNIT
 
-**Question:** ما واجب الجهة الإدارية في إنشاء جهاز تفتيش السلامة المهنية؟
+**Question:** ما الجهاز المختص بتفتيش السلامة والصحة المهنية؟
 
 **Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 256, printed Gazette page 87 (PDF page index 85).
 
 **Provisional summary (Arabic):**
 
-تلزم المادة 256 الجهة الإدارية بتشكيل جهاز متخصص لتفتيش السلامة والصحة المهنية، بأعضاء ذوي مؤهلات مناسبة، وإجراء التفتيش دورياً وتدريب المفتشين. يلزم التحقق من توزيع الاختصاصات في القرارات التنفيذية.
+تلزم المادة 256 الجهة الإدارية بتشكيل جهاز متخصص لتفتيش السلامة والصحة المهنية وتأمين بيئة العمل، يضم مؤهلات متعددة، وتوفير التدريب والأجهزة ومعدات القياس اللازمة له. وتستثنى المنشآت المرتبطة بالأمن القومي وفق قرار رئيس مجلس الوزراء. يلزم الرجوع إلى قرارات تشكيل الجهاز والاستثناءات السارية.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مصدر أولي مرجعي للمادة 256؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مصدر أولي مرجعي للمادة 256؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 256؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 256؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 256–274؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- المواد 258–265 و270–274 بطاقات pinpoint فقط ولا تحتوي نصاً موضوعياً موثقاً بالكامل
-- القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة
+- تحديد الجهة المختصة أو انطباق استثناء الأمن القومي دون القرارات السارية
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative advice or final compliance decision until full official text and applicable decisions are verified.
+**Not usable for:** undefined.
 
-### 199. EG-LABOUR-14-2025-ART-257-OSH-DANGEROUS-ESTABLISHMENT-CLOSURE
+### 199. EG-LABOUR-14-2025-ART-257-OCCUPATIONAL-SAFETY-INSPECTOR-POWERS
 
-**Question:** متى يجوز إغلاق منشأة أو جزء منها بسبب خطر داهم؟
+**Question:** ما أبرز صلاحيات جهاز تفتيش السلامة والصحة المهنية؟
 
-**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 257, printed Gazette page 87 (PDF page index 85).
+**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 257, printed Gazette page 88 (PDF page index 86).
 
 **Provisional summary (Arabic):**
 
-تنظم المادة 257 إجراءات الإغلاق الكلي أو الجزئي عند وجود خطر داهم يهدد الصحة أو السلامة. لا يمكن تقرير وجود الخطر أو صحة الإغلاق دون تقرير التفتيش والقرار المختص والنص الكامل.
+تعدد المادة 257 صلاحيات تشمل الفحوص الطبية والمعملية، وأخذ عينات من مواد العمل، واستخدام أجهزة التصوير والقياس لتحليل الحوادث، والاطلاع على خطط الطوارئ وتقارير الحوادث ومخزون المواد الخطرة. ويجوز للجهة الإدارية بناء على التقرير إصدار إغلاق أو إيقاف عند وجود خطر داهم، مع استمرار استحقاق الأجور وفق النص. يلزم فحص التقرير والقرار والوقائع.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مصدر أولي مرجعي للمادة 257؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مصدر أولي مرجعي للمادة 257؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 257؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 257؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 256–274؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- المواد 258–265 و270–274 بطاقات pinpoint فقط ولا تحتوي نصاً موضوعياً موثقاً بالكامل
-- القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة
+- تقرير صحة إغلاق أو إيقاف أو نطاق سلطة المفتش دون التقرير والقرار والوقائع
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative advice or final compliance decision until full official text and applicable decisions are verified.
+**Not usable for:** undefined.
 
-### 200. EG-LABOUR-14-2025-ART-258-OSH-IMMINENT-DANGER-REMOVAL
+### 200. EG-LABOUR-14-2025-ART-258-OCCUPATIONAL-SAFETY-INSPECTOR-ACCESS
 
-**Question:** ما صلاحيات مفتشي السلامة والصحة المهنية؟
+**Question:** ما أساس حق مفتشي السلامة في التفتيش على المنشآت؟
 
-**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 258, printed Gazette page 87 (PDF page index 85).
+**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 258, printed Gazette page 88 (PDF page index 86).
 
 **Provisional summary (Arabic):**
 
-تمنح المادة 258 مفتشي السلامة والصحة المهنية وتأمين بيئة العمل حق التفتيش على المنشآت للتحقق من توافر اشتراطات السلامة والصحة المهنية وفق القانون والقرارات المنفذة له.
+تمنح المادة 258 مفتشي السلامة والصحة المهنية حق التفتيش للتحقق من استيفاء اشتراطات السلامة وتأمين بيئة العمل وفق القانون والقرارات المنفذة له، مع مراعاة نطاق المادة 242. يجب التحقق من صفة المفتش والاختصاص وأي قواعد خاصة بالمنشأة.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مصدر أولي مرجعي للمادة 258؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مصدر أولي مرجعي للمادة 258؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 258؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 258؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 256–274؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة
+- تحديد مشروعية تفتيش بعينه دون التحقق من صفة المفتش واختصاصه والقواعد الخاصة
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
-- النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified.
+**Not usable for:** undefined.
 
-### 201. EG-LABOUR-14-2025-ART-259-OSH-ACCIDENT-AND-OCCUPATIONAL-DISEASE-REPORTING
+### 201. EG-LABOUR-14-2025-ART-259-OCCUPATIONAL-SAFETY-INTERNAL-UNITS-COMMITTEES
 
-**Question:** متى يجب إنشاء أجهزة ولجان السلامة المهنية والتدريب؟
+**Question:** متى تلزم المنشأة بإنشاء أجهزة ولجان للسلامة المهنية؟
 
 **Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 259, printed Gazette page 88 (PDF page index 86).
 
 **Provisional summary (Arabic):**
 
-يحدد الوزير المختص المنشآت التي تلتزم بإنشاء أجهزة وظيفية ولجان للسلامة المهنية. وتبحث اللجان ظروف العمل وأسباب الحوادث والإصابات وتضع تدابير منعها، وتكون قراراتها ملزمة. ويشمل التدريب أعضاء الأجهزة واللجان والمسؤولين عن الإدارة والإنتاج بحسب المسؤولية وطبيعة العمل.
+تترك المادة 259 للوزير المختص تحديد المنشآت وفروعها الملزمة بإنشاء أجهزة وظيفية ولجان للسلامة والصحة المهنية. وتبحث اللجان ظروف العمل وأسباب الحوادث والإصابات وتضع قواعد واحتياطات الوقاية، وتكون قراراتها ملزمة للمنشأة، كما يلزم تدريب المعنيين. يلزم إرفاق القرار الوزاري المحدد للفئات والنطاق.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مصدر أولي مرجعي للمادة 259؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مصدر أولي مرجعي للمادة 259؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 259؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 259؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 256–274؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة
+- الجزم بوجوب إنشاء لجنة في منشأة معينة دون القرار التنفيذي وحجم المنشأة ونشاطها
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
-- النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified.
+**Not usable for:** undefined.
 
-### 202. EG-LABOUR-14-2025-ART-260-OSH-HEALTH-AND-ACCIDENT-STATISTICS
+### 202. EG-LABOUR-14-2025-ART-260-OCCUPATIONAL-ACCIDENT-REPORTING-DEADLINES
 
-**Question:** ما مواعيد الإحصاءات والإبلاغ عن الحوادث والأمراض المهنية؟
+**Question:** ما مواعيد الإحصاءات والإبلاغ عن الحوادث الجسيمة والأمراض المهنية؟
 
 **Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 260, printed Gazette page 88 (PDF page index 86).
 
 **Provisional summary (Arabic):**
 
-المنشأة التي يعمل بها 30 عاملاً فأكثر تقدم إحصائية نصف سنوية عن الأمراض والحوادث والإصابات خلال النصف الأول من شهري يوليو ويناير على الأكثر. وتُخطر المنشآت الخاضعة للكتاب الجهة الإدارية بكل حادث جسيم أو ظهور أعراض مرض مهني خلال 24 ساعة، وتقدم البيانات إلكترونياً وفق القرار الوزاري.
+توجب المادة 260 على المنشأة التي يعمل بها ثلاثون عاملاً فأكثر تقديم إحصائية نصف سنوية عن الأمراض والحوادث والإصابات خلال النصف الأول من شهري يوليو ويناير على الأكثر. كما توجب إخطار الجهة الإدارية بكل حادث جسيم أو ظهور أعراض مرض مهني خلال 24 ساعة، وتطلب بيانات إلكترونية وفق قرار الوزير. يلزم التحقق من النماذج والقرارات وتاريخ الواقعة.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مصدر أولي مرجعي للمادة 260؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مصدر أولي مرجعي للمادة 260؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 260؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 260؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 256–274؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة
+- حساب الامتثال أو ميعاد إخطار في واقعة دون تحديد الحدث والنموذج والقرار الساري
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
-- النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified.
+**Not usable for:** undefined.
 
-### 203. EG-LABOUR-14-2025-ART-261-OSH-STATUTORY-REGISTERS
+### 203. EG-LABOUR-14-2025-ART-261-OCCUPATIONAL-SAFETY-TRAINING-LICENSING
 
 **Question:** من يجوز له تقديم التدريب المتخصص في السلامة والصحة المهنية؟
 
@@ -6358,1501 +6353,2757 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Provisional summary (Arabic):**
 
-تتولى الوزارة المختصة والمركز القومي لدراسات السلامة والصحة المهنية والجهات المرخص لها التدريب الأساسي والمتقدم والنوعي والتخصصي للأخصائيين والفنيين وأعضاء اللجان. ويحدد قرار الوزير الترخيص وشروطه ومدته ورسومه التي لا تتجاوز 50 ألف جنيه وحالات الإعفاء.
+تنظم المادة 261 تقديم التدريب الأساسي والمتقدم والنوعي والتخصصي بواسطة الوزارة والمركز القومي والجهات المرخص لها، وتحيل إلى قرار وزاري بشأن التراخيص وشروطها ومدتها ورسومها وحدودها. يجب التحقق من الترخيص الفعلي ونوع التدريب والقرار التنفيذي.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مصدر أولي مرجعي للمادة 261؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مصدر أولي مرجعي للمادة 261؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 261؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 261؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 256–274؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة
+- اعتبار جهة تدريب مرخصة أو تحديد الرسوم دون سجل الترخيص والقرار الساري
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
-- النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified.
+**Not usable for:** undefined.
 
-### 204. EG-LABOUR-14-2025-ART-262-OSH-PROTECTIVE-MEASURES-IMPLEMENTATION
+### 204. EG-LABOUR-14-2025-ART-262-OCCUPATIONAL-SAFETY-CONSULTANT-LICENSE
 
-**Question:** هل يلزم ترخيص لممارسة الاستشارات في السلامة والصحة المهنية؟
+**Question:** هل يحتاج خبير السلامة والصحة المهنية إلى ترخيص؟
 
 **Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 262, printed Gazette page 88 (PDF page index 86).
 
 **Provisional summary (Arabic):**
 
-تشترط المادة 262 الحصول على ترخيص من الوزارة المختصة لمزاولة الخبرة والاستشارات في السلامة والصحة المهنية. ويحدد قرار الوزير شروط الترخيص وإجراءاته ومدته والقيد بالسجل والرسوم التي لا تتجاوز 50 ألف جنيه وحالات الإعفاء.
+تشترط المادة 262 الحصول على الترخيص اللازم لمزاولة أعمال الخبرة والاستشارات في السلامة والصحة المهنية وتأمين بيئة العمل، وتحيل إلى قرار الوزير لتحديد شروط الترخيص وإجراءاته ومدته وقيده ورسومه. يلزم التحقق من سجل الترخيص ونطاقه قبل الاعتماد على خبير بعينه.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مصدر أولي مرجعي للمادة 262؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مصدر أولي مرجعي للمادة 262؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 262؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 262؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 256–274؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة
+- تقرير قانونية مزاولة خبير أو شركة دون الترخيص وسجله ونطاقه
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
-- النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified.
+**Not usable for:** undefined.
 
-### 205. EG-LABOUR-14-2025-ART-263-OSH-TRAINING-AND-AWARENESS
+### 205. EG-LABOUR-14-2025-ART-263-NATIONAL-OCCUPATIONAL-SAFETY-CENTRE
 
-**Question:** ما اختصاص المركز القومي لدراسات السلامة والصحة المهنية؟
+**Question:** ما دور المركز القومي لدراسات السلامة والصحة المهنية؟
 
-**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 263, printed Gazette page 88 (PDF page index 86).
+**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 263, printed Gazette page 89 (PDF page index 87).
 
 **Provisional summary (Arabic):**
 
-يعد المركز القومي، بالاشتراك مع الوزارة المختصة، الخطط المركزية للبحوث والدراسات في السلامة والصحة المهنية بناءً على التحليل الإحصائي لإصابات العمل، ويتابع تنفيذها بالتنسيق مع الأجهزة المعنية وفق قواعد يحددها قرار الوزير.
+تسند المادة 263 إلى المركز القومي، بالاشتراك مع الوزارة المختصة، إعداد الخطط المركزية للبحوث والدراسات في السلامة والصحة المهنية وفق التحليل الإحصائي لإصابات العمل ومتابعة تنفيذها بالتنسيق مع الجهات المعنية. تفاصيل القواعد والإجراءات تتوقف على القرار الوزاري المنظم.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مصدر أولي مرجعي للمادة 263؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مصدر أولي مرجعي للمادة 263؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 263؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 263؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 256–274؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة
+- نسبة اختصاص تشغيلي أو إجراء محدد للمركز دون القرار التنظيمي الساري
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
-- النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified.
+**Not usable for:** undefined.
 
-### 206. EG-LABOUR-14-2025-ART-264-OSH-WORKPLACE-SAFETY-OBLIGATIONS
+### 206. EG-LABOUR-14-2025-ART-264-SUPREME-OCCUPATIONAL-SAFETY-COUNCIL
 
-**Question:** ما المجلس الأعلى للسلامة والصحة المهنية وما اختصاصه؟
+**Question:** ما المجلس الأعلى للسلامة والصحة المهنية؟
 
-**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 264, printed Gazette page 88 (PDF page index 86).
+**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 264, printed Gazette page 89 (PDF page index 87).
 
 **Provisional summary (Arabic):**
 
-تنشئ المادة 264 المجلس الأعلى للسلامة والصحة المهنية برئاسة الوزير المختص، وعضوية ممثلين عن الجهات المعنية وممثلين متساوين لمنظمات أصحاب الأعمال والمنظمات النقابية الأكثر تمثيلاً وخبراء. ويتولى رسم السياسة العامة واقتراح تنفيذها؛ ويصدر رئيس مجلس الوزراء قرار تشكيله واختصاصاته ونظام عمله.
+تنشئ المادة 264 مجلساً أعلى برئاسة الوزير المختص وعضوية ممثلين عن الجهات الحكومية ومنظمات أصحاب الأعمال والمنظمات النقابية العمالية وخبراء، ويتولى رسم السياسة العامة واقتراح ما يلزم لتنفيذها. يصدر رئيس مجلس الوزراء قرار تشكيله واختصاصاته ونظام عمله؛ يجب التحقق من القرار الحالي.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مصدر أولي مرجعي للمادة 264؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مصدر أولي مرجعي للمادة 264؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 264؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 264؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 256–274؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة
+- تحديد التشكيل الحالي أو إجراء المجلس دون قرار التشكيل الساري
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
-- النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified.
+**Not usable for:** undefined.
 
-### 207. EG-LABOUR-14-2025-ART-265-OSH-WORKER-HEALTH-PROTECTION
+### 207. EG-LABOUR-14-2025-ART-265-GOVERNORATE-OCCUPATIONAL-SAFETY-COMMITTEES
 
-**Question:** كيف تُشكل اللجان الفرعية للمجلس الأعلى بالمحافظات؟
+**Question:** هل توجد لجان فرعية للسلامة والصحة المهنية في المحافظات؟
 
-**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 265, printed Gazette page 88 (PDF page index 86).
+**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 265, printed Gazette page 89 (PDF page index 87).
 
 **Provisional summary (Arabic):**
 
-توجب المادة 265 تشكيل لجنة فرعية في كل محافظة برئاسة المحافظ، تضم الجهات المعنية وممثلي النقابات وأصحاب الأعمال بالتساوي وخبراء. ويصدر الوزير المختص قرار تشكيلها واختصاصاتها ونظام عملها.
+توجب المادة 265 تشكيل لجنة فرعية في نطاق كل محافظة برئاسة المحافظ، تضم الجهات المعنية وممثلي المنظمات النقابية وأصحاب الأعمال والخبراء. ويحدد قرار الوزير تشكيلها واختصاصاتها ونظام عملها. يلزم التحقق من القرارات المحلية والتنظيمية عند طلب إجراء عملي.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مصدر أولي مرجعي للمادة 265؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مصدر أولي مرجعي للمادة 265؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 265؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 265؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 256–274؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة
+- تحديد أعضاء لجنة أو صلاحياتها العملية دون القرار الوزاري الساري
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
-- النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified.
+**Not usable for:** undefined.
 
 ### 208. EG-LABOUR-14-2025-ART-266-PRE-EMPLOYMENT-MEDICAL-AND-CAPABILITY-EXAMS
 
 **Question:** ما الفحوص المطلوبة قبل التحاق العامل بالعمل؟
 
-**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 266, printed Gazette page 89 (PDF page index 87).
+**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 266, printed Gazette page 90 (PDF page index 88).
 
 **Provisional summary (Arabic):**
 
-تلزم المادة 266 بالكشف الطبي الابتدائي للتحقق من سلامة العامل ولياقته الصحية حسب طبيعة العمل، وفحص قدراته الجسمانية والعقلية والنفسية وفق الأنظمة والقرار الوزاري المحدد لمستويات اللياقة. يلزم مراجعة القرار الساري.
+توجب المادة 266 الكشف الطبي الابتدائي قبل التحاق العامل بالعمل للتحقق من السلامة واللياقة الصحية المناسبة لطبيعة العمل، وفحص القدرات البدنية والعقلية والنفسية الملائمة لاحتياجاته. وتتم الفحوص وفق قواعد التأمين الصحي وقرار يحدد مستويات اللياقة بالتنسيق مع وزارة الصحة. يجب مراجعة القرار والنصوص الطبية ذات الصلة.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مصدر أولي مرجعي للمادة 266؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مصدر أولي مرجعي للمادة 266؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 266؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 266؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 256–274؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- المواد 258–265 و270–274 بطاقات pinpoint فقط ولا تحتوي نصاً موضوعياً موثقاً بالكامل
-- القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة
+- تحديد لياقة عامل أو جواز فحص معين دون المعايير الطبية والقرار الساري
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative advice or final compliance decision until full official text and applicable decisions are verified.
+**Not usable for:** undefined.
 
-### 209. EG-LABOUR-14-2025-ART-267-OSH-EMPLOYER-TRAINING-PPE-NO-COST
+### 209. EG-LABOUR-14-2025-ART-267-EMPLOYER-TRAINING-AND-PPE-NO-CHARGE
 
-**Question:** هل يجوز تحميل العامل تكلفة معدات الوقاية؟
+**Question:** ما واجبات صاحب العمل في التدريب ومعدات الوقاية الشخصية؟
 
-**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 267, printed Gazette page 89 (PDF page index 87).
+**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 267, printed Gazette page 90 (PDF page index 88).
 
 **Provisional summary (Arabic):**
 
-توجب المادة 267 تدريب العامل وإحاطته بمخاطر المهنة قبل العمل، وتوفير معدات الوقاية المناسبة وتدريبه عليها، وتحظر تحميل العامل تكلفتها أو اقتطاعها من أجره.
+توجب المادة 267 تدريب العامل على الأسس السليمة لأداء مهنته وإحاطته بمخاطرها قبل مزاولتها، وتوفير وسائل الوقاية الشخصية المناسبة وتدريبه على استخدامها. ويحظر تحميل العامل نفقات توفير وسائل الحماية أو اقتطاع مبالغ من أجره مقابلها. يلزم فحص سجلات التدريب والتوريد والأجر والقرارات الفنية.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مصدر أولي مرجعي للمادة 267؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مصدر أولي مرجعي للمادة 267؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 267؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 267؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 256–274؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- المواد 258–265 و270–274 بطاقات pinpoint فقط ولا تحتوي نصاً موضوعياً موثقاً بالكامل
-- القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة
+- تقرير الامتثال دون سجلات التدريب ومعدات الوقاية وبيانات الأجر
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative advice or final compliance decision until full official text and applicable decisions are verified.
+**Not usable for:** undefined.
 
-### 210. EG-LABOUR-14-2025-ART-268-OSH-WORKER-USE-OF-PROTECTIVE-EQUIPMENT
+### 210. EG-LABOUR-14-2025-ART-268-WORKER-USE-AND-CARE-OF-PPE
 
-**Question:** ما واجبات العامل تجاه معدات الوقاية؟
+**Question:** ما التزامات العامل بشأن معدات الوقاية والتعليمات؟
 
-**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 268, printed Gazette page 89 (PDF page index 87).
+**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 268, printed Gazette page 90 (PDF page index 88).
 
 **Provisional summary (Arabic):**
 
-تلزم المادة 268 العامل باستخدام وسائل الوقاية والعناية بها وتنفيذ التعليمات، وتحظر تعطيلها أو إساءة استعمالها أو إتلافها. تقييم مخالفة فردية يتطلب إثبات توفير المعدات والتدريب والتعليمات والوقائع.
+تلزم المادة 268 العامل باستعمال وسائل الوقاية والعناية بما في حوزته وتنفيذ التعليمات لحماية صحته من حوادث العمل، وتحظر الأفعال المقصودة لتعطيل التعليمات أو إساءة استعمال وسائل الحماية أو تغييرها أو إتلافها. تطبيق النص يتطلب فحص التعليمات والتدريب وظروف الواقعة والأدلة.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مصدر أولي مرجعي للمادة 268؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مصدر أولي مرجعي للمادة 268؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 268؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 268؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 256–274؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- المواد 258–265 و270–274 بطاقات pinpoint فقط ولا تحتوي نصاً موضوعياً موثقاً بالكامل
-- القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة
+- نسبة مخالفة أو مسؤولية للعامل دون فحص التعليمات والتدريب والوقائع
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative advice or final compliance decision until full official text and applicable decisions are verified.
+**Not usable for:** undefined.
 
-### 211. EG-LABOUR-14-2025-ART-269-OSH-SHIFT-INSPECTIONS-AND-PERIODIC-EXAMS
+### 211. EG-LABOUR-14-2025-ART-269-WORKPLACE-DAILY-SAFETY-INSPECTIONS-AND-MEDICAL-CHECKS
 
-**Question:** ما واجبات التفتيش اليومي والفحص الطبي الدوري؟
+**Question:** ما الفحوص الدورية التي يجب أن تجريها المنشأة؟
 
-**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 269, printed Gazette page 89 (PDF page index 87).
+**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 269, printed Gazette page 90 (PDF page index 88).
 
 **Provisional summary (Arabic):**
 
-توجب المادة 269 التفتيش اليومي في كل وردية وتسجيل نتائجه، وفحص شكوى العامل المرضية وعلاقتها بالعمل بواسطة طبيب المنشأة إن وجد، والتنسيق للفحوص الطبية الدورية وفحص نهاية الخدمة وفق أنظمة التأمين الصحي.
+توجب المادة 269 التفتيش الدوري اليومي في كل وردية على أماكن العمل، خصوصاً الخطرة، وإعداد سجل لذلك؛ وفحص الشكوى المرضية وعلاقتها بالعمل بواسطة طبيب المنشأة إن وجد؛ والتنسيق مع التأمين الصحي للفحوص الدورية وفحص انتهاء الخدمة وفق النظام. يلزم مراجعة السجلات ونظام التأمين الصحي المنطبق.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مصدر أولي مرجعي للمادة 269؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مصدر أولي مرجعي للمادة 269؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 269؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 269؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 256–274؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- المواد 258–265 و270–274 بطاقات pinpoint فقط ولا تحتوي نصاً موضوعياً موثقاً بالكامل
-- القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة
+- تحديد كفاية الفحوص أو التزام منشأة بعينها دون السجلات والقرارات والنظام الصحي
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative advice or final compliance decision until full official text and applicable decisions are verified.
+**Not usable for:** undefined.
 
-### 212. EG-LABOUR-14-2025-ART-270-SOCIAL-HEALTH-CARE-OBLIGATIONS
+### 212. EG-LABOUR-14-2025-ART-270-WORKPLACE-FIRST-AID-AND-NURSING
 
-**Question:** ما واجب المنشأة في الإسعاف والعلاج الأولي؟
+**Question:** متى يجب توفير ممرض وطبيب وأدوية للعمال؟
 
 **Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 270, printed Gazette page 90 (PDF page index 88).
 
 **Provisional summary (Arabic):**
 
-تلزم المادة 270 المنشأة بتوفير وسائل الإسعاف الأولية. وإذا تجاوز عدد العمال في المكان الواحد أو البلد الواحد أو ضمن دائرة نصف قطرها 15 كم خمسين عاملاً، وجب توفير ممرض مؤهل أو أكثر بكل وردية وطبيب لعيادتهم ومكان مناسب وأدوية العلاج مجاناً. وتتحمل المنشأة نفقات العلاج والإقامة والأدوية عند العلاج بالمستشفى الحكومي أو الخيري وفق القرار المختص.
+تلزم المادة 270 جميع المنشآت بوسائل الإسعاف الأولية. وإذا تجاوز عدد العمال خمسين في مكان واحد أو بلد واحد أو ضمن دائرة نصف قطرها 15 كم، يلزم توفير ممرض مؤهل بكل وردية وطبيب لعيادتهم والأدوية مجاناً وفق النص، كما تتحمل المنشأة نفقات العلاج والإقامة في المستشفيات الحكومية أو الخيرية في الحالات المحددة. يلزم التحقق من طريقة حساب العدد والقرارات التنفيذية.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مصدر أولي مرجعي للمادة 270؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مصدر أولي مرجعي للمادة 270؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 270؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 270؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 256–274؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة
+- تقرير تحقق عتبة الخمسين أو حساب نفقات العلاج دون البيانات والقرارات
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
-- النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified.
+**Not usable for:** undefined.
 
-### 213. EG-LABOUR-14-2025-ART-271-WORKPLACE-MEALS-AND-NUTRITION
+### 213. EG-LABOUR-14-2025-ART-271-REMOTE-WORKSITE-TRANSPORT-FOOD-HOUSING
 
-**Question:** ما التزامات النقل والسكن والتغذية للعمال في المناطق البعيدة؟
+**Question:** ما التزامات صاحب العمل تجاه العمال في المواقع البعيدة؟
 
-**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 271, printed Gazette page 90 (PDF page index 88).
+**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 271, printed Gazette page 91 (PDF page index 89).
 
 **Provisional summary (Arabic):**
 
-تلزم المادة 271 من يستخدم عمالاً في أماكن لا تصل إليها وسائل المواصلات العادية بتوفير انتقال مناسب على نفقته، ومن يستخدمهم في مناطق بعيدة عن العمران بتوفير تغذية مناسبة ومساكن ملائمة مع تخصيص بعضها للمتزوجين. تحدد القرارات المناطق والمواصفات وأصناف الطعام والكميات والمقابل؛ ولا يجوز استبدال الوجبات المستحقة بمقابل نقدي.
+تلزم المادة 271 من يستخدم عمالاً في أماكن لا تصل إليها وسائل المواصلات العادية بتوفير النقل المناسب على نفقته، وتوجب على من يستخدمهم في المناطق البعيدة عن العمران توفير الغذاء والسكن الملائم مع مراعاة سكن العمال المتزوجين. وتحدد قرارات تنفيذية المناطق والمواصفات والكميات والمقابل، ويحظر استبدال الوجبات كلها أو بعضها بمقابل نقدي. يلزم التحقق من القرارات والموقع ونظام الوجبات المعتمد.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مصدر أولي مرجعي للمادة 271؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مصدر أولي مرجعي للمادة 271؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 271؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 271؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 256–274؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة
+- تحديد استحقاق عامل أو مواصفات سكن/غذاء دون القرارات التنفيذية والموقع والوقائع
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
-- النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified.
+**Not usable for:** undefined.
 
-### 214. EG-LABOUR-14-2025-ART-272-WORKPLACE-SOCIAL-SERVICE-FACILITIES
+### 214. EG-LABOUR-14-2025-ART-272-SOCIAL-CULTURAL-SERVICES-50-WORKERS
 
-**Question:** متى يجب على المنشأة تقديم خدمات اجتماعية وثقافية؟
+**Question:** متى يجب على المنشأة توفير خدمات اجتماعية وثقافية؟
 
-**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 272, printed Gazette page 90 (PDF page index 88).
+**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 272, printed Gazette page 91 (PDF page index 89).
 
 **Provisional summary (Arabic):**
 
-تلتزم المنشأة التي يبلغ عدد عمالها 50 فأكثر بتقديم الخدمات الاجتماعية والثقافية اللازمة بالاشتراك مع المنظمة النقابية، دون تحميل العامل التزامات. ويحدد الوزير بالتشاور مع منظمات أصحاب الأعمال والعمال الحد الأدنى لهذه الخدمات.
+تلزم المادة 272 المنشأة التي يبلغ عدد عمالها خمسين عاملاً فأكثر بتقديم الخدمات الاجتماعية والثقافية اللازمة بالاشتراك مع المنظمة النقابية العمالية دون تحميل العامل التزامات، وتترك للوزير تحديد الحد الأدنى لهذه الخدمات بقرارات. يجب التحقق من عدد العمال والقرار الوزاري الساري.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مصدر أولي مرجعي للمادة 272؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مصدر أولي مرجعي للمادة 272؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 272؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 272؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 256–274؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة
+- تحديد الحد الأدنى للخدمات دون القرار الوزاري وحساب العمال المعنيين
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
-- النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified.
+**Not usable for:** undefined.
 
-### 215. EG-LABOUR-14-2025-ART-273-SOCIAL-HEALTH-IMPLEMENTING-DECISIONS
+### 215. EG-LABOUR-14-2025-ART-273-SOCIAL-HEALTH-CULTURAL-SERVICES-FUND
 
-**Question:** ما غرض صندوق الخدمات الاجتماعية والصحية والثقافية؟
+**Question:** ما طبيعة صندوق الخدمات الاجتماعية والصحية والثقافية وكيف يمول؟
 
-**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 273, printed Gazette page 90 (PDF page index 88).
+**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 273, printed Gazette page 91 (PDF page index 89).
 
 **Provisional summary (Arabic):**
 
-يتمتع الصندوق بالشخصية الاعتبارية ويهدف إلى النهوض بالمستوى الاجتماعي والصحي والثقافي للعاملين في منشآت القطاع العام وقطاع الأعمال العام والقطاع الخاص. وينظم قرار رئيس مجلس الوزراء تشكيل مجلس إدارته واختصاصاته ونظامه الأساسي وموارده وموازنته ورقابته. وتشير المادة إلى اشتراكات سنوية للمنشآت التي يبلغ عدد عمالها 20 فأكثر؛ يجب التحقق من النص الكامل والقرارات الحالية قبل حساب المستحقات.
+تمنح المادة 273 الصندوق شخصية اعتبارية وتحدد أهدافه ومجلس إدارته وحسابه وموازنته ورقابته، وتوجب على المنشآت المشار إليها التي يبلغ عدد عمالها عشرين فأكثر اشتراكاً سنوياً يحدده الوزير ضمن النطاق الوارد بالنص، مع أحكام خصم لبعض الخدمات المقدمة مباشرة. يلزم التحقق من القرار المحدد لقيمة الاشتراك والنظام المالي الحالي.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مصدر أولي مرجعي للمادة 273؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مصدر أولي مرجعي للمادة 273؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 273؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 273؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 256–274؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة
+- حساب الاشتراك المستحق أو الخصم دون القرار الحالي وعدد العمال والخدمات المقدمة
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
-- النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified.
+**Not usable for:** undefined.
 
-### 216. EG-LABOUR-14-2025-ART-274-SOCIAL-HEALTH-CHAPTER-BOUNDARY
+### 216. EG-LABOUR-14-2025-ART-274-SOCIAL-SERVICES-FUND-BENEFITS
 
-**Question:** ما الميزة أو الإعفاء المتعلق بالخدمات التي تقدمها المنشأة؟
+**Question:** ما الخدمات التي يمولها صندوق الخدمات الاجتماعية والصحية والثقافية؟
 
-**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 274, printed Gazette page 90 (PDF page index 88).
+**Pinpoint:** الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل, المادة 274, printed Gazette page 91 (PDF page index 89).
 
 **Provisional summary (Arabic):**
 
-تحتاج المادة 274 إلى مراجعة النص الكامل؛ المادة 273 تشير إلى إمكان خصم قيمة الخدمات المقدمة أو 70% من المبلغ السنوي المستحق للصندوق، أيهما أقل، عند تقديم خدمات المادة 274 أو ميزة أفضل. لا تحسب الخصم دون مطابقة نص المادة 274 والقرارات الحالية.
+تعدد المادة 274 خدمات الصندوق، ومنها دعم النفقات العلاجية والمكتبات والندوات ومحو الأمية والأنشطة الرياضية والرحلات والأنشطة النقابية وبرامج الوقاية من العنف والتحرش والتنمر متى توافرت الموارد. وتجيز إضافة خدمات من ذات المجال بقرار، وتحيل اللائحة المالية والإدارية والصرف والرقابة إلى قرار رئيس مجلس الوزراء. يجب التحقق من اللائحة والموارد وشروط الاستفادة.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مصدر أولي مرجعي للمادة 274؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مصدر أولي مرجعي للمادة 274؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 274؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 274؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 256–274؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة
+- ضمان خدمة أو استحقاق مالي محدد دون اللائحة والموارد وشروط الانتفاع
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والمعايير الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
-- النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified.
+**Not usable for:** undefined.
 
 ### 217. EG-LABOUR-14-2025-ART-275-LABOUR-INSPECTOR-JUDICIAL-POLICE-STATUS
 
-**Question:** من يكتسب صفة مأمور الضبط القضائي في مخالفات قانون العمل؟
+**Question:** من يملك صفة مأمور الضبط القضائي لمراقبة تطبيق قانون العمل؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 275, printed Gazette page 91 (PDF page index 89).
-
-**Provisional summary (Arabic):**
-
-تقرر المادة 275 منح الصفة للعاملين المكلفين بتنفيذ القانون والقرارات الصادرة تنفيذاً له، الذين يحددهم قرار من وزير العدل بالاتفاق مع الوزير المختص، في حدود اختصاصهم والجرائم المتصلة بوظائفهم.
-
-**Primary-source leads:**
-
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 275؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 275؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-
-**Cross-checks:**
-
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
-- [public secondary transcription](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
-
-**Limitations:**
-
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- المواد 281–295 بطاقات فهرسة فقط ولا تتضمن نصاً عقابياً موضوعياً موثقاً
-- القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة
-- لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
-
-**Review state:** `provisional_secondary_crosscheck`.
-**Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative advice or criminal exposure calculation until official text and currentness are verified.
-
-### 218. EG-LABOUR-14-2025-ART-276-LABOUR-INSPECTOR-POWERS-AND-OATH
-
-**Question:** ما سلطات مفتشي العمل وما شروط مباشرتها؟
-
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 276, printed Gazette page 91 (PDF page index 89).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 275, printed Gazette page 92 (PDF page index 90).
 
 **Provisional summary (Arabic):**
 
-توجب المادة 276 أداء القسم قبل مباشرة العمل وحمل بطاقة تثبت الصفة، وتمنح حق دخول أماكن العمل وتفتيشها وفحص الدفاتر والأوراق وطلب المستندات والبيانات. وتُنظم القرارات المختصة التفتيش ليلاً وخارج المواعيد الرسمية.
+تمنح المادة 275 صفة مأمور الضبط القضائي للعاملين المكلفين بتنفيذ القانون وقراراته الذين يحددهم قرار من وزير العدل بالاتفاق مع الوزير المختص، في نطاق اختصاصهم وبما يتعلق بأعمالهم. ويلزم أداء القسم قبل مباشرة العمل. يجب التحقق من قرار التحديد والبطاقة والاختصاص قبل الاستناد إلى الصفة.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 276؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 276؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 275؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 275؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
-- [public secondary transcription](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 275–298؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- المواد 281–295 بطاقات فهرسة فقط ولا تتضمن نصاً عقابياً موضوعياً موثقاً
-- القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة
+- إقرار صفة الضبط القضائي لمفتش معين دون القرار والبطاقة ونطاق الاختصاص
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative advice or criminal exposure calculation until official text and currentness are verified.
+**Not usable for:** undefined.
+
+### 218. EG-LABOUR-14-2025-ART-276-LABOUR-INSPECTOR-ENTRY-AND-RECORDS
+
+**Question:** ما صلاحيات مفتش العمل الحامل لصفة الضبط القضائي؟
+
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 276, printed Gazette page 92 (PDF page index 90).
+
+**Provisional summary (Arabic):**
+
+تمنح المادة 276 المفتش الحامل لبطاقة الصفة حق دخول أماكن العمل وتفتيشها، وفحص الدفاتر والأوراق وطلب المستندات والبيانات اللازمة للتحقق من تطبيق القانون وقراراته. وتنظم بقرار وزاري إجراءات التكليف بالتفتيش ليلاً وخارج أوقات العمل الرسمية. يلزم التحقق من الصفة والقرار والإجراء في الحالة المحددة.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 276؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 276؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 275–298؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تقرير مشروعية تفتيش محدد دون فحص الصفة والاختصاص والقرار المنظم
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
 
 ### 219. EG-LABOUR-14-2025-ART-277-EMPLOYER-DUTY-TO-COOPERATE-WITH-INSPECTORS
 
-**Question:** ما واجب صاحب العمل تجاه المفتشين؟
+**Question:** ما واجب صاحب العمل تجاه المكلفين بالتفتيش؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 277, printed Gazette page 91 (PDF page index 89).
-
-**Provisional summary (Arabic):**
-
-توجب المادة 277 تمكين المكلفين بالتفتيش من أداء مهمتهم وتوفير المستندات والبيانات اللازمة. وتقرر المادة 297 غرامة من 5,000 إلى 20,000 جنيه عند مخالفة المادتين 277 أو 278، وتضاعف عند العود؛ يلزم التحقق من التعديلات والوقائع قبل تطبيق الجزاء.
-
-**Primary-source leads:**
-
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 277؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 277؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-
-**Cross-checks:**
-
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
-- [public secondary transcription](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
-
-**Limitations:**
-
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- المواد 281–295 بطاقات فهرسة فقط ولا تتضمن نصاً عقابياً موضوعياً موثقاً
-- القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة
-- لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
-
-**Review state:** `provisional_secondary_crosscheck`.
-**Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative advice or criminal exposure calculation until official text and currentness are verified.
-
-### 220. EG-LABOUR-14-2025-ART-278-EMPLOYER-ATTENDANCE-ON-INSPECTOR-SUMMONS
-
-**Question:** هل يجب على صاحب العمل الاستجابة لطلب الحضور؟
-
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 278, printed Gazette page 91 (PDF page index 89).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 277, printed Gazette page 92 (PDF page index 90).
 
 **Provisional summary (Arabic):**
 
-تلزم المادة 278 صاحب العمل أو من ينوب عنه بالاستجابة لطلبات الحضور الصادرة من العاملين المحددين بالمادة 275 في المواعيد التي يحددونها. جزاء المخالفة وارد بالمادة 297، مع ضرورة التحقق من صحة الطلب والصفة والإخطار.
+تلزم المادة 277 صاحب العمل أو من ينوب عنه بتسهيل مهمة المكلفين بمراقبة تنفيذ قانون العمل وقراراته وتقديم المستندات والبيانات اللازمة. وتقرر المادة 297 عقوبة خاصة لبعض صور مخالفة هذا الواجب؛ يجب مراجعة النصين مع الوقائع قبل توصيف المخالفة.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 278؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 278؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 277؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 277؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
-- [public secondary transcription](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 275–298؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- المواد 281–295 بطاقات فهرسة فقط ولا تتضمن نصاً عقابياً موضوعياً موثقاً
-- القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة
+- تقرير مخالفة أو عقوبة دون إثبات الطلب وامتناع المنشأة والنص العقابي المنطبق
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative advice or criminal exposure calculation until official text and currentness are verified.
+**Not usable for:** undefined.
+
+### 220. EG-LABOUR-14-2025-ART-278-EMPLOYER-ATTENDANCE-REQUESTS
+
+**Question:** هل يجب على صاحب العمل الاستجابة لطلب الحضور من مفتش العمل؟
+
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 278, printed Gazette page 92 (PDF page index 90).
+
+**Provisional summary (Arabic):**
+
+تلزم المادة 278 صاحب العمل أو من ينوب عنه بالاستجابة لطلبات الحضور التي يوجهها العاملون المشار إليهم في المادة 275 في المواعيد التي يحددونها. يلزم التحقق من صفة مصدر الطلب وطريقة إبلاغه والموعد والسبب قبل تقييم الامتثال.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 278؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 278؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 275–298؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تقرير مخالفة عدم الحضور دون الطلب وإثبات الإبلاغ وصفة مصدره
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
 
 ### 221. EG-LABOUR-14-2025-ART-279-PUBLIC-AUTHORITY-ASSISTANCE-TO-INSPECTORS
 
-**Question:** هل يجب على الجهات العامة مساعدة مفتشي العمل؟
+**Question:** هل تلتزم الجهات العامة بمساعدة مفتشي العمل؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 279, printed Gazette page 91 (PDF page index 89).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 279, printed Gazette page 92 (PDF page index 90).
 
 **Provisional summary (Arabic):**
 
-تلزم المادة 279 السلطات والوزارات والجهات والهيئات المعنية بمساعدة المكلفين بمراقبة تنفيذ القانون عند أداء وظائفهم متى طلب منهم ذلك. نطاق المساعدة يتحدد بحسب الطلب والاختصاص والوقائع.
+تلزم المادة 279 السلطات والوزارات والجهات والهيئات المعنية بمساعدة المكلفين بمراقبة تنفيذ القانون وقراراته عند قيامهم بوظائفهم متى طلبوا ذلك. تحديد الجهة والإجراء المطلوب يتطلب فحص الاختصاص والطلب الفعلي.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 279؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 279؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 279؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 279؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
-- [public secondary transcription](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 275–298؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- المواد 281–295 بطاقات فهرسة فقط ولا تتضمن نصاً عقابياً موضوعياً موثقاً
-- القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة
+- تحديد التزام جهة بعينها دون إثبات الطلب واختصاصها
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative advice or criminal exposure calculation until official text and currentness are verified.
+**Not usable for:** undefined.
 
-### 222. EG-LABOUR-14-2025-ART-280-LABOUR-LAW-PENALTIES-GENERAL-CLAUSE
+### 222. EG-LABOUR-14-2025-ART-280-LABOUR-OFFENCES-PENALTY-INTRODUCTION
 
-**Question:** كيف تُقرأ أحكام العقوبات في قانون العمل؟
+**Question:** كيف تطبق مواد العقوبات الواردة في قانون العمل؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 280, printed Gazette page 92 (PDF page index 90).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 280, printed Gazette page 93 (PDF page index 91).
 
 **Provisional summary (Arabic):**
 
-تنص المادة 280 على أن العقوبات الواردة في المواد التالية لا تخل بأي عقوبة أشد يقررها قانون العقوبات أو قانون آخر. لا يكفي الاستناد إلى هذه المادة وحدها لتحديد جريمة أو عقوبة؛ يجب تحديد مادة التجريم والوقائع والنصوص الأشد المحتملة.
+تقرر المادة 280 تطبيق العقوبات المحددة في المواد التالية على الجرائم المشار إليها، مع عدم الإخلال بأي عقوبة أشد ينص عليها قانون العقوبات أو قانون آخر. لا تحدد المادة وحدها عقوبة مخالفة بعينها؛ يجب ربط الفعل بالمادة الموضوعية والمادة العقابية والنصوص الأشد المحتملة.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 280؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 280؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 280؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 280؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
-- [public secondary transcription](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 275–298؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- المواد 281–295 بطاقات فهرسة فقط ولا تتضمن نصاً عقابياً موضوعياً موثقاً
-- القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة
+- تحديد العقوبة دون مطابقة الفعل مع المادة العقابية والنصوص الأخرى
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative advice or criminal exposure calculation until official text and currentness are verified.
+**Not usable for:** undefined.
 
-### 223. EG-LABOUR-14-2025-ART-281-LABOUR-OFFENCE-PENALTY-ARTICLE-281
+### 223. EG-LABOUR-14-2025-ART-281-LABOUR-PENALTY-ARTICLES-4-5
 
-**Question:** ما غرامة مخالفة المادتين 4 و5 من قانون العمل؟
+**Question:** ما الغرامة المقررة لمخالفة المادتين 4 و5 من قانون العمل؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 281, printed Gazette page 92 (PDF page index 90).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 281, printed Gazette page 93 (PDF page index 91).
 
 **Provisional summary (Arabic):**
 
-تعاقب المادة 281 مخالفة المادتين 4 و5 بغرامة من 5,000 إلى 50,000 جنيه، وتتعدد الغرامة بتعدد العمال الذين وقعت الجريمة في شأنهم، وتضاعف في حالة العود.
+تقرر المادة 281 غرامة من خمسة آلاف إلى خمسين ألف جنيه لمخالفة المادتين 4 و5، وتتعدد بتعدد العمال الذين وقعت بشأنهم الجريمة وتضاعف في حالة العود. يلزم تحديد الفعل المنسوب ومحل المخالفة وعدد العمال والعود وأي نص عقابي أحدث أو أشد.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 281؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 281؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 281؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 281؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
-- [public secondary transcription](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 275–298؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة
+- حساب الغرامة أو تقرير الإدانة دون عناصر الجريمة والوقائع والنصوص ذات الصلة
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
-- النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative criminal penalty determination until official Gazette text, currentness and lawyer review are verified.
+**Not usable for:** undefined.
 
-### 224. EG-LABOUR-14-2025-ART-282-LABOUR-OFFENCE-PENALTY-ARTICLE-282
+### 224. EG-LABOUR-14-2025-ART-282-LABOUR-PENALTY-ARTICLES-82-273-21
 
-**Question:** ما العقوبة على مخالفة الأحكام المحددة بالمادة 282؟
+**Question:** ما العقوبة المرتبطة بمخالفات محددة في المواد 21 و82 و273؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 282, printed Gazette page 92 (PDF page index 90).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 282, printed Gazette page 93 (PDF page index 91).
 
 **Provisional summary (Arabic):**
 
-تقرر المادة 282 غرامة من 1,000 إلى 10,000 جنيه لمخالفة البندين 1 و2 من المادة 82 والفقرة الرابعة من المادة 232 والقرارات المنفذة، وتتعدد بتعدد العمال وتضاعف عند العود. وتقرر ذات الغرامة لمخالفة البند 1 من المادة 21.
+تقرر المادة 282 غرامة من ألف إلى عشرة آلاف جنيه للمخالفات المحددة في البندين 1 و2 من المادة 82 والفقرة الرابعة من المادة 273 والقرارات المنفذة لها، كما تمد العقوبة إلى مخالفة البند الأول من المادة 21. وتتعدد الغرامة بتعدد العمال وتضاعف عند العود وفق النص. يجب مطابقة الفقرة والبند الدقيقين قبل التطبيق.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 282؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 282؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 282؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 282؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
-- [public secondary transcription](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 275–298؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة
+- تطبيق نطاق الغرامة على فقرة أو بند غير مشمول بالنص
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
-- النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative criminal penalty determination until official Gazette text, currentness and lawyer review are verified.
+**Not usable for:** undefined.
 
-### 225. EG-LABOUR-14-2025-ART-283-LABOUR-OFFENCE-PENALTY-ARTICLE-283
+### 225. EG-LABOUR-14-2025-ART-283-LABOUR-PENALTY-ARTICLES-37-48-153-137
 
-**Question:** ما العقوبة على مخالفة المواد المحددة بالمادة 283؟
+**Question:** ما العقوبة المقررة لمخالفات المواد 37 و48 و153 و137؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 283, printed Gazette page 92 (PDF page index 90).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 283, printed Gazette page 93 (PDF page index 91).
 
 **Provisional summary (Arabic):**
 
-تقرر المادة 283 غرامة من 1,000 إلى 10,000 جنيه لمخالفة الفقرة الأولى من المادة 37 والفقرة الأولى من المادة 40 والفقرة الأولى من المادة 153 والقرارات المنفذة، وكذلك المادة 137. تتعدد بتعدد العمال وتضاعف عند العود.
+تقرر المادة 283 غرامة من ألفي إلى عشرة آلاف جنيه للمخالفات المحددة في الفقرة الأولى من المادة 37 والفقرة الأولى من المادة 48 والمادة 153 والقرارات المنفذة، وتقرر ذات العقوبة لمخالفة المادة 137. وتضاعف الغرامة في العود. يلزم التحقق من الفقرة المحددة والوقائع وعدد المخالفات.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 283؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 283؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 283؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 283؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
-- [public secondary transcription](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 275–298؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة
+- تحديد الغرامة دون مطابقة الفقرة والقرارات والعود
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
-- النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative criminal penalty determination until official Gazette text, currentness and lawyer review are verified.
+**Not usable for:** undefined.
 
-### 226. EG-LABOUR-14-2025-ART-284-LABOUR-OFFENCE-PENALTY-ARTICLE-284
+### 226. EG-LABOUR-14-2025-ART-284-LABOUR-PENALTY-ARTICLE-26
 
-**Question:** ما العقوبة على مخالفة المادة 26؟
+**Question:** ما العقوبة المقررة لمخالفة المادة 26؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 284, printed Gazette page 92 (PDF page index 90).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 284, printed Gazette page 93 (PDF page index 91).
 
 **Provisional summary (Arabic):**
 
-تقرر المادة 284 غرامة من 2,000 إلى 10,000 جنيه لمخالفة المادة 26 والقرارات المنفذة، وتشتد بتعدد العمال وتضاعف في حالة العود.
+تقرر المادة 284 غرامة من ألف إلى عشرة آلاف جنيه لمخالفة المادة 26 والقرارات المنفذة لها، وتتعدد الغرامة بتعدد العمال وتضاعف عند العود. يلزم تحديد الالتزام الموضوعي محل المخالفة والقرارات السارية قبل الحساب.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 284؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 284؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 284؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 284؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
-- [public secondary transcription](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 275–298؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة
+- حساب الغرامة دون إثبات المخالفة وعدد العمال والعود
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
-- النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative criminal penalty determination until official Gazette text, currentness and lawyer review are verified.
+**Not usable for:** undefined.
 
-### 227. EG-LABOUR-14-2025-ART-285-LABOUR-OFFENCE-PENALTY-ARTICLE-285
+### 227. EG-LABOUR-14-2025-ART-285-LABOUR-PENALTY-ARTICLE-23
 
-**Question:** ما العقوبة على مخالفة المادة 23؟
+**Question:** ما العقوبة المقررة لمخالفة المادة 23؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 285, printed Gazette page 92 (PDF page index 90).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 285, printed Gazette page 93 (PDF page index 91).
 
 **Provisional summary (Arabic):**
 
-تقرر المادة 285 غرامة من 20,000 إلى 100,000 جنيه لمخالفة المادة 23 والقرارات المنفذة، ويجوز للمحكمة عند الإدانة إغلاق المنشأة، وتضاعف الغرامة في حالة العود.
+تقرر المادة 285 غرامة من عشرين ألفاً إلى مائة ألف جنيه لمخالفة المادة 23 والقرارات المنفذة، وتجيز للمحكمة عند الإدانة الحكم بإغلاق المنشأة، وتضاعف الغرامة في حالة العود. يلزم التحقق من عناصر المخالفة وأي نصوص خاصة قبل تقرير الجزاء.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 285؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 285؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 285؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 285؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
-- [public secondary transcription](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 275–298؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة
+- توقع عقوبة أو إغلاق منشأة دون إثبات المخالفة وتقدير المحكمة
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
-- النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative criminal penalty determination until official Gazette text, currentness and lawyer review are verified.
+**Not usable for:** undefined.
 
-### 228. EG-LABOUR-14-2025-ART-286-LABOUR-OFFENCE-PENALTY-ARTICLE-286
+### 228. EG-LABOUR-14-2025-ART-286-LABOUR-PENALTY-ARTICLES-7-24-25-36-46-51-52-68
 
-**Question:** ما العقوبة على مخالفة مواد الإصدار والمادة 24 ومواد أخرى محددة؟
+**Question:** ما العقوبة المقررة لمجموعة من مخالفات مواد الإصدار والمواد 24 و25 و36 و46 و51 و52 و68؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 286, printed Gazette page 92 (PDF page index 90).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 286, printed Gazette page 93 (PDF page index 91).
 
 **Provisional summary (Arabic):**
 
-تقرر المادة 286 غرامة من 1,000 إلى 20,000 جنيه لمخالفة المادة السابعة من مواد الإصدار والمواد 24 و39 و46 و51 و52 و68 والقرارات المنفذة، وكذلك المواد 38 و122 و175. وتشتد الغرامة بتعدد العمال وتضاعف عند العود.
+تقرر المادة 286 غرامة من ألف إلى عشرين ألف جنيه للمخالفات المحددة في المادة السابعة من مواد الإصدار والمواد 24 و25 و36 و46 و51 و52 و68 والقرارات المنفذة، وتتعدد بتعدد العمال وتضاعف عند العود. وتمتد العقوبة ذاتها إلى المواد 38 و122 و175. يلزم التحقق من المادة الدقيقة والفقرة والوقائع.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 286؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 286؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 286؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 286؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
-- [public secondary transcription](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 275–298؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة
+- تطبيق الغرامة على مادة أو فقرة غير مشمولة أو دون حساب تعدد العمال والعود
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
-- النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative criminal penalty determination until official Gazette text, currentness and lawyer review are verified.
+**Not usable for:** undefined.
 
-### 229. EG-LABOUR-14-2025-ART-287-LABOUR-OFFENCE-PENALTY-ARTICLE-287
+### 229. EG-LABOUR-14-2025-ART-287-LABOUR-PENALTY-ARTICLES-45-104-108
 
-**Question:** ما العقوبة على مخالفة المواد 45 و104 و108؟
+**Question:** ما العقوبة المقررة لمخالفات المواد 45 و104 و108؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 287, printed Gazette page 92 (PDF page index 90).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 287, printed Gazette page 93 (PDF page index 91).
 
 **Provisional summary (Arabic):**
 
-تقرر المادة 287 غرامة من 2,000 إلى 20,000 جنيه لمخالفة المواد 45 و104 و108، وتشتد بتعدد العمال وتضاعف عند العود.
+تقرر المادة 287 غرامة من ألفي إلى عشرين ألف جنيه لمخالفة المواد 45 و104 و108، وتتعدد بتعدد العمال وتضاعف في حالة العود. يلزم مطابقة الالتزام الموضوعي والقرارات التنفيذية والوقائع قبل تقدير العقوبة.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 287؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 287؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 287؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 287؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
-- [public secondary transcription](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 275–298؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة
+- تحديد الغرامة دون إثبات المخالفة والعدد والعود
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
-- النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative criminal penalty determination until official Gazette text, currentness and lawyer review are verified.
+**Not usable for:** undefined.
 
-### 230. EG-LABOUR-14-2025-ART-288-LABOUR-OFFENCE-PENALTY-ARTICLE-288
+### 230. EG-LABOUR-14-2025-ART-288-LABOUR-PENALTY-MULTIPLE-WORKER-RIGHTS-ARTICLES
 
-**Question:** ما الغرامة على مخالفة المواد المحددة بالمادة 288؟
+**Question:** ما العقوبة المقررة لمجموعة من مخالفات حقوق العمال وساعات العمل والإجازات؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 288, printed Gazette page 92 (PDF page index 90).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 288, printed Gazette page 93 (PDF page index 91).
 
 **Provisional summary (Arabic):**
 
-تقرر المادة 288 غرامة من 500 إلى 5,000 جنيه لمخالفة المواد 27 و53 و60 و117 و118 و119 و123 و124 و132 والفقرة الثانية من 135 والفقرة الأولى من 254 والقرارات المنفذة. وتمتد ذات العقوبة إلى المواد 12 و29 و54–59 و89–94 و110–116 و120 و121 و125 و126 و128 و129 و131 والفقرة الثانية من 138 و156 و159 و162 و164 و173. تتعدد الغرامة بتعدد العمال وتضاعف عند العود.
+تقرر المادة 288 غرامة من خمسمائة إلى خمسة آلاف جنيه لمجموعة مواد محددة، منها 27 و53 و60 و117–119 و123 و124 و132 و135/ثانياً و254/أولاً والقرارات المنفذة، وتمتد إلى قائمة أخرى من المواد المحددة بالنص. وتتعدد الغرامة بتعدد العمال وتضاعف عند العود. يجب استخدام القائمة الكاملة ومطابقة المادة والفقرة قبل التطبيق.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 288؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 288؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 288؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 288؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
-- [public secondary transcription](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 275–298؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة
+- تحديد العقوبة من وصف عام دون مطابقة القائمة الكاملة والمادة والفقرة
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
-- تم التحقق من نص بديل عام مستقل؛ المطابقة مع صورة الجريدة الرسمية ما زالت مطلوبة
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative criminal penalty determination until official Gazette text, currentness and lawyer review are verified.
+**Not usable for:** undefined.
 
-### 231. EG-LABOUR-14-2025-ART-289-LABOUR-OFFENCE-PENALTY-ARTICLE-289
+### 231. EG-LABOUR-14-2025-ART-289-LABOUR-PENALTY-ARTICLES-62-66
 
-**Question:** ما غرامة مخالفة أحكام تشغيل الأطفال المحددة بالمادة 289؟
+**Question:** ما العقوبة المقررة لمخالفات المواد 62–66؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 289, printed Gazette page 92 (PDF page index 90).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 289, printed Gazette page 94 (PDF page index 92).
 
 **Provisional summary (Arabic):**
 
-تعاقب المادة 289 صاحب العمل أو ممثله بغرامة من 2,000 إلى 10,000 جنيه لمخالفة المواد 63 و64 و66 والقرارات المنفذة، وتتعدد بتعدد العمال، وتضاعف عند العود مع غلق المنشأة مدة لا تجاوز ستة أشهر. وتمتد ذات العقوبة إلى مخالفة المادتين 62 و65.
+تقرر المادة 289 غرامة من ألفين إلى عشرة آلاف جنيه لمخالفة المواد 63 و64 و66 والقرارات المنفذة، وتتعدد بتعدد العمال وتضاعف عند العود مع غلق المنشأة لمدة لا تجاوز ستة أشهر. كما تقرر ذات الغرامة لمخالفة المادتين 62 و65. يلزم فحص الفعل والنص الدقيق والظروف قبل تحديد الجزاء.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 289؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 289؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 289؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 289؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
-- [public secondary transcription](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 275–298؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة
+- تقرير الغرامة أو الغلق دون إثبات المخالفة وتعدد العمال والعود
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
-- النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية
-- تم التحقق من نص بديل عام مستقل؛ المطابقة مع صورة الجريدة الرسمية ما زالت مطلوبة
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative criminal penalty determination until official Gazette text, currentness and lawyer review are verified.
+**Not usable for:** undefined.
 
-### 232. EG-LABOUR-14-2025-ART-290-LABOUR-OFFENCE-PENALTY-ARTICLE-290
+### 232. EG-LABOUR-14-2025-ART-290-LABOUR-PENALTY-ARTICLES-33-37-35-205
 
-**Question:** ما غرامة مخالفة المادتين 33 و37؟
+**Question:** ما العقوبة المقررة لمخالفات المواد 33 و37 و35 و205؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 290, printed Gazette page 92 (PDF page index 90).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 290, printed Gazette page 94 (PDF page index 92).
 
 **Provisional summary (Arabic):**
 
-تقرر المادة 290 غرامة من 500 إلى 1,000 جنيه لمخالفة المادتين 33 و37 والقرارات المنفذة، وتتعدد بتعدد العمال وتضاعف عند العود. وتمتد ذات العقوبة إلى مخالفة المادتين 35 و205.
+تقرر المادة 290 غرامة من خمسمائة إلى ألف جنيه لمخالفة المادتين 33 و37 والقرارات المنفذة، وتتعدد بتعدد العمال وتضاعف عند العود، وتقرر ذات العقوبة لمخالفة المادتين 35 و205. يلزم مطابقة المادة والفقرة والوقائع قبل الحساب.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 290؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 290؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 290؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 290؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
-- [public secondary transcription](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 275–298؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة
+- حساب الغرامة دون مطابقة النص وعدد العمال والعود
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
-- تم التحقق من نص بديل عام مستقل؛ المطابقة مع صورة الجريدة الرسمية ما زالت مطلوبة
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative criminal penalty determination until official Gazette text, currentness and lawyer review are verified.
+**Not usable for:** undefined.
 
-### 233. EG-LABOUR-14-2025-ART-291-LABOUR-OFFENCE-PENALTY-ARTICLE-291
+### 233. EG-LABOUR-14-2025-ART-291-LABOUR-PENALTY-UNLICENSED-RECRUITMENT-AND-UNLAWFUL-CHARGES
 
-**Question:** ما عقوبة تشغيل العمالة دون ترخيص أو تحصيل مبالغ غير مستحقة؟
+**Question:** ما الجرائم التي تعاقب عليها المادة 291 بشأن إلحاق العمالة؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 291, printed Gazette page 92 (PDF page index 90).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 291, printed Gazette page 94 (PDF page index 92).
 
 **Provisional summary (Arabic):**
 
-تعاقب المادة 291 بالحبس وغرامة من 20,000 إلى 100,000 جنيه أو بإحدى العقوبتين على إلحاق العمالة دون الترخيص المطلوب أو بترخيص مبني على بيانات غير صحيحة، أو تحصيل مبالغ دون وجه حق من أجر العامل أو مستحقاته، أو تقديم بيانات غير صحيحة أو عقود عمل وهمية عن العمل بالخارج. ويُحكم برد المبالغ غير المستحقة؛ ويجوز إغلاق المنشأة، ويكون الإغلاق وجوبياً في الجريمة الأولى.
+تعاقب المادة 291 بالحبس والغرامة من عشرين ألفاً إلى مائة ألف جنيه أو بإحدى العقوبتين على صور محددة من تشغيل أو إلحاق العمالة دون الترخيص المطلوب أو ببيانات غير صحيحة، وتقاضي مبالغ دون حق من أجر العامل أو مستحقاته، وتقديم بيانات غير صحيحة أو عقود وهمية. وتوجب رد المبالغ غير المستحقة، وقد تقضي المحكمة بالإغلاق ويكون وجوبياً في الحالة المحددة بالبند الأول. يجب فحص النص والوقائع والتراخيص.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 291؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 291؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 291؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 291؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
-- [public secondary transcription](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 275–298؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة
+- توصيف جريمة أو تقرير الحبس والإغلاق دون فحص عناصر الجريمة والترخيص والوقائع
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
-- تم التحقق من نص بديل عام مستقل؛ المطابقة مع صورة الجريدة الرسمية ما زالت مطلوبة
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative criminal penalty determination until official Gazette text, currentness and lawyer review are verified.
+**Not usable for:** undefined.
 
-### 234. EG-LABOUR-14-2025-ART-292-LABOUR-OFFENCE-PENALTY-ARTICLE-292
+### 234. EG-LABOUR-14-2025-ART-292-LABOUR-PENALTY-ARTICLE-42
 
-**Question:** ما غرامة مخالفة المادة 42؟
+**Question:** ما العقوبة المقررة لمخالفة المادة 42؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 292, printed Gazette page 92 (PDF page index 90).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 292, printed Gazette page 94 (PDF page index 92).
 
 **Provisional summary (Arabic):**
 
-تقرر المادة 292 غرامة من 5,000 إلى 100,000 جنيه لمخالفة المادة 42 والقرارات المنفذة، وتتعدد بتعدد العمال وتضاعف في حالة العود.
+تقرر المادة 292 غرامة من خمسة آلاف إلى مائة ألف جنيه لمخالفة المادة 42 والقرارات المنفذة، وتتعدد بتعدد العمال وتضاعف في حالة العود. يجب التحقق من الالتزام الوارد بالمادة 42 والقرار التنفيذي المنطبق قبل تقدير العقوبة.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 292؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 292؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 292؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 292؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
-- [public secondary transcription](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 275–298؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة
+- تحديد العقوبة دون معرفة الفعل والقرار المنفذ وعدد العمال والعود
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
-- النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative criminal penalty determination until official Gazette text, currentness and lawyer review are verified.
+**Not usable for:** undefined.
 
-### 235. EG-LABOUR-14-2025-ART-293-LABOUR-OFFENCE-PENALTY-ARTICLE-293
+### 235. EG-LABOUR-14-2025-ART-293-LABOUR-PENALTY-ARTICLES-70-74
 
-**Question:** ما غرامة مخالفة المواد 70 و71 و72 و74؟
+**Question:** ما العقوبة المقررة لمخالفات المواد 70 و71 و72 و74؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 293, printed Gazette page 92 (PDF page index 90).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 293, printed Gazette page 94 (PDF page index 92).
 
 **Provisional summary (Arabic):**
 
-تقرر المادة 293 غرامة من 20,000 إلى 100,000 جنيه لمخالفة المواد 70 و71 و72 و74 والقرارات المنفذة، وتتعدد بتعدد العمال وتضاعف في حالة العود.
+تقرر المادة 293 غرامة من عشرين ألفاً إلى مائة ألف جنيه لمخالفة المواد 70 و71 و72 و74 والقرارات المنفذة، وتتعدد بتعدد العمال وتضاعف عند العود. يلزم مطابقة المادة والفقرة والوقائع قبل تحديد نطاق المسؤولية.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 293؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 293؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 293؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 293؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
-- [public secondary transcription](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 275–298؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة
+- تطبيق الغرامة دون مطابقة المادة والفقرة وعناصر المخالفة
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
-- تم التحقق من نص بديل عام مستقل؛ المطابقة مع صورة الجريدة الرسمية ما زالت مطلوبة
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative criminal penalty determination until official Gazette text, currentness and lawyer review are verified.
+**Not usable for:** undefined.
 
-### 236. EG-LABOUR-14-2025-ART-294-LABOUR-OFFENCE-PENALTY-ARTICLE-294
+### 236. EG-LABOUR-14-2025-ART-294-LABOUR-PENALTY-DISCIPLINE-AND-RELATED-ARTICLES
 
-**Question:** ما غرامة مخالفة المواد 140–145 و151 و152 و198؟
+**Question:** ما العقوبة المقررة لبعض مخالفات التأديب والمواد 140–145 و198؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 294, printed Gazette page 92 (PDF page index 90).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 294, printed Gazette page 94 (PDF page index 92).
 
 **Provisional summary (Arabic):**
 
-تقرر المادة 294 غرامة من 1,000 إلى 20,000 جنيه لمخالفة المواد 140 و141 و142 و143 و144 و145 والفقرة الثانية من المادة 151 و152 و198، وتضاعف في حالة العود.
+تقرر المادة 294 غرامة من ألف إلى عشرين ألف جنيه لمخالفة المواد 140–145 والمادة 151/فقرة ثانية والمادتين 152 و198، وتتضاعف في حالة العود. يلزم التأكد من الفقرة المشمولة والنص العقابي الساري وعدم الخلط بين هذه المادة وأي مادة أخرى تحمل الرقم نفسه في تشريع مختلف.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 294؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 294؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 294؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 294؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
-- [public secondary transcription](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 275–298؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة
+- تطبيق الغرامة دون مطابقة النص أو الفقرة أو تحديد التشريع المقصود
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
-- النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية
-- تم التحقق من نص بديل عام مستقل؛ المطابقة مع صورة الجريدة الرسمية ما زالت مطلوبة
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative criminal penalty determination until official Gazette text, currentness and lawyer review are verified.
+**Not usable for:** undefined.
 
-### 237. EG-LABOUR-14-2025-ART-295-LABOUR-OFFENCE-PENALTY-ARTICLE-295
+### 237. EG-LABOUR-14-2025-ART-295-LABOUR-PENALTY-ECONOMIC-CLOSURE-ARTICLES
 
-**Question:** ما غرامة مخالفة المواد 236 و237 و239 وما يرتبط بها؟
+**Question:** ما العقوبة المقررة لبعض مخالفات الإغلاق الاقتصادي وتقليص النشاط؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 295, printed Gazette page 92 (PDF page index 90).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 295, printed Gazette page 94 (PDF page index 92).
 
 **Provisional summary (Arabic):**
 
-تقرر المادة 295 غرامة من 3,000 إلى 10,000 جنيه لمخالفة المواد 236 و237 و239 والقرارات المنفذة، وتتعدد بتعدد العمال وتضاعف عند العود. وتمتد ذات العقوبة إلى مخالفة المواد 169 و170 و172 و238 و240 والفقرة الثالثة من المادة 241.
+تقرر المادة 295 غرامة من ثلاثة آلاف إلى عشرة آلاف جنيه لمخالفة المواد 236 و237 و239 والقرارات المنفذة، وتتعدد بتعدد العمال وتضاعف عند العود، وتقرر ذات العقوبة لمخالفة المواد 169 و170 و172 و238 و240 والفقرة الثالثة من المادة 241. يجب التحقق من الفقرة المحددة والوقائع والقرارات التنفيذية.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 295؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 295؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 295؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 295؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
-- [public secondary transcription](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 275–298؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة
+- حساب العقوبة دون مطابقة المادة والفقرة والقرار وعدد العمال والعود
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
-- النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative criminal penalty determination until official Gazette text, currentness and lawyer review are verified.
+**Not usable for:** undefined.
 
-### 238. EG-LABOUR-14-2025-ART-296-OSH-AND-HEALTH-SAFETY-FINES
+### 238. EG-LABOUR-14-2025-ART-296-LABOUR-PENALTY-OCCUPATIONAL-SAFETY-ARTICLES
 
-**Question:** ما الغرامات المقررة لبعض مخالفات السلامة والصحة المهنية؟
+**Question:** ما العقوبة المقررة لمخالفات السلامة والصحة المهنية؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 296, printed Gazette page 92 (PDF page index 90).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 296, printed Gazette page 94 (PDF page index 92).
 
 **Provisional summary (Arabic):**
 
-تنص المادة 296 على غرامة من 5,000 إلى 100,000 جنيه لبعض مخالفات المواد 245 و254–255 و259–262 و266 و270–272 والقرارات المنفذة، مع مضاعفة الغرامة في العود. وتمتد العقوبة ذاتها إلى مخالفات المواد 246–253 و267–269. يجب التحقق من النص الساري وتحديد الفعل والمخاطب به قبل التطبيق.
+تقرر المادة 296 غرامة من خمسة آلاف إلى مائة ألف جنيه لمخالفة المواد 245 و254 و255 و259–262 و266 و270–272 والقرارات المنفذة، وتمتد العقوبة ذاتها إلى المواد 246–253 و267–269. وتتضاعف عند العود. يجب مطابقة الالتزام الفني والقرار التنفيذي والمادة الدقيقة قبل تقدير العقوبة.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 296؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 296؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 296؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 296؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
-- [public secondary transcription](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 275–298؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- المواد 281–295 بطاقات فهرسة فقط ولا تتضمن نصاً عقابياً موضوعياً موثقاً
-- القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة
+- تحديد غرامة السلامة دون مطابقة المادة والقرار التنفيذي والوقائع
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative advice or criminal exposure calculation until official text and currentness are verified.
+**Not usable for:** undefined.
 
-### 239. EG-LABOUR-14-2025-ART-297-LABOUR-INSPECTION-OBSTRUCTION-FINE
+### 239. EG-LABOUR-14-2025-ART-297-LABOUR-PENALTY-INSPECTION-OBSTRUCTION
 
-**Question:** ما غرامة مخالفة واجب تمكين التفتيش أو الاستجابة لطلب الحضور؟
+**Question:** ما العقوبة المقررة لمخالفة واجب تسهيل التفتيش أو الحضور؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 297, printed Gazette page 92 (PDF page index 90).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 297, printed Gazette page 94 (PDF page index 92).
 
 **Provisional summary (Arabic):**
 
-تقرر المادة 297 غرامة لا تقل عن 5,000 ولا تجاوز 20,000 جنيه لصاحب العمل أو ممثله إذا خالف المادتين 277 أو 278، وتضاعف عند العود. يلزم التحقق من الصفة والإخطار والوقائع والنص الساري.
+تقرر المادة 297 غرامة من خمسة آلاف إلى عشرين ألف جنيه لصاحب العمل أو من يمثله إذا خالف المادتين 277 أو 278، وتتضاعف في حالة العود. يلزم التحقق من طلب المفتش وصفته والإخطار والامتناع المنسوب قبل تحديد المسؤولية.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 297؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 297؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 297؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 297؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
-- [public secondary transcription](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 275–298؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- المواد 281–295 بطاقات فهرسة فقط ولا تتضمن نصاً عقابياً موضوعياً موثقاً
-- القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة
+- تقرير المخالفة دون إثبات طلب التفتيش أو الحضور والامتناع والصفة
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative advice or criminal exposure calculation until official text and currentness are verified.
+**Not usable for:** undefined.
 
-### 240. EG-LABOUR-14-2025-ART-298-CORPORATE-MANAGER-AND-ENTITY-FINANCIAL-LIABILITY
+### 240. EG-LABOUR-14-2025-ART-298-LABOUR-CORPORATE-MANAGER-AND-ENTITY-LIABILITY
 
-**Question:** متى يسأل المدير الفعلي والشخص الاعتباري عن مخالفة قانون العمل؟
+**Question:** متى تمتد المسؤولية عن مخالفة قانون العمل إلى المسؤول الفعلي والشخص الاعتباري؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 298, printed Gazette page 92 (PDF page index 90).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 298, printed Gazette page 94 (PDF page index 92).
 
 **Provisional summary (Arabic):**
 
-تقرر المادة 298 معاقبة المسؤول عن الإدارة الفعلية بالعقوبة المقررة للفعل إذا ثبت علمه به وأسهم إخلاله بواجباته الإدارية في وقوع الجريمة. ويكون الشخص الاعتباري مسؤولاً بالتضامن عن العقوبات المالية والتعويضات المحكوم بها. يتطلب التطبيق إثبات عناصر المسؤولية لكل حالة.
+تقرر المادة 298 معاقبة المسؤول عن الإدارة الفعلية للشخص الاعتباري بالعقوبة المقررة للفعل إذا ثبت علمه به وأسهم إخلاله بواجبات الإدارة في وقوع الجريمة. كما تجعل الشخص الاعتباري مسؤولاً بالتضامن عن العقوبات المالية والتعويضات المحكوم بها. يتطلب التطبيق إثبات العلم والإخلال والمساهمة والوقائع والحكم.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 298؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 298؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 298؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 298؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
-- [public secondary transcription](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية؛ لا تحل محل النص الرسمي.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 275–298؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً
-- المواد 281–295 بطاقات فهرسة فقط ولا تتضمن نصاً عقابياً موضوعياً موثقاً
-- القرارات التنفيذية والتعديلات والأحكام القضائية لم تُراجع مراجعة شاملة
+- تقرير المسؤولية الشخصية أو التضامنية دون إثبات عناصر النص والحكم
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- لم تُراجع جميع التعديلات أو الأحكام القضائية أو النصوص العقابية الأخرى مراجعة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
-- حقوق إعادة الاستخدام التجاري غير محسومة
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** authoritative advice or criminal exposure calculation until official text and currentness are verified.
+**Not usable for:** undefined.
 
-### 241. EG-LABOUR-14-2025-PROMULGATION-ART-2-PROMULGATION-TRAINING-FUND-TRANSITION
+### 241. EG-LABOUR-14-2025-ART-55-MATERNITY-RETURN-AND-TERMINATION-PROTECTION
 
-**Question:** ما مصير صندوق تمويل التدريب والدعاوى المتعلقة بنسبة 1%؟
+**Question:** ما حقوق العاملة عند العودة من إجازة الوضع؟
 
-**Pinpoint:** مواد إصدار القانون رقم 14 لسنة 2025, المادة 2, Official Gazette page pinpoint not verified.
+**Pinpoint:** الكتاب الثاني — علاقات العمل الفردية, المادة 55, printed Gazette page 32 (PDF page index 30).
 
 **Provisional summary (Arabic):**
 
-تقرر المادة الثانية استمرار صندوق تمويل التدريب والتأهيل المنشأ بالقانون السابق بشخصيته الاعتبارية العامة وتبعيته للوزير المختص، وتنظم انقضاء الخصومة في دعاوى تحصيل نسبة 1% إذا لم تتمسك المنشأة باستمرارها خلال ستة أشهر من تاريخ العمل بالقانون. ولا ينشأ عن انقضاء الخصومة حق في استرداد ما سبق سداده. يجب فحص ملف الدعوى وتاريخ بدء سريان القانون قبل التطبيق.
+تضمن المادة 55 عودة العاملة بعد إجازة الوضع إلى وظيفتها أو وظيفة مماثلة دون المساس بمزايا الوظيفة الأصلية، وتحظر فصلها أثناء الإجازة وبعد العودة إلا إذا أثبت صاحب العمل سبباً مشروعاً. وقد يترتب على العمل لدى الغير أثناء الإجازة حرمانها من تعويض الأجر أو استرداده مع احتمال المساءلة التأديبية. يلزم فحص الوقائع والمستندات والنصوص ذات الصلة.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; نص مواد إصدار قانون العمل رقم 14 لسنة 2025؛ يلزم مطابقة صورة الجريدة الرسمية (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 55؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 55؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة نصية لمواد الإصدار 2–11، وليست بديلاً عن مطابقة الجريدة الرسمية.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 55–74؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق
-- المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة
-- لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري
-- حقوق إعادة الاستخدام التجاري غير محسومة
+- تقرير مشروعية فصل أو استرداد أجر دون فحص التوقيت والسبب والمستندات
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** final determination of transitional deadlines or case disposition until official text and case dates are checked.
+**Not usable for:** undefined.
 
-### 242. EG-LABOUR-14-2025-PROMULGATION-ART-3-PROMULGATION-SOCIAL-HEALTH-FUND-AND-WAGES-COUNCIL
+### 242. EG-LABOUR-14-2025-ART-56-BREASTFEEDING-BREAKS
 
-**Question:** ما وضع صندوق الخدمات الاجتماعية والصحية والمجلس القومي للأجور بعد صدور القانون؟
+**Question:** ما فترات الرضاعة التي تستحقها العاملة؟
 
-**Pinpoint:** مواد إصدار القانون رقم 14 لسنة 2025, المادة 3, Official Gazette page pinpoint not verified.
+**Pinpoint:** الكتاب الثاني — علاقات العمل الفردية, المادة 56, printed Gazette page 32 (PDF page index 30).
 
 **Provisional summary (Arabic):**
 
-تقرر المادة الثالثة استمرار صندوق الخدمات الاجتماعية والصحية والثقافية وتبعيته للوزير المختص، كما تستمر عضوية/وظيفة المجلس القومي للأجور ويُشكّل ويمارس اختصاصاته وفق القانون المرافق. يلزم الرجوع إلى القرارات التنظيمية السارية لتحديد التشكيل والاختصاص الحالي.
+تمنح المادة 56 العاملة التي ترضع طفلها خلال السنتين التاليتين للوضع فترتين إضافيتين للرضاعة لا تقل كل منهما عن نصف ساعة، ويجوز ضمهما، وتحسبان من ساعات العمل دون تخفيض الأجر. يلزم التحقق من التوقيت والوقائع وأي قواعد تنفيذية ذات صلة.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; نص مواد إصدار قانون العمل رقم 14 لسنة 2025؛ يلزم مطابقة صورة الجريدة الرسمية (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 56؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 56؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة نصية لمواد الإصدار 2–11، وليست بديلاً عن مطابقة الجريدة الرسمية.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 55–74؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق
-- المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة
-- لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري
-- حقوق إعادة الاستخدام التجاري غير محسومة
+- حساب استحقاق محدد دون التحقق من مدة السنتين وساعات العمل والوقائع
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** final determination of transitional deadlines or case disposition until official text and case dates are checked.
+**Not usable for:** undefined.
 
-### 243. EG-LABOUR-14-2025-PROMULGATION-ART-4-PROMULGATION-PRESERVATION-OF-BETTER-BENEFITS
+### 243. EG-LABOUR-14-2025-ART-57-CHILDCARE-UNPAID-LEAVE
 
-**Question:** هل يحتفظ العمال بالمزايا السابقة الأفضل؟
+**Question:** متى تستحق العاملة إجازة دون أجر لرعاية طفلها؟
 
-**Pinpoint:** مواد إصدار القانون رقم 14 لسنة 2025, المادة 4, Official Gazette page pinpoint not verified.
+**Pinpoint:** الكتاب الثاني — علاقات العمل الفردية, المادة 57, printed Gazette page 32 (PDF page index 30).
 
 **Provisional summary (Arabic):**
 
-تحافظ المادة الرابعة على الحقوق والمزايا التي سبق حصول العمال عليها من الأجور واللوائح والنظم والاتفاقيات والقرارات الداخلية السابقة. كما تبقي أحكام التشريعات الخاصة ببعض فئات العمال سارية إلى أن تبرم الاتفاقيات الجماعية وتنفذ، وتعد مزايا تلك التشريعات حداً أدنى للتفاوض. التطبيق يتطلب مقارنة المستندات السابقة ومصدر الميزة ونطاقها.
+تجيز المادة 57 للعاملة في منشأة تستخدم خمسين عاملاً فأكثر الحصول على إجازة دون أجر لا تجاوز سنتين لرعاية طفلها، وفق شروط منها مرور سنة على الأقل في المنشأة، وألا تقل المدة بين الإجازة الأولى والثانية عن سنتين، وألا تتجاوز ثلاث مرات طوال الخدمة، مع مراعاة قانون الطفل. يجب التحقق من حجم المنشأة والمدة وسجل الإجازات.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; نص مواد إصدار قانون العمل رقم 14 لسنة 2025؛ يلزم مطابقة صورة الجريدة الرسمية (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 57؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 57؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة نصية لمواد الإصدار 2–11، وليست بديلاً عن مطابقة الجريدة الرسمية.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 55–74؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق
-- المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة
-- لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري
-- حقوق إعادة الاستخدام التجاري غير محسومة
+- تقرير استحقاق الإجازة دون أجر دون فحص الشروط وسجل الإجازات وقانون الطفل
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** final determination of transitional deadlines or case disposition until official text and case dates are checked.
+**Not usable for:** undefined.
 
-### 244. EG-LABOUR-14-2025-PROMULGATION-ART-5-PROMULGATION-INDUSTRIAL-LICENSING-LAW-SAVINGS
+### 244. EG-LABOUR-14-2025-ART-58-WOMAN-TERMINATION-MARRIAGE-PREGNANCY-CHILDBIRTH
 
-**Question:** هل يلغي قانون العمل أحكام قانون تراخيص المنشآت الصناعية؟
+**Question:** هل يجوز للعاملة إنهاء عقدها بسبب الزواج أو الحمل أو الإنجاب؟
 
-**Pinpoint:** مواد إصدار القانون رقم 14 لسنة 2025, المادة 5, Official Gazette page pinpoint not verified.
+**Pinpoint:** الكتاب الثاني — علاقات العمل الفردية, المادة 58, printed Gazette page 32 (PDF page index 30).
 
 **Provisional summary (Arabic):**
 
-تقرر المادة الخامسة أن أحكام قانون العمل والقانون المرافق لا تخل بأحكام قانون تيسير إجراءات منح تراخيص المنشآت الصناعية رقم 15 لسنة 2017. يجب تطبيق النظامين معاً بحسب موضوع الترخيص دون افتراض إلغاء أحدهما.
+تجيز المادة 58 للعاملة إنهاء عقد العمل بسبب الزواج أو الحمل أو الإنجاب بشرط إخطار صاحب العمل كتابة خلال ثلاثة أشهر من التاريخ المحدد في النص بحسب الحالة، مع عدم المساس بحقوقها بموجب قانون العمل والتأمينات الاجتماعية. يلزم تحديد الواقعة والتاريخ وطريقة الإخطار قبل حساب الميعاد.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; نص مواد إصدار قانون العمل رقم 14 لسنة 2025؛ يلزم مطابقة صورة الجريدة الرسمية (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 58؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 58؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة نصية لمواد الإصدار 2–11، وليست بديلاً عن مطابقة الجريدة الرسمية.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 55–74؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق
-- المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة
-- لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري
-- حقوق إعادة الاستخدام التجاري غير محسومة
+- حساب الميعاد أو تقرير أثر الإنهاء دون مستندات وتحديد الواقعة القانونية
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** final determination of transitional deadlines or case disposition until official text and case dates are checked.
+**Not usable for:** undefined.
 
-### 245. EG-LABOUR-14-2025-PROMULGATION-ART-6-PROMULGATION-TRANSITIONAL-PROFESSION-LICENSING
+### 245. EG-LABOUR-14-2025-ART-59-WOMEN-EMPLOYMENT-RULES-AND-FLEXIBLE-WORK
 
-**Question:** ما المهل الانتقالية لتوفيق أوضاع ترخيص المهن والحرف والتشغيل؟
+**Question:** ما الذي يجب أن يعلنه صاحب العمل بشأن نظام تشغيل النساء؟
 
-**Pinpoint:** مواد إصدار القانون رقم 14 لسنة 2025, المادة 6, Official Gazette page pinpoint not verified.
+**Pinpoint:** الكتاب الثاني — علاقات العمل الفردية, المادة 59, printed Gazette page 32 (PDF page index 30).
 
 **Provisional summary (Arabic):**
 
-تجيز المادة السادسة مؤقتاً تشغيل العمال دون ترخيص مزاولة المهنة أو الحرفة المشار إليه بالمادة 27، على أن توفق الأوضاع خلال مدة لا تجاوز ثلاث سنوات من صدور القرارات المنظمة، مع جواز مدها ضمن الحد الإجمالي الوارد بالنص، وإعفاء من عمل لدى صاحب العمل أكثر من سنة قبل صدور القانون. كما تلزم الجهات المشار إليها بالمادتين 22 و41 بتوفيق أوضاعها خلال سنة من بدء العمل مع إمكان المد وفق النص. يجب التحقق من القرارات وتواريخ صدورها والتمديدات.
+تلزم المادة 59 صاحب العمل الذي يشغل عاملة أو أكثر بتعليق نسخة من نظام تشغيل النساء في أماكن العمل أو تجمع العمال، على أن يتضمن النظام قواعد ومواعيد العمل المرن أو عن بعد للمرأة التي ترعى أطفالاً ذوي إعاقة أو أقزام. يلزم الرجوع إلى النظام والقرارات التنظيمية السارية.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; نص مواد إصدار قانون العمل رقم 14 لسنة 2025؛ يلزم مطابقة صورة الجريدة الرسمية (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 59؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 59؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة نصية لمواد الإصدار 2–11، وليست بديلاً عن مطابقة الجريدة الرسمية.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 55–74؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق
-- المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة
-- لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري
-- حقوق إعادة الاستخدام التجاري غير محسومة
+- تحديد مضمون نظام التشغيل أو استحقاق ترتيب مرن دون مراجعة النص والقرارات
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** final determination of transitional deadlines or case disposition until official text and case dates are checked.
+**Not usable for:** undefined.
 
-### 246. EG-LABOUR-14-2025-PROMULGATION-ART-7-PROMULGATION-TRANSFER-IRREGULAR-WORKER-FUNDS
+### 246. EG-LABOUR-14-2025-ART-60-WORKPLACE-CHILDCARE-100-WOMEN
 
-**Question:** إلى أين تؤول أموال حسابات الرعاية الاجتماعية والصحية للعمالة غير المنتظمة؟
+**Question:** متى يجب توفير دار حضانة للعاملات؟
 
-**Pinpoint:** مواد إصدار القانون رقم 14 لسنة 2025, المادة 7, Official Gazette page pinpoint not verified.
+**Pinpoint:** الكتاب الثاني — علاقات العمل الفردية, المادة 60, printed Gazette page 32 (PDF page index 30).
 
 **Provisional summary (Arabic):**
 
-تقرر المادة السابعة انتقال الأموال النقدية والعينية والحقوق والالتزامات والموارد الخاصة بحسابات الرعاية الاجتماعية والصحية للعمالة غير المنتظمة المنشأة بوزارة العمل ومديرياتها إلى صندوق إعانات الطوارئ والخدمات الاجتماعية والصحية للعمالة غير المنتظمة المنشأ وفق القانون المرافق. التفاصيل المحاسبية والتنفيذية تحتاج إلى قرارات وسجلات الصندوق.
+تلزم المادة 60 صاحب العمل الذي يستخدم مائة عاملة فأكثر في مكان واحد بإنشاء دار حضانة أو إسناد رعاية أطفال العاملات إلى دار حضانة. كما تلزم المنشآت الواقعة في منطقة واحدة والتي تستخدم كل منها أقل من مائة عاملة بالاشتراك في تنفيذ الالتزام، مع إجازة تحمل تكاليف الرعاية وفق الضوابط الوزارية. يلزم التحقق من العدد والموقع والقرار التنفيذي.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; نص مواد إصدار قانون العمل رقم 14 لسنة 2025؛ يلزم مطابقة صورة الجريدة الرسمية (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 60؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 60؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة نصية لمواد الإصدار 2–11، وليست بديلاً عن مطابقة الجريدة الرسمية.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 55–74؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق
-- المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة
-- لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري
-- حقوق إعادة الاستخدام التجاري غير محسومة
+- تحديد الالتزام بالحضانة دون حساب العاملات والموقع والقرار التنفيذي
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** final determination of transitional deadlines or case disposition until official text and case dates are checked.
+**Not usable for:** undefined.
 
-### 247. EG-LABOUR-14-2025-PROMULGATION-ART-8-PROMULGATION-EMPLOYER-EMPLOYEE-ROSTER-DEADLINE
+### 247. EG-LABOUR-14-2025-ART-61-CHILD-LABOUR-CHAPTER-CHILD-DEFINITION
 
-**Question:** ما البيان الذي يجب على المنشأة تقديمه خلال 30 يوماً؟
+**Question:** ما السن الذي يعتبر عنده الشخص طفلاً لأغراض قانون العمل؟
 
-**Pinpoint:** مواد إصدار القانون رقم 14 لسنة 2025, المادة 8, Official Gazette page pinpoint not verified.
+**Pinpoint:** الكتاب الثاني — علاقات العمل الفردية, المادة 61, printed Gazette page 33 (PDF page index 31).
 
 **Provisional summary (Arabic):**
 
-تلزم المادة الثامنة المنشآت الخاضعة للقانون بإرسال بيان مفصل إلى الوزارة المختصة خلال ثلاثين يوماً من تاريخ العمل به، يشمل عدد العمال وجنسياتهم وأعمارهم ومؤهلاتهم ومهنهم وأنواعهم والأجور التي يتقاضونها. لتقييم مخالفة تاريخية يلزم تحديد تاريخ بدء السريان وأي قرارات أو تمديدات رسمية.
+تحيل المادة 61 إلى قانون الطفل فيما لم يرد به نص خاص، وتعتبر طفلاً كل من لم يبلغ ثماني عشرة سنة لأغراض قانون العمل. يجب قراءة هذا التعريف مع الأحكام الخاصة بسن التشغيل والتدريب والاستثناءات الواردة في المواد التالية.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; نص مواد إصدار قانون العمل رقم 14 لسنة 2025؛ يلزم مطابقة صورة الجريدة الرسمية (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 61؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 61؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة نصية لمواد الإصدار 2–11، وليست بديلاً عن مطابقة الجريدة الرسمية.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 55–74؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق
-- المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة
-- لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري
-- حقوق إعادة الاستخدام التجاري غير محسومة
+- تقرير جواز تشغيل طفل أو تدريبه اعتماداً على التعريف وحده دون بقية الأحكام
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** final determination of transitional deadlines or case disposition until official text and case dates are checked.
+**Not usable for:** undefined.
 
-### 248. EG-LABOUR-14-2025-PROMULGATION-ART-9-PROMULGATION-TRANSFER-PENDING-LABOUR-CASES
+### 248. EG-LABOUR-14-2025-ART-62-CHILD-MINIMUM-EMPLOYMENT-AGE
 
-**Question:** كيف تُعامل الدعاوى القائمة التي أصبحت من اختصاص المحاكم العمالية المتخصصة؟
+**Question:** ما الحد الأدنى لسن تشغيل الأطفال وتدريبهم؟
 
-**Pinpoint:** مواد إصدار القانون رقم 14 لسنة 2025, المادة 9, Official Gazette page pinpoint not verified.
+**Pinpoint:** الكتاب الثاني — علاقات العمل الفردية, المادة 62, printed Gazette page 33 (PDF page index 31).
 
 **Provisional summary (Arabic):**
 
-توجب المادة التاسعة إحالة المحاكم من تلقاء نفسها للمنازعات والدعاوى القائمة التي أصبحت من اختصاص المحاكم العمالية المتخصصة، بالحالة التي تكون عليها ودون رسوم، مع إعلان الخصوم وتكليفهم بالحضور. ويستثني النص الدعاوى المحجوزة للحكم أو المحدد لها جلسة للنطق به قبل بدء العمل بالقانون. يلزم فحص مرحلة الدعوى وتاريخ بدء نظام المحاكم.
+تحظر المادة 62 تشغيل الطفل قبل بلوغ خمس عشرة سنة، وتجيز تدريبه من سن أربع عشرة سنة بشرط ألا يعوق التعليم. ويلتزم صاحب العمل الذي يدرب طفلاً دون الخامسة عشرة بمنحه بطاقة تدريب تحمل صورته وتعتمدها الجهة الإدارية. يلزم مراجعة القرارات التنفيذية وقانون الطفل والحالة الفعلية.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; نص مواد إصدار قانون العمل رقم 14 لسنة 2025؛ يلزم مطابقة صورة الجريدة الرسمية (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 62؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 62؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة نصية لمواد الإصدار 2–11، وليست بديلاً عن مطابقة الجريدة الرسمية.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 55–74؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق
-- المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة
-- لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري
-- حقوق إعادة الاستخدام التجاري غير محسومة
+- تقرير مشروعية عمل أو تدريب طفل دون التحقق من العمر والتعليم والبطاقة والقرارات
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** final determination of transitional deadlines or case disposition until official text and case dates are checked.
+**Not usable for:** undefined.
 
-### 249. EG-LABOUR-14-2025-PROMULGATION-ART-10-PROMULGATION-APPEALS-TRANSITION
+### 249. EG-LABOUR-14-2025-ART-63-CHILD-EMPLOYMENT-RULES-IMPLEMENTING-DECISION
 
-**Question:** من يستمر في نظر الطعون القائمة عند بدء نظام المحاكم العمالية؟
+**Question:** من يحدد ظروف وقواعد تشغيل الأطفال وتدريبهم؟
 
-**Pinpoint:** مواد إصدار القانون رقم 14 لسنة 2025, المادة 10, Official Gazette page pinpoint not verified.
+**Pinpoint:** الكتاب الثاني — علاقات العمل الفردية, المادة 63, printed Gazette page 33 (PDF page index 31).
 
 **Provisional summary (Arabic):**
 
-تقرر المادة العاشرة استمرار محكمة النقض ومحاكم الاستئناف في نظر الطعون على الأحكام الصادرة في المنازعات المشار إليها بالمادة التاسعة إذا رفعت قبل تاريخ العمل بنظام المحاكم العمالية المتخصصة وفق المادة 13. التطبيق يتطلب التحقق من تاريخ رفع الطعن ونوع الحكم والمرحلة الإجرائية.
+تجعل المادة 63 تشغيل الأطفال أو تدريبهم وتحديد ظروفه وقواعده وإجراءاته خاضعاً لقرار من الوزير المختص بالتنسيق مع المجلس القومي للطفولة والأمومة. لا يكفي نص المادة وحده لتحديد قائمة الأعمال المسموح بها أو أوقات العمل؛ يلزم الحصول على القرار الساري.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; نص مواد إصدار قانون العمل رقم 14 لسنة 2025؛ يلزم مطابقة صورة الجريدة الرسمية (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 63؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 63؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة نصية لمواد الإصدار 2–11، وليست بديلاً عن مطابقة الجريدة الرسمية.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 55–74؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق
-- المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة
-- لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري
-- حقوق إعادة الاستخدام التجاري غير محسومة
+- تحديد الأعمال المسموح بها أو إجراءات التشغيل دون القرار التنفيذي
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** final determination of transitional deadlines or case disposition until official text and case dates are checked.
+**Not usable for:** undefined.
 
-### 250. EG-LABOUR-14-2025-PROMULGATION-ART-11-PROMULGATION-IMPLEMENTING-DECISIONS-TRANSITION
+### 250. EG-LABOUR-14-2025-ART-64-CHILD-HAZARDOUS-WORK-PROHIBITION
 
-**Question:** ما مصير القرارات التنفيذية السابقة وما مهلة إصدار القرارات الجديدة؟
+**Question:** هل يحظر تشغيل الأطفال في أعمال معينة؟
 
-**Pinpoint:** مواد إصدار القانون رقم 14 لسنة 2025, المادة 11, Official Gazette page pinpoint not verified.
+**Pinpoint:** الكتاب الثاني — علاقات العمل الفردية, المادة 64, printed Gazette page 33 (PDF page index 31).
 
 **Provisional summary (Arabic):**
 
-تلزم المادة الحادية عشرة الوزير المختص بإصدار القرارات المنفذة للقانون والقانون المرافق خلال تسعين يوماً من تاريخ بدء العمل، وتُبقي القرارات السارية قائمة إلى أن تصدر القرارات الجديدة بالقدر الذي لا يتعارض مع القانون. كما تصدر قرارات وزير العدل اللازمة للمحاكم العمالية المتخصصة. تحديد القرار الواجب التطبيق يتطلب مقارنة موضوعه وتاريخه ومضمونه بالنص الجديد.
+تتضمن المادة 64 حظراً على تشغيل الأطفال في الأعمال والصناعات والمهن الخطرة أو الضارة بصحتهم وسلامتهم، وفق التفصيل والإحالة الواردة بالنص والقرارات التنفيذية. يجب التحقق من قائمة الأعمال المحظورة السارية وطبيعة العمل الفعلية قبل التقييم.
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; نص مواد إصدار قانون العمل رقم 14 لسنة 2025؛ يلزم مطابقة صورة الجريدة الرسمية (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 64؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 64؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
 
 **Cross-checks:**
 
-- [public secondary transcription](https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر) — مقارنة نصية لمواد الإصدار 2–11، وليست بديلاً عن مطابقة الجريدة الرسمية.
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 55–74؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
 
 **Limitations:**
 
-- الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق
-- المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة
-- لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري
-- حقوق إعادة الاستخدام التجاري غير محسومة
+- تصنيف وظيفة بعينها كعمل محظور دون النص الكامل والقائمة التنفيذية
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
 
-**Review state:** `provisional_secondary_crosscheck`.
+**Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
-**Not usable for:** final determination of transitional deadlines or case disposition until official text and case dates are checked.
+**Not usable for:** undefined.
+
+### 251. EG-LABOUR-14-2025-ART-65-CHILD-WORKING-HOURS-AND-NIGHT-WORK
+
+**Question:** ما حدود ساعات عمل الطفل والراحة والعمل الليلي؟
+
+**Pinpoint:** الكتاب الثاني — علاقات العمل الفردية, المادة 65, printed Gazette page 33 (PDF page index 31).
+
+**Provisional summary (Arabic):**
+
+تحظر المادة 65 تشغيل الطفل أكثر من ست ساعات يومياً، وتوجب فترات طعام وراحة لا يقل مجموعها عن ساعة وألا يعمل أكثر من أربع ساعات متصلة، وتحظر العمل الإضافي وأيام الراحة والعطلات الرسمية، كما تحظر تشغيله بين السابعة مساءً والسابعة صباحاً. يلزم التحقق من سجل الدوام والقرارات السارية.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 65؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 65؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 55–74؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- حساب المخالفة دون سجلات الدوام وفترات الراحة والسن
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 252. EG-LABOUR-14-2025-ART-66-CHILD-EMPLOYMENT-RECORDS-AND-NOTICES
+
+**Question:** ما السجلات والإخطارات التي يجب على صاحب العمل الاحتفاظ بها بشأن الأطفال؟
+
+**Pinpoint:** الكتاب الثاني — علاقات العمل الفردية, المادة 66, printed Gazette page 33 (PDF page index 31).
+
+**Provisional summary (Arabic):**
+
+تلزم المادة 66 صاحب العمل الذي يشغل طفلاً بتعليق الأحكام الخاصة بتشغيل الأطفال، وإعداد كشف معتمد بساعات العمل والراحة، وإبلاغ الجهة الإدارية بأسماء الأطفال وأعمالهم والمشرفين عليهم، وتوفير سكن منفصل وفق الضوابط مع حظر مبيت الطفل في مكان العمل. يلزم مراجعة السجلات والقرارات التنفيذية.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 66؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 66؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 55–74؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تقرير الامتثال دون السجلات والإخطارات وظروف السكن
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 253. EG-LABOUR-14-2025-ART-67-CHILDREN-WITH-DISABILITIES-TRAINING-AND-PLACEMENT
+
+**Question:** ما دور جهات التأهيل والجهة الإدارية في تشغيل الأطفال ذوي الإعاقة؟
+
+**Pinpoint:** الكتاب الثاني — علاقات العمل الفردية, المادة 67, printed Gazette page 33 (PDF page index 31).
+
+**Provisional summary (Arabic):**
+
+تنظم المادة 67 إخطار الجهة الإدارية بتأهيل الطفل ذي الإعاقة وقيده في سجل خاص وتسليم شهادة قيد دون مقابل، وتلزم الجهة الإدارية بالمساعدة في إلحاقه بأعمال تناسب عمره وكفايته ومحل إقامته وإخطار مديرية التضامن ببيانات شهرية. يلزم فحص القيد والتأهيل وقواعد قانون الطفل.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 67؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 67؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 55–74؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تقرير أهلية طفل لوظيفة أو التزام جهة دون ملف التأهيل والقرارات ذات الصلة
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 254. EG-LABOUR-14-2025-ART-68-PARENTS-PROHIBITED-CHILD-EMPLOYMENT
+
+**Question:** هل يحظر على الوالدين تشغيل الطفل بالمخالفة للقانون؟
+
+**Pinpoint:** الكتاب الثاني — علاقات العمل الفردية, المادة 68, printed Gazette page 33 (PDF page index 31).
+
+**Provisional summary (Arabic):**
+
+تحظر المادة 68 على الأبوين أو متولي أمر الطفل تشغيله بالمخالفة لقانون العمل والقرارات التنفيذية الصادرة له. تحديد المخالفة يتطلب تحديد الفعل والعمر وطبيعة العمل والنصوص التنفيذية المنطبقة.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 68؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 68؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 55–74؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تقرير مسؤولية الوالدين دون إثبات الفعل والنص المنطبق
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 255. EG-LABOUR-14-2025-ART-69-FOREIGN-WORKER-CHAPTER-DEFINITION
+
+**Question:** ما المقصود بالعمل في أحكام تشغيل الأجانب؟
+
+**Pinpoint:** الكتاب الثاني — علاقات العمل الفردية, المادة 69, printed Gazette page 34 (PDF page index 32).
+
+**Provisional summary (Arabic):**
+
+تعرف المادة 69 العمل لأغراض فصل تشغيل الأجانب بأنه كل عمل تابع أو حر أو لحساب النفس أو مهنة أو صنعة أو حرفة، بما في ذلك العمل في الخدمة المنزلية. يجب تطبيق هذا التعريف مع الاستثناءات والقواعد الخاصة في الفصل والقوانين الأخرى.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 69؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 69؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 55–74؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تقرير احتياج أجنبي إلى ترخيص أو استثناء دون قراءة كامل الفصل والقرارات
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 256. EG-LABOUR-14-2025-ART-70-FOREIGN-WORKERS-SCOPE-AND-RECIPROCITY
+
+**Question:** على أي جهات يسري تنظيم عمل الأجانب؟
+
+**Pinpoint:** الكتاب الثاني — علاقات العمل الفردية, المادة 70, printed Gazette page 34 (PDF page index 32).
+
+**Provisional summary (Arabic):**
+
+تخضع المادة 70 عمل الأجانب في منشآت القطاع الخاص والقطاع العام وقطاع الأعمال العام والهيئات العامة والإدارة المحلية والجهاز الإداري للدولة لأحكام الفصل، مع مراعاة المعاملة بالمثل. وتترك للوزير تحديد النسبة القصوى والاستثناءات والمهن المحظورة، مع جواز إعفاء من شرط المعاملة بالمثل. يلزم مراجعة القرارات الحالية وجنسية العامل والوظيفة.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 70؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 70؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 55–74؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تحديد النسبة أو المهنة المحظورة أو شرط المعاملة بالمثل دون القرارات السارية
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 257. EG-LABOUR-14-2025-ART-71-FOREIGN-WORKER-PERMIT-AND-EMPLOYER-DUTY
+
+**Question:** ما شروط عمل الأجنبي وترخيصه في مصر؟
+
+**Pinpoint:** الكتاب الثاني — علاقات العمل الفردية, المادة 71, printed Gazette page 34 (PDF page index 32).
+
+**Provisional summary (Arabic):**
+
+تحظر المادة 71 عمل الأجنبي داخل البلاد دون ترخيص من الوزارة المختصة مع التصريح بدخول البلاد والإقامة بقصد العمل، وتحظر على صاحب العمل تشغيله دون الترخيص، مع قواعد للإعفاء والإخطار خلال سبعة أيام عند تشغيل أجنبي معفى. الرسوم والشروط وحالات الإلغاء يحددها قرار الوزير؛ يجب التحقق من الترخيص والقرار الساري.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 71؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 71؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 55–74؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تحديد مشروعية تشغيل أجنبي أو الرسوم دون الترخيص والقرارات والوثائق
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 258. EG-LABOUR-14-2025-ART-72-FOREIGN-WORKER-ABSENCE-NOTICE
+
+**Question:** ما واجب صاحب العمل عند غياب العامل الأجنبي خمسة عشر يوماً متصلة؟
+
+**Pinpoint:** الكتاب الثاني — علاقات العمل الفردية, المادة 72, printed Gazette page 34 (PDF page index 32).
+
+**Provisional summary (Arabic):**
+
+تلزم المادة 72 صاحب العمل بإبلاغ الجهة الإدارية والسلطات المختصة إذا غاب العامل الأجنبي خمسة عشر يوماً متصلة دون مسوغ قانوني يجيز ذلك، وفق الضوابط والإجراءات التي يحددها الوزير. يلزم التحقق من أيام الغياب وأي مسوغ قانوني والقرار التنفيذي.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 72؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 72؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 55–74؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- حساب مهلة الإبلاغ أو تقرير غياب بلا مسوغ دون سجلات الحضور والمستندات
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 259. EG-LABOUR-14-2025-ART-73-FOREIGN-WORKER-INVESTMENT-LAW-RULES
+
+**Question:** هل توجد قواعد خاصة لترخيص الأجانب الخاضعين لقانون الاستثمار؟
+
+**Pinpoint:** الكتاب الثاني — علاقات العمل الفردية, المادة 73, printed Gazette page 34 (PDF page index 32).
+
+**Provisional summary (Arabic):**
+
+تجيز المادة 73، مع مراعاة قانون الاستثمار، للوزير المختص بالاتفاق مع الوزير المعني بالاستثمار وضع قواعد وضوابط لترخيص عمل الأجانب المخاطبين بقانون الاستثمار. لا يمكن تحديد الاستثناء أو الإجراء من المادة وحدها دون القرار والقواعد الخاصة بالاستثمار.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 73؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 73؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 55–74؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- افتراض إعفاء أو مسار ترخيص خاص دون قرار تنفيذي وفحص انطباق قانون الاستثمار
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 260. EG-LABOUR-14-2025-ART-74-FOREIGN-WORKER-RETURN-TRAVEL-COSTS
+
+**Question:** من يتحمل تكلفة إعادة العامل الأجنبي بعد انتهاء علاقة العمل؟
+
+**Pinpoint:** الكتاب الثاني — علاقات العمل الفردية, المادة 74, printed Gazette page 34 (PDF page index 32).
+
+**Provisional summary (Arabic):**
+
+تلزم المادة 74 صاحب العمل بإعادة العامل الأجنبي إلى الدولة التي استقدم منها على نفقته عند انتهاء علاقة العمل، ما لم ينص عقد العمل على خلاف ذلك، وتترك الحالات والمواعيد والإجراءات لقرار الوزير. يلزم فحص العقد وسبب انتهاء العلاقة والقرار التنفيذي.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 74؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 74؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 55–74؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تحديد الاستحقاق النهائي أو التكلفة دون العقد والقرار والوقائع
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 261. EG-LABOUR-14-2025-ART-75-IRREGULAR-AND-INFORMAL-WORKER-PROTECTION
+
+**Question:** ما أهداف تنظيم العمالة غير المنتظمة والقطاع غير الرسمي؟
+
+**Pinpoint:** الكتاب الثاني — علاقات العمل الفردية / العمالة غير المنتظمة, المادة 75, printed Gazette page 35 (PDF page index 33).
+
+**Provisional summary (Arabic):**
+
+تهدف المادة 75 إلى تنظيم ودعم تشغيل العمالة غير المنتظمة والعاملين في القطاع غير الرسمي وتنمية مهاراتهم وحمايتهم وتقديم الدعم أثناء التعطل. وتقرر سريان الحقوق والواجبات القانونية على من يعمل منهم لدى أصحاب الأعمال، مع إحالة شروط وظروف عملهم إلى قرار وزاري يراعي طبيعة العمل وفتراته.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 75؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 75؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 75–88؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تحديد شروط تشغيل فئة بعينها دون القرار الوزاري وطبيعة العمل
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 262. EG-LABOUR-14-2025-ART-76-IRREGULAR-WORKER-POLICY-AND-CATEGORIES
+
+**Question:** من يضع سياسة تشغيل العمالة غير المنتظمة وما الفئات التي تشملها؟
+
+**Pinpoint:** الكتاب الثاني — علاقات العمل الفردية / العمالة غير المنتظمة, المادة 76, printed Gazette page 35 (PDF page index 33).
+
+**Provisional summary (Arabic):**
+
+تتولى الوزارة المختصة رسم سياسة ومتابعة تشغيل العمالة غير المنتظمة، وعلى الأخص العمالة الزراعية الموسمية وعمال المقاولات والبحر والمناجم والمحاجر. ويجوز للوزير تحديد الفئات بالتشاور مع الجهات والمنظمات المعنية. يلزم الرجوع إلى القرارات المحددة للفئات السارية.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 76؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 76؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 75–88؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تصنيف عامل ضمن فئة محددة دون القرارات والوقائع
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 263. EG-LABOUR-14-2025-ART-77-IRREGULAR-WORKER-REGISTRY-AND-DATABASE
+
+**Question:** ما واجب الجهة الإدارية في حصر العمالة غير المنتظمة؟
+
+**Pinpoint:** الكتاب الثاني — علاقات العمل الفردية / العمالة غير المنتظمة, المادة 77, printed Gazette page 36 (PDF page index 34).
+
+**Provisional summary (Arabic):**
+
+تلزم المادة 77 الجهة الإدارية بحصر وقيد العمالة غير المنتظمة حسب الفئات في سجلات ورقية أو إلكترونية، وإعداد قواعد بيانات قومية وربطها بالجهات المعنية، مع إحالة القواعد والإجراءات إلى قرار الوزير. يجب التحقق من إجراءات التسجيل الحالية والمستندات المطلوبة.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 77؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 77؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 75–88؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- ضمان التسجيل أو استحقاق منفعة دون ملف القيد والقرار التنفيذي
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 264. EG-LABOUR-14-2025-ART-78-IRREGULAR-WORKER-EMERGENCY-SERVICES-FUND
+
+**Question:** ما صندوق إعانات الطوارئ والخدمات الاجتماعية والصحية للعمالة غير المنتظمة؟
+
+**Pinpoint:** الكتاب الثاني — علاقات العمل الفردية / العمالة غير المنتظمة, المادة 78, printed Gazette page 36 (PDF page index 34).
+
+**Provisional summary (Arabic):**
+
+تنشئ المادة 78 صندوقاً عاماً ذا شخصية اعتبارية لحماية وتشغيل العمالة غير المنتظمة، مقره الرئيسي القاهرة ويجوز أن ينشئ فروعاً بالمحافظات. وينظم قرار رئيس مجلس الوزراء تشكيل مجلس إدارته واختصاصاته ونظامه الأساسي ومحاسبته. يلزم التحقق من القرارات التنظيمية الحالية والفروع والخدمات المتاحة.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 78؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 78؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 75–88؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تأكيد خدمة أو فرع أو إجراء تسجيل دون القرارات والتنظيم الحالي
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 265. EG-LABOUR-14-2025-ART-79-IRREGULAR-WORKER-FUND-BENEFITS
+
+**Question:** ما أوجه الدعم التي يقدمها صندوق العمالة غير المنتظمة؟
+
+**Pinpoint:** الكتاب الثاني — علاقات العمل الفردية / العمالة غير المنتظمة, المادة 79, printed Gazette page 37 (PDF page index 35).
+
+**Provisional summary (Arabic):**
+
+تعدد المادة 79 أوجه اختصاص الصندوق، ومنها إعانات الطوارئ في الأزمات والكوارث والأوبئة والتوقف المؤقت، والخدمات الاجتماعية والصحية والعلاجية، والمساهمة في اشتراكات التأمين، والتشغيل والتدريب والأدوات والنقل والإقامة في المواقع النائية، والتوعية والمنصات الرقمية والمشروعات التنموية. الاستحقاق الفعلي يتوقف على اللوائح والموارد وشروط البرنامج.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 79؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 79؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 75–88؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- ضمان إعانة أو خدمة محددة دون اللائحة وشروط الاستحقاق والموارد
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 266. EG-LABOUR-14-2025-ART-80-IRREGULAR-WORKER-FUND-REGULATIONS
+
+**Question:** من يحدد اللوائح المالية والخدمات وإعانات الطوارئ للصندوق؟
+
+**Pinpoint:** الكتاب الثاني — علاقات العمل الفردية / العمالة غير المنتظمة, المادة 80, printed Gazette page 37 (PDF page index 35).
+
+**Provisional summary (Arabic):**
+
+تحيل المادة 80 إلى الوزير المختص، بالتشاور مع الوزراء المعنيين، إصدار اللوائح المالية والإدارية للصندوق ونظام تحصيل موارده ولائحة خدماته وقيمة إعانات الطوارئ وشروطها ومدتها وحالات وقفها ومستندات إثباتها وآليات صرفها. لا يمكن تحديد مبلغ أو استحقاق من المادة وحدها دون اللائحة السارية.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 80؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 80؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 75–88؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- حساب إعانة أو تقرير استحقاق دون اللائحة والمستندات والقرار الحالي
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 267. EG-LABOUR-14-2025-ART-81-EMERGENCY-AID-BY-PRESIDENTIAL-DECISION
+
+**Question:** هل يمكن صرف إعانات طوارئ عاجلة للعمالة غير المنتظمة؟
+
+**Pinpoint:** الكتاب الثاني — علاقات العمل الفردية / العمالة غير المنتظمة, المادة 81, printed Gazette page 38 (PDF page index 36).
+
+**Provisional summary (Arabic):**
+
+تجيز المادة 81 صدور قرار من رئيس الجمهورية في حالات الطوارئ العامة بصرف إعانات عاجلة لبعض فئات العمالة غير المنتظمة أو أسرهم في الحالات التي يحددها القرار. النص لا ينشئ وحده استحقاقاً تلقائياً؛ يلزم التحقق من وجود القرار ونطاقه وشروطه.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 81؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 81؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 75–88؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تقرير استحقاق إعانة طارئة دون القرار الرئاسي المنطبق وشروطه
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 268. EG-LABOUR-14-2025-ART-82-IRREGULAR-WORKER-FUND-REVENUE-SOURCES
+
+**Question:** ما مصادر تمويل صندوق العمالة غير المنتظمة؟
+
+**Pinpoint:** الكتاب الثاني — علاقات العمل الفردية / العمالة غير المنتظمة, المادة 82, printed Gazette page 38 (PDF page index 36).
+
+**Provisional summary (Arabic):**
+
+تحدد المادة 82 مصادر متعددة للصندوق، منها نسب من الأجور الفعلية أو المقدرة في قطاعات معينة، واشتراكات لبعض الفئات، ونسبة من مبيعات منتجات زراعية تشتريها الدولة، ورسوم محددة، وأموال الحسابات السابقة والتبرعات وعوائد الخدمات والاستثمار. يحدد قرار من رئيس مجلس إدارة الصندوق فئات الرسوم والاشتراكات ومواعيد الوفاء بها ضمن الحدود القانونية.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 82؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 82؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 75–88؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- حساب مبلغ مستحق على جهة أو عامل دون تحديد المصدر والقطاع والقرار المنظم
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 269. EG-LABOUR-14-2025-ART-83-IRREGULAR-WORKER-FUND-ACCOUNTING-AND-AUDIT
+
+**Question:** كيف تدار حسابات صندوق العمالة غير المنتظمة وتخضع للرقابة؟
+
+**Pinpoint:** الكتاب الثاني — علاقات العمل الفردية / العمالة غير المنتظمة, المادة 83, printed Gazette page 39 (PDF page index 37).
+
+**Provisional summary (Arabic):**
+
+توجب المادة 83 أن يكون للصندوق حساب مصرفي خاص وموازنة مستقلة وقوائم مالية سنوية، وتخضع أمواله لرقابة الجهاز المركزي للمحاسبات ويرحل فائض الأموال من سنة مالية إلى أخرى. التفاصيل المحاسبية الفعلية تتطلب اللائحة المالية والبيانات الرسمية للصندوق.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 83؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 83؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 75–88؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تقرير سلامة حسابات أو إجراء مالي دون القوائم واللائحة المالية
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 270. EG-LABOUR-14-2025-ART-84-IRREGULAR-WORKER-FUND-PUBLIC-MONEY-ENFORCEMENT
+
+**Question:** ما الطبيعة القانونية لأموال صندوق العمالة غير المنتظمة؟
+
+**Pinpoint:** الكتاب الثاني — علاقات العمل الفردية / العمالة غير المنتظمة, المادة 84, printed Gazette page 40 (PDF page index 38).
+
+**Provisional summary (Arabic):**
+
+تعتبر المادة 84 أموال الصندوق أموالاً عامة، خصوصاً لأغراض تطبيق قانون العقوبات، وتجيز للصندوق إجراءات التنفيذ المباشر والحجز الإداري وفق قانون الحجز الإداري المشار إليه. تطبيق هذه السلطات في حالة بعينها يتطلب تحديد السند والمبلغ والإجراء والجهة المختصة.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 84؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 84؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 75–88؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تقرير صحة حجز أو تنفيذ مباشر دون السند القانوني والإجراءات والمستندات
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 271. EG-LABOUR-14-2025-ART-85-IRREGULAR-WORKER-FUND-ADMINISTRATION
+
+**Question:** من ينفذ أحكام باب العمالة غير المنتظمة وقرارات الصندوق؟
+
+**Pinpoint:** الكتاب الثاني — علاقات العمل الفردية / العمالة غير المنتظمة, المادة 85, printed Gazette page 41 (PDF page index 39).
+
+**Provisional summary (Arabic):**
+
+تلزم المادة 85 العاملين بالوزارة المختصة ومديرياتها، كل في حدود اختصاصه، بتنفيذ أحكام الباب ولوائح وقرارات مجلس إدارة الصندوق بالتنسيق مع إدارة الصندوق. وتحيل قواعد وآليات التنسيق إلى قرار وزاري. يلزم الرجوع إلى القرار وتحديد الجهة المختصة محلياً.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 85؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 85؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 75–88؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تحديد جهة أو إجراء إداري محدد دون قرار التنسيق والاختصاص المحلي
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 272. EG-LABOUR-14-2025-ART-86-INDIVIDUAL-EMPLOYMENT-CONTRACT-SCOPE
+
+**Question:** متى تسري أحكام عقد العمل الفردي؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الفردية, المادة 86, printed Gazette page 42 (PDF page index 40).
+
+**Provisional summary (Arabic):**
+
+تسري أحكام الفصل وفق المادة 86 على العقد الذي يتعهد بمقتضاه العامل بالعمل لدى صاحب عمل تحت إدارته أو إشرافه لقاء أجر. تحديد وجود علاقة عمل في حالة متنازع عليها يتطلب فحص عناصر التبعية والأجر والوقائع والأدلة، لا الاكتفاء بتسمية العقد.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 86؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 86؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 75–88؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- حسم وجود علاقة عمل دون فحص عناصرها والوقائع والأدلة
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 273. EG-LABOUR-14-2025-ART-87-FIXED-TERM-AND-INDEFINITE-EMPLOYMENT-CONTRACTS
+
+**Question:** هل يمكن أن يكون عقد العمل محدد المدة أو غير محدد المدة؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الفردية, المادة 87, printed Gazette page 42 (PDF page index 40).
+
+**Provisional summary (Arabic):**
+
+تقرر المادة 87 أن عقد العمل الفردي يكون غير محدد المدة، أو محدد المدة إذا اقتضت طبيعة العمل ذلك، ويجوز باتفاق الطرفين تجديد العقد لمدد مماثلة. يجب قراءة المادة مع حالات اعتبار العقد غير محدد المدة في المادة 88 ومع شروط العقد والوقائع.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 87؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 87؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 75–88؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تصنيف العقد أو صحة التجديد دون فحص طبيعة العمل والنصوص المرتبطة
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 274. EG-LABOUR-14-2025-ART-88-CONVERSION-TO-INDEFINITE-TERM-CONTRACT
+
+**Question:** متى يعتبر عقد العمل غير محدد المدة منذ إبرامه؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل الفردية, المادة 88, printed Gazette page 42 (PDF page index 40).
+
+**Provisional summary (Arabic):**
+
+تعتبر المادة 88 عقد العمل غير محدد المدة منذ إبرامه إذا كان غير مكتوب، أو لم ينص على مدته، أو كان محدد المدة واستمر الطرفان في تنفيذه بعد انتهائها دون اتفاق مكتوب بينهما. يجب فحص العقد والمدة الفعلية واستمرار التنفيذ وأي اتفاق مكتوب لاحق.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 88؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 88؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 75–88؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تقرير نوع العقد دون مراجعة العقد وتاريخ انتهائه واستمرار العمل والاتفاقات اللاحقة
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 275. EG-LABOUR-14-2025-ART-97-NEW-WORK-PATTERN-EMPLOYMENT-RIGHTS
+
+**Question:** ما الحقوق التي يتمتع بها العاملون في أنماط العمل الجديدة؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل, المادة 97, printed Gazette page 46 (PDF page index 44).
+
+**Provisional summary (Arabic):**
+
+تقرر المادة 97 سريان قواعد علاقات العمل التقليدية على أنماط العمل الجديدة مع مراعاة طبيعة العمل وطريقة أدائه، وتؤكد الحقوق والواجبات ومنها الحماية الاجتماعية والضمان الاجتماعي والحد الأدنى للأجر والتدريب والمفاوضة الجماعية والحرية النقابية. يلزم فحص القرارات المنظمة لنمط العمل المحدد.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 97؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 97؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 97–116؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تحديد حق تفصيلي لنمط عمل دون مراجعة طبيعة العمل والقرارات المنظمة
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 276. EG-LABOUR-14-2025-ART-98-NEW-WORK-PATTERNS-MULTIPLE-EMPLOYERS
+
+**Question:** هل يجوز للعامل في أنماط العمل الجديدة العمل لدى أكثر من صاحب عمل؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل, المادة 98, printed Gazette page 46 (PDF page index 44).
+
+**Provisional summary (Arabic):**
+
+تجيز المادة 98 باتفاق الطرفين للعامل في أنماط العمل الجديدة العمل لدى أكثر من صاحب عمل مع التزامه بعدم إفشاء أسرار العمل، أو العمل لحسابه إلى جانب عمله لدى الغير. يجب فحص العقد والاتفاق وواجبات السرية وأي تعارض أو قواعد خاصة.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 98؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 98؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 97–116؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تقرير جواز عمل جانبي معين دون فحص الاتفاق والتزامات السرية والتعارض
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 277. EG-LABOUR-14-2025-ART-99-NEW-WORK-PATTERN-WRITTEN-CONTRACT-AND-PROOF
+
+**Question:** كيف تثبت علاقة العمل في أنماط العمل الجديدة؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل, المادة 99, printed Gazette page 46 (PDF page index 44).
+
+**Provisional summary (Arabic):**
+
+توجب المادة 99 أن تكون علاقة العمل في الأنماط الجديدة واضحة ومحددة بعقد مكتوب ورقياً أو إلكترونياً، وتجيز للعامل إثبات العلاقة بكافة طرق الإثبات. يلزم فحص العقد والسجلات والمراسلات وطبيعة العلاقة الفعلية.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 99؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 99؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 97–116؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- حسم وجود علاقة عمل أو كفاية دليل دون فحص الأدلة والعقد
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 278. EG-LABOUR-14-2025-ART-100-NEW-WORK-PATTERN-IMPLEMENTING-RULES
+
+**Question:** من ينظم أنماط العمل الجديدة ونماذج عقودها؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل, المادة 100, printed Gazette page 46 (PDF page index 44).
+
+**Provisional summary (Arabic):**
+
+تلزم المادة 100 الوزير المختص، بالتشاور مع المنظمات النقابية ومنظمات أصحاب الأعمال، بإصدار قرارات لتنظيم أنماط العمل الجديدة وصورها ونماذج العقود ولوائح العمل وطرق الإثبات وآليات حصول الطرفين على حقوقهما. يجب الرجوع إلى القرارات الصادرة فعلياً وعدم افتراض أن كل تفصيل ورد في مشروع أو إعلان أصبح نافذاً.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 100؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 100؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 97–116؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تقديم إجراء أو نموذج باعتباره ملزماً دون القرار التنفيذي الساري
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 279. EG-LABOUR-14-2025-ART-101-NATIONAL-WAGES-COUNCIL-COMPOSITION
+
+**Question:** كيف يشكل المجلس القومي للأجور؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل, المادة 101, printed Gazette page 47 (PDF page index 45).
+
+**Provisional summary (Arabic):**
+
+تنظم المادة 101 تشكيل المجلس القومي للأجور برئاسة الوزير المعني بالتخطيط والتنمية الاقتصادية والتعاون الدولي، وعضوية ممثلين حكوميين وجهات عامة ومنظمات أصحاب الأعمال والمنظمات النقابية، مع إمكان الاستعانة بخبراء دون صوت معدود. يجب التحقق من قرار التشكيل والأعضاء الحاليين قبل نسبة قرار للمجلس.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 101؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 101؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 97–116؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تحديد العضوية الحالية أو صحة قرار دون قرار التشكيل ومحاضر المجلس
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 280. EG-LABOUR-14-2025-ART-102-NATIONAL-WAGES-COUNCIL-COMPETENCIES
+
+**Question:** ما اختصاصات المجلس القومي للأجور؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل, المادة 102, printed Gazette page 47 (PDF page index 45).
+
+**Provisional summary (Arabic):**
+
+تعدد المادة 102 اختصاصات المجلس، ومنها تحديد الحد الأدنى للأجور على المستوى القومي، والحد الأدنى للعلاوة الدورية وقواعد صرفها، والنظر في طلبات أصحاب الأعمال بالتخفيض أو الإعفاء لأسباب اقتصادية ووضع معاييرها وإخطار الوزارات بالنتيجة. يجب الرجوع إلى قرارات المجلس الحالية وأي قواعد خاصة قبل حساب الأجر أو العلاوة.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 102؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 102؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 97–116؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تحديد حد أدنى أو إعفاء قائم دون أحدث قرار للمجلس وتاريخ سريانه
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 281. EG-LABOUR-14-2025-ART-103-NATIONAL-WAGES-COUNCIL-MEETINGS-AND-VOTING
+
+**Question:** ما دورية اجتماعات المجلس القومي للأجور وكيف تصدر قراراته؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل, المادة 103, printed Gazette page 47 (PDF page index 45).
+
+**Provisional summary (Arabic):**
+
+توجب المادة 103 دعوة المجلس للاجتماع مرة كل ستة أشهر على الأقل أو كلما دعت الحاجة، وتصح الاجتماعات بحضور الأغلبية وتصدر القرارات بأغلبية آراء الحاضرين، ويرجح جانب الرئيس عند التساوي. صحة قرار محدد تتطلب فحص الدعوة والحضور ومحضر التصويت.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 103؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 103؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 97–116؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- الطعن أو الاعتماد على قرار دون محضر الاجتماع والنصاب والتصويت
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 282. EG-LABOUR-14-2025-ART-104-NATIONAL-WAGES-COUNCIL-DECISION-COMPLIANCE
+
+**Question:** هل تلتزم المنشآت بقرارات المجلس القومي للأجور؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل, المادة 104, printed Gazette page 47 (PDF page index 45).
+
+**Provisional summary (Arabic):**
+
+تلزم المادة 104 المنشآت الخاضعة للقانون بتنفيذ قرارات المجلس القومي للأجور كل فيما يخصها. تحديد الحد المطبق على منشأة أو عامل يتطلب التحقق من نص القرار وتاريخ نفاذه ونطاقه الجغرافي والقطاعي وأي استثناءات.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 104؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 104؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 97–116؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تحديد أجر مستحق أو مخالفة دون أحدث قرار ونطاق انطباقه
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 283. EG-LABOUR-14-2025-ART-105-NATIONAL-WAGES-COUNCIL-INSPECTION-AND-PAYROLL-RECORDS
+
+**Question:** ما واجب التفتيش والمنشآت للتحقق من قرارات الأجور؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل, المادة 105, printed Gazette page 47 (PDF page index 45).
+
+**Provisional summary (Arabic):**
+
+توجب المادة 105 على أجهزة التفتيش إجراء تفتيش دوري للتحقق من تنفيذ قرارات المجلس القومي للأجور، وتلزم أصحاب الأعمال أو ممثليهم بإمساك سجلات ورقية أو إلكترونية تتضمن بيانات العاملين والأجر المستحق لكل عامل. يلزم فحص سجلات الأجر والقرار المعمول به في الفترة محل البحث.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 105؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 105؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 97–116؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تقرير الامتثال للأجر دون السجلات وقرار المجلس الساري للفترة
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 284. EG-LABOUR-14-2025-ART-106-NATIONAL-WAGES-COUNCIL-DECISION-CHALLENGE
+
+**Question:** ما ميعاد الطعن على قرارات تخفيض أو إعفاء العلاوة الدورية؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل, المادة 106, printed Gazette page 48 (PDF page index 46).
+
+**Provisional summary (Arabic):**
+
+تجيز المادة 106 لكل ذي مصلحة الطعن أمام المحكمة العمالية في قرارات المجلس القومي للأجور المتعلقة بطلبات أصحاب الأعمال لتخفيض أو الإعفاء من العلاوة الدورية، خلال ثلاثين يوماً من التاريخ المقرر لصرف العلاوة أو الإخطار بالقرار بحسب الأحوال، مع مراعاة اختصاص محاكم مجلس الدولة. لا تحسب الميعاد دون تحديد القرار وتاريخ الإخطار أو الاستحقاق والاختصاص.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 106؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 106؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 97–116؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- حساب ميعاد طعن فعلي دون تحديد القرار والتاريخ والاختصاص القضائي
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 285. EG-LABOUR-14-2025-ART-107-WAGE-DETERMINATION-HIERARCHY
+
+**Question:** كيف يحدد أجر العامل إذا لم يكن محدداً صراحة؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل, المادة 107, printed Gazette page 48 (PDF page index 46).
+
+**Provisional summary (Arabic):**
+
+تحدد المادة 107 الأجر أولاً وفق عقد العمل الفردي أو اتفاقية العمل الجماعية أو لائحة المنشأة المعتمدة. وإذا لم يحدد بهذه الطرق، يستحق العامل أجر المثل إن وجد، وإلا فعرف المهنة في مكان العمل، وإذا لم يوجد عرف يقدره قاضي الأمور الوقتية بالمحكمة العمالية وفق مقتضيات العدالة وأحكام القانون. يلزم جمع العقد واللائحة وبيانات المقارنة والعرف.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 107؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 107؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 97–116؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- حساب الأجر دون مراجعة العقد والاتفاقية واللائحة وأجر المثل والعرف
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 286. EG-LABOUR-14-2025-ART-108-WAGE-PAYMENT-FREQUENCY-AND-FINAL-DUES
+
+**Question:** متى يجب دفع الأجر والمستحقات بعد انتهاء علاقة العمل؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل, المادة 108, printed Gazette page 48 (PDF page index 46).
+
+**Provisional summary (Arabic):**
+
+تنظم المادة 108 دفع الأجور والمبالغ المستحقة: الأجر الشهري مرة على الأقل شهرياً؛ وأجر الإنتاج أو العمولة في حالات معينة بدفعات أسبوعية وباقٍ خلال الأسبوع التالي للتسليم؛ وبقية الأجور أسبوعياً على الأكثر ما لم يتفق خلاف ذلك. وعند انتهاء علاقة العمل تدفع المستحقات خلال سبعة أيام من مطالبة العامل، مع حظر حجز الأجر دون سند قانوني. يجب فحص نوع الأجر وتاريخ المطالبة.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 108؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 108؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 97–116؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- حساب موعد أو مبلغ نهائي دون نوع الأجر وتاريخ المطالبة والسندات
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 287. EG-LABOUR-14-2025-ART-109-DAILY-WAGE-AVERAGE-FOR-PRODUCTION-WORKERS
+
+**Question:** كيف يحسب متوسط الأجر اليومي لعمال الإنتاج أو العمولة؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل, المادة 109, printed Gazette page 49 (PDF page index 47).
+
+**Provisional summary (Arabic):**
+
+تحدد المادة 109 متوسط الأجر اليومي على أساس ما تقاضاه العامل عن أيام العمل الفعلية في السنة الميلادية السابقة، أو مدة عمله إن كانت أقل، مقسوماً على عدد أيام العمل الفعلية خلال الفترة نفسها. يلزم فحص كشوف الأجر وأيام العمل الفعلية وطبيعة عناصر الأجر قبل الحساب.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 109؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 109؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 97–116؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- حساب متوسط الأجر دون كشوف الأجر وأيام العمل الفعلية وتحديد عناصره
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 288. EG-LABOUR-14-2025-ART-110-MONTHLY-WAGE-CATEGORY-CHANGE-CONSENT
+
+**Question:** هل يجوز نقل العامل من الأجر الشهري إلى أجر يومي أو بالساعة دون موافقته؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل, المادة 110, printed Gazette page 49 (PDF page index 47).
+
+**Provisional summary (Arabic):**
+
+تحظر المادة 110 نقل العامل من فئة الأجر الشهري إلى الأجر اليومي أو الأسبوعي أو بالساعة أو بالإنتاج دون موافقته، وتضمن له الحقوق المكتسبة عن مدة عمله بالأجر الشهري. يلزم فحص موافقته وسجلات الأجر وأي تغيير في العقد.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 110؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 110؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 97–116؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تحديد وجود موافقة أو حقوق مكتسبة دون المستندات وسجلات الأجر
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 289. EG-LABOUR-14-2025-ART-111-WAGE-WHEN-WORK-PREVENTED
+
+**Question:** ما أجر العامل إذا حضر وكان مستعداً للعمل لكن تعذر عليه؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل, المادة 111, printed Gazette page 49 (PDF page index 47).
+
+**Provisional summary (Arabic):**
+
+تقرر المادة 111 استحقاق العامل أجره كاملاً إذا حضر في الموعد وكان مستعداً للعمل ومنعته أسباب ترجع إلى صاحب العمل. وإذا حالت أسباب قهرية خارجة عن إرادة صاحب العمل دون العمل، استحق نصف الأجر. تحديد الحالة يتطلب إثبات الحضور والاستعداد وسبب عدم أداء العمل.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 111؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 111؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 97–116؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تحديد الأجر المستحق دون إثبات الحضور والسبب وعلاقته بصاحب العمل أو القوة القاهرة
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 290. EG-LABOUR-14-2025-ART-112-EMPLOYER-PROHIBITED-FORCED-PURCHASES
+
+**Question:** هل يجوز إلزام العامل بشراء سلع أو خدمات من جهة يحددها صاحب العمل؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل, المادة 112, printed Gazette page 50 (PDF page index 48).
+
+**Provisional summary (Arabic):**
+
+تحظر المادة 112 على صاحب العمل إلزام العامل بشراء أغذية أو سلع أو خدمات من محال معينة أو مما ينتجه صاحب العمل أو يقدمه من خدمات. تطبيق النص يتطلب فحص ما إذا كان الشراء إلزامياً وطبيعة الترتيب والأدلة.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 112؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 112؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 97–116؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تقرير مخالفة دون إثبات الإلزام وطبيعة المشتريات
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 291. EG-LABOUR-14-2025-ART-113-EMPLOYER-LOAN-DEDUCTION-LIMIT
+
+**Question:** ما الحد الأقصى لخصم أقساط القرض الذي يمنحه صاحب العمل؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل, المادة 113, printed Gazette page 50 (PDF page index 48).
+
+**Provisional summary (Arabic):**
+
+تحظر المادة 113 اقتطاع أكثر من 10% من أجر العامل وفاءً لما أقرضه صاحب العمل أثناء العقد، كما تحظر تقاضي فائدة على تلك القروض وتسري على الأجر المدفوع مقدماً وفق النص. يجب فحص طبيعة الدين والأجر والخصومات وبقية قيود الخصم.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 113؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 113؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 97–116؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- حساب الخصم المسموح دون تفصيل الأجر والقرض والخصومات الأخرى
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 292. EG-LABOUR-14-2025-ART-114-WAGE-ATTACHMENT-AND-DEDUCTION-LIMITS
+
+**Question:** ما الحدود العامة للحجز أو الخصم من أجر العامل وفاءً للديون؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل, المادة 114, printed Gazette page 50 (PDF page index 48).
+
+**Provisional summary (Arabic):**
+
+تحدد المادة 114 حداً عاماً للاستقطاع أو الحجز أو التنازل عن الأجر وفاءً لدين بنسبة 25%، ويمكن أن تصل النسبة إلى 50% لدين النفقة. وعند التزاحم تتقدم النفقة ثم مطالبات محددة لصاحب العمل، ويشترط للتنازل عن الأجر موافقة مكتوبة، وتحسب النسبة بعد الخصومات المحددة بالنص. يلزم مراجعة نوع الدين والحساب الكامل وقانون الأحوال الشخصية.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 114؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 114؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 97–116؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- حساب نسبة حجز فعلية دون تحديد نوع الدين وترتيبه وقاعدة حساب الأجر
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 293. EG-LABOUR-14-2025-ART-115-WAGE-RECEIPT-AND-PAYSLIP
+
+**Question:** كيف يثبت صاحب العمل الوفاء بالأجر وما البيان الذي يجب تسليمه؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل, المادة 115, printed Gazette page 51 (PDF page index 49).
+
+**Provisional summary (Arabic):**
+
+لا تبرأ ذمة صاحب العمل من الأجر وفق المادة 115 إلا بتوقيع العامل بما يفيد الاستلام في السجل أو كشوف الأجور، أو إتمام التحويل إلى حسابه البنكي. ويلتزم صاحب العمل بإعطاء العامل بياناً بمفردات أجره. يجب فحص السجلات وإثبات التحويل وكشف الأجر للفترة المتنازع عليها.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 115؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 115؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 97–116؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- اعتبار الأجر مدفوعاً أو غير مدفوع دون سجلات الاستلام والتحويل وبيان الأجر
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
+
+### 294. EG-LABOUR-14-2025-ART-116-CHILD-WAGE-PAYMENT
+
+**Question:** لمن يسلم صاحب العمل أجور الأطفال أو مكافآتهم؟
+
+**Pinpoint:** الكتاب الثالث — علاقات العمل, المادة 116, printed Gazette page 51 (PDF page index 49).
+
+**Provisional summary (Arabic):**
+
+مع مراعاة المادة 115، توجب المادة 116 تسليم أجور الأطفال أو مكافآتهم أو غيرها مما يستحقونه قانوناً إلى الأطفال العاملين أنفسهم، ويكون هذا التسليم مبرئاً لذمة صاحب العمل وفق النص. يلزم التحقق من عمر العامل وطبيعة الاستحقاق وإثبات التسليم.
+
+**Primary-source leads:**
+
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 116؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 116؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+
+**Cross-checks:**
+
+- [secondary transcription of Law 14/2025](https://lawhub.info/eg/?p=11848) — مقارنة ثانوية للمواد 97–116؛ لا تحل محل النص الرسمي أو التحقق من التعديلات.
+
+**Limitations:**
+
+- تحديد صحة تسليم أجر طفل دون إثبات العمر والاستحقاق والتسليم
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
+- القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
+- لا توجد مراجعة محامٍ مصري مسجلة
+
+**Review state:** `provisional_text_extract_crosschecked`.
+**Usable for:** source-linked research lead and manual verification.
+**Not usable for:** undefined.
 
 ## Activation gates
 
@@ -7866,89 +9117,3 @@ Primary-source evidence below is based on searchable/extracted text returned for
 ## Important interpretation rule
 
 A source link, search snippet, or Gazette-index record is evidence of a source lead—not proof that the complete instrument is current, fully compared, licensed for reuse, or approved by Egyptian counsel. Do not activate these cards for authoritative retrieval until all recorded gates are satisfied.
-
-## Continuation — split supplemental batches (2026-10-28)
-
-The original 197-card JSON inventory exceeded the GitHub Contents API's readable-size limit. Rather than repeatedly retrying the same inaccessible response or silently dropping work, later cards are stored in split supplemental JSON files. This is a repository transport/size workaround, not a legal-source bypass.
-
-### Supplemental batch: Articles 256–274
-
-File: `data/candidates/labour_law_14_2025/provision_evidence_cards_256_274.json`
-
-Contains 19 cards covering OSH inspection and closure, accident/health reporting and registers, medical fitness, PPE and training, shift inspections, periodic medical exams, and social/health provisions. Articles 258–265 and 270–274 are explicitly **pinpoint-only / full-text required** because their operative wording was not fully matched. They are not eligible for authoritative answers.
-
-### Supplemental batch: Articles 275–298
-
-File: `data/candidates/labour_law_14_2025/provision_evidence_cards_275_298.json`
-
-Contains 24 cards covering labour inspector status and powers, employer cooperation and attendance, public-authority assistance, the general penalty clause, and the final penalty provisions. Articles 281–295 are intentionally indexing-only cards; no offence wording or penalty was invented where the full text had not been transcribed into this batch. Articles 296–298 have provisional summaries cross-checked against public transcriptions.
-
-### Count and readiness
-
-- Main inventory: 197 cards (last successfully validated before the file crossed the readable-size limit).
-- Supplemental batch 256–274: 19 cards.
-- Supplemental batch 275–298: 24 cards.
-- **Combined provisional inventory represented across these files: 240 cards.**
-- All three files must be included by any downstream loader/report builder; do not assume the original JSON alone contains the complete inventory.
-- Keep `search_eligible: false`. The split files are research leads, not authoritative legal content.
-- Gazette page pinpoints for these supplemental batches are inferred and not visually verified; no source-file SHA-256 is claimed. Currentness, implementing decisions, reuse permission, and Egyptian-lawyer review remain outstanding.
-
-**Next priority:** obtain exact operative text for Articles 258–265, 270–274, and 281–295 from the public transcription; then add separate, source-linked cards for relevant implementing instruments such as Ministerial Decision 260/2025 and other publicly accessible decisions. Do not spend more time retrying blocked binary downloads.
-
-## Public-text fallback work — Articles 258–274 and 281–295 (2026-10-28)
-
-The accessible Wikisource transcription was opened at the relevant article lines rather than retrying the inaccessible PDF binary. This enabled substantive provisional summaries for Articles 258–265 and 270–274, including:
-- OSH inspectors' inspection authority (Art. 258);
-- establishment safety units, committees and training (259);
-- half-year statistics and 24-hour serious-accident / occupational-disease notification (260);
-- authorized OSH training providers and licensing cap (261);
-- licensing of OSH expert/consultancy work (262);
-- national research centre and central plans (263);
-- Supreme Council and governorate subcommittees (264–265);
-- first aid, nursing/doctor coverage, transport, accommodation, meals, social/cultural services and the social/health/cultural fund (270–274).
-
-For the penalty section, Articles 281–287, 289, 292, 294 and 295 now have provisional summaries drawn from the accessible transcription, including fine ranges and referenced provisions. **Articles 288, 290, 291 and 293 remain blocked** because the available transcription contains editorial notes, truncated references or uncertain wording at those points. No missing offence or penalty was guessed. These cards are still not authoritative and require comparison with the official Gazette, currentness review and Egyptian-lawyer review.
-
-The primary inventory exceeded the GitHub Contents API read-size limit, so supplements are separate files:
-- `provision_evidence_cards_256_274.json` — 19 cards
-- `provision_evidence_cards_275_298.json` — 24 cards
-- Combined with the 197-card main inventory, **240 provisional cards are represented across three files**.
-- A focused test file checks counts, article ranges, required fields and non-authoritative status. The tests have not been executed in a repository runtime.
-
-Source fallback used: https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر. This is a publicly accessible transcription, not the Gazette image itself. Its metadata indicates Law 14/2025 was published in Official Gazette issue 18 on 3 May 2025 and became effective after the statutory waiting period; that metadata does not prove that all later implementing decisions or amendments have been incorporated.
-
-**Immediate next work:** recover clean full text for the four blocked penalty articles from another public transcription, then catalogue publicly accessible implementing decisions (starting with Decision 260/2025) and map each to affected articles. Continue to keep `search_eligible: false`.
-
-## Penalty text recovery — no longer blocked at Articles 288, 290, 291 and 293
-
-A separate public legal-text service (Fahm Qanun) provided per-article pages that cite the official SIS rights-studies site as the source. This recovered clean readable text for Articles 288, 289, 290, 291, 293 and 294. The supplemental cards were corrected accordingly:
-- Art. 288: fines for listed violations, generally EGP 500–5,000, multiple by affected workers and doubled on repeat violations.
-- Art. 289: employer penalties for breaches of Arts. 62–66, EGP 2,000–10,000, repeat-offence doubling and possible closure up to six months.
-- Art. 290: EGP 500–1,000 for breaches of Arts. 33 and 37, also Arts. 35 and 205.
-- Art. 291: imprisonment and/or EGP 20,000–100,000 for specified unlicensed recruitment, improper deductions/collections, and false overseas recruitment data; refund and closure provisions also apply.
-- Art. 293: EGP 20,000–100,000 for breaches of Arts. 70, 71, 72 and 74.
-- Art. 294: EGP 1,000–20,000 for the listed provisions, including Arts. 140–145, Art. 151(2), Art. 152 and Art. 198.
-
-The earlier transcription-corruption blocker is resolved for these articles at the secondary-transcription level, not at the official-Gazette verification level. Article 295 remains cross-checked against the public transcription. Do not treat these summaries as final criminal-exposure assessments until exact Gazette wording, applicable amendments and qualified Egyptian-lawyer review are checked.
-
-## Implementing-instrument crosswalk started
-
-Created `related_instruments/implementing_decisions_inventory_2026-10-28.json` with seven source-linked leads:
-- Ministerial Decision 260/2025 — administrative competent authorities crosswalk for Arts. 256, 257, 260 and 271.
-- Decision 162/2026 — workplace-regulation rules (official announcement and Gazette metadata lead; full text still inaccessible in the checked path).
-- Five OSH executive decisions announced by the Ministry in 2026 — exact decision numbers and full texts still need to be extracted.
-- Decision 49/2026 — hazardous work/remote areas and additional annual leave.
-- Decision 266/2025 — skill-level measurement and vocational licensing.
-- Decision 272/2025 — domestic and overseas recruitment operations.
-- Circular 22/2026 — event-specific October holiday guidance; explicitly not treated as a permanent change to leave rules.
-
-Each entry separates source leads from verified operative text, records article mapping as provisional, and keeps authoritative retrieval disabled. Added a focused test file for the instrument register. The register itself was structurally built with seven unique IDs, HTTPS sources, article mappings, and no search-eligible items; tests have not been run in a repository runtime.
-
-## Source rights and reuse gate formalized
-
-Added `related_instruments/source_rights_register_2026-10-28.json` for nine sources: Amiri Press, ETA-hosted Gazette PDF, Ministry of Labour catalogue and announcements, Wikisource, Fahm Qanun, Law Hub, EastLaws and the IDSC/Gazette metadata repository. It separates public accessibility from redistribution/commercial reuse permission and records the original Gazette PDF as not yet downloaded/hashed. The register explicitly forbids bypassing access restrictions and prefers source links, short factual summaries, pinpoint citations and provenance metadata until reuse terms are established. A focused test was added; it has not been executed in a repository runtime.
-
-## Promulgation transition coverage added — Articles 2–11
-
-Added 10 source-linked provisional cards in `provision_evidence_cards_promulgation_2_11.json` covering the training fund and pending 1% disputes (Art. 2), social/health fund and wages council (3), preservation of prior benefits and special-sector rules (4), industrial licensing law savings (5), transitional professional licensing and agency compliance periods (6), transfer of irregular-worker fund assets (7), employer workforce-data statement within 30 days (8), transfer of pending cases to specialized labour courts (9), treatment of existing appeals (10), and the 90-day deadline for implementing decisions plus continued effect of non-conflicting prior decisions (11). Official Gazette page pinpoints are intentionally null rather than guessed. The manifest now lists four files and 250 total cards; the report builder loads 53 supplemental cards and checks the combined count/ID uniqueness.
-
