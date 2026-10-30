@@ -169,6 +169,11 @@ Use one document-level record plus article/judgment chunks that point back to it
 - ILO NATLEX: https://natlex.ilo.org/
 - FAOLEX: https://faolex.fao.org/
 
+
+#### Supreme Constitutional Court — public recent-judgments page inspection (31 October 2026)
+
+The official SCC portal's recent-judgments URL remains `https://www.sccourt.gov.eg/newportal/?a=cp3&id=829`. A current browser inspection resolved the official page title but returned no readable body text to the research viewer. This is a limitation of the inspection method, not evidence that the portal has no public records. The previously recorded sample metadata (case number, judicial year, date and short disposition summary) remains discovery evidence only; no complete judgment text, official API schema, or API terms were independently captured. Do not call the third-party-described JSON endpoints or bulk collect while official terms and provenance remain unknown.
+
 ### Newly mapped discovery endpoints — 30 October 2026
 
 - **Ministry of Parliamentary Affairs — issued laws index:** https://www.mpa.gov.eg/legislative-results/parliament. The public page exposes an enacted-laws search with legislative-session filters. Use it to discover law identifiers and cross-check them against promulgated Gazette texts; it is not itself proof of the exact Gazette text or current legal status.
