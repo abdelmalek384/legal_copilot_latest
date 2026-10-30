@@ -58,9 +58,9 @@ def build_register(root: Path = DATA_DIR) -> list[dict[str, Any]]:
     numbers = [item["candidate_row"] for item in records]
     if len(numbers) != len(set(numbers)):
         raise ValueError("duplicate candidate_row values in register input")
-    expected = list(range(1, 695))
+    expected = list(range(1, 721))
     if numbers != expected:
-        raise ValueError(f"expected candidate rows 1–694, got {len(numbers)} records; gaps/ordering must be fixed first")
+        raise ValueError(f"expected candidate rows 1–720, got {len(numbers)} records; gaps/ordering must be fixed first")
     if any(item["retrieval_eligible"] for item in records):
         raise ValueError("register must initialize every row as retrieval-ineligible")
     return records
