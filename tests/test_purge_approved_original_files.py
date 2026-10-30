@@ -442,6 +442,12 @@ class PurgeApprovedOriginalFilesTests(unittest.TestCase):
             def __init__(self, connection):
                 self._connection = connection
 
+            def __setattr__(self, name, value):
+                if name == "_connection":
+                    object.__setattr__(self, name, value)
+                else:
+                    setattr(self._connection, name, value)
+
             def commit(self):
                 raise sqlite3.OperationalError("injected tenant commit failure")
 
