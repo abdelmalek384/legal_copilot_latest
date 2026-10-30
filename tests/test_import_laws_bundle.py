@@ -328,6 +328,8 @@ class LegalImportBundleTests(unittest.TestCase):
                 return "\ue000" * 10
 
         class Document:
+            page_count = 1
+
             def __enter__(self):
                 return self
 
