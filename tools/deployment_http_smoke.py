@@ -9,6 +9,7 @@ from __future__ import annotations
 import argparse
 import ipaddress
 import json
+import re
 import sys
 from pathlib import Path
 from urllib.parse import urlsplit
@@ -110,18 +111,57 @@ def run_smoke(
                     value or "missing security header",
                 )
             csp = response.headers.get("content-security-policy", "")
+            directives = {}
+            for directive in csp.split(";"):
+                tokens = directive.strip().lower().split()
+                if tokens:
+                    directives[tokens[0]] = set(tokens[1:])
+            required_csp = {
+                "default-src": {"'self'"},
+                "base-uri": {"'self'"},
+                "object-src": {"'none'"},
+                "frame-ancestors": {"'none'"},
+                "form-action": {"'self'"},
+                "worker-src": {"'self'"},
+            }
+            missing_csp = [
+                name for name, values in required_csp.items()
+                if not values.issubset(directives.get(name, set()))
+            ]
+            script_sources = directives.get("script-src", set())
+            script_policy_safe = (
+                "'self'" in script_sources
+                and "'unsafe-inline'" not in script_sources
+                and "'unsafe-eval'" not in script_sources
+            )
             record(
                 f"content-security-policy {path}",
-                "default-src 'self'" in csp and "worker-src 'self'" in csp,
-                "required same-origin script/worker policy present" if (
-                    "default-src 'self'" in csp and "worker-src 'self'" in csp
-                ) else "missing required default-src or worker-src directive",
+                not missing_csp and script_policy_safe,
+                "required restrictive directives present" if (
+                    not missing_csp and script_policy_safe
+                ) else (
+                    "missing or weakened CSP directives: "
+                    + ", ".join(missing_csp or ["script-src"])
+                ),
             )
             if origin.startswith("https://"):
+                hsts = response.headers.get("strict-transport-security", "").lower()
+                hsts_parts = {
+                    item.strip().split("=", 1)[0]: (
+                        item.strip().split("=", 1)[1] if "=" in item else ""
+                    )
+                    for item in hsts.split(";") if item.strip()
+                }
+                try:
+                    hsts_age = int(hsts_parts.get("max-age", "0"))
+                except ValueError:
+                    hsts_age = 0
+                hsts_ok = hsts_age >= 31536000 and "includesubdomains" in hsts_parts
                 record(
                     f"strict-transport-security {path}",
-                    bool(response.headers.get("strict-transport-security")),
-                    "HSTS present" if response.headers.get("strict-transport-security") else "HSTS missing",
+                    hsts_ok,
+                    "HSTS has max-age >= 31536000 and includeSubDomains" if hsts_ok
+                    else "HSTS must set max-age >= 31536000 and includeSubDomains",
                 )
 
         root = responses.get("/")
@@ -140,6 +180,28 @@ def run_smoke(
                 "root Apple touch icon link",
                 'rel="apple-touch-icon" href="/apple-touch-icon.png"' in root.text,
                 "PNG home-screen icon link present" if 'rel="apple-touch-icon" href="/apple-touch-icon.png"' in root.text else "Apple touch icon link missing",
+            )
+            root_csp = root.headers.get("content-security-policy", "")
+            root_directives = {}
+            for directive in root_csp.split(";"):
+                tokens = directive.strip().split()
+                if tokens:
+                    root_directives[tokens[0].lower()] = {item.lower() for item in tokens[1:]}
+            nonce_tokens = root_directives.get("script-src", set())
+            inline_scripts = [
+                attributes for attributes in re.findall(r"<script\\b([^>]*)>", root.text, flags=re.IGNORECASE)
+                if not re.search(r"\\bsrc\\s*=", attributes, flags=re.IGNORECASE)
+            ]
+            nonce_ok = bool(inline_scripts) and all(
+                (match := re.search(r"""\\bnonce\\s*=\\s*["']([^"']+)["']""", attributes, flags=re.IGNORECASE))
+                and ("'nonce-" + match.group(1).lower() + "'") in nonce_tokens
+                for attributes in inline_scripts
+            )
+            record(
+                "root inline script CSP nonces",
+                nonce_ok,
+                "every inline script has a matching CSP nonce" if nonce_ok
+                else "an inline script is missing a matching CSP nonce",
             )
 
         manifest_response = responses.get("/manifest.webmanifest")
