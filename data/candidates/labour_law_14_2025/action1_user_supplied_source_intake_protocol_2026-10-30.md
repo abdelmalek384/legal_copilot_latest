@@ -28,6 +28,22 @@
 - Do not commit the raw Gazette PDF or the user's raw law_rows_ar.jsonl into the public repository while source-use and repository-access conditions are unresolved. Preserve originals in the controlled working environment; commit only hashes, metadata, exact citations, and excerpts after the source-use gate permits them.
 - Do not treat the user's provision of a file as a blanket commercial reuse opinion. The underlying official-document Article 141 route, scan/compilation distinctions, source-use review and counsel gate remain separate.
 
+
+## 2A. Metadata-only receipt tool (prepared before file arrival)
+
+The repository now includes `tools/inspect_action1_labour_intake.py`. Once the files are supplied, run it from the repository root:
+
+```bash
+python tools/inspect_action1_labour_intake.py \
+  --gazette-pdf "/path/to/original_gazette_supplement_225A.pdf" \
+  --law-rows-jsonl "/path/to/law_rows_ar.jsonl" \
+  > action1_intake_receipt.json
+```
+
+If `law_rows_ar.jsonl` is not supplied, omit the `--law-rows-jsonl` argument. The receipt records filenames, byte sizes, SHA-256 hashes, a PDF signature/EOF check, JSONL object count, top-level field frequencies, and a duplicate-ID diagnostic only when every row has a candidate stable key (`row_id`, `record_id`, or `id`). It rejects symlink inputs, malformed JSONL and non-object JSONL records.
+
+The tool does **not** extract PDF text, alter either input, embed legal source contents in the report, upload files, determine authenticity/currentness/reuse rights, or enable retrieval. Its report explicitly marks all legal and release-verification flags false. Keep the original files unchanged; the receipt is a separate derived metadata artifact.
+
 ## 3. Gazette PDF execution order
 
 1. Verify identity and hash.
