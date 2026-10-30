@@ -154,7 +154,7 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         self.assertIn("third-party claims only", source["permission_evidence"])
         self.assertIn("not successfully independently validated", source["permission_evidence"])
         self.assertIn("get-cases-basedon-casestatuscode", source["permission_evidence"])
-        self.assertIn("do not call endpoints", source["bulk_download_or_api"])
+        self.assertIn("do not call endpoints", source["bulk_download_or_api"].casefold())
         self.assertEqual(source["source_page"], "https://www.sccourt.gov.eg/newportal/?a=cp3&id=829")
         self.assertEqual(MODULE.validate(data), [])
 
