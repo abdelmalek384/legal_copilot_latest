@@ -30,6 +30,7 @@ def load_inventory(input_path: Path) -> dict[str, Any]:
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     cards = list(data["cards"])
     seen = {card["card_id"] for card in cards}
+    duplicates: set[str] = set()
     supplemental_count = 0
     for entry in manifest["inventory_files"]:
         candidate = (ROOT / entry["path"]).resolve()
@@ -42,7 +43,8 @@ def load_inventory(input_path: Path) -> dict[str, Any]:
             card = dict(raw)
             card_id = card["card_id"]
             if card_id in seen:
-                raise ValueError(f"Duplicate Labour Law evidence card ID: {card_id}")
+                duplicates.add(card_id)
+                continue
             seen.add(card_id)
             supplemental_count += 1
             pin = dict(card["pinpoint"])
@@ -66,6 +68,10 @@ def load_inventory(input_path: Path) -> dict[str, Any]:
                 source.setdefault("supports", "مقارنة ثانوية؛ لا تحل محل النص الرسمي")
             card.setdefault("related_instruments_to_review", [])
             cards.append(card)
+
+    if duplicates:
+        duplicate_list = ", ".join(sorted(duplicates))
+        raise ValueError(f"Duplicate Labour Law evidence card IDs: {duplicate_list}")
 
     if len(cards) != manifest["combined_expected_cards"]:
         raise ValueError(
