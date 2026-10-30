@@ -8,7 +8,7 @@
 
 ## Hash-locked deployment requirements
 
-The `Resolve Python 3.12 deployment lock` workflow generates `requirements-py312.lock` from `requirements.txt` with pinned transitive versions and artifact SHA-256 hashes. It validates installation in a clean Python 3.12 virtual environment with `pip install --require-hashes`. The workflow uploads the generated lock as a short-lived artifact for review. The workflow is deliberately read-only and does not push generated files or require write permissions; a maintainer must add the reviewed artifact to the release branch.
+The `Resolve Python 3.12 deployment lock` workflow generates `requirements-py312.lock` from `requirements.txt` with pinned transitive versions and artifact SHA-256 hashes. It validates installation in a clean Python 3.12 virtual environment with `pip install --require-hashes`. The workflow uploads the generated lock as a short-lived artifact for review. The workflow is deliberately read-only and does not push generated files or require write permissions; a maintainer must add the reviewed artifact to the release branch. The resolver toolchain is pinned in CI (`pip==26.2.2`, `pip-tools==7.6.2`, and `pip-audit==2.10.1`) so routine runs do not silently change the lock-generation or audit tool versions.
 
 - Treat `requirements.txt` as the reviewed direct-dependency input and `requirements-py312.lock` as the exact Python 3.12 deployment set.
 - Do not hand-edit lock versions or hashes. Change the direct requirements, let the resolver regenerate the lock, and review the diff.
