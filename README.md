@@ -44,6 +44,12 @@ For a fresh installation, use the separate-database architecture. Do not follow 
 
 Run `./start_mac.command` from the repository folder (or double-click it in Finder). The script creates a virtual environment, installs dependencies, initializes separate control-plane, per-firm, and shared-legal-corpus databases, and prompts for the first firm and owner if no active membership exists.
 
+### Windows quick start
+
+On Windows 10/11, install **Python 3.12** with the Python Launcher enabled, then double-click `start_windows.bat` from the repository folder. The launcher creates a local virtual environment, installs the pinned requirements, initializes the separate control-plane/firm/corpus database profiles, and safely prompts for the first firm owner when needed. It binds the development server to `127.0.0.1` only; keep the terminal window open while using the app.
+
+The launcher refuses an inherited `COPILOT_DB` setting because that selects the legacy shared-database compatibility mode. It does not reset or delete existing data. For an existing installation, keep the three profile paths pointed at the same persistent directories used previously. This is a local development launcher, not a production deployment procedure.
+
 ### Manual local setup
 
 ```bash
