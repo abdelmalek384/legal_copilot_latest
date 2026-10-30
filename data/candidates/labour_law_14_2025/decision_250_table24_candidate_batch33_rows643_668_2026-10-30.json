@@ -60,7 +60,8 @@
       "cas": "122-34-9",
       "source_line": 5562,
       "raw_limit_and_note_text": "C7H12CIN5 201,60 0,5 ملجم/م3 (I) - - م3 3 A تأثيرات دموية",
-      "status": "pending_official_match"
+      "status": "pending_official_match",
+      "anomaly": "The secondary text displays formula token C7H12CIN5; the character sequence may contain an OCR ambiguity (I/l) and must be checked visually against the Official Gazette. Preserve raw token; do not normalize."
     },
     {
       "row": 647,
