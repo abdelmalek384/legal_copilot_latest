@@ -136,6 +136,8 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         self.assertEqual(source["collection_permission"], "unknown")
         self.assertEqual(source["commercial_reuse_permission"], "unknown")
         self.assertIn("watermark", source["permission_evidence"])
+        self.assertIn("https://cc.gov.eg/heritage/documents/199", source["permission_evidence"])
+        self.assertIn("https://cc.gov.eg/heritage/books/{id}/read", source["permission_evidence"])
         self.assertIn("1899", source["permission_evidence"])
         self.assertIn("not established", source["bulk_download_or_api"])
         self.assertEqual(source["permission_evidence_url"], "https://cc.gov.eg/posts/739")
