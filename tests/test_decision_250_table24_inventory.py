@@ -35,6 +35,13 @@ class Decision250Table24InventoryTests(unittest.TestCase):
         self.assertFalse(index["official_pdf_bytes_downloaded_and_hashed"])
         self.assertFalse(index["authoritative_retrieval_eligible"])
 
+    def test_lawyer_acceptance_plan_covers_decisions_249_251_252(self):
+        plan = (
+            CANDIDATE_DIR / "lawyer_in_app_acceptance_plan_2026-10-29.md"
+        ).read_text(encoding="utf-8")
+        for test_id in ("OSH-17", "OSH-18", "OSH-19", "OSH-20", "OSH-21", "OSH-22"):
+            self.assertIn(f"| {test_id} |", plan)
+
     def test_decisions_249_251_252_candidate_maps_remain_quarantined(self):
         expected = {
             "decision_249_secondary_article_table_map_2026-10-30.json": {"article": 22, "table": 3, "appendix": 1},
