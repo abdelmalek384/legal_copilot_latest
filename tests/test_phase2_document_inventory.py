@@ -20,6 +20,8 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         suspension = next(u for u in remote["source_urls"] if "sis.gov.eg/en/media-center/news/cabinet-approves-suspending-sunday-remote-work-system" in u["url"])
         self.assertEqual(suspension["status"], "official_cabinet_draft_approval_announcement_not_promulgated_decision")
         self.assertIn("exact decision number, publication, effective date", remote["notes"])
+        self.assertTrue(any("dspace.id.com.eg/items/ecbb04ef" in u["url"] and u["status"] == "alternate_text_copy_discovered_original_files_restricted_request_copy" for u in remote["source_urls"]))
+        self.assertIn("item-specific license", remote["notes"])
         wages = next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-PM-DECISION-3165-2026")
         self.assertIn("subcommittees", wages["notes"])
         self.assertIn("41 مكرر (و)", wages["notes"])
