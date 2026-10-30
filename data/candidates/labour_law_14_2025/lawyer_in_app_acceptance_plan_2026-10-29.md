@@ -26,6 +26,13 @@ The lawyer can review after the technical build is complete. This review is a se
 | LBR-02 | Ask for an article that is absent from the indexed corpus | Clearly say the source was not found; do not reconstruct article text from model memory | Pending |
 | LBR-03 | Ask whether an article is currently in force | Distinguish publication, effective date, amendment/repeal status and verification date; abstain if unresolved | Pending |
 | LBR-04 | Ask about a rule that may have been amended by a later decision | Show the amendment relationship only when supported by retrieved evidence | Pending |
+| LBR-05 | Ask when Labour Law 14/2025 commenced and when specialized labour courts commenced | Retrieve Articles 11–13; distinguish the statutory formula from calculated candidate dates and abstain/qualify if date computation or later amendment is unresolved | Pending |
+| LBR-06 | Ask which earlier labour laws Article 12 repealed | Cite Article 12 and identify Law 12/2003, Law 125/2010 and conflicting provisions; do not infer repeal of unrelated instruments | Pending |
+| OSH-07 | Ask which establishments must submit Article 260 statistics | State the statutory 30-worker threshold and semi-annual reporting only with Article 260 citation; do not invent forms or data fields from Decision 248 | Pending |
+| OSH-08 | Ask how quickly a serious accident or occupational-disease symptoms must be reported | State the 24-hour requirement from Article 260; distinguish this parent-law duty from any additional details in Decision 248 not yet retrieved | Pending |
+| OSH-09 | Ask for the statutory maximum fee for OSH training-system licences | State the Article 261 ceiling of EGP 50,000; do not claim this is the actual fee under Decision 252 without its operative text | Pending |
+| OSH-10 | Ask for the statutory maximum fee for OSH expertise/consultancy licences | State the Article 262 ceiling of EGP 50,000; do not claim this is the actual fee under Decision 251 without its operative text | Pending |
+| OSH-11 | Ask what Article 255 authorizes the Minister to regulate | Summarize only the parent-law delegation for workplace rules, standards, safety limits and precautions; do not invent a Table 24 limit | Pending |
 | OSH-01 | Ask for a numerical exposure limit from Decision 250/2026 Table 24 | Do not answer authoritatively while the row is secondary-only or primary-source-unmatched | Pending |
 | OSH-02 | Ask for a Table 24 row with a malformed CAS/formula/unit in the secondary text | Flag the source ambiguity or abstain; never silently repair the number/unit | Pending |
 | OSH-03 | Ask for a chemical with parent/child variants | Preserve the exact substance/variant and its source association; do not transfer a sibling's limit | Pending |
@@ -64,3 +71,16 @@ The lawyer can review after the technical build is complete. This review is a se
 - Notes and limitations: to be completed by reviewer
 
 This checklist is a review protocol, not a legal opinion or evidence that any rule has already been approved.
+
+
+## Added official-parent-law test basis — 2026-10-30
+
+The following parent-law excerpts were captured from the ETA-hosted Official Gazette PDF and remain in the repository with source/page locators and retrieval disabled pending byte-hash/currentness/counsel review:
+- Articles 11–13: implementing-decision transition, repeal and commencement.
+- Article 255: workplace rules, standards, safety limits and precautions.
+- Article 259: establishments/branches requiring OSH units and committees.
+- Article 260: 30-worker semiannual statistics threshold, 24-hour notification and electronic reporting.
+- Article 261: OSH training systems and EGP 50,000 statutory fee ceiling.
+- Article 262: OSH expertise/consultancy licensing and EGP 50,000 statutory fee ceiling.
+
+The lawyer should test these exact retrieved excerpts in the app, while the decisions' own operative clauses remain not found until their full texts are obtained and compared. The calculated candidate dates (general commencement 2025-09-01; specialized courts 2025-10-01; 90-day implementation-decision deadline 2025-11-30) must be marked as calculations pending counsel confirmation, not silently treated as approved legal conclusions.
