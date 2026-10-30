@@ -386,7 +386,7 @@ This checkpoint records discovery and engineering safeguards, not verified-law c
 |---|---:|---|
 | Overall product readiness | 42% ± 8 pp (last recorded estimate; not recalculated by this evidence-only work) | Not market-ready. DB/tenant, deployment, security acceptance and manual UX review remain separate gates. |
 | Verified Egyptian legal corpus | 6% (unchanged) | No new legal rule was promoted to verified or retrieval-eligible. Original Gazette bytes, item-specific reuse evidence and qualified counsel review remain missing. |
-| Legal-knowledge preparation | 15% (planning/evidence preparation estimate only) | More source relationships, candidate inventories, discrepancy controls and reproducible checks are prepared; this is not verified-law coverage. |
+| Legal-knowledge preparation | 18% (up from 15%; planning/evidence preparation only) | Added seven 2026 instrument candidates, separated third-party repository provenance/rights, expanded currentness acceptance prompts, and automated Action 1 intake/hash comparison. This is not verified-law coverage. |
 | Phase 2 metadata inventory | 79 instrument candidates / 14 source records | Seven new 2026 Prime Minister decision candidates (982, 1305, 1572, 2033, 2377, 2590, 3165) linked to Labour Law 14/2025. All remain discovery-only. |
 | Decision 250 Table 24 | 781 secondary candidate rows | Structural inventory is complete (781/781); original Gazette row matches remain 0/781. Rows 34, 61 and 64 remain explicitly unresolved/high-priority. |
 | Decisions 248–252 | 0/5 fully compared with original Gazette | Supplement 225(A) original PDF remains request-copy restricted in the checked DSpace record; Action 1 user-supplied intake is pending. |
