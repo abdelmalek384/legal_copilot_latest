@@ -286,3 +286,12 @@ Added six exact Arabic in-app lawyer prompts (OSH-17 through OSH-22) covering:
 - Decision 252: training-provider/trainer eligibility, programme hours, fees, examinations and attendance requirements.
 
 Each prompt explicitly requires the app to abstain from treating secondary article summaries or low-resolution tables as verified legal rules. Added regression checks that the Decisions 249/251/252 candidate maps contain 22+3+1, 11, and 36+1 records respectively, and that every record remains secondary-only, without an original PDF hash, with currentness/source-use/counsel review outstanding and retrieval disabled. A further regression ensures all six new lawyer prompts remain in the acceptance plan.
+
+
+## Final validation after Decisions 249/251/252 coverage — 2026-10-30
+
+The six new lawyer prompts OSH-17–22 and their regression checks are now validated:
+- Decisions 249/251/252 map quarantine, prompt coverage, Table 24 inventory, Article 296, and Gazette source-manifest checks passed in [Full Tests #41031288964](https://github.com/abdelmalek384/legal_copilot_latest/actions/runs/41031288964): **103/103 steps, zero failures**.
+- Latest progress-report head passed [Legal Knowledge Validation #41031297431](https://github.com/abdelmalek384/legal_copilot_latest/actions/runs/41031297431): **28/28**.
+
+The tested code head is `283faec33ac046f59421068c5d61e4978f55277f`; the latest progress-report-only head is `f2b132a03d7575ec354cdb8afde9ff86a80f4c7c`. No legal candidate was promoted. Primary-source comparisons remain 0/5 decisions and 0/781 Table 24 rows; lawyer approval remains pending.
