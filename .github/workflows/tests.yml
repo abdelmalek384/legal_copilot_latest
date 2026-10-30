@@ -34,6 +34,8 @@ jobs:
         run: python -m pip install -r requirements.txt
       - name: Smoke-test public PWA HTTP routes and security headers
         run: PYTHONPATH=. python tests/test_pwa_http_routes.py
+      - name: Test live deployment HTTP smoke probe
+        run: PYTHONPATH=. python tests/test_deployment_http_smoke.py
       - name: Test research prompt injection boundary
         run: PYTHONPATH=. python tests/test_research_prompt_injection_boundary.py
       - name: Test security audit CSV export
