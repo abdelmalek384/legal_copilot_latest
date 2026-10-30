@@ -296,7 +296,7 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
         expected = {
             "EG-LABOUR-14-2025-ART-121-OVERTIME-EXCEPTION": ("المادة 121", 53),
             "EG-LABOUR-14-2025-ART-122-WORK-SCHEDULE-DISPLAY": ("المادة 122", 53),
-            "EG-LABOUR-14-2025-ART-123-WORK-HOUR-EXEMPTIONS": ("المادة 123", 53),
+            "EG-LABOUR-14-2025-ART-123-WORK-HOUR-EXEMPTIONS": ("المادة 123", 54),
             "EG-LABOUR-14-2025-ART-126-EXAM-LEAVE": ("المادة 126", 55),
             "EG-LABOUR-14-2025-ART-127-WORK-DURING-LEAVE": ("المادة 127", 55),
         }
