@@ -1,6 +1,6 @@
 """Legal copilot MVP: case workspace + hybrid law search + citation-checked answers.
 Run: pip install -r requirements.txt && uvicorn app:app --reload"""
-import sqlite3, re, json, os, io, csv, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request, zipfile, ipaddress, logging
+import base64, sqlite3, re, json, os, io, csv, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request, zipfile, ipaddress, logging
 from pathlib import Path
 from cryptography.fernet import Fernet
 from urllib.parse import urlsplit, quote
@@ -2257,6 +2257,12 @@ def pwa_app_icon():
     return Response(_read_pwa_asset("app-icon.svg"), media_type="image/svg+xml")
 
 
+@app.get("/apple-touch-icon.png")
+def pwa_apple_touch_icon():
+    encoded = _read_pwa_asset("apple-touch-icon.png.b64").strip()
+    return Response(base64.b64decode(encoded, validate=True), media_type="image/png")
+
+
 @app.get("/")
 def home(request: Request):
     with open(os.path.join(os.path.dirname(__file__), "static", "index.html"), encoding="utf-8") as f:
@@ -2265,7 +2271,7 @@ def home(request: Request):
         '<meta name="theme-color" content="#14284B">'
         '<link rel="manifest" href="/manifest.webmanifest">'
         '<link rel="icon" href="/app-icon.svg" type="image/svg+xml">'
-        '<link rel="apple-touch-icon" href="/app-icon.svg">'
+        '<link rel="apple-touch-icon" href="/apple-touch-icon.png">'
     )
     page = page.replace('<meta charset="utf-8">', '<meta charset="utf-8">' + pwa_head, 1)
     page = page.replace("<script>", '<script nonce="' + request.state.csp_nonce + '">', 1)
