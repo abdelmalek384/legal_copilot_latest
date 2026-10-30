@@ -233,3 +233,12 @@ Added a ninth selected official-source excerpt from the government-hosted ETA Ga
 This is important for the Labour Law knowledge graph because Article 296 expressly cross-references Article 260, Articles 261–262, and implementing ministerial decisions. It is now included in the lawyer's in-app acceptance plan as LBR-17, testing whether the assistant can cite the exact scope without overgeneralizing the penalty to unlisted provisions.
 
 Evidence limits: browser PDF text extraction only; original PDF bytes/hash not obtained; source-use remains provisional under the official-document exclusion lead; currentness and counsel review not completed; retrieval remains disabled. This is not a lawyer-approved penalty opinion.
+
+
+## Action 1 intake is prepared for tomorrow — 2026-10-30
+
+Recovered the exact meaning of Action 1 from the prior project plan: the user will provide the original Official Gazette PDF for Decisions 248–252/2026 (especially Decision 250), plus the original law_rows_ar.jsonl if available. This is distinct from the lawyer's later in-app acceptance review.
+
+Created an intake protocol that is ready to execute as soon as the files are supplied. It records the historical law_rows_ar.jsonl comparison target (SHA-256 3e964de5c9cc994aefcc29c031712e85d664febd97c428e61c2eacdccaf1c600; 393,861 bytes; 311 expected records) but requires re-hashing the actual supplied file. The Gazette PDF workflow will verify issue identity, compute a hash, map printed pages to PDF indices, compare Decisions 248–252 and annexes, and field-match all 781 Table 24 candidate entries. The original files will remain immutable; no normalization or repair will overwrite them.
+
+The user does **not** need to arrange the lawyer review separately now. That review remains a distinct post-technical-completion release gate using the prepared in-app prompts and the actual application build.
