@@ -6,7 +6,6 @@ import argparse
 import json
 import os
 import sys
-from dataclasses import asdict
 
 from database_runtime import DatabaseRuntime
 from s3_original_file_storage import S3PrivateObjectStore
