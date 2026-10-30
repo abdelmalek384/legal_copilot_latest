@@ -18,7 +18,7 @@ class WindowsLauncherContractTests(unittest.TestCase):
     def test_windows_launcher_refuses_old_existing_venv_without_deleting_it(self):
         script = (ROOT / "start_windows.bat").read_text(encoding="utf-8")
         self.assertIn("sys.version_info >= (3, 12)", script)
-        self.assertIn("existing .venv does not use Python 3.12 or newer", script.lower())
+        self.assertIn("existing .venv does not use python 3.12 or newer", script.lower())
         self.assertIn("this launcher will not delete it", script.lower())
         self.assertNotIn("rmdir /s", script.lower())
         self.assertNotIn("del /s", script.lower())
