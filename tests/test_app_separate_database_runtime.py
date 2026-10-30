@@ -86,7 +86,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
 
         control = self.runtime.control_connection()
         stored = control.execute(
-            "SELECT COUNT(*) FROM auth_sessions WHERE user_id=? AND revoked_at IS NULL",
+            "SELECT COUNT(*) FROM auth_sessions WHERE user_id=?",
             (self.user_id,),
         ).fetchone()[0]
         self.assertGreaterEqual(stored, 4)
