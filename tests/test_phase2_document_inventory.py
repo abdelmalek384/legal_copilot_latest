@@ -39,7 +39,7 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
             if d["document_id"] == "EG-LABOUR-WORK-REGULATION-RULES-2026"
         )
         self.assertEqual(record["source_id"], "EG-MINISTRY-LABOUR-LAWS")
-        self.assertIn("official_Gazette_catalogue_metadata_identified", record["source_status"])
+        self.assertEqual(record["source_status"], "official_index_discovered_primary_text_pending")
         self.assertEqual(record["collection_permission"], "unknown")
         self.assertEqual(record["legal_status"], "unknown")
         self.assertEqual(record["review_status"], "discovery_only")
