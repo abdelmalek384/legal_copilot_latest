@@ -89,6 +89,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_legacy_chunk_evidence_manifest.py
       - name: Validate legal data registry and evaluation seeds
         run: python tools/validate_legal_data_foundation.py
+      - name: Test Decision 250 Table 24 inventory integrity
+        run: PYTHONPATH=. python tests/test_decision_250_table24_inventory.py
       - name: Test fail-closed legal release readiness gate
         run: PYTHONPATH=. python tests/test_legal_release_readiness.py
       - name: Test aggregate production release gate
