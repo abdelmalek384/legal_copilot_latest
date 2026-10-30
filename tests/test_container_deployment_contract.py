@@ -49,6 +49,7 @@ class ContainerDeploymentContractTests(unittest.TestCase):
         self.assertIn("linux/amd64", workflow)
         self.assertIn("linux/arm64", workflow)
         self.assertIn("push: false", workflow)
+        self.assertIn("docker compose --env-file .env.production -f compose.production.yaml config --quiet", workflow)
         self.assertIn("contents: read", workflow)
 
     def test_dependabot_tracks_docker_base_image_updates(self):
