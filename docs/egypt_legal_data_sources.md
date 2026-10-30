@@ -76,6 +76,12 @@ Two additional court-section samples were inspected:
 
 Both additional individual pages also display the CC BY 4.0 footer statement. These three samples support the conclusion that the archive exposes substantive full-text records across all three court sections; they do not establish that every catalogue entry is complete, accurate, current, or traceable to an official original.
 
+Two further non-court document samples were inspected:
+- Law record: https://www.mksegypt.org/ar/laws/16785 — Law No. 131 of 2009 amending Law No. 8 of 1991. The page exposes five articles of text and metadata including instrument number, issuing body, date, and a site-provided status of ساري. That status is not independently verified here.
+- Decision record: https://www.mksegypt.org/ar/decisions/16784 — Prime Minister Decision No. 1639 of 2023. The page exposes the decision's two articles and metadata; its page title gives 15 June 2023 while the reproduced signature line states 30 April 2023. Preserve these as distinct publication/page and signature dates; do not collapse them. The page's site-provided current status is not independently verified.
+
+Both sample law/decision pages also display the CC BY 4.0 footer statement. Together with the three court samples, this confirms full-text page availability in the site's law, decision and three court sections, while leaving completeness, legal currentness, official provenance and licence scope unresolved.
+
 **Required handling:** keep collection and commercial reuse permission as unknown in the central register until the CC BY 4.0 scope and chain of rights are clear. Preserve attribution requirements if the licence is relied upon. Manually sample records across all sections and compare selected case identifiers/dates/citations against official court sources. Do not bulk scrape, crawl, or import legal texts while rights scope or provenance remains unresolved. If ambiguity remains, retain the site as a discovery/cross-reference source only; do not contact source holders under the current project constraint.
 
 ### Tier 4 — books, journals and practitioner materials
