@@ -139,3 +139,11 @@ Use one document-level record plus article/judgment chunks that point back to it
 - WIPO Lex: https://www.wipo.int/wipolex/
 - ILO NATLEX: https://natlex.ilo.org/
 - FAOLEX: https://faolex.fao.org/
+
+### Newly mapped discovery endpoints — 30 October 2026
+
+- **Ministry of Parliamentary Affairs — issued laws index:** https://www.mpa.gov.eg/legislative-results/parliament. The public page exposes an enacted-laws search with legislative-session filters. Use it to discover law identifiers and cross-check them against promulgated Gazette texts; it is not itself proof of the exact Gazette text or current legal status.
+- **IDSC digital repository:** https://dspace.id.com.eg/. Item pages expose issue metadata and PDF listings, sometimes with an item-specific `license.txt`. Access is item-dependent; some records are request-copy restricted. Inspect each item's licence and access state individually. Do not bypass restrictions or infer commercial reuse rights from a visible file listing.
+- **Manshurat Qanuneya:** https://manshurat.org/. AUC's Law and Society Research Unit describes it as an open-access archive of Arabic Egyptian primary legal materials and judicial documents. Treat it as a high-value discovery/cross-reference source, not as blanket permission for bulk collection, commercial reuse, or redistribution. Follow each record to its original Gazette or court source and review item-level terms.
+
+These additions are discovery-only. The source permission register deliberately leaves collection and commercial reuse unknown until supported by item-specific evidence. Public availability/open access is not the same as an open licence.
