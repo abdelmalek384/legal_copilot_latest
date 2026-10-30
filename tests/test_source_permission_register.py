@@ -130,6 +130,12 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         self.assertIn("does not authorize automated/bulk extraction", source["permission_evidence"])
         self.assertEqual(source["source_page"], "https://cc.gov.eg/judgments_search/")
         self.assertIn("advanced search", source["permission_evidence"])
+        self.assertIn("last updated May 2026", source["permission_evidence"])
+        self.assertIn("personal account", source["permission_evidence"])
+        self.assertIn("even from a subscribed account", source["permission_evidence"])
+        self.assertIn("manual lookup/link-out source only", source["permission_evidence"])
+        self.assertEqual(source["terms_checked_on"], "2026-10-31")
+        self.assertIn("do not ingest", source["required_next_action"])
 
     def test_cassation_heritage_library_remains_browse_only_without_reuse_permission(self):
         import json
