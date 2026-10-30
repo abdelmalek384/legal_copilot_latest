@@ -2,7 +2,7 @@
 
 **Audit date:** 2026-10-30  
 **Branch:** `legal-knowledge-evidence-2026-10-29`  
-**Purpose:** Record an independent structural pass over all committed Table 24 candidate JSON files through row 642. This is not legal verification.
+**Purpose:** Record an independent structural pass over all committed Table 24 candidate JSON files through row 694. This is not legal verification.
 
 ## Result
 
