@@ -2353,7 +2353,7 @@
         "source-use review",
         "qualified Egyptian labour-lawyer review"
       ],
-      "notes": "Amiri Press searchable text identifies the subject as the National Wages Council's work system and competences and cites Law 14/2025 in its preamble. This is a related implementing/institutional instrument, not an amendment to the Labour Law on current evidence. Secondary reports dated 26 October 2026 state that Decision 3165/2026 appeared in Official Gazette issue 41 (مكرر و), reportedly dated 12 October 2026. The exact official Gazette DSpace item record and original PDF have not been located; do not treat the reported issue/date as independently verified. Official Amiri Press searchable text is available and its opening operative provision permits the National Wages Council to form specialized subcommittees, with balanced representation of government, employers' organizations and trade unions. The official Gazette item/page anchor and complete source-byte hash remain unverified; keep discovery-only.",
+      "notes": "Official Amiri Press searchable text identifies Decision 3165/2026 and its subject. Its first operative article permits the National Wages Council to form specialized subcommittees, with balanced representation of government, employers' organizations and trade unions. Multiple secondary reports state that it was published in Official Gazette issue 41 مكرر (و), dated 12 October 2026; the exact Official Gazette DSpace item and original PDF bytes/hash have not yet been located. Secondary reports further describe powers to set national sectoral minimum wages, review the minimum at least annually, set the annual periodic allowance floor at 3% of insured wage, and decide employer requests for reduction/exemption within 30 days. These substantive details are secondary-only until the full official text is acquired and matched. The reported Gazette issue/date is a discovery lead, not yet independently anchored to the Official Gazette item.",
       "source_urls": [
         {
           "url": "https://alamiria.com/Sec/TashTxt?id=EreMgz%2FNoYY%3D",
@@ -2364,6 +2364,11 @@
           "url": "https://business.ahram.org.eg/News/134866.aspx",
           "source_role": "Secondary report dated 2026-10-26 states Decision 3165/2026 was published in Official Gazette issue 41 (مكرر و), reportedly dated 2026-10-12; discovery lead only",
           "status": "secondary_reported_gazette_issue_not_officially_pinned"
+        },
+        {
+          "url": "https://www.almasdar.com/175352",
+          "source_role": "Secondary report dated 2026-10-26 quoting Articles 1-2 and reporting Official Gazette issue 41 مكرر (و), dated 2026-10-12; candidate cross-check only",
+          "status": "secondary_fuller_article_summary_and_gazette_issue_lead_not_primary_match"
         }
       ]
     }
