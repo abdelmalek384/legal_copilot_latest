@@ -23,6 +23,16 @@ The PDF was opened as a searchable document and rendered page images were inspec
 
 Article 11 provides a 90-day period from the law's commencement for the competent labour minister to issue implementing decisions and says existing decisions continue until then insofar as they do not conflict with the new law. Article 12 repeals Labour Law 12/2003, Law 125/2010 on the priority of workers' rights, and conflicting provisions. Article 13 sets the law's commencement formula and a separate commencement date for specialized labour courts. These provisions are important versioning/currentness anchors; calculating exact dates and determining the status of each earlier decision still requires date arithmetic and a complete amendment/corrigendum review.
 
+## Candidate commencement-date arithmetic (not a legal conclusion)
+
+Using the publication date visible in the Official Gazette PDF (2025-05-03) and excluding the publication day when counting the 90-day period:
+- 90 days after publication falls on **2025-08-01**.
+- The first day of the following month is therefore a candidate general commencement date of **2025-09-01** under Article 13.
+- Article 13 separately states that the specialized labour courts commence on the first of October following the law's commencement, giving **2025-10-01** as the candidate date.
+- Article 11's 90-day ministerial implementation-decision period, counted from 2025-09-01 while excluding the first day, yields a candidate deadline of **2025-11-30**.
+
+These are transparent calendar calculations from the statutory formula, not an authoritative determination of legal time computation. Confirm the counting rule, exact effective dates, any later amendment/extension, and the effect of decisions issued after the candidate deadline with qualified Egyptian counsel. Do not infer that a later-issued decision is invalid solely from this calculation.
+
 ## Reconciliation with Decisions 248–252/2026
 
 - **Decision 248 ↔ Article 260:** The official statute confirms the delegated subject matter for forms, reporting, statistics and electronic data. This materially strengthens the provisional cross-reference. The actual decision preamble and operative forms/deadlines must still be checked against the Gazette decision text.
