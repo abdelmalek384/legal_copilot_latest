@@ -21,9 +21,9 @@ Table 24 candidate extraction now covers **781/781 numbered entries (100% second
 3. Independently parsed all 38 committed JSON batches through the GitHub file API and flattened parent/child rows: **781 unique numbered records, rows 1–781, no gaps or duplicate row numbers**. All batches declare a secondary-transcription source, `official_gazette_match=not_performed`, and no official PDF hash. Each candidate remains `pending_official_match`; this is a structural integrity check, not legal verification.
    The result is recorded in [the 2026-10-30 structural audit](decision_250_table24_structural_audit_2026-10-30.md) for repeatable review.
 4. Added `tools/validate_decision250_table24_candidates.py` and a unit test. The validator is fail-closed on missing/duplicate row numbers, invalid JSON, missing source pinpoints/names, wrong source metadata, any non-secondary source classification, an unexpected non-null official PDF hash, or a row prematurely marked reviewed/approved or carrying `retrieval_eligible=true`.
-   Added regression tests that mutate copied batches to simulate a fabricated official PDF hash and an accidental `retrieval_eligible=true` flag; both must be rejected. The tests are committed but have not yet produced a confirmed CI result.
+   Added regression tests that mutate copied batches to simulate a fabricated official PDF hash and an accidental `retrieval_eligible=true` flag; both must be rejected. The validator and regression tests have run in the dedicated workflow; the latest run failed on a discrepancy-record validation check, which is being corrected and rerun.
 5. Added `tools/build_decision250_table24_review_queue.py` and tests. It creates a triage queue for anomalies, high-risk rows, currentness leads, group-level entries and possible surface/air-unit ambiguity without auto-correcting source data.
-6. Added `tools/build_decision250_table24_primary_match_register.py` and tests. It creates a fail-closed row-level register for all 617 extracted candidates; official page/hash, text-match, currentness, source-use and counsel fields start blank/not started, and retrieval eligibility is false.
+6. Added `tools/build_decision250_table24_primary_match_register.py` and tests. It creates a fail-closed row-level register for the candidate sequence; the register's row count must be regenerated and confirmed against the current 781-row sequence before it is used as a completeness metric; official page/hash, text-match, currentness, source-use and counsel fields start blank/not started, and retrieval eligibility is false.
 7. Added `decision_250_table24_primary_source_match_protocol_2026-10-29.md`, a row-by-row matching procedure for the original Gazette PDF, including source hash, printed/PDF page identity, field-level match outcomes, separate currentness/source-use/counsel gates, and strict stop conditions.
 8. Hardened the Table 24 review-queue generator so it refuses to emit a partial queue when any expected batch is missing or structurally invalid; added a regression test for this fail-closed behavior.
 9. Corrected the top-level README's labour-law import guidance: the `importlaws` command stages unverified records in `legal_import_staging`; it does not verify or authorize legal retrieval.
@@ -75,6 +75,8 @@ Table 24 candidate extraction now covers **781/781 numbered entries (100% second
 
 42. Continued secondary-image field spot-checks through Table 24 rows 26–79 using printed pages 253–260. Candidate rows 26–33, 35–63 and 65–79 now have partial checks for chemical name, CAS identifier, primary limit token and unit. Three discrepancies were explicitly quarantined rather than silently corrected: row 34 CAS appears as 1344-28-1 in the page image versus 1344-281 in the secondary transcription; row 61's limit appears tentatively 0.3 mg/m3 versus 1 mg/m3 in the transcription; row 64's limit appears tentatively 0.5 ppm versus 0.02 ppm in the transcription. Rows 61/64 readings are tentative due rotated/small text and require original Gazette confirmation. The validator now requires evidence fields and pending-original status for discrepancy records. Partial checks: 76/781 (9.7%); discrepancy flags: 3; full field-by-field comparison: 0; official Gazette matches: 0.
 
+43. Reconciled the release-status block with the latest Table 24 work: it now reports 781/781 secondary text rows, 327/781 secondary image locators, 76/781 partial image spot-checks, three quarantined discrepancies, zero complete field comparisons, zero official Gazette matches, and zero retrieval-eligible rows. Removed the stale 7% release-status figure and stale '139 remaining' next-step. This is documentation reconciliation, not a legal-readiness increase.
+
 ## Current subtask status
 
 | Subtask | Completion estimate | Current status | Remaining gate |
@@ -117,11 +119,16 @@ Table 24 candidate extraction now covers **781/781 numbered entries (100% second
 
 ## Release status
 
+- Table 24 secondary transcription rows extracted: **781/781** (provisional sequence; denominator not confirmed against Gazette)
+- Table 24 secondary image page locators assigned: **327/781**
+- Table 24 partial secondary-image spot-checks: **76/781**
+- Table 24 unresolved secondary-image discrepancy flags: **3**
+- Complete field-by-field secondary image comparisons: **0/781**
 - Official Gazette matched Table 24 rows: **0**
 - Currentness-complete Table 24 rows: **0**
 - Lawyer-approved Table 24 rows: **0**
 - Table 24 rows eligible for authoritative retrieval: **0**
-- Legal-knowledge preparation progress (phase estimate): **7%**
+- Legal-knowledge preparation progress (phase estimate): **15%**
 - Strict authoritative legal-content readiness (all release gates passed): **0%**
 
-These figures intentionally separate preparation, extraction, and legal verification. The 7% phase estimate is not a count of verified legal rules. Since zero rows have completed all release gates, strict authoritative legal-content readiness is 0%. A nearly complete transcription is not a nearly verified legal corpus.
+These figures intentionally separate extraction and evidence preparation from legal verification. The 15% phase estimate is not a count of verified legal rules. Since zero rows have completed all release gates, strict authoritative legal-content readiness is 0%. A complete secondary transcription is not a verified legal corpus.
