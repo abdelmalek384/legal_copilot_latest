@@ -84,6 +84,15 @@ class ReminderHealthcheckTests(unittest.TestCase):
         finding = next(item for item in report["findings"] if item["code"] == "expired_or_missing_sender_lease")
         self.assertEqual(finding["severity"], "critical")
 
+    def test_malformed_queue_and_lease_timestamps_are_not_silently_healthy(self):
+        self._insert("h", "queued", created="not-a-time", updated="not-a-time")
+        self._insert("i", "sending", lease="not-a-time")
+        self.tenant.commit()
+        report = self._report()
+        self.assertFalse(report["healthy"])
+        self.assertEqual(report["totals"]["stale_queued"], 1)
+        self.assertEqual(report["totals"]["expired_sending"], 1)
+
     def test_failed_and_ambiguous_rows_require_operator_attention(self):
         self._insert("f", "failed")
         self._insert("g", "ambiguous")
