@@ -499,7 +499,7 @@
       ],
       "review_state": "provisional_secondary_crosscheck",
       "search_eligible": false,
-      "usable_for": "abstention benchmark and manual identification of the implementing decision",
+      "usable_for": "abstention benchmark and manual verification of the implementing decision",
       "not_usable_for": "authoritative answer identifying the current decision or medical-fitness thresholds"
     },
     {
