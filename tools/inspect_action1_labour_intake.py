@@ -16,6 +16,10 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+HISTORICAL_LAW_ROWS_SHA256 = "3e964de5c9cc994aefcc29c031712e85d664febd97c428e61c2eacdccaf1c600"
+HISTORICAL_LAW_ROWS_SIZE_BYTES = 393861
+HISTORICAL_LAW_ROWS_RECORDS = 311
+
 
 def require_regular_file(path_value: str | Path, label: str) -> Path:
     path = Path(path_value).expanduser()
@@ -117,6 +121,14 @@ def inspect_jsonl(path_value: str | Path) -> dict[str, Any]:
         "top_level_field_counts": dict(sorted(field_counts.items())),
         "stable_key_field_candidate": stable_key_field,
         "duplicate_stable_key_count": duplicate_key_count,
+        "historical_comparison": {
+            "expected_sha256": HISTORICAL_LAW_ROWS_SHA256,
+            "sha256_matches_historical_copy": sha256_file(path) == HISTORICAL_LAW_ROWS_SHA256,
+            "expected_size_bytes": HISTORICAL_LAW_ROWS_SIZE_BYTES,
+            "size_matches_historical_copy": path.stat().st_size == HISTORICAL_LAW_ROWS_SIZE_BYTES,
+            "expected_record_count": HISTORICAL_LAW_ROWS_RECORDS,
+            "record_count_matches_historical_copy": rows == HISTORICAL_LAW_ROWS_RECORDS,
+        },
     }
 
 
