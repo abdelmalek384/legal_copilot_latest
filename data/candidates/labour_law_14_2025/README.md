@@ -144,3 +144,5 @@ The report is a review aid only; it does not change any source-permission, legal
 
 
 - [Egypt official-document Article 141 source-use route](egypt_official_documents_copyright_route_article141_2026-10-30.md): records the official-document exclusion, the creative-compilation exception, the distinction between underlying legal text and scan/third-party database rights, and the WIPO consolidation's 2020 currentness cutoff.
+
+- [Official Gazette Article 296 penalty cross-reference](official_primary_text_article296_2026-10-30.jsonl): selected official-hosted Gazette PDF text, printed page 111 / PDF index 108; preserves the two enumerated article groups and remains pending original-byte hash, currentness and counsel review.
