@@ -103,6 +103,39 @@ class ReminderHealthcheckTests(unittest.TestCase):
         self.assertIn("failed_reminders_present", codes)
         self.assertIn("ambiguous_reminders_require_reconciliation", codes)
 
+    def test_scans_multiple_firms_and_aggregates_without_cross_firm_data(self):
+        second_id, second_path = self.runtime.provision_firm("Second Healthcheck Firm")
+        second = self.runtime._tenant_router.connection_for_firm(second_id)
+        self._insert("j", "queued")
+        second.execute(
+            "INSERT INTO reminder_deliveries "
+            "(idempotency_key,recipient_user_id,event_type,event_id,due_date,reminder_window,status) "
+            "VALUES(?,1,'task','second','2026-10-31','due_soon','queued')",
+            ("j" * 64,),
+        )
+        self.tenant.commit()
+        second.commit()
+        report = self._report()
+        self.assertFalse(report["healthy"])
+        self.assertEqual(report["firms_scanned"], 2)
+        self.assertEqual(report["totals"]["queued"], 2)
+        self.assertEqual(
+            [item["firm_id"] for item in report["firms"]],
+            sorted([self.firm_id, second_id]),
+        )
+        self.assertTrue(all("recipient" not in str(item).lower() for item in report["firms"]))
+
+    def test_missing_tenant_database_is_a_critical_finding(self):
+        second_id, second_path = self.runtime.provision_firm("Missing Outbox Firm")
+        self.runtime.close_current_thread()
+        second_path.unlink()
+        report = self._report()
+        self.assertFalse(report["healthy"])
+        self.assertEqual(report["firms_scanned"], 1)
+        finding = next(item for item in report["findings"] if item["firm_id"] == second_id)
+        self.assertEqual(finding["code"], "tenant_outbox_unavailable")
+        self.assertEqual(finding["severity"], "critical")
+
     def test_invalid_threshold_and_naive_time_are_rejected(self):
         with self.assertRaises(ValueError):
             inspect_health(self.runtime.paths.control_plane, self.runtime.paths.tenant_root, stale_queued_minutes=0)
