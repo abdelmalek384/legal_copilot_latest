@@ -2111,12 +2111,17 @@
         "source-specific collection and commercial reuse review",
         "qualified Egyptian labour-lawyer review"
       ],
-      "notes": "Discovery-only. Amiri Press searchable text identifies this decision as applying a remote-work system to establishments/entities subject to Labour Law 14/2025. Later official Amiri Press decisions cite it and extend its operation month-by-month. Do not infer that it remains operative after the last evidenced extension.",
+      "notes": "Discovery-only. Amiri Press searchable text identifies this decision as applying a remote-work system to establishments/entities subject to Labour Law 14/2025. Later official Amiri Press decisions cite it and extend its operation month-by-month. Do not infer that it remains operative after the last evidenced extension. Official Gazette DSpace metadata identifies issue 14 supplement, dated 2 April 2026, with Decision 982/2026 in the abstract. The original PDF Download action routes to a request-a-copy form; no request was submitted.",
       "source_urls": [
         {
           "url": "https://alamiria.com/Sec/TashTxt?id=X+ynf8GR0jI%3D",
           "source_role": "official Amiri Press searchable text candidate",
           "status": "discovered_not_downloaded"
+        },
+        {
+          "url": "https://dspace.id.com.eg/items/1255d539-9ac2-491c-9c03-a7330ff891b8",
+          "source_role": "Official Gazette item metadata: issue 14 supplement, dated 2026-04-02; abstract identifies Decision 982/2026",
+          "status": "official_metadata_discovered_original_bundle_request_copy_restricted"
         }
       ]
     },
