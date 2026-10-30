@@ -69,7 +69,7 @@ def validate_inputs(src: str | pathlib.Path, out: str | pathlib.Path):
     output_dir = pathlib.Path(out)
     if source_dir.is_symlink() or not source_dir.is_dir():
         _fail("source directory must be an existing regular directory, not a symbolic link")
-    if output_dir.exists() and output_dir.is_symlink():
+    if output_dir.is_symlink():
         _fail("output directory must not be a symbolic link")
     source_resolved = source_dir.resolve()
     output_resolved = output_dir.resolve()
