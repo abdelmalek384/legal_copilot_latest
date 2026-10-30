@@ -229,7 +229,7 @@ class LegalImportBundleTests(unittest.TestCase):
                 self.assertEqual(pages, ["recognized page"])
                 ocr.assert_called_once()
             with mock.patch.object(import_laws, "_ocr", side_effect=AssertionError("cache should be reused")):
-                pages, used = import_laws.page_texts(pdf_path, cache_root, "a" * 64)
+                pages, used = import_laws.page_texts(self.pdf_bytes, cache_root, "a" * 64, "sample_law")
                 self.assertEqual(pages, ["recognized page"])
             with mock.patch.object(import_laws, "_ocr", return_value="new source text"):
                 pages, used = import_laws.page_texts(self.pdf_bytes, cache_root, "b" * 64, "sample_law")
