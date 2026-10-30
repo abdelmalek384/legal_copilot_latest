@@ -18,6 +18,14 @@ class Decision162CandidateQuarantineTests(unittest.TestCase):
         self.assertFalse(instrument["formal_amendment_confirmed"])
         self.assertEqual(instrument["legal_review"], "pending")
         self.assertEqual(instrument["permission"], "unknown")
+        self.assertEqual(
+            instrument["official_source_url"],
+            "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+        )
+        self.assertEqual(
+            instrument["secondary_dspace_bundle_url"],
+            "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full",
+        )
 
     def test_effective_date_remains_an_unverified_secondary_inference(self):
         instrument = json.loads(CANDIDATE.read_text(encoding="utf-8"))["instrument"]
