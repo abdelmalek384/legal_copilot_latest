@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "record_type": "secondary_source_candidate_extraction",
+  "instrument": "Egyptian Minister of Labour Decision 250/2026",
+  "table": "24",
+  "table_title_ar": "الحدود العتبية للمواد الكيميائية الخطرة",
+  "research_date": "2026-10-29",
+  "source": {
+    "class": "secondary_transcription",
+    "url": "https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html",
+    "publication_date": "2026-10-26",
+    "source_lines": "5322-5353",
+    "official_gazette_match": "not_performed",
+    "official_pdf_sha256": null
+  },
+  "status": "candidate_only_not_for_authoritative_retrieval",
+  "important_limits": [
+    "Secondary transcription only; no official Gazette page-image comparison.",
+    "Raw limits, units, symbols and missing values are not normalized.",
+    "Nickel category/substance hierarchy is preserved; do not assign child limits to the parent.",
+    "Not for workplace safety decisions or compliance advice."
+  ],
+  "declared_top_level_row_range": {"start": 504, "end": 523},
+  "rows": [
+    {"row":504,"name_ar":"نفثالين","name_en":"Naphthalene","cas":"91-20-3","source_line":5322,"raw_limit_and_note_text":"C10H8؛ 128,19؛ 10 جزء/مليون؛ (Skin; A3; BEI)؛ جلد، م4، مؤشر التعرض الحيوي؛ تهيج المسالك التنفسية العليا، واعتام عدسة العين، فقر الدم الانحلالي","status":"pending_official_match","anomaly":"The classification/limit parentheses appear unbalanced; verify the column positions and category."},
+    {"row":505,"name_ar":"بيتا نفثايل أمين","name_en":"beta-Naphthylamine","cas":"91-59-8","source_line":5324,"raw_limit_and_note_text":"C10H9N؛ 143,18؛ (L)؛ م1؛ A1؛ سرطان المثانة","status":"pending_official_match","risk_note":"High-risk carcinogenicity entry; no operational limit approved."},
+    {"row":506,"name_ar":"غاز طبيعي","name_en":"Natural gas","cas":"8006-14-2","source_line":5326,"raw_limit_and_note_text":"متغير؛ خانق بسيط؛ (D, EX)؛ اختناق","status":"pending_official_match"},
+    {"row":507,"name_ar":"مطاط طبيعي كبروتينات محسّسة مستنشقة","name_en":"Natural rubber latex as inhalable allergenic proteins","cas":"9006-04-6","source_line":5327,"raw_limit_and_note_text":"متغير؛ 0,0001 ملجم/م3(I)؛ (Skin; DSEN; SEN)؛ جلد، تحسس جلدي وتنفسي؛ حساسية الجهاز التنفسي","status":"pending_official_match","anomaly":"CAS bracket is malformed in the text layer; candidate identifier is preserved as extracted and needs official-page verification."},
+    {"row":508,"name_ar":"نيون","name_en":"Neon","cas":"7440-01-9","source_line":5329,"raw_limit_and_note_text":"Ne؛ 20,18؛ خانق بسيط (D)؛ اختناق","status":"pending_official_match"},
+    {"row":509,"name_ar":"عنصر النيكل والمركبات غير العضوية وتشمل سلفيد النيكل كنيكل","name_en":"Nickel and inorganic compounds, including nickel subsulfide, as Ni","cas":"7440-02-0","source_line":5330,"raw_limit_and_note_text":"Parent heading; child entries describe soluble inorganic compounds, insoluble inorganic compounds, nickel subsulfide, and nickel carbonyl","status":"pending_official_match","children":[
+      {"row":510,"name_ar":"مركبات غير عضوية ذائبة (NOS)","name_en":"Soluble inorganic compounds (NOS)","source_line":5332,"raw_limit_and_note_text":"متغير؛ 0,1 ملجم/م3(I)؛ م4؛ A4؛ تلف الرئة وسرطان الأنف","status":"pending_official_match"},
+      {"row":511,"name_ar":"مركبات غير عضوية غير ذائبة (NOS)","name_en":"Insoluble inorganic compounds (NOS)","source_line":5334,"raw_limit_and_note_text":"متغير؛ 0,2 ملجم/م3(I)؛ م1؛ A1؛ سرطان الرئة","status":"pending_official_match","risk_note":"High-risk carcinogenicity entry; no operational limit approved."},
+      {"row":512,"name_ar":"كبريتيد النيكل مقدر كنيكل","name_en":"Nickel subsulfide, as Ni","cas":null,"raw_cas_token":"]2-72-12035[","source_line":5335,"raw_limit_and_note_text":"240,19؛ 0,1 ملجم/م3(I)؛ م1؛ A1؛ سرطان الرئة","status":"pending_official_match","anomaly":"CAS string is reversed/malformed in the text layer; do not normalize it without official-page evidence."},
+      {"row":513,"name_ar":"كربونيل النيكل كنيكل","name_en":"Nickel carbonyl, as Ni","cas":"13463-39-3","source_line":5337,"raw_limit_and_note_text":"Ni(CO)4؛ 170,73؛ 0,05 جزء/مليون؛ م3؛ A3؛ تهيج الرئة","status":"pending_official_match"}
+    ]},
+    {"row":514,"name_ar":"نيكوتين","name_en":"Nicotine","cas":"54-11-5","source_line":5339,"raw_limit_and_note_text":"C10H14N2؛ 162,23؛ 0,5 ملجم/م3؛ جلد Skin؛ تلف القناة الهضمية وضعف الجهاز العصبي المركزي وضعف القلب","status":"pending_official_match"},
+    {"row":515,"name_ar":"نيترابيرين","name_en":"Nitrapyrin","cas":"1929-82-4","source_line":5341,"raw_limit_and_note_text":"C6H3Cl4N؛ 230,93؛ 10 ملجم/م3(IFV)؛ 20 ملجم/م3(IFV)؛ A4؛ م4؛ تلف الكبد","status":"pending_official_match"},
+    {"row":516,"name_ar":"حمض النيتريك","name_en":"Nitric acid","cas":"7697-37-2","source_line":5342,"raw_limit_and_note_text":"HNO3؛ 63,02؛ 2 جزء/مليون؛ 4 جزء/مليون؛ تهيج المسالك التنفسية العليا والعين - تآكل الأسنان","status":"pending_official_match"},
+    {"row":517,"name_ar":"أوكسيد النيتريك","name_en":"Nitric oxide","cas":"10102-43-9","source_line":5344,"raw_limit_and_note_text":"NO؛ 30,01؛ 25 جزء/مليون؛ BEIM؛ مؤشر التعرض الحيوي للمواد المحفزة للميتهيموجلوبين؛ نقص الأكسجين/زرقة وتكوين هيموغلوبين النيتروسيل؛ تهيج المسالك التنفسية العليا","status":"pending_official_match"},
+    {"row":518,"name_ar":"بارا نيترو أنيلين","name_en":"p-Nitroaniline","cas":"100-01-6","source_line":5345,"raw_limit_and_note_text":"C6H6N2O2؛ 138,12؛ 3 ملجم/م3؛ Skin; A4; BEIM؛ جلد، م4، مؤشر التعرض الحيوي للمواد المحفزة للميتهيموجلوبين؛ ميتهيموجلوبينية الدم، تلف الكبد، تهيج العين","status":"pending_official_match"},
+    {"row":519,"name_ar":"نيترو بنزين","name_en":"Nitrobenzene","cas":"98-95-3","source_line":5347,"raw_limit_and_note_text":"C6H5NO2؛ 123,11؛ 1 جزء/مليون؛ Skin; A3; BEIM؛ جلد، م3، مؤشر التعرض الحيوي للمواد المحفزة للميتهيموجلوبين؛ ميتهيموجلوبينية الدم","status":"pending_official_match"},
+    {"row":520,"name_ar":"بارا نيترو كلورو بنزين","name_en":"p-Nitrochlorobenzene","cas":"100-00-5","source_line":5348,"raw_limit_and_note_text":"C6H4ClNO2؛ 157,56؛ 0,1 جزء/مليون؛ Skin; A3; BEIM؛ جلد، م3، مؤشر التعرض الحيوي للمواد المحفزة للميتهيموجلوبين؛ ميتهيموجلوبينية الدم","status":"pending_official_match"},
+    {"row":521,"name_ar":"4-نيترو دايفينايل","name_en":"4-Nitrodiphenyl","cas":"92-93-3","source_line":5350,"raw_limit_and_note_text":"C12H9NO2؛ 199,20؛ (L)؛ Skin; A2؛ جلد، م2؛ سرطان المثانة","status":"pending_official_match","risk_note":"High-risk carcinogenicity entry; no operational limit approved."},
+    {"row":522,"name_ar":"نيترو إيثان","name_en":"Nitroethane","cas":"79-24-3","source_line":5352,"raw_limit_and_note_text":"C2H5NO2؛ 75,07؛ 100 جزء/مليون؛ تهيج المسالك التنفسية العليا، ضعف الجهاز العصبي المركزي وتلف الكبد","status":"pending_official_match"},
+    {"row":523,"name_ar":"نيتروجين","name_en":"Nitrogen","cas":"7727-37-9","source_line":5353,"raw_limit_and_note_text":"N؛ 14,01؛ غاز خانق بسيط؛ اختناق","status":"pending_official_match"}
+  ]
+}

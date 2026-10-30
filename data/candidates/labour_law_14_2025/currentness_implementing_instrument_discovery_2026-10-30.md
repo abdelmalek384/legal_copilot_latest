@@ -1,0 +1,57 @@
+# Labour Law 14/2025 — currentness and implementing-instrument discovery log
+
+**Checked:** 2026-10-30  
+**Scope:** non-database evidence discovery only. This is not a legal opinion, exhaustive Gazette search, amendment certificate, or approval to retrieve any candidate text.
+
+## Why this log exists
+
+The status of Law 14/2025 cannot be inferred from a copy of the original law alone. Later instruments that cite the law may implement it, supplement it, extend temporary measures, or amend it. Those categories must not be conflated. This log records official-source leads found during a targeted public-source scan so they can be acquired, classified, and reconciled against their Gazette publications.
+
+## Confirmed discovery leads
+
+| Candidate instrument | Official source evidence located | Preliminary classification | Outstanding evidence |
+|---|---|---|---|
+| Law 14/2025 promulgating the Labour Law | Amiri Press searchable text: https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D ; ETA-hosted Gazette PDF: https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf ; Ministry laws catalogue: https://www.labour.gov.eg/ar/القوانين-والتشريعات/ | Parent statute, original promulgated text | Re-hash supplied/original Gazette bytes; verify amendments and status instrument-by-instrument; review exact commencement/transitional provisions |
+| Prime Minister Decision 982/2026 | Amiri Press searchable record: https://alamiria.com/Sec/TashTxt?id=X+ynf8GR0jI%3D ; Official Gazette DSpace metadata: https://dspace.id.com.eg/items/1255d539-9ac2-491c-9c03-a7330ff891b8 ; issue 14 supplement, 2 April 2026; PDF Download routes to request-a-copy ; Ministry report dated 6 April describes remote work on Sundays during April: https://www.labour.gov.eg/ar/الأخبار/عن-طريق-الفيديو-كونفرانس-وزير-العمل-يتابع-مع-مديريات-العمل-بالمحافظات-تنفيذ-خطط-الوزارة-وتطبيق-الكتاب-الدوري-الخاص-بالعمل-عن-بعد-بالقطاع-الخاص/ | Candidate implementing measure concerning remote work at establishments/entities subject to the Labour Law | Obtain authorized original bytes, hash and Gazette page anchor; verify terms, commencement and later status |
+| Prime Minister Decision 1305/2026 | Official Amiri Press searchable text: https://www.alamiria.com/Sec/TashTxt?id=kkawTcVJE9I%3D ; states Decision 982/2026 continues during May 2026 and is dated 30 April 2026 | Candidate time-limited extension, not an amendment to Law 14 on current evidence | Original Gazette issue/pages/bytes/hash, terms, later status and lawyer review |
+| Prime Minister Decision 1572/2026 | Official Gazette DSpace record: https://dspace.id.com.eg/items/3ce63ac9-1cc3-4bb7-a2c9-449c1c730831 ; issue 21 Supplement (A), 21 May 2026, original PDF listed but request-copy restricted; Amiri Press Decision 2377 also cites it | Candidate time-limited extension, not an amendment to Law 14 on current evidence | Obtain authorized original bytes, hash and Gazette page anchor; verify terms and legal effect |
+| Prime Minister Decision 2033/2026 | Official Gazette DSpace record: https://dspace.id.com.eg/items/080b6ab2-3969-46e5-a8bd-38f86305f6dd/full ; issue 26 Supplement (B), 30 June 2026, abstract identifies Decision 2033; original PDF Download routes to request-a-copy; secondary transcription also located | Candidate time-limited extension, not an amendment to Law 14 on current evidence | Obtain/verify original bytes, hash and Gazette page anchor; review terms and legal effect |
+| Prime Minister Decision 2377/2026 | Amiri Press searchable record: https://alamiria.com/Sec/TashTxt?id=OHEywmUwNf8%3D ; record states continuation of Decision 982/2026 during August 2026 and cites the preceding extension decisions | Candidate time-limited extension | Gazette issue/date/pages; original bytes/hash; confirm exact period and any later instrument |
+| Prime Minister Decision 2590/2026 | Amiri Press searchable record: https://alamiria.com/Sec/TashTxt?id=HAJdFlN7HCw%3D ; record states continuation of Decision 982/2026 during September 2026 and gives date 1 September 2026 | Candidate time-limited extension | Gazette issue/date/pages; original bytes/hash; determine October onward status from later Gazette instruments |
+| Prime Minister Decision 3165/2026 | Amiri Press searchable record: https://alamiria.com/Sec/TashTxt?id=EreMgz%2FNoYY%3D ; title concerns the National Wages Council's work system and competences; preamble cites Law 14/2025. Secondary report states it appeared in Gazette issue 41 (مكرر و), reportedly dated 2026-10-12: https://business.ahram.org.eg/News/134866.aspx | Candidate related implementing/institutional instrument | Gazette issue/date/pages; original bytes/hash; exact provisions, effective date and relationship to Law 14 |
+
+## Targeted catalogue checks
+
+1. The Ministry of Labour laws-and-legislation catalogue currently lists Law 14/2025 and older Labour Law 12/2003 / its 2008 amendment among basic laws. A catalogue listing is not a consolidated current-law statement and does not prove that no subsequent amendment exists.
+2. The Amiri Press searchable text for Law 14/2025 was discoverable. Search also surfaced the above 2026 Prime Minister decisions expressly citing Law 14/2025.
+3. The Ministry announcement dated 20 October 2026 identifies Ministerial Decisions 248–252/2026 as executive decisions under Law 14/2025. The original Supplement 225(A) PDF remains request-copy restricted in the checked DSpace record; see the source manifest and Action 1 intake protocol.
+4. The search did not establish a later statute amending the text of Law 14/2025. This is **not** a finding that no amendment exists: search-index coverage is incomplete and the Gazette sequence has not been exhaustively checked.
+5. The targeted Amiri Press search for an October 2026 continuation of Decision 982 surfaced Decision 2590/2026, which expressly continues it through September 2026, but did not surface an October continuation. This is only a search result, not proof that no October instrument exists or that Decision 982's legal status can be conclusively stated; continue checking the Gazette sequence and other official indexes.
+6. On 30 September 2026, the official State Information Service reported that the Cabinet approved a **draft** decision to suspend Decision 982/2026. This is evidence of Cabinet approval of a draft, not the published operative decision. The decision number, Gazette issue/pages, publication, commencement and legal effect remain unverified. Do not equate Cabinet approval with promulgation or tell users that the suspension legally took effect until the operative instrument is located.
+7. The Amiri Press searchable text for Decision 3165/2026 is now captured as a direct official-text discovery lead. Its first operative article permits specialized subcommittees of the National Wages Council with balanced representation of government, employers and trade unions. Exact Gazette item/page anchor and original-byte hash remain outstanding; no rule is promoted to authoritative retrieval.
+8. Secondary reports now consistently identify Decision 3165/2026 as appearing in Official Gazette issue 41 مكرر (و), dated 12 October 2026. One report reproduces/ summarizes the reported operative rules: national sectoral minimum wages, annual review at least once yearly, a periodic annual allowance floor of 3% of insured wage, and 30-day handling of employer reduction/exemption requests. These remain secondary corroboration only; the official Gazette item, full PDF and exact pages must be acquired and checked before these rules are used in answers.
+
+## Required classification rules
+
+- A later decision that cites Law 14/2025 is not automatically an amendment to the statute.
+- A temporary extension of an implementing decision is a separate instrument with its own publication, effective period, and expiry/supersession history.
+- A ministerial or prime-ministerial implementing measure must not be merged into the parent statute's text.
+- Do not mark any item current, in force, or retrieval-eligible from this discovery log.
+- Do not import secondary text or infer missing issue/page/date metadata. Obtain the Gazette publication, preserve its original bytes and SHA-256, and compare text before any legal status decision.
+- Search results and catalogue pages are discovery evidence only; they do not establish commercial reuse rights.
+
+## Next execution steps
+
+1. On Action 1 intake, compare the supplied Gazette Supplement 225(A) against Decisions 248–252/2026 and the existing candidate maps.
+2. Separately locate the Gazette publications for Decisions 982, 1305, 1572, 2033, 2377, 2590 and 3165/2026. Do not assume these are all in Supplement 225(A).
+3. Build an instrument relationship timeline with publication date, effective-from/to dates, parent authority, amendment/extension/repeal relationship, and exact Gazette page anchors.
+4. Re-run the currentness scan against the full relevant Gazette sequence through the check date and record both positive findings and searches that found no result.
+5. Keep all records quarantined until provenance, source-use, legal-status and qualified-review gates pass.
+
+## Evidence boundary
+
+This log improves discovery and instrument mapping only. It does not increase the count of verified legal provisions, does not establish that Law 14/2025 is unamended/current as of 2026-10-30, and does not authorize production retrieval.
+
+9. A second DSpace record in the MELES Electronic 2026 collection lists English and Arabic PDFs of Decision 982/2026, but both file downloads route to request-a-copy and the item-specific license is agreed upon submission. This is not the Official Gazette record and does not provide an acquired copy. No request was submitted; do not infer permission to redistribute or commercialize it.
+
+10. Decision 3165/2026's official Amiri Press text expressly repeals Prime Minister Decision 2659/2020 in Article 7 and states in Article 8 that it takes effect the day after publication in the Official Gazette. Secondary legal repositories identify Decision 2659/2020 with issue 51 مكرر (ج), dated 21 December 2020, but its exact original Gazette item/page is not pinned. The actual publication date of Decision 3165 is also not independently established: secondary reporting gives issue date 12 October and public reporting on 26 October says it was published. Therefore the old decision's repeal is explicit in the 3165 text, but the precise effective repeal date is not yet established for the corpus. A separate candidate record and lawyer prompt OSH-28 now preserve this dependency.

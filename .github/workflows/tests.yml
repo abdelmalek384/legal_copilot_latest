@@ -1,6 +1,7 @@
 name: Tests
 
 on:
+  workflow_dispatch:
   push:
     branches: [main, 'audit/**']
   pull_request:
@@ -88,6 +89,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_legacy_chunk_evidence_manifest.py
       - name: Validate legal data registry and evaluation seeds
         run: python tools/validate_legal_data_foundation.py
+      - name: Test legal evidence, lawyer prompts, source manifest, and Article 296 quarantine
+        run: PYTHONPATH=. python tests/test_decision_250_table24_inventory.py
       - name: Test fail-closed legal release readiness gate
         run: PYTHONPATH=. python tests/test_legal_release_readiness.py
       - name: Test aggregate production release gate
@@ -120,6 +123,10 @@ jobs:
         run: python tools/validate_phase2_document_inventory.py
       - name: Test Phase 2 instrument inventory safeguards
         run: python tests/test_phase2_document_inventory.py
+      - name: Test metadata-only Action 1 Gazette and JSONL intake inspector
+        run: PYTHONPATH=. python tests/test_action1_labour_intake_inspector.py
+      - name: Test metadata-only Action 1 source hashing utility
+        run: PYTHONPATH=. python tests/test_action1_source_intake.py
       - name: Test permission outreach tracking guardrails
         run: python tests/test_permission_outreach_tracker.py
       - name: Validate source permission register
@@ -138,6 +145,18 @@ jobs:
         run: PYTHONPATH=. python tests/test_legal_corpus_audit.py
       - name: Test legal source review queue
         run: python tests/test_legal_source_review_queue.py
+      - name: Validate Decision 250 Table 24 candidate batches
+        run: python tools/validate_decision250_table24_candidates.py
+      - name: Test Decision 250 Table 24 candidate validator
+        run: PYTHONPATH=. python tests/test_decision250_table24_candidate_validation.py
+      - name: Test Decision 250 Table 24 review queue
+        run: PYTHONPATH=. python tests/test_decision250_table24_review_queue.py
+      - name: Build Decision 250 Table 24 human review queue
+        run: python tools/build_decision250_table24_review_queue.py --output /tmp/decision250-table24-review-queue.md
+      - name: Test Decision 250 Table 24 primary-match register
+        run: PYTHONPATH=. python tests/test_decision250_table24_primary_match_register.py
+      - name: Build fail-closed Decision 250 Table 24 primary-match register
+        run: python tools/build_decision250_table24_primary_match_register.py --output /tmp/decision250-table24-primary-match-register.jsonl
       - name: Test multi-area lawyer-review benchmark draft
         run: PYTHONPATH=. python tests/test_multi_area_eval_draft.py
       - name: Test Arabic OCR quality evaluator

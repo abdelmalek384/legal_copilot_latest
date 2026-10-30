@@ -1,0 +1,461 @@
+{
+  "schema_version": 1,
+  "record_type": "secondary_source_clause_checklist",
+  "instrument_group": "Egyptian Labour Ministry Decisions 248-252/2026",
+  "research_date": "2026-10-29",
+  "primary_source_status": "official_gazette_catalogue_found; full secondary transcription of decision 250 found; no official-file byte comparison",
+  "counsel_review_status": "not_reviewed",
+  "authoritative_retrieval_eligible": false,
+  "official_sources": [
+    {
+      "kind": "ministry_announcement",
+      "url": "https://www.labour.gov.eg/ar/الأخبار/وزير-العمل-يصدر-5-قرارات-تنفيذية-لتعزيز-منظومة-السلامة-والصحة-المهنية-وتأمين-بيئة-العمل/",
+      "supports": "existence_and_general_subject_of_decisions_248_to_252",
+      "full_decision_text": false
+    },
+    {
+      "kind": "gazette_catalogue",
+      "url": "https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full",
+      "supports": "issue_date_publisher_and_decision_titles",
+      "full_decision_text": false
+    }
+  ],
+  "official_clarifications": [
+    {
+      "kind": "ministry_clarification",
+      "instrument": "249/2026",
+      "publication_date": "2026-10-27",
+      "url": "https://www.labour.gov.eg/ar/الأخبار/بيان-توضيحي-هام-بشأن-القرار-الوزاري-رقم-249-لسنة-2026-الخاص-بالسلامة-والصحة-المهنية-وزارة-العمل-لن-ي-ضار-أي-عامل-يعمل-بمهنة-أخصائي-السلامة-والصحة-المهنية-ولا-مساس-بالمراكز-القانونية-المكتسبة-وأهمية-المهنة-تستوجب-منتهى-الدقة-في-اختيار-شاغليها/",
+      "supports": "official_administrative_interpretation_on_incumbent_workers_acquired_positions_qualification_categories_and_future_periodic_circulars",
+      "is_decision_text": false
+    }
+  ],
+  "secondary_sources": [
+    {
+      "id": "secondary_248_youm7",
+      "url": "https://www.youm7.com/story/2026/10/28/حماية-أرواح-العمال-أولوية-وزارة-العمل-تحدد-مهلة-24-ساعة/7590406",
+      "publication_date": "2026-10-28",
+      "scope": "summary_and_article_level_reporting_for_248; summaries_for_249_250_251_252"
+    },
+    {
+      "id": "secondary_249_almasdar",
+      "url": "https://www.almasdar.com/175150",
+      "publication_date": "2026-10-19",
+      "scope": "related_article_page; full text not extracted in available page text"
+    },
+    {
+      "id": "secondary_250_almasdar",
+      "url": "https://www.almasdar.com/175151",
+      "publication_date": "2026-10-19",
+      "scope": "articles_1_2_visible; remainder appears as image placeholders"
+    },
+    {
+      "id": "secondary_251_almasdar",
+      "url": "https://www.almasdar.com/175152",
+      "publication_date": "2026-10-19",
+      "scope": "articles_1_3_excerpt_and_reported_license_details"
+    },
+    {
+      "id": "secondary_252_almasdar",
+      "url": "https://www.almasdar.com/175156",
+      "publication_date": "2026-10-19",
+      "scope": "partial_article_1_definitions"
+    },
+    {
+      "id": "secondary_250_riwaq_full_transcription",
+      "url": "https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html",
+      "publication_date": "2026-10-26",
+      "scope": "full secondary text transcription of Decision 250/2026, including articles, technical tables 1-24 and register templates; not an official Gazette file and not a primary-source match"
+    }
+  ],
+  "clauses": [
+    {
+      "id": "248-A",
+      "instrument": "248/2026",
+      "topic": "serious_accident_reporting_window",
+      "secondary_value": "24 hours within establishment/worksite; 48 hours outside",
+      "risk": "high",
+      "primary_match": "not_checked",
+      "currentness": "not_checked",
+      "counsel": "not_reviewed"
+    },
+    {
+      "id": "248-B",
+      "instrument": "248/2026",
+      "topic": "serious_accident_definition",
+      "secondary_value": "death; expected permanent disability >=35%; third-degree-or-greater burns; multiple injured at same site/time",
+      "risk": "high",
+      "primary_match": "not_checked",
+      "currentness": "not_checked",
+      "counsel": "not_reviewed"
+    },
+    {
+      "id": "248-C",
+      "instrument": "248/2026",
+      "topic": "hazardous_event_and_shift_stoppage",
+      "secondary_value": "fire/collapse/explosion/hazardous leak causing stoppage for one or more shifts",
+      "risk": "high",
+      "primary_match": "not_checked",
+      "currentness": "not_checked",
+      "counsel": "not_reviewed"
+    },
+    {
+      "id": "248-D",
+      "instrument": "248/2026",
+      "topic": "work_transport_incidents",
+      "secondary_value": "some journeys to/from work using employer or contracted transport",
+      "risk": "high",
+      "primary_match": "not_checked",
+      "currentness": "not_checked",
+      "counsel": "not_reviewed"
+    },
+    {
+      "id": "248-E",
+      "instrument": "248/2026",
+      "topic": "delivery_motorcycle_incidents",
+      "secondary_value": "some delivery-worker motorcycle incidents, including worker-owned motorcycles",
+      "risk": "high",
+      "primary_match": "not_checked",
+      "currentness": "not_checked",
+      "counsel": "not_reviewed"
+    },
+    {
+      "id": "248-F",
+      "instrument": "248/2026",
+      "topic": "semiannual_statistics_threshold",
+      "secondary_value": "establishments with 30 or more workers",
+      "risk": "high",
+      "primary_match": "not_checked",
+      "currentness": "not_checked",
+      "counsel": "not_reviewed"
+    },
+    {
+      "id": "248-G",
+      "instrument": "248/2026",
+      "topic": "statistics_deadlines_and_copies",
+      "secondary_value": "first half of January/July; two certified copies within 15 days after request; third retained after approval",
+      "risk": "high",
+      "primary_match": "not_checked",
+      "currentness": "not_checked",
+      "counsel": "not_reviewed"
+    },
+    {
+      "id": "248-H",
+      "instrument": "248/2026",
+      "topic": "registers_and_retention",
+      "secondary_value": "paper/electronic registers; at least three years retention",
+      "risk": "medium_high",
+      "primary_match": "not_checked",
+      "currentness": "not_checked",
+      "counsel": "not_reviewed"
+    },
+    {
+      "id": "248-I",
+      "instrument": "248/2026",
+      "topic": "false_statistics_liability",
+      "secondary_value": "accountability may apply if false statistics are discovered after filing period",
+      "risk": "high",
+      "primary_match": "not_checked",
+      "currentness": "not_checked",
+      "counsel": "not_reviewed"
+    },
+    {
+      "id": "248-J",
+      "instrument": "248/2026",
+      "topic": "technical_cause_and_loss_data",
+      "secondary_value": "submit technical findings and final loss estimates when available",
+      "risk": "medium_high",
+      "primary_match": "not_checked",
+      "currentness": "not_checked",
+      "counsel": "not_reviewed"
+    },
+    {
+      "id": "249-A",
+      "instrument": "249/2026",
+      "topic": "osh_unit_threshold",
+      "secondary_value": "50 or more workers",
+      "risk": "high",
+      "primary_match": "not_checked",
+      "currentness": "not_checked",
+      "counsel": "not_reviewed"
+    },
+    {
+      "id": "249-B",
+      "instrument": "249/2026",
+      "topic": "separate_worksite_counting",
+      "secondary_value": "geographically or administratively separate site treated independently at 50 or more workers",
+      "risk": "high",
+      "primary_match": "not_checked",
+      "currentness": "not_checked",
+      "counsel": "not_reviewed"
+    },
+    {
+      "id": "249-C",
+      "instrument": "249/2026",
+      "topic": "worker_relationship_scope",
+      "secondary_value": "report says obligation applies regardless of employment relationship/mode or establishment affiliation",
+      "risk": "high",
+      "primary_match": "not_checked",
+      "currentness": "not_checked",
+      "counsel": "not_reviewed"
+    },
+    {
+      "id": "249-D",
+      "instrument": "249/2026",
+      "topic": "responsible_person",
+      "secondary_value": "employer/board chair/responsible manager responsible as applicable",
+      "risk": "high",
+      "primary_match": "not_checked",
+      "currentness": "not_checked",
+      "counsel": "not_reviewed"
+    },
+    {
+      "id": "249-E",
+      "instrument": "249/2026",
+      "topic": "osh_policy",
+      "secondary_value": "policy appropriate to activity and legal requirements",
+      "risk": "medium_high",
+      "primary_match": "not_checked",
+      "currentness": "not_checked",
+      "counsel": "not_reviewed"
+    },
+    {
+      "id": "249-F",
+      "instrument": "249/2026",
+      "topic": "resources_and_worker_participation",
+      "secondary_value": "human/financial/technical resources, roles, awareness, training and worker participation",
+      "risk": "medium",
+      "primary_match": "not_checked",
+      "currentness": "not_checked",
+      "counsel": "not_reviewed"
+    },
+    {
+      "id": "249-G",
+      "instrument": "249/2026",
+      "topic": "risk_categories",
+      "secondary_value": "high, medium and limited risk categories mentioned; criteria not extracted",
+      "risk": "high",
+      "primary_match": "not_checked",
+      "currentness": "not_checked",
+      "counsel": "not_reviewed"
+    },
+    {
+      "id": "249-H",
+      "instrument": "249/2026",
+      "topic": "incumbent_workers_and_acquired_positions",
+      "secondary_value": "Ministry clarification says current specialists are not to be harmed/excluded solely due to the decision and acquired legal positions are respected",
+      "risk": "critical",
+      "primary_match": "not_checked",
+      "currentness": "not_checked",
+      "counsel": "not_reviewed"
+    },
+    {
+      "id": "249-I",
+      "instrument": "249/2026",
+      "topic": "promised_implementation_circulars",
+      "secondary_value": "Ministry says central administration was directed to issue periodic circulars on implementation and transitional arrangements; circulars not yet located",
+      "risk": "high",
+      "primary_match": "not_checked",
+      "currentness": "not_checked",
+      "counsel": "not_reviewed"
+    },
+    {
+      "id": "249-J",
+      "instrument": "249/2026",
+      "topic": "specialist_vs_consultant_categories",
+      "secondary_value": "Keep establishment-level specialist staffing categories distinct from consultant licensing under Decision 251; legal relationship needs text review",
+      "risk": "high",
+      "primary_match": "not_checked",
+      "currentness": "not_checked",
+      "counsel": "not_reviewed"
+    },
+    {
+      "id": "250-A",
+      "instrument": "250/2026",
+      "topic": "decision_and_annexes_scope",
+      "secondary_value": "Article 1 says decision, tables and register forms govern workplace safety rules/limits/precautions",
+      "risk": "high",
+      "primary_match": "not_checked",
+      "currentness": "not_checked",
+      "counsel": "not_reviewed"
+    },
+    {
+      "id": "250-B",
+      "instrument": "250/2026",
+      "topic": "commencement",
+      "secondary_value": "Article 2 reportedly effective day after publication",
+      "risk": "high",
+      "primary_match": "not_checked",
+      "currentness": "not_checked",
+      "counsel": "not_reviewed"
+    },
+    {
+      "id": "250-C",
+      "instrument": "250/2026",
+      "topic": "technical_limits_and_schedules",
+      "secondary_value": "Full secondary transcription located; contains technical requirements and tables 1–24, including chemical exposure limits and hazardous-substance threshold quantities. Individual numeric rows still require structured extraction and primary-source comparison.",
+      "risk": "critical",
+      "primary_match": "not_checked",
+      "currentness": "not_checked",
+      "counsel": "not_reviewed"
+    },
+    {
+      "id": "251-A",
+      "instrument": "251/2026",
+      "topic": "licence_requirement_and_levels",
+      "secondary_value": "Ministry licence; consultant A and B levels",
+      "risk": "high",
+      "primary_match": "not_checked",
+      "currentness": "not_checked",
+      "counsel": "not_reviewed"
+    },
+    {
+      "id": "251-B",
+      "instrument": "251/2026",
+      "topic": "consultant_A_qualifications",
+      "secondary_value": "specified bachelor's degree fields; exact scope requires primary comparison",
+      "risk": "high",
+      "primary_match": "not_checked",
+      "currentness": "not_checked",
+      "counsel": "not_reviewed"
+    },
+    {
+      "id": "251-C",
+      "instrument": "251/2026",
+      "topic": "consultant_A_experience",
+      "secondary_value": "20 years; reportedly 15 with OSH doctorate",
+      "risk": "high",
+      "primary_match": "not_checked",
+      "currentness": "not_checked",
+      "counsel": "not_reviewed"
+    },
+    {
+      "id": "251-D",
+      "instrument": "251/2026",
+      "topic": "consultant_B_experience",
+      "secondary_value": "15 years; reportedly 10 with OSH doctorate",
+      "risk": "high",
+      "primary_match": "not_checked",
+      "currentness": "not_checked",
+      "counsel": "not_reviewed"
+    },
+    {
+      "id": "251-E",
+      "instrument": "251/2026",
+      "topic": "certificates_tests_and_disqualification",
+      "secondary_value": "international certificate(s), digital/ICDL qualification, tests and criminal-record condition reported",
+      "risk": "high",
+      "primary_match": "not_checked",
+      "currentness": "not_checked",
+      "counsel": "not_reviewed"
+    },
+    {
+      "id": "251-F",
+      "instrument": "251/2026",
+      "topic": "application_documents",
+      "secondary_value": "CV, qualification, ID, criminal record, experience/certificates and drug-free certificate reported",
+      "risk": "medium_high",
+      "primary_match": "not_checked",
+      "currentness": "not_checked",
+      "counsel": "not_reviewed"
+    },
+    {
+      "id": "251-G",
+      "instrument": "251/2026",
+      "topic": "application_processing_deadlines",
+      "secondary_value": "15-day review; three working days to notify result reported",
+      "risk": "high",
+      "primary_match": "not_checked",
+      "currentness": "not_checked",
+      "counsel": "not_reviewed"
+    },
+    {
+      "id": "251-H",
+      "instrument": "251/2026",
+      "topic": "licence_term_and_fees",
+      "secondary_value": "three-year licence; A issue/renewal EGP 30000/25000; B EGP 25000/20000; half-fee reduction for eligible persons with disabilities reported",
+      "risk": "critical",
+      "primary_match": "not_checked",
+      "currentness": "not_checked",
+      "counsel": "not_reviewed"
+    },
+    {
+      "id": "252-A",
+      "instrument": "252/2026",
+      "topic": "definitions",
+      "secondary_value": "partial Article 1 definitions for ministry, authority, law, OSH administration, training programmes, committees, provider and trainer",
+      "risk": "medium_high",
+      "primary_match": "not_checked",
+      "currentness": "not_checked",
+      "counsel": "not_reviewed"
+    },
+    {
+      "id": "252-B",
+      "instrument": "252/2026",
+      "topic": "programme_categories_and_trainees",
+      "secondary_value": "basic, advanced, specific/specialized training and OSH target groups reported",
+      "risk": "medium_high",
+      "primary_match": "not_checked",
+      "currentness": "not_checked",
+      "counsel": "not_reviewed"
+    },
+    {
+      "id": "252-C",
+      "instrument": "252/2026",
+      "topic": "provider_and_trainer_definition",
+      "secondary_value": "provider described as licensed legal person; trainer as qualified licensed natural person recorded in register",
+      "risk": "high",
+      "primary_match": "not_checked",
+      "currentness": "not_checked",
+      "counsel": "not_reviewed"
+    },
+    {
+      "id": "252-D",
+      "instrument": "252/2026",
+      "topic": "licensing_fees_renewal_suspension_and_annexes",
+      "secondary_value": "not present in captured page excerpt; must obtain full text",
+      "risk": "critical",
+      "primary_match": "not_checked",
+      "currentness": "not_checked",
+      "counsel": "not_reviewed"
+    },
+    {
+      "id": "250-D",
+      "instrument": "250/2026",
+      "topic": "hazardous_substance_threshold_table_23",
+      "secondary_value": "Secondary transcription exposes Table 23 (hazardous substances and threshold quantities), including substance names, threshold amounts and CAS identifiers where printed; exact row count and values require structured validation against the scan",
+      "risk": "critical",
+      "primary_match": "not_checked",
+      "currentness": "not_checked",
+      "counsel": "not_reviewed"
+    },
+    {
+      "id": "250-E",
+      "instrument": "250/2026",
+      "topic": "chemical_exposure_limits_table_24",
+      "secondary_value": "Secondary transcription exposes Table 24 with hundreds of chemical exposure-limit entries and associated units/hazard indicators; exact rows, units, identifiers and OCR/text-layer defects require structured validation",
+      "risk": "critical",
+      "primary_match": "not_checked",
+      "currentness": "not_checked",
+      "counsel": "not_reviewed"
+    },
+    {
+      "id": "250-F",
+      "instrument": "250/2026",
+      "topic": "missing_printed_pages_296_370",
+      "secondary_value": "The full secondary text view includes Table 24 spanning printed pages 249–361 and register templates beginning at printed page 361; this materially covers the previously missing 296–370 range, but is not a verified original scan",
+      "risk": "high",
+      "primary_match": "not_checked",
+      "currentness": "not_checked",
+      "counsel": "not_reviewed"
+    }
+  ],
+  "counts": {
+    "checklist_items": 38,
+    "primary_source_match_complete": 0,
+    "currentness_review_complete": 0,
+    "counsel_approved": 0,
+    "authoritative_retrieval_eligible": 0
+  },
+  "release_rule": "No clause may be promoted to authoritative retrieval until the exact primary text and pinpoint are captured, currentness is checked, discrepancies are resolved, reuse/access status is assessed, and qualified Egyptian counsel approves it."
+}

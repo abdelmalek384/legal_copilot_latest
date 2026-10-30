@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "inventory_id": "EG-PHASE2-LEGAL-DOCUMENT-INVENTORY",
-  "prepared_on": "2026-10-28",
+  "prepared_on": "2026-10-30",
   "purpose": "Structured discovery inventory for Phase 2. Entries are research leads, not collected files, verified current law, permission to collect, or lawyer-approved legal advice.",
   "policy": {
     "default_collection_permission": "unknown",
@@ -103,6 +103,20 @@
       "source_class": "official_government_supporting_source",
       "permission": "unknown",
       "next_action": "Use the canonical central permission-register source ID; pin exact document URLs, review current terms, and establish intended-use permission before acquisition."
+    },
+    "EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE": {
+      "authority": "DSpace-hosted Ibrachy & Dermarkar Repository catalogue; item metadata identifies Amiri Press as Gazette publisher",
+      "source_url": "https://dspace.id.com.eg/collections/bb4a4122-9215-48e2-a8a5-b622ffa5eeb6",
+      "source_class": "third_party_repository_metadata_only",
+      "permission": "unknown",
+      "next_action": "Confirm repository operator identity and item-specific terms/access conditions. Treat catalogue metadata separately from the issuing publisher; do not bypass login or request-copy restrictions."
+    },
+    "EG-MELES-ELECTRONIC": {
+      "authority": "The Middle East Library for Economic Services (MELES) electronic repository; secondary repository/copy host, not the issuing authority",
+      "source_url": "https://dspace.id.com.eg/collections/51e4f2b6-b24b-44c0-9e40-8ea0a3a743ee",
+      "source_class": "secondary_repository_copy_candidate",
+      "permission": "unknown",
+      "next_action": "Treat item records as discovery/copy leads only; confirm item-specific access and reuse terms, and match every file against the Official Gazette before legal use."
     }
   },
   "documents": [
@@ -291,7 +305,8 @@
         {
           "url": "https://dspace.id.com.eg/handle/123456789/4666",
           "source_role": "Official Gazette issue metadata repository candidate",
-          "status": "discovered_terms_unreviewed"
+          "status": "discovered_terms_unreviewed",
+          "source_id": "EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE"
         },
         {
           "url": "https://natlex.ilo.org/dyn/natlex2/r/natlex/fe/details?p3_isn=119035",
@@ -330,7 +345,8 @@
         {
           "url": "https://dspace.id.com.eg/handle/123456789/8851",
           "source_role": "Official Gazette issue metadata repository candidate",
-          "status": "discovered_terms_unreviewed"
+          "status": "discovered_terms_unreviewed",
+          "source_id": "EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE"
         },
         {
           "url": "https://parliament.gov.eg/News_Show.aspx?frm=5874",
@@ -409,6 +425,41 @@
           "document_id": "EG-LABOUR-DECISION-294-2025",
           "relationship": "implements_or_supports",
           "relationship_status": "official_ministry_reference_pending_decision_text_and_Gazette_verification"
+        },
+        {
+          "document_id": "EG-LABOUR-PM-DECISION-982-2026",
+          "relationship": "implements_or_supports",
+          "relationship_status": "discovery_only_primary_Gazette_and_currentness_pending"
+        },
+        {
+          "document_id": "EG-LABOUR-PM-DECISION-1305-2026",
+          "relationship": "extends_or_continues",
+          "relationship_status": "discovery_only_primary_Gazette_and_currentness_pending"
+        },
+        {
+          "document_id": "EG-LABOUR-PM-DECISION-1572-2026",
+          "relationship": "extends_or_continues",
+          "relationship_status": "discovery_only_primary_Gazette_and_currentness_pending"
+        },
+        {
+          "document_id": "EG-LABOUR-PM-DECISION-2033-2026",
+          "relationship": "extends_or_continues",
+          "relationship_status": "discovery_only_primary_Gazette_and_currentness_pending"
+        },
+        {
+          "document_id": "EG-LABOUR-PM-DECISION-2377-2026",
+          "relationship": "extends_or_continues",
+          "relationship_status": "discovery_only_primary_Gazette_and_currentness_pending"
+        },
+        {
+          "document_id": "EG-LABOUR-PM-DECISION-2590-2026",
+          "relationship": "extends_or_continues",
+          "relationship_status": "discovery_only_primary_Gazette_and_currentness_pending"
+        },
+        {
+          "document_id": "EG-LABOUR-PM-DECISION-3165-2026",
+          "relationship": "implements_or_supports",
+          "relationship_status": "discovery_only_primary_Gazette_and_currentness_pending"
         }
       ]
     },
@@ -1006,7 +1057,8 @@
         {
           "url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc",
           "source_role": "Egyptian Proceedings issue metadata candidate",
-          "status": "metadata_discovered_pdf_listed_not_downloaded"
+          "status": "metadata_discovered_pdf_listed_not_downloaded",
+          "source_id": "EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE"
         }
       ],
       "source_status": "discovery_only",
@@ -1036,7 +1088,8 @@
         {
           "url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc",
           "source_role": "Egyptian Proceedings issue metadata candidate",
-          "status": "metadata_discovered_pdf_listed_not_downloaded"
+          "status": "metadata_discovered_pdf_listed_not_downloaded",
+          "source_id": "EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE"
         }
       ],
       "source_status": "discovery_only",
@@ -1066,7 +1119,8 @@
         {
           "url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc",
           "source_role": "Egyptian Proceedings issue metadata candidate",
-          "status": "metadata_discovered_pdf_listed_not_downloaded"
+          "status": "metadata_discovered_pdf_listed_not_downloaded",
+          "source_id": "EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE"
         },
         {
           "url": "https://sis.gov.eg/ar/%D8%A7%D9%84%D9%85%D8%B1%D9%83%D8%B2-%D8%A7%D9%84%D8%A5%D8%B9%D9%84%D8%A7%D9%85%D9%8A/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D9%8A%D8%B9%D8%AA%D9%85%D8%AF-%D9%85%D8%B9%D8%A7%D9%8A%D9%8A%D8%B1-%D9%85%D9%86%D8%AD-%D8%AA%D8%B1%D8%AE%D9%8A%D8%B5-%D9%85%D8%B1%D8%A7%D9%83%D8%B2-%D8%A7%D9%84%D8%AA%D8%AF%D8%B1%D9%8A%D8%A8-%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A-%D8%A7%D9%84%D8%AE%D8%A7%D8%B5%D8%A9-%D9%84%D8%AA%D8%AF%D8%B1%D9%8A%D8%A8-%D9%85%D8%B3%D8%A7%D8%B9%D8%AF%D9%8A-%D8%A7%D9%84%D8%AE%D8%AF%D9%85%D8%A7%D8%AA-%D8%A7%D9%84%D8%B5%D8%AD%D9%8A%D8%A9/",
@@ -1104,7 +1158,8 @@
         {
           "url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc",
           "source_role": "Egyptian Proceedings issue metadata candidate",
-          "status": "metadata_discovered_pdf_listed_not_downloaded"
+          "status": "metadata_discovered_pdf_listed_not_downloaded",
+          "source_id": "EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE"
         }
       ],
       "source_status": "discovery_only",
@@ -2050,6 +2105,343 @@
           "url": "https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A7%D9%84%D8%A3%D8%B1%D8%A8%D8%B9%D8%A7%D8%A1-%D8%A7%D9%84%D9%85%D9%82%D8%A8%D9%84-%D8%A5%D8%AC%D8%A7%D8%B2%D8%A9-%D9%85%D8%AF%D9%81%D9%88%D8%B9%D8%A9-%D8%A7%D9%84%D8%A3%D8%AC%D8%B1-%D9%84%D9%84%D8%B9%D8%A7%D9%85%D9%84%D9%8A%D9%86-%D8%A8%D8%A7%D9%84%D9%82%D8%B7%D8%A7%D8%B9-%D8%A7%D9%84%D8%AE%D8%A7%D8%B5-%D8%A8%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%A9-%D8%B9%D9%8A%D8%AF-%D8%A7%D9%84%D9%85%D9%8A%D9%84%D8%A7%D8%AF-%D8%A7%D9%84%D9%85%D8%AC%D9%8A%D8%AF-%D8%AC%D8%A8%D8%B1%D8%A7%D9%86-%D9%88%D8%AD%D8%AF%D8%A9-%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D9%8A%D9%86-%D9%88%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A7%D9%84%D9%85%D8%B4%D8%AA%D8%B1%D9%83-%D8%A3%D8%B3%D8%A7%D8%B3-%D9%82%D9%88%D8%A9-%D8%A7%D9%84%D9%88%D8%B7%D9%86/",
           "source_role": "official Ministry announcement citing Decision 294/2025; discovery evidence only",
           "status": "discovered_not_downloaded"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LABOUR-PM-DECISION-982-2026",
+      "official_title_ar": "قرار رئيس مجلس الوزراء رقم 982 لسنة 2026 بشأن تطبيق نظام العمل عن بعد",
+      "practice_areas": [
+        "labour"
+      ],
+      "document_type": "prime_ministerial_decision",
+      "instrument_number": 982,
+      "instrument_year": 2026,
+      "source_id": "EG-AMIRI-PRESS",
+      "source_status": "official_text_candidate",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "original Official Gazette issue/date/pages",
+        "complete original text and SHA-256",
+        "commencement and expiry/supersession dates",
+        "all extension or amendment instruments",
+        "relationship to Law 14/2025",
+        "source-specific collection and commercial reuse review",
+        "qualified Egyptian labour-lawyer review"
+      ],
+      "notes": "Discovery-only. Amiri Press searchable text identifies this decision as applying a remote-work system to establishments/entities subject to Labour Law 14/2025. Later official Amiri Press decisions cite it and extend its operation month-by-month. Do not infer that it remains operative after the last evidenced extension. Official Gazette DSpace metadata identifies issue 14 supplement, dated 2 April 2026, with Decision 982/2026 in the abstract. The original PDF Download action routes to a request-a-copy form; no request was submitted. An official Ministry of Labour report dated 6 April 2026 describes the April implementation as remote work on Sundays each week; this is supporting announcement evidence, not a substitute for the decision's full operative text. A later official State Information Service announcement dated 2026-09-30 reports Cabinet approval of a draft decision to suspend Decision 982/2026. This is a cabinet approval of a draft, not the published operative instrument; exact decision number, publication, effective date and scope remain unverified. Until the actual instrument is located, the app must not claim that the suspension legally took effect, nor claim that Decision 982 continued after September. A separate MELES Electronic 2026 DSpace record lists English and Arabic PDFs of Decision 982, but clicking Download routes to a request-a-copy form and the license bundle says an item-specific license is agreed upon submission. This is not the Official Gazette item; no request was submitted and no file was acquired. A dated evidence timeline is maintained at data/candidates/labour_law_14_2025/decision_982_remote_work_temporal_chain_2026-10-30.md. The Amiri Press text states Article 2's April-only Sunday schedule beginning 5 April 2026 and Article 6's commencement on the day after Gazette publication; Decisions 1305, 1572, 2033, 2377 and 2590 form separate monthly extension instruments for May through September. Decision 2590's official preamble recites the prior extension numbers/months. The 30 September Cabinet announcement remains draft approval only; no October continuation or operative suspension is established.",
+      "source_urls": [
+        {
+          "url": "https://alamiria.com/Sec/TashTxt?id=X+ynf8GR0jI%3D",
+          "source_role": "official Amiri Press searchable text candidate",
+          "status": "discovered_not_downloaded"
+        },
+        {
+          "url": "https://dspace.id.com.eg/items/1255d539-9ac2-491c-9c03-a7330ff891b8",
+          "source_role": "Official Gazette item metadata: issue 14 supplement, dated 2026-04-02; abstract identifies Decision 982/2026",
+          "status": "official_metadata_discovered_original_bundle_request_copy_restricted",
+          "source_id": "EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE"
+        },
+        {
+          "url": "https://www.labour.gov.eg/ar/الأخبار/عن-طريق-الفيديو-كونفرانس-وزير-العمل-يتابع-مع-مديريات-العمل-بالمحافظات-تنفيذ-خطط-الوزارة-وتطبيق-الكتاب-الدوري-الخاص-بالعمل-عن-بعد-بالقطاع-الخاص/",
+          "source_role": "Official Ministry of Labour report dated 2026-04-06 describing implementation of Decision 982/2026 and remote work on Sundays during April; supporting discovery only",
+          "status": "official_announcement_not_decision_text"
+        },
+        {
+          "url": "https://sis.gov.eg/en/media-center/news/cabinet-approves-suspending-sunday-remote-work-system/",
+          "source_role": "Official State Information Service announcement dated 2026-09-30: Cabinet approved a draft decision to suspend Decision 982/2026; not the operative published instrument",
+          "status": "official_cabinet_draft_approval_announcement_not_promulgated_decision"
+        },
+        {
+          "url": "https://dspace.id.com.eg/items/ecbb04ef-5fc0-4f3b-9c89-85a4787f35bc/full",
+          "source_role": "MELES Electronic 2026 DSpace record for bilingual Decision 982 PDFs; download routes to request-a-copy; item-specific license agreed upon submission",
+          "status": "alternate_text_copy_discovered_original_files_restricted_request_copy",
+          "source_id": "EG-MELES-ELECTRONIC"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LABOUR-PM-DECISION-1305-2026",
+      "official_title_ar": "قرار رئيس مجلس الوزراء رقم 1305 لسنة 2026 (التمديد الشهري لقرار 982/2026؛ العنوان الكامل قيد التحقق)",
+      "practice_areas": [
+        "labour"
+      ],
+      "document_type": "prime_ministerial_extension_decision",
+      "instrument_number": 1305,
+      "instrument_year": 2026,
+      "source_id": "EG-AMIRI-PRESS",
+      "source_status": "official_text_candidate",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "own Official Gazette record and complete title",
+        "original Gazette issue/date/pages and SHA-256",
+        "exact extension period and commencement",
+        "later extensions/supersession",
+        "source-use review",
+        "qualified lawyer review"
+      ],
+      "notes": "Official Amiri Press searchable text was located on 2026-10-30. It states that Decision 982/2026 continues during May 2026 and gives 30 April 2026 as its date. Original Gazette issue/pages and bytes/hash, terms, full currentness chain and lawyer review remain outstanding. This is a separate time-limited extension, not an amendment to Law 14/2025. The Gazette PDF Download action redirects to DSpace login; no login or access restriction was bypassed.",
+      "source_urls": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=kkawTcVJE9I%3D",
+          "source_role": "official Amiri Press searchable text candidate",
+          "status": "discovered_not_downloaded"
+        },
+        {
+          "url": "https://dspace.id.com.eg/items/90a235e2-d98c-4c39-92ec-d7006cfd8427/full",
+          "source_role": "Official Gazette item metadata: issue 18 supplement, dated 2026-04-30; original bundle listed",
+          "status": "official_metadata_discovered_original_bundle_download_requires_DSpace_login",
+          "source_id": "EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LABOUR-PM-DECISION-1572-2026",
+      "official_title_ar": "قرار رئيس مجلس الوزراء رقم 1572 لسنة 2026 (التمديد الشهري لقرار 982/2026؛ العنوان الكامل قيد التحقق)",
+      "practice_areas": [
+        "labour"
+      ],
+      "document_type": "prime_ministerial_extension_decision",
+      "instrument_number": 1572,
+      "instrument_year": 2026,
+      "source_id": "EG-AMIRI-PRESS",
+      "source_status": "later_official_citation_only",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "own Official Gazette record and complete title",
+        "original Gazette issue/date/pages and SHA-256",
+        "exact extension period and commencement",
+        "later extensions/supersession",
+        "source-use review",
+        "qualified lawyer review"
+      ],
+      "notes": "Official Gazette DSpace metadata identifies issue 21 supplement (A), dated 21 May 2026, publisher Amiri Press, and Decision 1572/2026; the listed original PDF currently routes to a request-copy page. Amiri Press Decision 2377/2026 independently cites it as extending Decision 982/2026 during June 2026. Original bytes/hash and full Gazette-page comparison remain outstanding. The original PDF Download action routes to a request-a-copy form; no request was submitted.",
+      "source_urls": [
+        {
+          "url": "https://alamiria.com/Sec/TashTxt?id=OHEywmUwNf8%3D",
+          "source_role": "official later decision citing Decision 1572/2026",
+          "status": "referenced_not_independently_located"
+        },
+        {
+          "url": "https://dspace.id.com.eg/items/3ce63ac9-1cc3-4bb7-a2c9-449c1c730831",
+          "source_role": "Official Gazette item metadata: issue 21 supplement (A), dated 2026-05-21; original bundle listed",
+          "status": "official_metadata_discovered_original_bundle_request_copy_restricted",
+          "source_id": "EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LABOUR-PM-DECISION-2033-2026",
+      "official_title_ar": "قرار رئيس مجلس الوزراء رقم 2033 لسنة 2026 (التمديد الشهري لقرار 982/2026؛ العنوان الكامل قيد التحقق)",
+      "practice_areas": [
+        "labour"
+      ],
+      "document_type": "prime_ministerial_extension_decision",
+      "instrument_number": 2033,
+      "instrument_year": 2026,
+      "source_id": "EG-AMIRI-PRESS",
+      "source_status": "later_official_citation_only",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "own Official Gazette record and complete title",
+        "original Gazette issue/date/pages and SHA-256",
+        "exact extension period and commencement",
+        "later extensions/supersession",
+        "source-use review",
+        "qualified lawyer review"
+      ],
+      "notes": "Official Gazette DSpace metadata identifies issue 26 supplement (B), dated 30 June 2026, and its abstract identifies Decision 2033/2026. A secondary transcription states that it extends Decision 982/2026 during July 2026. Original Gazette bytes/hash, exact page anchor, terms, currentness and lawyer review remain outstanding. The original PDF Download action routes to a request-a-copy form; no request was submitted.",
+      "source_urls": [
+        {
+          "url": "https://alamiria.com/Sec/TashTxt?id=OHEywmUwNf8%3D",
+          "source_role": "official later decision citing Decision 2033/2026",
+          "status": "referenced_not_independently_located"
+        },
+        {
+          "url": "https://dspace.id.com.eg/items/080b6ab2-3969-46e5-a8bd-38f86305f6dd/full",
+          "source_role": "Official Gazette item metadata: issue 26 supplement (B), dated 2026-06-30; abstract identifies Decision 2033/2026",
+          "status": "official_metadata_discovered_original_bundle_request_copy_restricted",
+          "source_id": "EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE"
+        },
+        {
+          "url": "https://mksegypt.org/ar/decisions/34895",
+          "source_role": "Secondary legal database transcription with date and operative monthly extension; cross-check only",
+          "status": "secondary_text_candidate_not_authoritative"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LABOUR-PM-DECISION-2377-2026",
+      "official_title_ar": "قرار رئيس مجلس الوزراء رقم 2377 لسنة 2026 بشأن استمرار العمل بقرار 982 لسنة 2026 خلال أغسطس 2026",
+      "practice_areas": [
+        "labour"
+      ],
+      "document_type": "prime_ministerial_extension_decision",
+      "instrument_number": 2377,
+      "instrument_year": 2026,
+      "source_id": "EG-AMIRI-PRESS",
+      "source_status": "official_text_candidate",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "original Official Gazette issue/date/pages and SHA-256",
+        "exact commencement/expiry period",
+        "subsequent extension or replacement decisions",
+        "source-use review",
+        "qualified Egyptian labour-lawyer review"
+      ],
+      "notes": "Amiri Press searchable text states that Decision 982/2026 continues during August 2026 and cites Decisions 1305, 1572 and 2033/2026 as earlier monthly extensions. This is a separate time-limited instrument, not evidence of amendment to Law 14/2025.",
+      "source_urls": [
+        {
+          "url": "https://alamiria.com/Sec/TashTxt?id=OHEywmUwNf8%3D",
+          "source_role": "official Amiri Press searchable text candidate",
+          "status": "discovered_not_downloaded"
+        },
+        {
+          "url": "https://dspace.id.com.eg/items/885cba3d-891d-413b-965a-cb3fb230c68f/request-a-copy?bitstream=3ea9a87d-f06e-4e18-a4c1-99b22a3a5a44",
+          "source_role": "MELES alternate repository file request page for bilingual Decision 2377/2026 PDF; not the Official Gazette item",
+          "status": "restricted_request_copy_no_request_submitted",
+          "source_id": "EG-MELES-ELECTRONIC"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LABOUR-PM-DECISION-2590-2026",
+      "official_title_ar": "قرار رئيس مجلس الوزراء رقم 2590 لسنة 2026 بشأن استمرار العمل بقرار 982 لسنة 2026 خلال سبتمبر 2026",
+      "practice_areas": [
+        "labour"
+      ],
+      "document_type": "prime_ministerial_extension_decision",
+      "instrument_number": 2590,
+      "instrument_year": 2026,
+      "source_id": "EG-AMIRI-PRESS",
+      "source_status": "official_text_candidate",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "original Official Gazette issue/date/pages and SHA-256",
+        "exact commencement/expiry period",
+        "later extension or replacement decisions after September",
+        "source-use review",
+        "qualified Egyptian labour-lawyer review"
+      ],
+      "notes": "Amiri Press searchable text states that Decision 982/2026 continues during September 2026 and gives 1 September 2026 as its date. It does not establish the status after September. The official Gazette 2026 collection listing shows issue 35 (مكرر), dated 1 September 2026, with Decision 2590/2026 among the issue abstracts; the exact item record has not yet been pinned.",
+      "source_urls": [
+        {
+          "url": "https://alamiria.com/Sec/TashTxt?id=HAJdFlN7HCw%3D",
+          "source_role": "official Amiri Press searchable text candidate",
+          "status": "discovered_not_downloaded"
+        },
+        {
+          "url": "https://dspace.id.com.eg/collections/bb4a4122-9215-48e2-a8a5-b622ffa5eeb6",
+          "source_role": "Official Gazette 2026 collection listing; issue 35 (مكرر), 2026-09-01, abstract includes Decision 2590/2026; exact item record not pinned",
+          "status": "official_collection_listing_candidate_not_item_pinned",
+          "source_id": "EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE"
+        },
+        {
+          "url": "https://dspace.id.com.eg/items/9e0f34a7-9106-4a2d-b7c4-a470967f0fc9/full",
+          "source_role": "MELES alternate repository item metadata for bilingual Decision 2590/2026 PDFs; not the Official Gazette item",
+          "status": "metadata_discovered_files_restricted_terms_not_verified",
+          "source_id": "EG-MELES-ELECTRONIC"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LABOUR-PM-DECISION-3165-2026",
+      "official_title_ar": "قرار رئيس مجلس الوزراء رقم 3165 لسنة 2026 بشأن نظام عمل المجلس القومي للأجور وتحديد اختصاصاته",
+      "practice_areas": [
+        "labour"
+      ],
+      "document_type": "prime_ministerial_decision",
+      "instrument_number": 3165,
+      "instrument_year": 2026,
+      "source_id": "EG-AMIRI-PRESS",
+      "source_status": "official_text_candidate",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "original Official Gazette issue/date/pages and SHA-256",
+        "complete operative text and commencement",
+        "relationship to Law 14/2025 and prior Council instruments",
+        "later amendments/replacement",
+        "source-use review",
+        "qualified Egyptian labour-lawyer review"
+      ],
+      "notes": "Official Amiri Press searchable text identifies Decision 3165/2026 and its subject. Its first operative article permits the National Wages Council to form specialized subcommittees, with balanced representation of government, employers' organizations and trade unions. Multiple secondary reports state that it was published in Official Gazette issue 41 مكرر (و), dated 12 October 2026; the exact Official Gazette DSpace item and original PDF bytes/hash have not yet been located. Secondary reports further describe powers to set national sectoral minimum wages, review the minimum at least annually, set the annual periodic allowance floor at 3% of insured wage, and decide employer requests for reduction/exemption within 30 days. These substantive details are secondary-only until the full official text is acquired and matched. The reported Gazette issue/date is a discovery lead, not yet independently anchored to the Official Gazette item.",
+      "source_urls": [
+        {
+          "url": "https://alamiria.com/Sec/TashTxt?id=EreMgz%2FNoYY%3D",
+          "source_role": "official Amiri Press searchable text candidate",
+          "status": "discovered_not_downloaded"
+        },
+        {
+          "url": "https://business.ahram.org.eg/News/134866.aspx",
+          "source_role": "Secondary report dated 2026-10-26 states Decision 3165/2026 was published in Official Gazette issue 41 (مكرر و), reportedly dated 2026-10-12; discovery lead only",
+          "status": "secondary_reported_gazette_issue_not_officially_pinned"
+        },
+        {
+          "url": "https://www.almasdar.com/175352",
+          "source_role": "Secondary report dated 2026-10-26 quoting Articles 1-2 and reporting Official Gazette issue 41 مكرر (و), dated 2026-10-12; candidate cross-check only",
+          "status": "secondary_fuller_article_summary_and_gazette_issue_lead_not_primary_match"
+        }
+      ],
+      "related_instruments": [
+        {
+          "document_id": "EG-LABOUR-PM-DECISION-2659-2020",
+          "relationship": "expressly_repeals_under_article_7; commencement_under_article_8_requires_publication_date_verification",
+          "status": "discovery_only"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LABOUR-PM-DECISION-2659-2020",
+      "official_title_ar": "قرار رئيس مجلس الوزراء رقم 2659 لسنة 2020 بشأن إعادة تشكيل المجلس القومي للأجور وتحديد اختصاصاته",
+      "practice_areas": [
+        "labour"
+      ],
+      "document_type": "prime_ministerial_decision",
+      "instrument_number": 2659,
+      "instrument_year": 2020,
+      "source_id": "EG-AMIRI-PRESS",
+      "source_status": "later_official_citation_only",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "original Official Gazette issue 51 مكرر (ج), reported date 2020-12-21, exact pages and SHA-256",
+        "complete original text and amendments before repeal",
+        "exact publication date of Decision 3165/2026 and effective date under its Article 8",
+        "confirm repeal under Article 7 of Decision 3165/2026 and identify any transitional effects",
+        "source-specific collection and commercial reuse review",
+        "qualified Egyptian labour-lawyer review"
+      ],
+      "notes": "Historical instrument candidate. The official Amiri Press text of Prime Minister Decision 3165/2026 cites Decision 2659/2020 and Article 7 expressly repeals it and any conflicting provision. Article 8 of Decision 3165/2026 says it takes effect the day after publication in the Official Gazette. Secondary sources identify Decision 2659/2020 as published in Official Gazette issue 51 مكرر (ج), dated 21 December 2020. The exact original Gazette item/PDF and the actual publication date of Decision 3165/2026 have not been independently pinned; do not assign a verified repeal effective date or present this record as current law.",
+      "source_urls": [
+        {
+          "url": "https://alamiria.com/Sec/TashTxt?id=EreMgz%2FNoYY%3D",
+          "source_role": "Official Amiri Press text of Decision 3165/2026; cites Decision 2659/2020 and Article 7 repeal clause, Article 8 commencement clause",
+          "status": "official_repeal_and_commencement_text_for_old_instrument"
+        },
+        {
+          "url": "https://manshurat.org/node/70956",
+          "source_role": "Secondary legal repository record for Decision 2659/2020; reports issue 51 مكرر (ج), 2020-12-21, and document metadata",
+          "status": "secondary_old_instrument_metadata_and_text_lead"
+        },
+        {
+          "url": "https://egyptianlaws.com/?p=152028",
+          "source_role": "Secondary legal database transcription and reported Official Gazette issue/date for Decision 2659/2020",
+          "status": "secondary_text_candidate_not_authoritative"
         }
       ]
     }

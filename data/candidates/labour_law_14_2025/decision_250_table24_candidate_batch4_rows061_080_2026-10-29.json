@@ -1,0 +1,458 @@
+{
+  "schema_version": 1,
+  "record_type": "secondary_source_candidate_extraction",
+  "instrument": "Egyptian Minister of Labour Decision 250/2026",
+  "table": "24",
+  "table_title_ar": "الحدود العتبية للمواد الكيميائية الخطرة",
+  "research_date": "2026-10-29",
+  "source": {
+    "class": "secondary_transcription",
+    "url": "https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html",
+    "publication_date": "2026-10-26",
+    "source_lines": "4586-4618",
+    "official_gazette_match": "not_performed",
+    "official_pdf_sha256": null,
+    "secondary_scan_image_source_url": "https://www.almasdar.com/175151",
+    "secondary_scan_image_pages": "249-295"
+  },
+  "status": "candidate_only_not_for_authoritative_retrieval",
+  "important_limits": [
+    "Secondary transcription only; no official Gazette page-image comparison.",
+    "Raw limit strings are not assigned to TWA/STEL/C columns without page-level evidence.",
+    "Parent/subrow relationships are preserved; no normalized legal or exposure-limit meaning is asserted.",
+    "Do not use this file for workplace-safety or legal-compliance decisions."
+  ],
+  "declared_top_level_row_range": {
+    "start": 61,
+    "end": 80
+  },
+  "rows": [
+    {
+      "row": 61,
+      "name_ar": "بينوميل",
+      "name_en": "Benomyl",
+      "cas": "17804-35-2",
+      "source_line": 4586,
+      "raw_limit_and_note_text": "C14H18N4O3؛ 290,32؛ 1 مجم/ م3(I)؛ DSEN; A3؛ م3، تحسس الجلد؛ تهيج المسالك التنفسية العليا - تلف الجهاز التناسلي عند الذكور والخصية - تلف الأجنة",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 258,
+      "secondary_scan_page_row_range": "61-65",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/950.webp",
+      "secondary_scan_match_status": "secondary_image_discrepancy_found",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_discrepancy": {
+        "field": "primary_exposure_limit_token",
+        "candidate_transcription": "1 mg/m3 (I)",
+        "secondary_image_observed_tentative": "appears to read 0.3 mg/m3",
+        "status": "pending_original_gazette_confirmation",
+        "note": "The value in the watermarked page 258 reproduction is small/rotated; this is a tentative visual read only. Do not correct the candidate value until the original Gazette is checked."
+      }
+    },
+    {
+      "row": 62,
+      "name_ar": "بنز[a] أنثراسين",
+      "name_en": "Benz[a]anthracene",
+      "cas": "56-55-3",
+      "source_line": 4588,
+      "raw_limit_and_note_text": "C18H12؛ 288,30؛ (L)؛ A2; BEIP؛ م2، مؤشر التعرض الحيوي للهيدروكربونات العطرية متعددة الحلقات؛ سرطان الجلد",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 258,
+      "secondary_scan_page_row_range": "61-65",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/950.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 63,
+      "name_ar": "بنسوليد",
+      "name_en": "Bensulide",
+      "cas": "741-58-2",
+      "source_line": 4590,
+      "raw_limit_and_note_text": "C14H24NO4PS3؛ 397,5؛ 0,1 مجم/ م3(IFV)؛ A4; BEIC؛ م4، مؤشر التعرض الحيوي لمبيدات تثبيط الكولينستيراز؛ مثبط لإنزيم الكولينيسترييز - تلف الكبد",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 258,
+      "secondary_scan_page_row_range": "61-65",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/950.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 64,
+      "name_ar": "بنزين",
+      "name_en": "Benzene",
+      "cas": "71-43-2",
+      "source_line": 4591,
+      "raw_limit_and_note_text": "C6H6؛ 78,11؛ 0,02 جزء / مليون؛ Skin; A1; BEI؛ جلد، م1، مؤشر التعرض الحيوي؛ متلازمة خلل التنسج النقوي - سرطان الدم الحاد النخاعي - تأثيرات دموية - خلل كروموسومات",
+      "status": "pending_official_match",
+      "risk_note": "High-risk carcinogen entry; no value should be used until primary-source match and specialist review.",
+      "secondary_scan_printed_page": 258,
+      "secondary_scan_page_row_range": "61-65",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/950.webp",
+      "secondary_scan_match_status": "secondary_image_discrepancy_found",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_discrepancy": {
+        "field": "primary_exposure_limit_token",
+        "candidate_transcription": "0.02 ppm",
+        "secondary_image_observed_tentative": "appears to read 0.5 ppm",
+        "status": "pending_original_gazette_confirmation",
+        "note": "The value in the watermarked page 258 reproduction appears different from the secondary text transcription. This is a tentative visual read only; do not correct until the original Gazette is checked."
+      }
+    },
+    {
+      "row": 65,
+      "name_ar": "بنزدين",
+      "name_en": "Benzidine",
+      "cas": "92-87-5",
+      "source_line": 4593,
+      "raw_limit_and_note_text": "C12H12N2؛ 184,23؛ (L)؛ Skin; A1؛ جلد، م1؛ سرطان المثانة",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 258,
+      "secondary_scan_page_row_range": "61-65",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/950.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 66,
+      "name_ar": "بنزو[b] فلورانثين",
+      "name_en": "Benzo[b]fluoranthene",
+      "cas": "205-99-2",
+      "source_line": 4595,
+      "raw_limit_and_note_text": "C20H12؛ 252,30؛ (L)؛ A2; BEIP؛ م2، مؤشر التعرض الحيوي للهيدروكربونات العطرية متعددة الحلقات؛ سرطان",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 259,
+      "secondary_scan_page_row_range": "66-72",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/951.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 67,
+      "name_ar": "بنزو[a] بيرين",
+      "name_en": "Benzo[a]pyrene",
+      "cas": "50-32-8",
+      "source_line": 4596,
+      "raw_limit_and_note_text": "C20H12؛ 252,30؛ (L)؛ A2; BEIP؛ م2، مؤشر التعرض الحيوي للهيدروكربونات العطرية متعددة الحلقات؛ سرطان",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 259,
+      "secondary_scan_page_row_range": "66-72",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/951.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 68,
+      "name_ar": "حمض البنزويك وأملاح البنزوات القلوية",
+      "name_en": "Benzoic acid and alkali benzoates",
+      "source_line": 4598,
+      "raw_limit_and_note_text": "(2021); parent heading; entries 69–71 list the acid and salts",
+      "status": "pending_official_match",
+      "children": [
+        {
+          "row": 69,
+          "name_ar": "حمض البنزويك",
+          "name_en": "Benzoic acid",
+          "cas": "65-85-0",
+          "source_line": 4600,
+          "raw_limit_and_note_text": "C7H6O2؛ 122,12؛ 0,5 مجم/ م3(IFV)؛ Skin; A5؛ جلد، م5؛ تهيج العين - تهيج المسالك التنفسية العليا والسفلى - تلف الرئة",
+          "status": "pending_official_match",
+          "secondary_scan_printed_page": 259,
+          "secondary_scan_page_row_range": "66-72",
+          "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/951.webp",
+          "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+          "secondary_scan_fields_checked": [
+            "chemical_name",
+            "cas_identifier",
+            "primary_exposure_limit_token",
+            "unit"
+          ],
+          "secondary_scan_checked_on": "2026-10-30",
+          "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
+        },
+        {
+          "row": 70,
+          "name_ar": "بنزوات الصوديوم، كما بنزوات",
+          "name_en": "Sodium benzoate, as benzoate",
+          "cas": "532-32-1",
+          "source_line": 4601,
+          "raw_limit_and_note_text": "C7H5O2 Na؛ 144,10؛ 2,5 مجم/ م3(I)؛ Skin; A5؛ جلد، م5؛ تغيرات بالكلى",
+          "status": "pending_official_match",
+          "secondary_scan_printed_page": 259,
+          "secondary_scan_page_row_range": "66-72",
+          "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/951.webp",
+          "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+          "secondary_scan_fields_checked": [
+            "chemical_name",
+            "cas_identifier",
+            "primary_exposure_limit_token",
+            "unit"
+          ],
+          "secondary_scan_checked_on": "2026-10-30",
+          "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
+        },
+        {
+          "row": 71,
+          "name_ar": "بنزوات البوتاسيوم، كما بنزوات",
+          "name_en": "Potassium benzoate, as benzoate",
+          "cas": "582-25-2",
+          "source_line": 4603,
+          "raw_limit_and_note_text": "C7H5O2 K؛ 160,21؛ 2,5 مجم/ م3(I)؛ Skin; A5؛ جلد، م5؛ تغيرات بالكلى",
+          "status": "pending_official_match",
+          "secondary_scan_printed_page": 259,
+          "secondary_scan_page_row_range": "66-72",
+          "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/951.webp",
+          "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+          "secondary_scan_fields_checked": [
+            "chemical_name",
+            "cas_identifier",
+            "primary_exposure_limit_token",
+            "unit"
+          ],
+          "secondary_scan_checked_on": "2026-10-30",
+          "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
+        }
+      ],
+      "secondary_scan_printed_page": 259,
+      "secondary_scan_page_row_range": "66-72",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/951.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 72,
+      "name_ar": "بنزوكينون",
+      "name_en": "Benzoquinone",
+      "cas": "106-51-4",
+      "source_line": 4605,
+      "raw_limit_and_note_text": "C6H4O2؛ 108,09؛ 0,1 جزء / مليون؛ 5 ميكروجم /100 SLسم2؛ DSEN; A4؛ م4، تحسس الجلد؛ تهيج العين والمسالك التنفسية العليا - تأثيرات على العين",
+      "status": "pending_official_match",
+      "anomaly": "The second limit unit string '5 ميكروجم /100 SLسم2' appears malformed in the text extraction; verify from the official page.",
+      "secondary_scan_printed_page": 259,
+      "secondary_scan_page_row_range": "66-72",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/951.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 73,
+      "name_ar": "بنزو ثلاثي كلوريد",
+      "name_en": "Benzotrichloride",
+      "cas": "98-07-7",
+      "source_line": 4606,
+      "raw_limit_and_note_text": "C6H5CCl3؛ 195,50؛ 0,1 جزء / مليون؛ Skin; A2؛ جلد، م2؛ تهيج العين والجلد والمسالك التنفسية العليا",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 260,
+      "secondary_scan_page_row_range": "73-79",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/952.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 74,
+      "name_ar": "كلوريد البنزويل",
+      "name_en": "Benzoyl chloride",
+      "cas": "98-88-4",
+      "source_line": 4608,
+      "raw_limit_and_note_text": "C6H5COCl؛ 140,57؛ 0,5 جزء / مليون؛ م4؛ A4؛ تهيج المسالك التنفسية العليا والعين",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 260,
+      "secondary_scan_page_row_range": "73-79",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/952.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 75,
+      "name_ar": "فوق أكسيد البنزويل",
+      "name_en": "Benzoyl peroxide",
+      "cas": "94-36-0",
+      "source_line": 4610,
+      "raw_limit_and_note_text": "(C6H5)2O2؛ 242,22؛ 5 مجم/ م3؛ م4؛ A4؛ تهيج المسالك التنفسية العليا والجلد",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 260,
+      "secondary_scan_page_row_range": "73-79",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/952.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 76,
+      "name_ar": "خلات البنزيل",
+      "name_en": "Benzyl acetate",
+      "cas": "140-11-4",
+      "source_line": 4611,
+      "raw_limit_and_note_text": "C9H10O2؛ 150,18؛ 10 جزء / مليون؛ م4؛ A4؛ تهيج المسالك التنفسية العليا",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 260,
+      "secondary_scan_page_row_range": "73-79",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/952.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 77,
+      "name_ar": "كلوريد البنزيل",
+      "name_en": "Benzyl chloride",
+      "cas": "100-44-7",
+      "source_line": 4613,
+      "raw_limit_and_note_text": "C7H7Cl؛ 126,58؛ 1 جزء / مليون؛ A3؛ م3؛ تهيج العين والجلد والمسالك التنفسية العليا",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 260,
+      "secondary_scan_page_row_range": "73-79",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/952.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 78,
+      "name_ar": "البريليوم ومركباته مقدرة كبريليوم",
+      "name_en": "Beryllium and compounds, as Be",
+      "cas": "7440-41-7",
+      "source_line": 4615,
+      "raw_limit_and_note_text": "Be؛ 9,01؛ 0,00005 مجم /م3(l)؛ م1؛ A1؛ حساسية البريليوم؛ أمراض البريليوم المزمنة (بريليوسيس)",
+      "status": "pending_official_match",
+      "children": [
+        {
+          "row": 79,
+          "name_ar": "المركبات الذائبة",
+          "name_en": "Soluble compounds",
+          "source_line": 4617,
+          "raw_limit_and_note_text": "Skin; DSEN؛ جلد، تحسس للجلد",
+          "status": "pending_official_match",
+          "secondary_scan_printed_page": 260,
+          "secondary_scan_page_row_range": "73-79",
+          "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/952.webp",
+          "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+          "secondary_scan_fields_checked": [
+            "chemical_name",
+            "cas_identifier",
+            "primary_exposure_limit_token",
+            "unit"
+          ],
+          "secondary_scan_checked_on": "2026-10-30",
+          "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
+        },
+        {
+          "row": 80,
+          "name_ar": "المركبات الذائبة وغير الذائبة",
+          "name_en": "Soluble and insoluble compounds",
+          "source_line": 4618,
+          "raw_limit_and_note_text": "RSEN؛ تحسس للجهاز التنفسي",
+          "status": "pending_official_match",
+          "secondary_scan_printed_page": 261,
+          "secondary_scan_page_row_range": "80-87",
+          "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/953.webp",
+          "secondary_scan_match_status": "page_locator_assigned_pending_field_comparison"
+        }
+      ],
+      "secondary_scan_printed_page": 260,
+      "secondary_scan_page_row_range": "73-79",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/952.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
+    }
+  ]
+}

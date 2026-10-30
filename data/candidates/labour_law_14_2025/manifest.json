@@ -44,13 +44,13 @@
     "direct_amendment_search": "No direct amending statute identified in the limited review; not a complete negative certification",
     "amendment_chain_status": "partial; implementing instruments identified but not exhaustively verified",
     "commencement_and_transitional_rules_status": "promulgation articles reviewed in accessible text; article-by-article official Gazette verification pending",
-    "extraction_quality_status": "311 records parse; structure and selected promulgation/opening/closing provisions spot-checked against accessible secondary text; no full Gazette comparison",
+    "extraction_quality_status": "311-row candidate parses per prior local audit; current session has no access to the actual JSONL rows. Targeted official Gazette text-layer and rendered-page checks completed for selected provisions; no full Gazette comparison.",
     "official_gazette_access": "IDSC item metadata verified; PDF is behind request-a-copy workflow; repository terms require written permission for systematic retrieval/database compilation and limit content use to personal non-commercial use absent permission",
     "egyptian_lawyer_review_status": "pending",
     "search_eligible": false,
     "provisional_desk_review": "completed_with_blockers",
     "permissions_review_outcome": "unresolved_keep_unknown",
-    "article_by_article_gazette_comparison": "not_completed; exact Gazette PDF not obtained/page-reviewed",
+    "article_by_article_gazette_comparison": "not_completed; six targeted rendered-page visual checks and additional extracted-text line pinpoints only",
     "general_commencement_date_candidate": "2025-09-01 — provisional lead only; confirm against page-verified Official Gazette and qualified Egyptian legal review",
     "specialized_labour_courts_commencement_date_candidate": "2025-10-01 — provisional lead only; confirm against page-verified Official Gazette and qualified Egyptian legal review",
     "amendment_history_verified": false,
@@ -205,6 +205,48 @@
       "full_visual_review": false,
       "full_article_by_article_comparison": false,
       "note": "Targeted extracted text supports the listed pinpoints. Do not imply that all 311 candidate rows were checked against the Gazette."
+    },
+    "targeted_pdf_visual_page_review": {
+      "reviewed_on": "2026-10-29",
+      "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+      "method": "Rendered page screenshots through the browser PDF viewer; targeted spot-check only",
+      "pages": [
+        {
+          "pdf_page_index_zero_based": 33,
+          "printed_page_label": "35",
+          "pinpoint": "Article 66"
+        },
+        {
+          "pdf_page_index_zero_based": 46,
+          "printed_page_label": "48",
+          "pinpoint": "Articles 102–103"
+        },
+        {
+          "pdf_page_index_zero_based": 52,
+          "printed_page_label": "54",
+          "pinpoint": "Article 124"
+        },
+        {
+          "pdf_page_index_zero_based": 56,
+          "printed_page_label": "58",
+          "pinpoint": "Article 134"
+        },
+        {
+          "pdf_page_index_zero_based": 59,
+          "printed_page_label": "61",
+          "pinpoint": "Article 141"
+        },
+        {
+          "pdf_page_index_zero_based": 104,
+          "printed_page_label": "106",
+          "pinpoint": "Article 278"
+        }
+      ],
+      "original_pdf_downloaded": false,
+      "original_pdf_sha256": null,
+      "complete_visual_review": false,
+      "comparison_to_candidate_jsonl": false,
+      "note": "Rendered page images confirm the cited articles and page labels. The six candidate JSONL rows are not available in this branch/session, so the exact outlier tokens are not marked resolved. This is not an original-byte hash or a complete scan review."
     }
   }
 }

@@ -1,0 +1,81 @@
+# Labour Law No. 14 of 2025 — Gazette spot-check log
+
+**Checked:** 2026-10-29  
+**Scope:** Source locator verification for six articles previously flagged for spelling/text comparison: 66, 103, 124, 134, 141 and 278. This is a targeted spot-check, not a 311-row reconciliation or lawyer approval.  
+**Retrieval eligibility:** No change. All evidence cards remain `search_eligible: false`.
+
+## Sources used
+
+1. **Primary source:** Government-hosted Official Gazette PDF, *الجريدة الرسمية، العدد 18 (تابع)، 3 مايو 2025*, Law No. 14 of 2025. URL: https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf
+2. **Independent official-publisher text page:** Amiri Press, Law No. 14 of 2025. URL: https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D (the page was indexed by search, but direct open returned HTTP 502 during this check).
+3. **Public secondary transcription for fallback comparison:** Wikisource, “قانون العمل 14 لسنة 2025 - مصر”. URL: https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر
+4. **Additional secondary transcription:** Law Hub, Law No. 14 of 2025. URL: https://lawhub.info/eg/?p=11848
+
+## Official Gazette locator checks
+
+The Gazette PDF text layer was opened around each article heading. These checks confirm the article heading and its printed-page locator in the PDF text extraction; they do **not** certify that the local 311-row JSONL text matches every character.
+
+| Article | Gazette printed page | PDF zero-based page index | Evidence seen in extracted text | Status |
+|---:|---:|---:|---|---|
+| 66 | 35 | 33 | Heading “مادة (٦٦)” and the employer duties concerning employed children appear at PDF text lines around 803–813. | Locator confirmed; character-level comparison to JSONL blocked because that file is not in this branch. |
+| 103 | 49 | 46 | Heading “مادة (١٠٣)” and the National Council for Wages meeting/quorum provision appear around lines 1141–1145. | Locator confirmed; character-level comparison to JSONL blocked. |
+| 124 | 54 | 52 | Heading “مادة (١٢٤)” and annual-leave entitlements, including the seven-day increase for specified hazardous/unhealthy/remote work, appear around lines 1292–1304. | Locator confirmed; related Decree 49/2026 still requires full-text review before eligibility decisions are made. |
+| 134 | 58 | 56 | Heading “مادة (١٣٤)” and worker duties appear around lines 1371–1391. | Locator confirmed; character-level comparison to JSONL blocked. |
+| 141 | 62 | 60 | Heading “مادة (١٤١)” and disciplinary investigation/time-limit language appear around lines 1468–1478. | Locator confirmed; character-level comparison to JSONL blocked. |
+| 278 | 107 | 104 | Heading “مادة (٢٧٨)” and attendance-request compliance provision appear around lines 2597–2600. | Locator confirmed; character-level comparison to JSONL blocked. |
+
+**Important page-numbering note:** The PDF index is zero-based; the printed Gazette page is the number shown in the document. Do not treat the PDF index as the printed page.
+
+## What this resolves — and what it does not
+
+- Resolves the immediate risk that the six flagged article pinpoints were merely guessed: the article headings are present at the listed Gazette printed pages in the official PDF text extraction.
+- Does **not** resolve whether the six spelling outliers are transcription errors. The actual outlier strings and their corresponding rows from `law_rows_ar.jsonl` are not in this public branch, so a true side-by-side comparison cannot be made from this checkout.
+- Does **not** establish a binary SHA-256 for the Gazette PDF. A web text extraction is not the original PDF byte stream; no PDF hash is claimed.
+- Does **not** constitute visual inspection of every page, full article-by-article comparison, legal currentness certification, reuse permission, or Egyptian-lawyer review.
+- The PDF text extraction itself can normalize/reorder Arabic glyphs and digits. Any exact spelling judgment must use the rendered Gazette page or a locally downloaded, hashed original file.
+
+## Next comparison procedure — no source-access bypass required
+
+1. Obtain the 311-row JSONL from the existing local artifact (or rebuild a fresh comparison copy from a source whose reuse terms permit it); do not publish the original JSONL until redistribution/commercial rights are cleared.
+2. Download the government-hosted PDF through its ordinary public link, retain the unmodified original, and record retrieval timestamp, byte size, and SHA-256 locally.
+3. Compare each record's article identifier and text against the corresponding Gazette page; record each difference as `exact_match`, `whitespace_only`, `OCR_or_extraction_uncertain`, `substantive_mismatch`, or `not_checked`.
+4. For the six spelling outliers (Arts. 66, 103, 124, 134, 141, 278), record the exact source string and proposed JSONL string side by side. Preserve Gazette orthography in the source layer; put normalized search text in a separate derived field.
+5. Review all 120 numeric provisions against the rendered Gazette pages, with a separate row for each amount, percentage, duration, threshold, age, deadline, or cross-reference. Do not mark a row complete based only on a secondary transcription or an OCR string.
+6. Keep `verified`, `in_force`, and `search_eligible` false until the source match, currentness/reuse review, and qualified Egyptian-lawyer review gates are met.
+
+## Current blocker and lawful fallback
+
+The missing `law_rows_ar.jsonl` is deliberately not distributed in the repository while its source storage, redistribution and commercial reuse terms remain unresolved. Do not bypass website access controls or copy restricted material. Use the publicly accessible official Gazette PDF as the primary comparison source, the Amiri Press text page as a second official-source lead when reachable, and Wikisource/Law Hub only as secondary cross-checks. If a full official implementing decision is not publicly available, record it as unresolved rather than infer its operative text from a press announcement.
+
+## Status
+
+**Partial progress:** six article/page locators now have official-PDF text-layer support.  
+**Still blocked:** the six exact spelling comparisons, all 311 JSONL-to-Gazette comparisons, the 120-item numeric checklist, original-PDF SHA-256, full currentness/reuse review, and qualified lawyer sign-off.  
+**Safety:** no card is activated by this log.
+
+## Additional visual scan spot-check via official PDF viewer (2026-10-29)
+
+The same government-hosted PDF was opened in its built-in PDF viewer and rendered page images were inspected for the six flagged articles. This adds a **visual page spot-check** beyond the searchable text layer; it is not an original-byte download and does not produce a SHA-256.
+
+| Article | Rendered PDF page index (zero-based) | Printed Gazette page | Visual observation |
+|---:|---:|---:|---|
+| 66 | 33 | 35 | The printed page shows Article 66; visible source typography uses legacy forms including «الآتى» and «التى» in the provision text. |
+| 103 | 46 | 48 | The printed page shows Articles 102–103; the last line of Article 103 uses the legacy form «الذى». |
+| 124 | 52 | 54 | The printed page shows Article 124 and its leave figures; the lead-in reads «على الوجه الآتى», and the text includes legacy-form «التى». |
+| 134 | 56 | 58 | The printed page shows Article 134 duties; the provision uses legacy-form «التى» in the duties text. |
+| 141 | 59 | 61 | The printed page shows Article 141 investigation timing; the visible text includes «الذى» and «التى» in the disciplinary-investigation provision. |
+| 278 | 104 | 106 | The printed page shows Article 278; its text includes the legacy form «التى» in the attendance-request clause. |
+
+**Interpretation:** The rendered official pages confirm that legacy spelling forms occur in the flagged articles, consistent with the overall style noted in the original corpus audit. They do not identify which exact token(s) differ in each JSONL row because the actual JSONL rows and outlier strings are not in this public branch/session. Do not mark the six outliers resolved until the exact candidate strings are restored and compared side by side against these rendered pages.
+
+**Artifact limitation:** Two direct download attempts against government-hosted PDF URLs failed in this environment. No PDF bytes were obtained, no original-file SHA-256 is claimed, and no restricted request-a-copy workflow was bypassed. The official PDF's viewer remains a usable visual-reference route for targeted page inspection.
+## Side-by-side text checks now possible against the public Manshurat transcription
+
+The Manshurat public transcription was opened for comparison against the rendered official Gazette pages. This is a comparison between the public transcription and the official page image, **not** between the missing local JSONL row and the Gazette. Two concrete spelling differences are visible:
+
+| Article | Public transcription | Rendered official Gazette | Result |
+|---:|---|---|---|
+| 66 | Manshurat lines 727–729 uses «في مكان العمل». | Gazette printed p. 35 / PDF index 33 shows «في مكان العمل»? The screenshot's last phrase appears as «في مكان العمل» while the earlier occurrence reads «في مكان ظاهر». The exact candidate token must be checked at the rendered glyph level before classifying this as a mismatch. | **Do not count as resolved**; the screenshot does not support a confident token-level mismatch for this phrase. |
+| 134 | Manshurat line 1257 uses «التي يعمل بها». | Gazette printed p. 58 / PDF index 56 visually appears to use «التي يعمل بها» in the same clause; the rendered glyph should be enlarged before asserting the final ya is dotless. | **Not conclusively resolved** from this viewer image. |
+
+Correction to earlier inference: visual page inspection confirms the article locations and that the document uses traditional Arabic orthography in many places, but the screenshots available here are not sufficiently clear to assert all six token-level differences. The exact six JSONL strings remain necessary. No outlier is marked fixed or resolved in the structured corpus.

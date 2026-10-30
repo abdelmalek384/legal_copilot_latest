@@ -1,0 +1,120 @@
+name: Legal Knowledge Validation
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'data/candidates/labour_law_14_2025/**'
+      - 'docs/phase_2_document_inventory.json'
+      - 'docs/phase_2_inventory_validation.md'
+      - 'data/candidates/labour_law_14_2025/decision_982_remote_work_temporal_chain_2026-10-30.md'
+      - 'tools/validate_phase2_document_inventory.py'
+      - 'tests/test_phase2_document_inventory.py'
+      - 'tools/validate_decision250_table24_candidates.py'
+      - 'tools/validate_decision250_table23_candidates.py'
+      - 'tools/validate_decisions_251_252_candidates.py'
+      - 'tools/validate_law14_2025_primary_excerpts.py'
+      - 'tools/validate_decision249_candidate_map.py'
+      - 'tools/validate_decision251_candidate_map.py'
+      - 'tools/validate_decision252_candidate_map.py'
+      - 'tools/validate_decisions_251_252_fee_ceiling_candidates.py'
+      - 'tools/build_decision250_table24_review_queue.py'
+      - 'tools/build_decision250_table24_primary_match_register.py'
+      - 'tests/test_decision250_table24_candidate_validation.py'
+      - 'tests/test_decision250_table23_candidate_validation.py'
+      - 'tests/test_decisions_251_252_candidate_validation.py'
+      - 'tests/test_law14_2025_primary_excerpts.py'
+      - 'tests/test_decision249_candidate_map.py'
+      - 'tests/test_decision251_candidate_map.py'
+      - 'tests/test_decision252_candidate_map.py'
+      - 'tests/test_decisions_251_252_fee_ceiling_candidates.py'
+      - 'tests/test_decision250_table24_review_queue.py'
+      - 'tests/test_decision250_table24_primary_match_register.py'
+      - 'tests/test_compare_corpus_to_reference.py'
+      - 'tests/test_legal_source_review_queue.py'
+      - '.github/workflows/legal-knowledge-validation.yml'
+  push:
+    branches:
+      - 'legal-knowledge-evidence-*'
+    paths:
+      - 'tools/validate_decisions_251_252_fee_ceiling_candidates.py'
+      - 'tests/test_decisions_251_252_fee_ceiling_candidates.py'
+      - 'data/candidates/labour_law_14_2025/**'
+      - 'docs/phase_2_document_inventory.json'
+      - 'docs/phase_2_inventory_validation.md'
+      - 'data/candidates/labour_law_14_2025/decision_982_remote_work_temporal_chain_2026-10-30.md'
+      - 'tools/validate_phase2_document_inventory.py'
+      - 'tests/test_phase2_document_inventory.py'
+      - 'tools/validate_decision250_table24_candidates.py'
+      - 'tools/validate_decision250_table23_candidates.py'
+      - 'tools/validate_decisions_251_252_candidates.py'
+      - 'tools/build_decision250_table24_review_queue.py'
+      - 'tools/build_decision250_table24_primary_match_register.py'
+      - 'tests/test_decision250_table24_candidate_validation.py'
+      - 'tests/test_decision250_table23_candidate_validation.py'
+      - 'tests/test_decisions_251_252_candidate_validation.py'
+      - 'tests/test_decision250_table24_review_queue.py'
+      - 'tests/test_decision250_table24_primary_match_register.py'
+      - 'tests/test_compare_corpus_to_reference.py'
+      - 'tests/test_legal_source_review_queue.py'
+      - '.github/workflows/legal-knowledge-validation.yml'
+
+jobs:
+  legal-knowledge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Validate Phase 2 metadata-only instrument inventory
+        run: python tools/validate_phase2_document_inventory.py
+      - name: Test Phase 2 instrument inventory and temporal-chain safeguards
+        run: PYTHONPATH=. python tests/test_phase2_document_inventory.py
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate Decision 252 secondary candidate map
+        run: python tools/validate_decision252_candidate_map.py
+      - name: Test Decision 252 candidate map safeguards
+        run: PYTHONPATH=. python tests/test_decision252_candidate_map.py
+      - name: Validate Decision 251 secondary candidate map
+        run: python tools/validate_decision251_candidate_map.py
+      - name: Test Decision 251 candidate map safeguards
+        run: PYTHONPATH=. python tests/test_decision251_candidate_map.py
+      - name: Validate Decision 249 secondary candidate map
+        run: python tools/validate_decision249_candidate_map.py
+      - name: Test Decision 249 candidate map safeguards
+        run: PYTHONPATH=. python tests/test_decision249_candidate_map.py
+      - name: Validate official Law 14/2025 primary excerpts
+        run: python tools/validate_law14_2025_primary_excerpts.py
+      - name: Test official Law 14/2025 primary excerpt safeguards
+        run: PYTHONPATH=. python tests/test_law14_2025_primary_excerpts.py
+      - name: Validate Decision 250 Table 24 candidate batches
+        run: python tools/validate_decision250_table24_candidates.py
+      - name: Test Decision 250 Table 24 candidate validator
+        run: PYTHONPATH=. python tests/test_decision250_table24_candidate_validation.py
+      - name: Validate Decision 250 Table 23 candidate rows and unit pairs
+        run: python tools/validate_decision250_table23_candidates.py
+      - name: Test Decision 250 Table 23 candidate validator
+        run: PYTHONPATH=. python tests/test_decision250_table23_candidate_validation.py
+      - name: Validate Decisions 251/252 candidate assertions
+        run: python tools/validate_decisions_251_252_candidates.py
+      - name: Validate Decisions 251/252 candidate fee ceilings
+        run: python tools/validate_decisions_251_252_fee_ceiling_candidates.py
+      - name: Test Decisions 251/252 candidate fee ceiling safeguards
+        run: PYTHONPATH=. python tests/test_decisions_251_252_fee_ceiling_candidates.py
+      - name: Test Decisions 251/252 candidate validator
+        run: PYTHONPATH=. python tests/test_decisions_251_252_candidate_validation.py
+      - name: Test Decision 250 Table 24 review queue
+        run: PYTHONPATH=. python tests/test_decision250_table24_review_queue.py
+      - name: Test Decision 250 Table 24 primary-match register
+        run: PYTHONPATH=. python tests/test_decision250_table24_primary_match_register.py
+      - name: Test Labour Law candidate-to-reference comparison
+        run: PYTHONPATH=. python tests/test_compare_corpus_to_reference.py
+      - name: Test legal source review queue
+        run: PYTHONPATH=. python tests/test_legal_source_review_queue.py
+      - name: Build complete Table 24 human review queue
+        run: python tools/build_decision250_table24_review_queue.py --output /tmp/decision250-table24-review-queue.md
+      - name: Build fail-closed Table 24 primary-match register
+        run: python tools/build_decision250_table24_primary_match_register.py --output /tmp/decision250-table24-primary-match-register.jsonl

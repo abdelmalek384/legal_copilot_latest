@@ -376,3 +376,79 @@ The Phase 2 metadata-only inventory now contains 71 candidates across 13 source 
 7. Leave tenant database, migrations, storage adapters and identity lifecycle to the assigned database workstream.
 
 Overall readiness remains 42% ± 8%. The recent work improves traceability and identifies current implementation leads; it does not establish verified legal content or production readiness.
+
+
+## Latest checkpoint — 2026-10-30 (PR #840 legal-knowledge evidence work)
+
+This checkpoint records discovery and engineering safeguards, not verified-law coverage. Percentages remain conservative and are not additive.
+
+| Workstream | Estimate / count | Current state |
+|---|---:|---|
+| Overall product readiness | 42% ± 8 pp (last recorded estimate; not recalculated by this evidence-only work) | Not market-ready. DB/tenant, deployment, security acceptance and manual UX review remain separate gates. |
+| Verified Egyptian legal corpus | 6% (unchanged) | No new legal rule was promoted to verified or retrieval-eligible. Original Gazette bytes, item-specific reuse evidence and qualified counsel review remain missing. |
+| Legal-knowledge preparation | 18% (up from 15%; planning/evidence preparation only) | Added seven 2026 instrument candidates, separated third-party repository provenance/rights, expanded currentness acceptance prompts, and automated Action 1 intake/hash comparison. This is not verified-law coverage. |
+| Phase 2 metadata inventory | 79 instrument candidates / 14 source records | Seven new 2026 Prime Minister decision candidates (982, 1305, 1572, 2033, 2377, 2590, 3165) linked to Labour Law 14/2025. All remain discovery-only. |
+| Decision 250 Table 24 | 781 secondary candidate rows | Structural inventory is complete (781/781); original Gazette row matches remain 0/781. Rows 34, 61 and 64 remain explicitly unresolved/high-priority. |
+| Decisions 248–252 | 0/5 fully compared with original Gazette | Supplement 225(A) original PDF remains request-copy restricted in the checked DSpace record; Action 1 user-supplied intake is pending. |
+| Lawyer in-app review | Not started | Separate post-technical-completion release gate. The review plan now includes OSH-23–27 for later implementing-decision/currentness behavior, including the April Sunday scope and whether monthly extensions carried it forward. |
+
+### New evidence work completed
+
+- Identified official Amiri Press searchable-text leads and Gazette metadata for Prime Minister Decisions 982, 1305, 1572, 2033, 2377, 2590 and 3165/2026. These are distinct implementing/extension candidates, not amendments to Law 14/2025 merely because they cite it.
+- Added seven separate instrument records and parent-law relationships to `docs/phase_2_document_inventory.json`; the metadata-only inventory now contains 79 records. Added `EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE` as a separate third-party catalogue source so repository metadata is not conflated with the Amiri Press issuing authority; permission remains unknown. Registered the same source ID in the central permission register with collection/commercial permissions unknown and item-specific access restrictions documented. Also split the Amiri Press publisher from the DSpace repository in `docs/source_manifest.json`, with a regression test against accidental conflation.
+- Checked the DSpace download routes for Gazette issues containing Decisions 982, 1305, 1572 and 2033: 982, 1572 and 2033 route to request-copy; 1305 requires DSpace login. The official Gazette collection listing also identifies Decision 2590 in issue 35 (مكرر), but its exact item record is not pinned. Secondary press reports place Decision 3165 in issue 41 (مكرر و), reportedly dated 12 October 2026; its exact official Gazette item is not yet pinned, so this remains a discovery lead. No login was attempted, no access control was bypassed, and no copy request was submitted.
+- Recorded that Decision 2590/2026 continues Decision 982/2026 through September 2026. A targeted search did not locate an October extension; this is not proof that no October instrument exists and does not establish expiry/currentness.
+- Added an explicit currentness discovery log and five future in-app lawyer prompts (OSH-23–27) to test October status, original Gazette citation, Decision 3165 and the distinction between parent-law amendment and implementing-decision extension.
+- Added regression assertions for the seven instrument records, parent relationships, DSpace metadata and access restrictions. A local structural/schema-equivalent check found 79 records, 14 source records, no duplicate IDs, no unsupported states and no invalid URLs.
+- Prepared `tools/inspect_action1_labour_intake.py` with tests and CI wiring. It creates a metadata-only receipt for the supplied Gazette PDF and optional `law_rows_ar.jsonl` (hashes, sizes, PDF signature/EOF, JSONL shape, duplicate-key diagnostics and comparison with the historical 311-record SHA/size/count); it never edits, uploads, extracts or embeds source contents and never promotes legal status or retrieval eligibility.
+- On source-manifest split/test head `210b1977f818fb4d1e5d4d15ecc0e704a44c9d17`, Legal Knowledge Validation run 41037015502 passed (28/28), Non-database safety regression run 41037015375 passed, and Full Tests run 41037015361 is still in progress with no failures reported so far. The preceding full suite passed 104/104; this run additionally includes the publisher-vs-repository source-manifest regression.
+
+### Next gates
+
+1. Receive the user's original Official Gazette Supplement 225(A) PDF and optional `law_rows_ar.jsonl`; preserve/hash originals and compare all available candidate records without committing restricted raw files.
+2. Continue acquiring official Gazette pages for other Labour Law implementing instruments only through permitted routes; record login/request-copy restrictions rather than bypassing them.
+3. Reconcile Decision 250 Table 24 rows 34, 61 and 64 first, then the remaining 781 rows.
+4. Verify currentness, amendments, extensions and commencement separately for each instrument; no conclusion from search absence.
+5. Complete technical work before scheduling the lawyer's in-app review; obtain sign-off only for the exact app commit, corpus version and legal scope actually tested.
+6. Keep all candidate-only and rights-unclear material out of authoritative retrieval. Leave DB/tenant/storage work to the assigned workstream.
+
+
+
+- Added Decision 2659/2020 as a separate historical candidate explicitly repealed by Article 7 of Decision 3165/2026. Article 8 makes Decision 3165 effective the day after Gazette publication, but the actual publication date has not been independently established. The inventory deliberately leaves the repeal effective date unverified and adds lawyer prompt OSH-28.
+- Added a metadata-only Action 1 intake hashing utility, its tests, and a dedicated CI step. It will generate SHA-256/size and JSONL structural counts without copying or extracting user source content.
+
+**Percentage rule:** the 79-record inventory and seven new source leads improve discovery completeness, not the verified Egyptian legal corpus percentage. Keep the verified-corpus estimate at 6% until the actual release gates pass.
+
+
+## Follow-up checkpoint — 2026-10-30 (remote-work suspension + wages council)
+
+- **Decision 982 currentness:** Official SIS reports Cabinet approval on 30 September 2026 of a *draft* decision to suspend Decision 982/2026. The operative promulgated decision has not yet been located. The legal knowledge layer now distinguishes draft approval from publication/effect and requires abstention rather than inventing a suspension number/date or asserting that it legally took effect.
+- **Decision 3165/2026:** Direct Amiri Press searchable text is recorded. Secondary reports identify Gazette issue 41 مكرر (و), dated 12 October 2026, and describe minimum-wage review, an annual allowance floor of 3% of insured wage, and a 30-day decision period for employer requests. These reported rules are explicitly secondary-only pending original Gazette acquisition and exact page matching.
+- **Acceptance coverage:** Added OSH-27 (Cabinet draft vs promulgated suspension instrument) and sharpened OSH-25 (Decision 3165 wage/allowance rules must not be answered as verified from secondary sources).
+- **No promotion:** Both instruments remain discovery-only; no new legal rule has become authoritative retrieval material.
+- **Metrics unchanged:** 80 candidate records / 15 source records; verified legal corpus remains 6%; Decision 250 Table 24 remains 781/781 secondary structural rows and 0/781 original Gazette matches; Decisions 248–252 remain 0/5 fully matched.
+- **CI status:** The latest content-API commits currently have no associated workflow runs/status checks returned. Do not reuse the earlier 103/103 and 28/28 results as proof for these newest commits. Trigger/await fresh CI before merging.
+
+
+## Follow-up checkpoint — 2026-10-30 (Decision 982 temporal-chain hardening)
+
+- Added a dedicated temporal evidence note for Prime Minister Decision 982/2026 and its monthly extension chain.
+- Recorded the exact April-only scope and 5 April start stated in the official Amiri Press text, and its Article 6 rule that commencement is the day after Gazette publication.
+- Separated the five monthly extensions: Decision 1305 (May), 1572 (June), 2033 (July), 2377 (August), and 2590 (September). Decision 2590's official preamble expressly cross-references the earlier extension numbers and months.
+- Kept the 30 September Cabinet action correctly classified as approval of a draft suspension, not proof of a promulgated or effective suspension. No October continuation or operative suspension instrument is claimed.
+- Linked the timeline from the structured Phase 2 inventory and added a regression test that prevents extension months, draft approval, and October currentness from being conflated.
+- Evidence boundary: the temporal chain improves traceability only. Original Gazette byte/hash and page comparison remain outstanding for all six decisions; no record was promoted from discovery-only, no current/in-force claim was made, and no candidate entered authoritative retrieval.
+- Validation: latest branch commit is `1195dddee071e91bf3bf73b5ff42e6d4130a7714`. The GitHub connector returned no PR-triggered workflow run for that commit at checkpoint time; do not claim this new test has passed until CI runs.
+
+
+## Follow-up checkpoint — 2026-10-30 (repository provenance and CI trigger coverage)
+
+- Added a distinct `EG-MELES-ELECTRONIC` source record for The Middle East Library for Economic Services repository. It is explicitly classified as a secondary repository/copy host, not the issuing authority or Official Gazette publisher; its permission remains unknown.
+- Linked the discovered MELES item/copy records for Decisions 982, 2377 and 2590 to that source record. The 2377 request-copy page and 2590 item metadata are retained as restricted/secondary discovery leads, not Gazette matches. No access request was submitted and no files were acquired.
+- Added regression assertions that prevent MELES repository records from being confused with official Gazette source records. Inventory remains 80 instruments and now has 15 source records.
+- Found a CI coverage gap: the Legal Knowledge Validation workflow did not include the Phase 2 inventory JSON, temporal-chain note, validator or regression test in its path filters, and did not run the Phase 2 validator/test in that workflow. Added all four paths to both pull-request and branch-push filters and added explicit validator/test steps.
+- Latest workflow change commit: `9285236732f39b9b390284e59d4d5da543e6a456`; latest inventory/test/guide commits: `72948e5d36f60ee7a450c991a17dce285f603a06`, `cc1e72c957728c43c290b962e147c40b7667fb2e2`, `fbdbd508ad13dce3e526177b172dfbb03c9e2fe8`.
+- Validation remains pending: the connector has not returned a PR-triggered workflow run for the latest head. Do not claim CI pass until a run is visible and successful. The general Tests workflow already contains the Phase 2 validator/test and both Action 1 intake utility tests; the focused legal workflow now also covers the Phase 2 temporal-chain safeguards.
+- No database/runtime changes and no legal status, permission, currentness, lawyer approval or retrieval eligibility were promoted.
+
+- Hardened the Action 1 source-hashing utility to reject symbolic-link inputs instead of silently following them; added a regression test. This protects the provenance receipt from hashing an unintended target path. CI validation is pending.

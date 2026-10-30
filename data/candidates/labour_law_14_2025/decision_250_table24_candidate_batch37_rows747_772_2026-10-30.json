@@ -1,0 +1,265 @@
+{
+  "schema_version": 1,
+  "record_type": "secondary_source_candidate_extraction",
+  "instrument": "Egyptian Minister of Labour Decision 250/2026",
+  "table": "24",
+  "table_title_ar": "الحدود العتبية للمواد الكيميائية الخطرة",
+  "research_date": "2026-10-30",
+  "source": {
+    "class": "secondary_transcription",
+    "url": "https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html",
+    "publication_date": "2026-10-26",
+    "source_lines": "5730-5772",
+    "official_gazette_match": "not_performed",
+    "official_pdf_sha256": null
+  },
+  "status": "candidate_only_not_for_authoritative_retrieval",
+  "important_limits": [
+    "Secondary transcription only; no official Gazette page-image comparison.",
+    "Raw limits, units, formulae and symbols are preserved as discovery text and are not normalized or interpreted.",
+    "Some numbered entries are group headings or subentries; hierarchy is not inferred beyond source labels.",
+    "Source text contains apparent OCR/text-layer anomalies; preserve and quarantine for primary-source comparison.",
+    "Not for workplace safety decisions or compliance advice."
+  ],
+  "declared_top_level_row_range": {
+    "start": 747,
+    "end": 772
+  },
+  "rows": [
+    {
+      "row": 747,
+      "name_ar": "ثلاثي ميثيل بنزين، النظائر",
+      "name_en": "Trimethyl benzene, isomers",
+      "cas": "25551-13-7; 526-73-8; 95-63-6; 108-67-8",
+      "source_line": 5730,
+      "raw_limit_and_note_text": "C9H12 120,19 10جزء/ مليون _ _ م4 A4 للـ 1,2,4 ثلاثي ميثيل البنزين خلل الجهاز العصبي, تأثر أمراض الدم",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 748,
+      "name_ar": "ثلاثي ميثيل الفوسفايت",
+      "name_en": "Trimethyl phosphite",
+      "cas": "121-45-9",
+      "source_line": 5731,
+      "raw_limit_and_note_text": "C3H9O3P 124.08 ٢جزء/ مليون _ _ BEIC مؤشر التعرض الحيوي لمبيدات تثبيط الكولينستيريز تهيج العين, مثبط لإنزيم الكولينستيريز",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 749,
+      "name_ar": "2,4,6-ثلاثي نيترو التولوين",
+      "name_en": "2,4,6-Trinitrotoluene",
+      "cas": "118-96-7",
+      "source_line": 5733,
+      "raw_limit_and_note_text": "C7H5N3O6 227,13 0,1 مجم/ م3(IFV) _ _ Skin; BEIM الجلد, مؤشر التعرض الحيوي للمواد المحفزة للميثهيموجلوبين ميثهيموجلوبينية الدم, مياه بيضاء، وتلف الكبد",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 750,
+      "name_ar": "ثلاثي أورثو كريسيل الفوسفات",
+      "name_en": "Triorthocresyl phosphate",
+      "cas": "78-30-8",
+      "source_line": 5734,
+      "raw_limit_and_note_text": "C21H21O4P 368,37 0,02 مجم/ م3(IFV) _ _ Skin; BEIC الجلد, مؤشر التعرض الحيوي لمبيدات تثبيط الكولينستيريز السمية العصبية، مثبط لإنزيم الكولينستيريز",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 751,
+      "name_ar": "فوسفات ثلاثي فينيل",
+      "name_en": "Triphenyl phosphate",
+      "cas": "115-86-6",
+      "source_line": 5736,
+      "raw_limit_and_note_text": "C18H15O4P 326,28 3مجم/م3 _ _ BEIC A4; م4, مؤشر التعرض الحيوي للمبيدات المثبطة للكولينستيريز مثبط لإنزيم الكولينستيريز",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 752,
+      "name_ar": "تنجستن ومركباته، بدون وجود الكوبالت، كتنجستن",
+      "name_en": "Tungsten and compounds in the absence of cobalt, as W",
+      "cas": "7440-33-7",
+      "source_line": 5737,
+      "raw_limit_and_note_text": "W 183,84 متغير 3مجم/م3(R) _ _ __ تلف الرئة",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 753,
+      "name_ar": "التربنتين وأحادي تربينات مختارة",
+      "name_en": "Turpentine and selected monoterpenes",
+      "cas": "8006-64-2; 80-56-8; 127-91-3; 13466-78-9",
+      "source_line": 5739,
+      "raw_limit_and_note_text": "C10H16 136 متغير 20جزء/ مليون _ _ DSEN; A4 تحسس جلدي, م4 تهيج الرئة",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 754,
+      "name_ar": "يورانيوم (طبيعي)، المركبات القابلة وغير القابلة للذوبان، كيورانيوم",
+      "name_en": "Uranium (natural), soluble and insoluble compounds, as U",
+      "cas": "7440-61-1",
+      "source_line": 5740,
+      "raw_limit_and_note_text": "U 238,03 متغير ٠٫2مجم/م3 ٠٫6مجم/م3 _ م1, مؤشر التعرض البيولوجي; BEI A1 تلف الكلى",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 755,
+      "name_ar": "إن-فاليرالدهيد",
+      "name_en": "n-Valeraldehyde",
+      "cas": "110-62-3",
+      "source_line": 5742,
+      "raw_limit_and_note_text": "C5H10O 86.13 50جزء/ مليون _ _ _ تهيج العين والجلد والمسالك التنفسية العليا",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 756,
+      "name_ar": "خماسي أكسيد الڤاناديوم كڤاناديوم",
+      "name_en": "Vanadium pentoxide, as V",
+      "cas": "1314-62-1",
+      "source_line": 5744,
+      "raw_limit_and_note_text": "V2O5 181,88 ٠٫05مجم/م3(I) _ _ م3 A3 تهيج المسالك التنفسية العليا والسفلى",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 757,
+      "name_ar": "خلات الڤينيل",
+      "name_en": "Vinyl acetate",
+      "cas": "108-05-4",
+      "source_line": 5745,
+      "raw_limit_and_note_text": "C4H6O2 86.09 ١٠جزء/ مليون ١٥جزء/ مليون _ A3م3 تهيج المسالك التنفسية العليا والعين",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 758,
+      "name_ar": "بروميد الڤينيل",
+      "name_en": "Vinyl bromide",
+      "cas": "593-60-2",
+      "source_line": 5747,
+      "raw_limit_and_note_text": "C2H3Br 106.96 ٠٫٥جزء/ مليون _ _ A2م2 سرطان الكبد",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 759,
+      "name_ar": "كلوريد الڤينيل",
+      "name_en": "Vinyl chloride",
+      "cas": "75-01-4",
+      "source_line": 5749,
+      "raw_limit_and_note_text": "C2H3Cl 62.50 ١جزء/ مليون _ _ A1م1 سرطان الرئة، وتلف الكبد",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 760,
+      "name_ar": "4-ڤينيل هكسين حلقي",
+      "name_en": "4-Vinyl cyclohexene",
+      "cas": "100-40-3",
+      "source_line": 5751,
+      "raw_limit_and_note_text": "C8H12 108.18 ٠٫١جزء/ مليون _ _ A3م3 تلف للجهاز التناسلي الذكري والأنثوي",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 761,
+      "name_ar": "ثاني أكسيد الڤينيل هكسين حلقي",
+      "name_en": "Vinyl cyclohexene dioxide",
+      "cas": "106-87-6",
+      "source_line": 5752,
+      "raw_limit_and_note_text": "C8H12O2 140.18 ٠٫١جزء/ مليون _ _ Skin;A3 الجلد, م3 تلف للجهاز التناسلي الذكري والأنثوي",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 762,
+      "name_ar": "فلوريد الڤينيل",
+      "name_en": "Vinyl fluoride",
+      "cas": "75-02-5",
+      "source_line": 5754,
+      "raw_limit_and_note_text": "C2H3F 46.05 ١جزء/ مليون ____ _ _ A2م2 سرطان الكبد؛ تلف الكبد",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 763,
+      "name_ar": "إن-ڤينيل-2-بيروليدون",
+      "name_en": "N-Vinyl-2-pyrrolidone",
+      "cas": "88-12-0",
+      "source_line": 5756,
+      "raw_limit_and_note_text": "C6H9NO 111.16 0.05جزء/ مليون _ _ A3م3 تلف الكبد",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 764,
+      "name_ar": "كلوريد الڤينيلدين",
+      "name_en": "Vinylidene chloride",
+      "cas": "75-35-4",
+      "source_line": 5758,
+      "raw_limit_and_note_text": "C2H2Cl2 96.95 5جزء/ مليون _ _ A4م4 تلف الكبد والكلى",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 765,
+      "name_ar": "فلوريد الڤينيلدين",
+      "name_en": "Vinylidene fluoride",
+      "cas": "75-38-7",
+      "source_line": 5759,
+      "raw_limit_and_note_text": "C2H2Cl2 64.04 500جزء/ مليون _ _ A4م4 تلف الكبد",
+      "status": "pending_official_match",
+      "anomaly": "The secondary text assigns formula C2H2Cl2 to Vinylidene fluoride; preserve the source token and verify the formula/chemical identity against the Official Gazette page image. Do not correct from external references."
+    },
+    {
+      "row": 766,
+      "name_ar": "ڤينيل تولوين",
+      "name_en": "Vinyltoluene",
+      "cas": "25013-15-4",
+      "source_line": 5761,
+      "raw_limit_and_note_text": "C9H10 118.18 10جزء/ مليون _ _ A4م4 تهيج المسالك التنفسية العليا، وتلف الرئة",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 767,
+      "name_ar": "وارفارين",
+      "name_en": "Warfarin",
+      "cas": "81-81-2",
+      "source_line": 5763,
+      "raw_limit_and_note_text": "C19H16O4 308.32 0.01مجم/ م3(I) Skin الجلد نزيف، ومسخ للأجنة",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 768,
+      "name_ar": "أتربة الخشب",
+      "name_en": "Wood dusts",
+      "cas": null,
+      "source_line": 5765,
+      "raw_limit_and_note_text": "غير متوفر (group heading; following numbered subentries specify wood types and carcinogenicity)",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 769,
+      "name_ar": "الأرز الأحمر الغربي",
+      "name_en": "Western red cedar",
+      "cas": null,
+      "source_line": 5767,
+      "raw_limit_and_note_text": "0,5 مجم/ م3(I) DSEN; RSEN;A4 تحسس جلدي وتنفسي,م4 ربو",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 770,
+      "name_ar": "كل الأجناس الأخرى",
+      "name_en": "All other species",
+      "cas": null,
+      "source_line": 5768,
+      "raw_limit_and_note_text": "1مجم/ م3(I) تأثر وظائف الرئة، وتهيج المسالك التنفسية العليا والسفلى",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 771,
+      "name_ar": "السرطنة",
+      "name_en": "Carcinogenicity",
+      "cas": null,
+      "source_line": 5770,
+      "raw_limit_and_note_text": "Section heading for following wood-dust subentries",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 772,
+      "name_ar": "البلوط والزان",
+      "name_en": "Oak and beech",
+      "cas": null,
+      "source_line": 5772,
+      "raw_limit_and_note_text": "- - - A1م1",
+      "status": "pending_official_match"
+    }
+  ]
+}

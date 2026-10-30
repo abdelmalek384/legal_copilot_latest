@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "record_type": "secondary_source_candidate_extraction",
+  "instrument": "Egyptian Minister of Labour Decision 250/2026",
+  "table": "24",
+  "table_title_ar": "الحدود العتبية للمواد الكيميائية الخطرة",
+  "research_date": "2026-10-29",
+  "source": {
+    "class": "secondary_transcription",
+    "url": "https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html",
+    "publication_date": "2026-10-26",
+    "source_lines": "5157-5188",
+    "official_gazette_match": "not_performed",
+    "official_pdf_sha256": null
+  },
+  "status": "candidate_only_not_for_authoritative_retrieval",
+  "important_limits": [
+    "Secondary transcription only; no official Gazette page-image comparison.",
+    "Raw limits, units, symbols and missing values are not normalized.",
+    "Group-level records and surface/air limits require page-level column matching.",
+    "Not for workplace safety decisions or compliance advice."
+  ],
+  "declared_top_level_row_range": {"start": 404, "end": 423},
+  "rows": [
+    {"row":404,"name_ar":"أكسيد الحديديك","name_en":"Iron oxide (Fe2O3)","cas":"1309-37-1","source_line":5157,"raw_limit_and_note_text":"Fe2O3؛ 159,70؛ 5 مجم/م3(R)؛ م4؛ A4؛ التهاب الرئة الغباري","status":"pending_official_match"},
+    {"row":405,"name_ar":"خماسي كربونيل الحديد مقدر Fe","name_en":"Iron pentacarbonyl, as Fe","cas":"13463-40-6","source_line":5158,"raw_limit_and_note_text":"Fe(CO)5؛ 195,90؛ 0,1 جزء/مليون؛ 0,2 جزء/مليون؛ تراكم السوائل بالرئتين - ضعف الجهاز العصبي المركزي","status":"pending_official_match"},
+    {"row":406,"name_ar":"أملاح الحديد القابلة للذوبان مقدرة كحديد","name_en":"Iron salts, soluble, as Fe","source_line":5160,"raw_limit_and_note_text":"متغير؛ 1 مجم/م3؛ تهيج المسالك التنفسية العليا والجلد","status":"pending_official_match","anomaly":"No CAS identifier is displayed in this group-level entry; null is intentional."},
+    {"row":407,"name_ar":"كحول أيزو أميل","name_en":"Isoamyl alcohol","cas":"123-51-3","source_line":5162,"raw_limit_and_note_text":"C5H12O؛ 88,15؛ 100 جزء/مليون؛ 125 جزء/مليون؛ تهيج العين والمسالك التنفسية العليا","status":"pending_official_match"},
+    {"row":408,"name_ar":"خلات أيزوبيوتيل","name_en":"Isobutyl acetate","cas":"110-19-0","source_line":5163,"raw_limit_and_note_text":"C6H12O2؛ 116,16؛ 150 جزء/مليون؛ 713 مجم/م3؛ تهيج المسالك التنفسية العليا والجلد","status":"pending_official_match","anomaly":"Two limits use different units; verify column and unit alignment from the official page."},
+    {"row":409,"name_ar":"كحول أيزوبيوتيل","name_en":"Isobutanol","cas":"78-83-1","source_line":5165,"raw_limit_and_note_text":"C4H10O؛ 74,122؛ 50 جزء/مليون؛ تهيج الجلد والعين","status":"pending_official_match","anomaly":"Molecular-weight token '74,122' appears suspicious; preserve until official-page review."},
+    {"row":410,"name_ar":"نيتريت الإيزوبيوتيل","name_en":"Isobutyl nitrite","cas":"542-56-3","source_line":5167,"raw_limit_and_note_text":"C4H9NO2؛ 103,12؛ 1 جزء/مليون؛ A3; BEIM؛ م3، مؤشر التعرض الحيوي للمواد المحفزة للميتهيموجلوبين؛ اضطراب دموي غير قادر على حمل الأكسجين - توسع الأوعية الدموية","status":"pending_official_match"},
+    {"row":411,"name_ar":"إيزوفلوران","name_en":"Isoflurane","cas":"26675-46-7","source_line":5168,"raw_limit_and_note_text":"C3H2ClF5O؛ 184,49؛ 50 جزء/مليون؛ A4؛ تلف الأجنة - تأثير على وزن جسم الأم - خلل الجهاز العصبي المركزي - انخفاض الإدراك","status":"pending_official_match"},
+    {"row":412,"name_ar":"كحول أيزوأوكتيل","name_en":"Isooctyl alcohol","cas":"26952-21-6","source_line":5170,"raw_limit_and_note_text":"C8H18O؛ 130,23؛ 50 جزء/مليون؛ الجلد Skin؛ تهيج المسالك التنفسية العليا","status":"pending_official_match"},
+    {"row":413,"name_ar":"أيزوفورون","name_en":"Isophorone","cas":"78-59-1","source_line":5172,"raw_limit_and_note_text":"C9H14O؛ 138,21؛ 5 جزء/مليون؛ م3؛ A3؛ تهيج العين والمسالك التنفسية العليا - خلل الجهاز العصبي المركزي - تعب - إجهاد","status":"pending_official_match"},
+    {"row":414,"name_ar":"ثنائي إيزوسيانات الأيزوفورون","name_en":"Isophorone diisocyanate","cas":"4098-71-9","source_line":5173,"raw_limit_and_note_text":"C12H18N2O2؛ 222,30؛ 0,005 جزء/مليون؛ حساسية تنفسية","status":"pending_official_match"},
+    {"row":415,"name_ar":"2-أيزوبروبوكسي إيثانول","name_en":"2-Isopropoxyethanol","cas":"109-59-1","source_line":5175,"raw_limit_and_note_text":"C5H12O2؛ 104,15؛ 25 جزء/مليون؛ جلد Skin؛ تأثيرات على الدم","status":"pending_official_match"},
+    {"row":416,"name_ar":"إيزوبروبيل أمين","name_en":"Isopropylamine","cas":"75-31-0","source_line":5177,"raw_limit_and_note_text":"C3H9N؛ 59,11؛ 2 جزء/مليون؛ 5 جزء/مليون؛ جلد Skin؛ تهيج المسالك التنفسية العليا وتهيج بصري - خلل الرؤية","status":"pending_official_match"},
+    {"row":417,"name_ar":"إيزوبروبيل أنيلين عادي","name_en":"N-Isopropylaniline","cas":"768-52-5","source_line":5178,"raw_limit_and_note_text":"C9H13N؛ 135,21؛ 2 جزء/مليون؛ BEIM; Skin؛ مؤشر التعرض الحيوي للمواد المحفزة للميتهيموجلوبين، جلد؛ اضطراب دموي غير قادر على حمل الأكسجين","status":"pending_official_match"},
+    {"row":418,"name_ar":"إيثر أيزوبروبيل","name_en":"Isopropyl ether","cas":"108-20-3","source_line":5180,"raw_limit_and_note_text":"C6H14O؛ 102,17؛ 250 جزء/مليون؛ 310 جزء/مليون؛ تهيج المسالك التنفسية العليا والعين","status":"pending_official_match"},
+    {"row":419,"name_ar":"إيثر أيزوبروبيل جليسيديل","name_en":"Isopropyl glycidyl ether","cas":"4016-14-2","source_line":5182,"raw_limit_and_note_text":"C6H12O2؛ 116,18؛ 50 جزء/مليون؛ 75 جزء/مليون؛ تهيج المسالك التنفسية العليا والعين، التهاب الجلد","status":"pending_official_match"},
+    {"row":420,"name_ar":"كاولين","name_en":"Kaolin","cas":"1332-58-7","source_line":5183,"raw_limit_and_note_text":"Al2H4O9Si2؛ 2 مجم/م3(E,R)؛ م4؛ A4؛ التهاب الرئة الغباري","status":"pending_official_match"},
+    {"row":421,"name_ar":"كيروسين / وقود الطائرات كبخار هيدروكربوني كلي","name_en":"Kerosene / jet fuels as total hydrocarbon vapor","cas":"8008-20-6; 64742-81-0","source_line":5185,"raw_limit_and_note_text":"C12H26-C15H32؛ متغير؛ 200 مجم/م3؛ Skin; A3؛ جلد، م3؛ تهيج الجلد والمسالك التنفسية العليا - خلل الجهاز العصبي المركزي","status":"pending_official_match","anomaly":"Limit notation has unmatched parentheses in the text layer; verify official column and footnote."},
+    {"row":422,"name_ar":"كيتين","name_en":"Ketene","cas":"463-51-4","source_line":5187,"raw_limit_and_note_text":"CnH2nO؛ 42,04؛ 0,05 جزء/مليون؛ تلف الرئة - تراكم السوائل بالرئة - تهيج المسالك التنفسية العليا والعين","status":"pending_official_match","anomaly":"Formula token 'CnH2nO' is preserved from source; verify official table."},
+    {"row":423,"name_ar":"رصاص","name_en":"Lead","cas":"7439-92-1","source_line":5188,"raw_limit_and_note_text":"Pb؛ 207,20؛ 0,05 مجم/م3؛ A3; BEI؛ م3، مؤشر التعرض الحيوي؛ خلل الجهاز العصبي المركزي والطرفي - تأثيرات دموية","status":"pending_official_match","risk_note":"Toxic-metal exposure entry; no operational limit approved."}
+  ]
+}

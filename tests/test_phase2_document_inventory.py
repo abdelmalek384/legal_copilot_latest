@@ -16,14 +16,27 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         cls.inventory = json.loads(DEFAULT_PATH.read_text(encoding="utf-8"))
 
     def test_current_inventory_is_metadata_only_and_structurally_valid(self):
+        remote = next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-PM-DECISION-982-2026")
+        suspension = next(u for u in remote["source_urls"] if "sis.gov.eg/en/media-center/news/cabinet-approves-suspending-sunday-remote-work-system" in u["url"])
+        self.assertEqual(suspension["status"], "official_cabinet_draft_approval_announcement_not_promulgated_decision")
+        self.assertIn("exact decision number, publication, effective date", remote["notes"])
+        self.assertTrue(any("dspace.id.com.eg/items/ecbb04ef" in u["url"] and u["status"] == "alternate_text_copy_discovered_original_files_restricted_request_copy" for u in remote["source_urls"]))
+        self.assertIn("item-specific license", remote["notes"])
+        wages = next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-PM-DECISION-3165-2026")
+        self.assertIn("subcommittees", wages["notes"])
+        self.assertIn("41 مكرر (و)", wages["notes"])
+        self.assertTrue(any("almasdar.com/175352" in u["url"] and u["status"] == "secondary_fuller_article_summary_and_gazette_issue_lead_not_primary_match" for u in wages["source_urls"]))
+        self.assertEqual(wages["review_status"], "discovery_only")
         self.assertEqual(validate_inventory(self.inventory), [])
-        self.assertEqual(len(self.inventory["documents"]), 72)
+        self.assertEqual(len(self.inventory["documents"]), 80)
         self.assertTrue(all(d["review_status"] != "verified" for d in self.inventory["documents"]))
         self.assertTrue(all(d["legal_status"] in {"unknown", "not_applicable"} for d in self.inventory["documents"]))
         register = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
         register_ids = {source["source_id"] for source in register["sources"]}
         self.assertIn("EG-MINISTRY-LABOUR-LAWS", register_ids)
         self.assertIn("EG-MINISTRY-LABOUR-LAWS", self.inventory["source_ids"])
+        self.assertIn("EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE", register_ids)
+        self.assertIn("EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE", self.inventory["source_ids"])
         self.assertNotIn("EG-MINISTRY-OF-LABOUR", self.inventory["source_ids"])
         for document_id in (
             "EG-LABOUR-WORK-REGULATION-RULES-2026",
@@ -95,6 +108,88 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         action = next(a for a in self.inventory["next_actions"] if a["id"] == "ACT-LABOUR-LAW-14-2025-EXEC-REGS-VERIFY")
         self.assertIn("not proof of non-existence", action["action"])
         self.assertEqual(action["status"], "not_started")
+        self.assertEqual(validate_inventory(self.inventory), [])
+
+    def test_2026_labour_remote_work_and_wages_decisions_are_separate_discovery_records(self):
+        expected = {
+            "EG-LABOUR-PM-DECISION-982-2026": "official_text_candidate",
+            "EG-LABOUR-PM-DECISION-1305-2026": "official_text_candidate",
+            "EG-LABOUR-PM-DECISION-1572-2026": "later_official_citation_only",
+            "EG-LABOUR-PM-DECISION-2033-2026": "later_official_citation_only",
+            "EG-LABOUR-PM-DECISION-2377-2026": "official_text_candidate",
+            "EG-LABOUR-PM-DECISION-2590-2026": "official_text_candidate",
+            "EG-LABOUR-PM-DECISION-3165-2026": "official_text_candidate",
+        }
+        law = next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-LAW-14-2025")
+        related_ids = {item["document_id"] for item in law["related_instruments"]}
+        for document_id, expected_source_status in expected.items():
+            record = next(d for d in self.inventory["documents"] if d["document_id"] == document_id)
+            self.assertIn(document_id, related_ids)
+            self.assertEqual(record["source_id"], "EG-AMIRI-PRESS")
+            self.assertEqual(record["source_status"], expected_source_status)
+            self.assertEqual(record["collection_permission"], "unknown")
+            self.assertEqual(record["legal_status"], "unknown")
+            self.assertEqual(record["review_status"], "discovery_only")
+            self.assertTrue(record["required_related_records"])
+            self.assertTrue(record["source_urls"])
+        self.assertTrue(any("dspace.id.com.eg/items/1255d539" in u["url"] and u["status"].endswith("request_copy_restricted") for u in next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-PM-DECISION-982-2026")["source_urls"]))
+        self.assertTrue(any("labour.gov.eg" in u["url"] and u["status"] == "official_announcement_not_decision_text" for u in next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-PM-DECISION-982-2026")["source_urls"]))
+        self.assertTrue(any("dspace.id.com.eg/items/90a235e2" in u["url"] for u in next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-PM-DECISION-1305-2026")["source_urls"]))
+        self.assertTrue(any("dspace.id.com.eg/items/3ce63ac9" in u["url"] for u in next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-PM-DECISION-1572-2026")["source_urls"]))
+        self.assertTrue(any("dspace.id.com.eg/items/080b6ab2" in u["url"] for u in next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-PM-DECISION-2033-2026")["source_urls"]))
+        self.assertTrue(any("dspace.id.com.eg/collections/bb4a4122" in u["url"] and u["status"] == "official_collection_listing_candidate_not_item_pinned" for u in next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-PM-DECISION-2590-2026")["source_urls"]))
+        self.assertTrue(any("business.ahram.org.eg/News/134866.aspx" in u["url"] and u["status"] == "secondary_reported_gazette_issue_not_officially_pinned" for u in next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-PM-DECISION-3165-2026")["source_urls"]))
+        self.assertTrue(any(u["status"].endswith("requires_DSpace_login") for u in next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-PM-DECISION-1305-2026")["source_urls"] if "dspace.id.com.eg" in u["url"]))
+        for document_id in ("EG-LABOUR-PM-DECISION-1572-2026", "EG-LABOUR-PM-DECISION-2033-2026"):
+            record = next(d for d in self.inventory["documents"] if d["document_id"] == document_id)
+            self.assertTrue(any(u["status"].endswith("request_copy_restricted") for u in record["source_urls"] if "dspace.id.com.eg" in u["url"]))
+        repository_source = self.inventory["source_ids"]["EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE"]
+        self.assertEqual(repository_source["permission"], "unknown")
+        self.assertEqual(repository_source["source_class"], "third_party_repository_metadata_only")
+        for document_id in expected:
+            record = next(d for d in self.inventory["documents"] if d["document_id"] == document_id)
+            for source_url in record["source_urls"]:
+                if "dspace.id.com.eg/" in source_url["url"]:
+                    self.assertEqual(source_url["source_id"], "EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE")
+        for record in self.inventory["documents"]:
+            for source_url in record.get("source_urls", []):
+                if "dspace.id.com.eg/" in source_url["url"]:
+                    self.assertEqual(source_url["source_id"], "EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE")
+        self.assertEqual(validate_inventory(self.inventory), [])
+
+    def test_decision_3165_repeal_relationship_to_2659_is_explicit_but_effective_date_unverified(self):
+        current = next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-PM-DECISION-3165-2026")
+        old = next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-PM-DECISION-2659-2020")
+        relation = next(x for x in current["related_instruments"] if x["document_id"] == old["document_id"])
+        self.assertIn("repeals_under_article_7", relation["relationship"])
+        self.assertEqual(old["source_status"], "later_official_citation_only")
+        self.assertEqual(old["legal_status"], "unknown")
+        self.assertEqual(old["review_status"], "discovery_only")
+        self.assertIn("do not assign a verified repeal effective date", old["notes"])
+        self.assertTrue(any("manshurat.org/node/70956" in u["url"] for u in old["source_urls"]))
+        self.assertEqual(validate_inventory(self.inventory), [])
+
+    def test_decision_982_temporal_chain_separates_monthly_extensions_from_draft_suspension(self):
+        remote = next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-PM-DECISION-982-2026")
+        self.assertIn("decision_982_remote_work_temporal_chain_2026-10-30.md", remote["notes"])
+        timeline = (ROOT / "data" / "candidates" / "labour_law_14_2025" / "decision_982_remote_work_temporal_chain_2026-10-30.md").read_text(encoding="utf-8")
+        for month, number in (("May", 1305), ("June", 1572), ("July", 2033), ("August", 2377), ("September", 2590)):
+            self.assertIn(f"Decision {number}/2026", timeline)
+            self.assertIn(month, timeline)
+        self.assertIn("draft", timeline)
+        self.assertIn("not the operative published instrument", timeline)
+        self.assertIn("Do not infer an October 2026 extension", timeline)
+        self.assertIn("Gazette byte verification 0/6", timeline)
+        self.assertEqual(remote["legal_status"], "unknown")
+        self.assertEqual(remote["review_status"], "discovery_only")
+        # MELES is a secondary repository/copy host, not the issuing authority or Gazette publisher.
+        meles = self.inventory["source_ids"]["EG-MELES-ELECTRONIC"]
+        self.assertIn("not the issuing authority", meles["authority"])
+        self.assertEqual(meles["permission"], "unknown")
+        for decision in ("2377", "2590"):
+            record = next(d for d in self.inventory["documents"] if d["document_id"] == f"EG-LABOUR-PM-DECISION-{decision}-2026")
+            link = next(u for u in record["source_urls"] if u.get("source_id") == "EG-MELES-ELECTRONIC")
+            self.assertIn("not the Official Gazette item", link["source_role"])
         self.assertEqual(validate_inventory(self.inventory), [])
 
     def test_unknown_source_and_duplicate_instrument_ids_are_rejected(self):

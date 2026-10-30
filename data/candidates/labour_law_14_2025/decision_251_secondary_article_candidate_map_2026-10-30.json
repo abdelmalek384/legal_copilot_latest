@@ -1,0 +1,302 @@
+{
+  "schema_version": 1,
+  "record_type": "secondary_source_candidate_article_map",
+  "instrument": "Egyptian Minister of Labour Decision 251/2026",
+  "research_date": "2026-10-30",
+  "source": {
+    "class": "secondary_scan_image_reproduction",
+    "publisher": "Almasdar.com",
+    "article_url": "https://www.almasdar.com/175152",
+    "gazette_issue": "225 تابع (أ)",
+    "gazette_publication_date": "2026-10-12",
+    "printed_page_range": "371-377",
+    "original_gazette_pdf_obtained": false,
+    "official_pdf_sha256": null
+  },
+  "status": "candidate_only_not_for_authoritative_retrieval",
+  "important_limits": [
+    "Images are secondary reproductions of Gazette pages with an Almasdar watermark, not the original Amiri Press PDF.",
+    "Qualification periods, fee amounts, procedure time limits and licence duration are candidate observations and must be checked against the original Gazette.",
+    "No official match, currentness review, source-use clearance or counsel approval is claimed.",
+    "All records remain retrieval-ineligible."
+  ],
+  "records": [
+    {
+      "record_type": "article",
+      "article": 1,
+      "title": "Definitions",
+      "printed_gazette_pages": "372",
+      "summary_candidate_en": "Defines OSH expertise/consultancy services, the licensed consultant, competent central administration, Ministry, competent authority and parent Labour Law.",
+      "source_class": "secondary_scan_image_reproduction",
+      "source_page_url": "https://www.almasdar.com/175152",
+      "source_image_urls": [
+        "https://www.almasdar.com/WebP/libfiles/46/4/65.webp"
+      ],
+      "gazette_issue": "225 تابع (أ)",
+      "gazette_publication_date": "2026-10-12",
+      "official_gazette_match": "not_performed",
+      "official_pdf_sha256": null,
+      "currentness_review": "not_started",
+      "source_use_review": "not_started",
+      "counsel_review": "not_started",
+      "status": "candidate_only_pending_official_match",
+      "retrieval_eligible": false
+    },
+    {
+      "record_type": "article",
+      "article": 2,
+      "title": "Licence required and two licence classes",
+      "printed_gazette_pages": "372",
+      "summary_candidate_en": "Prohibits OSH expertise/consultancy practice without Ministry licence; creates Consultant A and Consultant B licence classes.",
+      "source_class": "secondary_scan_image_reproduction",
+      "source_page_url": "https://www.almasdar.com/175152",
+      "source_image_urls": [
+        "https://www.almasdar.com/WebP/libfiles/46/4/65.webp"
+      ],
+      "gazette_issue": "225 تابع (أ)",
+      "gazette_publication_date": "2026-10-12",
+      "official_gazette_match": "not_performed",
+      "official_pdf_sha256": null,
+      "currentness_review": "not_started",
+      "source_use_review": "not_started",
+      "counsel_review": "not_started",
+      "status": "candidate_only_pending_official_match",
+      "retrieval_eligible": false
+    },
+    {
+      "record_type": "article",
+      "article": 3,
+      "title": "Consultant A eligibility",
+      "printed_gazette_pages": "372–373",
+      "summary_candidate_en": "Lists eligible bachelor disciplines, candidate 20-year experience threshold (reduced for a relevant doctorate), accredited OSH certification, digital-skills/ICDL route, administrative examination and integrity conditions.",
+      "source_class": "secondary_scan_image_reproduction",
+      "source_page_url": "https://www.almasdar.com/175152",
+      "source_image_urls": [
+        "https://www.almasdar.com/WebP/libfiles/46/4/65.webp",
+        "https://www.almasdar.com/WebP/libfiles/46/4/66.webp"
+      ],
+      "gazette_issue": "225 تابع (أ)",
+      "gazette_publication_date": "2026-10-12",
+      "official_gazette_match": "not_performed",
+      "official_pdf_sha256": null,
+      "currentness_review": "not_started",
+      "source_use_review": "not_started",
+      "counsel_review": "not_started",
+      "status": "candidate_only_pending_official_match",
+      "retrieval_eligible": false,
+      "candidate_eligibility_details": {
+        "bachelor_fields": "Engineering, pharmacy, human medicine, veterinary medicine, science, applied health sciences, and environment/waste management (as visibly listed)",
+        "experience_years": 20,
+        "doctorate_reduced_experience_years": 15,
+        "other_conditions": [
+          "international OSH certificate(s)",
+          "ICDL or digital transformation basics certificate",
+          "pass the competent administration's examination",
+          "no final conviction for an offence involving honour/trust unless rehabilitated"
+        ]
+      }
+    },
+    {
+      "record_type": "article",
+      "article": 4,
+      "title": "Consultant B eligibility",
+      "printed_gazette_pages": "373–374",
+      "summary_candidate_en": "Lists Consultant B eligibility with candidate 15-year experience threshold (reduced for a relevant doctorate), plus education, certification, examination and integrity conditions.",
+      "source_class": "secondary_scan_image_reproduction",
+      "source_page_url": "https://www.almasdar.com/175152",
+      "source_image_urls": [
+        "https://www.almasdar.com/WebP/libfiles/46/4/66.webp",
+        "https://www.almasdar.com/WebP/libfiles/46/4/67.webp"
+      ],
+      "gazette_issue": "225 تابع (أ)",
+      "gazette_publication_date": "2026-10-12",
+      "official_gazette_match": "not_performed",
+      "official_pdf_sha256": null,
+      "currentness_review": "not_started",
+      "source_use_review": "not_started",
+      "counsel_review": "not_started",
+      "status": "candidate_only_pending_official_match",
+      "retrieval_eligible": false,
+      "candidate_eligibility_details": {
+        "experience_years": 15,
+        "doctorate_reduced_experience_years": 10,
+        "other_conditions": [
+          "bachelor in listed relevant fields",
+          "international OSH certificate(s)",
+          "ICDL or digital transformation basics certificate",
+          "pass the competent administration's examination",
+          "no final conviction for an offence involving honour/trust unless rehabilitated"
+        ]
+      }
+    },
+    {
+      "record_type": "article",
+      "article": 5,
+      "title": "Application documents",
+      "printed_gazette_pages": "374",
+      "summary_candidate_en": "Lists application form, CV, qualification, identity, photographs, criminal record, experience proof and certificates/attestations.",
+      "source_class": "secondary_scan_image_reproduction",
+      "source_page_url": "https://www.almasdar.com/175152",
+      "source_image_urls": [
+        "https://www.almasdar.com/WebP/libfiles/46/4/67.webp"
+      ],
+      "gazette_issue": "225 تابع (أ)",
+      "gazette_publication_date": "2026-10-12",
+      "official_gazette_match": "not_performed",
+      "official_pdf_sha256": null,
+      "currentness_review": "not_started",
+      "source_use_review": "not_started",
+      "counsel_review": "not_started",
+      "status": "candidate_only_pending_official_match",
+      "retrieval_eligible": false
+    },
+    {
+      "record_type": "article",
+      "article": 6,
+      "title": "Licensing committee",
+      "printed_gazette_pages": "375",
+      "summary_candidate_en": "Establishes a ministry-level committee for granting/renewing OSH expertise/consultancy licences and identifies membership.",
+      "source_class": "secondary_scan_image_reproduction",
+      "source_page_url": "https://www.almasdar.com/175152",
+      "source_image_urls": [
+        "https://www.almasdar.com/WebP/libfiles/46/4/68.webp"
+      ],
+      "gazette_issue": "225 تابع (أ)",
+      "gazette_publication_date": "2026-10-12",
+      "official_gazette_match": "not_performed",
+      "official_pdf_sha256": null,
+      "currentness_review": "not_started",
+      "source_use_review": "not_started",
+      "counsel_review": "not_started",
+      "status": "candidate_only_pending_official_match",
+      "retrieval_eligible": false
+    },
+    {
+      "record_type": "article",
+      "article": 7,
+      "title": "Application review and decision procedure",
+      "printed_gazette_pages": "375–376",
+      "summary_candidate_en": "Sets the application examination, completion/notification and approval/rejection workflow; exact day counts must be transcribed and verified.",
+      "source_class": "secondary_scan_image_reproduction",
+      "source_page_url": "https://www.almasdar.com/175152",
+      "source_image_urls": [
+        "https://www.almasdar.com/WebP/libfiles/46/4/68.webp",
+        "https://www.almasdar.com/WebP/libfiles/46/4/69.webp"
+      ],
+      "gazette_issue": "225 تابع (أ)",
+      "gazette_publication_date": "2026-10-12",
+      "official_gazette_match": "not_performed",
+      "official_pdf_sha256": null,
+      "currentness_review": "not_started",
+      "source_use_review": "not_started",
+      "counsel_review": "not_started",
+      "status": "candidate_only_pending_official_match",
+      "retrieval_eligible": false,
+      "candidate_procedure_periods": {
+        "initial_review_days": 15,
+        "notice_of_result_business_days": 3,
+        "completion_of_missing_documents_days": 30,
+        "decision_after_complete_application_days": 30,
+        "nonresponse_effect": "appears to be deemed rejection",
+        "note": "Candidate reading from secondary page image 376; exact wording, starting events and legal computation require original Gazette comparison."
+      }
+    },
+    {
+      "record_type": "article",
+      "article": 8,
+      "title": "Licence and renewal fees",
+      "printed_gazette_pages": "376",
+      "summary_candidate_en": "Candidate fee table: Consultant A EGP 3,000 licence / EGP 2,500 renewal; Consultant B EGP 2,500 licence / EGP 2,000 renewal.",
+      "source_class": "secondary_scan_image_reproduction",
+      "source_page_url": "https://www.almasdar.com/175152",
+      "source_image_urls": [
+        "https://www.almasdar.com/WebP/libfiles/46/4/69.webp"
+      ],
+      "gazette_issue": "225 تابع (أ)",
+      "gazette_publication_date": "2026-10-12",
+      "official_gazette_match": "not_performed",
+      "official_pdf_sha256": null,
+      "currentness_review": "not_started",
+      "source_use_review": "not_started",
+      "counsel_review": "not_started",
+      "status": "candidate_only_pending_official_match",
+      "retrieval_eligible": false,
+      "candidate_fee_table_egp": {
+        "consultant_A": {
+          "initial_license": 3000,
+          "renewal": 2500
+        },
+        "consultant_B": {
+          "initial_license": 2500,
+          "renewal": 2000
+        },
+        "note": "Values transcribed from secondary page image 376; confirm the table cells against original Gazette."
+      }
+    },
+    {
+      "record_type": "article",
+      "article": 9,
+      "title": "Licence duration and renewal",
+      "printed_gazette_pages": "377",
+      "summary_candidate_en": "Licence validity appears to be three years, with renewal subject to stated conditions and experience evidence.",
+      "source_class": "secondary_scan_image_reproduction",
+      "source_page_url": "https://www.almasdar.com/175152",
+      "source_image_urls": [
+        "https://www.almasdar.com/WebP/libfiles/46/4/70.webp"
+      ],
+      "gazette_issue": "225 تابع (أ)",
+      "gazette_publication_date": "2026-10-12",
+      "official_gazette_match": "not_performed",
+      "official_pdf_sha256": null,
+      "currentness_review": "not_started",
+      "source_use_review": "not_started",
+      "counsel_review": "not_started",
+      "status": "candidate_only_pending_official_match",
+      "retrieval_eligible": false,
+      "candidate_license_validity_years": 3
+    },
+    {
+      "record_type": "article",
+      "article": 10,
+      "title": "Licence revocation",
+      "printed_gazette_pages": "377",
+      "summary_candidate_en": "Sets grounds for licence revocation; exact triggers require full text transcription.",
+      "source_class": "secondary_scan_image_reproduction",
+      "source_page_url": "https://www.almasdar.com/175152",
+      "source_image_urls": [
+        "https://www.almasdar.com/WebP/libfiles/46/4/70.webp"
+      ],
+      "gazette_issue": "225 تابع (أ)",
+      "gazette_publication_date": "2026-10-12",
+      "official_gazette_match": "not_performed",
+      "official_pdf_sha256": null,
+      "currentness_review": "not_started",
+      "source_use_review": "not_started",
+      "counsel_review": "not_started",
+      "status": "candidate_only_pending_official_match",
+      "retrieval_eligible": false
+    },
+    {
+      "record_type": "article",
+      "article": 11,
+      "title": "Publication and commencement",
+      "printed_gazette_pages": "377",
+      "summary_candidate_en": "States publication in the Official Gazette and commencement on the day following publication.",
+      "source_class": "secondary_scan_image_reproduction",
+      "source_page_url": "https://www.almasdar.com/175152",
+      "source_image_urls": [
+        "https://www.almasdar.com/WebP/libfiles/46/4/70.webp"
+      ],
+      "gazette_issue": "225 تابع (أ)",
+      "gazette_publication_date": "2026-10-12",
+      "official_gazette_match": "not_performed",
+      "official_pdf_sha256": null,
+      "currentness_review": "not_started",
+      "source_use_review": "not_started",
+      "counsel_review": "not_started",
+      "status": "candidate_only_pending_official_match",
+      "retrieval_eligible": false
+    }
+  ],
+  "validation_note": "2026-10-30: 7 secondary Gazette-page image locators map Articles 1–11; candidate experience, application time, fee and licence-term fields remain unverified and retrieval-ineligible."
+}

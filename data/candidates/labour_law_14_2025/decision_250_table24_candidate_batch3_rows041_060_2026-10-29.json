@@ -1,0 +1,454 @@
+{
+  "schema_version": 1,
+  "record_type": "secondary_source_candidate_extraction",
+  "instrument": "Egyptian Minister of Labour Decision 250/2026",
+  "table": "24",
+  "table_title_ar": "الحدود العتبية للمواد الكيميائية الخطرة",
+  "research_date": "2026-10-29",
+  "source": {
+    "class": "secondary_transcription",
+    "url": "https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html",
+    "publication_date": "2026-10-26",
+    "source_lines": "4553-4585",
+    "official_gazette_match": "not_performed",
+    "official_pdf_sha256": null,
+    "secondary_scan_image_source_url": "https://www.almasdar.com/175151",
+    "secondary_scan_image_pages": "249-295"
+  },
+  "status": "candidate_only_not_for_authoritative_retrieval",
+  "important_limits": [
+    "Secondary transcription only; no official Gazette page-image comparison.",
+    "Raw limit strings are not assigned to TWA/STEL/C columns without page-level evidence.",
+    "Subentries remain nested where the transcription presents a parent chemical with variants.",
+    "No workplace-safety or legal-compliance use."
+  ],
+  "declared_top_level_row_range": {
+    "start": 41,
+    "end": 60
+  },
+  "rows": [
+    {
+      "row": 41,
+      "name_ar": "سلفامات أمونيوم",
+      "name_en": "Ammonium sulfamate",
+      "cas": "7773-06-0",
+      "source_line": 4553,
+      "raw_limit_and_note_text": "NH2SO4NH4؛ 114,13؛ 10 مجم/ م3",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 254,
+      "secondary_scan_page_row_range": "34-41",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/946.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 42,
+      "name_ar": "ثلاثي أميل ميثيل الإيثر",
+      "name_en": "tert-Amyl methyl ether",
+      "cas": "994-05-8",
+      "source_line": 4555,
+      "raw_limit_and_note_text": "C6H14O؛ 102,20؛ 20 جزء / مليون؛ تلف الجهاز العصبي المركزي - تلف الأجنة",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 255,
+      "secondary_scan_page_row_range": "42-48",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/947.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 43,
+      "name_ar": "أنيلين",
+      "name_en": "Aniline",
+      "cas": "62-53-3",
+      "source_line": 4557,
+      "raw_limit_and_note_text": "C6H7 N؛ 93,13؛ 2 جزء / مليون؛ Skin; A3; BEI؛ جلد، م3، مؤشر التعرض الحيوي؛ ميتهيموغلوبينية الدم",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 255,
+      "secondary_scan_page_row_range": "42-48",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/947.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 44,
+      "name_ar": "أنيسيدين",
+      "name_en": "Anisidine",
+      "source_line": 4558,
+      "raw_limit_and_note_text": "(2002); parent heading; CAS/formula/limits appear under the isomer rows below",
+      "status": "pending_official_match",
+      "children": [
+        {
+          "row": 45,
+          "name_ar": "نظائر أورثو- أنيسيدين",
+          "name_en": "ortho isomer",
+          "cas": "90-04-0",
+          "source_line": 4560,
+          "raw_limit_and_note_text": "C7H9NO؛ 123,15؛ 0,5 مجم/ م3؛ Skin; A3; BEIM؛ جلد، م3، مؤشر التعرض الحيوي للمواد المحفزة للميتهيموغلوبين؛ ميتهيموغلوبينية الدم",
+          "status": "pending_official_match",
+          "secondary_scan_printed_page": 255,
+          "secondary_scan_page_row_range": "42-48",
+          "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/947.webp",
+          "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+          "secondary_scan_fields_checked": [
+            "chemical_name",
+            "cas_identifier",
+            "primary_exposure_limit_token",
+            "unit"
+          ],
+          "secondary_scan_checked_on": "2026-10-30",
+          "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
+        },
+        {
+          "row": 46,
+          "name_ar": "نظائر بارا- أنيسيدين",
+          "name_en": "para isomer",
+          "cas": "104-94-9",
+          "source_line": 4562,
+          "raw_limit_and_note_text": "C7H9NO؛ 123,15؛ 0,5 مجم/ م3؛ Skin; A3; BEIM؛ جلد، م3، مؤشر التعرض الحيوي للمواد المحفزة للميتهيموغلوبين؛ ميتهيموغلوبينية الدم",
+          "status": "pending_official_match",
+          "secondary_scan_printed_page": 255,
+          "secondary_scan_page_row_range": "42-48",
+          "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/947.webp",
+          "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+          "secondary_scan_fields_checked": [
+            "chemical_name",
+            "cas_identifier",
+            "primary_exposure_limit_token",
+            "unit"
+          ],
+          "secondary_scan_checked_on": "2026-10-30",
+          "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
+        }
+      ],
+      "secondary_scan_printed_page": 255,
+      "secondary_scan_page_row_range": "42-48",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/947.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 47,
+      "name_ar": "الأنتيمون ومركباته مقدرة كأنتيمون",
+      "name_en": "Antimony and compounds, as Sb",
+      "cas": "7440-36-0",
+      "source_line": 4563,
+      "raw_limit_and_note_text": "Sb؛ 121,75؛ 0,5 مجم/ م3؛ تهيج الجلد والمسالك التنفسية العليا",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 255,
+      "secondary_scan_page_row_range": "42-48",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/947.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 48,
+      "name_ar": "هيدريد الأنتيمون",
+      "name_en": "Antimony hydride",
+      "cas": "7803-52-3",
+      "source_line": 4565,
+      "raw_limit_and_note_text": "SbH3؛ 124,78؛ 0,005 جزء / مليون؛ انحلال الدم، التأثيرات الدموية",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 255,
+      "secondary_scan_page_row_range": "42-48",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/947.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 49,
+      "name_ar": "ثالث أكسيد الأنتيمون",
+      "name_en": "Antimony trioxide",
+      "cas": "1309-64-4",
+      "source_line": 4567,
+      "raw_limit_and_note_text": "Sb2O3؛ 291,50؛ 0,02 مجم/ م3(l)؛ A2؛ م2؛ التهاب رئوي",
+      "status": "pending_official_match",
+      "anomaly": "Arabic name spelling normalized only for readability in this field; raw source token reads 'ثالت أكسيد' and must be checked against the page.",
+      "secondary_scan_printed_page": 256,
+      "secondary_scan_page_row_range": "49-55",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/948.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 50,
+      "name_ar": "أنتو",
+      "name_en": "ANTU",
+      "cas": "86-88-4",
+      "source_line": 4569,
+      "raw_limit_and_note_text": "C11H10N2S؛ 202,27؛ 0,3 مجم/ م3؛ A4; Skin؛ جلد، م4؛ تأثير على الغدة الدرقية وغثيان",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 256,
+      "secondary_scan_page_row_range": "49-55",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/948.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 51,
+      "name_ar": "أرجون",
+      "name_en": "Argon",
+      "cas": "7440-37-1",
+      "source_line": 4570,
+      "raw_limit_and_note_text": "Ar؛ 39,95؛ غاز خانق بسيط؛ اختناق",
+      "status": "pending_official_match",
+      "anomaly": "CAS value is transcribed from the displayed text and may be malformed; verify from official table before correction.",
+      "secondary_scan_printed_page": 256,
+      "secondary_scan_page_row_range": "49-55",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/948.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 52,
+      "name_ar": "الزرنيخ والمركبات غير العضوية مقدرة كزرنيخ",
+      "name_en": "Arsenic and inorganic compounds, as As",
+      "cas": "7440-38-2",
+      "source_line": 4572,
+      "raw_limit_and_note_text": "As؛ 74,92؛ متغير؛ 0,01 مجم/ م3؛ A1; BEI؛ م1، مؤشر التعرض الحيوي؛ سرطان الرئة",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 256,
+      "secondary_scan_page_row_range": "49-55",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/948.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 53,
+      "name_ar": "الأرسين",
+      "name_en": "Arsine",
+      "cas": "7784-42-1",
+      "source_line": 4574,
+      "raw_limit_and_note_text": "AsH3؛ 77,95؛ 0,005 جزء / مليون؛ تلف الجهاز العصبي الطرفي والأوعية الدموية - وتلف الكلى والكبد",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 256,
+      "secondary_scan_page_row_range": "49-55",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/948.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 54,
+      "name_ar": "الأسبستوس (كل الأنواع)",
+      "name_en": "Asbestos, all forms",
+      "cas": "1332-21-4",
+      "source_line": 4575,
+      "raw_limit_and_note_text": "معادن سليكات مائية؛ متغير؛ 0,1 ليفة / سم3(f)؛ م1؛ A1؛ التهاب الرئة الغباري - سرطان الرئة - ورم المتوسطة",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 256,
+      "secondary_scan_page_row_range": "49-55",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/948.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 55,
+      "name_ar": "أدخنة أسفلت (بتومين) كإيروسول قابل للذوبان بالبنزين",
+      "name_en": "Asphalt (Bitumen) fumes as benzene-soluble aerosol",
+      "cas": "8052-42-4",
+      "source_line": 4577,
+      "raw_limit_and_note_text": "خليط من هيدروكربونات برافينية وأروماتية ومركبات حلقية غير متجانسة؛ متغير؛ 0,5 مجم / م3(I)؛ A4؛ BEIP؛ م4، مؤشر التعرض الحيوي للهيدروكربونات العطرية متعددة الحلقات؛ تهيج المسالك التنفسية العليا - العين",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 256,
+      "secondary_scan_page_row_range": "49-55",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/948.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 56,
+      "name_ar": "أترازين (والتريازينات المتماثلة ذات الصلة)",
+      "name_en": "Atrazine (and related symmetrical triazines)",
+      "cas": "1912-24-9",
+      "source_line": 4578,
+      "raw_limit_and_note_text": "C8 H14CIN5؛ 215,69؛ 2 مجم/ م3(I)؛ م3؛ A3؛ تأثيرات دموية وتأثير على التطور والتكاثر",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 257,
+      "secondary_scan_page_row_range": "56-60",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/949.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 57,
+      "name_ar": "ميثيل-أزينفوس",
+      "name_en": "Azinphos-methyl",
+      "cas": "86-50-0",
+      "source_line": 4580,
+      "raw_limit_and_note_text": "C10H12N3O3PS2؛ 317,37؛ 0,2 مجم/ م3(IFV)؛ Skin; DSEN; A4; BEIC؛ جلد، تحسس الجلد، م4، مؤشر التعرض الحيوي لمبيدات تثبيط الكولينستيراز؛ مثبط لإنزيم الكولينيسترييز",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 257,
+      "secondary_scan_page_row_range": "56-60",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/949.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 58,
+      "name_ar": "الباريوم والمركبات القابلة للذوبان مقدرة كباريوم",
+      "name_en": "Barium and soluble compounds, as Ba",
+      "cas": "7440-39-3",
+      "source_line": 4581,
+      "raw_limit_and_note_text": "Ba؛ 137,30؛ 0,5 مجم/ م3؛ م4؛ A4؛ تهيج العين والجلد والجهاز الهضمي - تحفيز العضلات",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 257,
+      "secondary_scan_page_row_range": "56-60",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/949.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 59,
+      "name_ar": "كبريتات الباريوم",
+      "name_en": "Barium sulfate",
+      "cas": "7727-43-7",
+      "source_line": 4583,
+      "raw_limit_and_note_text": "BaSO4؛ 233,43؛ 5 مجم/ م3(I.E)؛ التهاب الرئة الغباري",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 257,
+      "secondary_scan_page_row_range": "56-60",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/949.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 60,
+      "name_ar": "بنديوكارب",
+      "name_en": "Bendiocarb",
+      "cas": "22781-23-3",
+      "source_line": 4585,
+      "raw_limit_and_note_text": "C11H13NO4؛ 223,20؛ 0,1 مجم/ م3(IFV)؛ Skin; A4; BEIC؛ جلد، م4، مؤشر التعرض الحيوي لمبيدات تثبيط الكولينستيراز؛ مثبط لإنزيم الكولينيسترييز",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 257,
+      "secondary_scan_page_row_range": "56-60",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/949.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against the Almasdar watermarked Gazette-page reproduction for the assigned printed page. No obvious mismatch found in the listed fields; ancillary notation, all footnotes and the original Gazette remain unchecked."
+    }
+  ]
+}

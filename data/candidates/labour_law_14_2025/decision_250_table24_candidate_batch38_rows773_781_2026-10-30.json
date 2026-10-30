@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "record_type": "secondary_source_candidate_extraction",
+  "instrument": "Egyptian Minister of Labour Decision 250/2026",
+  "table": "24",
+  "table_title_ar": "الحدود العتبية للمواد الكيميائية الخطرة",
+  "research_date": "2026-10-30",
+  "source": {
+    "class": "secondary_transcription",
+    "url": "https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html",
+    "publication_date": "2026-10-26",
+    "source_lines": "5774-5787",
+    "official_gazette_match": "not_performed",
+    "official_pdf_sha256": null
+  },
+  "status": "candidate_only_not_for_authoritative_retrieval",
+  "important_limits": [
+    "Secondary transcription only; no official Gazette page-image comparison.",
+    "Raw limits, units, formulae and symbols are preserved as discovery text and are not normalized or interpreted.",
+    "Wood-dust carcinogenicity entries are numbered subentries; hierarchy is not inferred beyond source labels.",
+    "Not for workplace safety decisions or compliance advice."
+  ],
+  "declared_top_level_row_range": {
+    "start": 773,
+    "end": 781
+  },
+  "rows": [
+    {
+      "row": 773,
+      "name_ar": "الماهوجني، الساج، البتولا، الجوز",
+      "name_en": "Mahogany, teak, birch, walnut",
+      "cas": null,
+      "source_line": 5774,
+      "raw_limit_and_note_text": "- - - A2م2 (wood-dust carcinogenicity subentry)",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 774,
+      "name_ar": "كل أتربة الخشب الأخرى",
+      "name_en": "All other wood dusts",
+      "cas": null,
+      "source_line": 5776,
+      "raw_limit_and_note_text": "- - - A4م4 (wood-dust carcinogenicity subentry)",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 775,
+      "name_ar": "زيلين، جميع النظائر",
+      "name_en": "Xylene, all isomers",
+      "cas": "1330-20-7; 95-47-6; 106-42-3; 108-38-3",
+      "source_line": 5777,
+      "raw_limit_and_note_text": "C8H10 106,16 20جزء/ مليون _ _ سمية سمعية (للبارازيلين والمخاليط المحتوية على البارازيلين), م4, مؤشر التعرض البيولوجي OTO;A4; BEI تهيج العين والمسالك التنفسية العليا، تأثر أمراض الدم، سمية سمعية للبارازيلين والمخاليط المحتوية على البارازيلين، خلل الجهاز العصبي المركزي",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 776,
+      "name_ar": "ميتا زيلين ألفا، ألفا-ثنائي الأمين",
+      "name_en": "m-Xylene alpha,alpha-diamine",
+      "cas": "1477-55-0",
+      "source_line": 5778,
+      "raw_limit_and_note_text": "C8H12N2 136,20 _ _ 0,018جزء/ مليون الجلد Skin تهيج العين والجلد والجهاز الهضمي",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 777,
+      "name_ar": "زيلدين (نظائر مختلطة)",
+      "name_en": "Xylidine (mixed isomers)",
+      "cas": "1300-73-8",
+      "source_line": 5780,
+      "raw_limit_and_note_text": "C8H11N 121,18 0,5جزء/ مليون(IFV) _- _ Skin;A3; BEIm الجلد, م3, مؤشر التعرض الحيوي للمواد المحفزة للميتهيموغلوبين تلف الكبد، ميثهيموجلوبينية الدم",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 778,
+      "name_ar": "يتريوم ومركباته مقدرة كيتريوم",
+      "name_en": "Yttrium and compounds, as Y",
+      "cas": "7440-65-5",
+      "source_line": 5782,
+      "raw_limit_and_note_text": "Y 88,91 1 مجم/ م3 _ _ _ تليف رئوي",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 779,
+      "name_ar": "أدخنة كلوريد الزنك",
+      "name_en": "Zinc chloride fume",
+      "cas": "7646-85-7",
+      "source_line": 5783,
+      "raw_limit_and_note_text": "ZnCl2 136,29 1 مجم/ م3 2 مجم/ م3 _ _ تهيج بالمسالك التنفسية السفلى والعليا",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 780,
+      "name_ar": "أكسيد الزنك",
+      "name_en": "Zinc oxide",
+      "cas": "1314-13-2",
+      "source_line": 5785,
+      "raw_limit_and_note_text": "ZnO 81,37 2 مجم/ م3(R) 10 مجم/ م3(R) _ _ حمى أدخنة المعادن",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 781,
+      "name_ar": "الزركونيوم ومركباته مقدرة كزركونيوم",
+      "name_en": "Zirconium and compounds, as Zr",
+      "cas": "7440-67-7",
+      "source_line": 5787,
+      "raw_limit_and_note_text": "Zr 91,22 5 مجم/ م3 10 مجم/ م3 _ A4م4 تهيج الجهاز التنفسي",
+      "status": "pending_official_match"
+    }
+  ]
+}

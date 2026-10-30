@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "record_type": "secondary_source_candidate_extraction",
+  "instrument": "Egyptian Minister of Labour Decision 250/2026",
+  "table": "24",
+  "table_title_ar": "الحدود العتبية للمواد الكيميائية الخطرة",
+  "research_date": "2026-10-29",
+  "source": {
+    "class": "secondary_transcription",
+    "url": "https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html",
+    "publication_date": "2026-10-26",
+    "source_lines": "5051-5082",
+    "official_gazette_match": "not_performed",
+    "official_pdf_sha256": null
+  },
+  "status": "candidate_only_not_for_authoritative_retrieval",
+  "important_limits": [
+    "Secondary transcription only; no official Gazette page-image comparison.",
+    "Raw limits, units and symbols are not normalized.",
+    "Dust/group rows and multi-compound entries need page-level association checks.",
+    "Not for workplace safety decisions or compliance advice."
+  ],
+  "declared_top_level_row_range": {"start": 341, "end": 360},
+  "rows": [
+    {"row":341,"name_ar":"فورمالدهيد","name_en":"Formaldehyde","cas":"50-00-0","source_line":5051,"raw_limit_and_note_text":"CH2O؛ 30,03؛ 0,1 جزء/ مليون؛ 0,3 جزء/ مليون؛ -؛ DSEN; RSEN; A1؛ تحسس جلدي، تحسس تنفسي، م1؛ تهيج المسالك التنفسية العليا والعين وسرطان المسالك التنفسية العليا","status":"pending_official_match","risk_note":"High-risk carcinogenicity entry; no operational limit approved."},
+    {"row":342,"name_ar":"فورماميد","name_en":"Formamide","cas":"75-12-7","source_line":5052,"raw_limit_and_note_text":"CH3NO؛ 45,04؛ 1 جزء/ مليون؛ -؛ -؛ Skin; A3؛ جلد، م3؛ التأثيرات الدموية وسرطان الكبد وسمية تنموية","status":"pending_official_match"},
+    {"row":343,"name_ar":"حمض الفورميك","name_en":"Formic acid","cas":"64-18-6","source_line":5054,"raw_limit_and_note_text":"CH2O2؛ 46,02؛ 5 جزء/ مليون؛ -؛ -؛ -؛ تهيج المسالك التنفسية العليا","status":"pending_official_match"},
+    {"row":344,"name_ar":"فيرفيورال","name_en":"Furfural","cas":"98-01-1","source_line":5056,"raw_limit_and_note_text":"C5H4O2؛ 96,08؛ 0,2 جزء/ مليون؛ -؛ -؛ Skin; A3; BEI؛ جلد، م3، مؤشر التعرض الحيوي؛ تهيج المسالك التنفسية العليا والعين","status":"pending_official_match"},
+    {"row":345,"name_ar":"كحول الفيرفيورايل","name_en":"Furfuryl alcohol","cas":"98-00-0","source_line":5057,"raw_limit_and_note_text":"C5H6O2؛ 98,10؛ 0,2 جزء/ مليون؛ -؛ -؛ Skin; A3؛ جلد، م3؛ تهيج المسالك التنفسية العليا والعين","status":"pending_official_match"},
+    {"row":346,"name_ar":"زرنيخيد الغاليوم","name_en":"Gallium arsenide","cas":"1303-00-0","source_line":5059,"raw_limit_and_note_text":"GaAs؛ 144,64؛ 0,0003 ملجم/م3(R)؛ -؛ -؛ A3؛ م3؛ تهيج المسالك التنفسية السفلى","status":"pending_official_match"},
+    {"row":347,"name_ar":"جازولين","name_en":"Gasoline","cas":"86290-81-5","source_line":5061,"raw_limit_and_note_text":"-؛ متغير؛ 300 جزء/ مليون؛ 500 جزء/ مليون؛ -؛ A3؛ م3؛ تهيج المسالك التنفسية العليا والعين، خلل الجهاز العصبي","status":"pending_official_match"},
+    {"row":348,"name_ar":"ثلاثي هيدريد الجرمانيوم","name_en":"Germanium tetrahydride","cas":"7782-65-2","source_line":5062,"raw_limit_and_note_text":"GeH4؛ 76,63؛ 0,2 جزء/ مليون؛ -؛ -؛ -؛ التأثيرات الدموية","status":"pending_official_match"},
+    {"row":349,"name_ar":"الجلوتار ألدهيد، النشط وغير النشط","name_en":"Glutaraldehyde, activated or unactivated","cas":"111-30-8","source_line":5064,"raw_limit_and_note_text":"C5H8O2؛ 100,11؛ -؛ -؛ 0,05 جزء/ مليون؛ DSEN; RSEN; A4؛ تحسس جلدي، تحسس تنفسي، م4؛ تهيج المسالك التنفسية العليا والجلد والعين، خلل الجهاز العصبي المركزي","status":"pending_official_match"},
+    {"row":350,"name_ar":"جلايسيدول","name_en":"Glycidol","cas":"556-52-5","source_line":5066,"raw_limit_and_note_text":"C3H6O2؛ 74,08؛ 2 جزء/ مليون؛ -؛ -؛ م3؛ A3؛ تهيج المسالك التنفسية العليا والعين والجلد","status":"pending_official_match"},
+    {"row":351,"name_ar":"ميثاكريلات الجليسديل","name_en":"Glycidyl methacrylate","cas":"106-91-2","source_line":5067,"raw_limit_and_note_text":"C7H10O3؛ 142,15؛ 0,01 جزء/ مليون؛ -؛ -؛ Skin; DSEN; A2؛ جلد، تحسس جلدي، م2؛ تهيج وتلف المسالك التنفسية العليا، وتأثير مسبب للطفرات ومسرطن","status":"pending_official_match","risk_note":"Potential carcinogenicity/mutagenicity entry; requires specialist review."},
+    {"row":352,"name_ar":"جلايوكسال","name_en":"Glyoxal","cas":"107-22-2","source_line":5069,"raw_limit_and_note_text":"C7H10O3؛ 58,04؛ 0,1 ملجم/م3(IFV)؛ -؛ -؛ DSEN; A4؛ تحسس جلدي، م2؛ تهيج الجهاز التنفسي العلوي والتحول النسيجي في الحنجرة","status":"pending_official_match","anomaly":"Formula/weight pair appears internally inconsistent in the extracted text; preserve and verify against official page."},
+    {"row":353,"name_ar":"جليفوسات","name_en":"Glyphosate","cas":"1071-83-6","source_line":5071,"raw_limit_and_note_text":"C3H8NO5P؛ 169,07؛ 5 ملجم/م3(I)؛ -؛ -؛ م4؛ A4؛ تلف الكبد وتأثر وزن الجسم وعتامة عدسة العين","status":"pending_official_match"},
+    {"row":354,"name_ar":"أتربة الحبوب (الشوفان، القمح، الشعير)","name_en":"Grain dust (oat, wheat, barley)","cas":null,"source_line":5072,"raw_limit_and_note_text":"-؛ -؛ -؛ 4 ملجم/م3؛ -؛ -؛ -؛ التهاب الشعب الهوائية وتهيج الجهاز التنفسي العلوي وتأثير على وظائف الرئة","status":"pending_official_match","anomaly":"No CAS identifier is displayed for this group-level dust entry; null is intentional."},
+    {"row":355,"name_ar":"جرافيت (جميع الأشكال باستثناء ألياف الجرافيت)","name_en":"Graphite (all forms except graphite fibers)","cas":"7782-42-5","source_line":5074,"raw_limit_and_note_text":"C؛ -؛ 2 ملجم/م3(R)؛ -؛ -؛ -؛ داء الرئة","status":"pending_official_match"},
+    {"row":356,"name_ar":"هافنيوم والمركبات، كفلوريد الهيدروجين","name_en":"Hafnium and compounds, as Hf","cas":"7440-58-6","source_line":5076,"raw_limit_and_note_text":"Hf؛ 178,49؛ 0,5 ملجم/م3؛ -؛ -؛ -؛ تهيج المسالك التنفسية العليا والعين، تلف الكبد","status":"pending_official_match"},
+    {"row":357,"name_ar":"هالوثان","name_en":"Halothane","cas":"151-67-7","source_line":5077,"raw_limit_and_note_text":"C2HBrClF3؛ 197,39؛ 5 جزء/ مليون؛ -؛ -؛ م4؛ A4؛ تلف الكبد، خلل الجهاز العصبي المركزي","status":"pending_official_match"},
+    {"row":358,"name_ar":"المعادن الصلبة التي تحتوي على الكوبالت وكربيد التنجستن ككوبلت","name_en":"Hard metals containing cobalt and tungsten carbide as Co","cas":"7440-48-4; 12070-12-1","source_line":5079,"raw_limit_and_note_text":"-؛ -؛ 0,005 ملجم/م3(T)؛ -؛ -؛ RSEN; A2؛ تحسس تنفسي، م2؛ التهاب رئوي","status":"pending_official_match"},
+    {"row":359,"name_ar":"هيليوم","name_en":"Helium","cas":"7440-59-7","source_line":5081,"raw_limit_and_note_text":"He؛ 4؛ -؛ -؛ -؛ -؛ غاز خانق","status":"pending_official_match"},
+    {"row":360,"name_ar":"هيبتاكلور وهيبتاكلور الإيبوكسيد","name_en":"Heptachlor and heptachlor epoxide","cas":"76-44-8; 1024-57-3","source_line":5082,"raw_limit_and_note_text":"C10H5Cl7؛ C10H5Cl7O؛ 373,32؛ 389,40؛ 0,05 ملجم/م3؛ -؛ -؛ Skin; A3؛ جلد، م3؛ تلف الكبد","status":"pending_official_match","anomaly":"Two substances, CAS values, formulae and molecular weights are combined; exact association must be verified."}
+  ]
+}

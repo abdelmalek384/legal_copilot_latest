@@ -1,0 +1,266 @@
+{
+  "schema_version": 1,
+  "record_type": "secondary_source_candidate_extraction",
+  "instrument": "Egyptian Minister of Labour Decision 250/2026",
+  "table": "24",
+  "table_title_ar": "الحدود العتبية للمواد الكيميائية الخطرة",
+  "research_date": "2026-10-30",
+  "source": {
+    "class": "secondary_transcription",
+    "url": "https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html",
+    "publication_date": "2026-10-26",
+    "source_lines": "5557-5600",
+    "official_gazette_match": "not_performed",
+    "official_pdf_sha256": null
+  },
+  "status": "candidate_only_not_for_authoritative_retrieval",
+  "important_limits": [
+    "Secondary transcription only; no official Gazette page-image comparison.",
+    "Raw limits, units, formulae and symbols are preserved as discovery text and are not normalized or interpreted.",
+    "Some numbered entries are group headings whose following numbered rows specify subcategories; hierarchy is not inferred beyond source labels.",
+    "Source text contains apparent transcription/OCR anomalies, including formula/number formatting; preserve and quarantine for primary-source comparison.",
+    "Not for workplace safety decisions or compliance advice."
+  ],
+  "declared_top_level_row_range": {
+    "start": 643,
+    "end": 668
+  },
+  "rows": [
+    {
+      "row": 643,
+      "name_ar": "الفضة",
+      "name_en": "Silver",
+      "cas": "7440-22-4",
+      "source_line": 5557,
+      "raw_limit_and_note_text": "Ag (heading; following numbered subentries specify forms)",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 644,
+      "name_ar": "أتربة وأدخنة المعدن",
+      "name_en": "Metal, dust and fume",
+      "cas": null,
+      "source_line": 5559,
+      "raw_limit_and_note_text": "107,87 0,1 ملجم/م3 - - -",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 645,
+      "name_ar": "المركبات القابلة للذوبان مقدرة كفضة",
+      "name_en": "Soluble compounds, as Ag",
+      "cas": null,
+      "source_line": 5561,
+      "raw_limit_and_note_text": "متغير 0,01 ملجم/م3 - - -",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 646,
+      "name_ar": "سيمازين",
+      "name_en": "Simazine",
+      "cas": "122-34-9",
+      "source_line": 5562,
+      "raw_limit_and_note_text": "C7H12CIN5 201,60 0,5 ملجم/م3 (I) - - م3 3 A تأثيرات دموية",
+      "status": "pending_official_match",
+      "anomaly": "The secondary text displays formula token C7H12CIN5; the character sequence may contain an OCR ambiguity (I/l) and must be checked visually against the Official Gazette. Preserve raw token; do not normalize."
+    },
+    {
+      "row": 647,
+      "name_ar": "أزيد الصوديوم",
+      "name_en": "Sodium azide",
+      "cas": "26628-22-8",
+      "source_line": 5564,
+      "raw_limit_and_note_text": "NaN3 65,02 يُسبب تلف الرئة وضعف القلب (heading; following numbered subentries specify exposure forms)",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 648,
+      "name_ar": "مقدر كأزيد الصوديوم",
+      "name_en": "as Sodium azide",
+      "cas": null,
+      "source_line": 5566,
+      "raw_limit_and_note_text": "- - 0,29 ملجم/م3 A4 م4",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 649,
+      "name_ar": "مقدر كأبخرة حمض الهيدرازويك",
+      "name_en": "as Hydrazoic acid vapor",
+      "cas": null,
+      "source_line": 5568,
+      "raw_limit_and_note_text": "- - 0,11 جزء/ مليون جزء A4 م4",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 650,
+      "name_ar": "صوديوم ثنائيالسلفايت",
+      "name_en": "Sodium bisulfite",
+      "cas": "7631-90-5",
+      "source_line": 5570,
+      "raw_limit_and_note_text": "NaHSO3 104,07 5 ملجم/م3 - - A4 م4 تهيج للجلد والعين والمسالك التنفسية العليا",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 651,
+      "name_ar": "فلوروخلات الصوديوم",
+      "name_en": "Sodium fluoroacetate",
+      "cas": "62-74-8",
+      "source_line": 5571,
+      "raw_limit_and_note_text": "CH2FCOONa 100,02 0,05 ملجم/م3 - - الجلد Skin يُسبب غثيان- ضعف عضلة القلب- ضعف الجهاز العصبي المركزي",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 652,
+      "name_ar": "هيدروكسيد الصوديوم",
+      "name_en": "Sodium hydroxide",
+      "cas": "1310-73-2",
+      "source_line": 5573,
+      "raw_limit_and_note_text": "NaOH 40,01 - - 2 ملجم/م3 - تهيج للجلد والعين والمسالك التنفسية العليا",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 653,
+      "name_ar": "صوديوم ميتا ثنائيالسلفايت",
+      "name_en": "Sodium metabisulfite",
+      "cas": "7681-57-4",
+      "source_line": 5575,
+      "raw_limit_and_note_text": "Na2S2O5 190,13 5 ملجم م3 - - A4 م4 تهيج للمسالك التنفسية العليا",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 654,
+      "name_ar": "النشا",
+      "name_en": "Starch",
+      "cas": "9005-25-8",
+      "source_line": 5577,
+      "raw_limit_and_note_text": "- 10 ملجم/م3 - - A4 م4 يُسبب التهاب الجلد",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 655,
+      "name_ar": "ستيرات (لا تشمل سترات الفلزات السمية)",
+      "name_en": "Stearates (excluding stearates of toxic metals)",
+      "cas": "57-11-4; 557-04-0; 557-05-1; 822-16-2",
+      "source_line": 5578,
+      "raw_limit_and_note_text": "متغير 10 ملجم/م3(I) 3 ملجم/م3(R) - - A4 م4 تهيج للمسالك التنفسية السفلى",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 656,
+      "name_ar": "مذيب ستودارد",
+      "name_en": "Stoddard solvent",
+      "cas": "8052-41-3",
+      "source_line": 5580,
+      "raw_limit_and_note_text": "C9H20 140,00 100 جزء/ مليون جزء - - - مدمر للعين والجلد والكلى، يُسبب غثيان، ضعف الجهاز العصبي المركزي",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 657,
+      "name_ar": "ستريكنين",
+      "name_en": "Strychnine",
+      "cas": "57-24-9",
+      "source_line": 5582,
+      "raw_limit_and_note_text": "C11H22N2O2 334,40 0,15 ملجم/م3 - - - ضعف الجهاز العصبي المركزي",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 658,
+      "name_ar": "ستيرين",
+      "name_en": "Styrene",
+      "cas": "100-42-5",
+      "source_line": 5583,
+      "raw_limit_and_note_text": "C6H5CH=CH2 104,15 10 جزء/ مليون جزء 20 جزء/ مليون جزء - OTO; A3; BEI ,السمية السمعية ,م3,مؤشر التعرض الحيوي ضعف السمع والجهاز العصبي المركزي، تهيج للمسالك التنفسية العليا، اعتلال الأعصاب الطرفية، اضطراب الرؤية",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 659,
+      "name_ar": "أكسيد الاستيرين",
+      "name_en": "Styrene oxide",
+      "cas": "96-09-3",
+      "source_line": 5585,
+      "raw_limit_and_note_text": "C6H5CH=CH2O 120,15 1 جزء/ مليون جزء - - Skin; DSEN; A3 جلد,تحسس جلدي,م3 تهيج للمسالك التنفسية العليا، تغييرات في الدم",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 660,
+      "name_ar": "سبتليزينات (100% إنزيم نقي نشط متبلور)",
+      "name_en": "Subtilisins as 100% crystalline active pure enzyme",
+      "cas": "1395-21-7; 9014-01-1",
+      "source_line": 5586,
+      "raw_limit_and_note_text": "- - - - 0<00006ملجم/م3 - تهيج للمسالك التنفسية العليا والسفلى والجلد، الربو",
+      "status": "pending_official_match",
+      "anomaly": "The secondary text contains malformed numeric-looking token `0<00006` in the exposure field. Do not infer a decimal or threshold; exact Official Gazette image comparison is mandatory."
+    },
+    {
+      "row": 661,
+      "name_ar": "سكروز",
+      "name_en": "Sucrose",
+      "cas": "57-50-1",
+      "source_line": 5588,
+      "raw_limit_and_note_text": "C12H22O11 342,30 10 ملجم/م3 - - A4 م4 تآكل الأسنان",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 662,
+      "name_ar": "ميثيل سلفوميترون",
+      "name_en": "Sulfometuron methyl",
+      "cas": "74222-97-2",
+      "source_line": 5590,
+      "raw_limit_and_note_text": "C15H16N4O5S 364,38 5 ملجم/م3(IFV) - - A4 م4 تأثيرات دموية",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 663,
+      "name_ar": "سلفوتيب",
+      "name_en": "Sulfotepp",
+      "cas": "3689-24-5",
+      "source_line": 5591,
+      "raw_limit_and_note_text": "(C2H5)2P2S2O5 322,30 0,1 ملجم/م3 (IFV) - - Skin; A4; BEIC جلد,م4,مؤشر التعرض الحيوي للمبيدات المثبطةللكولينستيريز مثبط إنزيم الكولينستيريز",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 664,
+      "name_ar": "سلفوكسافلور",
+      "name_en": "Sulfoxaflor",
+      "cas": "946578-00-3",
+      "source_line": 5593,
+      "raw_limit_and_note_text": "C10H10F3N3OS 277,30 0,1 ملجم/م3(I) - - م3 A3 مدمر للكبد والخصيتين",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 665,
+      "name_ar": "ثاني أكسيد الكبريت",
+      "name_en": "Sulfur dioxide",
+      "cas": "7446-09-5",
+      "source_line": 5595,
+      "raw_limit_and_note_text": "SO2 64,07 - 0,25 جزء/ مليون جزء - A4 م4 تهيج للمسالك التنفسية السفلى، يؤثر على وظائف الرئة",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 666,
+      "name_ar": "سداسي فلوريد الكبريت",
+      "name_en": "Sulfur hexafluoride",
+      "cas": "2551-62-4",
+      "source_line": 5596,
+      "raw_limit_and_note_text": "SF6 146,07 1000 جزء/ مليون جزء - - - اختناق",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 667,
+      "name_ar": "كبريت أحادى الكلور",
+      "name_en": "Sulfur monochloride",
+      "cas": "10025-67-9",
+      "source_line": 5598,
+      "raw_limit_and_note_text": "S2Cl2 135,03 - - 1 جزء/ مليون جزء - تهيج للمسالك التنفسية العليا والعين والجلد",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 668,
+      "name_ar": "خامس فلوريد الكبريت",
+      "name_en": "Sulfur pentafluoride",
+      "cas": "5714-22-7",
+      "source_line": 5600,
+      "raw_limit_and_note_text": "S2F10 254,11 - - 0,001جزء/ مليون جزء - الوذمة الرئوية (استسقاء الرئة)",
+      "status": "pending_official_match"
+    }
+  ]
+}

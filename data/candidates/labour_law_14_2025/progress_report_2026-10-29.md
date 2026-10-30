@@ -1,0 +1,330 @@
+# Legal knowledge progress report — 2026-10-29
+
+**Last updated:** 2026-10-30. The filename preserves the original report path; see the date above for the latest update.
+
+**Scope:** Evidence-backed Egyptian Labour Law 14/2025 workstream and the related OSH implementing Decisions 248–252/2026.  
+**Current branch:** `legal-knowledge-evidence-2026-10-29`  
+**Draft PR:** [#840](https://github.com/abdelmalek384/legal_copilot_latest/pull/840)
+
+## Headline
+
+**Current legal-knowledge preparation progress is estimated at 15%; strict authoritative legal-content readiness is 0%.** The previous 7% estimate predates completion of the secondary Table 24 sequence and capture of official parent-law provisions. The 15% is a conservative phase estimate for the overall evidence/provenance workflow, not a percentage of verified statutes or approved rules. No Table 24 exposure limit has passed official Gazette matching, complete currentness review, source-use assessment, and qualified Egyptian OSH counsel approval.
+
+Table 24 candidate extraction now covers **781/781 numbered entries (100% secondary-source sequence coverage; provisional denominator) on a provisional denominator**; **0 entries remain in the identified secondary sequence; Gazette confirmation of the denominator is still required**. A newly identified secondary-source numbering discrepancy shows Table 24 continues through row 781, not 745; the denominator must be reconciled against the original Gazette before completeness can be asserted. This is extraction coverage only, not verified-law coverage. No missing entries have been inferred from chemical databases or model memory. The official Gazette PDF bytes/hash and row-by-row primary-source comparison remain unavailable. No Table 24 row is approved for authoritative retrieval.
+
+## Latest work completed
+
+1. Found the full secondary transcription of Decision 250/2026 at:
+   https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html
+   It exposes Table 24 and the previously missing printed pages 296–370 at the text-discovery layer, but is not the Official Gazette file.
+2. Added **38 structured candidate JSON batches** covering Table 24 numbered entries 1–781. Source-line pinpoints are recorded; parent/child chemical variants are preserved; suspicious CAS strings, formulas, decimal/unit ordering, surface/air limits and text-layer anomalies are flagged rather than silently corrected.
+3. Independently parsed all 38 committed JSON batches through the GitHub file API and flattened parent/child rows: **781 unique numbered records, rows 1–781, no gaps or duplicate row numbers**. All batches declare a secondary-transcription source, `official_gazette_match=not_performed`, and no official PDF hash. Each candidate remains `pending_official_match`; this is a structural integrity check, not legal verification.
+   The result is recorded in [the 2026-10-30 structural audit](decision_250_table24_structural_audit_2026-10-30.md) for repeatable review.
+4. Added `tools/validate_decision250_table24_candidates.py` and a unit test. The validator is fail-closed on missing/duplicate row numbers, invalid JSON, missing source pinpoints/names, wrong source metadata, any non-secondary source classification, an unexpected non-null official PDF hash, or a row prematurely marked reviewed/approved or carrying `retrieval_eligible=true`.
+   Added regression tests that mutate copied batches to simulate a fabricated official PDF hash and an accidental `retrieval_eligible=true` flag; both must be rejected. The validator and regression tests have run in the dedicated workflow; the latest run failed on a discrepancy-record validation check, which is being corrected and rerun.
+5. Added `tools/build_decision250_table24_review_queue.py` and tests. It creates a triage queue for anomalies, high-risk rows, currentness leads, group-level entries and possible surface/air-unit ambiguity without auto-correcting source data.
+6. Added `tools/build_decision250_table24_primary_match_register.py` and tests. It creates a fail-closed row-level register for the candidate sequence; the register's row count must be regenerated and confirmed against the current 781-row sequence before it is used as a completeness metric; official page/hash, text-match, currentness, source-use and counsel fields start blank/not started, and retrieval eligibility is false.
+7. Added `decision_250_table24_primary_source_match_protocol_2026-10-29.md`, a row-by-row matching procedure for the original Gazette PDF, including source hash, printed/PDF page identity, field-level match outcomes, separate currentness/source-use/counsel gates, and strict stop conditions.
+8. Hardened the Table 24 review-queue generator so it refuses to emit a partial queue when any expected batch is missing or structurally invalid; added a regression test for this fail-closed behavior.
+9. Corrected the top-level README's labour-law import guidance: the `importlaws` command stages unverified records in `legal_import_staging`; it does not verify or authorize legal retrieval.
+10. Added CI steps to the main test workflow and a separate `.github/workflows/legal-knowledge-validation.yml` workflow that runs the legal candidate validator, review queue/register tests, corpus comparison tests, and review-artifact builds without waiting for the database-heavy suite. The dedicated legal-knowledge workflow **passed** on commit `8130efaf6b32c6ec0c22be97a32efcadcaaba4a3` (run 40973051665), and the full `Tests` workflow **also passed** on commit `2f91e2cbff10d305842b61a2f55f8001d52c9dca` (run 40972970670; 102 completed steps, zero failed). The current head after those test passes adds documentation-only workflow instructions in the top-level README; no legal text was promoted or approved by these tests.
+11. Prepared `lawyer_in_app_acceptance_plan_2026-10-29.md` for a later hands-on review in the running app. This makes lawyer review a separate release gate; it does not claim any lawyer approval.
+12. Decision 250 Table 23 remains at **137/137 candidate labels**. Labels are transcribed from secondary text and still require official page matching.
+   A 2026-10-30 structural audit confirmed rows 1–137 are unique and complete, with 137 Arabic/English labels and kg/lb pairs that are arithmetically consistent within 1.5%. Three group/mixed-substance rows have no CAS identifier, which remains null; the unit check is not legal verification.
+   Added a fail-closed validator and regression tests for row coverage, unit-pair anomalies, fabricated official-hash claims and promotion flags; these checks are included in the dedicated legal-knowledge CI workflow.
+13. Decision 251 has 17 candidate licensing/experience/fee assertions; Decision 252 has 40 candidate assertions. They remain secondary/unverified pending official comparison.
+   A separate 2026-10-30 audit records that 32 Decision 252 assertions have secondary scan/page locators and 8 are summary-only leads; all 40 remain ineligible for authoritative retrieval.
+   A parallel Decision 251 audit records 17 unique assertions: 12 with secondary scan image locators and 5 with page locators only. All 17 remain unverified and ineligible for authoritative retrieval.
+   Added a shared fail-closed validator and tests for both files: required source locators, exact ID/count coverage, pending source/currentness/counsel state, and rejection of approval/retrieval flags. The dedicated legal-knowledge workflow now includes these checks.
+14. The Decisions 248–252 clause discrepancy checklist and related source-route/currentness notes remain candidate evidence, not verified legal conclusions.
+15. Inspected the current separate-database legal-search SQL and bulk-import path: imports go to `legal_import_staging`, while corpus search/exact-article retrieval requires verified chunks linked to a version whose source permissions, authenticity/status/amendment checks, required review events and effective dates pass. This is a static code inspection, not a runtime/CI test; it does not change any candidate's eligibility.
+16. Added a consolidated printed-page locator map for Decisions 248–252, with a prioritized comparison order for the original PDF expected from the user. The page ranges are explicitly marked as secondary-source locators and must be confirmed against the uploaded file.
+17. Extended the Article 141 copyright/source-use research lead cautiously to Decisions 248–252 because the reproduced statutory text refers to official decisions as well as laws. This is a lead for counsel, not a blanket reuse clearance; secondary scans, editorial compilation, site terms and the exact commercial use remain separate.
+
+18. Added a provisional statutory cross-reference for Decision 248/2026 to Article 260 of Labour Law 14/2025. The Gazette catalogue describes Decision 248 as covering forms/statistics for ordinary, chronic and occupational diseases, serious accidents and injuries; Article 260 expressly delegates ministerial forms for serious-accident/occupational-disease notifications and electronic reports/statistics. This is a strong subject/delegation match, supported by a public English translation and Arabic transcription, but the official Amiri Press text could not be fetched in this pass and the decision's Gazette preamble/operative text remains unavailable. The crosswalk now records the match and its limits; no candidate was promoted or made retrieval-eligible.\n\n20. Extracted an additional 25 candidate entries (rows 618–642) from the secondary transcription, preserving source-line locators 5514–5555 and retaining group headings/subentries without inferring their legal hierarchy. Added batch 32, extended the fail-closed validator and primary-match register to require the continuous candidate sequence 1–642, and updated the structural audit and primary-source matching protocol. All 642 remain secondary-only and pending official match; no source hash, currentness, reuse clearance or counsel approval is claimed.\n\n19. Re-opened the full secondary transcription and found a material Table 24 denominator discrepancy: the section begins at row 1 and continues through numbered row 781, with row 618 at text line 5514, row 745 at line 5727, rows 746–781 following, and the next records chapter beginning at line 5789. The earlier expected total of 745 is therefore unsafe. Added `decision_250_table24_secondary_source_count_discrepancy_2026-10-30.md`; provisionally, 617/781 = 79.0%. Batch 32 added rows 618–642; batch 33 added rows 643–668. Coverage is now 668/781 = 85.5%, with 113 rows remaining provisionally, pending confirmation of parent/child numbering and the original Gazette. This correction lowers the extraction percentage; it does not change the 7% preparation estimate or 0% authoritative readiness.\n\n21. Completed the identified secondary-source Table 24 sequence through row 781. Added batches 35–38 for rows 695–781, bringing the candidate ledger to 781 unique sequential row numbers across 38 batches. Updated the fail-closed validator and primary-match register to require rows 1–781, refreshed the structural audit, and kept all candidates `pending_official_match`. The isolated Legal Knowledge Validation workflow passed on commit `2f005e51915f869ebb54f313544e47522daa691f` (run `41019258854`; all 18 job steps completed successfully), including candidate validation, negative tests, review-queue/register tests, and artifact builds. The full `Tests` workflow on the same commit was still in progress at the time of this update. CI proves structure/tooling only; official Gazette matches, currentness, source-use review and counsel approval remain 0.\n\n22. Added explicit anomaly flags to Table 24 candidate rows 646, 660, 701 and 765: possible OCR ambiguity in a formula token, a malformed numeric-looking exposure token, ambiguous limit-column placement, and a formula/name mismatch. The raw secondary text is preserved; no chemical or numeric correction is inferred. These rows will surface in the generated human review queue. All four remain pending official match and retrieval-ineligible.\n\n23. Identified a stronger public-source legal basis for avoiding permission outreach when using the underlying official legal text: WIPO Lex's Arabic consolidated Law 82/2002 (amended through Law 178/2020) reproduces Article 141, which excludes official documents including laws, regulations, resolutions and decisions from copyright protection, while preserving possible protection for creatively selected/arranged collections. Added `egypt_official_documents_copyright_route_article141_2026-10-30.md` with strict separation between underlying official text, Gazette scan/compilation, third-party transcription/database, and access controls. This is a provisional legal route, not counsel clearance; WIPO's consolidated text cutoff is 2020 and no exhaustive post-2020 amendment search is claimed. The DSpace request-a-copy restriction remains untouched.\n\n24. The full `Tests` workflow completed successfully on commit `2f005e51915f869ebb54f313544e47522daa691f` (run `41019258814`): 102 steps completed, zero failures. The focused Legal Knowledge Validation workflow also passed on that commit (run `41019258854`; all 18 job steps succeeded). These runs include the 781-row candidate validator and primary-match register coverage. Subsequent changes only added candidate anomaly annotations and source-use/progress documentation; those later changes have not yet been covered by a new full-suite run. CI validates software/data structure, not legal correctness.
+
+25. Located and opened the official government-hosted PDF of Labour Law 14/2025 on the Egyptian Tax Authority domain: Official Gazette Issue 18 (Supplement), 2025-05-03, 110 pages. Visually inspected PDF page indices 94, 96 and 97 (printed pages 96, 98 and 99) and captured Articles 255, 259, 260, 261 and 262. This confirms the parent-law delegations for Decisions 248–252; Article 260 also states the 30-worker threshold, semi-annual statistics, 24-hour serious-accident/occupational-disease notice, and electronic reporting framework. Added `law14_2025_official_pdf_articles255_262_evidence_2026-10-30.md` and updated the crosswalk. No original PDF bytes/hash were obtained, and this does not verify the 2026 decisions themselves.\n\n26. Captured five Arabic primary-text excerpts for Labour Law 14/2025 Articles 255, 259, 260, 261 and 262 in `official_primary_text_articles255_259_260_261_262_2026-10-30.jsonl`, with official government-hosted PDF URL, Gazette issue/date, PDF page index, printed page, retrieval method, null original-byte hash, pending currentness/counsel status and retrieval disabled. Added a fail-closed validator and negative tests for missing/incorrect page locators, invented hashes, premature retrieval eligibility and pre-approved counsel/currentness fields. Added both checks to the dedicated legal-knowledge CI workflow. Focused and full CI results for this latest workflow change are pending.\n\n27. The new official Law 14/2025 excerpt validator and negative tests passed in the dedicated Legal Knowledge Validation workflow on commit `b5428f519ef1ff9b897a4475c2177ddc8e435d28` (run `41019756483`; all 20 workflow steps succeeded). This includes validation of the five official article excerpts, their page locators, null hash, and quarantine flags, alongside the 781-row Table 24 checks and existing Table 23/Decisions 251/252 tooling. The full `Tests` workflow on the same commit remained in progress at the last check. A direct original-byte download attempt of the ETA PDF failed, so the file hash remains null; browser PDF text extraction and rendered-page visual checks are the current evidence.
+
+28. Expanded the official Law 14/2025 primary excerpt ledger to include Articles 11, 12 and 13 (PDF page index 3, printed Gazette page 5), in addition to Articles 255 and 259–262. These capture the implementing-decision transition rule, repeal of Labour Law 12/2003 and Law 125/2010/conflicting provisions, and the law's commencement formula/specialized labour-court date. Added a transparent candidate date calculation (general commencement 2025-09-01; specialized labour courts 2025-10-01; 90-day ministerial decision deadline candidate 2025-11-30), explicitly pending counsel confirmation of time computation and any extensions. The validator now requires all eight article records and their exact page locators; CI is running on the update.
+
+29. Located separate LAW HUB metadata pages for all five Decisions 248–252/2026, each linking to a Google Drive PDF preview. Captured the five metadata URLs and preview URLs in `decisions_248_252_secondary_publication_routes_2026-10-30.md`. Anonymous browser access returned loading/sign-in shells and no PDF/image bytes; no sign-in, access bypass or direct-download workaround was attempted. These are secondary-source discovery leads, not official Gazette copies. If the user can access a preview through normal sign-in, an ordinary user-facing download/upload could provide the file for primary-page matching; until then all five decisions remain unmatched.
+
+30. The full `Tests` workflow passed on commit `903694b2eb0697ec9d3f60d321a46a6555b7c662` (run `41020009968`): 102 steps completed, zero failures. The focused Legal Knowledge Validation workflow also passed on the same commit (run `41020009962`; all 20 steps succeeded), including the expanded eight-article primary excerpt validator. Subsequent changes to the progress report and secondary-source route memo are documentation-only. These results validate code and evidence-record safeguards, not the legal conclusions or 2026 decision texts.
+
+31. Expanded the in-app lawyer acceptance plan with seven targeted tests for the newly captured official parent-law excerpts: commencement/repeal, Article 260's 30-worker reporting threshold and 24-hour notification, Article 255's safety-limit delegation, and the EGP 50,000 statutory fee ceilings in Articles 261/262. The plan explicitly distinguishes parent-law text from the unavailable operative text of Decisions 248–252 and labels calculated dates as pending counsel confirmation. The lawyer can run these tests in the app after technical completion; no approval is claimed.
+
+32. Located a 26-page visual reproduction of Decision 249/2026's Gazette pages 19–44 on Almasdar.com. The images show the Gazette issue header and page numbers but carry the site's watermark, so they are classified as secondary scan-image reproductions, not official Gazette matches. Added a page-by-page locator map for all 26 pages and a structured candidate map covering Articles 1–22, Table 1 risk classifications, Table 2 OSH staffing levels, Table 3 continuous-monitoring activities and the high-risk criteria page. Corrected Article 4 scope to all Article 2-covered establishments (50+ workers), captured Article 9 candidate meeting frequencies, and flagged the apparent repeal of Decision 134/2003 and candidate 2026-10-13 effective date for counsel/original-Gazette confirmation. No table cell is approved or retrieval-eligible.
+
+33. Added a fail-closed validator and negative tests for the Decision 249 candidate map. It requires Articles 1–22, Tables 1–3 and the high-risk criteria locator; every record must retain the secondary scan-image classification, pending official match, null original PDF hash and retrieval disabled. The dedicated Legal Knowledge Validation workflow passed on commit `8a9bd4ab587e2fa7a208592f953912c5aa2fcd92` (run `41020737010`; all 22 steps succeeded), including the new Decision 249 validator/test. The full `Tests` workflow on that commit was still running in the profile-separated runtime test, with no failures reported at the last check.
+
+34. Located a seven-page Almasdar-hosted visual reproduction of Decision 251/2026's Gazette pages 371–377. Added a page map and candidate article map for Articles 1–11, including the A/B consultant classes, candidate experience thresholds (20/15 years for A/B, reduced to 15/10 with a relevant doctorate), application procedure periods, fee table (A: EGP 3,000/2,500 renewal; B: EGP 2,500/2,000 renewal), three-year licence term, revocation and commencement. These are secondary scan-image observations, not official matches. Added a fail-closed validator/test for all 11 article locators, fees/procedure fields and quarantine flags. Focused CI result is being checked; no candidate has been promoted.
+
+35. Located a 21-page Almasdar-hosted visual reproduction of Decision 252/2026's Gazette pages 378–398. Added a page map and candidate article map for Articles 1–36 plus the Article 29 programme-hours table. The map covers licensing of training providers/trainers, facility requirements, programme standards, basic/advanced/specialized course categories, tests, certificates and revocation. Candidate basic training hours are recorded (80h specialist/supervisor/technician; 40h committee members; 16h employers/representatives), but all durations and table cells remain secondary observations pending original Gazette verification. Added a fail-closed validator and tests; CI result pending. No candidate was promoted.
+
+36. Added a fail-closed validator and negative tests for the Decision 252 map. It requires Articles 1–36 and the Article 29 training-hours table, checks all image/page locators, and rejects official-match, hash or retrieval-eligibility promotion. The dedicated Legal Knowledge Validation workflow passed on commit `3d6d5c02a6c168a7053911162fb6056c63cb5614` (run `41021198531`; all 24 steps succeeded), including the Decision 252, 251 and 249 candidate-map checks, eight official Law 14 excerpts, Table 23/24 and existing 251/252 assertion validators. This is structural/tooling validation only.
+
+37. Located a second Almasdar visual image sequence for Decision 250: printed Gazette pages 249–295 (image files 941.webp–987.webp). Page 249 visibly begins Table 24 with rows 1–5; page 250 shows rows 6–12; page 251 shows rows 13–18; page 270 shows rows 147–154; page 290 shows rows 288–293; page 295 shows rows 322–327. Added `decision_250_table24_secondary_gazette_image_locator_map_2026-10-30.md`. This gives a provisional secondary visual locator range for rows 1–327 (327/781 = 41.9%); exact row boundaries on every intermediate page remain to be recorded. Pages 296–370 were not present in this image gallery, so rows 328–781 remain secondary-text-only. No official Gazette match is claimed.
+
+38. Completed the full page-to-row mapping for all 47 secondary Gazette images (printed pages 249–295) covering Table 24 rows 1–327. Attached the exact secondary image page URL and printed-page locator to each of the 327 candidate rows across batches 1–17, with explicit status `page_locator_assigned_pending_field_comparison`. Extended the fail-closed validator and regression tests so rows 1–327 must carry the correct page/image locator and cannot be marked as field-matched; rows 328–781 must not claim an image locator. This is page locator assignment only, not row-value verification or official Gazette matching. Focused CI result pending.
+
+39. The focused Legal Knowledge Validation workflow passed after the 327 row-level Table 24 secondary image locators were attached and the validator/test were extended: commit `245e5f3d86e9dcc08c4270494277ab5023bbef12`, run `41021684315` (all 24 validation steps succeeded). The run checks all 38 batches, requires exact image/page locators for rows 1–327, rejects false field-match status, and rejects scan locators beyond row 327; it also reruns Decision 249/251/252 candidate-map checks and the eight official Law 14 excerpts. The full `Tests` workflow on this commit is still running in the profile-separated application-routing test, with no failures reported at the last check.
+
+40. Opened the actual Almasdar page images for Table 24 pages 249–251 and compared candidate rows 1–18 against the reproduced Gazette images for chemical name, CAS identifier, primary exposure-limit token and unit. No obvious mismatch was found in those checked fields. Marked only these fields as `secondary_image_spot_check_partial_fields`; ancillary notations, all footnotes, column semantics and the original Gazette remain unchecked. Extended the validator to require the exact field list and check date for this partial state, and added a negative test. This is secondary-image corroboration only, not an official Gazette match or legal approval.
+
+41. Extended the partial secondary-image spot-check to Table 24 rows 19–25 using the page 252 reproduction. Chemical names, CAS identifiers, primary limit tokens and units show no obvious mismatch in the checked fields. These seven rows are now marked with the same explicit partial-field status; formulae, molecular weights, footnotes, carcinogenicity annotations and original Gazette comparison remain unchecked. Partial spot-check coverage is now 25/781 (3.2%); no official Gazette match is claimed.
+
+42. Continued secondary-image field spot-checks through Table 24 rows 26–79 using printed pages 253–260. Candidate rows 26–33, 35–63 and 65–79 now have partial checks for chemical name, CAS identifier, primary limit token and unit. Three discrepancies were explicitly quarantined rather than silently corrected: row 34 CAS appears as 1344-28-1 in the page image versus 1344-281 in the secondary transcription; row 61's limit appears tentatively 0.3 mg/m3 versus 1 mg/m3 in the transcription; row 64's limit appears tentatively 0.5 ppm versus 0.02 ppm in the transcription. Rows 61/64 readings are tentative due rotated/small text and require original Gazette confirmation. The validator now requires evidence fields and pending-original status for discrepancy records. Partial checks: 76/781 (9.7%); discrepancy flags: 3; full field-by-field comparison: 0; official Gazette matches: 0.
+
+43. Reconciled the release-status block with the latest Table 24 work: it now reports 781/781 secondary text rows, 327/781 secondary image locators, 76/781 partial image spot-checks, three quarantined discrepancies, zero complete field comparisons, zero official Gazette matches, and zero retrieval-eligible rows. Removed the stale 7% release-status figure and stale '139 remaining' next-step. This is documentation reconciliation, not a legal-readiness increase.
+
+44. Reran the focused legal-knowledge and full test workflows after the row-34 discrepancy evidence was synchronized with the validator. On commit `328a46d958ea934cff19bed014f3839c4f3ae9ab`, Legal Knowledge Validation passed (run `41022331790`, 26 completed steps; also run `41022323728`), and the full `Tests` workflow passed (run `41022331793`, 102 completed steps, zero failed). This verifies the candidate-map/validator/build workflow and application regression suite at that commit; it does not verify the Gazette text, legal currentness, source-use rights or lawyer approval. The newer documentation-only progress-report commit does not change application code or candidate data.
+
+45. Added `instrument_release_gate_matrix_2026-10-30.md`, a single instrument-by-instrument matrix for Law 14/2025 and Decisions 248–252/2026. It separates provenance, operative-text matching, currentness, source-use, qualified-counsel approval and retrieval release, and states the precise current evidence and gaps for each instrument. It deliberately does not increase the 15% preparation estimate because this is a control/planning artifact, not additional verified legal coverage.
+
+46. Improved the Table 24 human review queue so secondary-image discrepancies are explicit high-priority flags and each candidate row displays its printed-page/image locator. Partial spot-checks and page-locator-only rows now have distinct queue labels. Added a regression test for the row-34 CAS discrepancy and its locator. Focused CI and full Tests were triggered on the code change and are pending at this update; no pass is claimed yet.
+
+47. Focused Legal Knowledge Validation passed on commit `4f8b5ab6741388e09b81bfd00bc85ecdeb474af8` (run `41022775815`; all 26 steps succeeded). The run includes the revised Table 24 review-queue generator and discrepancy regression test. The full `Tests` workflow on this commit is still running; the full suite has not yet been claimed as passing for this change. This CI result confirms the review-tool code and candidate safeguards, not legal correctness.
+
+## Action 1 workstream scorecard — 2026-10-30
+
+| Major task | Measured completion | What this means / remaining blocker |
+|---|---:|---|
+| Decision 250 Table 24 secondary transcription | 781/781 (100% of identified secondary sequence) | Denominator and table structure still require Gazette confirmation |
+| Table 24 candidate structural validation | 100% of committed candidate sequence | Focused CI checks structure and quarantine flags; not legal accuracy |
+| Table 24 secondary image page locators | 327/781 (41.9%) | Watermarked secondary reproductions only; no official match |
+| Table 24 partial visual spot-checks | 76/781 (9.7%) | Only selected fields checked; three discrepancies remain quarantined |
+| Table 24 complete field-by-field comparison | 0/781 (0%) | Original Gazette source and complete comparison required |
+| Decision 250 Table 23 candidate labels | 137/137 (100% candidate labels) | Secondary transcription only; no official page match |
+| Decision 249 candidate article/annex map | Candidate map captured | Original Gazette comparison, currentness and counsel remain open |
+| Decision 251 candidate article/assertion map | 11 article records / 17 assertions | Secondary only; official comparison remains 0 |
+| Decision 252 candidate article/assertion map | 36 article records / 40 assertions | Secondary only; official comparison remains 0 |
+| Labour Law 14/2025 parent-law excerpts | 8/8 targeted articles captured | This is a selected subset, not full-law corpus completion; original bytes/hash and currentness remain open |
+| Official Gazette matches for Decisions 248–252 | 0% | Full operative decision bundle not obtained |
+| Currentness/amendment review | 0% complete | Must review all relevant amendments, corrections, repeals and effective dates |
+| Source-use/legal reuse clearance | 0% complete | Article 141 is only a research lead; exact product use needs qualified review |
+| Qualified Egyptian counsel approval | 0% | Separate in-app acceptance review after technical completion |
+| Retrieval eligibility of candidate decision rules | 0% | Fail-closed by design until every release gate passes |
+
+**Overall phase estimate remains 15%; authoritative legal-content readiness remains 0%.** The scorecard deliberately reports candidate preparation separately from legal verification and does not average unlike measures into a misleading “verified corpus” percentage.
+
+48. Expanded the in-app lawyer acceptance plan with five targeted tests: row 34's conflicting CAS, rows 61/64's tentative limit discrepancies, page-locator-only rows, Decision 248 forms/fields unavailable from operative text, and secondary-source citation labeling. These are explicit fail-closed checks for the actual app session. No lawyer outcome is claimed and the 15% preparation estimate is unchanged.
+
+49. Added `decisions_251_252_statutory_fee_ceiling_candidate_crosscheck_2026-10-30.md`. Compared the candidate fee amounts for Decision 251/2026 (EGP 20,000–30,000) and the candidate licence-related fees in Decision 252/2026 (EGP 1,500–5,000) with the EGP 50,000 statutory ceilings in Labour Law Articles 261–262. All listed candidate licence amounts are arithmetically below the relevant ceiling. Decision 252 programme-material review, inspection and reinspection charges are deliberately not treated as licence fees; whether the statutory cap applies to them remains unresolved. This is a secondary-candidate arithmetic/scope cross-check, not confirmation of the decision text or fees. No release gate has passed and the overall estimate remains 15%.
+
+50. Focused Legal Knowledge Validation passed on commit `4781a51f78bbc081ee198532963c5b5e532fd056` (run `41023038703`; all 26 steps succeeded). The full `Tests` workflow for that commit remains in progress at the application-routing test, with no failure reported at the last check. The focused pass includes the fee cross-check documentation validators/builds and all candidate-map/review safeguards; it is not a legal correctness result.
+
+51. Added `tools/validate_decisions_251_252_fee_ceiling_candidates.py` and regression tests. The validator checks the recorded candidate licence-fee amounts against the EGP 50,000 parent-law ceilings, ensures the Decision 252 programme-review/inspection/reinspection fees remain separately classified (not automatically treated as licence fees), and rejects any promotion/currentness/counsel status changes. The validator itself passed focused CI on commit `6b07c1ffd2a8981978dcf96e3767b761f62bdb38` (run `41023151415`, 26 steps). The new regression tests and workflow integration were added in later commits; their CI is pending. This verifies only the arithmetic and quarantine safeguards, not the fee clauses' legal validity.
+
+52. The expanded fee-ceiling validator, its four regression tests and the focused workflow integration passed Legal Knowledge Validation on commit `168830c5f929a291083267de1e83abb8ab6fd70c` (run `41023177014`; all 28 steps succeeded). Tests include rejecting an amount above EGP 50,000, rejecting relabelling programme/inspection charges as licence fees, and rejecting retrieval promotion. The full application `Tests` workflow for this commit is still pending; this focused pass is the result currently confirmed.
+
+53. Tightened the fee-ceiling regression test so the over-cap case must trigger the explicit EGP 50,000 ceiling violation (not merely the expected-value mismatch). Legal Knowledge Validation passed on commit `2f656d3e4e80741a06c2df994aa3c5ab853c385b` (run `41023287405`; all 28 steps succeeded). The workflow push-path filter was also corrected to include the new fee validator and its test. The full `Tests` workflow on the same candidate commit remains in progress; no full-suite pass is claimed.
+
+## Current subtask status
+
+| Subtask | Completion estimate | Current status | Remaining gate |
+|---|---:|---|---|
+| Decision 250 source discovery | 95% secondary discovery | Full secondary transcription located; watermarked Gazette-page reproductions for printed pages 249–295 and Table 24 rows 1–327 visually sampled | Original Gazette bytes/hash; exact row/page mapping; official row-by-row match; currentness and counsel |
+| Decision 250 Table 23 candidate labels | 100% candidate-label coverage | 137/137 Arabic labels present | Official page matching, currentness, source-use review, counsel |
+| Decision 250 Table 24 candidate extraction | **100% of identified secondary sequence (provisional)** | 781/781 numbered entries structured in 38 batches; all 38 batches pass focused structural validation; the secondary page continues to row 781, so the prior 745 denominator is superseded pending Gazette reconciliation | Confirm denominator/parent-child structure against original Gazette; primary-source match; currentness and counsel |
+| Candidate data validation/triage tooling | **100% for current candidate files** | Table 23/24 and Decisions 251/252 validators, review queue, primary-match register, focused CI and full Tests passed on commit 2f005e5; later anomaly annotations are documentation/data-only | This closes tooling/structure checks only; source matching, currentness, reuse and counsel remain open |
+| Table 24 official Gazette row matches | 0% | No row-by-row official match completed | Obtain official file/page images and compare every candidate row |
+| Table 24 currentness review | 0% complete | Not established by secondary transcription | Confirm applicable amendments, corrigenda and current status |
+| Table 24 qualified counsel approval | 0% | No entries approved | Qualified Egyptian OSH lawyer must review source-matched rows |
+| Decision 249/2026 candidate text/page discovery | 75% secondary visual discovery | Almasdar hosts watermarked reproductions of Gazette pages 19–44; page map and candidate Article 1–22/Table 1–3 map created; fail-closed map validator passed focused CI | Obtain original Gazette pages; verify all thresholds, staffing cells, monitoring substances, repeal and effective date; currentness/source-use/counsel review |
+| Decisions 248–252 parent-law crosswalk | Parent statute text matched for Articles 255, 259–262 | Official ETA-hosted Law 14/2025 PDF visually checked at printed pages 96, 98–99; five Arabic primary excerpts stored and validated by focused CI; Article 260's 30-worker threshold, semiannual reporting and 24-hour notice are captured | Compare each 2026 decision's own preamble/operative clauses against its Gazette text; confirm decision currentness, reuse and counsel review |
+| Decision 251/2026 candidate text/page discovery | 80% secondary visual discovery | Seven reproduced Gazette pages mapped; candidate Articles 1–11, A/B experience/fees/procedure fields recorded; existing 17 assertions retained | Original Gazette comparison; confirm all experience thresholds, deadlines, fee cells, revocation/effective date; currentness, source-use and counsel review |
+| Decision 252/2026 candidate text/page discovery | 80% secondary visual discovery | 21 reproduced Gazette pages mapped; candidate Articles 1–36 and Article 29 programme-hours table recorded; existing 40 assertions retained; fail-closed map validator passed focused CI | Original Gazette comparison; verify every programme-hour cell, qualifications, fees, tests and effective date; currentness/source-use/counsel review |
+| Original Official Gazette PDF hash | 0% | Original PDF bytes/hash not obtained | Obtain the PDF through ordinary authorized access and hash actual bytes |
+| Original 311-row `law_rows_ar.jsonl` reconciliation | 0% in this runtime | File is not available here; historical hash only | User to upload the original file; do not reconstruct it or claim a new hash |
+| Source-use/access assessment | Provisional statutory basis identified | Article 141 of Law 82/2002 (WIPO consolidated text through 2020) excludes official documents such as laws and decisions; creative collections/arrangements may still be protected | Confirm post-2020 currentness, exact official-text vs scan/compilation scope, access terms, and commercial ingestion/display model with qualified Egyptian counsel |
+| Lawyer in-app acceptance | Prepared; review not started | Test plan linked from the corpus README | Run after technical completion, before production release |
+
+## Source and safety boundaries
+
+- The Table 24 candidate source is a secondary transcription. It is useful for discovery, not proof of official wording. The JSON field `raw_limit_and_note_text` is a working transcription aid, **not a guarantee of verbatim source text**; it may include manually assembled, translated, normalized or text-layer fragments. Every field must be compared with the official page image.
+- The Official Gazette catalogue identifies Decisions 248–252/2026 in the supplement to Egyptian Proceedings issue 225(A), dated 2026-10-12:
+  https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full
+- Previous access attempts did not obtain the original Gazette PDF bytes. No original-file SHA-256 is claimed.
+- The source text contains apparent transcription anomalies, including reversed or malformed numeric/unit tokens, suspicious formulas/CAS identifiers, mixed surface and air limits, and entries marked as removed. Those remain flagged and must not be presented as current legal/safety guidance.
+- The review queue and validator do not authenticate the source, determine currentness, settle reuse rights, or approve a legal rule.
+- Lawyer approval must be recorded against the exact app version, corpus version, and tested scope. Reviewing the app is separate from, and does not replace, official-source comparison.
+
+## Next work items, in order
+
+1. **Obtain the original Gazette issue 225(A) pages for Decisions 248–252 through ordinary authorized access.** Record the actual downloaded bytes, source URL, retrieval timestamp and SHA-256. The catalogue and secondary reproductions are not substitutes for the original file; do not bypass the DSpace request-a-copy flow or third-party access controls.
+2. **Reconcile Table 24's provisional 781-row denominator and hierarchy against the original Gazette.** The secondary transcription is structurally complete through row 781, but the original table may confirm, renumber, split or group entries differently. Preserve all parent/child relationships and do not infer missing values.
+3. **Complete official page-by-page and field-by-field comparison for Table 24 rows 1–781.** The existing 327 page locators and 76 partial spot-checks are secondary-image aids only. Compare chemical name, CAS, formula, limit columns, units, exposure notation, footnotes, health effects, removed entries and parent/child relationships. Resolve or quarantine the three known discrepancies (rows 34, 61 and 64) and any newly discovered mismatch.
+4. **Match Decisions 248, 249, 251 and 252 to their own operative Gazette text and annexes.** Verify Decision 249 staffing/risk tables, Decision 251 qualification/fee/procedure provisions, Decision 252 training-hour/fee/test tables, and Decision 248 forms/reporting fields. Parent-law Articles 255 and 259–262 do not replace these operative instruments.
+5. **Complete the version/currentness chain.** Check commencement, corrigenda, later amendments, repeals, extensions and implementation circulars for each instrument. Keep announcement-only and draft-only material separate from signed/published text.
+6. **Complete source-use review for each exact source layer.** Assess the underlying official legal text separately from Gazette scans, publisher reproductions, third-party transcriptions, editorial arrangements and access terms. The Article 141 route remains a legal lead, not a blanket commercial-use clearance.
+7. **Run the in-app Egyptian-counsel acceptance plan after technical completion.** Record the exact app commit, corpus manifest/hash, query, retrieved source and lawyer disposition; fix every critical defect and rerun the full regression set before any production release.
+8. Keep candidate-only content and all unresolved Table 24 values **retrieval-ineligible** until the relevant source, currentness, reuse and qualified-counsel gates pass.
+
+## Release status
+
+- Table 24 secondary transcription rows extracted: **781/781** (provisional sequence; denominator not confirmed against Gazette)
+- Table 24 secondary image page locators assigned: **327/781**
+- Table 24 partial secondary-image spot-checks: **76/781**
+- Table 24 unresolved secondary-image discrepancy flags: **3**
+- Complete field-by-field secondary image comparisons: **0/781**
+- Official Gazette matched Table 24 rows: **0**
+- Currentness-complete Table 24 rows: **0**
+- Lawyer-approved Table 24 rows: **0**
+- Table 24 rows eligible for authoritative retrieval: **0**
+- Legal-knowledge preparation progress (phase estimate): **15%**
+- Strict authoritative legal-content readiness (all release gates passed): **0%**
+
+These figures intentionally separate extraction and evidence preparation from legal verification. The 15% phase estimate is not a count of verified legal rules. Since zero rows have completed all release gates, strict authoritative legal-content readiness is 0%. A complete secondary transcription is not a verified legal corpus.
+
+
+## Decision 248 reporting-trigger comparison — 2026-10-30
+
+Two additional secondary reports now provide more detailed candidate wording for Decision 248/2026: Al-Youm Al-Sabea (2026-10-28) and EgyIn (2026-10-19). They report 24-hour notification for serious accidents inside an establishment, 48 hours for accidents outside its boundaries, and notification of occupational disease after diagnosis/confirmation by an approved medical report. They also describe serious-accident categories, 30+ worker semi-annual statistics, January/July submission, 15 days to provide certified copies after request, and three-year record retention.
+
+Compared with the preserved official-parent-law Article 260 excerpt, this raises a precise legal-review issue: Article 260 states 24-hour notification for serious accidents occurring at the establishment and for the appearance of occupational-disease symptoms. The secondary Decision 248 summaries appear to add off-site accident coverage with a 48-hour period and describe a different disease-notification trigger. This is not yet a confirmed conflict or a verified extension; the decision's original Article 4 and forms are still unavailable. The new crosswalk and discrepancy checklist explicitly preserve the two source layers, prohibit advising users to delay notification based on the 48-hour secondary summary, and require counsel to determine the interaction. The in-app lawyer acceptance plan now includes test OSH-16 for these exact scenarios.
+
+Sources: https://www.youm7.com/story/2026/10/28/حماية-أرواح-العمال-أولوية-وزارة-العمل-تحدد-مهلة-24-ساعة/7590406 and https://www.egyin.com/article/154732/. Both remain secondary reports, not the operative Gazette text.
+
+No Decision 248 rule was promoted, no currentness/source-use/counsel gate changed, and the legal-knowledge preparation estimate remains **15%** with strict authoritative legal-content readiness at **0%**.
+
+
+## Reproducible Arabic prompts for counsel acceptance — 2026-10-30
+
+Expanded the in-app lawyer acceptance plan with exact Arabic prompts for the core Labour Law and OSH cases, including missing Article 299, commencement/currentness, Article 260 reporting duties, statutory fee ceilings, Table 24 abstention, the known row-34/61/64 discrepancies, Decision 248's secondary-only off-site reporting/occupational-disease triggers, and missing Court of Cassation citations. The new OSH-16-A/B prompts explicitly prevent the app from advising a user to wait 48 hours based only on a secondary Decision 248 summary or from replacing Article 260's symptom-trigger wording with a diagnosis-trigger summary.
+
+The prompts are test inputs, not approved answers. The lawyer must still evaluate the app's actual retrieved evidence, citation, abstention, and currentness wording. The acceptance plan remains a later, separate release gate after technical completion. No legal rule was promoted; preparation remains **15%**, strict authoritative legal-content readiness **0%**.
+
+
+## Exact Official Gazette supplement catalog identified — 2026-10-30
+
+A material source-discovery milestone: located the DSpace Gazette-repository catalog record for **الوقائع المصرية - ملحق الجريدة الرسمية العدد 225 تابع (أ)**, issue date 12 October 2026, publisher المطابع الأميرية, contributing authority وزارة العمل. Its abstract identifies Decisions 248–252/2026, and it lists the original 6.13 MB PDF bundle **العدد 225 تابع أ - مؤمن.pdf**. Record: https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full ; persistent handle: https://dspace.id.com.eg/handle/123456789/8906.
+
+The original PDF and item-specific license file are access-restricted: the visible download redirects to a request-copy form. I did not bypass the gate or submit a request. This confirms the exact Gazette issue and provides an actionable authorized access route, but it is **not** primary-text access. Decisions 248–252 remain 0/5 fully matched against the original Gazette pages; no rule was promoted. Page map and publication-route documents record the evidence and limitation.
+
+The official record is a stronger source-discovery result than the prior secondary-only locator, but it does not alter strict legal-content readiness. Current preparation estimate remains **15%**; authoritative legal-content readiness **0%**. Next work: continue exploiting lawful public mirrors and official publisher/ministry pages, while keeping all unverified candidate rules quarantined.
+
+
+## Decision 250 Table 24 structural completion and index correction — 2026-10-30
+
+Completed a high-value consistency pass over the full Table 24 secondary extraction:
+
+- **38/38** candidate batch files parsed.
+- **781/781** numbered entries structured, sequence 1–781, no gaps or duplicates.
+- Corrected the technical table index: it had accidentally duplicated Table 24 as a nonexistent Table 25 and limited Table 24 to pp. 249–250. The secondary transcription's contents map identifies Table 24 at p. 249 and the records chapter at p. 361, so the corrected secondary section span is pp. 249–360.
+- Removed the erroneous duplicate Table 25 index record and added a regression test checking table numbering, page span, full row sequence, and continued quarantine metadata.
+- Added `tests/test_decision_250_table24_inventory.py` to the Tests workflow.
+
+**Boundary:** this is structural completeness against a secondary transcription only. Official Gazette comparison remains **0/781**, lawyer approval 0/781, and authoritative retrieval eligibility 0/781. No chemical name, CAS identifier, formula, exposure limit, unit, footnote or safety instruction was promoted. The official Gazette supplement catalog record is now identified, but its original 6.13 MB PDF is request-copy restricted.
+
+The earlier 745-row and 617-row progress statements in older notes are superseded by the corrected 781-entry secondary inventory. Table 24 structural extraction is now **100% complete**; primary-source verification remains **0%**.
+
+
+## Article 141 source-use currentness refinement — 2026-10-30
+
+Expanded the source-use memo to distinguish the statutory exclusion of official legal documents from protection that may attach to creative compilations, third-party databases, scan packaging, annotations and editorial presentation. Added the explicit WIPO Lex limitation: its Arabic consolidated Law 82/2002 record is amended through Law 178/2020 (effective 5 September 2020), not certified current through October 2026. A government-hosted GAFI copy of the original 2002 law is also recorded. Targeted searches did not locate a later amendment to Article 141; this is not proof none exists. The January 2026 State Information Service report on IP-system reform is recorded only as institutional/policy context, not as an enacted amendment.
+
+This supports the no-permission-outreach strategy only as a **provisional legal basis** for the underlying text of official laws/decisions. It does not clear a third-party scan, a private compilation, access restrictions, or the commercial ingestion/display model. Official Gazette amendment search through 2026 and qualified Egyptian counsel confirmation remain release gates. No source or candidate rule was marked reuse-cleared.
+
+
+## Official Labour Law Article 296 penalty cross-reference captured — 2026-10-30
+
+Added a ninth selected official-source excerpt from the government-hosted ETA Gazette PDF: **Article 296**, printed Gazette page 111 / PDF page index 108. It enumerates two groups of parent-law articles and provides the same fine range for the listed violations and implementing ministerial decisions: EGP 5,000–100,000, doubled in case of recidivism. The exact source ordering of the article numbers is preserved in the JSONL excerpt rather than normalized.
+
+This is important for the Labour Law knowledge graph because Article 296 expressly cross-references Article 260, Articles 261–262, and implementing ministerial decisions. It is now included in the lawyer's in-app acceptance plan as LBR-17, testing whether the assistant can cite the exact scope without overgeneralizing the penalty to unlisted provisions.
+
+Evidence limits: browser PDF text extraction only; original PDF bytes/hash not obtained; source-use remains provisional under the official-document exclusion lead; currentness and counsel review not completed; retrieval remains disabled. This is not a lawyer-approved penalty opinion.
+
+
+## Action 1 intake is prepared for tomorrow — 2026-10-30
+
+Recovered the exact meaning of Action 1 from the prior project plan: the user will provide the original Official Gazette PDF for Decisions 248–252/2026 (especially Decision 250), plus the original law_rows_ar.jsonl if available. This is distinct from the lawyer's later in-app acceptance review.
+
+Created an intake protocol that is ready to execute as soon as the files are supplied. It records the historical law_rows_ar.jsonl comparison target (SHA-256 3e964de5c9cc994aefcc29c031712e85d664febd97c428e61c2eacdccaf1c600; 393,861 bytes; 311 expected records) but requires re-hashing the actual supplied file. The Gazette PDF workflow will verify issue identity, compute a hash, map printed pages to PDF indices, compare Decisions 248–252 and annexes, and field-match all 781 Table 24 candidate entries. The original files will remain immutable; no normalization or repair will overwrite them.
+
+The user does **not** need to arrange the lawyer review separately now. That review remains a distinct post-technical-completion release gate using the prepared in-app prompts and the actual application build.
+
+
+## Consolidated completion snapshot — 2026-10-30
+
+| Deliverable | Status | What the percentage means |
+|---|---:|---|
+| Decision 250 Table 24 secondary extraction | **100% (781/781)** | All numbered secondary-transcription entries are structured; includes 38 nested child entries |
+| Decision 250 Table 23 candidate index | **100% (137/137)** | Candidate labels indexed; not original-Gazette verified |
+| Decision 250 Table 24 original Gazette match | **0% (0/781)** | No official Gazette page/field comparison yet |
+| Decisions 248–252 original Gazette comparison | **0/5 complete** | Exact Gazette catalog record found; original PDF bytes still request-copy restricted |
+| Decisions 249, 251 and 252 secondary article/table maps | Candidate maps exist | Candidate text and tables are not promoted to authoritative retrieval |
+| Selected Law 14 official-hosted PDF excerpts | **9 selected articles** | Includes Article 296; original PDF bytes/hash, currentness and counsel gates remain open |
+| Arabic in-app lawyer acceptance prompt pack | **Prepared** | Not executed; lawyer has not approved any scope |
+| Action 1 file intake protocol | **Prepared** | Waiting for user-supplied original Gazette PDF and law_rows_ar.jsonl if available |
+| Full Tests workflow | **Passed on tested code head** | 103/103 steps; latest documentation-only/workflow-label head is under a further full run |
+| Legal Knowledge Validation | **Passed** | Latest run 28/28 |
+
+The overall legal-knowledge preparation estimate remains **15%** rather than being inflated by secondary extraction. The highest-value unfinished work is primary-source comparison and currentness/reuse/counsel review. Strict authoritative legal-content readiness remains **0%** for the Decision 248–252 package and Table 24 candidates.
+
+
+## Global source manifest updated — 2026-10-30
+
+Updated docs/source_manifest.json for EG-OFFICIAL-GAZETTE with the exact Supplement 225(A) DSpace catalog identity, original bundle filename/size, public catalog vs restricted request-copy access status, and a no-bypass requirement. The source remains commercial-reuse-unconfirmed and the original bytes remain unobtained. This makes the new source discovery visible in the project's global source registry rather than only in the Labour Law candidate folder.
+
+
+## Final validation after evidence-regression fixes — 2026-10-30
+
+The source-manifest regression initially failed because the test expected the DSpace URL in the source notes, while the manifest correctly stores it in verification_requirements. Corrected the test to check the actual field; no source-manifest access or reuse gate was weakened.
+
+Current head `d42bc551825a5a93e19e2db99dc9dd2552d2c557` now passes:
+- Full Tests: **103/103 steps, zero failures** — https://github.com/abdelmalek384/legal_copilot_latest/actions/runs/41030728675
+- Legal Knowledge Validation: **28/28 steps** — https://github.com/abdelmalek384/legal_copilot_latest/actions/runs/41030728643
+
+The passing regression verifies the 781-row nested Table 24 inventory, Article 296 exact source ordering and fine wording while quarantined, and the Official Gazette manifest's request-copy restriction and unconfirmed commercial reuse. This is engineering/data-integrity validation only; primary-source comparison and counsel approval remain outstanding.
+
+
+## Decision 249/251/252 lawyer coverage expanded — 2026-10-30
+
+Added six exact Arabic in-app lawyer prompts (OSH-17 through OSH-22) covering:
+- Decision 249: the 50-worker/separate-site question and Table 2 staffing ratios.
+- Decision 251: non-engineering qualifications, years of experience, licence term and fees, with the Article 262 parent-law ceiling kept distinct.
+- Decision 252: training-provider/trainer eligibility, programme hours, fees, examinations and attendance requirements.
+
+Each prompt explicitly requires the app to abstain from treating secondary article summaries or low-resolution tables as verified legal rules. Added regression checks that the Decisions 249/251/252 candidate maps contain 22+3+1, 11, and 36+1 records respectively, and that every record remains secondary-only, without an original PDF hash, with currentness/source-use/counsel review outstanding and retrieval disabled. A further regression ensures all six new lawyer prompts remain in the acceptance plan.
+
+
+## Final validation after Decisions 249/251/252 coverage — 2026-10-30
+
+The six new lawyer prompts OSH-17–22 and their regression checks are now validated:
+- Decisions 249/251/252 map quarantine, prompt coverage, Table 24 inventory, Article 296, and Gazette source-manifest checks passed in [Full Tests #41031288964](https://github.com/abdelmalek384/legal_copilot_latest/actions/runs/41031288964): **103/103 steps, zero failures**.
+- Latest progress-report head passed [Legal Knowledge Validation #41031297431](https://github.com/abdelmalek384/legal_copilot_latest/actions/runs/41031297431): **28/28**.
+
+The tested code head is `283faec33ac046f59421068c5d61e4978f55277f`; the latest progress-report-only head is `f2b132a03d7575ec354cdb8afde9ff86a80f4c7c`. No legal candidate was promoted. Primary-source comparisons remain 0/5 decisions and 0/781 Table 24 rows; lawyer approval remains pending.
+
+
+## Table 24 highest-priority discrepancy regression — 2026-10-30
+
+Pinned the three previously identified high-priority Table 24 discrepancies into the review-queue test so future edits cannot silently normalize or lose them:
+
+- **Row 34 — aluminium oxide:** candidate CAS `1344-281`; the secondary image tentatively appears to show `1344-28-1`.
+- **Row 61 — benomyl:** candidate limit `1 mg/m3 (I)`; the low-resolution secondary image tentatively appears to show `0.3 mg/m3`.
+- **Row 64 — benzene:** candidate limit `0.02 ppm`; the secondary image tentatively appears to show `0.5 ppm`; the row is explicitly tagged high-risk due to carcinogenicity.
+
+These are discrepancies between a secondary transcription and a secondary image only. Neither reading is treated as authoritative, and the candidate strings remain unchanged. Added regression coverage that all three rows remain flagged for original Gazette comparison and that row 64 retains its high-risk flag. The Action 1 intake protocol now prioritizes these three rows once the original Gazette PDF is supplied.
+
+
+## Latest full validation including real Table 24 discrepancies — 2026-10-30
+
+The Action 1 checklist now carries the exact raw candidate strings and tentative secondary-image readings for rows 34, 61 and 64. Regression coverage checks that the source transcription remains unchanged, each row retains its secondary-image discrepancy flag, and benzene row 64 retains its high-risk flag. The test deliberately checks the Arabic raw text substring rather than assuming the full raw field contains only the English limit token.
+
+Latest branch head `0c647e291af99b12283e0a99c6050a1468f345b7` passed:
+- Full Tests **103/103, zero failures**: https://github.com/abdelmalek384/legal_copilot_latest/actions/runs/41031944987
+- Legal Knowledge Validation **28/28**: https://github.com/abdelmalek384/legal_copilot_latest/actions/runs/41031945000
+
+All three discrepancies remain unresolved pending original Gazette page matching. The secondary image is not a substitute for the official issue.
+
+
+## Latest Action 1 source-handling and CI confirmation — 2026-10-30
+
+The Action 1 intake protocol now explicitly prohibits committing the raw Gazette PDF or raw law_rows_ar.jsonl into the public repository while access/source-use conditions remain unresolved. Originals are to be preserved byte-for-byte in a controlled working environment; commit only hashes, bibliographic metadata, citations and legally cleared excerpts.
+
+Latest branch head `a5108cdbbbfc2438bbbf6c28c072b07600a9e0e4` passed:
+- Full Tests: **103/103, zero failures** — https://github.com/abdelmalek384/legal_copilot_latest/actions/runs/41032333808
+- Legal Knowledge Validation: **28/28** — https://github.com/abdelmalek384/legal_copilot_latest/actions/runs/41032333801
+
+The three Table 24 discrepancy rows remain preserved without correction and are prioritized for the original Gazette comparison.

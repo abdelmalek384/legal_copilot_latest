@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "record_type": "secondary_source_candidate_extraction",
+  "instrument": "Egyptian Minister of Labour Decision 250/2026",
+  "table": "24",
+  "table_title_ar": "الحدود العتبية للمواد الكيميائية الخطرة",
+  "research_date": "2026-10-29",
+  "source": {
+    "class": "secondary_transcription",
+    "url": "https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html",
+    "publication_date": "2026-10-26",
+    "source_lines": "5390-5422",
+    "official_gazette_match": "not_performed",
+    "official_pdf_sha256": null
+  },
+  "status": "candidate_only_not_for_authoritative_retrieval",
+  "important_limits": [
+    "Secondary transcription only; no official Gazette page-image comparison.",
+    "Rows 544–547 are work-intensity subentries under Ozone row 543; their parent is in the previous batch.",
+    "Raw limits, units and symbols are not normalized.",
+    "Not for workplace safety decisions or compliance advice."
+  ],
+  "declared_top_level_row_range": {"start": 544, "end": 563},
+  "rows": [
+    {"row":544,"parent_row":543,"name_ar":"عمل شاق","name_en":"Heavy work (ozone)","source_line":5390,"raw_limit_and_note_text":"0,05 جزء/مليون؛ م4؛ A4","status":"pending_official_match"},
+    {"row":545,"parent_row":543,"name_ar":"عمل متوسط","name_en":"Moderate work (ozone)","source_line":5392,"raw_limit_and_note_text":"0,08 جزء/مليون؛ م4؛ A4","status":"pending_official_match"},
+    {"row":546,"parent_row":543,"name_ar":"عمل خفيف","name_en":"Light work (ozone)","source_line":5394,"raw_limit_and_note_text":"0,10 جزء/مليون؛ م4؛ A4","status":"pending_official_match"},
+    {"row":547,"parent_row":543,"name_ar":"عمل شاق أو متوسط أو خفيف لمدة ساعتين أو أقل","name_en":"Heavy, moderate or light work for two hours or less (ozone)","source_line":5395,"raw_limit_and_note_text":"0,20 جزء/مليون؛ م4؛ A4","status":"pending_official_match"},
+    {"row":548,"name_ar":"أدخنة شمع البرافين","name_en":"Paraffin wax fume","cas":"8002-74-2","source_line":5397,"raw_limit_and_note_text":"Mixture of high-molecular-weight solid hydrocarbons؛ 2 مجم/م3؛ تهيج المسالك التنفسية العليا، غثيان","status":"pending_official_match"},
+    {"row":549,"name_ar":"باراكوات ككاتيون","name_en":"Paraquat, as the cation","cas":"4685-14-7","source_line":5399,"raw_limit_and_note_text":"C12H14Cl2N2؛ 257,18؛ 0,05 ملجم/م3(I)؛ تلف بالرئة، تهيج بالمسالك التنفسية العليا","status":"pending_official_match"},
+    {"row":550,"name_ar":"باراثيون","name_en":"Parathion","cas":"56-38-2","source_line":5400,"raw_limit_and_note_text":"C10H14NO5PS؛ 291,27؛ 0,05 ملجم/م3(IFV)؛ Skin; A4; BEIC؛ جلد، م4، مؤشر التعرض الحيوي للمبيدات المثبطة للكولينستيراز؛ مثبط لإنزيم الكولينستيراز","status":"pending_official_match"},
+    {"row":551,"name_ar":"جسيمات غير قابلة للذوبان أو شحيحة الذوبان وغير مصنفة","name_en":"Particles, insoluble or poorly soluble, not otherwise specified","source_line":5402,"raw_limit_and_note_text":"Total dust: 10 ملجم/م3؛ respirable: 3 ملجم/م3؛ not more than 1% crystalline silica and no asbestos","status":"pending_official_match","anomaly":"The row specifies separate total/respirable fractions; exact column alignment and wording require official-page verification."},
+    {"row":552,"name_ar":"بنتابوران","name_en":"Pentaborane","cas":"19624-22-7","source_line":5404,"raw_limit_and_note_text":"B5H9؛ 63,17؛ 0,01 جزء/مليون؛ تسمم الجهاز العصبي المركزي","status":"pending_official_match"},
+    {"row":553,"name_ar":"خماسي كلور النفثالين","name_en":"Pentachloronaphthalene","cas":"1321-64-8","source_line":5405,"raw_limit_and_note_text":"C10H3Cl5؛ 300,40؛ 0,5 ملجم/م3(IFV)؛ جلد Skin؛ طفح جلدي ناتج عن التعرض للكلور، تلف بالكبد","status":"pending_official_match"},
+    {"row":554,"name_ar":"خماسي كلور نيترو بنزين","name_en":"Pentachloronitrobenzene","cas":"82-68-8","source_line":5407,"raw_limit_and_note_text":"C6Cl5NO2؛ 295,36؛ 0,5 ملجم/م3؛ م4؛ A4؛ تلف الكبد","status":"pending_official_match"},
+    {"row":555,"name_ar":"خماسي كلور الفينول","name_en":"Pentachlorophenol","cas":"87-86-5","source_line":5409,"raw_limit_and_note_text":"C6Cl5OH؛ 266,35؛ 0,5 ملجم/م3(IFV)؛ 1 ملجم/م3(IFV)؛ Skin; A3; BEI؛ جلد، م3، مؤشر التعرض الحيوي؛ تهيج المسالك التنفسية العليا والعين، ضعف الجهاز العصبي المركزي والقلب","status":"pending_official_match","anomaly":"Two limits appear together; confirm their respective exposure-limit columns in the official table."},
+    {"row":556,"name_ar":"بنتا إريثريتول","name_en":"Pentaerythritol","cas":"115-77-5","source_line":5410,"raw_limit_and_note_text":"C5H12O4؛ 136,15؛ 10 ملجم/م3؛ تهيج الجهاز الهضمي","status":"pending_official_match"},
+    {"row":557,"name_ar":"بنتان وكل النظائر","name_en":"Pentane, all isomers","cas":"78-78-4; 109-66-0; 463-82-1","source_line":5412,"raw_limit_and_note_text":"C5H12؛ 72,15؛ 1000 جزء/مليون؛ مخدر، تهيج المسالك التنفسية","status":"pending_official_match"},
+    {"row":558,"name_ar":"2,4-بنتاندايون","name_en":"2,4-Pentanedione","cas":"123-54-6","source_line":5414,"raw_limit_and_note_text":"CH3COCH2COCH3؛ 100,12؛ 25 جزء/مليون؛ Skin؛ جلد؛ سمية الجهاز العصبي المركزي وضعف الجهاز العصبي المركزي","status":"pending_official_match"},
+    {"row":559,"name_ar":"خلات البنتيل وكل النظائر","name_en":"Pentyl acetate, all isomers","cas":"123-92-2; 620-11-1; 624-41-9; 625-16-1; 626-38-0; 628-63-7","source_line":5415,"raw_limit_and_note_text":"C7H14O2؛ 130,20؛ 50 جزء/مليون؛ 100 جزء/مليون؛ تهيج المسالك التنفسية العليا","status":"pending_official_match"},
+    {"row":560,"name_ar":"حمض البيرأسيتيك","name_en":"Peracetic acid","cas":"79-21-0","source_line":5417,"raw_limit_and_note_text":"CH3CO3H؛ 76,05؛ 0,4 جزء/مليون(IFV)؛ م4؛ A4؛ تهيج المسالك التنفسية العليا والعين والجلد","status":"pending_official_match"},
+    {"row":561,"name_ar":"بيركلورو ميثيل مركبتان","name_en":"Perchloromethyl mercaptan","cas":"594-42-3","source_line":5419,"raw_limit_and_note_text":"CCl3SCl؛ 185,87؛ 0,1 جزء/مليون؛ تهيج العين والمسالك التنفسية العليا","status":"pending_official_match"},
+    {"row":562,"name_ar":"بيركلوريل فلوريد","name_en":"Perchloryl fluoride","cas":"7616-94-6","source_line":5420,"raw_limit_and_note_text":"ClO3F؛ 102,46؛ 0,5 جزء/مليون؛ ميتهيموجلوبينية الدم، التسمم بالفلورين","status":"pending_official_match"},
+    {"row":563,"name_ar":"بيرفلورو بيوتيل إيثيلين","name_en":"Perfluorobutyl ethylene","cas":"19430-93-4","source_line":5422,"raw_limit_and_note_text":"C6H3F9؛ 246,1؛ 100 جزء/مليون؛ تأثيرات دموية","status":"pending_official_match","anomaly":"Formula token appears suspicious; verify from official page before correction."}
+  ]
+}

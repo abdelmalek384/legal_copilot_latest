@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "record_type": "secondary_source_candidate_extraction",
+  "instrument": "Egyptian Minister of Labour Decision 250/2026",
+  "table": "24",
+  "table_title_ar": "الحدود العتبية للمواد الكيميائية الخطرة",
+  "research_date": "2026-10-29",
+  "source": {
+    "class": "secondary_transcription",
+    "url": "https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html",
+    "publication_date": "2026-10-26",
+    "source_lines": "5355-5388",
+    "official_gazette_match": "not_performed",
+    "official_pdf_sha256": null
+  },
+  "status": "candidate_only_not_for_authoritative_retrieval",
+  "important_limits": [
+    "Secondary transcription only; no official Gazette page-image comparison.",
+    "Raw limits, units and symbols are not normalized.",
+    "The oil-mist row states it was removed as a standalone item; current status requires primary-source confirmation.",
+    "Not for workplace safety decisions or compliance advice."
+  ],
+  "declared_top_level_row_range": {"start": 524, "end": 543},
+  "rows": [
+    {"row":524,"name_ar":"ثاني أكسيد النيتروجين","name_en":"Nitrogen dioxide","cas":"10102-44-0","source_line":5355,"raw_limit_and_note_text":"NO2؛ 46,01؛ 0,2 جزء/مليون؛ م4؛ A4؛ تهيج المسالك التنفسية السفلى","status":"pending_official_match"},
+    {"row":525,"name_ar":"ثالث فلوريد النيتروجين","name_en":"Nitrogen trifluoride","cas":"7783-54-2","source_line":5357,"raw_limit_and_note_text":"NF3؛ 71,00؛ 10 جزء/مليون؛ BEIM؛ مؤشر التعرض الحيوي للمواد المحفزة للميتهيموجلوبين؛ ميتهيموجلوبينية الدم، تلف الكبد والكلى","status":"pending_official_match"},
+    {"row":526,"name_ar":"نيتروجلسرين","name_en":"Nitroglycerin","cas":"55-63-0","source_line":5359,"raw_limit_and_note_text":"C3H5N3O9؛ 227,09؛ 0,05 جزء/مليون؛ Skin؛ جلد؛ اتساع الأوعية الدموية","status":"pending_official_match"},
+    {"row":527,"name_ar":"نيترو ميثان","name_en":"Nitromethane","cas":"75-52-5","source_line":5360,"raw_limit_and_note_text":"CH3NO2؛ 61,04؛ 20 جزء/مليون؛ م3؛ A3؛ تأثر الغدة الدرقية، تهيج المسالك التنفسية العليا، تلف الرئة","status":"pending_official_match"},
+    {"row":528,"name_ar":"1-نيترو بروبان","name_en":"1-Nitropropane","cas":"108-03-2","source_line":5362,"raw_limit_and_note_text":"C3H7NO2؛ 89,09؛ 25 جزء/مليون؛ م4؛ A4؛ تهيج المسالك التنفسية العليا والعين، تلف الكبد","status":"pending_official_match"},
+    {"row":529,"name_ar":"2-نيترو بروبان","name_en":"2-Nitropropane","cas":"79-46-9","source_line":5364,"raw_limit_and_note_text":"C3H7NO2؛ 89,09؛ 10 جزء/مليون؛ م3؛ A3؛ تلف الكبد وسرطان الكبد","status":"pending_official_match","risk_note":"Potential carcinogenicity entry; no operational limit approved."},
+    {"row":530,"name_ar":"إن-نيتروزو داي ميثيل أمين","name_en":"N-Nitrosodimethylamine","cas":"62-75-9","source_line":5365,"raw_limit_and_note_text":"C2H6N2O؛ 74,08؛ (L)؛ Skin; A3؛ جلد، م3؛ سرطان الكبد والكلى، تلف الكبد","status":"pending_official_match","risk_note":"High-risk carcinogenicity entry; no operational limit approved."},
+    {"row":531,"name_ar":"نيتروتولوين، كل النظائر","name_en":"Nitrotoluene, all isomers","cas":"88-72-2; 99-08-1; 99-99-0","source_line":5367,"raw_limit_and_note_text":"C7H7NO2؛ 137,13؛ 2 جزء/مليون؛ Skin; BEIM؛ جلد، مؤشر التعرض الحيوي للمواد المحفزة للميتهيموجلوبين؛ ميتهيموجلوبينية الدم","status":"pending_official_match","anomaly":"Brackets and identifier order are malformed in the source text; verify the CAS list from the official page."},
+    {"row":532,"name_ar":"5-نيترو-أورثو-تولويدين","name_en":"5-Nitro-o-toluidine","cas":"99-55-8","source_line":5369,"raw_limit_and_note_text":"C7H8N2O2؛ 152,16؛ 1 ملجم/م3(IFV)؛ م3؛ A3؛ تلف الكبد","status":"pending_official_match"},
+    {"row":533,"name_ar":"أكسيد النيتروز","name_en":"Nitrous oxide","cas":"10024-97-2","source_line":5370,"raw_limit_and_note_text":"N2O؛ 44,02؛ 50 جزء/مليون؛ م4؛ A4؛ ضعف الجهاز العصبي المركزي وتأثيرات دموية، تشوه الأجنة","status":"pending_official_match","anomaly":"CAS bracket is malformed in the source text; verify against official page."},
+    {"row":534,"name_ar":"نونان","name_en":"Nonane","cas":"111-84-2","source_line":5372,"raw_limit_and_note_text":"C9H20؛ 128,26؛ 200 جزء/مليون؛ ضعف الجهاز العصبي المركزي","status":"pending_official_match"},
+    {"row":535,"name_ar":"أوكتا كلورو نفثالين","name_en":"Octachloronaphthalene","cas":"2234-13-1","source_line":5374,"raw_limit_and_note_text":"C10Cl8؛ 403,74؛ 0,1 ملجم/م3؛ 0,3 ملجم/م3؛ جلد Skin؛ تلف الكبد","status":"pending_official_match"},
+    {"row":536,"name_ar":"الأوكتان، كل النظائر","name_en":"Octane, all isomers","cas":"111-65-9","source_line":5376,"raw_limit_and_note_text":"C8H18؛ 114,22؛ 300 جزء/مليون؛ تهيج المسالك التنفسية العليا","status":"pending_official_match","anomaly":"The title says all isomers but the secondary row shows a single CAS; verify scope and identifiers."},
+    {"row":537,"name_ar":"رذاذ الزيت","name_en":"Oil mist","source_line":5377,"raw_limit_and_note_text":"The secondary transcription states this standalone item was removed and added to mineral oils.","status":"pending_official_match","currentness_candidate":"source_claims_removed_as_standalone_item; primary confirmation required","anomaly":"Do not expose as a current independent rule unless the official table confirms this status."},
+    {"row":538,"name_ar":"رابع أكسيد الأوزميوم مقدر كأوزميوم","name_en":"Osmium tetroxide, as osmium","cas":"20816-12-0","source_line":5379,"raw_limit_and_note_text":"OsO4؛ 254,20؛ 0,0002 جزء/مليون؛ 0,0006 جزء/مليون؛ تهيج العين والمسالك التنفسية العليا والجلد","status":"pending_official_match"},
+    {"row":539,"name_ar":"حمض الأوكساليك، لا مائي","name_en":"Oxalic acid, anhydrous","cas":"144-62-7","source_line":5381,"raw_limit_and_note_text":"C2H2O4؛ 90,04 (anhydrous)؛ 1 ملجم/م3؛ 2 ملجم/م3؛ تهيج المسالك التنفسية العليا والعين والجلد","status":"pending_official_match"},
+    {"row":540,"name_ar":"حمض الأوكساليك، ثنائي الهيدرات","name_en":"Oxalic acid dihydrate","cas":"6153-56-6","source_line":5383,"raw_limit_and_note_text":"C2H2O4·2H2O؛ 126,00 (dihydrate)","status":"pending_official_match"},
+    {"row":541,"name_ar":"بارا بارا أوكسي ثنائي (بنزين سلفونيل هيدرازيد)","name_en":"p,p'-Oxybis(benzenesulfonylhydrazide)","cas":"80-51-3","source_line":5384,"raw_limit_and_note_text":"C12H14N4O5S2؛ 358,40؛ 0,1 ملجم/م3(I)؛ تأثير ماسخ","status":"pending_official_match"},
+    {"row":542,"name_ar":"ثاني فلوريد الأكسجين","name_en":"Oxygen difluoride","cas":"7783-41-7","source_line":5386,"raw_limit_and_note_text":"OF2؛ 54,00؛ 0,05 جزء/مليون؛ صداع، وذمة الرئة، تهيج بالمسالك التنفسية العليا","status":"pending_official_match"},
+    {"row":543,"name_ar":"أوزون","name_en":"Ozone","cas":"10028-15-6","source_line":5388,"raw_limit_and_note_text":"O3؛ 48,00؛ no numeric limit clearly shown in the extracted text; effect on lung function","status":"pending_official_match","anomaly":"No numeric limit is clearly visible in the secondary text segment; do not fill from general knowledge."}
+  ]
+}

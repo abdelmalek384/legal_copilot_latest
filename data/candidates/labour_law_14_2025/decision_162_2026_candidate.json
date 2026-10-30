@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "parent_document_id": "EG-LABOUR-LAW-14-2025",
+  "purpose": "Discovery-only record for a later implementing instrument; not a certified amendment and not imported automatically.",
+  "policy": {
+    "legal_status": "unknown_pending_primary_text_review",
+    "review_status": "discovery_only",
+    "source_permission": "unknown",
+    "do_not_assume_amendment": true,
+    "do_not_import_text_or_chunks": true,
+    "search_eligible": false
+  },
+  "instrument": {
+    "document_id": "EG-LABOUR-DECISION-162-2026",
+    "title_ar": "قرار وزارة العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+    "instrument_type": "ministerial_decision",
+    "official_source_url": "https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb",
+    "issuance_date": "2026-07-28",
+    "gazette_issue_and_pages": "Egyptian Proceedings supplementary issue 176, dated 2026-08-13; exact pages pending",
+    "effective_date": "2026-08-14",
+    "observed_effect": "Official archive metadata describes general rules for workplace rules-of-work regulations, including preparation and ratification, contracts, worker files, training, job classification, wages, hours, leave, discipline and termination.",
+    "candidate_relation_to_parent": "implements_or_related",
+    "formal_amendment_confirmed": false,
+    "source_text_review": "Official Gazette archive metadata confirms issue 176 dated 2026-08-13; official Ministry announcement dated 2026-09-05 says it is announcing the text. A secondary full transcription reports issuance 2026-07-28 and Article 66 commencement the day after publication (candidate 2026-08-14). Full primary PDF/page review and correction/currentness check remain pending.",
+    "permission": "unknown",
+    "legal_review": "pending",
+    "publication_date": "2026-08-13",
+    "official_ministry_announcement_url": "https://www.labour.gov.eg/ar/الأخبار/وزير-العمل-يعلن-نص-القواعد-العامة-للائحة-تنظيم-العمل-بالقطاع-الخاص/",
+    "secondary_full_text_transcription_url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html"
+  }
+}

@@ -1,0 +1,452 @@
+{
+  "schema_version": 1,
+  "record_type": "secondary_source_candidate_extraction",
+  "instrument": "Egyptian Minister of Labour Decision 250/2026",
+  "table": "24",
+  "table_title_ar": "الحدود العتبية للمواد الكيميائية الخطرة",
+  "jurisdiction": "Egypt",
+  "research_date": "2026-10-29",
+  "source": {
+    "class": "secondary_transcription",
+    "url": "https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html",
+    "publication_date": "2026-10-26",
+    "source_lines": "4484-4516",
+    "official_gazette_match": "not_performed",
+    "official_pdf_sha256": null,
+    "secondary_scan_image_source_url": "https://www.almasdar.com/175151",
+    "secondary_scan_image_pages": "249-295"
+  },
+  "status": "candidate_only_not_for_authoritative_retrieval",
+  "important_limits": [
+    "These rows are transcribed from a secondary text transcription, not checked against the Official Gazette file.",
+    "Numeric limits are retained as source text rather than normalized because units, column alignment, footnotes and symbols need page-image review.",
+    "Do not use this file to advise on workplace exposure compliance or to make safety decisions.",
+    "No currentness review, source-use approval or qualified Egyptian OSH counsel approval is recorded."
+  ],
+  "declared_row_range": {
+    "start": 1,
+    "end": 20
+  },
+  "rows": [
+    {
+      "row": 1,
+      "name_ar": "أسيتالدهيد",
+      "name_en": "Acetaldehyde",
+      "cas": "75-07-0",
+      "source_line": 4484,
+      "raw_limit_and_note_text": "25 جزء /مليون؛ م2؛ A2؛ تهيج العين والمسالك التنفسية العليا",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 249,
+      "secondary_scan_page_row_range": "1-5",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/941.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against Almasdar's watermarked reproduction of Gazette page 249, 250 or 251. No obvious mismatch found in the listed fields; ancillary notation/footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 2,
+      "name_ar": "أسيتاميد",
+      "name_en": "Acetamide",
+      "cas": "60-35-5",
+      "source_line": 4486,
+      "raw_limit_and_note_text": "1 جزء /مليون؛ IFV))؛ م3؛ A3؛ سرطان الكبد وتلفه",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 249,
+      "secondary_scan_page_row_range": "1-5",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/941.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against Almasdar's watermarked reproduction of Gazette page 249, 250 or 251. No obvious mismatch found in the listed fields; ancillary notation/footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 3,
+      "name_ar": "أسيتامبريد",
+      "name_en": "Acetamiprid",
+      "cas": "135410-20-7",
+      "source_line": 4488,
+      "raw_limit_and_note_text": "0,05 مجم /م3؛ IFV) )؛ م4؛ A4؛ تراكم الدهون في الكبد، خلل النمو العصبي والجهاز المناعي والجهاز العصبي المركزي؛ تلف الجهاز التناسلي الذكري؛ تأثير على الإنجاب",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 249,
+      "secondary_scan_page_row_range": "1-5",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/941.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against Almasdar's watermarked reproduction of Gazette page 249, 250 or 251. No obvious mismatch found in the listed fields; ancillary notation/footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 4,
+      "name_ar": "حمض الخليك",
+      "name_en": "Acetic acid",
+      "cas": "64-19-7",
+      "source_line": 4489,
+      "raw_limit_and_note_text": "10 جزء / مليون؛ 15 جزء /مليون؛ تهيج المسالك التنفسية العليا وتهيج العين؛ وظائف الرئة",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 249,
+      "secondary_scan_page_row_range": "1-5",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/941.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against Almasdar's watermarked reproduction of Gazette page 249, 250 or 251. No obvious mismatch found in the listed fields; ancillary notation/footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 5,
+      "name_ar": "أنهيدريد الخليك",
+      "name_en": "Acetic anhydride",
+      "cas": "108-24-7",
+      "source_line": 4491,
+      "raw_limit_and_note_text": "1 جزء /مليون؛ 3 جزء /مليون؛ م4؛ A4؛ تهيج العين والمسالك التنفسية العليا",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 249,
+      "secondary_scan_page_row_range": "1-5",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/941.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against Almasdar's watermarked reproduction of Gazette page 249, 250 or 251. No obvious mismatch found in the listed fields; ancillary notation/footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 6,
+      "name_ar": "أسيتون",
+      "name_en": "Acetone",
+      "cas": "67-64-1",
+      "source_line": 4493,
+      "raw_limit_and_note_text": "250 جزء /مليون؛ 500 جزء /مليون؛ A4 - BEI؛ م4؛ مؤشر التعرض الحيوي؛ تهيج المسالك التنفسية العليا وتهيج العين؛ خلل الجهاز العصبي المركزي",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 250,
+      "secondary_scan_page_row_range": "6-12",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/942.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against Almasdar's watermarked reproduction of Gazette page 249, 250 or 251. No obvious mismatch found in the listed fields; ancillary notation/footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 7,
+      "name_ar": "أسيتون سينوهيدرين مقدر كسيانيد",
+      "name_en": "Acetone cyanohydrin, as CN",
+      "cas": "75-86-5",
+      "source_line": 4494,
+      "raw_limit_and_note_text": "5 مجم / م3؛ Skin؛ جلد؛ تهيج المسالك التنفسية العليا - صداع - نقص الأكسجين - زرقة",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 250,
+      "secondary_scan_page_row_range": "6-12",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/942.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against Almasdar's watermarked reproduction of Gazette page 249, 250 or 251. No obvious mismatch found in the listed fields; ancillary notation/footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 8,
+      "name_ar": "أسيتونيتريل",
+      "name_en": "Acetonitrile",
+      "cas": "75-05-8",
+      "source_line": 4496,
+      "raw_limit_and_note_text": "20 جزء /مليون؛ Skin؛ A4؛ جلد؛ م4؛ تهيج المسالك التنفسية العليا",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 250,
+      "secondary_scan_page_row_range": "6-12",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/942.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against Almasdar's watermarked reproduction of Gazette page 249, 250 or 251. No obvious mismatch found in the listed fields; ancillary notation/footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 9,
+      "name_ar": "أسيتوفينون",
+      "name_en": "Acetophenone",
+      "cas": "98-86-2",
+      "source_line": 4498,
+      "raw_limit_and_note_text": "10 جزء /مليون؛ تهيج المسالك التنفسية العليا؛ خلل الجهاز العصبي المركزي، وفقدان الحمل",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 250,
+      "secondary_scan_page_row_range": "6-12",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/942.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against Almasdar's watermarked reproduction of Gazette page 249, 250 or 251. No obvious mismatch found in the listed fields; ancillary notation/footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 10,
+      "name_ar": "أسيتلين",
+      "name_en": "Acetylene",
+      "cas": "74-86-2",
+      "source_line": 4500,
+      "raw_limit_and_note_text": "غاز خانق بسيط؛ الاختناق",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 250,
+      "secondary_scan_page_row_range": "6-12",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/942.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against Almasdar's watermarked reproduction of Gazette page 249, 250 or 251. No obvious mismatch found in the listed fields; ancillary notation/footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 11,
+      "name_ar": "رباعي بروميد الأسيتلين",
+      "name_en": "Acetylene Tetrabromide",
+      "cas": "79-27-6",
+      "source_line": 4501,
+      "raw_limit_and_note_text": "1 جزء /مليون؛ 14 مجم / م3",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 250,
+      "secondary_scan_page_row_range": "6-12",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/942.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against Almasdar's watermarked reproduction of Gazette page 249, 250 or 251. No obvious mismatch found in the listed fields; ancillary notation/footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 12,
+      "name_ar": "أسيتيل سالسيليك أسيد (أسبرين)",
+      "name_en": "Acetylsalicylic acid (aspirin)",
+      "cas": "50-78-2",
+      "source_line": 4503,
+      "raw_limit_and_note_text": "0,3 مجم / م3؛ Skin; RSEN; OTO; A4؛ جلد، تحسس تنفسي، سمية سمعية، م4؛ نزيف - حساسية الجهاز التنفسي",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 250,
+      "secondary_scan_page_row_range": "6-12",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/942.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against Almasdar's watermarked reproduction of Gazette page 249, 250 or 251. No obvious mismatch found in the listed fields; ancillary notation/footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 13,
+      "name_ar": "أكرولين",
+      "name_en": "Acrolein",
+      "cas": "107-02-8",
+      "source_line": 4505,
+      "raw_limit_and_note_text": "0,1 جزء / مليون؛ Skin; A4؛ جلد، م4؛ تهيج العين وتراكم السوائل في الرئتين - انتفاخ الرئة",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 251,
+      "secondary_scan_page_row_range": "13-18",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/943.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against Almasdar's watermarked reproduction of Gazette page 249, 250 or 251. No obvious mismatch found in the listed fields; ancillary notation/footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 14,
+      "name_ar": "أكريلاميد",
+      "name_en": "Acrylamide",
+      "cas": "79-06-1",
+      "source_line": 4506,
+      "raw_limit_and_note_text": "0,03 مجم/م3؛ IFV) )؛ Skin; DSEN; A2; BEI؛ جلد، تحسس جلدي، م2، مؤشر التعرض الحيوي؛ يؤثر على الجهاز العصبي المركزي والطرفي - سرطان",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 251,
+      "secondary_scan_page_row_range": "13-18",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/943.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against Almasdar's watermarked reproduction of Gazette page 249, 250 or 251. No obvious mismatch found in the listed fields; ancillary notation/footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 15,
+      "name_ar": "حمض الأكريليك",
+      "name_en": "Acrylic acid",
+      "cas": "79-10-7",
+      "source_line": 4508,
+      "raw_limit_and_note_text": "2 جزء / مليون؛ Skin; A4؛ جلد، م4؛ تهيج المسالك التنفسية العليا",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 251,
+      "secondary_scan_page_row_range": "13-18",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/943.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against Almasdar's watermarked reproduction of Gazette page 249, 250 or 251. No obvious mismatch found in the listed fields; ancillary notation/footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 16,
+      "name_ar": "أكريلونيتريل",
+      "name_en": "Acrylonitrile",
+      "cas": "107-13-1",
+      "source_line": 4510,
+      "raw_limit_and_note_text": "2 جزء / مليون؛ Skin; A3؛ جلد، م3؛ تهيج المسالك التنفسية السفلية - تلف الجهاز العصبي المركزي",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 251,
+      "secondary_scan_page_row_range": "13-18",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/943.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against Almasdar's watermarked reproduction of Gazette page 249, 250 or 251. No obvious mismatch found in the listed fields; ancillary notation/footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 17,
+      "name_ar": "حمض الأديبك",
+      "name_en": "Adipic acid",
+      "cas": "124-04-9",
+      "source_line": 4511,
+      "raw_limit_and_note_text": "5 مجم / م3؛ العين - الجلد - الجهاز العصبي اللاإرادي - تهيج المسالك التنفسية العليا",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 251,
+      "secondary_scan_page_row_range": "13-18",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/943.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against Almasdar's watermarked reproduction of Gazette page 249, 250 or 251. No obvious mismatch found in the listed fields; ancillary notation/footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 18,
+      "name_ar": "أديبونيتريل",
+      "name_en": "Adiponitrile",
+      "cas": "111-69-3",
+      "source_line": 4513,
+      "raw_limit_and_note_text": "2 جزء / مليون؛ Skin؛ جلد؛ تهيج المسالك التنفسية العليا والسفلى",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 251,
+      "secondary_scan_page_row_range": "13-18",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/943.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against Almasdar's watermarked reproduction of Gazette page 249, 250 or 251. No obvious mismatch found in the listed fields; ancillary notation/footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 19,
+      "name_ar": "ألاكلور",
+      "name_en": "Alachlor",
+      "cas": "15972-60-8",
+      "source_line": 4515,
+      "raw_limit_and_note_text": "1 مجم / م3؛ IFV))؛ م3؛ A3؛ تحسس جلدي؛ تدمير خلايا الدم الحمراء (الكبد والطحال والكلى)",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 252,
+      "secondary_scan_page_row_range": "19-25",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/944.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against Almasdar's watermarked reproduction of Gazette page 252. No obvious mismatch found in the listed fields; ancillary notation/footnotes and the original Gazette remain unchecked."
+    },
+    {
+      "row": 20,
+      "name_ar": "ألديكارب",
+      "name_en": "Aldicarb",
+      "cas": "116-06-3",
+      "source_line": 4516,
+      "raw_limit_and_note_text": "0,005 مجم/م3؛ IFV) )؛ Skin; A4; BEIC؛ جلد، م4، مؤشر التعرض الحيوي: الكولينستيراز المثبط للمبيدات؛ مثبط لإنزيم الكولينيسترييز",
+      "status": "pending_official_match",
+      "secondary_scan_printed_page": 252,
+      "secondary_scan_page_row_range": "19-25",
+      "secondary_scan_image_url": "https://www.almasdar.com/WebP/libfiles/46/3/944.webp",
+      "secondary_scan_match_status": "secondary_image_spot_check_partial_fields",
+      "secondary_scan_fields_checked": [
+        "chemical_name",
+        "cas_identifier",
+        "primary_exposure_limit_token",
+        "unit"
+      ],
+      "secondary_scan_checked_on": "2026-10-30",
+      "secondary_scan_note": "Visually compared against Almasdar's watermarked reproduction of Gazette page 252. No obvious mismatch found in the listed fields; ancillary notation/footnotes and the original Gazette remain unchecked."
+    }
+  ]
+}

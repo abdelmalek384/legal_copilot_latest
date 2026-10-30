@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "record_type": "secondary_source_candidate_extraction",
+  "instrument": "Egyptian Minister of Labour Decision 250/2026",
+  "table": "24",
+  "table_title_ar": "الحدود العتبية للمواد الكيميائية الخطرة",
+  "research_date": "2026-10-29",
+  "source": {
+    "class": "secondary_transcription",
+    "url": "https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html",
+    "publication_date": "2026-10-26",
+    "source_lines": "5257-5287",
+    "official_gazette_match": "not_performed",
+    "official_pdf_sha256": null
+  },
+  "status": "candidate_only_not_for_authoritative_retrieval",
+  "important_limits": [
+    "Secondary transcription only; no official Gazette page-image comparison.",
+    "Raw limits, units and symbols are not normalized.",
+    "Isomer and grouped chemical entries require page-level association checks.",
+    "Not for workplace safety decisions or compliance advice."
+  ],
+  "declared_top_level_row_range": {"start": 464, "end": 483},
+  "rows": [
+    {"row":464,"name_ar":"ميثيل هكسان حلقي","name_en":"Methylcyclohexane","cas":"108-87-2","source_line":5257,"raw_limit_and_note_text":"C7H14؛ 98,19؛ 100 جزء/مليون؛ جزء؛ تلف بالكلية","status":"pending_official_match","anomaly":"Text extraction appears to interleave a stray unit token and health effect; preserve raw form."},
+    {"row":465,"name_ar":"ميثيل هكسانول حلقي","name_en":"Methylcyclohexanol","cas":"25639-42-3","source_line":5259,"raw_limit_and_note_text":"C7H14O؛ 114,19؛ 50 جزء/مليون؛ تهيج المسالك التنفسية العلوية والعين","status":"pending_official_match"},
+    {"row":466,"name_ar":"ميثيل هيكسانون حلقي وكل نظائره","name_en":"Methylcyclohexanone, all isomers","cas":"583-60-8; 589-92-4; 591-24-2; 1331-22-2","source_line":5260,"raw_limit_and_note_text":"C7H12O؛ 112,17؛ 20 جزء/مليون؛ آثار على الكبد، خلل الجهاز العصبي المركزي","status":"pending_official_match"},
+    {"row":467,"name_ar":"2-ميثيل خماسي دينايل حلقي ثلاثي كربونيل منجنيز كمنجنيز","name_en":"2-Methylcyclopentadienyl manganese tricarbonyl, as Mn","cas":"12108-13-3","source_line":5262,"raw_limit_and_note_text":"C9H7MnO3؛ 218,10؛ 0,2 مجم/م3؛ جلد Skin؛ خلل الجهاز العصبي المركزي - تلف الرئة والكبد والكلى","status":"pending_official_match"},
+    {"row":468,"name_ar":"ميثيل ديميتون","name_en":"Methyl demeton","cas":"8022-00-2","source_line":5263,"raw_limit_and_note_text":"C6H15O3PS2؛ 230,30؛ 0,05 مجم/م3 (IFV)؛ Skin; BEIC؛ جلد، مؤشر التعرض الحيوي للمبيدات المثبطة للكولينستيراز","status":"pending_official_match"},
+    {"row":469,"name_ar":"ميثيلين ثنائي فينيل إيزوسيانات","name_en":"Methylene bisphenyl isocyanate","cas":"101-68-8","source_line":5265,"raw_limit_and_note_text":"C15H10N2O2؛ 250,26؛ 0,005 جزء/مليون؛ تحسس تنفسي","status":"pending_official_match"},
+    {"row":470,"name_ar":"4,4-ميثيلين ثنائي (2-كلورو أنيلين)","name_en":"4,4'-Methylene bis(2-chloroaniline)","cas":"101-14-4","source_line":5266,"raw_limit_and_note_text":"C13H12Cl2N2؛ 267,17؛ 0,01 جزء/مليون (IFV)؛ Skin; A2; BEI؛ جلد، م2، مؤشر التعرض الحيوي؛ سرطان المثانة، ميتهيموجلوبينية الدم","status":"pending_official_match","risk_note":"High-risk carcinogenicity entry; no operational limit approved."},
+    {"row":471,"name_ar":"ميثيلين ثنائي (4-هكسيل حلقي إيزوسيانات)","name_en":"Methylene bis(4-cyclohexylisocyanate)","cas":"5124-30-1","source_line":5268,"raw_limit_and_note_text":"CH2[(C6H10)NCO]2؛ 262,35؛ 0,005 جزء/مليون؛ تحسس تنفسي، تهيج المسالك التنفسية السفلى","status":"pending_official_match"},
+    {"row":472,"name_ar":"4,4-ميثيلين ثنائي أنيلين","name_en":"4,4'-Methylenedianiline","cas":"101-77-9","source_line":5269,"raw_limit_and_note_text":"C13H14N2؛ 198,26؛ 0,1 جزء/مليون؛ Skin; A3؛ جلد، م3؛ تلف الكبد","status":"pending_official_match"},
+    {"row":473,"name_ar":"ميثيل إيثيل كيتون","name_en":"Methyl ethyl ketone","cas":"78-93-3","source_line":5271,"raw_limit_and_note_text":"CH3COCH2CH3؛ 72,11؛ 75 جزء/مليون؛ 150 جزء/مليون؛ Skin; BEI؛ جلد، مؤشر التعرض الحيوي؛ تلف الأجنة، تهيج المسالك البولية، صداع، دوار","status":"pending_official_match"},
+    {"row":474,"name_ar":"فوق أكسيد الميثيل إيثيل كيتون","name_en":"Methyl ethyl ketone peroxide","cas":"1338-23-4","source_line":5273,"raw_limit_and_note_text":"C8H18O6؛ 176,24؛ 0,2 جزء/مليون؛ تهيج العين والجلد، تلف الكبد والكلية","status":"pending_official_match"},
+    {"row":475,"name_ar":"ميثيل فورمات","name_en":"Methyl formate","cas":"107-31-3","source_line":5274,"raw_limit_and_note_text":"C2H4O2؛ 60,05؛ 50 جزء/مليون؛ 100 جزء/مليون؛ جلد Skin؛ تهيج المسالك التنفسية العليا وتلف العين","status":"pending_official_match"},
+    {"row":476,"name_ar":"ميثيل هيدرازين","name_en":"Methylhydrazine","cas":"60-34-4","source_line":5276,"raw_limit_and_note_text":"CH3NHNH2؛ 46,07؛ 0,01 جزء/مليون؛ Skin; A3؛ جلد، م3؛ تهيج المسالك التنفسية العليا والعين، سرطان الرئة، تلف الكبد","status":"pending_official_match","risk_note":"High-risk carcinogenicity entry; no operational limit approved."},
+    {"row":477,"name_ar":"يوديد الميثيل","name_en":"Methyl iodide","cas":"74-88-4","source_line":5278,"raw_limit_and_note_text":"CH3I؛ 141,95؛ 2 جزء/مليون؛ جلد Skin؛ تلف العين، خلل الجهاز العصبي المركزي","status":"pending_official_match","anomaly":"Opening parenthesis/date notation is malformed in source text; retained as a transcription issue."},
+    {"row":478,"name_ar":"ميثيل أيزو أميل كيتون","name_en":"Methyl isoamyl ketone","cas":"110-12-3","source_line":5279,"raw_limit_and_note_text":"C6H12O؛ 114,20؛ 20 جزء/مليون؛ 50 جزء/مليون؛ تلف الجهاز العصبي المركزي، تهيج المسالك التنفسية العليا","status":"pending_official_match","anomaly":"Formula and molecular-weight values appear potentially inconsistent; verify from official page."},
+    {"row":479,"name_ar":"ميثيل أيزوبيوتيل كربينول","name_en":"Methyl isobutyl carbinol","cas":"108-11-2","source_line":5281,"raw_limit_and_note_text":"C6H14O؛ 102,18؛ 20 جزء/مليون؛ 40 جزء/مليون؛ تهيج المسالك التنفسية العليا والعين، دوار، صداع","status":"pending_official_match"},
+    {"row":480,"name_ar":"ميثيل أيزوبيوتيل كيتون","name_en":"Methyl isobutyl ketone","cas":"108-10-1","source_line":5282,"raw_limit_and_note_text":"C6H12O؛ 100,16؛ 20 جزء/مليون؛ 75 جزء/مليون؛ A3; BEI؛ م3، مؤشر التعرض الحيوي؛ تهيج المسالك التنفسية العليا، دوار، صداع","status":"pending_official_match"},
+    {"row":481,"name_ar":"ميثيل أيزو سيانات","name_en":"Methyl isocyanate","cas":"624-83-9","source_line":5284,"raw_limit_and_note_text":"CH3NCO؛ 57,05؛ 0,02 جزء/مليون؛ 0,06 جزء/مليون؛ Skin; DSEN؛ جلد، تحسس جلدي؛ تهيج المسالك التنفسية العليا والعين","status":"pending_official_match"},
+    {"row":482,"name_ar":"ميثيل أيزو بروبيل كيتون","name_en":"Methyl isopropyl ketone","cas":"563-80-4","source_line":5286,"raw_limit_and_note_text":"C5H10O؛ 86,14؛ 20 جزء/مليون؛ تلف الأجنة وسمية حديثي الولادة","status":"pending_official_match"},
+    {"row":483,"name_ar":"مركبتان الميثيل","name_en":"Methyl mercaptan","cas":"74-93-1","source_line":5287,"raw_limit_and_note_text":"CH4S؛ 48,11؛ 0,5 جزء/مليون؛ تلف الكبد","status":"pending_official_match"}
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "record_type": "secondary_source_candidate_extraction",
+  "instrument": "Egyptian Minister of Labour Decision 250/2026",
+  "table": "24",
+  "table_title_ar": "الحدود العتبية للمواد الكيميائية الخطرة",
+  "research_date": "2026-10-29",
+  "source": {
+    "class": "secondary_transcription",
+    "url": "https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html",
+    "publication_date": "2026-10-26",
+    "source_lines": "5084-5116",
+    "official_gazette_match": "not_performed",
+    "official_pdf_sha256": null
+  },
+  "status": "candidate_only_not_for_authoritative_retrieval",
+  "important_limits": [
+    "Secondary transcription only; no official Gazette page-image comparison.",
+    "Raw limits and units are not normalized.",
+    "The hexane parent/child grouping is retained; no child limit should be inferred from the parent row.",
+    "Not for workplace safety decisions or compliance advice."
+  ],
+  "declared_top_level_row_range": {"start": 361, "end": 380},
+  "rows": [
+    {"row":361,"name_ar":"هيبتان، كل النظائر","name_en":"Heptane, isomers","cas":"108-08-7; 142-82-5; 565-59-3; 589-34-4; 590-35-2; 591-76-4","source_line":5084,"raw_limit_and_note_text":"C7H16؛ 100,20؛ 400 جزء/ مليون؛ 500 جزء/ مليون؛ -؛ -؛ خلل الجهاز العصبي المركزي؛ تهيج المسالك التنفسية العليا","status":"pending_official_match"},
+    {"row":362,"name_ar":"سداسي كلور البنزين","name_en":"Hexachlorobenzene","cas":"118-74-1","source_line":5085,"raw_limit_and_note_text":"C6Cl6؛ 284,78؛ 0,002 ملجم/م3؛ -؛ -؛ Skin; A3؛ جلد، م3؛ تأثير البروفيرن، تلف الجلد، خلل الجهاز العصبي المركزي","status":"pending_official_match"},
+    {"row":363,"name_ar":"سداسي كلور البيوتاداين","name_en":"Hexachlorobutadiene","cas":"87-68-3","source_line":5087,"raw_limit_and_note_text":"C4Cl6؛ 260,76؛ 0,02 جزء/ مليون؛ -؛ -؛ Skin; A3؛ جلد، م3؛ تلف الكلى","status":"pending_official_match"},
+    {"row":364,"name_ar":"سداسي كلور السيكلوبنتاداين","name_en":"Hexachlorocyclopentadiene","cas":"77-47-4","source_line":5089,"raw_limit_and_note_text":"C5Cl6؛ 272,75؛ 0,01 جزء/ مليون؛ -؛ -؛ A4؛ تهيج المسالك التنفسية العليا","status":"pending_official_match"},
+    {"row":365,"name_ar":"سداسي كلور الإيثان","name_en":"Hexachloroethane","cas":"67-72-1","source_line":5090,"raw_limit_and_note_text":"C2Cl6؛ 236,74؛ 1 جزء/ مليون؛ -؛ -؛ Skin; A3؛ تلف الكبد والكلى","status":"pending_official_match"},
+    {"row":366,"name_ar":"سداسي كلور النفثالين","name_en":"Hexachloronaphthalene","cas":"1335-87-1","source_line":5092,"raw_limit_and_note_text":"C10H2Cl6؛ 334,74؛ 0,2 ملجم/م3؛ -؛ -؛ Skin؛ تلف الكبد ومشاكل التلوث بالكلور","status":"pending_official_match"},
+    {"row":367,"name_ar":"سداسي فلورو الأسيتون","name_en":"Hexafluoroacetone","cas":"684-16-2","source_line":5094,"raw_limit_and_note_text":"C3F6O؛ 166,02؛ 0,1 جزء/ مليون؛ -؛ -؛ Skin؛ تلف الخصية، تلف الكلى","status":"pending_official_match"},
+    {"row":368,"name_ar":"سداسي فلورو بروبيلين","name_en":"Hexafluoropropylene","cas":"116-15-4","source_line":5096,"raw_limit_and_note_text":"C3F6؛ 150,02؛ 0,1 جزء/ مليون؛ تلف الكلى","status":"pending_official_match"},
+    {"row":369,"name_ar":"أنهيدريد سداسي هيدرو فثاليك، كل النظائر","name_en":"Hexahydrophthalic anhydride, all isomers","cas":"85-42-7; 13149-00-3; 14166-21-3","source_line":5097,"raw_limit_and_note_text":"C8H10O3؛ 154,17؛ 0,005 مجم/م3(IFV)؛ RSEN؛ تحسس تنفسي؛ حساسية","status":"pending_official_match"},
+    {"row":370,"name_ar":"ثنائي إيزوسيانات سداسي ميثيلين","name_en":"Hexamethylenediisocyanate","cas":"822-06-0","source_line":5099,"raw_limit_and_note_text":"C10H11CIN؛ 168,22؛ 0,005 جزء/ مليون؛ BEI؛ مؤشر التعرض الحيوي؛ تهيج المسالك التنفسية العليا وحساسية تنفسية","status":"pending_official_match","anomaly":"Formula token appears suspect in the secondary text; preserve until official-page comparison."},
+    {"row":371,"name_ar":"هكساميثيلين تيترامين","name_en":"Hexamethylenetetramine","cas":"100-97-0","source_line":5101,"raw_limit_and_note_text":"C6H12N4؛ 140,19؛ 1 مجم/م3(IFV)؛ DSEN; A4؛ تحسس جلدي، م4؛ حساسية جلدية","status":"pending_official_match"},
+    {"row":372,"name_ar":"سداسي ميثيل فوسفوراميد","name_en":"Hexamethylphosphoramide","cas":"680-31-9","source_line":5102,"raw_limit_and_note_text":"C6H18N3OP؛ 179,20؛ Skin; A3؛ جلد، م3؛ سرطان المسالك التنفسية العليا","status":"pending_official_match","risk_note":"High-risk carcinogenicity entry; no operational limit approved."},
+    {"row":373,"name_ar":"الهكسان (التجاري، أقل من 54% هكسان عادي) والنظائر المتفرعة للهكسان","name_en":"Hexane (commercial, less than 54% n-hexane) and branched hexane isomers","source_line":5104,"raw_limit_and_note_text":"Parent heading; the following three rows specify commercial hexane, branched isomers and n-hexane","status":"pending_official_match","children":[
+      {"row":374,"name_ar":"الهكسان التجاري أقل من 54% هكسان عادي","name_en":"Hexane (commercial, <54% n-hexane)","cas":"64742-49-0; 64742-89-8","source_line":5106,"raw_limit_and_note_text":"C6H14؛ 100 جزء/ مليون؛ Skin; A3؛ جلد، م3؛ اعتلال الأعصاب الطرفي","status":"pending_official_match"},
+      {"row":375,"name_ar":"نظائر الهكسان المتفرع","name_en":"Branched hexane isomers","cas":"75-83-2; 79-29-8; 107-83-5; 96-14-0","source_line":5107,"raw_limit_and_note_text":"C6H14؛ 86,18؛ 200 جزء/ مليون؛ A3؛ م3؛ تهيج المسالك التنفسية العليا - تلف الرئة","status":"pending_official_match"},
+      {"row":376,"name_ar":"هكسان عادي","name_en":"n-Hexane","cas":"110-54-3","source_line":5109,"raw_limit_and_note_text":"C6H14؛ 86,18؛ 50 جزء/ مليون؛ Skin; BEI؛ جلد، مؤشر التعرض الحيوي؛ خلل الجهاز العصبي المركزي - اعتلال الأعصاب الطرفي - تهيج العين","status":"pending_official_match"}
+    ]},
+    {"row":377,"name_ar":"1,6-هكسان ثنائي الأمين","name_en":"1,6-Hexanediamine","cas":"124-09-4","source_line":5111,"raw_limit_and_note_text":"C6H16N2؛ 116,21؛ 0,5 جزء/ مليون؛ تهيج المسالك التنفسية العليا والجلد","status":"pending_official_match"},
+    {"row":378,"name_ar":"الهكسازينون","name_en":"Hexazinone","cas":"51235-04-2","source_line":5112,"raw_limit_and_note_text":"C12H20N4O؛ 252,30؛ 3 مجم/م3(I)؛ A4؛ م4؛ تأثيرات دموية - تأثير كبد","status":"pending_official_match"},
+    {"row":379,"name_ar":"1-هكسين","name_en":"1-Hexene","cas":"592-41-6","source_line":5114,"raw_limit_and_note_text":"C6H12؛ 84,16؛ 50 جزء/ مليون؛ خلل الجهاز العصبي المركزي","status":"pending_official_match"},
+    {"row":380,"name_ar":"خلات الهكسيل الثانوي","name_en":"sec-Hexyl acetate","cas":"108-84-9","source_line":5116,"raw_limit_and_note_text":"C8H16O2؛ 144,21؛ 20 جزء/ مليون؛ 50 جزء/ مليون؛ خلل الجهاز العصبي المركزي؛ تهيج المسالك التنفسية العليا والعين","status":"pending_official_match"}
+  ]
+}

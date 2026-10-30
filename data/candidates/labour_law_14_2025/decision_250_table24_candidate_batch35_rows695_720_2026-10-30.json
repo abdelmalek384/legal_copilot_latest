@@ -1,0 +1,265 @@
+{
+  "schema_version": 1,
+  "record_type": "secondary_source_candidate_extraction",
+  "instrument": "Egyptian Minister of Labour Decision 250/2026",
+  "table": "24",
+  "table_title_ar": "الحدود العتبية للمواد الكيميائية الخطرة",
+  "research_date": "2026-10-30",
+  "source": {
+    "class": "secondary_transcription",
+    "url": "https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html",
+    "publication_date": "2026-10-26",
+    "source_lines": "5646-5686",
+    "official_gazette_match": "not_performed",
+    "official_pdf_sha256": null
+  },
+  "status": "candidate_only_not_for_authoritative_retrieval",
+  "important_limits": [
+    "Secondary transcription only; no official Gazette page-image comparison.",
+    "Raw limits, units, formulae and symbols are preserved as discovery text and are not normalized or interpreted.",
+    "Some numbered entries are group headings whose following numbered rows specify subcategories; hierarchy is not inferred beyond source labels.",
+    "Source text contains apparent OCR/text-layer anomalies and unusual tokens; preserve and quarantine for primary-source comparison.",
+    "Not for workplace safety decisions or compliance advice."
+  ],
+  "declared_top_level_row_range": {
+    "start": 695,
+    "end": 720
+  },
+  "rows": [
+    {
+      "row": 695,
+      "name_ar": "رباعي كلورو الإيثان 1,1,2,2",
+      "name_en": "1,1,2,2-Tetrachloroethane",
+      "cas": "79-34-5",
+      "source_line": 5646,
+      "raw_limit_and_note_text": "C2H2Cl4 167,86 1جزء/ مليون _ _ Skin;A3 الجلد,م3 تلف بالكبد",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 696,
+      "name_ar": "رباعي كلورو الإيثيلين",
+      "name_en": "Tetrachloroethylene",
+      "cas": "127-18-4",
+      "source_line": 5647,
+      "raw_limit_and_note_text": "C2Cl4 165,80 25جزء/ مليون 100جزء/ مليون _ A3;BEI م3، مؤشر التعرض الحيوي ضعف بالجهاز العصبي المركزي",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 697,
+      "name_ar": "رباعي كلورو النافثالين",
+      "name_en": "Tetrachloronaphthalene",
+      "cas": "1335-88-2",
+      "source_line": 5649,
+      "raw_limit_and_note_text": "C10H4Cl4 265,96 2مجم/م3 _ _ تلف بالكبد",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 698,
+      "name_ar": "رباعي كلورفينفوس",
+      "name_en": "Tetrachlorvinphos",
+      "cas": "22248-79-9; 22350-76-1; 961-11-5",
+      "source_line": 5650,
+      "raw_limit_and_note_text": "C10H9Cl4O4P 365,961 0,5مجم /م3(I) _ _ Skin الجلد، م3 A3,DSEN تحسس الجلد مؤشر التعرض الحيوى للمبيدات المثبطة لإنزيم الكولينستيريز BEIc تأثر الكلى والكبد، مثبط لإنزيم الكولينستيريز، تأثر الغدة الدرقية",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 699,
+      "name_ar": "رباعي إيثيل الرصاص كرصاص",
+      "name_en": "Tetraethyl lead, as Pb",
+      "cas": "78-00-2",
+      "source_line": 5652,
+      "raw_limit_and_note_text": "(C2H5)4Pb 323,45 0,1 مجم/م3 _ _ Skin;A4 الجلد,م4 ضعف بالجهاز العصبي المركزي",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 700,
+      "name_ar": "رباعي الإيثيل بيروفوسفات",
+      "name_en": "Tetraethyl pyrophosphate",
+      "cas": "107-49-3",
+      "source_line": 5653,
+      "raw_limit_and_note_text": "C8H20O7P2. 290,20 0,01مجم /م3(IFV) _ _ Skin ; BEIC جلد,,مؤشر التعرض الحيوي للمبيدات المثبطة للكولينستيراز مثبط لإنزيم الكولينستيريز",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 701,
+      "name_ar": "رباعي فلورو الإيثيلين",
+      "name_en": "Tetrafluoroethylene",
+      "cas": "116-14-3",
+      "source_line": 5655,
+      "raw_limit_and_note_text": "C2F4 100,20 2جزء/ مليون م3 A3 تلف الكلى والكبد، سرطان الكبد والكلى",
+      "status": "pending_official_match",
+      "anomaly": "The secondary text line places `2 parts per million` adjacent to `m3 A3` without reliable column separation in the text layer. Preserve raw string and verify column/value association from the official page image."
+    },
+    {
+      "row": 702,
+      "name_ar": "رباعي هيدروفيوران",
+      "name_en": "Tetrahydrofuran",
+      "cas": "109-99-9",
+      "source_line": 5656,
+      "raw_limit_and_note_text": "C4H8O 72,10 50جزء/ مليون 100جزء/ مليون Skin;A3; BEI الجلد,م3, مؤشر التعرض الحيوي تهيج بالمسالك التنفسية العليا، خلل بالجهاز العصبي المركزي، تلف بالكلى",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 703,
+      "name_ar": "أملاح رباعي هيدروكسي ميثيل الفوسفونيوم",
+      "name_en": "Tetrakis (hydroxymethyl) phosphonium salts",
+      "cas": "",
+      "source_line": 5658,
+      "raw_limit_and_note_text": "2014; تلف الكبد (group heading; following numbered entries identify salts)",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 704,
+      "name_ar": "كلوريد رباعي هيدروكسي ميثيل الفوسفونيوم",
+      "name_en": "Tetrakis (hydroxymethyl) phosphonium chloride",
+      "cas": "124-64-1",
+      "source_line": 5660,
+      "raw_limit_and_note_text": "[P(CH2OH)4]Cl 190,56 2 مجم/م3 _ _ DSEN;A4 تحسس جلدي, م4",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 705,
+      "name_ar": "كبريتات رباعي هيدروكسي ميثيل الفوسفونيوم",
+      "name_en": "Tetrakis (hydroxymethyl) phosphonium sulfate",
+      "cas": "55566-30-8",
+      "source_line": 5661,
+      "raw_limit_and_note_text": "C8H24O12P2S 406,26 2 مجم/م3 - - DSEN;A4 تحسس جلدي, م4",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 706,
+      "name_ar": "رباعي ميثيل الرصاص كرصاص",
+      "name_en": "Tetramethyl lead, as Pb",
+      "cas": "75-74-1",
+      "source_line": 5663,
+      "raw_limit_and_note_text": "Pb(CH3)4 267,33 0,15 مجم/م3 _ _ الجلد Skin خلل بالجهاز العصبي المركزي",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 707,
+      "name_ar": "رباعي ميثيل سكسينونيتريل",
+      "name_en": "Tetramethyl succinonitrile",
+      "cas": "3333-52-6",
+      "source_line": 5665,
+      "raw_limit_and_note_text": "C8H12N2 136,20 0,5مجم /م3(IFV) الجلد Skin انخفاض سكر الدم، تشنج عضلي",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 708,
+      "name_ar": "رباعي نيترو ميثان",
+      "name_en": "Tetranitromethane",
+      "cas": "509-14-8",
+      "source_line": 5666,
+      "raw_limit_and_note_text": "CN4O8 196,04 0,005جزء/ مليون م3 A3 تهيج بالعين والمسالك التنفسية العليا وسرطان المسالك التنفسية العليا",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 709,
+      "name_ar": "تترايل",
+      "name_en": "Tetryl",
+      "cas": "479-45-8",
+      "source_line": 5668,
+      "raw_limit_and_note_text": "C7H5N5O8 287,15 1,5 مجم/م3 _ _ _ تهيج المسالك التنفسية العليا",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 710,
+      "name_ar": "ثاليوم والمركبات كثاليوم",
+      "name_en": "Thallium and compounds, as Tl",
+      "cas": "7440-28-0",
+      "source_line": 5670,
+      "raw_limit_and_note_text": "Tl 204,37 متغير 0,02 مجم/م3(I) _ _ الجلد Skin تلف الجهاز الهضمي، الاعتلال العصبي الطرفي",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 711,
+      "name_ar": "ثياكلوبريد",
+      "name_en": "Thiacloprid",
+      "cas": "111988-49-9",
+      "source_line": 5671,
+      "raw_limit_and_note_text": "C10H9ClN4S 252,72 0,2 مجم/م3(I) _ _ Skin,A3 الجلد, م3 تلف الكبد، تأثر الغدة الدرقية والجهاز العصبي المركزي، سرطان",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 712,
+      "name_ar": "4,4 ثيوبيس(6- رباعي بيوتيل ميتا كريسول)",
+      "name_en": "4,4’-Thiobis(6-tert-butyl-m-cresol)",
+      "cas": "96-69-5",
+      "source_line": 5673,
+      "raw_limit_and_note_text": "C22H30O2S. 358,52 1 مجم/م3(I) _ _ A4 م4 تهيج المسالك التنفسية العليا",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 713,
+      "name_ar": "ثايودايكارب",
+      "name_en": "Thiodicarb",
+      "cas": "59669-26-0",
+      "source_line": 5675,
+      "raw_limit_and_note_text": "C10H18N4O4S3 354,50 0,1 مجم/م3(IFV) _ _ DSEN; A3 م3,تحسس جلدي مثبط لإنزيم اسيتيل كولينيستيريز",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 714,
+      "name_ar": "حمض ثيوجليكوليك والأملاح",
+      "name_en": "Thioglycolic acid and salts",
+      "cas": "68-11-1",
+      "source_line": 5676,
+      "raw_limit_and_note_text": "C2H4O2S 92,12 1جزء/ مليون _ _ Skin; DSEN الجلد,,تحسس جلدي تهيج العين والمسالك التنفسية",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 715,
+      "name_ar": "كلوريد الثايونيل",
+      "name_en": "Thionyl chloride",
+      "cas": "7719-09-7",
+      "source_line": 5678,
+      "raw_limit_and_note_text": "SOCl2 118,98 _ _ 0,2جزء/ مليون _ تهيج المسالك التنفسية العليا",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 716,
+      "name_ar": "ثيرام",
+      "name_en": "Thiram",
+      "cas": "137-26-8",
+      "source_line": 5680,
+      "raw_limit_and_note_text": "C6H12N2S4 240,44 0,05 مجم/م3(IFV) _ _ DSEN;A4 م4, تحسس جلدي تأثر وزن الجسم وأمراض الدم",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 717,
+      "name_ar": "القصدير والمركبات غير العضوية باستثناء هيدريد القصدير وأكسيد القصدير الإنديوم، كقصدير",
+      "name_en": "Tin and inorganic compounds excluding tin hydride and indium tin oxide, as Sn",
+      "cas": "7440-31-5; 18282-10-5; 21651-19-4",
+      "source_line": 5681,
+      "raw_limit_and_note_text": "Sn 118.69 متغير 2مجم/م3(I) _ _ _ التهاب الرئة الغباري",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 718,
+      "name_ar": "القصدير، مركبات عضوية، كقصدير",
+      "name_en": "Tin organic compounds, as Sn",
+      "cas": "7440-31-5",
+      "source_line": 5683,
+      "raw_limit_and_note_text": "Sn متغير 0,1مجم/م3 0,2مجم/م3 _ Skin,A4 الجلد , م4 تهيج العين والمسالك التنفسية العليا، صداع، غثيان، تأثر الجهاز العصبي المركزي والمناعة",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 719,
+      "name_ar": "ثاني أكسيد التيتانيوم",
+      "name_en": "Titanium dioxide",
+      "cas": "13463-67-7",
+      "source_line": 5684,
+      "raw_limit_and_note_text": "TiO2 (heading; following numbered subentries specify particle size)",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 720,
+      "name_ar": "جزيئات بمقياس النانو",
+      "name_en": "Nanoscale particles",
+      "cas": "",
+      "source_line": 5686,
+      "raw_limit_and_note_text": "79.90 0,2مجم/م3(R) _ _ م3 A3 تهيج المسالك التنفسية السفلى، التهاب الرئة الغباري",
+      "status": "pending_official_match"
+    }
+  ]
+}

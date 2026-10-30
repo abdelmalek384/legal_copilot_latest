@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "record_type": "secondary_source_candidate_extraction",
+  "instrument": "Egyptian Minister of Labour Decision 250/2026",
+  "table": "24",
+  "table_title_ar": "الحدود العتبية للمواد الكيميائية الخطرة",
+  "research_date": "2026-10-29",
+  "source": {
+    "class": "secondary_transcription",
+    "url": "https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html",
+    "publication_date": "2026-10-26",
+    "source_lines": "5190-5222",
+    "official_gazette_match": "not_performed",
+    "official_pdf_sha256": null
+  },
+  "status": "candidate_only_not_for_authoritative_retrieval",
+  "important_limits": [
+    "Secondary transcription only; no official Gazette page-image comparison.",
+    "Raw limits, units, dashes and missing values are not normalized.",
+    "Mercury category rows are preserved as parent/child records; do not combine their limits.",
+    "Not for workplace safety decisions or compliance advice."
+  ],
+  "declared_top_level_row_range": {"start": 424, "end": 443},
+  "rows": [
+    {"row":424,"name_ar":"المركبات غير العضوية مقدرة كرصاص","name_en":"Inorganic compounds, as Pb","source_line":5190,"raw_limit_and_note_text":"متغير؛ group-level entry","status":"pending_official_match","anomaly":"No CAS is shown for this group-level row; null is intentional."},
+    {"row":425,"name_ar":"كرومات الرصاص الثنائي مقدر Cr(VI)","name_en":"Lead chromate, as Cr(VI)","cas":"7758-97-6","source_line":5192,"raw_limit_and_note_text":"PbCrO4؛ 323,22؛ 0,0002 مجم/م3(I)؛ 0,0005 مجم/م3(I)؛ DSEN; RSEN; A1; BEI؛ تحسس جلدي وتنفس، م1، مؤشر التعرض الحيوي؛ سرطان الرئة والجيوب الأنفية - تهيج المسالك التنفسية - الربو","status":"pending_official_match","risk_note":"High-risk carcinogenicity entry; no operational limit approved."},
+    {"row":426,"name_ar":"ليندان","name_en":"Lindane","cas":"58-89-9","source_line":5193,"raw_limit_and_note_text":"C6H6Cl6؛ 290,85؛ 0,5 مجم/م3؛ Skin; A3؛ جلد، م3؛ تلف الكبد وخلل الجهاز العصبي المركزي","status":"pending_official_match"},
+    {"row":427,"name_ar":"هيدرايد الليثيوم","name_en":"Lithium hydride","cas":"7580-67-8","source_line":5195,"raw_limit_and_note_text":"LiH؛ 7,95؛ 0,05 مجم/م3(I)؛ تهيج العين والمسالك التنفسية","status":"pending_official_match"},
+    {"row":428,"name_ar":"غاز البترول المسال","name_en":"L.P.G. (Liquefied petroleum gas)","cas":"68476-85-7","source_line":5197,"raw_limit_and_note_text":"Propane, butane, isobutane, propylene, butylenes and mixtures; simple asphyxiant; asphyxiation","status":"pending_official_match"},
+    {"row":429,"name_ar":"أكسيد الماغنيسيوم","name_en":"Magnesium oxide","cas":"1309-48-4","source_line":5199,"raw_limit_and_note_text":"MgO؛ 40,32؛ 10 مجم/م3(I)؛ م4؛ A4؛ تهيج المسالك التنفسية العليا - حمى دخان المعادن","status":"pending_official_match"},
+    {"row":430,"name_ar":"مالاثيون","name_en":"Malathion","cas":"121-75-5","source_line":5200,"raw_limit_and_note_text":"C10H19O6PS2؛ 330,36؛ 1 مجم/م3(IFV)؛ Skin; A4; BEIC؛ جلد، م4، مؤشر التعرض الحيوي للمبيدات المثبطة للكولينستيراز","status":"pending_official_match"},
+    {"row":431,"name_ar":"أنهيدريد الماليك","name_en":"Maleic anhydride","cas":"108-31-6","source_line":5202,"raw_limit_and_note_text":"C4H2O3؛ 98,06؛ 0,01 مجم/م3(IFV)؛ DSEN; RSEN; A4؛ تحسس جلدي وتنفس، م4؛ حساسية الجهاز التنفسي","status":"pending_official_match"},
+    {"row":432,"name_ar":"عنصر المنجنيز","name_en":"Manganese, elemental","cas":"7439-96-5","source_line":5204,"raw_limit_and_note_text":"Mn؛ 54,94؛ 0,02 مجم/م3(R)؛ م4؛ A4؛ خلل الجهاز العصبي المركزي","status":"pending_official_match"},
+    {"row":433,"name_ar":"مركبات منجنيز غير عضوية مقدرة Mn","name_en":"Inorganic manganese compounds, as Mn","source_line":5205,"raw_limit_and_note_text":"متغير؛ 0,1 مجم/م3(I)","status":"pending_official_match","anomaly":"No CAS is displayed for this group-level entry; null is intentional."},
+    {"row":434,"name_ar":"ميثيل حلقي بنتاديينيل ثلاثي كربونيل المنجنيز","name_en":"Manganese cyclopentadienyltricarbonyl","cas":"12079-65-1","source_line":5207,"raw_limit_and_note_text":"C9H7MnO3؛ 204,10؛ 0,1 مجم/م3؛ جلد Skin؛ تهيج الجلد - خلل الجهاز العصبي المركزي","status":"pending_official_match"},
+    {"row":435,"name_ar":"الزئبق ومركبات الألكيل مقدرة Hg","name_en":"Mercury, alkyl compounds, as Hg","cas":"7439-97-6","source_line":5209,"raw_limit_and_note_text":"Hg and alkyl compounds؛ متغير؛ 0,01 مجم/م3؛ 0,03 مجم/م3؛ جلد Skin؛ خلل الجهاز العصبي المركزي والطرفي - تلف الكلى","status":"pending_official_match"},
+    {"row":436,"name_ar":"الزئبق وكل الأنواع ما عدا الألكيل مقدرة Hg","name_en":"Mercury, all forms except alkyl, as Hg","cas":"7439-97-6","source_line":5210,"raw_limit_and_note_text":"Hg؛ 200,59؛ parent row with subcategories below","status":"pending_official_match","children":[
+      {"row":437,"name_ar":"مركبات الأريل","name_en":"Aryl compounds","source_line":5212,"raw_limit_and_note_text":"متغير؛ 0,1 مجم/م3؛ جلد Skin؛ خلل الجهاز العصبي المركزي - تلف الكلى","status":"pending_official_match"},
+      {"row":438,"name_ar":"عنصر الزئبق والأنواع غير العضوية","name_en":"Elemental and inorganic forms","source_line":5214,"raw_limit_and_note_text":"متغير؛ 0,025 مجم/م3؛ Skin; A4; BEI؛ جلد، م4، مؤشر التعرض الحيوي؛ خلل الجهاز العصبي المركزي - تلف الكلى","status":"pending_official_match"}
+    ]},
+    {"row":439,"name_ar":"أكسيد الميسيتيل","name_en":"Mesityl oxide","cas":"141-79-7","source_line":5215,"raw_limit_and_note_text":"C6H10O؛ 98,14؛ 15 جزء/مليون؛ 25 جزء/مليون؛ تهيج العين والمسالك التنفسية العليا - خلل الجهاز العصبي المركزي","status":"pending_official_match"},
+    {"row":440,"name_ar":"حمض الميثاكريليك","name_en":"Methacrylic acid","cas":"79-41-4","source_line":5217,"raw_limit_and_note_text":"C4H6O2؛ 86,09؛ 20 جزء/مليون؛ تهيج العين والجلد","status":"pending_official_match"},
+    {"row":441,"name_ar":"ميثان","name_en":"Methane","cas":"74-82-8","source_line":5219,"raw_limit_and_note_text":"CH4؛ 16,04؛ غاز خانق بسيط؛ اختناق","status":"pending_official_match"},
+    {"row":442,"name_ar":"كحول ميثيلي","name_en":"Methanol","cas":"67-56-1","source_line":5221,"raw_limit_and_note_text":"CH4O؛ 32,04؛ 200 جزء/مليون؛ 250 جزء/مليون؛ Skin; BEIC؛ جلد، مؤشر التعرض الحيوي للمبيدات المثبطة للكولينستيراز؛ صداع - تلف العين - دوخة - غثيان","status":"pending_official_match","anomaly":"BEIC label appears suspicious for methanol in the text extraction; preserve and verify rather than silently alter."},
+    {"row":443,"name_ar":"ميثومايل","name_en":"Methomyl","cas":"16752-77-5","source_line":5222,"raw_limit_and_note_text":"C5H10N2O2S؛ 162,20؛ 0,2 مجم/م3(IFV)؛ Skin; A4; BEIC؛ جلد، م4، مؤشر التعرض الحيوي للمبيدات المثبطة للكولينستيراز؛ مثبط للكولينستيراز - تلف الجهاز التناسلي للذكر - تأثيرات على الدم","status":"pending_official_match"}
+  ]
+}

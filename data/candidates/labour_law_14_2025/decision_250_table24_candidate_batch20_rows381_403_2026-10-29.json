@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "record_type": "secondary_source_candidate_extraction",
+  "instrument": "Egyptian Minister of Labour Decision 250/2026",
+  "table": "24",
+  "table_title_ar": "الحدود العتبية للمواد الكيميائية الخطرة",
+  "research_date": "2026-10-29",
+  "source": {
+    "class": "secondary_transcription",
+    "url": "https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html",
+    "publication_date": "2026-10-26",
+    "source_lines": "5117-5155",
+    "official_gazette_match": "not_performed",
+    "official_pdf_sha256": null
+  },
+  "status": "candidate_only_not_for_authoritative_retrieval",
+  "important_limits": [
+    "Secondary transcription only; no official Gazette page-image comparison.",
+    "Raw limits, units, symbols and missing values are not normalized.",
+    "Group rows and their subentries are preserved; do not infer limits across children.",
+    "Not for workplace safety decisions or compliance advice."
+  ],
+  "declared_top_level_row_range": {"start": 381, "end": 400},
+  "rows": [
+    {"row":381,"name_ar":"هكسيلين جليكول","name_en":"Hexylene glycol","cas":"107-41-5","source_line":5117,"raw_limit_and_note_text":"C6H14O2؛ 118,18؛ 25 جزء/مليون(V)؛ 50 جزء/مليون(V)؛ 3 مجم/م3(I,H)؛ تهيج المسالك التنفسية العليا والعين","status":"pending_official_match","anomaly":"Multiple limit values/units are interleaved; confirm column alignment against official page."},
+    {"row":382,"name_ar":"هيدرازين","name_en":"Hydrazine","cas":"302-01-2","source_line":5119,"raw_limit_and_note_text":"N2H4؛ 32,05؛ 0,01 جزء/مليون؛ Skin; A3؛ جلد، م3؛ سرطان المسالك التنفسية العليا","status":"pending_official_match","risk_note":"High-risk carcinogenicity entry; no operational limit approved."},
+    {"row":383,"name_ar":"هيدروجين","name_en":"Hydrogen","cas":"1333-74-0","source_line":5121,"raw_limit_and_note_text":"H2؛ 1,01؛ غاز خانق بسيط؛ اختناق","status":"pending_official_match"},
+    {"row":384,"name_ar":"تيرفينيلات مهدرجة (غير مشعة)","name_en":"Hydrogenated terphenyls (nonirradiated)","cas":"61788-32-7","source_line":5123,"raw_limit_and_note_text":"C18H22؛ 241,00؛ 0,5 جزء/مليون","status":"pending_official_match"},
+    {"row":385,"name_ar":"بروميد الهيدروجين","name_en":"Hydrogen bromide","cas":"10035-10-6","source_line":5124,"raw_limit_and_note_text":"HBr؛ 80,92؛ 2 جزء/مليون","status":"pending_official_match"},
+    {"row":386,"name_ar":"كلوريد الهيدروجين","name_en":"Hydrogen chloride","cas":"7647-01-0","source_line":5126,"raw_limit_and_note_text":"HCl؛ 36,47؛ 2 جزء/مليون؛ A4؛ م4","status":"pending_official_match"},
+    {"row":387,"name_ar":"سيانيد الهيدروجين وأملاح السيانيد مقدرة CN","name_en":"Hydrogen cyanide and cyanide salts, as CN","source_line":5128,"raw_limit_and_note_text":"Group heading; child entries distinguish hydrogen cyanide and cyanide salts","status":"pending_official_match","children":[
+      {"row":388,"name_ar":"سيانيد الهيدروجين","name_en":"Hydrogen cyanide","cas":"74-90-8","source_line":5130,"raw_limit_and_note_text":"27,03؛ 4,7 جزء/مليون؛ Skin؛ جلد","status":"pending_official_match"},
+      {"row":389,"name_ar":"أملاح السيانيد","name_en":"Cyanide salts","cas":"143-33-9; 151-50-8; 592-01-8","source_line":5131,"raw_limit_and_note_text":"متغير؛ 5 مجم/م3؛ Skin؛ جلد","status":"pending_official_match"}
+    ]},
+    {"row":390,"name_ar":"فلوريد الهيدروجين مقدر F","name_en":"Hydrogen fluoride, as F","cas":"7664-39-3","source_line":5133,"raw_limit_and_note_text":"HF؛ 20,01؛ 0,5 جزء/مليون؛ 2 جزء/مليون؛ Skin; BEI؛ جلد، مؤشر التعرض الحيوي؛ تهيج المسالك التنفسية العليا والسفلى والجلد والعين - تسمم بالفلور","status":"pending_official_match"},
+    {"row":391,"name_ar":"فوق أكسيد الهيدروجين","name_en":"Hydrogen peroxide","cas":"7722-84-1","source_line":5135,"raw_limit_and_note_text":"H2O2؛ 34,02؛ 1 جزء/مليون؛ A3؛ م3؛ تهيج المسالك التنفسية العليا والسفلى والجلد والعين","status":"pending_official_match"},
+    {"row":392,"name_ar":"سيلينيد الهيدروجين مقدر Se","name_en":"Hydrogen selenide, as Se","cas":"7783-07-5","source_line":5136,"raw_limit_and_note_text":"HSe؛ 80,98؛ 0,05 جزء/مليون؛ تهيج المسالك التنفسية العليا والعين - غثيان","status":"pending_official_match","anomaly":"Formula is transcribed as HSe in the text layer; verify against official page before any correction."},
+    {"row":393,"name_ar":"كبريتيد الهيدروجين","name_en":"Hydrogen sulfide","cas":"7783-06-4","source_line":5138,"raw_limit_and_note_text":"H2S؛ 34,08؛ 1 جزء/مليون؛ 5 جزء/مليون؛ تهيج المسالك التنفسية العليا - خلل الجهاز العصبي المركزي","status":"pending_official_match"},
+    {"row":394,"name_ar":"هيدروكينون","name_en":"Hydroquinone","cas":"123-31-9","source_line":5140,"raw_limit_and_note_text":"C6H6O2؛ 110,11؛ 1 مجم/م3؛ DSEN; A3؛ تحسس جلدي، م3؛ تهيج العين - تلف العين","status":"pending_official_match"},
+    {"row":395,"name_ar":"2-هيدروكسي بروبيل أكريلات","name_en":"2-Hydroxypropyl acrylate","cas":"999-61-1","source_line":5141,"raw_limit_and_note_text":"C6H10O3؛ 130,14؛ 0,5 جزء/مليون؛ Skin; DSEN؛ جلد، تحسس جلدي؛ تهيج العين والمسالك التنفسية العليا","status":"pending_official_match"},
+    {"row":396,"name_ar":"إيمازوسلفورون","name_en":"Imazosulfuron","cas":"122548-33-8","source_line":5143,"raw_limit_and_note_text":"C14H13N6O5S؛ 412,80؛ 10 مجم/م3(I)؛ A4؛ م4؛ تضخم الغدة الدرقية والكبد","status":"pending_official_match"},
+    {"row":397,"name_ar":"إندين","name_en":"Indene","cas":"95-13-6","source_line":5145,"raw_limit_and_note_text":"C9H8؛ 116,15؛ 5 جزء/مليون؛ تلف الرئة","status":"pending_official_match"},
+    {"row":398,"name_ar":"إنديوم ومركباته مقدرة إنديوم","name_en":"Indium and compounds, as In","cas":"7440-74-6","source_line":5146,"raw_limit_and_note_text":"In؛ 114,82؛ 0,1 مجم/م3؛ BEI؛ مؤشر التعرض الحيوي؛ تراكم السوائل في الرئتين، التهاب رئوي، تآكل الأسنان، توعك","status":"pending_official_match"},
+    {"row":399,"name_ar":"أكسيد القصدير الإنديوم مقدر كإنديوم","name_en":"Indium tin oxide, as In","cas":"50926-11-9","source_line":5148,"raw_limit_and_note_text":"متغير؛ متغير؛ 0,0001 مجم/م3(R)؛ DSEN; A3; BEI؛ تحسس جلدي، م3، مؤشر التعرض الحيوي؛ وظائف رئة - تليف رئوي","status":"pending_official_match"},
+    {"row":400,"name_ar":"اليود واليوديدات","name_en":"Iodine and iodides","source_line":5150,"raw_limit_and_note_text":"Group heading; child entries are iodine, iodides, and iodoform as elemental iodine","status":"pending_official_match","children":[
+      {"row":401,"name_ar":"يود","name_en":"Iodine, as I","cas":"7553-56-2","source_line":5151,"raw_limit_and_note_text":"I2؛ 253,80؛ 0,001 جزء/مليون(IFV)؛ Skin; A4؛ جلد، م4","status":"pending_official_match"},
+      {"row":402,"name_ar":"يوديد","name_en":"Iodides, as I","source_line":5153,"raw_limit_and_note_text":"I-1؛ 0,01 مجم/م3(I)؛ Skin; A4؛ جلد، م4","status":"pending_official_match","anomaly":"The formula/ion notation and missing CAS require official-page review."},
+      {"row":403,"name_ar":"يودوفورم كعنصر يود","name_en":"Iodoform, as elemental iodine","cas":"75-47-8","source_line":5155,"raw_limit_and_note_text":"I2؛ 393,73؛ 0,001 جزء/مليون(IFV)؛ Skin; A4؛ جلد، م4؛ تأثر الغدة الدرقية - تلف حديثي الولادة والأجنة","status":"pending_official_match","anomaly":"Formula/molecular-weight fields may be misaligned in extracted text; verify from official page."}
+    ]}
+  ]
+}

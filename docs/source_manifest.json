@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "manifest_title": "Legal Copilot — Egyptian legal source registry",
-  "prepared_on": "2026-10-23",
+  "prepared_on": "2026-10-30",
   "purpose": "Track candidate sources and the legal, technical, and licensing checks required before collection or reuse.",
   "policy": {
     "do_not_infer_license": true,
@@ -20,7 +20,7 @@
   "sources": [
     {
       "id": "EG-OFFICIAL-GAZETTE",
-      "name": "Amiri Press / Official Gazette and Egyptian Proceedings",
+      "name": "General Authority for Amiri Press — Official Gazette and Egyptian Proceedings",
       "category": "official_primary",
       "url": "https://alamiria.com/Sec/Home",
       "jurisdiction": "Egypt",
@@ -31,8 +31,8 @@
         "Official Gazette",
         "Egyptian Proceedings"
       ],
-      "access_method": "Official portal; historical copies may require request, subscription, or payment",
-      "access_status": "public_portal_exists; archive_depth_and_download_limits_to_check",
+      "access_method": "Official Amiri Press portal searchable text and publication index; DSpace-hosted repository catalogue is tracked separately",
+      "access_status": "public Amiri Press portal located; item-specific Gazette PDF access and bulk archive access must be assessed separately",
       "license_status": "unknown; request terms for bulk digital reuse",
       "commercial_reuse": "not_confirmed",
       "bulk_export": "not_confirmed",
@@ -42,9 +42,11 @@
         "retain Gazette name, issue, date, page range",
         "hash original file",
         "record publication and effective dates separately",
-        "compare extracted text to original"
+        "compare extracted text to original",
+        "Do not bypass repository access controls; obtain a lawful public official full-text route or a user-supplied authorized copy",
+        "Separate issuing publisher (Amiri Press) from third-party DSpace catalogue/host; do not infer repository access or reuse permission from publisher metadata."
       ],
-      "notes": "Preferred primary publication provenance for enacted texts."
+      "notes": "Preferred primary publisher provenance for enacted texts and Official Gazette publications. Amiri Press searchable text and publication index are discovery/official-text leads; bulk archive access, exact item PDF access, currentness and reuse rights remain separate checks. The DSpace catalogue is registered separately as EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE."
     },
     {
       "id": "EG-CASSATION",
@@ -769,6 +771,35 @@
         "update SLA"
       ],
       "notes": "Negotiate dataset/API access rather than scraping a browser UI."
+    },
+    {
+      "id": "EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE",
+      "name": "DSpace-hosted Ibrachy & Dermarkar Repository — Official Gazette catalogue",
+      "category": "third_party_repository_metadata",
+      "url": "https://dspace.id.com.eg/collections/bb4a4122-9215-48e2-a8a5-b622ffa5eeb6",
+      "jurisdiction": "Egypt",
+      "content_types": [
+        "Official Gazette catalogue metadata",
+        "Gazette item metadata",
+        "original PDF file listings"
+      ],
+      "access_method": "Public collection/item metadata; original PDF access varies by item and may require DSpace login or a request-a-copy form",
+      "access_status": "public catalogue metadata located; item-specific original PDF downloads observed as login-required or request-copy restricted",
+      "license_status": "unknown; item-specific terms not reviewed",
+      "commercial_reuse": "not_confirmed",
+      "bulk_export": "not_confirmed",
+      "automation_policy": "Do not automate downloads or bypass login/request-copy controls; review item-specific terms and access conditions before any acquisition",
+      "priority": "P0",
+      "verification_requirements": [
+        "Record repository item ID, publisher metadata, issue/date and item-level access result separately",
+        "Do not treat public catalogue metadata as access to the original PDF",
+        "Do not infer commercial reuse permission from the Amiri Press publisher field or DSpace catalogue visibility",
+        "Only hash and compare original PDF bytes after lawful access is available",
+        "Preserve login-required and request-copy outcomes; do not submit requests or bypass controls without explicit user direction",
+        "For Supplement 225(A) dated 2026-10-12, preserve item https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full and handle https://dspace.id.com.eg/handle/123456789/8906; original bundle metadata: العدد 225 تابع أ - مؤمن.pdf, 6.13 MB.",
+        "Do not bypass login or request-copy controls, and do not submit copy requests without explicit user direction."
+      ],
+      "notes": "Third-party catalogue/repository source, not the issuing publisher. The repository hosts metadata for Amiri Press Official Gazette issues. Supplement 225(A) (2026-10-12) and several 2026 remote-work decision PDFs have restricted download routes. Exact access status is item-specific; source permission remains unknown. Supplement 225(A) (2026-10-12) is catalogued at https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full; the original bundle is request-copy restricted in the checked session."
     }
   ]
 }

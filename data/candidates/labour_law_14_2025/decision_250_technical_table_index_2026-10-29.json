@@ -1,0 +1,209 @@
+{
+  "record_type": "technical_table_index",
+  "instrument": "Egyptian Labour Ministry Decision 250/2026",
+  "research_date": "2026-10-29",
+  "reproduced_scan_source": "https://www.almasdar.com/175151",
+  "official_catalogue": "https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full",
+  "independent_full_pdf_route": "https://lawhub.info/eg/?p=19706",
+  "official_pdf_bytes_downloaded_and_hashed": false,
+  "counsel_review": "not_reviewed",
+  "authoritative_retrieval_eligible": false,
+  "inspected_printed_pages": "45-295",
+  "uninspected_span": "Official Gazette visual comparison remains pending for all pages. Secondary full-text transcription covers the Table 24 section through printed page 360; the secondary image gallery located for this review stops at printed page 295.",
+  "tables": [
+    {
+      "table": 1,
+      "topic": "Heat/thermal stress and workload controls",
+      "printed_pages": "184-188",
+      "source_discovery": "located",
+      "values_extracted": "no",
+      "status": "needs_row_by_row_transcription"
+    },
+    {
+      "table": 2,
+      "topic": "Heat stress workload categories / adjustment factors",
+      "printed_pages": "184-188",
+      "source_discovery": "located",
+      "values_extracted": "no",
+      "status": "needs_row_by_row_transcription"
+    },
+    {
+      "table": 3,
+      "topic": "Heat stress/clothing or work-rest adjustments",
+      "printed_pages": "184-188",
+      "source_discovery": "located",
+      "values_extracted": "no",
+      "status": "needs_row_by_row_transcription"
+    },
+    {
+      "table": 4,
+      "topic": "Cold-stress exposure/control values",
+      "printed_pages": "189-190 (provisional)",
+      "source_discovery": "referenced_in_earlier_chapter; exact page range not yet reconciled",
+      "values_extracted": "no",
+      "status": "page_pinpoint_open"
+    },
+    {
+      "table": 5,
+      "topic": "Cold-stress exposure/control values",
+      "printed_pages": "189-190 (provisional)",
+      "source_discovery": "referenced_in_earlier_chapter; exact page range not yet reconciled",
+      "values_extracted": "no",
+      "status": "page_pinpoint_open"
+    },
+    {
+      "table": 6,
+      "topic": "Cold-stress exposure/control values",
+      "printed_pages": "189-190 (provisional)",
+      "source_discovery": "referenced_in_earlier_chapter; exact page range not yet reconciled",
+      "values_extracted": "no",
+      "status": "page_pinpoint_open"
+    },
+    {
+      "table": 7,
+      "topic": "Noise exposure limits",
+      "printed_pages": "191-192 (provisional)",
+      "source_discovery": "referenced in noise chapter",
+      "values_extracted": "no",
+      "status": "page_pinpoint_open"
+    },
+    {
+      "table": 8,
+      "topic": "Noise exposure limits/duration",
+      "printed_pages": "191-192 (provisional)",
+      "source_discovery": "referenced in noise chapter",
+      "values_extracted": "no",
+      "status": "page_pinpoint_open"
+    },
+    {
+      "table": 9,
+      "topic": "Mechanical vibration exposure",
+      "printed_pages": "193-195",
+      "source_discovery": "referenced in vibration chapter",
+      "values_extracted": "no",
+      "status": "page_pinpoint_open"
+    },
+    {
+      "table": 10,
+      "topic": "Mechanical vibration exposure by duration",
+      "printed_pages": "193-195",
+      "source_discovery": "referenced in vibration chapter",
+      "values_extracted": "no",
+      "status": "page_pinpoint_open"
+    },
+    {
+      "table": 11,
+      "topic": "Illumination levels by task/workplace",
+      "printed_pages": "196-213",
+      "source_discovery": "located",
+      "values_extracted": "no",
+      "status": "needs_row_by_row_transcription"
+    },
+    {
+      "table": 12,
+      "topic": "Ionizing radiation exposure limits",
+      "printed_pages": "214",
+      "source_discovery": "located",
+      "values_extracted": "no",
+      "status": "critical_numeric_table"
+    },
+    {
+      "table": 13,
+      "topic": "Laser equipment classes and safety controls",
+      "printed_pages": "215",
+      "source_discovery": "located",
+      "values_extracted": "no",
+      "status": "critical_technical_table"
+    },
+    {
+      "table": 14,
+      "topic": "Laser radiation permissible exposure limits",
+      "printed_pages": "216-218",
+      "source_discovery": "located",
+      "values_extracted": "no",
+      "status": "critical_numeric_table"
+    },
+    {
+      "table": 15,
+      "topic": "Laser/skin exposure limits",
+      "printed_pages": "218-219",
+      "source_discovery": "located",
+      "values_extracted": "no",
+      "status": "critical_numeric_table"
+    },
+    {
+      "table": 16,
+      "topic": "Infrared radiation exposure limits",
+      "printed_pages": "220",
+      "source_discovery": "located",
+      "values_extracted": "no",
+      "status": "critical_numeric_table"
+    },
+    {
+      "table": 17,
+      "topic": "Ultraviolet radiation exposure limits",
+      "printed_pages": "221-223",
+      "source_discovery": "located",
+      "values_extracted": "no",
+      "status": "critical_numeric_table"
+    },
+    {
+      "table": 18,
+      "topic": "Ultraviolet radiation exposure duration/limits",
+      "printed_pages": "224",
+      "source_discovery": "located",
+      "values_extracted": "no",
+      "status": "critical_numeric_table"
+    },
+    {
+      "table": 19,
+      "topic": "Electromagnetic-field exposure limits",
+      "printed_pages": "225",
+      "source_discovery": "located",
+      "values_extracted": "no",
+      "status": "critical_numeric_table"
+    },
+    {
+      "table": 20,
+      "topic": "Radiofrequency electromagnetic exposure",
+      "printed_pages": "226-227",
+      "source_discovery": "located",
+      "values_extracted": "no",
+      "status": "critical_numeric_table"
+    },
+    {
+      "table": 21,
+      "topic": "Hot-surface/thermal hazard limits",
+      "printed_pages": "227",
+      "source_discovery": "located",
+      "values_extracted": "no",
+      "status": "numeric_transcription_needed"
+    },
+    {
+      "table": 22,
+      "topic": "Electrical safe approach distances by voltage",
+      "printed_pages": "228",
+      "source_discovery": "located",
+      "values_extracted": "no",
+      "status": "critical_numeric_table"
+    },
+    {
+      "table": 23,
+      "topic": "Hazardous substances and threshold quantities, CAS identifiers",
+      "printed_pages": "242-248",
+      "source_discovery": "located",
+      "values_extracted": "no",
+      "status": "large_structured_inventory"
+    },
+    {
+      "table": 24,
+      "topic": "Hazardous chemical exposure threshold limits (TWA/STEL/ceiling and related notes)",
+      "printed_pages": "249-360",
+      "source_discovery": "located_in_secondary_full_text; official Gazette page comparison pending",
+      "values_extracted": "secondary candidate records structured separately; official values not verified",
+      "status": "large_structured_inventory; primary_match_pending"
+    }
+  ],
+  "release_rule": "This is an index of where tables were observed/referenced in reproduced page images. It is not a verified transcription of table values. All numerical rules require exact source-pinned extraction, official-file match, currentness check, source-use assessment and qualified Egyptian OSH counsel approval.",
+  "reconciliation_note": "The source transcription's contents map explicitly identifies Table 24 at printed page 249 and the records chapter begins at printed page 361. There is no Table 25 in the table-of-contents map. The former duplicate Table 25 index entry was erroneous and has been removed; Table 24's section range is 249-360."
+}
