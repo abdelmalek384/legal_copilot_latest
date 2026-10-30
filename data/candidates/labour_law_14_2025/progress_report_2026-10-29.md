@@ -151,13 +151,14 @@ Table 24 candidate extraction now covers **781/781 numbered entries (100% second
 
 ## Next work items, in order
 
-1. Continue candidate extraction from Table 24 row 643 onward from the available secondary source text; 139 numbered entries remain provisionally. Do not infer or invent missing entries from external chemical reference lists.
-2. Complete the remaining Table 24 numbered entries and validate the continuous row-number sequence.
-3. Obtain the official Gazette PDF and record its SHA-256, retrieval date and source URL.
-4. Compare each Table 24 row and footnote against the official page image. Resolve all units, limits, CAS/formula tokens, parent-child relationships and surface/air distinctions; leave ambiguous rows quarantined.
-5. Build the final row-level currentness and source-use review records.
-6. Run the in-app counsel acceptance plan on the actual staging app after technical completion; fix defects and rerun the whole regression set.
-7. Keep authoritative retrieval disabled for candidate-only content until the applicable release gates are satisfied.
+1. **Obtain the original Gazette issue 225(A) pages for Decisions 248–252 through ordinary authorized access.** Record the actual downloaded bytes, source URL, retrieval timestamp and SHA-256. The catalogue and secondary reproductions are not substitutes for the original file; do not bypass the DSpace request-a-copy flow or third-party access controls.
+2. **Reconcile Table 24's provisional 781-row denominator and hierarchy against the original Gazette.** The secondary transcription is structurally complete through row 781, but the original table may confirm, renumber, split or group entries differently. Preserve all parent/child relationships and do not infer missing values.
+3. **Complete official page-by-page and field-by-field comparison for Table 24 rows 1–781.** The existing 327 page locators and 76 partial spot-checks are secondary-image aids only. Compare chemical name, CAS, formula, limit columns, units, exposure notation, footnotes, health effects, removed entries and parent/child relationships. Resolve or quarantine the three known discrepancies (rows 34, 61 and 64) and any newly discovered mismatch.
+4. **Match Decisions 248, 249, 251 and 252 to their own operative Gazette text and annexes.** Verify Decision 249 staffing/risk tables, Decision 251 qualification/fee/procedure provisions, Decision 252 training-hour/fee/test tables, and Decision 248 forms/reporting fields. Parent-law Articles 255 and 259–262 do not replace these operative instruments.
+5. **Complete the version/currentness chain.** Check commencement, corrigenda, later amendments, repeals, extensions and implementation circulars for each instrument. Keep announcement-only and draft-only material separate from signed/published text.
+6. **Complete source-use review for each exact source layer.** Assess the underlying official legal text separately from Gazette scans, publisher reproductions, third-party transcriptions, editorial arrangements and access terms. The Article 141 route remains a legal lead, not a blanket commercial-use clearance.
+7. **Run the in-app Egyptian-counsel acceptance plan after technical completion.** Record the exact app commit, corpus manifest/hash, query, retrieved source and lawyer disposition; fix every critical defect and rerun the full regression set before any production release.
+8. Keep candidate-only content and all unresolved Table 24 values **retrieval-ineligible** until the relevant source, currentness, reuse and qualified-counsel gates pass.
 
 ## Release status
 
