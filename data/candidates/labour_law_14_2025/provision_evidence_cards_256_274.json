@@ -457,9 +457,9 @@
       "not_usable_for": "authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified"
     },
     {
-      "card_id": "EG-LABOUR-14-2025-ART-266-PRE-EMPLOYMENT-MEDICAL-AND-CAPABILITY-EXAMS",
-      "question": "ما الفحوص المطلوبة قبل التحاق العامل بالعمل؟",
-      "provisional_answer_ar": "تلزم المادة 266 بالكشف الطبي الابتدائي للتحقق من سلامة العامل ولياقته الصحية حسب طبيعة العمل، وفحص قدراته الجسمانية والعقلية والنفسية وفق الأنظمة والقرار الوزاري المحدد لمستويات اللياقة. يلزم مراجعة القرار الساري.",
+      "card_id": "EG-LABOUR-14-2025-ART-266-IMPLEMENTING-DECISION-IDENTIFICATION",
+      "question": "ما رقم القرار الوزاري الذي يحدد مستويات اللياقة الصحية المطلوبة وفق المادة 266؟",
+      "provisional_answer_ar": "لا يمكن تحديد رقم القرار الوزاري أو نصه من الأدلة الأولية المسجلة في هذا الملف. المادة 266 تحيل إلى قرار وزاري يحدد مستويات اللياقة، لكن لم يتم توثيق القرار المنفذ أو التحقق من سريانه هنا؛ يجب عدم تخمين رقمه أو متطلباته.",
       "pinpoint": {
         "article": "المادة 266",
         "official_gazette_printed_page": 89,
@@ -471,14 +471,14 @@
           "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
-          "supports": "مصدر أولي مرجعي للمادة 266؛ النص والموضع بحاجة إلى مطابقة مباشرة",
+          "supports": "مصدر أولي مرجعي للمادة 266 وإحالتها إلى قرار وزاري؛ لا يثبت هنا رقم القرار المنفذ أو نصه أو سريانه.",
           "retrieved_or_checked_on": "2026-10-28"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf",
-          "supports": "مصدر أولي مرجعي للمادة 266؛ النص والموضع بحاجة إلى مطابقة مباشرة",
+          "supports": "مصدر أولي مرجعي للمادة 266 وإحالتها إلى قرار وزاري؛ لا يثبت هنا رقم القرار المنفذ أو نصه أو سريانه.",
           "retrieved_or_checked_on": "2026-10-28"
         }
       ],
@@ -486,7 +486,7 @@
         {
           "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
           "source_type": "public secondary transcription",
-          "supports": "مقارنة ثانوية؛ لا تحل محل النص الرسمي"
+          "supports": "مقارنة ثانوية فقط؛ لا تثبت رقم القرار الوزاري أو نصه أو سريانه."
         }
       ],
       "limitations": [
@@ -494,12 +494,13 @@
         "المواد 258–265 و270–274 بطاقات pinpoint فقط ولا تحتوي نصاً موضوعياً موثقاً بالكامل",
         "القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة",
         "لا توجد مراجعة محامٍ مصري مسجلة",
-        "حقوق إعادة الاستخدام التجاري غير محسومة"
+        "حقوق إعادة الاستخدام التجاري غير محسومة",
+        "رقم القرار الوزاري المنفذ ونصه وسريانه لم تُحدد من مصدر أولي في هذا الملف."
       ],
       "review_state": "provisional_secondary_crosscheck",
       "search_eligible": false,
-      "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "authoritative advice or final compliance decision until full official text and applicable decisions are verified"
+      "usable_for": "abstention benchmark and manual identification of the implementing decision",
+      "not_usable_for": "authoritative answer identifying the current decision or medical-fitness thresholds"
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-267-OSH-EMPLOYER-TRAINING-PPE-NO-COST",
