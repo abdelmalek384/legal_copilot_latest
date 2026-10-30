@@ -46,13 +46,15 @@ class Decision250Table24InventoryTests(unittest.TestCase):
         plan = (
             CANDIDATE_DIR / "lawyer_in_app_acceptance_plan_2026-10-29.md"
         ).read_text(encoding="utf-8")
-        for test_id in ("OSH-23", "OSH-24", "OSH-25", "OSH-26", "OSH-27"):
+        for test_id in ("OSH-23", "OSH-24", "OSH-25", "OSH-26", "OSH-27", "OSH-28"):
             self.assertIn(f"| {test_id} |", plan)
         self.assertIn("خلال شهر أكتوبر 2026", plan)
         self.assertIn("3165 لسنة 2026", plan)
         self.assertIn("3% of insured wage", plan)
         self.assertIn("30-day decision period", plan)
         self.assertIn("Do not invent a decree number or effective date.", plan)
+        self.assertIn("Decision 2659/2020", plan)
+        self.assertIn("actual publication date of Decision 3165/2026", plan)
         self.assertIn("Do not assume continuation or expiry.", plan)
 
     def test_decisions_249_251_252_candidate_maps_remain_quarantined(self):
