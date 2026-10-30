@@ -43,7 +43,7 @@ The generic PDF importer needs PyMuPDF. Install the optional package set:
 python -m pip install -r requirements-ocr.txt
 ```
 
-For PDFs whose text layer is unusable, the importer can use OCR. The Python wrapper is included above; install the system Tesseract executable and the English language data on the host. OCR output is only recognized text and must be compared page-by-page with the original. The generic importer targets English translations and uses Tesseract's `eng` language setting.
+For PDFs whose text layer is unusable, the importer can use OCR. Install the system Tesseract executable with both Arabic (`ara`) and English (`eng`) traineddata on the host; on Debian/Ubuntu, the packages are commonly `tesseract-ocr`, `tesseract-ocr-ara`, and `tesseract-ocr-eng`. Verify both languages appear in `tesseract --list-langs`. OCR defaults to `ara+eng` at 200 DPI for Arabic-first legal documents. Set `LEGAL_OCR_LANG=ara`, `eng`, `ara+eng`, or `eng+ara` only when the source language requires it; other values are rejected. OCR output is only recognized text and must be compared page-by-page with the original; Arabic OCR is not an authoritative transcription.
 
 ## 4. Run local extraction
 
