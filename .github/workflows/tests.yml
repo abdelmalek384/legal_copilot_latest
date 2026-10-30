@@ -125,6 +125,8 @@ jobs:
         run: python tests/test_phase2_document_inventory.py
       - name: Test metadata-only Action 1 Gazette and JSONL intake inspector
         run: PYTHONPATH=. python tests/test_action1_labour_intake_inspector.py
+      - name: Test Action 1 Gazette article text-layer comparison
+        run: PYTHONPATH=. python tests/test_compare_action1_gazette.py
       - name: Test metadata-only Action 1 source hashing utility
         run: PYTHONPATH=. python tests/test_action1_source_intake.py
       - name: Test permission outreach tracking guardrails
