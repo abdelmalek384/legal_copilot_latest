@@ -33,6 +33,8 @@ on:
     branches:
       - 'legal-knowledge-evidence-*'
     paths:
+      - 'tools/validate_decisions_251_252_fee_ceiling_candidates.py'
+      - 'tests/test_decisions_251_252_fee_ceiling_candidates.py'
       - 'data/candidates/labour_law_14_2025/**'
       - 'tools/validate_decision250_table24_candidates.py'
       - 'tools/validate_decision250_table23_candidates.py'
