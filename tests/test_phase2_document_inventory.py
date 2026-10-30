@@ -85,7 +85,7 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         self.assertEqual(record["collection_permission"], "unknown")
         self.assertEqual(record["legal_status"], "unknown")
         self.assertEqual(record["review_status"], "discovery_only")
-        self.assertTrue(any("labour.gov.eg" in item["url"] for item in record["source_urls"]))
+        self.assertTrue(any("dspace.id.com.eg" in item["url"] for item in record["source_urls"]))
         self.assertTrue(any(a["id"] == "ACT-LABOUR-DECISION-294-2025-VERIFY" for a in self.inventory["next_actions"]))
         self.assertEqual(validate_inventory(self.inventory), [])
 
