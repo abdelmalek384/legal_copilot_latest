@@ -54,7 +54,9 @@ For PDFs whose text layer is unusable, the importer can use OCR. Install the sys
 python tools/import_laws.py /path/to/source /path/to/output
 ```
 
-The output directory must be outside the source directory. The tool writes:
+The output directory must be outside the source directory. Resource limits are enforced before expensive processing: each JSON sidecar is capped at 1 MiB, each PDF defaults to 100 MiB, and each PDF defaults to 1,000 pages. Operators may lower or raise the PDF limits for a known workload with positive-integer `LEGAL_IMPORT_MAX_PDF_BYTES` and `LEGAL_IMPORT_MAX_PAGES` values. Invalid or zero values fail closed. Keep limits appropriate to the available memory and OCR capacity; raising them increases resource exposure.
+
+The tool writes:
 
 - `law_rows.jsonl` — article-level candidate rows for staging.
 - `import_report.md` — page counts, OCR use, article ranges, missing article numbers, and source/hash metadata.
