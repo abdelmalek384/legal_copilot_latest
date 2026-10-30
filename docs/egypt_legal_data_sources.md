@@ -61,6 +61,17 @@ These are collection categories, not confirmation that every agency provides a p
 | FAOLEX | https://faolex.fao.org/ | Agriculture, food, environment, water and natural-resource legislation | Subject-specific; verify against Egyptian primary sources. |
 | Cyrilla / legal information resources | https://cyrilla.org/ | Discover digital-rights, privacy and technology-related legal texts | Secondary/discovery source; verify source, version and reuse rights. |
 
+
+#### Additional public legal-document archive — 30 October 2026
+
+| Source | URL | What was observed | Evidence and limitations |
+|---|---|---|---|
+| الذاكرة والمعرفة للدراسات (Althakira wa al-Ma'rifa for Studies) | https://www.mksegypt.org/ar/documents | Public searchable catalogue of Egyptian laws, decisions, Court of Cassation judgments, Supreme Constitutional Court judgments, and Supreme Administrative Court judgments. The catalogue snapshot showed 1,135 Cassation judgments, 983 Constitutional Court judgments, 2,456 Supreme Administrative Court judgments, 10,259 decisions, and 1,090 laws (15,923 total records). An individual Cassation page exposes the appeal number, judicial year, judgment date, printed page reference, headnote/principles, reasoning and facts. | The About page describes the operator as a company registered under Egyptian law, established in 2021. The catalogue and individual judgment page state that site content is licensed under CC BY 4.0. Treat this as a promising rights lead, not blanket clearance: the scope of the licence over underlying judgments, statutory texts, third-party reproductions, annotations and metadata has not been independently established. The site is not an official court or Gazette publisher. The official Court of Cassation portal has separate restrictive terms already recorded in the permission register; do not assume this archive's licence overrides those terms or proves its own source authority. No bulk API/export was established. |
+
+Sample page inspected: https://www.mksegypt.org/ar/court-of-cassation-rulings/21623 — Appeal No. 309, Judicial Year 60, dated 8 May 1991. The page contains the judgment's reasoning and facts, not merely a search-result title. This sample demonstrates full-text availability but does not prove the accuracy or completeness of the entire archive.
+
+**Required handling:** keep collection and commercial reuse permission as unknown in the central register until the CC BY 4.0 scope and chain of rights are clear. Preserve attribution requirements if the licence is relied upon. Manually sample records across all sections and compare selected case identifiers/dates/citations against official court sources. Do not bulk scrape, crawl, or import legal texts while rights scope or provenance remains unresolved. If ambiguity remains, retain the site as a discovery/cross-reference source only; do not contact source holders under the current project constraint.
+
 ### Tier 4 — books, journals and practitioner materials
 
 Collect only when the office has lawful access and the intended storage, indexing, model processing and user access are permitted.
