@@ -451,3 +451,34 @@ This checkpoint supersedes the prior whole-product estimate where noted. It is a
 6. Leave tenant database, migrations, identity and destructive storage actions to the assigned database workstream.
 7. Obtain qualified Egyptian counsel's actual application acceptance after technical completion.
 
+## Latest checkpoint — 2026-10-30 (legal archive discovery, evidence inventory reconciliation, and CI hardening)
+
+This checkpoint supersedes the earlier 47%/42% estimates recorded above. The whole-project technical score remains **48%** (47.95/100 weighted estimate). Final Egyptian-counsel acceptance remains **0% / not started** and is still a mandatory post-build gate.
+
+### Completed and merged since the prior checkpoint
+
+- **#931 — public legal archive discovery:** added الذاكرة والمعرفة للدراسات to the source permission register. Its public pages state CC BY 4.0 and provide full text in three court sections, laws and decisions. The register keeps collection and commercial reuse as unknown. WIPO Lex's consolidated Egyptian IP Law 82/2002 Article 141 is recorded as a rights-context lead: official documents are excluded from copyright, but creative collections/selection/arrangement may be protected. This does not authorize bulk extraction or override portal access terms. No legal text was imported.
+- **#750 — Labour Law review questions:** merged five provisional review questions for Articles 237–241. These are not verified legal answers.
+- **#797 — source verification matrix:** merged the Labour Law implementing-decision verification matrix and Decision 162 access-fallback documentation.
+- **#926 and #928 — source discovery and PDF limits:** remain merged. Discovery records do not promote legal text; PDF limits remain 100 MiB, 1,000 pages and 1 MiB sidecars with bounded reads.
+- **CI/dependency baseline:** merged #911, #912, #913, #915, #916, #918 and #919 after relevant checks passed. These improve build/security/dependency maintenance but do not materially change the legal corpus or market-readiness score.
+
+### Current non-database legal-knowledge work
+
+- **#782 — canonical Labour Law evidence inventory:** 294 cards exist in the main JSON file. The manifest and README had stale counts and loaded overlapping split snapshots. They are being corrected so the manifest loads only the canonical 294-card file; split snapshots remain archived until their unique content is reconciled. Missing non-authoritative-use boundaries were added to all affected cards, and the 294-card review report was regenerated. Cards remain search-ineligible. Full CI is still required before merge.
+- **#840 — Decisions 248–252 / Table 24:** secondary transcription cross-checks are recorded for rows 34, 61 and 64. The raw CAS/value discrepancies remain unresolved, the original Gazette issue 225(A) is still request-copy restricted, and official Gazette matches remain 0/781. No values are approved for occupational exposure or compliance use.
+- **#784 — Decision 162:** currentness and publication-date reconciliation remains draft/open.
+- **#931 — case-law source lead:** catalogue snapshot reports 1,135 Court of Cassation judgments, 983 Supreme Constitutional Court judgments, 2,456 Supreme Administrative Court judgments, 10,259 decisions and 1,090 laws. Five representative full-text pages were sampled. These counts and pages are discovery evidence, not proof of completeness, official provenance or licence scope.
+
+### Remaining release gates
+
+1. Complete and merge #782 only after Tests, CodeQL and dependency audit pass on the final head.
+2. Obtain authorized original Gazette copies or official text for Labour Law instruments and Decisions 248–252; no request-copy bypass.
+3. Resolve item-level rights, source authenticity, currentness, amendment history and counsel review before any candidate becomes authoritative retrieval material.
+4. Complete manual RTL/LTR, mobile, desktop, keyboard, screen-reader and lawyer-workflow acceptance.
+5. Complete staging configuration, monitoring, scheduler reconciliation and witnessed backup/restore.
+6. Leave tenant database, identity, migrations and destructive storage actions to the assigned database workstream.
+7. Obtain qualified Egyptian counsel's actual application acceptance after technical completion.
+
+**Completion remains 48%, not 49%:** recent work improves discovery, data integrity and CI, but the verified Egyptian legal corpus remains at 6% and counsel acceptance remains 0%. More candidate records or secondary-source cross-checks do not count as verified law.
+
