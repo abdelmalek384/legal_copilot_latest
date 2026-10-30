@@ -1,11 +1,11 @@
 # Legal Copilot — Project Progress Tracker
 
-**Last updated:** 2026-10-30 (historical snapshots retained; latest whole-product checkpoint appended; workstream percentages are not additive)
+**Last updated:** 2026-10-30 (current whole-product checkpoint; historical snapshots retained; workstream percentages are not additive)
 **Tracking method:** deliverable-level checklist, not an estimate of engineering hours. A task is “complete” only when its change is merged and its acceptance criteria are met. Open PRs are in progress, not complete.
 
 ## Overall status
 
-See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **47% technical completion** (46.5/100, rounded) as of 2026-10-30. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
+See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **48% technical completion** (47.95/100, rounded) as of 2026-10-30. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
 
 
 ## Current workstream snapshot — 2026-10-27
@@ -407,3 +407,45 @@ The deployment target remains a fresh install. No production customer database h
 5. Finish route/query/background-job tenant-isolation acceptance, production identity delivery/recovery, and independent security review.
 
 The **47% weighted technical completion score** supersedes the older non-additive 42% ± 8% estimate. It remains a planning estimate, not production readiness or legal approval. The verified legal corpus remains at 6%; Law 174/2025's commencement is intentionally unassigned pending reconciliation of Law 160/2026's published wording with official explanatory material and qualified Egyptian-counsel review. The database workstream has advanced, but it cannot compensate for the product's still-limited verified legal corpus or missing human and operational acceptance evidence.
+
+
+## Latest checkpoint — 2026-10-30 (post-launcher, PWA, importer and security-baseline merges)
+
+This checkpoint supersedes the prior whole-product estimate where noted. It is a technical planning estimate, not a legal-accuracy or production-readiness claim. Open PRs do not count as completed work.
+
+| Workstream | Estimate | Evidence / remaining gate |
+|---|---:|---|
+| Core case management | 75% | Existing workflows remain implemented; full end-to-end lawyer acceptance and edge-case QA remain. |
+| Legal research/retrieval | 65% | Arabic/English retrieval, citation validation, provenance and abstention foundations exist; qualified-counsel benchmark runs against exact source versions remain absent. |
+| Verified Egyptian legal corpus and rights | 6% | Labour Law 14/2025 remains quarantined; exact Gazette comparison, item-level rights, amendment/currentness reconciliation and Egyptian counsel review remain outstanding. |
+| Security and firm isolation | 71% | PR #907 CodeQL/Bandit analysis and PR #925 MFA lifecycle rollback regression merged; route/job isolation, separate DB/storage completion, independent security review and witnessed recovery remain. |
+| UI/device usability | 45% | PR #903 privacy-safe PWA shell and PR #909 Windows/Mac launchers merged; physical device/browser/accessibility acceptance remains. |
+| Automated testing/reliability | 65% | PR #910 hash-locked dependency baseline, PR #907 static analysis, and PR #923 legal PDF integrity/OCR hardening merged; fresh full release-candidate validation remains. |
+| Production operations | 38% | PR #905 read-only reminder outbox monitor and PR #903 deployment HTTP smoke probe merged; real staging, alert routing/on-call, SMTP rehearsal and witnessed restore remain. |
+
+**Weighted technical completion: 47.95/100, rounded to 48%.** Final Egyptian-counsel acceptance remains 0% / not started and is a separate mandatory post-build gate.
+
+### Newly merged since the previous scorecard
+- **#903:** privacy-safe installable PWA shell and read-only deployment HTTP smoke probe. Offline matter data remains deliberately unsupported.
+- **#907:** CodeQL security-extended analysis and Bandit scan; static analysis does not replace independent security assessment.
+- **#909:** current-main Windows/Mac first-run launchers and shared bootstrap; physical device smoke tests remain.
+- **#910:** hash-locked Python dependency security baseline.
+- **#923:** legal PDF/sidecar integrity, hash-bound OCR cache and Arabic-first OCR/importer improvements.
+- **#925:** MFA lifecycle transaction rollback regression; database work remains owned by its separate workstream.
+- **#905:** read-only reminder outbox health monitor and operator runbook.
+
+### Current non-database work in progress
+- **#926:** metadata-only discovery of MPA enacted-law index, IDSC Gazette repository and Manshurat legal archive; all reuse rights remain unknown.
+- **#928:** current-main PDF importer resource bounds; CI pending.
+- **#840:** Labour Law/Decision 248–252 evidence ledger; original Gazette copy remains restricted and unverified.
+- **#918, #919, #922:** dependency/action updates pending compatibility and CI review.
+
+### Immediate gates
+1. Finish PR #926 and #928 only after their full CI and security checks pass.
+2. Continue multi-practice-area legal-source discovery without scraping restricted repositories or treating open access as a commercial licence.
+3. Keep unverified texts out of authoritative retrieval; the supplied 311 Labour Law rows remain unverified.
+4. Complete manual Arabic RTL/LTR, mobile, desktop, keyboard and screen-reader acceptance.
+5. Complete staging deployment, SMTP/scheduler monitoring, operator reconciliation and witnessed backup/restore.
+6. Leave tenant database, migrations, identity and destructive storage actions to the assigned database workstream.
+7. Obtain qualified Egyptian counsel's actual application acceptance after technical completion.
+
