@@ -69,7 +69,7 @@ def _validate_s3_apply_authorization(firm_id: int, store: S3PrivateObjectStore, 
     else:
         host = urlsplit(str(client_endpoint or "")).hostname or ""
         labels = host.split(".")
-        if not host.endswith(("amazonaws.com", "amazonaws.com.cn")) or "s3" not in labels:
+        if not host.endswith((".amazonaws.com", ".amazonaws.com.cn")) or "s3" not in labels:
             raise RuntimeError("S3 purge client must use the configured endpoint or an AWS S3 endpoint")
     kms_meta = getattr(store.kms_client, "meta", None)
     if kms_meta is None or getattr(kms_meta, "region_name", None) != region:

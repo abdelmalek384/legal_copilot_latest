@@ -180,6 +180,17 @@ class DatabaseReleaseAcceptanceTests(unittest.TestCase):
             with self.assertRaisesRegex(RuntimeError, "incomplete or stale acceptance"):
                 _validate_s3_apply_authorization(12, store, staging_drill=False)
 
+        spoofed_client = SimpleNamespace(meta=SimpleNamespace(
+            region_name="eu-central-1",
+            endpoint_url="https://s3.attackeramazonaws.com",
+        ))
+        spoofed_store = S3PrivateObjectStore(
+            spoofed_client, bucket="private-bucket", kms_key_id=key, kms_client=FakeKms()
+        )
+        with patch.dict(os.environ, environment, clear=True):
+            with self.assertRaisesRegex(RuntimeError, "AWS S3 endpoint"):
+                _validate_s3_apply_authorization(12, spoofed_store, staging_drill=False)
+
     def test_core_s3_purge_authorization_rejects_development_and_wrong_staging_target(self):
         key = "arn:aws:kms:eu-central-1:123456789012:key/test-key"
 
