@@ -31,7 +31,12 @@ class LabourLawPrimaryEvidenceSeedTests(unittest.TestCase):
             self.assertTrue(provision["provision_ref"])
             self.assertTrue(provision["summary_ar"])
             self.assertEqual(provision["human_review"], "pending")
-            self.assertEqual(provision["confidence"], "provisional_source_text_observed")
+            self.assertIn(provision["confidence"], {"provisional_source_text_observed", "provisional_official_text_observed"})
+            if provision["confidence"] == "provisional_official_text_observed":
+                self.assertTrue(any(
+                    "Official General Authority for Amiri Press" in source["basis"]
+                    for source in provision["source_refs"]
+                ))
             self.assertNotIn(provision["provision_id"], seen)
             seen.add(provision["provision_id"])
             self.assertGreaterEqual(len(provision["source_refs"]), 1)
@@ -81,6 +86,12 @@ class LabourLawPrimaryEvidenceSeedTests(unittest.TestCase):
         self.assertIn("64", pages)
         for provision in self.seed["provisions"]:
             pinpoint = provision["page_pinpoint"]
+            if pinpoint.get("source_type") == "official_text_page":
+                self.assertTrue(pinpoint["pinpoint"].startswith("مادة"))
+                self.assertIsNone(pinpoint["printed_page"])
+                self.assertIsNone(pinpoint["pdf_page_index_zero_based"])
+                self.assertEqual(pinpoint["source_url"], "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D")
+                continue
             self.assertEqual(pinpoint["gazette_issue"], "18 (تابع)")
             if "printed_pages" in pinpoint:
                 self.assertEqual(len(pinpoint["printed_pages"]), len(pinpoint["pdf_page_indices_zero_based"]))

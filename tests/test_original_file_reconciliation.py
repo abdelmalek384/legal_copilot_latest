@@ -20,7 +20,6 @@ class OriginalFileReconciliationTests(unittest.TestCase):
         self.firm_id = 7
         self.object_id = "a" * 32
         self.payload = b"reconciliation fixture bytes"
-        self._create_database()
 
     def tearDown(self):
         self.temp.cleanup()
@@ -130,6 +129,7 @@ class OriginalFileReconciliationTests(unittest.TestCase):
         self.assertIn("invalid_purge_tombstone", {finding.code for finding in report.findings})
 
     def test_reports_orphaned_file_without_deleting_it(self):
+        self._create_database()
         directory = self.objects / "firm-7"
         directory.mkdir()
         orphan = directory / f"{self.object_id}.blob"
@@ -175,6 +175,7 @@ class OriginalFileReconciliationTests(unittest.TestCase):
         self.assertIn("tenant_binding_mismatch", {finding.code for finding in report.findings})
 
     def test_refuses_duplicate_firm_database_inputs(self):
+        self._create_database()
         with self.assertRaises(ValueError):
             reconcile_original_file_storage(
                 self.objects,
