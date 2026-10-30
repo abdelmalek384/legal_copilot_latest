@@ -18,7 +18,7 @@ import pathlib
 import re
 import sys
 from datetime import date, datetime
-from urllib.parse import urlsplit
+from urllib.parse import parse_qsl, urlsplit
 
 NAMES = {
     "penal_code_58_1937_en": "Penal Code (Law No. 58 of 1937)",
@@ -121,6 +121,8 @@ def validate_inputs(src: str | pathlib.Path, out: str | pathlib.Path):
         source_url = metadata.get("source_url")
         try:
             parsed_url = urlsplit(source_url) if isinstance(source_url, str) else None
+            if parsed_url is not None:
+                _ = parsed_url.port
         except ValueError:
             parsed_url = None
         if (
@@ -132,6 +134,14 @@ def validate_inputs(src: str | pathlib.Path, out: str | pathlib.Path):
             or parsed_url.fragment
         ):
             _fail(f"source_url must be an HTTPS URL without credentials or fragment: {sidecar.name}")
+        sensitive_query_keys = {
+            "token", "access_token", "auth", "authorization", "password", "secret",
+            "signature", "sig", "api_key", "apikey", "session", "sessionid",
+            "credential", "x-amz-signature", "x-amz-credential", "x-amz-security-token",
+        }
+        query_keys = {key.casefold() for key, _ in parse_qsl(parsed_url.query, keep_blank_values=True)}
+        if query_keys & sensitive_query_keys:
+            _fail(f"source_url must not contain signed or credential query parameters: {sidecar.name}")
 
         if not _valid_retrieval_date(metadata.get("retrieved_at")):
             _fail(f"retrieved_at must be an ISO date or datetime: {sidecar.name}")
