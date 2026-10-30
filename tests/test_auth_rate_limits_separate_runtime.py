@@ -196,5 +196,19 @@ class SeparateRuntimeAuthenticationRateLimitTests(unittest.TestCase):
         self.assertEqual(stored["hits"], 2)
 
 
+    def test_logout_revokes_server_side_session_in_separate_runtime(self):
+        login = self.client.post("/login", json={
+            "email": "rate-limit-owner@example.test", "password": self.password,
+        })
+        self.assertEqual(login.status_code, 200, login.text)
+        self.assertEqual(self.client.get("/cases").status_code, 200)
+
+        csrf = self.client.cookies.get("lc_csrf") or ""
+        logout = self.client.post("/logout", headers={"X-CSRF-Token": csrf})
+        self.assertEqual(logout.status_code, 200, logout.text)
+        self.assertEqual(self.client.get("/session").status_code, 401)
+        self.assertEqual(self.client.get("/cases").status_code, 401)
+
+
 if __name__ == "__main__":
     unittest.main()
