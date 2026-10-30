@@ -73,7 +73,7 @@ def _read_regular_file(path: pathlib.Path, label: str, max_bytes: int | None = N
                 or (before.st_dev, before.st_ino) != (opened.st_dev, opened.st_ino)
             ):
                 _fail(f"{label} changed identity while being opened")
-            content = source.read()
+            content = source.read(max_bytes + 1) if max_bytes is not None else source.read()
             after = os.fstat(source.fileno())
             if max_bytes is not None and len(content) > max_bytes:
                 _fail(f"{label} exceeds the configured {max_bytes}-byte size limit")
