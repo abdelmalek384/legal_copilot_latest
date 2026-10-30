@@ -1,4 +1,4 @@
 # Optional OCR support for scanned PDF uploads; install system Tesseract plus ara and eng traineddata separately.
 PyMuPDF>=2.0,<3
-Pillow>=10,<13
+Pillow>=13.0.0,<14
 pytesseract>=0.3.13,<1
