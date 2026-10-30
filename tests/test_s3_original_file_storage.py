@@ -37,6 +37,8 @@ class FakeS3Client:
         self.calls = []
         self.copy_kms_key_id = self.CANONICAL_KMS_ARN
         self.corrupt_copy_body = False
+        self.versioning_status = None
+        self.fail_delete = False
 
     def _read(self, bucket, key):
         try:
@@ -95,7 +97,12 @@ class FakeS3Client:
             "SSEKMSKeyId": value.get("SSEKMSKeyId"),
         }
 
+    def get_bucket_versioning(self, **kwargs):
+        return {"Status": self.versioning_status} if self.versioning_status else {}
+
     def delete_object(self, **kwargs):
+        if self.fail_delete:
+            raise RuntimeError("synthetic delete failure")
         self.objects.pop((kwargs["Bucket"], kwargs["Key"]), None)
         return {}
 
@@ -340,6 +347,56 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
         self.store.finalize(12, final.object_id)
         self.assertTrue(self.store.delete(12, final.object_id))
         self.assertFalse(self.store.delete(12, final.object_id))
+
+    def test_physical_purge_requires_never_versioned_bucket_and_verified_bytes(self):
+        staged = self.store.stage(12, b"physical purge payload")
+        self.store.finalize(12, staged.object_id)
+        self.client.versioning_status = "Enabled"
+        with self.assertRaisesRegex(ObjectStorageError, "versioned or suspended"):
+            self.store.purge_unversioned(
+                12, staged.object_id, expected_sha256=staged.sha256,
+                expected_size=staged.byte_size,
+            )
+        self.assertEqual(self.store.object_presence(12, staged.object_id), (False, True))
+        self.client.versioning_status = "Suspended"
+        with self.assertRaisesRegex(ObjectStorageError, "versioned or suspended"):
+            self.store.purge_unversioned(
+                12, staged.object_id, expected_sha256=staged.sha256,
+                expected_size=staged.byte_size,
+            )
+        self.assertEqual(self.store.object_presence(12, staged.object_id), (False, True))
+        self.client.versioning_status = None
+        self.assertTrue(self.store.purge_unversioned(
+            12, staged.object_id, expected_sha256=staged.sha256,
+            expected_size=staged.byte_size,
+        ))
+        self.assertEqual(self.store.object_presence(12, staged.object_id), (False, False))
+        self.assertFalse(self.store.purge_unversioned(
+            12, staged.object_id, expected_sha256=staged.sha256,
+            expected_size=staged.byte_size,
+        ))
+
+    def test_physical_purge_refuses_staged_or_corrupt_objects_and_preserves_bytes(self):
+        staged = self.store.stage(12, b"recoverable staged payload")
+        with self.assertRaisesRegex(ObjectStorageError, "staged copy exists"):
+            self.store.purge_unversioned(
+                12, staged.object_id, expected_sha256=staged.sha256,
+                expected_size=staged.byte_size,
+            )
+        self.store.finalize(12, staged.object_id)
+        with self.assertRaisesRegex(ObjectStorageError, "failed integrity verification"):
+            self.store.purge_unversioned(
+                12, staged.object_id, expected_sha256="0" * 64,
+                expected_size=staged.byte_size,
+            )
+        self.assertEqual(self.store.object_presence(12, staged.object_id), (False, True))
+        self.client.fail_delete = True
+        with self.assertRaisesRegex(ObjectStorageError, "physical purge could not be verified"):
+            self.store.purge_unversioned(
+                12, staged.object_id, expected_sha256=staged.sha256,
+                expected_size=staged.byte_size,
+            )
+        self.assertEqual(self.store.object_presence(12, staged.object_id), (False, True))
 
     def test_inventory_lists_only_keys_in_originals_namespace(self):
         one = self.store.stage(12, b"one")
