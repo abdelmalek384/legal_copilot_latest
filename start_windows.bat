@@ -31,6 +31,13 @@ if not exist ".venv\Scripts\python.exe" (
 call ".venv\Scripts\activate.bat"
 if errorlevel 1 goto :failed
 
+python -c "import sys; raise SystemExit(0 if sys.version_info >= (3, 12) else 1)"
+if errorlevel 1 (
+  echo The existing .venv does not use Python 3.12 or newer.
+  echo Preserve or rename the environment manually; this launcher will not delete it.
+  goto :failed
+)
+
 python -m pip install --upgrade pip
 if errorlevel 1 goto :failed
 python -m pip install -r requirements.txt
