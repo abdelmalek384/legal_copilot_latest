@@ -189,11 +189,11 @@ def run_smoke(
                     root_directives[tokens[0].lower()] = {item.lower() for item in tokens[1:]}
             nonce_tokens = root_directives.get("script-src", set())
             inline_scripts = [
-                attributes for attributes in re.findall(r"<script\\b([^>]*)>", root.text, flags=re.IGNORECASE)
-                if not re.search(r"\\bsrc\\s*=", attributes, flags=re.IGNORECASE)
+                attributes for attributes in re.findall(r"<script\b([^>]*)>", root.text, flags=re.IGNORECASE)
+                if not re.search(r"\bsrc\s*=", attributes, flags=re.IGNORECASE)
             ]
             nonce_ok = bool(inline_scripts) and all(
-                (match := re.search(r"""\\bnonce\\s*=\\s*["']([^"']+)["']""", attributes, flags=re.IGNORECASE))
+                (match := re.search(r"""\bnonce\s*=\s*["']([^"']+)["']""", attributes, flags=re.IGNORECASE))
                 and ("'nonce-" + match.group(1).lower() + "'") in nonce_tokens
                 for attributes in inline_scripts
             )
