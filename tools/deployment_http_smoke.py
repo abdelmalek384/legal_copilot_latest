@@ -136,6 +136,11 @@ def run_smoke(
                 'navigator.serviceWorker.register("/service-worker.js")' in root.text,
                 "service worker registration present" if 'navigator.serviceWorker.register("/service-worker.js")' in root.text else "service worker registration missing",
             )
+            record(
+                "root Apple touch icon link",
+                'rel="apple-touch-icon" href="/apple-touch-icon.png"' in root.text,
+                "PNG home-screen icon link present" if 'rel="apple-touch-icon" href="/apple-touch-icon.png"' in root.text else "Apple touch icon link missing",
+            )
 
         manifest_response = responses.get("/manifest.webmanifest")
         if manifest_response is not None and manifest_response.status_code == 200:
