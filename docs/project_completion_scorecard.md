@@ -1,11 +1,11 @@
 # Legal Copilot — Whole-project completion scorecard
 
-**As of:** 2026-10-30  
+**As of:** 2026-10-30 (after merges #907, #905, #909, #910, #920 and #923)  
 **Purpose:** One consistent, evidence-based percentage for technical project completion. This score is a planning estimate, not a certification or market-readiness claim.
 
 ## Current score
 
-<escape>**Technical project completion: 47%** (weighted estimate; rounded from 46.5%).</escape>
+<escape>**Technical project completion: 49%** (weighted estimate; rounded from 49.1%).</escape>
 
 **Final Egyptian-counsel acceptance: 0% / not started.** This is a separate post-build acceptance gate, as planned. It must be completed before the product is represented as legally approved or used for client-facing legal reliance.
 
@@ -18,11 +18,11 @@ Open pull requests do not count as completed deliverables. Their changes are tre
 | Core case-management and collaboration workflows | 15% | 75% | 11.25 | Case folders, teams, tasks, sessions, notes, files, fees, activity history and dashboard workflows exist. Remaining: end-to-end workflow acceptance, edge-case QA, and operational polish. |
 | Legal research, retrieval and citation quality | 15% | 65% | 9.75 | Arabic/English lexical retrieval, source scoping, citation validation, abstention, provenance display and evaluation tooling exist. Remaining: real lawyer-labelled evaluation, retrieval tuning on reviewed material, and broader practice-area coverage. |
 | Verified Egyptian legal knowledge and source rights | 25% | 6% | 1.50 | Candidate catalogues, source registers, permission gates, version metadata, audit tools and review queues exist. The verified corpus remains very small; original primary-source matching, reuse rights, amendment/currentness review and qualified counsel sign-off are still blockers. Candidate counts and secondary copies do not count as verified law. |
-| Security, privacy and firm isolation | 15% | 70% | 10.50 | Separate profile architecture, access controls, MFA, audit events, backup tooling and numerous isolation tests exist. Remaining: complete DB/storage workstream, exhaustive route/job isolation evidence, independent security assessment, and witnessed recovery/rollback. |
-| UI, accessibility and device usability | 10% | 40% | 4.00 | Responsive Arabic-first interface and accessibility improvements exist. Manual RTL/LTR, keyboard, screen-reader, mobile/tablet and browser acceptance are not complete. Windows launcher PR #900 and privacy-safe installable PWA PR #903 are open and not yet counted. |
-| Automated testing and reliability | 10% | 60% | 6.00 | Broad CI coverage and focused regression suites exist. Remaining: fresh full-suite evidence for the current release candidate, stable test environment, operational smoke tests and resolution of all current failures. |
-| Production operations and deployment readiness | 10% | 35% | 3.50 | Strict preflight, release gates, encrypted backup/restore code, storage adapters and reminder outbox/scheduler foundations exist. Remaining: real staging configuration, live provider tests, monitoring/alerting, operator reconciliation, witnessed restore drill, and controlled deployment rehearsal. |
-| **Total** | **100%** |  | **46.50 / 100** | **Rounded technical completion: 47%.** |
+| Security, privacy and firm isolation | 15% | 72% | 10.80 | Separate profile architecture, access controls, MFA, audit events and isolation tests are reinforced by merged CodeQL (Python/JavaScript), Bandit and strict hash-locked dependency auditing. Remaining: review all CodeQL alerts, triage 17 medium B608 findings on the exact release candidate, complete DB/storage workstream, independent security assessment, and witnessed recovery/rollback. |
+| UI, accessibility and device usability | 10% | 48% | 4.80 | Responsive Arabic-first interface, installable PWA shell, and safer Mac/Windows first-run launchers are merged. Automated frontend contracts pass. Manual RTL/LTR, keyboard, screen-reader, real Android/iOS/desktop install, offline and browser acceptance remain incomplete. |
+| Automated testing and reliability | 10% | 66% | 6.60 | Full CI passed 131/131 on the merged legal-import/Arabic-OCR candidate; the hardened container built for amd64 and arm64, with Compose validation, CodeQL/Bandit and dependency audit passing on their exact PR heads. Remaining: fresh full-suite evidence on the exact release candidate, staging smoke tests, browser/device acceptance and witnessed operational tests. |
+| Production operations and deployment readiness | 10% | 44% | 4.40 | Merged hash-locked Python deployment dependencies, hardened non-root/read-only container and Compose template, dual-architecture image builds, read-only reminder health monitoring, strict preflight and release gates. Remaining: actual host/proxy deployment, production secrets and IAM, S3/KMS live acceptance, SMTP staging, external alert routing, operator reconciliation, witnessed restore/recovery drill and controlled deployment rehearsal. |
+| **Total** | **100%** |  | **49.10 / 100** | **Rounded technical completion: 49%.** |
 
 ## Completion rules
 
