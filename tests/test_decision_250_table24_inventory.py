@@ -10,6 +10,16 @@ ROOT = Path(__file__).resolve().parents[1]
 CANDIDATE_DIR = ROOT / "data" / "candidates" / "labour_law_14_2025"
 
 
+def walk_rows(rows):
+    """Yield top-level and recursively nested chemical/group subentries."""
+    for row in rows:
+        yield row
+        children = row.get("children", [])
+        if not isinstance(children, list):
+            raise AssertionError(f"children must be a list for row {row.get('row')}")
+        yield from walk_rows(children)
+
+
 class Decision250Table24InventoryTests(unittest.TestCase):
     def test_technical_index_has_one_table_24_and_no_table_25(self):
         index = json.loads(
@@ -36,7 +46,7 @@ class Decision250Table24InventoryTests(unittest.TestCase):
             self.assertEqual(payload["source"]["official_gazette_match"], "not_performed")
             self.assertIsNone(payload["source"]["official_pdf_sha256"])
             self.assertEqual(payload["status"], "candidate_only_not_for_authoritative_retrieval")
-            row_numbers.extend(int(row["row"]) for row in payload["rows"])
+            row_numbers.extend(int(row["row"]) for row in walk_rows(payload["rows"]))
         self.assertEqual(len(row_numbers), 781)
         self.assertEqual(sorted(row_numbers), list(range(1, 782)))
         self.assertEqual(len(set(row_numbers)), 781)
