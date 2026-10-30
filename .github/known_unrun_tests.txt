@@ -1,3 +1,2 @@
 # Test files not run by CI yet. Each entry must explain the current blocker.
 # Remove an entry as soon as the test is fixed and added to a workflow.
-test_purge_approved_original_files.py: original object missing for firm 1 during bundle step; storage/database integration issue, delegated database work
