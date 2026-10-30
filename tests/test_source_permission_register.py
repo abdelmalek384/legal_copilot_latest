@@ -11,6 +11,7 @@ class SourcePermissionRegisterTests(unittest.TestCase):
     def test_committed_register_validates(self):
         import json
         data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        self.assertEqual(data["assessment_date"], "2026-10-30")
         self.assertEqual(MODULE.validate(data), [])
 
     def test_permission_claim_requires_evidence_and_date(self):
