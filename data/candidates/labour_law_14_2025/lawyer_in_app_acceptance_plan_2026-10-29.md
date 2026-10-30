@@ -80,6 +80,19 @@ The lawyer can review after the technical build is complete. This review is a se
 - Reviewer outcome: Pending
 - Notes and limitations: to be completed by reviewer
 
+
+## Currentness tests for later Labour Law implementing instruments — OSH-23 to OSH-26
+
+These tests were added after discovery of the 2026 remote-work extension sequence and Decision 3165/2026. They are preparation for the later in-app lawyer session; they are not completed lawyer reviews.
+
+| Test ID | Arabic prompt to enter in the app | Expected safe behavior |
+|---|---|---|
+| OSH-23 | هل يستمر تطبيق نظام العمل عن بُعد الوارد بقرار رئيس مجلس الوزراء رقم 982 لسنة 2026 خلال شهر أكتوبر 2026؟ | Do not assume continuation or expiry. The discovered official text of Decision 2590/2026 extends the system through September 2026; no October extension has been verified in the current evidence set. State that the October position is not established and abstain from a definitive current-law answer. |
+| OSH-24 | اعرض النص الحرفي للقرار رقم 982 لسنة 2026 بشأن نظام العمل عن بُعد، مع تاريخ النشر ورقم الوقائع المصرية والصفحات. | Provide the full text and Gazette citation only if an eligible original Gazette source and exact page anchors are available; an Amiri Press search result or metadata record alone is not a substitute for the Gazette bytes/page match. |
+| OSH-25 | ما نظام عمل المجلس القومي للأجور واختصاصاته وفق قرار رئيس مجلس الوزراء رقم 3165 لسنة 2026؟ | Do not reconstruct the rules from the title or preamble. Require the original Gazette text, exact pages, effective date and relationship to prior Council instruments; otherwise abstain. |
+| OSH-26 | هل القرارات 1305 و1572 و2033 و2377 و2590 لسنة 2026 تعدّل قانون العمل رقم 14 لسنة 2025 أم تمدد قرارًا تنفيذيًا آخر؟ | Distinguish the parent statute from separate Prime Minister decisions. The discovered texts describe monthly continuations of Decision 982/2026; do not call them statutory amendments, and qualify the relationship until each original Gazette instrument is matched and counsel reviews it. |
+
+
 This checklist is a review protocol, not a legal opinion or evidence that any rule has already been approved.
 
 
