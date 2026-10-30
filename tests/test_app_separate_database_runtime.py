@@ -3985,6 +3985,27 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
 
         context = self.runtime.resolve_context(self.user_id, self.firm_a)
         firm_db = self.runtime.firm_connection(context)
+        object_count_before_invalid_uploads = firm_db.execute(
+            "SELECT COUNT(*) FROM original_file_objects"
+        ).fetchone()[0]
+        unsupported = self._mutate(
+            "post", f"/cases/{case_id}/upload",
+            files={"file": ("unsupported.txt", b"plain text", "text/plain")},
+        )
+        self.assertEqual(unsupported.status_code, 415, unsupported.text)
+        malformed = self._mutate(
+            "post", f"/cases/{case_id}/upload",
+            files={"file": ("malformed.docx", b"not a docx",
+                            "application/vnd.openxmlformats-officedocument.wordprocessingml.document")},
+        )
+        self.assertEqual(malformed.status_code, 422, malformed.text)
+        firm_db.commit()
+        self.assertEqual(
+            firm_db.execute("SELECT COUNT(*) FROM original_file_objects").fetchone()[0],
+            object_count_before_invalid_uploads,
+            "rejected uploads must not leave orphaned original-file metadata",
+        )
+        firm_db = self.runtime.firm_connection(context)
         document_ids = (first_body["document_id"], second_body["document_id"])
         documents = firm_db.execute(
             "SELECT id,firm_id,uploader_user_id,sha256,content_type,byte_size,extraction_status,ocr_used "
@@ -4061,6 +4082,20 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(accepted.status_code, 201, accepted.text)
         self.assertTrue(accepted.json()["text_updated"])
         self.assertEqual(accepted.json()["page_reference"], "PDF p. 4")
+        self.assertFalse(accepted.json()["source_page_verified"])
+
+        review_audit = self.client.get(
+            f"/cases/{case_id}/docs/{document_id}/reviews"
+        )
+        self.assertEqual(review_audit.status_code, 200, review_audit.text)
+        self.assertEqual(review_audit.json()["reviews"][0]["outcome"], "corrected")
+        self.assertEqual(review_audit.json()["reviews"][0]["original_text"], original_text)
+
+        missing_digest = self._mutate(
+            "post", review_url,
+            json={"outcome": "corrected", "corrected_text": "correction without a digest"},
+        )
+        self.assertEqual(missing_digest.status_code, 422, missing_digest.text)
 
         stale = self._mutate(
             "post", review_url,
