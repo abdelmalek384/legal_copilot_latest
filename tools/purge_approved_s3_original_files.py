@@ -11,60 +11,27 @@ from database_runtime import DatabaseRuntime
 from s3_original_file_storage import S3PrivateObjectStore
 from tenant_catalog import initialize_catalog, resolve_tenant_database_for_maintenance
 from tools.database_release_acceptance import (
-    REQUIRED_GATES,
-    _read_acceptance_manifest_file,
-    _timestamp,
     load_acceptance_manifest,
+    load_staging_purge_acceptance_manifest,
     original_storage_config_fingerprint,
 )
-from datetime import datetime, timedelta, timezone
-from pathlib import Path
-
-
-def _staging_acceptance(path: str, fingerprint: str | None) -> tuple[bool, list[str]]:
-    """Require live storage acceptance and approved retention policy for synthetic staging drills."""
-    try:
-        manifest = _read_acceptance_manifest_file(Path(path))
-    except Exception as exc:
-        return False, [type(exc).__name__]
-    if not isinstance(manifest, dict) or manifest.get("schema_version") != 1:
-        return False, ["invalid_manifest"]
-    gates = manifest.get("gates")
-    if not isinstance(gates, dict):
-        return False, ["gates_missing"]
-    now = datetime.now(timezone.utc)
-    blockers = []
-    for name in ("original_file_storage", "retention_export_deletion_policy"):
-        spec = REQUIRED_GATES[name]
-        item = gates.get(name)
-        if not isinstance(item, dict) or item.get("status") != "passed":
-            blockers.append(name + ":not_passed")
-            continue
-        if not isinstance(item.get("evidence_ref"), str) or not item["evidence_ref"].strip():
-            blockers.append(name + ":evidence_missing")
-            continue
-        actor_field = "verified_by" if name == "original_file_storage" else "approved_by"
-        time_field = "verified_at" if name == "original_file_storage" else "approved_at"
-        if not isinstance(item.get(actor_field), str) or not item[actor_field].strip():
-            blockers.append(name + ":actor_missing")
-            continue
-        timestamp = _timestamp(item.get(time_field))
-        if timestamp is None or timestamp > now + timedelta(minutes=5):
-            blockers.append(name + ":timestamp_invalid")
-            continue
-        if now - timestamp > timedelta(days=spec["max_age_days"]):
-            blockers.append(name + ":evidence_expired")
-            continue
-        if name == "original_file_storage" and (
-            not fingerprint or item.get("storage_config_sha256") != fingerprint
-        ):
-            blockers.append(name + ":storage_target_mismatch")
-    return not blockers, blockers
 from tools.firm_offboarding_preflight import inspect_firm_offboarding
 from tools.purge_approved_original_files import (
     _read_only,
     purge_approved_requests,
 )
+
+
+def _staging_acceptance(path: str, fingerprint: str | None) -> tuple[bool, list[str]]:
+    report = load_staging_purge_acceptance_manifest(
+        path or None,
+        expected_storage_config_sha256=fingerprint,
+    )
+    blockers = [
+        f"{item.get('gate', 'manifest')}:{item.get('code', 'blocked')}"
+        for item in report.get("blockers", [])
+    ]
+    return bool(report.get("ready")), blockers
 
 
 def main() -> int:
