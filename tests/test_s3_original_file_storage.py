@@ -38,6 +38,7 @@ class FakeS3Client:
         self.copy_kms_key_id = self.CANONICAL_KMS_ARN
         self.corrupt_copy_body = False
         self.versioning_status = None
+        self.versioning_response = None
         self.fail_delete = False
 
     def _read(self, bucket, key):
@@ -98,6 +99,8 @@ class FakeS3Client:
         }
 
     def get_bucket_versioning(self, **kwargs):
+        if self.versioning_response is not None:
+            return dict(self.versioning_response)
         return {"Status": self.versioning_status} if self.versioning_status else {}
 
     def delete_object(self, **kwargs):
@@ -366,6 +369,14 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
             )
         self.assertEqual(self.store.object_presence(12, staged.object_id), (False, True))
         self.client.versioning_status = None
+        self.client.versioning_response = {"UnexpectedState": "unknown"}
+        with self.assertRaisesRegex(ObjectStorageError, "never-versioned"):
+            self.store.purge_unversioned(
+                12, staged.object_id, expected_sha256=staged.sha256,
+                expected_size=staged.byte_size,
+            )
+        self.assertEqual(self.store.object_presence(12, staged.object_id), (False, True))
+        self.client.versioning_response = None
         self.assertTrue(self.store.purge_unversioned(
             12, staged.object_id, expected_sha256=staged.sha256,
             expected_size=staged.byte_size,
