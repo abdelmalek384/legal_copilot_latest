@@ -1,4 +1,4 @@
-# Labour Law 14/2025 — official government PDF evidence for Articles 255 and 259–262
+# Labour Law 14/2025 — official government PDF evidence for Articles 11–13, 255 and 259–262
 
 **Checked:** 2026-10-30  
 **Primary source:** Egyptian Tax Authority government-hosted PDF, *Official Gazette*, Issue 18 (Supplement), 3 May 2025:  
@@ -12,11 +12,16 @@ The PDF was opened as a searchable document and rendered page images were inspec
 
 | Law provision | PDF page index (zero-based) | Printed Gazette page | What the primary text states |
 |---|---:|---:|---|
+| Articles 11, 12 and 13 | 3 | 5 | Articles 11–13 establish the 90-day deadline for implementing ministerial decisions (with existing decisions continuing insofar as they do not conflict), repeal Labour Law 12/2003 and Law 125/2010 and conflicting provisions, and set commencement: the first day of the month after 90 days from publication, with specialized labour courts commencing on the following 1 October. |
 | Article 255 | 94 | 96 | The competent minister issues a decision setting rules, standards and safety limits in workplaces, plus requirements and precautions needed to avert the risks described in the chapter, in coordination with competent authorities. |
 | Article 259 | 96 | 98 | The competent minister issues decisions identifying establishments and branches required to establish occupational safety and health functional units and the relevant committees. The committees investigate working conditions/accidents and set rules and precautions; their decisions bind the establishment and branches. |
 | Article 260 | 97 | 99 | Establishments with 30 or more workers submit semi-annual statistics on ordinary/chronic diseases, serious accidents and injuries. Covered establishments notify the competent administrative authority of each serious accident or occupational-disease symptoms within 24 hours. The minister issues the forms. Covered establishments also submit required data, reports and statistics electronically; the minister specifies the basic data. |
 | Article 261 | 97 | 99 | The Ministry, the National Centre and entities licensed under the provision provide basic, advanced, specific and specialist OSH training. The minister sets licensing rules and training systems, including conditions, procedures, duration, fees (not exceeding EGP 50,000) and exemptions. |
 | Article 262 | 97 | 99 | Practising OSH expertise and consultancy requires a licence from the competent ministry. The minister sets licensing conditions, rules, procedures, duration, register entry, fees (not exceeding EGP 50,000) and exemptions. |
+
+## Additional transitional/currentness implications
+
+Article 11 provides a 90-day period from the law's commencement for the competent labour minister to issue implementing decisions and says existing decisions continue until then insofar as they do not conflict with the new law. Article 12 repeals Labour Law 12/2003, Law 125/2010 on the priority of workers' rights, and conflicting provisions. Article 13 sets the law's commencement formula and a separate commencement date for specialized labour courts. These provisions are important versioning/currentness anchors; calculating exact dates and determining the status of each earlier decision still requires date arithmetic and a complete amendment/corrigendum review.
 
 ## Reconciliation with Decisions 248–252/2026
 
