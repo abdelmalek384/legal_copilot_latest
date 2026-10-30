@@ -400,7 +400,8 @@ This checkpoint records discovery and engineering safeguards, not verified-law c
 - Recorded that Decision 2590/2026 continues Decision 982/2026 through September 2026. A targeted search did not locate an October extension; this is not proof that no October instrument exists and does not establish expiry/currentness.
 - Added an explicit currentness discovery log and five future in-app lawyer prompts (OSH-23–27) to test October status, original Gazette citation, Decision 3165 and the distinction between parent-law amendment and implementing-decision extension.
 - Added regression assertions for the seven instrument records, parent relationships, DSpace metadata and access restrictions. A local structural/schema-equivalent check found 79 records, 13 source records, no duplicate IDs, no unsupported states and no invalid URLs.
-- On code/test head `b11fbd76b5ff0a6444c15065936e07d43e565274`, Legal Knowledge Validation passed (run 41035316456); Full Tests run 41035316461 is still running. Do not claim the full suite passed until it completes. The preceding validated branch checkpoint remains 103/103 Full Tests and 28/28 Legal Knowledge Validation.
+- Prepared `tools/inspect_action1_labour_intake.py` with tests and CI wiring. It creates a metadata-only receipt for the supplied Gazette PDF and optional `law_rows_ar.jsonl` (hashes, sizes, PDF signature/EOF, JSONL shape and duplicate-key diagnostics); it never edits, uploads, extracts or embeds source contents and never promotes legal status or retrieval eligibility.
+- On current intake-tool head `5eaf611584b9a1647e177e965f86fd030fa55d4a`, Legal Knowledge Validation passed (run 41035603742); Full Tests run 41035603731 is still running. Do not claim the full suite passed until it completes. The preceding validated branch checkpoint remains 103/103 Full Tests and 28/28 Legal Knowledge Validation.
 
 ### Next gates
 
