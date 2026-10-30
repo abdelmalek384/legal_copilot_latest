@@ -32,15 +32,25 @@ class TenantSQLiteConnectionRouterTests(unittest.TestCase):
             provision_tenant_database(catalog, 101, self.root, initialize_tenant)
             provision_tenant_database(catalog, 202, self.root, initialize_tenant)
 
+        tenant_paths = []
         for firm_id, value in ((101, "firm-a"), (202, "firm-b")):
             with self._catalog() as catalog:
                 path = resolve_tenant_database(catalog, firm_id, self.root)
+            tenant_paths.append(path)
             db = sqlite3.connect(path)
             try:
                 db.execute("UPDATE marker SET value=?", (value,))
                 db.commit()
+                db.execute("PRAGMA wal_checkpoint(TRUNCATE)")
             finally:
                 db.close()
+            # Migration/provisioning writes can leave empty WAL sidecars after
+            # the final connection closes. Remove those fixture artifacts so
+            # the symlink/FIFO tests can create the exact sidecar they intend.
+            for suffix in ("-wal", "-shm"):
+                sidecar = Path(str(path) + suffix)
+                if sidecar.exists() or sidecar.is_symlink():
+                    sidecar.unlink()
 
         self.router = TenantSQLiteConnectionRouter(self._catalog, self.root)
 
