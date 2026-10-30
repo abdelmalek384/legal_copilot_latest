@@ -74,8 +74,8 @@ def render(rows: list[dict[str, Any]]) -> str:
         "",
         "## Flagged entries",
         "",
-        "| Row | English label | Source line | Review flags | CAS candidate/raw token | Secondary image | Candidate text note |",
-        "|---:|---|---:|---|---|---|---|",
+        "| Row | English label | Source line | Review flags | CAS candidate/raw token | Secondary image | Candidate vs image discrepancy | Candidate text note |",
+        "|---:|---|---:|---|---|---|---|---|",
     ]
     for row, tags in flagged:
         label = str(row.get("name_en") or "MISSING LABEL").replace("|", "\\|").replace("\n", " ")
@@ -89,9 +89,18 @@ def render(rows: list[dict[str, Any]]) -> str:
         if page:
             image = f"p. {page}: {image}"
         image = str(image).replace("|", "\\|")
+        discrepancy_summary = "—"
+        if discrepancy:
+            discrepancy_summary = (
+                f"{discrepancy.get('field', 'field?')}: "
+                f"{discrepancy.get('candidate_transcription', 'candidate?')} vs "
+                f"{discrepancy.get('secondary_image_observed_tentative', 'image?')} "
+                f"({discrepancy.get('status', 'status?')})"
+            )
+        discrepancy_summary = str(discrepancy_summary).replace("|", "\\|").replace("\n", " ")
         lines.append(
             f"| {row.get('row', '')} | {label} | {row.get('source_line', '')} | "
-            f"{'; '.join(tags)} | {cas} | {image} | {note} |"
+            f"{'; '.join(tags)} | {cas} | {image} | {discrepancy_summary} | {note} |"
         )
     lines.extend([
         "",
