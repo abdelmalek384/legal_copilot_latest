@@ -135,3 +135,6 @@ python tools/report_labour_law_evidence_cards.py
 
 The report is a review aid only; it does not change any source-permission, legal-status, lawyer-review, or retrieval-eligibility flags. Its regression test requires the checked-in Markdown report to match the JSON cards.
 
+
+
+- [Official Gazette supplement catalog and access status](decisions_248_252_primary_source_page_map_2026-10-30.md): exact DSpace record for Gazette Supplement 225(A), 12 October 2026, listing Decisions 248–252 and the original 6.13 MB bundle; the PDF is request-copy restricted, so no primary text has yet been reviewed.
