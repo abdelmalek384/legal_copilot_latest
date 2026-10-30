@@ -143,7 +143,7 @@ def validate(root: Path = DATA_DIR) -> list[str]:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=DATA_DIR,
-                        help="Directory containing the five candidate JSON files")
+                        help="Directory containing the 38 candidate JSON batches")
     args = parser.parse_args()
     errors = validate(args.root)
     if errors:
