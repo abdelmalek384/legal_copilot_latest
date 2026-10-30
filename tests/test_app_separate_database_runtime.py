@@ -2188,6 +2188,30 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(after, before)
         self.assertEqual(self.client.get("/session").status_code, 200)
 
+    def test_malformed_authorization_missing_csrf_and_expired_session_fail_closed(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+
+        for malformed in ("", "garbage", "Bearer", "Basic abc", "Bearer not-a-real-token"):
+            response = self.client.get("/cases", headers={"Authorization": malformed})
+            self.assertEqual(response.status_code, 401, malformed)
+
+        missing_csrf = self.client.post("/cases", json={"title": "Missing CSRF"})
+        self.assertEqual(missing_csrf.status_code, 403, missing_csrf.text)
+
+        token = self.client.cookies.get("lc_session") or ""
+        self.assertTrue(token)
+        control = self.runtime.control_connection()
+        control.execute(
+            "UPDATE auth_sessions SET expires=? WHERE token_hash=?",
+            (int(app.time.time()) - 1, app.sha(token)),
+        )
+        control.commit()
+        expired = self.client.get("/cases")
+        self.assertEqual(expired.status_code, 401, expired.text)
+
     def test_deadline_action_cannot_mutate_another_firms_deadline(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
