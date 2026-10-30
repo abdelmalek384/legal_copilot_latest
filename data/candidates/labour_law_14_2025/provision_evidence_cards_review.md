@@ -1800,7 +1800,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative advice or final compliance decision until full official text and applicable decisions are verified.
 
-### 62. EG-LABOUR-14-2025-ART-258-OSH-IMMINENT-DANGER-REMOVAL
+### 62. EG-LABOUR-14-2025-ART-258-OSH-INSPECTOR-INSPECTION-RIGHTS
 
 **Question:** ما صلاحيات مفتشي السلامة والصحة المهنية؟
 
