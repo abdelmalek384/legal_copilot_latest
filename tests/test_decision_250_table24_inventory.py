@@ -35,6 +35,28 @@ class Decision250Table24InventoryTests(unittest.TestCase):
         self.assertFalse(index["official_pdf_bytes_downloaded_and_hashed"])
         self.assertFalse(index["authoritative_retrieval_eligible"])
 
+    def test_article296_penalty_excerpt_remains_quarantined(self):
+        path = CANDIDATE_DIR / "official_primary_text_article296_2026-10-30.jsonl"
+        records = [
+            json.loads(line)
+            for line in path.read_text(encoding="utf-8").splitlines()
+            if line.strip()
+        ]
+        self.assertEqual(len(records), 1)
+        record = records[0]
+        self.assertEqual(record["article"], 296)
+        self.assertEqual(record["pdf_page_index"], 108)
+        self.assertEqual(record["printed_page"], 111)
+        self.assertFalse(record["original_pdf_bytes_obtained"])
+        self.assertIsNone(record["original_pdf_sha256"])
+        self.assertEqual(record["currentness_review"], "not_started")
+        self.assertEqual(record["counsel_review"], "not_started")
+        self.assertEqual(record["source_use_status"], "provisional_official_document_exclusion_candidate_pending_counsel")
+        self.assertFalse(record["retrieval_eligible"])
+        self.assertIn("مادة (٢٩٦)", record["source_text_ar"])
+        self.assertIn("٢٦٠", record["source_text_ar"])
+        self.assertIn("٢٦١", record["source_text_ar"])
+
     def test_secondary_candidate_inventory_is_contiguous_and_quarantined(self):
         batches = sorted(CANDIDATE_DIR.glob("decision_250_table24_candidate_batch*_2026-*.json"))
         self.assertEqual(len(batches), 38)
