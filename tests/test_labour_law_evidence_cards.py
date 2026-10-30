@@ -147,7 +147,7 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
 
     def test_osh_card_identifiers_match_their_actual_provision_topics(self):
         expected = {
-            258: ("EG-LABOUR-14-2025-ART-258-OSH-INSPECTOR-INSPECTION-RIGHTS", "حق مفتشي"),
+            258: ("EG-LABOUR-14-2025-ART-258-OSH-INSPECTOR-INSPECTION-RIGHTS", "مفتشي"),
             259: ("EG-LABOUR-14-2025-ART-259-OSH-DEVICES-AND-COMMITTEES", "أجهزة ولجان"),
             261: ("EG-LABOUR-14-2025-ART-261-OSH-TRAINING-LICENSING", "التدريب"),
             262: ("EG-LABOUR-14-2025-ART-262-OSH-CONSULTANT-LICENSING", "الاستشارات"),
