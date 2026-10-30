@@ -61,6 +61,33 @@ These are collection categories, not confirmation that every agency provides a p
 | FAOLEX | https://faolex.fao.org/ | Agriculture, food, environment, water and natural-resource legislation | Subject-specific; verify against Egyptian primary sources. |
 | Cyrilla / legal information resources | https://cyrilla.org/ | Discover digital-rights, privacy and technology-related legal texts | Secondary/discovery source; verify source, version and reuse rights. |
 
+
+#### Additional public legal-document archive — 30 October 2026
+
+| Source | URL | What was observed | Evidence and limitations |
+|---|---|---|---|
+| الذاكرة والمعرفة للدراسات (Althakira wa al-Ma'rifa for Studies) | https://www.mksegypt.org/ar/documents | Public searchable catalogue of Egyptian laws, decisions, Court of Cassation judgments, Supreme Constitutional Court judgments, and Supreme Administrative Court judgments. The catalogue snapshot showed 1,135 Cassation judgments, 983 Constitutional Court judgments, 2,456 Supreme Administrative Court judgments, 10,259 decisions, and 1,090 laws (15,923 total records). An individual Cassation page exposes the appeal number, judicial year, judgment date, printed page reference, headnote/principles, reasoning and facts. | The About page describes the operator as a company registered under Egyptian law, established in 2021. The catalogue and individual judgment page state that site content is licensed under CC BY 4.0. Treat this as a promising rights lead, not blanket clearance: the scope of the licence over underlying judgments, statutory texts, third-party reproductions, annotations and metadata has not been independently established. The site is not an official court or Gazette publisher. The official Court of Cassation portal has separate restrictive terms already recorded in the permission register; do not assume this archive's licence overrides those terms or proves its own source authority. No bulk API/export was established. |
+
+Sample page inspected: https://www.mksegypt.org/ar/court-of-cassation-rulings/21623 — Appeal No. 309, Judicial Year 60, dated 8 May 1991. The page contains the judgment's reasoning and facts, not merely a search-result title. This sample demonstrates full-text availability but does not prove the accuracy or completeness of the entire archive.
+
+Independent secondary metadata cross-check located for that Cassation citation: https://egylawsite.wordpress.com/page/495/ lists Appeal No. 309 of Judicial Year 60, session 8 May 1991, matching the MKSEgypt page's case number and date. This corroborates the citation metadata only; it is not an official court source and does not independently verify the complete reasoning or the MKSEgypt transcription.
+
+Two additional court-section samples were inspected:
+- Supreme Constitutional Court: https://www.mksegypt.org/ar/judgments-of-the-supreme-constitutional-court/15539 — Case 179 of Judicial Year 19 (constitutional), dated 4 April 1998. The page includes the court/case identifiers, parties, procedural history, reasoning and disposition.
+- Supreme Administrative Court: https://www.mksegypt.org/ar/judgments-of-the-supreme-administrative-court/21609 — Appeal 8698 of Judicial Year 44, dated 19 November 2000. The page includes chamber and judge details, procedural history, submissions, reasoning and disposition.
+
+Both additional individual pages also display the CC BY 4.0 footer statement. These three samples support the conclusion that the archive exposes substantive full-text records across all three court sections; they do not establish that every catalogue entry is complete, accurate, current, or traceable to an official original.
+
+Two further non-court document samples were inspected:
+- Law record: https://www.mksegypt.org/ar/laws/16785 — Law No. 131 of 2009 amending Law No. 8 of 1991. The page exposes five articles of text and metadata including instrument number, issuing body, date, and a site-provided status of ساري. That status is not independently verified here.
+- Decision record: https://www.mksegypt.org/ar/decisions/16784 — Prime Minister Decision No. 1639 of 2023. The page exposes the decision's two articles and metadata; its page title gives 15 June 2023 while the reproduced signature line states 30 April 2023. Preserve these as distinct publication/page and signature dates; do not collapse them. The page's site-provided current status is not independently verified.
+
+Both sample law/decision pages also display the CC BY 4.0 footer statement. Together with the three court samples, this confirms full-text page availability in the site's law, decision and three court sections, while leaving completeness, legal currentness, official provenance and licence scope unresolved.
+
+**Egyptian copyright-law context:** WIPO Lex's consolidated record for Law No. 82/2002 (amended through Law No. 178/2020) reproduces Article 141, which excludes official documents—including laws, regulations, decisions and court judgments—from copyright protection, but also says collections may be protected where selection or arrangement is creative. This makes the underlying official document distinct from the site's database, selection, arrangement and editorial material. It is a rights-analysis lead, not blanket permission for bulk extraction or reuse of the site's compilation; verify later amendments and obtain qualified counsel review before changing the permission register. Source: https://www.wipo.int/wipolex/ar/legislation/details/22066
+
+**Required handling:** keep collection and commercial reuse permission as unknown in the central register until the CC BY 4.0 scope and chain of rights are clear. Preserve attribution requirements if the licence is relied upon. Manually sample records across all sections and compare selected case identifiers/dates/citations against official court sources. Do not bulk scrape, crawl, or import legal texts while rights scope or provenance remains unresolved. If ambiguity remains, retain the site as a discovery/cross-reference source only; do not contact source holders under the current project constraint.
+
 ### Tier 4 — books, journals and practitioner materials
 
 Collect only when the office has lawful access and the intended storage, indexing, model processing and user access are permitted.

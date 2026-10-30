@@ -120,5 +120,27 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         self.assertTrue(any("material_types must be a non-empty list" in error for error in errors))
         self.assertTrue(any("assessment_date must be a valid ISO date" in error for error in errors))
 
+    def test_article_141_does_not_override_court_portal_access_terms(self):
+        import json
+        data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        source = next(item for item in data["sources"] if item["source_id"] == "EG-COURT-CASSATION")
+        self.assertEqual(source["collection_permission"], "not_allowed_without_explicit_exception_or_license")
+        self.assertEqual(source["commercial_reuse_permission"], "prior_written_permission_required_per_published_terms")
+        self.assertIn("Article 141", source["permission_evidence"])
+        self.assertIn("does not authorize automated/bulk extraction", source["permission_evidence"])
+
+    def test_mksegypt_archive_license_claim_is_recorded_without_overstating_permission(self):
+        import json
+        data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        source = next(item for item in data["sources"] if item["source_id"] == "EG-MKSEGYPT-LEGAL-REPOSITORY")
+        self.assertEqual(source["collection_permission"], "unknown")
+        self.assertEqual(source["commercial_reuse_permission"], "unknown")
+        self.assertIn("CC BY 4.0", source["permission_evidence"])
+        self.assertIn("Article 141", source["permission_evidence"])
+        self.assertIn("collections", source["permission_evidence"])
+        self.assertEqual(source["permission_evidence_url"], "https://www.mksegypt.org/ar/documents")
+        self.assertEqual(source["terms_checked_on"], "2026-10-30")
+        self.assertEqual(MODULE.validate(data), [])
+
 if __name__ == "__main__":
     unittest.main()
