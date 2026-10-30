@@ -5,6 +5,9 @@
 
 ## Overall status
 
+See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **47% technical completion** (46.5/100, rounded) as of 2026-10-30. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
+
+
 ## Current workstream snapshot — 2026-10-27
 
 **Important:** These percentages are rough, reviewable workstream estimates—not a claim that the product is market-ready. They measure visible engineering/evidence progress and are not directly additive. The legacy 7/20 tally below is not refreshed to include every recent workstream and must not be quoted as the current overall project completion percentage.
@@ -403,4 +406,4 @@ The deployment target remains a fresh install. No production customer database h
 4. Complete manual Arabic RTL / English LTR, responsive, keyboard, screen-reader and lawyer-workflow acceptance.
 5. Finish route/query/background-job tenant-isolation acceptance, production identity delivery/recovery, and independent security review.
 
-The **42% ± 8% overall product estimate remains the last accepted project-wide estimate**. Open PR #902 proposes a weighted technical completion score of 47% (46.5/100) and passed its PR Tests workflow 122/122; it remains open and is not yet the accepted tracker baseline. The database workstream has advanced, but it cannot compensate for the product's still-limited verified legal corpus or the missing human and operational acceptance evidence.
+The **47% weighted technical completion score** supersedes the older non-additive 42% ± 8% estimate. It remains a planning estimate, not production readiness or legal approval. The verified legal corpus remains at 6%; Law 174/2025's commencement is intentionally unassigned pending reconciliation of Law 160/2026's published wording with official explanatory material and qualified Egyptian-counsel review. The database workstream has advanced, but it cannot compensate for the product's still-limited verified legal corpus or missing human and operational acceptance evidence.
