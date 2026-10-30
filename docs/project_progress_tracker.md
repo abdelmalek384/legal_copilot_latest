@@ -390,7 +390,7 @@ This checkpoint records discovery and engineering safeguards, not verified-law c
 | Phase 2 metadata inventory | 79 instrument candidates / 13 source records | Seven new 2026 Prime Minister decision candidates (982, 1305, 1572, 2033, 2377, 2590, 3165) linked to Labour Law 14/2025. All remain discovery-only. |
 | Decision 250 Table 24 | 781 secondary candidate rows | Structural inventory is complete (781/781); original Gazette row matches remain 0/781. Rows 34, 61 and 64 remain explicitly unresolved/high-priority. |
 | Decisions 248–252 | 0/5 fully compared with original Gazette | Supplement 225(A) original PDF remains request-copy restricted in the checked DSpace record; Action 1 user-supplied intake is pending. |
-| Lawyer in-app review | Not started | Separate post-technical-completion release gate. The review plan now includes OSH-23–26 for later implementing-decision/currentness behavior. |
+| Lawyer in-app review | Not started | Separate post-technical-completion release gate. The review plan now includes OSH-23–27 for later implementing-decision/currentness behavior, including the April Sunday scope and whether monthly extensions carried it forward. |
 
 ### New evidence work completed
 
