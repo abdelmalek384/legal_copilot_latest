@@ -54,13 +54,13 @@
       "official_source_page": "https://www.presidency.eg/ar/قسم-الأخبار/أخبار-رئاسية/news12112025/",
       "gazette_reference": "الجريدة الرسمية، العدد 45 مكرر (د)، 12 نوفمبر 2025",
       "publication_date": "2025-11-12",
-      "effective_date": "2027-10-01 (as amended by Law No. 160/2026; verify exact application and transition with counsel)",
+      "effective_date": null,
       "collection_permission": "unknown",
-      "reason_not_approved": "Official Ministry of Justice-hosted Gazette PDF located, but permission for automated retrieval, archival, extraction, and commercial indexing has not been established.",
+      "reason_not_approved": "Official Ministry of Justice-hosted Gazette PDF located, but permission for automated retrieval, archival, extraction, and commercial indexing has not been established. Commencement is also unresolved: Law 160/2026's published replacement wording and official explanatory reporting are not self-evidently aligned; do not assign an effective date until the Gazette text and legal effect are reconciled.",
       "legal_authenticity_verified": false,
       "current_legal_status_verified": false,
       "amendment_history_verified": false,
-      "next_action": "Review collection terms; compare the Gazette PDF with Law No. 160/2026 and verify commencement and transition consequences with an Egyptian lawyer."
+      "next_action": "Review collection terms; compare the exact Gazette PDFs for Laws 174/2025 and 160/2026; resolve the Article 6 wording, publication reference date, commencement and transition consequences with qualified Egyptian counsel before assigning an effective date."
     },
     {
       "document_id": "eg_criminal_procedure_law_160_2026_amiri_press",
