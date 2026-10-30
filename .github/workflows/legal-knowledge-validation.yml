@@ -12,6 +12,7 @@ on:
       - 'tools/validate_law14_2025_primary_excerpts.py'
       - 'tools/validate_decision249_candidate_map.py'
       - 'tools/validate_decision251_candidate_map.py'
+      - 'tools/validate_decision252_candidate_map.py'
       - 'tools/build_decision250_table24_review_queue.py'
       - 'tools/build_decision250_table24_primary_match_register.py'
       - 'tests/test_decision250_table24_candidate_validation.py'
@@ -20,6 +21,7 @@ on:
       - 'tests/test_law14_2025_primary_excerpts.py'
       - 'tests/test_decision249_candidate_map.py'
       - 'tests/test_decision251_candidate_map.py'
+      - 'tests/test_decision252_candidate_map.py'
       - 'tests/test_decision250_table24_review_queue.py'
       - 'tests/test_decision250_table24_primary_match_register.py'
       - 'tests/test_compare_corpus_to_reference.py'
@@ -54,6 +56,10 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Validate Decision 252 secondary candidate map
+        run: python tools/validate_decision252_candidate_map.py
+      - name: Test Decision 252 candidate map safeguards
+        run: PYTHONPATH=. python tests/test_decision252_candidate_map.py
       - name: Validate Decision 251 secondary candidate map
         run: python tools/validate_decision251_candidate_map.py
       - name: Test Decision 251 candidate map safeguards
