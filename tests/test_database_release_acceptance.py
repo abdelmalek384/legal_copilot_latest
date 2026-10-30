@@ -4,7 +4,11 @@ import tempfile
 import unittest
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from types import SimpleNamespace
+from unittest.mock import patch
 
+from s3_original_file_storage import S3PrivateObjectStore
+from tools.purge_approved_original_files import _validate_s3_apply_authorization
 from tools.database_release_acceptance import (
     REQUIRED_GATES,
     load_acceptance_manifest,
@@ -146,6 +150,72 @@ class DatabaseReleaseAcceptanceTests(unittest.TestCase):
                 ("retention_export_deletion_policy", "evidence_expired"),
                 {(item["gate"], item["code"]) for item in expired["blockers"]},
             )
+
+    def test_core_s3_purge_authorization_requires_production_manifest(self):
+        key = "arn:aws:kms:eu-central-1:123456789012:key/test-key"
+
+        class FakeKms:
+            meta = SimpleNamespace(region_name="eu-central-1")
+
+            def describe_key(self, **kwargs):
+                return {"KeyMetadata": {"KeyId": key, "Arn": key}}
+
+        client = SimpleNamespace(meta=SimpleNamespace(
+            region_name="eu-central-1",
+            endpoint_url="https://s3.eu-central-1.amazonaws.com",
+        ))
+        store = S3PrivateObjectStore(
+            client, bucket="private-bucket", kms_key_id=key, kms_client=FakeKms()
+        )
+        environment = {
+            "COPILOT_ENV": "production",
+            "COPILOT_OBJECT_STORAGE_BACKEND": "s3",
+            "COPILOT_S3_BUCKET": "private-bucket",
+            "COPILOT_S3_REGION": "eu-central-1",
+            "COPILOT_S3_KMS_KEY_ID": key,
+            "COPILOT_S3_ENDPOINT_URL": "",
+            "COPILOT_DATABASE_ACCEPTANCE_FILE": "/nonexistent/acceptance.json",
+        }
+        with patch.dict(os.environ, environment, clear=True):
+            with self.assertRaisesRegex(RuntimeError, "incomplete or stale acceptance"):
+                _validate_s3_apply_authorization(12, store, staging_drill=False)
+
+    def test_core_s3_purge_authorization_rejects_development_and_wrong_staging_target(self):
+        key = "arn:aws:kms:eu-central-1:123456789012:key/test-key"
+
+        class FakeKms:
+            meta = SimpleNamespace(region_name="eu-central-1")
+
+            def describe_key(self, **kwargs):
+                return {"KeyMetadata": {"KeyId": key, "Arn": key}}
+
+        client = SimpleNamespace(meta=SimpleNamespace(
+            region_name="eu-central-1",
+            endpoint_url="https://s3.eu-central-1.amazonaws.com",
+        ))
+        store = S3PrivateObjectStore(
+            client, bucket="private-bucket", kms_key_id=key, kms_client=FakeKms()
+        )
+        base = {
+            "COPILOT_OBJECT_STORAGE_BACKEND": "s3",
+            "COPILOT_S3_BUCKET": "private-bucket",
+            "COPILOT_S3_REGION": "eu-central-1",
+            "COPILOT_S3_KMS_KEY_ID": key,
+            "COPILOT_S3_ENDPOINT_URL": "",
+            "COPILOT_DATABASE_ACCEPTANCE_FILE": "/nonexistent/acceptance.json",
+        }
+        with patch.dict(os.environ, dict(base, COPILOT_ENV="development"), clear=True):
+            with self.assertRaisesRegex(RuntimeError, "restricted to accepted production"):
+                _validate_s3_apply_authorization(12, store, staging_drill=False)
+        staging = dict(
+            base,
+            COPILOT_ENV="staging",
+            COPILOT_S3_PURGE_STAGING_BUCKET="different-bucket",
+            COPILOT_S3_PURGE_STAGING_FIRM_ID="12",
+        )
+        with patch.dict(os.environ, staging, clear=True):
+            with self.assertRaisesRegex(RuntimeError, "explicit bucket/firm allowlist"):
+                _validate_s3_apply_authorization(12, store, staging_drill=True)
 
     def test_missing_or_pending_gates_block_release(self):
         manifest = json.loads(json.dumps(self.manifest))
