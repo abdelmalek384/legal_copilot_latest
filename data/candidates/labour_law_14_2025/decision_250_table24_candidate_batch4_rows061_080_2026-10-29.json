@@ -52,6 +52,13 @@
         "secondary_image_observed_tentative": "appears to read 0.3 mg/m3",
         "status": "pending_original_gazette_confirmation",
         "note": "The value in the watermarked page 258 reproduction is small/rotated; this is a tentative visual read only. Do not correct the candidate value until the original Gazette is checked."
+      },
+      "secondary_transcription_crosscheck": {
+        "url": "https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html",
+        "source_line": 4586,
+        "transcribed_value": "1 مجم/ م3(I)",
+        "status": "secondary_transcription_confirms_candidate_text_but_not_original_image",
+        "note": "The transcription shows 1 mg/m3 (I), while the separate watermarked image spot-check tentatively appears to show 0.3 mg/m3. This remains an unresolved discrepancy; no column meaning is inferred."
       }
     },
     {
@@ -122,6 +129,13 @@
         "secondary_image_observed_tentative": "appears to read 0.5 ppm",
         "status": "pending_original_gazette_confirmation",
         "note": "The value in the watermarked page 258 reproduction appears different from the secondary text transcription. This is a tentative visual read only; do not correct until the original Gazette is checked."
+      },
+      "secondary_transcription_crosscheck": {
+        "url": "https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html",
+        "source_line": 4591,
+        "transcribed_value": "0,02 جزء / مليون",
+        "status": "secondary_transcription_confirms_candidate_text_but_not_original_image",
+        "note": "The transcription shows 0.02 ppm, while the separate watermarked image spot-check tentatively appears to show 0.5 ppm. This remains an unresolved discrepancy; no column meaning is inferred."
       }
     },
     {
