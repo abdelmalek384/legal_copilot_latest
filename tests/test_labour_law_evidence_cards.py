@@ -157,10 +157,13 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
         }
         for article, (expected_id, topic) in expected.items():
             with self.subTest(article=article):
-                card = next(
+                matches = [
                     item for item in self.data["cards"]
-                    if int("".join(ch for ch in str(item["pinpoint"]["article"]) if ch.isdigit())) == article
-                )
+                    if str(item["pinpoint"]["article"]).strip() == str(article)
+                    or str(item["pinpoint"]["article"]).strip() == f"المادة {article}"
+                ]
+                self.assertEqual(len(matches), 1)
+                card = matches[0]
                 self.assertEqual(card["card_id"], expected_id)
                 self.assertIn(topic, card["question"])
                 self.assertFalse(card["search_eligible"])
