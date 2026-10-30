@@ -13,6 +13,7 @@ SPEC.loader.exec_module(MODULE)
 
 
 class Decision249CandidateMapTests(unittest.TestCase):
+    """Protect secondary-only source provenance and full article/table locator coverage."""
     def test_map_is_complete_and_quarantined(self):
         self.assertEqual(MODULE.validate(), [])
 
