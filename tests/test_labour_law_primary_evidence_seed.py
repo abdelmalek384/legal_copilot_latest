@@ -86,6 +86,12 @@ class LabourLawPrimaryEvidenceSeedTests(unittest.TestCase):
         self.assertIn("64", pages)
         for provision in self.seed["provisions"]:
             pinpoint = provision["page_pinpoint"]
+            if pinpoint.get("source_type") == "official_text_page":
+                self.assertTrue(pinpoint["pinpoint"].startswith("مادة"))
+                self.assertIsNone(pinpoint["printed_page"])
+                self.assertIsNone(pinpoint["pdf_page_index_zero_based"])
+                self.assertEqual(pinpoint["source_url"], "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D")
+                continue
             self.assertEqual(pinpoint["gazette_issue"], "18 (تابع)")
             if "printed_pages" in pinpoint:
                 self.assertEqual(len(pinpoint["printed_pages"]), len(pinpoint["pdf_page_indices_zero_based"]))
