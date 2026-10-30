@@ -36,6 +36,13 @@ def categories(row: dict[str, Any]) -> list[str]:
     tags: list[str] = []
     if row.get("anomaly"):
         tags.append("TEXT/IDENTIFIER ANOMALY")
+    scan_status = row.get("secondary_scan_match_status")
+    if scan_status == "secondary_image_discrepancy_found":
+        tags.append("SECONDARY IMAGE DISCREPANCY — ORIGINAL GAZETTE REQUIRED")
+    elif scan_status == "secondary_image_spot_check_partial_fields":
+        tags.append("PARTIAL SECONDARY IMAGE CHECK — NOT COMPLETE")
+    elif scan_status == "page_locator_assigned_pending_field_comparison":
+        tags.append("SECONDARY IMAGE LOCATOR — FIELD COMPARISON PENDING")
     if row.get("risk_note"):
         tags.append("HIGH-RISK REVIEW")
     if row.get("currentness_candidate"):
@@ -67,18 +74,24 @@ def render(rows: list[dict[str, Any]]) -> str:
         "",
         "## Flagged entries",
         "",
-        "| Row | English label | Source line | Review flags | CAS candidate/raw token | Candidate text note |",
-        "|---:|---|---:|---|---|---|",
+        "| Row | English label | Source line | Review flags | CAS candidate/raw token | Secondary image | Candidate text note |",
+        "|---:|---|---:|---|---|---|---|",
     ]
     for row, tags in flagged:
         label = str(row.get("name_en") or "MISSING LABEL").replace("|", "\\|").replace("\n", " ")
         cas = row.get("raw_cas_token") or row.get("cas") or "not supplied"
         cas = str(cas).replace("|", "\\|").replace("\n", " ")
-        note = row.get("anomaly") or row.get("currentness_candidate") or row.get("risk_note") or "manual source comparison required"
+        discrepancy = row.get("secondary_scan_discrepancy") or {}
+        note = discrepancy.get("note") or row.get("anomaly") or row.get("currentness_candidate") or row.get("risk_note") or "manual source comparison required"
         note = str(note).replace("|", "\\|").replace("\n", " ")
+        image = row.get("secondary_scan_image_url") or "not located"
+        page = row.get("secondary_scan_printed_page")
+        if page:
+            image = f"p. {page}: {image}"
+        image = str(image).replace("|", "\\|")
         lines.append(
             f"| {row.get('row', '')} | {label} | {row.get('source_line', '')} | "
-            f"{'; '.join(tags)} | {cas} | {note} |"
+            f"{'; '.join(tags)} | {cas} | {image} | {note} |"
         )
     lines.extend([
         "",
