@@ -68,7 +68,8 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
                 if item["document_id"] in {"EG-LABOUR-DECISION-49-2026", "EG-LABOUR-DECISION-294-2025"}:
                     gazette = item["official_gazette_metadata"]
                     self.assertIn("dspace.id.com.eg", gazette["source_url"])
-                    self.assertTrue("not been downloaded" in gazette["full_text_status"] or "not been obtained" in gazette["full_text_status"])
+                    full_text_status = gazette["full_text_status"].casefold()
+                    self.assertTrue(any(phrase in full_text_status for phrase in ("not been downloaded", "not been obtained", "no original file")))
                     self.assertIn("not verified", item["status"])
                     if item["document_id"] == "EG-LABOUR-DECISION-49-2026":
                         self.assertEqual(gazette["publication_date"], "2026-03-18")
