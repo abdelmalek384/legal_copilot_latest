@@ -162,6 +162,14 @@ def run_smoke(
                 "Arabic RTL standalone manifest present" if valid_manifest else "manifest is invalid or missing required Arabic/install fields",
             )
 
+        apple_icon = responses.get("/apple-touch-icon.png")
+        if apple_icon is not None and apple_icon.status_code == 200:
+            record(
+                "Apple touch icon PNG signature",
+                apple_icon.content.startswith(bytes([137, 80, 78, 71, 13, 10, 26, 10])),
+                "valid PNG signature" if apple_icon.content.startswith(bytes([137, 80, 78, 71, 13, 10, 26, 10])) else "invalid PNG signature",
+            )
+
         worker = responses.get("/service-worker.js")
         if worker is not None and worker.status_code == 200:
             body = worker.text
