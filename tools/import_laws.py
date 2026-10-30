@@ -170,7 +170,7 @@ def _ocr(args):
     return pytesseract.image_to_string(Image.open(io.BytesIO(image_bytes)), lang="eng")
 
 
-def page_texts(path, cache):
+def page_texts(path, cache_root, content_sha256):
     try:
         import pymupdf
     except ImportError as exc:
@@ -179,17 +179,26 @@ def page_texts(path, cache):
         pages = [page.get_text() for page in document]
     joined = "".join(pages)
     if sum(0xE000 <= ord(ch) <= 0xF8FF for ch in joined) > 0.2 * max(len(joined), 1):
-        cache = cache / path.stem
+        if cache_root.is_symlink() or (cache_root.exists() and not cache_root.is_dir()):
+            _fail("OCR cache root must be a regular directory")
+        cache_root.mkdir(parents=True, exist_ok=True)
+        cache = cache_root / (path.stem + "-" + content_sha256[:16])
+        if cache.is_symlink() or (cache.exists() and not cache.is_dir()):
+            _fail("per-document OCR cache must be a regular directory")
         cache.mkdir(parents=True, exist_ok=True)
         budget = int(os.environ.get("OCR_BATCH", 10 ** 9))
         output = []
         for index in range(len(pages)):
             cached_page = cache / ("%d.txt" % index)
+            if cached_page.is_symlink() or (cached_page.exists() and not cached_page.is_file()):
+                _fail("OCR cache page must be a regular file: " + cached_page.name)
             if not cached_page.exists():
                 if budget <= 0:
                     raise SystemExit("OCR in progress (%d/%d pages done): run again" % (index, len(pages)))
                 cached_page.write_text(_ocr((str(path), index)), encoding="utf-8")
                 budget -= 1
+            if cached_page.stat().st_size == 0:
+                _fail("OCR cache page is empty: " + cached_page.name)
             output.append(cached_page.read_text(encoding="utf-8"))
         return output, True
     return pages, False
@@ -241,7 +250,7 @@ def main(src, out):
     all_rows = []
     report = ["# Import report", ""]
     for sidecar, metadata, pdf_path, actual_hash in inputs:
-        pages, ocr_used = page_texts(pdf_path, output_dir / ".ocr_cache")
+        pages, ocr_used = page_texts(pdf_path, output_dir / ".ocr_cache", actual_hash)
         parts = split(clean(pages))
         name = NAMES.get(metadata["document_id"], metadata["document_id"])
         source = (
