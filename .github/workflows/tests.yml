@@ -18,6 +18,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_document_review_workflow.py
       - name: Test frontend UX and accessibility contract
         run: python tests/test_frontend_ux_contract.py
+      - name: Test installable PWA shell and offline privacy boundary
+        run: PYTHONPATH=. python tests/test_pwa_shell.py
       - name: Test research inspector status, citation, and memo helpers
         run: python tests/test_research_inspector.py
       - name: Check frontend JavaScript syntax
@@ -30,6 +32,10 @@ jobs:
           python-version: '3.12'
       - name: Install dependencies
         run: python -m pip install -r requirements.txt
+      - name: Smoke-test public PWA HTTP routes and security headers
+        run: PYTHONPATH=. python tests/test_pwa_http_routes.py
+      - name: Test live deployment HTTP smoke probe
+        run: PYTHONPATH=. python tests/test_deployment_http_smoke.py
       - name: Test research prompt injection boundary
         run: PYTHONPATH=. python tests/test_research_prompt_injection_boundary.py
       - name: Test security audit CSV export

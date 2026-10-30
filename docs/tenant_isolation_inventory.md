@@ -34,6 +34,10 @@ Routes are grouped by the data boundary they should preserve. "Tested" means the
 | Route(s) | Boundary / expected authorization | Current coverage and remaining concern |
 |---|---|---|
 | `GET /` | Public shell only; no matter content | Security headers/CSP are asserted; browser/manual QA remains |
+| `GET /manifest.webmanifest`, `GET /app-icon.svg` | Public static install metadata/icon only; no tenant or account content | PWA asset contract tests; verify content integrity and no-store response policy |
+| `GET /apple-touch-icon.png` | Public fixed PNG home-screen icon only; no tenant or account content | HTTP test checks PNG signature and no-store response policy |
+| `GET /service-worker.js` | Public fixed service-worker source; must never cache API, authentication, matter, or uploaded-file responses | Static tests constrain it to a static offline notice fallback; browser update/offline QA remains |
+| `GET /offline.html` | Public static offline notice only; no user or case content | Static content is cached by the service worker; verify offline fallback on target browsers |
 | `POST /login`, `GET /session`, `POST /logout`, `POST /account/password` | Auth/session belongs to one user; disabled, expired, or revoked sessions must stop working | API tests cover malformed credentials, CSRF, expiry, password change/reset revocation and concurrent login; production browser/cookie policy still needs review |
 | `GET /invite/accept` | Public static invitation form only; token is read from the URL fragment and submitted in the POST body, never in the request URL | Token is high entropy, hashed at rest, single-use, expires after 24 hours, and creates no platform role |
 | `POST /invitations` | Active firm admin may invite a normalized email only to the current active firm and only with lawyer/junior roles | Resend revokes prior tokens; email delivery is configurable SMTP; membership creation occurs only after acceptance |

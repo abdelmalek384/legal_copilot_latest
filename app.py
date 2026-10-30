@@ -1,6 +1,6 @@
 """Legal copilot MVP: case workspace + hybrid law search + citation-checked answers.
 Run: pip install -r requirements.txt && uvicorn app:app --reload"""
-import sqlite3, re, json, os, io, csv, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request, zipfile, ipaddress, logging
+import base64, sqlite3, re, json, os, io, csv, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request, zipfile, ipaddress, logging
 from pathlib import Path
 from cryptography.fernet import Fernet
 from urllib.parse import urlsplit, quote
@@ -1712,7 +1712,7 @@ async def security_headers(request: Request, call_next):
     response.headers["X-Frame-Options"] = "DENY"
     response.headers["Referrer-Policy"] = "no-referrer"
     response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
-    response.headers["Content-Security-Policy"] = "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; script-src 'self' 'nonce-" + nonce + "'; style-src 'self' 'unsafe-inline'"
+    response.headers["Content-Security-Policy"] = "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; script-src 'self' 'nonce-" + nonce + "'; style-src 'self' 'unsafe-inline'"
     if _secure_cookie_transport(request):
         response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains"
     return response
@@ -2227,11 +2227,66 @@ def rollback_corpus_transaction_on_error(func):
     return wrapped
 
 
+def _read_pwa_asset(filename: str) -> str:
+    """Read one fixed, public PWA asset; callers cannot choose a filesystem path."""
+    asset_path = Path(__file__).resolve().parent / "static" / filename
+    return asset_path.read_text(encoding="utf-8")
+
+
+@app.get("/manifest.webmanifest")
+def pwa_manifest():
+    return Response(_read_pwa_asset("manifest.webmanifest"), media_type="application/manifest+json")
+
+
+@app.get("/service-worker.js")
+def pwa_service_worker():
+    return Response(
+        _read_pwa_asset("service-worker.js"),
+        media_type="application/javascript",
+        headers={"Service-Worker-Allowed": "/"},
+    )
+
+
+@app.get("/offline.html")
+def pwa_offline_page():
+    return HTMLResponse(_read_pwa_asset("offline.html"))
+
+
+@app.get("/app-icon.svg")
+def pwa_app_icon():
+    return Response(_read_pwa_asset("app-icon.svg"), media_type="image/svg+xml")
+
+
+@app.get("/apple-touch-icon.png")
+def pwa_apple_touch_icon():
+    encoded = _read_pwa_asset("apple-touch-icon.png.b64").strip()
+    return Response(base64.b64decode(encoded, validate=True), media_type="image/png")
+
+
 @app.get("/")
 def home(request: Request):
     with open(os.path.join(os.path.dirname(__file__), "static", "index.html"), encoding="utf-8") as f:
         page = f.read()
+    pwa_head = (
+        '<meta name="theme-color" content="#14284B">'
+        '<meta name="apple-mobile-web-app-capable" content="yes">'
+        '<meta name="apple-mobile-web-app-title" content="المساعد القانوني">'
+        '<meta name="apple-mobile-web-app-status-bar-style" content="default">'
+        '<link rel="manifest" href="/manifest.webmanifest">'
+        '<link rel="icon" href="/app-icon.svg" type="image/svg+xml">'
+        '<link rel="apple-touch-icon" href="/apple-touch-icon.png">'
+    )
+    page = page.replace('<meta charset="utf-8">', '<meta charset="utf-8">' + pwa_head, 1)
     page = page.replace("<script>", '<script nonce="' + request.state.csp_nonce + '">', 1)
+    registration = (
+        '<script nonce="' + request.state.csp_nonce + '">'
+        'if ("serviceWorker" in navigator) {'
+        'window.addEventListener("load", () => {'
+        'navigator.serviceWorker.register("/service-worker.js").catch(() => {});'
+        '});}'
+        '</script>'
+    )
+    page = page.replace("</html>", registration + "</html>", 1)
     return HTMLResponse(page)
 
 

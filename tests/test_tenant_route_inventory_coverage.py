@@ -31,7 +31,10 @@ class TenantRouteInventoryCoverageTests(unittest.TestCase):
         # recovery. Firm administration and acceptance by an existing identity still
         # require app.user (including CSRF/session checks).
         public_routes = {
-            ("GET", "/"), ("POST", "/login"),
+            ("GET", "/"), ("GET", "/manifest.webmanifest"),
+            ("GET", "/service-worker.js"), ("GET", "/offline.html"),
+            ("GET", "/app-icon.svg"), ("GET", "/apple-touch-icon.png"),
+            ("POST", "/login"),
             ("GET", "/invite/accept"), ("GET", "/account/recovery"),
             ("POST", "/invitations/accept/new"),
             ("POST", "/account/recovery/request"),

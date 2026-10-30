@@ -36,6 +36,10 @@ light prefix/suffix stemming and stopword removal at both index and query time; 
 Known limits: no broken-plural or Egyptian-dialect handling, no semantic embeddings yet (next step: an Arabic-capable multilingual
 embedding model such as bge-m3 or multilingual-e5, stored in pgvector), and MIN_SCORE (default 0.3) must be tuned on a real evaluation set.
 
+## Install on a phone or desktop
+
+The web app includes an installable PWA shell for compatible browsers. Serve it over HTTPS, then use the browser's **Install app** or **Add to Home Screen** action. The service worker caches only a static offline notice; case data, uploaded files, account/session data, and research responses are never cached. See [PWA installation and privacy limits](docs/pwa_installation.md) and the [manual device/browser acceptance runbook](docs/device_browser_acceptance_runbook.md).
+
 ## Setup and security
 
 For a fresh installation, use the separate-database architecture. Do not follow old single-file database instructions for a fresh install.

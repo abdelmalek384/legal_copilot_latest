@@ -71,7 +71,19 @@ Also run the CI workflow and confirm all jobs pass for the exact commit being de
 - [ ] Test degraded LLM behavior, timeout handling, and source-only fallback.
 - [ ] Conduct an independent security assessment and remediate high/critical findings before storing client-confidential matters.
 
-## 7. Monitoring and incident response
+## 7. Live HTTP deployment smoke test
+
+After deploying the exact release candidate, run the read-only public-shell probe:
+
+```bash
+python tools/deployment_http_smoke.py --base-url https://your-production-host.example --out reports/deployment-http-smoke.json
+```
+
+For local loopback testing only, add `--allow-http-loopback` and use `http://127.0.0.1:8000`. The probe requests only the public root, manifest, service worker, offline notice, and icon. It checks status/content types, no-store and security headers, HTTPS HSTS, manifest metadata, and the service-worker cache boundary. It does not authenticate, submit credentials, call matter APIs, or mutate data.
+
+A passing probe confirms only the tested public HTTP surface at that time. It does not replace authenticated workflow tests, tenant-isolation checks, manual device QA, or independent security review.
+
+## 8. Monitoring and incident response
 
 - [ ] Collect access, application error, resource, disk, and backup-failure metrics without logging passwords, session tokens, case text, uploaded content, or API secrets.
 - [ ] Configure alerts for repeated authentication failures, repeated 429 responses, storage exhaustion, failed backups, and elevated 5xx responses.
