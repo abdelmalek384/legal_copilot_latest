@@ -70,16 +70,16 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
       - name: Validate Phase 2 metadata-only instrument inventory
         run: python tools/validate_phase2_document_inventory.py
       - name: Test Phase 2 instrument inventory and temporal-chain safeguards
         run: PYTHONPATH=. python tests/test_phase2_document_inventory.py
       - name: Test Action 1 Gazette article text-layer comparison
         run: PYTHONPATH=. python tests/test_compare_action1_gazette.py
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
       - name: Validate Decision 252 secondary candidate map
         run: python tools/validate_decision252_candidate_map.py
       - name: Test Decision 252 candidate map safeguards
