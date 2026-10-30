@@ -240,5 +240,11 @@ jobs:
         run: PYTHONPATH=. python tests/test_tenant_context.py
       - name: Test tenant fleet migration
         run: PYTHONPATH=. python tests/test_tenant_fleet_migration.py
+      - name: Test labour law evidence cards
+        run: PYTHONPATH=. python tests/test_labour_law_evidence_cards.py
+      - name: Test labour law primary evidence seed
+        run: PYTHONPATH=. python tests/test_labour_law_primary_evidence_seed.py
+      - name: Test legal answer review evaluation
+        run: PYTHONPATH=. python tests/test_legal_answer_review_evaluation.py
       - name: Guard that every test file runs in CI or is explicitly tracked
         run: PYTHONPATH=. python tests/test_ci_runs_all_tests.py
