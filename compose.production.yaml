@@ -1,0 +1,46 @@
+services:
+  legal-copilot:
+    image: legal-copilot:${LEGAL_COPILOT_IMAGE_TAG:?Set LEGAL_COPILOT_IMAGE_TAG to an immutable release tag}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env.production
+    user: "10001:10001"
+    init: true
+    restart: unless-stopped
+    read_only: true
+    expose:
+      - "8000"
+    volumes:
+      - type: bind
+        source: ./runtime-data
+        target: /var/lib/legal-copilot
+      - type: bind
+        source: ./secrets/database-acceptance.json
+        target: /run/secrets/database-acceptance.json
+        read_only: true
+        bind:
+          create_host_path: false
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,nodev,size=64m,mode=1777
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    pids_limit: 128
+    mem_limit: 1g
+    cpus: 2.0
+    stop_grace_period: 30s
+    logging:
+      driver: local
+      options:
+        max-size: "10m"
+        max-file: "5"
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    name: legal-copilot-proxy
+    external: true
