@@ -2330,12 +2330,17 @@
         "source-use review",
         "qualified Egyptian labour-lawyer review"
       ],
-      "notes": "Amiri Press searchable text identifies the subject as the National Wages Council's work system and competences and cites Law 14/2025 in its preamble. This is a related implementing/institutional instrument, not an amendment to the Labour Law on current evidence.",
+      "notes": "Amiri Press searchable text identifies the subject as the National Wages Council's work system and competences and cites Law 14/2025 in its preamble. This is a related implementing/institutional instrument, not an amendment to the Labour Law on current evidence. Secondary reports dated 26 October 2026 state that Decision 3165/2026 appeared in Official Gazette issue 41 (مكرر و), reportedly dated 12 October 2026. The exact official Gazette DSpace item record and original PDF have not been located; do not treat the reported issue/date as independently verified.",
       "source_urls": [
         {
           "url": "https://alamiria.com/Sec/TashTxt?id=EreMgz%2FNoYY%3D",
           "source_role": "official Amiri Press searchable text candidate",
           "status": "discovered_not_downloaded"
+        },
+        {
+          "url": "https://business.ahram.org.eg/News/134866.aspx",
+          "source_role": "Secondary report dated 2026-10-26 states Decision 3165/2026 was published in Official Gazette issue 41 (مكرر و), reportedly dated 2026-10-12; discovery lead only",
+          "status": "secondary_reported_gazette_issue_not_officially_pinned"
         }
       ]
     }
