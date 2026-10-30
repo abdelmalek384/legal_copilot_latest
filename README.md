@@ -30,6 +30,10 @@ For a read-only snapshot of the source registers, acquisition queue, candidate c
 
 See [the bootstrap guide](docs/legal_corpus_bootstrap.md), [candidate instrument catalogue](docs/legal_document_candidates.json), and [source permission register](docs/source_permission_register.json). Do not collect or commercially reuse a source unless the applicable permission has been established and documented.
 
+## Reminder operations and monitoring
+
+The deadline reminder scheduler is dry-run by default. Do not enable SMTP delivery until provider staging, authorization/concurrency tests, and operator ownership are complete. Run the read-only outbox monitor with `PYTHONPATH=. python tools/reminder_healthcheck.py`; it returns exit code 1 when operator attention is needed and 2 when it cannot safely complete. See [reminder outbox monitoring and reconciliation](docs/reminder_outbox_monitoring.md). SMTP acceptance is not proof of inbox delivery.
+
 ## Arabic handling
 Normalizes diacritics, tatweel, alef/hamza forms, ya/alef maqsura, ta marbuta, and Arabic-Indic digits (so "المادة ٥" finds article 5);
 light prefix/suffix stemming and stopword removal at both index and query time; exact article-number lookup; RTL UI with Arabic fonts.
