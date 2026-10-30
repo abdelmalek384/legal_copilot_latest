@@ -409,6 +409,32 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
             )
         self.assertEqual(self.store.object_presence(12, staged.object_id), (False, True))
 
+    def test_production_s3_purge_cli_fails_closed_without_complete_acceptance_manifest(self):
+        import contextlib
+        import io
+        import sys
+        from unittest.mock import patch
+        from tools.purge_approved_s3_original_files import main
+
+        environment = {
+            "COPILOT_ENV": "production",
+            "COPILOT_OBJECT_STORAGE_BACKEND": "s3",
+            "COPILOT_S3_BUCKET": "private-matter-files",
+            "COPILOT_S3_REGION": "eu-central-1",
+            "COPILOT_S3_KMS_KEY_ID": "alias/legal-files",
+            "COPILOT_S3_ENDPOINT_URL": "",
+            "COPILOT_DATABASE_ACCEPTANCE_FILE": "/nonexistent/acceptance.json",
+        }
+        output = io.StringIO()
+        with patch.dict("os.environ", environment, clear=True), \\
+             patch.object(sys, "argv", ["purge-s3", "--firm-id", "12", "--operator-user-id", "7"]), \\
+             contextlib.redirect_stdout(output):
+            self.assertEqual(main(), 2)
+        payload = json.loads(output.getvalue())
+        self.assertEqual(payload["decision"], "blocked")
+        self.assertEqual(payload["reason"], "database_release_acceptance_incomplete")
+        self.assertEqual(payload["mutations_performed"], 0)
+
     def test_inventory_lists_only_keys_in_originals_namespace(self):
         one = self.store.stage(12, b"one")
         self.store.finalize(12, one.object_id)
