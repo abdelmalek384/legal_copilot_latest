@@ -6,6 +6,11 @@ on:
     branches: [main]
     paths:
       - 'data/candidates/labour_law_14_2025/**'
+      - 'docs/phase_2_document_inventory.json'
+      - 'docs/phase_2_inventory_validation.md'
+      - 'data/candidates/labour_law_14_2025/decision_982_remote_work_temporal_chain_2026-10-30.md'
+      - 'tools/validate_phase2_document_inventory.py'
+      - 'tests/test_phase2_document_inventory.py'
       - 'tools/validate_decision250_table24_candidates.py'
       - 'tools/validate_decision250_table23_candidates.py'
       - 'tools/validate_decisions_251_252_candidates.py'
@@ -36,6 +41,11 @@ on:
       - 'tools/validate_decisions_251_252_fee_ceiling_candidates.py'
       - 'tests/test_decisions_251_252_fee_ceiling_candidates.py'
       - 'data/candidates/labour_law_14_2025/**'
+      - 'docs/phase_2_document_inventory.json'
+      - 'docs/phase_2_inventory_validation.md'
+      - 'data/candidates/labour_law_14_2025/decision_982_remote_work_temporal_chain_2026-10-30.md'
+      - 'tools/validate_phase2_document_inventory.py'
+      - 'tests/test_phase2_document_inventory.py'
       - 'tools/validate_decision250_table24_candidates.py'
       - 'tools/validate_decision250_table23_candidates.py'
       - 'tools/validate_decisions_251_252_candidates.py'
@@ -56,6 +66,10 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+      - name: Validate Phase 2 metadata-only instrument inventory
+        run: python tools/validate_phase2_document_inventory.py
+      - name: Test Phase 2 instrument inventory and temporal-chain safeguards
+        run: PYTHONPATH=. python tests/test_phase2_document_inventory.py
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
