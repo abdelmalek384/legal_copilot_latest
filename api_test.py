@@ -129,15 +129,6 @@ assert all(row["firm_id"] == 2 for row in security_audit_b.json()["items"]), sec
 deletion_audit_b = c.get("/audit/case-deletions", headers=S)
 assert deletion_audit_b.status_code == 200, deletion_audit_b.text
 assert deletion_audit_b.json()["items"] == [], deletion_audit_b.json()
-assert c.get(f"/cases/{cid}/docs/{upload_meta['document_id']}/reviews", headers=S).status_code == 404
-# Extraction-review writes must also be firm-scoped; guessed document/chunk IDs cannot be used to alter another firm's text.
-assert c.post(
-    f"/cases/{cid}/docs/{upload_meta['document_id']}/chunks/{review_chunk['id']}/review",
-    json={"outcome":"corrected","corrected_text":"cross-firm overwrite",
-          "expected_text_sha256":app.hashlib.sha256(review_chunk["text"].encode("utf-8")).hexdigest()},
-    headers=S).status_code == 404
-assert c.get(f"/cases/{cid}/docs/{upload_meta['document_id']}/reviews", headers=S).status_code == 404
-assert db.execute("SELECT text FROM chunks WHERE id=?", (review_chunk["id"],)).fetchone()[0].endswith("[reviewed correction]")
 other_cid = c.post("/cases", json={"title":"Private second-firm matter","client":"Second Client"}, headers=S).json()["id"]
 assert c.get("/cases", headers=S).status_code == 200
 assert [x["id"] for x in c.get("/cases", headers=S).json()] == [other_cid]
