@@ -42,12 +42,28 @@ def _fail(message: str) -> None:
     raise SystemExit("Import bundle rejected: " + message)
 
 
-def _read_regular_file(path: pathlib.Path, label: str) -> bytes:
+def _positive_int_env(name: str, default: int) -> int:
+    """Read a positive resource limit from the environment, failing closed on invalid values."""
+    raw = os.environ.get(name)
+    if raw is None:
+        return default
+    try:
+        value = int(raw, 10)
+    except (TypeError, ValueError):
+        _fail(f"{name} must be a positive integer")
+    if value < 1:
+        _fail(f"{name} must be a positive integer")
+    return value
+
+
+def _read_regular_file(path: pathlib.Path, label: str, max_bytes: int | None = None) -> bytes:
     """Read one regular file through a stable descriptor; never reopen it by path later."""
     try:
         before = path.lstat()
         if not stat.S_ISREG(before.st_mode):
             _fail(f"{label} must be a regular file, not a symbolic link")
+        if max_bytes is not None and before.st_size > max_bytes:
+            _fail(f"{label} exceeds the configured {max_bytes}-byte size limit")
         flags = os.O_RDONLY | getattr(os, "O_BINARY", 0) | getattr(os, "O_NOFOLLOW", 0)
         descriptor = os.open(path, flags)
         with os.fdopen(descriptor, "rb") as source:
@@ -59,6 +75,8 @@ def _read_regular_file(path: pathlib.Path, label: str) -> bytes:
                 _fail(f"{label} changed identity while being opened")
             content = source.read()
             after = os.fstat(source.fileno())
+            if max_bytes is not None and len(content) > max_bytes:
+                _fail(f"{label} exceeds the configured {max_bytes}-byte size limit")
             if (
                 len(content) != after.st_size
                 or (opened.st_size, opened.st_mtime_ns, opened.st_ctime_ns)
@@ -126,7 +144,7 @@ def validate_inputs(src: str | pathlib.Path, out: str | pathlib.Path):
         if sidecar.is_symlink() or not sidecar.is_file():
             _fail(f"metadata sidecar must be a regular file, not a symbolic link: {sidecar.name}")
         try:
-            metadata = json.loads(_read_regular_file(sidecar, "metadata sidecar").decode("utf-8"))
+            metadata = json.loads(_read_regular_file(sidecar, "metadata sidecar", max_bytes=1_048_576).decode("utf-8"))
         except (OSError, UnicodeError, json.JSONDecodeError) as exc:
             _fail(f"invalid JSON sidecar {sidecar.name}: {type(exc).__name__}")
         if not isinstance(metadata, dict):
@@ -190,7 +208,8 @@ def validate_inputs(src: str | pathlib.Path, out: str | pathlib.Path):
         pdf_path = sidecar.with_suffix(".pdf")
         if pdf_path.is_symlink() or not pdf_path.is_file():
             _fail(f"PDF must be a regular file, not a symbolic link: {pdf_path.name}")
-        pdf_bytes = _read_regular_file(pdf_path, "PDF")
+        max_pdf_bytes = _positive_int_env("LEGAL_IMPORT_MAX_PDF_BYTES", 100 * 1024 * 1024)
+        pdf_bytes = _read_regular_file(pdf_path, "PDF", max_bytes=max_pdf_bytes)
         if len(pdf_bytes) < 5:
             _fail(f"PDF is empty or too short: {pdf_path.name}")
         if b"%PDF-" not in pdf_bytes[:1024]:
@@ -231,6 +250,9 @@ def page_texts(pdf_bytes, cache_root, content_sha256, cache_key="document"):
     except ImportError as exc:
         raise SystemExit("PyMuPDF is missing; install optional dependencies with: python -m pip install -r requirements-ocr.txt") from exc
     with pymupdf.open(stream=pdf_bytes, filetype="pdf") as document:
+        max_pages = _positive_int_env("LEGAL_IMPORT_MAX_PAGES", 1000)
+        if document.page_count > max_pages:
+            _fail(f"PDF exceeds the configured {max_pages}-page limit")
         pages = [page.get_text() for page in document]
     joined = "".join(pages)
     if sum(0xE000 <= ord(ch) <= 0xF8FF for ch in joined) > 0.2 * max(len(joined), 1):
