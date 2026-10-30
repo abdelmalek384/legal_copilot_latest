@@ -273,20 +273,21 @@
     {
       "source_id": "EG-SCC",
       "authority": "Supreme Constitutional Court of Egypt",
-      "source_page": "https://www.sccourt.gov.eg/newportal/",
+      "source_page": "https://www.sccourt.gov.eg/newportal/?a=cp3&id=829",
       "material_types": [
         "constitutional judgments",
         "court decisions",
         "judgment principles"
       ],
-      "access_status": "official public portal located",
+      "access_status": "official public portal and recent-judgments page located; an independent third-party fetcher describes unauthenticated JSON API routes, but API availability, response completeness and terms were not independently validated",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
-      "permission_evidence": null,
-      "terms_checked_on": null,
-      "bulk_download_or_api": "not established",
-      "required_next_action": "Identify the official judgment/principle records and applicable access terms. Confirm permissions for local storage, extraction, indexing, commercial product use, excerpt display, and redistribution before acquisition; do not infer permission from public access."
+      "permission_evidence": "The official SCC portal page https://www.sccourt.gov.eg/newportal/?a=cp3&id=829 publicly displays recent judgments with case number, judicial year, date and short disposition summaries; the indexed sample includes judgments dated 9 September 2026. A 2019 State Information Service report describes a central SCC database containing 7,112 judgments from 1970–2018 and 8,225 cases. Separately, an independent third-party repository (worldwidelaw/legal-sources, sources/EG/SCC) documents a proposed fetcher for JSON routes `/DjangoPortal/api/Cases/get-cases-basedon-casestatuscode` and `/DjangoPortal/api/RulesInsert/get-rule-details-by-case-id`, and claims approximately 9,190 records across constitutional, legislative-interpretation and jurisdictional-conflict case types. That count and API behavior are third-party claims only: the endpoints were not successfully independently validated in this review, the official Court's own API documentation/terms were not located, and the fetched content/record-level citations are not established. The 2019 report's 7,112 count and the third-party 9,190 count refer to different reported snapshots and must not be conflated. Public availability does not establish permission for automated retrieval, local preservation, indexing, commercial display or redistribution. In a 2026-10-31 browser inspection, the official recent-judgments page title resolved but exposed no readable body text to the research viewer; therefore no individual judgment page or full-text sample was independently captured in that inspection. This is a limitation of the inspection method, not evidence that the portal lacks public content.",
+      "terms_checked_on": "2026-10-30",
+      "bulk_download_or_api": "An unauthenticated JSON API is described by an independent fetcher, but was not independently validated and no official bulk/API permission was identified. Do not call endpoints or bulk collect pending terms and rights review.",
+      "required_next_action": "Manually inspect official public judgment pages and capture exact case number, judicial year, date, case type, disposition and whether the page is a summary or full judgment. Locate current official terms and establish rights for storage, extraction, indexing, commercial use, excerpt display and redistribution. Independently validate any API only after terms review; compare selected records with Official Gazette publications and record page/source pinpoints. Keep collection and commercial reuse unknown.",
+      "permission_evidence_url": "https://www.sccourt.gov.eg/newportal/?a=cp3&id=829"
     },
     {
       "source_id": "EG-ETA-GAZETTE-LABOUR-14-2025-PDF",
