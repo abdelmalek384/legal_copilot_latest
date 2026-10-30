@@ -48,6 +48,7 @@ class Decision250Table24ReviewQueueTests(unittest.TestCase):
         rendered = render([row])
         self.assertIn("p. 254: https://example.invalid/page-254.webp", rendered)
         self.assertIn("Do not correct pending original Gazette confirmation.", rendered)
+        self.assertIn("cas_identifier: 1344-281 vs 1344-28-1", rendered)
 
     def test_loader_refuses_partial_queue_when_batches_are_missing(self):
         with tempfile.TemporaryDirectory() as tmp:
