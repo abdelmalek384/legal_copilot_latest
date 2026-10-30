@@ -54,10 +54,11 @@ class LegalImportBundleTests(unittest.TestCase):
     def test_extracted_rows_remain_unverified_and_report_full_hash(self):
         from tools import import_laws
 
-        with mock.patch.object(import_laws, "page_texts", return_value=(["Article 1\\nCandidate article text"], False)):
+        with mock.patch.object(import_laws, "page_texts", return_value=(["Article 1\nCandidate article text"], False)):
             import_laws.main(self.source, self.output)
         rows = [json.loads(line) for line in (self.output / "law_rows.jsonl").read_text(encoding="utf-8").splitlines()]
         self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["article"], "1")
         self.assertEqual(rows[0]["verified"], 0)
         self.assertEqual(rows[0]["in_force"], 0)
         self.assertIsNone(rows[0]["as_of"])
