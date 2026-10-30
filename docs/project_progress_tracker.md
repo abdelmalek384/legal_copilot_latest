@@ -452,3 +452,13 @@ This checkpoint records discovery and engineering safeguards, not verified-law c
 - No database/runtime changes and no legal status, permission, currentness, lawyer approval or retrieval eligibility were promoted.
 
 - Hardened the Action 1 source-hashing utility to reject symbolic-link inputs instead of silently following them; added a regression test. This protects the provenance receipt from hashing an unintended target path. CI validation is pending.
+
+
+## Follow-up checkpoint — 2026-10-30 (Action 1 article comparison readiness)
+
+- Added `tools/compare_action1_gazette.py` to compare the user's locally supplied Gazette PDF text layer with the article-level candidate chunks in `law_rows_ar.jsonl`.
+- The tool groups chunks by law/article, computes source hashes, applies limited Arabic/digit/whitespace normalization, and reports exact normalized text matches, duplicate exact occurrences, prefix/suffix anchor matches, partial matches, and no-text-layer cases with zero-based PDF page indices.
+- The report is metadata-only: no Gazette or article text is embedded, no source bytes are modified/uploaded/committed, and no printed page number is inferred.
+- Added regression tests for multi-page article matches, duplicate occurrences, partial anchors, JSONL grouping/validation, no text layer, and the non-promotion safety boundary; wired the test into the full Tests workflow.
+- Updated the Action 1 intake protocol with the exact command and interpretation rules. Anchor-only results remain weaker than exact matches; all legal text, page images, footnotes, tables, issue identity, rights, amendments/currentness, and lawyer review remain manual gates.
+- This is preparation only: the original Gazette PDF and optional `law_rows_ar.jsonl` have not yet been supplied or processed. No legal verification or retrieval eligibility is claimed.
