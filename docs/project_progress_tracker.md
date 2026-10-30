@@ -426,7 +426,7 @@ This checkpoint records discovery and engineering safeguards, not verified-law c
 - **Decision 3165/2026:** Direct Amiri Press searchable text is recorded. Secondary reports identify Gazette issue 41 مكرر (و), dated 12 October 2026, and describe minimum-wage review, an annual allowance floor of 3% of insured wage, and a 30-day decision period for employer requests. These reported rules are explicitly secondary-only pending original Gazette acquisition and exact page matching.
 - **Acceptance coverage:** Added OSH-27 (Cabinet draft vs promulgated suspension instrument) and sharpened OSH-25 (Decision 3165 wage/allowance rules must not be answered as verified from secondary sources).
 - **No promotion:** Both instruments remain discovery-only; no new legal rule has become authoritative retrieval material.
-- **Metrics unchanged:** 80 candidate records / 13 source records; verified legal corpus remains 6%; Decision 250 Table 24 remains 781/781 secondary structural rows and 0/781 original Gazette matches; Decisions 248–252 remain 0/5 fully matched.
+- **Metrics unchanged:** 80 candidate records / 15 source records; verified legal corpus remains 6%; Decision 250 Table 24 remains 781/781 secondary structural rows and 0/781 original Gazette matches; Decisions 248–252 remain 0/5 fully matched.
 - **CI status:** The latest content-API commits currently have no associated workflow runs/status checks returned. Do not reuse the earlier 103/103 and 28/28 results as proof for these newest commits. Trigger/await fresh CI before merging.
 
 
@@ -440,3 +440,13 @@ This checkpoint records discovery and engineering safeguards, not verified-law c
 - Evidence boundary: the temporal chain improves traceability only. Original Gazette byte/hash and page comparison remain outstanding for all six decisions; no record was promoted from discovery-only, no current/in-force claim was made, and no candidate entered authoritative retrieval.
 - Validation: latest branch commit is `1195dddee071e91bf3bf73b5ff42e6d4130a7714`. The GitHub connector returned no PR-triggered workflow run for that commit at checkpoint time; do not claim this new test has passed until CI runs.
 
+
+## Follow-up checkpoint — 2026-10-30 (repository provenance and CI trigger coverage)
+
+- Added a distinct `EG-MELES-ELECTRONIC` source record for The Middle East Library for Economic Services repository. It is explicitly classified as a secondary repository/copy host, not the issuing authority or Official Gazette publisher; its permission remains unknown.
+- Linked the discovered MELES item/copy records for Decisions 982, 2377 and 2590 to that source record. The 2377 request-copy page and 2590 item metadata are retained as restricted/secondary discovery leads, not Gazette matches. No access request was submitted and no files were acquired.
+- Added regression assertions that prevent MELES repository records from being confused with official Gazette source records. Inventory remains 80 instruments and now has 15 source records.
+- Found a CI coverage gap: the Legal Knowledge Validation workflow did not include the Phase 2 inventory JSON, temporal-chain note, validator or regression test in its path filters, and did not run the Phase 2 validator/test in that workflow. Added all four paths to both pull-request and branch-push filters and added explicit validator/test steps.
+- Latest workflow change commit: `9285236732f39b9b390284e59d4d5da543e6a456`; latest inventory/test/guide commits: `72948e5d36f60ee7a450c991a17dce285f603a06`, `cc1e72c957728c43c290b962e147c40b7667fb2e2`, `fbdbd508ad13dce3e526177b172dfbb03c9e2fe8`.
+- Validation remains pending: the connector has not returned a PR-triggered workflow run for the latest head. Do not claim CI pass until a run is visible and successful. The general Tests workflow already contains the Phase 2 validator/test and both Action 1 intake utility tests; the focused legal workflow now also covers the Phase 2 temporal-chain safeguards.
+- No database/runtime changes and no legal status, permission, currentness, lawyer approval or retrieval eligibility were promoted.
