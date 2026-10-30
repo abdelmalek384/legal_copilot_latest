@@ -35,6 +35,23 @@ The official PDF confirms the statutory fee ceilings:
 
 These are statutory ceilings in the law text, not a claim about the fees actually charged under Decisions 251 or 252. The decision's exact fee schedule, exemptions and any later amendment must be read from its operative text.
 
+### Decision 248 — reporting-trigger and deadline comparison (secondary-only finding, 2026-10-30)
+
+The official parent-law excerpt for Article 260 (printed Gazette page 99; PDF page index 97) states that establishments with 30 or more workers submit semi-annual statistics in the first half of January and July. It requires notification of each serious accident **occurring at the establishment** and notification when symptoms of an occupational disease appear, within 24 hours; the minister issues the forms. The exact Arabic excerpt is preserved in the official-parent-law JSONL ledger, but its original PDF bytes/hash, currentness and counsel review remain pending.
+
+Two secondary reports of Decision 248/2026 now provide additional candidate details:
+- Al-Youm Al-Sabea, 2026-10-28: https://www.youm7.com/story/2026/10/28/حماية-أرواح-العمال-أولوية-وزارة-العمل-تحدد-مهلة-24-ساعة/7590406
+- EgyIn, 2026-10-19: https://www.egyin.com/article/154732/
+
+They report a 24-hour notice period for serious accidents inside an establishment/worksite, a 48-hour period for incidents outside its boundaries, and notification of an occupational disease after diagnosis and confirmation by an approved medical report. They also describe serious-accident categories (including death, expected permanent disability of 35% or more, third-degree-or-greater burns, multiple injured workers at the same site/time, and specified industrial events), transport/delivery-vehicle incidents, 30+ worker statistics, January/July submissions, 15 days to provide two certified copies after request, and three-year record retention.
+
+**Do not merge these statements into one verified rule.** The parent-law 24-hour rule is expressly tied to serious accidents occurring at the establishment and to the appearance of occupational-disease symptoms. The secondary Decision 248 summary appears to extend coverage to off-site accidents with a 48-hour period and describes a different occupational-disease reporting trigger (diagnosis/confirmation). This may be an implementation detail, a broader ministerial requirement, or a legal-scope issue; the available secondary reports cannot settle it. The decision's own signed text, forms, and exact Article 4 wording must be checked. Counsel must determine how the 48-hour off-site rule and disease-diagnosis trigger interact with Article 260 and any other applicable duties.
+
+Until then:
+- Parent-law Article 260 facts may be cited only with the exact parent-law source and its stated scope.
+- Decision 248's 48-hour off-site period, expanded serious-accident categories, and diagnosis/confirmation trigger remain secondary candidate assertions, not retrieval-eligible rules.
+- Do not advise users to wait 48 hours or delay reporting based on this secondary summary.
+
 ## Evidence status and required next steps
 
 - The Egyptian Tax Authority PDF is an official government-hosted copy of the Official Gazette text; PDF page indices 94, 96 and 97 were visually inspected for Articles 255, 259–262. No file hash is claimed because original bytes were not obtained. The Amiri Press searchable route remains a second official route, but its page could not be fetched in this pass.
