@@ -1,8 +1,24 @@
 import copy
+from urllib.parse import urlsplit
 import json
 import sys
 import unittest
 from pathlib import Path
+
+def _has_https_host(url, expected_host):
+    try:
+        parsed = urlsplit(url)
+    except ValueError:
+        return False
+    hostname = (parsed.hostname or "").lower()
+    expected_host = expected_host.lower()
+    return (
+        parsed.scheme == "https"
+        and not parsed.username
+        and not parsed.password
+        and (hostname == expected_host or hostname.endswith("." + expected_host))
+    )
+
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
@@ -124,7 +140,7 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         self.assertEqual(record["collection_permission"], "unknown")
         self.assertEqual(record["legal_status"], "unknown")
         self.assertEqual(record["review_status"], "discovery_only")
-        self.assertTrue(any("cairo24.com" in item["url"] for item in record["source_urls"]))
+        self.assertTrue(any(_has_https_host(item["url"], "cairo24.com") for item in record["source_urls"]))
         self.assertTrue(any(a["id"] == "ACT-LABOUR-DECISION-50-2026-VERIFY" for a in self.inventory["next_actions"]))
         self.assertEqual(validate_inventory(self.inventory), [])
 
