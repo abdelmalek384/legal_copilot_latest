@@ -61,6 +61,7 @@ These are collection categories, not confirmation that every agency provides a p
 | ILO NATLEX — Egypt | https://natlex.ilo.org/ | Labour and social-policy legislation metadata and selected texts | Useful discovery source; translations may be unofficial and coverage may lag. |
 | FAOLEX | https://faolex.fao.org/ | Agriculture, food, environment, water and natural-resource legislation | Subject-specific; verify against Egyptian primary sources. |
 | Cyrilla / legal information resources | https://cyrilla.org/ | Discover digital-rights, privacy and technology-related legal texts | Secondary/discovery source; verify source, version and reuse rights. |
+| Dataflare — Egyptian Legal Corpus (Hugging Face) | https://huggingface.co/datasets/dataflare/egypt-legal-corpus | Candidate discovery/quality benchmark: 2,434 Arabic records and 25M+ tokens; public Parquet file; dataset card declares MIT | Do not treat the MIT declaration as blanket clearance for underlying laws or embedded third-party compilations. The published schema has no record-level source URL, publication date, Gazette issue/page, effective date, amendment status or reviewer. A public fetcher for this dataset maps all records to the same dataset homepage and sets `date=null`; sample preview includes broad compilations and possible extraction artifacts. Keep collection/commercial reuse unknown; no content import until record-level provenance, source comparison, quality and rights scope are verified. |
 
 
 #### Additional public legal-document archive — 30 October 2026
