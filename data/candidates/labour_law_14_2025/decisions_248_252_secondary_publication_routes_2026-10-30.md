@@ -57,3 +57,33 @@ The exact issue has been found in the DSpace-hosted Gazette repository:
 - The visible download endpoint redirects to a request-copy form; the PDF and item-specific license file are restricted. The original bytes have not been obtained. No access control was bypassed and no request was submitted.
 
 This resolves the catalog-identification question but not access, source-text comparison, or reuse rights. Keep the five decision records quarantined. A later authorized copy should be preserved byte-for-byte, hashed, and checked against the catalog metadata before any page comparison.
+
+
+## Additional public secondary transcriptions and article-level routes — 2026-10-31
+
+The following routes were found after the initial LawHub/Drive check. They improve secondary cross-check coverage but do **not** provide an authenticated Gazette copy.
+
+| Decision | New secondary route | What is visible in the public page | Evidence status |
+|---|---|---|---|
+| 248/2026 | https://ahmedazimelgamel.blogspot.com/2026/10/248-2026.html | Full 10-article transcription. It includes the serious-incident categories, notification periods (24 hours for incidents within the establishment/site; 48 hours outside), and the semiannual statistics obligation for establishments with 30+ workers. Article 10 states commencement the day after publication. | Full secondary text only; no original Gazette bytes/hash or page comparison |
+| 249/2026 | https://www.almasdar.com/175150 | Article 1 definitions and introductory text are visible, including high-, medium- and limited-risk establishment definitions; the rest is represented by image elements in the accessible page. | Partial secondary text/metadata only |
+| 250/2026 | https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html | Long-form secondary transcription, including general provisions, worksite/construction duties, technical hazard controls and the annex material used for Table 24 candidate extraction. | Full secondary transcription; Table 24 remains 781/781 candidates, 0/781 original Gazette matches |
+| 251/2026 | https://www.almasdar.com/175152 | Articles 1–3 are partially visible: definitions, prohibition on practice without a Ministry licence, two licence levels (Consultant A/B), and the first qualification requirement for Consultant A. | Partial secondary text/metadata only |
+| 252/2026 | https://www.almasdar.com/175156 | Article 1 definitions are visible, including training programmes, the committee deciding training-activity/trainer licence applications, and the training-provider/approved-trainer definitions. | Partial secondary text/metadata only |
+
+The Official Gazette catalogue independently confirms that Supplement 225(A), dated 12 October 2026, lists Decisions 248–252 and identifies the Amiri Press as publisher:
+https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full
+
+A second index route for the 251/252 titles is:
+https://www.almasdar.com/keyword/5037?page=1
+
+### Cross-check observations and limits
+
+- Decision 248's secondary Article 4 timing (24/48 hours) is now visible in a complete secondary transcription. It remains unverified against the original Gazette PDF; do not replace the existing abstention prompt or mark the reporting trigger authoritative.
+- Decision 248's 30-worker threshold is a separate statistics obligation; do not confuse it with the ten-worker threshold for work-regulation rules under Law 14/2025 Article 137 or Decision 162/2026.
+- Decision 250's full secondary transcription improves the auditability of the Table 24 extraction, but it does not resolve the three high-risk numerical/CAS discrepancies already recorded. Do not promote chemical limits, CAS numbers or exposure values.
+- Decisions 249, 251 and 252 now have better partial public text leads, but not complete article-by-article transcriptions in this review. Keep the candidate maps and all associated thresholds, staffing rules, qualifications, training hours and fees quarantined.
+- Almasdar pages display an all-rights-reserved notice. Record only bibliographic metadata and short research observations; do not copy their full text into the repository. Riwaq's separate terms/licence scope have not been established for these particular decision transcriptions.
+- None of these pages is the issuing authority or official Gazette publisher. No source PDF was downloaded, hashed or visually compared; no access restriction was bypassed.
+
+**Updated source counts:** Decisions 248–252 secondary public full/partial text routes: 5/5 located (248 and 250 full secondary transcriptions; 249, 251 and 252 partial public text); original Gazette matches remain 0/5; counsel approvals remain none; retrieval eligibility remains false.
