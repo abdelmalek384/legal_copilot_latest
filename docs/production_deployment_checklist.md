@@ -4,7 +4,8 @@ This checklist is a release gate, not a certification. Completing it does not re
 
 ## 1. Runtime and network boundary
 
-- [ ] Use a supported, patched Python runtime and install dependencies from a reviewed, pinned deployment lockfile.
+- [ ] Use a supported, patched Python runtime and install dependencies from a reviewed, pinned, hash-locked deployment file; the current repository still lacks this lockfile, so this gate remains open.
+- [ ] Pass the strict direct/transitive dependency audit on the exact release candidate; review Dependabot updates rather than auto-merging them (see [dependency security policy](dependency_security.md)).
 - [ ] Run the app as a dedicated unprivileged OS account. Do not run it as root.
 - [ ] Bind Uvicorn to loopback or a private interface only; do not expose port 8000 directly to the public internet.
 - [ ] Terminate TLS at a maintained reverse proxy and redirect HTTP to HTTPS.
