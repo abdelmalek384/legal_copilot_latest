@@ -75,7 +75,7 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
                 else:
                     self.assertEqual(card["pinpoint"]["pinpoint_status"], "inferred_not_visually_verified")
                 self.assertTrue(card["limitations"])
-                self.assertIn("لا توجد مراجعة محامٍ", " ".join(card["limitations"]))
+                self.assertIn("مراجعة محامٍ مصري", " ".join(card["limitations"]))
                 self.assertTrue(card["not_usable_for"])
 
     def test_text_extract_crosschecked_coverage_cards_keep_inferred_pages(self):
