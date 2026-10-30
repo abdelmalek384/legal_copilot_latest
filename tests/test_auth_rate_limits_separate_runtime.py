@@ -210,5 +210,35 @@ class SeparateRuntimeAuthenticationRateLimitTests(unittest.TestCase):
         self.assertEqual(self.client.get("/cases").status_code, 401)
 
 
+    def test_password_strength_rejects_common_long_password_without_changing_credentials(self):
+        login = self.client.post("/login", json={
+            "email": "rate-limit-owner@example.test", "password": self.password,
+        })
+        self.assertEqual(login.status_code, 200, login.text)
+        csrf = self.client.cookies.get("lc_csrf") or ""
+        rejected = self.client.post(
+            "/account/password",
+            json={
+                "current_password": self.password,
+                "new_password": "password1234",
+            },
+            headers={"X-CSRF-Token": csrf},
+        )
+        self.assertEqual(rejected.status_code, 422, rejected.text)
+
+        control = self.runtime.control_connection()
+        account = control.execute(
+            "SELECT password_hash FROM users WHERE id=?", (self.user_id,)
+        ).fetchone()
+        self.assertIsNotNone(account)
+        self.assertTrue(app.check_pw(self.password, account["password_hash"]))
+        self.assertEqual(
+            self.client.post("/login", json={
+                "email": "rate-limit-owner@example.test", "password": self.password,
+            }).status_code,
+            200,
+        )
+
+
 if __name__ == "__main__":
     unittest.main()
