@@ -298,7 +298,7 @@ class S3PrivateObjectStore:
             raise ObjectStorageError("physical purge requires a confirmed never-versioned bucket")
         status = versioning.get("Status")
         if status in ("Enabled", "Suspended"):
-            raise ObjectStorageError("physical purge is blocked for a versioned or suspended bucket")
+            raise ObjectStorageError("physical purge is blocked for a versioned or suspended bucket; a confirmed never-versioned bucket is required")
         if status is not None:
             raise ObjectStorageError("physical purge requires a confirmed never-versioned bucket")
         staged_key = self._key(firm_id, object_id, "staged")
