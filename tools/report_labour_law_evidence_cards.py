@@ -21,7 +21,7 @@ def _link(url: str, label: str | None = None) -> str:
 
 
 def load_inventory(input_path: Path) -> dict[str, Any]:
-    """Load the main inventory and supplemental batches listed in its manifest."""
+    """Load the canonical inventory and enforce manifest counts; archived split snapshots stay excluded."""
     data = json.loads(input_path.read_text(encoding="utf-8"))
     manifest_path = input_path.with_name("provision_evidence_cards_manifest.json")
     if not manifest_path.exists() or input_path.resolve() != DEFAULT_INPUT.resolve():
