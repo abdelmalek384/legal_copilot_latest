@@ -48,16 +48,28 @@ The product cannot be called production-ready or legally approved until all appl
 - [ ] A permission-cleared primary legal corpus and lawyer-approved benchmark meet the legal release gate.
 - [ ] Qualified Egyptian counsel tests the actual application and records approval or required corrections.
 
-## Current open implementation items
+## Current merged deliverables and open implementation items
 
-- **PR #840** — legal-source evidence work; draft/open, not merged. Its metadata and candidate structures do not increase verified-law coverage.
-- **PR #900** — Windows first-run launcher and shared Mac/Windows bootstrap helper; draft/open; latest Full Tests run #41049381581 passed 123/123 after the shared Mac/Windows bootstrap and Python-version checks; physical Windows/macOS smoke tests pending.
-- **PR #903** — privacy-safe installable PWA shell and live deployment HTTP smoke probe; draft/open; latest Full Tests run #41049653740 passed 125/125 and latest Non-database safety regression #41049653696 passed 23/23. Manual Android/iOS/desktop install and offline checks remain pending.
-- **PR #904** — legal PDF/sidecar integrity validation, hash-bound OCR cache, and corrected import runbook. The importer now parses the exact bytes whose SHA-256 was checked, closing a file-replacement time-of-check/time-of-use gap. Focused import-bundle tests and Full Tests #41053465288 passed 124/124 on the pre-sync head; current-main-synchronized Full Tests #41053762364 is running. No real legal source files are included; source rights and counsel verification remain separate gates.
-- **PR #898** — S3 physical-purge state machine; open and not yet approved. Its branch is synchronized with current main, including PRs #901 and #902. Full Tests #41053584222 passed 123/123 on head `64ff4c7b696ac00e8f0d79f95cce7333e666eae8`. Independent destructive-operation review, live S3/KMS/IAM evidence, approved retention policy and witnessed recovery remain open.
-- **PR #901** — local-backup handling for purged-original tombstones; merged as `733b11b` after Full Tests #41052146895 passed 123/123, including the explicit purge/backup regression and CI coverage guard.
-- **Database/storage workstream** — remains assigned separately; do not duplicate or modify it here.
-- **Action 1 primary-source intake** — awaiting the user's original Gazette PDF and optional `law_rows_ar.jsonl`; source bytes must remain private and must not be committed.
+### Major deliverables merged into main
+
+- **PR #907 — static application security analysis:** CodeQL for Python and JavaScript/TypeScript plus Bandit. The high-severity gate passed. Seventeen medium B608 SQL-construction findings remain visible for manual review; scan success is not a clean-alert certification.
+- **PR #905 — reminder outbox monitoring:** read-only per-firm health probe and operator runbook are merged. Staging scheduler, alert routing, SMTP provider behavior and reconciliation remain untested.
+- **PR #903 — installable PWA shell:** merged. Real Android/iOS/desktop installation, offline behavior and accessibility acceptance remain manual gates.
+- **PR #909 — Mac/Windows first-run launchers:** merged after 127/127 Full Tests. Physical Windows and macOS smoke tests remain pending.
+- **PR #910 — dependency security baseline:** merged. The Python 3.12 hash lock, strict dependency audit, Dependabot and pinned resolver toolchain are in main. The exact lock passed clean --require-hashes installation and strict pip-audit.
+- **PR #920 — hardened container deployment:** merged after 130/130 Full Tests, Compose validation, and successful amd64/arm64 image builds. No image was published and no host deployment has occurred.
+- **PR #923 — legal PDF import and Arabic OCR:** merged after 131/131 Full Tests, CodeQL/Bandit and dependency audit. The importer validates exact PDF bytes against SHA-256, rejects unsafe file/URL inputs, requires explicit source language, segments Arabic/English article headings, and defaults scanned-document OCR to ara+eng. It creates unverified candidate rows only; it does not establish source rights, authenticity, extraction accuracy, legal force or lawyer approval.
+- **PR #901 — purged-original backup tombstones:** already merged. The backup bundle preserves tombstone metadata without expecting physically purged original bytes.
+
+### Still open or externally blocked
+
+- **PR #840 — Labour Law evidence ledger and Gazette candidate inventory:** draft/open and not yet synchronized to current main. The 781 Table 24 rows remain secondary-source candidates; original Gazette byte/page matches remain 0/781. No candidate row is promoted to verified law.
+- **PR #898 — S3 physical-purge state machine:** open and assigned to the separate database/storage workstream. Destructive-operation approval, live S3/KMS/IAM acceptance, approved retention/deletion policy and witnessed recovery remain mandatory.
+- **Database/storage workstream:** remains assigned separately. Do not duplicate schema, migration, storage-runtime or irreversible deletion work here.
+- **Action 1 primary-source intake:** awaiting the user's original Gazette PDF and optional law_rows_ar.jsonl. Keep source bytes local/private; use the intake, hashing and comparison tools without committing the files.
+- **Final Egyptian-counsel acceptance:** 0% / not started by design. The lawyer must test the actual application after technical completion; this remains a separate mandatory approval gate.
+- **Manual product acceptance:** phone/tablet/desktop RTL/LTR, keyboard, screen-reader, PWA install/offline, Windows/macOS launchers and primary lawyer workflows have not been witnessed or recorded.
+
 
 ## Next highest-value priorities
 
