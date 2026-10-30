@@ -2142,7 +2142,7 @@
         "source-use review",
         "qualified lawyer review"
       ],
-      "notes": "Official Amiri Press searchable text was located on 2026-10-30. It states that Decision 982/2026 continues during May 2026 and gives 30 April 2026 as its date. Original Gazette issue/pages and bytes/hash, terms, full currentness chain and lawyer review remain outstanding. This is a separate time-limited extension, not an amendment to Law 14/2025.",
+      "notes": "Official Amiri Press searchable text was located on 2026-10-30. It states that Decision 982/2026 continues during May 2026 and gives 30 April 2026 as its date. Original Gazette issue/pages and bytes/hash, terms, full currentness chain and lawyer review remain outstanding. This is a separate time-limited extension, not an amendment to Law 14/2025. The Gazette PDF Download action redirects to DSpace login; no login or access restriction was bypassed.",
       "source_urls": [
         {
           "url": "https://www.alamiria.com/Sec/TashTxt?id=kkawTcVJE9I%3D",
@@ -2152,7 +2152,7 @@
         {
           "url": "https://dspace.id.com.eg/items/90a235e2-d98c-4c39-92ec-d7006cfd8427/full",
           "source_role": "Official Gazette item metadata: issue 18 supplement, dated 2026-04-30; original bundle listed",
-          "status": "official_metadata_discovered_file_not_hashed"
+          "status": "official_metadata_discovered_original_bundle_download_requires_DSpace_login"
         }
       ]
     },
@@ -2178,7 +2178,7 @@
         "source-use review",
         "qualified lawyer review"
       ],
-      "notes": "Official Gazette DSpace metadata identifies issue 21 supplement (A), dated 21 May 2026, publisher Amiri Press, and Decision 1572/2026; the listed original PDF currently routes to a request-copy page. Amiri Press Decision 2377/2026 independently cites it as extending Decision 982/2026 during June 2026. Original bytes/hash and full Gazette-page comparison remain outstanding.",
+      "notes": "Official Gazette DSpace metadata identifies issue 21 supplement (A), dated 21 May 2026, publisher Amiri Press, and Decision 1572/2026; the listed original PDF currently routes to a request-copy page. Amiri Press Decision 2377/2026 independently cites it as extending Decision 982/2026 during June 2026. Original bytes/hash and full Gazette-page comparison remain outstanding. The original PDF Download action routes to a request-a-copy form; no request was submitted.",
       "source_urls": [
         {
           "url": "https://alamiria.com/Sec/TashTxt?id=OHEywmUwNf8%3D",
@@ -2188,7 +2188,7 @@
         {
           "url": "https://dspace.id.com.eg/items/3ce63ac9-1cc3-4bb7-a2c9-449c1c730831",
           "source_role": "Official Gazette item metadata: issue 21 supplement (A), dated 2026-05-21; original bundle listed",
-          "status": "official_metadata_discovered_original_file_request_copy_restricted"
+          "status": "official_metadata_discovered_original_bundle_request_copy_restricted"
         }
       ]
     },
@@ -2214,7 +2214,7 @@
         "source-use review",
         "qualified lawyer review"
       ],
-      "notes": "Official Gazette DSpace metadata identifies issue 26 supplement (B), dated 30 June 2026, and its abstract identifies Decision 2033/2026. A secondary transcription states that it extends Decision 982/2026 during July 2026. Original Gazette bytes/hash, exact page anchor, terms, currentness and lawyer review remain outstanding.",
+      "notes": "Official Gazette DSpace metadata identifies issue 26 supplement (B), dated 30 June 2026, and its abstract identifies Decision 2033/2026. A secondary transcription states that it extends Decision 982/2026 during July 2026. Original Gazette bytes/hash, exact page anchor, terms, currentness and lawyer review remain outstanding. The original PDF Download action routes to a request-a-copy form; no request was submitted.",
       "source_urls": [
         {
           "url": "https://alamiria.com/Sec/TashTxt?id=OHEywmUwNf8%3D",
@@ -2224,7 +2224,7 @@
         {
           "url": "https://dspace.id.com.eg/items/080b6ab2-3969-46e5-a8bd-38f86305f6dd/full",
           "source_role": "Official Gazette item metadata: issue 26 supplement (B), dated 2026-06-30; abstract identifies Decision 2033/2026",
-          "status": "official_metadata_discovered_file_not_hashed"
+          "status": "official_metadata_discovered_original_bundle_request_copy_restricted"
         },
         {
           "url": "https://mksegypt.org/ar/decisions/34895",
