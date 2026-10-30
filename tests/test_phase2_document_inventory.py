@@ -17,7 +17,7 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
 
     def test_current_inventory_is_metadata_only_and_structurally_valid(self):
         self.assertEqual(validate_inventory(self.inventory), [])
-        self.assertEqual(len(self.inventory["documents"]), 72)
+        self.assertEqual(len(self.inventory["documents"]), 79)
         self.assertTrue(all(d["review_status"] != "verified" for d in self.inventory["documents"]))
         self.assertTrue(all(d["legal_status"] in {"unknown", "not_applicable"} for d in self.inventory["documents"]))
         register = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
@@ -95,6 +95,30 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         action = next(a for a in self.inventory["next_actions"] if a["id"] == "ACT-LABOUR-LAW-14-2025-EXEC-REGS-VERIFY")
         self.assertIn("not proof of non-existence", action["action"])
         self.assertEqual(action["status"], "not_started")
+        self.assertEqual(validate_inventory(self.inventory), [])
+
+    def test_2026_labour_remote_work_and_wages_decisions_are_separate_discovery_records(self):
+        expected = {
+            "EG-LABOUR-PM-DECISION-982-2026": "official_text_candidate",
+            "EG-LABOUR-PM-DECISION-1305-2026": "official_reference_candidate_primary_text_not_located",
+            "EG-LABOUR-PM-DECISION-1572-2026": "official_reference_candidate_primary_text_not_located",
+            "EG-LABOUR-PM-DECISION-2033-2026": "official_reference_candidate_primary_text_not_located",
+            "EG-LABOUR-PM-DECISION-2377-2026": "official_text_candidate",
+            "EG-LABOUR-PM-DECISION-2590-2026": "official_text_candidate",
+            "EG-LABOUR-PM-DECISION-3165-2026": "official_text_candidate",
+        }
+        law = next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-LAW-14-2025")
+        related_ids = {item["document_id"] for item in law["related_instruments"]}
+        for document_id, expected_source_status in expected.items():
+            record = next(d for d in self.inventory["documents"] if d["document_id"] == document_id)
+            self.assertIn(document_id, related_ids)
+            self.assertEqual(record["source_id"], "EG-AMIRI-PRESS")
+            self.assertEqual(record["source_status"], expected_source_status)
+            self.assertEqual(record["collection_permission"], "unknown")
+            self.assertEqual(record["legal_status"], "unknown")
+            self.assertEqual(record["review_status"], "discovery_only")
+            self.assertTrue(record["required_related_records"])
+            self.assertTrue(record["source_urls"])
         self.assertEqual(validate_inventory(self.inventory), [])
 
     def test_unknown_source_and_duplicate_instrument_ids_are_rejected(self):
