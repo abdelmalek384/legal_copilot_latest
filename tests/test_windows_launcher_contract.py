@@ -30,6 +30,12 @@ class WindowsLauncherContractTests(unittest.TestCase):
         self.assertNotIn("--host 0.0.0.0", script)
         self.assertNotIn("--reload", script)
 
+    def test_mac_and_windows_launchers_share_the_same_bootstrap_helper(self):
+        mac = (ROOT / "start_mac.command").read_text(encoding="utf-8")
+        windows = (ROOT / "start_windows.bat").read_text(encoding="utf-8")
+        self.assertIn("python tools/bootstrap_first_firm.py", mac)
+        self.assertIn("python tools\\\\bootstrap_first_firm.py", windows)
+
     def test_bootstrap_command_passes_user_values_without_shell_interpolation(self):
         command = build_init_command(
             "python.exe",
