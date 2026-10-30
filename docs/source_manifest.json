@@ -795,9 +795,10 @@
         "Do not treat public catalogue metadata as access to the original PDF",
         "Do not infer commercial reuse permission from the Amiri Press publisher field or DSpace catalogue visibility",
         "Only hash and compare original PDF bytes after lawful access is available",
-        "Preserve login-required and request-copy outcomes; do not submit requests or bypass controls without explicit user direction"
+        "Preserve login-required and request-copy outcomes; do not submit requests or bypass controls without explicit user direction",
+        "For Supplement 225(A) dated 2026-10-12, preserve item https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full and handle https://dspace.id.com.eg/handle/123456789/8906; original bundle metadata: العدد 225 تابع أ - مؤمن.pdf, 6.13 MB."
       ],
-      "notes": "Third-party catalogue/repository source, not the issuing publisher. The repository hosts metadata for Amiri Press Official Gazette issues. Supplement 225(A) (2026-10-12) and several 2026 remote-work decision PDFs have restricted download routes. Exact access status is item-specific; source permission remains unknown."
+      "notes": "Third-party catalogue/repository source, not the issuing publisher. The repository hosts metadata for Amiri Press Official Gazette issues. Supplement 225(A) (2026-10-12) and several 2026 remote-work decision PDFs have restricted download routes. Exact access status is item-specific; source permission remains unknown. Supplement 225(A) (2026-10-12) is catalogued at https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full; the original bundle is request-copy restricted in the checked session."
     }
   ]
 }
