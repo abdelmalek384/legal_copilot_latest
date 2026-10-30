@@ -105,6 +105,7 @@ def _page_at(offset: int, starts: list[int]) -> int:
 
 
 def compare_articles(candidates: list[dict[str, Any]], pages: list[str]) -> dict[str, Any]:
+    pages = [normalize_arabic_text(page) for page in pages]
     starts: list[int] = []
     cursor = 0
     for page in pages:
