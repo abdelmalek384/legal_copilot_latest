@@ -1,6 +1,6 @@
 # Legal Copilot — Project Progress Tracker
 
-**Last updated:** 2026-10-28 (historical 2026-10-27 snapshot retained; current checkpoint appended; legacy 20-deliverable tally retained for historical continuity but is not a current overall project percentage)  
+**Last updated:** 2026-10-30 (historical snapshots retained; latest whole-product checkpoint appended; workstream percentages are not additive)
 **Tracking method:** deliverable-level checklist, not an estimate of engineering hours. A task is “complete” only when its change is merged and its acceptance criteria are met. Open PRs are in progress, not complete.
 
 ## Overall status
@@ -147,7 +147,6 @@ The above merges improve tooling and safety controls; they do not prove the corp
 ### Completion accounting rule
 
 Count a deliverable as complete only when its code is merged and acceptance criteria are met. CI success on an individual PR is not the same as a passing full suite on current main. A validator or metadata catalog is not a verified legal corpus, and no percentage here should be interpreted as a legal accuracy guarantee.
-
 
 ## Latest checkpoint update — 2026-10-28 (after PRs #693–#696)
 
@@ -307,7 +306,6 @@ The benchmark scorer and production release gate now require reviewer IDs/names 
 4. Populate the benchmark only with qualified reviewer-approved questions, exact source versions, and pinpoint citations; no legal-accuracy claims before real reviewed runs.
 5. Perform and record manual browser/accessibility QA.
 6. Leave DB/tenant/storage and production data actions to the assigned database workstream.
-
 Overall readiness stays at 42% ± 8%. Reviewer/source controls are more accountable, but source permissions, verified legal content, lawyer-labelled evidence, manual QA, and independent release review remain unresolved.
 
 
@@ -376,3 +374,33 @@ The Phase 2 metadata-only inventory now contains 71 candidates across 13 source 
 7. Leave tenant database, migrations, storage adapters and identity lifecycle to the assigned database workstream.
 
 Overall readiness remains 42% ± 8%. The recent work improves traceability and identifies current implementation leads; it does not establish verified legal content or production readiness.
+
+
+## Latest checkpoint — 2026-10-30 (whole-product and database workstream reconciliation)
+
+This checkpoint separates the product-wide readiness estimate from the database workstream estimate. The percentages are rough, reviewable workstream estimates, not additive scores or legal-accuracy claims.
+
+| Workstream | Estimate | Status / next gate |
+|---|---:|---|
+| **Overall product readiness** | **42% ± 8 percentage points** | Unchanged from the latest project-wide checkpoint. Database progress does not close the verified-law corpus, human legal evaluation, manual QA, or release-acceptance blockers. |
+| Verified Egyptian legal corpus | 6% | Still the critical product blocker: original primary texts, source-specific reuse rights, effective-date/amendment reconciliation, and qualified Egyptian-lawyer sign-off remain outstanding. |
+| Research evaluation and citation integrity | 78% | Evaluation and citation safeguards are implemented, but actual qualified-counsel benchmark runs against exact source versions and pinpoint citations remain outstanding. |
+| Legal corpus audit safeguards | 75% | Read-only audits and review-integrity checks are implemented; they do not authenticate law or prove completeness/currentness. |
+| Source provenance and acquisition safeguards | 85% | Terms freshness, provenance and permission gates are implemented; source-specific rights remain unknown unless supported by evidence. |
+| UI/UX implementation | 55% | Bilingual workflows and keyboard-focus safeguards are implemented; manual RTL/LTR, responsive, keyboard, screen-reader and lawyer-workflow acceptance remains outstanding. |
+| **Database / tenant isolation** | **87%** | Separate database tracker estimate. PR #901 merged and its full Tests workflow passed 122/122, including the purged-original tombstone backup regression. PR #898 has been synchronized with current main and adds fake-S3 state-machine tests for legal-hold refusal, wrong-firm database binding, and tenant commit failure after object deletion. Its prior full Tests run #41050586897 passed 122/122 on commit `dc73eb3797770a93cc5ab1c5ba506be4264aec90`; the latest retry/reconciliation test commit `947d0a16d113ebc8f8296e9890a2647956ba75b0` is under full CI run #41050865813. PR #898 remains open and has no independent destructive-operation review. Live S3/KMS/IAM verification, approved retention/deletion policy, witnessed recovery, and independent security review remain release blockers. |
+| Production / paid-pilot readiness | 35% | Blocked by verified legal content, counsel-reviewed evaluation, security review, live infrastructure acceptance, witnessed recovery, and manual product QA. |
+
+### Fresh-install and legacy-data scope
+
+The deployment target remains a fresh install. No production customer database has been deployed or supplied for legacy import, so legacy customer-data reconciliation/migration is not a first-deployment task. This does not waive the need to validate fresh schema creation, versioned migrations, tenant isolation, backup/restore, or removal of unsafe runtime compatibility paths.
+
+### Current priority order
+
+1. Complete and independently review the S3 purge state machine; keep destructive production execution disabled until live S3/KMS/IAM evidence, retention-policy approval, and witnessed staging recovery/deletion evidence exist.
+2. Complete the lawful, source-backed Egyptian legal corpus and obtain qualified counsel sign-off. Keep unverified candidates out of verified retrieval.
+3. Run a real lawyer-labelled retrieval/citation benchmark against exact source versions and pin-cites.
+4. Complete manual Arabic RTL / English LTR, responsive, keyboard, screen-reader and lawyer-workflow acceptance.
+5. Finish route/query/background-job tenant-isolation acceptance, production identity delivery/recovery, and independent security review.
+
+The **42% ± 8% overall product estimate remains unchanged**. The database workstream has advanced, but it cannot compensate for the product's still-limited verified legal corpus or the missing human and operational acceptance evidence.
