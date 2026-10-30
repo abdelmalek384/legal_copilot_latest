@@ -51,3 +51,5 @@ The status of Law 14/2025 cannot be inferred from a copy of the original law alo
 ## Evidence boundary
 
 This log improves discovery and instrument mapping only. It does not increase the count of verified legal provisions, does not establish that Law 14/2025 is unamended/current as of 2026-10-30, and does not authorize production retrieval.
+
+9. A second DSpace record in the MELES Electronic 2026 collection lists English and Arabic PDFs of Decision 982/2026, but both file downloads route to request-a-copy and the item-specific license is agreed upon submission. This is not the Official Gazette record and does not provide an acquired copy. No request was submitted; do not infer permission to redistribute or commercialize it.
