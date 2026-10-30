@@ -16,7 +16,7 @@ class Action1SourceIntakeTests(unittest.TestCase):
     def test_pdf_hash_and_signature_are_recorded_without_extraction(self):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "gazette.pdf"
-            payload = b"%PDF-1.7\\nexample-pdf-bytes"
+            payload = b"%PDF-1.7\nexample-pdf-bytes"
             path.write_bytes(payload)
             result = inspect_file(path)
             self.assertEqual(result["sha256"], hashlib.sha256(payload).hexdigest())
@@ -27,7 +27,7 @@ class Action1SourceIntakeTests(unittest.TestCase):
     def test_jsonl_counts_valid_malformed_and_blank_lines(self):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "law_rows_ar.jsonl"
-            path.write_text('{"id":1}\\nnot-json\\n\\n{"id":2}\\n', encoding="utf-8")
+            path.write_text('{"id":1}\nnot-json\n\n{"id":2}\n', encoding="utf-8")
             result = inspect_file(path)
             self.assertEqual(result["nonblank_records"], 3)
             self.assertEqual(result["valid_json_records"], 2)
@@ -40,8 +40,8 @@ class Action1SourceIntakeTests(unittest.TestCase):
             root = Path(directory)
             pdf = root / "gazette.pdf"
             data = root / "law_rows_ar.jsonl"
-            pdf.write_bytes(b"%PDF-1.4\\nprivate bytes")
-            data.write_text('{"article":1}\\n', encoding="utf-8")
+            pdf.write_bytes(b"%PDF-1.4\nprivate bytes")
+            data.write_text('{"article":1}\n', encoding="utf-8")
             manifest = build_manifest([pdf, data])
             self.assertFalse(manifest["source_bytes_copied"])
             self.assertFalse(manifest["source_contents_extracted"])
@@ -57,8 +57,8 @@ class Action1SourceIntakeTests(unittest.TestCase):
             second = root / "b" / "same.jsonl"
             first.parent.mkdir()
             second.parent.mkdir()
-            first.write_text('{"x":1}\\n', encoding="utf-8")
-            second.write_text('{"x":2}\\n', encoding="utf-8")
+            first.write_text('{"x":1}\n', encoding="utf-8")
+            second.write_text('{"x":2}\n', encoding="utf-8")
             with self.assertRaises(ValueError):
                 build_manifest([])
             with self.assertRaises(ValueError):
