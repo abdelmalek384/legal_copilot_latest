@@ -5,6 +5,9 @@
 
 ## Overall status
 
+See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **47% technical completion** (46.5/100, rounded) as of 2026-10-30. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
+
+
 ## Current workstream snapshot — 2026-10-27
 
 **Important:** These percentages are rough, reviewable workstream estimates—not a claim that the product is market-ready. They measure visible engineering/evidence progress and are not directly additive. The legacy 7/20 tally below is not refreshed to include every recent workstream and must not be quoted as the current overall project completion percentage.
@@ -388,7 +391,7 @@ This checkpoint separates the product-wide readiness estimate from the database 
 | Legal corpus audit safeguards | 75% | Read-only audits and review-integrity checks are implemented; they do not authenticate law or prove completeness/currentness. |
 | Source provenance and acquisition safeguards | 85% | Terms freshness, provenance and permission gates are implemented; source-specific rights remain unknown unless supported by evidence. |
 | UI/UX implementation | 55% | Bilingual workflows and keyboard-focus safeguards are implemented; manual RTL/LTR, responsive, keyboard, screen-reader and lawyer-workflow acceptance remains outstanding. |
-| **Database / tenant isolation** | **87%** | Separate database tracker estimate. PR #901 remains open and is not counted complete. Its pre-sync branch CI run #41047270699 passed 123/123; after synchronization with current main, full Tests run #41051755068 is in progress. The local-backup tombstone fix is not yet merged into main. PR #898 adds fake-S3 state-machine tests for legal-hold refusal, wrong-firm database binding, tenant commit failure after object deletion, and a retry that remains blocked for manual review. Full Tests run #41050865813 passed 122/122 on commit `947d0a16d113ebc8f8296e9890a2647956ba75b0`. The branch requires synchronization with subsequent main commits before final review; PR #898 remains open and has no independent destructive-operation review. Live S3/KMS/IAM verification, approved retention/deletion policy, witnessed recovery, and independent security review remain release blockers. |
+| **Database / tenant isolation** | **87%** | Separate database tracker estimate. PR #901 merged as `733b11b` after Full Tests run #41052146895 passed 123/123, including the explicit purge-and-backup regression and CI coverage guard. The local-backup tombstone fix is now in main. PR #898 adds fake-S3 state-machine tests for legal-hold refusal, wrong-firm database binding, tenant commit failure after object deletion, and a retry that remains blocked for manual review. Full Tests run #41050865813 passed 122/122 on its prior head; the branch is now synchronized with current main (including PR #901) and full Tests run #41052562914 is in progress. PR #898 remains open and has no independent destructive-operation review. Live S3/KMS/IAM verification, approved retention/deletion policy, witnessed recovery, and independent security review remain release blockers. |
 | Production / paid-pilot readiness | 35% | Blocked by verified legal content, counsel-reviewed evaluation, security review, live infrastructure acceptance, witnessed recovery, and manual product QA. |
 
 ### Fresh-install and legacy-data scope
@@ -403,4 +406,4 @@ The deployment target remains a fresh install. No production customer database h
 4. Complete manual Arabic RTL / English LTR, responsive, keyboard, screen-reader and lawyer-workflow acceptance.
 5. Finish route/query/background-job tenant-isolation acceptance, production identity delivery/recovery, and independent security review.
 
-The **42% ± 8% overall product estimate remains the last accepted project-wide estimate**. Open PR #902 proposes a weighted technical completion score of 47% (46.5/100) and passed its PR Tests workflow 122/122; it remains open and is not yet the accepted tracker baseline. The database workstream has advanced, but it cannot compensate for the product's still-limited verified legal corpus or the missing human and operational acceptance evidence.
+The **47% weighted technical completion score** supersedes the older non-additive 42% ± 8% estimate. It remains a planning estimate, not production readiness or legal approval. The verified legal corpus remains at 6%; Law 174/2025's commencement is intentionally unassigned pending reconciliation of Law 160/2026's published wording with official explanatory material and qualified Egyptian-counsel review. The database workstream has advanced, but it cannot compensate for the product's still-limited verified legal corpus or missing human and operational acceptance evidence.
