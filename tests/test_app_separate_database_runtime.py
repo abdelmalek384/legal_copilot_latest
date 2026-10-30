@@ -3909,6 +3909,106 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             researcher.close()
 
 
+    def test_security_headers_and_csp_nonce_are_present(self):
+        response = self.client.get("/")
+        self.assertEqual(response.status_code, 200, response.text)
+        self.assertEqual(response.headers.get("X-Content-Type-Options"), "nosniff")
+        self.assertEqual(response.headers.get("X-Frame-Options"), "DENY")
+        policy = response.headers.get("Content-Security-Policy", "")
+        self.assertIn("script-src", policy)
+        script_policy = policy.split("script-src", 1)[1].split(";", 1)[0]
+        self.assertNotIn("unsafe-inline", script_policy)
+        self.assertIn("nonce-", script_policy)
+        self.assertIn("<script nonce=", response.text)
+
+
+    def test_firm_workflow_claim_calendar_and_fee_aggregates(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate(
+            "post", "/cases", json={"title": "Workflow acceptance matter", "client": "Workflow client"}
+        )
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+        due = (date.today() + timedelta(days=7)).isoformat()
+
+        task = self._mutate(
+            "post", f"/cases/{case_id}/tasks",
+            json={"title": "Claimable workflow task", "due": due},
+        )
+        self.assertEqual(task.status_code, 200, task.text)
+        db = self.runtime.firm_connection(
+            self.runtime.resolve_context(self.user_id, self.firm_a)
+        )
+        task_id = db.execute(
+            "SELECT id FROM tasks WHERE case_id=? AND title=?",
+            (case_id, "Claimable workflow task"),
+        ).fetchone()["id"]
+        dashboard = self.client.get("/dashboard")
+        self.assertEqual(dashboard.status_code, 200, dashboard.text)
+        self.assertTrue(any(
+            item["title"] == "Claimable workflow task"
+            for item in dashboard.json()["unassigned_tasks"]
+        ))
+        claimed = self._mutate("post", f"/tasks/{task_id}/claim")
+        self.assertEqual(claimed.status_code, 200, claimed.text)
+        duplicate_claim = self._mutate("post", f"/tasks/{task_id}/claim")
+        self.assertEqual(duplicate_claim.status_code, 409, duplicate_claim.text)
+        dashboard_after_claim = self.client.get("/dashboard")
+        self.assertEqual(dashboard_after_claim.status_code, 200, dashboard_after_claim.text)
+        self.assertTrue(any(
+            item["title"] == "Claimable workflow task"
+            for item in dashboard_after_claim.json()["tasks"]
+        ))
+        self.assertFalse(any(
+            item["title"] == "Claimable workflow task"
+            for item in dashboard_after_claim.json()["unassigned_tasks"]
+        ))
+
+        deadline = self._mutate(
+            "post", f"/cases/{case_id}/deadlines",
+            json={"title": "Workflow appeal deadline", "due": due, "note": "Verify source"},
+        )
+        self.assertEqual(deadline.status_code, 200, deadline.text)
+        hearing = self._mutate(
+            "post", f"/cases/{case_id}/sessions",
+            json={"date": due, "note": "Workflow hearing"},
+        )
+        self.assertEqual(hearing.status_code, 200, hearing.text)
+
+        fee = self._mutate(
+            "post", f"/cases/{case_id}/fees",
+            json={"title": "Workflow retainer", "amount": 1000, "paid": 250, "due": due},
+        )
+        self.assertEqual(fee.status_code, 200, fee.text)
+        finance = self.client.get("/finance/overview")
+        self.assertEqual(finance.status_code, 200, finance.text)
+        self.assertEqual(finance.json()["fee_count"], 1)
+        self.assertEqual(finance.json()["total_amount"], 1000)
+        self.assertEqual(finance.json()["total_paid"], 250)
+        self.assertEqual(finance.json()["outstanding_amount"], 750)
+        self.assertEqual(finance.json()["overdue_count"], 0)
+
+        invalid_fee = self._mutate(
+            "post", f"/cases/{case_id}/fees",
+            json={"title": "Invalid fee", "amount": 100, "paid": 101},
+        )
+        self.assertEqual(invalid_fee.status_code, 422, invalid_fee.text)
+        negative_fee = self._mutate(
+            "post", f"/cases/{case_id}/fees",
+            json={"title": "Negative fee", "amount": -1, "paid": 0},
+        )
+        self.assertEqual(negative_fee.status_code, 422, negative_fee.text)
+
+        calendar = self.client.get("/calendar.ics")
+        self.assertEqual(calendar.status_code, 200, calendar.text)
+        self.assertIn("Task: Claimable workflow task", calendar.text)
+        self.assertIn("Legal deadline: Workflow appeal deadline", calendar.text)
+        self.assertIn("Hearing: Workflow hearing", calendar.text)
+
+
     def test_calendar_text_escaping_prevents_crlf_line_injection(self):
         self.assertEqual(
             app._ics_escape("a\\b,c;d\r\ne\rf\ng"),
