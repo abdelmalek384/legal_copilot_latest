@@ -41,6 +41,11 @@ class Action1IntakeInspectorTests(unittest.TestCase):
             self.assertEqual(result["duplicate_stable_key_count"], 1)
             self.assertEqual(result["top_level_field_counts"]["article"], 3)
             self.assertEqual(result["top_level_field_counts"]["text"], 2)
+            historical = result["historical_comparison"]
+            self.assertEqual(historical["expected_record_count"], 311)
+            self.assertFalse(historical["record_count_matches_historical_copy"])
+            self.assertEqual(len(historical["expected_sha256"]), 64)
+            self.assertFalse(historical["sha256_matches_historical_copy"])
             self.assertNotIn("first", json.dumps(result))
 
     def test_jsonl_rejects_invalid_json_and_non_object_records(self):
