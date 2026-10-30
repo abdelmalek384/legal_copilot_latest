@@ -17,7 +17,7 @@ The validator in tools/validate_phase2_document_inventory.py and tests/test_phas
 - A record cannot be marked verified without explicit collection permission, commercial reuse permission, and permission evidence.
 - A record cannot be labelled in force without verified review and an effective date.
 
-The current inventory has 79 unique instrument candidates across 13 source records. The seven records added on 2026-10-30 map Prime Minister Decisions 982, 1305, 1572, 2033, 2377, 2590 and 3165/2026 as discovery-only leads related to Labour Law 14/2025. Decisions 1572 and 2033 are currently cited references not independently located; Decision 1305 now has its own official Amiri Press searchable-text lead. All seven still lack Gazette byte/page verification. This count describes registry candidates only; it is not a count of laws covered or legal texts acquired.
+The current inventory has 79 unique instrument candidates across 13 source records. The seven records added on 2026-10-30 map Prime Minister Decisions 982, 1305, 1572, 2033, 2377, 2590 and 3165/2026 as discovery-only leads related to Labour Law 14/2025. Decision 1305 has an official Amiri Press searchable-text lead and Gazette metadata; Decisions 1572 and 2033 have exact Official Gazette DSpace metadata records, while 1572's listed file routes to request-copy access. Decisions 1305, 1572 and 2033 are no longer merely unlocated references, but all seven still lack acquired/original Gazette bytes, SHA-256 hashes and verified page anchors. This count describes registry candidates only; it is not a count of laws covered or legal texts acquired.
 
 ## Operating rules
 
