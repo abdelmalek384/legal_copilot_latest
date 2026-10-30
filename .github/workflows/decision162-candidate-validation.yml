@@ -1,0 +1,32 @@
+name: Decision 162 Candidate Validation
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'data/candidates/labour_law_14_2025/decision_162_2026_candidate.json'
+      - 'data/candidates/labour_law_14_2025/decision_162_2026_secondary_transcription_review_2026-10-29.md'
+      - 'data/candidates/labour_law_14_2025/related_instruments/decision_162_2026_work_rules_crosswalk_2026-10-31.md'
+      - 'tests/test_decision162_candidate_quarantine.py'
+      - '.github/workflows/decision162-candidate-validation.yml'
+  push:
+    branches:
+      - 'legal/decision-162-*'
+    paths:
+      - 'data/candidates/labour_law_14_2025/decision_162_2026_candidate.json'
+      - 'data/candidates/labour_law_14_2025/related_instruments/decision_162_2026_work_rules_crosswalk_2026-10-31.md'
+      - 'tests/test_decision162_candidate_quarantine.py'
+      - '.github/workflows/decision162-candidate-validation.yml'
+
+jobs:
+  decision-162:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Test Decision 162 candidate quarantine
+        run: PYTHONPATH=. python tests/test_decision162_candidate_quarantine.py
