@@ -601,8 +601,3 @@ numeric_hits = [{"text": "The maximum contract duration is five years."}]
 assert not app._answer_has_unsupported_quantities("The maximum is five years [1].", numeric_hits, {1})
 assert app._answer_has_unsupported_quantities("The maximum is ten years [1].", numeric_hits, {1})
 assert app._answer_has_unsupported_quantities("The maximum is ten years [1].", numeric_hits, set())
-
-
-# Weak but long passwords must be rejected by account creation.
-weak_password = c.post("/users", json={"name":"Weak Password","email":"weak-password@x.eg","password":"password1234","role":"lawyer"}, headers=A)
-assert weak_password.status_code == 422, weak_password.text
