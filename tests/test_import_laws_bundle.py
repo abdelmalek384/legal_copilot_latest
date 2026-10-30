@@ -100,6 +100,12 @@ class LegalImportBundleTests(unittest.TestCase):
         with self.assertRaisesRegex(SystemExit, "64-character SHA-256"):
             validate_inputs(self.source, self.output)
 
+    def test_pdf_signature_may_appear_within_first_1024_bytes(self):
+        pdf_bytes = b"\xef\xbb\xbf" + b"%" + b"PDF-1.7\\nbody"
+        self._write_pair("sample_law", "DOC-001", pdf_bytes)
+        prepared = validate_inputs(self.source, self.output)
+        self.assertEqual(prepared[0][3], hashlib.sha256(pdf_bytes).hexdigest())
+
     def test_non_pdf_signature_is_rejected(self):
         pdf = self.source / "sample_law.pdf"
         pdf.write_bytes(b"not a PDF file")
