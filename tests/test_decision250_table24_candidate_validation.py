@@ -77,6 +77,21 @@ class Decision250Table24CandidateValidationTests(unittest.TestCase):
             errors = MODULE.validate(root)
         self.assertTrue(any("incomplete secondary image spot-check fields" in error for error in errors))
 
+    def test_secondary_image_discrepancy_requires_evidence_and_pending_original_status(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self._copy_batches(root)
+            path = root / MODULE.BATCHES[3]
+            data = json.loads(path.read_text(encoding="utf-8"))
+            row = next(x for x in data["rows"] if x["row"] == 61)
+            row["secondary_scan_match_status"] = "secondary_image_discrepancy_found"
+            row["secondary_scan_fields_checked"] = ["chemical_name", "cas_identifier", "primary_exposure_limit_token", "unit"]
+            row["secondary_scan_checked_on"] = "2026-10-30"
+            row["secondary_scan_discrepancy"] = {"field": "cas_identifier", "candidate_transcription": "x", "secondary_image_observed_tentative": "y", "status": "approved"}
+            path.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+            errors = MODULE.validate(root)
+        self.assertTrue(any("pending original Gazette confirmation" in error for error in errors))
+
     def test_candidate_cannot_claim_official_pdf_hash(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
