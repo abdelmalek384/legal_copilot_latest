@@ -24,6 +24,7 @@ For every route, review authentication and role checks, tenant derivation from t
 | `GET` | `/service-worker.js` | Public service-worker code; review scope, CSP, update behavior, and cache boundaries |
 | `GET` | `/offline.html` | Public static offline notice only; must contain no matter or account data |
 | `GET` | `/app-icon.svg` | Public static app icon only; no user-controlled file path |
+| `GET` | `/apple-touch-icon.png` | Public fixed PNG home-screen icon decoded from a repository asset; no user-controlled file path |
 | `POST` | `/login` | Review authorization, firm scoping, IDOR, rate limits, input validation, and audit behavior |
 | `GET` | `/session` | Review authorization, firm scoping, IDOR, rate limits, input validation, and audit behavior |
 | `POST` | `/logout` | Review authorization, firm scoping, IDOR, rate limits, input validation, and audit behavior |
