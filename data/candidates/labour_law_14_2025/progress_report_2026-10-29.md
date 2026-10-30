@@ -242,3 +242,21 @@ Recovered the exact meaning of Action 1 from the prior project plan: the user wi
 Created an intake protocol that is ready to execute as soon as the files are supplied. It records the historical law_rows_ar.jsonl comparison target (SHA-256 3e964de5c9cc994aefcc29c031712e85d664febd97c428e61c2eacdccaf1c600; 393,861 bytes; 311 expected records) but requires re-hashing the actual supplied file. The Gazette PDF workflow will verify issue identity, compute a hash, map printed pages to PDF indices, compare Decisions 248–252 and annexes, and field-match all 781 Table 24 candidate entries. The original files will remain immutable; no normalization or repair will overwrite them.
 
 The user does **not** need to arrange the lawyer review separately now. That review remains a distinct post-technical-completion release gate using the prepared in-app prompts and the actual application build.
+
+
+## Consolidated completion snapshot — 2026-10-30
+
+| Deliverable | Status | What the percentage means |
+|---|---:|---|
+| Decision 250 Table 24 secondary extraction | **100% (781/781)** | All numbered secondary-transcription entries are structured; includes 38 nested child entries |
+| Decision 250 Table 23 candidate index | **100% (137/137)** | Candidate labels indexed; not original-Gazette verified |
+| Decision 250 Table 24 original Gazette match | **0% (0/781)** | No official Gazette page/field comparison yet |
+| Decisions 248–252 original Gazette comparison | **0/5 complete** | Exact Gazette catalog record found; original PDF bytes still request-copy restricted |
+| Decisions 249, 251 and 252 secondary article/table maps | Candidate maps exist | Candidate text and tables are not promoted to authoritative retrieval |
+| Selected Law 14 official-hosted PDF excerpts | **9 selected articles** | Includes Article 296; original PDF bytes/hash, currentness and counsel gates remain open |
+| Arabic in-app lawyer acceptance prompt pack | **Prepared** | Not executed; lawyer has not approved any scope |
+| Action 1 file intake protocol | **Prepared** | Waiting for user-supplied original Gazette PDF and law_rows_ar.jsonl if available |
+| Full Tests workflow | **Passed on tested code head** | 103/103 steps; latest documentation-only/workflow-label head is under a further full run |
+| Legal Knowledge Validation | **Passed** | Latest run 28/28 |
+
+The overall legal-knowledge preparation estimate remains **15%** rather than being inflated by secondary extraction. The highest-value unfinished work is primary-source comparison and currentness/reuse/counsel review. Strict authoritative legal-content readiness remains **0%** for the Decision 248–252 package and Table 24 candidates.
