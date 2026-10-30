@@ -128,6 +128,22 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         self.assertEqual(source["commercial_reuse_permission"], "prior_written_permission_required_per_published_terms")
         self.assertIn("Article 141", source["permission_evidence"])
         self.assertIn("does not authorize automated/bulk extraction", source["permission_evidence"])
+        self.assertEqual(source["source_page"], "https://cc.gov.eg/judgments_search/")
+        self.assertIn("advanced search", source["permission_evidence"])
+
+    def test_cassation_heritage_library_remains_browse_only_without_reuse_permission(self):
+        import json
+        data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        source = next(item for item in data["sources"] if item["source_id"] == "EG-COURT-CASSATION-LEGAL-HERITAGE-LIBRARY")
+        self.assertEqual(source["collection_permission"], "unknown")
+        self.assertEqual(source["commercial_reuse_permission"], "unknown")
+        self.assertIn("watermark", source["permission_evidence"])
+        self.assertIn("https://cc.gov.eg/heritage/documents/199", source["permission_evidence"])
+        self.assertIn("https://cc.gov.eg/heritage/books/31/read", source["permission_evidence"])
+        self.assertIn("1899", source["permission_evidence"])
+        self.assertIn("not established", source["bulk_download_or_api"])
+        self.assertEqual(source["permission_evidence_url"], "https://cc.gov.eg/posts/739")
+        self.assertEqual(MODULE.validate(data), [])
 
     def test_mksegypt_archive_license_claim_is_recorded_without_overstating_permission(self):
         import json

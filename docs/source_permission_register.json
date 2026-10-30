@@ -42,20 +42,20 @@
     {
       "source_id": "EG-COURT-CASSATION",
       "authority": "Egyptian Court of Cassation",
-      "source_page": "https://cc.gov.eg/",
+      "source_page": "https://cc.gov.eg/judgments_search/",
       "terms_url": "https://cc.gov.eg/terms",
       "material_types": [
         "judgments",
         "judgment principles",
         "case search"
       ],
-      "access_status": "public portal with access restrictions described in published terms",
+      "access_status": "public search portal for civil and criminal judgments/principles, with advanced search by keywords, years and circuits; published terms restrict automated/bulk extraction and commercial reuse",
       "collection_permission": "not_allowed_without_explicit_exception_or_license",
       "commercial_reuse_permission": "prior_written_permission_required_per_published_terms",
       "terms_checked_on": "2026-10-23",
       "bulk_download_or_api": "do not automate or bulk extract absent written authorization",
       "required_next_action": "Request an official API/licensed export and written permission. Do not scrape while permission is pending.",
-      "permission_evidence": "Published site policy reviewed on 2026-10-23: https://cc.gov.eg/terms. Policy prohibits automated/bulk extraction, restricts content to legal/academic/research/documentation uses, and requires prior written approval for commercial use/republication. This is a record of the restriction, not permission. Rights-context note: WIPO Lex's consolidated record for Egyptian Law No. 82/2002, Article 141, excludes official court judgments from copyright protection but preserves protection for creative collections/selection/arrangement (https://www.wipo.int/wipolex/ar/legislation/details/22066). This does not override the portal's published terms, does not authorize automated/bulk extraction, and does not remove the stated prior-written-approval requirement for commercial use/republication. Keep the current restricted statuses unchanged."
+      "permission_evidence": "Published site policy reviewed on 2026-10-23: https://cc.gov.eg/terms. Policy prohibits automated/bulk extraction, restricts content to legal/academic/research/documentation uses, and requires prior written approval for commercial use/republication. This is a record of the restriction, not permission. Rights-context note: WIPO Lex's consolidated record for Egyptian Law No. 82/2002, Article 141, excludes official court judgments from copyright protection but preserves protection for creative collections/selection/arrangement (https://www.wipo.int/wipolex/ar/legislation/details/22066). This does not override the portal's published terms, does not authorize automated/bulk extraction, and does not remove the stated prior-written-approval requirement for commercial use/republication. Keep the current restricted statuses unchanged. The direct public search route was confirmed at https://cc.gov.eg/judgments_search/. It exposes civil and criminal judgment/principle categories, including labour appeals, and advanced search criteria for keywords, years and circuits. This is a manual research route only; the published restrictions and prior-written-approval requirement remain in force."
     },
     {
       "source_id": "EG-WIPO-LEX",
@@ -380,6 +380,27 @@
       "terms_checked_on": "2026-10-30",
       "bulk_download_or_api": "No public API or bulk-export facility established in this review; public search, section filters and pagination are visible. Do not crawl or bulk extract.",
       "required_next_action": "Manually review the stated CC BY 4.0 licence and any record-level rights notices; sample provenance, completeness and citation metadata across each document section; compare selected judgments against official court records where accessible; determine whether the licence covers the site's transcriptions and underlying legal texts. Keep collection and commercial reuse unknown and do not bulk-ingest until the scope and chain of rights are clear. If the licence scope remains ambiguous, do not contact the source holder under the current project constraint; keep the site as a discovery/cross-reference source only."
+    },
+    {
+      "source_id": "EG-COURT-CASSATION-LEGAL-HERITAGE-LIBRARY",
+      "authority": "Egyptian Court of Cassation / Supreme Judicial Council",
+      "source_page": "https://cc.gov.eg/posts/739",
+      "material_types": [
+        "historical Court of Cassation and other court judgments",
+        "historical judicial decisions and circulars",
+        "historical legislation",
+        "official printed legal periodical pages",
+        "historical legal indexes and foreign-language summaries"
+      ],
+      "access_status": "official heritage catalogue and individual document pages located under /heritage/documents/{id}; page-reader route located under /heritage/books/{id}/read; public browsing with original page images and watermark/no-republication notice; no bulk API/export established",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://cc.gov.eg/posts/739",
+      "permission_evidence": "The Court of Cassation's official announcement dated 26 August 2026 says its Legal Heritage Library became publicly available on 24 August 2026. It reports 27 scanned volumes, 13,275 scanned pages, 3,533 indexed documents and 12,577 index entries, covering 1899–1933 and documents from 316 courts/agencies. It describes original printed pages as browsable page-by-page, with judgment-level pages showing court, hearing date, cited provisions and printed principles. It says original text is transcribed verbatim in historical orthography and uncertain readings are flagged for review. It also explicitly says images carry a watermark to protect the originals from republication. This is strong primary-source discovery and a verification route, not a licence to copy, scrape, bulk-download, redistribute, or train on the scans. No reuse licence or API was identified. Direct public record routes were subsequently located: https://cc.gov.eg/heritage/documents/199 (1899 judgment, printed pages 120–129), https://cc.gov.eg/heritage/documents/5479 (1933 Court of Cassation and Appeal judgment, printed page 274), https://cc.gov.eg/heritage/documents/6018 (1936 first-year Al-Mohami legal periodical article), and https://cc.gov.eg/heritage/documents/25052 (1937 Court of Cassation judgment). These examples demonstrate searchable individual records and that the catalogue may expose related material beyond the 1899–1933 core volume range; preserve each record's own date/series metadata and do not infer coverage from the announcement alone. The catalogue search page is https://cc.gov.eg/judgments_search/ for current civil/criminal principles and rulings, but its reuse terms are separately unknown. A public book-reader page is also indexed at https://cc.gov.eg/heritage/books/31/read; this is an observed page instance, not a documented API or bulk-download route.",
+      "permission_evidence_url": "https://cc.gov.eg/posts/739",
+      "terms_checked_on": "2026-10-30",
+      "bulk_download_or_api": "not established; use public browsing only and respect watermark/no-republication statement",
+      "required_next_action": "Use individual public record pages for manual primary-source verification of historical citations and pinpoint references. Do not scrape, bulk download, remove watermarks, republish images, or ingest scans until explicit collection and commercial reuse permissions are established. Preserve printed volume/page references and mark uncertain readings exactly as the Court does. Treat the announced 1899–1933 heritage collection, the 1936 historical periodical and any later surfaced records as distinct series with record-specific dates. Keep current judgments search and heritage scans under separate source records if their access or terms differ."
     }
   ]
 }
