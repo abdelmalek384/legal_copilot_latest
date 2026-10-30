@@ -65,6 +65,12 @@ class DeploymentHttpSmokeTests(unittest.TestCase):
             "http://127.0.0.1:8000",
         )
 
+    def test_invalid_base_url_returns_consistent_failed_report(self):
+        report = run_smoke("http://example.com")
+        self.assertFalse(report["ready"])
+        self.assertEqual(report["passed"], 0)
+        self.assertEqual(report["failed"], 1)
+
     def test_rejects_credentials_paths_queries_and_fragments(self):
         for value in (
             "https://user:pass@example.com",
