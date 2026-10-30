@@ -16,6 +16,13 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         cls.inventory = json.loads(DEFAULT_PATH.read_text(encoding="utf-8"))
 
     def test_current_inventory_is_metadata_only_and_structurally_valid(self):
+        remote = next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-PM-DECISION-982-2026")
+        suspension = next(u for u in remote["source_urls"] if "sis.gov.eg/en/media-center/news/cabinet-approves-suspending-sunday-remote-work-system" in u["url"])
+        self.assertEqual(suspension["status"], "official_cabinet_draft_approval_announcement_not_promulgated_decision")
+        self.assertIn("exact decision number, publication, effective date", remote["notes"])
+        wages = next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-PM-DECISION-3165-2026")
+        self.assertIn("subcommittees", wages["notes"])
+        self.assertEqual(wages["review_status"], "discovery_only")
         self.assertEqual(validate_inventory(self.inventory), [])
         self.assertEqual(len(self.inventory["documents"]), 79)
         self.assertTrue(all(d["review_status"] != "verified" for d in self.inventory["documents"]))
