@@ -321,8 +321,12 @@ class S3PrivateObjectStore:
             if self._head(final_key) is not None:
                 raise ObjectStorageError("object remains after physical purge request")
             after = self.client.get_bucket_versioning(Bucket=self.bucket)
-            if not isinstance(after, dict) or after.get("Status") is not None:
-                raise ObjectStorageError("bucket versioning changed during physical purge")
+            if (
+                not isinstance(after, dict)
+                or after.get("Status") is not None
+                or set(after) - {"ResponseMetadata"}
+            ):
+                raise ObjectStorageError("bucket versioning changed or became unknown during physical purge")
             return True
         except ObjectStorageError:
             raise
