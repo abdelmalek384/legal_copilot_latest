@@ -78,3 +78,15 @@ The tool does **not** extract PDF text, alter either input, embed legal source c
 ## 6. Lawyer acceptance timing
 
 The in-app lawyer review is a separate acceptance gate **after technical completion**, not a prerequisite to continuing source ingestion and engineering. The lawyer should test the actual app build and corpus version, with exact prompts from lawyer_in_app_acceptance_plan_2026-10-29.md; record only the scope actually examined and approved. No legal approval is assumed in this intake protocol.
+
+## Metadata-only intake utility
+
+After the user supplies the original files, keep them in a controlled local directory and run:
+
+```bash
+python tools/hash_action1_sources.py --output ./controlled-intake/action1-source-manifest.json \
+  "/path/to/Official-Gazette-Supplement-225-A.pdf" \
+  "/path/to/law_rows_ar.jsonl"
+```
+
+The utility streams each file to compute byte length and SHA-256. For PDF it checks only the `%PDF-` signature. For JSONL it counts nonblank lines, valid JSON records, malformed records and blank lines. It does not extract legal text, copy source bytes, upload files, or include record contents in the manifest. The manifest itself should remain in the controlled workspace until its metadata is reviewed; only a legally safe, minimal evidence record should later be committed.
