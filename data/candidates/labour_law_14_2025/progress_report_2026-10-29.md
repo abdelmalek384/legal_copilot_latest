@@ -117,6 +117,8 @@ Table 24 candidate extraction now covers **781/781 numbered entries (100% second
 
 52. The expanded fee-ceiling validator, its four regression tests and the focused workflow integration passed Legal Knowledge Validation on commit `168830c5f929a291083267de1e83abb8ab6fd70c` (run `41023177014`; all 28 steps succeeded). Tests include rejecting an amount above EGP 50,000, rejecting relabelling programme/inspection charges as licence fees, and rejecting retrieval promotion. The full application `Tests` workflow for this commit is still pending; this focused pass is the result currently confirmed.
 
+53. Tightened the fee-ceiling regression test so the over-cap case must trigger the explicit EGP 50,000 ceiling violation (not merely the expected-value mismatch). Legal Knowledge Validation passed on commit `2f656d3e4e80741a06c2df994aa3c5ab853c385b` (run `41023287405`; all 28 steps succeeded). The workflow push-path filter was also corrected to include the new fee validator and its test. The full `Tests` workflow on the same candidate commit remains in progress; no full-suite pass is claimed.
+
 ## Current subtask status
 
 | Subtask | Completion estimate | Current status | Remaining gate |
