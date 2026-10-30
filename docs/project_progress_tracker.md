@@ -426,6 +426,7 @@ This checkpoint supersedes the prior whole-product estimate where noted. It is a
 **Weighted technical completion: 47.95/100, rounded to 48%.** Final Egyptian-counsel acceptance remains 0% / not started and is a separate mandatory post-build gate.
 
 ### Newly merged since the previous scorecard
+- **#928:** fail-closed PDF importer size/page limits, bounded reads, and regression coverage; Full Tests, CodeQL and dependency audit passed.
 - **#926:** metadata-only discovery records for MPA enacted-laws index, IDSC Gazette repository and Manshurat legal archive. Reuse rights remain unknown; no legal text was downloaded or promoted.
 - **#903:** privacy-safe installable PWA shell and read-only deployment HTTP smoke probe. Offline matter data remains deliberately unsupported.
 - **#907:** CodeQL security-extended analysis and Bandit scan; static analysis does not replace independent security assessment.
@@ -437,7 +438,7 @@ This checkpoint supersedes the prior whole-product estimate where noted. It is a
 
 ### Current non-database work in progress
 - **#926 merged:** metadata-only discovery of MPA enacted-law index, IDSC Gazette repository and Manshurat legal archive; all reuse rights remain unknown. Full Tests, CodeQL and dependency audit passed.
-- **#928:** current-main PDF importer resource bounds; CI pending.
+- **#928 merged:** current-main PDF importer resource bounds (100 MiB PDF, 1,000 pages, 1 MiB sidecars, bounded reads); Full Tests, CodeQL and dependency audit passed.
 - **#840:** Labour Law/Decision 248–252 evidence ledger; original Gazette copy remains restricted and unverified.
 - **#918, #919, #922:** dependency/action updates pending compatibility and CI review.
 
