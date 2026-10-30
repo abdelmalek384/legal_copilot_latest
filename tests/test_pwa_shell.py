@@ -18,6 +18,7 @@ class PwaShellTests(unittest.TestCase):
         self.assertEqual(manifest["scope"], "/")
         self.assertEqual(manifest["display"], "standalone")
         self.assertEqual(manifest["icons"][0]["src"], "/app-icon.svg")
+        self.assertTrue(any(icon.get("src") == "/apple-touch-icon.png" and icon.get("sizes") == "180x180" for icon in manifest["icons"]))
 
     def test_home_injects_manifest_and_nonce_protected_registration(self):
         self.assertIn('href="/manifest.webmanifest"', APP)
@@ -33,6 +34,7 @@ class PwaShellTests(unittest.TestCase):
             ('@app.get("/service-worker.js")', 'service-worker.js'),
             ('@app.get("/offline.html")', 'offline.html'),
             ('@app.get("/app-icon.svg")', 'app-icon.svg'),
+            ('@app.get("/apple-touch-icon.png")', 'apple-touch-icon.png.b64'),
         ):
             self.assertIn(route, APP)
             self.assertIn(f'_read_pwa_asset("{asset}")', APP)
