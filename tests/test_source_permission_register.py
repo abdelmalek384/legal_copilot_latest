@@ -152,7 +152,7 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         self.assertEqual(source["collection_permission"], "unknown")
         self.assertEqual(source["commercial_reuse_permission"], "unknown")
         self.assertIn("third-party claims only", source["permission_evidence"])
-        self.assertIn("not independently validated", source["permission_evidence"])
+        self.assertIn("not successfully independently validated", source["permission_evidence"])
         self.assertIn("get-cases-basedon-casestatuscode", source["permission_evidence"])
         self.assertIn("do not call endpoints", source["bulk_download_or_api"])
         self.assertEqual(source["source_page"], "https://www.sccourt.gov.eg/newportal/?a=cp3&id=829")
