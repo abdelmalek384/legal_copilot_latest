@@ -1,0 +1,263 @@
+{
+  "schema_version": 1,
+  "record_type": "secondary_source_candidate_extraction",
+  "instrument": "Egyptian Minister of Labour Decision 250/2026",
+  "table": "24",
+  "table_title_ar": "الحدود العتبية للمواد الكيميائية الخطرة",
+  "research_date": "2026-10-30",
+  "source": {
+    "class": "secondary_transcription",
+    "url": "https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html",
+    "publication_date": "2026-10-26",
+    "source_lines": "5688-5728",
+    "official_gazette_match": "not_performed",
+    "official_pdf_sha256": null
+  },
+  "status": "candidate_only_not_for_authoritative_retrieval",
+  "important_limits": [
+    "Secondary transcription only; no official Gazette page-image comparison.",
+    "Raw limits, units, formulae and symbols are preserved as discovery text and are not normalized or interpreted.",
+    "Source text contains apparent OCR/text-layer anomalies; preserve and quarantine for primary-source comparison.",
+    "Not for workplace safety decisions or compliance advice."
+  ],
+  "declared_top_level_row_range": {
+    "start": 721,
+    "end": 746
+  },
+  "rows": [
+    {
+      "row": 721,
+      "name_ar": "جزيئات بالمقياس الدقيق",
+      "name_en": "Finescale particles",
+      "cas": null,
+      "source_line": 5688,
+      "raw_limit_and_note_text": "79.90 2,5مجم/م3(R) _ _ م3 A3 تهيج المسالك التنفسية السفلى، التهاب الرئة الغباري",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 722,
+      "name_ar": "رباعي كلوريد التيتانيوم، كحمض هيدروكلوريك",
+      "name_en": "Titanium tetrachloride, as HCl",
+      "cas": "7550-45-0",
+      "source_line": 5690,
+      "raw_limit_and_note_text": "TiCl4 189.68 _ _ 0,5 جزء/ مليون م4 A4 تهيج وتلف المسالك التنفسية العليا",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 723,
+      "name_ar": "أورثو-تولويدين",
+      "name_en": "o-Tolidine",
+      "cas": "119-93-7",
+      "source_line": 5691,
+      "raw_limit_and_note_text": "C14H16N2 212.28 _ _ _ الجلد , م3 تهيج العين والمثانة والكلى، سرطان المثانة، ميثهيموجلوبينية الدم",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 724,
+      "name_ar": "تولوين",
+      "name_en": "Toluene",
+      "cas": "108-88-3",
+      "source_line": 5693,
+      "raw_limit_and_note_text": "C6H5CH3 92.14 20جزء/ مليون _ _ OTO; A4 ;BEI سمية سمعية، م4، مؤشر التعرض الحيوي خلل الجهاز العصبي المركزي وخلل بصري وسمعى؛ تأثر الجهاز التناسلي الأنثوي؛ فقدان الحمل",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 725,
+      "name_ar": "ثنائي أيزوسيانيت التولوين، 2,4- أو 2,6- (أو كخليط)",
+      "name_en": "Toluene diisocyanate, 2,4- or 2,6- (or as a mixture)",
+      "cas": "584-84-9; 91-08-7",
+      "source_line": 5694,
+      "raw_limit_and_note_text": "C9H6N2O2 174.15 0,001جزء/ مليون(IFV) 0,005 جزء/ مليون(IFV) _ الجلد، تحسس جلدي وتنفسي، م3، مؤشر التعرض الحيوي BEI، Skin;DSEN; RSEN; A3;BEI ربو، تأثر وظائف الرئة، تهيج العين",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 726,
+      "name_ar": "ميتا-توليدين",
+      "name_en": "m-Toluidine",
+      "cas": "108-44-1",
+      "source_line": 5696,
+      "raw_limit_and_note_text": "C7H9N 107.15 2جزء/ مليون _ _ Skin;A4;BEIM الجلد ,م4, مؤشر التعرض الحيوي للمواد المحفزة للميثهيموجلوبين تهيج العين والمثانة والكلى، ميثهيموجلوبينية الدم",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 727,
+      "name_ar": "أورثو-توليدين",
+      "name_en": "o-Toluidine",
+      "cas": "95-53-4",
+      "source_line": 5697,
+      "raw_limit_and_note_text": "C7H9N 107.15 2جزء/ مليون _ _ Skin;A3;BEIM الجلد ,م3, مؤشر التعرض الحيوي للمواد المحفزة للميثهيموجلوبين ميثهيموجلوبينية الدم، تهيج الجلد والعين والكلى والمثانة",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 728,
+      "name_ar": "بارا توليدين",
+      "name_en": "p-Toluidine",
+      "cas": "106-49-0",
+      "source_line": 5699,
+      "raw_limit_and_note_text": "C7H9N 107.15 2جزء/ مليون _ _ Skin;A3;BEIM الجلد ,م3, مؤشر التعرض الحيوي للمواد المحفزة للميثهيموجلوبين ميثهيموجلوبينية الدم",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 729,
+      "name_ar": "ثلاثي بيوتيل الفوسفات",
+      "name_en": "Tributyl phosphate",
+      "cas": "126-73-8",
+      "source_line": 5700,
+      "raw_limit_and_note_text": "C12H27O4P 266.31 5 مجم/ م3(IFV) _ _ A3;BEIc م3, مؤشر التعرض الحيوي لمبيدات تثبيط الكولينستيريز تهيج المثانة والعين والمسالك التنفسية العليا",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 730,
+      "name_ar": "ثلاثي كلورفون",
+      "name_en": "Trichlorfon",
+      "cas": "52-68-6",
+      "source_line": 5702,
+      "raw_limit_and_note_text": "C4H8Cl3O4P 257.44 0,1 مجم/ م3(IFV) _ _ A4; DSEN; BEIc م4, تحسس جلدي, مؤشر التعرض الحيوي لمبيدات تثبيط الكولينستيريز مثبط لإنزيم الكولينستيريز",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 731,
+      "name_ar": "ثلاثي كلورو حمض الخليك",
+      "name_en": "Trichloroacetic acid",
+      "cas": "76-03-9",
+      "source_line": 5703,
+      "raw_limit_and_note_text": "C2HCl3O2 163.39 0.5 جزء/ مليون _ _ م3 A3 تهيج العين والمسالك التنفسية العليا",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 732,
+      "name_ar": "1,2,4-ثلاثي كلورو البنزين",
+      "name_en": "1,2,4-Trichlorobenzene",
+      "cas": "120-82-1",
+      "source_line": 5705,
+      "raw_limit_and_note_text": "C6H3Cl3 181.46 _ _ 5 جزء/ مليون _ تهيج العين والمسالك التنفسية العليا",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 733,
+      "name_ar": "1,1,2-ثلاثي كلورو الإيثان",
+      "name_en": "1,1,2-Trichloroethane",
+      "cas": "79-00-5",
+      "source_line": 5707,
+      "raw_limit_and_note_text": "C2H3Cl3 133.41 10جزء/ مليون _ _ Skin;A3 الجلد , م3 خلل الجهاز العصبي المركزي وتلف الكبد",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 734,
+      "name_ar": "ثلاثي كلورو الإيثيلين",
+      "name_en": "Trichloroethylene",
+      "cas": "79-01-6",
+      "source_line": 5708,
+      "raw_limit_and_note_text": "C2HCl3 131.40 10جزء/ مليون 25جزء/ مليون _ A2;BEI م2, مؤشر التعرض الحيوي خلل الجهاز العصبي المركزي، وانخفاض الإدراك والسمية الكلوية",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 735,
+      "name_ar": "ثلاثي كلوروفلورو الميثان",
+      "name_en": "Trichlorofluoromethane",
+      "cas": "75-69-4",
+      "source_line": 5710,
+      "raw_limit_and_note_text": "CCl3F 137.38 _ _ 1000 جزء/ مليون م4 A4 حساسية القلب",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 736,
+      "name_ar": "ثلاثي كلورو النافثالين",
+      "name_en": "Trichloronaphthalene",
+      "cas": "1321-65-9",
+      "source_line": 5712,
+      "raw_limit_and_note_text": "C10H5Cl3 231.51 5 مجم/ م3 _ _ الجلد Skin تلف الكبد، بثور الشباب بسبب الكلور",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 737,
+      "name_ar": "1,2,3-ثلاثي كلورو بروبان",
+      "name_en": "1,2,3-Trichloropropane",
+      "cas": "96-18-4",
+      "source_line": 5713,
+      "raw_limit_and_note_text": "C3H5Cl3 147,43 0.005جزء/ مليون _ _ م2 A2 سرطان",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 738,
+      "name_ar": "1,1,2-ثلاثي كلورو-1,2,2-ثلاثي فلورو إيثان",
+      "name_en": "1,1,2-Trichloro-1,2,2-trifluoroethane",
+      "cas": "76-13-1",
+      "source_line": 5715,
+      "raw_limit_and_note_text": "C2Cl3F3 187.40 1000جزء/ مليون 1250 جزء/ مليون _ م4 A4 خلل بالجهاز العصبي المركزي",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 739,
+      "name_ar": "تريكلوسان",
+      "name_en": "Triclosan",
+      "cas": "3380-34-5",
+      "source_line": 5717,
+      "raw_limit_and_note_text": "C12H7Cl3O2 289.54 1 مجم/ م3 _ _ Skin;A3 الجلد , م3 تأثيرات أمراض الدم",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 740,
+      "name_ar": "ثلاثي إيثانول أمين",
+      "name_en": "Triethanolamine",
+      "cas": "102-71-6",
+      "source_line": 5718,
+      "raw_limit_and_note_text": "C6H15NO3 149.22 5 مجم/ م3 _ _ - تهيج العين والجلد",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 741,
+      "name_ar": "ثلاثي إيثيل أمين",
+      "name_en": "Triethylamine",
+      "cas": "121-44-8",
+      "source_line": 5720,
+      "raw_limit_and_note_text": "C6H15N 101.19 0.5جزء/ مليون 1جزء/ مليون _ Skin;A4 الجلد , م4 ضعف البصر, تهيج المسالك التنفسية العليا",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 742,
+      "name_ar": "تراي فلوميزول",
+      "name_en": "Triflumizole",
+      "cas": "68694-11-1",
+      "source_line": 5722,
+      "raw_limit_and_note_text": "C15H15ClF3N3O 345.75 1 مجم/ م3(I) _ _ A4; DSEN م4 ,تحسس جلدي تغيرات كبدية",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 743,
+      "name_ar": "ثلاثي فلورو بروموميثان",
+      "name_en": "Trifluorobromomethane",
+      "cas": "75-63-8",
+      "source_line": 5723,
+      "raw_limit_and_note_text": "CBrF3 148.92 1000جزء/ مليون _ _ _ خلل الجهاز العصبي المركزي والقلب",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 744,
+      "name_ar": "1,3,5-ثلاثي جليسيديل-إس-ثلاثي أزينتريون",
+      "name_en": "1,3,5-Triglycidyl-s-triazinetrione",
+      "cas": "2451-62-9",
+      "source_line": 5725,
+      "raw_limit_and_note_text": "C12H15N3O6 297.25 0,05 مجم/ م3 _ _ _ تلف الجهاز التناسلي الذكري",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 745,
+      "name_ar": "أنهيدريد ثلاثي الميليتيك",
+      "name_en": "Trimellitic anhydride",
+      "cas": "552-30-7",
+      "source_line": 5727,
+      "raw_limit_and_note_text": "C9H4O5 192,12 0,005 مجم/ م3(IFV) 0,002مجم/ م3(IFV) _ Skin; DSEN; RSEN الجلد , تحسس جلدي وتنفسي حساسية الجهاز التنفسي",
+      "status": "pending_official_match"
+    },
+    {
+      "row": 746,
+      "name_ar": "ثلاثي ميثيل الأمين",
+      "name_en": "Trimethylamine",
+      "cas": "75-50-3",
+      "source_line": 5728,
+      "raw_limit_and_note_text": "C3H9N 59,11 5جزء/ مليون 15جزء/ مليون _ _ تهيج بالجلد والعين والمسالك التنفسية العليا",
+      "status": "pending_official_match"
+    }
+  ]
+}
