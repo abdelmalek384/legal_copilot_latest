@@ -35,7 +35,7 @@ jobs:
           python -c "from pathlib import Path; import re; html=Path('static/index.html').read_text(encoding='utf-8'); scripts=re.findall(r'<script[^>]*>(.*?)</script>', html, re.S); assert scripts, 'No inline JavaScript found'; Path('/tmp/legal-copilot.js').write_text(chr(10).join(scripts), encoding='utf-8')"
           node --check /tmp/legal-copilot.js
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: '3.12'
       - name: Install dependencies
