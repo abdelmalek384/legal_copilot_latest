@@ -10,6 +10,7 @@ import sys
 from pathlib import Path
 
 from original_file_reconciliation import TenantDatabase, reconcile_original_file_storage
+from original_file_s3_reconciliation import reconcile_s3_original_file_storage
 from tenant_catalog import (
     TenantCatalogError,
     initialize_catalog,
@@ -32,31 +33,39 @@ def inspect_firm_offboarding(
     corpus_db: str | Path,
     object_root: str | Path,
     firm_id: int,
+    *,
+    s3_store=None,
 ) -> dict:
     """Check access revocation, database integrity, holds, and object integrity without mutation."""
     if isinstance(firm_id, bool) or not isinstance(firm_id, int) or firm_id <= 0:
         raise ValueError("firm_id must be a positive integer")
     control_path = Path(control_db).expanduser()
     tenant_root_path = Path(tenant_root).expanduser()
-    object_root_path = Path(object_root).expanduser()
-    if object_root_path.is_symlink() or not object_root_path.is_dir():
-        raise ValueError("object storage root must be an existing non-symlink directory")
     if tenant_root_path.is_symlink() or not tenant_root_path.is_dir():
         raise ValueError("tenant storage root must be an existing non-symlink directory")
-    object_resolved = object_root_path.resolve()
     tenant_resolved = tenant_root_path.resolve()
     control_resolved = control_path.resolve()
     corpus_resolved = Path(corpus_db).expanduser().resolve()
-    if (
-        object_resolved == tenant_resolved
-        or object_resolved in tenant_resolved.parents
-        or tenant_resolved in object_resolved.parents
-        or object_resolved == control_resolved
-        or object_resolved in control_resolved.parents
-        or object_resolved == corpus_resolved
-        or object_resolved in corpus_resolved.parents
-    ):
-        raise ValueError("object storage must be separate from database paths")
+    object_resolved = None
+    if s3_store is None:
+        if object_root is None:
+            raise ValueError("local object storage root is required for local offboarding preflight")
+        object_root_path = Path(object_root).expanduser()
+        if object_root_path.is_symlink() or not object_root_path.is_dir():
+            raise ValueError("object storage root must be an existing non-symlink directory")
+        object_resolved = object_root_path.resolve()
+        if (
+            object_resolved == tenant_resolved
+            or object_resolved in tenant_resolved.parents
+            or tenant_resolved in object_resolved.parents
+            or object_resolved == control_resolved
+            or object_resolved in control_resolved.parents
+            or object_resolved == corpus_resolved
+            or object_resolved in corpus_resolved.parents
+        ):
+            raise ValueError("object storage must be separate from database paths")
+    elif object_root is not None:
+        raise ValueError("do not supply a local object root with an S3 store")
 
     findings: list[dict] = []
     database_path = None
@@ -171,10 +180,23 @@ def inspect_firm_offboarding(
     finally:
         tenant.close()
 
+    s3_versioning_status = None
     try:
-        reconciliation = reconcile_original_file_storage(
-            object_resolved, [TenantDatabase(firm_id=firm_id, path=database_path)]
-        )
+        tenant_database = TenantDatabase(firm_id=firm_id, path=database_path)
+        if s3_store is None:
+            reconciliation = reconcile_original_file_storage(object_resolved, [tenant_database])
+        else:
+            reconciliation = reconcile_s3_original_file_storage(s3_store, [tenant_database])
+            try:
+                versioning = s3_store.client.get_bucket_versioning(Bucket=s3_store.bucket)
+                s3_versioning_status = versioning.get("Status") or "Disabled"
+                if s3_versioning_status in {"Enabled", "Suspended"}:
+                    findings.append({
+                        "code": "s3_bucket_versioning_requires_retention_policy",
+                        "versioning_status": s3_versioning_status,
+                    })
+            except Exception:
+                findings.append({"code": "s3_bucket_versioning_status_unavailable"})
         for finding in reconciliation.findings:
             # Other firms' namespaces are outside this firm's purge decision.
             if finding.firm_id not in {None, firm_id}:
@@ -184,7 +206,7 @@ def inspect_firm_offboarding(
                 "object_id": finding.object_id,
                 "detail": finding.detail,
             })
-    except (ValueError, OSError) as exc:
+    except (ValueError, OSError, sqlite3.Error) as exc:
         findings.append({"code": "object_reconciliation_failed", "detail": type(exc).__name__})
 
     findings.sort(key=lambda item: (item["code"], str(item.get("object_id", ""))))
@@ -196,6 +218,9 @@ def inspect_firm_offboarding(
         "active_invitations": active_invitations,
         "original_object_count": object_count,
         "purged_tombstone_count": purged_tombstone_count,
+        "storage_backend": "s3" if s3_store is not None else "local",
+        "s3_bucket_versioning_status": s3_versioning_status,
+        "production_purge_authorized": False,
         "active_legal_hold_count": active_holds,
         "pending_deletion_request_count": pending_deletion_request_count,
         "inflight_purge_count": inflight_purge_count,
@@ -204,7 +229,9 @@ def inspect_firm_offboarding(
         "mutations_performed": 0,
         "warning": (
             "A clear preflight is not legal authorization to delete. Confirm retention duties, "
-            "backup/export requirements, contractual obligations, and legal holds before any purge."
+            "backup/export requirements, contractual obligations, and legal holds before any purge. "
+            "This command is read-only; production S3 purge remains disabled pending approved "
+            "retention policy, versioning review, independent IAM/KMS review, and witnessed recovery."
         ),
     }
 
