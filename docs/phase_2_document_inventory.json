@@ -103,6 +103,13 @@
       "source_class": "official_government_supporting_source",
       "permission": "unknown",
       "next_action": "Use the canonical central permission-register source ID; pin exact document URLs, review current terms, and establish intended-use permission before acquisition."
+    },
+    "EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE": {
+      "authority": "DSpace-hosted Ibrachy & Dermarkar Repository catalogue; item metadata identifies Amiri Press as Gazette publisher",
+      "source_url": "https://dspace.id.com.eg/collections/bb4a4122-9215-48e2-a8a5-b622ffa5eeb6",
+      "source_class": "third_party_repository_metadata_only",
+      "permission": "unknown",
+      "next_action": "Confirm repository operator identity and item-specific terms/access conditions. Treat catalogue metadata separately from the issuing publisher; do not bypass login or request-copy restrictions."
     }
   },
   "documents": [
@@ -2121,7 +2128,8 @@
         {
           "url": "https://dspace.id.com.eg/items/1255d539-9ac2-491c-9c03-a7330ff891b8",
           "source_role": "Official Gazette item metadata: issue 14 supplement, dated 2026-04-02; abstract identifies Decision 982/2026",
-          "status": "official_metadata_discovered_original_bundle_request_copy_restricted"
+          "status": "official_metadata_discovered_original_bundle_request_copy_restricted",
+          "source_id": "EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE"
         },
         {
           "url": "https://www.labour.gov.eg/ar/الأخبار/عن-طريق-الفيديو-كونفرانس-وزير-العمل-يتابع-مع-مديريات-العمل-بالمحافظات-تنفيذ-خطط-الوزارة-وتطبيق-الكتاب-الدوري-الخاص-بالعمل-عن-بعد-بالقطاع-الخاص/",
@@ -2162,7 +2170,8 @@
         {
           "url": "https://dspace.id.com.eg/items/90a235e2-d98c-4c39-92ec-d7006cfd8427/full",
           "source_role": "Official Gazette item metadata: issue 18 supplement, dated 2026-04-30; original bundle listed",
-          "status": "official_metadata_discovered_original_bundle_download_requires_DSpace_login"
+          "status": "official_metadata_discovered_original_bundle_download_requires_DSpace_login",
+          "source_id": "EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE"
         }
       ]
     },
@@ -2198,7 +2207,8 @@
         {
           "url": "https://dspace.id.com.eg/items/3ce63ac9-1cc3-4bb7-a2c9-449c1c730831",
           "source_role": "Official Gazette item metadata: issue 21 supplement (A), dated 2026-05-21; original bundle listed",
-          "status": "official_metadata_discovered_original_bundle_request_copy_restricted"
+          "status": "official_metadata_discovered_original_bundle_request_copy_restricted",
+          "source_id": "EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE"
         }
       ]
     },
@@ -2234,7 +2244,8 @@
         {
           "url": "https://dspace.id.com.eg/items/080b6ab2-3969-46e5-a8bd-38f86305f6dd/full",
           "source_role": "Official Gazette item metadata: issue 26 supplement (B), dated 2026-06-30; abstract identifies Decision 2033/2026",
-          "status": "official_metadata_discovered_original_bundle_request_copy_restricted"
+          "status": "official_metadata_discovered_original_bundle_request_copy_restricted",
+          "source_id": "EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE"
         },
         {
           "url": "https://mksegypt.org/ar/decisions/34895",
@@ -2304,7 +2315,8 @@
         {
           "url": "https://dspace.id.com.eg/collections/bb4a4122-9215-48e2-a8a5-b622ffa5eeb6",
           "source_role": "Official Gazette 2026 collection listing; issue 35 (مكرر), 2026-09-01, abstract includes Decision 2590/2026; exact item record not pinned",
-          "status": "official_collection_listing_candidate_not_item_pinned"
+          "status": "official_collection_listing_candidate_not_item_pinned",
+          "source_id": "EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE"
         }
       ]
     },
