@@ -41,7 +41,7 @@ Table 24 candidate extraction now covers **617/745 numbered entries (82.8%)**; *
 16. Added a consolidated printed-page locator map for Decisions 248–252, with a prioritized comparison order for the original PDF expected from the user. The page ranges are explicitly marked as secondary-source locators and must be confirmed against the uploaded file.
 17. Extended the Article 141 copyright/source-use research lead cautiously to Decisions 248–252 because the reproduced statutory text refers to official decisions as well as laws. This is a lead for counsel, not a blanket reuse clearance; secondary scans, editorial compilation, site terms and the exact commercial use remain separate.
 
-## Current subtask status
+18. Added a provisional statutory cross-reference for Decision 248/2026 to Article 260 of Labour Law 14/2025. The Gazette catalogue describes Decision 248 as covering forms/statistics for ordinary, chronic and occupational diseases, serious accidents and injuries; Article 260 expressly delegates ministerial forms for serious-accident/occupational-disease notifications and electronic reports/statistics. This is a strong subject/delegation match, supported by a public English translation and Arabic transcription, but the official Amiri Press text could not be fetched in this pass and the decision's Gazette preamble/operative text remains unavailable. The crosswalk now records the match and its limits; no candidate was promoted or made retrieval-eligible.\n\n## Current subtask status
 
 | Subtask | Completion estimate | Current status | Remaining gate |
 |---|---:|---|---|
@@ -53,7 +53,7 @@ Table 24 candidate extraction now covers **617/745 numbered entries (82.8%)**; *
 | Table 24 currentness review | 0% complete | Not established by secondary transcription | Confirm applicable amendments, corrigenda and current status |
 | Table 24 qualified counsel approval | 0% | No entries approved | Qualified Egyptian OSH lawyer must review source-matched rows |
 | Decision 249 implementation circular | 35% search work | Ministry announced periodic circulars; separate public circular not located | Find and verify the circular, or preserve the unresolved gap |
-| Decision 251 candidate extraction | 70% extraction work | 17 candidate assertions structured | Official-source comparison, currentness and counsel |
+| Decision 248 statutory-basis crosswalk | 70% discovery/cross-reference only | Article 260 is a strong subject/delegation match for forms/statistics and reporting | Confirm exact preamble and every operative requirement against full Gazette text; currentness, reuse and counsel review |\n| Decision 251 candidate extraction | 70% extraction work | 17 candidate assertions structured | Official-source comparison, currentness and counsel |
 | Decision 252 candidate extraction | 75% extraction work | 40 candidate assertions structured | Official-source comparison, ambiguous table cells, currentness and counsel |
 | Original Official Gazette PDF hash | 0% | Original PDF bytes/hash not obtained | Obtain the PDF through ordinary authorized access and hash actual bytes |
 | Original 311-row `law_rows_ar.jsonl` reconciliation | 0% in this runtime | File is not available here; historical hash only | User to upload the original file; do not reconstruct it or claim a new hash |
