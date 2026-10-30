@@ -101,7 +101,7 @@ class LegalImportBundleTests(unittest.TestCase):
             validate_inputs(self.source, self.output)
 
     def test_pdf_signature_may_appear_within_first_1024_bytes(self):
-        pdf_bytes = b"\xef\xbb\xbf" + b"%" + b"PDF-1.7\\nbody"
+        pdf_bytes = b"\xef\xbb\xbf" + b"%" + b"PDF-1.7\nbody"
         self._write_pair("sample_law", "DOC-001", pdf_bytes)
         prepared = validate_inputs(self.source, self.output)
         self.assertEqual(prepared[0][3], hashlib.sha256(pdf_bytes).hexdigest())
