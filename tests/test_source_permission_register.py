@@ -153,7 +153,7 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         self.assertEqual(source["commercial_reuse_permission"], "unknown")
         self.assertIn("MIT", source["permission_evidence"])
         self.assertIn("no record-level source URL", source["permission_evidence"])
-        self.assertIn("date=None", source["permission_evidence"])
+        self.assertIn("date=null", source["permission_evidence"])
         self.assertEqual(source["permission_evidence_url"], "https://huggingface.co/datasets/dataflare/egypt-legal-corpus")
         self.assertEqual(source["terms_checked_on"], "2026-10-30")
         self.assertEqual(MODULE.validate(data), [])
