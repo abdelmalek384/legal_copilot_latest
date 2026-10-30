@@ -20,6 +20,8 @@ jobs:
         run: python tests/test_frontend_ux_contract.py
       - name: Test installable PWA shell and offline privacy boundary
         run: PYTHONPATH=. python tests/test_pwa_shell.py
+      - name: Smoke-test public PWA HTTP routes and security headers
+        run: PYTHONPATH=. python tests/test_pwa_http_routes.py
       - name: Test research inspector status, citation, and memo helpers
         run: python tests/test_research_inspector.py
       - name: Check frontend JavaScript syntax
