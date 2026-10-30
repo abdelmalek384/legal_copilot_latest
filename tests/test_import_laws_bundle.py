@@ -4,6 +4,7 @@ import json
 import os
 import tempfile
 import unittest
+from unittest import mock
 from pathlib import Path
 
 from tools.import_laws import validate_inputs
@@ -44,6 +45,20 @@ class LegalImportBundleTests(unittest.TestCase):
         self.assertEqual(pdf.name, "sample_law.pdf")
         self.assertEqual(actual_hash, hashlib.sha256(self.pdf_bytes).hexdigest())
         self.assertFalse(self.output.exists())
+
+    def test_extracted_rows_remain_unverified_and_report_full_hash(self):
+        from tools import import_laws
+
+        with mock.patch.object(import_laws, "page_texts", return_value=(["Article 1\\nCandidate article text"], False)):
+            import_laws.main(self.source, self.output)
+        rows = [json.loads(line) for line in (self.output / "law_rows.jsonl").read_text(encoding="utf-8").splitlines()]
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["verified"], 0)
+        self.assertEqual(rows[0]["in_force"], 0)
+        self.assertIsNone(rows[0]["as_of"])
+        self.assertIn(hashlib.sha256(self.pdf_bytes).hexdigest(), rows[0]["source"])
+        report = (self.output / "import_report.md").read_text(encoding="utf-8")
+        self.assertIn("verified PDF SHA-256", report)
 
     def test_hash_mismatch_is_rejected_before_output_creation(self):
         sidecar = self.source / "sample_law.json"
