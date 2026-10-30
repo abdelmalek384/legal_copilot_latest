@@ -46,7 +46,7 @@ class Decision250Table24InventoryTests(unittest.TestCase):
         plan = (
             CANDIDATE_DIR / "lawyer_in_app_acceptance_plan_2026-10-29.md"
         ).read_text(encoding="utf-8")
-        for test_id in ("OSH-23", "OSH-24", "OSH-25", "OSH-26"):
+        for test_id in ("OSH-23", "OSH-24", "OSH-25", "OSH-26", "OSH-27"):
             self.assertIn(f"| {test_id} |", plan)
         self.assertIn("خلال شهر أكتوبر 2026", plan)
         self.assertIn("3165 لسنة 2026", plan)
