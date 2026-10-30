@@ -224,3 +224,12 @@ The earlier 745-row and 617-row progress statements in older notes are supersede
 Expanded the source-use memo to distinguish the statutory exclusion of official legal documents from protection that may attach to creative compilations, third-party databases, scan packaging, annotations and editorial presentation. Added the explicit WIPO Lex limitation: its Arabic consolidated Law 82/2002 record is amended through Law 178/2020 (effective 5 September 2020), not certified current through October 2026. A government-hosted GAFI copy of the original 2002 law is also recorded. Targeted searches did not locate a later amendment to Article 141; this is not proof none exists. The January 2026 State Information Service report on IP-system reform is recorded only as institutional/policy context, not as an enacted amendment.
 
 This supports the no-permission-outreach strategy only as a **provisional legal basis** for the underlying text of official laws/decisions. It does not clear a third-party scan, a private compilation, access restrictions, or the commercial ingestion/display model. Official Gazette amendment search through 2026 and qualified Egyptian counsel confirmation remain release gates. No source or candidate rule was marked reuse-cleared.
+
+
+## Official Labour Law Article 296 penalty cross-reference captured — 2026-10-30
+
+Added a ninth selected official-source excerpt from the government-hosted ETA Gazette PDF: **Article 296**, printed Gazette page 111 / PDF page index 108. It enumerates two groups of parent-law articles and provides the same fine range for the listed violations and implementing ministerial decisions: EGP 5,000–100,000, doubled in case of recidivism. The exact source ordering of the article numbers is preserved in the JSONL excerpt rather than normalized.
+
+This is important for the Labour Law knowledge graph because Article 296 expressly cross-references Article 260, Articles 261–262, and implementing ministerial decisions. It is now included in the lawyer's in-app acceptance plan as LBR-17, testing whether the assistant can cite the exact scope without overgeneralizing the penalty to unlisted provisions.
+
+Evidence limits: browser PDF text extraction only; original PDF bytes/hash not obtained; source-use remains provisional under the official-document exclusion lead; currentness and counsel review not completed; retrieval remains disabled. This is not a lawyer-approved penalty opinion.
