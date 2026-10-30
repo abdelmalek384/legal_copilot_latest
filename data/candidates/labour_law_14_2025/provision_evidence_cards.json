@@ -61,7 +61,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice, definitive scope decision, or authoritative retrieval"
+      "not_usable_for": "final advice, definitive scope decision, or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-PROMULGATION-ART-12-REPEALS",
@@ -103,7 +104,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final opinion on current status of every repealed instrument"
+      "not_usable_for": "final opinion on current status of every repealed instrument",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-PROMULGATION-ART-13-COMMENCEMENT",
@@ -150,7 +152,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "timeline research lead",
-      "not_usable_for": "automated deadline calculation or final temporal-law advice"
+      "not_usable_for": "automated deadline calculation or final temporal-law advice",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-89-WRITTEN-CONTRACT",
@@ -192,7 +195,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice or authoritative retrieval"
+      "not_usable_for": "final advice or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-90-PROBATION",
@@ -234,7 +238,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice or authoritative retrieval"
+      "not_usable_for": "final advice or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-117-ORDINARY-HOURS",
@@ -275,7 +280,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "automated overtime calculation or final advice"
+      "not_usable_for": "automated overtime calculation or final advice",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-124-ANNUAL-LEAVE",
@@ -349,7 +355,8 @@
             "reuse_terms_status": "Source register records restrictions on commercial exploitation and systematic database compilation absent written permission; do not download, index, or republish the PDF without authorization."
           }
         }
-      ]
+      ],
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-165-UNLAWFUL-TERMINATION",
@@ -391,7 +398,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "settlement valuation, case prediction, or final legal advice"
+      "not_usable_for": "settlement valuation, case prediction, or final legal advice",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-129-PAID-HOLIDAYS",
@@ -459,7 +467,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "complete holiday calendar, payroll calculation, or final advice"
+      "not_usable_for": "complete holiday calendar, payroll calculation, or final advice",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-118-120-REST",
@@ -500,7 +509,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final shift scheduling, overtime calculation, or legal advice"
+      "not_usable_for": "final shift scheduling, overtime calculation, or legal advice",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-125-ANNUAL-LEAVE-ADMIN",
@@ -542,7 +552,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final leave balance or payroll determination"
+      "not_usable_for": "final leave balance or payroll determination",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-164-NOTICE-PAY",
@@ -584,7 +595,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final notice-pay calculation or legal advice"
+      "not_usable_for": "final notice-pay calculation or legal advice",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-128-CASUAL-LEAVE",
@@ -625,7 +637,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "leave-balance calculation or final advice"
+      "not_usable_for": "leave-balance calculation or final advice",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-130-PILGRIMAGE-LEAVE",
@@ -666,7 +679,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final eligibility determination or legal advice"
+      "not_usable_for": "final eligibility determination or legal advice",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-131-SICK-LEAVE",
@@ -708,7 +722,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "sick-pay calculation or final advice"
+      "not_usable_for": "sick-pay calculation or final advice",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-91-ASSIGNMENT-LIMITS",
@@ -749,7 +764,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "deciding an individual workplace dispute without facts and counsel review"
+      "not_usable_for": "deciding an individual workplace dispute without facts and counsel review",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-92-EMPLOYEE-FILE",
@@ -791,7 +807,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and compliance-review checklist",
-      "not_usable_for": "standalone retention policy or final compliance advice"
+      "not_usable_for": "standalone retention policy or final compliance advice",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-93-RETURN-TRANSPORT",
@@ -832,7 +849,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final liability or reimbursement determination"
+      "not_usable_for": "final liability or reimbursement determination",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-94-OUTSOURCING-EQUAL-RIGHTS",
@@ -873,7 +891,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final liability allocation or legal advice"
+      "not_usable_for": "final liability allocation or legal advice",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-95-TRAINING-COSTS",
@@ -915,7 +934,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "calculating or asserting a worker debt without contract review"
+      "not_usable_for": "calculating or asserting a worker debt without contract review",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-96-NEW-WORK-PATTERNS",
@@ -957,7 +977,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "full remote-work compliance checklist or final advice"
+      "not_usable_for": "full remote-work compliance checklist or final advice",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-4-FORCED-LABOUR-HARASSMENT",
@@ -999,7 +1020,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice, definitive liability assessment, or authoritative retrieval"
+      "not_usable_for": "final advice, definitive liability assessment, or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-5-NONDISCRIMINATION",
@@ -1041,7 +1063,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice or authoritative retrieval"
+      "not_usable_for": "final advice or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-6-VOID-WAIVERS",
@@ -1083,7 +1106,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice or authoritative retrieval"
+      "not_usable_for": "final advice or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-7-LITIGATION-FEES",
@@ -1125,7 +1149,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice on court costs or authoritative retrieval"
+      "not_usable_for": "final advice on court costs or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-8-WORKER-DUES-PRIORITY",
@@ -1167,7 +1192,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final ranking of creditor claims or authoritative retrieval"
+      "not_usable_for": "final ranking of creditor claims or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-9-CLOSURE-DOES-NOT-ERASE-DUES",
@@ -1209,7 +1235,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice or authoritative retrieval"
+      "not_usable_for": "final advice or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-10-JOINT-LIABILITY",
@@ -1251,7 +1278,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice or authoritative retrieval"
+      "not_usable_for": "final advice or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-11-TRANSFER-OF-ESTABLISHMENT",
@@ -1293,7 +1321,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice or authoritative retrieval"
+      "not_usable_for": "final advice or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-12-ANNUAL-INCREMENT",
@@ -1335,7 +1364,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice or authoritative retrieval"
+      "not_usable_for": "final advice or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-16-TRAINING-SCOPE",
@@ -1377,7 +1407,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice or authoritative retrieval"
+      "not_usable_for": "final advice or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-22-ELIGIBLE-TRAINING-ENTITIES",
@@ -1419,7 +1450,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice or authoritative retrieval"
+      "not_usable_for": "final advice or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-23-TRAINING-CENTRE-LICENCE",
@@ -1461,7 +1493,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice or authoritative retrieval"
+      "not_usable_for": "final advice or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-25-TRAINER-LICENCE",
@@ -1503,7 +1536,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice or authoritative retrieval"
+      "not_usable_for": "final advice or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-27-OCCUPATIONAL-PRACTICE-LICENCE",
@@ -1545,7 +1579,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice or authoritative retrieval"
+      "not_usable_for": "final advice or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-28-APPRENTICE-MINIMUM-AGE",
@@ -1587,7 +1622,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice or authoritative retrieval"
+      "not_usable_for": "final advice or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-29-WRITTEN-APPRENTICESHIP-AGREEMENT",
@@ -1629,7 +1665,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice or authoritative retrieval"
+      "not_usable_for": "final advice or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-30-APPRENTICESHIP-TERMINATION",
@@ -1671,7 +1708,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice or authoritative retrieval"
+      "not_usable_for": "final advice or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-31-APPRENTICE-HOURS-REST-LEAVE",
@@ -1713,7 +1751,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice or authoritative retrieval"
+      "not_usable_for": "final advice or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-32-NATIONAL-EMPLOYMENT-PLANNING",
@@ -1755,7 +1794,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice or authoritative retrieval"
+      "not_usable_for": "final advice or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-33-WORKER-REGISTRATION-CERTIFICATE",
@@ -1797,7 +1837,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice or authoritative retrieval"
+      "not_usable_for": "final advice or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-34-SKILL-CERTIFICATE-FOR-LICENCE",
@@ -1839,7 +1880,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice or authoritative retrieval"
+      "not_usable_for": "final advice or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-36-EMPLOYER-REPORTING",
@@ -1881,7 +1923,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final compliance checklist or authoritative retrieval"
+      "not_usable_for": "final compliance checklist or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-37-DISABILITY-EMPLOYEE-REGISTER",
@@ -1923,7 +1966,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final compliance checklist or authoritative retrieval"
+      "not_usable_for": "final compliance checklist or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-40-EMPLOYMENT-CHANNELS",
@@ -1965,7 +2009,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice or authoritative retrieval"
+      "not_usable_for": "final advice or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-41-PRIVATE-AGENCY-LICENSING",
@@ -2007,7 +2052,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice or authoritative retrieval"
+      "not_usable_for": "final advice or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-42-PRIVATE-AGENCY-OBLIGATIONS",
@@ -2049,7 +2095,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice or authoritative retrieval"
+      "not_usable_for": "final advice or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-43-FEES-CHARGED-TO-WORKERS",
@@ -2091,7 +2138,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice or authoritative retrieval"
+      "not_usable_for": "final advice or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-44-AGENCY-LICENCE-SUSPENSION-REVOCATION",
@@ -2133,7 +2181,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice or authoritative retrieval"
+      "not_usable_for": "final advice or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-45-BAN-ON-LABOUR-SUPPLY-CONTRACTORS",
@@ -2175,7 +2224,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice or authoritative retrieval"
+      "not_usable_for": "final advice or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-46-NGO-EMPLOYMENT-OFFICES",
@@ -2217,7 +2267,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice or authoritative retrieval"
+      "not_usable_for": "final advice or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-47-VACANCY-ANNOUNCEMENTS",
@@ -2259,7 +2310,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice or authoritative retrieval"
+      "not_usable_for": "final advice or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-48-FOREIGN-EMPLOYMENT-CONTRACT-REVIEW",
@@ -2301,7 +2353,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice or authoritative retrieval"
+      "not_usable_for": "final advice or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-49-OVERSEAS-LABOUR-AGREEMENTS",
@@ -2343,7 +2396,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice or authoritative retrieval"
+      "not_usable_for": "final advice or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-50-FOREIGN-RECRUITMENT-CHANNELS",
@@ -2385,7 +2439,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice or authoritative retrieval"
+      "not_usable_for": "final advice or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-51-EMPLOYMENT-ACTIVITY-REPORTING",
@@ -2427,7 +2482,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice or authoritative retrieval"
+      "not_usable_for": "final advice or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-52-ONLINE-RECRUITMENT-LICENCE",
@@ -2469,7 +2525,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice or authoritative retrieval"
+      "not_usable_for": "final advice or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-53-EQUAL-PAY",
@@ -2511,7 +2568,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice or authoritative retrieval"
+      "not_usable_for": "final advice or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-54-MATERNITY-LEAVE-AND-HOURS",
@@ -2553,7 +2611,8 @@
       ],
       "review_state": "provisional_primary_text_extract_reviewed",
       "usable_for": "source-linked research lead and manual verification",
-      "not_usable_for": "final advice or authoritative retrieval"
+      "not_usable_for": "final advice or authoritative retrieval",
+      "search_eligible": false
     },
     {
       "card_id": "EG-LABOUR-14-2025-ART-256-OSH-INSPECTION-UNIT",
