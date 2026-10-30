@@ -145,5 +145,24 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
         for card in self.data["cards"]:
             self.assertIn(card["card_id"], actual)
 
+    def test_osh_card_identifiers_match_their_actual_provision_topics(self):
+        expected = {
+            259: ("EG-LABOUR-14-2025-ART-259-OSH-DEVICES-AND-COMMITTEES", "أجهزة ولجان"),
+            261: ("EG-LABOUR-14-2025-ART-261-OSH-TRAINING-LICENSING", "التدريب"),
+            262: ("EG-LABOUR-14-2025-ART-262-OSH-CONSULTANT-LICENSING", "الاستشارات"),
+            263: ("EG-LABOUR-14-2025-ART-263-OSH-NATIONAL-CENTRE-RESEARCH-PLANS", "المركز القومي"),
+            264: ("EG-LABOUR-14-2025-ART-264-OSH-SUPREME-COUNCIL", "المجلس الأعلى"),
+            265: ("EG-LABOUR-14-2025-ART-265-OSH-GOVERNORATE-SUBCOMMITTEES", "اللجان الفرعية"),
+        }
+        for article, (expected_id, topic) in expected.items():
+            with self.subTest(article=article):
+                card = next(
+                    item for item in self.data["cards"]
+                    if int("".join(ch for ch in str(item["pinpoint"]["article"]) if ch.isdigit())) == article
+                )
+                self.assertEqual(card["card_id"], expected_id)
+                self.assertIn(topic, card["question"])
+                self.assertFalse(card["search_eligible"])
+
 if __name__ == "__main__":
     unittest.main()
