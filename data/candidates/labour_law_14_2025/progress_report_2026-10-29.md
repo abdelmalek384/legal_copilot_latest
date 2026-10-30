@@ -113,6 +113,8 @@ Table 24 candidate extraction now covers **781/781 numbered entries (100% second
 
 50. Focused Legal Knowledge Validation passed on commit `4781a51f78bbc081ee198532963c5b5e532fd056` (run `41023038703`; all 26 steps succeeded). The full `Tests` workflow for that commit remains in progress at the application-routing test, with no failure reported at the last check. The focused pass includes the fee cross-check documentation validators/builds and all candidate-map/review safeguards; it is not a legal correctness result.
 
+51. Added `tools/validate_decisions_251_252_fee_ceiling_candidates.py` and regression tests. The validator checks the recorded candidate licence-fee amounts against the EGP 50,000 parent-law ceilings, ensures the Decision 252 programme-review/inspection/reinspection fees remain separately classified (not automatically treated as licence fees), and rejects any promotion/currentness/counsel status changes. The validator itself passed focused CI on commit `6b07c1ffd2a8981978dcf96e3767b761f62bdb38` (run `41023151415`, 26 steps). The new regression tests and workflow integration were added in later commits; their CI is pending. This verifies only the arithmetic and quarantine safeguards, not the fee clauses' legal validity.
+
 ## Current subtask status
 
 | Subtask | Completion estimate | Current status | Remaining gate |
