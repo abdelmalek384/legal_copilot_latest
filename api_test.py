@@ -158,7 +158,7 @@ assert c.post(f"/research/conversations/{research_id}/save-to-matter",
               ).fetchone()[0]}, headers=J).status_code == 404
 assert c.get(f"/research/conversations/{research_id}", headers=J).status_code == 200
 assert c.get(f"/cases/{cid}", headers=S).status_code == 404
-cross_firm_upload = c.post(f"/cases/{cid}/upload", files={"file": ("leak.docx", upload_bytes)}, headers=S)
+cross_firm_upload = c.post(f"/cases/{cid}/upload", files={"file": ("leak.docx", b"cross-firm attempt")}, headers=S)
 assert cross_firm_upload.status_code == 404, cross_firm_upload.text
 assert db.execute("SELECT COUNT(*) FROM docs WHERE firm_id=2").fetchone()[0] == 0
 assert c.post("/search", json={"q":"مدة العقد","case_id":cid}, headers=S).status_code == 404
