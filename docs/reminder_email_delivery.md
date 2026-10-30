@@ -44,12 +44,13 @@ These tests use a fake sender. They do not send email or prove a real provider c
 
 ## Operator runbook before production
 
-1. Confirm the authenticated scheduler supplies only events visible to the recipient in the correct firm scope.
-2. Confirm the database workstream implements an atomic idempotency claim and durable queued/sent/failed states; test concurrent runs.
+1. Confirm the authenticated scheduler supplies only events visible to the recipient in the correct firm scope; it rechecks active membership, firm status, case membership, event state, and due date immediately before sending.
+2. Validate that the tenant-local outbox migration is present on the exact staging release candidate and test concurrent scheduler runs across at least two firms. Automated synthetic-database tests are not a substitute for this staging evidence.
 3. Configure credentials in the secret manager and verify TLS, sender-domain policy, quotas, and allowed recipients in a staging environment.
-4. Keep delivery disabled until a controlled test is approved. Use a dedicated test mailbox and non-client test records.
-5. Monitor counts for attempted, SMTP-accepted, failed, exhausted-retry, and ambiguous-timeout outcomes without logging message bodies or secrets.
-6. For a failure, inspect the sanitized status and provider dashboard. Reconcile ambiguous timeouts before retrying manually.
-7. Rotate credentials after suspected exposure and disable delivery immediately if unexpected recipients or sensitive content are observed.
+4. Keep delivery disabled until a controlled test is approved. Use a dedicated test mailbox and synthetic non-client records.
+5. Deploy the read-only `tools/reminder_healthcheck.py` probe and configure an external scheduler/alert route. See [reminder outbox monitoring and reconciliation](reminder_outbox_monitoring.md).
+6. Monitor queued, sending, SMTP-accepted, failed, ambiguous, stale-queued, and expired-lease outcomes without logging message bodies, case data, recipient addresses, or secrets.
+7. For a failure, inspect the sanitized status and provider dashboard. Reconcile ambiguous timeouts before retrying manually; never blindly retry an expired sender lease.
+8. Rotate credentials after suspected exposure and disable delivery immediately if unexpected recipients or sensitive content are observed.
 
 This adapter is not a production reminder service by itself. It does not query matters, authorize recipients, persist delivery history, or guarantee deduplication.
