@@ -6,10 +6,10 @@
 
 ## Result
 
-- Batch files parsed: **34/34**
-- Flattened top-level and nested child records: **694**
-- Unique row numbers: **694**
-- Number range: **1–694**
+- Batch files parsed: **35/35**
+- Flattened top-level and nested child records: **720**
+- Unique row numbers: **720**
+- Number range: **1–720**
 - Missing row numbers in that range: **0**
 - Duplicate row numbers: **0**
 - Every batch reports source class `secondary_transcription`.
@@ -54,9 +54,10 @@
 | 618–642 | 25 |
 | 643–668 | 26 |
 | 669–694 | 26 |
-| **Total** | **694** |
+| 695–720 | 26 |
+| **Total** | **720** |
 
-Batches 32–34 (618–694) extend the flattened sequence. Batch 34 source lines 5601–5644 include synthetic vitreous fiber and talc group headings/subentries; hierarchy is not inferred beyond the labels recorded. Batch 33 source lines 5557–5600 include silver and sodium group headings/subentries; hierarchy is not inferred beyond the labels recorded. Its source lines 5514–5555 include group headings and numbered subentries; hierarchy is not inferred beyond the labels recorded. The unusual file-name ranges around batches 5–6 and 19–20 reflect the actual flattened row grouping: batch 5 contains rows 81–99, batch 6 rows 100–120, and batch 20 contains parent/child records covering 381–403. The structural audit found no overlap or gap in the final flattened row sequence.
+Batches 32–35 (618–720) extend the flattened sequence. Batch 35 source lines 5646–5686 includes tin, titanium dioxide and related numbered subentries; hierarchy is not inferred beyond the labels recorded. Batch 34 source lines 5601–5644 include synthetic vitreous fiber and talc group headings/subentries; hierarchy is not inferred beyond the labels recorded. Batch 33 source lines 5557–5600 include silver and sodium group headings/subentries; hierarchy is not inferred beyond the labels recorded. Its source lines 5514–5555 include group headings and numbered subentries; hierarchy is not inferred beyond the labels recorded. The unusual file-name ranges around batches 5–6 and 19–20 reflect the actual flattened row grouping: batch 5 contains rows 81–99, batch 6 rows 100–120, and batch 20 contains parent/child records covering 381–403. The structural audit found no overlap or gap in the final flattened row sequence.
 
 ## Explicit limitations
 
