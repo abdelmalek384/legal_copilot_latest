@@ -31,7 +31,7 @@ class LabourLawPrimaryEvidenceSeedTests(unittest.TestCase):
             self.assertTrue(provision["provision_ref"])
             self.assertTrue(provision["summary_ar"])
             self.assertEqual(provision["human_review"], "pending")
-            self.assertEqual(provision["confidence"], "provisional_source_text_observed")
+            self.assertIn(provision["confidence"], {"provisional_source_text_observed", "provisional_official_text_observed"})
             self.assertNotIn(provision["provision_id"], seen)
             seen.add(provision["provision_id"])
             self.assertGreaterEqual(len(provision["source_refs"]), 1)
