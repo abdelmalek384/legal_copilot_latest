@@ -150,11 +150,21 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
             record = next(d for d in self.inventory["documents"] if d["document_id"] == document_id)
             for source_url in record["source_urls"]:
                 if "dspace.id.com.eg/" in source_url["url"]:
-                    self.assertEqual(source_url["source_id"], "EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE")
+                    expected_source = (
+                        "EG-MELES-ELECTRONIC"
+                        if "MELES" in source_url["source_role"]
+                        else "EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE"
+                    )
+                    self.assertEqual(source_url["source_id"], expected_source)
         for record in self.inventory["documents"]:
             for source_url in record.get("source_urls", []):
                 if "dspace.id.com.eg/" in source_url["url"]:
-                    self.assertEqual(source_url["source_id"], "EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE")
+                    expected_source = (
+                        "EG-MELES-ELECTRONIC"
+                        if "MELES" in source_url["source_role"]
+                        else "EG-DSPACE-OFFICIAL-GAZETTE-CATALOGUE"
+                    )
+                    self.assertEqual(source_url["source_id"], expected_source)
         self.assertEqual(validate_inventory(self.inventory), [])
 
     def test_decision_3165_repeal_relationship_to_2659_is_explicit_but_effective_date_unverified(self):
