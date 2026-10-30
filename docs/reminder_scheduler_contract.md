@@ -67,9 +67,15 @@ Required SMTP variables are documented in docs/reminder_email_delivery.md. COPIL
 4. Schedule the command with a service manager/cron and alert on nonzero exit codes and missed runs.
 5. Keep messages generic and links routed back to the authenticated app. Never treat SMTP acceptance as inbox delivery or as legal advice.
 
+## Read-only monitoring and reconciliation
+
+Use `python tools/reminder_healthcheck.py` from the same restricted service environment as the scheduler. It opens the control-plane and tenant databases in SQLite read-only mode, does not initialize or migrate schemas, and never sends or requeues reminders. Exit code 0 means no detected issue; 1 means operator attention is required; 2 means the check could not safely complete. See [reminder outbox monitoring and reconciliation](reminder_outbox_monitoring.md) for thresholds, alert codes, and operator actions.
+
+The monitor flags stale queued rows, expired or missing sender leases, failed/ambiguous outcomes, and unavailable tenant outboxes. Ambiguous outcomes must be reconciled against provider evidence before any retry. Configure the external scheduler and alert routing in staging; this repository does not create host-level schedules or monitoring integrations.
+
 ## Operator checks
 
-    PYTHONPATH=. python tests/test_reminder_schedule.py
+    PYTHONPATH=. python tools/test_reminder_schedule.py
     PYTHONPATH=. python tests/test_reminder_email.py
     PYTHONPATH=. python tests/test_reminder_outbox.py
     PYTHONPATH=. python tests/test_reminder_service.py
