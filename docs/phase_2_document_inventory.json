@@ -2124,7 +2124,7 @@
         "source-specific collection and commercial reuse review",
         "qualified Egyptian labour-lawyer review"
       ],
-      "notes": "Discovery-only. Amiri Press searchable text identifies this decision as applying a remote-work system to establishments/entities subject to Labour Law 14/2025. Later official Amiri Press decisions cite it and extend its operation month-by-month. Do not infer that it remains operative after the last evidenced extension. Official Gazette DSpace metadata identifies issue 14 supplement, dated 2 April 2026, with Decision 982/2026 in the abstract. The original PDF Download action routes to a request-a-copy form; no request was submitted. An official Ministry of Labour report dated 6 April 2026 describes the April implementation as remote work on Sundays each week; this is supporting announcement evidence, not a substitute for the decision's full operative text. A later official State Information Service announcement dated 2026-09-30 reports Cabinet approval of a draft decision to suspend Decision 982/2026. This is a cabinet approval of a draft, not the published operative instrument; exact decision number, publication, effective date and scope remain unverified. Until the actual instrument is located, the app must not claim that the suspension legally took effect, nor claim that Decision 982 continued after September.",
+      "notes": "Discovery-only. Amiri Press searchable text identifies this decision as applying a remote-work system to establishments/entities subject to Labour Law 14/2025. Later official Amiri Press decisions cite it and extend its operation month-by-month. Do not infer that it remains operative after the last evidenced extension. Official Gazette DSpace metadata identifies issue 14 supplement, dated 2 April 2026, with Decision 982/2026 in the abstract. The original PDF Download action routes to a request-a-copy form; no request was submitted. An official Ministry of Labour report dated 6 April 2026 describes the April implementation as remote work on Sundays each week; this is supporting announcement evidence, not a substitute for the decision's full operative text. A later official State Information Service announcement dated 2026-09-30 reports Cabinet approval of a draft decision to suspend Decision 982/2026. This is a cabinet approval of a draft, not the published operative instrument; exact decision number, publication, effective date and scope remain unverified. Until the actual instrument is located, the app must not claim that the suspension legally took effect, nor claim that Decision 982 continued after September. A separate MELES Electronic 2026 DSpace record lists English and Arabic PDFs of Decision 982, but clicking Download routes to a request-a-copy form and the license bundle says an item-specific license is agreed upon submission. This is not the Official Gazette item; no request was submitted and no file was acquired.",
       "source_urls": [
         {
           "url": "https://alamiria.com/Sec/TashTxt?id=X+ynf8GR0jI%3D",
@@ -2146,6 +2146,11 @@
           "url": "https://sis.gov.eg/en/media-center/news/cabinet-approves-suspending-sunday-remote-work-system/",
           "source_role": "Official State Information Service announcement dated 2026-09-30: Cabinet approved a draft decision to suspend Decision 982/2026; not the operative published instrument",
           "status": "official_cabinet_draft_approval_announcement_not_promulgated_decision"
+        },
+        {
+          "url": "https://dspace.id.com.eg/items/ecbb04ef-5fc0-4f3b-9c89-85a4787f35bc/full",
+          "source_role": "MELES Electronic 2026 DSpace record for bilingual Decision 982 PDFs; download routes to request-a-copy; item-specific license agreed upon submission",
+          "status": "alternate_text_copy_discovered_original_files_restricted_request_copy"
         }
       ]
     },
