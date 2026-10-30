@@ -295,3 +295,14 @@ The six new lawyer prompts OSH-17–22 and their regression checks are now valid
 - Latest progress-report head passed [Legal Knowledge Validation #41031297431](https://github.com/abdelmalek384/legal_copilot_latest/actions/runs/41031297431): **28/28**.
 
 The tested code head is `283faec33ac046f59421068c5d61e4978f55277f`; the latest progress-report-only head is `f2b132a03d7575ec354cdb8afde9ff86a80f4c7c`. No legal candidate was promoted. Primary-source comparisons remain 0/5 decisions and 0/781 Table 24 rows; lawyer approval remains pending.
+
+
+## Table 24 highest-priority discrepancy regression — 2026-10-30
+
+Pinned the three previously identified high-priority Table 24 discrepancies into the review-queue test so future edits cannot silently normalize or lose them:
+
+- **Row 34 — aluminium oxide:** candidate CAS `1344-281`; the secondary image tentatively appears to show `1344-28-1`.
+- **Row 61 — benomyl:** candidate limit `1 mg/m3 (I)`; the low-resolution secondary image tentatively appears to show `0.3 mg/m3`.
+- **Row 64 — benzene:** candidate limit `0.02 ppm`; the secondary image tentatively appears to show `0.5 ppm`; the row is explicitly tagged high-risk due to carcinogenicity.
+
+These are discrepancies between a secondary transcription and a secondary image only. Neither reading is treated as authoritative, and the candidate strings remain unchanged. Added regression coverage that all three rows remain flagged for original Gazette comparison and that row 64 retains its high-risk flag. The Action 1 intake protocol now prioritizes these three rows once the original Gazette PDF is supplied.
