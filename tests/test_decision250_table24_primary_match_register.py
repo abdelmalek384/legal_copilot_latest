@@ -8,8 +8,8 @@ from tools.build_decision250_table24_primary_match_register import build_registe
 class Decision250Table24PrimaryMatchRegisterTests(unittest.TestCase):
     def test_register_covers_candidate_rows_and_starts_fail_closed(self):
         records = build_register()
-        self.assertEqual(len(records), 617)
-        self.assertEqual([record["candidate_row"] for record in records], list(range(1, 618)))
+        self.assertEqual(len(records), 642)
+        self.assertEqual([record["candidate_row"] for record in records], list(range(1, 643)))
         self.assertTrue(all(record["retrieval_eligible"] is False for record in records))
         self.assertTrue(all(record["official_pdf_sha256"] is None for record in records))
         self.assertTrue(all(record["official_printed_page"] is None for record in records))
