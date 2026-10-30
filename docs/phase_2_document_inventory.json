@@ -2111,7 +2111,7 @@
         "source-specific collection and commercial reuse review",
         "qualified Egyptian labour-lawyer review"
       ],
-      "notes": "Discovery-only. Amiri Press searchable text identifies this decision as applying a remote-work system to establishments/entities subject to Labour Law 14/2025. Later official Amiri Press decisions cite it and extend its operation month-by-month. Do not infer that it remains operative after the last evidenced extension. Official Gazette DSpace metadata identifies issue 14 supplement, dated 2 April 2026, with Decision 982/2026 in the abstract. The original PDF Download action routes to a request-a-copy form; no request was submitted.",
+      "notes": "Discovery-only. Amiri Press searchable text identifies this decision as applying a remote-work system to establishments/entities subject to Labour Law 14/2025. Later official Amiri Press decisions cite it and extend its operation month-by-month. Do not infer that it remains operative after the last evidenced extension. Official Gazette DSpace metadata identifies issue 14 supplement, dated 2 April 2026, with Decision 982/2026 in the abstract. The original PDF Download action routes to a request-a-copy form; no request was submitted. An official Ministry of Labour report dated 6 April 2026 describes the April implementation as remote work on Sundays each week; this is supporting announcement evidence, not a substitute for the decision's full operative text.",
       "source_urls": [
         {
           "url": "https://alamiria.com/Sec/TashTxt?id=X+ynf8GR0jI%3D",
@@ -2122,6 +2122,11 @@
           "url": "https://dspace.id.com.eg/items/1255d539-9ac2-491c-9c03-a7330ff891b8",
           "source_role": "Official Gazette item metadata: issue 14 supplement, dated 2026-04-02; abstract identifies Decision 982/2026",
           "status": "official_metadata_discovered_original_bundle_request_copy_restricted"
+        },
+        {
+          "url": "https://www.labour.gov.eg/ar/الأخبار/عن-طريق-الفيديو-كونفرانس-وزير-العمل-يتابع-مع-مديريات-العمل-بالمحافظات-تنفيذ-خطط-الوزارة-وتطبيق-الكتاب-الدوري-الخاص-بالعمل-عن-بعد-بالقطاع-الخاص/",
+          "source_role": "Official Ministry of Labour report dated 2026-04-06 describing implementation of Decision 982/2026 and remote work on Sundays during April; supporting discovery only",
+          "status": "official_announcement_not_decision_text"
         }
       ]
     },
