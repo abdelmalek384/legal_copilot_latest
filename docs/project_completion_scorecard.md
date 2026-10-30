@@ -5,7 +5,7 @@
 
 ## Current score
 
-<escape>**Technical project completion: 47%** (weighted estimate; rounded from 46.5%).</escape>
+<escape>**Technical project completion: 48%** (weighted estimate; rounded from 47.95%).</escape>
 
 **Final Egyptian-counsel acceptance: 0% / not started.** This is a separate post-build acceptance gate, as planned. It must be completed before the product is represented as legally approved or used for client-facing legal reliance.
 
@@ -18,11 +18,11 @@ Open pull requests do not count as completed deliverables. Their changes are tre
 | Core case-management and collaboration workflows | 15% | 75% | 11.25 | Case folders, teams, tasks, sessions, notes, files, fees, activity history and dashboard workflows exist. Remaining: end-to-end workflow acceptance, edge-case QA, and operational polish. |
 | Legal research, retrieval and citation quality | 15% | 65% | 9.75 | Arabic/English lexical retrieval, source scoping, citation validation, abstention, provenance display and evaluation tooling exist. Remaining: real lawyer-labelled evaluation, retrieval tuning on reviewed material, and broader practice-area coverage. |
 | Verified Egyptian legal knowledge and source rights | 25% | 6% | 1.50 | Candidate catalogues, source registers, permission gates, version metadata, audit tools and review queues exist. The verified corpus remains very small; original primary-source matching, reuse rights, amendment/currentness review and qualified counsel sign-off are still blockers. Candidate counts and secondary copies do not count as verified law. |
-| Security, privacy and firm isolation | 15% | 70% | 10.50 | Separate profile architecture, access controls, MFA, audit events, backup tooling and numerous isolation tests exist. Remaining: complete DB/storage workstream, exhaustive route/job isolation evidence, independent security assessment, and witnessed recovery/rollback. |
-| UI, accessibility and device usability | 10% | 40% | 4.00 | Responsive Arabic-first interface and accessibility improvements exist. Manual RTL/LTR, keyboard, screen-reader, mobile/tablet and browser acceptance are not complete. Windows launcher PR #900 and privacy-safe installable PWA PR #903 are open and not yet counted. |
-| Automated testing and reliability | 10% | 60% | 6.00 | Broad CI coverage and focused regression suites exist. Remaining: fresh full-suite evidence for the current release candidate, stable test environment, operational smoke tests and resolution of all current failures. |
+| Security, privacy and firm isolation | 15% | 71% | 10.65 | Separate profile architecture, access controls, MFA, audit events, backup tooling and isolation tests exist. The MFA lifecycle audit-failure rollback regression merged in PR #925; CodeQL/Bandit security analysis merged in PR #907. Remaining: complete DB/storage workstream, exhaustive route/job isolation evidence, independent security assessment, and witnessed recovery/rollback. |
+| UI, accessibility and device usability | 10% | 45% | 4.50 | Responsive Arabic-first interface, installable privacy-safe PWA shell (PR #903 merged), and current-main Windows/Mac first-run launchers (PR #909 merged) exist. Physical Windows/macOS checks and manual RTL/LTR, keyboard, screen-reader, mobile/tablet and browser acceptance remain incomplete. |
+| Automated testing and reliability | 10% | 65% | 6.50 | Broad CI coverage, hash-locked Python dependency baseline (PR #910 merged), CodeQL/Bandit static analysis (PR #907 merged), and current-main legal PDF integrity/OCR regressions (PR #923 merged) exist. Remaining: fresh full-suite evidence for the exact release candidate, operational smoke tests, and resolution of any current failures. |
 | Production operations and deployment readiness | 10% | 35% | 3.50 | Strict preflight, release gates, encrypted backup/restore code, storage adapters and reminder outbox/scheduler foundations exist. Remaining: real staging configuration, live provider tests, monitoring/alerting, operator reconciliation, witnessed restore drill, and controlled deployment rehearsal. |
-| **Total** | **100%** |  | **46.50 / 100** | **Rounded technical completion: 47%.** |
+| **Total** | **100%** |  | **47.95 / 100** | **Rounded technical completion: 48%.** |
 
 ## Completion rules
 
@@ -50,20 +50,19 @@ The product cannot be called production-ready or legally approved until all appl
 
 ## Current open implementation items
 
-- **PR #840** — legal-source evidence work; draft/open, not merged. Its metadata and candidate structures do not increase verified-law coverage.
-- **PR #900** — Windows first-run launcher and shared Mac/Windows bootstrap helper; draft/open; latest Full Tests run #41049381581 passed 123/123 after the shared Mac/Windows bootstrap and Python-version checks; physical Windows/macOS smoke tests pending.
-- **PR #903** — privacy-safe installable PWA shell and live deployment HTTP smoke probe; draft/open; latest Full Tests run #41049653740 passed 125/125 and latest Non-database safety regression #41049653696 passed 23/23. Manual Android/iOS/desktop install and offline checks remain pending.
-- **PR #904** — legal PDF/sidecar integrity validation, hash-bound OCR cache, and corrected import runbook. The importer now parses the exact bytes whose SHA-256 was checked, closing a file-replacement time-of-check/time-of-use gap. Focused import-bundle tests and Full Tests #41053465288 passed 124/124 on the pre-sync head; current-main-synchronized Full Tests #41053762364 is running. No real legal source files are included; source rights and counsel verification remain separate gates.
-- **PR #898** — S3 physical-purge state machine; open and not yet approved. Its branch is synchronized with current main, including PRs #901 and #902. Full Tests #41053584222 passed 123/123 on head `64ff4c7b696ac00e8f0d79f95cce7333e666eae8`. Independent destructive-operation review, live S3/KMS/IAM evidence, approved retention policy and witnessed recovery remain open.
-- **PR #901** — local-backup handling for purged-original tombstones; merged as `733b11b` after Full Tests #41052146895 passed 123/123, including the explicit purge/backup regression and CI coverage guard.
-- **Database/storage workstream** — remains assigned separately; do not duplicate or modify it here.
-- **Action 1 primary-source intake** — awaiting the user's original Gazette PDF and optional `law_rows_ar.jsonl`; source bytes must remain private and must not be committed.
+- **PR #840** — Labour Law 14/2025 / Decisions 248–252 evidence ledger; remains draft/open. It is metadata and comparison-workflow work only; original Gazette issue 225(A) copy remains request-copy restricted, so no full Decision 248–252 source verification or verified-law coverage increase is claimed.
+- **PR #926** — discovery-only additions for the Ministry of Parliamentary Affairs enacted-laws index, IDSC Gazette repository, and Manshurat Qanuneya. Collection and commercial reuse remain unknown; no legal text was downloaded or made retrieval-eligible. Tests and CodeQL are running; dependency audit passed.
+- **PR #928** — current-main PDF importer resource limits (100 MiB PDF, 1,000 pages, 1 MiB metadata sidecars; bounded reads and fail-closed environment configuration). Full Tests, CodeQL and dependency audit are queued; do not merge until all pass.
+- **PR #918, #919, #922** — routine FastAPI, CodeQL action and Docker build action dependency updates; review CI and dependency compatibility before merging.
+- **PR #898** — S3 physical-purge state machine; separate database/storage workstream. Do not enable destructive purge without independent review, live S3/KMS/IAM evidence, approved retention policy and witnessed recovery.
+- **Database/storage workstream** — remains assigned separately; PR #925 merged the MFA lifecycle audit-failure rollback regression. Do not duplicate schema/migration/runtime changes or perform irreversible storage actions here.
+- **Superseded PRs** — #900 was replaced by merged #909; #903 merged; #904 was replaced by merged #923; #924 was superseded by current-main PR #928; #906 was superseded by merged #910.
 
 ## Next highest-value priorities
 
-1. Complete the product-wide manual QA and release smoke-test evidence, including Arabic-first workflows on phone, tablet and desktop.
+1. Complete the product-wide manual QA and release smoke-test evidence, including physical Windows/macOS launcher tests and Arabic-first workflows on phone, tablet and desktop.
 2. Close production operations gaps: staging configuration, monitoring, scheduler ownership/reconciliation, and witnessed recovery.
 3. Complete the separate database/storage workstream and validate the integration without unsafe cutover.
-4. On receipt of the original legal files, perform the primary-source matching and provenance review; keep legal status quarantined until counsel review.
+4. Continue lawful primary-source discovery using public official indexes and item-level metadata; keep text quarantined until source rights, authenticity, currentness and counsel review are evidenced.
 5. Finish independent security review and the post-build Egyptian-counsel acceptance.
 
