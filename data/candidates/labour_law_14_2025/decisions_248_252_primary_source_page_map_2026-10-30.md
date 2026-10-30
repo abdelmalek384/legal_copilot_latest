@@ -32,3 +32,23 @@
 - Do not treat a secondary scan as official provenance, even if its printed page appears to match.
 - Do not mark any candidate verified/current/approved merely because the PDF hash is known.
 - Do not enable authoritative retrieval until the source match, currentness, source-use and required counsel gates are documented.
+
+
+## Official Gazette repository record located — 2026-10-30
+
+A catalog record for the exact supplement has now been located in the Egyptian Gazette repository hosted at DSpace:
+
+- Record title: **الوقائع المصرية - ملحق الجريدة الرسمية العدد 225 تابع (أ)**
+- Record URL: https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full
+- Persistent handle: https://dspace.id.com.eg/handle/123456789/8906
+- Publisher metadata: **المطابع الأميرية**
+- Contributing authority metadata: **وزارة العمل**
+- Issue date: **2026-10-12**
+- Record accession/availability date: **2026-10-22**
+- Type: **Official Gazette Supplement**
+- Abstract enumerates Decisions 248, 249, 250, 251 and 252 of 2026 by title.
+- Original bundle metadata: **العدد 225 تابع أ - مؤمن.pdf**, PDF, 6.13 MB.
+
+**Important access limitation:** the repository's visible “Download” action redirects to a “Request a copy” form; the original PDF and the item-specific license file are marked restricted. The record therefore confirms the identity and bibliographic metadata of the exact Gazette issue, but it does **not** mean the original PDF bytes have been obtained or reviewed. No attempt was made to bypass the access control, and no request was submitted on the user's behalf.
+
+This is a material improvement to source discovery and page-targeting, but the primary-text match remains 0/5 decisions until an authorized copy is available. The page ranges above remain candidate locators from secondary reproductions only.
