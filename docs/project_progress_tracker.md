@@ -428,3 +428,15 @@ This checkpoint records discovery and engineering safeguards, not verified-law c
 - **No promotion:** Both instruments remain discovery-only; no new legal rule has become authoritative retrieval material.
 - **Metrics unchanged:** 80 candidate records / 13 source records; verified legal corpus remains 6%; Decision 250 Table 24 remains 781/781 secondary structural rows and 0/781 original Gazette matches; Decisions 248–252 remain 0/5 fully matched.
 - **CI status:** The latest content-API commits currently have no associated workflow runs/status checks returned. Do not reuse the earlier 103/103 and 28/28 results as proof for these newest commits. Trigger/await fresh CI before merging.
+
+
+## Follow-up checkpoint — 2026-10-30 (Decision 982 temporal-chain hardening)
+
+- Added a dedicated temporal evidence note for Prime Minister Decision 982/2026 and its monthly extension chain.
+- Recorded the exact April-only scope and 5 April start stated in the official Amiri Press text, and its Article 6 rule that commencement is the day after Gazette publication.
+- Separated the five monthly extensions: Decision 1305 (May), 1572 (June), 2033 (July), 2377 (August), and 2590 (September). Decision 2590's official preamble expressly cross-references the earlier extension numbers and months.
+- Kept the 30 September Cabinet action correctly classified as approval of a draft suspension, not proof of a promulgated or effective suspension. No October continuation or operative suspension instrument is claimed.
+- Linked the timeline from the structured Phase 2 inventory and added a regression test that prevents extension months, draft approval, and October currentness from being conflated.
+- Evidence boundary: the temporal chain improves traceability only. Original Gazette byte/hash and page comparison remain outstanding for all six decisions; no record was promoted from discovery-only, no current/in-force claim was made, and no candidate entered authoritative retrieval.
+- Validation: latest branch commit is `1195dddee071e91bf3bf73b5ff42e6d4130a7714`. The GitHub connector returned no PR-triggered workflow run for that commit at checkpoint time; do not claim this new test has passed until CI runs.
+
