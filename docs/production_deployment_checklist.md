@@ -48,14 +48,19 @@ This checklist is a release gate, not a certification. Completing it does not re
 - [ ] Have qualified Egyptian counsel review currentness, amendments, commencement dates, repeals, and representative answers before any client-facing legal use.
 - [ ] Keep fictional sample data out of production and label unverified sources visibly.
 
-## 5. Reminder delivery (not yet production-ready)
+## 5. Reminder delivery (code exists; production operation remains gated)
 
-- [ ] Keep email delivery disabled until recipient authorization and firm-scoped filtering are integrated.
-- [ ] Configure SMTP credentials only in the deployment secret manager; use a dedicated sender account, verified TLS, and approved sender-domain SPF/DKIM/DMARC.
-- [ ] Implement an atomic durable idempotency claim and persistent queued/sent/failed state through the database workstream before scheduling sends.
-- [ ] Test duplicate scheduler runs and concurrent workers across two firms; test ambiguous timeouts and manual reconciliation.
-- [ ] Alert on failed sends, retry exhaustion, scheduler lag, and stale queued records without logging message bodies or secrets.
-- [ ] Confirm SMTP acceptance is not reported as inbox delivery; use a controlled staging mailbox before enabling production.
+The repository now includes a tenant-local durable outbox, atomic idempotency claims, queued/sending/SMTP-accepted/failed/ambiguous states, recipient and case-access rechecks immediately before sending, and a dry-run-by-default operator scheduler. The code-level authorization and persistence paths have automated tests; this does not prove production configuration or provider behavior.
+
+- [ ] Keep `--send` disabled until the firm has approved reminder policy, sender identity, recipient scope, retention, and operational ownership.
+- [ ] Configure SMTP credentials only in the deployment secret manager; use a dedicated sender account, verified TLS, approved sender-domain SPF/DKIM/DMARC, provider quotas, and outbound firewall rules.
+- [ ] Validate the tenant outbox migration on the exact staging release candidate; do not apply schema changes outside the separately approved database/storage change process.
+- [ ] Test duplicate scheduler runs and concurrent workers across at least two firms against the actual staging storage configuration; verify that no reminder crosses firm boundaries.
+- [ ] Exercise SMTP success, permanent failure, transient failure, ambiguous timeout, process crash/expired lease, and manual reconciliation using a controlled staging mailbox and synthetic cases.
+- [ ] Deploy `tools/reminder_healthcheck.py` with an external scheduler; alert on exit codes 1 and 2, stale queued rows, expired/missing sender leases, failed/ambiguous outcomes, and unavailable tenant outboxes. Assign a named operator/on-call owner. Follow the [reminder outbox monitoring runbook](reminder_outbox_monitoring_runbook.md) for the recommended five-minute cadence, least-privilege service account, alert semantics, and reconciliation steps.
+- [ ] Record the health-probe cadence, alert destination, retention, escalation path, and reconciliation evidence. Never include case content, recipient addresses, or credentials in monitoring logs.
+- [ ] Confirm SMTP acceptance is not reported as inbox delivery. Keep ambiguous rows quarantined until provider evidence is reconciled; do not blindly retry.
+- [ ] Complete a controlled operational rehearsal, including scheduler stop/start, alert delivery, provider outage, credential rotation, and safe disablement of sending.
 
 ## 6. Release validation
 

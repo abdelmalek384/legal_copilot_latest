@@ -6,7 +6,7 @@ Mac quick start: double-click `start_mac.command`; it creates a virtual environm
 Load law: POST a JSON list of {law, article, text, as_of, in_force, source} to /law/import (see sample_law.jsonl: FICTIONAL test text only).
 Model: set LLM_URL (OpenAI-compatible /chat/completions, e.g. vLLM, Ollama, or a hosted provider), LLM_MODEL, and LLM_KEY. The app does not choose or bundle a model. LLM_URL alone is not enough to send prompts: explicitly set LLM_DATA_PROCESSING_APPROVED=1 only after reviewing the endpoint, data-processing terms, retention, and whether matter data may be sent. Case-scoped research, follow-up conversation context, and matter-file passages additionally require `LLM_FIRM_DATA_PROCESSING_APPROVED=1`; otherwise those requests return sources only. These are deployment attestations, not consent or privacy guarantees. See [LLM data-processing policy](docs/llm_data_processing_policy.md).
 
-Not included yet: a complete verified official law/ruling corpus, production-ready reminder operations (a tenant-scoped durable outbox and dry-run-by-default operator scheduler now exist, but SMTP provider staging, external scheduling/monitoring, and operator reconciliation remain release gates; see docs/reminder_scheduler_contract.md), WhatsApp/SMS delivery, embedding-model semantic search, and a complete end-to-end amendment/consolidation workflow.
+Not included yet: a complete verified official law/ruling corpus, production-ready reminder operations (a tenant-scoped durable outbox, dry-run-by-default operator scheduler, and read-only external health probe now exist, but SMTP provider staging, external scheduling/alerting, and operator reconciliation remain release gates; see [the scheduler contract](docs/reminder_scheduler_contract.md) and [the monitoring runbook](docs/reminder_outbox_monitoring_runbook.md)), WhatsApp/SMS delivery, embedding-model semantic search, and a complete end-to-end amendment/consolidation workflow.
 
 ## Egyptian legal corpus bootstrap
 
@@ -29,6 +29,10 @@ Before any authorized acquisition, review [the acquisition-readiness audit](docs
 For a read-only snapshot of the source registers, acquisition queue, candidate counts, and cross-register inconsistencies, run `python tools/report_legal_corpus_inventory.py` (see [inventory report guide](docs/legal_corpus_artifact_inventory.md)). This counts planning metadata only; it does not count candidate entries as collected or verified legal documents.
 
 See [the bootstrap guide](docs/legal_corpus_bootstrap.md), [candidate instrument catalogue](docs/legal_document_candidates.json), and [source permission register](docs/source_permission_register.json). Do not collect or commercially reuse a source unless the applicable permission has been established and documented.
+
+## Reminder operations and monitoring
+
+The deadline reminder scheduler is dry-run by default. Do not enable SMTP delivery until provider staging, authorization/concurrency tests, and operator ownership are complete. Run the read-only outbox monitor with `PYTHONPATH=. python tools/reminder_healthcheck.py`; it returns exit code 1 when operator attention is needed and 2 when it cannot safely complete. See [reminder outbox monitoring and reconciliation](docs/reminder_outbox_monitoring.md). SMTP acceptance is not proof of inbox delivery.
 
 ## Arabic handling
 Normalizes diacritics, tatweel, alef/hamza forms, ya/alef maqsura, ta marbuta, and Arabic-Indic digits (so "المادة ٥" finds article 5);
