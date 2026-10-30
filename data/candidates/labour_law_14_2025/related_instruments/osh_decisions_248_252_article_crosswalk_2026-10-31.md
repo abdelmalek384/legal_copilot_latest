@@ -15,8 +15,9 @@ Status: candidate mapping for review; **not authoritative, not a verified amendm
 
 ## Card-identifier integrity issue found
 
-The current canonical Labour Law card inventory contained six topic slugs that did not match their actual provision summaries/questions:
+The current canonical Labour Law card inventory contained seven topic slugs that did not match their actual provision summaries/questions:
 
+- Article 258 was labelled as imminent-danger removal, although its recorded question and summary concern inspectors' right to inspect establishments and verify compliance.
 - Article 259 was labelled as accident/occupational-disease reporting, although its recorded question and summary concern OSH units and committees.
 - Article 261 was labelled as statutory registers, although its recorded question and summary concern OSH training/licensing.
 - Article 262 was labelled as protective-measures implementation, although its recorded question and summary concern OSH consultant licensing.
