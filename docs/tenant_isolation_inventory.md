@@ -35,6 +35,7 @@ Routes are grouped by the data boundary they should preserve. "Tested" means the
 |---|---|---|
 | `GET /` | Public shell only; no matter content | Security headers/CSP are asserted; browser/manual QA remains |
 | `GET /manifest.webmanifest`, `GET /app-icon.svg` | Public static install metadata/icon only; no tenant or account content | PWA asset contract tests; verify content integrity and no-store response policy |
+| `GET /apple-touch-icon.png` | Public fixed PNG home-screen icon only; no tenant or account content | HTTP test checks PNG signature and no-store response policy |
 | `GET /service-worker.js` | Public fixed service-worker source; must never cache API, authentication, matter, or uploaded-file responses | Static tests constrain it to a static offline notice fallback; browser update/offline QA remains |
 | `GET /offline.html` | Public static offline notice only; no user or case content | Static content is cached by the service worker; verify offline fallback on target browsers |
 | `POST /login`, `GET /session`, `POST /logout`, `POST /account/password` | Auth/session belongs to one user; disabled, expired, or revoked sessions must stop working | API tests cover malformed credentials, CSRF, expiry, password change/reset revocation and concurrent login; production browser/cookie policy still needs review |
