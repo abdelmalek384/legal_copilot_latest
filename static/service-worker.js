@@ -36,7 +36,8 @@ self.addEventListener("fetch", (event) => {
   if (request.mode === "navigate" && url.pathname === "/") {
     event.respondWith(
       fetch(request).catch(async () => {
-        const offline = await caches.match(OFFLINE_URL);
+        const cache = await caches.open(CACHE_NAME);
+        const offline = await cache.match(OFFLINE_URL);
         return offline || new Response("Offline", {
           status: 503,
           headers: { "Content-Type": "text/plain; charset=utf-8" }
