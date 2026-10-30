@@ -8,6 +8,7 @@ from pathlib import Path
 from tools.database_release_acceptance import (
     REQUIRED_GATES,
     load_acceptance_manifest,
+    load_staging_purge_acceptance_manifest,
     original_storage_config_fingerprint,
     validate_acceptance_manifest,
 )
@@ -99,6 +100,52 @@ class DatabaseReleaseAcceptanceTests(unittest.TestCase):
             ("original_file_storage", "storage_configuration_unavailable"),
             {(item["gate"], item["code"]) for item in unavailable["blockers"]},
         )
+
+    def test_staging_purge_requires_storage_and_retention_evidence_bound_to_target(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "acceptance.json"
+            path.write_text(json.dumps(self.manifest), encoding="utf-8")
+            report = load_staging_purge_acceptance_manifest(
+                path, expected_storage_config_sha256="a" * 64, now=self.now
+            )
+            self.assertTrue(report["ready"], report["blockers"])
+            self.assertEqual(report["passed_count"], 2)
+            self.assertEqual(report["required_count"], 2)
+
+            changed_target = load_staging_purge_acceptance_manifest(
+                path, expected_storage_config_sha256="b" * 64, now=self.now
+            )
+            self.assertFalse(changed_target["ready"])
+            self.assertIn(
+                ("original_file_storage", "storage_target_mismatch"),
+                {(item["gate"], item["code"]) for item in changed_target["blockers"]},
+            )
+
+    def test_staging_purge_rejects_missing_or_expired_policy_evidence(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "acceptance.json"
+            manifest = json.loads(json.dumps(self.manifest))
+            manifest["gates"]["retention_export_deletion_policy"]["status"] = "pending"
+            path.write_text(json.dumps(manifest), encoding="utf-8")
+            pending = load_staging_purge_acceptance_manifest(
+                path, expected_storage_config_sha256="a" * 64, now=self.now
+            )
+            self.assertFalse(pending["ready"])
+            self.assertIn(
+                ("retention_export_deletion_policy", "not_passed"),
+                {(item["gate"], item["code"]) for item in pending["blockers"]},
+            )
+
+            path.write_text(json.dumps(self.manifest), encoding="utf-8")
+            expired = load_staging_purge_acceptance_manifest(
+                path, expected_storage_config_sha256="a" * 64,
+                now=self.now + timedelta(days=366),
+            )
+            self.assertFalse(expired["ready"])
+            self.assertIn(
+                ("retention_export_deletion_policy", "evidence_expired"),
+                {(item["gate"], item["code"]) for item in expired["blockers"]},
+            )
 
     def test_missing_or_pending_gates_block_release(self):
         manifest = json.loads(json.dumps(self.manifest))
