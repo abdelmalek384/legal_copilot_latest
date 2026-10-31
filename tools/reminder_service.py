@@ -12,17 +12,79 @@ import json
 import os
 import sqlite3
 import sys
+import threading
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Mapping
 from urllib.parse import urlsplit
 
 from database_runtime import DatabaseRuntime, DatabaseRuntimeError
+from tenant_storage import TenantSQLiteConnectionRouter
 from tools.reminder_email import ReminderEmailError, SMTPConfig, send_reminder_email
 from tools.reminder_outbox import (
     ReminderOutboxError, claim_next, enqueue_plan, finish_attempt, retry_failed,
 )
 from tools.reminder_schedule import ReminderScheduleError, build_reminder_plan
+
+class _ReadOnlyReminderRuntime:
+    """Read-only view of an existing database runtime for dry-run and status.
+
+    It deliberately skips DatabaseRuntime.initialize(), which is a provisioning
+    and migration entry point. SQL writes are disabled on every returned
+    connection; tenant routing still uses the trusted firm catalog and router
+    validation before a connection is exposed.
+    """
+
+    def __init__(self, runtime: DatabaseRuntime) -> None:
+        self.paths = runtime.paths
+        self.timeout = runtime.timeout
+        self._local = threading.local()
+        self._router = TenantSQLiteConnectionRouter(
+            self._new_catalog_connection, self.paths.tenant_root,
+            timeout=self.timeout,
+        )
+        self._tenant_router = self
+
+    def _new_catalog_connection(self) -> sqlite3.Connection:
+        path = self.paths.control_plane
+        DatabaseRuntime._validate_profile_storage(path, "control-plane")
+        connection = sqlite3.connect(
+            path.resolve().as_uri() + "?mode=ro", uri=True, timeout=self.timeout
+        )
+        connection.row_factory = sqlite3.Row
+        try:
+            connection.execute("PRAGMA foreign_keys=ON")
+            connection.execute("PRAGMA query_only=ON")
+            if connection.execute("PRAGMA query_only").fetchone()[0] != 1:
+                raise DatabaseRuntimeError("Read-only control-plane mode could not be enforced")
+            return connection
+        except Exception:
+            connection.close()
+            raise
+
+    def control_connection(self) -> sqlite3.Connection:
+        connection = getattr(self._local, "control", None)
+        if connection is None:
+            connection = self._new_catalog_connection()
+            self._local.control = connection
+        return connection
+
+    def connection_for_firm(self, firm_id: int) -> sqlite3.Connection:
+        connection = self._router.connection_for_firm(firm_id)
+        connection.execute("PRAGMA query_only=ON")
+        if connection.execute("PRAGMA query_only").fetchone()[0] != 1:
+            self._router.revoke_firm_connection(firm_id)
+            raise DatabaseRuntimeError("Read-only tenant mode could not be enforced")
+        return connection
+
+    def close_current_thread(self) -> None:
+        connection = getattr(self._local, "control", None)
+        if connection is not None:
+            connection.close()
+            del self._local.control
+        self._router.close_current_thread()
+
+
 
 
 def _parse_now(value: str | None) -> datetime:
@@ -357,8 +419,14 @@ def main(argv: list[str] | None = None) -> int:
         else:
             smtp_config, app_url = None, None
 
-        runtime = DatabaseRuntime.from_env()
-        runtime.initialize()
+        base_runtime = DatabaseRuntime.from_env()
+        # Dry-run and status must not initialize schemas or apply migrations.
+        # Only the explicit --send path opens the normal writable runtime.
+        if args.send:
+            base_runtime.initialize()
+            runtime = base_runtime
+        else:
+            runtime = _ReadOnlyReminderRuntime(base_runtime)
         if args.status:
             result = outbox_status(runtime)
             output = json.dumps(result, ensure_ascii=False, sort_keys=True, indent=2)
