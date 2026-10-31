@@ -89,9 +89,11 @@ def review_queue(db_path: Path) -> dict:
                 "next_action":"Review current terms and record scoped permission evidence; do not infer permission from public accessibility."})
         versions=db.execute("SELECT v.version_id,v.document_id,v.version_label,v.source_url,v.original_sha256,v.publication_date,v.effective_date,v.repeal_date,v.legal_status,v.review_status,v.authenticity_verified,v.status_verified,v.amendment_history_verified,v.permission_evidence,d.official_title,d.document_type,d.source_id,s.source_id AS matched_source_id,s.authority,s.collection_permission,s.commercial_reuse_permission FROM legal_document_versions v LEFT JOIN legal_documents d ON d.document_id=v.document_id LEFT JOIN legal_sources s ON s.source_id=d.source_id ORDER BY v.version_id").fetchall()
         review_types=("source_authenticity","extraction_quality","legal_status","amendment_history","licensing","lawyer_approval")
+        event_columns = cols(db, "legal_review_events") if "legal_review_events" in present else set()
+        notes_select = "notes" if "notes" in event_columns else "NULL AS notes"
         for version in versions:
             row=dict(version)
-            events=[dict(e) for e in db.execute("SELECT review_event_id,review_type,outcome,evidence_url,reviewer,notes,reviewed_at FROM legal_review_events WHERE version_id=? ORDER BY reviewed_at DESC,review_event_id DESC",(row["version_id"],)).fetchall()]
+            events=[dict(e) for e in db.execute(f"SELECT review_event_id,review_type,outcome,evidence_url,reviewer,{notes_select},reviewed_at FROM legal_review_events WHERE version_id=? ORDER BY reviewed_at DESC,review_event_id DESC",(row["version_id"],)).fetchall()]
             reasons=[]
             if row["official_title"] is None:
                 reasons.append("document_missing_from_registry")
