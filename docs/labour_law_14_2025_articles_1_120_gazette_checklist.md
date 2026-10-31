@@ -43,7 +43,7 @@ Legend: **Text match**, **Visual check**, **Currentness**, **Counsel** are indep
 | 10 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
 | 11 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
 | 12 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 13 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
+| 13 | Printed p.5 / PDF index 3 — visually inspected in merged PR #967; locator evidence only, not full text comparison | ☐ | ☐ | ☐ | ☐ |
 | 14 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
 | 15 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
 | 16 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
