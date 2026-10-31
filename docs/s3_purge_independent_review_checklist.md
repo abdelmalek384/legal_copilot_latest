@@ -47,6 +47,15 @@
 
 ## 3. KMS and IAM
 
+Run the sanitized, read-only evidence collector separately under each actual application, backup/recovery, and purge workload identity:
+
+```bash
+COPILOT_OBJECT_STORAGE_BACKEND=s3 python tools/collect_s3_live_acceptance_evidence.py --json
+```
+
+The report fingerprints the bucket and KMS policies and summarizes the current assumed role's trust policy, attached managed policy documents, inline policy documents, permissions boundary, and KMS grants. It does not emit raw policy documents or credentials and never changes cloud configuration. One report describes only the identity that ran it. Independently evaluate SCPs, session policies, access-point/account policies, and effective permissions; retain the sanitized report and exact storage-target fingerprint in the protected evidence store. A successful collector exit code is not production approval and does not authorize purge.
+
+
 - [ ] Live object metadata identifies the exact expected customer-managed KMS key ARN, not merely an alias or a generic SSE-KMS marker.
 - [ ] KMS key policy permits only the intended application and recovery principals; no broad account-wide decrypt grant is present without documented approval.
 - [ ] Purge operator role has only the minimum required read/verify/delete and KMS metadata permissions.
