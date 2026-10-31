@@ -355,11 +355,12 @@ class DeploymentPreflightTests(unittest.TestCase):
             "COPILOT_DB": str(root / "legacy.sqlite3"),
         }
         _, _, errors = preflight.inspect_environment(env)
-        self.assertTrue(any("COPILOT_DB must be unset" in item for item in errors))
+        self.assertTrue(any("COPILOT_DB is retired" in item for item in errors))
 
     def test_rejects_partial_separate_database_configuration(self):
         env = dict(self.env)
-        env.pop("COPILOT_DB")
+        env.pop("COPILOT_TENANT_DB_ROOT")
+        env.pop("COPILOT_CORPUS_DB")
         env["COPILOT_CONTROL_DB"] = str(Path(self.tempdir.name) / "control.sqlite3")
         _, _, errors = preflight.inspect_environment(env)
         self.assertTrue(any("requires all three paths" in item for item in errors))
