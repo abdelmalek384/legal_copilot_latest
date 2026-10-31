@@ -586,6 +586,43 @@
       "terms_checked_on": "2026-10-31",
       "bulk_download_or_api": "No API or bulk-export permission established; individual post and attachment preview links only",
       "required_next_action": "Use the page only as a manual discovery/link-out lead. Preserve attribution and do not monetize or redistribute Law Hub's site materials; do not bulk-extract its attachments. Verify any legal text against the original Official Gazette and assess rights in the underlying official text separately. Keep Decision 250 candidates non-authoritative and retrieval-ineligible."
+    },
+    {
+      "source_id": "EG-ALMASDAR-SECONDARY-LEGAL-NEWS",
+      "authority": "Almasdar news publisher and secondary legal-text reproductions",
+      "source_page": "https://www.almasdar.com/keyword/5037?page=1",
+      "material_types": [
+        "secondary summaries and partial transcriptions of Labour Ministry Decisions 249–252/2026",
+        "watermarked reproduced Gazette page images",
+        "legal-news metadata"
+      ],
+      "access_status": "public secondary news pages located for Decisions 249–252; some pages expose watermarked page-image galleries; footer states all rights reserved; no licence or bulk-export permission identified",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Sampled Almasdar pages for Decisions 249, 251 and 252 display a copyright footer stating all rights reserved (©2014–2026). The site exposes secondary text excerpts and image links, but no explicit licence or terms authorizing bulk collection, redistribution, or commercial reuse were identified in this review. Public availability and watermarked images do not establish permission. No row-level text or image files were copied.",
+      "permission_evidence_url": "https://www.almasdar.com/175150",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "No API or bulk-export permission established; individual secondary articles and watermarked image links only",
+      "required_next_action": "Use only for manual discovery and link-out. Do not bulk-copy or redistribute articles or images; preserve attribution and site rights. Verify all instrument text against the original Official Gazette through an authorized route; keep legal status, reuse and retrieval eligibility unresolved."
+    },
+    {
+      "source_id": "EG-EGYIN-SECONDARY-LEGAL-NEWS",
+      "authority": "Egyin (إيجي إن) news publisher; sampled article also syndicated through Nabd",
+      "source_page": "https://www.egyin.com/article/154732/%D8%A7%D9%84%D8%AC%D8%B1%D9%8A%D8%AF%D8%A9-%D8%A7%D9%84%D8%B1%D8%B3%D9%85%D9%8A%D8%A9-%D8%AA%D9%86%D8%B4%D8%B1-%D9%82%D8%B1%D8%A7%D8%B1-%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A8%D8%B4%D8%A3%D9%86",
+      "material_types": [
+        "secondary news summary of Labour Ministry Decision 248/2026",
+        "legal-news metadata and summaries"
+      ],
+      "access_status": "public secondary news article located; partial summary of Decision 248/2026; copyright footer present; no licence or bulk-export permission identified",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "The sampled article summarizes Decision 248/2026 and its footer states copyright is reserved to Egyin (©2026). No licence or terms authorizing bulk collection, redistribution, or commercial reuse were identified in this review. The article is a secondary summary, not the Official Gazette text; no content was copied.",
+      "permission_evidence_url": "https://www.egyin.com/article/154732/%D8%A7%D9%84%D8%AC%D8%B1%D9%8A%D8%AF%D8%A9-%D8%A7%D9%84%D8%B1%D8%B3%D9%85%D9%8A%D8%A9-%D8%AA%D9%86%D8%B4%D8%B1-%D9%82%D8%B1%D8%A7%D8%B1-%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A8%D8%B4%D8%A3%D9%86",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "No API or bulk-export permission established; individual article page only",
+      "required_next_action": "Use only for manual discovery and link-out. Do not bulk-copy or redistribute the article; preserve publisher rights. Verify the complete instrument against the original Official Gazette through an authorized route and keep legal status, reuse and retrieval eligibility unresolved."
     }
   ]
 }
