@@ -4571,7 +4571,7 @@ def deadline_rules(u: dict = Depends(user)):
 def deadline_estimate(
     cid: int,
     rule_id: str = Query(..., min_length=1, max_length=100),
-    trigger: str = Query(..., pattern=r"^\d{4}-\d{2}-\d{2}$"),
+    trigger: date,
     distance_days: int = Query(0, ge=0, le=365),
     u: dict = Depends(user),
 ):
@@ -4579,7 +4579,7 @@ def deadline_estimate(
     need(c, u, cid)
     try:
         result = deadline_calc.estimate_rule_deadline(
-            rule_id, date.fromisoformat(trigger), distance_days=distance_days
+            rule_id, trigger, distance_days=distance_days
         )
     except deadline_calc.DeadlineError as exc:
         message = str(exc)
