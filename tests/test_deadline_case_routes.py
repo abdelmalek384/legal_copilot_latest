@@ -125,7 +125,7 @@ class CaseDeadlineEstimateRouteTests(unittest.TestCase):
         captured = {}
         def fake_llm(prompt):
             captured["prompt"] = prompt
-            return "تحتوي القضية على ملاحظة مسجلة [2]."
+            return "تتضمن الملاحظة عبارة بيانات اختبار [2]."
         with patch.dict("os.environ", {"LLM_FIRM_DATA_PROCESSING_APPROVED": "1"}), patch.object(
             app, "LLM", side_effect=fake_llm
         ):
