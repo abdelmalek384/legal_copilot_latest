@@ -73,6 +73,9 @@ class BrowserAcceptanceTests(unittest.TestCase):
         reviewer_id = cls.runtime.create_global_identity(
             "Synthetic Platform Reviewer", "reviewer@example.test", app_module.hash_pw(password)
         )
+        # This allowlist exists only inside the disposable synthetic browser-test
+        # environment; it does not assert that this fixture user is real counsel.
+        os.environ["LEGAL_QUALIFIED_EGYPTIAN_COUNSEL_USER_IDS"] = str(reviewer_id)
         cls.runtime.create_firm_membership(reviewer_id, firm_a, "lawyer")
         control = cls.runtime.control_connection()
         control.execute(
@@ -180,7 +183,12 @@ class BrowserAcceptanceTests(unittest.TestCase):
                     "Synthetic fixture reviewer",
                     review_type,
                     "pass",
-                    "Synthetic fixture only; not a legal review.",
+                    (
+                        f"[qualified_egyptian_counsel_attested:user_id={reviewer_id}] "
+                        "Synthetic fixture only; not a legal review."
+                        if review_type == "lawyer_approval"
+                        else "Synthetic fixture only; not a legal review."
+                    ),
                     "https://example.test/synthetic-review-evidence",
                 ),
             )
