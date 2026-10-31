@@ -68,7 +68,7 @@ The locator is recovery evidence and must be stored separately in a restricted e
 - No bucket versioning is enabled, suspended, or disabled.
 - No retention period or lifecycle expiration is selected.
 - No production upload or purge is authorized.
-- No claim is made that backup archives currently live in S3; the repository's encrypted bundle workflow must be integrated with the archive bucket before this architecture is implemented.
+- No claim is made that backup archives currently live in S3 or that any AWS resource has been created or modified. The repository now implements the encrypted bundle transport and exact-version restore retrieval; actual archive objects, IAM role separation, retention controls, and live acceptance remain deployment work.
 
 ## Implementation status (2026-10-31)
 
