@@ -8,6 +8,8 @@ import tempfile
 import threading
 import time
 import unittest
+import urllib.error
+import urllib.request
 from pathlib import Path
 
 from playwright.sync_api import Browser, BrowserContext, Page, TimeoutError as PlaywrightTimeoutError, sync_playwright
@@ -228,6 +230,21 @@ class BrowserAcceptanceTests(unittest.TestCase):
         if not cls.server.started:
             raise RuntimeError("Synthetic in-process application server did not become ready.")
 
+        # Verify the HTTP listener and root route independently before Chromium starts.
+        # This separates server/startup failures from browser navigation failures.
+        try:
+            with urllib.request.urlopen(cls.base_url + "/", timeout=5) as response:
+                html = response.read(2 * 1024 * 1024 + 1)
+                if response.status != 200 or len(html) > 2 * 1024 * 1024 or b"Legal Copilot" not in html:
+                    raise RuntimeError(
+                        "Synthetic browser server root probe failed: "
+                        f"status={response.status}, bytes={len(html)}"
+                    )
+        except (OSError, urllib.error.URLError) as exc:
+            raise RuntimeError(
+                f"Synthetic browser server did not answer on {cls.base_url}: {exc}"
+            ) from exc
+
         cls.playwright = sync_playwright().start()
         cls.browser: Browser = cls.playwright.chromium.launch(headless=True)
 
@@ -258,29 +275,53 @@ class BrowserAcceptanceTests(unittest.TestCase):
         )
         self.page: Page = self.context.new_page()
         self.browser_errors: list[str] = []
+        self.network_errors: list[str] = []
         self.page.on("pageerror", lambda error: self.browser_errors.append(str(error)))
+        self.page.on(
+            "requestfailed",
+            lambda request: self.network_errors.append(
+                f"{request.method} {request.url}: {request.failure}"
+            ),
+        )
 
     def tearDown(self) -> None:
         result = getattr(getattr(self, "_outcome", None), "result", None)
         failed = bool(result and any(test is self for test, _ in result.errors + result.failures))
-        if failed:
-            ARTIFACT_DIR.mkdir(parents=True, exist_ok=True)
-            safe_name = self.id().rsplit(".", 1)[-1]
-            self.page.screenshot(
-                path=str(ARTIFACT_DIR / f"{safe_name}.png"),
-                full_page=True,
-            )
+        if failed and not self.page.is_closed():
+            try:
+                ARTIFACT_DIR.mkdir(parents=True, exist_ok=True)
+                safe_name = self.id().rsplit(".", 1)[-1]
+                self.page.screenshot(
+                    path=str(ARTIFACT_DIR / f"{safe_name}.png"),
+                    full_page=True,
+                    timeout=5000,
+                )
+            except Exception:
+                # Preserve the original assertion/navigation error if screenshot capture fails.
+                pass
         self.context.close()
 
     def login(self, email: str) -> None:
         self.page.goto(self.base_url, wait_until="domcontentloaded")
         email_input = self.page.locator('input[type="email"]')
         try:
-            email_input.wait_for(state="visible", timeout=15000)
+            email_input.wait_for(state="visible", timeout=10000)
         except PlaywrightTimeoutError as exc:
+            try:
+                body = self.page.locator("body").inner_text(timeout=1500)[:2000]
+            except Exception as body_exc:
+                body = f"<body unavailable: {type(body_exc).__name__}: {body_exc}>"
             raise AssertionError(
-                "Login UI did not render. URL=%s body=%s browser_errors=%s"
-                % (self.page.url, self.page.locator("body").inner_text()[:2000], self.browser_errors)
+                "Login UI did not render. URL=%s title=%s body=%s "
+                "browser_errors=%s network_errors=%s server_thread_alive=%s"
+                % (
+                    self.page.url,
+                    self.page.title(),
+                    body,
+                    self.browser_errors,
+                    self.network_errors,
+                    self.server_thread.is_alive(),
+                )
             ) from exc
         email_input.fill(email)
         self.page.locator('input[type="password"]').fill(self.state["password"])
