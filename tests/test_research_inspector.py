@@ -135,6 +135,12 @@ class ResearchInspectorTests(unittest.TestCase):
         source["provenance"]["review_evidence"][0]["reviewer"] = " "
         self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
 
+    def test_current_permission_review_dates_do_not_override_historical_legal_as_of_date(self):
+        source = valid_source()
+        self.assertEqual(source_status(source, "2020-01-01"), STATUS_VERIFIED)
+        source["provenance"]["terms_checked_on"] = "2999-01-01"
+        self.assertEqual(source_status(source, "2030-01-01"), STATUS_REVIEW)
+
     def test_future_or_repealed_version_is_not_labelled_current(self):
         source = valid_source()
         source["provenance"]["effective_date"] = "2027-01-01"
