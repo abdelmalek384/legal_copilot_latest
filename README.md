@@ -39,8 +39,7 @@ The deadline reminder scheduler is dry-run by default. Do not enable SMTP delive
 ## Arabic handling
 Normalizes diacritics, tatweel, alef/hamza forms, ya/alef maqsura, ta marbuta, and Arabic-Indic digits (so "المادة ٥" finds article 5);
 light prefix/suffix stemming and stopword removal at both index and query time; exact article-number lookup; RTL UI with Arabic fonts.
-Known limits: no broken-plural or Egyptian-dialect handling, no semantic embeddings yet (next step: an Arabic-capable multilingual
-embedding model such as bge-m3 or multilingual-e5, stored in pgvector), and MIN_SCORE (default 0.3) must be tuned on a real evaluation set.
+Known limits: only a small curated set of Egyptian colloquial forms is expanded for selected wage, dismissal, cheque, rent, and family-support queries; this is not broad dialect understanding and needs evaluation on real lawyer-reviewed queries. Broken-plural handling and semantic embeddings are not implemented yet (a future Arabic-capable multilingual embedding model such as bge-m3 or multilingual-e5 would also require an approved vector-storage design). MIN_SCORE (default 0.3) must be tuned on a real evaluation set.
 
 ## Install on a phone or desktop
 
