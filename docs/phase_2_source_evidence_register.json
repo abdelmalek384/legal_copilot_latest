@@ -591,6 +591,22 @@
       "access_terms_state": "not_reviewed",
       "collection_permission": "unknown",
       "notes": "EastLaws search-indexed pages expose article headings and operative summaries/full text for both decisions, and state publication in Egyptian Proceedings Gazette Supplement issue 295 (تابع د) on 2025-12-30 with commencement on 2025-12-31. EastLaws is treated as secondary text only. No official PDF bytes, EastLaws reuse terms, or item-specific reuse permission were obtained. Do not ingest/redistribute or treat as primary source."
+    },
+    {
+      "source_id": "EG-IDSC-GAZETTE-2025-291-SUPPLEMENT-LABOUR",
+      "publisher": "المطابع الأميرية; metadata hosted by Ibrachy & Dermarkar Repository",
+      "source_type": "Egyptian Proceedings Gazette supplement issue metadata, PDF and item-specific license listing",
+      "url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc",
+      "observed_title": "الوقائع المصرية ملحق الجريدة الرسمية العدد 291 (تابع)",
+      "publication_date": "2025-12-25",
+      "document_ids": [
+        "EG-LABOUR-DECISION-292-2025",
+        "EG-LABOUR-DECISION-294-2025"
+      ],
+      "source_state": "metadata_and_PDF_and_license_listed_request_copy_restricted",
+      "access_terms_state": "reviewed_restricted",
+      "collection_permission": "not_allowed_without_explicit_exception_or_license",
+      "notes": "The full item page identifies issue 291 (تابع), date 2025-12-25, Ministry of Labour as author and Amiri Press as publisher; it lists an 834.25 KB PDF and a 1.71 KB item-specific license.txt. Clicking the license file opens a request-a-copy form stating all files are in restricted access. The repository End User Agreement restricts use to personal/non-commercial purposes and requires prior written permission for commercial exploitation and systematic database compilation. No PDF or license bytes were obtained; no item-specific license is inferred."
     }
   ],
   "document_records_to_create_from_batch": [
