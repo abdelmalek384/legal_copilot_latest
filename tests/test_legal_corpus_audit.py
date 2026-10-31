@@ -306,6 +306,33 @@ class CorpusAuditTests(unittest.TestCase):
             self.assertEqual(report["review_event_quality"]["reviewer_missing"], 1)
             self.assertEqual(report["review_event_quality"]["orphan_version"], 1)
 
+    def test_audit_flags_passing_lawyer_approval_without_counsel_attestation(self):
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "counsel-audit.db"
+            db = sqlite3.connect(path)
+            bind_profile(db)
+            db.executescript("""
+                CREATE TABLE legal_document_versions(version_id INTEGER PRIMARY KEY);
+                CREATE TABLE legal_review_events(
+                    review_event_id INTEGER PRIMARY KEY, version_id INTEGER, reviewer TEXT,
+                    review_type TEXT, outcome TEXT, evidence_url TEXT, reviewed_at TEXT, notes TEXT
+                );
+                INSERT INTO legal_document_versions VALUES(1);
+                INSERT INTO legal_review_events VALUES
+                    (1,1,'Reviewer','lawyer_approval','pass','https://example.gov/review',
+                     '2026-10-24T12:00:00Z','Ordinary platform reviewer');
+            """)
+            db.commit()
+            db.close()
+            report = MODULE.audit(path)
+            self.assertEqual(
+                report["review_event_quality"]["lawyer_approval_without_counsel_attestation"], 1
+            )
+            self.assertIn(
+                "review_events_lawyer_approval_without_counsel_attestation",
+                {issue["code"] for issue in report["issues"]},
+            )
+
     def test_chunk_flags_must_match_linked_legal_version(self):
         with tempfile.TemporaryDirectory() as td:
             db_path = Path(td) / "chunk-version-consistency.db"
