@@ -1843,7 +1843,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
         history = self.client.get(endpoint)
         self.assertEqual(history.status_code, 200, history.text)
-        self.assertEqual(len(history.json()["events"]), 2)
+        self.assertEqual(len(history.json()["events"]), 3)
         self.assertEqual(history.json()["events"][0]["review_type"], "source_authenticity")
         self.assertEqual(history.json()["events"][0]["reviewer"], "First Owner")
 
@@ -1858,7 +1858,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             corpus.execute(
                 "SELECT COUNT(*) FROM legal_review_events WHERE version_id=779"
             ).fetchone()[0],
-            2,
+            3,
             "revoked platform role must not append a review event",
         )
 
