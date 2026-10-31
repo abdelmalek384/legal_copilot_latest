@@ -499,6 +499,10 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
             "COPILOT_S3_REGION": "eu-central-1",
             "COPILOT_S3_KMS_KEY_ID": "alias/legal-files",
             "COPILOT_S3_ENDPOINT_URL": "",
+            "COPILOT_S3_RECOVERY_BUCKET": "private-recovery-archive",
+            "COPILOT_S3_RECOVERY_REGION": "eu-central-1",
+            "COPILOT_S3_RECOVERY_KMS_KEY_ID": "alias/legal-recovery",
+            "COPILOT_S3_RECOVERY_ENDPOINT_URL": "",
             "COPILOT_DATABASE_ACCEPTANCE_FILE": "/nonexistent/acceptance.json",
         }
         output = io.StringIO()
