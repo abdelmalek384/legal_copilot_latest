@@ -5,27 +5,35 @@
 
 ## Overall status
 
-See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **48% technical completion** (47.95/100, rounded) as of 2026-10-30. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
+See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **48% technical completion** (47.95/100, rounded) as of 2026-10-31. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
 
 
 ## Latest whole-product checkpoint — 2026-10-31
 
-The current source of truth is [the weighted whole-project completion scorecard](project_completion_scorecard.md): **48% technical completion** (47.90/100, rounded). Qualified Egyptian-counsel acceptance remains **0% / not started** and is still a mandatory post-build release gate.
+The current source of truth is [the weighted whole-project completion scorecard](project_completion_scorecard.md): **48% technical completion** (47.95/100, rounded). Qualified Egyptian-counsel acceptance remains **0% / not started** and is still a mandatory post-build release gate.
 
-### Merged since the 30 October checkpoint
+### Merged since the 30 October checkpoint and 31 October follow-up
 
 - **#945:** patched pypdf to 6.21.4 and refreshed the hash-locked Python 3.12 deployment lock. Tests, dependency audit, CodeQL and container build passed.
 - **#946:** identified Ministerial Decision 162/2026 and added a secondary-text crosswalk to Labour Law 14/2025. The original Gazette PDF remains unhashed/uninspected; the record remains discovery-only.
 - **#944:** recorded the Supreme Constitutional Court public recent-judgments page and a third-party-described API lead. No API calls or bulk collection were made; rights remain unknown.
 - **#931:** registered الذاكرة والمعرفة للدراسات as a legal-document discovery source. Its stated CC BY 4.0 scope over underlying texts and database compilation remains unresolved; no text was imported.
 - **#784:** closed as superseded by #946.
+- **#963:** merged the reconciled 360-card Labour Law No. 14/2025 candidate inventory and manifest. Full 139-step Tests, CodeQL and dependency audit passed on the final head. All 360 cards remain search_eligible=false; no verified-corpus percentage increase is claimed.
+- **#967:** merged additional visual checks of Labour Law Article 13 and printed Gazette pages 94–111, correcting 90 pinpoints for Articles 250–298. Original PDF bytes/hash, reuse rights, currentness and counsel review remain outstanding.
+- **#834 and #983:** merged the updated SEC-01 storage attack-surface inventory and S3 purge acceptance checklist. Live S3/KMS/IAM evidence, retention approval, and witnessed recovery/deletion remain open.
+- **#987:** merged Decision 250 Table 24 source-rights metadata for Riwaq and Law Hub. The secondary transcription remains link-out only; no row-level content was imported. Law Hub's terms restrict profiting by republishing its free site materials.
+- **#989:** merged metadata-only inventory entries for Labour Decisions 248–252/2026, source-rights records and a secondary-source matrix. Both the 6.13 MB Gazette PDF and 55-byte item-specific license.txt are request-copy restricted; no original bytes, licence text or hash were obtained. All five instruments remain discovery-only.
+- **#990:** merged same-firm nonmember task-claim/task-completion authorization regression coverage; unauthorized actions return 404 and leave task state unchanged. Full Tests, CodeQL and dependency audit passed.
+- **#782 and #971:** closed as superseded after reconciliation; no unique legal evidence was discarded. #782's remaining seven differently named Articles 258–265 cards were semantic duplicates already represented in main.
 
 ### Current non-database priorities
 
-1. Reconcile the long-lived Labour Law evidence-card work in #782 onto current main; do not merge the stale branch wholesale or weaken evidence gates to satisfy tests.
-2. Advance #840's Decision 248–252/2026 source comparison. Secondary public full/partial text routes are now located for all five decisions, but original Gazette matches remain 0/5 and Table 24 matches remain 0/781.
-3. Continue primary-source discovery and provenance checks for Egyptian legislation and Court of Cassation / Constitutional Court decisions. Keep secondary sources out of authoritative retrieval.
-4. Complete real lawyer-labelled retrieval evaluation, manual Arabic RTL/LTR and accessibility QA, staging operations and witnessed backup/restore after the separate DB/storage workstream is ready.
+1. Keep #840 in draft. Continue lawful primary-source comparison for Decisions 248–252; original Gazette matches remain 0/5 and Table 24 matches remain 0/781. Do not merge its row-level secondary transcription while original bytes, item-specific licence text and reuse rights are unresolved.
+2. Continue primary-source discovery and provenance checks for Egyptian legislation and Court of Cassation / Constitutional Court decisions. Keep secondary sources out of authoritative retrieval and preserve source-specific reuse restrictions.
+3. Complete real lawyer-labelled retrieval/citation evaluation against exact reviewed source versions and pinpoint citations; no qualified-counsel benchmark run has been completed.
+4. Complete manual Arabic RTL/LTR, accessibility, mobile/browser and lawyer-workflow QA.
+5. Complete staging operations, monitoring, operator reconciliation and witnessed backup/restore after the separate DB/storage workstream is ready.
 
 Database/tenant schema, migration, identity and destructive storage changes remain assigned to the separate DB workstream and are not duplicated here.
 
