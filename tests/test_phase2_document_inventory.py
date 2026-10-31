@@ -33,7 +33,7 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
 
     def test_current_inventory_is_metadata_only_and_structurally_valid(self):
         self.assertEqual(validate_inventory(self.inventory), [])
-        self.assertEqual(len(self.inventory["documents"]), 78)
+        self.assertEqual(len(self.inventory["documents"]), 83)
         self.assertTrue(all(d["review_status"] != "verified" for d in self.inventory["documents"]))
         self.assertTrue(all(d["legal_status"] in {"unknown", "not_applicable"} for d in self.inventory["documents"]))
         register = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
@@ -195,6 +195,39 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         self.assertEqual(data["documents"][0]["review_status"], "discovery_only")
         self.assertEqual(validate_inventory(data), [])
 
+
+    def test_labour_decisions_248_to_252_are_catalogue_backed_but_quarantined(self):
+        records = {
+            item["document_id"]: item
+            for item in self.inventory["documents"]
+            if item["document_id"] in {
+                "EG-LABOUR-DECISION-248-2026",
+                "EG-LABOUR-DECISION-249-2026",
+                "EG-LABOUR-DECISION-250-2026",
+                "EG-LABOUR-DECISION-251-2026",
+                "EG-LABOUR-DECISION-252-2026",
+            }
+        }
+        self.assertEqual(len(records), 5)
+        for number in (248, 249, 250, 251, 252):
+            record = records[f"EG-LABOUR-DECISION-{number}-2026"]
+            self.assertEqual(record["instrument_number"], number)
+            self.assertEqual(record["instrument_year"], 2026)
+            self.assertEqual(record["source_id"], "EG-IDSC-DSPACE-GAZETTE")
+            self.assertEqual(record["publication_date"], "2026-10-12")
+            self.assertEqual(record["official_gazette_issue"], "225 تابع (أ)")
+            self.assertEqual(record["collection_permission"], "unknown")
+            self.assertEqual(record["legal_status"], "unknown")
+            self.assertEqual(record["review_status"], "discovery_only")
+            self.assertTrue(any("dspace.id.com.eg/items/9cf7c0e9" in item["url"] for item in record["source_urls"]))
+            self.assertTrue(record["required_related_records"])
+            self.assertFalse(record.get("effective_date"))
+        decision_250 = records["EG-LABOUR-DECISION-250-2026"]
+        self.assertTrue(any("ahmedazimelgamel.blogspot.com/2026/10/250-2026.html" in item["url"] for item in decision_250["source_urls"]))
+        self.assertTrue(any("lawhub.info/eg/?p=19706" in item["url"] for item in decision_250["source_urls"]))
+        self.assertIn("0/781", decision_250["notes"])
+        self.assertTrue(any(action["id"] == "ACT-LABOUR-DECISIONS-248-252-2026-ORIGINAL-GAZETTE-VERIFY" and action["status"] == "blocked" for action in self.inventory["next_actions"]))
+        self.assertEqual(validate_inventory(self.inventory), [])
 
 if __name__ == "__main__":
     unittest.main()
