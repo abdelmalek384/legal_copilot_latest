@@ -67,5 +67,24 @@ class TestLabourDecisionPublicTextCrosswalk(unittest.TestCase):
         self.assertIn("48 hours per week", records["EG-LABOUR-DECISION-289-2025"]["secondary_text"]["summary"])
 
 
+
+    def test_parent_law_primary_anchors_are_separate_from_decision_text(self):
+        data = json.loads(DATA.read_text(encoding="utf-8"))
+        records = {item["document_id"]: item for item in data["decisions"]}
+        expected = {
+            "EG-LABOUR-DECISION-288-2025": {118, 119},
+            "EG-LABOUR-DECISION-289-2025": {117, 121},
+            "EG-LABOUR-DECISION-290-2025": {119, 121},
+            "EG-LABOUR-DECISION-291-2025": {121, 188},
+            "EG-LABOUR-DECISION-292-2025": {121, 123},
+            "EG-LABOUR-DECISION-294-2025": {129},
+        }
+        for document_id, articles in expected.items():
+            anchor = records[document_id]["law_article_primary_anchor"]
+            self.assertEqual(anchor["url"], "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf")
+            self.assertTrue(articles.issubset({item["law_article"] for item in anchor["articles"]}))
+            self.assertIn("does not authenticate", anchor["caution"])
+            self.assertTrue(all(item["printed_gazette_page"] > 0 for item in anchor["articles"]))
+
 if __name__ == "__main__":
     unittest.main()
