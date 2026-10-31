@@ -107,7 +107,96 @@ class BrowserAcceptanceTests(unittest.TestCase):
                 2026,
             ),
         )
+        corpus.execute(
+            """INSERT INTO legal_sources(
+                   source_id,authority,source_page,collection_permission,
+                   commercial_reuse_permission,permission_evidence
+               ) VALUES(?,?,?,?,?,?)""",
+            (
+                "SYNTHETIC-BROWSER-VERIFIED-SOURCE",
+                "Synthetic Verified Fixture Authority",
+                "https://example.test/synthetic-verified-source",
+                "allowed",
+                "allowed",
+                "Synthetic-only fixture permission evidence; not a real legal source.",
+            ),
+        )
+        corpus.execute(
+            """INSERT INTO legal_documents(
+                   document_id,source_id,official_title,document_type,practice_area
+               ) VALUES(?,?,?,?,?)""",
+            (
+                "SYNTHETIC-BROWSER-VERIFIED-DOC",
+                "SYNTHETIC-BROWSER-VERIFIED-SOURCE",
+                "SYNTHETIC TEST FIXTURE - NOT LAW",
+                "statute",
+                "synthetic_test_only",
+            ),
+        )
+        version_id = corpus.execute(
+            """INSERT INTO legal_document_versions(
+                   document_id,version_label,source_url,publication_date,effective_date,
+                   legal_status,review_status,authenticity_verified,status_verified,
+                   amendment_history_verified,permission_evidence,original_sha256
+               ) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)""",
+            (
+                "SYNTHETIC-BROWSER-VERIFIED-DOC",
+                "synthetic-fixture-current",
+                "https://example.test/synthetic-verified-source/version",
+                "2020-01-01",
+                "2020-01-01",
+                "in_force",
+                "verified",
+                1,
+                1,
+                1,
+                "Synthetic-only fixture permission evidence.",
+                "a" * 64,
+            ),
+        ).lastrowid
+        for review_type in (
+            "source_authenticity",
+            "extraction_quality",
+            "legal_status",
+            "amendment_history",
+            "licensing",
+            "lawyer_approval",
+        ):
+            corpus.execute(
+                """INSERT INTO legal_review_events(
+                       version_id,reviewer,review_type,outcome,notes,evidence_url
+                   ) VALUES(?,?,?,?,?,?)""",
+                (
+                    version_id,
+                    "Synthetic fixture reviewer",
+                    review_type,
+                    "pass",
+                    "Synthetic fixture only; not a legal review.",
+                    "https://example.test/synthetic-review-evidence",
+                ),
+            )
+        verified_text = (
+            "CORPUS_ONLY_VERIFIED_SENTINEL_2C77 "
+            "Synthetic verified fixture deadline example for browser scope tests."
+        )
+        corpus.execute(
+            """INSERT INTO chunks(
+                   ref,article,page,text,norm,document_version_id,in_force,as_of,source,verified
+               ) VALUES(?,?,?,?,?,?,?,?,?,1)""",
+            (
+                "Synthetic fixture Article 12",
+                "12",
+                "17",
+                verified_text,
+                app_module.norm(verified_text),
+                version_id,
+                1,
+                "2020-01-01",
+                "SYNTHETIC-BROWSER-VERIFIED-SOURCE",
+            ),
+        )
         corpus.commit()
+        app_module.LLM = lambda _prompt: None
 
         cls.state = {
             "owner_a_email": "owner-a@example.test",
@@ -276,6 +365,16 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.page.locator(".research-composer button").click()
         self.page.get_by_text("لم يُعثر على نص قانوني متحقق ذي صلة", exact=False).wait_for(timeout=12000)
         self.assertNotIn(sentinel, self.page.locator(".research-thread").inner_text())
+
+        scope.select_option("verified_corpus")
+        composer.fill("CORPUS_ONLY_VERIFIED_SENTINEL_2C77")
+        self.page.locator(".research-composer button").click()
+        self.page.get_by_text("CORPUS_ONLY_VERIFIED_SENTINEL_2C77").wait_for(timeout=12000)
+        verified_body = self.page.locator(".research-thread").inner_text()
+        self.assertIn("نص ساري متحقق منه", verified_body)
+        self.assertIn("المادة 12", verified_body)
+        self.assertIn("الصفحة 17", verified_body)
+        self.assertNotIn("FIRM_DOCUMENT_ONLY_SENTINEL_4B91", verified_body)
 
         scope.select_option("metadata_only")
         composer.fill("SYNTHETIC METADATA ONLY INSTRUMENT 2026")
