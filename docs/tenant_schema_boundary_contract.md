@@ -7,7 +7,7 @@
 
 - This is a fresh implementation. No legacy customer database has been deployed or used.
 - Do not create a legacy-data migration or reconciliation project unless an external database is explicitly proposed for import and approved separately.
-- The approved runtime uses three distinct database domains: control plane, one firm database per firm, and shared legal corpus. The explicitly configured `COPILOT_DB` compatibility path remains for development/tests and is rejected in production; it is not an approved multi-firm boundary.
+- The approved runtime uses three distinct database domains: control plane, one firm database per firm, and shared legal corpus. The shared `COPILOT_DB` runtime was retired in PR #972 and is rejected in every environment; no development/test compatibility mode remains.
 - A schema profile, database file, row-scope trigger, or passing CI run is not by itself proof that every application route or query is authorized correctly.
 
 ## Current schema ownership
