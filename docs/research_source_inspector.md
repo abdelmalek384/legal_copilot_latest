@@ -21,7 +21,8 @@ Expose the evidence behind a research answer without treating model confidence, 
 
 ## Source-status labels
 
-- `verified_operative_text` requires a registry-linked version, lawyer/source review marked verified, in-force status, authenticity/status/amendment flags, collection and commercial reuse permission explicitly allowed, evidence for both permissions, an effective date reached, and no repeal date reached.
+- `verified_operative_text` requires a registry-linked version, lawyer/source review marked verified, in-force status, authenticity/status/amendment flags, and an exact source-ID plus normalized-host match against the versioned central permission register. The matched register record must independently mark collection and commercial reuse as allowed, include separate inspectable HTTPS evidence URLs and non-future terms-review dates, and agree with the database permission states. Narrative evidence descriptions alone do not satisfy this check.
+- The answer generator independently abstains if any retrieved corpus passage lacks the verified-operator status or explicit chunk verification flag. The passages may still be shown as research leads with unresolved status; firm-document processing remains subject to its separate data-processing approval.
 - `secondary_copy` is kept distinct from operative legal text.
 - `user_supplied_unverified` applies to firm/matter passages.
 - `metadata_only` has no passage text.
