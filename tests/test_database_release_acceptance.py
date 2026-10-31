@@ -30,6 +30,18 @@ class DatabaseReleaseAcceptanceTests(unittest.TestCase):
                     "verified_at": stamp, "verified_by": "operator-a",
                     "storage_config_sha256": "a" * 64,
                 },
+                "purge_writer_quiescence": {
+                    "status": "passed", "evidence_ref": "private-evidence://writer-freeze",
+                    "verified_at": stamp, "verified_by": "operator-a",
+                    "witnessed_by": "witness-b", "storage_config_sha256": "a" * 64,
+                    "verified_scenarios": [
+                        "upload_finalize_workers_drained",
+                        "non_purge_principals_denied_put_object",
+                        "purge_role_denied_put_object",
+                        "bucket_policy_and_iam_changes_frozen",
+                        "cloudtrail_negative_tests_retained",
+                    ],
+                },
                 "backup_restore_rollback": {
                     "status": "passed", "evidence_ref": "private-evidence://restore",
                     "verified_at": stamp, "verified_by": "operator-a",
@@ -123,8 +135,8 @@ class DatabaseReleaseAcceptanceTests(unittest.TestCase):
                 path, expected_storage_config_sha256="a" * 64, now=self.now
             )
             self.assertTrue(report["ready"], report["blockers"])
-            self.assertEqual(report["passed_count"], 2)
-            self.assertEqual(report["required_count"], 2)
+            self.assertEqual(report["passed_count"], 3)
+            self.assertEqual(report["required_count"], 3)
 
             changed_target = load_staging_purge_acceptance_manifest(
                 path, expected_storage_config_sha256="b" * 64, now=self.now
@@ -133,6 +145,48 @@ class DatabaseReleaseAcceptanceTests(unittest.TestCase):
             self.assertIn(
                 ("original_file_storage", "storage_target_mismatch"),
                 {(item["gate"], item["code"]) for item in changed_target["blockers"]},
+            )
+
+
+    def test_staging_purge_requires_witnessed_target_bound_no_writer_evidence(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "acceptance.json"
+            manifest = json.loads(json.dumps(self.manifest))
+            del manifest["gates"]["purge_writer_quiescence"]
+            path.write_text(json.dumps(manifest), encoding="utf-8")
+            missing = load_staging_purge_acceptance_manifest(
+                path, expected_storage_config_sha256="a" * 64, now=self.now
+            )
+            self.assertFalse(missing["ready"])
+            self.assertIn(
+                ("purge_writer_quiescence", "not_passed"),
+                {(item["gate"], item["code"]) for item in missing["blockers"]},
+            )
+
+            manifest = json.loads(json.dumps(self.manifest))
+            manifest["gates"]["purge_writer_quiescence"]["verified_scenarios"].remove(
+                "non_purge_principals_denied_put_object"
+            )
+            path.write_text(json.dumps(manifest), encoding="utf-8")
+            incomplete = load_staging_purge_acceptance_manifest(
+                path, expected_storage_config_sha256="a" * 64, now=self.now
+            )
+            self.assertFalse(incomplete["ready"])
+            self.assertIn(
+                ("purge_writer_quiescence", "required_scenarios_missing"),
+                {(item["gate"], item["code"]) for item in incomplete["blockers"]},
+            )
+
+            manifest = json.loads(json.dumps(self.manifest))
+            manifest["gates"]["purge_writer_quiescence"]["witnessed_by"] = "OPERATOR-A"
+            path.write_text(json.dumps(manifest), encoding="utf-8")
+            same_actor = load_staging_purge_acceptance_manifest(
+                path, expected_storage_config_sha256="a" * 64, now=self.now
+            )
+            self.assertFalse(same_actor["ready"])
+            self.assertIn(
+                ("purge_writer_quiescence", "independent_witness_required"),
+                {(item["gate"], item["code"]) for item in same_actor["blockers"]},
             )
 
     def test_staging_purge_rejects_missing_or_expired_policy_evidence(self):
