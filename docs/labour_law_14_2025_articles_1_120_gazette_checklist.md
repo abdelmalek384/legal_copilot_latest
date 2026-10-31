@@ -23,7 +23,7 @@ For each article, record:
 4. **Currentness:** identify later amendments, repeal/supersession, implementing decisions and transitional provisions that affect the article; distinguish an implementing instrument from an amendment.
 5. **Counsel:** record qualified Egyptian-lawyer review separately. Do not set this field from automated tests or source matching.
 
-**Existing targeted observations (not full article matches):** Article 1 locator; Articles 4–6 extracted text; Articles 89–90 extracted text; Articles 117–120 have official Gazette page/pinpoint assertions in the existing evidence-card regression tests. Articles 117–120 are recorded below as locator evidence only. The assertions do not establish full article text matching, currentness, rights or counsel approval. The prior review records also contain other selected pinpoints outside this 1–120 scope. The source review expressly says the full 311-row comparison remains incomplete.
+**Existing targeted observations (not full article matches):** Article 1 locator; Article 13 visually inspected (merged PR #967); Articles 4–6 extracted text; Articles 89–90 extracted text; Articles 117–120 have official Gazette page/pinpoint assertions in the existing evidence-card regression tests. These entries are recorded below as locator or limited-observation evidence only. They do not establish full article text matching, currentness, rights or counsel approval. The prior review records also contain other selected pinpoints outside this 1–120 scope. The source review expressly says the full 311-row comparison remains incomplete.
 
 ## Article-by-article checklist
 
