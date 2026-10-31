@@ -95,7 +95,7 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
                 else "EG-ALMASDAR-SECONDARY-LEGAL-NEWS"
             )
             self.assertTrue(any(item.get("source_id") == expected_secondary_id for item in record["source_urls"]))
-            self.assertIn("not authenticated", record["notes"])
+            self.assertIn("not been authenticated", record["notes"])
             self.assertIn("request-copy restricted", record["notes"])
         self.assertTrue(any(a["id"] == "ACT-LABOUR-OSH-DECISIONS-248-252-VERIFY" for a in self.inventory["next_actions"]))
         self.assertEqual(validate_inventory(self.inventory), [])
