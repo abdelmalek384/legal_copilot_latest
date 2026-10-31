@@ -151,6 +151,64 @@ class DatabaseReleaseAcceptanceTests(unittest.TestCase):
                 {(item["gate"], item["code"]) for item in expired["blockers"]},
             )
 
+    def test_staging_purge_rejects_boolean_schema_version(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "acceptance.json"
+            manifest = json.loads(json.dumps(self.manifest))
+            manifest["schema_version"] = True
+            path.write_text(json.dumps(manifest), encoding="utf-8")
+            report = load_staging_purge_acceptance_manifest(
+                path, expected_storage_config_sha256="a" * 64, now=self.now
+            )
+        self.assertFalse(report["ready"])
+        self.assertIn(
+            ("manifest", "invalid_manifest"),
+            {(item["gate"], item["code"]) for item in report["blockers"]},
+        )
+
+    def test_staging_purge_rejects_naive_current_time_without_exception(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "acceptance.json"
+            path.write_text(json.dumps(self.manifest), encoding="utf-8")
+            report = load_staging_purge_acceptance_manifest(
+                path,
+                expected_storage_config_sha256="a" * 64,
+                now=datetime(2026, 10, 28, 12, 0),
+            )
+        self.assertFalse(report["ready"])
+        self.assertIn(
+            ("manifest", "current_time_must_be_timezone_aware"),
+            {(item["gate"], item["code"]) for item in report["blockers"]},
+        )
+
+    def test_staging_purge_rejects_placeholder_evidence_reference(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "acceptance.json"
+            manifest = json.loads(json.dumps(self.manifest))
+            manifest["gates"]["retention_export_deletion_policy"]["evidence_ref"] = "PENDING"
+            path.write_text(json.dumps(manifest), encoding="utf-8")
+            report = load_staging_purge_acceptance_manifest(
+                path, expected_storage_config_sha256="a" * 64, now=self.now
+            )
+        self.assertFalse(report["ready"])
+        self.assertIn(
+            ("retention_export_deletion_policy", "invalid_evidence_reference"),
+            {(item["gate"], item["code"]) for item in report["blockers"]},
+        )
+
+    def test_staging_purge_rejects_invalid_expected_storage_fingerprint(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "acceptance.json"
+            path.write_text(json.dumps(self.manifest), encoding="utf-8")
+            report = load_staging_purge_acceptance_manifest(
+                path, expected_storage_config_sha256="not-a-sha256", now=self.now
+            )
+        self.assertFalse(report["ready"])
+        self.assertIn(
+            ("manifest", "storage_configuration_unavailable"),
+            {(item["gate"], item["code"]) for item in report["blockers"]},
+        )
+
     def test_core_s3_purge_authorization_requires_production_manifest(self):
         key = "arn:aws:kms:eu-central-1:123456789012:key/test-key"
 
