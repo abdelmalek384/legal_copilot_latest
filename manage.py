@@ -13,6 +13,7 @@ from cryptography.fernet import Fernet
 import app
 from database_runtime import DatabaseRuntime, DatabaseRuntimeError
 from database_backup import DatabaseBundleError, create_backup_bundle, restore_backup_bundle, verify_backup_bundle
+from database_backup_archive import upload_encrypted_bundle, download_encrypted_bundle_version
 
 
 def _require_profile_separated_runtime(operation: str) -> None:
@@ -580,6 +581,65 @@ def verify_tenancy_backup(a):
     print(json.dumps(report, ensure_ascii=False, sort_keys=True))
 
 
+def _recovery_archive_clients():
+    bucket = os.environ.get("COPILOT_S3_RECOVERY_BUCKET", "").strip()
+    region = os.environ.get("COPILOT_S3_RECOVERY_REGION", "").strip()
+    key_id = os.environ.get("COPILOT_S3_RECOVERY_KMS_KEY_ID", "").strip()
+    endpoint = os.environ.get("COPILOT_S3_RECOVERY_ENDPOINT_URL", "").strip() or None
+    if not bucket or not region or not key_id:
+        raise SystemExit(
+            "COPILOT_S3_RECOVERY_BUCKET, COPILOT_S3_RECOVERY_REGION, and "
+            "COPILOT_S3_RECOVERY_KMS_KEY_ID are required."
+        )
+    try:
+        import boto3
+    except ImportError as exc:
+        raise SystemExit("AWS SDK is not installed; install the locked requirements.") from exc
+    return (
+        boto3.client("s3", region_name=region, endpoint_url=endpoint),
+        boto3.client("kms", region_name=region),
+        bucket,
+        key_id,
+    )
+
+
+def archive_upload_tenancy(a):
+    """Upload an already-encrypted bundle and print its exact-version locator."""
+    s3, kms, bucket, key_id = _recovery_archive_clients()
+    try:
+        locator = upload_encrypted_bundle(
+            s3, kms, a.file, bucket=bucket, kms_key_id=key_id
+        )
+    except (DatabaseBundleError, OSError, ValueError) as exc:
+        raise SystemExit("Recovery archive upload failed: " + str(exc)) from exc
+    print(json.dumps(locator, sort_keys=True))
+    print("Store this locator as protected recovery evidence; the object key alone is not a recovery point.")
+
+
+def archive_download_tenancy(a):
+    """Download the exact version described by a protected locator JSON file."""
+    locator_path = Path(a.locator).expanduser()
+    if locator_path.is_symlink() or not locator_path.is_file():
+        raise SystemExit("Recovery locator must be a regular non-symlink JSON file.")
+    try:
+        if locator_path.stat().st_size > 16384:
+            raise ValueError("locator file is too large")
+        locator = json.loads(locator_path.read_text(encoding="utf-8"))
+        if not isinstance(locator, dict):
+            raise ValueError("locator must be a JSON object")
+    except (OSError, ValueError, json.JSONDecodeError) as exc:
+        raise SystemExit("Recovery locator could not be read safely.") from exc
+    s3, kms, bucket, key_id = _recovery_archive_clients()
+    try:
+        downloaded = download_encrypted_bundle_version(
+            s3, kms, locator, a.out, bucket=bucket, kms_key_id=key_id
+        )
+    except (DatabaseBundleError, OSError, ValueError) as exc:
+        raise SystemExit("Recovery archive download failed: " + str(exc)) from exc
+    print("Exact encrypted archive version downloaded:", downloaded)
+    print("Next: verify with verify-backup-tenancy, then restore-tenancy to a new isolated directory.")
+
+
 def _change_platform_role(a, *, grant: bool):
     """Change a platform role only when an active platform admin authorizes it."""
     if not app._separate_runtime_enabled():
@@ -1056,6 +1116,8 @@ x.add_argument("--event-type", choices=["password_reset_cli", "identity_created_
 x.set_defaults(f=platform_audit)
 x = sp.add_parser("restore-tenancy"); x.add_argument("file"); x.add_argument("--target-root", required=True); x.set_defaults(f=restore_tenancy)
 x = sp.add_parser("verify-backup-tenancy", help="Verify an encrypted tenancy bundle using temporary protected storage"); x.add_argument("file"); x.set_defaults(f=verify_tenancy_backup)
+x = sp.add_parser("archive-upload-tenancy", help="Upload an encrypted bundle to the separate versioned S3 recovery archive"); x.add_argument("file"); x.set_defaults(f=archive_upload_tenancy)
+x = sp.add_parser("archive-download-tenancy", help="Download one exact S3 recovery archive version from a protected locator JSON file"); x.add_argument("locator"); x.add_argument("--out", required=True); x.set_defaults(f=archive_download_tenancy)
 x = sp.add_parser("importlaws"); x.add_argument("file"); x.set_defaults(f=importlaws)
 x = sp.add_parser("restore"); x.add_argument("file"); x.add_argument("out"); x.set_defaults(f=restore)
 def main(argv=None):
