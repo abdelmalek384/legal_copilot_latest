@@ -1,8 +1,24 @@
 import copy
+from urllib.parse import urlsplit
 import json
 import sys
 import unittest
 from pathlib import Path
+
+def _has_https_host(url, expected_host):
+    try:
+        parsed = urlsplit(url)
+    except ValueError:
+        return False
+    hostname = (parsed.hostname or "").lower()
+    expected_host = expected_host.lower()
+    return (
+        parsed.scheme == "https"
+        and not parsed.username
+        and not parsed.password
+        and (hostname == expected_host or hostname.endswith("." + expected_host))
+    )
+
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
@@ -17,7 +33,7 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
 
     def test_current_inventory_is_metadata_only_and_structurally_valid(self):
         self.assertEqual(validate_inventory(self.inventory), [])
-        self.assertEqual(len(self.inventory["documents"]), 72)
+        self.assertEqual(len(self.inventory["documents"]), 78)
         self.assertTrue(all(d["review_status"] != "verified" for d in self.inventory["documents"]))
         self.assertTrue(all(d["legal_status"] in {"unknown", "not_applicable"} for d in self.inventory["documents"]))
         register = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
@@ -39,20 +55,13 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
             if d["document_id"] == "EG-LABOUR-WORK-REGULATION-RULES-2026"
         )
         self.assertEqual(record["source_id"], "EG-MINISTRY-LABOUR-LAWS")
-        self.assertEqual(record["source_status"], "official_index_discovered_primary_text_pending")
+        self.assertEqual(record["source_status"], "official_Gazette_metadata_verified_primary_text_restricted_secondary_full_text_crosscheck_found")
         self.assertEqual(record["collection_permission"], "unknown")
         self.assertEqual(record["legal_status"], "unknown")
         self.assertEqual(record["review_status"], "discovery_only")
         self.assertTrue(any(a["id"] == "ACT-LABOUR-DECISION-49-2026-VERIFY" for a in self.inventory["next_actions"]))
         self.assertEqual(record["instrument_number"], 162)
-        self.assertEqual(record["official_title_ar"], "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل")
-        self.assertTrue(any("dspace.id.com.eg/items/dae71be0" in item["url"] for item in record["source_urls"]))
-        self.assertTrue(any("ahmedazimelgamel.blogspot.com/2026/08/162-2026.html" in item["url"] for item in record["source_urls"]))
-        self.assertTrue(any("secondary_full_text" in item["status"] for item in record["source_urls"]))
-        self.assertIn("2026-08-14", record["notes"])
-        self.assertIn("Article 46", record["notes"])
-        self.assertIn("decree_162_2026_secondary_text_crosswalk_2026-10-31.md", record["notes"])
-        self.assertEqual(next(a for a in self.inventory["next_actions"] if a["id"] == "ACT-LABOUR-RULES-2026-VERIFY")["status"], "in_progress")
+        self.assertIn("request-a-copy form", record["notes"])
         self.assertEqual(validate_inventory(self.inventory), [])
 
     def test_decision_264_has_2026_followup_without_claiming_text_or_status_verified(self):
@@ -79,7 +88,7 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         self.assertEqual(record["collection_permission"], "unknown")
         self.assertEqual(record["legal_status"], "unknown")
         self.assertEqual(record["review_status"], "discovery_only")
-        self.assertTrue(any("labour.gov.eg" in item["url"] for item in record["source_urls"]))
+        self.assertTrue(any("dspace.id.com.eg" in item["url"] for item in record["source_urls"]))
         self.assertEqual(validate_inventory(self.inventory), [])
 
     def test_2025_labour_decision_294_remains_discovery_only(self):
@@ -92,7 +101,7 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         self.assertEqual(record["collection_permission"], "unknown")
         self.assertEqual(record["legal_status"], "unknown")
         self.assertEqual(record["review_status"], "discovery_only")
-        self.assertTrue(any("labour.gov.eg" in item["url"] for item in record["source_urls"]))
+        self.assertTrue(any("dspace.id.com.eg" in item["url"] for item in record["source_urls"]))
         self.assertTrue(any(a["id"] == "ACT-LABOUR-DECISION-294-2025-VERIFY" for a in self.inventory["next_actions"]))
         self.assertEqual(validate_inventory(self.inventory), [])
 
@@ -102,6 +111,37 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         action = next(a for a in self.inventory["next_actions"] if a["id"] == "ACT-LABOUR-LAW-14-2025-EXEC-REGS-VERIFY")
         self.assertIn("not proof of non-existence", action["action"])
         self.assertEqual(action["status"], "not_started")
+        self.assertEqual(validate_inventory(self.inventory), [])
+
+    def test_later_labour_source_labels_remain_discovery_only(self):
+        expected = {
+            "EG-LABOUR-WORK-REGULATION-RULES-2026",
+            "EG-LABOUR-DECISION-49-2026",
+            "EG-LABOUR-DECISION-294-2025",
+            "EG-LABOUR-DECISION-214-2025",
+            "EG-LABOUR-DECISION-187-2025",
+            "EG-LABOUR-DECISION-290-2025",
+            "EG-LABOUR-DECISION-291-2025",
+            "EG-LABOUR-DECISION-292-2025",
+        }
+        records = {d["document_id"]: d for d in self.inventory["documents"]}
+        self.assertTrue(expected.issubset(records))
+        for document_id in expected:
+            record = records[document_id]
+            self.assertNotEqual(record["source_status"], "verified")
+            self.assertEqual(record["collection_permission"], "unknown")
+            self.assertEqual(record["legal_status"], "unknown")
+            self.assertEqual(record["review_status"], "discovery_only")
+        self.assertEqual(validate_inventory(self.inventory), [])
+
+    def test_decision_50_2026_remains_discovery_only_scan_candidate(self):
+        record = next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-DECISION-50-2026")
+        self.assertEqual(record["source_status"], "third_party_hosted_gazette_scan_candidate")
+        self.assertEqual(record["collection_permission"], "unknown")
+        self.assertEqual(record["legal_status"], "unknown")
+        self.assertEqual(record["review_status"], "discovery_only")
+        self.assertTrue(any(_has_https_host(item["url"], "cairo24.com") for item in record["source_urls"]))
+        self.assertTrue(any(a["id"] == "ACT-LABOUR-DECISION-50-2026-VERIFY" for a in self.inventory["next_actions"]))
         self.assertEqual(validate_inventory(self.inventory), [])
 
     def test_unknown_source_and_duplicate_instrument_ids_are_rejected(self):
