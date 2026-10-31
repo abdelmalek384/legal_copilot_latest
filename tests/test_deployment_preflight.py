@@ -403,7 +403,7 @@ class DeploymentPreflightTests(unittest.TestCase):
         passed, warnings, errors = preflight.inspect_environment(self.env)
         self.assertTrue(any("must not be a symbolic link" in item for item in errors))
         self.assertFalse(any("existing COPILOT_CONTROL_DB file is readable" in item for item in passed))
-        self.assertFalse(any("does not exist yet" in item for item in warnings))
+        self.assertFalse(any("COPILOT_CONTROL_DB does not exist yet" in item for item in warnings))
 
     @unittest.skipUnless(os.name == "posix", "POSIX file permission bits are required")
     def test_rejects_world_readable_sqlite_wal_sidecar(self):
@@ -431,7 +431,7 @@ class DeploymentPreflightTests(unittest.TestCase):
     def test_existing_database_must_be_readable_and_writable(self):
         self.db_path.write_text("test", encoding="utf-8")
         passed, warnings, errors = preflight.inspect_environment(self.env)
-        self.assertTrue(any("existing COPILOT_CONTROL_DB" in item for item in passed))
+        self.assertTrue(any("COPILOT_CONTROL_DB exists and is readable/writable" in item for item in passed))
         self.assertEqual(errors, [])
 
 
