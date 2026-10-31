@@ -5,7 +5,7 @@
 
 ## Overall status
 
-See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **49.33/100 technical completion** (up 0.13 points from 49.20; rounds to 49%) as of 2026-10-31. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
+See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **49.45/100 technical completion** (up 0.12 points from 49.33; rounds to 49%) as of 2026-10-31. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
 
 
 ## Latest whole-product checkpoint — 2026-10-31
@@ -45,11 +45,14 @@ The current source of truth is [the weighted whole-project completion scorecard]
 - **#1074:** distinguished the referendum-results Gazette reference from the amendment-instrument publication lead; the latter remains secondary and unverified.
 - **#1075:** made the legal-source review queue honor the latest review event per type; stale passes no longer override later failures or unattested counsel approvals.
 - **#1077:** aligned corpus-coverage missing-review metrics with the runtime latest-event eligibility gate; regression tests cover failure, unattested approval and restoration by a later valid pass.
+- **#1079:** refreshed the weighted scorecard and progress tracker after the latest-event governance improvements.
+- **#1080:** added the National Elections Authority's official 2014/2019 Constitution PDF locator and its all-rights-reserved notice; permissions remain unknown and the candidate remains discovery-only.
+- **#1083:** consolidated strict current-review-event validation across runtime, offline queue and coverage dashboard; all required CI and safety checks passed.
 
 
 ### 31 October live follow-up — additional merged work and active gates
 
-The weighted scorecard has now been recalculated to **49.33/100** after #1066 and #1067 met their merged acceptance criteria. This is a technical-governance increase; verified primary-source corpus volume remains 6%, and counsel acceptance remains 0%.
+The weighted scorecard has now been recalculated to **49.45/100** after #1066 and #1067 met their merged acceptance criteria. This is a technical-governance increase; verified primary-source corpus volume remains 6%, and counsel acceptance remains 0%.
 
 **Merged after the preceding checkpoint:**
 
@@ -65,6 +68,7 @@ The weighted scorecard has now been recalculated to **49.33/100** after #1066 an
 
 - **#1057:** real-browser acceptance harness with stage diagnostics and periodic Python stack dumps. The latest Chromium job was cancelled while the test command was running; no browser-test pass/fail result was produced. Do not count browser acceptance complete.
 - **#1068:** current-main rebase of the browser harness. Tests, CodeQL and dependency audit passed, but its Chromium job was also cancelled; it remains draft until a real browser run passes. Manual lawyer, device, screen-reader and accessibility acceptance remain separate.
+- **#1081:** Court of Cassation source-rights reconciliation. The current PR records the May 2026 usage policy and Article 141 context; CI is being rerun after preserving the required manual-lookup-only and no-bulk-extraction wording. No judgments are ingested or commercially reused.
 
 **Superseded PR:**
 
