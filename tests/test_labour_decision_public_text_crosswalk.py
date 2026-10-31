@@ -50,7 +50,11 @@ class TestLabourDecisionPublicTextCrosswalk(unittest.TestCase):
             self.assertEqual(item["primary_lead"]["url"], "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc/full")
             self.assertIn("request-a-copy restricted", item["primary_lead"]["status"])
             self.assertIn("Two public secondary", item["secondary_text"]["status"])
-            self.assertIn("neither compared", item["secondary_text"]["status"])
+            if document_id == "EG-LABOUR-DECISION-288-2025":
+                self.assertIn("neither compared", item["secondary_text"]["status"])
+            else:
+                self.assertIn("cross-checked against Ministry-hosted text copy", item["secondary_text"]["status"])
+                self.assertIn("Gazette issue PDF not compared", item["secondary_text"]["status"])
             self.assertTrue(item["currentness"].startswith("not fully verified"))
             self.assertIn("unknown", item["reuse_rights"])
         self.assertIn("48 hours", records["EG-LABOUR-DECISION-292-2025"]["secondary_text"]["summary"])
@@ -110,7 +114,7 @@ class TestLabourDecisionPublicTextCrosswalk(unittest.TestCase):
         data = json.loads(DATA.read_text(encoding="utf-8"))
         item = next(x for x in data["decisions"] if x["document_id"] == "EG-LABOUR-DECISION-289-2025")
         copy = item["ministry_hosted_text_copy"]
-        self.assertIn("not the Official Gazette", copy["caveat"])
+        self.assertIn("not the Gazette issue PDF", copy["caveat"])
         self.assertIn("eight hours", " ".join(copy["articles"][0]["observations"]))
         self.assertIn("Article 121", " ".join(copy["articles"][0]["observations"]))
         self.assertIn("Gazette issue PDF not compared", item["secondary_text"]["status"])
