@@ -548,6 +548,25 @@
       "terms_checked_on": "2026-10-30",
       "bulk_download_or_api": "Hugging Face Parquet file is publicly listed; bulk download is technically available through the platform, but no content acquisition is approved pending provenance, rights-scope and quality review",
       "required_next_action": "Treat as a candidate discovery and extraction-quality benchmark only. Before any content import, inspect a representative sample across categories for duplicates, mixed compilations, extraction corruption and missing text; identify upstream source and publication metadata for each record; compare each candidate against official Gazette or publisher sources; verify currentness/amendment status and whether the MIT license covers underlying material and compilation rights. Keep collection and commercial reuse unknown and search eligibility false until these checks are complete."
+    },
+    {
+      "source_id": "EG-RIWAQ-ALJAMAL-DECISION-250-2026",
+      "authority": "Riwaq al-Jamal legal blog (secondary transcription; author attribution shown on page)",
+      "source_page": "https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html",
+      "material_types": [
+        "secondary transcription of Ministerial Decision 250/2026",
+        "Table 23 hazardous-substance threshold quantities",
+        "Table 24 chemical exposure-limit entries",
+        "technical appendices and workplace safety register templates"
+      ],
+      "access_status": "publicly viewable full-text secondary transcription; not an official Gazette copy",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "The page is publicly viewable and identifies Egyptian Proceedings issue 225 supplement (A), dated 2026-10-12. Its contents map places Table 24 at printed page 249 and the records chapter at printed page 361; the extracted text numbers Table 24 entries 1–781. The page is a secondary transcription, not the Official Gazette PDF. No licence or bulk-collection permission was identified in this review. Public visibility does not establish permission to copy, redistribute, or commercially reuse the transcription or its compilation. No original Gazette bytes or SHA-256 were obtained.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "No API or bulk-export permission established; browser-viewable secondary text only",
+      "required_next_action": "Use only for manual discovery and cross-check/link-out. Do not bulk-copy, redistribute, or ingest row-level text into the product corpus while reuse rights remain unknown. Compare the original Gazette bundle through an ordinary authorized route; preserve the unresolved Table 24 discrepancies at rows 34, 61 and 64. Keep all candidates non-authoritative and retrieval-ineligible."
     }
   ]
 }
