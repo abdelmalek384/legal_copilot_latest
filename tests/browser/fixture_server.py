@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import os
 import secrets
 
 import uvicorn
@@ -22,10 +23,10 @@ def bootstrap() -> None:
         firm_a, "Synthetic Firm A Owner", "owner-a@example.test", app.hash_pw(password)
     )
     owner_b = runtime.create_initial_firm_owner(
-        firm_b, "Synthetic Firm B Owner", "owner-b@example.test", app.hash_pw(PASSWORD)
+        firm_b, "Synthetic Firm B Owner", "owner-b@example.test", app.hash_pw(password)
     )
     reviewer_id = runtime.create_global_identity(
-        "Synthetic Platform Reviewer", "reviewer@example.test", app.hash_pw(PASSWORD)
+        "Synthetic Platform Reviewer", "reviewer@example.test", app.hash_pw(password)
     )
     runtime.create_firm_membership(reviewer_id, firm_a, "lawyer")
     control = runtime.control_connection()
