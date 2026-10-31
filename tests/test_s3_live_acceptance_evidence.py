@@ -36,13 +36,17 @@ class FakeKMS:
 class FakeSTS:
     def get_caller_identity(self):
         return {"Account": "123456789012",
-                "Arn": "arn:aws:sts::123456789012:assumed-role/legal-runtime/session",
+                "Arn": "arn:aws:sts::123456789012:assumed-role/team/legal-runtime/session",
                 "UserId": "AROAX:session"}
 
 
 class FakeIAM:
     def get_role(self, **kwargs):
-        return {"Role": {"Arn": "arn:aws:iam::123456789012:role/legal-runtime"}}
+        self.last_role_name = kwargs["RoleName"]
+        return {"Role": {
+            "Arn": "arn:aws:iam::123456789012:role/team/legal-runtime",
+            "AssumeRolePolicyDocument": {"Version": "2012-10-17", "Statement": [{"Effect": "Allow", "Principal": {"Service": "ecs-tasks.amazonaws.com"}, "Action": "sts:AssumeRole"}]},
+        }}
 
     def list_attached_role_policies(self, **kwargs):
         return {"AttachedPolicies": [{"PolicyArn": "arn:aws:iam::aws:policy/ReadOnlyAccess"}]}
@@ -50,17 +54,32 @@ class FakeIAM:
     def list_role_policies(self, **kwargs):
         return {"PolicyNames": ["runtime-inline"]}
 
+    def get_policy(self, **kwargs):
+        return {"Policy": {"DefaultVersionId": "v1"}}
+
+    def get_policy_version(self, **kwargs):
+        return {"PolicyVersion": {"Document": {"Version": "2012-10-17", "Statement": [{"Effect": "Allow", "Action": ["s3:GetObject"], "Resource": "arn:aws:s3:::private-originals/*"}]}}}
+
+    def get_role_policy(self, **kwargs):
+        return {"PolicyDocument": {"Version": "2012-10-17", "Statement": [{"Effect": "Allow", "Action": ["kms:Decrypt"], "Resource": "arn:aws:kms:eu-central-1:123456789012:key/test-key"}]}}
+
+
 
 class S3LiveEvidenceTests(unittest.TestCase):
     def test_collects_sanitized_caller_bucket_kms_and_role_evidence(self):
+        fake_iam = FakeIAM()
         report = collect_live_evidence(
-            FakeS3(), FakeKMS(), FakeSTS(), FakeIAM(),
+            FakeS3(), FakeKMS(), FakeSTS(), fake_iam,
             bucket="private-originals", key_id="alias/legal-originals",
         )
         self.assertFalse(report["production_ready"])
         self.assertEqual(report["caller"]["account"], "123456789012")
+        self.assertTrue(report["caller"]["arn"].endswith("/[session]"))
         self.assertEqual(report["caller_role"]["role_name"], "legal-runtime")
-        self.assertEqual(report["caller_role"]["inline_policy_names"], ["runtime-inline"])
+        self.assertEqual(fake_iam.last_role_name, "legal-runtime")
+        self.assertEqual(report["caller_role"]["inline_policies"][0]["name"], "runtime-inline")
+        self.assertEqual(report["caller_role"]["attached_policies"][0]["default_version_id"], "v1")
+        self.assertEqual(report["caller_role"]["trust_policy"]["statement_count"], 1)
         self.assertEqual(len(report["kms_grants"]), 1)
         self.assertEqual(report["failed_checks"], [])
 
