@@ -955,7 +955,8 @@ function applyLanguage(root=document.body){
  const walk=n=>{if(n.nodeType===Node.TEXT_NODE){const v=n.nodeValue.trim();if(v&&tr(v)!==v)n.nodeValue=n.nodeValue.replace(v,tr(v))}
  else if(n.nodeType===Node.ELEMENT_NODE){if(n.hasAttribute('placeholder'))n.setAttribute('placeholder',tr(n.getAttribute('placeholder')));if(n.hasAttribute('aria-label'))n.setAttribute('aria-label',tr(n.getAttribute('aria-label')));for(const c of [...n.childNodes])walk(c)}};
  walk(root);
- document.querySelectorAll('[data-lang-switch]').forEach(b=>b.textContent=LANG==='ar'?'English':'العربية');
+ const languageLabel=LANG==='ar'?'English':'العربية';
+ document.querySelectorAll('[data-lang-switch]').forEach(b=>{if(b.textContent!==languageLabel)b.textContent=languageLabel});
 }
 function switchLanguage(){LANG=LANG==='ar'?'en':'ar';sessionStorage.lang=LANG;if(!ME.id){login(AUTH_MODE);setTimeout(()=>applyLanguage(),0);return}if(window.CASE_ID){view(window.CASE_ID)}else if(PAGE==='dash')dash();else if(PAGE==='clients')clients();else if(PAGE==='cases')casesPage();else if(PAGE==='tasks')tasksPage();else if(PAGE==='calendar')calendarPage();else if(PAGE==='law')law();else if(PAGE==='coverage')corpusCoverage();else if(PAGE==='review')reviewWorkbench();else if(PAGE==='settings')settingsPage();else dash();setTimeout(()=>applyLanguage(),0)}
 document.addEventListener('keydown',e=>{
