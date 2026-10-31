@@ -196,6 +196,33 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         self.assertEqual(source["terms_checked_on"], "2026-10-30")
         self.assertEqual(MODULE.validate(data), [])
 
+    def test_riwaq_decision_250_secondary_transcription_stays_rights_unknown(self):
+        import json
+        data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        source = next(item for item in data["sources"] if item["source_id"] == "EG-RIWAQ-ALJAMAL-DECISION-250-2026")
+        self.assertEqual(source["source_page"], "https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html")
+        self.assertEqual(source["collection_permission"], "unknown")
+        self.assertEqual(source["commercial_reuse_permission"], "unknown")
+        self.assertIsNone(source["terms_checked_on"])
+        self.assertIn("1–781", source["permission_evidence"])
+        self.assertIn("not the Official Gazette PDF", source["permission_evidence"])
+        self.assertIn("manual discovery", source["required_next_action"])
+        self.assertIn("Do not bulk-copy", source["required_next_action"])
+        self.assertEqual(MODULE.validate(data), [])
+
+    def test_law_hub_decision_250_preview_respects_published_reuse_restriction(self):
+        import json
+        data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        source = next(item for item in data["sources"] if item["source_id"] == "EG-LAW-HUB-DECISION-250-2026")
+        self.assertEqual(source["collection_permission"], "unknown")
+        self.assertEqual(source["commercial_reuse_permission"], "not_allowed_without_explicit_exception_or_license")
+        self.assertEqual(source["terms_url"], "https://lawhub.info/eg/?page_id=778")
+        self.assertEqual(source["terms_checked_on"], "2026-10-31")
+        self.assertIn("attribution", source["permission_evidence"])
+        self.assertIn("profit", source["permission_evidence"])
+        self.assertIn("no document bytes or pages inspected", source["access_status"])
+        self.assertEqual(MODULE.validate(data), [])
+
 if __name__ == "__main__":
     unittest.main()
 
