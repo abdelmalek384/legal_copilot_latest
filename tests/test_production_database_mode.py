@@ -47,7 +47,8 @@ class ProductionDatabaseModeTests(unittest.TestCase):
                         "bucket_policy_and_iam_changes_frozen",
                         "cloudtrail_negative_tests_retained",
                     ],
-                },\n                "backup_restore_rollback": {
+                },
+                "backup_restore_rollback": {
                     "status": "passed", "evidence_ref": "synthetic-test-evidence",
                     "verified_at": stamp, "verified_by": "test-operator",
                     "witnessed_by": "independent-test-witness",
