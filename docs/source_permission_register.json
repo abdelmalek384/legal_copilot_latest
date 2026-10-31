@@ -476,6 +476,44 @@
       "terms_checked_on": "2026-10-30",
       "bulk_download_or_api": "Hugging Face Parquet file is publicly listed; bulk download is technically available through the platform, but no content acquisition is approved pending provenance, rights-scope and quality review",
       "required_next_action": "Treat as a candidate discovery and extraction-quality benchmark only. Before any content import, inspect a representative sample across categories for duplicates, mixed compilations, extraction corruption and missing text; identify upstream source and publication metadata for each record; compare each candidate against official Gazette or publisher sources; verify currentness/amendment status and whether the MIT license covers underlying material and compilation rights. Keep collection and commercial reuse unknown and search eligibility false until these checks are complete."
+    },
+    {
+      "source_id": "EG-ALMASDAR-SECONDARY-LEGAL-NEWS",
+      "authority": "Almasdar news publisher and secondary legal-text reproductions",
+      "source_page": "https://www.almasdar.com/",
+      "material_types": [
+        "Secondary transcriptions of Egyptian ministerial decisions",
+        "Reproduced Gazette page-image links",
+        "Legal news and official-announcement summaries"
+      ],
+      "access_status": "public individual article pages located; selected Labour Ministry Decisions 249–252/2026 have text excerpts and linked page images; no licence or bulk-export terms verified",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Individual public article pages for Decisions 249–252/2026 reproduce decision titles, publication metadata, selected/full transcribed text and linked page images. These are secondary reproductions, not the original Gazette bundle. The pages do not establish authenticity, completeness, the source of the page images, or permission to copy, bulk extract, index, redistribute or commercially reuse the content. No licence or source-specific terms have been verified. Do not infer permission from public accessibility.",
+      "permission_evidence_url": "https://www.almasdar.com/175150",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "No public API or bulk-export facility established; only individual article pages and embedded image links were located.",
+      "required_next_action": "Keep as manual discovery/cross-check/link-out only. Inspect applicable terms and item-level rights before any copying or automated collection; authenticate all reproduced text/images against the original Gazette; retain collection and commercial reuse as unknown until independently evidenced. Do not bypass any access controls."
+    },
+    {
+      "source_id": "EG-LAW-HUB-SECONDARY-LEGAL-ARCHIVE",
+      "authority": "LAW HUB / مركز القانون — Egyptian legal information archive",
+      "source_page": "https://lawhub.info/eg/",
+      "material_types": [
+        "Secondary legal-instrument index entries",
+        "Embedded PDF/Word links for Egyptian legislation",
+        "Legal research and practice materials"
+      ],
+      "access_status": "public legal archive entry for Decision 248/2026 located with embedded PDF link; source terms and rights scope not reviewed",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "The public Decision 248/2026 entry identifies the instrument number and title and exposes embedded PDF/Word links. The embedded file is not the Official Gazette original on the evidence reviewed; no source-specific licence, bulk-export permission, or commercial-reuse permission was established. Public access is not permission to copy, index, redistribute or commercially display.",
+      "permission_evidence_url": "https://lawhub.info/eg/?p=19704",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "No public API or bulk-export facility established; one individual record and an embedded Google Drive link were located.",
+      "required_next_action": "Use only as a discovery/link-out lead pending terms and rights review. Authenticate any document against the Official Gazette and assess record-level rights; keep collection and commercial reuse unknown. Do not infer permission from an embedded download link."
     }
   ]
 }
