@@ -1,10 +1,16 @@
 """Regression tests for Arabic query expansion and preliminary conflict-name matching."""
 import unittest
 
-from app import conflict_name_matches, expanded_tokens, matched_surface_terms, tokens
+from app import SYS, conflict_name_matches, expanded_tokens, matched_surface_terms, tokens
 
 
 class ArabicMatchingTests(unittest.TestCase):
+    def test_model_prompt_handles_egyptian_arabic_without_treating_synonyms_as_evidence(self):
+        self.assertIn("Egyptian Arabic", SYS)
+        self.assertIn("retrieval hints", SYS)
+        self.assertIn("exact formal statutory wording", SYS)
+        self.assertIn("ask a focused clarification", SYS)
+
     def test_article_prefix_and_accusative_alif_variant_are_query_expanded(self):
         query = expanded_tokens("الشيك")
         self.assertIn("شيك", query)
@@ -88,6 +94,21 @@ class ArabicMatchingTests(unittest.TestCase):
             ("ورث ومش راضي يوزع", ("قسمة التركة", "حقوق الورثة")),
             ("حد نصب عليا أونلاين", ("الاحتيال الإلكتروني", "جرائم تقنية المعلومات")),
             ("العربية اتخبطت", ("حادث سيارة", "التعويض عن حوادث السيارات")),
+            ("عملولي محضر", ("تحرير محضر", "محضر الشرطة")),
+            ("اتعمل ضدي محضر", ("محضر الشرطة", "التحقيق الجنائي")),
+            ("الشرطة استدعتني", ("استدعاء الشرطة", "سماع الأقوال")),
+            ("اتقبض عليا", ("القبض", "ضمانات القبض")),
+            ("اتحبست", ("الحبس الاحتياطي", "ضمانات المتهم")),
+            ("عايز أعمل محضر", ("تحرير محضر", "تقديم بلاغ")),
+            ("اتظلمت من قرار", ("التظلم من القرار الإداري", "القرار الإداري")),
+            ("الجهة رفضت طلبي", ("رفض الطلب", "التظلم الإداري")),
+            ("مش عارف آخد ورثي", ("قسمة التركة", "حقوق الورثة")),
+            ("اخواتي مش بيدوني حقي في الورث", ("قسمة التركة", "دعوى القسمة")),
+            ("الشركة مخصمتليش التأمينات", ("اشتراكات التأمين الاجتماعي", "التأمينات الاجتماعية")),
+            ("مضوني على استقالة", ("الاستقالة", "صحة الاستقالة")),
+            ("مضوني على ورق", ("الإكراه", "صحة المحررات")),
+            ("عايز أفسخ عقد الإيجار", ("فسخ عقد الإيجار", "إنهاء عقد الإيجار")),
+            ("مش بيرجعلي فلوسي", ("رد المبالغ", "دعوى المطالبة")),
         )
         for question, expected_phrases in cases:
             with self.subTest(question=question):

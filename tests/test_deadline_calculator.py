@@ -100,6 +100,12 @@ class DeadlineCalculatorTests(unittest.TestCase):
         self.assertTrue(any("مسودة غير معتمدة" in warning for warning in result["warnings"]))
         self.assertTrue(any("تقويم العطلات غير مكتمل" in warning for warning in result["warnings"]))
         self.assertIn("disclaimer", result)
+        self.assertFalse(result["verified_rule"])
+        self.assertIsNone(result["rule_source_article"])
+        self.assertTrue(result["starts_from_ar"])
+        self.assertGreaterEqual(len(result["calculation_assumptions_ar"]), 4)
+        self.assertTrue(result["steps_ar"])
+        self.assertIn("الجمعة والسبت", " ".join(result["calculation_assumptions_ar"]))
 
     def test_estimate_rejects_unknown_rule_and_invalid_trigger(self):
         with self.assertRaises(dc.DeadlineError):
