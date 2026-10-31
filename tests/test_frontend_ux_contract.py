@@ -205,6 +205,9 @@ class FrontendUXContractTests(unittest.TestCase):
 
     def test_research_inspector_displays_only_latest_review_events(self):
         self.assertIn("const latestReviewByType=Object.create(null)", HTML)
+        self.assertIn("const parseReviewTime=value=>", HTML)
+        self.assertIn("Date.parse(raw.replace(' ','T')+'Z')", HTML)
+        self.assertIn("const eventTime=parseReviewTime(event.reviewed_at)", HTML)
         self.assertIn("eventTime===previousTime&&eventId>previousId", HTML)
         self.assertIn(":eventId>previousId", HTML)
         self.assertIn("const lawyerApproval=latestReviewByType.lawyer_approval", HTML)
