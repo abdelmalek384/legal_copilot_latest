@@ -277,6 +277,62 @@ class S3PrivateObjectStore:
         except Exception as exc:
             raise ObjectStorageError("object-storage inventory could not be listed") from exc
 
+    def purge_unversioned(
+        self, firm_id: int, object_id: str, *, expected_sha256: str, expected_size: int
+    ) -> bool:
+        """Physically remove one finalized object only from a never-versioned bucket.
+
+        This deliberately refuses both Enabled and Suspended versioning. A suspended
+        bucket may retain historical versions, and deleting the current key would only
+        create/alter a delete marker rather than prove erasure. Production callers must
+        additionally enforce the approved retention policy, target fingerprint,
+        IAM controls, quiescence, and independent authorization.
+        """
+        firm_id = self._firm_id(firm_id)
+        object_id = self._object_id(object_id)
+        try:
+            versioning = self.client.get_bucket_versioning(Bucket=self.bucket)
+        except Exception as exc:
+            raise ObjectStorageError("bucket versioning state could not be verified") from exc
+        if not isinstance(versioning, dict):
+            raise ObjectStorageError("physical purge requires a confirmed never-versioned bucket")
+        status = versioning.get("Status")
+        if status in ("Enabled", "Suspended"):
+            raise ObjectStorageError("physical purge is blocked for a versioned or suspended bucket; a confirmed never-versioned bucket is required")
+        unexpected_fields = set(versioning) - {"ResponseMetadata"}
+        if status is not None or unexpected_fields:
+            raise ObjectStorageError("physical purge requires a confirmed never-versioned bucket")
+        staged_key = self._key(firm_id, object_id, "staged")
+        final_key = self._key(firm_id, object_id, "blob")
+        if self._head(staged_key) is not None:
+            raise ObjectStorageError("physical purge is blocked while a staged copy exists")
+        if self._head(final_key) is None:
+            return False
+        if not self.verify(
+            firm_id, object_id,
+            expected_sha256=expected_sha256, expected_size=expected_size,
+        ):
+            raise ObjectStorageError("original bytes failed integrity verification before purge")
+        try:
+            result = self.client.delete_object(Bucket=self.bucket, Key=final_key)
+            version_id = result.get("VersionId")
+            if version_id not in (None, "null"):
+                raise ObjectStorageError("delete created a versioned marker; physical purge is unproven")
+            if self._head(final_key) is not None:
+                raise ObjectStorageError("object remains after physical purge request")
+            after = self.client.get_bucket_versioning(Bucket=self.bucket)
+            if (
+                not isinstance(after, dict)
+                or after.get("Status") is not None
+                or set(after) - {"ResponseMetadata"}
+            ):
+                raise ObjectStorageError("bucket versioning changed or became unknown during physical purge")
+            return True
+        except ObjectStorageError:
+            raise
+        except Exception as exc:
+            raise ObjectStorageError("physical purge could not be verified") from exc
+
     def delete(self, firm_id: int, object_id: str) -> bool:
         keys = [self._key(firm_id, object_id, state) for state in ("staged", "blob")]
         existed = any(self._head(key) is not None for key in keys)
