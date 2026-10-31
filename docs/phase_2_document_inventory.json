@@ -2214,6 +2214,11 @@
           "url": "https://sis.gov.eg/ar/المركز-الإعلامي/الأخبار/وزير-العمل-الخميس-المقبل-إجازة-رسمية-بمناسبة-عيد-ثورة-٢٣-يوليو/",
           "source_role": "Official SIS-hosted Ministry notice citing Decision 294/2025 and 2026 July Revolution Day holiday circular; event-specific date, not permanent amendment",
           "status": "official_event_specific_currentness_notice"
+        },
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_role": "Primary Official Gazette text of parent Law 14/2025; related article locator only, not implementing-decision text",
+          "status": "primary_parent_law_text_extracted_decision_comparison_pending"
         }
       ]
     },
@@ -2341,6 +2346,11 @@
           "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/30-12-2025/no-290?id=5008505&type=1",
           "source_role": "EastLaws secondary full-text transcription; records Gazette date and next-day commencement; not primary Gazette evidence",
           "status": "secondary_full_text_crosscheck_not_primary_verified"
+        },
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_role": "Primary Official Gazette text of parent Law 14/2025; related article locator only, not implementing-decision text",
+          "status": "primary_parent_law_text_extracted_decision_comparison_pending"
         }
       ]
     },
@@ -2388,6 +2398,11 @@
           "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/30-12-2025/no-291?id=5064176&type=1",
           "source_role": "EastLaws secondary full-text transcription; records Gazette date and next-day commencement; not primary Gazette evidence",
           "status": "secondary_full_text_crosscheck_not_primary_verified"
+        },
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_role": "Primary Official Gazette text of parent Law 14/2025; related article locator only, not implementing-decision text",
+          "status": "primary_parent_law_text_extracted_decision_comparison_pending"
         }
       ]
     },
@@ -2434,6 +2449,11 @@
           "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/25-12-2025/no-292?id=5042304&type=1",
           "source_role": "EastLaws secondary full-text/index; direct page access returned 403 in this session",
           "status": "secondary_full_text_indexed_not_primary_verified"
+        },
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_role": "Primary Official Gazette text of parent Law 14/2025; related article locator only, not implementing-decision text",
+          "status": "primary_parent_law_text_extracted_decision_comparison_pending"
         }
       ]
     },
@@ -2747,6 +2767,11 @@
           "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/30-12-2025/no-288?id=5064169&type=1",
           "source_role": "EastLaws secondary legal text/index; direct page access returned 403 in this session",
           "status": "secondary_full_text_indexed_not_primary_verified"
+        },
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_role": "Primary Official Gazette text of parent Law 14/2025; related article locator only, not implementing-decision text",
+          "status": "primary_parent_law_text_extracted_decision_comparison_pending"
         }
       ]
     },
@@ -2788,6 +2813,11 @@
           "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/30-12-2025/no-289?id=5008502&type=1",
           "source_role": "EastLaws secondary legal text/index; direct page access returned 403 in this session",
           "status": "secondary_full_text_indexed_not_primary_verified"
+        },
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_role": "Primary Official Gazette text of parent Law 14/2025; related article locator only, not implementing-decision text",
+          "status": "primary_parent_law_text_extracted_decision_comparison_pending"
         }
       ]
     }
