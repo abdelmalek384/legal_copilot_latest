@@ -10,7 +10,7 @@ See [the weighted whole-project completion scorecard](project_completion_scoreca
 
 ## Latest whole-product checkpoint — 2026-10-31
 
-The current source of truth is [the weighted whole-project completion scorecard](project_completion_scorecard.md): **48.85/100 technical completion** (up 0.35 points; rounds to 49%). Qualified Egyptian-counsel acceptance remains **0% / not started** and is still a mandatory post-build release gate.
+The current source of truth is [the weighted whole-project completion scorecard](project_completion_scorecard.md): **49.20/100 technical completion** (up 0.70 points from 48.50; rounds to 49%). Qualified Egyptian-counsel acceptance remains **0% / not started** and is still a mandatory post-build release gate.
 
 ### Merged since the 30 October checkpoint and 31 October follow-up
 
@@ -73,7 +73,7 @@ The weighted scorecard has now been recalculated to **49.20/100** after #1066 an
 
 ### Current open PRs and acceptance
 
-- **#1057:** browser acceptance harness remains open/draft. Tests, CodeQL and dependency audit passed; the real Chromium acceptance suite has not returned a final result. Do not count browser acceptance complete.
+- **#1057:** browser acceptance harness remains open/draft. Its synthetic verified-corpus fixture now includes the runtime counsel-attestation marker required after #1066. The corrected head still needs a definitive Chromium acceptance result; do not count browser acceptance complete.
 - **#840:** remains draft/open; Decisions 248–252 and Table 24 source comparison remain discovery-only pending lawful original Gazette access and rights review.
 - **#1065:** merged after its refreshed Tests, CodeQL and dependency audit all passed.
 
