@@ -563,3 +563,25 @@ This checkpoint supersedes the earlier 47%/42% estimates recorded above. The who
 6. Obtain qualified Egyptian counsel's actual application acceptance after technical completion.
 
 **No completion-percentage increase is claimed:** more provisional cards and source leads improve research preparation, but they do not establish a verified Egyptian legal corpus or counsel-approved answers.
+
+
+## Latest checkpoint — 2026-10-31 (implementing-decision crosswalk and source-rights review)
+
+**Whole-project technical completion remains 48%** (the existing weighted estimate); the verified Egyptian legal corpus remains **6%** and final Egyptian-counsel acceptance remains **0% / not started**. This source-discovery work does not justify a percentage increase.
+
+### Completed and merged
+
+- **#1044 and #1047 — Law 14/2025 accompanying-law checklist and page locators:** the Articles 1–120 Gazette comparison checklist is merged, and article-heading locators were populated from the ETA-hosted Gazette PDF for the full 298-article law. Selected page images were inspected to confirm locators. This is not a full article-text comparison; verification, currentness, rights and counsel gates remain open.
+- **#1048 — invoice implementation contract:** merged a database-owner review proposal covering invoice lifecycle, EGP exact-money handling, line items, append-only payments, derived payment states, firm/case authorization, immutable issued snapshots, print/export and regression tests. No invoice tables, migrations, API or UI were implemented. Implementation remains gated on explicit database-owner approval of the logical model, migration target and tenant strategy; accountant/tax-counsel confirmation is separately required before calling any output a tax invoice.
+- **#1049 — Gazette issue 295 source rights:** recorded the Amiri Press/DSpace issue metadata, request-a-copy restrictions for the issue PDF and item-specific license file, and repository terms. No restricted bytes were obtained and no rights were inferred from a license filename.
+- **#1051 — Decisions 288/2025, 289/2025, 290/2025, 291/2025, 292/2025 and 294/2025:** added decision-level secondary-text crosswalks, official issue metadata, parent-Law 14/2025 article anchors, currentness leads and regression tests. Decision 289 Articles 1–2 were reviewed in a Ministry of Labour PDF hosted by SIS; this is a government-hosted text copy, not the Official Gazette scan, and reuse terms remain unreviewed. Decision 291 was visually cross-checked against a third-party page-image reproduction of Gazette pages 21–22; the original DSpace PDF remains request-copy restricted and the reproduction's provenance/reuse rights remain unresolved. A separate MELES DSpace item for Decision 288 lists two restricted PDFs and a restricted item-specific license file; repository terms require written permission for commercial reuse and systematic database compilation. All six decisions remain discovery-only, legal status unknown and search_eligible=false. PR #1051 passed Tests, CodeQL, dependency security audit and non-database safety regression before merge.
+
+### Open work and blockers
+
+- Complete page-by-page exact text comparison for all 298 Law 14/2025 articles and the 13 promulgation provisions against lawfully acquired Gazette bytes; existing article locators and selected visual checks are not full verification.
+- Obtain lawful primary-text access and compare Decisions 288, 290, 292 and 294 with their Gazette pages; obtain the original Gazette issue 295 for Decision 291 comparison. Do not submit request-copy forms or bypass restrictions under the current acquisition constraint.
+- Verify later amendments, commencement and currentness for all six decisions; in particular, locate an authoritative instrument for the Decision 291 Article 4 annual overtime maximum. The candidate 2026-03-31 deadline is a date calculation, not proof of compliance or non-compliance.
+- Resolve collection and commercial reuse permissions and obtain qualified Egyptian-lawyer review before any statutory card becomes authoritative or search-eligible.
+- Invoice implementation remains blocked pending database-owner approval. Do not overload the existing fees table or alter tenant isolation to simulate invoices.
+
+**No verified-corpus percentage increase is claimed:** the new crosswalks improve source discovery and rights traceability, not legal verification or counsel acceptance.
