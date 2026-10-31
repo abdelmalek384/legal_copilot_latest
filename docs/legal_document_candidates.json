@@ -70,12 +70,13 @@
       "source_id": "EG-MINISTRY-LABOUR-LAWS",
       "authority": "Ministry of Labour, Arab Republic of Egypt",
       "source_page": "https://www.labour.gov.eg/en/laws-and-legislations/",
-      "access_status": "official legislation index located",
+      "access_status": "official Ministry of Labour legislation index search-indexed; Law 14/2025 entry observed; direct page fetch returned 502; no direct file URL or PDF bytes obtained",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
       "terms_checked_on": null,
-      "permission_evidence": null
+      "permission_evidence": null,
+      "access_evidence": "On 2026-10-31 the official Ministry of Labour laws-and-legislation index was visible in search results and listed Law No. 14/2025 as a Basic Law, alongside the repealed 2003 Labour Law and related legislation. The Ministry's official publications index also lists Law 14/2025 and a Q&A publication. Direct page opening returned HTTP 502, and no direct PDF download URL was exposed in the search-indexed text. This is an official index/discovery lead only; it does not establish that the Ministry page hosts the authoritative Gazette bytes or grants collection/commercial reuse permission."
     },
     {
       "source_id": "EG-MIFT-LEGISLATION",
@@ -299,7 +300,7 @@
       "source_id": "EG-AMIRI-PRESS",
       "language": "ar",
       "candidate_status": "discovery_only",
-      "notes": "Official Amiri Press text page located: https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D. Keep discovery-only; confirm the exact Official Gazette issue/pages, commencement, executive regulations, transitional provisions, and source-specific collection/commercial reuse terms before acquisition or retrieval."
+      "notes": "Official Amiri Press text page located: https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D. Keep discovery-only; confirm the exact Official Gazette issue/pages, commencement, executive regulations, transitional provisions, and source-specific collection/commercial reuse terms before acquisition or retrieval. The Ministry of Labour's official legislation index also lists Law No. 14/2025 as a Basic Law, and its publications index lists the law and a related Q&A. In this review the index was visible in search results but direct page opening returned HTTP 502; no Ministry-hosted direct PDF URL or bytes were obtained. Keep the Amiri Press Official Gazette source as the primary publication locator; Ministry listing is a cross-reference only, not a substitute for the Gazette or proof of reuse rights."
     },
     {
       "document_id": "EG-INCOME-TAX-91-2005",
