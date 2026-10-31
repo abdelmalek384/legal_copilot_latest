@@ -27,6 +27,13 @@ SOURCE_STATES = {
     "discovery_only", "official_copy_candidate", "official_text_candidate",
     "later_official_citation_only", "official_court_candidate",
     "official_index_discovered_primary_text_pending",
+    "third_party_hosted_gazette_scan_candidate",
+    "official_Gazette_metadata_verified_primary_text_restricted_secondary_full_text_crosscheck_found",
+    "official_Gazette_metadata_and_secondary_full_text_found; primary_comparison_pending",
+    "official_publisher_text_found_currentness_and_reuse_pending",
+    "official_metadata_or_text_lead_found_primary_comparison_pending",
+    "official_Gazette_repository_metadata_and_public_secondary_Article_1_abstract_found; Article_2_schedule_pending",
+    "official_Gazette_metadata_plus_secondary_indexed_text_found; primary_comparison_pending",
 }
 FORBIDDEN_CONTENT_KEYS = {
     "full_text", "article_text", "passage_text", "downloaded_text",
