@@ -14,7 +14,7 @@
 - Collection permission: `unknown`; commercial reuse: `unknown`.
 - Authoritative search eligibility: `false`.
 
-Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF has not been downloaded, hashed, or visually inspected; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording. Additional cards for accompanying-law Articles 4–9 were prepared from text extraction of the government-hosted Official Gazette PDF on 2026-10-28. The PDF has not been downloaded, hashed, or visually inspected; page pinpointing is provisional and all cards remain non-authoritative. Additional cards for accompanying-law Articles 10–12 were prepared from the government-hosted Official Gazette PDF text extraction on 2026-10-28. Page references are based on the extracted page labels; the PDF has not been downloaded, hashed, or visually inspected. Cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 16, 22, 23, 25 and 27 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; these cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 28–31 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 32–34 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 36–37 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshot checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 40–43 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 44–48 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 49–54 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. On 2026-10-30, 43 additional occupational-safety and labour-inspection cards for Articles 256–298 were selectively reconciled from the previously split review snapshots. Their pinpoint pages are inferred and not visually verified; all 43 are secondary-cross-checked only, have explicit limitations and not-usable-for boundaries, and remain search_eligible=false. Article 266's supplemental card asks only for the identity of its implementing ministerial decision and abstains because the decision's text/currentness is not verified. The original Gazette PDF remains undownloaded/unhashed and the full article-by-article comparison, rights review and Egyptian-lawyer review remain open. On 2026-10-30, 15 additional coverage-gap cards for accompanying-law Articles 1–39 were selectively reconciled from the earlier review snapshot. Their printed-page numbers are inferred from extracted text sequence, not visually checked; each remains provisional_text_extract_crosschecked with explicit limitations. Ten separate promulgation cards for Articles 2–11 were also added as provisional_secondary_crosscheck records; the article identities are present in public transcriptions, but their Gazette page pinpoints are not established. These cards address transitional funds, preservation of benefits, licensing, worker data, pending cases and implementing decisions; their time limits and legal effects must not be applied without primary Gazette comparison, commencement-date verification, later-instrument review and qualified Egyptian-lawyer review. All cards remain search_eligible=false. Reconciliation update 2026-10-31: merged current main (127 cards) with the 294-card Labour Law evidence PR snapshot. The combined inventory contains 360 unique card IDs (61 shared IDs reconciled; 233 PR-only and 66 main-only retained). For shared IDs, current-main scalar text is retained; evidence, cross-checks, limitations and related-instrument leads are unioned without duplicate entries. Corrected Gazette page locators from the PR snapshot are retained where the current-main locator differed. This is inventory reconciliation only: all 360 cards remain search_eligible=false; source binary hash, full currentness/amendment review, rights clearance and Egyptian-lawyer review remain outstanding. Visual page-pinpoint correction 2026-10-31: ten cards for Articles 294–298 were checked against the government-hosted Official Gazette PDF. Articles 294–295 are on printed p.110 (PDF index 108); Articles 296–298 are on printed p.111 (PDF index 109). The former inferred pp.92/94 locators were incorrect and have been replaced. This corrects pinpoint accuracy only; it does not complete full-law review, currentness/amendment verification, reuse-rights clearance or counsel approval.
+Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF has not been downloaded, hashed, or visually inspected; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording. Additional cards for accompanying-law Articles 4–9 were prepared from text extraction of the government-hosted Official Gazette PDF on 2026-10-28. The PDF has not been downloaded, hashed, or visually inspected; page pinpointing is provisional and all cards remain non-authoritative. Additional cards for accompanying-law Articles 10–12 were prepared from the government-hosted Official Gazette PDF text extraction on 2026-10-28. Page references are based on the extracted page labels; the PDF has not been downloaded, hashed, or visually inspected. Cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 16, 22, 23, 25 and 27 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; these cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 28–31 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 32–34 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 36–37 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshot checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 40–43 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 44–48 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 49–54 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. On 2026-10-30, 43 additional occupational-safety and labour-inspection cards for Articles 256–298 were selectively reconciled from the previously split review snapshots. Their pinpoint pages are inferred and not visually verified; all 43 are secondary-cross-checked only, have explicit limitations and not-usable-for boundaries, and remain search_eligible=false. Article 266's supplemental card asks only for the identity of its implementing ministerial decision and abstains because the decision's text/currentness is not verified. The original Gazette PDF remains undownloaded/unhashed and the full article-by-article comparison, rights review and Egyptian-lawyer review remain open. On 2026-10-30, 15 additional coverage-gap cards for accompanying-law Articles 1–39 were selectively reconciled from the earlier review snapshot. Their printed-page numbers are inferred from extracted text sequence, not visually checked; each remains provisional_text_extract_crosschecked with explicit limitations. Ten separate promulgation cards for Articles 2–11 were also added as provisional_secondary_crosscheck records; the article identities are present in public transcriptions, but their Gazette page pinpoints are not established. These cards address transitional funds, preservation of benefits, licensing, worker data, pending cases and implementing decisions; their time limits and legal effects must not be applied without primary Gazette comparison, commencement-date verification, later-instrument review and qualified Egyptian-lawyer review. All cards remain search_eligible=false. Reconciliation update 2026-10-31: merged current main (127 cards) with the 294-card Labour Law evidence PR snapshot. The combined inventory contains 360 unique card IDs (61 shared IDs reconciled; 233 PR-only and 66 main-only retained). For shared IDs, current-main scalar text is retained; evidence, cross-checks, limitations and related-instrument leads are unioned without duplicate entries. Corrected Gazette page locators from the PR snapshot are retained where the current-main locator differed. This is inventory reconciliation only: all 360 cards remain search_eligible=false; source binary hash, full currentness/amendment review, rights clearance and Egyptian-lawyer review remain outstanding. Visual page-pinpoint correction 2026-10-31: 46 cards for Articles 275–298 were checked against the government-hosted Official Gazette PDF. Correct mapping: Art.275 → printed p.105/PDF index 103; Arts.276–280 → p.106/index 104; Arts.281–285 → p.107/index 105; Arts.286–288 → p.108/index 106; Arts.289–291 → p.109/index 107; Arts.292–295 → p.110/index 108; Arts.296–298 → p.111/index 109. Earlier inferred pp.91–94 locators were wrong and have been replaced. This corrects pinpoint accuracy only; it does not complete full-law review, currentness/amendment verification, reuse-rights clearance or counsel approval.
 
 ## Provision cards
 
@@ -2409,7 +2409,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** ما رقم قرار وزير العدل الذي يحدد العاملين الممنوحين صفة مأمور الضبط القضائي وفق المادة 275؟
 
-**Pinpoint:** القانون المرافق, المادة 275, printed Gazette page 91 (PDF page index 89).
+**Pinpoint:** القانون المرافق, المادة 275, printed Gazette page 105 (PDF page index 103).
 
 **Provisional summary (Arabic):**
 
@@ -2417,8 +2417,8 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مصدر أولي مرجعي للمادة 275 وإحالتها إلى قرار من وزير العدل؛ لا يثبت هنا رقم القرار المنفذ أو نطاقه أو سريانه. (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مصدر أولي مرجعي للمادة 275 وإحالتها إلى قرار من وزير العدل؛ لا يثبت هنا رقم القرار المنفذ أو نطاقه أو سريانه. (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مصدر أولي مرجعي للمادة 275 وإحالتها إلى قرار من وزير العدل؛ لا يثبت هنا رقم القرار المنفذ أو نطاقه أو سريانه. (checked 2026-10-31).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مطابقة بصرية مباشرة للمادة 275 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 105 (فهرس PDF الصفري 103). (checked 2026-10-31).
 
 **Cross-checks:**
 
@@ -2442,7 +2442,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** ما سلطات مفتشي العمل وما شروط مباشرتها؟
 
-**Pinpoint:** القانون المرافق, المادة 276, printed Gazette page 91 (PDF page index 89).
+**Pinpoint:** القانون المرافق, المادة 276, printed Gazette page 106 (PDF page index 104).
 
 **Provisional summary (Arabic):**
 
@@ -2450,8 +2450,8 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 276؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 276؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 276؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-31).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مطابقة بصرية مباشرة للمادة 276 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 106 (فهرس PDF الصفري 104). (checked 2026-10-31).
 
 **Cross-checks:**
 
@@ -2474,7 +2474,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** ما واجب صاحب العمل تجاه المفتشين؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 277, printed Gazette page 92 (PDF page index 90).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 277, printed Gazette page 106 (PDF page index 104).
 
 **Provisional summary (Arabic):**
 
@@ -2482,10 +2482,10 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 277؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 277؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 277؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 277؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 277؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-31).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مطابقة بصرية مباشرة للمادة 277 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 106 (فهرس PDF الصفري 104). (checked 2026-10-31).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 277؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-31).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مطابقة بصرية مباشرة للمادة 277 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 106 (فهرس PDF الصفري 104). (checked 2026-10-31).
 
 **Cross-checks:**
 
@@ -2513,7 +2513,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** هل يجب على صاحب العمل الاستجابة لطلب الحضور؟
 
-**Pinpoint:** القانون المرافق, المادة 278, printed Gazette page 91 (PDF page index 89).
+**Pinpoint:** القانون المرافق, المادة 278, printed Gazette page 106 (PDF page index 104).
 
 **Provisional summary (Arabic):**
 
@@ -2521,8 +2521,8 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 278؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 278؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 278؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-31).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مطابقة بصرية مباشرة للمادة 278 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 106 (فهرس PDF الصفري 104). (checked 2026-10-31).
 
 **Cross-checks:**
 
@@ -2545,7 +2545,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** هل يجب على الجهات العامة مساعدة مفتشي العمل؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 279, printed Gazette page 92 (PDF page index 90).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 279, printed Gazette page 106 (PDF page index 104).
 
 **Provisional summary (Arabic):**
 
@@ -2553,10 +2553,10 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 279؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 279؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 279؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 279؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 279؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-31).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مطابقة بصرية مباشرة للمادة 279 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 106 (فهرس PDF الصفري 104). (checked 2026-10-31).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 279؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-31).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مطابقة بصرية مباشرة للمادة 279 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 106 (فهرس PDF الصفري 104). (checked 2026-10-31).
 
 **Cross-checks:**
 
@@ -2584,7 +2584,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** كيف تُقرأ أحكام العقوبات في قانون العمل؟
 
-**Pinpoint:** القانون المرافق, المادة 280, printed Gazette page 92 (PDF page index 90).
+**Pinpoint:** القانون المرافق, المادة 280, printed Gazette page 106 (PDF page index 104).
 
 **Provisional summary (Arabic):**
 
@@ -2592,8 +2592,8 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 280؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 280؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 280؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-31).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مطابقة بصرية مباشرة للمادة 280 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 106 (فهرس PDF الصفري 104). (checked 2026-10-31).
 
 **Cross-checks:**
 
@@ -2616,7 +2616,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** ما غرامة مخالفة المادتين 4 و5 من قانون العمل؟
 
-**Pinpoint:** القانون المرافق, المادة 281, printed Gazette page 92 (PDF page index 90).
+**Pinpoint:** القانون المرافق, المادة 281, printed Gazette page 107 (PDF page index 105).
 
 **Provisional summary (Arabic):**
 
@@ -2624,8 +2624,8 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 281؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 281؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 281؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-31).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مطابقة بصرية مباشرة للمادة 281 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 107 (فهرس PDF الصفري 105). (checked 2026-10-31).
 
 **Cross-checks:**
 
@@ -2648,7 +2648,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** ما العقوبة على مخالفة الأحكام المحددة بالمادة 282؟
 
-**Pinpoint:** القانون المرافق, المادة 282, printed Gazette page 92 (PDF page index 90).
+**Pinpoint:** القانون المرافق, المادة 282, printed Gazette page 107 (PDF page index 105).
 
 **Provisional summary (Arabic):**
 
@@ -2656,8 +2656,8 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 282؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 282؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 282؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-31).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مطابقة بصرية مباشرة للمادة 282 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 107 (فهرس PDF الصفري 105). (checked 2026-10-31).
 
 **Cross-checks:**
 
@@ -2680,7 +2680,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** ما العقوبة على مخالفة المواد المحددة بالمادة 283؟
 
-**Pinpoint:** القانون المرافق, المادة 283, printed Gazette page 92 (PDF page index 90).
+**Pinpoint:** القانون المرافق, المادة 283, printed Gazette page 107 (PDF page index 105).
 
 **Provisional summary (Arabic):**
 
@@ -2688,8 +2688,8 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 283؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 283؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 283؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-31).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مطابقة بصرية مباشرة للمادة 283 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 107 (فهرس PDF الصفري 105). (checked 2026-10-31).
 
 **Cross-checks:**
 
@@ -2712,7 +2712,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** ما العقوبة على مخالفة المادة 26؟
 
-**Pinpoint:** القانون المرافق, المادة 284, printed Gazette page 92 (PDF page index 90).
+**Pinpoint:** القانون المرافق, المادة 284, printed Gazette page 107 (PDF page index 105).
 
 **Provisional summary (Arabic):**
 
@@ -2720,8 +2720,8 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 284؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 284؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 284؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-31).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مطابقة بصرية مباشرة للمادة 284 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 107 (فهرس PDF الصفري 105). (checked 2026-10-31).
 
 **Cross-checks:**
 
@@ -2744,7 +2744,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** ما العقوبة على مخالفة المادة 23؟
 
-**Pinpoint:** القانون المرافق, المادة 285, printed Gazette page 92 (PDF page index 90).
+**Pinpoint:** القانون المرافق, المادة 285, printed Gazette page 107 (PDF page index 105).
 
 **Provisional summary (Arabic):**
 
@@ -2752,8 +2752,8 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 285؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 285؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 285؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-31).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مطابقة بصرية مباشرة للمادة 285 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 107 (فهرس PDF الصفري 105). (checked 2026-10-31).
 
 **Cross-checks:**
 
@@ -2776,7 +2776,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** ما العقوبة على مخالفة مواد الإصدار والمادة 24 ومواد أخرى محددة؟
 
-**Pinpoint:** القانون المرافق, المادة 286, printed Gazette page 92 (PDF page index 90).
+**Pinpoint:** القانون المرافق, المادة 286, printed Gazette page 108 (PDF page index 106).
 
 **Provisional summary (Arabic):**
 
@@ -2784,8 +2784,8 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 286؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 286؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 286؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-31).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مطابقة بصرية مباشرة للمادة 286 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 108 (فهرس PDF الصفري 106). (checked 2026-10-31).
 
 **Cross-checks:**
 
@@ -2808,7 +2808,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** ما العقوبة على مخالفة المواد 45 و104 و108؟
 
-**Pinpoint:** القانون المرافق, المادة 287, printed Gazette page 92 (PDF page index 90).
+**Pinpoint:** القانون المرافق, المادة 287, printed Gazette page 108 (PDF page index 106).
 
 **Provisional summary (Arabic):**
 
@@ -2816,8 +2816,8 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 287؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 287؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 287؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-31).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مطابقة بصرية مباشرة للمادة 287 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 108 (فهرس PDF الصفري 106). (checked 2026-10-31).
 
 **Cross-checks:**
 
@@ -2840,7 +2840,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** ما الغرامة على مخالفة المواد المحددة بالمادة 288؟
 
-**Pinpoint:** القانون المرافق, المادة 288, printed Gazette page 92 (PDF page index 90).
+**Pinpoint:** القانون المرافق, المادة 288, printed Gazette page 108 (PDF page index 106).
 
 **Provisional summary (Arabic):**
 
@@ -2848,8 +2848,8 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 288؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 288؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 288؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-31).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مطابقة بصرية مباشرة للمادة 288 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 108 (فهرس PDF الصفري 106). (checked 2026-10-31).
 
 **Cross-checks:**
 
@@ -2872,7 +2872,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** ما غرامة مخالفة أحكام تشغيل الأطفال المحددة بالمادة 289؟
 
-**Pinpoint:** القانون المرافق, المادة 289, printed Gazette page 92 (PDF page index 90).
+**Pinpoint:** القانون المرافق, المادة 289, printed Gazette page 109 (PDF page index 107).
 
 **Provisional summary (Arabic):**
 
@@ -2880,8 +2880,8 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 289؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 289؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 289؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-31).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مطابقة بصرية مباشرة للمادة 289 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 109 (فهرس PDF الصفري 107). (checked 2026-10-31).
 
 **Cross-checks:**
 
@@ -2905,7 +2905,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** ما غرامة مخالفة المادتين 33 و37؟
 
-**Pinpoint:** القانون المرافق, المادة 290, printed Gazette page 92 (PDF page index 90).
+**Pinpoint:** القانون المرافق, المادة 290, printed Gazette page 109 (PDF page index 107).
 
 **Provisional summary (Arabic):**
 
@@ -2913,8 +2913,8 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 290؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 290؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 290؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-31).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مطابقة بصرية مباشرة للمادة 290 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 109 (فهرس PDF الصفري 107). (checked 2026-10-31).
 
 **Cross-checks:**
 
@@ -2937,7 +2937,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** ما عقوبة تشغيل العمالة دون ترخيص أو تحصيل مبالغ غير مستحقة؟
 
-**Pinpoint:** القانون المرافق, المادة 291, printed Gazette page 92 (PDF page index 90).
+**Pinpoint:** القانون المرافق, المادة 291, printed Gazette page 109 (PDF page index 107).
 
 **Provisional summary (Arabic):**
 
@@ -2945,8 +2945,8 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 291؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 291؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 291؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-31).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مطابقة بصرية مباشرة للمادة 291 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 109 (فهرس PDF الصفري 107). (checked 2026-10-31).
 
 **Cross-checks:**
 
@@ -2969,7 +2969,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** ما غرامة مخالفة المادة 42؟
 
-**Pinpoint:** القانون المرافق, المادة 292, printed Gazette page 92 (PDF page index 90).
+**Pinpoint:** القانون المرافق, المادة 292, printed Gazette page 110 (PDF page index 108).
 
 **Provisional summary (Arabic):**
 
@@ -2977,8 +2977,8 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 292؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 292؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 292؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-31).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مطابقة بصرية مباشرة للمادة 292 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 110 (فهرس PDF الصفري 108). (checked 2026-10-31).
 
 **Cross-checks:**
 
@@ -3001,7 +3001,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** ما غرامة مخالفة المواد 70 و71 و72 و74؟
 
-**Pinpoint:** القانون المرافق, المادة 293, printed Gazette page 92 (PDF page index 90).
+**Pinpoint:** القانون المرافق, المادة 293, printed Gazette page 110 (PDF page index 108).
 
 **Provisional summary (Arabic):**
 
@@ -3009,8 +3009,8 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 293؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مرجع للمادة 293؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 293؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-31).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مطابقة بصرية مباشرة للمادة 293 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 110 (فهرس PDF الصفري 108). (checked 2026-10-31).
 
 **Cross-checks:**
 
@@ -9059,7 +9059,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** من يملك صفة مأمور الضبط القضائي لمراقبة تطبيق قانون العمل؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 275, printed Gazette page 92 (PDF page index 90).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 275, printed Gazette page 105 (PDF page index 103).
 
 **Provisional summary (Arabic):**
 
@@ -9067,8 +9067,8 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 275؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 275؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 275؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-31).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مطابقة بصرية مباشرة للمادة 275 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 105 (فهرس PDF الصفري 103). (checked 2026-10-31).
 
 **Cross-checks:**
 
@@ -9090,7 +9090,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** ما صلاحيات مفتش العمل الحامل لصفة الضبط القضائي؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 276, printed Gazette page 92 (PDF page index 90).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 276, printed Gazette page 106 (PDF page index 104).
 
 **Provisional summary (Arabic):**
 
@@ -9098,8 +9098,8 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 276؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 276؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 276؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-31).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مطابقة بصرية مباشرة للمادة 276 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 106 (فهرس PDF الصفري 104). (checked 2026-10-31).
 
 **Cross-checks:**
 
@@ -9121,7 +9121,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** هل يجب على صاحب العمل الاستجابة لطلب الحضور من مفتش العمل؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 278, printed Gazette page 92 (PDF page index 90).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 278, printed Gazette page 106 (PDF page index 104).
 
 **Provisional summary (Arabic):**
 
@@ -9129,8 +9129,8 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 278؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 278؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 278؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-31).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مطابقة بصرية مباشرة للمادة 278 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 106 (فهرس PDF الصفري 104). (checked 2026-10-31).
 
 **Cross-checks:**
 
@@ -9152,7 +9152,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** كيف تطبق مواد العقوبات الواردة في قانون العمل؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 280, printed Gazette page 93 (PDF page index 91).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 280, printed Gazette page 106 (PDF page index 104).
 
 **Provisional summary (Arabic):**
 
@@ -9160,8 +9160,8 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 280؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 280؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 280؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-31).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مطابقة بصرية مباشرة للمادة 280 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 106 (فهرس PDF الصفري 104). (checked 2026-10-31).
 
 **Cross-checks:**
 
@@ -9183,7 +9183,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** ما الغرامة المقررة لمخالفة المادتين 4 و5 من قانون العمل؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 281, printed Gazette page 93 (PDF page index 91).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 281, printed Gazette page 107 (PDF page index 105).
 
 **Provisional summary (Arabic):**
 
@@ -9191,8 +9191,8 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 281؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 281؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 281؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-31).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مطابقة بصرية مباشرة للمادة 281 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 107 (فهرس PDF الصفري 105). (checked 2026-10-31).
 
 **Cross-checks:**
 
@@ -9214,7 +9214,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** ما العقوبة المرتبطة بمخالفات محددة في المواد 21 و82 و273؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 282, printed Gazette page 93 (PDF page index 91).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 282, printed Gazette page 107 (PDF page index 105).
 
 **Provisional summary (Arabic):**
 
@@ -9222,8 +9222,8 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 282؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 282؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 282؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-31).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مطابقة بصرية مباشرة للمادة 282 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 107 (فهرس PDF الصفري 105). (checked 2026-10-31).
 
 **Cross-checks:**
 
@@ -9245,7 +9245,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** ما العقوبة المقررة لمخالفات المواد 37 و48 و153 و137؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 283, printed Gazette page 93 (PDF page index 91).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 283, printed Gazette page 107 (PDF page index 105).
 
 **Provisional summary (Arabic):**
 
@@ -9253,8 +9253,8 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 283؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 283؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 283؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-31).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مطابقة بصرية مباشرة للمادة 283 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 107 (فهرس PDF الصفري 105). (checked 2026-10-31).
 
 **Cross-checks:**
 
@@ -9276,7 +9276,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** ما العقوبة المقررة لمخالفة المادة 26؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 284, printed Gazette page 93 (PDF page index 91).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 284, printed Gazette page 107 (PDF page index 105).
 
 **Provisional summary (Arabic):**
 
@@ -9284,8 +9284,8 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 284؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 284؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 284؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-31).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مطابقة بصرية مباشرة للمادة 284 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 107 (فهرس PDF الصفري 105). (checked 2026-10-31).
 
 **Cross-checks:**
 
@@ -9307,7 +9307,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** ما العقوبة المقررة لمخالفة المادة 23؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 285, printed Gazette page 93 (PDF page index 91).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 285, printed Gazette page 107 (PDF page index 105).
 
 **Provisional summary (Arabic):**
 
@@ -9315,8 +9315,8 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 285؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 285؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 285؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-31).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مطابقة بصرية مباشرة للمادة 285 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 107 (فهرس PDF الصفري 105). (checked 2026-10-31).
 
 **Cross-checks:**
 
@@ -9338,7 +9338,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** ما العقوبة المقررة لمجموعة من مخالفات مواد الإصدار والمواد 24 و25 و36 و46 و51 و52 و68؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 286, printed Gazette page 93 (PDF page index 91).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 286, printed Gazette page 108 (PDF page index 106).
 
 **Provisional summary (Arabic):**
 
@@ -9346,8 +9346,8 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 286؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 286؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 286؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-31).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مطابقة بصرية مباشرة للمادة 286 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 108 (فهرس PDF الصفري 106). (checked 2026-10-31).
 
 **Cross-checks:**
 
@@ -9369,7 +9369,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** ما العقوبة المقررة لمخالفات المواد 45 و104 و108؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 287, printed Gazette page 93 (PDF page index 91).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 287, printed Gazette page 108 (PDF page index 106).
 
 **Provisional summary (Arabic):**
 
@@ -9377,8 +9377,8 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 287؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 287؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 287؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-31).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مطابقة بصرية مباشرة للمادة 287 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 108 (فهرس PDF الصفري 106). (checked 2026-10-31).
 
 **Cross-checks:**
 
@@ -9400,7 +9400,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** ما العقوبة المقررة لمجموعة من مخالفات حقوق العمال وساعات العمل والإجازات؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 288, printed Gazette page 93 (PDF page index 91).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 288, printed Gazette page 108 (PDF page index 106).
 
 **Provisional summary (Arabic):**
 
@@ -9408,8 +9408,8 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 288؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 288؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 288؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-31).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مطابقة بصرية مباشرة للمادة 288 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 108 (فهرس PDF الصفري 106). (checked 2026-10-31).
 
 **Cross-checks:**
 
@@ -9431,7 +9431,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** ما العقوبة المقررة لمخالفات المواد 62–66؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 289, printed Gazette page 94 (PDF page index 92).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 289, printed Gazette page 109 (PDF page index 107).
 
 **Provisional summary (Arabic):**
 
@@ -9439,8 +9439,8 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 289؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 289؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 289؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-31).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مطابقة بصرية مباشرة للمادة 289 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 109 (فهرس PDF الصفري 107). (checked 2026-10-31).
 
 **Cross-checks:**
 
@@ -9462,7 +9462,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** ما العقوبة المقررة لمخالفات المواد 33 و37 و35 و205؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 290, printed Gazette page 94 (PDF page index 92).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 290, printed Gazette page 109 (PDF page index 107).
 
 **Provisional summary (Arabic):**
 
@@ -9470,8 +9470,8 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 290؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 290؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 290؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-31).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مطابقة بصرية مباشرة للمادة 290 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 109 (فهرس PDF الصفري 107). (checked 2026-10-31).
 
 **Cross-checks:**
 
@@ -9493,7 +9493,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** ما الجرائم التي تعاقب عليها المادة 291 بشأن إلحاق العمالة؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 291, printed Gazette page 94 (PDF page index 92).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 291, printed Gazette page 109 (PDF page index 107).
 
 **Provisional summary (Arabic):**
 
@@ -9501,8 +9501,8 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 291؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 291؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 291؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-31).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مطابقة بصرية مباشرة للمادة 291 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 109 (فهرس PDF الصفري 107). (checked 2026-10-31).
 
 **Cross-checks:**
 
@@ -9524,7 +9524,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** ما العقوبة المقررة لمخالفة المادة 42؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 292, printed Gazette page 94 (PDF page index 92).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 292, printed Gazette page 110 (PDF page index 108).
 
 **Provisional summary (Arabic):**
 
@@ -9532,8 +9532,8 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 292؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 292؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 292؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-31).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مطابقة بصرية مباشرة للمادة 292 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 110 (فهرس PDF الصفري 108). (checked 2026-10-31).
 
 **Cross-checks:**
 
@@ -9555,7 +9555,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Question:** ما العقوبة المقررة لمخالفات المواد 70 و71 و72 و74؟
 
-**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 293, printed Gazette page 94 (PDF page index 92).
+**Pinpoint:** الكتاب الخامس — تفتيش العمل والعقوبات, المادة 293, printed Gazette page 110 (PDF page index 108).
 
 **Provisional summary (Arabic):**
 
@@ -9563,8 +9563,8 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 **Primary-source leads:**
 
-- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 293؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مرجع للمادة 293؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
+- [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 293؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-31).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf_text_extraction; مطابقة بصرية مباشرة للمادة 293 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 110 (فهرس PDF الصفري 108). (checked 2026-10-31).
 
 **Cross-checks:**
 
