@@ -29,7 +29,24 @@ def load_inventory(input_path: Path) -> dict[str, Any]:
 
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     cards = list(data["cards"])
-    seen = {card["card_id"] for card in cards}
+    canonical_entry = next(
+        (entry for entry in manifest["inventory_files"] if (ROOT / entry["path"]).resolve() == input_path.resolve()),
+        None,
+    )
+    if canonical_entry is None:
+        raise ValueError("Canonical Labour Law inventory is missing from its manifest")
+    if len(cards) != canonical_entry["expected_cards"]:
+        raise ValueError(
+            f"Canonical card count mismatch: expected {canonical_entry['expected_cards']}, got {len(cards)}"
+        )
+    card_ids = [card.get("card_id") for card in cards]
+    if any(not isinstance(card_id, str) or not card_id for card_id in card_ids):
+        raise ValueError("Every canonical Labour Law card must have a non-empty card_id")
+    if len(card_ids) != len(set(card_ids)):
+        raise ValueError("Duplicate IDs in canonical Labour Law evidence inventory")
+    if any(card.get("search_eligible") is not False for card in cards):
+        raise ValueError("Provisional Labour Law cards must remain search_eligible=false")
+    seen = set(card_ids)
     duplicates: set[str] = set()
     supplemental_count = 0
     for entry in manifest["inventory_files"]:
