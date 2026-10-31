@@ -22,6 +22,9 @@ class RunnerError(RuntimeError):
     pass
 
 
+MAX_API_RESPONSE_BYTES = 16 * 1024 * 1024
+
+
 def validate_base_url(base_url, allow_remote=False):
     if (
         not isinstance(base_url, str)
@@ -241,7 +244,10 @@ def _request_json(opener, url, payload, headers=None, timeout=180):
     )
     try:
         with opener.open(request, timeout=timeout) as response:
-            return json.loads(response.read().decode("utf-8"))
+            raw = response.read(MAX_API_RESPONSE_BYTES + 1)
+            if not isinstance(raw, bytes) or len(raw) > MAX_API_RESPONSE_BYTES:
+                raise RunnerError("API response exceeded the 16 MiB safety limit")
+            return json.loads(raw.decode("utf-8"))
     except urllib.error.HTTPError as exc:
         # Do not print response bodies: they can contain legal questions or user details.
         raise RunnerError(f"API request failed with HTTP {exc.code} at {url.rsplit('/', 1)[-1]}") from exc
