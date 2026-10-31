@@ -301,7 +301,7 @@
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
-      "permission_evidence": "Checked 2026-10-31 using the public PDF viewer at the source URL. The viewer identifies Official Gazette issue 18 (تابع), dated 2025-05-03, and exposes 1,768 extracted text lines. Article 13 states that the law takes effect from the first day of the month following the expiry of 90 days from publication; the corresponding date is recorded as a derived candidate of 2025-09-01, with specialized labour courts from 2025-10-01. The official PDF screenshots for printed pages 105–111 (PDF indices 103–109) were visually inspected to correct 46 card pinpoints for Articles 275–298. The local PDF download attempt failed; no local bytes or SHA-256 are claimed. A government-hosted PDF and public viewer do not by themselves establish bulk-collection, redistribution or commercial-reuse permission. Collection and commercial reuse remain unknown; portal terms were not verified.",
+      "permission_evidence": "Checked 2026-10-31 using the public PDF viewer at the source URL. The viewer identifies Official Gazette issue 18 (تابع), dated 2025-05-03, and exposes 1,768 extracted text lines. Article 13 on printed p.5 (PDF index 3) was also visually inspected and states that the law takes effect from the first day of the month following the expiry of 90 days from publication; the corresponding date is recorded as a derived candidate of 2025-09-01, with specialized labour courts from 2025-10-01. The official PDF screenshots for printed pages 105–111 (PDF indices 103–109) were visually inspected to correct 46 card pinpoints for Articles 275–298. The local PDF download attempt failed; no local bytes or SHA-256 are claimed. A government-hosted PDF and public viewer do not by themselves establish bulk-collection, redistribution or commercial-reuse permission. Collection and commercial reuse remain unknown; portal terms were not verified.",
       "terms_checked_on": null,
       "bulk_download_or_api": "one PDF URL located; no bulk-download/API permission established",
       "required_next_action": "Keep this official government-hosted copy as a primary-text reference. Obtain local bytes through a supported public download route and compute SHA-256 when available; review applicable portal terms before bulk extraction, indexing, redistribution or commercial display; complete page-by-page article comparison, amendment/currentness review and qualified Egyptian-lawyer approval.",
@@ -316,6 +316,12 @@
       "local_pdf_downloaded": false,
       "local_pdf_sha256": null,
       "visual_page_checks": [
+        {
+          "printed_page": 5,
+          "pdf_page_index_zero_based": 3,
+          "checked_on": "2026-10-31",
+          "result": "Article 13 commencement provisions visually located"
+        },
         {
           "printed_page": 105,
           "pdf_page_index_zero_based": 103,
