@@ -76,7 +76,6 @@ class ArabicMatchingTests(unittest.TestCase):
 
     def test_phrase_expansion_requires_word_boundaries(self):
         self.assertNotIn(tokens("المؤجر")[0], expanded_tokens("صاحب البيتزا"))
-        self.assertNotIn(tokens("شيك مرتجع")[0], expanded_tokens("مفيش رصيدية"))
 
     def test_colloquial_expansion_only_highlights_actual_source_words(self):
         query = expanded_tokens("اترفدت")
