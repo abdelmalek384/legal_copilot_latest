@@ -70,5 +70,24 @@ class CitationQuantityBindingTests(unittest.TestCase):
         self.assertFalse(app._answer_has_unsupported_quantities(answer, self.hits, {2}))
 
 
+    def test_arabic_conjunction_compound_numbers_are_normalized(self):
+        self.assertEqual(app._legal_quantities("خمسة وعشرون يوما"), {(25, "day")})
+        self.assertEqual(app._legal_quantities("مائة وخمسون جنيها"), {(150, "currency")})
+        self.assertEqual(app._legal_quantities("ثلاثمائة وخمسة وعشرون يوما"), {(325, "day")})
+        self.assertEqual(app._legal_quantities("ألف ومائتان وخمسون جنيها"), {(1250, "currency")})
+        self.assertEqual(app._legal_quantities("خمسة و عشرون يوما"), {(25, "day")})
+
+    def test_arabic_compound_quantity_is_bound_to_its_inline_source(self):
+        hits = [
+            {"text": "The statutory deadline is 25 days."},
+            {"text": "This passage states no deadline."},
+        ]
+        self.assertFalse(app._answer_has_unsupported_quantities(
+            "المدة خمسة وعشرون يوما [1].", hits, {1}
+        ))
+        self.assertTrue(app._answer_has_unsupported_quantities(
+            "المدة خمسة وعشرون يوما [2].", hits, {2}
+        ))
+
 if __name__ == "__main__":
     unittest.main()
