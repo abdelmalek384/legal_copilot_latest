@@ -1,0 +1,164 @@
+{
+  "record_type": "reproduced_gazette_table_extraction",
+  "instrument": "Egyptian Labour Ministry Decision 249/2026",
+  "table": "Table 3 — activities requiring continuous monitoring for hazardous pollutants",
+  "research_date": "2026-10-31",
+  "source_quality": "secondary_hosted_reproduction_of_gazette_page_image",
+  "source_url": "https://www.almasdar.com/WebP/libfiles/46/3/735.webp",
+  "printed_page": 44,
+  "official_issue_metadata_url": "https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full",
+  "official_pdf_downloaded_and_hashed": false,
+  "official_file_comparison": "pending",
+  "counsel_review": "not_reviewed",
+  "authoritative_retrieval_eligible": false,
+  "rows": [
+    {
+      "row": 1,
+      "activity_ar": "الصناعات الكيميائية",
+      "activity_en": "Chemical industries",
+      "pollutants": [
+        "Cl2",
+        "NH3",
+        "H2S"
+      ],
+      "status": "scan_transcription_pending_official_match"
+    },
+    {
+      "row": 2,
+      "activity_ar": "إنتاج الكلور والصودا الكاوية",
+      "activity_en": "Chlorine and caustic soda production",
+      "pollutants": [
+        "Cl2"
+      ],
+      "status": "scan_transcription_pending_official_match"
+    },
+    {
+      "row": 3,
+      "activity_ar": "البترول والغاز والتكرير والبتروكيماويات",
+      "activity_en": "Petroleum, gas, refining and petrochemicals",
+      "pollutants": [
+        "NO2",
+        "SO2",
+        "CO",
+        "VOCs",
+        "CH4",
+        "H2S",
+        "LEL"
+      ],
+      "status": "scan_transcription_pending_official_match"
+    },
+    {
+      "row": 4,
+      "activity_ar": "الصناعات الدوائية",
+      "activity_en": "Pharmaceutical industries",
+      "pollutants": [
+        "LEL",
+        "Cl2",
+        "NH3",
+        "VOCs"
+      ],
+      "status": "scan_transcription_pending_official_match"
+    },
+    {
+      "row": 5,
+      "activity_ar": "مصانع الأسمنت",
+      "activity_en": "Cement factories",
+      "pollutants": [
+        "NH3"
+      ],
+      "status": "scan_transcription_pending_official_match"
+    },
+    {
+      "row": 6,
+      "activity_ar": "التبريد الصناعي بالأمونيا",
+      "activity_en": "Industrial ammonia refrigeration",
+      "pollutants": [
+        "NH3"
+      ],
+      "status": "scan_transcription_pending_official_match"
+    },
+    {
+      "row": 7,
+      "activity_ar": "محطات معالجة الصرف الصحي",
+      "activity_en": "Sewage treatment stations",
+      "pollutants": [
+        "H2S",
+        "CH4",
+        "O2"
+      ],
+      "status": "scan_transcription_pending_official_match"
+    },
+    {
+      "row": 8,
+      "activity_ar": "معالجة وتدوير المخلفات",
+      "activity_en": "Waste treatment and recycling",
+      "pollutants": [
+        "H2S",
+        "CH4",
+        "O2"
+      ],
+      "status": "scan_transcription_pending_official_match"
+    },
+    {
+      "row": 9,
+      "activity_ar": "الأماكن المحصورة ذات الخطر المستمر",
+      "activity_en": "Confined spaces with persistent hazards",
+      "pollutants": [
+        "O2",
+        "H2S",
+        "CH4",
+        "LEL"
+      ],
+      "status": "scan_transcription_pending_official_match"
+    },
+    {
+      "row": 10,
+      "activity_ar": "مخازن الغازات الخطرة",
+      "activity_en": "Hazardous gas stores",
+      "pollutants": [
+        "LEL",
+        "O2"
+      ],
+      "qualification": "The table appears to qualify LEL/O2 by the type of gas; verify the exact cell text from a higher-resolution scan.",
+      "status": "scan_transcription_pending_official_match"
+    },
+    {
+      "row": 11,
+      "activity_ar": "تخزين واستخدام المذيبات",
+      "activity_en": "Solvent storage and use",
+      "pollutants": [
+        "VOCs",
+        "LEL"
+      ],
+      "status": "scan_transcription_pending_official_match"
+    },
+    {
+      "row": 12,
+      "activity_ar": "الحديد والصلب والسباكة",
+      "activity_en": "Iron, steel and foundry operations",
+      "pollutants": [
+        "LEL",
+        "CH4",
+        "H2S",
+        "SO2",
+        "NO2",
+        "CO"
+      ],
+      "status": "scan_transcription_pending_official_match"
+    }
+  ],
+  "abbreviations": {
+    "Cl2": "Chlorine",
+    "H2S": "Hydrogen sulphide",
+    "NH3": "Ammonia",
+    "CH4": "Methane",
+    "CO": "Carbon monoxide",
+    "SO2": "Sulphur dioxide",
+    "NO2": "Nitrogen dioxide",
+    "VOCs": "Volatile organic compounds",
+    "LEL": "Lower explosive limit",
+    "O2": "Oxygen"
+  },
+  "release_rule": "This table maps the reproduced page image only. Verify Arabic activity names, gas combinations and any qualifiers against the official Gazette file, check currentness, and obtain qualified Egyptian OSH counsel review before using as an authoritative compliance rule.",
+  "visual_reviewed_on": "2026-10-31"
+}
