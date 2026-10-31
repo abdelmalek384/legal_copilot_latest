@@ -1844,7 +1844,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         history = self.client.get(endpoint)
         self.assertEqual(history.status_code, 200, history.text)
         self.assertEqual(len(history.json()["events"]), 3)
-        self.assertEqual(history.json()["events"][0]["review_type"], "source_authenticity")
+        self.assertEqual(history.json()["events"][0]["review_type"], "lawyer_approval")
         self.assertEqual(history.json()["events"][0]["reviewer"], "First Owner")
 
         control.execute(
@@ -2850,9 +2850,12 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
              "in_force", "verified", 1, 1, 1, "version evidence"),
         ).lastrowid
         for review_type in ("source_authenticity", "extraction_quality", "legal_status", "amendment_history", "licensing", "lawyer_approval"):
+            notes = "Reviewed test fixture."
+            if review_type == "lawyer_approval":
+                notes = "[qualified_egyptian_counsel_attested:user_id=42] " + notes
             corpus.execute(
                 "INSERT INTO legal_review_events(version_id,reviewer,review_type,outcome,notes,evidence_url) VALUES(?,?,?,?,?,?)",
-                (version_id, "Test reviewer", review_type, "pass", "Reviewed test fixture.", "https://example.test/review"),
+                (version_id, "Test reviewer", review_type, "pass", notes, "https://example.test/review"),
             )
         corpus.execute(
             "INSERT INTO chunks(ref,article,page,text,norm,document_version_id,in_force,as_of,source,verified) "
@@ -4233,9 +4236,12 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
         version_id = version_cursor.lastrowid
         for review_type in ("source_authenticity", "extraction_quality", "legal_status", "amendment_history", "licensing", "lawyer_approval"):
+            notes = "Synthetic review completed."
+            if review_type == "lawyer_approval":
+                notes = "[qualified_egyptian_counsel_attested:user_id=42] " + notes
             corpus.execute(
                 "INSERT INTO legal_review_events(version_id,reviewer,review_type,outcome,notes,evidence_url) VALUES(?,?,?,?,?,?)",
-                (version_id, "Synthetic reviewer", review_type, "pass", "Synthetic review completed.", "https://example.test/review"),
+                (version_id, "Synthetic reviewer", review_type, "pass", notes, "https://example.test/review"),
             )
         corpus.execute(
             "INSERT INTO chunks(ref,article,page,text,norm,document_version_id,in_force,as_of,source,verified) "
