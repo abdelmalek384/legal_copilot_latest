@@ -238,9 +238,8 @@ def download_encrypted_bundle_version(
     expected_size = locator.get("size_bytes")
     if (
         locator.get("bucket") != bucket
-        or not isinstance(key, str) or not key.startswith(_PREFIX)
-        or "/" in key[len(_PREFIX):]
-        or not isinstance(version_id, str) or not version_id or version_id == "null"
+        or not isinstance(key, str) or not re.fullmatch(r"database-recovery/v1/[0-9a-f]{32}\.dbbundle\.enc", key)
+        or not isinstance(version_id, str) or not version_id or version_id == "null" or len(version_id) > 1024
         or not isinstance(expected_digest, str) or not _SHA256.fullmatch(expected_digest)
         or isinstance(expected_size, bool) or not isinstance(expected_size, int) or expected_size <= 0
         or expected_size > _MAX_ENCRYPTED_BUNDLE_BYTES
