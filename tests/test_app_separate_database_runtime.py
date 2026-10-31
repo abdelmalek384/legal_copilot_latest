@@ -4195,6 +4195,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertGreaterEqual(metrics["metadata_only_documents"], 1)
         self.assertEqual(metrics["verified_operational_versions"], verified_before + 1)
         self.assertGreaterEqual(metrics["versions_missing_review_event_evidence"], 1)
+        self.assertGreaterEqual(metrics["versions_missing_original_hash"], 1)
         self.assertGreaterEqual(metrics["permission_or_evidence_blocked_versions"], 1)
         self.assertTrue(any(
             row["practice_area"] == "labour"
