@@ -176,6 +176,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
 
     def test_research_scopes_keep_metadata_and_firm_documents_separate(self) -> None:
         self.login(self.state["owner_a_email"])
+        self.context.grant_permissions(["clipboard-read", "clipboard-write"], origin=self.base_url)
         case_response = self.page.request.post(
             self.base_url + "/cases",
             data={"title": "SYNTHETIC MATTER ONLY FIXTURE"},
@@ -211,7 +212,26 @@ class BrowserAcceptanceTests(unittest.TestCase):
         composer.fill(sentinel)
         self.page.locator(".research-composer button").click()
         self.page.get_by_text(sentinel, exact=False).wait_for(timeout=12000)
-        self.assertIn(sentinel, self.page.locator("body").inner_text())
+        body = self.page.locator("body").inner_text()
+        self.assertIn(sentinel, body)
+        self.assertIn("مستند مكتب غير متحقق", body)
+
+        self.page.get_by_role("button", name="نسخ المقطع الحرفي").click()
+        copied_passage = self.page.evaluate("() => navigator.clipboard.readText()")
+        self.assertIn(sentinel, copied_passage)
+
+        with self.page.expect_download() as download_info:
+            self.page.get_by_role("button", name="تصدير مذكرة بحث").click()
+        download_path = download_info.value.path()
+        self.assertIsNotNone(download_path)
+        memo_text = Path(download_path).read_text(encoding="utf-8")
+        self.assertIn(sentinel, memo_text)
+
+        self.page.get_by_role("button", name="حفظ إلى ملف قضية").click()
+        self.page.get_by_text("تم حفظ مذكرة البحث في ملاحظات القضية", exact=False).wait_for(timeout=10000)
+        saved_case = self.page.request.get(self.base_url + f"/cases/{case_id}")
+        self.assertEqual(saved_case.status, 200, saved_case.text())
+        self.assertTrue(any(sentinel in note["text"] for note in saved_case.json()["notes"]))
 
         scope.select_option("verified_corpus")
         composer.fill(sentinel)
