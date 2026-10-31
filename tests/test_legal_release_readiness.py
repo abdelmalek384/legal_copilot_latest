@@ -79,6 +79,27 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         result = MODULE.audit_candidate(self.candidate, self.register, self.root)
         self.assertTrue(result["ready"], result["blockers"])
 
+    def test_release_gate_rejects_ambiguous_https_urls(self):
+        invalid_urls = (
+            "https://laws.example.gov:",
+            "https://laws.example.gov:0/path",
+            "https://laws.example.gov:99999/path",
+            "https://user:secret@laws.example.gov/path",
+            "https://laws.example.gov/path with spaces",
+            "https://laws.example.gov/\\x00unsafe",
+            " https://laws.example.gov/path",
+        )
+        for value in invalid_urls:
+            with self.subTest(value=value):
+                self.assertIsNone(MODULE.https_host(value))
+        candidate = json.loads(json.dumps(self.candidate))
+        candidate["sources"][0]["source_page"] = "https://laws.example.gov:"
+        result = MODULE.audit_candidate(candidate, self.register, self.root)
+        self.assertIn(
+            "source_url_not_https",
+            {item["code"] for item in result["blockers"]},
+        )
+
     def test_lawyer_approval_requires_runtime_counsel_attestation_marker(self):
         candidate = json.loads(json.dumps(self.candidate))
         approval = next(
