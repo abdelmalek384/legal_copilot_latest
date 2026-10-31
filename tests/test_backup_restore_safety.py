@@ -19,7 +19,9 @@ class SingleFileBackupRestoreDisabledTests(unittest.TestCase):
         self.root = Path(self.temp.name)
         self.env = os.environ.copy()
         self.env["COPILOT_ENV"] = "development"
-        self.env["COPILOT_DB"] = str(self.root / "legacy.sqlite3")
+        # Exercise the retired CLI subcommands directly; COPILOT_DB is independently
+        # rejected by the application import guard and is covered in the runtime tests.
+        self.env.pop("COPILOT_DB", None)
         self.env["PYTHONPATH"] = str(ROOT)
         for name in ("COPILOT_CONTROL_DB", "COPILOT_TENANT_DB_ROOT", "COPILOT_CORPUS_DB"):
             self.env.pop(name, None)
