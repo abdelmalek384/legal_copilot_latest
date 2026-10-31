@@ -33,7 +33,7 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
 
     def test_current_inventory_is_metadata_only_and_structurally_valid(self):
         self.assertEqual(validate_inventory(self.inventory), [])
-        self.assertEqual(len(self.inventory["documents"]), 78)
+        self.assertEqual(len(self.inventory["documents"]), 83)
         self.assertTrue(all(d["review_status"] != "verified" for d in self.inventory["documents"]))
         self.assertTrue(all(d["legal_status"] in {"unknown", "not_applicable"} for d in self.inventory["documents"]))
         register = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
@@ -48,6 +48,33 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         ):
             record = next(d for d in self.inventory["documents"] if d["document_id"] == document_id)
             self.assertEqual(record["source_id"], "EG-MINISTRY-LABOUR-LAWS")
+
+    def test_2026_labour_osh_decisions_248_to_252_remain_catalogue_metadata_only(self):
+        expected_titles = {
+            248: "قرار وزير العمل رقم 248 لسنة 2026 بشأن نماذج وإحصائيات الأمراض العادية والمزمنة والمهنية والحوادث الجسيمة والإصابات",
+            249: "قرار وزير العمل رقم 249 لسنة 2026 بتحديد المنشآت وفروعها التي تلتزم بإنشاء أجهزة وظيفية للسلامة والصحة المهنية وتأمين بيئة العمل واللجان المختصة",
+            250: "قرار وزير العمل رقم 250 لسنة 2026 بشأن قواعد ومعايير وبيان حدود الأمان في أماكن العمل والاشتراطات والاحتياطات اللازمة لدرء المخاطر",
+            251: "قرار وزير العمل رقم 251 لسنة 2026 بتحديد شروط وقواعد وإجراءات منح ترخيص مزاولة أعمال الخبرة والاستشارات في مجال السلامة والصحة المهنية وتأمين بيئة العمل",
+            252: "قرار وزير العمل رقم 252 لسنة 2026 بشأن قواعد منح تراخيص ونظم التدريب في مجال السلامة والصحة المهنية وتأمين بيئة العمل",
+        }
+        records = {d["instrument_number"]: d for d in self.inventory["documents"] if d.get("instrument_year") == 2026 and d.get("instrument_number") in expected_titles}
+        self.assertEqual(set(records), set(expected_titles))
+        for number, title in expected_titles.items():
+            record = records[number]
+            self.assertEqual(record["official_title_ar"], title)
+            self.assertEqual(record["source_id"], "EG-AMIRI-PRESS")
+            self.assertEqual(record["source_status"], "official_index_discovered_primary_text_pending")
+            self.assertEqual(record["publication_date"], "2026-10-12")
+            self.assertEqual(record["official_gazette_issue"], "الوقائع المصرية - ملحق العدد 225 تابع (أ)")
+            self.assertIsNone(record["effective_date"])
+            self.assertEqual(record["collection_permission"], "unknown")
+            self.assertEqual(record["legal_status"], "unknown")
+            self.assertEqual(record["review_status"], "discovery_only")
+            self.assertTrue(any("dspace.id.com.eg" in item["url"] for item in record["source_urls"]))
+            self.assertTrue(any("labour.gov.eg" in item["url"] for item in record["source_urls"]))
+            self.assertIn("request-copy restricted", record["notes"])
+        self.assertTrue(any(a["id"] == "ACT-LABOUR-OSH-DECISIONS-248-252-VERIFY" for a in self.inventory["next_actions"]))
+        self.assertEqual(validate_inventory(self.inventory), [])
 
     def test_2026_labour_work_regulation_rules_remain_discovery_only(self):
         record = next(
