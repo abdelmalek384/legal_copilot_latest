@@ -65,3 +65,15 @@ The Ministry's 27 October clarification says:
 - Separate implementation circular located: no (announced, not publicly located as of research date).
 - Counsel approval: none.
 - Eligible for authoritative retrieval: no.
+
+
+## Additional visual locator verification — 2026-10-31
+
+The reproduced Gazette image endpoints were opened directly and visually checked on 2026-10-31:
+
+- Printed p.19: https://www.almasdar.com/WebP/libfiles/46/3/710.webp — visible header identifies *الوقائع المصرية، العدد 225 تابع (أ)، 12 أكتوبر 2026* and the Decision 249 title.
+- Printed p.33: https://www.almasdar.com/WebP/libfiles/46/3/724.webp — Table 1, work sites/establishments subject to the decision, with risk categories.
+- Printed p.43: https://www.almasdar.com/WebP/libfiles/46/3/734.webp — Table 2, OSH specialist/supervisor/technician staffing counts by risk category and worker bands.
+- Printed p.44: https://www.almasdar.com/WebP/libfiles/46/3/735.webp — Table 3, activities requiring continuous monitoring and listed pollutant/hazard identifiers.
+
+This confirms the page sequence and table locations in the reproduced scan, not the authenticity of the original file bytes. The images are hosted by a secondary publisher and are watermarked. No original Gazette PDF was obtained or hashed. Table 1–3 cell-level transcription remains unverified; do not derive a worker-count staffing ratio, risk classification or continuous-monitoring duty from the low-resolution images alone. The official Gazette catalogue remains the primary metadata locator; the Ministry's 2026-10-27 clarification is an official administrative explanation, not a replacement for the full operative instrument.
