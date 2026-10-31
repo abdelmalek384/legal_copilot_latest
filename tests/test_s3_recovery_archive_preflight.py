@@ -88,6 +88,18 @@ class RecoveryArchivePreflightTests(unittest.TestCase):
         )
         self.assertIn("recovery_default_sse_kms", result["failed_checks"])
 
+    def test_live_acceptance_remains_explicit_after_transport_implementation(self):
+        result = validate_recovery_archive_configuration(
+            FakeS3(), FakeKMS(), bucket="recovery-archive",
+            configured_key="alias/recovery-archive", original_bucket="original-objects",
+            original_key="alias/originals",
+        )
+        self.assertIn(
+            "run live staging upload, exact-VersionId download, bundle verification, and isolated restore with protected locator evidence",
+            result["manual_review_required"],
+        )
+        self.assertFalse(result["production_ready"])
+
     def test_rejects_reusing_original_kms_key_for_recovery_archive(self):
         result = validate_recovery_archive_configuration(
             FakeS3(), FakeKMS(), bucket="recovery-archive",
