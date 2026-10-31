@@ -60,3 +60,8 @@ python tools/report_labour_law_evidence_cards.py
 
 The report is a review aid only; it does not change any source-permission, legal-status, lawyer-review, or retrieval-eligibility flags. Its regression test requires the checked-in Markdown report to match the JSON cards.
 
+
+
+## Reconciled provisional evidence inventory — 2026-10-31
+
+The canonical Labour Law No. 14 of 2025 provision evidence inventory is being reconciled to **360 unique card IDs**. This includes the 127-card main-branch inventory plus the additional non-duplicate research leads from the earlier review snapshot. All 360 cards remain `search_eligible=false`; the inventory is not an authoritative corpus. The source PDF hash, full article-by-article currentness/amendment review, rights clearance and Egyptian-lawyer approval remain outstanding. Archived split inventories are excluded unless separately reconciled.

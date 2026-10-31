@@ -1,0 +1,249 @@
+{
+  "record_id": "EG-LABOUR-IMPLEMENTING-DECISIONS-PUBLIC-TEXT-CROSSWALK-2026-10-28",
+  "created_on": "2026-10-28",
+  "status": "research crosswalk; not authoritative",
+  "search_eligible": false,
+  "method": "Use publicly accessible repository metadata, official Ministry announcements and secondary full-text/indexed transcriptions as discovery/cross-check sources where original Gazette PDF access is limited. No access controls bypassed; no permission inferred from public availability.",
+  "decisions": [
+    {
+      "document_id": "EG-LABOUR-DECISION-290-2025",
+      "number": 290,
+      "year": 2025,
+      "related_law_articles": [
+        117,
+        118,
+        119
+      ],
+      "title_ar": "قرار وزير العمل رقم 290 لسنة 2025 بشأن الأعمال المتقطعة بطبيعتها التي يجوز تواجد العامل فيها أكثر من عشر ساعات ولا تتجاوز اثنتي عشرة ساعة في اليوم الواحد",
+      "primary_lead": {
+        "url": "https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829",
+        "status": "Official Gazette repository metadata and abstract; original Arabic PDF listed"
+      },
+      "secondary_text": {
+        "url": "https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829",
+        "status": "Public abstract provides Article 1 in Arabic and English; lists Arabic and English PDF files",
+        "verified_excerpt_ar": "الأصل ألا تجاوز الفترة بين بداية ساعات العمل ونهايتها عشر ساعات يومياً، وتحسب الراحة ضمن ساعات التواجد إذا بقي العامل في مكان العمل؛ ويستثنى العمل المتقطع المحدد بالمادة الثانية على ألا تزيد مدة التواجد في المنشأة على 12 ساعة يومياً."
+      },
+      "gazette_date": "2025-12-11 (repository item date; verify exact publication/effective date against Gazette)",
+      "effective_date": "unknown",
+      "article_2_schedule_status": "not yet transcribed or verified",
+      "reuse_rights": "unknown",
+      "currentness": "not verified",
+      "card_action": "cross-reference lead only; do not classify a job as intermittent without Article 2 list and actual duties"
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-291-2025",
+      "number": 291,
+      "year": 2025,
+      "related_law_articles": [
+        117,
+        118,
+        119,
+        121
+      ],
+      "title_ar": "قرار وزير العمل رقم 291 لسنة 2025 بشأن ضوابط التشغيل الإضافي ومبرراته",
+      "primary_lead": {
+        "url": "https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1",
+        "status": "Official Gazette supplement metadata lead; full text not reviewed"
+      },
+      "secondary_text": {
+        "url": "https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1",
+        "status": "No usable full text identified in the current research"
+      },
+      "gazette_date": "2025-12-30 (Supplement issue 295 تابع د; metadata lead)",
+      "effective_date": "unknown",
+      "article_2_schedule_status": "full operative provisions not yet transcribed",
+      "reuse_rights": "unknown",
+      "currentness": "not verified",
+      "card_action": "metadata only; do not infer permissible overtime reasons, caps or process from title"
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-292-2025",
+      "number": 292,
+      "year": 2025,
+      "related_law_articles": [
+        117,
+        118,
+        119,
+        121
+      ],
+      "title_ar": "قرار وزير العمل رقم 292 لسنة 2025 بشأن تحديد الحد الأقصى لساعات العمل الفعلية والإضافية في الأعمال التجهيزية والتكميلية وأعمال الحراسة والنظافة",
+      "primary_lead": {
+        "url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc/full",
+        "status": "Official Gazette Supplement issue 291 (تابع), dated 2025-12-25, metadata and PDF bundle listed"
+      },
+      "secondary_text": {
+        "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/25-12-2025/no-292?id=5042304&type=1",
+        "status": "Search-indexed secondary legal text shows decision date 2025-12-04, Gazette publication 2025-12-25, effective 2025-12-26, and article headings/partial text for preparatory, complementary, guarding and cleaning work; full detailed limits require full-text comparison"
+      },
+      "gazette_date": "2025-12-25",
+      "effective_date": "2025-12-26 (secondary source; verify against Gazette)",
+      "article_2_schedule_status": "partial secondary article text surfaced; full detailed limits and all provisions not verified",
+      "reuse_rights": "unknown",
+      "currentness": "not verified",
+      "card_action": "cross-reference only; no hour calculations until full exact provisions are checked"
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-294-2025",
+      "number": 294,
+      "year": 2025,
+      "related_law_articles": [
+        129
+      ],
+      "title_ar": "قرار وزير العمل رقم 294 لسنة 2025 بشأن تحديد العطلات والأعياد والمناسبات التي تعتبر إجازة بأجر كامل للعمال",
+      "primary_lead": {
+        "url": "https://dspace.id.com.eg/items/f66386dd-dcb6-4ba9-b231-23f3f5a0c68f/full",
+        "status": "Official Gazette repository metadata identifies Decision 294/2025; PDF files listed"
+      },
+      "secondary_text": {
+        "url": "https://lawhub.info/eg/?p=17019",
+        "status": "Public secondary full-text transcription found; lists official holidays under Article 1. A separate repository abstract lists 12 days including Hijri New Year, Mawlid, Eid al-Fitr first two days, Eid al-Adha Arafah and first two days, Coptic Christmas, 25 January, Sham El-Nessim, Sinai Liberation Day, Labour Day, 30 June, 23 July and Armed Forces Day."
+      },
+      "gazette_date": "2025-12-25 (Supplement issue 291 تابع; metadata)",
+      "effective_date": "2025-12-26 (secondary legal database; verify official Gazette)",
+      "article_2_schedule_status": "Article 1 list found in secondary transcription; full text and all operative clauses still need primary comparison",
+      "reuse_rights": "unknown",
+      "currentness": "not verified; event-specific Ministry circulars can affect a particular holiday date but do not themselves prove permanent amendment",
+      "card_action": "cross-reference only; check full current text and any current-year holiday guidance before answering a specific date"
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-49-2026",
+      "number": 49,
+      "year": 2026,
+      "related_law_articles": [
+        124
+      ],
+      "title_ar": "قرار وزير العمل رقم 49 لسنة 2026 بشأن تحديد الأعمال الخطرة والصعبة والمناطق النائية التي يستحق العاملون فيها زيادة الإجازة السنوية سبعة أيام",
+      "primary_lead": {
+        "url": "https://dspace.id.com.eg/items/f32b4a07-6598-4ed8-a170-60d631a57221",
+        "status": "Official Gazette repository metadata for Supplement issue 64 (تابع), dated 2026-03-18"
+      },
+      "secondary_text": {
+        "url": "https://ahmedazimelgamel.blogspot.com/2026/03/49-2026-7.html",
+        "status": "Public secondary transcription of Articles 1–5 and schedules; not compared with the official PDF"
+      },
+      "official_announcement": {
+        "url": "https://www.labour.gov.eg/ar/الأخبار/لتحقق-التوازن-بين-متطلبات-الإنتاج-وصون-حقوق-القوى-العاملة-وزير-العمل-يصدر-قرار-ا-وزاري-ا-بتحديد-الأعمال-الخطرة-والمناطق-النائية-التي-ت-زاد-فيها-الإجازات-السنوية-7-أيام-للعاملين/",
+        "status": "Ministry announcement confirms subject and seven additional annual-leave days"
+      },
+      "effective_date": "secondary transcription says day after publication; not verified against official PDF",
+      "reuse_rights": "unknown",
+      "currentness": "not verified",
+      "card_action": "check the exact job and remote-area schedules and worker's actual duties/location; do not infer eligibility from sector alone"
+    },
+    {
+      "document_id": "EG-LABOUR-WORK-REGULATION-RULES-2026",
+      "number": 162,
+      "year": 2026,
+      "related_law_articles": [
+        4,
+        5,
+        6,
+        117,
+        118,
+        119,
+        120,
+        121,
+        124,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175
+      ],
+      "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل",
+      "primary_lead": {
+        "url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+        "status": "Official Gazette metadata for Supplement issue 176 (تابع), dated 2026-08-13; official PDFs listed but require copy request"
+      },
+      "secondary_text": {
+        "url": "https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html",
+        "status": "Public secondary transcription of Articles 1–66; not compared fully with official Gazette PDF"
+      },
+      "official_announcement": {
+        "url": "https://www.labour.gov.eg/ar/الأخبار/وزير-العمل-يعلن-نص-القواعد-العامة-للائحة-تنظيم-العمل-بالقطاع-الخاص/",
+        "status": "Ministry announcement summarizes workplace regulation rules"
+      },
+      "effective_date": "secondary transcription states day after publication; unverified against primary PDF",
+      "reuse_rights": "unknown",
+      "currentness": "not verified",
+      "card_action": "use as cross-reference lead only; do not infer amendments to Law articles; compare official text and later decisions before authoritative use"
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-187-2025",
+      "number": 187,
+      "year": 2025,
+      "related_law_articles": [
+        166,
+        167,
+        168
+      ],
+      "title_ar": "قرار وزير العمل رقم 187 لسنة 2025 بشأن آليات وضوابط اعتماد الاستقالات العمالية من جانب مكتب العمل",
+      "primary_lead": {
+        "url": "https://www.labour.gov.eg/ar/الأخبار/وزير-العمل-يُصدر-قرارا-لضبط-آليات-اعتماد-الاستقالات-العمالية-طبقا/",
+        "status": "Official Ministry announcement dated 2025-09-15 describes the decision and its nine articles"
+      },
+      "secondary_text": {
+        "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/14-09-2025/no-187?id=2177898&type=1",
+        "status": "Partial secondary legal-database preview; full text access restricted"
+      },
+      "effective_date": "not verified",
+      "reuse_rights": "unknown",
+      "currentness": "not verified",
+      "card_action": "cross-reference administrative Labour Office authentication procedure separately from statutory substantive resignation rules; do not infer complete procedure from the preview"
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-214-2025",
+      "number": 214,
+      "year": 2025,
+      "related_law_articles": [
+        86,
+        87,
+        88,
+        89
+      ],
+      "title_ar": "قرار وزير العمل رقم 214 لسنة 2025 بشأن ضوابط وآليات تحرير عقود العمل",
+      "primary_lead": {
+        "url": "https://alamiria.com/Sec/TashTxt?id=5EinXV37k4w%3D",
+        "status": "Official Amiri Press searchable text page; source binary not downloaded or hashed"
+      },
+      "secondary_text": {
+        "url": "https://dspace.id.com.eg/items/8ebcec10-0c45-4fbf-9a56-44ca409dc6c4/full",
+        "status": "Official Gazette repository metadata and PDF listing"
+      },
+      "effective_date": "Gazette repository metadata date 2025-10-05; exact effective date needs verification",
+      "reuse_rights": "unknown",
+      "currentness": "not verified",
+      "card_action": "cross-reference contract-writing requirements; compare full operative text and any later decisions before authoritative use"
+    }
+  ]
+}
