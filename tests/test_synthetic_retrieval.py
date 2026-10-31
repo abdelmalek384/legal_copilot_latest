@@ -77,12 +77,14 @@ class SyntheticCorpus:
             (version_id, document_id, review_status, effective, repeal),
         )
         for index, review_type in enumerate(REVIEW_TYPES, 1):
+            notes = "synthetic fixture only"
+            if review_type == "lawyer_approval":
+                notes = "[qualified_egyptian_counsel_attested:user_id=42] synthetic fixture only"
             self.db.execute(
                 """INSERT INTO legal_review_events
-                   VALUES (?, ?, ?, 'pass', 'synthetic fixture only',
-                           'Automated test fixture', 'https://example.test/evidence',
-                           '2026-01-01T00:00:00')""",
-                (version_id * 10 + index, version_id, review_type),
+                   VALUES (?, ?, ?, 'pass', ?, 'Automated test fixture',
+                           'https://example.test/evidence', '2026-01-01T00:00:00')""",
+                (version_id * 10 + index, version_id, review_type, notes),
             )
         cursor = self.db.execute(
             """INSERT INTO chunks

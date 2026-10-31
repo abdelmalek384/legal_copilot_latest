@@ -1743,6 +1743,13 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
                 denied = self.client.get(url)
                 self.assertEqual(denied.status_code, 403, denied.text)
 
+    def test_qualified_counsel_allowlist_ignores_malformed_and_oversized_ids(self):
+        with patch.dict(os.environ, {
+            "LEGAL_QUALIFIED_EGYPTIAN_COUNSEL_USER_IDS":
+                "42, 42, 0, -7, ١٢, abc, 9223372036854775808, " + ("9" * 5000) + ", 43"
+        }):
+            self.assertEqual(app._qualified_egyptian_counsel_user_ids(), {42, 43})
+
     def test_platform_reviewer_role_guards_shared_corpus_review_writes(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
@@ -1812,6 +1819,26 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
         self.assertEqual(passing.status_code, 201, passing.text)
         self.assertFalse(passing.json()["status_changed"])
+
+        lawyer_payload = {
+            "review_type": "lawyer_approval",
+            "outcome": "pass",
+            "evidence_url": "https://example.test/gazette/lawyer-review",
+            "notes": "Synthetic counsel qualification attestation test.",
+        }
+        os.environ.pop("LEGAL_QUALIFIED_EGYPTIAN_COUNSEL_USER_IDS", None)
+        unqualified = self._mutate("post", endpoint, json=lawyer_payload)
+        self.assertEqual(unqualified.status_code, 403, unqualified.text)
+        with patch.dict(os.environ, {
+            "LEGAL_QUALIFIED_EGYPTIAN_COUNSEL_USER_IDS": str(self.user_id)
+        }):
+            qualified = self._mutate("post", endpoint, json=lawyer_payload)
+        self.assertEqual(qualified.status_code, 201, qualified.text)
+        self.assertIn(
+            f"[qualified_egyptian_counsel_attested:user_id={self.user_id}]",
+            qualified.json()["event"]["notes"],
+        )
+
         current = corpus.execute(
             "SELECT review_status,legal_status,authenticity_verified,status_verified,"
             "amendment_history_verified FROM legal_document_versions WHERE version_id=779"
@@ -1823,9 +1850,17 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
         history = self.client.get(endpoint)
         self.assertEqual(history.status_code, 200, history.text)
-        self.assertEqual(len(history.json()["events"]), 2)
-        self.assertEqual(history.json()["events"][0]["review_type"], "source_authenticity")
-        self.assertEqual(history.json()["events"][0]["reviewer"], "First Owner")
+        self.assertEqual(len(history.json()["events"]), 3)
+        self.assertEqual(history.json()["events"][0]["review_type"], "lawyer_approval")
+        self.assertIn(
+            "source_authenticity",
+            [event["review_type"] for event in history.json()["events"]],
+        )
+        source_review = next(
+            event for event in history.json()["events"]
+            if event["review_type"] == "source_authenticity"
+        )
+        self.assertEqual(source_review["reviewer"], "First Owner")
 
         control.execute(
             "DELETE FROM user_platform_roles WHERE user_id=? AND role_name='platform_reviewer'",
@@ -1838,7 +1873,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             corpus.execute(
                 "SELECT COUNT(*) FROM legal_review_events WHERE version_id=779"
             ).fetchone()[0],
-            2,
+            3,
             "revoked platform role must not append a review event",
         )
 
@@ -2830,9 +2865,12 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
              "in_force", "verified", 1, 1, 1, "version evidence"),
         ).lastrowid
         for review_type in ("source_authenticity", "extraction_quality", "legal_status", "amendment_history", "licensing", "lawyer_approval"):
+            notes = "Reviewed test fixture."
+            if review_type == "lawyer_approval":
+                notes = "[qualified_egyptian_counsel_attested:user_id=42] " + notes
             corpus.execute(
                 "INSERT INTO legal_review_events(version_id,reviewer,review_type,outcome,notes,evidence_url) VALUES(?,?,?,?,?,?)",
-                (version_id, "Test reviewer", review_type, "pass", "Reviewed test fixture.", "https://example.test/review"),
+                (version_id, "Test reviewer", review_type, "pass", notes, "https://example.test/review"),
             )
         corpus.execute(
             "INSERT INTO chunks(ref,article,page,text,norm,document_version_id,in_force,as_of,source,verified) "
@@ -4213,9 +4251,12 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
         version_id = version_cursor.lastrowid
         for review_type in ("source_authenticity", "extraction_quality", "legal_status", "amendment_history", "licensing", "lawyer_approval"):
+            notes = "Synthetic review completed."
+            if review_type == "lawyer_approval":
+                notes = "[qualified_egyptian_counsel_attested:user_id=42] " + notes
             corpus.execute(
                 "INSERT INTO legal_review_events(version_id,reviewer,review_type,outcome,notes,evidence_url) VALUES(?,?,?,?,?,?)",
-                (version_id, "Synthetic reviewer", review_type, "pass", "Synthetic review completed.", "https://example.test/review"),
+                (version_id, "Synthetic reviewer", review_type, "pass", notes, "https://example.test/review"),
             )
         corpus.execute(
             "INSERT INTO chunks(ref,article,page,text,norm,document_version_id,in_force,as_of,source,verified) "

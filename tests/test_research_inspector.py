@@ -47,6 +47,7 @@ def valid_source():
             "review_evidence": [
                 {"review_event_id": i, "review_type": kind, "outcome": "pass",
                  "evidence_url": "https://example.gov/review", "reviewer": "Reviewer",
+                 "notes": ("[qualified_egyptian_counsel_attested:user_id=42] reviewed" if kind == "lawyer_approval" else "reviewed"),
                  "reviewed_at": "2026-10-24 10:00:00"}
                 for i, kind in enumerate((
                     "source_authenticity", "extraction_quality", "legal_status",
@@ -110,6 +111,19 @@ class ResearchInspectorTests(unittest.TestCase):
 
         source = valid_source()
         source["provenance"]["official_title"] = " "
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
+    def test_lawyer_approval_requires_explicit_counsel_attestation_marker(self):
+        source = valid_source()
+        approval = next(
+            item for item in source["provenance"]["review_evidence"]
+            if item["review_type"] == "lawyer_approval"
+        )
+        approval["notes"] = "Reviewed by an ordinary platform reviewer"
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+        approval["notes"] = "[qualified_egyptian_counsel_attested:user_id=42] reviewed"
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_VERIFIED)
+        approval["notes"] = "[qualified_egyptian_counsel_attested:user_id=0] reviewed"
         self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
 
     def test_all_latest_review_types_are_required_for_verified_status(self):

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Read-only reviewer queue for legal-source provenance and version checks."""
 from __future__ import annotations
-import argparse, json, os, sqlite3
+import argparse, json, os, re, sqlite3
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlparse
@@ -89,9 +89,11 @@ def review_queue(db_path: Path) -> dict:
                 "next_action":"Review current terms and record scoped permission evidence; do not infer permission from public accessibility."})
         versions=db.execute("SELECT v.version_id,v.document_id,v.version_label,v.source_url,v.original_sha256,v.publication_date,v.effective_date,v.repeal_date,v.legal_status,v.review_status,v.authenticity_verified,v.status_verified,v.amendment_history_verified,v.permission_evidence,d.official_title,d.document_type,d.source_id,s.source_id AS matched_source_id,s.authority,s.collection_permission,s.commercial_reuse_permission FROM legal_document_versions v LEFT JOIN legal_documents d ON d.document_id=v.document_id LEFT JOIN legal_sources s ON s.source_id=d.source_id ORDER BY v.version_id").fetchall()
         review_types=("source_authenticity","extraction_quality","legal_status","amendment_history","licensing","lawyer_approval")
+        event_columns = cols(db, "legal_review_events") if "legal_review_events" in present else set()
+        notes_select = "notes" if "notes" in event_columns else "NULL AS notes"
         for version in versions:
             row=dict(version)
-            events=[dict(e) for e in db.execute("SELECT review_event_id,review_type,outcome,evidence_url,reviewer,reviewed_at FROM legal_review_events WHERE version_id=? ORDER BY reviewed_at DESC,review_event_id DESC",(row["version_id"],)).fetchall()]
+            events=[dict(e) for e in db.execute(f"SELECT review_event_id,review_type,outcome,evidence_url,reviewer,{notes_select},reviewed_at FROM legal_review_events WHERE version_id=? ORDER BY reviewed_at DESC,review_event_id DESC",(row["version_id"],)).fetchall()]
             reasons=[]
             if row["official_title"] is None:
                 reasons.append("document_missing_from_registry")
@@ -111,8 +113,15 @@ def review_queue(db_path: Path) -> dict:
               (commercial_reuse_issue(row["commercial_reuse_permission"]) is not None,commercial_reuse_issue(row["commercial_reuse_permission"]))]
             reasons.extend(label for missing,label in checks if missing)
             for rt in review_types:
-                if not any(e["review_type"]==rt and e["outcome"]=="pass" and valid_evidence_url(e["evidence_url"]) for e in events):
+                matching = [e for e in events if e["review_type"] == rt and e["outcome"] == "pass" and valid_evidence_url(e["evidence_url"])]
+                if not matching:
                     reasons.append("review_evidence_missing:"+rt)
+                elif rt == "lawyer_approval" and not any(
+                    isinstance(e.get("notes"), str) and re.search(
+                        r"\[qualified_egyptian_counsel_attested:user_id=[1-9][0-9]*\]", e["notes"]
+                    ) for e in matching
+                ):
+                    reasons.append("lawyer_approval_counsel_attestation_missing")
             if reasons:
                 report["records"].append({**row,"review_reasons":reasons,"review_events":events,
                   "next_action":"Inspect the official instrument and evidence; record scoped review events and leave unresolved items unresolved."})
