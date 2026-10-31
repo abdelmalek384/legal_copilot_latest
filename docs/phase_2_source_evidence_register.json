@@ -671,6 +671,21 @@
       "access_terms_state": "not_reviewed",
       "collection_permission": "unknown",
       "notes": "PDF opened through SIS. It identifies the Ministry of Labour and contains Decision 294/2025 Articles 1–4. Article 1 lists twelve paid holiday categories and allows substitution of another day for national uniformity; Article 2 grants full-pay leave, prohibits deduction from annual leave, and provides double pay or a substitute day on written request if work is required; Article 3 adds religious holidays for non-Muslim workers under the relevant Prime Minister decision; Article 4 provides next-day commencement after Gazette publication. This is a Ministry-hosted text copy, not the Official Gazette PDF; no local binary/hash or reuse terms were obtained."
+    },
+    {
+      "source_id": "EG-MOL-DECISION-249-2026-CLARIFICATION",
+      "publisher": "Egyptian Ministry of Labour",
+      "source_type": "Official Ministry clarification announcement concerning Ministerial Decision 249/2026; not the complete decision text",
+      "url": "https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D8%A8%D9%8A%D8%A7%D9%86-%D8%AA%D9%88%D8%B6%D9%8A%D8%AD%D9%8A-%D9%87%D8%A7%D9%85-%D8%A8%D8%B4%D8%A3%D9%86-%D8%A7%D9%84%D9%82%D8%B1%D8%A7%D8%B1-%D8%A7%D9%84%D9%88%D8%B2%D8%A7%D8%B1%D9%8A-%D8%B1%D9%82%D9%85-249-%D9%84%D8%B3%D9%86%D8%A9-2026-%D8%A7%D9%84%D8%AE%D8%A7%D8%B5-%D8%A8%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9-%D9%88%D8%A7%D9%84%D8%B5%D8%AD%D8%A9-%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9-%D9%88%D8%B2%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D9%84%D9%86-%D9%8A%D9%8F%D8%B6%D8%A7%D8%B1-%D8%A3%D9%8A-%D8%B9%D8%A7%D9%85%D9%84-%D9%8A%D8%B9%D9%85%D9%84-%D8%A8%D9%85%D9%87%D9%86%D8%A9-%D8%A3%D8%AE%D8%B5%D8%A7%D8%A6%D9%8A-%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9-%D9%88%D8%A7%D9%84%D8%B5%D8%AD%D8%A9-%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9-%D9%88%D9%84%D8%A7-%D9%85%D8%B3%D8%A7%D8%B3-%D8%A8%D8%A7%D9%84%D9%85%D8%B1%D8%A7%D9%83%D8%B2-%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%D9%8A%D8%A9-%D8%A7%D9%84%D9%85%D9%83%D8%ت%D8%B3%D8%A8%D8%A9-%D9%88%D8%A3%D9%87%D9%85%D9%8A%D8%A9-%D8%A7%D9%84%D9%85%D9%87%D9%86%D8%A9-%D8%AA%D8%B3%D8%AA%D9%88%D8%AC%D8%A8-%D9%85%D9%86%D8%AA%D9%87%D9%89-%D8%A7%D9%84%D8%AF%D9%82%D8%A9-%D9%81%D9%8A-%D8%A7%D8%AE%D8%AA%D9%8A%D8%A7%D8%B1-%D8%B4%D8%A7%D8%BA%D9%84%D9%8A%D9%87/",
+      "observed_title": "بيان توضيحي هام بشأن القرار الوزاري رقم 249 لسنة 2026 الخاص بالسلامة والصحة المهنية",
+      "publication_date": "2026-10-27",
+      "document_ids": [
+        "EG-LABOUR-DECISION-249-2026"
+      ],
+      "source_state": "official_ministry_clarification_search_indexed_page_fetch_failed",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "unknown",
+      "notes": "The search-indexed Ministry result dated 2026-10-27 says the clarification responds to questions following Decision 249/2026. It states that implementation will not harm current workers or remove acquired legal positions, discusses recognition of prior qualifications and experience for occupational-safety specialists, and says the competent central administration will issue circulars to standardize application. Direct page retrieval returned HTTP 502 in this session; no PDF or local bytes/hash were obtained and no reuse terms were reviewed. This is a Ministry clarification lead, not the full decision, a Gazette page comparison, or proof of a formal amendment."
     }
   ],
   "document_records_to_create_from_batch": [
