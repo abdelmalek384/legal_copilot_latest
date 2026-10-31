@@ -140,6 +140,13 @@
       "source_class": "secondary_legal_archive",
       "permission": "unknown",
       "next_action": "Manual discovery/link-out only; follow published attribution and no-profit terms. Do not bulk-copy or monetize site materials."
+    },
+    "EG-IDSC-GAZETTE-2025-295-SUPPLEMENT-D": {
+      "authority": "Ibrachy & Dermarkar Repository; item metadata lists Amiri Press as publisher and Ministry of Labour as author",
+      "source_url": "https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1",
+      "source_class": "third_party_official_gazette_issue_metadata",
+      "permission": "not_allowed_without_explicit_exception_or_license",
+      "next_action": "Metadata-only. The issue PDF is request-a-copy restricted; no PDF bytes or item-specific license were obtained. Do not request or bypass the restriction. Written permission is required before collection; prior written permission is required for commercial reuse."
     }
   },
   "documents": [
@@ -2249,9 +2256,9 @@
       "document_type": "ministerial_decision",
       "instrument_number": 290,
       "instrument_year": 2025,
-      "source_id": "EG-MINISTRY-LABOUR-LAWS",
-      "source_status": "official_Gazette_repository_metadata_and_public_secondary_Article_1_abstract_found; Article_2_schedule_pending",
-      "collection_permission": "unknown",
+      "source_id": "EG-IDSC-GAZETTE-2025-295-SUPPLEMENT-D",
+      "source_status": "official_Gazette_metadata_and_secondary_full_text_found; primary_comparison_pending",
+      "collection_permission": "not_allowed_without_explicit_exception_or_license",
       "legal_status": "unknown",
       "review_status": "discovery_only",
       "required_related_records": [
@@ -2262,17 +2269,22 @@
         "reuse review",
         "qualified Egyptian-lawyer review"
       ],
-      "notes": "Public Official Gazette repository record at https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829 lists Arabic and English PDF files and exposes an Arabic/English Article 1 abstract: ordinary span between start and end of work is limited to ten hours; rest counts within presence when the worker stays at the workplace; the Article 2 intermittent-work exception permits presence up to twelve hours. The full Article 2 list is not transcribed/verified here. Do not classify a job as intermittent or calculate working time without the full schedule and facts. Currentness and reuse remain unknown.",
+      "notes": "Official Gazette publisher metadata, hosted by the third-party Ibrachy & Dermarkar Repository, identifies Supplement issue 295 (تابع د), dated 2025-12-30, and lists Decision 290/2025. The issue PDF is request-a-copy restricted. A public Law Hub secondary transcription exposes Articles 1–4, including the Article 2 intermittent-work list, but it has not been compared with the official Gazette PDF. A separate DSpace item from the Middle East Library for Economic Services exposes a partial Article 1 abstract; that item is not published by Amiri Press and its PDFs are also request-a-copy restricted. No official text bytes/hash, full primary comparison, effective-date verification, later-amendment review or counsel review is complete. Do not classify a job as intermittent from the secondary text alone.",
       "source_urls": [
         {
-          "url": "https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829",
-          "source_role": "Official Gazette repository metadata, PDF file listing and Article 1 abstract",
-          "status": "public_metadata_and_partial_text"
+          "url": "https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1",
+          "source_role": "Official Gazette supplement issue metadata; Amiri Press listed as publisher; PDF request-copy restricted",
+          "status": "metadata_only_restricted_pdf"
         },
         {
-          "url": "https://dspace.id.com.eg/handle/123456789/6142",
-          "source_role": "repository item URI",
-          "status": "metadata_lead"
+          "url": "https://lawhub.info/eg/?p=17303",
+          "source_role": "Secondary full-text transcription of Articles 1–4; not primary",
+          "status": "secondary_full_text_not_primary_verified"
+        },
+        {
+          "url": "https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829",
+          "source_role": "Third-party DSpace item from Middle East Library for Economic Services; partial Article 1 abstract, not Amiri Press primary text",
+          "status": "secondary_partial_text_pdf_request_copy_restricted"
         }
       ]
     },
@@ -2285,25 +2297,31 @@
       "document_type": "ministerial_decision",
       "instrument_number": 291,
       "instrument_year": 2025,
-      "source_id": "EG-MINISTRY-LABOUR-LAWS",
-      "source_status": "official_metadata_or_text_lead_found_primary_comparison_pending",
-      "collection_permission": "unknown",
+      "source_id": "EG-IDSC-GAZETTE-2025-295-SUPPLEMENT-D",
+      "source_status": "official_Gazette_metadata_and_secondary_full_text_found; primary_comparison_pending",
+      "collection_permission": "not_allowed_without_explicit_exception_or_license",
       "legal_status": "unknown",
       "review_status": "discovery_only",
       "required_related_records": [
-        "complete decision text",
-        "Gazette pages and effective date",
-        "relation to Law 14/2025 Articles 117–121 and Decision 162/2026",
+        "complete official Gazette PDF and exact operative text",
+        "verify publication and next-day commencement against the official Gazette",
+        "relation to Law 14/2025 Articles 117–121",
+        "whether the annual overtime maximum contemplated by Article 4 was later set by the Social Consultation Council",
         "later amendments/repeal",
-        "reuse review",
+        "source-specific reuse review",
         "qualified Egyptian-lawyer review"
       ],
-      "notes": "Official Gazette repository metadata for the Gazette Supplement issue 295 (تابع د), dated 2025-12-30, lists Decision 291/2025 on controls and justifications for overtime. Full operative text and detailed exceptions were not verified in this review. Keep as a discovery lead; do not infer the allowed reasons, procedures or limits from the title alone.",
+      "notes": "Official Gazette publisher metadata, hosted by the third-party Ibrachy & Dermarkar Repository, identifies Supplement issue 295 (تابع د), dated 2025-12-30, and lists Decision 291/2025. The 550.3 KB issue PDF is request-a-copy restricted. A public Law Hub secondary transcription exposes Articles 1–5, including exceptional overtime conditions, notification/recordkeeping, rotation, minimum premium rates and a requirement for the Social Consultation Council to set an annual maximum; none has been compared with the official Gazette PDF. The secondary text states next-day commencement, which would derive to 2025-12-31, but this is not primary-verified. Whether the annual maximum was subsequently issued, later changes, legal status, reuse and lawyer review remain unresolved. Do not advise on overtime from the secondary text alone.",
       "source_urls": [
         {
           "url": "https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1",
-          "source_role": "Official Gazette supplement metadata",
-          "status": "metadata_found_full_text_not_reviewed"
+          "source_role": "Official Gazette supplement issue metadata; Amiri Press listed as publisher; PDF request-copy restricted",
+          "status": "metadata_only_restricted_pdf"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=17302",
+          "source_role": "Secondary full-text transcription of Articles 1–5; not primary",
+          "status": "secondary_full_text_not_primary_verified"
         }
       ]
     },
