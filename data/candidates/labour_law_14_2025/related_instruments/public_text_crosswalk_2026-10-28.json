@@ -29,7 +29,11 @@
       "article_2_schedule_status": "secondary full-text transcription exposes the list; not compared with official PDF",
       "reuse_rights": "unknown; official issue PDF is request-a-copy restricted and secondary-source reuse is not cleared",
       "currentness": "not verified; later changes and exact job applicability not checked",
-      "card_action": "cross-reference lead only; do not classify a job as intermittent until the official Article 2 schedule and the worker's actual duties are verified"
+      "card_action": "cross-reference lead only; do not classify a job as intermittent until the official Article 2 schedule and the worker's actual duties are verified",
+      "additional_official_access_lead": {
+        "url": "https://mediadr.sis.gov.eg/xmlui/handle/123456789/117733?locale-attribute=ar",
+        "status": "SIS search-indexed record states public viewing (الإطلاع: عام) and lists a 550.3 KB PDF; direct page/PDF access failed in this session, no bytes or terms reviewed"
+      }
     },
     {
       "document_id": "EG-LABOUR-DECISION-291-2025",
@@ -56,7 +60,11 @@
       "article_2_schedule_status": "Articles 1–5 available in secondary transcription; Article 4's annual-maximum follow-up remains unverified",
       "reuse_rights": "unknown; official issue PDF is request-a-copy restricted and secondary-source reuse is not cleared",
       "currentness": "not verified; confirm whether the annual overtime maximum was subsequently set and check later amendments",
-      "card_action": "cross-reference lead only; do not advise on overtime limits or exceptions until primary text and any subsequent annual maximum are checked"
+      "card_action": "cross-reference lead only; do not advise on overtime limits or exceptions until primary text and any subsequent annual maximum are checked",
+      "additional_official_access_lead": {
+        "url": "https://mediadr.sis.gov.eg/xmlui/handle/123456789/117733?locale-attribute=ar",
+        "status": "SIS search-indexed record states public viewing (الإطلاع: عام) and lists a 550.3 KB PDF; direct page/PDF access failed in this session, no bytes or terms reviewed"
+      }
     },
     {
       "document_id": "EG-LABOUR-DECISION-292-2025",
