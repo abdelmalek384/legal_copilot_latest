@@ -1157,7 +1157,10 @@ def _normalize_quantity_number(raw):
         return _QUANTITY_NUMBER_WORDS[raw]
     # Arabic cardinal compounds commonly join additive number words with waw:
     # خمسة وعشرون = 5 + 20; مائة وخمسون = 100 + 50.
-    compound_parts = re.split(r"(?<=\S)\s*و\s*", raw)
+    compound_parts = re.split(
+        r"\s+و\s*|(?<=\S)و(?=(?:" + _ARABIC_QUANTITY_WORD_PATTERN + r"))",
+        raw,
+    )
     if len(compound_parts) > 1:
         values = [_QUANTITY_NUMBER_WORDS.get(part) for part in compound_parts]
         if all(value is not None for value in values):
