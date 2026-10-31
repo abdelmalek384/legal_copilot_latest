@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.0",
+  "record_type": "implementing_instrument_source_candidate",
+  "parent_document_id": "EG-LABOUR-LAW-14-2025",
+  "instrument": {
+    "document_id": "EG-LABOUR-DECISION-250-2026",
+    "title_ar": "قرار وزير العمل رقم 250 لسنة 2026 بشأن قواعد ومعايير وبيان حدود الأمان في أماكن العمل والاشتراطات والاحتياطات اللازمة لدرء المخاطر",
+    "instrument_number": 250,
+    "year": 2026,
+    "issuing_authority": "وزارة العمل",
+    "gazette": {
+      "publication": "الوقائع المصرية - ملحق العدد 225 تابع (أ)",
+      "publication_date": "2026-10-12",
+      "publisher": "المطابع الأميرية",
+      "official_catalogue_url": "https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full",
+      "catalogue_file_name": "العدد 225 تابع أ - مؤمن.pdf",
+      "catalogue_file_size_bytes": null,
+      "original_pdf_obtained": false,
+      "original_pdf_sha256": null,
+      "download_access": "request_copy_restricted"
+    },
+    "candidate_commencement": {
+      "date": "2026-10-13",
+      "status": "candidate_secondary_inference",
+      "verified": false,
+      "basis": "The official Gazette catalogue metadata records publication on 2026-10-12. Article 2 in the secondary transcription states that the decision takes effect on the day following publication. The original Gazette pages have not been obtained or inspected; 2026-10-13 is therefore a candidate date only.",
+      "secondary_text_url": "https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html",
+      "article_reference": "المادة الثانية"
+    }
+  },
+  "sources": [
+    {
+      "source_id": "EG-GAZETTE-225A-2026-10-12",
+      "source_class": "official_gazette_catalogue_metadata",
+      "url": "https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full",
+      "retrieved_on": "2026-10-31",
+      "supports": [
+        "Gazette issue title",
+        "issuing ministry",
+        "publication date",
+        "publisher",
+        "instrument number and title listing"
+      ],
+      "limitations": [
+        "Catalogue metadata only; not the Gazette text itself.",
+        "PDF download is request-copy restricted.",
+        "No original file hash or page-level visual inspection."
+      ]
+    },
+    {
+      "source_id": "EG-MOL-ANNOUNCEMENT-2026-10-20",
+      "source_class": "official_ministry_announcement",
+      "url": "https://www.labour.gov.eg/ar/الأخبار/وزير-العمل-يصدر-5-قرارات-تنفيذية-لتعزيز-منظومة-السلامة-والصحة-المهنية-وتأمين-بيئة-العمل/",
+      "publication_date": "2026-10-20",
+      "retrieved_on": "2026-10-31",
+      "supports": [
+        "Ministry announcement that Decisions 248–252/2026 were issued as implementing measures under Labour Law 14/2025"
+      ],
+      "limitations": [
+        "Announcement does not replace the full Gazette instrument or certify its commencement clause."
+      ]
+    },
+    {
+      "source_id": "SECONDARY-TRANSCRIPTION-DECISION-250-2026",
+      "source_class": "secondary_legal_transcription",
+      "url": "https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html",
+      "publication_date": "2026-10-26",
+      "retrieved_on": "2026-10-31",
+      "supports": [
+        "Secondary transcription of Decision 250/2026 including Article 2 commencement wording"
+      ],
+      "limitations": [
+        "Not an official Gazette copy; no original-PDF match performed; not sufficient to verify legal text or commencement date."
+      ]
+    }
+  ],
+  "legal_status": "unknown_pending_primary_text_review",
+  "authenticity_verified": false,
+  "currentness_verified": false,
+  "amendment_history_verified": false,
+  "publication_date_verified_from_catalogue": true,
+  "effective_date_verified": false,
+  "source_permission": "unknown",
+  "commercial_reuse_permission": "unknown",
+  "egyptian_lawyer_review": "pending",
+  "primary_text_obtained": false,
+  "primary_text_sha256": null,
+  "article_level_comparison": "not_performed",
+  "search_eligible": false,
+  "import_eligible": false,
+  "candidate_only": true,
+  "do_not_assume_amendment": true,
+  "do_not_use_for_authoritative_legal_advice": true,
+  "notes": [
+    "The official catalogue entry establishes the existence and metadata of a Gazette supplement containing Decision 250/2026, but the underlying PDF remains unavailable through the ordinary download action.",
+    "The Ministry announcement is useful official context but does not authenticate the full text.",
+    "The 2026-10-13 commencement date is only an inference from catalogue publication metadata plus a secondary transcription of Article 2.",
+    "Do not enable retrieval or present the candidate commencement date as verified until the original Gazette pages are lawfully obtained, hashed, inspected and reconciled."
+  ]
+}
