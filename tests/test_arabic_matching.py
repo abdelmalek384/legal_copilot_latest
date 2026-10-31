@@ -1,10 +1,16 @@
 """Regression tests for Arabic query expansion and preliminary conflict-name matching."""
 import unittest
 
-from app import conflict_name_matches, expanded_tokens, matched_surface_terms, tokens
+from app import SYS, conflict_name_matches, expanded_tokens, matched_surface_terms, tokens
 
 
 class ArabicMatchingTests(unittest.TestCase):
+    def test_model_prompt_handles_egyptian_arabic_without_treating_synonyms_as_evidence(self):
+        self.assertIn("Egyptian Arabic", SYS)
+        self.assertIn("retrieval hints", SYS)
+        self.assertIn("exact formal statutory wording", SYS)
+        self.assertIn("ask a focused clarification", SYS)
+
     def test_article_prefix_and_accusative_alif_variant_are_query_expanded(self):
         query = expanded_tokens("الشيك")
         self.assertIn("شيك", query)
