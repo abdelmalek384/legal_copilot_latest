@@ -350,7 +350,7 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         self.assertEqual(source["collection_permission"], "not_allowed_without_explicit_exception_or_license")
         self.assertEqual(source["commercial_reuse_permission"], "prior_written_permission_required_per_published_terms")
         self.assertIn("55-byte item-specific license.txt", source["access_status"])
-        self.assertIn("all files in the item are in restricted access", source["permission_evidence"])
+        self.assertIn("all files are in restricted access", source["permission_evidence"])
         self.assertEqual(MODULE.validate(data), [])
 
 if __name__ == "__main__":
