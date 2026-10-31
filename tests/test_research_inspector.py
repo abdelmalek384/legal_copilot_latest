@@ -8,7 +8,7 @@ sys.path.insert(0, str(ROOT))
 from tools.research_inspector import (
     STATUS_METADATA_ONLY, STATUS_REVIEW, STATUS_USER_SUPPLIED, STATUS_VERIFIED,
     citation_text, research_memo, source_permission_evidence_ready, source_status,
-    has_current_review_evidence,
+    has_current_review_evidence, _valid_review_evidence_url,
 )
 
 
@@ -149,6 +149,35 @@ class ResearchInspectorTests(unittest.TestCase):
         source = valid_source()
         source["provenance"]["review_evidence"][0]["reviewer"] = " "
         self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
+    def test_all_evidence_urls_reject_ambiguous_https_forms(self):
+        invalid_urls = (
+            " https://example.gov/evidence",
+            "https://example.gov/evidence ",
+            "https://example.gov/path with spaces",
+            "https://user:secret@example.gov/evidence",
+            "https://@example.gov/evidence",
+            "https://example.gov:not-a-port/evidence",
+            "https://example.gov:99999/evidence",
+            "https://example.gov:0/evidence",
+            "https://example.gov:/evidence",
+            "https://example.gov/\\tunsafe",
+            None,
+            "",
+        )
+        for value in invalid_urls:
+            with self.subTest(value=value):
+                self.assertFalse(_valid_review_evidence_url(value))
+                for field in (
+                    "source_url", "permission_evidence_url",
+                    "commercial_reuse_evidence_url",
+                ):
+                    source = valid_source()
+                    source["provenance"][field] = value
+                    self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+                source = valid_source()
+                source["provenance"]["review_evidence"][0]["evidence_url"] = value
+                self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
 
     def test_every_current_review_event_requires_nonempty_notes(self):
         source = valid_source()
