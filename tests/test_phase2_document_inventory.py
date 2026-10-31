@@ -84,11 +84,10 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         self.assertEqual(record["instrument_number"], 49)
         self.assertEqual(record["instrument_year"], 2026)
         self.assertEqual(record["source_id"], "EG-MINISTRY-LABOUR-LAWS")
-        self.assertEqual(record["source_id"], "EG-IDSC-GAZETTE-2025-291-SUPPLEMENT-LABOUR")
-        self.assertEqual(record["collection_permission"], "not_allowed_without_explicit_exception_or_license")
+        self.assertEqual(record["collection_permission"], "unknown")
         self.assertEqual(record["legal_status"], "unknown")
         self.assertEqual(record["review_status"], "discovery_only")
-        self.assertTrue(any("dspace.id.com.eg/items/37add437" in item["url"] for item in record["source_urls"]))
+        self.assertTrue(any("labour.gov.eg" in item["url"] for item in record["source_urls"]))
         self.assertEqual(validate_inventory(self.inventory), [])
 
     def test_2025_labour_decision_294_remains_discovery_only(self):
@@ -98,10 +97,11 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         )
         self.assertEqual(record["instrument_number"], 294)
         self.assertEqual(record["instrument_year"], 2025)
-        self.assertEqual(record["collection_permission"], "unknown")
+        self.assertEqual(record["source_id"], "EG-IDSC-GAZETTE-2025-291-SUPPLEMENT-LABOUR")
+        self.assertEqual(record["collection_permission"], "not_allowed_without_explicit_exception_or_license")
         self.assertEqual(record["legal_status"], "unknown")
         self.assertEqual(record["review_status"], "discovery_only")
-        self.assertTrue(any("dspace.id.com.eg" in item["url"] for item in record["source_urls"]))
+        self.assertTrue(any("dspace.id.com.eg/items/37add437" in item["url"] for item in record["source_urls"]))
         self.assertTrue(any(a["id"] == "ACT-LABOUR-DECISION-294-2025-VERIFY" for a in self.inventory["next_actions"]))
         self.assertEqual(validate_inventory(self.inventory), [])
 
