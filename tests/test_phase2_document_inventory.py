@@ -44,7 +44,6 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         for document_id in (
             "EG-LABOUR-WORK-REGULATION-RULES-2026",
             "EG-LABOUR-DECISION-49-2026",
-            "EG-LABOUR-DECISION-294-2025",
         ):
             record = next(d for d in self.inventory["documents"] if d["document_id"] == document_id)
             self.assertEqual(record["source_id"], "EG-MINISTRY-LABOUR-LAWS")
@@ -132,6 +131,9 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
             if document_id in {"EG-LABOUR-DECISION-290-2025", "EG-LABOUR-DECISION-291-2025"}:
                 self.assertEqual(record["collection_permission"], "not_allowed_without_explicit_exception_or_license")
                 self.assertEqual(record["source_id"], "EG-IDSC-GAZETTE-2025-295-SUPPLEMENT-D")
+            elif document_id in {"EG-LABOUR-DECISION-292-2025", "EG-LABOUR-DECISION-294-2025"}:
+                self.assertEqual(record["collection_permission"], "not_allowed_without_explicit_exception_or_license")
+                self.assertEqual(record["source_id"], "EG-IDSC-GAZETTE-2025-291-SUPPLEMENT-LABOUR")
             else:
                 self.assertEqual(record["collection_permission"], "unknown")
             self.assertEqual(record["legal_status"], "unknown")
