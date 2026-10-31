@@ -103,6 +103,20 @@
       "source_class": "official_government_supporting_source",
       "permission": "unknown",
       "next_action": "Use the canonical central permission-register source ID; pin exact document URLs, review current terms, and establish intended-use permission before acquisition."
+    },
+    "EG-ALMASDAR-SECONDARY-LEGAL-NEWS": {
+      "authority": "Almasdar news publisher and secondary legal-text reproductions",
+      "source_url": "https://www.almasdar.com/",
+      "source_class": "secondary_legal_text_and_gazette_image_reproduction",
+      "permission": "unknown",
+      "next_action": "Manual discovery/link-out only; inspect terms and rights, authenticate text/images against the original Gazette, and do not bulk collect or reuse commercially without independently established permission."
+    },
+    "EG-LAW-HUB-SECONDARY-LEGAL-ARCHIVE": {
+      "authority": "LAW HUB / مركز القانون — Egyptian legal information archive",
+      "source_url": "https://lawhub.info/eg/",
+      "source_class": "secondary_legal_instrument_index_and_embedded_document_candidate",
+      "permission": "unknown",
+      "next_action": "Manual discovery/link-out only; inspect terms and rights, authenticate embedded documents against the Official Gazette, and do not bulk collect or reuse commercially without independently established permission."
     }
   },
   "documents": [
@@ -2384,7 +2398,8 @@
         {
           "url": "https://lawhub.info/eg/?p=19704",
           "source_role": "Secondary legal archive entry with embedded PDF link for Decision 248/2026; not an official Gazette copy and embedded file not authenticated",
-          "status": "secondary_legal_index_and_embedded_pdf_candidate_not_primary"
+          "status": "secondary_legal_index_and_embedded_pdf_candidate_not_primary",
+          "source_id": "EG-LAW-HUB-SECONDARY-LEGAL-ARCHIVE"
         }
       ],
       "required_related_records": [
@@ -2429,7 +2444,8 @@
         {
           "url": "https://www.almasdar.com/175150",
           "source_role": "Secondary publication reproducing Decision 249/2026 text and linked Gazette page images; not the original Official Gazette file",
-          "status": "secondary_text_and_page_images_not_authenticated"
+          "status": "secondary_text_and_page_images_not_authenticated",
+          "source_id": "EG-ALMASDAR-SECONDARY-LEGAL-NEWS"
         }
       ],
       "required_related_records": [
@@ -2474,7 +2490,8 @@
         {
           "url": "https://www.almasdar.com/175151",
           "source_role": "Secondary publication reproducing Decision 250/2026 Articles 1–2 and linked Gazette page images; Article 2 commencement wording is secondary only",
-          "status": "secondary_text_and_page_images_not_authenticated"
+          "status": "secondary_text_and_page_images_not_authenticated",
+          "source_id": "EG-ALMASDAR-SECONDARY-LEGAL-NEWS"
         }
       ],
       "required_related_records": [
@@ -2519,7 +2536,8 @@
         {
           "url": "https://www.almasdar.com/175152",
           "source_role": "Secondary publication reproducing Decision 251/2026 text and linked Gazette page images; not the original Official Gazette file",
-          "status": "secondary_text_and_page_images_not_authenticated"
+          "status": "secondary_text_and_page_images_not_authenticated",
+          "source_id": "EG-ALMASDAR-SECONDARY-LEGAL-NEWS"
         }
       ],
       "required_related_records": [
@@ -2564,7 +2582,8 @@
         {
           "url": "https://www.almasdar.com/175156",
           "source_role": "Secondary publication reproducing Decision 252/2026 text and linked Gazette page images; not the original Official Gazette file",
-          "status": "secondary_text_and_page_images_not_authenticated"
+          "status": "secondary_text_and_page_images_not_authenticated",
+          "source_id": "EG-ALMASDAR-SECONDARY-LEGAL-NEWS"
         }
       ],
       "required_related_records": [
