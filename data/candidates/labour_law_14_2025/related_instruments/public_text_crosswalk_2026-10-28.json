@@ -16,20 +16,20 @@
       ],
       "title_ar": "قرار وزير العمل رقم 290 لسنة 2025 بشأن الأعمال المتقطعة بطبيعتها التي يجوز تواجد العامل فيها أكثر من عشر ساعات ولا تتجاوز اثنتي عشرة ساعة في اليوم الواحد",
       "primary_lead": {
-        "url": "https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829",
-        "status": "Official Gazette repository metadata and abstract; original Arabic PDF listed"
+        "url": "https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1",
+        "status": "Official Gazette Supplement issue 295 metadata (2025-12-30); 550.3 KB PDF is request-a-copy restricted; no primary bytes obtained"
       },
       "secondary_text": {
-        "url": "https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829",
-        "status": "Public abstract provides Article 1 in Arabic and English; lists Arabic and English PDF files",
-        "verified_excerpt_ar": "الأصل ألا تجاوز الفترة بين بداية ساعات العمل ونهايتها عشر ساعات يومياً، وتحسب الراحة ضمن ساعات التواجد إذا بقي العامل في مكان العمل؛ ويستثنى العمل المتقطع المحدد بالمادة الثانية على ألا تزيد مدة التواجد في المنشأة على 12 ساعة يومياً."
+        "url": "https://lawhub.info/eg/?p=17303",
+        "status": "Public secondary full-text transcription of Articles 1–4; not checked against the official Gazette PDF",
+        "summary": "Secondary text includes an Article 2 list of intermittent-work categories and Article 3 recordkeeping/overtime provisions; no job classification is verified."
       },
-      "gazette_date": "2025-12-11 (repository item date; verify exact publication/effective date against Gazette)",
-      "effective_date": "unknown",
-      "article_2_schedule_status": "not yet transcribed or verified",
-      "reuse_rights": "unknown",
-      "currentness": "not verified",
-      "card_action": "cross-reference lead only; do not classify a job as intermittent without Article 2 list and actual duties"
+      "gazette_date": "2025-12-30 (official issue metadata; decision signature date shown as 2025-12-11 in the secondary transcription)",
+      "effective_date": "2025-12-31 (derived from secondary Article 4 publication clause; not verified against official Gazette)",
+      "article_2_schedule_status": "secondary full-text transcription exposes the list; not compared with official PDF",
+      "reuse_rights": "unknown; official issue PDF is request-a-copy restricted and secondary-source reuse is not cleared",
+      "currentness": "not verified; later changes and exact job applicability not checked",
+      "card_action": "cross-reference lead only; do not classify a job as intermittent until the official Article 2 schedule and the worker's actual duties are verified"
     },
     {
       "document_id": "EG-LABOUR-DECISION-291-2025",
@@ -44,18 +44,19 @@
       "title_ar": "قرار وزير العمل رقم 291 لسنة 2025 بشأن ضوابط التشغيل الإضافي ومبرراته",
       "primary_lead": {
         "url": "https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1",
-        "status": "Official Gazette supplement metadata lead; full text not reviewed"
+        "status": "Official Gazette Supplement issue 295 metadata (2025-12-30); 550.3 KB PDF is request-a-copy restricted; no primary bytes obtained"
       },
       "secondary_text": {
-        "url": "https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1",
-        "status": "No usable full text identified in the current research"
+        "url": "https://lawhub.info/eg/?p=17302",
+        "status": "Public secondary full-text transcription of Articles 1–5; not checked against the official Gazette PDF",
+        "summary": "Secondary text describes exceptional overtime conditions, notification and recordkeeping, worker rotation, premium pay and a Social Consultation Council task to set an annual maximum."
       },
-      "gazette_date": "2025-12-30 (Supplement issue 295 تابع د; metadata lead)",
-      "effective_date": "unknown",
-      "article_2_schedule_status": "full operative provisions not yet transcribed",
-      "reuse_rights": "unknown",
-      "currentness": "not verified",
-      "card_action": "metadata only; do not infer permissible overtime reasons, caps or process from title"
+      "gazette_date": "2025-12-30 (official issue metadata)",
+      "effective_date": "2025-12-31 (secondary Article 5 says day after publication; not verified against official Gazette)",
+      "article_2_schedule_status": "Articles 1–5 available in secondary transcription; Article 4's annual-maximum follow-up remains unverified",
+      "reuse_rights": "unknown; official issue PDF is request-a-copy restricted and secondary-source reuse is not cleared",
+      "currentness": "not verified; confirm whether the annual overtime maximum was subsequently set and check later amendments",
+      "card_action": "cross-reference lead only; do not advise on overtime limits or exceptions until primary text and any subsequent annual maximum are checked"
     },
     {
       "document_id": "EG-LABOUR-DECISION-292-2025",
