@@ -28,6 +28,12 @@ class TestLabourDecisionPublicTextCrosswalk(unittest.TestCase):
             self.assertIn("unknown", record["reuse_rights"])
             self.assertTrue(record["currentness"].startswith("not fully verified"))
             self.assertFalse(record.get("search_eligible", False))
+        repository = d290["third_party_repository_metadata"]
+        self.assertEqual(repository["url"], "https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829/full")
+        self.assertIn("not the Official Gazette", repository["status"])
+        self.assertIn("103.23 KB", " ".join(repository["listed_files"]))
+        self.assertIn("105.2 KB", " ".join(repository["listed_files"]))
+        self.assertIn("no hash", repository["status"])
         self.assertIn("intermittent work", d290["secondary_text"]["summary"])
         self.assertIn("35%", d291["secondary_text"]["summary"])
         self.assertIn("70%", d291["secondary_text"]["summary"])
