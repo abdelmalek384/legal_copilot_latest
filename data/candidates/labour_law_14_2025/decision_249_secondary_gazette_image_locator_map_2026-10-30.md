@@ -1,6 +1,6 @@
 # Decision 249/2026 — secondary Gazette-page image locator map
 
-**Checked:** 2026-10-30  
+**Checked:** 2026-10-31  
 **Instrument:** Ministry of Labour Decision 249/2026 on establishments/branches required to establish OSH functional units and committees  
 **Underlying Gazette issue shown in images:** Al-Waqa’i al-Misriya, Supplement 225(A), dated 2026-10-12  
 **Underlying printed page range shown:** 19–44  
@@ -66,3 +66,10 @@ These are discovery notes only; verify every item against the original Gazette P
 ## Next action
 
 Use these page images to expand the Decision 249 candidate register and review queue, while preserving source_class=secondary_scan_image_reproduction, page number, image URL, official_gazette_match=not_performed, null official PDF hash, and retrieval disabled. If the user can obtain the original supplement through normal access, compare pages 19–44 cell-by-cell and replace secondary locators with original page/hash evidence.
+
+
+## Additional visual verification — 2026-10-31
+
+Printed p.32 was opened and inspected directly: https://www.almasdar.com/WebP/libfiles/46/3/723.webp. The reproduced page shows Article 21 (repeal of Decision 134/2003), Article 22 (publication in Egyptian Proceedings and effectiveness the day after publication), and the signature block with a decision date shown as 2026/9/1.
+
+Combining that secondary reproduced page with the official DSpace catalogue metadata date of 2026-10-12 yields **2026-10-13 as a candidate effective date only**. This is not verified against the original Gazette PDF; the source image is a watermarked secondary reproduction. Keep `effective_date_verified=false`, preserve the original PDF SHA-256 as null, and do not use the date for legal deadlines or advice.
