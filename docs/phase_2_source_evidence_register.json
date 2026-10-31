@@ -33,9 +33,11 @@
         "EG-LABOUR-LAW-14-2025"
       ],
       "source_state": "metadata_discovered_pdf_listed_not_downloaded",
-      "access_terms_state": "not_reviewed",
-      "collection_permission": "permission_pending",
-      "notes": "Repository metadata identifies Law 14/2025. The record does not establish the repository's permission for automated retrieval, storage, extraction, indexing, or commercial display."
+      "access_terms_state": "reviewed_restricted",
+      "collection_permission": "not_allowed_without_explicit_exception_or_license",
+      "notes": "The Amiri Press Official Gazette issue metadata is confirmed (2025-05-03; Law 14/2025). The item page lists a 649.46 KB Gazette PDF and a 55 B item-specific license.txt, but both files route to request-a-copy and are marked restricted access. The repository End User Agreement, already reviewed for this source, limits use to personal non-commercial purposes, bars commercial exploitation without express prior written permission, and prohibits systematic retrieval to compile a database without written permission. Do not request or bypass restricted files. No PDF or license bytes were obtained; commercial reuse remains unapproved. The separate ETA-hosted Gazette PDF remains the currently accessible primary-source viewer.",
+      "terms_url": "https://dspace.id.com.eg/info/end-user-agreement",
+      "terms_checked_on": "2026-10-31"
     },
     {
       "source_id": "EG-MINISTRY-LABOUR-LAWS-INDEX",
