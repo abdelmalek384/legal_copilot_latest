@@ -575,6 +575,22 @@
       "access_terms_state": "not_reviewed",
       "collection_permission": "permission_pending",
       "notes": "Search-indexed SIS digital-repository metadata identifies Gazette issue 295 supplement D, date 2025-12-30, issuing authority Amiri Press, public viewing (الإطلاع: عام), and a 550.3 KB PDF named WQ295_20251230_1100.pdf. Direct item-page opening failed in this session due host access restrictions/robots/timeout; the PDF was not opened or downloaded and no terms were reviewed. This is a promising public-viewing primary-source lead, not acquired text or permission for bulk/commercial use."
+    },
+    {
+      "source_id": "EG-EASTLAWS-LABOUR-DECISIONS-290-291-2025",
+      "publisher": "EastLaws",
+      "source_type": "Secondary legal database full-text transcriptions for Ministerial Decisions 290/2025 and 291/2025",
+      "url": "https://www.eastlaws.com/",
+      "observed_title": "Ministerial Decisions 290/2025 and 291/2025",
+      "publication_date": "2025-12-30 (Gazette date stated by EastLaws)",
+      "document_ids": [
+        "EG-LABOUR-DECISION-290-2025",
+        "EG-LABOUR-DECISION-291-2025"
+      ],
+      "source_state": "secondary_full_text_indexed; primary_Gazette_not_compared",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "unknown",
+      "notes": "EastLaws search-indexed pages expose article headings and operative summaries/full text for both decisions, and state publication in Egyptian Proceedings Gazette Supplement issue 295 (تابع د) on 2025-12-30 with commencement on 2025-12-31. EastLaws is treated as secondary text only. No official PDF bytes, EastLaws reuse terms, or item-specific reuse permission were obtained. Do not ingest/redistribute or treat as primary source."
     }
   ],
   "document_records_to_create_from_batch": [
