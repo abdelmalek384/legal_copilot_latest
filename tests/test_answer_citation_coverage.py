@@ -71,6 +71,12 @@ class CitationCoverageTests(unittest.TestCase):
             "The tenant must pay rent on the agreed date [1].", english_hits
         ))
 
+    def test_arabic_duration_claim_can_anchor_to_english_deadline_source(self):
+        hits = [{"text": "The statutory deadline is 25 days."}]
+        self.assertFalse(app._answer_has_unanchored_citations(
+            "المدة خمسة وعشرون يوما [1].", hits
+        ))
+
     def test_citation_relevance_guard_rejects_unrelated_cited_passage(self):
         hits = [{"text": "تحدد المحكمة الاختصاص المحلي ونطاق نظر الدعوى."}]
         self.assertTrue(app._answer_has_unanchored_citations(
