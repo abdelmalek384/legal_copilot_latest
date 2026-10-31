@@ -199,6 +199,23 @@ class SourcePermissionRegisterTests(unittest.TestCase):
 if __name__ == "__main__":
     unittest.main()
 
+    def test_secondary_labour_legal_sources_remain_permission_unknown(self):
+        import json
+        data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        records = {item["source_id"]: item for item in data["sources"]}
+        for source_id in (
+            "EG-ALMASDAR-SECONDARY-LEGAL-NEWS",
+            "EG-LAW-HUB-SECONDARY-LEGAL-ARCHIVE",
+        ):
+            record = records[source_id]
+            self.assertEqual(record["collection_permission"], "unknown")
+            self.assertEqual(record["commercial_reuse_permission"], "unknown")
+            self.assertIsNone(record["terms_checked_on"])
+            self.assertTrue(record["required_next_action"])
+            self.assertTrue(record["permission_evidence"])
+            self.assertIn("manual", record["required_next_action"].lower())
+        self.assertEqual(MODULE.validate(data), [])
+
     def test_eta_official_gazette_pdf_provenance_does_not_imply_reuse_permission(self):
         import json
         data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
