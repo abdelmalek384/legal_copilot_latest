@@ -37,7 +37,9 @@
 - [ ] Object key namespace is derived from the trusted firm ID and opaque object ID; no user-supplied key or URL is accepted.
 - [ ] Staged and finalized object presence is reconciled; staged copies block physical purge.
 - [ ] SHA-256, byte size, and KMS metadata are verified against tenant metadata immediately before deletion.
-- [ ] **Time-of-check/time-of-use review:** demonstrate that an external writer cannot overwrite or recreate the object between integrity verification and deletion. The CLI `--quiesced` flag is an operator assertion only; it does not create a distributed lock or block S3 writes.
+- [ ] `DeleteObject` uses the ETag observed before integrity verification as an `If-Match` precondition; a missing ETag or failed precondition blocks deletion and preserves the current object.
+- [ ] The live bucket policy enforces conditional deletes with the `s3:if-match` condition key and denies unconditioned `DeleteObject`/`DeleteObjects` requests; verify the actual provider supports this API behavior.
+- [ ] **Time-of-check/time-of-use review:** demonstrate that an external writer cannot overwrite or recreate the object between integrity verification and deletion. Conditional ETag deletion protects against a changed current object, but does not replace the IAM-enforced no-writer control; the CLI `--quiesced` flag is an operator assertion only and does not create a distributed lock or block S3 writes.
 - [ ] The IAM policy and operational change freeze enforce the no-writer condition for the entire purge interval.
 - [ ] Delete response, post-delete object absence, and post-delete bucket-versioning state are checked; ambiguous outcomes enter manual review.
 

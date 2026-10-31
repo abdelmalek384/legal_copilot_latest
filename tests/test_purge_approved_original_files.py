@@ -60,7 +60,10 @@ class _PurgeStateMachineFakeS3:
     def get_bucket_versioning(self, *, Bucket):
         return {}
 
-    def delete_object(self, *, Bucket, Key):
+    def delete_object(self, *, Bucket, Key, IfMatch=None):
+        item = self.objects.get((Bucket, Key))
+        if item is not None and IfMatch != '"synthetic-etag"':
+            raise RuntimeError("conditional delete ETag mismatch")
         self.objects.pop((Bucket, Key), None)
         return {}
 

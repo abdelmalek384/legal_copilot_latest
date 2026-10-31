@@ -41,6 +41,8 @@ class FakeS3Client:
         self.versioning_status = None
         self.versioning_response = None
         self.fail_delete = False
+        self.mutate_before_conditional_delete = False
+        self.omit_head_etag = False
 
     def _read(self, bucket, key):
         try:
@@ -65,13 +67,15 @@ class FakeS3Client:
 
     def head_object(self, **kwargs):
         value = self._read(kwargs["Bucket"], kwargs["Key"])
-        return {
-            "ETag": value["ETag"],
+        result = {
             "ContentLength": len(value["Body"]),
             "Metadata": value["Metadata"],
             "ServerSideEncryption": value.get("ServerSideEncryption"),
             "SSEKMSKeyId": value.get("SSEKMSKeyId"),
         }
+        if not self.omit_head_etag:
+            result["ETag"] = value["ETag"]
+        return result
 
     def copy_object(self, **kwargs):
         self.calls.append(("copy_object", kwargs.copy()))
@@ -105,9 +109,17 @@ class FakeS3Client:
         return {"Status": self.versioning_status} if self.versioning_status else {}
 
     def delete_object(self, **kwargs):
+        self.calls.append(("delete_object", kwargs.copy()))
         if self.fail_delete:
             raise RuntimeError("synthetic delete failure")
-        self.objects.pop((kwargs["Bucket"], kwargs["Key"]), None)
+        key = (kwargs["Bucket"], kwargs["Key"])
+        current = self.objects.get(key)
+        if self.mutate_before_conditional_delete and current is not None:
+            current["Body"] = b"concurrent replacement"
+            current["ETag"] = '"' + hashlib.md5(current["Body"]).hexdigest() + '"'
+        if "IfMatch" in kwargs and current is not None and kwargs["IfMatch"] != current["ETag"]:
+            raise FakeS3Error("PreconditionFailed")
+        self.objects.pop(key, None)
         return {}
 
     def list_objects_v2(self, **kwargs):
@@ -116,6 +128,12 @@ class FakeS3Client:
 
 
 class S3PrivateObjectStoreTests(unittest.TestCase):
+    def test_installed_botocore_delete_object_model_supports_if_match(self):
+        from botocore.session import Session
+
+        operation = Session().get_service_model("s3").operation_model("DeleteObject")
+        self.assertIn("IfMatch", operation.input_shape.members)
+
     def test_acceptance_report_binds_evidence_to_non_secret_storage_target_fingerprint(self):
         from unittest.mock import patch
 
@@ -383,10 +401,46 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
             expected_size=staged.byte_size,
         ))
         self.assertEqual(self.store.object_presence(12, staged.object_id), (False, False))
+        purge_calls = [
+            kwargs for name, kwargs in self.client.calls
+            if name == "delete_object" and kwargs.get("Key") == self.store._key(12, staged.object_id, "blob")
+        ]
+        self.assertTrue(purge_calls)
+        self.assertEqual(purge_calls[-1]["IfMatch"], '"' + hashlib.md5(b"physical purge payload").hexdigest() + '"')
         self.assertFalse(self.store.purge_unversioned(
             12, staged.object_id, expected_sha256=staged.sha256,
             expected_size=staged.byte_size,
         ))
+
+    def test_physical_purge_uses_conditional_delete_and_preserves_concurrent_replacement(self):
+        staged = self.store.stage(12, b"original immutable payload")
+        self.store.finalize(12, staged.object_id)
+        final_key = self.store._key(12, staged.object_id, "blob")
+        self.client.mutate_before_conditional_delete = True
+        with self.assertRaisesRegex(ObjectStorageError, "physical purge could not be verified"):
+            self.store.purge_unversioned(
+                12, staged.object_id, expected_sha256=staged.sha256,
+                expected_size=staged.byte_size,
+            )
+        current = self.client.objects[("private-matter-files", final_key)]
+        self.assertEqual(current["Body"], b"concurrent replacement")
+        delete_call = [
+            kwargs for name, kwargs in self.client.calls
+            if name == "delete_object" and kwargs.get("Key") == final_key
+        ][-1]
+        self.assertEqual(delete_call["IfMatch"], '"' + hashlib.md5(b"original immutable payload").hexdigest() + '"')
+
+    def test_physical_purge_refuses_missing_etag_before_delete(self):
+        staged = self.store.stage(12, b"missing etag payload")
+        self.store.finalize(12, staged.object_id)
+        self.client.omit_head_etag = True
+        with self.assertRaisesRegex(ObjectStorageError, "requires an object ETag"):
+            self.store.purge_unversioned(
+                12, staged.object_id, expected_sha256=staged.sha256,
+                expected_size=staged.byte_size,
+            )
+        self.assertEqual(self.store.object_presence(12, staged.object_id), (False, True))
+        self.assertFalse(any(name == "delete_object" and kwargs.get("Key") == self.store._key(12, staged.object_id, "blob") for name, kwargs in self.client.calls))
 
     def test_physical_purge_refuses_staged_or_corrupt_objects_and_preserves_bytes(self):
         staged = self.store.stage(12, b"recoverable staged payload")
