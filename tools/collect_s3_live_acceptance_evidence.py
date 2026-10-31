@@ -106,6 +106,58 @@ def _assumed_role_name(arn: object) -> str | None:
     return match.group(1) if match else None
 
 
+def _policy_summary(document: object) -> dict[str, Any]:
+    policy = _policy_document(document)
+    statements = _statements(policy)
+    broad = []
+    for item in statements:
+        if str(item.get("Effect", "")).lower() != "allow":
+            continue
+        actions = _items(item.get("Action"))
+        resources = _items(item.get("Resource"))
+        if "*" in actions or "iam:*" in actions or "s3:*" in actions or "kms:*" in actions:
+            broad.append("wildcard_action")
+        if "*" in resources:
+            broad.append("wildcard_resource")
+    return {
+        "sha256": _policy_fingerprint(policy),
+        "statement_count": len(statements),
+        "broad_allow_flags": sorted(set(broad)),
+    }
+
+
+def _list_all(iam_client, method: str, *, RoleName: str, result_key: str) -> list[dict[str, Any]]:
+    function = getattr(iam_client, method)
+    items: list[dict[str, Any]] = []
+    marker = None
+    while True:
+        args = {"RoleName": RoleName}
+        if marker:
+            args["Marker"] = marker
+        response = function(**args)
+        items.extend(item for item in response.get(result_key, []) if isinstance(item, dict))
+        if not response.get("IsTruncated"):
+            break
+        marker = response.get("Marker")
+        if not marker:
+            raise RuntimeError("IAM policy listing was truncated without a continuation marker")
+    return items
+
+
+def _managed_policy_evidence(iam_client, policy_arn: str) -> dict[str, Any]:
+    metadata = iam_client.get_policy(PolicyArn=policy_arn).get("Policy", {})
+    version_id = metadata.get("DefaultVersionId")
+    if not isinstance(version_id, str) or not version_id:
+        raise RuntimeError("managed IAM policy has no default version")
+    version = iam_client.get_policy_version(PolicyArn=policy_arn, VersionId=version_id)
+    summary = _policy_summary(version.get("PolicyVersion", {}).get("Document"))
+    return {
+        "arn": policy_arn,
+        "default_version_id": version_id,
+        **summary,
+    }
+
+
 def collect_live_evidence(s3_client, kms_client, sts_client, iam_client, *, bucket: str, key_id: str) -> dict[str, Any]:
     checks: list[dict[str, Any]] = []
 
@@ -222,20 +274,46 @@ def collect_live_evidence(s3_client, kms_client, sts_client, iam_client, *, buck
     if role_name:
         try:
             role = iam_client.get_role(RoleName=role_name).get("Role", {})
-            attached = iam_client.list_attached_role_policies(RoleName=role_name).get("AttachedPolicies", [])
-            inline = iam_client.list_role_policies(RoleName=role_name).get("PolicyNames", [])
+            attached = _list_all(
+                iam_client, "list_attached_role_policies",
+                RoleName=role_name, result_key="AttachedPolicies",
+            )
+            inline = _list_all(
+                iam_client, "list_role_policies",
+                RoleName=role_name, result_key="PolicyNames",
+            )
+            attached_evidence = [
+                _managed_policy_evidence(iam_client, item["PolicyArn"])
+                for item in attached if isinstance(item.get("PolicyArn"), str)
+            ]
+            inline_evidence = []
+            for item in inline:
+                name = item.get("PolicyName")
+                if not isinstance(name, str):
+                    continue
+                document = iam_client.get_role_policy(RoleName=role_name, PolicyName=name).get("PolicyDocument")
+                inline_evidence.append({"name": name, **_policy_summary(document)})
+            trust_evidence = _policy_summary(role.get("AssumeRolePolicyDocument"))
+            boundary_arn = (
+                role.get("PermissionsBoundary", {}).get("PermissionsBoundaryArn")
+                if isinstance(role.get("PermissionsBoundary"), dict) else None
+            )
+            boundary_evidence = (
+                _managed_policy_evidence(iam_client, boundary_arn) if boundary_arn else None
+            )
             role_evidence.update({
                 "role_arn": role.get("Arn"),
-                "permissions_boundary_arn": (
-                    role.get("PermissionsBoundary", {}).get("PermissionsBoundaryArn")
-                    if isinstance(role.get("PermissionsBoundary"), dict) else None
-                ),
-                "attached_policy_arns": sorted(
-                    item.get("PolicyArn") for item in attached if isinstance(item.get("PolicyArn"), str)
-                ),
-                "inline_policy_names": sorted(item for item in inline if isinstance(item, str)),
+                "trust_policy": trust_evidence,
+                "permissions_boundary": boundary_evidence,
+                "attached_policies": sorted(attached_evidence, key=lambda item: item["arn"]),
+                "inline_policies": sorted(inline_evidence, key=lambda item: item["name"]),
             })
-            check("caller_role_inventory", True, "current assumed role and attached/inline policy names were inventoried")
+            check(
+                "caller_role_inventory",
+                bool(role.get("Arn") and all(item["sha256"] for item in attached_evidence + inline_evidence)
+                     and trust_evidence["sha256"]),
+                "current assumed role, trust policy, managed policy documents, inline policy documents, and boundary were inventoried",
+            )
         except Exception:
             check("caller_role_inventory", False, "current assumed role policies could not be inventoried")
     else:
