@@ -628,14 +628,27 @@ async function law(){
          if(p.status==='registry_linked'){
            const meta=[p.official_title,p.authority,p.law_number&&((LANG==='ar'?'القانون رقم ':'Law No. ')+p.law_number+(p.law_year?'/'+p.law_year:'')),p.version_label,p.legal_status,p.publication_date&&((LANG==='ar'?'النشر: ':'Published: ')+p.publication_date),p.effective_date&&((LANG==='ar'?'السريان: ':'Effective: ')+p.effective_date),p.repeal_date&&((LANG==='ar'?'الإلغاء: ':'Repeal: ')+p.repeal_date),p.consolidated_as_of&&((LANG==='ar'?'مجمع حتى: ':'Consolidated through: ')+p.consolidated_as_of),p.gazette_issue&&((LANG==='ar'?'الجريدة الرسمية: ':'Gazette: ')+p.gazette_issue+(p.gazette_pages?' · '+p.gazette_pages:'')),s.requested_as_of&&((LANG==='ar'?'تاريخ البحث: ':'As of: ')+s.requested_as_of)].filter(Boolean).join(' · ');
            if(meta)src.append(h('div',{className:'mut',textContent:meta}));
-           // Show reviewer evidence only when the registry contains an explicit passing lawyer-approval event.
-           const lawyerApproval=(p.review_evidence||[]).find(e=>e.review_type==='lawyer_approval'&&e.outcome==='pass'&&String(e.reviewer||'').trim()&&String(e.reviewed_at||'').trim());
-           if(lawyerApproval)src.append(h('div',{className:'mut',textContent:(LANG==='ar'?'اعتماد محامٍ مسجل: ':'Recorded lawyer approval: ')+lawyerApproval.reviewer+' · '+lawyerApproval.reviewed_at.slice(0,10)}));
+           // Display only the latest event for each review type; old passing events are superseded.
+           const latestReviewByType={};
+           for(const event of (Array.isArray(p.review_evidence)?p.review_evidence:[])){
+             if(!event||typeof event.review_type!=='string')continue;
+             const previous=latestReviewByType[event.review_type];
+             const eventTime=Date.parse(event.reviewed_at||''),previousTime=previous?Date.parse(previous.reviewed_at||''):NaN;
+             const eventId=Number.isSafeInteger(event.review_event_id)?event.review_event_id:0;
+             const previousId=previous&&Number.isSafeInteger(previous.review_event_id)?previous.review_event_id:0;
+             if(!previous||(Number.isFinite(eventTime)&&(!Number.isFinite(previousTime)||eventTime>previousTime))||(eventTime===previousTime&&eventId>previousId))latestReviewByType[event.review_type]=event;
+           }
+           const latestReviews=Object.values(latestReviewByType);
+           const lawyerApproval=latestReviewByType.lawyer_approval;
+           if(lawyerApproval&&String(lawyerApproval.reviewer||'').trim()&&String(lawyerApproval.reviewed_at||'').trim()){
+             const passed=lawyerApproval.outcome==='pass';
+             src.append(h('div',{className:'mut',textContent:(LANG==='ar'?(passed?'آخر اعتماد محامٍ مسجل: ':'آخر مراجعة محامٍ مسجلة: '):(passed?'Latest recorded lawyer approval: ':'Latest recorded lawyer review: '))+lawyerApproval.reviewer+' · '+lawyerApproval.reviewed_at.slice(0,10)+(passed?'':(' · '+(lawyerApproval.outcome||'unknown')))}));
+           }
            if(status==='verified_operative_text'&&p.legal_status==='in_force'&&s.requested_as_of)src.append(pill((LANG==='ar'?'الحالة المسجلة: ساري في ':'Recorded status: in force as of ')+s.requested_as_of,'done'));
            const sourceUrl=safeHttpsUrl(p.source_url||s.source_url);if(sourceUrl)src.append(h('a',{className:'research-source-link',href:sourceUrl,target:'_blank',rel:'noopener noreferrer',textContent:LANG==='ar'?'فتح المصدر المسجل ('+sourceHostLabel(sourceUrl)+')':'Open registered source ('+sourceHostLabel(sourceUrl)+')'}));
            if(!p.amendment_history_verified)src.append(pill(LANG==='ar'?'تاريخ التعديلات غير متحقق':'Amendment history unverified','soon'));
-           const ev=(p.review_evidence||[]).filter(e=>e.outcome==='pass'&&e.evidence_url);
-           if(ev.length)src.append(h('div',{className:'mut',textContent:(LANG==='ar'?'دليل المراجعة: ':'Review evidence: ')+ev.map(e=>e.review_type+' — '+e.evidence_url).join(' · ')}));
+           const ev=latestReviews.filter(e=>e.evidence_url);
+           if(ev.length)src.append(h('div',{className:'mut',textContent:(LANG==='ar'?'أحدث أدلة المراجعة: ':'Latest review evidence: ')+ev.map(e=>e.review_type+' ('+(e.outcome||'unknown')+') — '+e.evidence_url).join(' · ')}));
            const rels=p.relations||[];
            if(rels.length)src.append(h('div',{className:'mut',textContent:(LANG==='ar'?'علاقات الإصدار: ':'Version relations: ')+rels.map(r=>(r.from_title||r.from_version_id)+' '+r.relation_type+' '+(r.to_title||r.to_version_id)).join(' · ')}));
          }else if(p.status==='legacy_unlinked'){
