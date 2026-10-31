@@ -99,9 +99,12 @@ class LegalVersionedRegistryTests(unittest.TestCase):
             (amendment_history_verified, "https://example.gov/terms#commercial-reuse", cur.lastrowid)
         )
         for review_type in ("source_authenticity", "extraction_quality", "legal_status", "amendment_history", "licensing", "lawyer_approval"):
+            notes = "Reviewed against evidence."
+            if review_type == "lawyer_approval":
+                notes = "[qualified_egyptian_counsel_attested:user_id=42] " + notes
             self.db.execute(
                 "INSERT INTO legal_review_events(version_id,reviewer,review_type,outcome,notes,evidence_url) VALUES(?,?,?,?,?,?)",
-                (cur.lastrowid, "Reviewer", review_type, "pass", "Reviewed against evidence.", "https://example.gov/review"),
+                (cur.lastrowid, "Reviewer", review_type, "pass", notes, "https://example.gov/review"),
             )
         chunk = self.db.execute(
             "INSERT INTO chunks(ref,article,page,text,norm,document_version_id,in_force,as_of,source,verified) "
@@ -201,6 +204,27 @@ class LegalVersionedRegistryTests(unittest.TestCase):
                 )
                 self.db.commit()
                 self.assertEqual([h["id"] for h in self.app.search(self.db, "revieweventgateprobe", as_of="2026-10-23")], [chunk_id])
+
+    def test_unattested_lawyer_approval_blocks_regular_and_exact_search(self):
+        chunk_id, version_id = self._make_linked_chunk(
+            "counsel-attestation-gate", "2020-01-01", text="counselattestationprobe legal text"
+        )
+        self.db.execute(
+            "UPDATE legal_review_events SET notes='Reviewed by a platform reviewer' "
+            "WHERE version_id=? AND review_type='lawyer_approval'",
+            (version_id,),
+        )
+        self.db.commit()
+        self.assertEqual(self.app.search(self.db, "counselattestationprobe", as_of="2026-10-23"), [])
+        self.assertEqual(self.app.search(self.db, "المادة 1", as_of="2026-10-23"), [])
+        self.db.execute(
+            "UPDATE legal_review_events SET notes=? WHERE version_id=? AND review_type='lawyer_approval'",
+            ("[qualified_egyptian_counsel_attested:user_id=42] reviewed", version_id),
+        )
+        self.db.commit()
+        self.assertIn(chunk_id, [hit["id"] for hit in self.app.search(
+            self.db, "counselattestationprobe", as_of="2026-10-23"
+        )])
 
     def test_amendment_history_must_be_verified_for_regular_and_exact_search(self):
         chunk_id, version_id = self._make_linked_chunk(
