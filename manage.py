@@ -613,7 +613,6 @@ def archive_upload_tenancy(a):
     except (DatabaseBundleError, OSError, ValueError) as exc:
         raise SystemExit("Recovery archive upload failed: " + str(exc)) from exc
     print(json.dumps(locator, sort_keys=True))
-    print("Store this locator as protected recovery evidence; the object key alone is not a recovery point.")
 
 
 def archive_download_tenancy(a):
