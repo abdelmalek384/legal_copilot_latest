@@ -109,7 +109,7 @@
       "source_url": "https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full",
       "source_class": "official_gazette_catalogue_metadata",
       "permission": "unknown",
-      "next_action": "Use catalogue metadata only. The 6.13 MB original bundle is request-copy restricted; do not bypass the restriction. Obtain original bytes only through an ordinary authorized route and record SHA-256 when lawfully available."
+      "next_action": "Use catalogue metadata only. Both the 6.13 MB original PDF and the 55-byte license.txt resolve to request-a-copy forms; do not bypass either restriction. Obtain both only through an ordinary authorized route, inspect the item-specific licence, and record the original-file SHA-256 only after lawful receipt."
     },
     "EG-ALMASDAR-SECONDARY-LEGAL-NEWS": {
       "authority": "Almasdar news publisher and secondary legal-text reproductions",
@@ -2411,14 +2411,14 @@
         "crosswalk to Labour Law 14/2025 and related implementing instruments",
         "qualified Egyptian labour/occupational-safety counsel review"
       ],
-      "notes": "The IDSC repository catalogue identifies Official Gazette Proceedings issue 225 supplement (A), dated 2026-10-12, publisher Amiri Press, Ministry of Labour, and lists Decisions 248–252 in a 6.13 MB original PDF bundle. The download is request-copy restricted; no original bytes or SHA-256 were obtained. A public Egyin secondary article summarizes Decision 248, including scope, serious-accident criteria, notification windows and semi-annual statistics. It is a secondary summary, not the complete official decision. Collection/reuse rights, legal status, full text, currentness and counsel approval remain unresolved.",
+      "notes": "The IDSC repository catalogue identifies Official Gazette Proceedings issue 225 supplement (A), dated 2026-10-12, publisher Amiri Press, Ministry of Labour, and lists Decisions 248–252 in a 6.13 MB original PDF bundle. The PDF and 55-byte license.txt downloads are both request-copy restricted; no original bytes or SHA-256 were obtained. A public Egyin secondary article summarizes Decision 248, including scope, serious-accident criteria, notification windows and semi-annual statistics. It is a secondary summary, not the complete official decision. Collection/reuse rights, legal status, full text, currentness and counsel approval remain unresolved.",
       "publication_date": "2026-10-12",
       "official_gazette_issue": "225 تابع (أ)",
       "source_urls": [
         {
           "url": "https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full",
           "source_role": "official Gazette catalogue metadata; original bundle request-copy restricted",
-          "status": "catalogue_metadata_located_original_bytes_not_obtained"
+          "status": "catalogue_metadata_located_original_pdf_and_license_txt_request_copy_restricted"
         },
         {
           "url": "https://www.labour.gov.eg/ar/القوانين-والتشريعات/",
@@ -2456,14 +2456,14 @@
         "crosswalk to Labour Law 14/2025 Article 259 and related instruments",
         "qualified Egyptian labour/occupational-safety counsel review"
       ],
-      "notes": "The IDSC catalogue metadata identifies the decision in issue 225 supplement (A), 2026-10-12. A secondary Almasdar page reproduces decision text and PR #964 added a quarantined third-party Gazette-image locator set with 22 article records, 3 table records and 1 appendix record mapped to reproduced printed pages 19–44. Those images are not the original Gazette bytes and do not establish official row/page matches. The original bundle remains request-copy restricted; no hash or original visual comparison is claimed. All content remains discovery-only; rights, currentness and counsel approval are unresolved.",
+      "notes": "The IDSC catalogue metadata identifies the decision in issue 225 supplement (A), 2026-10-12. A secondary Almasdar page reproduces decision text and PR #964 added a quarantined third-party Gazette-image locator set with 22 article records, 3 table records and 1 appendix record mapped to reproduced printed pages 19–44. Those images are not the original Gazette bytes and do not establish official row/page matches. The original bundle and item-specific license.txt are both request-copy restricted; no hash or original visual comparison is claimed. All content remains discovery-only; rights, currentness and counsel approval are unresolved.",
       "publication_date": "2026-10-12",
       "official_gazette_issue": "225 تابع (أ)",
       "source_urls": [
         {
           "url": "https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full",
           "source_role": "official Gazette catalogue metadata; original bundle request-copy restricted",
-          "status": "catalogue_metadata_located_original_bytes_not_obtained"
+          "status": "catalogue_metadata_located_original_pdf_and_license_txt_request_copy_restricted"
         },
         {
           "url": "https://www.almasdar.com/175150",
@@ -2502,14 +2502,14 @@
         "source-specific collection, extraction, indexing, display and commercial reuse terms",
         "qualified Egyptian occupational-safety/labour counsel review"
       ],
-      "notes": "The IDSC catalogue identifies issue 225 supplement (A), 2026-10-12, and the 6.13 MB original bundle, but the download is request-copy restricted. Riwaq publishes a secondary transcription whose own text numbers Table 24 entries 1–781; Law Hub provides a secondary item page with a Google Drive PDF preview that was not readable in this review. Almasdar also publishes a secondary news page. The metadata-only Table 24 source inventory is data/candidates/labour_law_14_2025/decision_250_table24_secondary_source_inventory_2026-10-31.md. Official Gazette matches remain 0/781; counsel-approved and retrieval-eligible rows remain 0/781. Rows 34, 61 and 64 remain unresolved. No row-level secondary transcription is imported.",
+      "notes": "The IDSC catalogue identifies issue 225 supplement (A), 2026-10-12, and the 6.13 MB original bundle, but the PDF and 55-byte license.txt downloads are both request-copy restricted. Riwaq publishes a secondary transcription whose own text numbers Table 24 entries 1–781; Law Hub provides a secondary item page with a Google Drive PDF preview that was not readable in this review. Almasdar also publishes a secondary news page. The metadata-only Table 24 source inventory is data/candidates/labour_law_14_2025/decision_250_table24_secondary_source_inventory_2026-10-31.md. Official Gazette matches remain 0/781; counsel-approved and retrieval-eligible rows remain 0/781. Rows 34, 61 and 64 remain unresolved. No row-level secondary transcription is imported.",
       "publication_date": "2026-10-12",
       "official_gazette_issue": "225 تابع (أ)",
       "source_urls": [
         {
           "url": "https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full",
           "source_role": "official Gazette catalogue metadata; original bundle request-copy restricted",
-          "status": "catalogue_metadata_located_original_bytes_not_obtained"
+          "status": "catalogue_metadata_located_original_pdf_and_license_txt_request_copy_restricted"
         },
         {
           "url": "https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html",
@@ -2552,14 +2552,14 @@
         "crosswalk to Labour Law 14/2025 and related licensing provisions",
         "qualified Egyptian labour/occupational-safety counsel review"
       ],
-      "notes": "The IDSC catalogue identifies the decision in issue 225 supplement (A), 2026-10-12. Almasdar publishes a secondary text page with excerpts through Article 3 and links to watermarked page images; a sampled image shows a reproduced page headed page 371 and Decision 251, but this is not an original Gazette file. The original bundle remains request-copy restricted; no original bytes, hash or official page-by-page comparison are claimed. Keep all evidence discovery-only and retrieval-ineligible pending rights, currentness and counsel review.",
+      "notes": "The IDSC catalogue identifies the decision in issue 225 supplement (A), 2026-10-12. Almasdar publishes a secondary text page with excerpts through Article 3 and links to watermarked page images; a sampled image shows a reproduced page headed page 371 and Decision 251, but this is not an original Gazette file. The original bundle and item-specific license.txt are both request-copy restricted; no original bytes, hash or official page-by-page comparison are claimed. Keep all evidence discovery-only and retrieval-ineligible pending rights, currentness and counsel review.",
       "publication_date": "2026-10-12",
       "official_gazette_issue": "225 تابع (أ)",
       "source_urls": [
         {
           "url": "https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full",
           "source_role": "official Gazette catalogue metadata; original bundle request-copy restricted",
-          "status": "catalogue_metadata_located_original_bytes_not_obtained"
+          "status": "catalogue_metadata_located_original_pdf_and_license_txt_request_copy_restricted"
         },
         {
           "url": "https://www.almasdar.com/175152",
@@ -2599,7 +2599,7 @@
         {
           "url": "https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full",
           "source_role": "official Gazette catalogue metadata; original bundle request-copy restricted",
-          "status": "catalogue_metadata_located_original_bytes_not_obtained"
+          "status": "catalogue_metadata_located_original_pdf_and_license_txt_request_copy_restricted"
         },
         {
           "url": "https://www.almasdar.com/175156",
