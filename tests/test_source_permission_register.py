@@ -216,7 +216,7 @@ if __name__ == "__main__":
         self.assertIsNone(source["local_pdf_sha256"])
         self.assertEqual(
             [item["printed_page"] for item in source["visual_page_checks"]],
-            [110, 111],
+            [105, 106, 107, 108, 109, 110, 111],
         )
         self.assertEqual(source["collection_permission"], "unknown")
         self.assertEqual(source["commercial_reuse_permission"], "unknown")
