@@ -23,6 +23,10 @@ class FakeS3:
         self.versioning = "Enabled"
         self.version_id = "archive-version-0001"
         self.force_wrong_get_version = False
+        self.multipart_uploads = {}
+        self.multipart_completed = False
+        self.multipart_aborted = False
+        self.fail_upload_part = False
 
     def get_bucket_versioning(self, **kwargs):
         return {"Status": self.versioning} if self.versioning else {}
@@ -34,6 +38,37 @@ class FakeS3:
             "kms": kwargs["SSEKMSKeyId"], "encryption": kwargs["ServerSideEncryption"],
         }
         return {"VersionId": self.version_id}
+
+    def create_multipart_upload(self, **kwargs):
+        upload_id = "multipart-upload-1"
+        self.multipart_uploads[(kwargs["Bucket"], kwargs["Key"], upload_id)] = {
+            "parts": {}, "metadata": kwargs["Metadata"],
+            "kms": kwargs["SSEKMSKeyId"], "encryption": kwargs["ServerSideEncryption"],
+        }
+        return {"UploadId": upload_id}
+
+    def upload_part(self, **kwargs):
+        if self.fail_upload_part:
+            raise RuntimeError("injected multipart part failure")
+        item = self.multipart_uploads[(kwargs["Bucket"], kwargs["Key"], kwargs["UploadId"])]
+        item["parts"][kwargs["PartNumber"]] = kwargs["Body"]
+        return {"ETag": '"part-etag"'}
+
+    def complete_multipart_upload(self, **kwargs):
+        upload_id = kwargs["UploadId"]
+        item = self.multipart_uploads[(kwargs["Bucket"], kwargs["Key"], upload_id)]
+        data = b"".join(item["parts"][number] for number in sorted(item["parts"]))
+        self.objects[(kwargs["Bucket"], kwargs["Key"], self.version_id)] = {
+            "data": data, "metadata": item["metadata"],
+            "kms": item["kms"], "encryption": item["encryption"],
+        }
+        self.multipart_completed = True
+        return {"VersionId": self.version_id}
+
+    def abort_multipart_upload(self, **kwargs):
+        self.multipart_aborted = True
+        self.multipart_uploads.pop((kwargs["Bucket"], kwargs["Key"], kwargs["UploadId"]), None)
+        return {}
 
     def head_object(self, **kwargs):
         item = self.objects[(kwargs["Bucket"], kwargs["Key"], kwargs["VersionId"])]
@@ -86,6 +121,25 @@ class RecoveryArchiveTransportTests(unittest.TestCase):
         self.assertEqual(locator["sha256"], hashlib.sha256(self.bundle.read_bytes()).hexdigest())
         self.assertEqual(locator["size_bytes"], self.bundle.stat().st_size)
         self.assertEqual(locator["kms_key_arn"], self.kms.describe_key(KeyId="x")["KeyMetadata"]["Arn"])
+
+    def test_large_bundle_uses_multipart_upload(self):
+        from unittest.mock import patch
+
+        with patch("database_backup_archive._SINGLE_PUT_MAX_BYTES", 1):
+            locator = self.upload()
+        self.assertEqual(locator["version_id"], self.s3.version_id)
+        self.assertTrue(self.s3.multipart_completed)
+        self.assertFalse(self.s3.multipart_aborted)
+
+    def test_multipart_failure_aborts_incomplete_upload(self):
+        from unittest.mock import patch
+
+        self.s3.fail_upload_part = True
+        with patch("database_backup_archive._SINGLE_PUT_MAX_BYTES", 1):
+            with self.assertRaises(DatabaseBundleError):
+                self.upload()
+        self.assertTrue(self.s3.multipart_aborted)
+        self.assertEqual(self.s3.multipart_uploads, {})
 
     def test_download_reads_exact_version_and_verifies_bytes(self):
         locator = self.upload()
