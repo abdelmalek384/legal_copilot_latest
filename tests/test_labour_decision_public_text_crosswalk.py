@@ -50,11 +50,7 @@ class TestLabourDecisionPublicTextCrosswalk(unittest.TestCase):
             self.assertEqual(item["primary_lead"]["url"], "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc/full")
             self.assertIn("request-a-copy restricted", item["primary_lead"]["status"])
             self.assertIn("Two public secondary", item["secondary_text"]["status"])
-            if document_id == "EG-LABOUR-DECISION-288-2025":
-                self.assertIn("neither compared", item["secondary_text"]["status"])
-            else:
-                self.assertIn("cross-checked against Ministry-hosted text copy", item["secondary_text"]["status"])
-                self.assertIn("Gazette issue PDF not compared", item["secondary_text"]["status"])
+            self.assertIn("neither compared", item["secondary_text"]["status"])
             self.assertTrue(item["currentness"].startswith("not fully verified"))
             self.assertIn("unknown", item["reuse_rights"])
         self.assertIn("48 hours", records["EG-LABOUR-DECISION-292-2025"]["secondary_text"]["summary"])
@@ -68,12 +64,15 @@ class TestLabourDecisionPublicTextCrosswalk(unittest.TestCase):
             item = records[document_id]
             self.assertEqual(item["primary_lead"]["url"], "https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1")
             self.assertIn("request-a-copy restricted", item["primary_lead"]["status"])
-            self.assertIn("neither compared", item["secondary_text"]["status"])
+            if document_id == "EG-LABOUR-DECISION-288-2025":
+                self.assertIn("neither compared", item["secondary_text"]["status"])
+            else:
+                self.assertIn("cross-checked against Ministry-hosted text copy", item["secondary_text"]["status"])
+                self.assertIn("Gazette issue PDF not compared", item["secondary_text"]["status"])
             self.assertTrue(item["currentness"].startswith("not fully verified"))
             self.assertIn("unknown", item["reuse_rights"])
         self.assertIn("five consecutive hours", records["EG-LABOUR-DECISION-288-2025"]["secondary_text"]["summary"])
         self.assertIn("48 hours per week", records["EG-LABOUR-DECISION-289-2025"]["secondary_text"]["summary"])
-
 
 
     def test_parent_law_primary_anchors_are_separate_from_decision_text(self):
