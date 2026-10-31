@@ -263,8 +263,18 @@ class LegalVersionedRegistryTests(unittest.TestCase):
         )
         self.db.commit()
         captured = []
-        self.app.LLM = lambda prompt: captured.append(prompt) or "الإجابة مدعومة بالمصدر [1]"
-        result = self.app.ask(self.db, "promptprovenanceprobe")
+        rights_evidence = {
+            "source_permission_register_match": True,
+            "source_permission_register_collection_permission": "allowed",
+            "source_permission_register_commercial_reuse_permission": "allowed",
+            "permission_evidence_url": "https://example.gov/rights/collection",
+            "commercial_reuse_evidence_url": "https://example.gov/rights/commercial",
+            "terms_checked_on": "2026-10-20",
+            "commercial_terms_checked_on": "2026-10-20",
+        }
+        with patch.object(self.app, "_central_source_permission_evidence", return_value=rights_evidence):
+            self.app.LLM = lambda prompt: captured.append(prompt) or "الإجابة مدعومة بالمصدر [1]"
+            result = self.app.ask(self.db, "promptprovenanceprobe")
         self.assertTrue(result["found"])
         source_section = captured[0].split(
             "The JSON records are the only legal evidence supplied for this answer:\n", 1
