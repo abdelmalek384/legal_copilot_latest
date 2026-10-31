@@ -306,15 +306,23 @@ class S3PrivateObjectStore:
         final_key = self._key(firm_id, object_id, "blob")
         if self._head(staged_key) is not None:
             raise ObjectStorageError("physical purge is blocked while a staged copy exists")
-        if self._head(final_key) is None:
+        final_head = self._head(final_key)
+        if final_head is None:
             return False
+        etag = final_head.get("ETag")
+        if not isinstance(etag, str) or not etag.strip():
+            raise ObjectStorageError("physical purge requires an object ETag for conditional deletion")
         if not self.verify(
             firm_id, object_id,
             expected_sha256=expected_sha256, expected_size=expected_size,
         ):
             raise ObjectStorageError("original bytes failed integrity verification before purge")
         try:
-            result = self.client.delete_object(Bucket=self.bucket, Key=final_key)
+            # Bind deletion to the exact object version observed before integrity
+            # verification. S3 returns 412 if a concurrent writer changed the ETag.
+            result = self.client.delete_object(
+                Bucket=self.bucket, Key=final_key, IfMatch=etag
+            )
             version_id = result.get("VersionId")
             if version_id not in (None, "null"):
                 raise ObjectStorageError("delete created a versioned marker; physical purge is unproven")
