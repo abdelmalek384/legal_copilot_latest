@@ -274,6 +274,9 @@ class BrowserAcceptanceTests(unittest.TestCase):
             accept_downloads=True,
         )
         self.page: Page = self.context.new_page()
+        # Keep a broken local route or selector from consuming the entire CI budget.
+        self.page.set_default_timeout(8000)
+        self.page.set_default_navigation_timeout(8000)
         self.browser_errors: list[str] = []
         self.network_errors: list[str] = []
         self.page.on("pageerror", lambda error: self.browser_errors.append(str(error)))
