@@ -247,5 +247,23 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
             self.assertIn(source_id, self.inventory["source_ids"])
         self.assertEqual(validate_inventory(self.inventory), [])
 
+
+    def test_labour_law_gazette_repository_access_terms_are_restricted(self):
+        register = json.loads(
+            (ROOT / "docs" / "phase_2_source_evidence_register.json").read_text(encoding="utf-8")
+        )
+        source = next(
+            item for item in register["sources"]
+            if item["source_id"] == "EG-IDSC-GAZETTE-2025-18-LABOUR"
+        )
+        self.assertEqual(source["access_terms_state"], "reviewed_restricted")
+        self.assertEqual(
+            source["collection_permission"],
+            "not_allowed_without_explicit_exception_or_license",
+        )
+        self.assertEqual(source["terms_checked_on"], "2026-10-31")
+        self.assertIn("request-a-copy", source["notes"])
+        self.assertIn("commercial reuse remains unapproved", source["notes"])
+
 if __name__ == "__main__":
     unittest.main()
