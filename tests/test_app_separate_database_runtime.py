@@ -1743,6 +1743,13 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
                 denied = self.client.get(url)
                 self.assertEqual(denied.status_code, 403, denied.text)
 
+    def test_qualified_counsel_allowlist_ignores_malformed_and_oversized_ids(self):
+        with patch.dict(os.environ, {
+            "LEGAL_QUALIFIED_EGYPTIAN_COUNSEL_USER_IDS":
+                "42, 42, 0, -7, ١٢, abc, 9223372036854775808, " + ("9" * 5000) + ", 43"
+        }):
+            self.assertEqual(app._qualified_egyptian_counsel_user_ids(), {42, 43})
+
     def test_platform_reviewer_role_guards_shared_corpus_review_writes(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
