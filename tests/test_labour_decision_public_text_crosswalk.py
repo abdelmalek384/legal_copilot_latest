@@ -19,8 +19,12 @@ class TestLabourDecisionPublicTextCrosswalk(unittest.TestCase):
             self.assertIn("request-a-copy restricted", record["primary_lead"]["status"])
             self.assertEqual(record["gazette_date"], "2025-12-30 (official Amiri Press issue metadata; secondary EastLaws record independently states the same Gazette publication date)")
             self.assertEqual(record["effective_date"], "2025-12-31 (stated by EastLaws and derived from Article 4 in both secondary transcriptions; not primary-PDF verified)" if record is d290 else "2025-12-31 (stated by EastLaws and derived from Article 5 in both secondary transcriptions; not primary-PDF verified)")
-            self.assertIn("Two public secondary full-text transcriptions", record["secondary_text"]["status"])
-            self.assertIn("neither compared", record["secondary_text"]["status"])
+            if record is d290:
+                self.assertIn("Two public secondary full-text transcriptions", record["secondary_text"]["status"])
+                self.assertIn("neither compared", record["secondary_text"]["status"])
+            else:
+                self.assertIn("cross-checked against third-party hosted Gazette page images", record["secondary_text"]["status"])
+                self.assertIn("original DSpace PDF not compared", record["secondary_text"]["status"])
             self.assertIn("unknown", record["reuse_rights"])
             self.assertTrue(record["currentness"].startswith("not fully verified"))
             self.assertFalse(record.get("search_eligible", False))
