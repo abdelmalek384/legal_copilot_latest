@@ -239,6 +239,22 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         self.assertIn("copyright is reserved", records["EG-EGYIN-SECONDARY-LEGAL-NEWS"]["permission_evidence"])
         self.assertEqual(MODULE.validate(data), [])
 
+    def test_labour_decision_secondary_publishers_remain_rights_unknown(self):
+        import json
+        data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        records = {item["source_id"]: item for item in data["sources"]}
+        for source_id in ("EG-ALMASDAR-SECONDARY-LEGAL-NEWS", "EG-EGYIN-SECONDARY-LEGAL-NEWS"):
+            source = records[source_id]
+            self.assertEqual(source["collection_permission"], "unknown")
+            self.assertEqual(source["commercial_reuse_permission"], "unknown")
+            self.assertIsNone(source["terms_checked_on"])
+            self.assertTrue(source["permission_evidence_url"].startswith("https://"))
+            self.assertIn("manual discovery", source["required_next_action"])
+            self.assertIn("Do not bulk-copy", source["required_next_action"])
+        self.assertIn("all rights reserved", records["EG-ALMASDAR-SECONDARY-LEGAL-NEWS"]["permission_evidence"])
+        self.assertIn("copyright is reserved", records["EG-EGYIN-SECONDARY-LEGAL-NEWS"]["permission_evidence"])
+        self.assertEqual(MODULE.validate(data), [])
+
 if __name__ == "__main__":
     unittest.main()
 
