@@ -1,242 +1,391 @@
-"""Collect sanitized, read-only AWS evidence for original-file S3 acceptance.
+#!/usr/bin/env python3
+"""Collect sanitized, read-only S3/KMS/IAM evidence for a deployment acceptance review.
 
-This collector never changes AWS resources and never authorizes production purge.
-It emits identifiers and policy findings, not policy documents, credentials, or secrets.
+This tool never changes cloud configuration and never claims production readiness.
+Run it separately under each real workload/operator role; a single caller identity
+does not prove the permissions of other roles.
 """
 from __future__ import annotations
 
+import argparse
+import hashlib
 import json
+import os
 import re
+import sys
 from typing import Any
 
 
-def _policy_document(raw: Any) -> dict:
+def _policy_document(raw: object) -> dict[str, Any] | None:
     if isinstance(raw, dict):
         return raw
     if isinstance(raw, str):
         try:
             value = json.loads(raw)
-            return value if isinstance(value, dict) else {}
         except (TypeError, ValueError):
-            return {}
-    return {}
+            return None
+        return value if isinstance(value, dict) else None
+    return None
 
 
-def _statements(document: dict) -> list[dict]:
-    statements = document.get("Statement", [])
-    if isinstance(statements, dict):
-        statements = [statements]
-    return [item for item in statements if isinstance(item, dict)] if isinstance(statements, list) else []
+def _statements(policy: dict[str, Any] | None) -> list[dict[str, Any]]:
+    if not isinstance(policy, dict):
+        return []
+    value = policy.get("Statement", [])
+    if isinstance(value, dict):
+        value = [value]
+    return [item for item in value if isinstance(item, dict)] if isinstance(value, list) else []
 
 
-def _values(value: Any) -> set[str]:
+def _items(value: object) -> set[str]:
     if isinstance(value, str):
-        return {value.lower()}
+        return {value}
     if isinstance(value, list):
-        return {item.lower() for item in value if isinstance(item, str)}
+        return {item for item in value if isinstance(item, str)}
     return set()
 
 
-def _role_from_caller(arn: str) -> tuple[str | None, str | None]:
-    match = re.fullmatch(r"arn:([^:]+):sts::(\d{12}):assumed-role/(.+?)/[^/]+", arn)
-    if not match:
-        return None, None
-    partition, account, role_path = match.groups()
-    return account, f"arn:{partition}:iam::{account}:role/{role_path}"
+def _wildcard_principal(value: object) -> bool:
+    if value == "*":
+        return True
+    if isinstance(value, dict):
+        return any("*" in _items(item) for item in value.values())
+    return False
 
 
-def collect_live_evidence(s3_client, kms_client, sts_client, iam_client, *, bucket: str, key_id: str) -> dict:
-    """Inspect caller, bucket policy, KMS key/grants and caller role without mutation."""
+def _secure_transport_deny(statements: list[dict[str, Any]]) -> bool:
+    for statement in statements:
+        if str(statement.get("Effect", "")).lower() != "deny":
+            continue
+        actions = {item.lower() for item in _items(statement.get("Action"))}
+        if not any(action in {"s3:*", "s3:getobject", "s3:putobject", "s3:deleteobject"} for action in actions):
+            continue
+        condition = statement.get("Condition", {})
+        if not isinstance(condition, dict):
+            continue
+        for operator, values in condition.items():
+            if not isinstance(values, dict):
+                continue
+            for key, value in values.items():
+                if key.lower() == "aws:securetransport" and operator.lower() in {"bool", "boolifexists"}:
+                    if str(value).lower() == "false":
+                        return True
+    return False
+
+
+def _conditional_delete_deny(statements: list[dict[str, Any]]) -> bool:
+    for statement in statements:
+        if str(statement.get("Effect", "")).lower() != "deny":
+            continue
+        actions = {item.lower() for item in _items(statement.get("Action"))}
+        if not ({"s3:*", "s3:deleteobject"} & actions):
+            continue
+        condition = statement.get("Condition", {})
+        if not isinstance(condition, dict):
+            continue
+        for operator, values in condition.items():
+            if operator.lower() != "null" or not isinstance(values, dict):
+                continue
+            for key, value in values.items():
+                if key.lower() == "s3:if-match" and str(value).lower() == "true":
+                    return True
+    return False
+
+
+def _policy_fingerprint(document: dict[str, Any] | None) -> str | None:
+    if document is None:
+        return None
+    payload = json.dumps(document, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return hashlib.sha256(payload).hexdigest()
+
+
+def _assumed_role_name(arn: object) -> str | None:
+    if not isinstance(arn, str):
+        return None
+    match = re.fullmatch(r"arn:[^:]+:sts::[0-9]{12}:assumed-role/(.+?)/[^/]+", arn)
+    # IAM GetRole expects the friendly role name, not the path-bearing ARN segment.
+    # Preserve path separately in the role ARN returned by GetRole.
+    return match.group(1).rsplit("/", 1)[-1] if match else None
+
+
+def _policy_summary(document: object) -> dict[str, Any]:
+    policy = _policy_document(document)
+    statements = _statements(policy)
+    broad = []
+    for item in statements:
+        if str(item.get("Effect", "")).lower() != "allow":
+            continue
+        actions = _items(item.get("Action"))
+        resources = _items(item.get("Resource"))
+        if "*" in actions or "iam:*" in actions or "s3:*" in actions or "kms:*" in actions:
+            broad.append("wildcard_action")
+        if "*" in resources:
+            broad.append("wildcard_resource")
+    return {
+        "sha256": _policy_fingerprint(policy),
+        "statement_count": len(statements),
+        "broad_allow_flags": sorted(set(broad)),
+    }
+
+
+def _list_all(iam_client, method: str, *, RoleName: str, result_key: str) -> list[Any]:
+    function = getattr(iam_client, method)
+    items: list[Any] = []
+    marker = None
+    while True:
+        args = {"RoleName": RoleName}
+        if marker:
+            args["Marker"] = marker
+        response = function(**args)
+        items.extend(response.get(result_key, []))
+        if not response.get("IsTruncated"):
+            break
+        marker = response.get("Marker")
+        if not marker:
+            raise RuntimeError("IAM policy listing was truncated without a continuation marker")
+    return items
+
+
+def _managed_policy_evidence(iam_client, policy_arn: str) -> dict[str, Any]:
+    metadata = iam_client.get_policy(PolicyArn=policy_arn).get("Policy", {})
+    version_id = metadata.get("DefaultVersionId")
+    if not isinstance(version_id, str) or not version_id:
+        raise RuntimeError("managed IAM policy has no default version")
+    version = iam_client.get_policy_version(PolicyArn=policy_arn, VersionId=version_id)
+    summary = _policy_summary(version.get("PolicyVersion", {}).get("Document"))
+    return {
+        "arn": policy_arn,
+        "default_version_id": version_id,
+        **summary,
+    }
+
+
+def collect_live_evidence(s3_client, kms_client, sts_client, iam_client, *, bucket: str, key_id: str) -> dict[str, Any]:
     checks: list[dict[str, Any]] = []
-    failed: list[str] = []
 
-    def record(name: str, passed: bool, detail: str) -> None:
+    def check(name: str, passed: bool, detail: str):
         checks.append({"name": name, "passed": bool(passed), "detail": detail})
-        if not passed:
-            failed.append(name)
 
-    caller: dict[str, str] = {}
-    caller_role: dict[str, Any] = {"role_name": None, "role_arn": None, "attached_policy_names": [], "inline_policy_names": []}
-    key_arn: str | None = None
-    grants: list[dict[str, Any]] = []
-
+    caller: dict[str, Any] = {}
     try:
         identity = sts_client.get_caller_identity()
-        account = identity.get("Account")
-        arn = identity.get("Arn")
-        if isinstance(account, str) and re.fullmatch(r"\d{12}", account) and isinstance(arn, str):
-            caller = {"account": account, "arn": re.sub(r"/[^/]+$", "/[session]", arn)}
-            role_account, role_arn = _role_from_caller(arn)
-            record("caller_identity", True, "caller identity is available")
-            if role_arn and role_account == account:
-                caller_role["role_arn"] = role_arn
-                caller_role["role_name"] = role_arn.rsplit("/", 1)[-1]
-            else:
-                record("caller_assumed_role", False, "caller is not an identifiable assumed role")
-        else:
-            record("caller_identity", False, "caller identity response is incomplete")
+        caller = {
+            "account": identity.get("Account"),
+            "arn": identity.get("Arn"),
+            "user_id": identity.get("UserId"),
+        }
+        check("caller_identity", bool(caller["account"] and caller["arn"]), "current AWS principal identified")
     except Exception:
-        record("caller_identity", False, "caller identity could not be inspected")
+        check("caller_identity", False, "STS caller identity could not be read")
 
+    bucket_policy = None
     try:
-        response = s3_client.get_bucket_policy(Bucket=bucket)
-        policy = _policy_document(response.get("Policy"))
-        statements = _statements(policy)
-        public_allow = any(
-            item.get("Effect") == "Allow"
-            and (item.get("Principal") == "*" or isinstance(item.get("Principal"), dict) and "*" in _values(item["Principal"].get("AWS")))
+        raw = s3_client.get_bucket_policy(Bucket=bucket).get("Policy")
+        bucket_policy = _policy_document(raw)
+        statements = _statements(bucket_policy)
+        check("bucket_policy_readable", bucket_policy is not None, "bucket policy was read and parsed")
+        check(
+            "bucket_policy_no_public_allow",
+            not any(
+                str(item.get("Effect", "")).lower() == "allow" and _wildcard_principal(item.get("Principal"))
+                for item in statements
+            ),
+            "no wildcard-principal Allow statement was found; confirm account and access-point policies separately",
+        )
+        check(
+            "bucket_policy_tls_deny",
+            _secure_transport_deny(statements),
+            "bucket policy must explicitly deny insecure transport",
+        )
+        check(
+            "bucket_policy_conditional_delete",
+            _conditional_delete_deny(statements),
+            "bucket policy must deny DeleteObject when s3:if-match is absent",
+        )
+    except Exception:
+        check("bucket_policy_readable", False, "bucket policy is absent or could not be read")
+        check("bucket_policy_no_public_allow", False, "bucket policy could not be inspected")
+        check("bucket_policy_tls_deny", False, "bucket policy could not be inspected")
+        check("bucket_policy_conditional_delete", False, "bucket policy could not be inspected")
+
+    key_metadata: dict[str, Any] = {}
+    key_arn = None
+    try:
+        metadata = kms_client.describe_key(KeyId=key_id).get("KeyMetadata", {})
+        key_arn = metadata.get("Arn")
+        key_metadata = {
+            "arn": key_arn,
+            "state": metadata.get("KeyState"),
+            "usage": metadata.get("KeyUsage"),
+            "spec": metadata.get("KeySpec"),
+            "manager": metadata.get("KeyManager"),
+        }
+        check(
+            "kms_key_identity",
+            bool(key_arn and metadata.get("KeyState") == "Enabled"
+                 and metadata.get("KeyUsage") == "ENCRYPT_DECRYPT"
+                 and metadata.get("KeySpec") == "SYMMETRIC_DEFAULT"
+                 and metadata.get("KeyManager") == "CUSTOMER"),
+            "configured key must resolve to an enabled customer-managed symmetric encryption key",
+        )
+    except Exception:
+        check("kms_key_identity", False, "configured KMS key could not be inspected")
+
+    kms_policy = None
+    try:
+        raw = kms_client.get_key_policy(KeyId=key_arn or key_id, PolicyName="default").get("Policy")
+        kms_policy = _policy_document(raw)
+        statements = _statements(kms_policy)
+        broad = any(
+            str(item.get("Effect", "")).lower() == "allow" and _wildcard_principal(item.get("Principal"))
             for item in statements
         )
-        tls_deny = any(
-            item.get("Effect") == "Deny"
-            and "false" in _values(item.get("Condition", {}).get("Bool", {}).get("aws:SecureTransport"))
-            for item in statements if isinstance(item.get("Condition"), dict)
+        check("kms_key_policy_readable", kms_policy is not None, "KMS key policy was read and parsed")
+        check(
+            "kms_key_policy_no_wildcard_allow",
+            not broad,
+            "no wildcard-principal Allow statement was found; validate all grants and conditions independently",
         )
-        conditional_delete = any(
-            item.get("Effect") == "Deny"
-            and bool(_values(item.get("Action")) & {"s3:deleteobject", "s3:*", "s3:delete*"})
-            and "true" in _values(item.get("Condition", {}).get("Null", {}).get("s3:if-match"))
-            for item in statements if isinstance(item.get("Condition"), dict)
-        )
-        record("bucket_policy_no_public_allow", not public_allow, "bucket policy has no wildcard public Allow")
-        record("bucket_policy_tls_deny", tls_deny, "bucket policy denies insecure transport")
-        record("bucket_policy_conditional_delete", conditional_delete, "bucket policy denies deletes without s3:if-match")
     except Exception:
-        for name, detail in (
-            ("bucket_policy_no_public_allow", "bucket policy could not be inspected"),
-            ("bucket_policy_tls_deny", "TLS-deny policy could not be verified"),
-            ("bucket_policy_conditional_delete", "conditional-delete policy could not be verified"),
-        ):
-            record(name, False, detail)
+        check("kms_key_policy_readable", False, "KMS key policy is absent or could not be read")
+        check("kms_key_policy_no_wildcard_allow", False, "KMS key policy could not be inspected")
 
+    grants: list[dict[str, Any]] = []
     try:
-        response = kms_client.describe_key(KeyId=key_id)
-        metadata = response.get("KeyMetadata", {})
-        key_arn = metadata.get("Arn") if isinstance(metadata, dict) else None
-        key_ok = (
-            isinstance(key_arn, str)
-            and metadata.get("KeyState") == "Enabled"
-            and metadata.get("KeyUsage") == "ENCRYPT_DECRYPT"
-            and metadata.get("KeySpec") == "SYMMETRIC_DEFAULT"
-            and metadata.get("KeyManager") == "CUSTOMER"
-        )
-        record("kms_key_enabled_customer_managed", key_ok, "KMS key must be enabled, customer-managed, symmetric, and usable for encryption")
-    except Exception:
-        record("kms_key_enabled_customer_managed", False, "configured KMS key could not be inspected")
-
-    if caller.get("account") and key_arn:
-        key_account = key_arn.split(":")[4] if key_arn.startswith("arn:") and len(key_arn.split(":")) > 4 else None
-        record("caller_key_account_match", key_account == caller["account"], "caller and KMS key must belong to the same AWS account")
-    else:
-        record("caller_key_account_match", False, "caller account or KMS key ARN is unavailable")
-
-    try:
-        policy_response = kms_client.get_key_policy(KeyId=key_id, PolicyName="default")
-        key_policy = _policy_document(policy_response.get("Policy"))
-        record("kms_key_policy_readable", bool(_statements(key_policy)), "KMS key policy is readable")
-    except Exception:
-        record("kms_key_policy_readable", False, "KMS key policy could not be inspected")
-
-    try:
-        grant_response = kms_client.list_grants(KeyId=key_id)
-        for grant in grant_response.get("Grants", []):
-            if isinstance(grant, dict):
+        marker = None
+        while True:
+            args = {"KeyId": key_arn or key_id, "Limit": 100}
+            if marker:
+                args["Marker"] = marker
+            result = kms_client.list_grants(**args)
+            for grant in result.get("Grants", []):
                 grants.append({
                     "grantee_principal": grant.get("GranteePrincipal"),
-                    "operations": sorted(_values(grant.get("Operations"))),
+                    "operations": sorted(_items(grant.get("Operations"))),
+                    "retiring_principal": grant.get("RetiringPrincipal"),
                 })
-        record("kms_grants_readable", True, "KMS grants were enumerated")
+            if not result.get("NextMarker"):
+                break
+            marker = result["NextMarker"]
+        check("kms_grants_readable", True, "KMS grants were enumerated")
     except Exception:
-        record("kms_grants_readable", False, "KMS grants could not be inspected")
+        check("kms_grants_readable", False, "KMS grants could not be enumerated")
 
-    role_arn = caller_role.get("role_arn")
-    if role_arn:
+    role_name = _assumed_role_name(caller.get("arn"))
+    role_evidence: dict[str, Any] = {"role_name": role_name}
+    if role_name:
         try:
-            role = iam_client.get_role(RoleName=caller_role["role_name"]).get("Role", {})
-            caller_role["role_name"] = role.get("RoleName") or caller_role["role_name"]
-            caller_role["role_arn"] = role.get("Arn") or role_arn
-            attached = iam_client.list_attached_role_policies(RoleName=caller_role["role_name"])
-            inline = iam_client.list_role_policies(RoleName=caller_role["role_name"])
-            caller_role["attached_policy_names"] = sorted(
-                item.get("PolicyArn", "").rsplit("/", 1)[-1]
-                for item in attached.get("AttachedPolicies", []) if isinstance(item, dict)
+            role = iam_client.get_role(RoleName=role_name).get("Role", {})
+            attached = _list_all(
+                iam_client, "list_attached_role_policies",
+                RoleName=role_name, result_key="AttachedPolicies",
             )
-            caller_role["inline_policy_names"] = sorted(
-                name for name in inline.get("PolicyNames", []) if isinstance(name, str)
+            inline = _list_all(
+                iam_client, "list_role_policies",
+                RoleName=role_name, result_key="PolicyNames",
             )
-            record("caller_role_inspected", True, "caller IAM role and policy names were inspected")
+            attached_evidence = [
+                _managed_policy_evidence(iam_client, item["PolicyArn"])
+                for item in attached if isinstance(item.get("PolicyArn"), str)
+            ]
+            inline_evidence = []
+            for item in inline:
+                name = item.get("PolicyName")
+                if not isinstance(name, str):
+                    continue
+                document = iam_client.get_role_policy(RoleName=role_name, PolicyName=name).get("PolicyDocument")
+                inline_evidence.append({"name": name, **_policy_summary(document)})
+            trust_evidence = _policy_summary(role.get("AssumeRolePolicyDocument"))
+            boundary_arn = (
+                role.get("PermissionsBoundary", {}).get("PermissionsBoundaryArn")
+                if isinstance(role.get("PermissionsBoundary"), dict) else None
+            )
+            boundary_evidence = (
+                _managed_policy_evidence(iam_client, boundary_arn) if boundary_arn else None
+            )
+            role_evidence.update({
+                "role_arn": role.get("Arn"),
+                "trust_policy": trust_evidence,
+                "permissions_boundary": boundary_evidence,
+                "attached_policies": sorted(attached_evidence, key=lambda item: item["arn"]),
+                "inline_policies": sorted(inline_evidence, key=lambda item: item["name"]),
+            })
+            check(
+                "caller_role_inventory",
+                bool(role.get("Arn") and all(item["sha256"] for item in attached_evidence + inline_evidence)
+                     and trust_evidence["sha256"]),
+                "current assumed role, trust policy, managed policy documents, inline policy documents, and boundary were inventoried",
+            )
         except Exception:
-            record("caller_role_inspected", False, "caller IAM role policies could not be inspected")
+            check("caller_role_inventory", False, "current assumed role policies could not be inventoried")
     else:
-        record("caller_role_inspected", False, "caller role could not be derived from the STS identity")
+        check("caller_role_inventory", False, "current caller is not an identifiable assumed IAM role")
+
+    key_account = key_arn.split(":")[4] if isinstance(key_arn, str) and key_arn.startswith("arn:") else None
+    check(
+        "caller_key_account_match",
+        bool(caller.get("account") and key_account and caller.get("account") == key_account),
+        "current caller account must match the configured KMS key account; cross-account use requires separate review",
+    )
 
     return {
+        "production_ready": False,
         "bucket": bucket,
-        "configured_kms_key": key_id,
-        "kms_key_arn": key_arn,
         "caller": caller,
-        "caller_role": caller_role,
+        "caller_role": role_evidence,
+        "kms_key": key_metadata,
+        "bucket_policy_sha256": _policy_fingerprint(bucket_policy),
+        "bucket_policy_statement_count": len(_statements(bucket_policy)),
+        "kms_key_policy_sha256": _policy_fingerprint(kms_policy),
+        "kms_key_policy_statement_count": len(_statements(kms_policy)),
         "kms_grants": grants,
         "checks": checks,
-        "failed_checks": sorted(set(failed)),
-        "production_ready": False,
+        "failed_checks": [item["name"] for item in checks if not item["passed"]],
         "manual_review_required": [
-            "independent review of effective IAM and bucket policies, including inherited organization controls",
-            "verify upload/finalize worker quiescence and enforce the no-writer window with IAM/bucket policy",
-            "verify object encryption metadata, bucket ownership, public-access block, logging, and versioning architecture",
-            "perform witnessed restore, rollback, staged-upload recovery, and synthetic deletion-recovery drills",
-            "obtain approved retention/export/deletion/legal-hold policy and independent security sign-off",
+            "run under and compare each application, backup, recovery, and purge workload identity; this report describes only the current caller",
+            "inspect bucket policy, account-level controls, access-point policies, SCPs, permission boundaries, session policies, and effective permissions",
+            "verify application runtime cannot physically delete; verify purge role is least privilege and separately authorized",
+            "verify KMS grants, key rotation, key administrators, recovery principals, and key-retention dependencies",
+            "resolve versioning/recovery versus physical-purge architecture and run witnessed staging drills",
         ],
     }
 
 
-def main(argv=None) -> int:
-    """CLI for a read-only live AWS evidence snapshot; exit 0 means collected, not approved."""
-    import argparse
-    import os
-    import sys
-
-    parser = argparse.ArgumentParser(
-        description="Collect sanitized, read-only S3/KMS/IAM evidence; never authorizes production purge."
-    )
-    parser.add_argument("--json", action="store_true", help="Emit machine-readable sanitized JSON.")
-    args = parser.parse_args(argv)
-
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--json", action="store_true", help="Emit sanitized JSON evidence")
+    args = parser.parse_args()
     bucket = os.environ.get("COPILOT_S3_BUCKET", "").strip()
     region = os.environ.get("COPILOT_S3_REGION", "").strip()
     key_id = os.environ.get("COPILOT_S3_KMS_KEY_ID", "").strip()
-    endpoint = os.environ.get("COPILOT_S3_ENDPOINT_URL", "").strip() or None
     if not bucket or not region or not key_id:
         parser.error("COPILOT_S3_BUCKET, COPILOT_S3_REGION, and COPILOT_S3_KMS_KEY_ID are required")
-
     try:
         import boto3
+        result = collect_live_evidence(
+            boto3.client("s3", region_name=region),
+            boto3.client("kms", region_name=region),
+            boto3.client("sts"),
+            boto3.client("iam"),
+            bucket=bucket,
+            key_id=key_id,
+        )
     except ImportError:
-        print("AWS evidence collection unavailable: AWS SDK is not installed", file=sys.stderr)
+        print("AWS SDK is not installed", file=sys.stderr)
         return 2
-
-    try:
-        s3 = boto3.client("s3", region_name=region, endpoint_url=endpoint)
-        kms = boto3.client("kms", region_name=region)
-        sts = boto3.client("sts", region_name=region)
-        iam = boto3.client("iam")
-        report = collect_live_evidence(s3, kms, sts, iam, bucket=bucket, key_id=key_id)
     except Exception:
-        # Provider exceptions can contain request metadata; never echo them to stdout/stderr.
-        print("AWS evidence collection could not safely complete; inspect permissions and provider connectivity.", file=sys.stderr)
+        print("AWS live evidence collection failed; no configuration was changed", file=sys.stderr)
         return 2
-
     if args.json:
-        print(json.dumps(report, sort_keys=True))
+        print(json.dumps(result, sort_keys=True))
     else:
-        print(f"Read-only AWS acceptance evidence for bucket {bucket}")
-        for item in report["checks"]:
+        print(f"Read-only S3/KMS/IAM evidence for bucket {bucket}")
+        print(f"Caller ARN: {result['caller'].get('arn') or 'unknown'}")
+        for item in result["checks"]:
             print(f"- {'PASS' if item['passed'] else 'FAIL'} {item['name']}: {item['detail']}")
         print("Production ready: NO")
-        print("This report is evidence for independent review, not authorization to purge.")
-        for item in report["manual_review_required"]:
-            print(f"- Manual review: {item}")
-    return 0 if not report["failed_checks"] else 1
+        print("Manual review is mandatory; the report describes only the current caller role.")
+    return 0 if not result["failed_checks"] else 1
 
 
 if __name__ == "__main__":
