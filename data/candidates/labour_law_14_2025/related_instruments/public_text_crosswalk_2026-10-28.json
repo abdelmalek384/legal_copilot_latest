@@ -21,15 +21,16 @@
       },
       "secondary_text": {
         "url": "https://lawhub.info/eg/?p=17303",
-        "status": "Public secondary full-text transcription of Articles 1–4; not checked against the official Gazette PDF",
-        "summary": "Secondary text includes an Article 2 list of intermittent-work categories and Article 3 recordkeeping/overtime provisions; no job classification is verified."
+        "corroborating_url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/30-12-2025/no-290?id=5008505&type=1",
+        "status": "Two public secondary full-text transcriptions; neither compared with official Gazette PDF",
+        "summary": "Secondary transcriptions expose Articles 1–4. Article 1 sets a ten-hour daily span between start and end, counting rest time if the worker remains at the workplace, with a limited intermittent-work exception capped at twelve hours' presence. Article 2 defines intermittent work by intervening waiting/stoppage periods and lists, among others, passenger/goods transport, crop warehouses, specified port/ship tasks, emergency healthcare, transport/logistics waiting, on-demand digital support, and data-centre/cloud monitoring. Article 3 requires a special schedule, extra pay for actual hours beyond normal hours, and records of normal/actual hours, breaks and presence. Article 4 states next-day commencement."
       },
-      "gazette_date": "2025-12-30 (official issue metadata; decision signature date shown as 2025-12-11 in the secondary transcription)",
-      "effective_date": "2025-12-31 (derived from secondary Article 4 publication clause; not verified against official Gazette)",
-      "article_2_schedule_status": "secondary full-text transcription exposes the list; not compared with official PDF",
+      "gazette_date": "2025-12-30 (official Amiri Press issue metadata; secondary EastLaws record independently states the same Gazette publication date)",
+      "effective_date": "2025-12-31 (stated by EastLaws and derived from Article 4 in both secondary transcriptions; not primary-PDF verified)",
+      "article_2_schedule_status": "Seven categories appear in secondary transcriptions; exact wording and Gazette fidelity remain unverified",
       "reuse_rights": "unknown; official issue PDF is request-a-copy restricted and secondary-source reuse is not cleared",
-      "currentness": "not verified; later changes and exact job applicability not checked",
-      "card_action": "cross-reference lead only; do not classify a job as intermittent until the official Article 2 schedule and the worker's actual duties are verified",
+      "currentness": "not fully verified; no later amendment/repeal review or primary Gazette comparison completed",
+      "card_action": "cross-reference lead only; do not treat the seven secondary categories as an authoritative classification until exact Gazette wording, worker duties and currentness are reviewed",
       "additional_official_access_lead": {
         "url": "https://mediadr.sis.gov.eg/xmlui/handle/123456789/117733?locale-attribute=ar",
         "status": "SIS search-indexed record states public viewing (الإطلاع: عام) and lists a 550.3 KB PDF; direct page/PDF access failed in this session, no bytes or terms reviewed"
@@ -52,15 +53,16 @@
       },
       "secondary_text": {
         "url": "https://lawhub.info/eg/?p=17302",
-        "status": "Public secondary full-text transcription of Articles 1–5; not checked against the official Gazette PDF",
-        "summary": "Secondary text describes exceptional overtime conditions, notification and recordkeeping, worker rotation, premium pay and a Social Consultation Council task to set an annual maximum."
+        "corroborating_url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/30-12-2025/no-291?id=5064176&type=1",
+        "status": "Two public secondary full-text transcriptions; neither compared with official Gazette PDF",
+        "summary": "Secondary transcriptions expose Articles 1–5. Article 1 permits overtime for unusual work necessities or exceptional circumstances subject to notifying the competent Labour Directorate within seven days, specifying the required period, premiums of at least 35% for daytime and 70% for nighttime hours, compensatory rest when work occurs on the weekly rest day, and a twelve-hour maximum presence at the establishment. Article 2 requires a paper/electronic register of normal and overtime hours, reasons, day/night timing, pay due and proof of payment. Article 3 requires rotation and minimum use without harming health or weekly rest. Article 4 directs the Supreme Council for Social Consultation to set an annual overtime maximum within three months, by economic activity/sector. Article 5 states next-day commencement."
       },
-      "gazette_date": "2025-12-30 (official issue metadata)",
-      "effective_date": "2025-12-31 (secondary Article 5 says day after publication; not verified against official Gazette)",
-      "article_2_schedule_status": "Articles 1–5 available in secondary transcription; Article 4's annual-maximum follow-up remains unverified",
+      "gazette_date": "2025-12-30 (official Amiri Press issue metadata; secondary EastLaws record independently states the same Gazette publication date)",
+      "effective_date": "2025-12-31 (stated by EastLaws and derived from Article 5 in both secondary transcriptions; not primary-PDF verified)",
+      "article_2_schedule_status": "Articles 1–5 are available in two secondary transcriptions; annual-cap follow-up and later amendments remain unverified",
       "reuse_rights": "unknown; official issue PDF is request-a-copy restricted and secondary-source reuse is not cleared",
-      "currentness": "not verified; confirm whether the annual overtime maximum was subsequently set and check later amendments",
-      "card_action": "cross-reference lead only; do not advise on overtime limits or exceptions until primary text and any subsequent annual maximum are checked",
+      "currentness": "not fully verified; search-indexed review did not establish whether the Council later issued the annual maximum or whether amendments/repeal followed",
+      "card_action": "cross-reference lead only; do not advise on overtime eligibility, premium calculation or annual caps until primary text, later Council action and currentness are checked",
       "additional_official_access_lead": {
         "url": "https://mediadr.sis.gov.eg/xmlui/handle/123456789/117733?locale-attribute=ar",
         "status": "SIS search-indexed record states public viewing (الإطلاع: عام) and lists a 550.3 KB PDF; direct page/PDF access failed in this session, no bytes or terms reviewed"
