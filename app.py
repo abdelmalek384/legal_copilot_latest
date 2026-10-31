@@ -4542,6 +4542,7 @@ def deadline_rules(u: dict = Depends(user)):
 
 
 @app.post("/cases/{cid}/deadline-estimate")
+@rollback_tenant_transaction_on_error
 def deadline_estimate(cid: int, b: DeadlineEstimateIn, u: dict = Depends(user)):
     c = conn()
     need(c, u, cid)
