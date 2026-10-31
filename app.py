@@ -4567,9 +4567,14 @@ def _redact_case_brief_identifiers(value):
     return value
 
 
+class CaseBriefAuthorizationIn(BaseModel):
+    firm_authorized: bool = False
+    client_authorized: bool = False
+
+
 @app.post("/cases/{cid}/brief")
 @rollback_tenant_transaction_on_error
-def case_brief(cid: int, u: dict = Depends(user)):
+def case_brief(cid: int, body: CaseBriefAuthorizationIn, u: dict = Depends(user)):
     """Create a temporary, source-linked factual brief from one authorized matter."""
     c = conn()
     need(c, u, cid)
@@ -4579,6 +4584,9 @@ def case_brief(cid: int, u: dict = Depends(user)):
             "message": "إنشاء الملخص الذكي من بيانات القضية غير معتمد لهذا المكتب؛ لم يتم إرسال أي بيانات إلى النموذج.",
             "sources": [],
         }
+
+    if not (body.firm_authorized and body.client_authorized):
+        raise HTTPException(403, "explicit firm and client authorization attestations are required")
 
     case_row = c.execute(
         "SELECT case_year, court, circuit, stage, status, created_at "
@@ -4687,7 +4695,7 @@ def case_brief(cid: int, u: dict = Depends(user)):
             "message": "تعذر التحقق من استشهادات الملخص أو ارتباطها بسجل القضية؛ عُرضت المصادر فقط.",
             "sources": records,
         }
-    log(c, cid, u["name"], "إنشاء ملخص ذكي مؤقت")
+    log(c, cid, u["name"], "إنشاء ملخص ذكي مؤقت — أقر المستخدم بوجود تفويض المكتب والعميل")
     c.commit()
     return {
         "available": True, "generated": True, "abstained": False,
