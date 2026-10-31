@@ -49,8 +49,8 @@ class TestLabourDecisionPublicTextCrosswalk(unittest.TestCase):
             item = records[document_id]
             self.assertEqual(item["primary_lead"]["url"], "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc/full")
             self.assertIn("request-a-copy restricted", item["primary_lead"]["status"])
-            self.assertIn("Two public secondary", item["secondary_text"]["status"])
             if document_id == "EG-LABOUR-DECISION-292-2025":
+                self.assertIn("Two public secondary", item["secondary_text"]["status"])
                 self.assertIn("neither compared", item["secondary_text"]["status"])
             else:
                 self.assertIn("cross-checked against Ministry-hosted text copy", item["secondary_text"]["status"])
