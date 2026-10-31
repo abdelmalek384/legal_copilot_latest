@@ -1406,7 +1406,7 @@ def _answer_has_unsupported_quantities(answer, hits, cited_indices):
 
 _CITATION_SUPPORT_GENERIC_TERMS = set(tokens(
     "the a an is are was were be been being and or but if then this that these those "
-    "source sources passage passages rule rules stated legal law article section under pursuant "
+    "source sources passage passages rule rules stated legal law article section under pursuant in of by for from it as at on "
     "النص النصوص المادة المواد القانون القوانين وفقا بموجب حيث يجوز يجب يحق يلتزم "
     "يكون تكون كانت كان على في من عن الى إلى مع هذا هذه ذلك الذي التي"
 ))
