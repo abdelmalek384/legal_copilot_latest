@@ -414,11 +414,18 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
         reviewer_role = review.get("reviewer_role")
         if not isinstance(reviewer_role, str) or not reviewer_role.strip():
             add(blockers, "reviewer_role_missing", f"{review_type} review needs a reviewer_role.")
-        elif review_type == "lawyer_approval" and reviewer_role not in {
-            "egyptian_lawyer", "qualified_egyptian_counsel"
-        }:
-            add(blockers, "lawyer_qualification_not_established",
-                "lawyer_approval must identify a qualified Egyptian lawyer/counsel role.")
+        elif review_type == "lawyer_approval":
+            if reviewer_role not in {"egyptian_lawyer", "qualified_egyptian_counsel"}:
+                add(blockers, "lawyer_qualification_not_established",
+                    "lawyer_approval must identify a qualified Egyptian lawyer/counsel role.")
+            notes = review.get("notes")
+            marker = re.match(
+                r"^\\[qualified_egyptian_counsel_attested:user_id=([1-9][0-9]*)\\](?:\\s|$)",
+                notes if isinstance(notes, str) else "",
+            )
+            if marker is None or not isinstance(reviewer_id, str) or reviewer_id != marker.group(1):
+                add(blockers, "counsel_attestation_missing_or_mismatched",
+                    "lawyer_approval must carry the runtime counsel-allowlist marker, and its account ID must match reviewer_id.")
         if not valid_date(review.get("reviewed_on")):
             add(blockers, "review_date_invalid", f"{review_type} review needs a valid, non-future reviewed_on date.")
         evidence_host = https_host(review.get("evidence_url"))
