@@ -116,7 +116,7 @@ def validate_recovery_archive_configuration(
         "manual_review_required": [
             "verify effective backup/restore IAM roles and deny archive access to application runtime and purge principals",
             "approve archive retention, legal hold, expiry, and KMS key-retention semantics",
-            "implement and test encrypted bundle upload and exact-version restore retrieval",
+            "run live staging upload, exact-VersionId download, bundle verification, and isolated restore with protected locator evidence",
             "perform witnessed restore/rollback and measure RPO/RTO against an approved target",
             "obtain independent security review and live staging acceptance",
         ],
