@@ -4184,7 +4184,12 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             }
         with patch.object(app, "_central_source_permission_evidence", side_effect=permission_record):
             response = self.client.get("/legal-review/coverage")
+            queue = self.client.get("/legal-review/queue")
         self.assertEqual(response.status_code, 200, response.text)
+        self.assertEqual(queue.status_code, 200, queue.text)
+        queued_verified = next(item for item in queue.json()["versions"] if item["version_id"] == version_id)
+        self.assertTrue(queued_verified["answer_eligible"])
+        self.assertTrue(queued_verified["source_permission_register_ready"])
         metrics = response.json()["metrics"]
         self.assertGreaterEqual(metrics["source_count"], 2)
         self.assertGreaterEqual(metrics["metadata_only_documents"], 1)
