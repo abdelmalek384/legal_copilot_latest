@@ -72,7 +72,7 @@ The locator is recovery evidence and must be stored separately in a restricted e
 
 ## Implementation status (2026-10-31)
 
-PR #1024 implements the two independent read-only preflights, requires distinct bucket and KMS configuration in production preflight, changes the original-object validator to require never-versioned state, and binds the acceptance fingerprint to both targets. It also updates the runbook and deployment example. These are configuration and validation controls only. Encrypted backup-bundle upload and exact-version retrieval are implemented in the current PR but remain subject to CI review/merge and live acceptance. Backup/restore IAM separation, lifecycle/retention approval, and witnessed live recovery remain open and block acceptance of this architecture.
+PR #1024 implements the two independent read-only preflights, requires distinct bucket and KMS configuration in production preflight, changes the original-object validator to require never-versioned state, and binds the acceptance fingerprint to both targets. PR #1026 then merged the encrypted bundle transport and exact-VersionId retrieval with SHA-256/KMS checks, CLI commands, and a separate archive IAM policy baseline; PR #1029 added a full real-bundle upload/download/verify/isolated-restore integration test. These are code and CI controls, not live AWS evidence. Backup/restore IAM separation in the deployed account, lifecycle/retention approval, and witnessed live recovery remain open and block acceptance of this architecture.
 
 ## Acceptance criteria
 
