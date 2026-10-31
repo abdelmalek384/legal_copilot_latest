@@ -118,7 +118,7 @@ def review_queue(db_path: Path) -> dict:
                     reasons.append("review_evidence_missing:"+rt)
                 elif rt == "lawyer_approval" and not any(
                     isinstance(e.get("notes"), str) and re.search(
-                        r"\\[qualified_egyptian_counsel_attested:user_id=[1-9][0-9]*\\]", e["notes"]
+                        r"\[qualified_egyptian_counsel_attested:user_id=[1-9][0-9]*\]", e["notes"]
                     ) for e in matching
                 ):
                     reasons.append("lawyer_approval_counsel_attestation_missing")
