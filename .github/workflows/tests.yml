@@ -240,6 +240,8 @@ jobs:
         run: python arabic_scenario_test.py
       - name: Test experimental deadline calculator
         run: PYTHONPATH=. python tests/test_deadline_calculator.py
+      - name: Test authenticated case deadline calculator integration
+        run: PYTHONPATH=. python tests/test_deadline_case_routes.py
       - name: Test platform security audit events
         run: PYTHONPATH=. python tests/test_platform_security_audit.py
       - name: Test platform security audit migrations
