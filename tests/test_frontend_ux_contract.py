@@ -204,8 +204,8 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertNotIn("No relevant verified passage was found in this search scope.", memo)
 
     def test_research_inspector_displays_only_latest_review_events(self):
-        self.assertIn("const latestReviewByType={}", HTML)
-        self.assertIn("eventTime===previousTime&&eventId>previousId", HTML)
+        self.assertIn("const latestReviewByType=Object.create(null)", HTML)
+        self.assertIn("eventTime===previousTime&&eventId>previousId", HTML)\n        self.assertIn(":eventId>previousId", HTML)
         self.assertIn("const lawyerApproval=latestReviewByType.lawyer_approval", HTML)
         self.assertIn("Latest recorded lawyer review: ", HTML)
         self.assertIn("const ev=latestReviews.filter(e=>e.evidence_url)", HTML)
