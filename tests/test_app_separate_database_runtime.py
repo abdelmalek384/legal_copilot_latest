@@ -3125,6 +3125,18 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             "SELECT id FROM tasks WHERE case_id=? AND title=?",
             (case_id, "PRIVATE_TASK_STATE_SENTINEL"),
         ).fetchone()["id"]
+        deadline_response = self._mutate(
+            "post",
+            f"/cases/{case_id}/deadlines",
+            json={"title": "PRIVATE_DEADLINE_STATE_SENTINEL", "due": "2026-11-10"},
+        )
+        self.assertEqual(deadline_response.status_code, 200, deadline_response.text)
+        deadline_id = self.runtime.firm_connection(
+            self.runtime.resolve_context(self.user_id, self.firm_a)
+        ).execute(
+            "SELECT id FROM deadlines WHERE case_id=? AND title=?",
+            (case_id, "PRIVATE_DEADLINE_STATE_SENTINEL"),
+        ).fetchone()["id"]
 
         nonmember_id = self.runtime.create_global_identity(
             "Same Firm Nonmember", "same-firm-nonmember@example.test", app.hash_pw(self.password)
@@ -3169,6 +3181,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
                 ("post", f"/cases/{case_id}/tasks", {"title": "unauthorized task"}),
                 ("post", f"/tasks/{task_id}/claim", {}),
                 ("post", f"/tasks/{task_id}/done", {}),
+                ("post", f"/deadlines/{deadline_id}/done", {}),
                 ("post", f"/cases/{case_id}/docs", {"name": "unauthorized.txt", "text": "unauthorized document"}),
             )
             for method_name, path, payload in mutations:
@@ -3194,6 +3207,10 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         ).fetchone()
         self.assertEqual(task_after["status"], "open")
         self.assertIsNone(task_after["assignee"])
+        deadline_after = tenant.execute(
+            "SELECT status FROM deadlines WHERE id=?", (deadline_id,)
+        ).fetchone()
+        self.assertEqual(deadline_after["status"], "open")
         case_after = tenant.execute(
             "SELECT title,stage,status FROM cases WHERE id=?", (case_id,)
         ).fetchone()
