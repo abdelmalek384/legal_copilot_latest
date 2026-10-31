@@ -52,13 +52,12 @@ class S3StoragePreflightTests(unittest.TestCase):
             FakeS3(), FakeKMS(), bucket="private-originals", configured_key="alias/legal-originals"
         )
         self.assertEqual(result["bucket_versioning_status"], "Enabled")
-        self.assertEqual(result["failed_checks"], ["physical_purge_versioning_compatibility"])
+        self.assertEqual(result["failed_checks"], ["original_bucket_never_versioned"])
         self.assertFalse(result["production_ready"])
         self.assertTrue(result["manual_review_required"])
-        self.assertTrue(next(item["passed"] for item in result["checks"] if item["name"] == "versioning"))
-        self.assertFalse(next(item["passed"] for item in result["checks"] if item["name"] == "physical_purge_versioning_compatibility"))
+        self.assertFalse(next(item["passed"] for item in result["checks"] if item["name"] == "original_bucket_never_versioned"))
 
-    def test_never_versioned_bucket_is_purge_compatible_but_fails_recovery_versioning_gate(self):
+    def test_never_versioned_original_bucket_passes_its_versioning_gate(self):
         class NeverVersionedS3(FakeS3):
             def get_bucket_versioning(self, **kwargs):
                 return {}
@@ -67,8 +66,7 @@ class S3StoragePreflightTests(unittest.TestCase):
             NeverVersionedS3(), FakeKMS(), bucket="private-originals", configured_key="alias/legal-originals"
         )
         self.assertIsNone(result["bucket_versioning_status"])
-        self.assertIn("versioning", result["failed_checks"])
-        self.assertNotIn("physical_purge_versioning_compatibility", result["failed_checks"])
+        self.assertNotIn("original_bucket_never_versioned", result["failed_checks"])
         self.assertFalse(result["production_ready"])
 
     def test_resolves_bucket_default_encryption_alias_to_canonical_key_arn(self):
@@ -108,8 +106,7 @@ class S3StoragePreflightTests(unittest.TestCase):
             UnsafeS3(), FakeKMS(), bucket="private-originals", configured_key="alias/legal-originals"
         )
         self.assertIn("public_access_block", result["failed_checks"])
-        self.assertIn("versioning", result["failed_checks"])
-        self.assertIn("physical_purge_versioning_compatibility", result["failed_checks"])
+        self.assertIn("original_bucket_never_versioned", result["failed_checks"])
         self.assertFalse(result["production_ready"])
 
 
