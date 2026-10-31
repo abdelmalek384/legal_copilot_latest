@@ -362,7 +362,8 @@ _LEGAL_SYNONYMS_RAW = {
     "إجازة": ("عطلة", "leave", "vacation", "holiday"),
     "سنوية": ("سنوي", "annual", "yearly"),
     "عامل": ("موظف", "worker", "employee"),
-    "أجر": ("راتب", "wage", "salary"),
+    # Selected Egyptian colloquial forms are retrieval hints only, not legal equivalence.
+    "أجر": ("راتب", "مرتب", "wage", "salary"),
     "تعويض": ("جبر الضرر", "compensation", "damages"),
     "فسخ": ("إنهاء العقد", "termination", "terminate"),
     "بطلان": ("عدم الصحة", "invalidity", "void"),
@@ -370,11 +371,13 @@ _LEGAL_SYNONYMS_RAW = {
     "تقادم": ("مرور الزمن", "limitation period", "prescription"),
     "عقد": ("اتفاق", "agreement", "contract"),
     "دعوى": ("مطالبة قضائية", "claim", "lawsuit"),
-    "فصل": ("إنهاء الخدمة", "dismissal", "termination"),
-    "إيجار": ("كراء", "rent", "lease"),
+    "فصل": ("إنهاء الخدمة", "dismissal", "termination", "اترفد", "فصلوني", "اتطردت"),
+    "إيجار": ("كراء", "rent", "lease", "إخلاء", "مستأجر"),
+    "إيصال": ("وصل أمانة", "إيصال أمانة", "trust receipt"),
+    "نفقة": ("مصاريف الأولاد", "مصاريف العيال", "child support", "alimony"),
     # Common inflection/derivation variants observed in Arabic matter-file queries.
     # These are retrieval hints, not legal equivalence or a change to source text.
-    "شيك": ("شيكا", "شيكات", "الشيك", "الشيكات", "cheque"),
+    "شيك": ("شيكا", "شيكات", "الشيك", "الشيكات", "cheque", "مرتجع", "مرفوض", "بدون رصيد"),
     "تأخير": ("تأخر", "متأخر", "متأخرة", "تأخيرا", "delay", "delayed"),
 }
 LEGAL_SYNONYMS = {}
