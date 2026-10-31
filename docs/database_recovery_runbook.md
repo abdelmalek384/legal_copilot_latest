@@ -124,6 +124,29 @@ The --quiesced flag is an operator assertion, not an automated lock on all appli
 3. Confirm the command reports `"verified": true` and the expected tenant database count. Keep the encrypted bundle and its key separate.
 4. Verification temporarily materializes plaintext SQLite databases in a restricted temporary directory and removes them on exit. Deletion is **not guaranteed secure erasure**, especially on SSDs or copy-on-write filesystems. This command does not replace a witnessed restore into staging, startup, isolation checks, or rollback rehearsal.
 
+## Store and retrieve the encrypted bundle in the separate S3 recovery archive
+
+The recovery archive is not the original-object bucket. Configure the separate `COPILOT_S3_RECOVERY_BUCKET`, `COPILOT_S3_RECOVERY_REGION`, `COPILOT_S3_RECOVERY_KMS_KEY_ID`, and optional `COPILOT_S3_RECOVERY_ENDPOINT_URL` values. The AWS identity used for backup must have only the reviewed archive write permissions; restore operators need exact-version read permissions. The application runtime and original-object purge role must have no recovery-archive access. These IAM boundaries must be independently verified before production use.
+
+After creating the local encrypted bundle and while preserving the approved operator evidence, upload it:
+
+```bash
+python manage.py archive-upload-tenancy /protected/backup-directory/backup-file.bundle.enc \
+  > /protected/recovery-evidence/archive-locator.json
+```
+
+The command requires S3 bucket versioning to be `Enabled`, and an enabled customer-managed symmetric KMS key. It uploads the already-Fernet-encrypted bytes with S3 SSE-KMS. The JSON locator records the exact S3 `VersionId`, object key, SHA-256, byte size, and canonical archive KMS key ARN. Store this locator in the restricted recovery evidence store, separately from the archive object and BACKUP_KEY. Do not edit it, infer a version from the latest object, or treat a key without a VersionId as a recovery point. Keep the output file protected; it identifies a recovery object.
+
+To retrieve a specific recovery point, provide the exact locator and a new local destination:
+
+```bash
+python manage.py archive-download-tenancy \
+  /protected/recovery-evidence/archive-locator.json \
+  --out /protected/restore-input/backup-file.bundle.enc
+```
+
+The command pins both S3 read operations to the locator's `VersionId`, checks the returned version, server-side encryption and KMS key identity, metadata, size, and independently computed SHA-256. It refuses to overwrite an existing file. Then run `verify-backup-tenancy` on the downloaded encrypted file and `restore-tenancy` to a new isolated directory. Download success alone is not bundle verification or a completed recovery drill. Multipart uploads are aborted on detected upload failure; investigate any ambiguous network failure and reconcile incomplete multipart uploads through the approved archive operations process.
+
 ## Restore into an isolated destination
 
 **Never restore over the configured live database paths.** Restore creates a new destination directory and validates the encrypted bundle, manifest/checksums, database profiles, firm bindings, catalog consistency, and SQLite integrity before reporting success.
