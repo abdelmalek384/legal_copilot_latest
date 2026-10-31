@@ -270,6 +270,20 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         self.assertIn("Do not bypass", source["required_next_action"])
         self.assertEqual(MODULE.validate(data), [])
 
+
+    def test_labour_issue_295_metadata_is_restricted_and_not_a_reuse_license(self):
+        import json
+        data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        source = next(item for item in data["sources"] if item["source_id"] == "EG-IDSC-GAZETTE-2025-295-SUPPLEMENT-D")
+        self.assertEqual(source["collection_permission"], "not_allowed_without_explicit_exception_or_license")
+        self.assertEqual(source["commercial_reuse_permission"], "prior_written_permission_required_per_published_terms")
+        self.assertEqual(source["terms_url"], "https://dspace.id.com.eg/info/end-user-agreement")
+        self.assertEqual(source["terms_checked_on"], "2026-10-31")
+        self.assertIn("request-a-copy", source["access_status"])
+        self.assertIn("systematic retrieval", source["permission_evidence"])
+        self.assertIn("personal, non-commercial use", source["permission_evidence"])
+        self.assertEqual(MODULE.validate(data), [])
+
 if __name__ == "__main__":
     unittest.main()
 
