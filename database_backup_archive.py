@@ -179,6 +179,34 @@ def upload_encrypted_bundle(
         or accepted.get("Metadata", {}).get("format") != "encrypted-database-bundle-v2"
     ):
         _fail("Uploaded recovery archive version failed exact-version KMS/metadata acceptance")
+    # Verify the bytes that S3 actually persisted, not only caller-supplied metadata.
+    probe = None
+    try:
+        probe = s3_client.get_object(
+            Bucket=bucket, Key=object_key, VersionId=version_id
+        )
+        if probe.get("VersionId") != version_id or probe.get("Body") is None:
+            _fail("S3 upload verification did not return the exact object version")
+        persisted_digest = hashlib.sha256()
+        persisted_size = 0
+        body = probe["Body"]
+        while True:
+            block = body.read(1024 * 1024)
+            if not block:
+                break
+            persisted_size += len(block)
+            if persisted_size > size:
+                _fail("Persisted archive version exceeds the uploaded size")
+            persisted_digest.update(block)
+        if persisted_size != size or persisted_digest.hexdigest() != digest:
+            _fail("Persisted archive bytes do not match the uploaded bundle checksum")
+    except DatabaseBundleError:
+        raise
+    except Exception as exc:
+        raise DatabaseBundleError("Persisted recovery archive bytes could not be verified") from exc
+    finally:
+        if probe is not None and probe.get("Body") is not None:
+            probe["Body"].close()
     return {
         "bucket": bucket,
         "key": object_key,
