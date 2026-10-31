@@ -380,7 +380,6 @@ _LEGAL_SYNONYMS_RAW = {
     # These are retrieval hints, not legal equivalence or a change to source text.
     "شيك": ("شيكا", "شيكات", "الشيك", "الشيكات", "cheque", "مرتجع", "مرفوض", "بدون رصيد"),
     "تأخير": ("تأخر", "متأخر", "متأخرة", "تأخيرا", "delay", "delayed"),
-    "مدة": ("ميعاد", "أجل", "فترة", "deadline", "period", "time limit"),
 }
 LEGAL_SYNONYMS = {}
 for _key, _values in _LEGAL_SYNONYMS_RAW.items():
@@ -1440,6 +1439,10 @@ def _answer_has_unanchored_citations(answer, hits):
                 return True
             claim_text = re.sub(r"\[\d+\]", " ", sentence)
             claim_terms = set(expanded_tokens(claim_text, limit=96)) - _CITATION_SUPPORT_GENERIC_TERMS
+            # Keep generic duration expansion local to citation checking; global query expansion
+            # changes retrieval ranking and can hide otherwise relevant firm-document matches.
+            if set(tokens(claim_text)) & set(tokens("مدة ميعاد أجل فترة")):
+                claim_terms.update(tokens("deadline period time limit"))
             if not claim_terms:
                 continue
             evidence = " ".join(str(hits[index - 1].get("text") or "") for index in cited)
