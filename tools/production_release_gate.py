@@ -144,7 +144,10 @@ def _evaluate_device_acceptance(evidence_path, release_commit):
         if not records:
             raise DeviceAcceptanceError("no device acceptance records found")
         summaries = [
-            validate_device_acceptance_record(item, expected_commit=release_commit, require_pass=True)
+            validate_device_acceptance_record(
+                item, expected_commit=release_commit, require_pass=True,
+                evidence_root=Path(evidence_path).resolve().parent,
+            )
             for item in records
         ]
         validate_device_release_matrix(records, summaries)

@@ -158,6 +158,14 @@ class ProductionReleaseGateTests(unittest.TestCase):
             })
         return records
 
+    def _write_device_acceptance_file(self, path, records):
+        for record in records:
+            for relative in record.get("evidence_paths", []):
+                evidence = path.parent / relative
+                evidence.parent.mkdir(parents=True, exist_ok=True)
+                evidence.write_bytes(b"synthetic evidence fixture")
+        path.write_text(json.dumps(records), encoding="utf-8")
+
     def _ready_report(self, candidate_path):
         return self._ready_report_many([candidate_path])
 
@@ -180,7 +188,7 @@ class ProductionReleaseGateTests(unittest.TestCase):
     def test_device_acceptance_must_match_exact_release_commit(self):
         with tempfile.TemporaryDirectory() as td:
             path = Path(td) / "device-acceptance.json"
-            path.write_text(json.dumps(self._device_acceptance_records("b" * 40)), encoding="utf-8")
+            self._write_device_acceptance_file(path, self._device_acceptance_records("b" * 40))
             report = gate._evaluate_device_acceptance(path, "a" * 40)
         self.assertFalse(report["ready"])
         self.assertIn("does not match expected commit", report["error"])
@@ -218,9 +226,7 @@ class ProductionReleaseGateTests(unittest.TestCase):
                 json.dumps(self._database_acceptance_manifest()), encoding="utf-8"
             )
             device_acceptance_path = root / "device-acceptance.json"
-            device_acceptance_path.write_text(
-                json.dumps(self._device_acceptance_records()), encoding="utf-8"
-            )
+            self._write_device_acceptance_file(device_acceptance_path, self._device_acceptance_records())
             release_env = {
                 **self.clean_env,
                 "COPILOT_DATABASE_ACCEPTANCE_FILE": str(acceptance_path),
@@ -293,7 +299,7 @@ class ProductionReleaseGateTests(unittest.TestCase):
             root = Path(td)
             evidence_path = root / "device-acceptance.json"
             evidence_records = self._device_acceptance_records()
-            evidence_path.write_text(json.dumps(evidence_records), encoding="utf-8")
+            self._write_device_acceptance_file(evidence_path, evidence_records)
             reviewer_path = root / "reviewers.json"
             reviewer_path.write_text(json.dumps(self._reviewer_registry()), encoding="utf-8")
             with patch.dict(os.environ, {

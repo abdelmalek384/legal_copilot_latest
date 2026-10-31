@@ -46,7 +46,40 @@ def _timestamp(value):
     return parsed.tzinfo is not None and parsed.utcoffset() is not None
 
 
-def validate_record(record, expected_commit=None, require_pass=False):
+def _validate_evidence_files(evidence_paths, evidence_root):
+    if evidence_root is None:
+        raise EvidenceError("evidence_root is required when --require-pass is used")
+    root = Path(evidence_root)
+    if root.is_symlink():
+        raise EvidenceError("evidence root must not be a symlink")
+    try:
+        resolved_root = root.resolve(strict=True)
+    except OSError as exc:
+        raise EvidenceError("evidence root does not exist") from exc
+    if not resolved_root.is_dir():
+        raise EvidenceError("evidence root must be a directory")
+    for raw_path in evidence_paths:
+        if "\\" in raw_path or ":" in raw_path:
+            raise EvidenceError("evidence paths must be relative POSIX paths")
+        parts = raw_path.split("/")
+        if raw_path.startswith("/") or any(part in {"", ".", ".."} for part in parts):
+            raise EvidenceError("evidence paths must stay inside the evidence root")
+        candidate = resolved_root
+        for part in parts:
+            candidate = candidate / part
+            if candidate.is_symlink():
+                raise EvidenceError("evidence paths must not contain symlinks")
+        try:
+            resolved = candidate.resolve(strict=True)
+        except OSError as exc:
+            raise EvidenceError("evidence file is missing: " + raw_path) from exc
+        if not resolved.is_relative_to(resolved_root):
+            raise EvidenceError("evidence path escapes the evidence root")
+        if not resolved.is_file() or resolved.stat().st_size <= 0:
+            raise EvidenceError("evidence file must be a non-empty regular file: " + raw_path)
+
+
+def validate_record(record, expected_commit=None, require_pass=False, evidence_root=None):
     if not isinstance(record, dict):
         raise EvidenceError("record must be a JSON object")
     errors = []
@@ -95,6 +128,11 @@ def validate_record(record, expected_commit=None, require_pass=False):
         errors.append("defect_ids must identify the issue for FAIL/BLOCKED results")
     if not _nonempty(record.get("notes")):
         errors.append("notes must be a non-empty string")
+    if require_pass and evidence:
+        try:
+            _validate_evidence_files(evidence, evidence_root)
+        except EvidenceError as exc:
+            errors.append(str(exc))
     if errors:
         raise EvidenceError("; ".join(errors))
     return {
@@ -161,7 +199,8 @@ def main(argv=None):
         records = load_records(args.input)
         if not records:
             raise EvidenceError("no evidence records found")
-        summaries = [validate_record(item, args.expected_commit, args.require_pass) for item in records]
+        evidence_root = Path(args.input).resolve().parent if args.require_pass else None
+        summaries = [validate_record(item, args.expected_commit, args.require_pass, evidence_root) for item in records]
         identities = [
             (item["application_commit"], item["environment"], item["locale"],
              records[index].get("device_class"), records[index].get("device"),
