@@ -28,7 +28,7 @@ class TestLabourDecisionPublicTextCrosswalk(unittest.TestCase):
             self.assertIn("unknown", record["reuse_rights"])
             self.assertTrue(record["currentness"].startswith("not fully verified"))
             self.assertFalse(record.get("search_eligible", False))
-        self.assertIn("seven categories", d290["secondary_text"]["summary"])
+        self.assertIn("intermittent work", d290["secondary_text"]["summary"])
         self.assertIn("35%", d291["secondary_text"]["summary"])
         self.assertIn("70%", d291["secondary_text"]["summary"])
         self.assertIn("annual overtime maximum", d291["secondary_text"]["summary"])
@@ -54,7 +54,7 @@ class TestLabourDecisionPublicTextCrosswalk(unittest.TestCase):
             self.assertTrue(item["currentness"].startswith("not fully verified"))
             self.assertIn("unknown", item["reuse_rights"])
         self.assertIn("48 hours", records["EG-LABOUR-DECISION-292-2025"]["secondary_text"]["summary"])
-        self.assertIn("12 public holidays", records["EG-LABOUR-DECISION-294-2025"]["secondary_text"]["summary"])
+        self.assertIn("12 paid holidays", records["EG-LABOUR-DECISION-294-2025"]["secondary_text"]["summary"])
 
 
     def test_decisions_288_and_289_have_secondary_crosswalks(self):
@@ -97,7 +97,7 @@ class TestLabourDecisionPublicTextCrosswalk(unittest.TestCase):
         check = item["gazette_page_image_reproduction"]
         self.assertEqual(check["pages"][0]["printed_page"], 21)
         self.assertEqual(check["pages"][1]["printed_page"], 22)
-        self.assertIn("not the original DSpace PDF", check["caveat"])
+        self.assertIn("original DSpace PDF remains request-a-copy restricted", check["caveat"])
         self.assertIn("35% daytime", " ".join(check["pages"][0]["observations"]))
         self.assertIn("three months", " ".join(check["pages"][1]["observations"]))
         self.assertEqual(item["annual_overtime_maximum_followup"]["deadline_candidate"], "2026-03-31")
