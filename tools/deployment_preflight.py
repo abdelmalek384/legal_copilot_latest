@@ -251,6 +251,8 @@ def inspect_environment(env=None, *, require_separate=False):
                 )
             elif env["COPILOT_S3_BUCKET"].strip() == env["COPILOT_S3_RECOVERY_BUCKET"].strip():
                 errors.append("COPILOT_S3_RECOVERY_BUCKET must be distinct from COPILOT_S3_BUCKET.")
+            elif env["COPILOT_S3_KMS_KEY_ID"].strip() == env["COPILOT_S3_RECOVERY_KMS_KEY_ID"].strip():
+                errors.append("COPILOT_S3_RECOVERY_KMS_KEY_ID must be distinct from COPILOT_S3_KMS_KEY_ID.")
             else:
                 passed.append(
                     "Separate original-object and versioned recovery-archive S3/KMS targets are configured; "
