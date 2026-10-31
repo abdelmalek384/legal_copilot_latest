@@ -1118,7 +1118,7 @@ _QUANTITY_UNITS = {
     "يوم": "day", "يوما": "day", "أيام": "day", "ايام": "day", "اسبوع": "week", "أسبوع": "week", "اسبوعا": "week", "أسبوعا": "week",
     "شهرا": "month", "عاما": "year",
     "أسابيع": "week", "اسابيع": "week", "ساعة": "hour", "ساعات": "hour",
-    "جنيه": "currency", "جنيهًا": "currency", "جنيهات": "currency",
+    "جنيه": "currency", "جنيها": "currency", "جنيهاً": "currency", "جنيهًا": "currency", "جنيهات": "currency",
     "egp": "currency", "pound": "currency", "pounds": "currency",
     "percent": "percent", "percentage": "percent", "%": "percent", "٪": "percent",
     "بالمائة": "percent", "في المئة": "percent",
