@@ -650,6 +650,23 @@
       "terms_checked_on": "2026-10-31",
       "bulk_download_or_api": "not authorized; systematic retrieval to compile a collection/database requires written permission under the published End User Agreement",
       "required_next_action": "Use public catalogue metadata only. Do not request a copy or bypass the request-a-copy restriction under the current acquisition constraint. Keep collection blocked absent explicit written permission and commercial reuse blocked absent prior written permission. No original PDF or item-specific license is available for hashing or review."
+    },
+    {
+      "source_id": "EG-SIS-GAZETTE-2025-295-SUPPLEMENT-D",
+      "authority": "Egyptian State Information Service (SIS) digital repository; item metadata identifies Amiri Press as issuing authority",
+      "source_page": "https://mediadr.sis.gov.eg/xmlui/handle/123456789/117733?locale-attribute=ar",
+      "material_types": [
+        "Egyptian Proceedings Gazette issue metadata",
+        "Official Gazette PDF listing"
+      ],
+      "access_status": "Search-indexed SIS item metadata states public viewing (الإطلاع: عام) and lists a 550.3 KB PDF named WQ295_20251230_1100.pdf. The item page and PDF could not be opened in this session because the host returned access/robots/timeout errors; no file bytes were obtained.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Search-indexed SIS repository metadata for issue 295 supplement D states issue date 2025-12-30, issuing authority Amiri Press, public viewing, and a 550.3 KB PDF listing. Direct opening of the item page failed in this session due host access restrictions/robots/timeout; the PDF link was not followed and no bytes or terms were obtained. Public-viewing metadata does not establish bulk collection, commercial reuse, or redistribution rights.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established; no API or bulk-export permission reviewed",
+      "required_next_action": "Treat as a promising public-viewing primary-source access lead only. Do not bypass host restrictions. If the page is accessible through ordinary authorized browser access, review current terms and the PDF before treating it as acquired; record byte size and SHA-256 only after lawful download."
     }
   ]
 }
