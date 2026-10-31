@@ -172,6 +172,8 @@ jobs:
         run: python tools/validate_amendment_relationships.py --out amendment-relationship-audit.json
       - name: Test first official batch manifest
         run: python tests/test_first_official_batch_manifest.py
+      - name: Test Decision 250 provenance and commencement quarantine
+        run: PYTHONPATH=. python tests/test_decision250_candidate_quarantine.py
       - name: Test Labour Law supplemental evidence cards
         run: python tests/test_labour_law_supplement_cards.py
       - name: Test canonical Labour Law evidence cards
