@@ -3,7 +3,7 @@
 **Checked:** 2026-10-31  
 **Official publication metadata:** *الوقائع المصرية، العدد 225 تابع (أ)*, dated 2026-10-12; publisher identified as الهيئة العامة لشئون المطابع الأميرية; issuing body Ministry of Labour.  
 **Official catalogue record:** https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full  
-**Primary-source status:** original bundle listed as a 6.13 MB PDF, but the repository's download action is request-copy restricted. No original bytes or SHA-256 were obtained; no access control was bypassed and no copy request was submitted.
+**Primary-source status:** the original 6.13 MB PDF is request-copy restricted. The item also lists a 55-byte `license.txt`, but its download link also resolves to a request-a-copy form, so the item-specific licence text is not publicly readable. No original bytes, licence text or SHA-256 were obtained; no access control was bypassed and no copy request was submitted.
 
 ## Instrument matrix
 
