@@ -1127,7 +1127,27 @@ _QUANTITY_NUM_WORD_PATTERN = "|".join(
     r"\s+".join(re.escape(token) for token in phrase.split())
     for phrase in sorted(_QUANTITY_NUMBER_WORDS, key=lambda value: (len(value.split()), len(value)), reverse=True)
 )
-_QUANTITY_NUM_RE = r"\d+(?:[.,]\d+)?|(?:" + _QUANTITY_NUM_WORD_PATTERN + r")"
+_ARABIC_QUANTITY_WORD_TOKENS = sorted(
+    {
+        token
+        for phrase in _QUANTITY_NUMBER_WORDS
+        if re.search(r"[\u0600-\u06FF]", phrase)
+        for token in phrase.split()
+    },
+    key=len,
+    reverse=True,
+)
+_ARABIC_QUANTITY_WORD_PATTERN = "|".join(re.escape(token) for token in _ARABIC_QUANTITY_WORD_TOKENS)
+_ARABIC_COMPOUND_QUANTITY_PATTERN = (
+    r"(?:" + _ARABIC_QUANTITY_WORD_PATTERN + r")(?:\s+و\s*(?:" + _ARABIC_QUANTITY_WORD_PATTERN + r"))+"
+)
+_QUANTITY_NUM_RE = (
+    r"\d+(?:[.,]\d+)?|(?:"
+    + _ARABIC_COMPOUND_QUANTITY_PATTERN
+    + r")|(?:"
+    + _QUANTITY_NUM_WORD_PATTERN
+    + r")"
+)
 _QUANTITY_UNIT_RE = "|".join(sorted((re.escape(x) for x in _QUANTITY_UNITS), key=len, reverse=True))
 
 
@@ -1135,6 +1155,13 @@ def _normalize_quantity_number(raw):
     raw = " ".join(raw.strip().lower().split()).replace(",", ".")
     if raw in _QUANTITY_NUMBER_WORDS:
         return _QUANTITY_NUMBER_WORDS[raw]
+    # Arabic cardinal compounds commonly join additive number words with waw:
+    # خمسة وعشرون = 5 + 20; مائة وخمسون = 100 + 50.
+    compound_parts = re.split(r"\s+و\s*", raw)
+    if len(compound_parts) > 1:
+        values = [_QUANTITY_NUMBER_WORDS.get(part) for part in compound_parts]
+        if all(value is not None for value in values):
+            return sum(values)
     digits = raw.translate(str.maketrans("٠١٢٣٤٥٦٧٨٩", "0123456789")).translate(str.maketrans("۰۱۲۳۴۵۶۷۸۹", "0123456789"))
     try:
         value = float(digits)
