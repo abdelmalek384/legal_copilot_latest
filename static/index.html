@@ -754,7 +754,7 @@ async function law(){
 }
 async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=await api('/users'),again=()=>view(id);
  const lead=ME.role==='admin'||c.members.some(m=>m.role==='lead'&&m.user_id===ME.id),dn=c.tasks.filter(t=>t.status==='done').length,tot=c.tasks.length;
- const tabs=[['sum',uiText('الملخص','Overview')],['tasks',uiText('المهام','Tasks')],['sess',uiText('الجلسات','Hearings')],['dead',uiText('المواعيد القانونية','Legal deadlines')],['notes',uiText('الملاحظات','Notes')],['fees',uiText('الأتعاب','Fees')],['docs',uiText('المستندات','Documents')],['team',uiText('الفريق','Team')],['ask',uiText('اسأل','Ask')],['log',uiText('السجل','Activity log')]];let body;
+ const tabs=[['sum',uiText('الملخص','Overview')],['brief',uiText('ملخص ذكي','AI brief')],['tasks',uiText('المهام','Tasks')],['sess',uiText('الجلسات','Hearings')],['dead',uiText('المواعيد القانونية','Legal deadlines')],['notes',uiText('الملاحظات','Notes')],['fees',uiText('الأتعاب','Fees')],['docs',uiText('المستندات','Documents')],['team',uiText('الفريق','Team')],['ask',uiText('اسأل','Ask')],['log',uiText('السجل','Activity log')]];let body;
  if(TAB==='sum'){
   const fields=[['case_number',uiText('رقم القضية','Case number')],['case_year',uiText('السنة','Year')],['court',uiText('المحكمة','Court')],['circuit',uiText('الدائرة','Circuit')],['opposing_party',uiText('الخصم','Opposing party')],['stage',uiText('المرحلة','Stage')]];
   const inputs={};fields.forEach(([k,label])=>inputs[k]=h('input',{value:c[k]||'',placeholder:label,style:'width:100%'}));
@@ -764,6 +764,23 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
    h('div',{className:'row'},h('span',{textContent:uiText('العميل: ','Client: ')+(c.client||'—')}),h('span',{textContent:uiText('الحالة: ','Status: ')+(c.status==='open'?uiText('مفتوحة','Open'):uiText('مغلقة','Closed'))})),
    lead&&h('div',{className:'row'},btn(c.status==='open'?'إغلاق القضية':'إعادة فتح',async()=>{await api('/cases/'+id,'PATCH',{status:c.status==='open'?'closed':'open'});again()},'g'),
     btn('حذف القضية',async()=>{if(confirm(uiText('حذف نهائي لكل بيانات القضية؟','Permanently delete all case data?'))){await api('/cases/'+id,'DELETE');PAGE='clients';clients()}},'d')))}
+ if(TAB==='brief'){
+  const result=h('div',{});
+  const run=btn(uiText('إنشاء ملخص ذكي','Generate AI brief'),async()=>{
+   run.disabled=true;result.replaceChildren(h('p',{className:'mut',textContent:uiText('جارٍ إعداد الملخص من سجلات القضية...','Preparing a brief from case records...')}));
+   try{
+    const data=await api('/cases/'+id+'/brief','POST',{});
+    const nodes=[h('p',{className:'mut',textContent:data.message||''})];
+    if(data.answer)nodes.push(h('div',{className:'research-content',style:'white-space:pre-wrap'},data.answer));
+    if(data.sources&&data.sources.length)nodes.push(h('div',{className:'card'},h('b',{textContent:uiText('السجلات المستخدمة','Records used')}),...data.sources.map(src=>h('div',{className:'row'},h('span',{textContent:'['+src.citation_index+'] '+src.reference}),h('span',{className:'mut',textContent:src.record_type})))));
+    result.replaceChildren(...nodes);
+   }catch(e){result.replaceChildren(h('p',{className:'bad',textContent:String(e.message||e)}))}
+   finally{run.disabled=false}
+  });
+  body=h('div',{className:'card'},h('h3',{textContent:uiText('ملخص ذكي للقضية','AI case brief')}),
+   h('p',{className:'mut',textContent:uiText('ينشئ ملخصاً واقعياً مؤقتاً من بيانات القضية والملاحظات والجلسات والمهام والمواعيد ومقاطع المستندات. لا يقدم رأياً قانونياً ولا يُحفظ. يتطلب موافقة المكتب على معالجة بيانات القضايا بواسطة النموذج.','Creates a temporary factual summary from case metadata, notes, sessions, tasks, deadlines and extracted document excerpts. It does not provide legal advice and is not saved. Firm approval for model processing of case data is required.')}),
+   run,result)
+ }
  if(TAB==='tasks'){const tt=h('input',{placeholder:uiText('مهمة جديدة','New task')}),as=h('select',{},new Option(uiText('غير معيّن','Unassigned'),''),...c.members.map(m=>new Option(m.name,m.user_id))),due=h('input',{type:'date'});
   body=h('div',{className:'card'},c.tasks.length?c.tasks.map(t=>h('div',{className:'row'},h('div',{},h('b',{textContent:t.title}),h('div',{className:'mut',textContent:t.assignee_name||'غير معيّن'})),
    h('div',{},t.status==='done'?pill('منجزة','done'):[duePill(t)||pill('مفتوحة','open'),' ',btn('تم',async()=>{await api('/tasks/'+t.id+'/done','POST');again()},'g')]))):empty('لا توجد مهام'),
