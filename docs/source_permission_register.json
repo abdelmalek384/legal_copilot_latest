@@ -640,16 +640,17 @@
       "material_types": [
         "Egyptian Proceedings Gazette supplement issue metadata",
         "Ministerial decision metadata",
-        "PDF listing"
+        "Official Gazette PDF listing",
+        "item-specific license file listing"
       ],
-      "access_status": "Public item metadata only. The 2025-12-30 Gazette Supplement issue 295 (تابع د) record lists a 550.3 KB PDF; clicking the file opens a request-a-copy form that states all files are in restricted access. No PDF bytes or item-specific license were obtained.",
+      "access_status": "Public item metadata only. The 2025-12-30 Gazette Supplement issue 295 (تابع د) record lists a 550.3 KB PDF and a 1.71 KB item-specific license.txt file. Clicking the license file opens a request-a-copy form stating all files are in restricted access. No PDF bytes or license bytes were obtained.",
       "collection_permission": "not_allowed_without_explicit_exception_or_license",
       "commercial_reuse_permission": "prior_written_permission_required_per_published_terms",
       "terms_url": "https://dspace.id.com.eg/info/end-user-agreement",
-      "permission_evidence": "Checked 2026-10-31. The item page identifies the title as Egyptian Proceedings Gazette Supplement issue 295 (تابع د), date 2025-12-30, author Ministry of Labour and publisher Amiri Press; its 550.3 KB PDF file link opens a request-a-copy page stating that all files are in restricted access. The repository End User Agreement (last updated 2023-05-04) says content is for personal, non-commercial use; copying, reproducing, aggregating, republishing, distributing, selling, licensing or other commercial exploitation requires express prior written permission; systematic retrieval to create or compile a collection/database/directory requires written permission; and circumventing access/copy restrictions is prohibited. No request was submitted, no file bytes or item-specific license were obtained, and no permission is inferred from public metadata.",
+      "permission_evidence": "Checked 2026-10-31. The full DSpace item page identifies issue 295 (تابع د), date 2025-12-30, Ministry of Labour author and Amiri Press publisher; it lists a 550.3 KB PDF and a 1.71 KB item-specific license.txt file. Clicking the license file opens a request-a-copy page explicitly stating all files are in restricted access. The repository End User Agreement (last updated 2023-05-04) says content is for personal, non-commercial use; copying, reproducing, aggregating, republishing, distributing, selling, licensing or other commercial exploitation requires express prior written permission; systematic retrieval to create or compile a collection/database/directory requires written permission; and circumventing access/copy restrictions is prohibited. No PDF or license bytes were obtained and no permission is inferred from the license filename.",
       "terms_checked_on": "2026-10-31",
       "bulk_download_or_api": "not authorized; systematic retrieval to compile a collection/database requires written permission under the published End User Agreement",
-      "required_next_action": "Use public catalogue metadata only. Do not request a copy or bypass the request-a-copy restriction under the current acquisition constraint. Keep collection blocked absent explicit written permission and commercial reuse blocked absent prior written permission. No original PDF or item-specific license is available for hashing or review."
+      "required_next_action": "Use public catalogue metadata only. Do not request or bypass the restricted PDF or license file under the current acquisition constraint. Keep collection blocked absent explicit written permission and commercial reuse blocked absent prior written permission. Do not claim that the listed license.txt grants rights until its bytes are lawfully obtained and reviewed."
     },
     {
       "source_id": "EG-SIS-GAZETTE-2025-295-SUPPLEMENT-D",
