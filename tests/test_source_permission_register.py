@@ -339,7 +339,7 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         self.assertEqual(source["collection_permission"], "unknown")
         self.assertEqual(source["commercial_reuse_permission"], "unknown")
         self.assertIn("not treat this PDF as the Official Gazette itself", source["required_next_action"])
-        self.assertIn("no local PDF bytes/hash", source["access_status"])
+        self.assertIn("No local PDF bytes/hash", source["access_status"])
         self.assertEqual(MODULE.validate(data), [])
 
 if __name__ == "__main__":
