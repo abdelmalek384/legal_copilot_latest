@@ -301,7 +301,7 @@
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
-      "permission_evidence": "Checked 2026-10-31 using the public PDF viewer at the source URL. The viewer identifies Official Gazette issue 18 (تابع), dated 2025-05-03, and exposes 1,768 extracted text lines. Article 13 on printed p.5 (PDF index 3) was also visually inspected and states that the law takes effect from the first day of the month following the expiry of 90 days from publication; the corresponding date is recorded as a derived candidate of 2025-09-01, with specialized labour courts from 2025-10-01. The official PDF screenshots for printed pages 105–111 (PDF indices 103–109) were visually inspected to correct 46 card pinpoints for Articles 275–298. The local PDF download attempt failed; no local bytes or SHA-256 are claimed. A government-hosted PDF and public viewer do not by themselves establish bulk-collection, redistribution or commercial-reuse permission. Collection and commercial reuse remain unknown; portal terms were not verified.",
+      "permission_evidence": "Checked 2026-10-31 using the public PDF viewer at the source URL. The viewer identifies Official Gazette issue 18 (تابع), dated 2025-05-03, and exposes 1,768 extracted text lines. Article 13 on printed p.5 (PDF index 3) was also visually inspected and states that the law takes effect from the first day of the month following the expiry of 90 days from publication; the corresponding date is recorded as a derived candidate of 2025-09-01, with specialized labour courts from 2025-10-01. The official PDF screenshots for printed pages 94–111 (PDF indices 92–109) were visually inspected to correct 90 card pinpoints for Articles 250–298. The local PDF download attempt failed; no local bytes or SHA-256 are claimed. A government-hosted PDF and public viewer do not by themselves establish bulk-collection, redistribution or commercial-reuse permission. Collection and commercial reuse remain unknown; portal terms were not verified.",
       "terms_checked_on": null,
       "bulk_download_or_api": "one PDF URL located; no bulk-download/API permission established",
       "required_next_action": "Keep this official government-hosted copy as a primary-text reference. Obtain local bytes through a supported public download route and compute SHA-256 when available; review applicable portal terms before bulk extraction, indexing, redistribution or commercial display; complete page-by-page article comparison, amendment/currentness review and qualified Egyptian-lawyer approval.",
@@ -321,6 +321,72 @@
           "pdf_page_index_zero_based": 3,
           "checked_on": "2026-10-31",
           "result": "Article 13 commencement provisions visually located"
+        },
+        {
+          "printed_page": 94,
+          "pdf_page_index_zero_based": 92,
+          "checked_on": "2026-10-31",
+          "result": "Articles 250–252 visually located"
+        },
+        {
+          "printed_page": 95,
+          "pdf_page_index_zero_based": 93,
+          "checked_on": "2026-10-31",
+          "result": "Article 253 visually located"
+        },
+        {
+          "printed_page": 96,
+          "pdf_page_index_zero_based": 94,
+          "checked_on": "2026-10-31",
+          "result": "Articles 254–256 visually located"
+        },
+        {
+          "printed_page": 97,
+          "pdf_page_index_zero_based": 95,
+          "checked_on": "2026-10-31",
+          "result": "Article 257 visually located"
+        },
+        {
+          "printed_page": 98,
+          "pdf_page_index_zero_based": 96,
+          "checked_on": "2026-10-31",
+          "result": "Articles 258–259 visually located"
+        },
+        {
+          "printed_page": 99,
+          "pdf_page_index_zero_based": 97,
+          "checked_on": "2026-10-31",
+          "result": "Articles 260–262 visually located"
+        },
+        {
+          "printed_page": 100,
+          "pdf_page_index_zero_based": 98,
+          "checked_on": "2026-10-31",
+          "result": "Articles 263–264 visually located"
+        },
+        {
+          "printed_page": 101,
+          "pdf_page_index_zero_based": 99,
+          "checked_on": "2026-10-31",
+          "result": "Articles 265–267 visually located"
+        },
+        {
+          "printed_page": 102,
+          "pdf_page_index_zero_based": 100,
+          "checked_on": "2026-10-31",
+          "result": "Articles 268–270 visually located"
+        },
+        {
+          "printed_page": 103,
+          "pdf_page_index_zero_based": 101,
+          "checked_on": "2026-10-31",
+          "result": "Articles 271–272 visually located"
+        },
+        {
+          "printed_page": 104,
+          "pdf_page_index_zero_based": 102,
+          "checked_on": "2026-10-31",
+          "result": "Articles 273–274 visually located"
         },
         {
           "printed_page": 105,
