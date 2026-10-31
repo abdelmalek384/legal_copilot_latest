@@ -50,6 +50,14 @@ def passing_record(device_class, locale, suffix):
     )
 
 
+def write_evidence_files(root, records):
+    for item in records:
+        for relative in item.get("evidence_paths", []):
+            path = root / relative
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(b"synthetic evidence fixture")
+
+
 class DeviceBrowserAcceptanceTests(unittest.TestCase):
     def test_structural_record_is_valid_but_not_a_release_pass(self):
         result = validate_record(record())
@@ -59,15 +67,56 @@ class DeviceBrowserAcceptanceTests(unittest.TestCase):
     def test_release_gate_requires_every_check_to_pass(self):
         value = record(results={key: "PASS" for key in REQUIRED_RESULTS},
                        evidence_paths=["artifacts/run-001/summary.json"])
-        self.assertTrue(validate_record(value, expected_commit=COMMIT, require_pass=True)["complete"])
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            write_evidence_files(root, [value])
+            result = validate_record(value, expected_commit=COMMIT, require_pass=True, evidence_root=root)
+        self.assertTrue(result["complete"])
 
     def test_release_gate_rejects_not_tested_and_blocked_states(self):
         value = record(results={key: "PASS" for key in REQUIRED_RESULTS},
                        evidence_paths=["artifacts/run-001/summary.json"])
         value["results"]["keyboard_and_screen_reader"] = "BLOCKED"
         value["defect_ids"] = ["QA-123"]
-        with self.assertRaisesRegex(EvidenceError, "requires PASS"):
-            validate_record(value, require_pass=True)
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            write_evidence_files(root, [value])
+            with self.assertRaisesRegex(EvidenceError, "requires PASS"):
+                validate_record(value, require_pass=True, evidence_root=root)
+
+    def test_release_gate_requires_existing_nonempty_evidence_file(self):
+        value = record(results={key: "PASS" for key in REQUIRED_RESULTS},
+                       evidence_paths=["artifacts/run.json"])
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            with self.assertRaisesRegex(EvidenceError, "evidence file is missing"):
+                validate_record(value, require_pass=True, evidence_root=root)
+            target = root / "artifacts/run.json"
+            target.parent.mkdir()
+            target.write_bytes(b"")
+            with self.assertRaisesRegex(EvidenceError, "non-empty regular file"):
+                validate_record(value, require_pass=True, evidence_root=root)
+            target.write_bytes(b"synthetic evidence")
+            self.assertTrue(validate_record(value, require_pass=True, evidence_root=root)["complete"])
+
+    def test_release_gate_rejects_traversal_and_symlink_evidence_paths(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "evidence"
+            root.mkdir()
+            outside = Path(directory) / "outside.txt"
+            outside.write_text("outside", encoding="utf-8")
+            value = record(results={key: "PASS" for key in REQUIRED_RESULTS},
+                           evidence_paths=["../outside.txt"])
+            with self.assertRaisesRegex(EvidenceError, "stay inside"):
+                validate_record(value, require_pass=True, evidence_root=root)
+            link = root / "linked.txt"
+            try:
+                link.symlink_to(outside)
+            except (OSError, NotImplementedError):
+                self.skipTest("symlinks are unavailable on this platform")
+            value["evidence_paths"] = ["linked.txt"]
+            with self.assertRaisesRegex(EvidenceError, "symlinks"):
+                validate_record(value, require_pass=True, evidence_root=root)
 
     def test_rejects_naive_timestamp_and_short_commit(self):
         value = record(tested_at="2026-10-31T12:00:00", application_commit="abc")
@@ -93,7 +142,11 @@ class DeviceBrowserAcceptanceTests(unittest.TestCase):
             passing_record("desktop", "en-US", "131"),
             passing_record("phone", "ar-EG", "132"),
         ]
-        summaries = [validate_record(item, expected_commit=COMMIT, require_pass=True) for item in values]
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            write_evidence_files(root, values)
+            summaries = [validate_record(item, expected_commit=COMMIT, require_pass=True, evidence_root=root)
+                         for item in values]
         with self.assertRaisesRegex(EvidenceError, "phone/en-US"):
             validate_release_matrix(values, summaries)
 
@@ -104,22 +157,27 @@ class DeviceBrowserAcceptanceTests(unittest.TestCase):
             passing_record("phone", "ar-EG", "132"),
             passing_record("phone", "en-US", "133"),
         ]
-        summaries = [validate_record(item, require_pass=True) for item in values]
-        validate_release_matrix(values, summaries)
-        values[3]["application_commit"] = "b" * 40
-        mixed = [validate_record(item, require_pass=True) for item in values]
-        with self.assertRaisesRegex(EvidenceError, "exactly one application commit"):
-            validate_release_matrix(values, mixed)
-        values[3]["application_commit"] = COMMIT
-        values[3]["environment"] = "local"
-        mixed = [validate_record(item, require_pass=True) for item in values]
-        with self.assertRaisesRegex(EvidenceError, "exactly one environment"):
-            validate_release_matrix(values, mixed)
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            write_evidence_files(root, values)
+            summaries = [validate_record(item, require_pass=True, evidence_root=root) for item in values]
+            validate_release_matrix(values, summaries)
+            values[3]["application_commit"] = "b" * 40
+            mixed = [validate_record(item, require_pass=True, evidence_root=root) for item in values]
+            with self.assertRaisesRegex(EvidenceError, "exactly one application commit"):
+                validate_release_matrix(values, mixed)
+            values[3]["application_commit"] = COMMIT
+            values[3]["environment"] = "local"
+            mixed = [validate_record(item, require_pass=True, evidence_root=root) for item in values]
+            with self.assertRaisesRegex(EvidenceError, "exactly one environment"):
+                validate_release_matrix(values, mixed)
 
     def test_cli_require_pass_rejects_one_device_record(self):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "one.json"
-            path.write_text(json.dumps(passing_record("desktop", "ar-EG", "130")), encoding="utf-8")
+            value = passing_record("desktop", "ar-EG", "130")
+            write_evidence_files(Path(directory), [value])
+            path.write_text(json.dumps(value), encoding="utf-8")
             result = subprocess.run(
                 [sys.executable, str(ROOT / "tools/validate_device_browser_acceptance.py"),
                  "--input", str(path), "--expected-commit", COMMIT, "--require-pass"],
@@ -137,6 +195,7 @@ class DeviceBrowserAcceptanceTests(unittest.TestCase):
                 passing_record("phone", "ar-EG", "132"),
                 passing_record("phone", "en-US", "133"),
             ]
+            write_evidence_files(Path(directory), values)
             path.write_text(json.dumps(values), encoding="utf-8")
             result = subprocess.run(
                 [sys.executable, str(ROOT / "tools/validate_device_browser_acceptance.py"),
