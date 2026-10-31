@@ -8,7 +8,7 @@ from contextvars import ContextVar
 from collections import Counter
 from datetime import date, datetime, timedelta, timezone
 from functools import wraps
-from tools.research_inspector import STATUS_VERIFIED, source_status, citation_text, research_memo
+from tools.research_inspector import STATUS_REVIEW, STATUS_VERIFIED, source_status, citation_text, research_memo
 from tools.mfa_primitives import (
     MFAPrimitivesError, build_totp_uri, generate_recovery_codes,
     generate_totp_secret, hash_recovery_code, verify_recovery_code, verify_totp,
