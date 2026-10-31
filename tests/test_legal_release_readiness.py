@@ -54,8 +54,12 @@ class LegalReleaseReadinessTests(unittest.TestCase):
                 "permission_evidence": "Scope checked under AUTH-1",
             },
             "reviews": [{
-                "review_type": review_type, "outcome": "pass", "notes": "Reviewed against evidence.",
-                "reviewer_id": "reviewer-test-01",
+                "review_type": review_type, "outcome": "pass",
+                "notes": (
+                    "[qualified_egyptian_counsel_attested:user_id=42] Reviewed against evidence."
+                    if review_type == "lawyer_approval" else "Reviewed against evidence."
+                ),
+                "reviewer_id": "42" if review_type == "lawyer_approval" else "reviewer-test-01",
                 "reviewer_role": "qualified_egyptian_counsel" if review_type == "lawyer_approval" else "legal_researcher",
                 "reviewed_on": "2025-01-03",
                 "evidence_url": "https://laws.example.gov/evidence",
@@ -74,6 +78,32 @@ class LegalReleaseReadinessTests(unittest.TestCase):
     def test_complete_synthetic_evidence_passes(self):
         result = MODULE.audit_candidate(self.candidate, self.register, self.root)
         self.assertTrue(result["ready"], result["blockers"])
+
+    def test_lawyer_approval_requires_runtime_counsel_attestation_marker(self):
+        candidate = json.loads(json.dumps(self.candidate))
+        approval = next(
+            item for item in candidate["reviews"]
+            if item["review_type"] == "lawyer_approval"
+        )
+        approval["notes"] = "Reviewed against evidence without an attestation marker."
+        result = MODULE.audit_candidate(candidate, self.register, self.root)
+        self.assertIn(
+            "counsel_attestation_missing_or_mismatched",
+            {item["code"] for item in result["blockers"]},
+        )
+
+    def test_lawyer_approval_attestation_account_must_match_reviewer_id(self):
+        candidate = json.loads(json.dumps(self.candidate))
+        approval = next(
+            item for item in candidate["reviews"]
+            if item["review_type"] == "lawyer_approval"
+        )
+        approval["reviewer_id"] = "43"
+        result = MODULE.audit_candidate(candidate, self.register, self.root)
+        self.assertIn(
+            "counsel_attestation_missing_or_mismatched",
+            {item["code"] for item in result["blockers"]},
+        )
 
     def test_collection_rights_require_inspectable_evidence_url(self):
         candidate = json.loads(json.dumps(self.candidate))
