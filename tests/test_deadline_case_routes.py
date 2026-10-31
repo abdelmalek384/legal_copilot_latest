@@ -106,7 +106,7 @@ class CaseDeadlineEstimateRouteTests(unittest.TestCase):
             captured["prompt"] = prompt
             return "تتضمن القضية ملاحظة عن صحيفة الدعوى [2]."
         with patch.dict("os.environ", {"LLM_FIRM_DATA_PROCESSING_APPROVED": "1"}), patch.object(app, "LLM", side_effect=fake_llm):
-            response = self._mutate("post", f"/cases/{self.case_id}/brief", json={})
+            response = self._mutate("post", f"/cases/{self.case_id}/brief", json={"firm_authorized": True, "client_authorized": True})
         self.assertEqual(response.status_code, 200, response.text)
         result = response.json()
         self.assertTrue(result["generated"])
@@ -129,7 +129,7 @@ class CaseDeadlineEstimateRouteTests(unittest.TestCase):
         with patch.dict("os.environ", {"LLM_FIRM_DATA_PROCESSING_APPROVED": "1"}), patch.object(
             app, "LLM", side_effect=fake_llm
         ):
-            response = self._mutate("post", f"/cases/{self.case_id}/brief", json={})
+            response = self._mutate("post", f"/cases/{self.case_id}/brief", json={"firm_authorized": True, "client_authorized": True})
         self.assertEqual(response.status_code, 200, response.text)
         self.assertTrue(response.json()["generated"])
         prompt = captured["prompt"]
@@ -147,9 +147,25 @@ class CaseDeadlineEstimateRouteTests(unittest.TestCase):
         self.assertIn("بريد إلكتروني محجوب", prompt)
         self.assertIn("not complete anonymization", prompt)
 
+    def test_case_brief_requires_explicit_firm_and_client_authorization(self):
+        payloads = (
+            {},
+            {"firm_authorized": True, "client_authorized": False},
+            {"firm_authorized": False, "client_authorized": True},
+        )
+        for payload in payloads:
+            with self.subTest(payload=payload), patch.dict(
+                "os.environ", {"LLM_FIRM_DATA_PROCESSING_APPROVED": "1"}
+            ), patch.object(app, "LLM") as llm:
+                response = self._mutate(
+                    "post", f"/cases/{self.case_id}/brief", json=payload
+                )
+            self.assertEqual(response.status_code, 403, response.text)
+            llm.assert_not_called()
+
     def test_case_brief_does_not_call_model_without_firm_data_approval(self):
         with patch.dict("os.environ", {"LLM_FIRM_DATA_PROCESSING_APPROVED": ""}), patch.object(app, "LLM") as llm:
-            response = self._mutate("post", f"/cases/{self.case_id}/brief", json={})
+            response = self._mutate("post", f"/cases/{self.case_id}/brief", json={"firm_authorized": True, "client_authorized": True})
         self.assertEqual(response.status_code, 200, response.text)
         self.assertFalse(response.json()["available"])
         self.assertTrue(response.json()["abstained"])
@@ -163,7 +179,7 @@ class CaseDeadlineEstimateRouteTests(unittest.TestCase):
             "LLM_FIRM_DATA_PROCESSING_APPROVED": "1",
         }
         with patch.dict("os.environ", settings), patch.object(app, "_llm_open") as open_llm:
-            response = self._mutate("post", f"/cases/{self.case_id}/brief", json={})
+            response = self._mutate("post", f"/cases/{self.case_id}/brief", json={"firm_authorized": True, "client_authorized": True})
         self.assertEqual(response.status_code, 200, response.text)
         self.assertFalse(response.json()["generated"])
         self.assertTrue(response.json()["abstained"])
@@ -173,7 +189,7 @@ class CaseDeadlineEstimateRouteTests(unittest.TestCase):
         with patch.dict("os.environ", {"LLM_FIRM_DATA_PROCESSING_APPROVED": "1"}), patch.object(
             app, "LLM", return_value="The case will definitely succeed."
         ):
-            response = self._mutate("post", f"/cases/{self.case_id}/brief", json={})
+            response = self._mutate("post", f"/cases/{self.case_id}/brief", json={"firm_authorized": True, "client_authorized": True})
         self.assertEqual(response.status_code, 200, response.text)
         self.assertFalse(response.json()["generated"])
         self.assertTrue(response.json()["abstained"])
@@ -185,7 +201,7 @@ class CaseDeadlineEstimateRouteTests(unittest.TestCase):
             "/login", json={"email": "deadline-b@example.test", "password": self.password_b}
         )
         self.assertEqual(login.status_code, 200, login.text)
-        denied = self._mutate("post", f"/cases/{self.case_id}/brief", json={})
+        denied = self._mutate("post", f"/cases/{self.case_id}/brief", json={"firm_authorized": True, "client_authorized": True})
         self.assertEqual(denied.status_code, 404, denied.text)
 
     def test_unknown_rule_and_impossible_trigger_are_rejected(self):
