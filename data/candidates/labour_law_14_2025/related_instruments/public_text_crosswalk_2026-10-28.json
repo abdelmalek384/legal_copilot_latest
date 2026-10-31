@@ -10,9 +10,8 @@
       "number": 290,
       "year": 2025,
       "related_law_articles": [
-        117,
-        118,
-        119
+        119,
+        121
       ],
       "title_ar": "قرار وزير العمل رقم 290 لسنة 2025 بشأن الأعمال المتقطعة بطبيعتها التي يجوز تواجد العامل فيها أكثر من عشر ساعات ولا تتجاوز اثنتي عشرة ساعة في اليوم الواحد",
       "primary_lead": {
@@ -34,6 +33,25 @@
       "additional_official_access_lead": {
         "url": "https://mediadr.sis.gov.eg/xmlui/handle/123456789/117733?locale-attribute=ar",
         "status": "SIS search-indexed record states public viewing (الإطلاع: عام) and lists a 550.3 KB PDF; direct page/PDF access failed in this session, no bytes or terms reviewed"
+      },
+      "law_article_primary_anchor": {
+        "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+        "status": "Official Gazette issue 18 (supplement), extracted primary text; page locators below are text-extraction locators, not proof that the implementing decision was compared",
+        "articles": [
+          {
+            "law_article": 119,
+            "printed_gazette_page": 52,
+            "pdf_page_index": 50,
+            "observation": "Official Law 14/2025 text sets a ten-hour daily span and allows a ministerially specified intermittent/special-work exception up to twelve hours' presence."
+          },
+          {
+            "law_article": 121,
+            "printed_gazette_page": 53,
+            "pdf_page_index": 51,
+            "observation": "Official Law 14/2025 text requires additional pay for actual overtime and provides the emergency overtime framework; Decision 290's secondary Article 3 cross-refers to this article."
+          }
+        ],
+        "caution": "This anchors the parent Labour Law provisions only. It does not authenticate or compare the separate ministerial decision text."
       }
     },
     {
@@ -44,7 +62,8 @@
         117,
         118,
         119,
-        121
+        121,
+        188
       ],
       "title_ar": "قرار وزير العمل رقم 291 لسنة 2025 بشأن ضوابط التشغيل الإضافي ومبرراته",
       "primary_lead": {
@@ -66,6 +85,25 @@
       "additional_official_access_lead": {
         "url": "https://mediadr.sis.gov.eg/xmlui/handle/123456789/117733?locale-attribute=ar",
         "status": "SIS search-indexed record states public viewing (الإطلاع: عام) and lists a 550.3 KB PDF; direct page/PDF access failed in this session, no bytes or terms reviewed"
+      },
+      "law_article_primary_anchor": {
+        "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+        "status": "Official Gazette issue 18 (supplement), extracted primary text; page locators below are text-extraction locators, not proof that the implementing decision was compared",
+        "articles": [
+          {
+            "law_article": 121,
+            "printed_gazette_page": 53,
+            "pdf_page_index": 51,
+            "observation": "Official Law 14/2025 text sets seven-day notification, minimum 35% daytime/70% nighttime overtime premiums, rest-day compensation and twelve-hour presence ceiling."
+          },
+          {
+            "law_article": 188,
+            "printed_gazette_page": 76,
+            "pdf_page_index": 74,
+            "observation": "Official Law 14/2025 establishes the Supreme Council for Social Consultation; Decision 291's secondary Article 4 directs that Council to set an annual overtime maximum."
+          }
+        ],
+        "caution": "This anchors the parent Labour Law provisions only. It does not authenticate or compare the separate ministerial decision text."
       }
     },
     {
@@ -76,7 +114,8 @@
         117,
         118,
         119,
-        121
+        121,
+        123
       ],
       "title_ar": "قرار وزير العمل رقم 292 لسنة 2025 بشأن تحديد الحد الأقصى لساعات العمل الفعلية والإضافية في الأعمال التجهيزية والتكميلية وأعمال الحراسة والنظافة",
       "primary_lead": {
@@ -94,7 +133,26 @@
       "article_2_schedule_status": "Articles 1–7 available in Law Hub secondary transcription; exact classifications, caps and all wording not compared with Gazette",
       "reuse_rights": "unknown; DSpace PDF and item-specific license file are request-a-copy restricted; secondary-source reuse not cleared",
       "currentness": "not fully verified; later amendments, repeal and current application to each role not checked",
-      "card_action": "cross-reference lead only; do not calculate or advise on working-hour/overtime limits until primary text, employee role classification and currentness are reviewed"
+      "card_action": "cross-reference lead only; do not calculate or advise on working-hour/overtime limits until primary text, employee role classification and currentness are reviewed",
+      "law_article_primary_anchor": {
+        "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+        "status": "Official Gazette issue 18 (supplement), extracted primary text; page locators below are text-extraction locators, not proof that the implementing decision was compared",
+        "articles": [
+          {
+            "law_article": 123,
+            "printed_gazette_page": 54,
+            "pdf_page_index": 52,
+            "observation": "Official Law 14/2025 excludes preparatory/complementary work and guarding/cleaning workers from specified ordinary working-time provisions, and directs the Minister to set maximum actual/overtime hours for categories in items 2 and 3, with overtime pay under Article 121."
+          },
+          {
+            "law_article": 121,
+            "printed_gazette_page": 53,
+            "pdf_page_index": 51,
+            "observation": "Official Law 14/2025 provides the overtime compensation framework referenced by Article 123."
+          }
+        ],
+        "caution": "This anchors the parent Labour Law provisions only. It does not authenticate or compare the separate ministerial decision text."
+      }
     },
     {
       "document_id": "EG-LABOUR-DECISION-294-2025",
@@ -129,7 +187,20 @@
       "article_2_schedule_status": "12-occasion list and Articles 2–4 available in Law Hub secondary transcription; no primary Gazette comparison",
       "reuse_rights": "unknown; DSpace PDF and item-specific license file are request-a-copy restricted; secondary-source reuse not cleared",
       "currentness": "not fully verified; 2026 official notices show event-specific date substitutions (October 2026 Circular 22/2026/PM Decision 2898/2026; July 2026 PM Decision 2181/2026), but a full amendment/repeal review remains outstanding",
-      "card_action": "cross-reference lead only; for a specific date, check the current Ministry circular and any Prime Minister substitution; do not assume the fixed statutory date is always the actual leave date"
+      "card_action": "cross-reference lead only; for a specific date, check the current Ministry circular and any Prime Minister substitution; do not assume the fixed statutory date is always the actual leave date",
+      "law_article_primary_anchor": {
+        "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+        "status": "Official Gazette issue 18 (supplement), extracted primary text; page locators below are text-extraction locators, not proof that the implementing decision was compared",
+        "articles": [
+          {
+            "law_article": 129,
+            "printed_gazette_page": 56,
+            "pdf_page_index": 54,
+            "observation": "Official Law 14/2025 grants paid leave on holidays/occasions set by ministerial decision and provides double pay or an alternative day on written request when work is required."
+          }
+        ],
+        "caution": "This anchors the parent Labour Law provisions only. It does not authenticate or compare the separate ministerial decision text."
+      }
     },
     {
       "document_id": "EG-LABOUR-DECISION-49-2026",
@@ -294,7 +365,26 @@
       "article_2_schedule_status": "Two-chapter structure and selected operative provisions visible in secondary text; full categories not primary-verified",
       "reuse_rights": "unknown; DSpace issue PDF request-a-copy restricted and secondary-source reuse not cleared",
       "currentness": "not fully verified; later amendment/repeal and currentness review outstanding",
-      "card_action": "cross-reference only; do not decide an individual worker's rest entitlement until exact Gazette categories and currentness are checked"
+      "card_action": "cross-reference only; do not decide an individual worker's rest entitlement until exact Gazette categories and currentness are checked",
+      "law_article_primary_anchor": {
+        "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+        "status": "Official Gazette issue 18 (supplement), extracted primary text; page locators below are text-extraction locators, not proof that the implementing decision was compared",
+        "articles": [
+          {
+            "law_article": 118,
+            "printed_gazette_page": 52,
+            "pdf_page_index": 50,
+            "observation": "Official Law 14/2025 text sets a total rest period of at least one hour and ordinarily no more than five consecutive hours; it authorizes the Minister to specify technical/operational cases where work continues without a standard rest break and arduous work where rest counts as actual hours."
+          },
+          {
+            "law_article": 119,
+            "printed_gazette_page": 52,
+            "pdf_page_index": 50,
+            "observation": "Official Law 14/2025 text sets a ten-hour daily span and allows a ministerially specified intermittent/special-work exception up to twelve hours' presence."
+          }
+        ],
+        "caution": "This anchors the parent Labour Law provisions only. It does not authenticate or compare the separate ministerial decision text."
+      }
     },
     {
       "document_id": "EG-LABOUR-DECISION-289-2025",
@@ -320,7 +410,26 @@
       "article_2_schedule_status": "Articles 1–2 available in secondary text; no primary Gazette comparison",
       "reuse_rights": "unknown; DSpace issue PDF request-a-copy restricted and secondary-source reuse not cleared",
       "currentness": "not fully verified; later amendments/repeal and Industrial Establishments Law interaction review outstanding",
-      "card_action": "cross-reference only; do not advise on industrial shift scheduling until primary text, applicable establishment scope and currentness are checked"
+      "card_action": "cross-reference only; do not advise on industrial shift scheduling until primary text, applicable establishment scope and currentness are checked",
+      "law_article_primary_anchor": {
+        "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+        "status": "Official Gazette issue 18 (supplement), extracted primary text; page locators below are text-extraction locators, not proof that the implementing decision was compared",
+        "articles": [
+          {
+            "law_article": 117,
+            "printed_gazette_page": 52,
+            "pdf_page_index": 50,
+            "observation": "Official Law 14/2025 text sets actual work at no more than eight hours per day or 48 hours per week in industrial establishments, without counting meal/rest periods, subject to Law 133/1961."
+          },
+          {
+            "law_article": 121,
+            "printed_gazette_page": 53,
+            "pdf_page_index": 51,
+            "observation": "Official Law 14/2025 text permits departure from Articles 117–120 for unusual/exceptional necessities subject to seven-day notice, stated reasons/period, overtime premiums of at least 35% daytime and 70% nighttime, compensatory rest for rest-day work and a twelve-hour presence ceiling."
+          }
+        ],
+        "caution": "This anchors the parent Labour Law provisions only. It does not authenticate or compare the separate ministerial decision text."
+      }
     }
   ]
 }
