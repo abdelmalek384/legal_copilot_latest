@@ -249,6 +249,14 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         ):
             self.assertIn(source_id, register_ids)
             self.assertIn(source_id, self.inventory["source_ids"])
+        sis_id = "EG-SIS-GAZETTE-2025-295-SUPPLEMENT-D"
+        self.assertIn(sis_id, self.inventory["source_ids"])
+        for document_id in ("EG-LABOUR-DECISION-290-2025", "EG-LABOUR-DECISION-291-2025"):
+            self.assertTrue(any("mediadr.sis.gov.eg" in item["url"] for item in records[document_id]["source_urls"]))
+        sis_source = next(item for item in register["sources"] if item["source_id"] == sis_id)
+        self.assertEqual(sis_source["collection_permission"], "unknown")
+        self.assertEqual(sis_source["commercial_reuse_permission"], "unknown")
+        self.assertIn("public viewing", sis_source["access_status"])
         self.assertEqual(validate_inventory(self.inventory), [])
 
 
