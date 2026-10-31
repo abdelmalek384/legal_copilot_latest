@@ -19,7 +19,7 @@
     "commercial_reuse_permission": "unknown",
     "search_eligible": false
   },
-  "source_method_note": "Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF has not been downloaded, hashed, or visually inspected; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording. Additional cards for accompanying-law Articles 4–9 were prepared from text extraction of the government-hosted Official Gazette PDF on 2026-10-28. The PDF has not been downloaded, hashed, or visually inspected; page pinpointing is provisional and all cards remain non-authoritative. Additional cards for accompanying-law Articles 10–12 were prepared from the government-hosted Official Gazette PDF text extraction on 2026-10-28. Page references are based on the extracted page labels; the PDF has not been downloaded, hashed, or visually inspected. Cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 16, 22, 23, 25 and 27 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; these cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 28–31 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 32–34 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 36–37 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshot checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 40–43 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 44–48 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 49–54 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. On 2026-10-30, 43 additional occupational-safety and labour-inspection cards for Articles 256–298 were selectively reconciled from the previously split review snapshots. Their pinpoint pages are inferred and not visually verified; all 43 are secondary-cross-checked only, have explicit limitations and not-usable-for boundaries, and remain search_eligible=false. Article 266's supplemental card asks only for the identity of its implementing ministerial decision and abstains because the decision's text/currentness is not verified. The original Gazette PDF remains undownloaded/unhashed and the full article-by-article comparison, rights review and Egyptian-lawyer review remain open. On 2026-10-30, 15 additional coverage-gap cards for accompanying-law Articles 1–39 were selectively reconciled from the earlier review snapshot. Their printed-page numbers are inferred from extracted text sequence, not visually checked; each remains provisional_text_extract_crosschecked with explicit limitations. Ten separate promulgation cards for Articles 2–11 were also added as provisional_secondary_crosscheck records; the article identities are present in public transcriptions, but their Gazette page pinpoints are not established. These cards address transitional funds, preservation of benefits, licensing, worker data, pending cases and implementing decisions; their time limits and legal effects must not be applied without primary Gazette comparison, commencement-date verification, later-instrument review and qualified Egyptian-lawyer review. All cards remain search_eligible=false. Reconciliation update 2026-10-31: merged current main (127 cards) with the 294-card Labour Law evidence PR snapshot. The combined inventory contains 360 unique card IDs (61 shared IDs reconciled; 233 PR-only and 66 main-only retained). For shared IDs, current-main scalar text is retained; evidence, cross-checks, limitations and related-instrument leads are unioned without duplicate entries. Corrected Gazette page locators from the PR snapshot are retained where the current-main locator differed. This is inventory reconciliation only: all 360 cards remain search_eligible=false; source binary hash, full currentness/amendment review, rights clearance and Egyptian-lawyer review remain outstanding. Visual page-pinpoint correction 2026-10-31: ten cards for Articles 294–298 were checked against the government-hosted Official Gazette PDF. Articles 294–295 are on printed p.110 (PDF index 108); Articles 296–298 are on printed p.111 (PDF index 109). The former inferred pp.92/94 locators were incorrect and have been replaced. This corrects pinpoint accuracy only; it does not complete full-law review, currentness/amendment verification, reuse-rights clearance or counsel approval.",
+  "source_method_note": "Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF has not been downloaded, hashed, or visually inspected; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording. Additional cards for accompanying-law Articles 4–9 were prepared from text extraction of the government-hosted Official Gazette PDF on 2026-10-28. The PDF has not been downloaded, hashed, or visually inspected; page pinpointing is provisional and all cards remain non-authoritative. Additional cards for accompanying-law Articles 10–12 were prepared from the government-hosted Official Gazette PDF text extraction on 2026-10-28. Page references are based on the extracted page labels; the PDF has not been downloaded, hashed, or visually inspected. Cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 16, 22, 23, 25 and 27 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; these cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 28–31 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 32–34 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 36–37 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshot checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 40–43 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 44–48 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 49–54 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. On 2026-10-30, 43 additional occupational-safety and labour-inspection cards for Articles 256–298 were selectively reconciled from the previously split review snapshots. Their pinpoint pages are inferred and not visually verified; all 43 are secondary-cross-checked only, have explicit limitations and not-usable-for boundaries, and remain search_eligible=false. Article 266's supplemental card asks only for the identity of its implementing ministerial decision and abstains because the decision's text/currentness is not verified. The original Gazette PDF remains undownloaded/unhashed and the full article-by-article comparison, rights review and Egyptian-lawyer review remain open. On 2026-10-30, 15 additional coverage-gap cards for accompanying-law Articles 1–39 were selectively reconciled from the earlier review snapshot. Their printed-page numbers are inferred from extracted text sequence, not visually checked; each remains provisional_text_extract_crosschecked with explicit limitations. Ten separate promulgation cards for Articles 2–11 were also added as provisional_secondary_crosscheck records; the article identities are present in public transcriptions, but their Gazette page pinpoints are not established. These cards address transitional funds, preservation of benefits, licensing, worker data, pending cases and implementing decisions; their time limits and legal effects must not be applied without primary Gazette comparison, commencement-date verification, later-instrument review and qualified Egyptian-lawyer review. All cards remain search_eligible=false. Reconciliation update 2026-10-31: merged current main (127 cards) with the 294-card Labour Law evidence PR snapshot. The combined inventory contains 360 unique card IDs (61 shared IDs reconciled; 233 PR-only and 66 main-only retained). For shared IDs, current-main scalar text is retained; evidence, cross-checks, limitations and related-instrument leads are unioned without duplicate entries. Corrected Gazette page locators from the PR snapshot are retained where the current-main locator differed. This is inventory reconciliation only: all 360 cards remain search_eligible=false; source binary hash, full currentness/amendment review, rights clearance and Egyptian-lawyer review remain outstanding. Visual page-pinpoint correction 2026-10-31: 46 cards for Articles 275–298 were checked against the government-hosted Official Gazette PDF. Correct mapping: Art.275 → printed p.105/PDF index 103; Arts.276–280 → p.106/index 104; Arts.281–285 → p.107/index 105; Arts.286–288 → p.108/index 106; Arts.289–291 → p.109/index 107; Arts.292–295 → p.110/index 108; Arts.296–298 → p.111/index 109. Earlier inferred pp.91–94 locators were wrong and have been replaced. This corrects pinpoint accuracy only; it does not complete full-law review, currentness/amendment verification, reuse-rights clearance or counsel approval.",
   "cards": [
     {
       "card_id": "EG-LABOUR-14-2025-PROMULGATION-ART-1-SCOPE",
@@ -3928,10 +3928,17 @@
       "provisional_answer_ar": "لا يمكن تحديد رقم القرار أو أسماء الفئات المشمولة من الأدلة الأولية المسجلة في هذا الملف. تحيل المادة 275 إلى قرار يصدر من وزير العدل بالاتفاق مع الوزير المختص، لكن نص القرار المنفذ ونطاقه وسريانه لم تُوثق هنا؛ يجب عدم تخمين رقم القرار أو الفئات.",
       "pinpoint": {
         "article": "المادة 275",
-        "official_gazette_printed_page": 91,
-        "pdf_page_index_zero_based": 89,
-        "pinpoint_status": "inferred_not_visually_verified",
-        "part": "القانون المرافق"
+        "official_gazette_printed_page": 105,
+        "pdf_page_index_zero_based": 103,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "part": "القانون المرافق",
+        "visual_verification": {
+          "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-10-31",
+          "printed_page": 105,
+          "pdf_page_index_zero_based": 103,
+          "evidence": "Official PDF screenshot shows Article 275 on printed page 105."
+        }
       },
       "primary_evidence": [
         {
@@ -3939,14 +3946,14 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
           "supports": "مصدر أولي مرجعي للمادة 275 وإحالتها إلى قرار من وزير العدل؛ لا يثبت هنا رقم القرار المنفذ أو نطاقه أو سريانه.",
-          "retrieved_or_checked_on": "2026-10-28"
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf",
-          "supports": "مصدر أولي مرجعي للمادة 275 وإحالتها إلى قرار من وزير العدل؛ لا يثبت هنا رقم القرار المنفذ أو نطاقه أو سريانه.",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "مطابقة بصرية مباشرة للمادة 275 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 105 (فهرس PDF الصفري 103).",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -3980,10 +3987,17 @@
       "provisional_answer_ar": "توجب المادة 276 أداء القسم قبل مباشرة العمل وحمل بطاقة تثبت الصفة، وتمنح حق دخول أماكن العمل وتفتيشها وفحص الدفاتر والأوراق وطلب المستندات والبيانات. وتُنظم القرارات المختصة التفتيش ليلاً وخارج المواعيد الرسمية.",
       "pinpoint": {
         "article": "المادة 276",
-        "official_gazette_printed_page": 91,
-        "pdf_page_index_zero_based": 89,
-        "pinpoint_status": "inferred_not_visually_verified",
-        "part": "القانون المرافق"
+        "official_gazette_printed_page": 106,
+        "pdf_page_index_zero_based": 104,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "part": "القانون المرافق",
+        "visual_verification": {
+          "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-10-31",
+          "printed_page": 106,
+          "pdf_page_index_zero_based": 104,
+          "evidence": "Official PDF screenshot shows Article 276 on printed page 106."
+        }
       },
       "primary_evidence": [
         {
@@ -3991,14 +4005,14 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
           "supports": "مرجع للمادة 276؛ النص والموضع بحاجة إلى مطابقة مباشرة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf",
-          "supports": "مرجع للمادة 276؛ النص والموضع بحاجة إلى مطابقة مباشرة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "مطابقة بصرية مباشرة للمادة 276 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 106 (فهرس PDF الصفري 104).",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -4032,8 +4046,16 @@
       "pinpoint": {
         "part": "الكتاب الخامس — تفتيش العمل والعقوبات",
         "article": "المادة 277",
-        "official_gazette_printed_page": 92,
-        "pdf_page_index_zero_based": 90
+        "official_gazette_printed_page": 106,
+        "pdf_page_index_zero_based": 104,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "visual_verification": {
+          "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-10-31",
+          "printed_page": 106,
+          "pdf_page_index_zero_based": 104,
+          "evidence": "Official PDF screenshot shows Article 277 on printed page 106."
+        }
       },
       "primary_evidence": [
         {
@@ -4041,28 +4063,28 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
           "supports": "مرجع للمادة 277؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf_text_extraction",
-          "supports": "مرجع للمادة 277؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "مطابقة بصرية مباشرة للمادة 277 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 106 (فهرس PDF الصفري 104).",
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
           "supports": "مرجع للمادة 277؛ النص والموضع بحاجة إلى مطابقة مباشرة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf",
-          "supports": "مرجع للمادة 277؛ النص والموضع بحاجة إلى مطابقة مباشرة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "مطابقة بصرية مباشرة للمادة 277 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 106 (فهرس PDF الصفري 104).",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -4105,10 +4127,17 @@
       "provisional_answer_ar": "تلزم المادة 278 صاحب العمل أو من ينوب عنه بالاستجابة لطلبات الحضور الصادرة من العاملين المحددين بالمادة 275 في المواعيد التي يحددونها. جزاء المخالفة وارد بالمادة 297، مع ضرورة التحقق من صحة الطلب والصفة والإخطار.",
       "pinpoint": {
         "article": "المادة 278",
-        "official_gazette_printed_page": 91,
-        "pdf_page_index_zero_based": 89,
-        "pinpoint_status": "inferred_not_visually_verified",
-        "part": "القانون المرافق"
+        "official_gazette_printed_page": 106,
+        "pdf_page_index_zero_based": 104,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "part": "القانون المرافق",
+        "visual_verification": {
+          "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-10-31",
+          "printed_page": 106,
+          "pdf_page_index_zero_based": 104,
+          "evidence": "Official PDF screenshot shows Article 278 on printed page 106."
+        }
       },
       "primary_evidence": [
         {
@@ -4116,14 +4145,14 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
           "supports": "مرجع للمادة 278؛ النص والموضع بحاجة إلى مطابقة مباشرة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf",
-          "supports": "مرجع للمادة 278؛ النص والموضع بحاجة إلى مطابقة مباشرة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "مطابقة بصرية مباشرة للمادة 278 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 106 (فهرس PDF الصفري 104).",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -4157,8 +4186,16 @@
       "pinpoint": {
         "part": "الكتاب الخامس — تفتيش العمل والعقوبات",
         "article": "المادة 279",
-        "official_gazette_printed_page": 92,
-        "pdf_page_index_zero_based": 90
+        "official_gazette_printed_page": 106,
+        "pdf_page_index_zero_based": 104,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "visual_verification": {
+          "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-10-31",
+          "printed_page": 106,
+          "pdf_page_index_zero_based": 104,
+          "evidence": "Official PDF screenshot shows Article 279 on printed page 106."
+        }
       },
       "primary_evidence": [
         {
@@ -4166,28 +4203,28 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
           "supports": "مرجع للمادة 279؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf_text_extraction",
-          "supports": "مرجع للمادة 279؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "مطابقة بصرية مباشرة للمادة 279 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 106 (فهرس PDF الصفري 104).",
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
           "supports": "مرجع للمادة 279؛ النص والموضع بحاجة إلى مطابقة مباشرة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf",
-          "supports": "مرجع للمادة 279؛ النص والموضع بحاجة إلى مطابقة مباشرة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "مطابقة بصرية مباشرة للمادة 279 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 106 (فهرس PDF الصفري 104).",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -4230,10 +4267,17 @@
       "provisional_answer_ar": "تنص المادة 280 على أن العقوبات الواردة في المواد التالية لا تخل بأي عقوبة أشد يقررها قانون العقوبات أو قانون آخر. لا يكفي الاستناد إلى هذه المادة وحدها لتحديد جريمة أو عقوبة؛ يجب تحديد مادة التجريم والوقائع والنصوص الأشد المحتملة.",
       "pinpoint": {
         "article": "المادة 280",
-        "official_gazette_printed_page": 92,
-        "pdf_page_index_zero_based": 90,
-        "pinpoint_status": "inferred_not_visually_verified",
-        "part": "القانون المرافق"
+        "official_gazette_printed_page": 106,
+        "pdf_page_index_zero_based": 104,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "part": "القانون المرافق",
+        "visual_verification": {
+          "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-10-31",
+          "printed_page": 106,
+          "pdf_page_index_zero_based": 104,
+          "evidence": "Official PDF screenshot shows Article 280 on printed page 106."
+        }
       },
       "primary_evidence": [
         {
@@ -4241,14 +4285,14 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
           "supports": "مرجع للمادة 280؛ النص والموضع بحاجة إلى مطابقة مباشرة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf",
-          "supports": "مرجع للمادة 280؛ النص والموضع بحاجة إلى مطابقة مباشرة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "مطابقة بصرية مباشرة للمادة 280 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 106 (فهرس PDF الصفري 104).",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -4281,10 +4325,17 @@
       "provisional_answer_ar": "تعاقب المادة 281 مخالفة المادتين 4 و5 بغرامة من 5,000 إلى 50,000 جنيه، وتتعدد الغرامة بتعدد العمال الذين وقعت الجريمة في شأنهم، وتضاعف في حالة العود.",
       "pinpoint": {
         "article": "المادة 281",
-        "official_gazette_printed_page": 92,
-        "pdf_page_index_zero_based": 90,
-        "pinpoint_status": "inferred_not_visually_verified",
-        "part": "القانون المرافق"
+        "official_gazette_printed_page": 107,
+        "pdf_page_index_zero_based": 105,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "part": "القانون المرافق",
+        "visual_verification": {
+          "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-10-31",
+          "printed_page": 107,
+          "pdf_page_index_zero_based": 105,
+          "evidence": "Official PDF screenshot shows Article 281 on printed page 107."
+        }
       },
       "primary_evidence": [
         {
@@ -4292,14 +4343,14 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
           "supports": "مرجع للمادة 281؛ النص والموضع بحاجة إلى مطابقة مباشرة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf",
-          "supports": "مرجع للمادة 281؛ النص والموضع بحاجة إلى مطابقة مباشرة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "مطابقة بصرية مباشرة للمادة 281 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 107 (فهرس PDF الصفري 105).",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -4332,10 +4383,17 @@
       "provisional_answer_ar": "تقرر المادة 282 غرامة من 1,000 إلى 10,000 جنيه لمخالفة البندين 1 و2 من المادة 82 والفقرة الرابعة من المادة 232 والقرارات المنفذة، وتتعدد بتعدد العمال وتضاعف عند العود. وتقرر ذات الغرامة لمخالفة البند 1 من المادة 21.",
       "pinpoint": {
         "article": "المادة 282",
-        "official_gazette_printed_page": 92,
-        "pdf_page_index_zero_based": 90,
-        "pinpoint_status": "inferred_not_visually_verified",
-        "part": "القانون المرافق"
+        "official_gazette_printed_page": 107,
+        "pdf_page_index_zero_based": 105,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "part": "القانون المرافق",
+        "visual_verification": {
+          "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-10-31",
+          "printed_page": 107,
+          "pdf_page_index_zero_based": 105,
+          "evidence": "Official PDF screenshot shows Article 282 on printed page 107."
+        }
       },
       "primary_evidence": [
         {
@@ -4343,14 +4401,14 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
           "supports": "مرجع للمادة 282؛ النص والموضع بحاجة إلى مطابقة مباشرة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf",
-          "supports": "مرجع للمادة 282؛ النص والموضع بحاجة إلى مطابقة مباشرة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "مطابقة بصرية مباشرة للمادة 282 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 107 (فهرس PDF الصفري 105).",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -4383,10 +4441,17 @@
       "provisional_answer_ar": "تقرر المادة 283 غرامة من 1,000 إلى 10,000 جنيه لمخالفة الفقرة الأولى من المادة 37 والفقرة الأولى من المادة 40 والفقرة الأولى من المادة 153 والقرارات المنفذة، وكذلك المادة 137. تتعدد بتعدد العمال وتضاعف عند العود.",
       "pinpoint": {
         "article": "المادة 283",
-        "official_gazette_printed_page": 92,
-        "pdf_page_index_zero_based": 90,
-        "pinpoint_status": "inferred_not_visually_verified",
-        "part": "القانون المرافق"
+        "official_gazette_printed_page": 107,
+        "pdf_page_index_zero_based": 105,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "part": "القانون المرافق",
+        "visual_verification": {
+          "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-10-31",
+          "printed_page": 107,
+          "pdf_page_index_zero_based": 105,
+          "evidence": "Official PDF screenshot shows Article 283 on printed page 107."
+        }
       },
       "primary_evidence": [
         {
@@ -4394,14 +4459,14 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
           "supports": "مرجع للمادة 283؛ النص والموضع بحاجة إلى مطابقة مباشرة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf",
-          "supports": "مرجع للمادة 283؛ النص والموضع بحاجة إلى مطابقة مباشرة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "مطابقة بصرية مباشرة للمادة 283 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 107 (فهرس PDF الصفري 105).",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -4434,10 +4499,17 @@
       "provisional_answer_ar": "تقرر المادة 284 غرامة من 2,000 إلى 10,000 جنيه لمخالفة المادة 26 والقرارات المنفذة، وتشتد بتعدد العمال وتضاعف في حالة العود.",
       "pinpoint": {
         "article": "المادة 284",
-        "official_gazette_printed_page": 92,
-        "pdf_page_index_zero_based": 90,
-        "pinpoint_status": "inferred_not_visually_verified",
-        "part": "القانون المرافق"
+        "official_gazette_printed_page": 107,
+        "pdf_page_index_zero_based": 105,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "part": "القانون المرافق",
+        "visual_verification": {
+          "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-10-31",
+          "printed_page": 107,
+          "pdf_page_index_zero_based": 105,
+          "evidence": "Official PDF screenshot shows Article 284 on printed page 107."
+        }
       },
       "primary_evidence": [
         {
@@ -4445,14 +4517,14 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
           "supports": "مرجع للمادة 284؛ النص والموضع بحاجة إلى مطابقة مباشرة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf",
-          "supports": "مرجع للمادة 284؛ النص والموضع بحاجة إلى مطابقة مباشرة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "مطابقة بصرية مباشرة للمادة 284 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 107 (فهرس PDF الصفري 105).",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -4485,10 +4557,17 @@
       "provisional_answer_ar": "تقرر المادة 285 غرامة من 20,000 إلى 100,000 جنيه لمخالفة المادة 23 والقرارات المنفذة، ويجوز للمحكمة عند الإدانة إغلاق المنشأة، وتضاعف الغرامة في حالة العود.",
       "pinpoint": {
         "article": "المادة 285",
-        "official_gazette_printed_page": 92,
-        "pdf_page_index_zero_based": 90,
-        "pinpoint_status": "inferred_not_visually_verified",
-        "part": "القانون المرافق"
+        "official_gazette_printed_page": 107,
+        "pdf_page_index_zero_based": 105,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "part": "القانون المرافق",
+        "visual_verification": {
+          "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-10-31",
+          "printed_page": 107,
+          "pdf_page_index_zero_based": 105,
+          "evidence": "Official PDF screenshot shows Article 285 on printed page 107."
+        }
       },
       "primary_evidence": [
         {
@@ -4496,14 +4575,14 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
           "supports": "مرجع للمادة 285؛ النص والموضع بحاجة إلى مطابقة مباشرة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf",
-          "supports": "مرجع للمادة 285؛ النص والموضع بحاجة إلى مطابقة مباشرة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "مطابقة بصرية مباشرة للمادة 285 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 107 (فهرس PDF الصفري 105).",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -4536,10 +4615,17 @@
       "provisional_answer_ar": "تقرر المادة 286 غرامة من 1,000 إلى 20,000 جنيه لمخالفة المادة السابعة من مواد الإصدار والمواد 24 و39 و46 و51 و52 و68 والقرارات المنفذة، وكذلك المواد 38 و122 و175. وتشتد الغرامة بتعدد العمال وتضاعف عند العود.",
       "pinpoint": {
         "article": "المادة 286",
-        "official_gazette_printed_page": 92,
-        "pdf_page_index_zero_based": 90,
-        "pinpoint_status": "inferred_not_visually_verified",
-        "part": "القانون المرافق"
+        "official_gazette_printed_page": 108,
+        "pdf_page_index_zero_based": 106,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "part": "القانون المرافق",
+        "visual_verification": {
+          "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-10-31",
+          "printed_page": 108,
+          "pdf_page_index_zero_based": 106,
+          "evidence": "Official PDF screenshot shows Article 286 on printed page 108."
+        }
       },
       "primary_evidence": [
         {
@@ -4547,14 +4633,14 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
           "supports": "مرجع للمادة 286؛ النص والموضع بحاجة إلى مطابقة مباشرة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf",
-          "supports": "مرجع للمادة 286؛ النص والموضع بحاجة إلى مطابقة مباشرة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "مطابقة بصرية مباشرة للمادة 286 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 108 (فهرس PDF الصفري 106).",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -4587,10 +4673,17 @@
       "provisional_answer_ar": "تقرر المادة 287 غرامة من 2,000 إلى 20,000 جنيه لمخالفة المواد 45 و104 و108، وتشتد بتعدد العمال وتضاعف عند العود.",
       "pinpoint": {
         "article": "المادة 287",
-        "official_gazette_printed_page": 92,
-        "pdf_page_index_zero_based": 90,
-        "pinpoint_status": "inferred_not_visually_verified",
-        "part": "القانون المرافق"
+        "official_gazette_printed_page": 108,
+        "pdf_page_index_zero_based": 106,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "part": "القانون المرافق",
+        "visual_verification": {
+          "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-10-31",
+          "printed_page": 108,
+          "pdf_page_index_zero_based": 106,
+          "evidence": "Official PDF screenshot shows Article 287 on printed page 108."
+        }
       },
       "primary_evidence": [
         {
@@ -4598,14 +4691,14 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
           "supports": "مرجع للمادة 287؛ النص والموضع بحاجة إلى مطابقة مباشرة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf",
-          "supports": "مرجع للمادة 287؛ النص والموضع بحاجة إلى مطابقة مباشرة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "مطابقة بصرية مباشرة للمادة 287 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 108 (فهرس PDF الصفري 106).",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -4638,10 +4731,17 @@
       "provisional_answer_ar": "تقرر المادة 288 غرامة من 500 إلى 5,000 جنيه لمخالفة المواد 27 و53 و60 و117 و118 و119 و123 و124 و132 والفقرة الثانية من 135 والفقرة الأولى من 254 والقرارات المنفذة. وتمتد ذات العقوبة إلى المواد 12 و29 و54–59 و89–94 و110–116 و120 و121 و125 و126 و128 و129 و131 والفقرة الثانية من 138 و156 و159 و162 و164 و173. تتعدد الغرامة بتعدد العمال وتضاعف عند العود.",
       "pinpoint": {
         "article": "المادة 288",
-        "official_gazette_printed_page": 92,
-        "pdf_page_index_zero_based": 90,
-        "pinpoint_status": "inferred_not_visually_verified",
-        "part": "القانون المرافق"
+        "official_gazette_printed_page": 108,
+        "pdf_page_index_zero_based": 106,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "part": "القانون المرافق",
+        "visual_verification": {
+          "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-10-31",
+          "printed_page": 108,
+          "pdf_page_index_zero_based": 106,
+          "evidence": "Official PDF screenshot shows Article 288 on printed page 108."
+        }
       },
       "primary_evidence": [
         {
@@ -4649,14 +4749,14 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
           "supports": "مرجع للمادة 288؛ النص والموضع بحاجة إلى مطابقة مباشرة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf",
-          "supports": "مرجع للمادة 288؛ النص والموضع بحاجة إلى مطابقة مباشرة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "مطابقة بصرية مباشرة للمادة 288 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 108 (فهرس PDF الصفري 106).",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -4689,10 +4789,17 @@
       "provisional_answer_ar": "تعاقب المادة 289 صاحب العمل أو ممثله بغرامة من 2,000 إلى 10,000 جنيه لمخالفة المواد 63 و64 و66 والقرارات المنفذة، وتتعدد بتعدد العمال، وتضاعف عند العود مع غلق المنشأة مدة لا تجاوز ستة أشهر. وتمتد ذات العقوبة إلى مخالفة المادتين 62 و65.",
       "pinpoint": {
         "article": "المادة 289",
-        "official_gazette_printed_page": 92,
-        "pdf_page_index_zero_based": 90,
-        "pinpoint_status": "inferred_not_visually_verified",
-        "part": "القانون المرافق"
+        "official_gazette_printed_page": 109,
+        "pdf_page_index_zero_based": 107,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "part": "القانون المرافق",
+        "visual_verification": {
+          "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-10-31",
+          "printed_page": 109,
+          "pdf_page_index_zero_based": 107,
+          "evidence": "Official PDF screenshot shows Article 289 on printed page 109."
+        }
       },
       "primary_evidence": [
         {
@@ -4700,14 +4807,14 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
           "supports": "مرجع للمادة 289؛ النص والموضع بحاجة إلى مطابقة مباشرة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf",
-          "supports": "مرجع للمادة 289؛ النص والموضع بحاجة إلى مطابقة مباشرة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "مطابقة بصرية مباشرة للمادة 289 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 109 (فهرس PDF الصفري 107).",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -4741,10 +4848,17 @@
       "provisional_answer_ar": "تقرر المادة 290 غرامة من 500 إلى 1,000 جنيه لمخالفة المادتين 33 و37 والقرارات المنفذة، وتتعدد بتعدد العمال وتضاعف عند العود. وتمتد ذات العقوبة إلى مخالفة المادتين 35 و205.",
       "pinpoint": {
         "article": "المادة 290",
-        "official_gazette_printed_page": 92,
-        "pdf_page_index_zero_based": 90,
-        "pinpoint_status": "inferred_not_visually_verified",
-        "part": "القانون المرافق"
+        "official_gazette_printed_page": 109,
+        "pdf_page_index_zero_based": 107,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "part": "القانون المرافق",
+        "visual_verification": {
+          "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-10-31",
+          "printed_page": 109,
+          "pdf_page_index_zero_based": 107,
+          "evidence": "Official PDF screenshot shows Article 290 on printed page 109."
+        }
       },
       "primary_evidence": [
         {
@@ -4752,14 +4866,14 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
           "supports": "مرجع للمادة 290؛ النص والموضع بحاجة إلى مطابقة مباشرة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf",
-          "supports": "مرجع للمادة 290؛ النص والموضع بحاجة إلى مطابقة مباشرة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "مطابقة بصرية مباشرة للمادة 290 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 109 (فهرس PDF الصفري 107).",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -4792,10 +4906,17 @@
       "provisional_answer_ar": "تعاقب المادة 291 بالحبس وغرامة من 20,000 إلى 100,000 جنيه أو بإحدى العقوبتين على إلحاق العمالة دون الترخيص المطلوب أو بترخيص مبني على بيانات غير صحيحة، أو تحصيل مبالغ دون وجه حق من أجر العامل أو مستحقاته، أو تقديم بيانات غير صحيحة أو عقود عمل وهمية عن العمل بالخارج. ويُحكم برد المبالغ غير المستحقة؛ ويجوز إغلاق المنشأة، ويكون الإغلاق وجوبياً في الجريمة الأولى.",
       "pinpoint": {
         "article": "المادة 291",
-        "official_gazette_printed_page": 92,
-        "pdf_page_index_zero_based": 90,
-        "pinpoint_status": "inferred_not_visually_verified",
-        "part": "القانون المرافق"
+        "official_gazette_printed_page": 109,
+        "pdf_page_index_zero_based": 107,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "part": "القانون المرافق",
+        "visual_verification": {
+          "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-10-31",
+          "printed_page": 109,
+          "pdf_page_index_zero_based": 107,
+          "evidence": "Official PDF screenshot shows Article 291 on printed page 109."
+        }
       },
       "primary_evidence": [
         {
@@ -4803,14 +4924,14 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
           "supports": "مرجع للمادة 291؛ النص والموضع بحاجة إلى مطابقة مباشرة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf",
-          "supports": "مرجع للمادة 291؛ النص والموضع بحاجة إلى مطابقة مباشرة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "مطابقة بصرية مباشرة للمادة 291 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 109 (فهرس PDF الصفري 107).",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -4843,10 +4964,17 @@
       "provisional_answer_ar": "تقرر المادة 292 غرامة من 5,000 إلى 100,000 جنيه لمخالفة المادة 42 والقرارات المنفذة، وتتعدد بتعدد العمال وتضاعف في حالة العود.",
       "pinpoint": {
         "article": "المادة 292",
-        "official_gazette_printed_page": 92,
-        "pdf_page_index_zero_based": 90,
-        "pinpoint_status": "inferred_not_visually_verified",
-        "part": "القانون المرافق"
+        "official_gazette_printed_page": 110,
+        "pdf_page_index_zero_based": 108,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "part": "القانون المرافق",
+        "visual_verification": {
+          "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-10-31",
+          "printed_page": 110,
+          "pdf_page_index_zero_based": 108,
+          "evidence": "Official PDF screenshot shows Article 292 on printed page 110."
+        }
       },
       "primary_evidence": [
         {
@@ -4854,14 +4982,14 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
           "supports": "مرجع للمادة 292؛ النص والموضع بحاجة إلى مطابقة مباشرة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf",
-          "supports": "مرجع للمادة 292؛ النص والموضع بحاجة إلى مطابقة مباشرة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "مطابقة بصرية مباشرة للمادة 292 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 110 (فهرس PDF الصفري 108).",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -4894,10 +5022,17 @@
       "provisional_answer_ar": "تقرر المادة 293 غرامة من 20,000 إلى 100,000 جنيه لمخالفة المواد 70 و71 و72 و74 والقرارات المنفذة، وتتعدد بتعدد العمال وتضاعف في حالة العود.",
       "pinpoint": {
         "article": "المادة 293",
-        "official_gazette_printed_page": 92,
-        "pdf_page_index_zero_based": 90,
-        "pinpoint_status": "inferred_not_visually_verified",
-        "part": "القانون المرافق"
+        "official_gazette_printed_page": 110,
+        "pdf_page_index_zero_based": 108,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "part": "القانون المرافق",
+        "visual_verification": {
+          "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-10-31",
+          "printed_page": 110,
+          "pdf_page_index_zero_based": 108,
+          "evidence": "Official PDF screenshot shows Article 293 on printed page 110."
+        }
       },
       "primary_evidence": [
         {
@@ -4905,14 +5040,14 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
           "supports": "مرجع للمادة 293؛ النص والموضع بحاجة إلى مطابقة مباشرة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf",
-          "supports": "مرجع للمادة 293؛ النص والموضع بحاجة إلى مطابقة مباشرة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "مطابقة بصرية مباشرة للمادة 293 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 110 (فهرس PDF الصفري 108).",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -4954,7 +5089,7 @@
           "checked_on": "2026-10-31",
           "printed_page": 110,
           "pdf_page_index_zero_based": 108,
-          "evidence": "Official PDF screenshot shows this article on printed page 110."
+          "evidence": "Official PDF screenshot shows Article 294 on printed page 110."
         }
       },
       "primary_evidence": [
@@ -5013,7 +5148,7 @@
           "checked_on": "2026-10-31",
           "printed_page": 110,
           "pdf_page_index_zero_based": 108,
-          "evidence": "Official PDF screenshot shows this article on printed page 110."
+          "evidence": "Official PDF screenshot shows Article 295 on printed page 110."
         }
       },
       "primary_evidence": [
@@ -5071,7 +5206,7 @@
           "checked_on": "2026-10-31",
           "printed_page": 111,
           "pdf_page_index_zero_based": 109,
-          "evidence": "Official PDF screenshot shows this article on printed page 111."
+          "evidence": "Official PDF screenshot shows Article 296 on printed page 111."
         }
       },
       "primary_evidence": [
@@ -5129,7 +5264,7 @@
           "checked_on": "2026-10-31",
           "printed_page": 111,
           "pdf_page_index_zero_based": 109,
-          "evidence": "Official PDF screenshot shows this article on printed page 111."
+          "evidence": "Official PDF screenshot shows Article 297 on printed page 111."
         }
       },
       "primary_evidence": [
@@ -5187,7 +5322,7 @@
           "checked_on": "2026-10-31",
           "printed_page": 111,
           "pdf_page_index_zero_based": 109,
-          "evidence": "Official PDF screenshot shows this article on printed page 111."
+          "evidence": "Official PDF screenshot shows Article 298 on printed page 111."
         }
       },
       "primary_evidence": [
@@ -14645,9 +14780,16 @@
       "pinpoint": {
         "part": "الكتاب الخامس — تفتيش العمل والعقوبات",
         "article": "المادة 275",
-        "official_gazette_printed_page": 92,
-        "pdf_page_index_zero_based": 90,
-        "pinpoint_status": "inferred_not_visually_verified"
+        "official_gazette_printed_page": 105,
+        "pdf_page_index_zero_based": 103,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "visual_verification": {
+          "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-10-31",
+          "printed_page": 105,
+          "pdf_page_index_zero_based": 103,
+          "evidence": "Official PDF screenshot shows Article 275 on printed page 105."
+        }
       },
       "primary_evidence": [
         {
@@ -14655,14 +14797,14 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
           "supports": "مرجع للمادة 275؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf_text_extraction",
-          "supports": "مرجع للمادة 275؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "مطابقة بصرية مباشرة للمادة 275 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 105 (فهرس PDF الصفري 103).",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -14691,9 +14833,16 @@
       "pinpoint": {
         "part": "الكتاب الخامس — تفتيش العمل والعقوبات",
         "article": "المادة 276",
-        "official_gazette_printed_page": 92,
-        "pdf_page_index_zero_based": 90,
-        "pinpoint_status": "inferred_not_visually_verified"
+        "official_gazette_printed_page": 106,
+        "pdf_page_index_zero_based": 104,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "visual_verification": {
+          "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-10-31",
+          "printed_page": 106,
+          "pdf_page_index_zero_based": 104,
+          "evidence": "Official PDF screenshot shows Article 276 on printed page 106."
+        }
       },
       "primary_evidence": [
         {
@@ -14701,14 +14850,14 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
           "supports": "مرجع للمادة 276؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf_text_extraction",
-          "supports": "مرجع للمادة 276؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "مطابقة بصرية مباشرة للمادة 276 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 106 (فهرس PDF الصفري 104).",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -14737,9 +14886,16 @@
       "pinpoint": {
         "part": "الكتاب الخامس — تفتيش العمل والعقوبات",
         "article": "المادة 278",
-        "official_gazette_printed_page": 92,
-        "pdf_page_index_zero_based": 90,
-        "pinpoint_status": "inferred_not_visually_verified"
+        "official_gazette_printed_page": 106,
+        "pdf_page_index_zero_based": 104,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "visual_verification": {
+          "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-10-31",
+          "printed_page": 106,
+          "pdf_page_index_zero_based": 104,
+          "evidence": "Official PDF screenshot shows Article 278 on printed page 106."
+        }
       },
       "primary_evidence": [
         {
@@ -14747,14 +14903,14 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
           "supports": "مرجع للمادة 278؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf_text_extraction",
-          "supports": "مرجع للمادة 278؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "مطابقة بصرية مباشرة للمادة 278 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 106 (فهرس PDF الصفري 104).",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -14783,9 +14939,16 @@
       "pinpoint": {
         "part": "الكتاب الخامس — تفتيش العمل والعقوبات",
         "article": "المادة 280",
-        "official_gazette_printed_page": 93,
-        "pdf_page_index_zero_based": 91,
-        "pinpoint_status": "inferred_not_visually_verified"
+        "official_gazette_printed_page": 106,
+        "pdf_page_index_zero_based": 104,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "visual_verification": {
+          "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-10-31",
+          "printed_page": 106,
+          "pdf_page_index_zero_based": 104,
+          "evidence": "Official PDF screenshot shows Article 280 on printed page 106."
+        }
       },
       "primary_evidence": [
         {
@@ -14793,14 +14956,14 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
           "supports": "مرجع للمادة 280؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf_text_extraction",
-          "supports": "مرجع للمادة 280؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "مطابقة بصرية مباشرة للمادة 280 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 106 (فهرس PDF الصفري 104).",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -14829,9 +14992,16 @@
       "pinpoint": {
         "part": "الكتاب الخامس — تفتيش العمل والعقوبات",
         "article": "المادة 281",
-        "official_gazette_printed_page": 93,
-        "pdf_page_index_zero_based": 91,
-        "pinpoint_status": "inferred_not_visually_verified"
+        "official_gazette_printed_page": 107,
+        "pdf_page_index_zero_based": 105,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "visual_verification": {
+          "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-10-31",
+          "printed_page": 107,
+          "pdf_page_index_zero_based": 105,
+          "evidence": "Official PDF screenshot shows Article 281 on printed page 107."
+        }
       },
       "primary_evidence": [
         {
@@ -14839,14 +15009,14 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
           "supports": "مرجع للمادة 281؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf_text_extraction",
-          "supports": "مرجع للمادة 281؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "مطابقة بصرية مباشرة للمادة 281 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 107 (فهرس PDF الصفري 105).",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -14875,9 +15045,16 @@
       "pinpoint": {
         "part": "الكتاب الخامس — تفتيش العمل والعقوبات",
         "article": "المادة 282",
-        "official_gazette_printed_page": 93,
-        "pdf_page_index_zero_based": 91,
-        "pinpoint_status": "inferred_not_visually_verified"
+        "official_gazette_printed_page": 107,
+        "pdf_page_index_zero_based": 105,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "visual_verification": {
+          "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-10-31",
+          "printed_page": 107,
+          "pdf_page_index_zero_based": 105,
+          "evidence": "Official PDF screenshot shows Article 282 on printed page 107."
+        }
       },
       "primary_evidence": [
         {
@@ -14885,14 +15062,14 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
           "supports": "مرجع للمادة 282؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf_text_extraction",
-          "supports": "مرجع للمادة 282؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "مطابقة بصرية مباشرة للمادة 282 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 107 (فهرس PDF الصفري 105).",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -14921,9 +15098,16 @@
       "pinpoint": {
         "part": "الكتاب الخامس — تفتيش العمل والعقوبات",
         "article": "المادة 283",
-        "official_gazette_printed_page": 93,
-        "pdf_page_index_zero_based": 91,
-        "pinpoint_status": "inferred_not_visually_verified"
+        "official_gazette_printed_page": 107,
+        "pdf_page_index_zero_based": 105,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "visual_verification": {
+          "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-10-31",
+          "printed_page": 107,
+          "pdf_page_index_zero_based": 105,
+          "evidence": "Official PDF screenshot shows Article 283 on printed page 107."
+        }
       },
       "primary_evidence": [
         {
@@ -14931,14 +15115,14 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
           "supports": "مرجع للمادة 283؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf_text_extraction",
-          "supports": "مرجع للمادة 283؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "مطابقة بصرية مباشرة للمادة 283 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 107 (فهرس PDF الصفري 105).",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -14967,9 +15151,16 @@
       "pinpoint": {
         "part": "الكتاب الخامس — تفتيش العمل والعقوبات",
         "article": "المادة 284",
-        "official_gazette_printed_page": 93,
-        "pdf_page_index_zero_based": 91,
-        "pinpoint_status": "inferred_not_visually_verified"
+        "official_gazette_printed_page": 107,
+        "pdf_page_index_zero_based": 105,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "visual_verification": {
+          "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-10-31",
+          "printed_page": 107,
+          "pdf_page_index_zero_based": 105,
+          "evidence": "Official PDF screenshot shows Article 284 on printed page 107."
+        }
       },
       "primary_evidence": [
         {
@@ -14977,14 +15168,14 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
           "supports": "مرجع للمادة 284؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf_text_extraction",
-          "supports": "مرجع للمادة 284؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "مطابقة بصرية مباشرة للمادة 284 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 107 (فهرس PDF الصفري 105).",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -15013,9 +15204,16 @@
       "pinpoint": {
         "part": "الكتاب الخامس — تفتيش العمل والعقوبات",
         "article": "المادة 285",
-        "official_gazette_printed_page": 93,
-        "pdf_page_index_zero_based": 91,
-        "pinpoint_status": "inferred_not_visually_verified"
+        "official_gazette_printed_page": 107,
+        "pdf_page_index_zero_based": 105,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "visual_verification": {
+          "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-10-31",
+          "printed_page": 107,
+          "pdf_page_index_zero_based": 105,
+          "evidence": "Official PDF screenshot shows Article 285 on printed page 107."
+        }
       },
       "primary_evidence": [
         {
@@ -15023,14 +15221,14 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
           "supports": "مرجع للمادة 285؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf_text_extraction",
-          "supports": "مرجع للمادة 285؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "مطابقة بصرية مباشرة للمادة 285 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 107 (فهرس PDF الصفري 105).",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -15059,9 +15257,16 @@
       "pinpoint": {
         "part": "الكتاب الخامس — تفتيش العمل والعقوبات",
         "article": "المادة 286",
-        "official_gazette_printed_page": 93,
-        "pdf_page_index_zero_based": 91,
-        "pinpoint_status": "inferred_not_visually_verified"
+        "official_gazette_printed_page": 108,
+        "pdf_page_index_zero_based": 106,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "visual_verification": {
+          "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-10-31",
+          "printed_page": 108,
+          "pdf_page_index_zero_based": 106,
+          "evidence": "Official PDF screenshot shows Article 286 on printed page 108."
+        }
       },
       "primary_evidence": [
         {
@@ -15069,14 +15274,14 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
           "supports": "مرجع للمادة 286؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf_text_extraction",
-          "supports": "مرجع للمادة 286؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "مطابقة بصرية مباشرة للمادة 286 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 108 (فهرس PDF الصفري 106).",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -15105,9 +15310,16 @@
       "pinpoint": {
         "part": "الكتاب الخامس — تفتيش العمل والعقوبات",
         "article": "المادة 287",
-        "official_gazette_printed_page": 93,
-        "pdf_page_index_zero_based": 91,
-        "pinpoint_status": "inferred_not_visually_verified"
+        "official_gazette_printed_page": 108,
+        "pdf_page_index_zero_based": 106,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "visual_verification": {
+          "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-10-31",
+          "printed_page": 108,
+          "pdf_page_index_zero_based": 106,
+          "evidence": "Official PDF screenshot shows Article 287 on printed page 108."
+        }
       },
       "primary_evidence": [
         {
@@ -15115,14 +15327,14 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
           "supports": "مرجع للمادة 287؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf_text_extraction",
-          "supports": "مرجع للمادة 287؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "مطابقة بصرية مباشرة للمادة 287 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 108 (فهرس PDF الصفري 106).",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -15151,9 +15363,16 @@
       "pinpoint": {
         "part": "الكتاب الخامس — تفتيش العمل والعقوبات",
         "article": "المادة 288",
-        "official_gazette_printed_page": 93,
-        "pdf_page_index_zero_based": 91,
-        "pinpoint_status": "inferred_not_visually_verified"
+        "official_gazette_printed_page": 108,
+        "pdf_page_index_zero_based": 106,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "visual_verification": {
+          "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-10-31",
+          "printed_page": 108,
+          "pdf_page_index_zero_based": 106,
+          "evidence": "Official PDF screenshot shows Article 288 on printed page 108."
+        }
       },
       "primary_evidence": [
         {
@@ -15161,14 +15380,14 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
           "supports": "مرجع للمادة 288؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf_text_extraction",
-          "supports": "مرجع للمادة 288؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "مطابقة بصرية مباشرة للمادة 288 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 108 (فهرس PDF الصفري 106).",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -15197,9 +15416,16 @@
       "pinpoint": {
         "part": "الكتاب الخامس — تفتيش العمل والعقوبات",
         "article": "المادة 289",
-        "official_gazette_printed_page": 94,
-        "pdf_page_index_zero_based": 92,
-        "pinpoint_status": "inferred_not_visually_verified"
+        "official_gazette_printed_page": 109,
+        "pdf_page_index_zero_based": 107,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "visual_verification": {
+          "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-10-31",
+          "printed_page": 109,
+          "pdf_page_index_zero_based": 107,
+          "evidence": "Official PDF screenshot shows Article 289 on printed page 109."
+        }
       },
       "primary_evidence": [
         {
@@ -15207,14 +15433,14 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
           "supports": "مرجع للمادة 289؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf_text_extraction",
-          "supports": "مرجع للمادة 289؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "مطابقة بصرية مباشرة للمادة 289 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 109 (فهرس PDF الصفري 107).",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -15243,9 +15469,16 @@
       "pinpoint": {
         "part": "الكتاب الخامس — تفتيش العمل والعقوبات",
         "article": "المادة 290",
-        "official_gazette_printed_page": 94,
-        "pdf_page_index_zero_based": 92,
-        "pinpoint_status": "inferred_not_visually_verified"
+        "official_gazette_printed_page": 109,
+        "pdf_page_index_zero_based": 107,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "visual_verification": {
+          "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-10-31",
+          "printed_page": 109,
+          "pdf_page_index_zero_based": 107,
+          "evidence": "Official PDF screenshot shows Article 290 on printed page 109."
+        }
       },
       "primary_evidence": [
         {
@@ -15253,14 +15486,14 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
           "supports": "مرجع للمادة 290؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf_text_extraction",
-          "supports": "مرجع للمادة 290؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "مطابقة بصرية مباشرة للمادة 290 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 109 (فهرس PDF الصفري 107).",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -15289,9 +15522,16 @@
       "pinpoint": {
         "part": "الكتاب الخامس — تفتيش العمل والعقوبات",
         "article": "المادة 291",
-        "official_gazette_printed_page": 94,
-        "pdf_page_index_zero_based": 92,
-        "pinpoint_status": "inferred_not_visually_verified"
+        "official_gazette_printed_page": 109,
+        "pdf_page_index_zero_based": 107,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "visual_verification": {
+          "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-10-31",
+          "printed_page": 109,
+          "pdf_page_index_zero_based": 107,
+          "evidence": "Official PDF screenshot shows Article 291 on printed page 109."
+        }
       },
       "primary_evidence": [
         {
@@ -15299,14 +15539,14 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
           "supports": "مرجع للمادة 291؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf_text_extraction",
-          "supports": "مرجع للمادة 291؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "مطابقة بصرية مباشرة للمادة 291 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 109 (فهرس PDF الصفري 107).",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -15335,9 +15575,16 @@
       "pinpoint": {
         "part": "الكتاب الخامس — تفتيش العمل والعقوبات",
         "article": "المادة 292",
-        "official_gazette_printed_page": 94,
-        "pdf_page_index_zero_based": 92,
-        "pinpoint_status": "inferred_not_visually_verified"
+        "official_gazette_printed_page": 110,
+        "pdf_page_index_zero_based": 108,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "visual_verification": {
+          "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-10-31",
+          "printed_page": 110,
+          "pdf_page_index_zero_based": 108,
+          "evidence": "Official PDF screenshot shows Article 292 on printed page 110."
+        }
       },
       "primary_evidence": [
         {
@@ -15345,14 +15592,14 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
           "supports": "مرجع للمادة 292؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf_text_extraction",
-          "supports": "مرجع للمادة 292؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "مطابقة بصرية مباشرة للمادة 292 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 110 (فهرس PDF الصفري 108).",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -15381,9 +15628,16 @@
       "pinpoint": {
         "part": "الكتاب الخامس — تفتيش العمل والعقوبات",
         "article": "المادة 293",
-        "official_gazette_printed_page": 94,
-        "pdf_page_index_zero_based": 92,
-        "pinpoint_status": "inferred_not_visually_verified"
+        "official_gazette_printed_page": 110,
+        "pdf_page_index_zero_based": 108,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "visual_verification": {
+          "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-10-31",
+          "printed_page": 110,
+          "pdf_page_index_zero_based": 108,
+          "evidence": "Official PDF screenshot shows Article 293 on printed page 110."
+        }
       },
       "primary_evidence": [
         {
@@ -15391,14 +15645,14 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
           "supports": "مرجع للمادة 293؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "retrieved_or_checked_on": "2026-10-31"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf_text_extraction",
-          "supports": "مرجع للمادة 293؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "مطابقة بصرية مباشرة للمادة 293 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 110 (فهرس PDF الصفري 108).",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -15435,7 +15689,7 @@
           "checked_on": "2026-10-31",
           "printed_page": 110,
           "pdf_page_index_zero_based": 108,
-          "evidence": "Official PDF screenshot shows this article on printed page 110."
+          "evidence": "Official PDF screenshot shows Article 294 on printed page 110."
         }
       },
       "primary_evidence": [
@@ -15488,7 +15742,7 @@
           "checked_on": "2026-10-31",
           "printed_page": 110,
           "pdf_page_index_zero_based": 108,
-          "evidence": "Official PDF screenshot shows this article on printed page 110."
+          "evidence": "Official PDF screenshot shows Article 295 on printed page 110."
         }
       },
       "primary_evidence": [
@@ -15541,7 +15795,7 @@
           "checked_on": "2026-10-31",
           "printed_page": 111,
           "pdf_page_index_zero_based": 109,
-          "evidence": "Official PDF screenshot shows this article on printed page 111."
+          "evidence": "Official PDF screenshot shows Article 296 on printed page 111."
         }
       },
       "primary_evidence": [
@@ -15594,7 +15848,7 @@
           "checked_on": "2026-10-31",
           "printed_page": 111,
           "pdf_page_index_zero_based": 109,
-          "evidence": "Official PDF screenshot shows this article on printed page 111."
+          "evidence": "Official PDF screenshot shows Article 297 on printed page 111."
         }
       },
       "primary_evidence": [
@@ -15647,7 +15901,7 @@
           "checked_on": "2026-10-31",
           "printed_page": 111,
           "pdf_page_index_zero_based": 109,
-          "evidence": "Official PDF screenshot shows this article on printed page 111."
+          "evidence": "Official PDF screenshot shows Article 298 on printed page 111."
         }
       },
       "primary_evidence": [
