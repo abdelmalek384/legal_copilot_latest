@@ -667,6 +667,22 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "not established; no API or bulk-export permission reviewed",
       "required_next_action": "Treat as a promising public-viewing primary-source access lead only. Do not bypass host restrictions. If the page is accessible through ordinary authorized browser access, review current terms and the PDF before treating it as acquired; record byte size and SHA-256 only after lawful download."
+    },
+    {
+      "source_id": "EG-EASTLAWS-LABOUR-DECISIONS-290-291-2025",
+      "authority": "EastLaws legal database",
+      "source_page": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/30-12-2025/no-290?id=5008505&type=1",
+      "material_types": [
+        "secondary transcription of Ministerial Decision 290/2025",
+        "secondary transcription of Ministerial Decision 291/2025"
+      ],
+      "access_status": "Search-indexed article text and metadata were visible; direct page opening returned HTTP 403 in this session. No original Gazette PDF bytes, source export, or licence were obtained.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "permission_evidence": "Checked 2026-10-31. EastLaws search results expose secondary legal transcriptions for Decisions 290/2025 and 291/2025, but direct page access returned 403 and no EastLaws terms or item-specific reuse licence were reviewed. Secondary legal text is not treated as official Gazette text, and public search visibility does not establish collection, indexing, embedding, display, redistribution, or commercial reuse rights.",
+      "terms_checked_on": "2026-10-31",
+      "bulk_download_or_api": "not reviewed; no bulk/API permission established",
+      "required_next_action": "Use only as a secondary research cross-check. Review EastLaws terms and obtain applicable permissions before any collection or reuse; compare the decision text with an authorized Official Gazette copy before legal activation."
     }
   ]
 }
