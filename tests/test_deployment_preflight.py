@@ -22,9 +22,9 @@ class DeploymentPreflightTests(unittest.TestCase):
         self.db_path = root / "control.sqlite3"
         self.corpus_path = root / "corpus.sqlite3"
         self.tenant_root = root / "tenants"
-        self.tenant_root.mkdir()
-        (root / "control").mkdir()
-        (root / "corpus").mkdir()
+        self.tenant_root.mkdir(exist_ok=True)
+        (root / "control").mkdir(exist_ok=True)
+        (root / "corpus").mkdir(exist_ok=True)
         if os.name == "posix":
             os.chmod(self.tenant_root, 0o700)
         self.db_path = root / "control" / "control.sqlite3"
@@ -218,11 +218,11 @@ class DeploymentPreflightTests(unittest.TestCase):
     def test_unimplemented_backend_name_cannot_bypass_production_storage_gate(self):
         root = Path(self.tempdir.name)
         tenant_root = root / "tenants"
-        tenant_root.mkdir()
+        tenant_root.mkdir(exist_ok=True)
         if os.name == "posix":
             os.chmod(tenant_root, 0o700)
-        (root / "control").mkdir()
-        (root / "corpus").mkdir()
+        (root / "control").mkdir(exist_ok=True)
+        (root / "corpus").mkdir(exist_ok=True)
         base = {
             "ADMIN_TOKEN": "a" * 40,
             "MIN_SCORE": "0.3",
@@ -256,11 +256,11 @@ class DeploymentPreflightTests(unittest.TestCase):
     def test_release_preflight_blocks_until_production_object_storage_is_verified(self):
         root = Path(self.tempdir.name)
         tenant_root = root / "tenants"
-        tenant_root.mkdir()
+        tenant_root.mkdir(exist_ok=True)
         if os.name == "posix":
             os.chmod(tenant_root, 0o700)
-        (root / "control").mkdir()
-        (root / "corpus").mkdir()
+        (root / "control").mkdir(exist_ok=True)
+        (root / "corpus").mkdir(exist_ok=True)
         env = {
             "ADMIN_TOKEN": "a" * 40,
             "MIN_SCORE": "0.3",
@@ -277,11 +277,11 @@ class DeploymentPreflightTests(unittest.TestCase):
     def test_production_s3_backend_requires_bucket_region_and_key_configuration(self):
         root = Path(self.tempdir.name)
         tenant_root = root / "tenants-s3"
-        tenant_root.mkdir()
+        tenant_root.mkdir(exist_ok=True)
         if os.name == "posix":
             os.chmod(tenant_root, 0o700)
-        (root / "control-s3").mkdir()
-        (root / "corpus-s3").mkdir()
+        (root / "control-s3").mkdir(exist_ok=True)
+        (root / "corpus-s3").mkdir(exist_ok=True)
         env = {
             "ADMIN_TOKEN": "a" * 40,
             "MIN_SCORE": "0.3",
@@ -318,7 +318,7 @@ class DeploymentPreflightTests(unittest.TestCase):
     def test_accepts_complete_separate_database_path_configuration_without_shared_warning(self):
         root = Path(self.tempdir.name)
         tenant_root = root / "tenants"
-        tenant_root.mkdir()
+        tenant_root.mkdir(exist_ok=True)
         if os.name == "posix":
             os.chmod(tenant_root, 0o700)
         env = {
@@ -328,8 +328,8 @@ class DeploymentPreflightTests(unittest.TestCase):
             "COPILOT_TENANT_DB_ROOT": str(tenant_root),
             "COPILOT_CORPUS_DB": str(root / "corpus" / "corpus.sqlite3"),
         }
-        (root / "control").mkdir()
-        (root / "corpus").mkdir()
+        (root / "control").mkdir(exist_ok=True)
+        (root / "corpus").mkdir(exist_ok=True)
         passed, warnings, errors = preflight.inspect_environment(env)
         self.assertTrue(any("Separate control-plane" in item for item in passed))
         self.assertFalse(any("one shared COPILOT_DB" in item for item in warnings))
@@ -341,11 +341,11 @@ class DeploymentPreflightTests(unittest.TestCase):
     def test_rejects_legacy_database_path_when_separate_paths_are_configured(self):
         root = Path(self.tempdir.name)
         tenant_root = root / "tenants"
-        tenant_root.mkdir()
+        tenant_root.mkdir(exist_ok=True)
         if os.name == "posix":
             os.chmod(tenant_root, 0o700)
-        (root / "control").mkdir()
-        (root / "corpus").mkdir()
+        (root / "control").mkdir(exist_ok=True)
+        (root / "corpus").mkdir(exist_ok=True)
         env = {
             "ADMIN_TOKEN": "a" * 40,
             "MIN_SCORE": "0.3",
@@ -367,7 +367,7 @@ class DeploymentPreflightTests(unittest.TestCase):
 
     def test_rejects_shared_control_and_corpus_database_path(self):
         root = Path(self.tempdir.name)
-        (root / "tenants").mkdir()
+        (root / "tenants").mkdir(exist_ok=True)
         shared = root / "shared.sqlite3"
         env = {
             "ADMIN_TOKEN": "a" * 40,
@@ -431,6 +431,8 @@ class DeploymentPreflightTests(unittest.TestCase):
 
     def test_existing_database_must_be_readable_and_writable(self):
         self.db_path.write_text("test", encoding="utf-8")
+        if os.name == "posix":
+            os.chmod(self.db_path, 0o600)
         passed, warnings, errors = preflight.inspect_environment(self.env)
         self.assertTrue(any("COPILOT_CONTROL_DB exists and is readable/writable" in item for item in passed))
         self.assertEqual(errors, [])
