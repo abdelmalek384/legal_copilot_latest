@@ -101,9 +101,13 @@ class CitationQuantityBindingTests(unittest.TestCase):
 
     def test_arabic_conjunction_compound_numbers_are_normalized(self):
         self.assertEqual(app._legal_quantities("خمسة وعشرون يوما"), {(25, "day")})
+        self.assertEqual(app._legal_quantities("خمسة وعشرين يوما"), {(25, "day")})
         self.assertEqual(app._legal_quantities("مائة وخمسون جنيها"), {(150, "currency")})
+        self.assertEqual(app._legal_quantities("مائة وخمسين جنيها"), {(150, "currency")})
         self.assertEqual(app._legal_quantities("ثلاثمائة وخمسة وعشرون يوما"), {(325, "day")})
+        self.assertEqual(app._legal_quantities("ثلاثمائة وخمسة وعشرين يوما"), {(325, "day")})
         self.assertEqual(app._legal_quantities("ألف ومائتان وخمسون جنيها"), {(1250, "currency")})
+        self.assertEqual(app._legal_quantities("ألف ومائتين وخمسين جنيها"), {(1250, "currency")})
         self.assertEqual(app._legal_quantities("خمسة و عشرون يوما"), {(25, "day")})
 
     def test_arabic_compound_quantity_is_bound_to_its_inline_source(self):
