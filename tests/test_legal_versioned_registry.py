@@ -177,9 +177,12 @@ class LegalVersionedRegistryTests(unittest.TestCase):
                 self.db.commit()
                 self.assertEqual(self.app.search(self.db, "revieweventgateprobe", as_of="2026-10-23"), [])
                 self.assertEqual(self.app.search(self.db, "المادة 1", as_of="2026-10-23"), [])
+                notes = "Reviewed against evidence."
+                if review_type == "lawyer_approval":
+                    notes = "[qualified_egyptian_counsel_attested:user_id=42] " + notes
                 self.db.execute(
                     "INSERT INTO legal_review_events(version_id,reviewer,review_type,outcome,notes,evidence_url) VALUES(?,?,?,?,?,?)",
-                    (version_id, "Reviewer", review_type, "pass", "Reviewed against evidence.", "https://example.gov/review"),
+                    (version_id, "Reviewer", review_type, "pass", notes, "https://example.gov/review"),
                 )
                 self.db.commit()
                 self.assertEqual([h["id"] for h in self.app.search(self.db, "revieweventgateprobe", as_of="2026-10-23")], [chunk_id])
@@ -189,9 +192,12 @@ class LegalVersionedRegistryTests(unittest.TestCase):
                 )
                 self.db.commit()
                 self.assertEqual(self.app.search(self.db, "revieweventgateprobe", as_of="2026-10-23"), [])
+                notes = "Re-reviewed against evidence."
+                if review_type == "lawyer_approval":
+                    notes = "[qualified_egyptian_counsel_attested:user_id=42] " + notes
                 self.db.execute(
                     "INSERT INTO legal_review_events(version_id,reviewer,review_type,outcome,notes,evidence_url) VALUES(?,?,?,?,?,?)",
-                    (version_id, "Reviewer", review_type, "pass", "Re-reviewed against evidence.", "https://example.gov/review"),
+                    (version_id, "Reviewer", review_type, "pass", notes, "https://example.gov/review"),
                 )
                 self.db.commit()
                 self.assertEqual([h["id"] for h in self.app.search(self.db, "revieweventgateprobe", as_of="2026-10-23")], [chunk_id])
