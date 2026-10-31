@@ -258,3 +258,10 @@ The ETA-hosted Official Gazette PDF for Law 14/2025 was re-opened and its extrac
 
 
 **Issue 295 item-specific license listing update (2026-10-31):** the DSpace full item page for issue 295 also lists a 1.71 KB `license.txt` described as an item-specific license agreed upon submission. Clicking that file opens a request-a-copy page that states all files in the item are in restricted access. The license bytes were not obtained or read. This does not change the rights state: do not infer a permissive licence from the filename; collection remains restricted pending explicit permission and commercial reuse remains unapproved.
+
+
+## Decision 291 page-image cross-check (2026-10-31)
+
+A two-page PDF hosted by Law Hub (https://lawhub.info/eg/wp-content/uploads/2026/01/lawhub.info-eg-dec-291-2025.pdf) was opened and both page images were visually inspected. The images show the Egyptian Proceedings Gazette masthead, issue 295 supplement D, date 2025-12-30, and printed pages 21–22. Page 21 contains Decision 291/2025 Articles 1 and its overtime conditions; page 22 contains Articles 2–5. The images visibly confirm the 35% daytime and 70% nighttime premiums, the seven-day notice, 12-hour presence ceiling, recordkeeping and rotation safeguards, the Article 4 three-month task for the Supreme Council for Social Consultation to set annual sector/activity maxima, and Article 5 next-day commencement.
+
+**Evidence classification:** this is a third-party hosted page-image reproduction, not the original DSpace/Amiri Press PDF. The official DSpace issue metadata independently lists Decision 291 in issue 295, but the original PDF and item-specific license remain request-a-copy restricted. No local bytes/hash, source acquisition chain, or Law Hub reuse terms were obtained. The visual cross-check improves confidence in the reproduced operative text but does not clear collection/reuse rights or replace lawyer review. Do not ingest or redistribute the reproduction or extracted text.
