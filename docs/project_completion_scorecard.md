@@ -67,22 +67,33 @@ The product cannot be called production-ready or legally approved until all appl
 - **PR #784 closed as superseded by #946:** the exact Decree 162 record and crosswalk now live in current main.
 - **No increase is claimed for verified Egyptian legal knowledge:** all these changes improve source discovery, provenance and release safeguards, but no new Gazette original was hashed/visually matched and no lawyer-approved legal text was added. Verified-corpus completion remains 6%.
 
+## Latest merged progress — 2026-10-31 (follow-up legal provenance and CI safeguards)
+
+- **PR #952 merged:** corrected seven misleading Labour Law occupational-safety evidence identifiers covering Articles 258–265, added regression coverage, and recorded secondary-only crosswalk leads for Decisions 248–252/2026.
+- **PR #959 merged:** strengthened Court of Cassation source restrictions and source-rights regression coverage. The portal remains manual research/link-out only; no scraping or bulk collection is authorized.
+- **PR #960 merged:** corrected Python 3.12 setup ordering in CI; all recorded checks passed.
+- **PR #961 merged:** added the Decision 162/2026 66-article subject crosswalk and exact Official Gazette catalogue provenance. Original PDF access remains request-copy restricted; the candidate commencement date is not verified.
+- **PR #964 merged:** added a quarantined Decision 249/2026 Gazette-image crosswalk and Table 3 candidate; no original-file authentication or retrieval eligibility is claimed.
+- **PR #969 merged:** recorded Decision 250/2026 official Gazette catalogue metadata and Ministry announcement. The 2026-10-13 commencement date is only a secondary-derived candidate; the original Gazette PDF remains restricted.
+- **No completion-percentage increase is claimed:** these changes improve source provenance, CI reliability and candidate isolation; they do not add lawyer-approved or fully rights-cleared legal text. Verified Egyptian legal knowledge remains 6%.
+
 ## Current open implementation items
 
-- **PR #782 — long-lived Labour Law branch:** open, but 198 commits ahead and 234 behind current main. Do not merge the branch wholesale. Its non-duplicate Articles 256–298 and coverage/promulgation material has been selectively ported through #937 and #939. Current main contains 127 canonical cards; remaining branch content needs separate reconciliation.
-- **PR #840 — Decisions 248–252 / Table 24:** draft/open. New public secondary full/partial transcriptions were located for all five decisions, but original Gazette comparisons remain 0/5. Table 24 remains 781 candidate rows with 0/781 original Gazette matches; discrepancies in rows 34, 61 and 64 remain unresolved. No counsel-approved or retrieval-eligible rows.
-- **PR #784 — Decision 162 currentness lead:** closed as superseded by merged PR #946. Original Gazette PDF/hash, visual review, amendment/currentness review, reuse review and counsel approval remain outstanding.
-- **PR #922 — Docker build-action update:** open. Tests failed in the cross-firm reminder-healthcheck test because the report was unexpectedly healthy. Do not weaken the cross-firm isolation assertion; diagnose and rerun before merge.
-- **PR #898 — S3 physical-purge state machine:** separate database/storage workstream. Do not enable destructive purge without independent review, live S3/KMS/IAM evidence, approved retention policy and witnessed recovery.
-- **Database/tenant work:** remains assigned to the separate workstream. No duplicate schema, migration, identity or destructive storage changes were made here.
+- **PR #971 — 360-card Labour Law reconciliation:** draft/open and undergoing fresh CI. It reconciles current-main and prior review snapshots into 360 unique cards, preserves all cards as `search_eligible=false`, and merges six additional Phase 2 instrument leads. It also adds metadata-only records for Decisions 248–252/2026. Do not count it until merged and validated.
+- **PR #963 — older 360-card reconciliation branch:** superseded by #971, which is based on current main and retains the newer Decision 249/250 and Court of Cassation safeguards. Close #963 after #971 passes CI.
+- **PR #840 — broader Decisions 248–252 / Table 24 evidence ledger:** remains draft/open. Original Gazette comparisons for Decisions 248–252 remain 0/5. Table 24 remains 781 candidate rows with 0/781 original Gazette matches; discrepancies in rows 34, 61 and 64 remain unresolved. No counsel-approved or retrieval-eligible rows.
+- **PR #782 — long-lived Labour Law branch:** remains open and stale. Do not merge wholesale; its non-duplicate work has been selectively ported and further inventory reconciliation is in #971.
+- **Database/tenant work:** remains assigned to the separate workstream. PR #898 was closed unmerged; do not revive destructive storage work without the database owner, independent review, live S3/KMS/IAM evidence, approved retention policy and witnessed recovery.
+- **PR #922:** closed unmerged; no production deployment or action build is inferred from its closure.
 
 ## Next highest-value priorities
 
-1. Continue primary-source comparison and provenance work for Labour Law 14/2025 and its implementing decisions; keep all unverified cards out of authoritative retrieval.
-2. Continue selective reconciliation of the remaining PR #782 branch material onto current main; do not merge the stale branch wholesale.
-3. Diagnose PR #922's cross-firm reminder-healthcheck failure without weakening isolation guarantees.
-4. Resolve the official Gazette access gap lawfully; do not bypass request-copy restrictions.
-5. Complete real lawyer-labelled retrieval/citation evaluation, manual Arabic RTL/LTR/accessibility/browser QA, staging operations and witnessed backup/restore.
-6. Obtain qualified Egyptian counsel's actual application acceptance after technical completion.
+1. Complete fresh CI and review for #971; close the superseded #963 only after #971 passes.
+2. Continue primary-source verification of Decisions 248–252 and the 781-row Table 24 candidate; keep all candidates excluded from authoritative retrieval.
+3. Continue article-level comparison, amendment/currentness review and rights assessment for Labour Law 14/2025.
+4. Complete real lawyer-labelled retrieval/citation evaluation and source-backed no-answer/abstention testing.
+5. Complete manual Arabic RTL/LTR, responsive, keyboard, screen-reader and lawyer-workflow QA.
+6. Complete staging operations, monitoring, witnessed backup/restore and independent security review; database implementation remains with its assigned owner.
+7. Obtain qualified Egyptian counsel's actual application acceptance after technical completion.
 
-**Technical completion remains 48%** (47.90/100). Final Egyptian-counsel acceptance remains **0% / not started**. More provisional records or secondary-source cross-checks do not count as verified law or market readiness.
+**Technical completion remains 48%** (47.90/100). Final Egyptian-counsel acceptance remains **0% / not started**. The 360 provisional cards and 83 metadata-only instrument records do not count as verified law, and open PRs do not count as completed deliverables.
