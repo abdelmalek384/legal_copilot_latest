@@ -258,8 +258,8 @@ class LegalVersionedRegistryTests(unittest.TestCase):
             "prompt-provenance", "2020-01-01", text="promptprovenanceprobe legal passage"
         )
         self.db.execute(
-            "UPDATE legal_document_versions SET gazette_issue='77',gazette_pages='12-16' WHERE version_id=?",
-            (version_id,)
+            "UPDATE legal_document_versions SET gazette_issue='77',gazette_pages='12-16',original_sha256=? WHERE version_id=?",
+            ("a" * 64, version_id)
         )
         self.db.commit()
         captured = []
