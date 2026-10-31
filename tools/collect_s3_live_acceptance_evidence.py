@@ -126,16 +126,16 @@ def _policy_summary(document: object) -> dict[str, Any]:
     }
 
 
-def _list_all(iam_client, method: str, *, RoleName: str, result_key: str) -> list[dict[str, Any]]:
+def _list_all(iam_client, method: str, *, RoleName: str, result_key: str) -> list[Any]:
     function = getattr(iam_client, method)
-    items: list[dict[str, Any]] = []
+    items: list[Any] = []
     marker = None
     while True:
         args = {"RoleName": RoleName}
         if marker:
             args["Marker"] = marker
         response = function(**args)
-        items.extend(item for item in response.get(result_key, []) if isinstance(item, dict))
+        items.extend(response.get(result_key, []))
         if not response.get("IsTruncated"):
             break
         marker = response.get("Marker")
