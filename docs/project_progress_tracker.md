@@ -19,7 +19,7 @@ The current source of truth is [the weighted whole-project completion scorecard]
 - **#944:** recorded the Supreme Constitutional Court public recent-judgments page and a third-party-described API lead. No API calls or bulk collection were made; rights remain unknown.
 - **#931:** registered الذاكرة والمعرفة للدراسات as a legal-document discovery source. Its stated CC BY 4.0 scope over underlying texts and database compilation remains unresolved; no text was imported.
 - **#784:** closed as superseded by #946.
-- **#963:** merged the reconciled 360-card Labour Law No. 14/2025 candidate inventory and manifest. Full 139-step Tests, CodeQL and dependency audit passed on the final head. All 360 cards remain search_eligible=false; no verified-corpus percentage increase is claimed.
+- **#963:** merged the reconciled 360-card Labour Law No. 14/2025 candidate inventory and manifest. Full 138-step Tests, CodeQL and dependency audit passed on the final head. All 360 cards remain search_eligible=false; no verified-corpus percentage increase is claimed.
 - **#967:** merged additional visual checks of Labour Law Article 13 and printed Gazette pages 94–111, correcting 90 pinpoints for Articles 250–298. Original PDF bytes/hash, reuse rights, currentness and counsel review remain outstanding.
 - **#834 and #983:** merged the updated SEC-01 storage attack-surface inventory and S3 purge acceptance checklist. Live S3/KMS/IAM evidence, retention approval, and witnessed recovery/deletion remain open.
 - **#987:** merged Decision 250 Table 24 source-rights metadata for Riwaq and Law Hub. The secondary transcription remains link-out only; no row-level content was imported. Law Hub's terms restrict profiting by republishing its free site materials.
