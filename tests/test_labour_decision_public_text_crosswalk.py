@@ -30,7 +30,7 @@ class TestLabourDecisionPublicTextCrosswalk(unittest.TestCase):
             self.assertFalse(record.get("search_eligible", False))
         repository = d290["third_party_repository_metadata"]
         self.assertEqual(repository["url"], "https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829/full")
-        self.assertIn("not the Official Gazette", repository["status"])
+        self.assertIn("not an official Gazette copy", repository["status"])
         self.assertIn("103.23 KB", " ".join(repository["listed_files"]))
         self.assertIn("105.2 KB", " ".join(repository["listed_files"]))
         self.assertIn("no hash", repository["status"])
