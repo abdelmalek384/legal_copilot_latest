@@ -4571,7 +4571,7 @@ def deadline_rules(u: dict = Depends(user)):
 def deadline_estimate(
     cid: int,
     rule_id: str = Query(..., min_length=1, max_length=100),
-    trigger: date,
+    trigger: date = Query(...),
     distance_days: int = Query(0, ge=0, le=365),
     u: dict = Depends(user),
 ):
