@@ -117,6 +117,25 @@ class RecoveryArchiveTransportTests(unittest.TestCase):
                 self.s3, self.kms, locator, self.root / "tampered.dbundle.enc", **self.config
             )
 
+    def test_object_bytes_changed_after_upload_are_rejected(self):
+        locator = self.upload()
+        item = self.s3.objects[(locator["bucket"], locator["key"], locator["version_id"])]
+        item["data"] = item["data"] + b"tampered"
+        with self.assertRaises(DatabaseBundleError):
+            download_encrypted_bundle_version(
+                self.s3, self.kms, locator, self.root / "corrupt.dbundle.enc", **self.config
+            )
+        self.assertFalse((self.root / "corrupt.dbundle.enc").exists())
+
+    def test_wrong_kms_key_on_exact_version_is_rejected(self):
+        locator = self.upload()
+        item = self.s3.objects[(locator["bucket"], locator["key"], locator["version_id"])]
+        item["kms"] = "arn:aws:kms:eu-west-1:123456789012:key/other-key"
+        with self.assertRaises(DatabaseBundleError):
+            download_encrypted_bundle_version(
+                self.s3, self.kms, locator, self.root / "wrong-key.dbundle.enc", **self.config
+            )
+
     def test_existing_destination_is_never_overwritten(self):
         locator = self.upload()
         target = self.root / "existing.dbundle.enc"
