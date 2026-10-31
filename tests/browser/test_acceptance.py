@@ -341,6 +341,18 @@ class BrowserAcceptanceTests(unittest.TestCase):
         cookies = {item["name"]: item["value"] for item in self.context.cookies()}
         return {"X-CSRF-Token": cookies.get("lc_csrf", "")}
 
+    def read_clipboard(self) -> str:
+        # Clipboard APIs return promises; explicitly bound them so browser CI
+        # cannot hang forever if a headless runner denies or stalls clipboard access.
+        return self.page.evaluate(
+            """async () => Promise.race([
+                navigator.clipboard.readText(),
+                new Promise((_, reject) => setTimeout(
+                    () => reject(new Error("clipboard read timed out")), 3000
+                ))
+            ])"""
+        )
+
     def test_corpus_coverage_requires_platform_reviewer_and_drilldown_is_metadata_only(self) -> None:
         self.login(self.state["owner_a_email"])
         denied = self.page.request.get(self.base_url + "/legal-review/coverage", timeout=8000)
@@ -409,11 +421,11 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertIn("مستند مكتب غير متحقق", body)
 
         self.page.get_by_role("button", name="نسخ الاستشهاد").click()
-        copied_citation = self.page.evaluate("() => navigator.clipboard.readText()")
+        copied_citation = self.read_clipboard()
         self.assertTrue(copied_citation.strip())
 
         self.page.get_by_role("button", name="نسخ المقطع الحرفي").click()
-        copied_passage = self.page.evaluate("() => navigator.clipboard.readText()")
+        copied_passage = self.read_clipboard()
         self.assertIn(sentinel, copied_passage)
 
         with self.page.expect_download() as download_info:
