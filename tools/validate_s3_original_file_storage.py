@@ -59,23 +59,17 @@ def validate_s3_configuration(s3_client, kms_client, *, bucket: str, configured_
         response = s3_client.get_bucket_versioning(Bucket=bucket)
         versioning_read = isinstance(response, dict)
         versioning_status = response.get("Status") if versioning_read else None
-        check(
-            "versioning",
-            versioning_status == "Enabled",
-            "bucket versioning must be enabled for version-history recovery; this requirement conflicts with the current physical-purge implementation",
-        )
         never_versioned = versioning_read and versioning_status is None and set(response) <= {"ResponseMetadata"}
         check(
-            "physical_purge_versioning_compatibility",
+            "original_bucket_never_versioned",
             never_versioned,
-            "current physical purge requires a confirmed never-versioned bucket; Enabled, Suspended, unknown, and unexpected response states block purge",
+            "original-object bucket must be confirmed never-versioned; Enabled, Suspended, unknown, and unexpected response states fail closed",
         )
     except Exception:
-        check("versioning", False, "bucket versioning state could not be verified")
         check(
-            "physical_purge_versioning_compatibility",
+            "original_bucket_never_versioned",
             False,
-            "physical purge compatibility cannot be established because bucket versioning state could not be verified",
+            "original-object bucket versioning state could not be verified",
         )
 
     try:
@@ -115,7 +109,7 @@ def validate_s3_configuration(s3_client, kms_client, *, bucket: str, configured_
             "firm-isolation policy and KMS grants",
             "key rotation and recovery rehearsal",
             "live upload/download/reconciliation/backup/restore/deletion drill",
-            "resolve incompatible versioning requirements: recovery preflight requires Enabled while physical purge requires a never-versioned bucket; use separate buckets or implement and review version-aware deletion of every retained version",
+            "verify the separate recovery-archive bucket is versioned and independently encrypted; the original-object bucket must remain never-versioned",
         ],
         "production_ready": False,
     }

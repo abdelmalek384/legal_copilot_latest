@@ -136,21 +136,38 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
         operation = Session().get_service_model("s3").operation_model("DeleteObject")
         self.assertIn("IfMatch", operation.input_shape.members)
 
-    def test_versioned_bucket_can_run_non_destructive_roundtrip_while_purge_gate_stays_blocked(self):
+    def test_versioned_original_bucket_blocks_roundtrip_under_two_bucket_design(self):
         preflight = {
-            "failed_checks": ["physical_purge_versioning_compatibility"],
+            "failed_checks": ["original_bucket_never_versioned"],
             "checks": [
-                {"name": "versioning", "passed": True},
-                {"name": "physical_purge_versioning_compatibility", "passed": False},
+                {"name": "original_bucket_never_versioned", "passed": False},
             ],
         }
-        self.assertEqual(roundtrip_preflight_blockers(preflight), [])
+        self.assertEqual(roundtrip_preflight_blockers(preflight), ["original_bucket_never_versioned"])
+
+    def test_live_roundtrip_cli_requires_distinct_recovery_archive_configuration(self):
+        from unittest.mock import patch
+        from tools.verify_s3_original_file_roundtrip import main
+
+        environment = {
+            "COPILOT_ENV": "staging",
+            "COPILOT_OBJECT_STORAGE_BACKEND": "s3",
+            "COPILOT_S3_BUCKET": "private-originals",
+            "COPILOT_S3_REGION": "eu-central-1",
+            "COPILOT_S3_KMS_KEY_ID": "alias/legal-originals",
+        }
+        with patch.dict("os.environ", environment, clear=True), patch(
+            "sys.argv", ["verify-s3", "--firm-id", "12", "--confirm-synthetic-firm"]
+        ):
+            with self.assertRaises(SystemExit) as raised:
+                main()
+        self.assertEqual(raised.exception.code, 2)
 
     def test_roundtrip_still_blocks_other_live_configuration_failures(self):
         preflight = {
-            "failed_checks": ["kms_key", "physical_purge_versioning_compatibility"],
+            "failed_checks": ["kms_key", "original_bucket_never_versioned"],
         }
-        self.assertEqual(roundtrip_preflight_blockers(preflight), ["kms_key"])
+        self.assertEqual(roundtrip_preflight_blockers(preflight), ["kms_key", "original_bucket_never_versioned"])
 
     def test_acceptance_report_binds_evidence_to_non_secret_storage_target_fingerprint(self):
         from unittest.mock import patch
@@ -161,6 +178,10 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
             "COPILOT_S3_REGION": "eu-central-1",
             "COPILOT_S3_KMS_KEY_ID": "arn:aws:kms:eu-central-1:123456789012:key/example",
             "COPILOT_S3_ENDPOINT_URL": "",
+            "COPILOT_S3_RECOVERY_BUCKET": "acceptance-recovery-bucket",
+            "COPILOT_S3_RECOVERY_REGION": "eu-central-1",
+            "COPILOT_S3_RECOVERY_KMS_KEY_ID": "arn:aws:kms:eu-central-1:123456789012:key/recovery",
+            "COPILOT_S3_RECOVERY_ENDPOINT_URL": "",
         }
         with patch.dict("os.environ", configured, clear=True):
             report = build_acceptance_report()
@@ -496,6 +517,10 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
             "COPILOT_S3_REGION": "eu-central-1",
             "COPILOT_S3_KMS_KEY_ID": "alias/legal-files",
             "COPILOT_S3_ENDPOINT_URL": "",
+            "COPILOT_S3_RECOVERY_BUCKET": "private-recovery-archive",
+            "COPILOT_S3_RECOVERY_REGION": "eu-central-1",
+            "COPILOT_S3_RECOVERY_KMS_KEY_ID": "alias/legal-recovery",
+            "COPILOT_S3_RECOVERY_ENDPOINT_URL": "",
             "COPILOT_DATABASE_ACCEPTANCE_FILE": "/nonexistent/acceptance.json",
         }
         output = io.StringIO()

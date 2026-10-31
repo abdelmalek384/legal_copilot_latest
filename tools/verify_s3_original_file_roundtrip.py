@@ -16,6 +16,7 @@ from typing import Any
 from database_runtime import DatabaseRuntime
 from s3_original_file_storage import S3PrivateObjectStore
 from tools.validate_s3_original_file_storage import validate_s3_configuration
+from tools.validate_s3_recovery_archive import validate_recovery_archive_configuration
 from tools.database_release_acceptance import original_storage_config_fingerprint
 
 
@@ -165,19 +166,15 @@ def run_s3_roundtrip(store: S3PrivateObjectStore, firm_id: int, payload: bytes |
 
 
 def roundtrip_preflight_blockers(preflight: dict[str, Any]) -> list[str]:
-    """Return configuration failures that block non-destructive upload/readback.
+    """Return every configuration failure for the approved original-object bucket.
 
-    Physical-purge compatibility is a separate destructive-operation gate. A
-    versioned bucket can pass the synthetic upload/readback exercise while purge
-    remains blocked; delete markers may hide the probe key while retaining versions.
+    The two-bucket design puts version history in the separate recovery archive;
+    the original-object bucket itself must be confirmed never-versioned.
     """
     failed = preflight.get("failed_checks", [])
     if not isinstance(failed, list):
         return ["invalid_preflight_result"]
-    return sorted({
-        item for item in failed
-        if isinstance(item, str) and item != "physical_purge_versioning_compatibility"
-    })
+    return sorted({item for item in failed if isinstance(item, str)})
 
 
 def build_acceptance_report() -> dict[str, Any]:
@@ -211,6 +208,10 @@ def main() -> int:
     region = os.environ.get("COPILOT_S3_REGION", "").strip()
     key_id = os.environ.get("COPILOT_S3_KMS_KEY_ID", "").strip()
     endpoint = os.environ.get("COPILOT_S3_ENDPOINT_URL", "").strip() or None
+    recovery_bucket = os.environ.get("COPILOT_S3_RECOVERY_BUCKET", "").strip()
+    recovery_region = os.environ.get("COPILOT_S3_RECOVERY_REGION", "").strip()
+    recovery_key_id = os.environ.get("COPILOT_S3_RECOVERY_KMS_KEY_ID", "").strip()
+    recovery_endpoint = os.environ.get("COPILOT_S3_RECOVERY_ENDPOINT_URL", "").strip() or None
     if not args.confirm_synthetic_firm:
         parser.error("pass --confirm-synthetic-firm only for a dedicated non-client acceptance firm")
     if environment not in {"staging", "production"}:
@@ -219,6 +220,15 @@ def main() -> int:
         parser.error("COPILOT_OBJECT_STORAGE_BACKEND must be s3")
     if not bucket or not region or not key_id:
         parser.error("COPILOT_S3_BUCKET, COPILOT_S3_REGION, and COPILOT_S3_KMS_KEY_ID are required")
+    if not recovery_bucket or not recovery_region or not recovery_key_id:
+        parser.error(
+            "COPILOT_S3_RECOVERY_BUCKET, COPILOT_S3_RECOVERY_REGION, and "
+            "COPILOT_S3_RECOVERY_KMS_KEY_ID are required"
+        )
+    if bucket == recovery_bucket:
+        parser.error("original-object and recovery-archive buckets must be distinct")
+    if key_id == recovery_key_id:
+        parser.error("original-object and recovery-archive KMS keys must be distinct")
     if os.environ.get("COPILOT_DB", "").strip():
         parser.error("COPILOT_DB must be unset; configure the three separate database paths")
 
@@ -236,14 +246,26 @@ def main() -> int:
             s3_client, kms_client, bucket=bucket, configured_key=key_id
         )
         report["configuration_preflight"] = preflight
+        recovery_s3_client = boto3.client("s3", region_name=recovery_region, endpoint_url=recovery_endpoint)
+        recovery_kms_client = boto3.client("kms", region_name=recovery_region)
+        recovery_preflight = validate_recovery_archive_configuration(
+            recovery_s3_client, recovery_kms_client,
+            bucket=recovery_bucket, configured_key=recovery_key_id,
+            original_bucket=bucket, original_key=key_id,
+        )
+        report["recovery_archive_preflight"] = recovery_preflight
         blocking_checks = roundtrip_preflight_blockers(preflight)
+        blocking_checks.extend(
+            f"recovery_archive:{name}" for name in recovery_preflight["failed_checks"]
+        )
+        blocking_checks = sorted(set(blocking_checks))
         report["configuration_preflight"]["roundtrip_blocking_checks"] = blocking_checks
-        purge_check = next(
+        original_bucket_check = next(
             (item for item in preflight["checks"]
-             if item.get("name") == "physical_purge_versioning_compatibility"),
+             if item.get("name") == "original_bucket_never_versioned"),
             {"passed": False},
         )
-        report["physical_purge_compatibility"] = bool(purge_check.get("passed"))
+        report["original_bucket_versioning_compatible_for_purge"] = bool(original_bucket_check.get("passed"))
         if blocking_checks:
             report["live_roundtrip"] = {"passed": False, "skipped": True,
                                         "reason": "S3/KMS configuration preflight failed",
@@ -258,19 +280,28 @@ def main() -> int:
             s3_client, bucket=bucket, kms_key_id=key_id, kms_client=kms_client
         )
         roundtrip = run_s3_roundtrip(store, args.firm_id)
-        roundtrip["version_history_may_remain"] = preflight.get("bucket_versioning_status") == "Enabled"
+        roundtrip["version_history_may_remain"] = False
+        roundtrip["recovery_archive_version_history_enabled"] = any(
+            item.get("name") == "recovery_versioning_enabled" and item.get("passed")
+            for item in recovery_preflight["checks"]
+        )
         report["live_roundtrip"] = roundtrip
         if args.json:
             print(json.dumps(report, sort_keys=True))
         else:
             print(f"S3/KMS live acceptance for synthetic firm {args.firm_id}")
             for check in preflight["checks"]:
-                print(f"- {'PASS' if check['passed'] else 'FAIL'} {check['name']}")
+                print(f"- {'PASS' if check['passed'] else 'FAIL'} original:{check['name']}")
+            for check in recovery_preflight["checks"]:
+                print(f"- {'PASS' if check['passed'] else 'FAIL'} recovery:{check['name']}")
             for check in roundtrip["checks"]:
                 print(f"- {'PASS' if check['passed'] else 'FAIL'} {check['name']}")
-            print(f"Physical purge compatible: {'YES' if report.get('physical_purge_compatibility') else 'NO'}")
-            if report["live_roundtrip"].get("version_history_may_remain"):
-                print("Synthetic probe versions may remain in version history; do not claim permanent erasure.")
+            print(
+                "Original bucket versioning compatible for purge: "
+                f"{'YES' if report.get('original_bucket_versioning_compatible_for_purge') else 'NO'}"
+            )
+            if report["live_roundtrip"].get("recovery_archive_version_history_enabled"):
+                print("Recovery archive retains object versions; approved retention/legal-hold policy governs expiry.")
             print("Production approval: NO; independent review and witnessed drills remain mandatory.")
             if roundtrip.get("cleanup_pending"):
                 print(f"MANUAL REVIEW REQUIRED for probe object {roundtrip.get('object_id')}")

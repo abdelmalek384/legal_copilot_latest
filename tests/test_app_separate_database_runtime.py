@@ -1407,6 +1407,10 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             "COPILOT_S3_REGION": "us-east-1",
             "COPILOT_S3_KMS_KEY_ID": "arn:aws:kms:us-east-1:123456789012:key/changed-key",
             "COPILOT_S3_ENDPOINT_URL": "",
+            "COPILOT_S3_RECOVERY_BUCKET": "private-recovery-test",
+            "COPILOT_S3_RECOVERY_REGION": "us-east-1",
+            "COPILOT_S3_RECOVERY_KMS_KEY_ID": "arn:aws:kms:us-east-1:123456789012:key/recovery",
+            "COPILOT_S3_RECOVERY_ENDPOINT_URL": "",
         }
         with patch.dict(os.environ, config, clear=False), \
              patch.object(app, "load_acceptance_manifest", return_value={"ready": False}) as load_manifest, \
@@ -1431,6 +1435,10 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             "COPILOT_S3_REGION": "us-east-1",
             "COPILOT_S3_KMS_KEY_ID": "arn:aws:kms:us-east-1:123456789012:key/test-key",
             "COPILOT_S3_ENDPOINT_URL": "",
+            "COPILOT_S3_RECOVERY_BUCKET": "private-recovery-test",
+            "COPILOT_S3_RECOVERY_REGION": "us-east-1",
+            "COPILOT_S3_RECOVERY_KMS_KEY_ID": "arn:aws:kms:us-east-1:123456789012:key/recovery",
+            "COPILOT_S3_RECOVERY_ENDPOINT_URL": "",
         }
         with patch.dict(os.environ, config, clear=False), \
              patch.object(app, "load_acceptance_manifest", return_value={"ready": True}), \

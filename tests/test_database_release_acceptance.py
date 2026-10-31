@@ -73,6 +73,10 @@ class DatabaseReleaseAcceptanceTests(unittest.TestCase):
             "COPILOT_S3_REGION": "us-east-1",
             "COPILOT_S3_KMS_KEY_ID": "key-a",
             "COPILOT_S3_ENDPOINT_URL": "",
+            "COPILOT_S3_RECOVERY_BUCKET": "bucket-a-recovery",
+            "COPILOT_S3_RECOVERY_REGION": "us-east-1",
+            "COPILOT_S3_RECOVERY_KMS_KEY_ID": "key-recovery-a",
+            "COPILOT_S3_RECOVERY_ENDPOINT_URL": "",
         }
         first = original_storage_config_fingerprint(config)
         self.assertRegex(first or "", r"^[0-9a-f]{64}$")
@@ -80,6 +84,12 @@ class DatabaseReleaseAcceptanceTests(unittest.TestCase):
         changed = dict(config, COPILOT_S3_BUCKET="bucket-b")
         self.assertNotEqual(first, original_storage_config_fingerprint(changed))
         self.assertIsNone(original_storage_config_fingerprint({}))
+        self.assertIsNone(original_storage_config_fingerprint({
+            **config, "COPILOT_S3_RECOVERY_BUCKET": "bucket-a",
+        }))
+        self.assertIsNone(original_storage_config_fingerprint({
+            **config, "COPILOT_S3_RECOVERY_KMS_KEY_ID": "key-a",
+        }))
 
     def test_storage_acceptance_is_bound_to_current_s3_kms_configuration(self):
         matched = validate_acceptance_manifest(
@@ -232,6 +242,10 @@ class DatabaseReleaseAcceptanceTests(unittest.TestCase):
             "COPILOT_S3_REGION": "eu-central-1",
             "COPILOT_S3_KMS_KEY_ID": key,
             "COPILOT_S3_ENDPOINT_URL": "",
+            "COPILOT_S3_RECOVERY_BUCKET": "private-recovery-bucket",
+            "COPILOT_S3_RECOVERY_REGION": "eu-central-1",
+            "COPILOT_S3_RECOVERY_KMS_KEY_ID": "arn:aws:kms:eu-central-1:123456789012:key/recovery",
+            "COPILOT_S3_RECOVERY_ENDPOINT_URL": "",
             "COPILOT_DATABASE_ACCEPTANCE_FILE": "/nonexistent/acceptance.json",
         }
         with patch.dict(os.environ, environment, clear=True):
@@ -260,6 +274,10 @@ class DatabaseReleaseAcceptanceTests(unittest.TestCase):
             "COPILOT_S3_REGION": "eu-central-1",
             "COPILOT_S3_KMS_KEY_ID": key,
             "COPILOT_S3_ENDPOINT_URL": "",
+            "COPILOT_S3_RECOVERY_BUCKET": "private-recovery-bucket",
+            "COPILOT_S3_RECOVERY_REGION": "eu-central-1",
+            "COPILOT_S3_RECOVERY_KMS_KEY_ID": "arn:aws:kms:eu-central-1:123456789012:key/recovery",
+            "COPILOT_S3_RECOVERY_ENDPOINT_URL": "",
             "COPILOT_DATABASE_ACCEPTANCE_FILE": "/nonexistent/acceptance.json",
         }
         with patch.dict(os.environ, dict(base, COPILOT_ENV="development"), clear=True):

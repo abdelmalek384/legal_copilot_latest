@@ -309,11 +309,23 @@ class DeploymentPreflightTests(unittest.TestCase):
         env.update({
             "COPILOT_S3_BUCKET": "private-originals-test",
             "COPILOT_S3_REGION": "us-east-1",
-            "COPILOT_S3_KMS_KEY_ID": "arn:aws:kms:us-east-1:123456789012:key/test-key",
+            "COPILOT_S3_KMS_KEY_ID": "arn:aws:kms:us-east-1:123456789012:key/originals",
+            "COPILOT_S3_RECOVERY_BUCKET": "private-recovery-test",
+            "COPILOT_S3_RECOVERY_REGION": "us-east-1",
+            "COPILOT_S3_RECOVERY_KMS_KEY_ID": "arn:aws:kms:us-east-1:123456789012:key/recovery",
         })
         passed, _, errors = preflight.inspect_environment(env)
         self.assertFalse(any("S3/KMS production configuration is incomplete" in item for item in errors))
-        self.assertTrue(any("live provider acceptance remains a separate mandatory gate" in item for item in passed))
+        self.assertTrue(any("Separate original-object and versioned recovery-archive" in item for item in passed))
+
+        env["COPILOT_S3_RECOVERY_BUCKET"] = env["COPILOT_S3_BUCKET"]
+        _, _, errors = preflight.inspect_environment(env)
+        self.assertTrue(any("must be distinct from COPILOT_S3_BUCKET" in item for item in errors))
+
+        env["COPILOT_S3_RECOVERY_BUCKET"] = "private-recovery-test"
+        env["COPILOT_S3_RECOVERY_KMS_KEY_ID"] = env["COPILOT_S3_KMS_KEY_ID"]
+        _, _, errors = preflight.inspect_environment(env)
+        self.assertTrue(any("must be distinct from COPILOT_S3_KMS_KEY_ID" in item for item in errors))
 
     def test_accepts_complete_separate_database_path_configuration_without_shared_warning(self):
         root = Path(self.tempdir.name)

@@ -66,6 +66,10 @@ Purpose: encrypted multi-database backup bundles, including original-file bytes,
 - No production upload or purge is authorized.
 - No claim is made that backup archives currently live in S3; the repository's encrypted bundle workflow must be integrated with the archive bucket before this architecture is implemented.
 
+## Implementation status (2026-10-31)
+
+PR #1024 implements the two independent read-only preflights, requires distinct bucket and KMS configuration in production preflight, changes the original-object validator to require never-versioned state, and binds the acceptance fingerprint to both targets. It also updates the runbook and deployment example. These are configuration and validation controls only. Encrypted backup-bundle upload, exact-version retrieval, backup/restore IAM separation, lifecycle/retention approval, and witnessed live recovery remain unimplemented and block acceptance of this architecture.
+
 ## Acceptance criteria
 
 This decision is accepted only when the accountable deployment/storage owner approves the two-bucket design, qualified counsel/security approve the retention and legal-hold semantics, the required implementation and tests are merged, and the exact staging buckets/keys/IAM policies pass witnessed live acceptance.
