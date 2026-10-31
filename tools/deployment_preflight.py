@@ -330,66 +330,13 @@ def inspect_environment(env=None, *, require_separate=False):
             inspect_database_path("COPILOT_CONTROL_DB", control)
             inspect_database_path("COPILOT_CORPUS_DB", corpus)
             passed.append("Separate control-plane, per-firm storage, and shared legal-corpus paths are configured.")
-        if env.get("COPILOT_DB", "").strip():
-            errors.append("COPILOT_DB must be unset when separate database paths are configured; remove the stale legacy path to avoid ambiguous deployment configuration.")
-    else:
-        if require_separate:
-            errors.append("Production/release preflight requires all three separate database paths; shared COPILOT_DB mode is not permitted.")
-        # Legacy compatibility mode is not approved for unrelated firms' confidential data.
-        warnings.append(
-            "This build is configured for one shared COPILOT_DB; do not store unrelated firms' "
-            "confidential matters until separate-database routing and isolation validation are complete."
-        )
-        raw_db = env.get("COPILOT_DB", "").strip()
-        if not raw_db:
-            errors.append("Set all three separate database paths for the target architecture; implicit shared-database startup is not allowed.")
-            db_path = Path("copilot.db")
-        else:
-            db_path = Path(raw_db).expanduser()
-            if not db_path.is_absolute():
-                warnings.append("COPILOT_DB is relative; production should use an explicit absolute path.")
-            else:
-                passed.append("COPILOT_DB is explicitly configured as an absolute path.")
-        parent = db_path.parent
-        if not parent.exists() or not parent.is_dir():
-            errors.append("The COPILOT_DB parent directory does not exist or is not a directory.")
-        elif not os.access(parent, os.W_OK | os.X_OK):
-            errors.append("The COPILOT_DB parent directory is not writable/searchable by this process.")
-        if db_path.is_symlink():
-            errors.append("COPILOT_DB must not be a symbolic link; configure the actual database file path.")
-        elif db_path.exists():
-            if not db_path.is_file():
-                errors.append("COPILOT_DB exists but is not a regular file.")
-            elif not os.access(db_path, os.R_OK | os.W_OK):
-                errors.append("COPILOT_DB exists but is not readable and writable by this process.")
-            else:
-                passed.append("The existing COPILOT_DB file is readable and writable.")
-            try:
-                mode = stat.S_IMODE(db_path.stat().st_mode)
-                if os.name == "posix" and mode & 0o077:
-                    warnings.append("COPILOT_DB permissions allow group/other access; review and restrict them.")
-            except OSError:
-                errors.append("Could not inspect COPILOT_DB file permissions.")
-        else:
-            warnings.append("COPILOT_DB does not exist yet; this check does not create or initialize it.")
-        if os.name == "posix":
-            for suffix in ("-wal", "-shm", "-journal"):
-                sidecar = Path(str(db_path) + suffix)
-                if sidecar.is_symlink():
-                    errors.append(f"SQLite sidecar {sidecar.name} must not be a symbolic link.")
-                    continue
-                if not sidecar.exists():
-                    continue
-                if not sidecar.is_file():
-                    errors.append(f"SQLite sidecar {sidecar.name} is not a regular file.")
-                    continue
-                try:
-                    sidecar_mode = stat.S_IMODE(sidecar.stat().st_mode)
-                    if sidecar_mode & 0o077:
-                        errors.append(f"SQLite sidecar {sidecar.name} permissions {sidecar_mode:04o} allow group/other access.")
-                except OSError:
-                    errors.append(f"Could not inspect SQLite sidecar {sidecar.name} permissions.")
 
+    else:
+        errors.append(
+            "All three profile-separated database paths are required; the shared COPILOT_DB runtime is retired."
+        )
+    if env.get("COPILOT_DB", "").strip():
+        errors.append("COPILOT_DB is retired and must be unset in every environment.")
     return passed, warnings, errors
 
 

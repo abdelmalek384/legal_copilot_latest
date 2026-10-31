@@ -163,8 +163,8 @@ if os.environ.get("COPILOT_DB", "").strip():
         "COPILOT_CONTROL_DB, COPILOT_TENANT_DB_ROOT, and COPILOT_CORPUS_DB."
     )
 
-# Never start production with the legacy shared-database compatibility path. The
-# explicit COPILOT_ENV switch keeps local development compatibility available.
+# The shared-database runtime is retired in every environment; production additionally
+# requires explicit control-plane, tenant-root, and legal-corpus paths.
 if _environment_mode in {"prod", "production"}:
     required_paths = ("COPILOT_CONTROL_DB", "COPILOT_TENANT_DB_ROOT", "COPILOT_CORPUS_DB")
     missing_paths = [name for name in required_paths if not os.environ.get(name, "").strip()]
