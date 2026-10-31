@@ -243,3 +243,15 @@ The issue 295 Amiri Press metadata already registered for Decisions 290/291 also
 **Decision 289/2025:** Law Hub (https://lawhub.info/eg/?p=17304) and EastLaws (https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/30-12-2025/no-289?id=5008502&type=1) provide secondary text/indexes. The secondary text sets eight hours of actual work per day or 48 hours per week in industrial establishments, excluding meal/rest periods, and subjects unusual/exceptional work to Law 14/2025 Article 121. Its Article 2 provides next-day commencement; EastLaws states Gazette publication 2025-12-30, making 2025-12-31 the candidate effective date. Applicability of Industrial Establishments Law 133/1961 and better individual/collective terms requires review.
 
 Neither decision has been compared with the official Gazette PDF. Both remain discovery-only, legal status unknown, source collection restricted pending explicit permission, commercial reuse not cleared and `search_eligible=false`.
+
+
+## Parent-law anchors for implementing-decision crosswalk (2026-10-31)
+
+The ETA-hosted Official Gazette PDF for Law 14/2025 was re-opened and its extracted text used to anchor the parent provisions separately from the implementing-decision secondary text. The text places Articles 117–120 on printed pp.52–53 (PDF indexes 50–51), Article 121 on printed p.53 (PDF index 51), Article 123 on printed p.54 (PDF index 52), Article 129 on printed p.56 (PDF index 54), and Article 188 on printed pp.76–77 (PDF indexes 74–75). These anchors support the statutory framework only; they do not authenticate the separate decisions 288–294 or substitute for page-image verification and complete decision comparison.
+
+- Decision 288/2025 maps to Law Articles 118–119 (rest periods and daily span).
+- Decision 289/2025 maps to Law Articles 117 and 121 (industrial actual-hours ceiling and exceptional overtime framework).
+- Decision 290/2025 maps to Law Articles 119 and 121 (intermittent-work daily span and overtime pay).
+- Decision 291/2025 maps to Law Articles 121 and 188 (exceptional overtime controls and the Social Consultation Council).
+- Decision 292/2025 maps to Law Articles 121 and 123 (ministerial maximums for excluded work categories and overtime pay).
+- Decision 294/2025 maps to Law Article 129 (paid holidays and alternative compensation).
