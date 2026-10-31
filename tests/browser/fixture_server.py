@@ -2,8 +2,7 @@
 from __future__ import annotations
 
 import json
-import os
-from pathlib import Path
+import secrets
 
 import uvicorn
 
@@ -11,18 +10,16 @@ import app
 from database_runtime import DatabaseRuntime
 
 
-PASSWORD = "Synthetic-Browser-Only-Passphrase-2026!"
-
-
 def bootstrap() -> None:
     """Create isolated databases and fixtures; never reads production paths or data."""
+    password = secrets.token_urlsafe(32)
     runtime = DatabaseRuntime.from_env()
     runtime.initialize()
     firm_a, _ = runtime.provision_firm("Synthetic Acceptance Firm A")
     firm_b, _ = runtime.provision_firm("Synthetic Acceptance Firm B")
 
     owner_a = runtime.create_initial_firm_owner(
-        firm_a, "Synthetic Firm A Owner", "owner-a@example.test", app.hash_pw(PASSWORD)
+        firm_a, "Synthetic Firm A Owner", "owner-a@example.test", app.hash_pw(password)
     )
     owner_b = runtime.create_initial_firm_owner(
         firm_b, "Synthetic Firm B Owner", "owner-b@example.test", app.hash_pw(PASSWORD)
@@ -76,21 +73,16 @@ def bootstrap() -> None:
     )
     corpus.commit()
 
-    Path(os.environ["BROWSER_FIXTURE_STATE"]).write_text(
-        json.dumps(
-            {
-                "owner_a_email": "owner-a@example.test",
-                "owner_b_email": "owner-b@example.test",
-                "reviewer_email": "reviewer@example.test",
-                "password": PASSWORD,
-                "firm_a_id": firm_a,
-                "firm_b_id": firm_b,
-                "firm_b_case_id": case_b_id,
-            },
-            sort_keys=True,
-        ),
-        encoding="utf-8",
-    )
+    state = {
+        "owner_a_email": "owner-a@example.test",
+        "owner_b_email": "owner-b@example.test",
+        "reviewer_email": "reviewer@example.test",
+        "password": password,
+        "firm_a_id": firm_a,
+        "firm_b_id": firm_b,
+        "firm_b_case_id": case_b_id,
+    }
+    print("BROWSER_FIXTURE_STATE=" + json.dumps(state, sort_keys=True), flush=True)
     runtime.close_current_thread()
 
 
