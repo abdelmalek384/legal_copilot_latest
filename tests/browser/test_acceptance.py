@@ -1,6 +1,7 @@
 """Real Chromium acceptance tests using synthetic disposable firm/corpus data only."""
 from __future__ import annotations
 
+import io
 import os
 import secrets
 import socket
@@ -9,6 +10,8 @@ import threading
 import time
 import faulthandler
 import unittest
+import zipfile
+from xml.sax.saxutils import escape
 import urllib.error
 import urllib.request
 from pathlib import Path
@@ -24,6 +27,40 @@ def _free_port() -> int:
     with socket.socket() as sock:
         sock.bind(("127.0.0.1", 0))
         return int(sock.getsockname()[1])
+
+
+def _synthetic_docx_bytes(text: str) -> bytes:
+    """Build a minimal valid DOCX containing only synthetic test text."""
+    buffer = io.BytesIO()
+    document_xml = (
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+        '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">'
+        '<w:body><w:p><w:r><w:t xml:space="preserve">'
+        + escape(text)
+        + '</w:t></w:r></w:p><w:sectPr/></w:body></w:document>'
+    )
+    content_types = (
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+        '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">'
+        '<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>'
+        '<Default Extension="xml" ContentType="application/xml"/>'
+        '<Override PartName="/word/document.xml" '
+        'ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>'
+        '</Types>'
+    )
+    relationships = (
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+        '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'
+        '<Relationship Id="rId1" '
+        'Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" '
+        'Target="word/document.xml"/>'
+        '</Relationships>'
+    )
+    with zipfile.ZipFile(buffer, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+        archive.writestr("[Content_Types].xml", content_types)
+        archive.writestr("_rels/.rels", relationships)
+        archive.writestr("word/document.xml", document_xml)
+    return buffer.getvalue()
 
 
 class BrowserAcceptanceTests(unittest.TestCase):
@@ -378,7 +415,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.context.clear_cookies()
         self.login(self.state["reviewer_email"])
         self.page.get_by_role("button", name="تغطية المجموعة القانونية").click()
-        self.page.get_by_text("تغطية المجموعة القانونية").wait_for(timeout=10000)
+        self.page.get_by_role("heading", name="تغطية المجموعة القانونية").wait_for(timeout=10000)
 
         self.page.get_by_text("الأدوات القانونية المسجلة", exact=True).click()
         search = self.page.get_by_placeholder("ابحث بالعنوان أو المعرف أو الجهة")
@@ -405,13 +442,16 @@ class BrowserAcceptanceTests(unittest.TestCase):
         case_id = case_response.json()["id"]
 
         sentinel = "FIRM_DOCUMENT_ONLY_SENTINEL_4B91"
+        synthetic_docx = _synthetic_docx_bytes(
+            sentinel + " Synthetic matter-only passage for browser scope testing."
+        )
         upload = self.page.request.post(
             self.base_url + f"/cases/{case_id}/upload",
             multipart={
                 "file": {
-                    "name": "synthetic-matter-fixture.txt",
-                    "mimeType": "text/plain",
-                    "buffer": (sentinel + " Synthetic matter-only passage for browser scope testing.").encode(),
+                    "name": "synthetic-matter-fixture.docx",
+                    "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                    "buffer": synthetic_docx,
                 }
             },
             headers=self.csrf_headers(),
