@@ -25,7 +25,7 @@ The current source of truth is [the weighted whole-project completion scorecard]
 - **#987:** merged Decision 250 Table 24 source-rights metadata for Riwaq and Law Hub. The secondary transcription remains link-out only; no row-level content was imported. Law Hub's terms restrict profiting by republishing its free site materials.
 - **#989:** merged metadata-only inventory entries for Labour Decisions 248–252/2026, source-rights records and a secondary-source matrix. Both the 6.13 MB Gazette PDF and 55-byte item-specific license.txt are request-copy restricted; no original bytes, licence text or hash were obtained. All five instruments remain discovery-only.
 - **#990:** merged same-firm nonmember task-claim/task-completion authorization regression coverage; unauthorized actions return 404 and leave task state unchanged. Full Tests, CodeQL and dependency audit passed.
-- **#782 and #971:** closed as superseded after reconciliation; no unique legal evidence was discarded. #782's remaining seven differently named Articles 258–265 cards were semantic duplicates already represented in main.
+- **#782 and #971:** closed as superseded after card-ID reconciliation; no unique canonical card IDs were discarded. #782's remaining seven differently named Articles 258–265 cards were semantic duplicates already represented in main.
 
 ### Current non-database priorities
 
