@@ -24,7 +24,7 @@ PYTHONPATH=. python tools/reminder_healthcheck.py --now 2026-10-30T14:00:00+00:0
 PYTHONPATH=. python tools/reminder_healthcheck.py --out /var/lib/legal-copilot/reports/reminder-health.json
 ```
 
-The report contains only firm IDs, status counts, stale queue counts, expired/missing sender lease counts, and sanitized finding codes. Do not place the report under database storage.
+The report contains only firm IDs, status counts, stale queue counts, expired/missing sender lease counts, and sanitized finding codes. On POSIX, `--out` creates a new file with mode `0600`; it refuses to overwrite an existing file or follow a symbolic link. Choose a protected parent directory and retain the report briefly. Do not place the report under database storage. Windows does not apply POSIX mode bits; use an ACL-restricted directory there.
 
 ## Exit codes and alert policy
 

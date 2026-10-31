@@ -1,10 +1,12 @@
+import os
+import stat
 import tempfile
 import unittest
 from datetime import datetime, timezone
 from pathlib import Path
 
 from database_runtime import DatabaseRuntime
-from tools.reminder_healthcheck import inspect_health
+from tools.reminder_healthcheck import _write_report, inspect_health
 
 
 class ReminderHealthcheckTests(unittest.TestCase):
@@ -135,6 +137,28 @@ class ReminderHealthcheckTests(unittest.TestCase):
         finding = next(item for item in report["findings"] if item["firm_id"] == second_id)
         self.assertEqual(finding["code"], "tenant_outbox_unavailable")
         self.assertEqual(finding["severity"], "critical")
+
+    def test_report_file_is_private_and_never_overwrites_existing_path(self):
+        destination = self.root / "reports" / "health.json"
+        report = self._report()
+        _write_report(destination, report, self.runtime)
+        self.assertTrue(destination.read_text(encoding="utf-8").endswith("\n"))
+        if os.name == "posix":
+            self.assertEqual(stat.S_IMODE(destination.stat().st_mode), 0o600)
+        with self.assertRaises(FileExistsError):
+            _write_report(destination, report, self.runtime)
+
+    def test_report_refuses_symlink_output(self):
+        target = self.root / "outside.json"
+        target.write_text("do not replace", encoding="utf-8")
+        link = self.root / "report-link.json"
+        try:
+            link.symlink_to(target)
+        except (NotImplementedError, OSError):
+            self.skipTest("symlinks are unavailable on this platform")
+        with self.assertRaises(RuntimeError):
+            _write_report(link, self._report(), self.runtime)
+        self.assertEqual(target.read_text(encoding="utf-8"), "do not replace")
 
     def test_invalid_threshold_and_naive_time_are_rejected(self):
         with self.assertRaises(ValueError):
