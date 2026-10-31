@@ -112,14 +112,26 @@ def review_queue(db_path: Path) -> dict:
               (row["collection_permission"] not in ("allowed","allowed_limited"),"source_collection_permission_not_confirmed"),
               (commercial_reuse_issue(row["commercial_reuse_permission"]) is not None,commercial_reuse_issue(row["commercial_reuse_permission"]))]
             reasons.extend(label for missing,label in checks if missing)
+            # Match runtime eligibility: only the latest event for each review type
+            # controls whether that review currently passes. Historical passes remain
+            # visible in review_events but cannot override a later failure/correction.
+            latest_by_type = {}
+            for event in events:  # events are ordered by reviewed_at DESC, review_event_id DESC
+                latest_by_type.setdefault(event["review_type"], event)
             for rt in review_types:
-                matching = [e for e in events if e["review_type"] == rt and e["outcome"] == "pass" and valid_evidence_url(e["evidence_url"])]
-                if not matching:
+                latest = latest_by_type.get(rt)
+                if (
+                    latest is None
+                    or latest["outcome"] != "pass"
+                    or not valid_evidence_url(latest["evidence_url"])
+                ):
                     reasons.append("review_evidence_missing:"+rt)
-                elif rt == "lawyer_approval" and not any(
-                    isinstance(e.get("notes"), str) and re.search(
-                        r"\[qualified_egyptian_counsel_attested:user_id=[1-9][0-9]*\]", e["notes"]
-                    ) for e in matching
+                    continue
+                if rt == "lawyer_approval" and not (
+                    isinstance(latest.get("notes"), str) and re.search(
+                        r"\[qualified_egyptian_counsel_attested:user_id=[1-9][0-9]*\]",
+                        latest["notes"],
+                    )
                 ):
                     reasons.append("lawyer_approval_counsel_attestation_missing")
             if reasons:
