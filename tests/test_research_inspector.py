@@ -7,7 +7,7 @@ sys.path.insert(0, str(ROOT))
 
 from tools.research_inspector import (
     STATUS_METADATA_ONLY, STATUS_REVIEW, STATUS_USER_SUPPLIED, STATUS_VERIFIED,
-    citation_text, research_memo, source_status,
+    citation_text, research_memo, source_permission_evidence_ready, source_status,
 )
 
 
