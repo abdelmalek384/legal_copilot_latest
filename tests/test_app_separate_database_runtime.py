@@ -2882,6 +2882,16 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         # The initial owner is a firm administrator, not a platform reviewer.
         denied = self._mutate("post", "/law/import", json=payload, headers=headers)
         self.assertEqual(denied.status_code, 403, denied.text)
+
+        # The retired shared-database mode must not restore the former admin/token bypass.
+        with patch.object(app, "_separate_runtime_enabled", return_value=False):
+            with self.assertRaises(HTTPException) as legacy_denied:
+                app.law_import(
+                    [app.LawRow(**payload[0])],
+                    self.admin_token,
+                    {"id": self.user_id, "role": "admin", "email": "owner@example.test"},
+                )
+        self.assertEqual(legacy_denied.exception.status_code, 403)
         corpus = self.runtime.legal_corpus_connection()
         self.assertEqual(
             corpus.execute(
