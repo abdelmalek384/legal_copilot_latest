@@ -99,6 +99,9 @@ class CaseDeadlineEstimateRouteTests(unittest.TestCase):
         self.assertTrue(result["calculation_assumptions_ar"])
         self.assertIn("تاريخ بدء الميعاد يحتاج إلى مراجعة محامٍ", result["starts_from_ar"])
         self.assertIsNone(result["rule_source_article"])
+        case_after_preview = self.client.get(f"/cases/{self.case_id}")
+        self.assertEqual(case_after_preview.status_code, 200, case_after_preview.text)
+        self.assertEqual(case_after_preview.json()["deadlines"], [], "preview must never create a saved deadline")
 
     def test_unknown_rule_and_impossible_trigger_are_rejected(self):
         unknown = self.client.get(
