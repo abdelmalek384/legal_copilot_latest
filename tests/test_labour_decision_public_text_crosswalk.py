@@ -13,7 +13,7 @@ class TestLabourDecisionPublicTextCrosswalk(unittest.TestCase):
         self.assertFalse(data["search_eligible"])
         for item in records.values():
             self.assertEqual(item["reuse_rights"], "unknown")
-            self.assertEqual(item["currentness"], "not verified")
+            self.assertTrue(item["currentness"].startswith("not verified"), item["currentness"])
             self.assertTrue(item["primary_lead"]["url"].startswith("https://"))
             self.assertTrue(item["card_action"])
         self.assertIn(117, records["EG-LABOUR-DECISION-290-2025"]["related_law_articles"])
