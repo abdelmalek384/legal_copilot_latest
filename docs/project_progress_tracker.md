@@ -38,6 +38,8 @@ The current source of truth is [the weighted whole-project completion scorecard]
 - **#1066:** merged the qualified-counsel approval gate. Passing lawyer-approval events require an authenticated account ID from the operator-managed allowlist; the marker gates normal/exact retrieval and is checked by provenance, corpus audit and reviewer queue. Full Tests, CodeQL, dependency audit, non-database safety regression, and amd64/arm64 container builds passed. This is operator attestation, not independent credential verification; no primary-source legal material was promoted.
 - **#1067:** merged the matching offline source-to-release validator gate. A passing candidate lawyer-approval record must carry the same runtime marker and its positive account ID must match `reviewer_id`. Missing/mismatched marker regressions passed Tests, CodeQL, dependency audit and non-database safety regression. No legal source was promoted.
 - **#1065:** merged the refreshed project progress tracker and active release-gate record.
+- **#1070:** corrected the Settings release warning in Arabic and English to describe the remaining production acceptance gates without falsely stating that tenant isolation is unimplemented.
+- **#1071:** aligned offline counsel-marker ID validation with the runtime positive signed-64-bit allowlist boundary; malformed/out-of-range marker regressions passed all required CI.
 
 
 ### 31 October live follow-up — additional merged work and active gates
@@ -75,7 +77,7 @@ The weighted scorecard has now been recalculated to **49.20/100** after #1066 an
 
 - **#1057:** browser acceptance harness remains open/draft. Its synthetic verified-corpus fixture now includes the runtime counsel-attestation marker required after #1066. The corrected head still needs a definitive Chromium acceptance result; do not count browser acceptance complete.
 - **#840:** remains draft/open; Decisions 248–252 and Table 24 source comparison remain discovery-only pending lawful original Gazette access and rights review.
-- **#1065:** merged after its refreshed Tests, CodeQL and dependency audit all passed.
+- **#1069:** merged the scorecard/tracker reconciliation after Tests, CodeQL and dependency audit passed. This is not an open PR.
 
 ### Current non-database priorities
 

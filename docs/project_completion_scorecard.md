@@ -118,3 +118,8 @@ The product cannot be called production-ready or legally approved until all appl
 
 - **PR #1067 merged:** the metadata-only legal source-to-release validator now requires each passing `lawyer_approval` record to contain the runtime counsel-allowlist marker and requires the marker's positive platform account ID to match `reviewer_id`. Regressions cover missing markers and mismatched account IDs. Tests, CodeQL, dependency audit and non-database safety regression passed on the exact PR head before merge.
 - **Score recalculation:** source-to-release governance moves from 7% to 8%, and automated testing/reliability from 67% to 68%. Weighted technical completion moves from 48.85 to **49.20/100** (up 0.35 points; rounded display remains 49%). No primary-source legal text was newly verified or promoted; verified corpus volume remains unchanged at 6%, and final Egyptian-counsel acceptance remains 0%.
+
+## Additional merged hardening — 2026-10-31
+
+- **PR #1071 merged:** the offline counsel-marker validator now applies the runtime allowlist's positive signed-64-bit account-ID boundary. It rejects values above the maximum and arbitrarily long marker strings; tests cover the maximum valid ID, the first invalid ID, and a 5,000-digit token. This is additional validator hardening and does not change the weighted score or verified-corpus volume.
+- **PR #1070 merged:** corrected the bilingual Settings warning. It no longer says multi-firm isolation is unimplemented; it accurately states that public registration and production confidential-matter use remain disabled pending production tenant-isolation tests, storage/recovery controls, retention policy, and independent security review. Copy-only; no access-control setting was changed.
