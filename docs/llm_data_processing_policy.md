@@ -14,7 +14,7 @@ The model integration is generic. It does not bundle a model or choose a vendor.
 - `LLM_DATA_PROCESSING_APPROVED`: must equal `1` before any prompt is transmitted.
 - `LLM_FIRM_DATA_PROCESSING_APPROVED`: must equal `1` before any retrieved firm/matter document passage can be sent in a prompt. This separate gate applies even when general LLM processing is approved.
 
-If `LLM_URL` is unset, or the general approval flag is absent or has any value other than `1`, the model call is skipped and the app remains in sources-only mode. If retrieved passages include matter-file content, the separate firm-data approval must also equal `1`; otherwise the app returns the retrieved sources without a generated answer. This gate is intentionally fail-closed and does not itself establish consent, provider compliance, tenant isolation, or legal privilege protection.
+If `LLM_URL` is unset, or the general approval flag is absent or has any value other than `1`, the model call is skipped and the app remains in sources-only mode. Provider responses are read with a strict 2 MiB maximum (including JSON framing); oversized, invalid UTF-8/JSON, or malformed chat-completion payloads fail closed and the app falls back to sources-only output. If retrieved passages include matter-file content, the separate firm-data approval must also equal `1`; otherwise the app returns the retrieved sources without a generated answer. This gate is intentionally fail-closed and does not itself establish consent, provider compliance, tenant isolation, or legal privilege protection.
 
 ## Before setting the approval flag
 
