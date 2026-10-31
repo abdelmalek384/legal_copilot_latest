@@ -809,6 +809,26 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
       "required_next_action": "Use as a manual discovery/currentness link only. Re-open through ordinary authorized browser access, review terms, and compare the complete Decision 249/2026 against the original Gazette. Do not treat the clarification as operative decision text, a formal amendment, or reuse permission."
+    },
+    {
+      "source_id": "EG-NEA",
+      "authority": "National Elections Authority of Egypt",
+      "source_page": "https://www.elections.eg/digital-library-laws",
+      "material_types": [
+        "constitution",
+        "election laws",
+        "official legal publications"
+      ],
+      "access_status": "official_law_catalogue_and_63_page_constitution_pdf_locator_observed; terms_not_reviewed",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "The official National Elections Authority digital-library page identifies the Constitution as the January 2014 Constitution amended by the 2019 referendum, links to a 63-page PDF at https://www.elections.eg/images/pdfs/laws/Constitution_2014.pdf, and displays the footer 'All rights reserved to the National Elections Authority'. This is a rights notice, not a licence. No permission for local archiving, text extraction, indexing, commercial use, excerpt display or redistribution was established.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "one linked 63-page Constitution PDF observed; bulk/API access not established",
+      "required_next_action": "Obtain written permission for local archiving, Arabic extraction, indexing, commercial use, excerpt display and redistribution. Obtain PDF bytes/hash only through authorized access; compare against the original 2014 and 2019 Official Gazette pages, confirm the precise amendment issue/date and all post-2019 amendments, and obtain qualified Egyptian-counsel review. Keep collection and commercial reuse permissions unknown until affirmative evidence is recorded.",
+      "official_pdf_url": "https://www.elections.eg/images/pdfs/laws/Constitution_2014.pdf",
+      "access_evidence": "On 2026-10-31 the official NEA digital-library page was opened and its Constitution link followed to the official-hosted 63-page PDF. The catalogue description explicitly identifies the 2014 Constitution as amended by the 2019 referendum. No PDF bytes or SHA-256 were stored; no Gazette-page comparison, later-amendment/currentness review, or permission review was completed. The NEA page footer states all rights reserved."
     }
   ]
 }

@@ -130,6 +130,19 @@
       "terms_url": null,
       "terms_checked_on": null,
       "permission_evidence": null
+    },
+    {
+      "source_id": "EG-NEA",
+      "authority": "National Elections Authority of Egypt",
+      "source_page": "https://www.elections.eg/digital-library-laws",
+      "access_status": "official_law_catalogue_and_63_page_constitution_pdf_locator_observed; terms_not_reviewed",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": "The official National Elections Authority digital-library page identifies the Constitution as the January 2014 Constitution amended by the 2019 referendum, links to a 63-page PDF at https://www.elections.eg/images/pdfs/laws/Constitution_2014.pdf, and displays the footer 'All rights reserved to the National Elections Authority'. This is a rights notice, not a licence. No permission for local archiving, text extraction, indexing, commercial use, excerpt display or redistribution was established.",
+      "official_pdf_url": "https://www.elections.eg/images/pdfs/laws/Constitution_2014.pdf",
+      "access_evidence": "On 2026-10-31 the official NEA digital-library page was opened and its Constitution link followed to the official-hosted 63-page PDF. The catalogue description explicitly identifies the 2014 Constitution as amended by the 2019 referendum. No PDF bytes or SHA-256 were stored; no Gazette-page comparison, later-amendment/currentness review, or permission review was completed. The NEA page footer states all rights reserved."
     }
   ],
   "documents": [
@@ -142,7 +155,7 @@
       "source_id": "EG-PRESIDENCY",
       "language": "ar",
       "candidate_status": "discovery_only",
-      "notes": "The Presidency-hosted 2019 PDF locator is recorded in source EG-PRESIDENCY. Its front matter identifies the amended Constitution dated April 2019 and cites Gazette issue 14 (supplement), 19 January 2014. It also includes an NEA referendum-result notice citing issue 16 repeated (w), 23 April 2019; do not confuse that notice with the amendment instrument's publication. Secondary Eastlaws metadata points to the amendment text in issue 15 repeated (c), 17 April 2019, effective 23 April 2019; verify this against the official Gazette original. Discovery-only: no original PDF bytes/hash stored, no full Gazette comparison, no later-amendment/currentness review after 2019, and no collection/commercial-reuse permission established. Do not promote to authoritative retrieval."
+      "notes": "The Presidency-hosted 2019 PDF locator is recorded in source EG-PRESIDENCY. Its front matter identifies the amended Constitution dated April 2019 and cites Gazette issue 14 (supplement), 19 January 2014. It also includes an NEA referendum-result notice citing issue 16 repeated (w), 23 April 2019; do not confuse that notice with the amendment instrument's publication. Secondary Eastlaws metadata points to the amendment text in issue 15 repeated (c), 17 April 2019, effective 23 April 2019; verify this against the official Gazette original. Discovery-only: no original PDF bytes/hash stored, no full Gazette comparison, no later-amendment/currentness review after 2019, and no collection/commercial-reuse permission established. Do not promote to authoritative retrieval. A second official locator was found at the National Elections Authority digital library: https://www.elections.eg/digital-library-laws, linking to a 63-page Constitution PDF at https://www.elections.eg/images/pdfs/laws/Constitution_2014.pdf. Its catalogue description calls this the January 2014 Constitution amended by the 2019 referendum. The NEA page states all rights reserved; collection/commercial reuse permission remain unknown. This is independent official access evidence, not a Gazette comparison or currentness verification."
     },
     {
       "document_id": "EG-CIVIL-CODE-131-1948",
