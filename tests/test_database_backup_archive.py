@@ -136,6 +136,39 @@ class RecoveryArchiveTransportTests(unittest.TestCase):
                 self.s3, self.kms, locator, self.root / "wrong-key.dbundle.enc", **self.config
             )
 
+    def test_archive_upload_cli_verifies_bundle_before_creating_aws_clients(self):
+        from types import SimpleNamespace
+        from unittest.mock import patch
+        import manage
+
+        args = SimpleNamespace(file=str(self.bundle))
+        with (
+            patch.object(manage, "_backup_fernet", return_value=object()),
+            patch.object(manage, "verify_backup_bundle", return_value={"verified": True}) as verify,
+            patch.object(manage, "_recovery_archive_clients", return_value=(self.s3, self.kms, self.config["bucket"], self.config["kms_key_id"])) as clients,
+            patch.object(manage, "upload_encrypted_bundle", return_value={"version_id": "v1"}) as upload,
+            patch("builtins.print"),
+        ):
+            manage.archive_upload_tenancy(args)
+        verify.assert_called_once()
+        clients.assert_called_once()
+        upload.assert_called_once()
+
+    def test_archive_upload_cli_refuses_unverified_bundle_before_aws_access(self):
+        from types import SimpleNamespace
+        from unittest.mock import patch
+        import manage
+
+        args = SimpleNamespace(file=str(self.bundle))
+        with (
+            patch.object(manage, "_backup_fernet", return_value=object()),
+            patch.object(manage, "verify_backup_bundle", return_value={"verified": False}),
+            patch.object(manage, "_recovery_archive_clients") as clients,
+        ):
+            with self.assertRaises(SystemExit):
+                manage.archive_upload_tenancy(args)
+        clients.assert_not_called()
+
     def test_existing_destination_is_never_overwritten(self):
         locator = self.upload()
         target = self.root / "existing.dbundle.enc"
