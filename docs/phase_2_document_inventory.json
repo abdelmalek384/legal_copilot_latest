@@ -111,7 +111,6 @@
       "permission": "unknown",
       "next_action": "Use public catalogue metadata only. Classify this as a third-party Ibrachy & Dermarkar repository record, not an official Amiri Press-hosted source. Retain the legacy source_id only for referential compatibility; it does not assert IDSC operation. Do not bypass either request-copy restriction. No copy request has been submitted. Only if separately authorized through an ordinary route, obtain the original PDF and item-specific license, inspect the license scope before any collection, extraction, indexing, excerpt display or commercial use, and compute the original-file SHA-256 after lawful receipt.",
       "repository_brand": "Ibrachy & Dermarkar Repository",
-      "repository_homepage_url": "https://dspace.id.com.eg/",
       "publisher_metadata": "المطابع الاميرية"
     },
     "EG-ALMASDAR-SECONDARY-LEGAL-NEWS": {
