@@ -108,6 +108,13 @@ def _assumed_role_name(arn: object) -> str | None:
     return match.group(1).rsplit("/", 1)[-1] if match else None
 
 
+def _sanitize_caller_arn(arn: object) -> object:
+    if not isinstance(arn, str):
+        return arn
+    match = re.fullmatch(r"(arn:[^:]+:sts::[0-9]{12}:assumed-role/.+)/[^/]+", arn)
+    return f"{match.group(1)}/[session]" if match else arn
+
+
 def _policy_summary(document: object) -> dict[str, Any]:
     policy = _policy_document(document)
     statements = _statements(policy)
@@ -167,12 +174,13 @@ def collect_live_evidence(s3_client, kms_client, sts_client, iam_client, *, buck
         checks.append({"name": name, "passed": bool(passed), "detail": detail})
 
     caller: dict[str, Any] = {}
+    raw_caller_arn = None
     try:
         identity = sts_client.get_caller_identity()
+        raw_caller_arn = identity.get("Arn")
         caller = {
             "account": identity.get("Account"),
-            "arn": identity.get("Arn"),
-            "user_id": identity.get("UserId"),
+            "arn": _sanitize_caller_arn(raw_caller_arn),
         }
         check("caller_identity", bool(caller["account"] and caller["arn"]), "current AWS principal identified")
     except Exception:
@@ -271,7 +279,7 @@ def collect_live_evidence(s3_client, kms_client, sts_client, iam_client, *, buck
     except Exception:
         check("kms_grants_readable", False, "KMS grants could not be enumerated")
 
-    role_name = _assumed_role_name(caller.get("arn"))
+    role_name = _assumed_role_name(raw_caller_arn)
     role_evidence: dict[str, Any] = {"role_name": role_name}
     if role_name:
         try:
@@ -314,7 +322,8 @@ def collect_live_evidence(s3_client, kms_client, sts_client, iam_client, *, buck
             check(
                 "caller_role_inventory",
                 bool(role.get("Arn") and all(item["sha256"] for item in attached_evidence + inline_evidence)
-                     and trust_evidence["sha256"]),
+                     and trust_evidence["sha256"]
+                     and (boundary_evidence is None or boundary_evidence["sha256"])),
                 "current assumed role, trust policy, managed policy documents, inline policy documents, and boundary were inventoried",
             )
         except Exception:
@@ -363,8 +372,9 @@ def main() -> int:
         parser.error("COPILOT_S3_BUCKET, COPILOT_S3_REGION, and COPILOT_S3_KMS_KEY_ID are required")
     try:
         import boto3
+        endpoint = os.environ.get("COPILOT_S3_ENDPOINT_URL", "").strip() or None
         result = collect_live_evidence(
-            boto3.client("s3", region_name=region),
+            boto3.client("s3", region_name=region, endpoint_url=endpoint),
             boto3.client("kms", region_name=region),
             boto3.client("sts"),
             boto3.client("iam"),
