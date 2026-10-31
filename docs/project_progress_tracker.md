@@ -5,12 +5,12 @@
 
 ## Overall status
 
-See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **49.20/100 technical completion** (up 0.70 points from 48.50; rounds to 49%) as of 2026-10-31. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
+See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **49.33/100 technical completion** (up 0.13 points from 49.20; rounds to 49%) as of 2026-10-31. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
 
 
 ## Latest whole-product checkpoint — 2026-10-31
 
-The current source of truth is [the weighted whole-project completion scorecard](project_completion_scorecard.md): **49.20/100 technical completion** (up 0.70 points from 48.50; rounds to 49%). Qualified Egyptian-counsel acceptance remains **0% / not started** and is still a mandatory post-build release gate.
+The current source of truth is [the weighted whole-project completion scorecard](project_completion_scorecard.md): **49.33/100 technical completion** (up 0.13 points from 49.20; rounds to 49%). Qualified Egyptian-counsel acceptance remains **0% / not started** and is still a mandatory post-build release gate.
 
 ### Merged since the 30 October checkpoint and 31 October follow-up
 
@@ -40,11 +40,16 @@ The current source of truth is [the weighted whole-project completion scorecard]
 - **#1065:** merged the refreshed project progress tracker and active release-gate record.
 - **#1070:** corrected the Settings release warning in Arabic and English to describe the remaining production acceptance gates without falsely stating that tenant isolation is unimplemented.
 - **#1071:** aligned offline counsel-marker ID validation with the runtime positive signed-64-bit allowlist boundary; malformed/out-of-range marker regressions passed all required CI.
+- **#1072:** refreshed the scorecard/tracker after merged UI and validator hardening.
+- **#1073:** recorded the Presidency-hosted 2019 Constitution PDF locator and all-rights-reserved notice; rights, original bytes/hash, Gazette comparison and post-2019 currentness remain unresolved.
+- **#1074:** distinguished the referendum-results Gazette reference from the amendment-instrument publication lead; the latter remains secondary and unverified.
+- **#1075:** made the legal-source review queue honor the latest review event per type; stale passes no longer override later failures or unattested counsel approvals.
+- **#1077:** aligned corpus-coverage missing-review metrics with the runtime latest-event eligibility gate; regression tests cover failure, unattested approval and restoration by a later valid pass.
 
 
 ### 31 October live follow-up — additional merged work and active gates
 
-The weighted scorecard has now been recalculated to **49.20/100** after #1066 and #1067 met their merged acceptance criteria. This is a technical-governance increase; verified primary-source corpus volume remains 6%, and counsel acceptance remains 0%.
+The weighted scorecard has now been recalculated to **49.33/100** after #1066 and #1067 met their merged acceptance criteria. This is a technical-governance increase; verified primary-source corpus volume remains 6%, and counsel acceptance remains 0%.
 
 **Merged after the preceding checkpoint:**
 
@@ -58,7 +63,8 @@ The weighted scorecard has now been recalculated to **49.20/100** after #1066 an
 
 **Open PRs — not complete until merged and all required checks pass:**
 
-- **#1057:** real-browser acceptance harness. I corrected its synthetic verified-corpus fixture to include the runtime counsel-attestation marker introduced by #1066. The previous Chromium run was still executing on the prior head; a definitive result for the corrected head is not yet recorded. Manual lawyer, device, screen-reader and accessibility acceptance remain separate.
+- **#1057:** real-browser acceptance harness with stage diagnostics and periodic Python stack dumps. The latest Chromium job was cancelled while the test command was running; no browser-test pass/fail result was produced. Do not count browser acceptance complete.
+- **#1068:** current-main rebase of the browser harness. Tests, CodeQL and dependency audit passed, but its Chromium job was also cancelled; it remains draft until a real browser run passes. Manual lawyer, device, screen-reader and accessibility acceptance remain separate.
 
 **Superseded PR:**
 
