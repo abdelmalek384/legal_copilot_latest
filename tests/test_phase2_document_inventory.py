@@ -38,6 +38,10 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         self.assertTrue(all(d["legal_status"] in {"unknown", "not_applicable"} for d in self.inventory["documents"]))
         register = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
         register_ids = {source["source_id"] for source in register["sources"]}
+        self.assertIn("EG-ALMASDAR-SECONDARY-LEGAL-NEWS", register_ids)
+        self.assertIn("EG-LAW-HUB-SECONDARY-LEGAL-ARCHIVE", register_ids)
+        self.assertIn("EG-ALMASDAR-SECONDARY-LEGAL-NEWS", self.inventory["source_ids"])
+        self.assertIn("EG-LAW-HUB-SECONDARY-LEGAL-ARCHIVE", self.inventory["source_ids"])
         self.assertIn("EG-MINISTRY-LABOUR-LAWS", register_ids)
         self.assertIn("EG-MINISTRY-LABOUR-LAWS", self.inventory["source_ids"])
         self.assertNotIn("EG-MINISTRY-OF-LABOUR", self.inventory["source_ids"])
@@ -85,6 +89,12 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
                 252: "almasdar.com",
             }
             self.assertTrue(any(secondary_hosts[number] in item["url"] for item in record["source_urls"]))
+            expected_secondary_id = (
+                "EG-LAW-HUB-SECONDARY-LEGAL-ARCHIVE"
+                if number == 248
+                else "EG-ALMASDAR-SECONDARY-LEGAL-NEWS"
+            )
+            self.assertTrue(any(item.get("source_id") == expected_secondary_id for item in record["source_urls"]))
             self.assertIn("not authenticated", record["notes"])
             self.assertIn("request-copy restricted", record["notes"])
         self.assertTrue(any(a["id"] == "ACT-LABOUR-OSH-DECISIONS-248-252-VERIFY" for a in self.inventory["next_actions"]))
