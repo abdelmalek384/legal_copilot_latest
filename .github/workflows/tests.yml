@@ -66,6 +66,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_database_recovery_drill.py
       - name: Test S3/KMS storage preflight
         run: PYTHONPATH=. python tests/test_s3_storage_preflight.py
+      - name: Test sanitized live S3 acceptance evidence collector
+        run: PYTHONPATH=. python tests/test_s3_live_acceptance_evidence.py
       - name: Test S3 original-file storage adapter
         run: PYTHONPATH=. python tests/test_s3_original_file_storage.py
       - name: Test restored original-file S3 import
