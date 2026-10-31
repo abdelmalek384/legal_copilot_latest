@@ -4,7 +4,14 @@ from __future__ import annotations
 import argparse, json, os, re, sqlite3
 from datetime import datetime, timezone
 from pathlib import Path
+import sys
 from urllib.parse import urlparse
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from tools.research_inspector import has_current_review_evidence
 
 def tables(db):
     return {r[0] for r in db.execute("SELECT name FROM sqlite_master WHERE type='table'")}
@@ -138,6 +145,12 @@ def review_queue(db_path: Path) -> dict:
                     )
                 ):
                     reasons.append("lawyer_approval_counsel_attestation_missing")
+            if not has_current_review_evidence({"review_evidence": events}) and not any(
+                reason.startswith("review_evidence_missing:")
+                or reason == "lawyer_approval_counsel_attestation_missing"
+                for reason in reasons
+            ):
+                reasons.append("review_event_history_invalid_or_future")
             if reasons:
                 report["records"].append({**row,"review_reasons":reasons,"review_events":events,
                   "next_action":"Inspect the official instrument and evidence; record scoped review events and leave unresolved items unresolved."})
