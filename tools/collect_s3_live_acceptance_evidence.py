@@ -361,10 +361,10 @@ def collect_live_evidence(s3_client, kms_client, sts_client, iam_client, *, buck
     }
 
 
-def main() -> int:
+def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--json", action="store_true", help="Emit sanitized JSON evidence")
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
     bucket = os.environ.get("COPILOT_S3_BUCKET", "").strip()
     region = os.environ.get("COPILOT_S3_REGION", "").strip()
     key_id = os.environ.get("COPILOT_S3_KMS_KEY_ID", "").strip()
