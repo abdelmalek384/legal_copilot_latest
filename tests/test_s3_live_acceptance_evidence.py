@@ -1,4 +1,10 @@
+import io
+import json
+import os
 import unittest
+from contextlib import redirect_stdout
+from types import SimpleNamespace
+from unittest.mock import patch
 
 from tools.collect_s3_live_acceptance_evidence import collect_live_evidence
 
@@ -83,6 +89,40 @@ class S3LiveEvidenceTests(unittest.TestCase):
             bucket="private-originals", key_id="alias/legal-originals",
         )
         self.assertIn("caller_key_account_match", report["failed_checks"])
+
+
+
+    def test_cli_requires_explicit_storage_target_configuration(self):
+        from tools.collect_s3_live_acceptance_evidence import main
+
+        with patch.dict(os.environ, {}, clear=True):
+            with self.assertRaises(SystemExit) as error:
+                main(["--json"])
+        self.assertEqual(error.exception.code, 2)
+
+    def test_cli_emits_sanitized_json_and_never_claims_production_ready(self):
+        from tools.collect_s3_live_acceptance_evidence import main
+
+        fake_boto3 = SimpleNamespace(client=lambda service, **kwargs: {
+            "s3": FakeS3(), "kms": FakeKMS(), "sts": FakeSTS(), "iam": FakeIAM()
+        }[service])
+        output = io.StringIO()
+        environment = {
+            "COPILOT_S3_BUCKET": "private-originals",
+            "COPILOT_S3_REGION": "eu-central-1",
+            "COPILOT_S3_KMS_KEY_ID": "alias/legal-originals",
+            "COPILOT_S3_ENDPOINT_URL": "",
+            "AWS_SECRET_ACCESS_KEY": "never-print-this-secret",
+        }
+        with patch.dict(os.environ, environment, clear=True), patch.dict("sys.modules", {"boto3": fake_boto3}):
+            with redirect_stdout(output):
+                result = main(["--json"])
+        rendered = output.getvalue()
+        report = json.loads(rendered)
+        self.assertEqual(result, 0)
+        self.assertFalse(report["production_ready"])
+        self.assertNotIn("never-print-this-secret", rendered)
+        self.assertNotIn("Version", rendered)
 
 
 if __name__ == "__main__":
