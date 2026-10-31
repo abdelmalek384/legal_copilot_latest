@@ -204,7 +204,7 @@
       "secondary_text": {
         "url": "https://lawhub.info/eg/?p=17019",
         "corroborating_url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/25-12-2025/no-294?id=5008509&type=1",
-        "status": "Two public secondary full-text/index sources; neither compared with official Gazette PDF",
+        "status": "Secondary full-text transcriptions cross-checked against Ministry-hosted text copy for Articles 1–4; Gazette issue PDF not compared",
         "summary": "Law Hub transcription exposes Articles 1–4. Article 1 lists 12 paid holidays/occasions: Hijri New Year, Mawlid, first two Eid al-Fitr days, Arafah and first two Eid al-Adha days, Coptic Christmas, 25 January/Police Day, Sham El-Nessim, Sinai Liberation Day, Labour Day, 30 June, 23 July and Armed Forces Day. The Minister may substitute another day for national uniformity. Article 2 provides paid leave not deducted from annual leave; if work is required, the worker receives double pay for the day or an alternative day on written request. Article 3 adds non-Muslim religious holidays under the relevant Prime Minister decision. Article 4 states next-day commencement. EastLaws states publication 2025-12-25 and effective date 2025-12-26. Ministry circulars in 2026 show event-specific date substitutions; these are not treated as permanent amendments.",
         "currentness_leads": [
           {
@@ -218,7 +218,7 @@
         ]
       },
       "gazette_date": "2025-12-25 (official Amiri Press issue metadata; secondary EastLaws record states same)",
-      "effective_date": "2025-12-26 (stated by EastLaws and derived from Article 4 in Law Hub; not primary-PDF verified)",
+      "effective_date": "2025-12-26 (Gazette issue metadata dated 2025-12-25 plus Article 4 next-day commencement in Ministry-hosted text copy; exact Gazette page comparison pending)",
       "article_2_schedule_status": "12-occasion list and Articles 2–4 available in Law Hub secondary transcription; no primary Gazette comparison",
       "reuse_rights": "unknown; DSpace PDF and item-specific license file are request-a-copy restricted; secondary-source reuse not cleared",
       "currentness": "not fully verified; 2026 official notices show event-specific date substitutions (October 2026 Circular 22/2026/PM Decision 2898/2026; July 2026 PM Decision 2181/2026), but a full amendment/repeal review remains outstanding",
@@ -235,7 +235,43 @@
           }
         ],
         "caution": "This anchors the parent Labour Law provisions only. It does not authenticate or compare the separate ministerial decision text."
-      }
+      },
+      "ministry_hosted_text_copy": {
+        "url": "https://mediadr.sis.gov.eg/bitstream/handle/123456789/117216/MOM20251226_0805.pdf?isAllowed=y&sequence=4",
+        "status": "Egyptian Ministry of Labour text copy hosted on SIS; PDF opened and text layer reviewed; not the Official Gazette scan",
+        "publication_date": "2025-12-26",
+        "articles": [
+          {
+            "article": 1,
+            "observations": [
+              "Twelve paid holiday categories: Hijri New Year; Mawlid; first two Eid al-Fitr days; Arafah and first two Eid al-Adha days; Coptic Christmas (7 January); 25 January/Police Day; Sham El-Nessim; Sinai Liberation Day (25 April); Labour Day (1 May); 30 June; 23 July; Armed Forces Day (6 October)",
+              "Minister may substitute another day, especially to unify national holidays"
+            ]
+          },
+          {
+            "article": 2,
+            "observations": [
+              "Full-pay leave on listed holidays; holiday is not deducted from annual leave",
+              "If work is required, worker receives double pay for the day or a substitute day on written request filed in the worker's file"
+            ]
+          },
+          {
+            "article": 3,
+            "observations": [
+              "Non-Muslim workers receive additional religious-holiday leave under the relevant Prime Minister decision"
+            ]
+          },
+          {
+            "article": 4,
+            "observations": [
+              "Publication in Egyptian Proceedings",
+              "Commencement on the day following Gazette publication"
+            ]
+          }
+        ],
+        "caveat": "Government-hosted text copy, not the Gazette issue PDF or a Gazette page-image comparison. SIS reuse terms were not reviewed; no local bytes/hash obtained. Collection and commercial reuse permissions remain unknown."
+      },
+      "primary_comparison_status": "Decision 294 Articles 1–4 reviewed in Ministry-hosted SIS PDF text copy; Official Gazette issue PDF/page comparison pending; reuse rights unknown; counsel review pending"
     },
     {
       "document_id": "EG-LABOUR-DECISION-49-2026",
