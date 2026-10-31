@@ -86,9 +86,9 @@ class CaseDeadlineEstimateRouteTests(unittest.TestCase):
         self.assertTrue(catalog.json()["rules"])
         self.assertTrue(all(not rule["verified"] for rule in catalog.json()["rules"]))
 
-        response = self._mutate(
-            "post", f"/cases/{self.case_id}/deadline-estimate",
-            json={"rule_id": "civil_cassation_60d", "trigger": "2026-10-26"},
+        response = self.client.get(
+            f"/cases/{self.case_id}/deadline-estimate",
+            params={"rule_id": "civil_cassation_60d", "trigger": "2026-10-26"},
         )
         self.assertEqual(response.status_code, 200, response.text)
         result = response.json()
@@ -98,14 +98,14 @@ class CaseDeadlineEstimateRouteTests(unittest.TestCase):
         self.assertIn("disclaimer", result)
 
     def test_unknown_rule_and_impossible_trigger_are_rejected(self):
-        unknown = self._mutate(
-            "post", f"/cases/{self.case_id}/deadline-estimate",
-            json={"rule_id": "unknown-rule", "trigger": "2026-10-26"},
+        unknown = self.client.get(
+            f"/cases/{self.case_id}/deadline-estimate",
+            params={"rule_id": "unknown-rule", "trigger": "2026-10-26"},
         )
         self.assertEqual(unknown.status_code, 404, unknown.text)
-        invalid_date = self._mutate(
-            "post", f"/cases/{self.case_id}/deadline-estimate",
-            json={"rule_id": "civil_cassation_60d", "trigger": "2026-02-30"},
+        invalid_date = self.client.get(
+            f"/cases/{self.case_id}/deadline-estimate",
+            params={"rule_id": "civil_cassation_60d", "trigger": "2026-02-30"},
         )
         self.assertEqual(invalid_date.status_code, 422, invalid_date.text)
 
@@ -115,9 +115,9 @@ class CaseDeadlineEstimateRouteTests(unittest.TestCase):
             "/login", json={"email": "deadline-b@example.test", "password": self.password_b}
         )
         self.assertEqual(login.status_code, 200, login.text)
-        denied = self._mutate(
-            "post", f"/cases/{self.case_id}/deadline-estimate",
-            json={"rule_id": "civil_cassation_60d", "trigger": "2026-10-26"},
+        denied = self.client.get(
+            f"/cases/{self.case_id}/deadline-estimate",
+            params={"rule_id": "civil_cassation_60d", "trigger": "2026-10-26"},
         )
         self.assertEqual(denied.status_code, 404, denied.text)
 

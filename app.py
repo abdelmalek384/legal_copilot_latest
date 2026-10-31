@@ -24,7 +24,7 @@ from db_migrations import apply_migrations
 from database_runtime import DatabaseRuntime, DatabaseRuntimeError
 from tenant_context import FirmContext, FirmContextError
 from tools.database_release_acceptance import load_acceptance_manifest, original_storage_config_fingerprint
-from fastapi import Request
+from fastapi import Request, Query
 from fastapi.responses import JSONResponse, HTMLResponse, Response
 
 logger = logging.getLogger(__name__)
@@ -4567,14 +4567,19 @@ def deadline_rules(u: dict = Depends(user)):
         raise HTTPException(503, "deadline rule catalog unavailable")
 
 
-@app.post("/cases/{cid}/deadline-estimate")
-@rollback_tenant_transaction_on_error
-def deadline_estimate(cid: int, b: DeadlineEstimateIn, u: dict = Depends(user)):
+@app.get("/cases/{cid}/deadline-estimate")
+def deadline_estimate(
+    cid: int,
+    rule_id: str = Query(..., min_length=1, max_length=100),
+    trigger: date = Query(...),
+    distance_days: int = Query(0, ge=0, le=365),
+    u: dict = Depends(user),
+):
     c = conn()
     need(c, u, cid)
     try:
         result = deadline_calc.estimate_rule_deadline(
-            b.rule_id, date.fromisoformat(b.trigger), distance_days=b.distance_days
+            rule_id, trigger, distance_days=distance_days
         )
     except deadline_calc.DeadlineError as exc:
         message = str(exc)
