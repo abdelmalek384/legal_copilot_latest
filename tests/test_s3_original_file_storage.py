@@ -145,6 +145,24 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
         }
         self.assertEqual(roundtrip_preflight_blockers(preflight), ["original_bucket_never_versioned"])
 
+    def test_live_roundtrip_cli_requires_distinct_recovery_archive_configuration(self):
+        from unittest.mock import patch
+        from tools.verify_s3_original_file_roundtrip import main
+
+        environment = {
+            "COPILOT_ENV": "staging",
+            "COPILOT_OBJECT_STORAGE_BACKEND": "s3",
+            "COPILOT_S3_BUCKET": "private-originals",
+            "COPILOT_S3_REGION": "eu-central-1",
+            "COPILOT_S3_KMS_KEY_ID": "alias/legal-originals",
+        }
+        with patch.dict("os.environ", environment, clear=True), patch(
+            "sys.argv", ["verify-s3", "--firm-id", "12", "--confirm-synthetic-firm"]
+        ):
+            with self.assertRaises(SystemExit) as raised:
+                main()
+        self.assertEqual(raised.exception.code, 2)
+
     def test_roundtrip_still_blocks_other_live_configuration_failures(self):
         preflight = {
             "failed_checks": ["kms_key", "original_bucket_never_versioned"],
