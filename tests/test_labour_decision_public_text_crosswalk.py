@@ -139,7 +139,7 @@ class TestLabourDecisionPublicTextCrosswalk(unittest.TestCase):
         self.assertIn("not the Gazette issue PDF", copy["caveat"])
         self.assertIn("Twelve paid holiday categories", " ".join(copy["articles"][0]["observations"]))
         self.assertIn("double pay", " ".join(copy["articles"][1]["observations"]))
-        self.assertIn("non-Muslim", " ".join(copy["articles"][2]["observations"]))
+        self.assertIn("Non-Muslim", " ".join(copy["articles"][2]["observations"]))
         self.assertIn("Gazette issue PDF not compared", item["secondary_text"]["status"])
 
 if __name__ == "__main__":
