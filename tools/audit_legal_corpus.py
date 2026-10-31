@@ -136,10 +136,11 @@ def audit(db_path: Path, *, check_fts_index: bool = False):
             if event_required - event_cols:
                 result["issues"].append({"severity": "high", "code": "review_event_columns_missing", "detail": str(sorted(event_required - event_cols))})
             else:
-                events = db.execute("SELECT review_event_id, version_id, reviewer, review_type, outcome, evidence_url, reviewed_at FROM legal_review_events").fetchall()
+                notes_select = "notes" if "notes" in event_cols else "NULL AS notes"
+                events = db.execute(f"SELECT review_event_id, version_id, reviewer, review_type, outcome, evidence_url, reviewed_at, {notes_select} FROM legal_review_events").fetchall()
                 allowed_types = {"source_authenticity", "extraction_quality", "legal_status", "amendment_history", "licensing", "lawyer_approval"}
                 allowed_outcomes = {"pending", "pass", "fail", "needs_correction"}
-                quality = {"reviewer_missing": 0, "invalid_review_type": 0, "invalid_review_outcome": 0, "reviewed_at_invalid": 0, "reviewed_at_in_future": 0, "passing_event_without_valid_evidence": 0, "orphan_version": 0}
+                quality = {"reviewer_missing": 0, "invalid_review_type": 0, "invalid_review_outcome": 0, "reviewed_at_invalid": 0, "reviewed_at_in_future": 0, "passing_event_without_valid_evidence": 0, "lawyer_approval_without_counsel_attestation": 0, "orphan_version": 0}
                 now = datetime.now(timezone.utc)
                 version_ids = None
                 if "legal_document_versions" in tables and "version_id" in columns(db, "legal_document_versions"):
@@ -153,6 +154,12 @@ def audit(db_path: Path, *, check_fts_index: bool = False):
                     quality["reviewed_at_in_future"] += int(reviewed_at is not None and reviewed_at > now)
                     if event["outcome"] == "pass" and not valid_evidence_url(event["evidence_url"]):
                         quality["passing_event_without_valid_evidence"] += 1
+                    if event["review_type"] == "lawyer_approval" and event["outcome"] == "pass":
+                        notes = event["notes"]
+                        if not isinstance(notes, str) or not __import__("re").search(
+                            r"\\[qualified_egyptian_counsel_attested:user_id=[1-9][0-9]*\\]", notes
+                        ):
+                            quality["lawyer_approval_without_counsel_attestation"] += 1
                     if version_ids is not None and event["version_id"] not in version_ids:
                         quality["orphan_version"] += 1
                 result["review_event_quality"] = quality
