@@ -9,6 +9,7 @@ from unittest.mock import patch
 from tools import production_release_gate as gate
 from tools.migrate_tenant_fleet import FleetMigrationError
 from tools.database_release_acceptance import original_storage_config_fingerprint
+from tools.validate_device_browser_acceptance import REQUIRED_RESULTS
 
 
 class ProductionReleaseGateTests(unittest.TestCase):
@@ -129,6 +130,34 @@ class ProductionReleaseGateTests(unittest.TestCase):
             },
         }
 
+    def _device_acceptance_records(self, commit="a" * 40):
+        records = []
+        for device_class, locale, suffix in (
+            ("desktop", "ar-EG", "130"),
+            ("desktop", "en-US", "131"),
+            ("phone", "ar-EG", "132"),
+            ("phone", "en-US", "133"),
+        ):
+            records.append({
+                "record_version": 1,
+                "tested_at": dt.datetime.now(dt.timezone.utc).isoformat(),
+                "application_commit": commit,
+                "environment": "staging",
+                "os_and_build": "Synthetic OS build",
+                "device": f"Synthetic {device_class} {suffix}",
+                "device_class": device_class,
+                "browser_and_version": f"Chromium {suffix}",
+                "locale": locale,
+                "viewport": "1440x900" if device_class == "desktop" else "390x844",
+                "network": "online and offline",
+                "tester_role": "synthetic acceptance tester",
+                "results": {key: "PASS" for key in REQUIRED_RESULTS},
+                "defect_ids": [],
+                "evidence_paths": [f"restricted-evidence/{device_class}-{locale}.json"],
+                "notes": "Synthetic test fixture only; no manual tests were performed.",
+            })
+        return records
+
     def _ready_report(self, candidate_path):
         return self._ready_report_many([candidate_path])
 
@@ -142,6 +171,19 @@ class ProductionReleaseGateTests(unittest.TestCase):
                 "candidate_file": str(path),
             } for path in candidate_paths],
         }
+
+    def test_missing_device_acceptance_blocks_release(self):
+        report = gate._evaluate_device_acceptance(None, "a" * 40)
+        self.assertFalse(report["ready"])
+        self.assertIn("not configured", report["error"])
+
+    def test_device_acceptance_must_match_exact_release_commit(self):
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "device-acceptance.json"
+            path.write_text(json.dumps(self._device_acceptance_records("b" * 40)), encoding="utf-8")
+            report = gate._evaluate_device_acceptance(path, "a" * 40)
+        self.assertFalse(report["ready"])
+        self.assertIn("does not match expected commit", report["error"])
 
     def test_unreviewed_default_draft_benchmark_blocks_release(self):
         with patch.object(gate, "inspect_environment", return_value=(["environment okay"], [], [])), \
@@ -175,9 +217,15 @@ class ProductionReleaseGateTests(unittest.TestCase):
             acceptance_path.write_text(
                 json.dumps(self._database_acceptance_manifest()), encoding="utf-8"
             )
+            device_acceptance_path = root / "device-acceptance.json"
+            device_acceptance_path.write_text(
+                json.dumps(self._device_acceptance_records()), encoding="utf-8"
+            )
             release_env = {
                 **self.clean_env,
                 "COPILOT_DATABASE_ACCEPTANCE_FILE": str(acceptance_path),
+                "COPILOT_DEVICE_ACCEPTANCE_FILE": str(device_acceptance_path),
+                "COPILOT_RELEASE_COMMIT": "a" * 40,
             }
             with patch.object(gate, "inspect_environment", return_value=(["environment okay"], [], [])), \
                  patch.object(gate, "build_legal_report", return_value=self._ready_report(candidate)), \
