@@ -32,6 +32,12 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         cls.inventory = json.loads(DEFAULT_PATH.read_text(encoding="utf-8"))
 
     def test_current_inventory_is_metadata_only_and_structurally_valid(self):
+        for document_id in ("EG-LABOUR-DECISION-292-2025", "EG-LABOUR-DECISION-294-2025"):
+            record = records[document_id]
+            self.assertEqual(record["source_id"], "EG-IDSC-GAZETTE-2025-291-SUPPLEMENT-LABOUR")
+            self.assertEqual(record["collection_permission"], "not_allowed_without_explicit_exception_or_license")
+            self.assertTrue(any("dspace.id.com.eg/items/37add437" in item["url"] for item in record["source_urls"]))
+            self.assertTrue(any("lawhub.info" in item["url"] for item in record["source_urls"]))
         self.assertEqual(validate_inventory(self.inventory), [])
         self.assertEqual(len(self.inventory["documents"]), 83)
         self.assertTrue(all(d["review_status"] != "verified" for d in self.inventory["documents"]))
