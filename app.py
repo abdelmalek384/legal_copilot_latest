@@ -4972,46 +4972,37 @@ def security_events(limit: int = 50, offset: int = 0, u: dict = Depends(user)):
 @app.post("/law/import")
 @rollback_corpus_transaction_on_error
 def law_import(rows: list[LawRow], x_admin_token: str = Header(None), u: dict = Depends(user)):
+    require_platform_legal_reviewer(u)
     tok = os.environ.get("ADMIN_TOKEN", "")
-    if _separate_runtime_enabled():
-        require_platform_legal_reviewer(u)
-    elif u["role"] != "admin":
-        raise HTTPException(403, "admin only")
-    if len(tok) < 32 or not hmac.compare_digest(tok, x_admin_token or ""): raise HTTPException(403, "forbidden")
-    if len(rows) > 5000: raise HTTPException(413, "max 5000 rows per call")
-    # Bulk legacy imports have no mandatory link to a reviewed registry version.
-    # Never let caller-supplied flags make an unlinked passage searchable as verified law.
+    if len(tok) < 32 or not hmac.compare_digest(tok, x_admin_token or ""):
+        raise HTTPException(403, "forbidden")
+    if len(rows) > 5000:
+        raise HTTPException(413, "max 5000 rows per call")
+    # Bulk imports are always staged; caller-supplied trust flags never make
+    # unlinked passages searchable or verified.
     import_rows = []
     for row in rows:
         item = row.model_dump()
         item["verified"] = 0
         item["in_force"] = 0
         import_rows.append(item)
-    if _separate_runtime_enabled():
-        require_platform_legal_reviewer(u)
-        c = corpus_conn()
-        c.executemany(
-            "INSERT INTO legal_import_staging(law,article,text,norm,source,submitted_by_user_id) "
-            "VALUES(?,?,?,?,?,?)",
-            [(str(row["law"]), str(row["article"]), str(row["text"]), norm(str(row["text"])),
-              row.get("source"), u["id"]) for row in import_rows],
-        )
-        c.commit()
-        imported = len(import_rows)
-    else:
-        imported = import_law(conn(), import_rows)
-    warning = (
-        "Bulk-imported passages remain in review staging and are not searchable until linked to a legal-document version and approved through the legal-source workflow."
-        if _separate_runtime_enabled()
-        else "Bulk-imported passages remain unverified and not in force until linked to a legal-document version and reviewed through the legal-source workflow."
+    c = corpus_conn()
+    c.executemany(
+        "INSERT INTO legal_import_staging(law,article,text,norm,source,submitted_by_user_id) "
+        "VALUES(?,?,?,?,?,?)",
+        [(str(row["law"]), str(row["article"]), str(row["text"]), norm(str(row["text"])),
+          row.get("source"), u["id"]) for row in import_rows],
     )
+    c.commit()
     return {
-        "imported": imported,
+        "imported": len(import_rows),
         "review_required": True,
         "search_eligible": False,
-        "warning": warning,
+        "warning": (
+            "Bulk-imported passages remain in review staging and are not searchable "
+            "until linked to a legal-document version and approved through the legal-source workflow."
+        ),
     }
-
 
 @app.post("/search")
 def do_search(b: Q, u: dict = Depends(user)):
