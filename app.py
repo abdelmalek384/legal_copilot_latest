@@ -4552,6 +4552,21 @@ def case(cid: int, u: dict = Depends(user)):
             "events": rows("SELECT who, at, text FROM events WHERE case_id=? ORDER BY id DESC LIMIT 100")}
 
 
+def _redact_case_brief_identifiers(value):
+    """Redact common structured identifiers; this is not complete anonymization."""
+    if not isinstance(value, str):
+        return value
+    patterns = (
+        (r"(?<![\\w.+-])[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}(?![\\w.-])", "[بريد إلكتروني محجوب]"),
+        (r"(?<!\\d)\\d{14}(?!\\d)", "[رقم قومي محجوب]"),
+        (r"(?<!\\d)(?:\\+?20[\\s-]?|0)?1[0125](?:[\\s-]?\\d){8}(?!\\d)", "[رقم هاتف محجوب]"),
+        (r"(?<!\\d)(?:\\+?20[\\s-]?|0)[23](?:[\\s-]?\\d){7,8}(?!\\d)", "[رقم هاتف محجوب]"),
+    )
+    for pattern, replacement in patterns:
+        value = re.sub(pattern, replacement, value, flags=re.IGNORECASE)
+    return value
+
+
 @app.post("/cases/{cid}/brief")
 @rollback_tenant_transaction_on_error
 def case_brief(cid: int, u: dict = Depends(user)):
@@ -4566,7 +4581,7 @@ def case_brief(cid: int, u: dict = Depends(user)):
         }
 
     case_row = c.execute(
-        "SELECT title, client, case_number, case_year, court, circuit, opposing_party, stage, status, created_at "
+        "SELECT case_year, court, circuit, stage, status, created_at "
         "FROM cases WHERE id=? AND firm_id=?",
         (cid, u["firm_id"]),
     ).fetchone()
@@ -4581,11 +4596,13 @@ def case_brief(cid: int, u: dict = Depends(user)):
         text_value = value.strip() if isinstance(value, str) else json.dumps(
             value, ensure_ascii=False, sort_keys=True, default=str
         )
+        text_value = _redact_case_brief_identifiers(text_value)
+        safe_reference = _redact_case_brief_identifiers(str(reference))[:240]
         if text_value:
             records.append({
                 "citation_index": len(records) + 1,
                 "record_type": kind,
-                "reference": str(reference)[:240],
+                "reference": safe_reference,
                 "text": text_value[:1000],
             })
 
@@ -4605,8 +4622,9 @@ def case_brief(cid: int, u: dict = Depends(user)):
             "date": row["date"], "note": row["note"],
         })
     for row in c.execute(
-        "SELECT t.id, t.title, t.status, t.due, u.name AS assignee "
-        "FROM tasks t LEFT JOIN users u ON u.id=t.assignee "
+        "SELECT t.id, t.title, t.status, t.due, "
+        "CASE WHEN t.assignee IS NOT NULL THEN 1 ELSE 0 END AS assigned "
+        "FROM tasks t "
         "WHERE t.case_id=? ORDER BY CASE WHEN t.status='open' THEN 0 ELSE 1 END, t.due, t.id DESC LIMIT 8",
         (cid,),
     ).fetchall():
@@ -4617,19 +4635,19 @@ def case_brief(cid: int, u: dict = Depends(user)):
     ).fetchall():
         add_record("case_deadline", "ميعاد مسجل #%s" % row["id"], dict(row))
     for row in c.execute(
-        "SELECT who, at, text FROM events WHERE case_id=? ORDER BY id DESC LIMIT 10",
+        "SELECT at, text FROM events WHERE case_id=? ORDER BY id DESC LIMIT 10",
         (cid,),
     ).fetchall():
         add_record("activity_event", "سجل نشاط", dict(row))
     for row in c.execute(
-        "SELECT chunks.id, chunks.ref, chunks.page, chunks.text, docs.name AS document_name "
+        "SELECT chunks.id, chunks.document_id, chunks.page, chunks.text "
         "FROM chunks JOIN docs ON docs.id=chunks.document_id "
         "WHERE chunks.case_id=? AND chunks.document_id IS NOT NULL "
         "ORDER BY chunks.id DESC LIMIT 12",
         (cid,),
     ).fetchall():
-        add_record("document_excerpt", "مستند %s / مقطع #%s / صفحة %s" % (
-            row["document_name"] or "غير مسمى", row["id"], row["page"] or "غير محددة",
+        add_record("document_excerpt", "مستند داخلي #%s / مقطع #%s / صفحة %s" % (
+            row["document_id"], row["id"], row["page"] or "غير محددة",
         ), row["text"])
 
     source_blocks = [
