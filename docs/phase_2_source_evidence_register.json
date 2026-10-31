@@ -559,6 +559,22 @@
       "terms_url": "https://dspace.id.com.eg/info/end-user-agreement",
       "terms_checked_on": "2026-10-31",
       "notes": "Public metadata identifies Gazette Supplement issue 295 (تابع د), dated 2025-12-30, with Ministry of Labour as author and Amiri Press as publisher. The abstract lists Decisions 267, 270, 288, 289, 290 and 291/2025. The 550.3 KB PDF file opens a request-a-copy page stating all files are in restricted access. The repository End User Agreement limits use to personal/non-commercial purposes, requires prior written permission for commercial exploitation, and prohibits systematic retrieval to compile a collection/database without written permission. No PDF bytes or item-specific license were obtained; this is metadata-only provenance, not official text comparison."
+    },
+    {
+      "source_id": "EG-SIS-GAZETTE-2025-295-SUPPLEMENT-D",
+      "publisher": "مطابع الأميرية; SIS repository metadata",
+      "source_type": "Government-hosted Gazette issue metadata and public-viewing PDF listing",
+      "url": "https://mediadr.sis.gov.eg/xmlui/handle/123456789/117733?locale-attribute=ar",
+      "observed_title": "الوقائع المصرية العدد 295 تابع د",
+      "publication_date": "2025-12-30",
+      "document_ids": [
+        "EG-LABOUR-DECISION-290-2025",
+        "EG-LABOUR-DECISION-291-2025"
+      ],
+      "source_state": "public_catalogue_metadata_found_pdf_link_not_opened",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Search-indexed SIS digital-repository metadata identifies Gazette issue 295 supplement D, date 2025-12-30, issuing authority Amiri Press, public viewing (الإطلاع: عام), and a 550.3 KB PDF named WQ295_20251230_1100.pdf. Direct item-page opening failed in this session due host access restrictions/robots/timeout; the PDF was not opened or downloaded and no terms were reviewed. This is a promising public-viewing primary-source lead, not acquired text or permission for bulk/commercial use."
     }
   ],
   "document_records_to_create_from_batch": [
