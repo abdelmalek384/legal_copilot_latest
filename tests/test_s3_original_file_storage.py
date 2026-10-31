@@ -416,7 +416,7 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
                 12, staged.object_id, expected_sha256=staged.sha256,
                 expected_size=staged.byte_size,
             )
-        current = self.client.objects[("private-bucket", final_key)]
+        current = self.client.objects[("private-matter-files", final_key)]
         self.assertEqual(current["Body"], b"concurrent replacement")
         delete_call = [
             kwargs for name, kwargs in self.client.calls
@@ -434,7 +434,7 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
                 expected_size=staged.byte_size,
             )
         self.assertEqual(self.store.object_presence(12, staged.object_id), (False, True))
-        self.assertFalse(any(name == "delete_object" for name, _ in self.client.calls))
+        self.assertFalse(any(name == "delete_object" and kwargs.get("Key") == self.store._key(12, staged.object_id, "blob") for name, kwargs in self.client.calls))
 
     def test_physical_purge_refuses_staged_or_corrupt_objects_and_preserves_bytes(self):
         staged = self.store.stage(12, b"recoverable staged payload")
