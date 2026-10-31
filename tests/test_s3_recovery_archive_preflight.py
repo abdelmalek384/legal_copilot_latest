@@ -49,7 +49,7 @@ class RecoveryArchivePreflightTests(unittest.TestCase):
     def test_accepts_separate_versioned_encrypted_archive_but_never_claims_production_ready(self):
         result = validate_recovery_archive_configuration(
             FakeS3(), FakeKMS(), bucket="recovery-archive",
-            configured_key="alias/recovery-archive", original_bucket="original-objects",
+            configured_key="alias/recovery-archive", original_bucket="original-objects", original_key="alias/originals", original_key="alias/originals",
         )
         self.assertEqual(result["failed_checks"], [])
         self.assertFalse(result["production_ready"])
@@ -58,7 +58,7 @@ class RecoveryArchivePreflightTests(unittest.TestCase):
     def test_rejects_same_bucket_for_originals_and_recovery_archive(self):
         result = validate_recovery_archive_configuration(
             FakeS3(), FakeKMS(), bucket="original-objects",
-            configured_key="alias/recovery-archive", original_bucket="original-objects",
+            configured_key="alias/recovery-archive", original_bucket="original-objects", original_key="alias/originals", original_key="alias/originals",
         )
         self.assertIn("separate_recovery_bucket", result["failed_checks"])
 
@@ -67,7 +67,7 @@ class RecoveryArchivePreflightTests(unittest.TestCase):
             with self.subTest(status=status):
                 result = validate_recovery_archive_configuration(
                     FakeS3(versioning=status), FakeKMS(), bucket="recovery-archive",
-                    configured_key="alias/recovery-archive", original_bucket="original-objects",
+                    configured_key="alias/recovery-archive", original_bucket="original-objects", original_key="alias/originals", original_key="alias/originals",
                 )
                 self.assertIn("recovery_versioning_enabled", result["failed_checks"])
 
@@ -82,7 +82,7 @@ class RecoveryArchivePreflightTests(unittest.TestCase):
 
         result = validate_recovery_archive_configuration(
             WrongKeyS3(), FakeKMS(), bucket="recovery-archive",
-            configured_key="alias/recovery-archive", original_bucket="original-objects",
+            configured_key="alias/recovery-archive", original_bucket="original-objects", original_key="alias/originals", original_key="alias/originals",
         )
         self.assertIn("recovery_default_sse_kms", result["failed_checks"])
 
