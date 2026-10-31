@@ -139,7 +139,7 @@ def main(argv=None):
         if not records:
             raise EvidenceError("no evidence records found")
         summaries = [validate_record(item, args.expected_commit, args.require_pass) for item in records]
-                identities = [
+        identities = [
             (item["application_commit"], item["environment"], item["locale"],
              records[index].get("device"), records[index].get("browser_and_version"),
              records[index].get("viewport"))
