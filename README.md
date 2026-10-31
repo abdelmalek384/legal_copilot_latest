@@ -82,7 +82,7 @@ Open http://127.0.0.1:8000 on the same machine. The three database paths must re
 
 ### Production and model-processing gates
 
-Before any real-client deployment, follow the [production deployment checklist](docs/production_deployment_checklist.md), run `python tools/deployment_preflight.py --strict`, and review the [aggregate production release gate](docs/production_release_gate.md). These checks are necessary but not a substitute for independent security review, witnessed recovery testing, or legal validation.
+Before any real-client deployment, follow the [production deployment checklist](docs/production_deployment_checklist.md), run `python tools/deployment_preflight.py --strict`, and review the [aggregate production release gate](docs/production_release_gate.md). The aggregate gate requires `COPILOT_RELEASE_COMMIT` to identify the exact 40-character release SHA and `COPILOT_DEVICE_ACCEPTANCE_FILE` to point to restricted manual desktop/phone evidence for both Arabic and English. Missing or mismatched evidence blocks release. These checks are necessary but not a substitute for independent security review, witnessed recovery testing, or legal validation.
 
 A model endpoint must not receive prompts until its data-processing terms, retention, access controls, and matter-data suitability have been reviewed and `LLM_DATA_PROCESSING_APPROVED=1` is set. Case-scoped prompts, prior-question follow-up context, and matter-file passages additionally require `LLM_FIRM_DATA_PROCESSING_APPROVED=1`. These flags are deployment attestations, not client consent or a guarantee of provider compliance. See [LLM data-processing policy](docs/llm_data_processing_policy.md).
 
