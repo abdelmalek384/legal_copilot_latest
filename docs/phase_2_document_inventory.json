@@ -361,7 +361,7 @@
         "amending instruments",
         "transition rules"
       ],
-      "notes": "The repository has an exact candidate URL in docs/collection_manifest.example.json; rights and legal-status review remain separate. Public-source discovery found an official Amiri Press text page and Ministry of Labour index. Neither establishes collection permission or completes amendment/status review. Verify Gazette issue/pages and commencement/implementing instruments. Review of the Ministry of Labour laws-and-legislations index on 2026-10-28 found a listed entry for Law 14/2025 but no separately identified full executive-regulations entry in the retrieved index. This is an index observation only; it does not prove that regulations were not issued or published elsewhere.",
+      "notes": "The repository has an exact candidate URL in docs/collection_manifest.example.json; rights and legal-status review remain separate. Public-source discovery found an official Amiri Press text page and Ministry of Labour index. Neither establishes collection permission or completes amendment/status review. Verify Gazette issue/pages and commencement/implementing instruments. Review of the Ministry of Labour laws-and-legislations index on 2026-10-28 found a listed entry for Law 14/2025 but no separately identified full executive-regulations entry in the retrieved index. This is an index observation only; it does not prove that regulations were not issued or published elsewhere. On 2026-10-31, the public ETA-hosted Official Gazette PDF was opened in the browser viewer; its header identifies issue 18 (تابع), dated 2025-05-03, and its text includes Article 13 and Articles 1–298. Article 13 supports a derived commencement candidate of 2025-09-01 and specialized labour-court commencement candidate of 2025-10-01. Printed pages 105–111/PDF indices 103–109 were visually checked to correct 46 card pinpoints for Articles 275–298. The local PDF download failed, so no local SHA-256 is available. A separate SIS announcement dated 2025-05-05 creates a publication-date discrepancy; preserve both dates and prefer the Gazette issue header for the issue date. Rights, commercial reuse, full currentness/amendment history and counsel approval remain unresolved; this record remains discovery_only.",
       "source_urls": [
         {
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
@@ -372,6 +372,16 @@
           "url": "https://www.labour.gov.eg/en/laws-and-legislations/",
           "source_role": "official ministry discovery index",
           "status": "discovered_not_downloaded"
+        },
+        {
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_role": "government-hosted official Gazette PDF",
+          "status": "opened_in_public_viewer_partial_visual_review"
+        },
+        {
+          "url": "https://dspace.id.com.eg/items/75a95151-8a93-45c0-a607-9320863881df",
+          "source_role": "Official Gazette catalogue record; issue 18 (تابع), 2025-05-03",
+          "status": "catalogue_metadata_located"
         }
       ],
       "related_instruments": [
@@ -410,7 +420,12 @@
           "relationship": "implements_or_supports",
           "relationship_status": "official_ministry_reference_pending_decision_text_and_Gazette_verification"
         }
-      ]
+      ],
+      "publication_date": "2025-05-03",
+      "official_gazette_issue": "18 (تابع)",
+      "effective_date_candidate": "2025-09-01",
+      "effective_date_status": "derived_from_primary_article_13_and_issue_date_pending_counsel_review",
+      "specialized_labour_courts_effective_date_candidate": "2025-10-01"
     },
     {
       "document_id": "EG-SOCIAL-INSURANCE-148-2019",

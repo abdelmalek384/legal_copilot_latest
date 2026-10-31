@@ -198,3 +198,28 @@ class SourcePermissionRegisterTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+    def test_eta_official_gazette_pdf_provenance_does_not_imply_reuse_permission(self):
+        import json
+        data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        source = next(
+            item for item in data["sources"]
+            if item["source_id"] == "EG-ETA-GAZETTE-LABOUR-14-2025-PDF"
+        )
+        self.assertEqual(source["source_checked_on"], "2026-10-31")
+        self.assertEqual(source["official_gazette_issue"], "18 (تابع)")
+        self.assertEqual(source["official_gazette_issue_date"], "2025-05-03")
+        self.assertEqual(source["effective_date_candidate"], "2025-09-01")
+        self.assertEqual(source["specialized_labour_courts_effective_date_candidate"], "2025-10-01")
+        self.assertIs(source["effective_date_verified"], False)
+        self.assertIs(source["local_pdf_downloaded"], False)
+        self.assertIsNone(source["local_pdf_sha256"])
+        self.assertEqual(
+            [item["printed_page"] for item in source["visual_page_checks"]],
+            [105, 106, 107, 108, 109, 110, 111],
+        )
+        self.assertEqual(source["collection_permission"], "unknown")
+        self.assertEqual(source["commercial_reuse_permission"], "unknown")
+        self.assertIsNone(source["terms_checked_on"])
+        self.assertIn("download attempt failed", source["permission_evidence"])
+        self.assertEqual(MODULE.validate(data), [])
