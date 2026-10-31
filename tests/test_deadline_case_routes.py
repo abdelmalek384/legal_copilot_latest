@@ -115,6 +115,23 @@ class CaseDeadlineEstimateRouteTests(unittest.TestCase):
         )
         self.assertEqual(invalid_date.status_code, 422, invalid_date.text)
 
+    def test_same_firm_nonmember_cannot_estimate_a_case_deadline(self):
+        password = "Deadline-nonmember-password-2026!"
+        user_id = self.runtime.create_global_identity(
+            "Deadline Same-Firm Nonmember", "deadline-nonmember@example.test", app.hash_pw(password)
+        )
+        self.runtime.create_firm_membership(user_id, self.firm_a, "lawyer")
+        self.client.cookies.clear()
+        login = self.client.post(
+            "/login", json={"email": "deadline-nonmember@example.test", "password": password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        denied = self.client.get(
+            f"/cases/{self.case_id}/deadline-estimate",
+            params={"rule_id": "civil_cassation_60d", "trigger": "2026-10-26"},
+        )
+        self.assertEqual(denied.status_code, 404, denied.text)
+
     def test_other_firm_cannot_estimate_a_case_deadline(self):
         self.client.cookies.clear()
         login = self.client.post(
