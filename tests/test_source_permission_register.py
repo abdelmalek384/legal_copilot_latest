@@ -263,7 +263,7 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         self.assertEqual(source["commercial_reuse_permission"], "unknown")
         self.assertIn("license.txt", source["permission_evidence"])
         self.assertIn("request-a-copy", source["permission_evidence"])
-        self.assertIn("not publicly readable", source["access_status"])
+        self.assertIn("neither file is publicly readable", source["access_status"])
         self.assertIn("Do not bypass", source["required_next_action"])
         self.assertEqual(MODULE.validate(data), [])
 
