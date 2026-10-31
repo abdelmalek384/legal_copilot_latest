@@ -124,6 +124,10 @@ def review_queue(db_path: Path) -> dict:
                     latest is None
                     or latest["outcome"] != "pass"
                     or not valid_evidence_url(latest["evidence_url"])
+                    or not isinstance(latest.get("reviewer"), str)
+                    or not latest["reviewer"].strip()
+                    or not isinstance(latest.get("notes"), str)
+                    or not latest["notes"].strip()
                 ):
                     reasons.append("review_evidence_missing:"+rt)
                     continue
