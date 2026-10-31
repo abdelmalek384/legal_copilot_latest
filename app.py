@@ -1107,13 +1107,40 @@ def _llm_open(request, timeout=120):
     return opener.open(request, timeout=timeout)
 
 
+MAX_LLM_RESPONSE_BYTES = 2 * 1024 * 1024
+
+
+def _read_llm_response_content(response):
+    """Read a bounded provider response and accept only the expected chat content shape."""
+    try:
+        raw = response.read(MAX_LLM_RESPONSE_BYTES + 1)
+        if not isinstance(raw, bytes) or len(raw) > MAX_LLM_RESPONSE_BYTES:
+            return None
+        payload = json.loads(raw.decode("utf-8"))
+    except (UnicodeDecodeError, json.JSONDecodeError, TypeError, ValueError):
+        return None
+    if not isinstance(payload, dict):
+        return None
+    choices = payload.get("choices")
+    if not isinstance(choices, list) or not choices or not isinstance(choices[0], dict):
+        return None
+    message = choices[0].get("message")
+    if not isinstance(message, dict):
+        return None
+    content = message.get("content")
+    if not isinstance(content, str) or not content.strip():
+        return None
+    return content
+
+
 def llm(prompt):
     """Call a configured OpenAI-compatible endpoint only after explicit data-processing approval.
 
     LLM_URL alone is not consent to transmit potentially confidential legal questions or
     retrieved matter passages. The deployment operator must verify the endpoint and its
     data-handling terms, then explicitly set LLM_DATA_PROCESSING_APPROVED=1.
-    Unset URL or approval keeps the app in sources-only mode.
+    Unset URL or approval keeps the app in sources-only mode. Provider responses are
+    bounded to MAX_LLM_RESPONSE_BYTES and malformed responses fail closed to sources-only.
     """
     url = os.environ.get("LLM_URL")
     if not url or not _safe_llm_endpoint(url): return None
@@ -1122,7 +1149,8 @@ def llm(prompt):
     body = json.dumps({"model": os.environ.get("LLM_MODEL", "local"), "temperature": 0,
                        "messages": [{"role": "system", "content": SYS}, {"role": "user", "content": prompt}]}).encode()
     req = urllib.request.Request(url, body, {"Content-Type": "application/json", "Authorization": "Bearer " + os.environ.get("LLM_KEY", "")})
-    return json.load(_llm_open(req, timeout=120))["choices"][0]["message"]["content"]
+    with _llm_open(req, timeout=120) as response:
+        return _read_llm_response_content(response)
 
 
 LLM = llm
