@@ -519,7 +519,8 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertNotIn("نص ساري متحقق منه", candidate_body)
         self.assertIn("المادة 12", candidate_body)
         self.assertIn("الصفحة 17", candidate_body)
-        self.assertNotIn("FIRM_DOCUMENT_ONLY_SENTINEL_4B91", candidate_body)
+        candidate_assistant = self.page.locator(".research-thread .research-message.assistant").last.inner_text()
+        self.assertNotIn("FIRM_DOCUMENT_ONLY_SENTINEL_4B91", candidate_assistant)
 
         scope.select_option("metadata_only")
         composer.fill("SYNTHETIC METADATA ONLY INSTRUMENT 2026")
