@@ -243,6 +243,101 @@ class DatabaseBackupBundleTests(unittest.TestCase):
                 tampered_bundle, self.cipher, self.root / "tampered-restore"
             )
 
+    def test_real_bundle_roundtrips_through_versioned_s3_archive_before_isolated_restore(self):
+        import hashlib
+        from database_backup import verify_backup_bundle
+        from database_backup_archive import (
+            upload_encrypted_bundle,
+            download_encrypted_bundle_version,
+        )
+
+        class FakeS3:
+            def __init__(self):
+                self.items = {}
+                self.version = "integration-version-001"
+
+            def get_bucket_versioning(self, **kwargs):
+                return {"Status": "Enabled"}
+
+            def put_object(self, **kwargs):
+                data = kwargs["Body"].read()
+                self.items[(kwargs["Bucket"], kwargs["Key"], self.version)] = {
+                    "data": data,
+                    "metadata": kwargs["Metadata"],
+                    "encryption": kwargs["ServerSideEncryption"],
+                    "kms": kwargs["SSEKMSKeyId"],
+                }
+                return {"VersionId": self.version}
+
+            def head_object(self, **kwargs):
+                item = self.items[(kwargs["Bucket"], kwargs["Key"], kwargs["VersionId"])]
+                return {
+                    "VersionId": kwargs["VersionId"],
+                    "ServerSideEncryption": item["encryption"],
+                    "SSEKMSKeyId": item["kms"],
+                    "ContentLength": len(item["data"]),
+                    "Metadata": item["metadata"],
+                }
+
+            def get_object(self, **kwargs):
+                import io
+                item = self.items[(kwargs["Bucket"], kwargs["Key"], kwargs["VersionId"])]
+                return {"VersionId": kwargs["VersionId"], "Body": io.BytesIO(item["data"])}
+
+        class FakeKMS:
+            def describe_key(self, **kwargs):
+                return {"KeyMetadata": {
+                    "Arn": "arn:aws:kms:eu-west-1:123456789012:key/integration-archive-key",
+                    "KeyState": "Enabled",
+                    "KeyUsage": "ENCRYPT_DECRYPT",
+                    "KeySpec": "SYMMETRIC_DEFAULT",
+                    "KeyManager": "CUSTOMER",
+                }}
+
+        bundle = create_backup_bundle(
+            self.runtime, self.cipher, self.backup_dir, quiesced=True
+        )
+        s3 = FakeS3()
+        kms = FakeKMS()
+        config = {
+            "bucket": "isolated-recovery-archive",
+            "kms_key_id": "alias/integration-archive-key",
+        }
+        locator = upload_encrypted_bundle(s3, kms, bundle, **config)
+        self.assertEqual(locator["version_id"], s3.version)
+        self.assertEqual(locator["sha256"], hashlib.sha256(bundle.read_bytes()).hexdigest())
+
+        downloaded = download_encrypted_bundle_version(
+            s3, kms, locator, self.root / "archive-roundtrip.enc", **config
+        )
+        self.assertEqual(downloaded.read_bytes(), bundle.read_bytes())
+        report = verify_backup_bundle(downloaded, self.cipher)
+        self.assertTrue(report["verified"])
+        self.assertEqual(report["tenant_database_count"], 2)
+
+        restored = restore_backup_bundle(
+            downloaded, self.cipher, self.root / "archive-isolated-restore"
+        )
+        self.assertTrue(restored["control_plane"].is_file())
+        restored_runtime = DatabaseRuntime(
+            restored["control_plane"], restored["tenant_root"], restored["legal_corpus"]
+        )
+        try:
+            restored_runtime.initialize()
+            context = restored_runtime.resolve_context(self.user_id, self.firm_a)
+            database = restored_runtime.firm_connection(context)
+            self.assertEqual(
+                database.execute("SELECT title FROM cases").fetchone()[0],
+                "Snapshot Matter",
+            )
+            self.assertEqual(
+                restored_runtime.legal_corpus_connection()
+                .execute("SELECT profile FROM database_profile").fetchone()[0],
+                "legal_corpus",
+            )
+        finally:
+            restored_runtime.close_current_thread()
+
     def test_verify_bundle_validates_all_profiles_without_retaining_plaintext(self):
         from database_backup import verify_backup_bundle
         bundle = create_backup_bundle(self.runtime, self.cipher, self.backup_dir, quiesced=True)
