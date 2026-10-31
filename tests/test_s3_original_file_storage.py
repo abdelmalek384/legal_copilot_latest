@@ -148,9 +148,9 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
 
     def test_roundtrip_still_blocks_other_live_configuration_failures(self):
         preflight = {
-            "failed_checks": ["kms_key", "physical_purge_versioning_compatibility"],
+            "failed_checks": ["kms_key", "original_bucket_never_versioned"],
         }
-        self.assertEqual(roundtrip_preflight_blockers(preflight), ["kms_key"])
+        self.assertEqual(roundtrip_preflight_blockers(preflight), ["kms_key", "original_bucket_never_versioned"])
 
     def test_acceptance_report_binds_evidence_to_non_secret_storage_target_fingerprint(self):
         from unittest.mock import patch
