@@ -2,7 +2,8 @@
 """Validate device/browser acceptance evidence without claiming tests were run.
 
 A structurally valid record may still contain NOT_TESTED/BLOCKED results.
-Use --require-pass for a release gate; it fails unless every required check is PASS.
+Use --require-pass for a release gate; it also requires desktop and phone
+coverage in both supported locales.
 """
 import argparse
 import json
@@ -12,18 +13,19 @@ from datetime import datetime
 from pathlib import Path
 
 REQUIRED_RESULTS = (
-    "installation",
-    "authentication_and_isolation",
-    "case_management",
-    "legal_research_and_abstention",
-    "arabic_and_english",
-    "keyboard_and_screen_reader",
-    "pwa_offline_privacy",
-    "deployment_smoke",
+    "installation", "authentication_and_isolation", "case_management",
+    "legal_research_and_abstention", "arabic_and_english",
+    "keyboard_and_screen_reader", "pwa_offline_privacy", "deployment_smoke",
 )
 VALID_STATES = {"PASS", "FAIL", "BLOCKED", "NOT_TESTED"}
 VALID_ENVIRONMENTS = {"local", "staging"}
 VALID_LOCALES = {"ar-EG", "en-US"}
+VALID_DEVICE_CLASSES = {"desktop", "phone", "tablet"}
+REQUIRED_RELEASE_MATRIX = {
+    (device_class, locale)
+    for device_class in ("desktop", "phone")
+    for locale in VALID_LOCALES
+}
 
 
 class EvidenceError(ValueError):
@@ -62,6 +64,8 @@ def validate_record(record, expected_commit=None, require_pass=False):
     for field in ("os_and_build", "device", "browser_and_version", "viewport", "network", "tester_role"):
         if not _nonempty(record.get(field)):
             errors.append(field + " must be a non-empty string")
+    if record.get("device_class") not in VALID_DEVICE_CLASSES:
+        errors.append("device_class must be desktop, phone, or tablet")
     if record.get("locale") not in VALID_LOCALES:
         errors.append("locale must be ar-EG or en-US")
     results = record.get("results")
@@ -96,11 +100,29 @@ def validate_record(record, expected_commit=None, require_pass=False):
     return {
         "application_commit": commit.lower(),
         "environment": record["environment"],
+        "device_class": record["device_class"],
         "locale": record["locale"],
         "passed_checks": sum(results[key] == "PASS" for key in REQUIRED_RESULTS),
         "total_checks": len(REQUIRED_RESULTS),
         "complete": all(results[key] == "PASS" for key in REQUIRED_RESULTS),
     }
+
+
+def validate_release_matrix(records, summaries):
+    """Require desktop and phone evidence in Arabic and English for one build."""
+    if not records or not summaries:
+        raise EvidenceError("release device matrix is empty")
+    commits = {item["application_commit"] for item in summaries}
+    environments = {item["environment"] for item in summaries}
+    if len(commits) != 1:
+        raise EvidenceError("release device matrix must cover exactly one application commit")
+    if len(environments) != 1:
+        raise EvidenceError("release device matrix must use exactly one environment")
+    observed = {(item["device_class"], item["locale"]) for item in summaries}
+    missing = sorted(REQUIRED_RELEASE_MATRIX - observed)
+    if missing:
+        labels = ", ".join(f"{device_class}/{locale}" for device_class, locale in missing)
+        raise EvidenceError("release device matrix is incomplete; missing: " + labels)
 
 
 def load_records(path):
@@ -130,7 +152,8 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--input", required=True, help="JSON, JSON array, or JSONL evidence file")
     parser.add_argument("--expected-commit", help="Require every record to match this full commit SHA")
-    parser.add_argument("--require-pass", action="store_true", help="Fail unless all required checks are PASS")
+    parser.add_argument("--require-pass", action="store_true",
+                        help="Require every check to pass and the desktop/phone × Arabic/English matrix")
     args = parser.parse_args(argv)
     if args.expected_commit and not re.fullmatch(r"[0-9a-fA-F]{40}", args.expected_commit):
         parser.error("--expected-commit must be a full 40-character commit SHA")
@@ -141,15 +164,17 @@ def main(argv=None):
         summaries = [validate_record(item, args.expected_commit, args.require_pass) for item in records]
         identities = [
             (item["application_commit"], item["environment"], item["locale"],
-             records[index].get("device"), records[index].get("browser_and_version"),
-             records[index].get("viewport"))
+             records[index].get("device_class"), records[index].get("device"),
+             records[index].get("browser_and_version"), records[index].get("viewport"))
             for index, item in enumerate(summaries)
         ]
         if len(identities) != len(set(identities)):
-            raise EvidenceError("duplicate evidence records for the same commit/environment/locale")
+            raise EvidenceError("duplicate evidence records for the same commit/environment/locale/device/browser/viewport")
+        if args.require_pass:
+            validate_release_matrix(records, summaries)
         print(json.dumps({
             "records_validated": len(summaries),
-            "release_gate": "PASS" if all(item["complete"] for item in summaries) else "NOT_PASSED",
+            "release_gate": "PASS" if args.require_pass and all(item["complete"] for item in summaries) else "NOT_PASSED",
             "records": summaries,
         }, ensure_ascii=False, indent=2))
         return 0
