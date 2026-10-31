@@ -1812,6 +1812,26 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
         self.assertEqual(passing.status_code, 201, passing.text)
         self.assertFalse(passing.json()["status_changed"])
+
+        lawyer_payload = {
+            "review_type": "lawyer_approval",
+            "outcome": "pass",
+            "evidence_url": "https://example.test/gazette/lawyer-review",
+            "notes": "Synthetic counsel qualification attestation test.",
+        }
+        os.environ.pop("LEGAL_QUALIFIED_EGYPTIAN_COUNSEL_USER_IDS", None)
+        unqualified = self._mutate("post", endpoint, json=lawyer_payload)
+        self.assertEqual(unqualified.status_code, 403, unqualified.text)
+        with patch.dict(os.environ, {
+            "LEGAL_QUALIFIED_EGYPTIAN_COUNSEL_USER_IDS": str(self.user_id)
+        }):
+            qualified = self._mutate("post", endpoint, json=lawyer_payload)
+        self.assertEqual(qualified.status_code, 201, qualified.text)
+        self.assertIn(
+            f"[qualified_egyptian_counsel_attested:user_id={self.user_id}]",
+            qualified.json()["event"]["notes"],
+        )
+
         current = corpus.execute(
             "SELECT review_status,legal_status,authenticity_verified,status_verified,"
             "amendment_history_verified FROM legal_document_versions WHERE version_id=779"
