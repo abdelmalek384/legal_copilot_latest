@@ -25,7 +25,7 @@ python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 
 # Fresh-install architecture: control plane, per-firm databases, and shared corpus
-# must have distinct paths. Do not set COPILOT_DB here; that is legacy compatibility mode.
+# must have distinct paths. Do not set COPILOT_DB; the application rejects it in every environment.
 mkdir -p "data/tenants"
 export COPILOT_CONTROL_DB="${COPILOT_CONTROL_DB:-$PWD/data/control_plane.sqlite3}"
 export COPILOT_TENANT_DB_ROOT="${COPILOT_TENANT_DB_ROOT:-$PWD/data/tenants}"
