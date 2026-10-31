@@ -100,6 +100,9 @@ class TestLabourDecisionPublicTextCrosswalk(unittest.TestCase):
         self.assertIn("not the original DSpace PDF", check["caveat"])
         self.assertIn("35% daytime", " ".join(check["pages"][0]["observations"]))
         self.assertIn("three months", " ".join(check["pages"][1]["observations"]))
+        self.assertEqual(item["annual_overtime_maximum_followup"]["deadline_candidate"], "2026-03-31")
+        self.assertIn("No subsequent", item["annual_overtime_maximum_followup"]["followup_status"])
+        self.assertIn("not proof", item["annual_overtime_maximum_followup"]["followup_status"])
         self.assertIn("reuse rights", check["caveat"])
 
 if __name__ == "__main__":
