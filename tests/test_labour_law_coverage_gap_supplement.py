@@ -8,9 +8,12 @@ MAIN = ROOT / "data" / "candidates" / "labour_law_14_2025" / "provision_evidence
 
 
 def _article_number(value):
-    digits = "".join(ch for ch in value if ch.isdigit())
-    if digits:
-        return int(digits)
+    import re
+    match = re.search(r"\\d+", value)
+    if match:
+        # Use the first number so a range such as "المواد 118–120"
+        # is not accidentally parsed as the integer 118120.
+        return int(match.group())
     # Promulgation Article 1 is conventionally written as "المادة الأولى".
     if value.strip() == "المادة الأولى":
         return 1
