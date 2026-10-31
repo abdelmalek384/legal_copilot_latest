@@ -220,7 +220,7 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         self.assertEqual(source["terms_checked_on"], "2026-10-31")
         self.assertIn("attribution", source["permission_evidence"])
         self.assertIn("profit", source["permission_evidence"])
-        self.assertIn("not readable", source["access_status"])
+        self.assertIn("no document bytes or pages inspected", source["access_status"])
         self.assertEqual(MODULE.validate(data), [])
 
 if __name__ == "__main__":
