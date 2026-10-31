@@ -128,6 +128,12 @@ class FakeS3Client:
 
 
 class S3PrivateObjectStoreTests(unittest.TestCase):
+    def test_installed_botocore_delete_object_model_supports_if_match(self):
+        from botocore.session import Session
+
+        operation = Session().get_service_model("s3").operation_model("DeleteObject")
+        self.assertIn("IfMatch", operation.input_shape.members)
+
     def test_acceptance_report_binds_evidence_to_non_secret_storage_target_fingerprint(self):
         from unittest.mock import patch
 
