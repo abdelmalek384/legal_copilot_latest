@@ -703,6 +703,22 @@
       "terms_checked_on": "2026-10-31",
       "bulk_download_or_api": "not authorized; systematic retrieval to compile a collection/database requires written permission under the published End User Agreement",
       "required_next_action": "Use public catalogue metadata only. Do not request or bypass the restricted file under the current acquisition constraint. Keep collection blocked absent explicit written permission and commercial reuse blocked absent prior written permission. Do not claim that the listed license.txt grants rights until its bytes are lawfully obtained and reviewed."
+    },
+    {
+      "source_id": "EG-LAWHUB-GAZETTE-295-DECISION-291-PDF",
+      "authority": "Law Hub (third-party host) reproducing Egyptian Proceedings Gazette Supplement issue 295 pages 21–22",
+      "source_page": "https://lawhub.info/eg/wp-content/uploads/2026/01/lawhub.info-eg-dec-291-2025.pdf",
+      "material_types": [
+        "third-party hosted page-image reproduction of Official Gazette pages 21–22 for Ministerial Decision 291/2025"
+      ],
+      "access_status": "Publicly accessible two-page PDF opened and visually inspected in the browser. It displays the Gazette masthead, issue 295 supplement D, date 2025-12-30, and pages 21–22. No local PDF bytes/hash or item-specific license was obtained.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Checked 2026-10-31. The publicly accessible Law Hub PDF visibly reproduces two Gazette pages for Decision 291/2025 (issue 295, dated 2025-12-30), including Articles 1–5 and printed page numbers 21–22. It is hosted by a third party, not the Amiri Press or DSpace item. No licence, reuse terms, source acquisition chain, or item-specific permission was established. Visual inspection of a reproduction does not establish rights to download, collect, embed, redistribute or commercially reuse it.",
+      "terms_checked_on": "2026-10-31",
+      "bulk_download_or_api": "not established; no collection/API permission reviewed",
+      "required_next_action": "Use only as a manual research cross-check. Do not ingest or redistribute the PDF or extracted text until source provenance and applicable collection/commercial reuse rights are reviewed. Original DSpace issue PDF remains request-a-copy restricted."
     }
   ]
 }
