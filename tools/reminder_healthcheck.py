@@ -158,7 +158,7 @@ def _write_report(path: Path, report: dict, runtime: DatabaseRuntime) -> None:
     descriptor = os.open(destination, flags, 0o600)
     try:
         with os.fdopen(descriptor, "w", encoding="utf-8") as handle:
-            handle.write(json.dumps(report, ensure_ascii=False, sort_keys=True, indent=2) + "\\n")
+            handle.write(json.dumps(report, ensure_ascii=False, sort_keys=True, indent=2) + "\n")
     except Exception:
         try:
             destination.unlink()
