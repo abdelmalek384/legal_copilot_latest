@@ -227,6 +227,17 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         self.assertTrue(any("lawhub.info/eg/?p=19706" in item["url"] for item in decision_250["source_urls"]))
         self.assertIn("0/781", decision_250["notes"])
         self.assertTrue(any(action["id"] == "ACT-LABOUR-DECISIONS-248-252-2026-ORIGINAL-GAZETTE-VERIFY" and action["status"] == "blocked" for action in self.inventory["next_actions"]))
+        register = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        register_ids = {source["source_id"] for source in register["sources"]}
+        for source_id in (
+            "EG-IDSC-DSPACE-GAZETTE",
+            "EG-ALMASDAR-SECONDARY-LEGAL-NEWS",
+            "EG-EGYIN-SECONDARY-LEGAL-NEWS",
+            "EG-RIWAQ-ALJAMAL-DECISION-250-2026",
+            "EG-LAW-HUB-DECISION-250-2026",
+        ):
+            self.assertIn(source_id, register_ids)
+            self.assertIn(source_id, self.inventory["source_ids"])
         self.assertEqual(validate_inventory(self.inventory), [])
 
 if __name__ == "__main__":
