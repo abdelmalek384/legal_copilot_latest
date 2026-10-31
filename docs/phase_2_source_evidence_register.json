@@ -641,6 +641,21 @@
       "access_terms_state": "not_reviewed",
       "collection_permission": "unknown",
       "notes": "PDF opened through SIS. It identifies the Ministry of Labour and contains the full text of Decision 289/2025 Articles 1–2 after a Ministry announcement. Article 1 states no more than eight hours actual work/day or 48/week excluding meal/rest periods, preserves better benefits in individual/collective contracts or workplace regulations, and permits exceptional work subject to Law 14/2025 Article 121. Article 2 states publication in Egyptian Proceedings and commencement the following day. This is a Ministry-hosted text copy, not the Official Gazette PDF; no local binary/hash or reuse terms were obtained."
+    },
+    {
+      "source_id": "EG-MELES-DSpace-DECISION-288-2025",
+      "publisher": "The Middle East Library For Economic Services (repository item author: Ministry Of Labor)",
+      "source_type": "Third-party DSpace metadata for Decision 288/2025 with restricted PDF/license listings",
+      "url": "https://dspace.id.com.eg/items/ca54d3fa-04be-4e59-b9f0-6b3752711a6f/full",
+      "observed_title": "Decree No. 288 of the Year 2025 Regarding the Determination of Cases or Works That Needs Continuous Work Without Standard Rest Periods and Arduous Works in Which Workers Are Granted Rest Periods Counted as Part of Actual Working Hours",
+      "publication_date": "2025-12-11",
+      "document_ids": [
+        "EG-LABOUR-DECISION-288-2025"
+      ],
+      "source_state": "third_party_repository_metadata_restricted_files",
+      "access_terms_state": "repository_end_user_agreement_reviewed",
+      "collection_permission": "not_allowed_without_explicit_exception_or_license",
+      "notes": "The item page identifies Ministry Of Labor as author, MELES as publisher and 2025-12-11 issue date metadata. It lists two PDF files (75.85 KB and 125.39 KB) and a 55-byte item-specific license.txt; both PDF and license links open request-a-copy forms stating all files are in restricted access. The repository agreement permits personal/non-commercial use only, requires express prior written permission for commercial exploitation and written permission for systematic database compilation. No files or license bytes were obtained."
     }
   ],
   "document_records_to_create_from_batch": [
