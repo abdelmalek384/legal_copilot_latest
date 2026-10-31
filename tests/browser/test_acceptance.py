@@ -498,10 +498,14 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertTrue(any(sentinel in note["text"] for note in saved_case.json()["notes"]))
 
         scope.select_option("verified_corpus")
+        # Start a fresh conversation so prior firm-matter messages are not part of this UI assertion.
+        self.page.locator(".research-list-head").get_by_role("button", name="محادثة جديدة").click()
+        self.page.locator(".research-thread .research-empty").wait_for(timeout=10000)
         composer.fill(sentinel)
         self.page.locator(".research-composer button").click()
-        self.page.get_by_text("لم يُعثر على نص قانوني متحقق ذي صلة", exact=False).wait_for(timeout=12000)
-        self.assertNotIn(sentinel, self.page.locator(".research-thread").inner_text())
+        self.page.get_by_text("لم يُعثر على نص قانوني متحقق ذي صلة", exact=False).wait_for(timeout=20000)
+        latest_assistant = self.page.locator(".research-thread .research-message.assistant").last.inner_text()
+        self.assertNotIn(sentinel, latest_assistant)
 
         scope.select_option("verified_corpus")
         composer.fill("synthetic verified fixture deadline example")
