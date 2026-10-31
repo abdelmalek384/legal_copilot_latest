@@ -159,6 +159,22 @@ def source_status(source, as_of=None):
         return STATUS_REVIEW
     if provenance.get("commercial_reuse_permission") != "allowed":
         return STATUS_REVIEW
+    # Narrative database fields cannot replace inspectable collection/commercial
+    # rights evidence in the central, versioned permission register.
+    if provenance.get("source_permission_register_match") is not True:
+        return STATUS_REVIEW
+    if provenance.get("source_permission_register_collection_permission") != "allowed":
+        return STATUS_REVIEW
+    if provenance.get("source_permission_register_commercial_reuse_permission") != "allowed":
+        return STATUS_REVIEW
+    if not _valid_review_evidence_url(provenance.get("permission_evidence_url")):
+        return STATUS_REVIEW
+    if not _valid_review_evidence_url(provenance.get("commercial_reuse_evidence_url")):
+        return STATUS_REVIEW
+    for field in ("terms_checked_on", "commercial_terms_checked_on"):
+        checked = _calendar_date(provenance.get(field))
+        if checked is None or checked > as_of_date:
+            return STATUS_REVIEW
     if not str(provenance.get("source_permission_evidence") or "").strip():
         return STATUS_REVIEW
     if not str(provenance.get("permission_evidence") or "").strip():
