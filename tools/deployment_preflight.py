@@ -238,18 +238,22 @@ def inspect_environment(env=None, *, require_separate=False):
                 "the local filesystem and unknown backends are not approved."
             )
         else:
-            missing_s3 = [
-                name for name in ("COPILOT_S3_BUCKET", "COPILOT_S3_REGION", "COPILOT_S3_KMS_KEY_ID")
-                if not env.get(name, "").strip()
-            ]
+            required_s3 = (
+                "COPILOT_S3_BUCKET", "COPILOT_S3_REGION", "COPILOT_S3_KMS_KEY_ID",
+                "COPILOT_S3_RECOVERY_BUCKET", "COPILOT_S3_RECOVERY_REGION",
+                "COPILOT_S3_RECOVERY_KMS_KEY_ID",
+            )
+            missing_s3 = [name for name in required_s3 if not env.get(name, "").strip()]
             if missing_s3:
                 errors.append(
                     "S3/KMS production configuration is incomplete; set "
-                    "COPILOT_S3_BUCKET, COPILOT_S3_REGION, and COPILOT_S3_KMS_KEY_ID."
+                    + ", ".join(required_s3) + "."
                 )
+            elif env["COPILOT_S3_BUCKET"].strip() == env["COPILOT_S3_RECOVERY_BUCKET"].strip():
+                errors.append("COPILOT_S3_RECOVERY_BUCKET must be distinct from COPILOT_S3_BUCKET.")
             else:
                 passed.append(
-                    "S3/KMS backend and bucket/region/key settings are configured; "
+                    "Separate original-object and versioned recovery-archive S3/KMS targets are configured; "
                     "live provider acceptance remains a separate mandatory gate."
                 )
     elif object_storage_backend == "s3":
