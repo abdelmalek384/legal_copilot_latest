@@ -164,6 +164,22 @@ def run_s3_roundtrip(store: S3PrivateObjectStore, firm_id: int, payload: bytes |
         }
 
 
+def roundtrip_preflight_blockers(preflight: dict[str, Any]) -> list[str]:
+    """Return configuration failures that block non-destructive upload/readback.
+
+    Physical-purge compatibility is a separate destructive-operation gate. A
+    versioned bucket can pass the synthetic upload/readback exercise while purge
+    remains blocked; delete markers may hide the probe key while retaining versions.
+    """
+    failed = preflight.get("failed_checks", [])
+    if not isinstance(failed, list):
+        return ["invalid_preflight_result"]
+    return sorted({
+        item for item in failed
+        if isinstance(item, str) and item != "physical_purge_versioning_compatibility"
+    })
+
+
 def build_acceptance_report() -> dict[str, Any]:
     """Create a sanitized report bound to the exact configured S3/KMS target."""
     return {
@@ -220,9 +236,18 @@ def main() -> int:
             s3_client, kms_client, bucket=bucket, configured_key=key_id
         )
         report["configuration_preflight"] = preflight
-        if preflight["failed_checks"]:
+        blocking_checks = roundtrip_preflight_blockers(preflight)
+        report["configuration_preflight"]["roundtrip_blocking_checks"] = blocking_checks
+        purge_check = next(
+            (item for item in preflight["checks"]
+             if item.get("name") == "physical_purge_versioning_compatibility"),
+            {"passed": False},
+        )
+        report["physical_purge_compatibility"] = bool(purge_check.get("passed"))
+        if blocking_checks:
             report["live_roundtrip"] = {"passed": False, "skipped": True,
-                                        "reason": "S3/KMS configuration preflight failed"}
+                                        "reason": "S3/KMS configuration preflight failed",
+                                        "blocking_checks": blocking_checks}
             if args.json:
                 print(json.dumps(report, sort_keys=True))
             else:
@@ -233,6 +258,7 @@ def main() -> int:
             s3_client, bucket=bucket, kms_key_id=key_id, kms_client=kms_client
         )
         roundtrip = run_s3_roundtrip(store, args.firm_id)
+        roundtrip["version_history_may_remain"] = preflight.get("bucket_versioning_status") == "Enabled"
         report["live_roundtrip"] = roundtrip
         if args.json:
             print(json.dumps(report, sort_keys=True))
@@ -242,6 +268,9 @@ def main() -> int:
                 print(f"- {'PASS' if check['passed'] else 'FAIL'} {check['name']}")
             for check in roundtrip["checks"]:
                 print(f"- {'PASS' if check['passed'] else 'FAIL'} {check['name']}")
+            print(f"Physical purge compatible: {'YES' if report.get('physical_purge_compatibility') else 'NO'}")
+            if report["live_roundtrip"].get("version_history_may_remain"):
+                print("Synthetic probe versions may remain in version history; do not claim permanent erasure.")
             print("Production approval: NO; independent review and witnessed drills remain mandatory.")
             if roundtrip.get("cleanup_pending"):
                 print(f"MANUAL REVIEW REQUIRED for probe object {roundtrip.get('object_id')}")
