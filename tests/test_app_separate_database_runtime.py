@@ -4537,6 +4537,54 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             0,
         )
 
+    def test_revoked_firm_member_cannot_be_assigned_a_case_task(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        case = self._mutate(
+            "post", "/cases", json={"title": "Revoked assignee must be excluded"}
+        )
+        self.assertEqual(case.status_code, 200, case.text)
+        case_id = case.json()["id"]
+
+        target_id = self.runtime.create_global_identity(
+            "Revoked Task Assignee", "revoked-task-assignee@example.test",
+            app.hash_pw(self.password),
+        )
+        self.runtime.create_firm_membership(target_id, self.firm_a, "lawyer")
+        added = self._mutate(
+            "post", f"/cases/{case_id}/members",
+            json={"user_id": target_id, "role": "associate"},
+        )
+        self.assertEqual(added.status_code, 200, added.text)
+
+        control = self.runtime.control_connection()
+        control.execute(
+            "UPDATE firm_memberships SET status='revoked',updated_at=datetime('now') "
+            "WHERE user_id=? AND firm_id=?",
+            (target_id, self.firm_a),
+        )
+        control.commit()
+
+        denied = self._mutate(
+            "post", f"/cases/{case_id}/tasks",
+            json={"title": "Do not assign to revoked user", "assignee": target_id},
+        )
+        self.assertEqual(denied.status_code, 422, denied.text)
+        self.assertIn("active firm member", denied.text)
+
+        tenant = self.runtime.firm_connection(
+            self.runtime.resolve_context(self.user_id, self.firm_a)
+        )
+        self.assertEqual(
+            tenant.execute(
+                "SELECT COUNT(*) FROM tasks WHERE case_id=? AND assignee=?",
+                (case_id, target_id),
+            ).fetchone()[0],
+            0,
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

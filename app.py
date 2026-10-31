@@ -4285,8 +4285,12 @@ def remove_member(cid: int, uid: int, u: dict = Depends(user)):
 @rollback_tenant_transaction_on_error
 def new_task(cid: int, b: TaskIn, u: dict = Depends(user)):
     c = conn(); need(c, u, cid)
-    if b.assignee and not c.execute("SELECT 1 FROM members WHERE case_id=? AND user_id=?", (cid, b.assignee)).fetchone():
-        raise HTTPException(422, "assignee must be a member of the case")
+    if b.assignee and not c.execute(
+        "SELECT 1 FROM members m JOIN users u ON u.id=m.user_id "
+        "WHERE m.case_id=? AND m.user_id=? AND u.firm_id=? AND u.active=1",
+        (cid, b.assignee, u["firm_id"]),
+    ).fetchone():
+        raise HTTPException(422, "assignee must be an active firm member assigned to the case")
     add_task(c, u, cid, b.title, b.assignee, b.due); return {"ok": True}
 
 
