@@ -388,10 +388,36 @@ for _key, _values in _LEGAL_SYNONYMS_RAW.items():
         LEGAL_SYNONYMS[_alias] = tuple(x for x in _group if x != _alias)
 
 
+# Exact phrase-level Egyptian colloquial hints. These broaden retrieval only;
+# they do not assert legal equivalence, rewrite the question, or alter source text.
+_LEGAL_PHRASE_SYNONYMS_RAW = {
+    "صاحب الشغل": ("صاحب العمل", "رب العمل", "جهة العمل"),
+    "مش بيدفع المرتب": ("عدم سداد الأجر", "الأجر المتأخر", "المطالبة بالأجر"),
+    "المرتب متأخر": ("تأخر صرف الأجر", "الأجر المتأخر", "مستحقات العامل"),
+    "طردني من الشغل": ("فصل العامل", "إنهاء الخدمة", "إنهاء علاقة العمل"),
+    "الشيك رجع": ("شيك مرتجع", "شيك مرفوض", "شيك بدون رصيد"),
+    "مفيش رصيد": ("بدون رصيد", "شيك مرتجع", "شيك مرفوض"),
+    "وصل أمانة": ("إيصال أمانة", "وصل أمانة"),
+    "صاحب البيت": ("المؤجر", "مالك العقار"),
+    "عايز يطردني": ("الإخلاء", "إخلاء المستأجر", "إنهاء عقد الإيجار"),
+    "مصاريف العيال": ("نفقة الصغار", "نفقة الأولاد", "النفقة"),
+    "جوزي مش بيصرف": ("نفقة الزوجة", "النفقة", "الامتناع عن الإنفاق"),
+    "عايز أرفع قضية": ("رفع دعوى", "صحيفة الدعوى", "مطالبة قضائية"),
+    "حد نصب عليا": ("احتيال", "نصب", "استرداد المبالغ"),
+    "فلوسي عند حد": ("دين", "مطالبة مالية", "استرداد المبالغ"),
+    "مش عارف أفسخ العقد": ("فسخ العقد", "إنهاء العقد", "انحلال العقد"),
+}
+
+
 def expanded_tokens(q, limit=48):
-    """Return unique query tokens plus curated synonyms, preserving original tokens first."""
+    """Return stable retrieval hints while preserving original query terms first."""
     original = tokens(q)
     expanded = list(original)
+    normalized_query = norm(q)
+    for phrase, aliases in _LEGAL_PHRASE_SYNONYMS_RAW.items():
+        normalized_phrase = norm(phrase)
+        if re.search(r"(?<!\\w)" + re.escape(normalized_phrase) + r"(?!\\w)", normalized_query):
+            expanded.extend(tokens(" ".join(aliases)))
     for token in original:
         expanded.extend(LEGAL_SYNONYMS.get(token, ()))
     return list(dict.fromkeys(expanded))[:limit]
