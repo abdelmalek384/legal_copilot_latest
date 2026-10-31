@@ -683,6 +683,25 @@
       "terms_checked_on": "2026-10-31",
       "bulk_download_or_api": "not reviewed; no bulk/API permission established",
       "required_next_action": "Use only as a secondary research cross-check. Review EastLaws terms and obtain applicable permissions before any collection or reuse; compare the decision text with an authorized Official Gazette copy before legal activation."
+    },
+    {
+      "source_id": "EG-IDSC-GAZETTE-2025-291-SUPPLEMENT-LABOUR",
+      "authority": "Ibrachy & Dermarkar Repository; item metadata identifies Amiri Press as publisher and Ministry of Labour as author",
+      "source_page": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc",
+      "material_types": [
+        "Egyptian Proceedings Gazette Supplement issue metadata",
+        "Ministerial decision metadata",
+        "Official Gazette PDF listing",
+        "item-specific license file listing"
+      ],
+      "access_status": "Public metadata identifies issue 291 (تابع), dated 2025-12-25, Ministry of Labour author, Amiri Press publisher, and an 834.25 KB PDF. The full item page lists a 1.71 KB item-specific license.txt file, but clicking it opens a request-a-copy page stating all files are in restricted access. No PDF or license bytes were obtained.",
+      "collection_permission": "not_allowed_without_explicit_exception_or_license",
+      "commercial_reuse_permission": "prior_written_permission_required_per_published_terms",
+      "terms_url": "https://dspace.id.com.eg/info/end-user-agreement",
+      "permission_evidence": "Checked 2026-10-31. The DSpace full item page identifies the Official Gazette supplement, issue date 2025-12-25, publisher Amiri Press, Ministry of Labour as author, one 834.25 KB PDF, and one 1.71 KB item-specific license.txt. The license.txt download opens a request-a-copy form that explicitly states all files are in restricted access. The repository End User Agreement limits content to personal, non-commercial use, requires express prior written permission for commercial exploitation, and prohibits systematic retrieval to create or compile a collection/database/directory without written permission. Neither PDF nor license bytes were obtained; no item-specific licence is inferred from its filename.",
+      "terms_checked_on": "2026-10-31",
+      "bulk_download_or_api": "not authorized; systematic retrieval to compile a collection/database requires written permission under the published End User Agreement",
+      "required_next_action": "Use public catalogue metadata only. Do not request or bypass the restricted file under the current acquisition constraint. Keep collection blocked absent explicit written permission and commercial reuse blocked absent prior written permission. Do not claim that the listed license.txt grants rights until its bytes are lawfully obtained and reviewed."
     }
   ]
 }
