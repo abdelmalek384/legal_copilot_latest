@@ -121,6 +121,14 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         result = MODULE.audit_candidate(candidate, register, self.root)
         self.assertIn("central_source_id_mismatch", {item["code"] for item in result["blockers"]})
 
+    def test_duplicate_central_source_matches_are_ambiguous_and_block_release(self):
+        register = json.loads(json.dumps(self.register))
+        duplicate = json.loads(json.dumps(register["sources"][0]))
+        register["sources"].append(duplicate)
+        result = MODULE.audit_candidate(self.candidate, register, self.root)
+        self.assertFalse(result["ready"])
+        self.assertIn("central_source_record_ambiguous", {item["code"] for item in result["blockers"]})
+
     def test_allowed_commercial_permission_without_separate_evidence_blocks_release(self):
         candidate = json.loads(json.dumps(self.candidate))
         register = json.loads(json.dumps(self.register))
