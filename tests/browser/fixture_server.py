@@ -41,7 +41,7 @@ def bootstrap() -> None:
     firm_b_context = runtime.resolve_context(owner_b, firm_b)
     firm_b_db = runtime.firm_connection(firm_b_context)
     cursor = firm_b_db.execute(
-        "INSERT INTO cases(title,created_by,firm_id) VALUES(?,?,?)",
+        "INSERT INTO cases(id,title,created_by,firm_id) VALUES(777,?,?,?)",
         ("CROSS_FIRM_PRIVATE_SENTINEL_7D3A", owner_b, firm_b),
     )
     case_b_id = int(cursor.lastrowid)
