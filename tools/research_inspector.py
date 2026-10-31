@@ -92,7 +92,7 @@ def _has_current_review_evidence(provenance):
         if record.get("review_type") == "lawyer_approval":
             notes = record.get("notes")
             if not isinstance(notes, str) or not re.search(
-                r"\\[qualified_egyptian_counsel_attested:user_id=[1-9][0-9]*\\]", notes
+                r"\[qualified_egyptian_counsel_attested:user_id=[1-9][0-9]*\]", notes
             ):
                 return False
     return True
