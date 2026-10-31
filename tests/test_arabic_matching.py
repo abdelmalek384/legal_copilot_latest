@@ -22,6 +22,30 @@ class ArabicMatchingTests(unittest.TestCase):
         self.assertIn("شيكا", matched_surface_terms("حرر المدين شيكا للمستفيد", expanded_tokens("الشيك")))
         self.assertIn("تأخر", matched_surface_terms("عند تأخر المدين في السداد", expanded_tokens("التأخير")))
 
+    def test_selected_egyptian_colloquial_legal_queries_expand_conservatively(self):
+        wage = expanded_tokens("المرتب")
+        self.assertIn(tokens("أجر")[0], wage)
+        self.assertIn(tokens("راتب")[0], wage)
+
+        dismissal = expanded_tokens("اترفدت")
+        self.assertIn(tokens("فصل")[0], dismissal)
+        self.assertIn(tokens("إنهاء الخدمة")[0], dismissal)
+
+        cheque = expanded_tokens("شيك مرتجع")
+        self.assertIn(tokens("شيك")[0], cheque)
+        self.assertIn(tokens("مرفوض")[0], cheque)
+
+        trust_receipt = expanded_tokens("وصل أمانة")
+        self.assertIn(tokens("إيصال")[0], trust_receipt)
+
+        family_support = expanded_tokens("مصاريف العيال")
+        self.assertIn(tokens("نفقة")[0], family_support)
+
+    def test_colloquial_expansion_only_highlights_actual_source_words(self):
+        query = expanded_tokens("اترفدت")
+        self.assertIn("فصل", matched_surface_terms("تم فصل العامل من العمل", query))
+        self.assertNotIn("اترفدت", matched_surface_terms("تم فصل العامل من العمل", query))
+
     def test_matched_surface_terms_preserve_diacritics_for_highlighting(self):
         self.assertIn("شيكًا", matched_surface_terms("حرر المدين شيكًا للمستفيد", expanded_tokens("الشيك")))
 
