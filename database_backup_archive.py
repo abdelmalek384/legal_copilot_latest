@@ -18,6 +18,7 @@ from typing import Any
 from database_backup import DatabaseBundleError, _MAX_ENCRYPTED_BUNDLE_BYTES
 
 _PREFIX = "database-recovery/v1/"
+_SINGLE_PUT_MAX_BYTES = 5_000_000_000
 _PART_SIZE = 64 * 1024 * 1024
 _MAX_PARTS = 10_000
 _SHA256 = re.compile(r"^[0-9a-f]{64}$")
@@ -100,7 +101,7 @@ def upload_encrypted_bundle(
     object_key = _PREFIX + uuid.uuid4().hex + ".dbbundle.enc"
     metadata = {"sha256": digest, "format": "encrypted-database-bundle-v2"}
     response: dict[str, Any]
-    if size <= 5 * 1024 * 1024 * 1024:
+    if size <= _SINGLE_PUT_MAX_BYTES:
         try:
             with source.open("rb") as body:
                 response = s3_client.put_object(
