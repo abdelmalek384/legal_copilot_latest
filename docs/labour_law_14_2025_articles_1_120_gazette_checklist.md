@@ -23,7 +23,7 @@ For each article, record:
 4. **Currentness:** identify later amendments, repeal/supersession, implementing decisions and transitional provisions that affect the article; distinguish an implementing instrument from an amendment.
 5. **Counsel:** record qualified Egyptian-lawyer review separately. Do not set this field from automated tests or source matching.
 
-**Existing targeted observations (not full article matches):** Article 1 locator; Article 13 visually inspected (merged PR #967); Articles 4–6 extracted text; Articles 89–90 extracted text; Articles 117–120 have official Gazette page/pinpoint assertions in the existing evidence-card regression tests. These entries are recorded below as locator or limited-observation evidence only. They do not establish full article text matching, currentness, rights or counsel approval. The prior review records also contain other selected pinpoints outside this 1–120 scope. The source review expressly says the full 311-row comparison remains incomplete.
+**Existing targeted observations (not full article matches):** Articles 1–70 now have official Gazette heading-page locators recorded from the ETA-hosted PDF; the relevant page images were inspected, but complete multi-page article content was not compared. Articles 89–90 and 117–120 also have previously recorded text-extraction or regression-test locator evidence. **Scope correction:** the visually inspected Article 13 in merged PR #967 is Article 13 of the issuing provisions, not accompanying-law Article 13; it is outside this checklist. Accompanying-law Article 13 is located on printed p.14 / PDF index 12. All text-match, currentness, rights and counsel gates remain open. The source review expressly says the full 311-row comparison remains incomplete.
 
 ## Article-by-article checklist
 
@@ -31,76 +31,76 @@ Legend: **Text match**, **Visual check**, **Currentness**, **Counsel** are indep
 
 | Article | Existing source locator / observation | Text match | Visual check | Currentness | Counsel |
 |---:|---|:---:|:---:|:---:|:---:|
-| 1 | Printed p.6 / PDF index 4 — targeted text locator observed | ☐ | ☐ | ☐ | ☐ |
-| 2 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 3 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 4 | Printed p.12 / PDF index 9 — targeted text extraction | ☐ | ☐ | ☐ | ☐ |
-| 5 | Printed p.12 / PDF index 9 — targeted text extraction | ☐ | ☐ | ☐ | ☐ |
-| 6 | Printed p.12 / PDF index 9 — targeted text extraction | ☐ | ☐ | ☐ | ☐ |
-| 7 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 8 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 9 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 10 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 11 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 12 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 13 | Printed p.5 / PDF index 3 — visually inspected in merged PR #967; locator evidence only, not full text comparison | ☐ | ☐ | ☐ | ☐ |
-| 14 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 15 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 16 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 17 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 18 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 19 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 20 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 21 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 22 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 23 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 24 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 25 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 26 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 27 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 28 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 29 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 30 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 31 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 32 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 33 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 34 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 35 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 36 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 37 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 38 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 39 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 40 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 41 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 42 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 43 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 44 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 45 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 46 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 47 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 48 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 49 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 50 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 51 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 52 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 53 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 54 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 55 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 56 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 57 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 58 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 59 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 60 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 61 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 62 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 63 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 64 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 65 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 66 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 67 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 68 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 69 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 70 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
+| 1 | Printed p.6 / PDF index 4 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 2 | Printed p.11 / PDF index 9 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 3 | Printed p.11 / PDF index 9 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 4 | Printed p.11 / PDF index 9 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 5 | Printed p.11 / PDF index 9 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 6 | Printed p.12 / PDF index 10 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 7 | Printed p.12 / PDF index 10 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 8 | Printed p.13 / PDF index 11 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 9 | Printed p.13 / PDF index 11 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 10 | Printed p.13 / PDF index 11 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 11 | Printed p.14 / PDF index 12 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 12 | Printed p.14 / PDF index 12 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 13 | Printed p.14 / PDF index 12 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 14 | Printed p.14 / PDF index 12 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 15 | Printed p.14 / PDF index 12 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 16 | Printed p.15 / PDF index 13 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 17 | Printed p.15 / PDF index 13 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 18 | Printed p.16 / PDF index 14 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 19 | Printed p.17 / PDF index 15 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 20 | Printed p.17 / PDF index 15 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 21 | Printed p.18 / PDF index 16 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 22 | Printed p.19 / PDF index 17 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 23 | Printed p.19 / PDF index 17 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 24 | Printed p.20 / PDF index 18 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 25 | Printed p.20 / PDF index 18 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 26 | Printed p.21 / PDF index 19 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 27 | Printed p.21 / PDF index 19 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 28 | Printed p.21 / PDF index 19 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 29 | Printed p.22 / PDF index 20 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 30 | Printed p.22 / PDF index 20 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 31 | Printed p.22 / PDF index 20 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 32 | Printed p.22 / PDF index 20 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 33 | Printed p.23 / PDF index 21 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 34 | Printed p.23 / PDF index 21 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 35 | Printed p.24 / PDF index 22 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 36 | Printed p.24 / PDF index 22 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 37 | Printed p.24 / PDF index 22 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 38 | Printed p.25 / PDF index 23 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 39 | Printed p.25 / PDF index 23 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 40 | Printed p.26 / PDF index 24 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 41 | Printed p.26 / PDF index 24 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 42 | Printed p.27 / PDF index 25 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 43 | Printed p.27 / PDF index 25 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 44 | Printed p.28 / PDF index 26 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 45 | Printed p.28 / PDF index 26 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 46 | Printed p.29 / PDF index 27 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 47 | Printed p.29 / PDF index 27 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 48 | Printed p.29 / PDF index 27 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 49 | Printed p.30 / PDF index 28 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 50 | Printed p.30 / PDF index 28 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 51 | Printed p.30 / PDF index 28 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 52 | Printed p.30 / PDF index 28 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 53 | Printed p.31 / PDF index 29 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 54 | Printed p.31 / PDF index 29 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 55 | Printed p.32 / PDF index 30 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 56 | Printed p.32 / PDF index 30 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 57 | Printed p.32 / PDF index 30 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 58 | Printed p.33 / PDF index 31 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 59 | Printed p.33 / PDF index 31 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 60 | Printed p.33 / PDF index 31 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 61 | Printed p.33 / PDF index 31 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 62 | Printed p.34 / PDF index 32 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 63 | Printed p.34 / PDF index 32 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 64 | Printed p.34 / PDF index 32 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 65 | Printed p.34 / PDF index 32 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 66 | Printed p.35 / PDF index 33 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 67 | Printed p.35 / PDF index 33 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 68 | Printed p.35 / PDF index 33 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 69 | Printed p.36 / PDF index 34 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
+| 70 | Printed p.36 / PDF index 34 — article heading located; Gazette page image inspected; full article not compared | ☐ | ☐ | ☐ | ☐ |
 | 71 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
 | 72 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
 | 73 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
