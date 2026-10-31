@@ -585,25 +585,25 @@ if __name__ == "__main__":
     def test_labour_inspection_and_penalty_cards_275_to_298_have_pinpoints(self):
         cards = {card["card_id"]: card for card in self.data["cards"]}
         expected = {
-            "EG-LABOUR-14-2025-ART-275-LABOUR-INSPECTOR-JUDICIAL-POLICE-STATUS": ("المادة 275", 92, 90),
-            "EG-LABOUR-14-2025-ART-276-LABOUR-INSPECTOR-ENTRY-AND-RECORDS": ("المادة 276", 92, 90),
-            "EG-LABOUR-14-2025-ART-277-EMPLOYER-DUTY-TO-COOPERATE-WITH-INSPECTORS": ("المادة 277", 92, 90),
-            "EG-LABOUR-14-2025-ART-278-EMPLOYER-ATTENDANCE-REQUESTS": ("المادة 278", 92, 90),
-            "EG-LABOUR-14-2025-ART-279-PUBLIC-AUTHORITY-ASSISTANCE-TO-INSPECTORS": ("المادة 279", 92, 90),
-            "EG-LABOUR-14-2025-ART-280-LABOUR-OFFENCES-PENALTY-INTRODUCTION": ("المادة 280", 93, 91),
-            "EG-LABOUR-14-2025-ART-281-LABOUR-PENALTY-ARTICLES-4-5": ("المادة 281", 93, 91),
-            "EG-LABOUR-14-2025-ART-282-LABOUR-PENALTY-ARTICLES-82-273-21": ("المادة 282", 93, 91),
-            "EG-LABOUR-14-2025-ART-283-LABOUR-PENALTY-ARTICLES-37-48-153-137": ("المادة 283", 93, 91),
-            "EG-LABOUR-14-2025-ART-284-LABOUR-PENALTY-ARTICLE-26": ("المادة 284", 93, 91),
-            "EG-LABOUR-14-2025-ART-285-LABOUR-PENALTY-ARTICLE-23": ("المادة 285", 93, 91),
-            "EG-LABOUR-14-2025-ART-286-LABOUR-PENALTY-ARTICLES-7-24-25-36-46-51-52-68": ("المادة 286", 93, 91),
-            "EG-LABOUR-14-2025-ART-287-LABOUR-PENALTY-ARTICLES-45-104-108": ("المادة 287", 93, 91),
-            "EG-LABOUR-14-2025-ART-288-LABOUR-PENALTY-MULTIPLE-WORKER-RIGHTS-ARTICLES": ("المادة 288", 93, 91),
-            "EG-LABOUR-14-2025-ART-289-LABOUR-PENALTY-ARTICLES-62-66": ("المادة 289", 94, 92),
-            "EG-LABOUR-14-2025-ART-290-LABOUR-PENALTY-ARTICLES-33-37-35-205": ("المادة 290", 94, 92),
-            "EG-LABOUR-14-2025-ART-291-LABOUR-PENALTY-UNLICENSED-RECRUITMENT-AND-UNLAWFUL-CHARGES": ("المادة 291", 94, 92),
-            "EG-LABOUR-14-2025-ART-292-LABOUR-PENALTY-ARTICLE-42": ("المادة 292", 94, 92),
-            "EG-LABOUR-14-2025-ART-293-LABOUR-PENALTY-ARTICLES-70-74": ("المادة 293", 94, 92),
+            "EG-LABOUR-14-2025-ART-275-LABOUR-INSPECTOR-JUDICIAL-POLICE-STATUS": ("المادة 275", 105, 103),
+            "EG-LABOUR-14-2025-ART-276-LABOUR-INSPECTOR-ENTRY-AND-RECORDS": ("المادة 276", 106, 104),
+            "EG-LABOUR-14-2025-ART-277-EMPLOYER-DUTY-TO-COOPERATE-WITH-INSPECTORS": ("المادة 277", 106, 104),
+            "EG-LABOUR-14-2025-ART-278-EMPLOYER-ATTENDANCE-REQUESTS": ("المادة 278", 106, 104),
+            "EG-LABOUR-14-2025-ART-279-PUBLIC-AUTHORITY-ASSISTANCE-TO-INSPECTORS": ("المادة 279", 106, 104),
+            "EG-LABOUR-14-2025-ART-280-LABOUR-OFFENCES-PENALTY-INTRODUCTION": ("المادة 280", 106, 104),
+            "EG-LABOUR-14-2025-ART-281-LABOUR-PENALTY-ARTICLES-4-5": ("المادة 281", 107, 105),
+            "EG-LABOUR-14-2025-ART-282-LABOUR-PENALTY-ARTICLES-82-273-21": ("المادة 282", 107, 105),
+            "EG-LABOUR-14-2025-ART-283-LABOUR-PENALTY-ARTICLES-37-48-153-137": ("المادة 283", 107, 105),
+            "EG-LABOUR-14-2025-ART-284-LABOUR-PENALTY-ARTICLE-26": ("المادة 284", 107, 105),
+            "EG-LABOUR-14-2025-ART-285-LABOUR-PENALTY-ARTICLE-23": ("المادة 285", 107, 105),
+            "EG-LABOUR-14-2025-ART-286-LABOUR-PENALTY-ARTICLES-7-24-25-36-46-51-52-68": ("المادة 286", 108, 106),
+            "EG-LABOUR-14-2025-ART-287-LABOUR-PENALTY-ARTICLES-45-104-108": ("المادة 287", 108, 106),
+            "EG-LABOUR-14-2025-ART-288-LABOUR-PENALTY-MULTIPLE-WORKER-RIGHTS-ARTICLES": ("المادة 288", 108, 106),
+            "EG-LABOUR-14-2025-ART-289-LABOUR-PENALTY-ARTICLES-62-66": ("المادة 289", 109, 107),
+            "EG-LABOUR-14-2025-ART-290-LABOUR-PENALTY-ARTICLES-33-37-35-205": ("المادة 290", 109, 107),
+            "EG-LABOUR-14-2025-ART-291-LABOUR-PENALTY-UNLICENSED-RECRUITMENT-AND-UNLAWFUL-CHARGES": ("المادة 291", 109, 107),
+            "EG-LABOUR-14-2025-ART-292-LABOUR-PENALTY-ARTICLE-42": ("المادة 292", 110, 108),
+            "EG-LABOUR-14-2025-ART-293-LABOUR-PENALTY-ARTICLES-70-74": ("المادة 293", 110, 108),
             "EG-LABOUR-14-2025-ART-294-LABOUR-PENALTY-DISCIPLINE-AND-RELATED-ARTICLES": ("المادة 294", 110, 108),
             "EG-LABOUR-14-2025-ART-295-LABOUR-PENALTY-ECONOMIC-CLOSURE-ARTICLES": ("المادة 295", 110, 108),
             "EG-LABOUR-14-2025-ART-296-LABOUR-PENALTY-OCCUPATIONAL-SAFETY-ARTICLES": ("المادة 296", 111, 109),
@@ -620,23 +620,34 @@ if __name__ == "__main__":
                 self.assertTrue(card["limitations"])
                 self.assertFalse(self.data["instrument"]["search_eligible"])
 
-    def test_final_penalty_articles_use_visually_verified_official_pdf_pages(self):
-        cards = {card["card_id"]: card for card in self.data["cards"]}
-        expected = {
-            "EG-LABOUR-14-2025-ART-294-LABOUR-OFFENCE-PENALTY-ARTICLE-294": (110, 108),
-            "EG-LABOUR-14-2025-ART-295-LABOUR-OFFENCE-PENALTY-ARTICLE-295": (110, 108),
-            "EG-LABOUR-14-2025-ART-296-OSH-AND-HEALTH-SAFETY-FINES": (111, 109),
-            "EG-LABOUR-14-2025-ART-297-LABOUR-INSPECTION-OBSTRUCTION-FINE": (111, 109),
-            "EG-LABOUR-14-2025-ART-298-CORPORATE-MANAGER-AND-ENTITY-FINANCIAL-LIABILITY": (111, 109),
-            "EG-LABOUR-14-2025-ART-294-LABOUR-PENALTY-DISCIPLINE-AND-RELATED-ARTICLES": (110, 108),
-            "EG-LABOUR-14-2025-ART-295-LABOUR-PENALTY-ECONOMIC-CLOSURE-ARTICLES": (110, 108),
-            "EG-LABOUR-14-2025-ART-296-LABOUR-PENALTY-OCCUPATIONAL-SAFETY-ARTICLES": (111, 109),
-            "EG-LABOUR-14-2025-ART-297-LABOUR-PENALTY-INSPECTION-OBSTRUCTION": (111, 109),
-            "EG-LABOUR-14-2025-ART-298-LABOUR-CORPORATE-MANAGER-AND-ENTITY-LIABILITY": (111, 109),
-        }
-        for card_id, (printed_page, pdf_index) in expected.items():
-            with self.subTest(card_id=card_id):
-                pinpoint = cards[card_id]["pinpoint"]
+    def test_articles_275_to_298_use_visually_verified_official_pdf_pages(self):
+        cards = self.data["cards"]
+        checked = 0
+        source_url = "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf"
+        for card in cards:
+            article_text = card["pinpoint"]["article"]
+            try:
+                article = int(article_text.split()[-1])
+            except (TypeError, ValueError):
+                continue
+            if not 275 <= article <= 298:
+                continue
+            if article == 275:
+                printed_page, pdf_index = 105, 103
+            elif article <= 280:
+                printed_page, pdf_index = 106, 104
+            elif article <= 285:
+                printed_page, pdf_index = 107, 105
+            elif article <= 288:
+                printed_page, pdf_index = 108, 106
+            elif article <= 291:
+                printed_page, pdf_index = 109, 107
+            elif article <= 295:
+                printed_page, pdf_index = 110, 108
+            else:
+                printed_page, pdf_index = 111, 109
+            with self.subTest(card_id=card["card_id"]):
+                pinpoint = card["pinpoint"]
                 self.assertEqual(pinpoint["official_gazette_printed_page"], printed_page)
                 self.assertEqual(pinpoint["pdf_page_index_zero_based"], pdf_index)
                 self.assertEqual(pinpoint["pinpoint_status"], "visually_verified_on_official_eta_pdf")
@@ -644,8 +655,7 @@ if __name__ == "__main__":
                 self.assertEqual(visual["checked_on"], "2026-10-31")
                 self.assertEqual(visual["printed_page"], printed_page)
                 self.assertEqual(visual["pdf_page_index_zero_based"], pdf_index)
-                self.assertEqual(
-                    visual["source_url"],
-                    "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
-                )
+                self.assertEqual(visual["source_url"], source_url)
+            checked += 1
+        self.assertEqual(checked, 46)
         self.assertFalse(self.data["instrument"]["search_eligible"])
