@@ -1,6 +1,6 @@
 # Browser acceptance harness
 
-The Playwright suite launches the application in a disposable local process and provisions fresh synthetic control-plane, firm, and legal-corpus databases in a temporary directory. It never reads the developer's configured database paths or production records.
+The Playwright suite launches the application in a dedicated local server thread and provisions fresh synthetic control-plane, firm, and legal-corpus databases in a temporary directory. It never reads the developer's configured database paths or production records.
 
 ## Run locally
 
@@ -10,7 +10,7 @@ From the repository root, with Python 3.12:
     python -m playwright install chromium
     python -m unittest tests.browser.test_acceptance
 
-The suite chooses an available loopback port, creates synthetic accounts and fixtures, starts Uvicorn, and deletes its temporary database directory after the run. No real legal text, client matter, external source fetch, SMTP delivery, or model API approval is used.
+The suite chooses an available loopback port, creates synthetic accounts and fixtures, starts Uvicorn in-process, and deletes its temporary database directory after the run. No real legal text, client matter, external source fetch, SMTP delivery, or model API approval is used.
 
 ## Automated coverage
 
