@@ -139,7 +139,12 @@ def main(argv=None):
         if not records:
             raise EvidenceError("no evidence records found")
         summaries = [validate_record(item, args.expected_commit, args.require_pass) for item in records]
-        identities = [(item["application_commit"], item["environment"], item["locale"],\n                       records[index].get("device"), records[index].get("browser_and_version"),\n                       records[index].get("viewport")) for index, item in enumerate(summaries)]
+                identities = [
+            (item["application_commit"], item["environment"], item["locale"],
+             records[index].get("device"), records[index].get("browser_and_version"),
+             records[index].get("viewport"))
+            for index, item in enumerate(summaries)
+        ]
         if len(identities) != len(set(identities)):
             raise EvidenceError("duplicate evidence records for the same commit/environment/locale")
         print(json.dumps({
