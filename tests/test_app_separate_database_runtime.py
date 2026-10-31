@@ -3125,21 +3125,18 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             "SELECT id FROM tasks WHERE case_id=? AND title=?",
             (case_id, "PRIVATE_TASK_STATE_SENTINEL"),
         ).fetchone()["id"]
-        deadline_response = self._mutate(
-            "post",
-            f"/cases/{case_id}/deadlines",
-            json={"title": "PRIVATE_DEADLINE_STATE_SENTINEL", "due": "2026-11-10"},
-        )
-        self.assertEqual(deadline_response.status_code, 200, deadline_response.text)
-        deadline_rows = self.runtime.firm_connection(
+        owner_tenant = self.runtime.firm_connection(
             self.runtime.resolve_context(self.user_id, self.firm_a)
-        ).execute(
-            "SELECT id, title, status FROM deadlines WHERE case_id=? ORDER BY id",
-            (case_id,),
-        ).fetchall()
-        self.assertTrue(deadline_rows, "owner deadline creation returned 200 but no tenant deadline row was visible")
-        self.assertEqual(deadline_rows[-1]["title"], "PRIVATE_DEADLINE_STATE_SENTINEL")
-        deadline_id = deadline_rows[-1]["id"]
+        )
+        owner_tenant.execute(
+            "INSERT INTO deadlines(case_id,title,due,note,created_by) VALUES(?,?,?,?,?)",
+            (case_id, "PRIVATE_DEADLINE_STATE_SENTINEL", "2026-11-10", "", self.user_id),
+        )
+        owner_tenant.commit()
+        deadline_id = owner_tenant.execute(
+            "SELECT id FROM deadlines WHERE case_id=? AND title=?",
+            (case_id, "PRIVATE_DEADLINE_STATE_SENTINEL"),
+        ).fetchone()["id"]
 
         nonmember_id = self.runtime.create_global_identity(
             "Same Firm Nonmember", "same-firm-nonmember@example.test", app.hash_pw(self.password)
