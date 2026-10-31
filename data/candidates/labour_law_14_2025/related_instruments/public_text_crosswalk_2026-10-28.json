@@ -269,6 +269,58 @@
       "reuse_rights": "unknown",
       "currentness": "not verified",
       "card_action": "cross-reference contract-writing requirements; compare full operative text and any later decisions before authoritative use"
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-288-2025",
+      "number": 288,
+      "year": 2025,
+      "related_law_articles": [
+        118,
+        119
+      ],
+      "title_ar": "قرار وزير العمل رقم 288 لسنة 2025 بشأن تحديد الحالات أو الأعمال التي يتحتم استمرار العمل فيها دون فترة راحة نمطية والأعمال المرهقة التي يمنح العاملون فيها فترات راحة تحسب من ساعات العمل الفعلية",
+      "primary_lead": {
+        "url": "https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1",
+        "status": "Official Gazette Supplement issue 295 metadata (2025-12-30); 550.3 KB PDF request-a-copy restricted; no primary bytes obtained"
+      },
+      "secondary_text": {
+        "url": "https://lawhub.info/eg/?p=17305",
+        "corroborating_url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/30-12-2025/no-288?id=5064169&type=1",
+        "status": "Two public secondary full-text/index sources; neither compared with official Gazette PDF",
+        "summary": "Law Hub exposes the two-chapter structure: (1) work that must continue without standard rest breaks for technical/operational reasons and (2) arduous work with rest periods counted as actual work. Secondary text describes a baseline one-hour total rest and no more than five consecutive hours, exceptions with compensatory rest/food-drink/safety safeguards, and designated arduous-work categories. EastLaws states Gazette publication 2025-12-30 and commencement 2025-12-31. Exact full category lists and wording remain unverified."
+      },
+      "gazette_date": "2025-12-30 (official Amiri Press issue metadata; secondary EastLaws record independently states same)",
+      "effective_date": "2025-12-31 (stated by EastLaws and derived from secondary publication clause; not primary-PDF verified)",
+      "article_2_schedule_status": "Two-chapter structure and selected operative provisions visible in secondary text; full categories not primary-verified",
+      "reuse_rights": "unknown; DSpace issue PDF request-a-copy restricted and secondary-source reuse not cleared",
+      "currentness": "not fully verified; later amendment/repeal and currentness review outstanding",
+      "card_action": "cross-reference only; do not decide an individual worker's rest entitlement until exact Gazette categories and currentness are checked"
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-289-2025",
+      "number": 289,
+      "year": 2025,
+      "related_law_articles": [
+        117,
+        121
+      ],
+      "title_ar": "قرار وزير العمل رقم 289 لسنة 2025 بشأن تحديد ساعات العمل في المنشآت الصناعية",
+      "primary_lead": {
+        "url": "https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1",
+        "status": "Official Gazette Supplement issue 295 metadata (2025-12-30); 550.3 KB PDF request-a-copy restricted; no primary bytes obtained"
+      },
+      "secondary_text": {
+        "url": "https://lawhub.info/eg/?p=17304",
+        "corroborating_url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/30-12-2025/no-289?id=5008502&type=1",
+        "status": "Two public secondary full-text/index sources; neither compared with official Gazette PDF",
+        "summary": "Law Hub Article 1 states actual work in industrial establishments must not exceed eight hours per day or 48 hours per week, excluding meal/rest periods; unusual/exceptional work is subject to Law 14/2025 Article 121. Article 2 provides next-day commencement. EastLaws confirms publication 2025-12-30; commencement 2025-12-31 is derived from the secondary Article 2 clause. Interaction with Industrial Establishments Law 133/1961 and better contractual/collective terms requires review."
+      },
+      "gazette_date": "2025-12-30 (official Amiri Press issue metadata; secondary EastLaws record independently states same)",
+      "effective_date": "2025-12-31 (derived from secondary Article 2 publication clause and EastLaws publication date; not primary-PDF verified)",
+      "article_2_schedule_status": "Articles 1–2 available in secondary text; no primary Gazette comparison",
+      "reuse_rights": "unknown; DSpace issue PDF request-a-copy restricted and secondary-source reuse not cleared",
+      "currentness": "not fully verified; later amendments/repeal and Industrial Establishments Law interaction review outstanding",
+      "card_action": "cross-reference only; do not advise on industrial shift scheduling until primary text, applicable establishment scope and currentness are checked"
     }
   ]
 }
