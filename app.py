@@ -380,6 +380,7 @@ _LEGAL_SYNONYMS_RAW = {
     # These are retrieval hints, not legal equivalence or a change to source text.
     "شيك": ("شيكا", "شيكات", "الشيك", "الشيكات", "cheque", "مرتجع", "مرفوض", "بدون رصيد"),
     "تأخير": ("تأخر", "متأخر", "متأخرة", "تأخيرا", "delay", "delayed"),
+    "مدة": ("ميعاد", "أجل", "فترة", "deadline", "period", "time limit"),
 }
 LEGAL_SYNONYMS = {}
 for _key, _values in _LEGAL_SYNONYMS_RAW.items():
