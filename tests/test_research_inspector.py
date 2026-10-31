@@ -8,6 +8,7 @@ sys.path.insert(0, str(ROOT))
 from tools.research_inspector import (
     STATUS_METADATA_ONLY, STATUS_REVIEW, STATUS_USER_SUPPLIED, STATUS_VERIFIED,
     citation_text, research_memo, source_permission_evidence_ready, source_status,
+    has_current_review_evidence,
 )
 
 
@@ -147,6 +148,13 @@ class ResearchInspectorTests(unittest.TestCase):
         self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
         source = valid_source()
         source["provenance"]["review_evidence"][0]["reviewer"] = " "
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
+    def test_every_current_review_event_requires_nonempty_notes(self):
+        source = valid_source()
+        self.assertTrue(has_current_review_evidence(source["provenance"]))
+        source["provenance"]["review_evidence"][0]["notes"] = " "
+        self.assertFalse(has_current_review_evidence(source["provenance"]))
         self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
 
     def test_source_permission_evidence_ready_requires_central_register_and_urls(self):

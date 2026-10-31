@@ -9,7 +9,7 @@ from contextvars import ContextVar
 from collections import Counter
 from datetime import date, datetime, timedelta, timezone
 from functools import lru_cache, wraps
-from tools.research_inspector import (STATUS_REVIEW, STATUS_VERIFIED, central_permission_register_ready, source_permission_evidence_ready, source_status, citation_text, research_memo)
+from tools.research_inspector import (STATUS_REVIEW, STATUS_VERIFIED, central_permission_register_ready, source_permission_evidence_ready, source_status, citation_text, research_memo, has_current_review_evidence)
 from tools.mfa_primitives import (
     MFAPrimitivesError, build_totp_uri, generate_recovery_codes,
     generate_totp_secret, hash_recovery_code, verify_recovery_code, verify_totp,
@@ -3469,18 +3469,19 @@ def legal_review_coverage(u: dict = Depends(user)):
         "(SELECT COUNT(*) FROM legal_document_versions WHERE TRIM(COALESCE(effective_date,''))='') AS versions_missing_effective_date, "
         "(SELECT COUNT(*) FROM legal_document_versions WHERE TRIM(COALESCE(original_path,''))<>'' AND TRIM(COALESCE(original_sha256,''))='') AS versions_missing_original_hash, "
         "(SELECT COUNT(*) FROM legal_document_versions v WHERE TRIM(COALESCE(v.permission_evidence,''))='' OR EXISTS (SELECT 1 FROM legal_documents d JOIN legal_sources s ON s.source_id=d.source_id WHERE d.document_id=v.document_id AND TRIM(COALESCE(s.permission_evidence,''))='')) AS versions_missing_permission_evidence, "
-        "(SELECT COUNT(*) FROM legal_document_versions v WHERE EXISTS ("
-        "SELECT 1 FROM (SELECT 'source_authenticity' AS review_type UNION ALL SELECT 'extraction_quality' UNION ALL SELECT 'legal_status' UNION ALL SELECT 'amendment_history' UNION ALL SELECT 'licensing' UNION ALL SELECT 'lawyer_approval') required "
-        "WHERE NOT EXISTS (SELECT 1 FROM legal_review_events e WHERE e.version_id=v.version_id AND e.review_type=required.review_type "
-        "AND e.review_event_id=(SELECT e2.review_event_id FROM legal_review_events e2 "
-        "WHERE e2.version_id=v.version_id AND e2.review_type=required.review_type "
-        "ORDER BY e2.reviewed_at DESC,e2.review_event_id DESC LIMIT 1) "
-        "AND e.outcome='pass' AND TRIM(COALESCE(e.notes,''))<>'' "
-        "AND (e.review_type<>'lawyer_approval' OR e.notes LIKE '%[qualified_egyptian_counsel_attested:user_id=%') "
-        "AND TRIM(COALESCE(e.reviewer,''))<>'' AND e.evidence_url LIKE 'https://%'))) AS versions_missing_review_event_evidence",
+        "(SELECT 0) AS versions_missing_review_event_evidence",
         (today, today)
     ).fetchone()
     metrics = dict(metrics)
+    review_version_rows = c.execute(
+        "SELECT version_id FROM legal_document_versions ORDER BY version_id"
+    ).fetchall()
+    metrics["versions_missing_review_event_evidence"] = sum(
+        1 for version_row in review_version_rows
+        if not has_current_review_evidence(
+            citation_provenance(c, version_row["version_id"])
+        )
+    )
     source_rows = c.execute(
         "SELECT source_id,source_page,collection_permission,commercial_reuse_permission,"
         "permission_evidence AS source_permission_evidence FROM legal_sources"
