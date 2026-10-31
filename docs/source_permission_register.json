@@ -735,6 +735,23 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
       "required_next_action": "Use as a manually reviewed government-hosted text copy for Decision 289/2025 only. Check applicable SIS reuse terms and compare against the Official Gazette issue PDF when lawfully accessible. Do not treat this PDF as the Official Gazette itself or infer bulk/commercial reuse permission."
+    },
+    {
+      "source_id": "EG-MELES-DSpace-DECISION-288-2025",
+      "authority": "Middle East Library for Economic Services DSpace repository; item metadata attributes the decision to Ministry of Labour",
+      "source_page": "https://dspace.id.com.eg/items/ca54d3fa-04be-4e59-b9f0-6b3752711a6f/full",
+      "material_types": [
+        "Third-party repository metadata for Decision 288/2025",
+        "Restricted PDF and item-specific license file listings"
+      ],
+      "access_status": "The DSpace item page lists two PDF files (75.85 KB English-title file and 125.39 KB Arabic-title file) and a 55-byte item-specific license.txt. Both PDF download and license.txt links open request-a-copy forms stating all files in the item are in restricted access. No file or license bytes were obtained.",
+      "collection_permission": "not_allowed_without_explicit_exception_or_license",
+      "commercial_reuse_permission": "prior_written_permission_required_per_published_terms",
+      "terms_url": "https://dspace.id.com.eg/info/end-user-agreement",
+      "permission_evidence": "Checked 2026-10-31. The item page identifies the author as Ministry Of Labor and the publisher as The Middle East Library For Economic Services, with issue date metadata 2025-12-11. The 75.85 KB and 125.39 KB PDFs and 55-byte license.txt are all behind request-a-copy forms stating all files are in restricted access. The repository End User Agreement (last updated 2023-05-04) limits content to personal, non-commercial use; copying, reproducing, aggregating, republishing, distributing, selling, licensing or other commercial exploitation requires express prior written permission; systematic retrieval to compile a collection/database requires written permission; circumventing access/copy restrictions is prohibited. No PDF or license bytes were obtained.",
+      "terms_checked_on": "2026-10-31",
+      "bulk_download_or_api": "not allowed without written permission under published terms",
+      "required_next_action": "Use public catalogue metadata only. Do not request or bypass the restricted PDF or license file under the current acquisition constraint. Collection remains blocked absent explicit permission; commercial reuse requires prior written permission. Do not infer rights from the 55-byte license filename."
     }
   ]
 }
