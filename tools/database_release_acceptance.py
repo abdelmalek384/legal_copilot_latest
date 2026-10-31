@@ -61,8 +61,19 @@ def original_storage_config_fingerprint(env: object | None = None) -> str | None
         "region": str(source.get("COPILOT_S3_REGION", "")).strip(),
         "kms_key_id": str(source.get("COPILOT_S3_KMS_KEY_ID", "")).strip(),
         "endpoint_url": str(source.get("COPILOT_S3_ENDPOINT_URL", "")).strip(),
+        "recovery_bucket": str(source.get("COPILOT_S3_RECOVERY_BUCKET", "")).strip(),
+        "recovery_region": str(source.get("COPILOT_S3_RECOVERY_REGION", "")).strip(),
+        "recovery_kms_key_id": str(source.get("COPILOT_S3_RECOVERY_KMS_KEY_ID", "")).strip(),
+        "recovery_endpoint_url": str(source.get("COPILOT_S3_RECOVERY_ENDPOINT_URL", "")).strip(),
     }
-    if values["backend"] != "s3" or not values["bucket"] or not values["region"] or not values["kms_key_id"]:
+    if (
+        values["backend"] != "s3"
+        or not values["bucket"] or not values["region"] or not values["kms_key_id"]
+        or not values["recovery_bucket"] or not values["recovery_region"]
+        or not values["recovery_kms_key_id"]
+        or values["bucket"] == values["recovery_bucket"]
+        or values["kms_key_id"] == values["recovery_kms_key_id"]
+    ):
         return None
     payload = json.dumps(values, sort_keys=True, separators=(",", ":"), ensure_ascii=True).encode("utf-8")
     return hashlib.sha256(payload).hexdigest()
