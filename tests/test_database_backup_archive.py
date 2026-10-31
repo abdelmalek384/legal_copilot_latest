@@ -94,7 +94,7 @@ class RecoveryArchiveTransportTests(unittest.TestCase):
             self.s3, self.kms, locator, target, **self.config
         )
         self.assertEqual(result.read_bytes(), self.bundle.read_bytes())
-        self.assertEqual(self.s3.read_versions, [locator["version_id"]])
+        self.assertEqual(self.s3.read_versions, [locator["version_id"], locator["version_id"]])
 
     def test_missing_versioning_fails_closed(self):
         self.s3.versioning = "Suspended"
