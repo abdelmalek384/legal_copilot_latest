@@ -91,7 +91,7 @@ def review_queue(db_path: Path) -> dict:
         review_types=("source_authenticity","extraction_quality","legal_status","amendment_history","licensing","lawyer_approval")
         for version in versions:
             row=dict(version)
-            events=[dict(e) for e in db.execute("SELECT review_event_id,review_type,outcome,evidence_url,reviewer,reviewed_at FROM legal_review_events WHERE version_id=? ORDER BY reviewed_at DESC,review_event_id DESC",(row["version_id"],)).fetchall()]
+            events=[dict(e) for e in db.execute("SELECT review_event_id,review_type,outcome,evidence_url,reviewer,notes,reviewed_at FROM legal_review_events WHERE version_id=? ORDER BY reviewed_at DESC,review_event_id DESC",(row["version_id"],)).fetchall()]
             reasons=[]
             if row["official_title"] is None:
                 reasons.append("document_missing_from_registry")
@@ -111,8 +111,15 @@ def review_queue(db_path: Path) -> dict:
               (commercial_reuse_issue(row["commercial_reuse_permission"]) is not None,commercial_reuse_issue(row["commercial_reuse_permission"]))]
             reasons.extend(label for missing,label in checks if missing)
             for rt in review_types:
-                if not any(e["review_type"]==rt and e["outcome"]=="pass" and valid_evidence_url(e["evidence_url"]) for e in events):
+                matching = [e for e in events if e["review_type"] == rt and e["outcome"] == "pass" and valid_evidence_url(e["evidence_url"])]
+                if not matching:
                     reasons.append("review_evidence_missing:"+rt)
+                elif rt == "lawyer_approval" and not any(
+                    isinstance(e.get("notes"), str) and __import__("re").search(
+                        r"\\[qualified_egyptian_counsel_attested:user_id=[1-9][0-9]*\\]", e["notes"]
+                    ) for e in matching
+                ):
+                    reasons.append("lawyer_approval_counsel_attestation_missing")
             if reasons:
                 report["records"].append({**row,"review_reasons":reasons,"review_events":events,
                   "next_action":"Inspect the official instrument and evidence; record scoped review events and leave unresolved items unresolved."})
