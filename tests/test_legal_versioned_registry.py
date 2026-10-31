@@ -125,7 +125,7 @@ class LegalVersionedRegistryTests(unittest.TestCase):
         self.assertEqual(hits[0]["source_status"], "outdated_or_under_review")
         with patch.object(self.app, "LLM") as llm:
             result = self.app.ask(
-                self.db, "What does this instrument say?",
+                self.db, "registercrosscheck",
                 as_of="2026-10-23", scope="verified_corpus",
             )
         self.assertTrue(result["abstained"])
