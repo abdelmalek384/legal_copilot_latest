@@ -157,7 +157,7 @@ def audit(db_path: Path, *, check_fts_index: bool = False):
                     if event["review_type"] == "lawyer_approval" and event["outcome"] == "pass":
                         notes = event["notes"]
                         if not isinstance(notes, str) or not re.search(
-                            r"\\[qualified_egyptian_counsel_attested:user_id=[1-9][0-9]*\\]", notes
+                            r"\[qualified_egyptian_counsel_attested:user_id=[1-9][0-9]*\]", notes
                         ):
                             quality["lawyer_approval_without_counsel_attestation"] += 1
                     if version_ids is not None and event["version_id"] not in version_ids:
