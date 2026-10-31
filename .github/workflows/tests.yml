@@ -138,6 +138,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_citation_quantity_binding.py
       - name: Test retrieval and citation evaluation harness
         run: python tests/test_retrieval_evaluation.py
+      - name: Test production retrieval against fictional evidence fixtures
+        run: PYTHONPATH=. python tests/test_synthetic_retrieval.py
       - name: Smoke-test evaluation report on unreviewed seeds
         run: python tools/evaluate_retrieval_quality.py
       - name: Validate Phase 2 metadata-only instrument inventory
