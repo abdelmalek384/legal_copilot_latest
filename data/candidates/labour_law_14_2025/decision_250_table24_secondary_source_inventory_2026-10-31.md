@@ -43,6 +43,19 @@ The original bundle bytes have not been obtained in this workstream. No local fi
 
 The secondary transcription and a separate watermarked third-party image reproduction disagree or contain malformed values at candidate rows 34, 61 and 64. The secondary transcription itself preserves a malformed/nonstandard CAS string for row 34; tentative image readings for rows 61 and 64 differ from the transcription. These differences remain unresolved. Do not normalize identifiers, select exposure values, infer limit columns, or calculate workplace exposure decisions from either copy.
 
+## Additional secondary PDF-preview route — Law Hub
+
+A separate Law Hub item page for Decision 250/2026 was located:
+
+- Item page: https://lawhub.info/eg/?p=19706
+- It displays the decision number/year and links to PDF and Word attachments.
+- The PDF link opens a Google Drive preview: https://drive.google.com/file/d/1cfdkIR6MlAXJwMJNB8flmvxKKd1Es4gm/preview
+- The preview exposed only a loading placeholder and sign-in route in this review. No document pages, original bytes, or hash were inspected.
+
+Law Hub's published terms are at https://lawhub.info/eg/?page_id=778. They allow copying site posts subject to attribution and preserving site rights, and state that others may not profit by republishing its free services for money. The source register therefore records collection permission as unknown and commercial reuse of Law Hub site materials as not allowed without an explicit exception or licence. This is a site-level restriction; it does not decide the rights status of the underlying official legal text.
+
+This PDF preview is a secondary-hosted discovery lead, not proof that the file is the original Official Gazette bundle. Do not infer authenticity, completeness, permission, or page-image verification from the attachment link.
+
 ## Rights and use restrictions
 
 The secondary page is a manual discovery and cross-check route only. No licence or bulk-collection permission was identified in this review. Public visibility does not establish permission to copy, redistribute, or commercially reuse the transcription or its compilation.
