@@ -33,7 +33,7 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
 
     def test_current_inventory_is_metadata_only_and_structurally_valid(self):
         self.assertEqual(validate_inventory(self.inventory), [])
-        self.assertEqual(len(self.inventory["documents"]), 83)
+        self.assertEqual(len(self.inventory["documents"]), 85)
         self.assertTrue(all(d["review_status"] != "verified" for d in self.inventory["documents"]))
         self.assertTrue(all(d["legal_status"] in {"unknown", "not_applicable"} for d in self.inventory["documents"]))
         register = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
@@ -315,6 +315,20 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         source = next(item for item in register["sources"] if item["source_id"] == source_id)
         self.assertEqual(source["collection_permission"], "not_allowed_without_explicit_exception_or_license")
         self.assertEqual(source["commercial_reuse_permission"], "prior_written_permission_required_per_published_terms")
+        self.assertEqual(validate_inventory(self.inventory), [])
+
+
+
+    def test_decisions_288_and_289_use_restricted_issue_295_metadata(self):
+        records = {item["document_id"]: item for item in self.inventory["documents"]}
+        for document_id in ("EG-LABOUR-DECISION-288-2025", "EG-LABOUR-DECISION-289-2025"):
+            record = records[document_id]
+            self.assertEqual(record["source_id"], "EG-IDSC-GAZETTE-2025-295-SUPPLEMENT-D")
+            self.assertEqual(record["collection_permission"], "not_allowed_without_explicit_exception_or_license")
+            self.assertEqual(record["legal_status"], "unknown")
+            self.assertEqual(record["review_status"], "discovery_only")
+            self.assertTrue(any("dspace.id.com.eg/items/32fa3458" in item["url"] for item in record["source_urls"]))
+            self.assertTrue(any("lawhub.info" in item["url"] for item in record["source_urls"]))
         self.assertEqual(validate_inventory(self.inventory), [])
 
 
