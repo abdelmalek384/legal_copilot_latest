@@ -26,7 +26,9 @@ def main(argv=None) -> int:
     if args.print_storage_config_fingerprint:
         fingerprint = original_storage_config_fingerprint()
         if fingerprint is None:
-            parser.error("configure the S3/KMS backend, bucket, region, and key ID before computing the fingerprint")
+            parser.error(
+                "configure distinct original-object and recovery-archive S3 buckets, regions, and KMS keys before computing the fingerprint"
+            )
         print(fingerprint)
         return 0
     report = load_acceptance_manifest(
