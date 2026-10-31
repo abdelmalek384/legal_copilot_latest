@@ -28,6 +28,7 @@ def _free_port() -> int:
 class BrowserAcceptanceTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
+        print("[browser-acceptance] creating disposable environment", flush=True)
         cls.temp = tempfile.TemporaryDirectory(prefix="legal-copilot-browser-")
         cls.temp_path = Path(cls.temp.name)
         cls.port = _free_port()
@@ -58,8 +59,10 @@ class BrowserAcceptanceTests(unittest.TestCase):
         from database_runtime import DatabaseRuntime
 
         cls.app_module = app_module
+        print("[browser-acceptance] initializing profile-separated databases", flush=True)
         cls.runtime = DatabaseRuntime.from_env()
         cls.runtime.initialize()
+        print("[browser-acceptance] database initialization complete", flush=True)
         firm_a, _ = cls.runtime.provision_firm("Synthetic Acceptance Firm A")
         firm_b, _ = cls.runtime.provision_firm("Synthetic Acceptance Firm B")
 
@@ -76,6 +79,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         # This allowlist exists only inside the disposable synthetic browser-test
         # environment; it does not assert that this fixture user is real counsel.
         os.environ["LEGAL_QUALIFIED_EGYPTIAN_COUNSEL_USER_IDS"] = str(reviewer_id)
+        print("[browser-acceptance] synthetic firms and identities provisioned", flush=True)
         cls.runtime.create_firm_membership(reviewer_id, firm_a, "lawyer")
         control = cls.runtime.control_connection()
         control.execute(
@@ -213,6 +217,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
             ),
         )
         corpus.commit()
+        print("[browser-acceptance] synthetic corpus fixtures committed", flush=True)
         app_module.LLM = lambda _prompt: None
 
         cls.state = {
@@ -230,6 +235,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         )
         cls.server_thread = threading.Thread(target=cls.server.run, daemon=True)
         cls.server_thread.start()
+        print("[browser-acceptance] application server thread started; waiting for startup", flush=True)
         deadline = time.monotonic() + 45
         while time.monotonic() < deadline and not cls.server.started:
             if not cls.server_thread.is_alive():
@@ -237,6 +243,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
             time.sleep(0.1)
         if not cls.server.started:
             raise RuntimeError("Synthetic in-process application server did not become ready.")
+        print("[browser-acceptance] application startup completed", flush=True)
 
         # Verify the HTTP listener and root route independently before Chromium starts.
         # This separates server/startup failures from browser navigation failures.
@@ -253,8 +260,11 @@ class BrowserAcceptanceTests(unittest.TestCase):
                 f"Synthetic browser server did not answer on {cls.base_url}: {exc}"
             ) from exc
 
+        print("[browser-acceptance] root HTTP probe passed; starting Playwright driver", flush=True)
         cls.playwright = sync_playwright().start()
-        cls.browser: Browser = cls.playwright.chromium.launch(headless=True)
+        print("[browser-acceptance] Playwright driver started; launching Chromium", flush=True)
+        cls.browser: Browser = cls.playwright.chromium.launch(headless=True, timeout=20000)
+        print("[browser-acceptance] Chromium launched", flush=True)
 
     @classmethod
     def tearDownClass(cls) -> None:
@@ -277,6 +287,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
             os.environ.update(cls.original_env)
 
     def setUp(self) -> None:
+        print(f"[browser-acceptance] starting {self.id()}", flush=True)
         self.context: BrowserContext = self.browser.new_context(
             viewport={"width": 1440, "height": 900},
             accept_downloads=True,
@@ -285,6 +296,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         # Keep a broken local route or selector from consuming the entire CI budget.
         self.page.set_default_timeout(8000)
         self.page.set_default_navigation_timeout(8000)
+        print(f"[browser-acceptance] page ready for {self.id()}", flush=True)
         self.browser_errors: list[str] = []
         self.network_errors: list[str] = []
         self.page.on("pageerror", lambda error: self.browser_errors.append(str(error)))
@@ -311,6 +323,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
                 # Preserve the original assertion/navigation error if screenshot capture fails.
                 pass
         self.context.close()
+        print(f"[browser-acceptance] finished {self.id()}", flush=True)
 
     def login(self, email: str) -> None:
         self.page.goto(self.base_url, wait_until="domcontentloaded")
