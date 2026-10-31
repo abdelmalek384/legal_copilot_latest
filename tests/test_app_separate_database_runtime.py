@@ -4182,7 +4182,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
                 "terms_checked_on": None,
                 "commercial_terms_checked_on": None,
             }
-        with patch.object(self.app, "_central_source_permission_evidence", side_effect=permission_record):
+        with patch.object(app, "_central_source_permission_evidence", side_effect=permission_record):
             response = self.client.get("/legal-review/coverage")
         self.assertEqual(response.status_code, 200, response.text)
         metrics = response.json()["metrics"]
@@ -4224,7 +4224,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
              "under_review", "pending_source_review", "synthetic review evidence"),
         )
         corpus.commit()
-        with patch.object(self.app, "_central_source_permission_evidence", side_effect=permission_record):
+        with patch.object(app, "_central_source_permission_evidence", side_effect=permission_record):
             after_unknown = self.client.get("/legal-review/coverage")
         self.assertEqual(after_unknown.status_code, 200, after_unknown.text)
         self.assertEqual(
