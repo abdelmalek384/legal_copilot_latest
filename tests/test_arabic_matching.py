@@ -41,6 +41,43 @@ class ArabicMatchingTests(unittest.TestCase):
         family_support = expanded_tokens("مصاريف العيال")
         self.assertIn(tokens("نفقة")[0], family_support)
 
+    def test_phrase_level_egyptian_colloquial_queries_expand_to_legal_retrieval_hints(self):
+        cases = (
+            ("صاحب الشغل مش بيدفع المرتب", ("صاحب العمل", "عدم سداد الأجر", "الأجر المتأخر")),
+            ("المرتب متأخر", ("تأخر صرف الأجر", "مستحقات العامل")),
+            ("طردني من الشغل", ("فصل العامل", "إنهاء الخدمة")),
+            ("الشيك رجع", ("شيك مرتجع", "شيك مرفوض")),
+            ("مفيش رصيد", ("بدون رصيد", "شيك مرتجع")),
+            ("وصل أمانة", ("إيصال أمانة",)),
+            ("صاحب البيت", ("المؤجر", "مالك العقار")),
+            ("عايز يطردني", ("الإخلاء", "إخلاء المستأجر")),
+            ("مصاريف العيال", ("نفقة الصغار", "نفقة الأولاد")),
+            ("جوزي مش بيصرف", ("نفقة الزوجة", "الامتناع عن الإنفاق")),
+            ("عايز أرفع قضية", ("رفع دعوى", "صحيفة الدعوى")),
+            ("حد نصب عليا", ("احتيال", "استرداد المبالغ")),
+            ("فلوسي عند حد", ("دين", "مطالبة مالية")),
+            ("مش عارف أفسخ العقد", ("فسخ العقد", "إنهاء العقد")),
+        )
+        for question, expected_phrases in cases:
+            with self.subTest(question=question):
+                expanded = set(expanded_tokens(question))
+                for phrase in expected_phrases:
+                    self.assertTrue(
+                        set(tokens(phrase)).issubset(expanded),
+                        f"{question!r} did not expand to {phrase!r}",
+                    )
+
+    def test_phrase_expansion_preserves_original_terms_and_negation(self):
+        question = "صاحب الشغل مش بيدفع المرتب"
+        expanded = expanded_tokens(question)
+        self.assertTrue(set(tokens(question)).issubset(set(expanded)))
+        self.assertIn(tokens("مش")[0], expanded)
+        self.assertEqual(expanded_tokens(question), expanded_tokens(question))
+
+    def test_phrase_expansion_requires_word_boundaries(self):
+        self.assertNotIn(tokens("المؤجر")[0], expanded_tokens("صاحب البيتزا"))
+        self.assertNotIn(tokens("فصل")[0], expanded_tokens("اتطردت من البيت"))
+
     def test_colloquial_expansion_only_highlights_actual_source_words(self):
         query = expanded_tokens("اترفدت")
         self.assertIn("فصل", matched_surface_terms("تم فصل العامل من العمل", query))
