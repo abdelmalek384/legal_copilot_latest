@@ -7,7 +7,7 @@
 
 ## Executive finding
 
-At the 2026-10-24 snapshot, the application used one SQLite database selected by `COPILOT_DB`. That statement is historical. The current approved runtime routes global identities/memberships through the control plane, matter data through a distinct database per firm, and legal-reference data through the shared corpus. Explicit legacy `COPILOT_DB` compatibility remains for non-production use and is rejected in production. Encrypted multi-database backup/restore and a separate-database preflight are now implemented; the witnessed recovery drill remains outstanding.
+At the 2026-10-24 snapshot, the application used one SQLite database selected by `COPILOT_DB`. That statement is historical. The current approved runtime routes global identities/memberships through the control plane, matter data through a distinct database per firm, and legal-reference data through the shared corpus. The shared `COPILOT_DB` runtime was retired in PR #972 and is rejected in every environment. Encrypted multi-database backup/restore and a separate-database preflight are now implemented; the witnessed recovery drill remains outstanding.
 
 The table below preserves the earlier entrypoint analysis and its original follow-ups. It is not a current statement that tenant routing or multi-database backup/restore is absent.
 
