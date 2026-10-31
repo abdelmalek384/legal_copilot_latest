@@ -353,5 +353,13 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         self.assertTrue(any("ca54d3fa-04be-4e59-b9f0-6b3752711a6f" in item["url"] for item in record["source_urls"]))
         self.assertEqual(validate_inventory(self.inventory), [])
 
+
+    def test_decision_294_ministry_text_copy_is_discovery_only(self):
+        record = next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-DECISION-294-2025")
+        self.assertEqual(record["legal_status"], "unknown")
+        self.assertEqual(record["review_status"], "discovery_only")
+        self.assertTrue(any("MOM20251226_0805.pdf" in item["url"] for item in record["source_urls"]))
+        self.assertEqual(validate_inventory(self.inventory), [])
+
 if __name__ == "__main__":
     unittest.main()
