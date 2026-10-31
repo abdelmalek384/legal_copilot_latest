@@ -626,6 +626,21 @@
       "access_terms_state": "not_reviewed",
       "collection_permission": "unknown",
       "notes": "Browser visual inspection of both pages shows Gazette masthead, issue 295 supplement D, date 2025-12-30, page numbers 21–22, Decision 291/2025 and Articles 1–5. Article 1 visibly states 35% daytime and 70% nighttime premiums; Article 4 directs the Supreme Council for Social Consultation to set an annual maximum within three months; Article 5 provides next-day commencement. This is a third-party hosted reproduction, not the original DSpace PDF. No local bytes/hash, source chain, licence or reuse terms were obtained; no ingestion or reuse rights inferred."
+    },
+    {
+      "source_id": "EG-MOL-SIS-DECISION-289-2025-PDF",
+      "publisher": "Egyptian Ministry of Labour; hosted by Egyptian State Information Service",
+      "source_type": "Ministry-hosted PDF containing the text of Ministerial Decision 289/2025",
+      "url": "https://mediadr.sis.gov.eg/xmlui/bitstream/handle/123456789/117208/MOM20251227_0415.pdf?isAllowed=y&sequence=4",
+      "observed_title": "وزير العمل يصدر قراراً وزارياً رقم ٢٨٩ لسنة ٢٠٢٥ بشأن تحديد ساعات العمل في المنشآت الصناعية",
+      "publication_date": "2025-12-27",
+      "document_ids": [
+        "EG-LABOUR-DECISION-289-2025"
+      ],
+      "source_state": "government_hosted_decision_text_opened_and_text_layer_reviewed",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "unknown",
+      "notes": "PDF opened through SIS. It identifies the Ministry of Labour and contains the full text of Decision 289/2025 Articles 1–2 after a Ministry announcement. Article 1 states no more than eight hours actual work/day or 48/week excluding meal/rest periods, preserves better benefits in individual/collective contracts or workplace regulations, and permits exceptional work subject to Law 14/2025 Article 121. Article 2 states publication in Egyptian Proceedings and commencement the following day. This is a Ministry-hosted text copy, not the Official Gazette PDF; no local binary/hash or reuse terms were obtained."
     }
   ],
   "document_records_to_create_from_batch": [
