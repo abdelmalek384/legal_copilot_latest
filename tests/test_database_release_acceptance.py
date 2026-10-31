@@ -84,6 +84,12 @@ class DatabaseReleaseAcceptanceTests(unittest.TestCase):
         changed = dict(config, COPILOT_S3_BUCKET="bucket-b")
         self.assertNotEqual(first, original_storage_config_fingerprint(changed))
         self.assertIsNone(original_storage_config_fingerprint({}))
+        self.assertIsNone(original_storage_config_fingerprint({
+            **config, "COPILOT_S3_RECOVERY_BUCKET": "bucket-a",
+        }))
+        self.assertIsNone(original_storage_config_fingerprint({
+            **config, "COPILOT_S3_RECOVERY_KMS_KEY_ID": "key-a",
+        }))
 
     def test_storage_acceptance_is_bound_to_current_s3_kms_configuration(self):
         matched = validate_acceptance_manifest(
