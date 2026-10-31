@@ -23,7 +23,7 @@ For each article, record:
 4. **Currentness:** identify later amendments, repeal/supersession, implementing decisions and transitional provisions that affect the article; distinguish an implementing instrument from an amendment.
 5. **Counsel:** record qualified Egyptian-lawyer review separately. Do not set this field from automated tests or source matching.
 
-**Existing targeted observations (not full article matches):** Article 1 locator; Articles 4–6 extracted text; Articles 89–90 extracted text; Articles 117 and 120 extracted text. These are the only article entries pre-populated below. The prior review records also contain other selected pinpoints outside this 1–120 scope. The source review expressly says the full 311-row comparison remains incomplete.
+**Existing targeted observations (not full article matches):** Article 1 locator; Articles 4–6 extracted text; Articles 89–90 extracted text; Articles 117–120 have official Gazette page/pinpoint assertions in the existing evidence-card regression tests. Articles 117–120 are recorded below as locator evidence only. The assertions do not establish full article text matching, currentness, rights or counsel approval. The prior review records also contain other selected pinpoints outside this 1–120 scope. The source review expressly says the full 311-row comparison remains incomplete.
 
 ## Article-by-article checklist
 
@@ -147,10 +147,10 @@ Legend: **Text match**, **Visual check**, **Currentness**, **Counsel** are indep
 | 114 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
 | 115 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
 | 116 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 117 | Printed p.52 / PDF index 50 — targeted text extraction | ☐ | ☐ | ☐ | ☐ |
-| 118 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 119 | Not yet recorded | ☐ | ☐ | ☐ | ☐ |
-| 120 | Printed p.52 / PDF index 50 — targeted text extraction | ☐ | ☐ | ☐ | ☐ |
+| 117 | Printed p.52 / PDF index 50 — official Gazette pinpoint/visual evidence asserted by existing regression tests; not full text comparison | ☐ | ☐ | ☐ | ☐ |
+| 118 | Printed p.52 / PDF index 50 — official Gazette pinpoint/visual evidence asserted by existing regression tests; not full text comparison | ☐ | ☐ | ☐ | ☐ |
+| 119 | Printed p.52 / PDF index 50 — official Gazette pinpoint/visual evidence asserted by existing regression tests; not full text comparison | ☐ | ☐ | ☐ | ☐ |
+| 120 | Printed p.52 / PDF index 50 — official Gazette pinpoint/visual evidence asserted by existing regression tests; not full text comparison | ☐ | ☐ | ☐ | ☐ |
 
 ## Release gate for this tranche
 
