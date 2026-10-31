@@ -242,7 +242,7 @@ def download_encrypted_bundle_version(
         or "/" in key[len(_PREFIX):]
         or not isinstance(version_id, str) or not version_id or version_id == "null"
         or not isinstance(expected_digest, str) or not _SHA256.fullmatch(expected_digest)
-        or not isinstance(expected_size, int) or expected_size <= 0
+        or isinstance(expected_size, bool) or not isinstance(expected_size, int) or expected_size <= 0
         or expected_size > _MAX_ENCRYPTED_BUNDLE_BYTES
         or locator.get("kms_key_arn") != key_arn
         or locator.get("format") != "encrypted-database-bundle-v2"
@@ -275,6 +275,11 @@ def download_encrypted_bundle_version(
     if target.exists() or target.is_symlink() or target.parent.is_symlink() or not target.parent.is_dir():
         body.close()
         _fail("Recovery download target must be a new file in an existing real directory")
+    parent = target.parent.resolve()
+    if parent != target.parent.absolute():
+        body.close()
+        _fail("Recovery download parent path must not traverse symbolic links")
+    target = parent / target.name
     flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL | getattr(os, "O_NOFOLLOW", 0)
     descriptor = None
     digest = hashlib.sha256()
