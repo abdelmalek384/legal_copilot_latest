@@ -154,6 +154,13 @@
       "source_class": "official_government_gazette_public_viewing_metadata_lead",
       "permission": "unknown",
       "next_action": "The SIS search-indexed item says public viewing and lists a 550.3 KB PDF, but the item page/PDF could not be opened in this session. Review site terms and confirm ordinary authorized access before download; do not bypass host restrictions or infer bulk/commercial rights."
+    },
+    "EG-EASTLAWS-LABOUR-DECISIONS-290-291-2025": {
+      "authority": "EastLaws legal database",
+      "source_url": "https://www.eastlaws.com/",
+      "source_class": "secondary_legal_database_full_text_transcriptions",
+      "permission": "unknown",
+      "next_action": "Secondary full-text research reference only. No official Gazette PDF or reuse licence obtained from EastLaws; do not ingest or redistribute its text. Compare against an authorized official issue copy and review item-specific terms."
     }
   },
   "documents": [
@@ -2297,6 +2304,11 @@
           "url": "https://mediadr.sis.gov.eg/xmlui/handle/123456789/117733?locale-attribute=ar",
           "source_role": "SIS government-repository public-viewing metadata lead for Gazette issue 295; PDF not opened",
           "status": "public_viewing_metadata_pdf_not_opened_terms_unreviewed"
+        },
+        {
+          "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/30-12-2025/no-290?id=5008505&type=1",
+          "source_role": "EastLaws secondary full-text transcription; records Gazette date and next-day commencement; not primary Gazette evidence",
+          "status": "secondary_full_text_crosscheck_not_primary_verified"
         }
       ]
     },
@@ -2339,6 +2351,11 @@
           "url": "https://mediadr.sis.gov.eg/xmlui/handle/123456789/117733?locale-attribute=ar",
           "source_role": "SIS government-repository public-viewing metadata lead for Gazette issue 295; PDF not opened",
           "status": "public_viewing_metadata_pdf_not_opened_terms_unreviewed"
+        },
+        {
+          "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/30-12-2025/no-291?id=5064176&type=1",
+          "source_role": "EastLaws secondary full-text transcription; records Gazette date and next-day commencement; not primary Gazette evidence",
+          "status": "secondary_full_text_crosscheck_not_primary_verified"
         }
       ]
     },
