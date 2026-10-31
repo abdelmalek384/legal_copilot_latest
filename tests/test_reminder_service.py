@@ -9,7 +9,9 @@ from database_runtime import DatabaseRuntime
 from tools.reminder_email import SMTPConfig
 from tools.reminder_outbox import enqueue_plan
 from tools.reminder_schedule import build_reminder_plan
-from tools.reminder_service import outbox_status, run_scheduler
+from tools.reminder_service import (
+    _ReadOnlyReminderRuntime, main, outbox_status, run_scheduler,
+)
 
 
 class ReminderServiceTests(unittest.TestCase):
@@ -59,6 +61,40 @@ class ReminderServiceTests(unittest.TestCase):
         self.assertEqual(
             self.tenant.execute("SELECT COUNT(*) FROM reminder_deliveries").fetchone()[0], 0
         )
+
+    def test_read_only_dry_run_uses_query_only_connections(self):
+        readonly = _ReadOnlyReminderRuntime(self.runtime)
+        try:
+            report = run_scheduler(
+                readonly, now=self.now, timezone_name="Africa/Cairo", send=False
+            )
+            self.assertEqual(report["reminders_planned"], 1)
+            control = readonly.control_connection()
+            tenant = readonly._tenant_router.connection_for_firm(self.firm_id)
+            self.assertEqual(control.execute("PRAGMA query_only").fetchone()[0], 1)
+            self.assertEqual(tenant.execute("PRAGMA query_only").fetchone()[0], 1)
+            with self.assertRaises(sqlite3.OperationalError):
+                tenant.execute("UPDATE tasks SET status='done' WHERE id=?", (self.task_id,))
+        finally:
+            readonly.close_current_thread()
+
+    def test_cli_dry_run_does_not_call_database_runtime_initialize(self):
+        from contextlib import redirect_stdout
+        import io
+
+        with patch("tools.reminder_service.DatabaseRuntime.from_env", return_value=self.runtime), \\
+             patch.object(DatabaseRuntime, "initialize", side_effect=AssertionError("initialize must not run")), \\
+             redirect_stdout(io.StringIO()):
+            self.assertEqual(main([]), 0)
+
+    def test_cli_status_does_not_call_database_runtime_initialize(self):
+        from contextlib import redirect_stdout
+        import io
+
+        with patch("tools.reminder_service.DatabaseRuntime.from_env", return_value=self.runtime), \\
+             patch.object(DatabaseRuntime, "initialize", side_effect=AssertionError("initialize must not run")), \\
+             redirect_stdout(io.StringIO()):
+            self.assertEqual(main(["--status"]), 0)
 
     def test_status_report_is_read_only_and_contains_only_counts(self):
         plan = build_reminder_plan(
