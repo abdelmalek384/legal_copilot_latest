@@ -161,6 +161,13 @@
       "source_class": "secondary_legal_database_full_text_transcriptions",
       "permission": "unknown",
       "next_action": "Secondary full-text research reference only. No official Gazette PDF or reuse licence obtained from EastLaws; do not ingest or redistribute its text. Compare against an authorized official issue copy and review item-specific terms."
+    },
+    "EG-IDSC-GAZETTE-2025-291-SUPPLEMENT-LABOUR": {
+      "authority": "Ibrachy & Dermarkar Repository; metadata identifies Amiri Press as publisher and Ministry of Labour as author",
+      "source_url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc",
+      "source_class": "third_party_hosted_official_Gazette_issue_metadata_restricted_PDF_and_license_listing",
+      "permission": "not_allowed_without_explicit_exception_or_license",
+      "next_action": "Metadata only. Both the 834.25 KB PDF and the 1.71 KB item-specific license.txt open request-a-copy forms stating all files are in restricted access. Do not infer rights from the license filename or bypass the restriction."
     }
   },
   "documents": [
@@ -2142,9 +2149,9 @@
       "document_type": "ministerial_decision",
       "instrument_number": 294,
       "instrument_year": 2025,
-      "source_id": "EG-MINISTRY-LABOUR-LAWS",
-      "source_status": "official_index_discovered_primary_text_pending",
-      "collection_permission": "unknown",
+      "source_id": "EG-IDSC-GAZETTE-2025-291-SUPPLEMENT-LABOUR",
+      "source_status": "official_Gazette_issue_metadata_plus_two_secondary_full_texts_found; primary_comparison_pending",
+      "collection_permission": "not_allowed_without_explicit_exception_or_license",
       "legal_status": "unknown",
       "review_status": "discovery_only",
       "required_related_records": [
@@ -2158,6 +2165,11 @@
       ],
       "notes": "Discovery-only candidate. A Ministry of Labour announcement dated 2026-01-05 cites Decision 294/2025 as identifying paid holidays and occasions for covered private-sector workers. This confirms a current official reference to the decision but does not supply its complete text, Gazette pages, amendment history, or reuse rights. Keep legal status and permission unknown pending primary-text verification.",
       "source_urls": [
+        {
+          "url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc",
+          "source_role": "Official Gazette Supplement issue 291 metadata; PDF and item-specific license listed but request-a-copy restricted",
+          "status": "metadata_only_PDF_and_license_request_copy_restricted"
+        },
         {
           "url": "https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A7%D9%84%D8%A3%D8%B1%D8%A8%D8%B9%D8%A7%D8%A1-%D8%A7%D9%84%D9%85%D9%82%D8%A8%D9%84-%D8%A5%D8%AC%D8%A7%D8%B2%D8%A9-%D9%85%D8%AF%D9%81%D9%88%D8%B9%D8%A9-%D8%A7%D9%84%D8%A3%D8%AC%D8%B1-%D9%84%D9%84%D8%B9%D8%A7%D9%85%D9%84%D9%8A%D9%86-%D8%A8%D8%A7%D9%84%D9%82%D8%B7%D8%A7%D8%B9-%D8%A7%D9%84%D8%AE%D8%A7%D8%B5-%D8%A8%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%A9-%D8%B9%D9%8A%D8%AF-%D8%A7%D9%84%D9%85%D9%8A%D9%84%D8%A7%D8%AF-%D8%A7%D9%84%D9%85%D8%AC%D9%8A%D8%AF-%D8%AC%D8%A8%D8%B1%D8%A7%D9%86-%D9%88%D8%AD%D8%AF%D8%A9-%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D9%8A%D9%86-%D9%88%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A7%D9%84%D9%85%D8%B4%D8%AA%D8%B1%D9%83-%D8%A3%D8%B3%D8%A7%D8%B3-%D9%82%D9%88%D8%A9-%D8%A7%D9%84%D9%88%D8%B7%D9%86/",
           "source_role": "official Ministry announcement citing Decision 294/2025; discovery evidence only",
@@ -2182,6 +2194,16 @@
           "url": "https://mediadr.sis.gov.eg/handle/123456789/117216?locale-attribute=ar",
           "source_role": "State Information Service public Ministry announcement about Decision 294/2025",
           "status": "official_announcement_summary"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=17019",
+          "source_role": "Law Hub secondary full-text transcription; not compared with official Gazette PDF",
+          "status": "secondary_full_text_not_primary_verified"
+        },
+        {
+          "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/25-12-2025/no-294?id=5008509&type=1",
+          "source_role": "EastLaws secondary full-text/index; direct page access returned 403 in this session",
+          "status": "secondary_full_text_indexed_not_primary_verified"
         }
       ]
     },
@@ -2368,9 +2390,9 @@
       "document_type": "ministerial_decision",
       "instrument_number": 292,
       "instrument_year": 2025,
-      "source_id": "EG-MINISTRY-LABOUR-LAWS",
-      "source_status": "official_Gazette_metadata_plus_secondary_indexed_text_found; primary_comparison_pending",
-      "collection_permission": "unknown",
+      "source_id": "EG-IDSC-GAZETTE-2025-291-SUPPLEMENT-LABOUR",
+      "source_status": "official_Gazette_issue_metadata_plus_two_secondary_full_texts_found; primary_comparison_pending",
+      "collection_permission": "not_allowed_without_explicit_exception_or_license",
       "legal_status": "unknown",
       "review_status": "discovery_only",
       "required_related_records": [
@@ -2384,14 +2406,24 @@
       "notes": "Official Gazette Supplement issue 291 (تابع), dated 2025-12-25, lists Decision 292/2025. An indexed secondary legal-text page at https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/25-12-2025/no-292?id=5042304&type=1 surfaces decision date 2025-12-04, publication date 2025-12-25, claimed effective date 2025-12-26, and article headings/text fragments for preparatory work, complementary work and guarding. These dates and operative limits are secondary leads only; the full official PDF has not been compared. No hours/overtime calculation should be made from the title or fragments. Reuse rights and currentness remain unknown.",
       "source_urls": [
         {
-          "url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc/full",
-          "source_role": "Official Gazette Supplement issue 291 metadata and PDF bundle",
-          "status": "metadata_and_PDF_listing_found"
+          "url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc",
+          "source_role": "Official Gazette Supplement issue 291 metadata; PDF and item-specific license listed but request-a-copy restricted",
+          "status": "metadata_only_PDF_and_license_request_copy_restricted"
         },
         {
           "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/25-12-2025/no-292?id=5042304&type=1",
           "source_role": "secondary indexed legal text",
           "status": "partial_indexed_text_currentness_and_primary_comparison_pending"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=17022",
+          "source_role": "Law Hub secondary full-text transcription; not compared with official Gazette PDF",
+          "status": "secondary_full_text_not_primary_verified"
+        },
+        {
+          "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/25-12-2025/no-292?id=5042304&type=1",
+          "source_role": "EastLaws secondary full-text/index; direct page access returned 403 in this session",
+          "status": "secondary_full_text_indexed_not_primary_verified"
         }
       ]
     },
