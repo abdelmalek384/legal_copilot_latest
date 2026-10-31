@@ -135,6 +135,27 @@ class ResearchInspectorTests(unittest.TestCase):
         source["provenance"]["review_evidence"][0]["reviewer"] = " "
         self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
 
+    def test_source_permission_evidence_ready_requires_central_register_and_urls(self):
+        source = valid_source()
+        provenance = source["provenance"]
+        self.assertTrue(source_permission_evidence_ready(provenance))
+        for field, value in (
+            ("source_permission_register_match", False),
+            ("source_permission_register_collection_permission", "unknown"),
+            ("source_permission_register_commercial_reuse_permission", "unknown"),
+            ("permission_evidence_url", "http://example.gov/rights"),
+            ("commercial_reuse_evidence_url", None),
+            ("terms_checked_on", None),
+            ("commercial_terms_checked_on", "2999-01-01"),
+            ("collection_permission", "unknown"),
+            ("commercial_reuse_permission", "unknown"),
+            ("source_permission_evidence", ""),
+        ):
+            with self.subTest(field=field):
+                candidate = dict(provenance)
+                candidate[field] = value
+                self.assertFalse(source_permission_evidence_ready(candidate))
+
     def test_current_permission_review_dates_do_not_override_historical_legal_as_of_date(self):
         source = valid_source()
         self.assertEqual(source_status(source, "2020-01-01"), STATUS_VERIFIED)
