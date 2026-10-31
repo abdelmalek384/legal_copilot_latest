@@ -112,13 +112,23 @@
         "url": "https://lawhub.info/eg/?p=17019",
         "corroborating_url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/25-12-2025/no-294?id=5008509&type=1",
         "status": "Two public secondary full-text/index sources; neither compared with official Gazette PDF",
-        "summary": "Law Hub transcription exposes Articles 1–4. Article 1 lists 12 paid holidays/occasions: Hijri New Year, Mawlid, first two Eid al-Fitr days, Arafah and first two Eid al-Adha days, Coptic Christmas, 25 January/Police Day, Sham El-Nessim, Sinai Liberation Day, Labour Day, 30 June, 23 July and Armed Forces Day. The Minister may substitute another day for national uniformity. Article 2 provides paid leave not deducted from annual leave; if work is required, the worker receives double pay for the day or an alternative day on written request. Article 3 adds non-Muslim religious holidays under the relevant Prime Minister decision. Article 4 states next-day commencement. EastLaws states publication 2025-12-25 and effective date 2025-12-26. Ministry circulars in 2026 show event-specific date substitutions; these are not treated as permanent amendments."
+        "summary": "Law Hub transcription exposes Articles 1–4. Article 1 lists 12 paid holidays/occasions: Hijri New Year, Mawlid, first two Eid al-Fitr days, Arafah and first two Eid al-Adha days, Coptic Christmas, 25 January/Police Day, Sham El-Nessim, Sinai Liberation Day, Labour Day, 30 June, 23 July and Armed Forces Day. The Minister may substitute another day for national uniformity. Article 2 provides paid leave not deducted from annual leave; if work is required, the worker receives double pay for the day or an alternative day on written request. Article 3 adds non-Muslim religious holidays under the relevant Prime Minister decision. Article 4 states next-day commencement. EastLaws states publication 2025-12-25 and effective date 2025-12-26. Ministry circulars in 2026 show event-specific date substitutions; these are not treated as permanent amendments.",
+        "currentness_leads": [
+          {
+            "url": "https://www.labour.gov.eg/ar/الأخبار/لتوحيد-مواعيد-الإجازات-الرسمية-في-قطاعات-الدولة-المختلفة-وزير-العمل-الخميس-المقبل-إجازة-مدفوعة-الأجر-للعاملين-بالقطاع-الخاص-بمناسبة-ذكرى-نصر-أكتوبر-المجيد/",
+            "description": "Official Ministry notice for October 2026: cites Circular 22/2026 and Prime Minister Decision 2898/2026; event-specific date substitution, not permanent amendment"
+          },
+          {
+            "url": "https://sis.gov.eg/ar/المركز-الإعلامي/الأخبار/وزير-العمل-الخميس-المقبل-إجازة-رسمية-بمناسبة-عيد-ثورة-٢٣-يوليو/",
+            "description": "Official SIS-hosted Ministry notice for July 2026: cites Prime Minister Decision 2181/2026; event-specific date notice, not permanent amendment"
+          }
+        ]
       },
       "gazette_date": "2025-12-25 (official Amiri Press issue metadata; secondary EastLaws record states same)",
       "effective_date": "2025-12-26 (stated by EastLaws and derived from Article 4 in Law Hub; not primary-PDF verified)",
       "article_2_schedule_status": "12-occasion list and Articles 2–4 available in Law Hub secondary transcription; no primary Gazette comparison",
       "reuse_rights": "unknown; DSpace PDF and item-specific license file are request-a-copy restricted; secondary-source reuse not cleared",
-      "currentness": "not fully verified; 2026 Ministry circulars substitute dates for specific holidays, but a full amendment/repeal review is outstanding",
+      "currentness": "not fully verified; 2026 official notices show event-specific date substitutions (October 2026 Circular 22/2026/PM Decision 2898/2026; July 2026 PM Decision 2181/2026), but a full amendment/repeal review remains outstanding",
       "card_action": "cross-reference lead only; for a specific date, check the current Ministry circular and any Prime Minister substitution; do not assume the fixed statutory date is always the actual leave date"
     },
     {
