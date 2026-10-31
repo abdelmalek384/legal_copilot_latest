@@ -19,7 +19,7 @@ class Decision249CandidateQuarantineTests(unittest.TestCase):
         self.assertEqual(record["source"]["visual_reviewed_on"], "2026-10-31")
         self.assertEqual(
             [item["printed_page"] for item in record["source"]["visual_reviewed_images"]],
-            [19, 33, 43, 44],
+            [19, 33, 43, 44, 32],
         )
         kinds = {}
         for item in record["records"]:
