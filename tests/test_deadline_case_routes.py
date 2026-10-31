@@ -97,6 +97,51 @@ class CaseDeadlineEstimateRouteTests(unittest.TestCase):
         self.assertTrue(result["warnings"])
         self.assertIn("disclaimer", result)
 
+    def test_case_brief_uses_authorized_case_records_and_validates_citations(self):
+        self._mutate("post", f"/cases/{self.case_id}/notes", json={"text": "تم تقديم صحيفة الدعوى"})
+        self._mutate("post", f"/cases/{self.case_id}/sessions", json={"date": "2026-11-10", "note": "تأجيل لنظر المستندات"})
+        captured = {}
+        def fake_llm(prompt):
+            captured["prompt"] = prompt
+            return "تتضمن القضية ملاحظة عن صحيفة الدعوى [2]."
+        with patch.dict("os.environ", {"LLM_FIRM_DATA_PROCESSING_APPROVED": "1"}), patch.object(app, "LLM", side_effect=fake_llm):
+            response = self._mutate("post", f"/cases/{self.case_id}/brief", json={})
+        self.assertEqual(response.status_code, 200, response.text)
+        result = response.json()
+        self.assertTrue(result["generated"])
+        self.assertEqual(result["answer"], "تتضمن القضية ملاحظة عن صحيفة الدعوى [2].")
+        self.assertIn("JSON lines", captured["prompt"])
+        self.assertIn("case_note", captured["prompt"])
+        self.assertIn("hearing_session", captured["prompt"])
+        self.assertNotIn("deadline-b@example.test", captured["prompt"])
+
+    def test_case_brief_does_not_call_model_without_firm_data_approval(self):
+        with patch.dict("os.environ", {"LLM_FIRM_DATA_PROCESSING_APPROVED": ""}), patch.object(app, "LLM") as llm:
+            response = self.client.post(f"/cases/{self.case_id}/brief", json={})
+        self.assertEqual(response.status_code, 200, response.text)
+        self.assertFalse(response.json()["available"])
+        self.assertTrue(response.json()["abstained"])
+        llm.assert_not_called()
+
+    def test_case_brief_rejects_uncited_or_unanchored_model_output(self):
+        with patch.dict("os.environ", {"LLM_FIRM_DATA_PROCESSING_APPROVED": "1"}), patch.object(
+            app, "LLM", return_value="The case will definitely succeed."
+        ):
+            response = self._mutate("post", f"/cases/{self.case_id}/brief", json={})
+        self.assertEqual(response.status_code, 200, response.text)
+        self.assertFalse(response.json()["generated"])
+        self.assertTrue(response.json()["abstained"])
+        self.assertNotIn("answer", response.json())
+
+    def test_other_firm_cannot_generate_a_case_brief(self):
+        self.client.cookies.clear()
+        login = self.client.post(
+            "/login", json={"email": "deadline-b@example.test", "password": self.password_b}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        denied = self._mutate("post", f"/cases/{self.case_id}/brief", json={})
+        self.assertEqual(denied.status_code, 404, denied.text)
+
     def test_unknown_rule_and_impossible_trigger_are_rejected(self):
         unknown = self.client.get(
             f"/cases/{self.case_id}/deadline-estimate",
