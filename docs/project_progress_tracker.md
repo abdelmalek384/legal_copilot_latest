@@ -5,7 +5,7 @@
 
 ## Overall status
 
-See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **48.85/100 technical completion** (up 0.35 points; rounds to 49%) as of 2026-10-31. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
+See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **49.20/100 technical completion** (up 0.70 points from 48.50; rounds to 49%) as of 2026-10-31. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
 
 
 ## Latest whole-product checkpoint — 2026-10-31
@@ -36,11 +36,13 @@ The current source of truth is [the weighted whole-project completion scorecard]
 - **#1053:** expanded Egyptian colloquial retrieval hints across major practice areas; this is retrieval-only and has no lawyer-labelled accuracy benchmark yet.
 - **#1054:** added a fail-closed lexical citation-relevance guard; this checks textual anchors, not semantic entailment or legal correctness.
 - **#1066:** merged the qualified-counsel approval gate. Passing lawyer-approval events require an authenticated account ID from the operator-managed allowlist; the marker gates normal/exact retrieval and is checked by provenance, corpus audit and reviewer queue. Full Tests, CodeQL, dependency audit, non-database safety regression, and amd64/arm64 container builds passed. This is operator attestation, not independent credential verification; no primary-source legal material was promoted.
+- **#1067:** merged the matching offline source-to-release validator gate. A passing candidate lawyer-approval record must carry the same runtime marker and its positive account ID must match `reviewer_id`. Missing/mismatched marker regressions passed Tests, CodeQL, dependency audit and non-database safety regression. No legal source was promoted.
+- **#1065:** merged the refreshed project progress tracker and active release-gate record.
 
 
 ### 31 October live follow-up — additional merged work and active gates
 
-The 49% whole-product score above is unchanged pending a formal scorecard recalculation; the PRs below are deliverable progress, not an automatic percentage increase.
+The weighted scorecard has now been recalculated to **49.20/100** after #1066 and #1067 met their merged acceptance criteria. This is a technical-governance increase; verified primary-source corpus volume remains 6%, and counsel acceptance remains 0%.
 
 **Merged after the preceding checkpoint:**
 
@@ -54,7 +56,7 @@ The 49% whole-product score above is unchanged pending a formal scorecard recalc
 
 **Open PRs — not complete until merged and all required checks pass:**
 
-- **#1057:** real-browser acceptance harness. Normal Tests, CodeQL and dependency audit passed on the current head; the Chromium acceptance suite is still running. Manual lawyer, device, screen-reader and accessibility acceptance remain separate.
+- **#1057:** real-browser acceptance harness. I corrected its synthetic verified-corpus fixture to include the runtime counsel-attestation marker introduced by #1066. The previous Chromium run was still executing on the prior head; a definitive result for the corrected head is not yet recorded. Manual lawyer, device, screen-reader and accessibility acceptance remain separate.
 
 **Superseded PR:**
 
@@ -73,7 +75,7 @@ The 49% whole-product score above is unchanged pending a formal scorecard recalc
 
 - **#1057:** browser acceptance harness remains open/draft. Tests, CodeQL and dependency audit passed; the real Chromium acceptance suite has not returned a final result. Do not count browser acceptance complete.
 - **#840:** remains draft/open; Decisions 248–252 and Table 24 source comparison remain discovery-only pending lawful original Gazette access and rights review.
-- **#1065:** this tracker/scorecard refresh remains open pending its current-head checks and merge.
+- **#1065:** merged after its refreshed Tests, CodeQL and dependency audit all passed.
 
 ### Current non-database priorities
 
@@ -624,3 +626,10 @@ This checkpoint supersedes the earlier 47%/42% estimates recorded above. The who
 - Invoice implementation remains blocked pending database-owner approval. Do not overload the existing fees table or alter tenant isolation to simulate invoices.
 
 **No verified-corpus percentage increase is claimed:** the new crosswalks improve source discovery and rights traceability, not legal verification or counsel acceptance.
+
+### Latest checkpoint — 2026-10-31 (counsel marker and source-release gate)
+
+- #1066 and #1067 are merged. The runtime review API, normal/exact retrieval, provenance, read-only corpus audit, reviewer queue, and offline candidate release validator now share the counsel-allowlist marker contract. The offline validator additionally requires the marker account ID to match the candidate review's reviewer_id.
+- The verified-corpus volume remains unchanged at 6%; no new Gazette original was obtained, no source-specific rights were cleared, and no legal content was promoted. Final Egyptian-counsel acceptance remains 0% / not started.
+- #1057's synthetic browser corpus fixture was corrected for the new marker requirement. The corrected head's browser CI result is pending; the browser acceptance gate is not complete.
+- The weighted engineering score is **49.20/100** (up 0.70 from 48.50; rounded to 49%). This increase reflects merged release-governance and regression coverage, not new verified legal material.
