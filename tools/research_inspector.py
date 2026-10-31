@@ -87,6 +87,8 @@ def _has_current_review_evidence(provenance):
             return False
         if not isinstance(record.get("reviewer"), str) or not record["reviewer"].strip():
             return False
+        if not isinstance(record.get("notes"), str) or not record["notes"].strip():
+            return False
         if not _valid_review_evidence_url(record.get("evidence_url")):
             return False
         if record.get("review_type") == "lawyer_approval":
@@ -96,6 +98,11 @@ def _has_current_review_evidence(provenance):
             ):
                 return False
     return True
+
+
+def has_current_review_evidence(provenance):
+    """Public shared gate for current per-type review evidence."""
+    return _has_current_review_evidence(provenance)
 
 
 def _calendar_date(value):
