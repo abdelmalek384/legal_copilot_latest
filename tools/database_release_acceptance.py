@@ -24,6 +24,7 @@ REQUIRED_GATES = {
         "required_scenarios": (
             "upload_finalize_workers_drained",
             "non_purge_principals_denied_put_object",
+            "non_purge_principals_denied_delete_object",
             "purge_role_denied_put_object",
             "bucket_policy_and_iam_changes_frozen",
             "cloudtrail_negative_tests_retained",
