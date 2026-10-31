@@ -1979,22 +1979,13 @@ def require_admin(u):
 
 
 def _user_can_review_legal(u: dict) -> bool:
-    """Mirror the backend's actual corpus-review authorization for UI navigation."""
-    if _separate_runtime_enabled():
-        roles = {
-            row["role_name"] for row in control_conn().execute(
-                "SELECT role_name FROM user_platform_roles WHERE user_id=?", (u["id"],)
-            ).fetchall()
-        }
-        return bool(roles.intersection({"platform_reviewer", "platform_admin"}))
-    if u.get("role") != "admin":
-        return False
-    allowed = {
-        normalize_email(email)
-        for email in os.environ.get("LEGAL_REVIEWER_EMAILS", "").split(",")
-        if email.strip()
+    """Only explicit control-plane platform roles authorize corpus review."""
+    roles = {
+        row["role_name"] for row in control_conn().execute(
+            "SELECT role_name FROM user_platform_roles WHERE user_id=?", (u["id"],)
+        ).fetchall()
     }
-    return normalize_email(u.get("email") or "") in allowed
+    return bool(roles.intersection({"platform_reviewer", "platform_admin"}))
 
 
 def require_platform_legal_reviewer(u):
