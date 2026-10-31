@@ -45,7 +45,7 @@ Dry-run (no writes and no email):
 
     python tools/reminder_service.py --timezone Africa/Cairo
 
-The command requires the three explicit database paths and inspects active firms through the trusted catalog. It prints only sanitized counts/warnings, not case titles or recipient email addresses.
+The command requires the three explicit database paths and inspects active firms through the trusted catalog. It prints only sanitized counts/warnings, not case titles or recipient email addresses. The default dry-run and --status use read-only SQLite connections, enforce query_only, and skip DatabaseRuntime.initialize(); they do not create databases or apply migrations. Existing control-plane and tenant databases must already be provisioned. Only the explicit --send path enters the writable runtime.
 
 Read-only operational status for queued, in-flight, SMTP-accepted, failed, and ambiguous rows:
 
