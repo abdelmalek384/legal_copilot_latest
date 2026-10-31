@@ -18,7 +18,7 @@ The gate checks that both identifier lists are well-formed, contain no duplicate
 
 Each review record also needs a passing outcome, notes, HTTPS evidence URL, reviewer_id, reviewer_role, and a valid non-future reviewed_on date. The lawyer_approval review must use reviewer_role egyptian_lawyer or qualified_egyptian_counsel. These fields improve auditability but do not independently establish identity, qualifications, or evidence authenticity.
 
-The runtime additionally requires a passing `lawyer_approval` event to contain a counsel-attestation marker written only by the review API after checking the authenticated reviewer ID against `LEGAL_QUALIFIED_EGYPTIAN_COUNSEL_USER_IDS`. This is an operator-managed attestation, not independent credential verification. The variable must be set through protected deployment configuration; an unset list means no account can record a passing lawyer-approval event. Existing unmarked events do not qualify for retrieval.
+The runtime additionally requires a passing `lawyer_approval` event to contain a counsel-attestation marker written only by the review API after checking the authenticated reviewer ID against `LEGAL_QUALIFIED_EGYPTIAN_COUNSEL_USER_IDS`. This is an operator-managed attestation, not independent credential verification. The variable must be set through protected deployment configuration; an unset list means no account can record a passing lawyer-approval event. Existing unmarked events do not qualify for retrieval. The offline candidate validator also requires the marker's positive platform account ID to match `reviewer_id`; a role label or free-text claim without that marker is insufficient. The production release gate consumes this same validator report.
 
 ## Provenance and report semantics
 
