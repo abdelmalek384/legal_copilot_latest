@@ -4,7 +4,7 @@
   "created_on": "2026-10-28",
   "cards_count": 10,
   "search_eligible": false,
-  "source_method_note": "Ten provisional cards for promulgation Articles 2–11. Text checked against publicly accessible transcription; official Gazette page numbers intentionally omitted rather than guessed. Transition deadlines require date-specific application and legal review.",
+  "source_method_note": "Ten provisional cards for promulgation Articles 2–11. Article numbers and printed Gazette page locators were visually checked against the government-hosted Official Gazette PDF on 2026-10-31: Articles 2–11 start on printed pages 2–5 (PDF zero-based page indices 0–3); Article 6 continues onto printed page 4. The PDF bytes were not obtained and no SHA-256 could be recorded. The cards remain search_eligible=false; transition deadlines require date-specific application and Egyptian-lawyer review.",
   "cards": [
     {
       "card_id": "EG-LABOUR-14-2025-PROMULGATION-ART-2-PROMULGATION-TRAINING-FUND-TRANSITION",
@@ -13,9 +13,10 @@
       "pinpoint": {
         "part": "مواد إصدار القانون رقم 14 لسنة 2025",
         "article": "المادة 2",
-        "official_gazette_printed_page": null,
-        "pdf_page_index_zero_based": null,
-        "pinpoint_status": "article_verified_in_public_transcription_page_not_verified"
+        "official_gazette_printed_page": 2,
+        "pdf_page_index_zero_based": 0,
+        "pinpoint_status": "visually_verified_against_government_hosted_official_gazette_pdf_not_hashed",
+        "visual_checked_on": "2026-10-31"
       },
       "primary_evidence": [
         {
@@ -29,8 +30,8 @@
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf",
-          "supports": "مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "Government-hosted Official Gazette PDF; Article 2 visually located on printed page 2 (zero-based PDF page index 0). Original PDF bytes were not obtained and SHA-256 is unavailable.",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -41,7 +42,7 @@
         }
       ],
       "limitations": [
-        "الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق",
+        "رقم الصفحة مثبت بصرياً من ملف PDF حكومي مستضاف، لكن البايتات الأصلية لم تُحصل ولم يُحسب SHA-256، لذلك لا يمكن إعادة التحقق من الملف محلياً.",
         "المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة",
         "لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري",
         "حقوق إعادة الاستخدام التجاري غير محسومة"
@@ -58,9 +59,10 @@
       "pinpoint": {
         "part": "مواد إصدار القانون رقم 14 لسنة 2025",
         "article": "المادة 3",
-        "official_gazette_printed_page": null,
-        "pdf_page_index_zero_based": null,
-        "pinpoint_status": "article_verified_in_public_transcription_page_not_verified"
+        "official_gazette_printed_page": 3,
+        "pdf_page_index_zero_based": 1,
+        "pinpoint_status": "visually_verified_against_government_hosted_official_gazette_pdf_not_hashed",
+        "visual_checked_on": "2026-10-31"
       },
       "primary_evidence": [
         {
@@ -74,8 +76,8 @@
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf",
-          "supports": "مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "Government-hosted Official Gazette PDF; Article 3 visually located on printed page 3 (zero-based PDF page index 1). Original PDF bytes were not obtained and SHA-256 is unavailable.",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -86,7 +88,7 @@
         }
       ],
       "limitations": [
-        "الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق",
+        "رقم الصفحة مثبت بصرياً من ملف PDF حكومي مستضاف، لكن البايتات الأصلية لم تُحصل ولم يُحسب SHA-256، لذلك لا يمكن إعادة التحقق من الملف محلياً.",
         "المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة",
         "لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري",
         "حقوق إعادة الاستخدام التجاري غير محسومة"
@@ -103,9 +105,10 @@
       "pinpoint": {
         "part": "مواد إصدار القانون رقم 14 لسنة 2025",
         "article": "المادة 4",
-        "official_gazette_printed_page": null,
-        "pdf_page_index_zero_based": null,
-        "pinpoint_status": "article_verified_in_public_transcription_page_not_verified"
+        "official_gazette_printed_page": 3,
+        "pdf_page_index_zero_based": 1,
+        "pinpoint_status": "visually_verified_against_government_hosted_official_gazette_pdf_not_hashed",
+        "visual_checked_on": "2026-10-31"
       },
       "primary_evidence": [
         {
@@ -119,8 +122,8 @@
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf",
-          "supports": "مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "Government-hosted Official Gazette PDF; Article 4 visually located on printed page 3 (zero-based PDF page index 1). Original PDF bytes were not obtained and SHA-256 is unavailable.",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -131,7 +134,7 @@
         }
       ],
       "limitations": [
-        "الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق",
+        "رقم الصفحة مثبت بصرياً من ملف PDF حكومي مستضاف، لكن البايتات الأصلية لم تُحصل ولم يُحسب SHA-256، لذلك لا يمكن إعادة التحقق من الملف محلياً.",
         "المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة",
         "لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري",
         "حقوق إعادة الاستخدام التجاري غير محسومة"
@@ -148,9 +151,10 @@
       "pinpoint": {
         "part": "مواد إصدار القانون رقم 14 لسنة 2025",
         "article": "المادة 5",
-        "official_gazette_printed_page": null,
-        "pdf_page_index_zero_based": null,
-        "pinpoint_status": "article_verified_in_public_transcription_page_not_verified"
+        "official_gazette_printed_page": 3,
+        "pdf_page_index_zero_based": 1,
+        "pinpoint_status": "visually_verified_against_government_hosted_official_gazette_pdf_not_hashed",
+        "visual_checked_on": "2026-10-31"
       },
       "primary_evidence": [
         {
@@ -164,8 +168,8 @@
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf",
-          "supports": "مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "Government-hosted Official Gazette PDF; Article 5 visually located on printed page 3 (zero-based PDF page index 1). Original PDF bytes were not obtained and SHA-256 is unavailable.",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -176,7 +180,7 @@
         }
       ],
       "limitations": [
-        "الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق",
+        "رقم الصفحة مثبت بصرياً من ملف PDF حكومي مستضاف، لكن البايتات الأصلية لم تُحصل ولم يُحسب SHA-256، لذلك لا يمكن إعادة التحقق من الملف محلياً.",
         "المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة",
         "لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري",
         "حقوق إعادة الاستخدام التجاري غير محسومة"
@@ -193,9 +197,13 @@
       "pinpoint": {
         "part": "مواد إصدار القانون رقم 14 لسنة 2025",
         "article": "المادة 6",
-        "official_gazette_printed_page": null,
-        "pdf_page_index_zero_based": null,
-        "pinpoint_status": "article_verified_in_public_transcription_page_not_verified"
+        "official_gazette_printed_page": 3,
+        "pdf_page_index_zero_based": 1,
+        "pinpoint_status": "visually_verified_against_government_hosted_official_gazette_pdf_not_hashed",
+        "visual_checked_on": "2026-10-31",
+        "continuation_printed_pages": [
+          4
+        ]
       },
       "primary_evidence": [
         {
@@ -209,8 +217,8 @@
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf",
-          "supports": "مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "Government-hosted Official Gazette PDF; Article 6 visually located on printed page 3 (zero-based PDF page index 1); continues on printed page 4. Original PDF bytes were not obtained and SHA-256 is unavailable.",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -221,7 +229,7 @@
         }
       ],
       "limitations": [
-        "الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق",
+        "رقم الصفحة مثبت بصرياً من ملف PDF حكومي مستضاف، لكن البايتات الأصلية لم تُحصل ولم يُحسب SHA-256، لذلك لا يمكن إعادة التحقق من الملف محلياً.",
         "المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة",
         "لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري",
         "حقوق إعادة الاستخدام التجاري غير محسومة"
@@ -238,9 +246,10 @@
       "pinpoint": {
         "part": "مواد إصدار القانون رقم 14 لسنة 2025",
         "article": "المادة 7",
-        "official_gazette_printed_page": null,
-        "pdf_page_index_zero_based": null,
-        "pinpoint_status": "article_verified_in_public_transcription_page_not_verified"
+        "official_gazette_printed_page": 4,
+        "pdf_page_index_zero_based": 2,
+        "pinpoint_status": "visually_verified_against_government_hosted_official_gazette_pdf_not_hashed",
+        "visual_checked_on": "2026-10-31"
       },
       "primary_evidence": [
         {
@@ -254,8 +263,8 @@
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf",
-          "supports": "مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "Government-hosted Official Gazette PDF; Article 7 visually located on printed page 4 (zero-based PDF page index 2). Original PDF bytes were not obtained and SHA-256 is unavailable.",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -266,7 +275,7 @@
         }
       ],
       "limitations": [
-        "الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق",
+        "رقم الصفحة مثبت بصرياً من ملف PDF حكومي مستضاف، لكن البايتات الأصلية لم تُحصل ولم يُحسب SHA-256، لذلك لا يمكن إعادة التحقق من الملف محلياً.",
         "المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة",
         "لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري",
         "حقوق إعادة الاستخدام التجاري غير محسومة"
@@ -283,9 +292,10 @@
       "pinpoint": {
         "part": "مواد إصدار القانون رقم 14 لسنة 2025",
         "article": "المادة 8",
-        "official_gazette_printed_page": null,
-        "pdf_page_index_zero_based": null,
-        "pinpoint_status": "article_verified_in_public_transcription_page_not_verified"
+        "official_gazette_printed_page": 4,
+        "pdf_page_index_zero_based": 2,
+        "pinpoint_status": "visually_verified_against_government_hosted_official_gazette_pdf_not_hashed",
+        "visual_checked_on": "2026-10-31"
       },
       "primary_evidence": [
         {
@@ -299,8 +309,8 @@
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf",
-          "supports": "مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "Government-hosted Official Gazette PDF; Article 8 visually located on printed page 4 (zero-based PDF page index 2). Original PDF bytes were not obtained and SHA-256 is unavailable.",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -311,7 +321,7 @@
         }
       ],
       "limitations": [
-        "الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق",
+        "رقم الصفحة مثبت بصرياً من ملف PDF حكومي مستضاف، لكن البايتات الأصلية لم تُحصل ولم يُحسب SHA-256، لذلك لا يمكن إعادة التحقق من الملف محلياً.",
         "المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة",
         "لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري",
         "حقوق إعادة الاستخدام التجاري غير محسومة"
@@ -328,9 +338,10 @@
       "pinpoint": {
         "part": "مواد إصدار القانون رقم 14 لسنة 2025",
         "article": "المادة 9",
-        "official_gazette_printed_page": null,
-        "pdf_page_index_zero_based": null,
-        "pinpoint_status": "article_verified_in_public_transcription_page_not_verified"
+        "official_gazette_printed_page": 4,
+        "pdf_page_index_zero_based": 2,
+        "pinpoint_status": "visually_verified_against_government_hosted_official_gazette_pdf_not_hashed",
+        "visual_checked_on": "2026-10-31"
       },
       "primary_evidence": [
         {
@@ -344,8 +355,8 @@
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf",
-          "supports": "مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "Government-hosted Official Gazette PDF; Article 9 visually located on printed page 4 (zero-based PDF page index 2). Original PDF bytes were not obtained and SHA-256 is unavailable.",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -356,7 +367,7 @@
         }
       ],
       "limitations": [
-        "الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق",
+        "رقم الصفحة مثبت بصرياً من ملف PDF حكومي مستضاف، لكن البايتات الأصلية لم تُحصل ولم يُحسب SHA-256، لذلك لا يمكن إعادة التحقق من الملف محلياً.",
         "المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة",
         "لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري",
         "حقوق إعادة الاستخدام التجاري غير محسومة"
@@ -373,9 +384,10 @@
       "pinpoint": {
         "part": "مواد إصدار القانون رقم 14 لسنة 2025",
         "article": "المادة 10",
-        "official_gazette_printed_page": null,
-        "pdf_page_index_zero_based": null,
-        "pinpoint_status": "article_verified_in_public_transcription_page_not_verified"
+        "official_gazette_printed_page": 5,
+        "pdf_page_index_zero_based": 3,
+        "pinpoint_status": "visually_verified_against_government_hosted_official_gazette_pdf_not_hashed",
+        "visual_checked_on": "2026-10-31"
       },
       "primary_evidence": [
         {
@@ -389,8 +401,8 @@
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf",
-          "supports": "مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "Government-hosted Official Gazette PDF; Article 10 visually located on printed page 5 (zero-based PDF page index 3). Original PDF bytes were not obtained and SHA-256 is unavailable.",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -401,7 +413,7 @@
         }
       ],
       "limitations": [
-        "الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق",
+        "رقم الصفحة مثبت بصرياً من ملف PDF حكومي مستضاف، لكن البايتات الأصلية لم تُحصل ولم يُحسب SHA-256، لذلك لا يمكن إعادة التحقق من الملف محلياً.",
         "المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة",
         "لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري",
         "حقوق إعادة الاستخدام التجاري غير محسومة"
@@ -418,9 +430,10 @@
       "pinpoint": {
         "part": "مواد إصدار القانون رقم 14 لسنة 2025",
         "article": "المادة 11",
-        "official_gazette_printed_page": null,
-        "pdf_page_index_zero_based": null,
-        "pinpoint_status": "article_verified_in_public_transcription_page_not_verified"
+        "official_gazette_printed_page": 5,
+        "pdf_page_index_zero_based": 3,
+        "pinpoint_status": "visually_verified_against_government_hosted_official_gazette_pdf_not_hashed",
+        "visual_checked_on": "2026-10-31"
       },
       "primary_evidence": [
         {
@@ -434,8 +447,8 @@
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf",
-          "supports": "مرجع حكومي أولي؛ لم تُحصل البايتات الأصلية ولم يتحقق رقم الصفحة",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "Government-hosted Official Gazette PDF; Article 11 visually located on printed page 5 (zero-based PDF page index 3). Original PDF bytes were not obtained and SHA-256 is unavailable.",
+          "retrieved_or_checked_on": "2026-10-31"
         }
       ],
       "cross_checks": [
@@ -446,7 +459,7 @@
         }
       ],
       "limitations": [
-        "الموضع مثبت برقم مادة في نسخة نصية عامة، لكن رقم صفحة الجريدة الرسمية غير متحقق",
+        "رقم الصفحة مثبت بصرياً من ملف PDF حكومي مستضاف، لكن البايتات الأصلية لم تُحصل ولم يُحسب SHA-256، لذلك لا يمكن إعادة التحقق من الملف محلياً.",
         "المواعيد الانتقالية تتطلب إثبات تاريخ بدء السريان والقرارات التنظيمية ذات الصلة",
         "لا توجد مراجعة شاملة للتعديلات أو القرارات التنفيذية أو مراجعة محامٍ مصري",
         "حقوق إعادة الاستخدام التجاري غير محسومة"
@@ -456,5 +469,7 @@
       "usable_for": "source-linked research lead and manual verification",
       "not_usable_for": "final determination of transitional deadlines or case disposition until official text and case dates are checked"
     }
-  ]
+  ],
+  "updated_on": "2026-10-31",
+  "source_pdf_sha256": null
 }
