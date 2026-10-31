@@ -75,7 +75,7 @@ def main() -> int:
                 "mutations_performed": 0,
             }, sort_keys=True))
             return 2
-        acceptance = {"passed_count": 2, "required_count": 2}
+        acceptance = {"passed_count": 3, "required_count": 3}
     else:
         if environment not in {"prod", "production"}:
             parser.error("production purge requires COPILOT_ENV=production; use --staging-drill for synthetic staging")

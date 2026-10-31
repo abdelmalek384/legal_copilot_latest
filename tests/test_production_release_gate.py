@@ -101,6 +101,21 @@ class ProductionReleaseGateTests(unittest.TestCase):
                     "verified_at": verified_at, "verified_by": "test-operator",
                     "storage_config_sha256": original_storage_config_fingerprint(self.clean_env),
                 },
+
+                "purge_writer_quiescence": {
+                    "status": "passed", "evidence_ref": "synthetic-test-evidence",
+                    "verified_at": verified_at, "verified_by": "test-operator",
+                    "witnessed_by": "independent-test-witness",
+                    "storage_config_sha256": original_storage_config_fingerprint(self.clean_env),
+                    "verified_scenarios": [
+                        "upload_finalize_workers_drained",
+                        "non_purge_principals_denied_put_object",
+                        "non_purge_principals_denied_delete_object",
+                        "purge_role_denied_put_object",
+                        "bucket_policy_and_iam_changes_frozen",
+                        "cloudtrail_negative_tests_retained",
+                    ],
+                },
                 "backup_restore_rollback": {
                     "status": "passed", "evidence_ref": "synthetic-test-evidence",
                     "verified_at": verified_at, "verified_by": "test-operator",

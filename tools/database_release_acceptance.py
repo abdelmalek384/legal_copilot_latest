@@ -16,6 +16,21 @@ REQUIRED_GATES = {
         "witness_required": False,
         "max_age_days": 90,
     },
+
+    "purge_writer_quiescence": {
+        "description": "Witnessed, target-bound proof that purge-window writers are drained and IAM/bucket policy enforce the no-writer freeze",
+        "fields": ("verified_at", "verified_by", "witnessed_by", "storage_config_sha256"),
+        "witness_required": True,
+        "required_scenarios": (
+            "upload_finalize_workers_drained",
+            "non_purge_principals_denied_put_object",
+            "non_purge_principals_denied_delete_object",
+            "purge_role_denied_put_object",
+            "bucket_policy_and_iam_changes_frozen",
+            "cloudtrail_negative_tests_retained",
+        ),
+        "max_age_days": 90,
+    },
     "backup_restore_rollback": {
         "description": "Witnessed staging restore, rollback, staged-upload recovery, and deletion-recovery drill",
         "fields": ("verified_at", "verified_by", "witnessed_by"),
@@ -148,7 +163,7 @@ def validate_acceptance_manifest(manifest: object, *, now: datetime | None = Non
             if missing_scenarios:
                 blockers.append({"gate": name, "code": "required_scenarios_missing"})
                 continue
-        if name == "original_file_storage":
+        if name in {"original_file_storage", "purge_writer_quiescence"}:
             recorded_fingerprint = item.get("storage_config_sha256")
             if not _valid_sha256(recorded_fingerprint):
                 blockers.append({"gate": name, "code": "invalid_storage_configuration_fingerprint"})
@@ -284,8 +299,13 @@ def load_staging_purge_acceptance_manifest(
     expected_storage_config_sha256: str | None,
     now: datetime | None = None,
 ) -> dict:
-    """Validate live-storage and retention gates for a synthetic staging purge drill."""
-    required_count = 2
+    """Validate live storage, retention, and independently witnessed no-writer evidence."""
+    required_names = (
+        "original_file_storage",
+        "retention_export_deletion_policy",
+        "purge_writer_quiescence",
+    )
+    required_count = len(required_names)
 
     def blocked(code: str, gate: str = "manifest", passed_count: int = 0) -> dict:
         return {
@@ -307,7 +327,6 @@ def load_staging_purge_acceptance_manifest(
     except (OSError, UnicodeError, json.JSONDecodeError):
         return blocked("manifest_unreadable_or_invalid_json")
 
-    # bool is an int subclass in Python; require the exact schema-version type.
     if (
         not isinstance(manifest, dict)
         or type(manifest.get("schema_version")) is not int
@@ -327,7 +346,7 @@ def load_staging_purge_acceptance_manifest(
 
     blockers: list[dict[str, str]] = []
     passed = 0
-    for name in ("original_file_storage", "retention_export_deletion_policy"):
+    for name in required_names:
         spec = REQUIRED_GATES[name]
         item = gates.get(name)
         if not isinstance(item, dict) or item.get("status") != "passed":
@@ -344,31 +363,51 @@ def load_staging_purge_acceptance_manifest(
             blockers.append({"gate": name, "code": "invalid_evidence_reference"})
             continue
 
-        actor_field = "verified_by" if name == "original_file_storage" else "approved_by"
-        time_field = "verified_at" if name == "original_file_storage" else "approved_at"
+        actor_field = "approved_by" if name == "retention_export_deletion_policy" else "verified_by"
+        time_field = "approved_at" if name == "retention_export_deletion_policy" else "verified_at"
         actor = item.get(actor_field)
         if not isinstance(actor, str) or not actor.strip():
             blockers.append({"gate": name, "code": "actor_missing"})
             continue
 
         timestamp = _timestamp(item.get(time_field))
-        if timestamp is None:
-            blockers.append({"gate": name, "code": "timestamp_invalid"})
-            continue
-        if timestamp > current + timedelta(minutes=5):
+        if timestamp is None or timestamp > current + timedelta(minutes=5):
             blockers.append({"gate": name, "code": "timestamp_invalid"})
             continue
         if current - timestamp > timedelta(days=spec["max_age_days"]):
             blockers.append({"gate": name, "code": "evidence_expired"})
             continue
 
-        if name == "original_file_storage":
+        if name in {"original_file_storage", "purge_writer_quiescence"}:
             recorded_fingerprint = item.get("storage_config_sha256")
             if (
                 not _valid_sha256(recorded_fingerprint)
                 or recorded_fingerprint.lower() != expected_storage_config_sha256.lower()
             ):
                 blockers.append({"gate": name, "code": "storage_target_mismatch"})
+                continue
+
+        required_scenarios = spec.get("required_scenarios", ())
+        if required_scenarios:
+            verified_scenarios = item.get("verified_scenarios")
+            if (
+                not isinstance(verified_scenarios, list)
+                or any(not isinstance(value, str) or not value.strip() for value in verified_scenarios)
+            ):
+                blockers.append({"gate": name, "code": "invalid_verified_scenarios"})
+                continue
+            if set(required_scenarios) - set(verified_scenarios):
+                blockers.append({"gate": name, "code": "required_scenarios_missing"})
+                continue
+
+        if spec["witness_required"]:
+            witness = item.get("witnessed_by")
+            if (
+                not isinstance(witness, str)
+                or not witness.strip()
+                or witness.strip().casefold() == actor.strip().casefold()
+            ):
+                blockers.append({"gate": name, "code": "independent_witness_required"})
                 continue
         passed += 1
 
