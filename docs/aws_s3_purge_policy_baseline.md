@@ -68,7 +68,7 @@ Merge the following statements into the existing bucket policy after substitutin
 }
 ```
 
-The first statement denies a finalized-object delete request if the `If-Match` condition key is absent. Conditional deletes with a specific ETag require both `s3:DeleteObject` and `s3:GetObject`; grant those only to the purge role for the finalized-object prefix. The application role must not receive `s3:DeleteObject` on the finalized-object prefix. It still needs narrowly scoped `s3:DeleteObject` on the `.staged` prefix because successful finalization removes its staged copy.
+The first statement denies a finalized-object delete request if the `If-Match` condition key is absent. Conditional deletes with a specific ETag require both `s3:DeleteObject` and `s3:GetObject`. Grant `s3:DeleteObject` on the finalized-object prefix only to the purge role; grant `s3:GetObject` to the application and purge roles only to the extent required for authorized reads and integrity verification. The application role must not receive `s3:DeleteObject` on the finalized-object prefix. It still needs narrowly scoped `s3:DeleteObject` on the `.staged` prefix because successful finalization removes its staged copy.
 
 The bucket policy is not a complete identity policy. Explicitly scope identity policies for the two roles, and inspect inherited group, permission-set, session, boundary, organization, and resource policies for broader grants.
 
