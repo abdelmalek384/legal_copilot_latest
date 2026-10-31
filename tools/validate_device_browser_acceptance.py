@@ -48,7 +48,7 @@ def validate_record(record, expected_commit=None, require_pass=False):
     if not isinstance(record, dict):
         raise EvidenceError("record must be a JSON object")
     errors = []
-    if record.get("record_version") != 1:
+    if type(record.get("record_version")) is not int or record.get("record_version") != 1:
         errors.append("record_version must equal 1")
     if not _timestamp(record.get("tested_at")):
         errors.append("tested_at must be an ISO-8601 timestamp with timezone")
@@ -139,7 +139,7 @@ def main(argv=None):
         if not records:
             raise EvidenceError("no evidence records found")
         summaries = [validate_record(item, args.expected_commit, args.require_pass) for item in records]
-        identities = [(item["application_commit"], item["environment"], item["locale"]) for item in summaries]
+        identities = [(item["application_commit"], item["environment"], item["locale"],\n                       records[index].get("device"), records[index].get("browser_and_version"),\n                       records[index].get("viewport")) for index, item in enumerate(summaries)]
         if len(identities) != len(set(identities)):
             raise EvidenceError("duplicate evidence records for the same commit/environment/locale")
         print(json.dumps({
