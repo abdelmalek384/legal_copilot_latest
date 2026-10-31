@@ -636,7 +636,8 @@ async function law(){
              const eventTime=Date.parse(event.reviewed_at||''),previousTime=previous?Date.parse(previous.reviewed_at||''):NaN;
              const eventId=Number.isSafeInteger(event.review_event_id)?event.review_event_id:0;
              const previousId=previous&&Number.isSafeInteger(previous.review_event_id)?previous.review_event_id:0;
-             const newer=!previous?(true):(Number.isFinite(eventTime)&&Number.isFinite(previousTime)?(eventTime>previousTime||(eventTime===previousTime&&eventId>previousId)):eventId>previousId);\n             if(newer)latestReviewByType[event.review_type]=event;
+             const newer=!previous?(true):(Number.isFinite(eventTime)&&Number.isFinite(previousTime)?(eventTime>previousTime||(eventTime===previousTime&&eventId>previousId)):eventId>previousId);
+             if(newer)latestReviewByType[event.review_type]=event;
            }
            const latestReviews=Object.values(latestReviewByType);
            const lawyerApproval=latestReviewByType.lawyer_approval;
