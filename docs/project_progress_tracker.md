@@ -5,7 +5,7 @@
 
 ## Overall status
 
-See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **49.60/100 technical completion** (up 0.02 points from 49.58; rounds to 49%) as of 2026-10-31. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
+See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **49.65/100 technical completion** (up 0.05 points from 49.60; rounds to 50%) as of 2026-10-31. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
 
 
 ## Previous whole-product checkpoint — 2026-10-31
@@ -51,6 +51,8 @@ At that checkpoint the weighted scorecard recorded **49.33/100 technical complet
 - **#1087:** made candidate source seeding fail closed unless exactly one canonical permission-register entry matches source host and both permission states; all required CI passed.
 - **#1088:** restricted retrieval context to completed turns in the same search scope and matter ID, persisted explicit scope/matter metadata, and failed closed for legacy metadata-less turns; all required CI and safety checks passed.
 - **#1089:** tightened the shared evidence URL parser to reject whitespace/control characters, credentials, malformed ports and empty port suffixes across source, review and permission evidence URLs; Tests, CodeQL and dependency audit passed.
+- **#1090:** aligned the corpus audit with latest-event semantics and full evidence requirements; Tests, CodeQL and dependency audit passed.
+- **#1092:** enforced exact collection/commercial-reuse permission parity between candidate records and the canonical permission register at final release readiness; Tests, CodeQL, dependency audit and safety regression passed.
 - **#1081:** merged Court of Cassation use-policy reconciliation; commercial product remains manual lookup/link-out only absent prior written approval.
 
 
@@ -72,8 +74,10 @@ The weighted scorecard has now been recalculated to **49.45/100** after #1066 an
 
 - **#1057:** real-browser acceptance harness with stage diagnostics and periodic Python stack dumps. The latest Chromium job was cancelled while the test command was running; no browser-test pass/fail result was produced. Do not count browser acceptance complete.
 - **#1068:** current-main rebase of the browser harness. Tests, CodeQL and dependency audit passed, but its Chromium job was also cancelled; it remains draft until a real browser run passes. Manual lawyer, device, screen-reader and accessibility acceptance remain separate.
-- **#1090:** corpus audit now evaluates latest review events rather than historical passes; Tests/CodeQL are running after fixture corrections; dependency audit passed.
-- **#1091:** scorecard/tracker refresh to 49.60/100, including merged #1087–#1089; awaiting Tests (CodeQL and dependency audit passed).
+- **#1093:** align the final offline release-readiness URL parser with strict runtime/review evidence validation; awaiting Tests, CodeQL and dependency audit.
+- **#1091:** merged the scorecard/tracker refresh for #1087–#1089.
+- **#1090:** merged latest-event checks in the read-only corpus audit; all required CI passed.
+- **#1092:** merged exact candidate/canonical permission-state parity at the final release-readiness gate; all required CI and safety checks passed.
 
 **Superseded PR:**
 
@@ -650,5 +654,6 @@ This checkpoint supersedes the earlier 47%/42% estimates recorded above. The who
 - The verified-corpus volume remains unchanged at 6%; no new Gazette original was obtained, no source-specific rights were cleared, and no legal content was promoted. Final Egyptian-counsel acceptance remains 0% / not started.
 - #1057's synthetic browser corpus fixture was corrected for the new marker requirement. The corrected head's browser CI result is pending; the browser acceptance gate is not complete.
 - The weighted engineering score is **49.20/100** (up 0.70 from 48.50; rounded to 49%). This increase reflects merged release-governance and regression coverage, not new verified legal material.
+
 
 
