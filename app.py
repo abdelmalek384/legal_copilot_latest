@@ -1139,7 +1139,7 @@ _ARABIC_QUANTITY_WORD_TOKENS = sorted(
 )
 _ARABIC_QUANTITY_WORD_PATTERN = "|".join(re.escape(token) for token in _ARABIC_QUANTITY_WORD_TOKENS)
 _ARABIC_COMPOUND_QUANTITY_PATTERN = (
-    r"(?:" + _ARABIC_QUANTITY_WORD_PATTERN + r")(?:\s+و\s*(?:" + _ARABIC_QUANTITY_WORD_PATTERN + r"))+"
+    r"(?:" + _ARABIC_QUANTITY_WORD_PATTERN + r")(?:\s*و\s*(?:" + _ARABIC_QUANTITY_WORD_PATTERN + r"))+"
 )
 _QUANTITY_NUM_RE = (
     r"\d+(?:[.,]\d+)?|(?:"
@@ -1157,7 +1157,7 @@ def _normalize_quantity_number(raw):
         return _QUANTITY_NUMBER_WORDS[raw]
     # Arabic cardinal compounds commonly join additive number words with waw:
     # خمسة وعشرون = 5 + 20; مائة وخمسون = 100 + 50.
-    compound_parts = re.split(r"\s+و\s*", raw)
+    compound_parts = re.split(r"(?<=\S)\s*و\s*", raw)
     if len(compound_parts) > 1:
         values = [_QUANTITY_NUMBER_WORDS.get(part) for part in compound_parts]
         if all(value is not None for value in values):
