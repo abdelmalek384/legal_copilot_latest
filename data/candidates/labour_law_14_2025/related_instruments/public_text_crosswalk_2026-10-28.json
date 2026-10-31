@@ -437,8 +437,8 @@
       "secondary_text": {
         "url": "https://lawhub.info/eg/?p=17304",
         "corroborating_url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/30-12-2025/no-289?id=5008502&type=1",
-        "status": "Two public secondary full-text/index sources; neither compared with official Gazette PDF",
-        "summary": "Law Hub Article 1 states actual work in industrial establishments must not exceed eight hours per day or 48 hours per week, excluding meal/rest periods; unusual/exceptional work is subject to Law 14/2025 Article 121. Article 2 provides next-day commencement. EastLaws confirms publication 2025-12-30; commencement 2025-12-31 is derived from the secondary Article 2 clause. Interaction with Industrial Establishments Law 133/1961 and better contractual/collective terms requires review."
+        "status": "Secondary transcriptions cross-checked against Ministry-hosted text copy for Articles 1–2; Gazette issue PDF not compared",
+        "summary": "Law Hub Article 1 states actual work in industrial establishments must not exceed eight hours per day or 48 hours per week, excluding meal/rest periods; unusual/exceptional work is subject to Law 14/2025 Article 121. Article 2 provides next-day commencement. EastLaws confirms publication 2025-12-30; commencement 2025-12-31 is derived from the secondary Article 2 clause. Interaction with Industrial Establishments Law 133/1961 and better contractual/collective terms requires review. The Ministry-hosted SIS PDF independently contains Articles 1–2: eight actual work hours/day or 48/week in industrial establishments excluding meal/rest periods, preservation of better contractual/regulatory benefits, exceptional work under Law Article 121, and next-day commencement after Gazette publication."
       },
       "gazette_date": "2025-12-30 (official Amiri Press issue metadata; secondary EastLaws record independently states same)",
       "effective_date": "2025-12-31 (derived from secondary Article 2 publication clause and EastLaws publication date; not primary-PDF verified)",
@@ -464,7 +464,31 @@
           }
         ],
         "caution": "This anchors the parent Labour Law provisions only. It does not authenticate or compare the separate ministerial decision text."
-      }
+      },
+      "ministry_hosted_text_copy": {
+        "url": "https://mediadr.sis.gov.eg/xmlui/bitstream/handle/123456789/117208/MOM20251227_0415.pdf?isAllowed=y&sequence=4",
+        "status": "Egyptian Ministry of Labour text copy hosted on SIS; PDF opened and text layer reviewed; not the Official Gazette scan",
+        "publication_date": "2025-12-27",
+        "articles": [
+          {
+            "article": 1,
+            "observations": [
+              "No more than eight hours of actual work per day or 48 hours per week in industrial establishments, excluding meal/rest periods",
+              "Preserves better benefits in individual/collective employment contracts or workplace regulations",
+              "Allows work for unusual/exceptional conditions under Law 14/2025 Article 121"
+            ]
+          },
+          {
+            "article": 2,
+            "observations": [
+              "Publication in Egyptian Proceedings",
+              "Commencement on the day following Gazette publication"
+            ]
+          }
+        ],
+        "caveat": "Government-hosted text copy, not the Gazette issue PDF or a Gazette page-image comparison. SIS reuse terms were not reviewed; no local bytes/hash obtained. Collection and commercial reuse permissions remain unknown."
+      },
+      "primary_comparison_status": "Decision 289 Articles 1–2 reviewed in Ministry-hosted SIS PDF text copy; Official Gazette issue PDF/page comparison pending; reuse rights unknown; counsel review pending"
     }
   ]
 }
