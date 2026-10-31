@@ -3131,12 +3131,15 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             json={"title": "PRIVATE_DEADLINE_STATE_SENTINEL", "due": "2026-11-10"},
         )
         self.assertEqual(deadline_response.status_code, 200, deadline_response.text)
-        deadline_id = self.runtime.firm_connection(
+        deadline_rows = self.runtime.firm_connection(
             self.runtime.resolve_context(self.user_id, self.firm_a)
         ).execute(
-            "SELECT id FROM deadlines WHERE case_id=? AND title=?",
-            (case_id, "PRIVATE_DEADLINE_STATE_SENTINEL"),
-        ).fetchone()["id"]
+            "SELECT id, title, status FROM deadlines WHERE case_id=? ORDER BY id",
+            (case_id,),
+        ).fetchall()
+        self.assertTrue(deadline_rows, "owner deadline creation returned 200 but no tenant deadline row was visible")
+        self.assertEqual(deadline_rows[-1]["title"], "PRIVATE_DEADLINE_STATE_SENTINEL")
+        deadline_id = deadline_rows[-1]["id"]
 
         nonmember_id = self.runtime.create_global_identity(
             "Same Firm Nonmember", "same-firm-nonmember@example.test", app.hash_pw(self.password)
