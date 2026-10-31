@@ -611,6 +611,21 @@
       "access_terms_state": "reviewed_restricted",
       "collection_permission": "not_allowed_without_explicit_exception_or_license",
       "notes": "The full item page identifies issue 291 (تابع), date 2025-12-25, Ministry of Labour as author and Amiri Press as publisher; it lists an 834.25 KB PDF and a 1.71 KB item-specific license.txt. Clicking the license file opens a request-a-copy form stating all files are in restricted access. The repository End User Agreement restricts use to personal/non-commercial purposes and requires prior written permission for commercial exploitation and systematic database compilation. No PDF or license bytes were obtained; no item-specific license is inferred."
+    },
+    {
+      "source_id": "EG-LAWHUB-GAZETTE-295-DECISION-291-PDF",
+      "publisher": "Law Hub (third-party host)",
+      "source_type": "Two-page page-image reproduction of Gazette issue 295 pages 21–22 for Decision 291/2025",
+      "url": "https://lawhub.info/eg/wp-content/uploads/2026/01/lawhub.info-eg-dec-291-2025.pdf",
+      "observed_title": "الوقائع المصرية العدد 295 تابع (د) — قرار وزير العمل رقم 291 لسنة 2025",
+      "publication_date": "2025-12-30",
+      "document_ids": [
+        "EG-LABOUR-DECISION-291-2025"
+      ],
+      "source_state": "third_party_page_image_reproduction_visually_inspected",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "unknown",
+      "notes": "Browser visual inspection of both pages shows Gazette masthead, issue 295 supplement D, date 2025-12-30, page numbers 21–22, Decision 291/2025 and Articles 1–5. Article 1 visibly states 35% daytime and 70% nighttime premiums; Article 4 directs the Supreme Council for Social Consultation to set an annual maximum within three months; Article 5 provides next-day commencement. This is a third-party hosted reproduction, not the original DSpace PDF. No local bytes/hash, source chain, licence or reuse terms were obtained; no ingestion or reuse rights inferred."
     }
   ],
   "document_records_to_create_from_batch": [
