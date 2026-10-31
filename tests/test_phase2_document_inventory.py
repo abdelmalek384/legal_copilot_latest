@@ -371,6 +371,8 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         currentness = (ROOT / "data" / "candidates" / "labour_law_14_2025" / "related_instruments" / "currentness_register_2026-10-28.md").read_text(encoding="utf-8")
         self.assertIn("Decision 249/2026 — official Ministry clarification lead", currentness)
         self.assertIn("HTTP 502", currentness)
+        matrix = (ROOT / "docs" / "legal_knowledge" / "labour_implementing_decision_verification_matrix_2026-10-28.md").read_text(encoding="utf-8")
+        self.assertIn("Ministerial Decision 249/2026 — occupational-safety functional units and committees", matrix)
         self.assertEqual(validate_inventory(self.inventory), [])
 
 if __name__ == "__main__":
