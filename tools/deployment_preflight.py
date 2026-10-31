@@ -227,8 +227,10 @@ def inspect_environment(env=None, *, require_separate=False):
 
     # Original matter binaries are confidential tenant data. A local filesystem
     # adapter is useful for development but is not a production storage boundary.
-    # Keep this allowlist empty until a KMS-backed remote adapter is implemented
-    # end-to-end, including backup, restore, reconciliation, and purge acceptance.
+    # Production is restricted to S3, but configuration alone is insufficient:
+    # the original-object and recovery-archive targets must be independently
+    # preflighted, and encrypted archive upload/exact-version restore plus live
+    # reconciliation, purge, retention, and recovery acceptance remain mandatory.
     production_object_storage_backends = frozenset({"s3"})
     object_storage_backend = env.get("COPILOT_OBJECT_STORAGE_BACKEND", "local").strip().lower()
     if production or require_separate:
