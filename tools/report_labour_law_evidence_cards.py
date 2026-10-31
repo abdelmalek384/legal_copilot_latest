@@ -20,6 +20,71 @@ def _link(url: str, label: str | None = None) -> str:
     return f"[{label or url}]({url})"
 
 
+def load_inventory(input_path: Path) -> dict[str, Any]:
+    """Load the canonical inventory and enforce manifest counts; archived split snapshots stay excluded."""
+    data = json.loads(input_path.read_text(encoding="utf-8"))
+    manifest_path = input_path.with_name("provision_evidence_cards_manifest.json")
+    if not manifest_path.exists() or input_path.resolve() != DEFAULT_INPUT.resolve():
+        return data
+
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    cards = list(data["cards"])
+    seen = {card["card_id"] for card in cards}
+    duplicates: set[str] = set()
+    supplemental_count = 0
+    for entry in manifest["inventory_files"]:
+        candidate = (ROOT / entry["path"]).resolve()
+        if candidate == input_path.resolve():
+            continue
+        payload = json.loads(candidate.read_text(encoding="utf-8"))
+        if len(payload.get("cards", [])) != entry["expected_cards"]:
+            raise ValueError(f"Card count mismatch for {entry['path']}")
+        for raw in payload["cards"]:
+            card = dict(raw)
+            card_id = card["card_id"]
+            if card_id in seen:
+                duplicates.add(card_id)
+                continue
+            seen.add(card_id)
+            supplemental_count += 1
+            pin = dict(card["pinpoint"])
+            article_number = int(str(pin["article"]).replace("المادة ", ""))
+            pin.setdefault(
+                "part",
+                "الكتاب الثالث — علاقات العمل"
+                if article_number <= 241
+                else "الكتاب الرابع — السلامة والصحة المهنية وتأمين بيئة العمل"
+                if article_number <= 274
+                else "الكتاب الخامس — تفتيش العمل والعقوبات",
+            )
+            pin.setdefault("official_gazette_printed_page", None)
+            pin.setdefault("pdf_page_index_zero_based", None)
+            card["pinpoint"] = pin
+            for source in card.get("primary_evidence", []):
+                source.setdefault("supports", "مصدر استدلالي؛ يلزم التحقق من النص الرسمي")
+                source.setdefault("retrieved_or_checked_on", manifest["updated_on"])
+                source.setdefault("source_id", source.get("source_type", "public-source-lead"))
+            for source in card.get("cross_checks", []):
+                source.setdefault("supports", "مقارنة ثانوية؛ لا تحل محل النص الرسمي")
+            card.setdefault("related_instruments_to_review", [])
+            cards.append(card)
+
+    if duplicates:
+        duplicate_list = ", ".join(sorted(duplicates))
+        raise ValueError(f"Duplicate Labour Law evidence card IDs: {duplicate_list}")
+
+    if len(cards) != manifest["combined_expected_cards"]:
+        raise ValueError(
+            f"Combined card count mismatch: expected {manifest['combined_expected_cards']}, got {len(cards)}"
+        )
+    data["cards"] = cards
+    data["source_method_note"] += (
+        f" Canonical manifest inventory loaded: {len(cards)} cards; "
+        "archived split snapshots are excluded to avoid duplicate IDs and divergent records."
+    )
+    return data
+
+
 def render_report(data: dict[str, Any]) -> str:
     instrument = data["instrument"]
     cards = data["cards"]
@@ -47,16 +112,17 @@ def render_report(data: dict[str, Any]) -> str:
     ]
     for index, card in enumerate(cards, 1):
         pin = card["pinpoint"]
-        printed_page = pin.get("official_gazette_printed_page")
-        pdf_page_index = pin.get("pdf_page_index_zero_based")
-        printed_page_label = printed_page if printed_page is not None else "not established"
-        pdf_page_label = pdf_page_index if pdf_page_index is not None else "not established"
+        page_label = (
+            f"printed Gazette page {pin['official_gazette_printed_page']} (PDF page index {pin['pdf_page_index_zero_based']})"
+            if pin.get("official_gazette_printed_page") is not None
+            else "Official Gazette page pinpoint not verified"
+        )
         lines.extend([
             f"### {index}. {card['card_id']}",
             "",
             f"**Question:** {card['question']}",
             "",
-            f"**Pinpoint:** {pin['part']}, {pin['article']}, printed Gazette page {printed_page_label} (PDF page index {pdf_page_label}).",
+            f"**Pinpoint:** {pin['part']}, {pin['article']}, {page_label}.",
             "",
             "**Provisional summary (Arabic):**",
             "",
@@ -82,8 +148,8 @@ def render_report(data: dict[str, Any]) -> str:
         lines.extend([
             "",
             f"**Review state:** `{card['review_state']}`.",
-            f"**Usable for:** {card['usable_for']}.",
-            f"**Not usable for:** {card['not_usable_for']}.",
+            f"**Usable for:** {card.get('usable_for', 'provisional research lead and manual source review only')}.",
+            f"**Not usable for:** {card.get('not_usable_for', 'authoritative legal advice or definitive current-law conclusions pending source, currentness, rights and counsel review')}.",
             "",
         ])
     lines.extend([
@@ -104,7 +170,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--input", type=Path, default=DEFAULT_INPUT, help="Evidence-card JSON file")
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT, help="Markdown report path")
     args = parser.parse_args(argv)
-    data = json.loads(args.input.read_text(encoding="utf-8"))
+    data = load_inventory(args.input)
     report = render_report(data)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(report, encoding="utf-8")
