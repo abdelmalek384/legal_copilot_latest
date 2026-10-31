@@ -26,6 +26,7 @@ The current source of truth is [the weighted whole-project completion scorecard]
 - **#989:** merged metadata-only inventory entries for Labour Decisions 248–252/2026, source-rights records and a secondary-source matrix. Both the 6.13 MB Gazette PDF and 55-byte item-specific license.txt are request-copy restricted; no original bytes, licence text or hash were obtained. All five instruments remain discovery-only.
 - **#990:** merged same-firm nonmember task-claim/task-completion authorization regression coverage; unauthorized actions return 404 and leave task state unchanged. Full Tests, CodeQL and dependency audit passed.
 - **#995:** aligned Decisions 248–252 Arabic title fields to the exact IDSC/Amiri Press catalogue abstract and added regression assertions for the instrument-number/year prefixes. Full 139-step Tests, CodeQL and dependency audit passed.
+- **#993:** added same-firm nonmember guessed-deadline-ID completion coverage; unauthorized completion returns 404 and the deadline remains open. Full 139-step Tests, CodeQL and dependency audit passed; no runtime/schema changes.
 - **#782 and #971:** closed as superseded after card-ID reconciliation; no unique canonical card IDs were discarded. #782's remaining seven differently named Articles 258–265 cards were semantic duplicates already represented in main.
 
 ### Current non-database priorities
