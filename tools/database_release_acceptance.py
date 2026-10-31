@@ -274,47 +274,47 @@ def load_staging_purge_acceptance_manifest(
     now: datetime | None = None,
 ) -> dict:
     """Validate live-storage and retention gates for a synthetic staging purge drill."""
-    if path is None:
+    required_count = 2
+
+    def blocked(code: str, gate: str = "manifest", passed_count: int = 0) -> dict:
         return {
-            "ready": False, "decision": "blocked", "passed_count": 0,
-            "required_count": 2,
-            "blockers": [{"gate": "manifest", "code": "manifest_path_required"}],
+            "ready": False,
+            "decision": "blocked",
+            "passed_count": passed_count,
+            "required_count": required_count,
+            "blockers": [{"gate": gate, "code": code}],
         }
+
+    if path is None:
+        return blocked("manifest_path_required")
     try:
         manifest = _read_acceptance_manifest_file(Path(path).expanduser())
     except AcceptanceManifestFileError as exc:
-        return {
-            "ready": False, "decision": "blocked", "passed_count": 0,
-            "required_count": 2,
-            "blockers": [{"gate": "manifest", "code": exc.code}],
-        }
+        return blocked(exc.code)
     except FileNotFoundError:
-        return {
-            "ready": False, "decision": "blocked", "passed_count": 0,
-            "required_count": 2,
-            "blockers": [{"gate": "manifest", "code": "manifest_not_found"}],
-        }
+        return blocked("manifest_not_found")
     except (OSError, UnicodeError, json.JSONDecodeError):
-        return {
-            "ready": False, "decision": "blocked", "passed_count": 0,
-            "required_count": 2,
-            "blockers": [{"gate": "manifest", "code": "manifest_unreadable_or_invalid_json"}],
-        }
-    if not isinstance(manifest, dict) or manifest.get("schema_version") != 1:
-        return {
-            "ready": False, "decision": "blocked", "passed_count": 0,
-            "required_count": 2,
-            "blockers": [{"gate": "manifest", "code": "invalid_manifest"}],
-        }
+        return blocked("manifest_unreadable_or_invalid_json")
+
+    # bool is an int subclass in Python; require the exact schema-version type.
+    if (
+        not isinstance(manifest, dict)
+        or type(manifest.get("schema_version")) is not int
+        or manifest.get("schema_version") != 1
+    ):
+        return blocked("invalid_manifest")
     gates = manifest.get("gates")
     if not isinstance(gates, dict):
-        return {
-            "ready": False, "decision": "blocked", "passed_count": 0,
-            "required_count": 2,
-            "blockers": [{"gate": "manifest", "code": "gates_missing"}],
-        }
+        return blocked("gates_missing")
+
     current = now or datetime.now(timezone.utc)
-    blockers = []
+    if current.tzinfo is None or current.utcoffset() is None:
+        return blocked("current_time_must_be_timezone_aware")
+    current = current.astimezone(timezone.utc)
+    if not _valid_sha256(expected_storage_config_sha256):
+        return blocked("storage_configuration_unavailable")
+
+    blockers: list[dict[str, str]] = []
     passed = 0
     for name in ("original_file_storage", "retention_export_deletion_policy"):
         spec = REQUIRED_GATES[name]
@@ -322,33 +322,49 @@ def load_staging_purge_acceptance_manifest(
         if not isinstance(item, dict) or item.get("status") != "passed":
             blockers.append({"gate": name, "code": "not_passed"})
             continue
-        if not isinstance(item.get("evidence_ref"), str) or not item["evidence_ref"].strip():
-            blockers.append({"gate": name, "code": "evidence_missing"})
+
+        evidence_ref = item.get("evidence_ref")
+        if (
+            not isinstance(evidence_ref, str)
+            or not evidence_ref.strip()
+            or len(evidence_ref.strip()) > 500
+            or evidence_ref.strip().casefold() in {"todo", "tbd", "pending", "n/a"}
+        ):
+            blockers.append({"gate": name, "code": "invalid_evidence_reference"})
             continue
+
         actor_field = "verified_by" if name == "original_file_storage" else "approved_by"
         time_field = "verified_at" if name == "original_file_storage" else "approved_at"
-        if not isinstance(item.get(actor_field), str) or not item[actor_field].strip():
+        actor = item.get(actor_field)
+        if not isinstance(actor, str) or not actor.strip():
             blockers.append({"gate": name, "code": "actor_missing"})
             continue
+
         timestamp = _timestamp(item.get(time_field))
-        if timestamp is None or timestamp > current + timedelta(minutes=5):
+        if timestamp is None:
+            blockers.append({"gate": name, "code": "timestamp_invalid"})
+            continue
+        if timestamp > current + timedelta(minutes=5):
             blockers.append({"gate": name, "code": "timestamp_invalid"})
             continue
         if current - timestamp > timedelta(days=spec["max_age_days"]):
             blockers.append({"gate": name, "code": "evidence_expired"})
             continue
-        if name == "original_file_storage" and (
-            not expected_storage_config_sha256
-            or item.get("storage_config_sha256") != expected_storage_config_sha256
-        ):
-            blockers.append({"gate": name, "code": "storage_target_mismatch"})
-            continue
+
+        if name == "original_file_storage":
+            recorded_fingerprint = item.get("storage_config_sha256")
+            if (
+                not _valid_sha256(recorded_fingerprint)
+                or recorded_fingerprint.lower() != expected_storage_config_sha256.lower()
+            ):
+                blockers.append({"gate": name, "code": "storage_target_mismatch"})
+                continue
         passed += 1
+
     return {
-        "ready": not blockers and passed == 2,
-        "decision": "ready" if not blockers and passed == 2 else "blocked",
+        "ready": not blockers and passed == required_count,
+        "decision": "ready" if not blockers and passed == required_count else "blocked",
         "passed_count": passed,
-        "required_count": 2,
+        "required_count": required_count,
         "blockers": blockers,
     }
-
