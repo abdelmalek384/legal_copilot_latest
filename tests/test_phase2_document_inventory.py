@@ -63,7 +63,12 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
             record = records[number]
             self.assertEqual(record["official_title_ar"], title)
             self.assertEqual(record["source_id"], "EG-AMIRI-PRESS")
-            self.assertEqual(record["source_status"], "official_index_discovered_primary_text_pending")
+            expected_status = (
+                "official_Gazette_metadata_plus_secondary_indexed_text_found; primary_comparison_pending"
+                if number == 248
+                else "official_Gazette_metadata_and_secondary_full_text_found; primary_comparison_pending"
+            )
+            self.assertEqual(record["source_status"], expected_status)
             self.assertEqual(record["publication_date"], "2026-10-12")
             self.assertEqual(record["official_gazette_issue"], "الوقائع المصرية - ملحق العدد 225 تابع (أ)")
             self.assertIsNone(record["effective_date"])
@@ -72,6 +77,15 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
             self.assertEqual(record["review_status"], "discovery_only")
             self.assertTrue(any("dspace.id.com.eg" in item["url"] for item in record["source_urls"]))
             self.assertTrue(any("labour.gov.eg" in item["url"] for item in record["source_urls"]))
+            secondary_hosts = {
+                248: "lawhub.info",
+                249: "almasdar.com",
+                250: "almasdar.com",
+                251: "almasdar.com",
+                252: "almasdar.com",
+            }
+            self.assertTrue(any(secondary_hosts[number] in item["url"] for item in record["source_urls"]))
+            self.assertTrue(any("not authenticated" in record["notes"] for _ in [0]))
             self.assertIn("request-copy restricted", record["notes"])
         self.assertTrue(any(a["id"] == "ACT-LABOUR-OSH-DECISIONS-248-252-VERIFY" for a in self.inventory["next_actions"]))
         self.assertEqual(validate_inventory(self.inventory), [])
