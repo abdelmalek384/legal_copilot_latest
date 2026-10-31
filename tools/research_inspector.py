@@ -89,6 +89,12 @@ def _has_current_review_evidence(provenance):
             return False
         if not _valid_review_evidence_url(record.get("evidence_url")):
             return False
+        if record.get("review_type") == "lawyer_approval":
+            notes = record.get("notes")
+            if not isinstance(notes, str) or not re.search(
+                r"\\[qualified_egyptian_counsel_attested:user_id=[1-9][0-9]*\\]", notes
+            ):
+                return False
     return True
 
 
