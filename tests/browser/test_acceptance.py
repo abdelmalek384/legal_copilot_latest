@@ -1,18 +1,13 @@
 """Real Chromium acceptance tests using synthetic disposable firm/corpus data only."""
 from __future__ import annotations
 
-import json
 import os
 import secrets
 import socket
-import subprocess
-import sys
 import tempfile
 import threading
 import time
 import unittest
-import urllib.error
-import urllib.request
 from pathlib import Path
 
 from playwright.sync_api import Browser, BrowserContext, Page, TimeoutError as PlaywrightTimeoutError, sync_playwright
@@ -35,8 +30,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         cls.temp_path = Path(cls.temp.name)
         cls.port = _free_port()
         cls.base_url = f"http://127.0.0.1:{cls.port}"
-        env = os.environ.copy()
-        env.update(
+        os.environ.update(
             {
                 "COPILOT_ENV": "development",
                 "COPILOT_CONTROL_DB": str(cls.temp_path / "control.sqlite3"),
@@ -45,56 +39,99 @@ class BrowserAcceptanceTests(unittest.TestCase):
                 "COPILOT_OBJECT_STORAGE_ROOT": str(cls.temp_path / "objects"),
                 "COPILOT_OBJECT_STORAGE_BACKEND": "local",
                 "ADMIN_TOKEN": secrets.token_urlsafe(32),
-                "BROWSER_FIXTURE_PORT": str(cls.port),
             }
         )
-        env.pop("COPILOT_DB", None)
-        env.pop("LLM_FIRM_DATA_PROCESSING_APPROVED", None)
-        cls.server = subprocess.Popen(
-            [sys.executable, "-m", "tests.browser.fixture_server"],
-            cwd=ROOT,
-            env=env,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            text=True,
-            bufsize=1,
+        os.environ.pop("COPILOT_DB", None)
+        os.environ.pop("LLM_FIRM_DATA_PROCESSING_APPROVED", None)
+
+        import app as app_module
+        import uvicorn
+        from database_runtime import DatabaseRuntime
+
+        cls.app_module = app_module
+        cls.runtime = DatabaseRuntime.from_env()
+        cls.runtime.initialize()
+        firm_a, _ = cls.runtime.provision_firm("Synthetic Acceptance Firm A")
+        firm_b, _ = cls.runtime.provision_firm("Synthetic Acceptance Firm B")
+
+        password = secrets.token_urlsafe(32)
+        owner_a = cls.runtime.create_initial_firm_owner(
+            firm_a, "Synthetic Firm A Owner", "owner-a@example.test", app_module.hash_pw(password)
         )
-        cls.state_ready = threading.Event()
-        cls.server_output: list[str] = []
+        owner_b = cls.runtime.create_initial_firm_owner(
+            firm_b, "Synthetic Firm B Owner", "owner-b@example.test", app_module.hash_pw(password)
+        )
+        reviewer_id = cls.runtime.create_global_identity(
+            "Synthetic Platform Reviewer", "reviewer@example.test", app_module.hash_pw(password)
+        )
+        cls.runtime.create_firm_membership(reviewer_id, firm_a, "lawyer")
+        control = cls.runtime.control_connection()
+        control.execute(
+            "INSERT INTO user_platform_roles(user_id,role_name) VALUES(?,?)",
+            (reviewer_id, "platform_reviewer"),
+        )
+        control.commit()
 
-        def read_fixture_state() -> None:
-            prefix = "BROWSER_FIXTURE_STATE="
-            for line in cls.server.stdout:
-                if line.startswith(prefix):
-                    cls.state = json.loads(line[len(prefix):])
-                    cls.state_ready.set()
-                    cls.server_output.append("Fixture state published.")
-                else:
-                    cls.server_output.append(line.rstrip()[:1000])
+        firm_b_context = cls.runtime.resolve_context(owner_b, firm_b)
+        firm_b_db = cls.runtime.firm_connection(firm_b_context)
+        cursor = firm_b_db.execute(
+            "INSERT INTO cases(id,title,created_by,firm_id) VALUES(777,?,?,?)",
+            ("CROSS_FIRM_PRIVATE_SENTINEL_7D3A", owner_b, firm_b),
+        )
+        firm_b_db.commit()
 
-        cls.state_reader = threading.Thread(target=read_fixture_state, daemon=True)
-        cls.state_reader.start()
+        corpus = cls.runtime.legal_corpus_connection()
+        corpus.execute(
+            """INSERT INTO legal_sources(
+                   source_id,authority,source_page,collection_permission,commercial_reuse_permission
+               ) VALUES(?,?,?,?,?)""",
+            (
+                "SYNTHETIC-BROWSER-SOURCE-2026",
+                "Synthetic Browser Authority",
+                "https://example.invalid/synthetic-source",
+                "unknown",
+                "unknown",
+            ),
+        )
+        corpus.execute(
+            """INSERT INTO legal_documents(
+                   document_id,source_id,official_title,document_type,practice_area,law_number,law_year
+               ) VALUES(?,?,?,?,?,?,?)""",
+            (
+                "SYNTHETIC-BROWSER-DOC-2026",
+                "SYNTHETIC-BROWSER-SOURCE-2026",
+                "SYNTHETIC METADATA ONLY INSTRUMENT 2026",
+                "law",
+                "synthetic_test_only",
+                "999",
+                2026,
+            ),
+        )
+        corpus.commit()
+
+        cls.state = {
+            "owner_a_email": "owner-a@example.test",
+            "owner_b_email": "owner-b@example.test",
+            "reviewer_email": "reviewer@example.test",
+            "password": password,
+            "firm_a_id": firm_a,
+            "firm_b_id": firm_b,
+            "firm_b_case_id": int(cursor.lastrowid),
+        }
+        app_module._database_runtime = cls.runtime
+        cls.server = uvicorn.Server(
+            uvicorn.Config(app_module.app, host="127.0.0.1", port=cls.port, log_level="warning")
+        )
+        cls.server_thread = threading.Thread(target=cls.server.run, daemon=True)
+        cls.server_thread.start()
         deadline = time.monotonic() + 45
-        while time.monotonic() < deadline and not cls.state_ready.wait(0.1):
-            if cls.server.poll() is not None:
-                raise RuntimeError("Synthetic fixture server exited before publishing fixture state: " + " | ".join(cls.server_output[-20:]))
-        if not cls.state_ready.is_set():
-            raise RuntimeError("Synthetic fixture server did not publish fixture state.")
+        while time.monotonic() < deadline and not cls.server.started:
+            if not cls.server_thread.is_alive():
+                raise RuntimeError("Synthetic in-process application server exited during startup.")
+            time.sleep(0.1)
+        if not cls.server.started:
+            raise RuntimeError("Synthetic in-process application server did not become ready.")
 
-        deadline = time.monotonic() + 45
-        last_error = None
-        while time.monotonic() < deadline:
-            if cls.server.poll() is not None:
-                raise RuntimeError("Synthetic fixture server exited before becoming ready.")
-            try:
-                with urllib.request.urlopen(cls.base_url, timeout=2) as response:
-                    if response.status == 200:
-                        break
-            except (OSError, urllib.error.URLError) as exc:
-                last_error = exc
-                time.sleep(0.25)
-        else:
-            raise RuntimeError(f"Synthetic fixture server did not become ready: {last_error}")
         cls.playwright = sync_playwright().start()
         cls.browser: Browser = cls.playwright.chromium.launch(headless=True)
 
@@ -104,13 +141,14 @@ class BrowserAcceptanceTests(unittest.TestCase):
             cls.browser.close()
         if hasattr(cls, "playwright"):
             cls.playwright.stop()
-        if hasattr(cls, "server") and cls.server.poll() is None:
-            cls.server.terminate()
-            try:
-                cls.server.wait(timeout=8)
-            except subprocess.TimeoutExpired:
-                cls.server.kill()
-                cls.server.wait(timeout=5)
+        if hasattr(cls, "server"):
+            cls.server.should_exit = True
+        if hasattr(cls, "server_thread"):
+            cls.server_thread.join(timeout=10)
+        if hasattr(cls, "app_module"):
+            cls.app_module._database_runtime = None
+        if hasattr(cls, "runtime"):
+            cls.runtime.close_current_thread()
         if hasattr(cls, "temp"):
             cls.temp.cleanup()
 
