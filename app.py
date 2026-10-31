@@ -8,7 +8,7 @@ from contextvars import ContextVar
 from collections import Counter
 from datetime import date, datetime, timedelta, timezone
 from functools import wraps
-from tools.research_inspector import STATUS_REVIEW, STATUS_VERIFIED, source_status, citation_text, research_memo
+from tools.research_inspector import STATUS_REVIEW, STATUS_VERIFIED, _has_current_review_evidence, source_status, citation_text, research_memo
 from tools.mfa_primitives import (
     MFAPrimitivesError, build_totp_uri, generate_recovery_codes,
     generate_totp_secret, hash_recovery_code, verify_recovery_code, verify_totp,
@@ -828,7 +828,7 @@ def _central_source_permission_evidence(source_id, source_page):
     }
 
 
-def citation_provenance(c, version_id):
+def citation_provenance(c, version_id, permission_evidence_cache=None):
     """Return registry-backed metadata for a cited passage; never infer missing legal facts."""
     if version_id is None:
         return {"status": "legacy_unlinked", "message": "Passage is not linked to a reviewed legal-document version."}
@@ -843,7 +843,14 @@ def citation_provenance(c, version_id):
         return {"status": "registry_record_missing", "version_id": version_id}
     data = dict(row)
     data["status"] = "registry_linked"
-    data.update(_central_source_permission_evidence(data.get("source_id"), data.get("source_page")))
+    permission_key = (data.get("source_id"), data.get("source_page"))
+    if permission_evidence_cache is not None:
+        if permission_key not in permission_evidence_cache:
+            permission_evidence_cache[permission_key] = _central_source_permission_evidence(*permission_key)
+        rights_evidence = permission_evidence_cache[permission_key]
+    else:
+        rights_evidence = _central_source_permission_evidence(*permission_key)
+    data.update(rights_evidence)
     data["authenticity_verified"] = bool(data["authenticity_verified"])
     data["status_verified"] = bool(data["status_verified"])
     data["amendment_history_verified"] = bool(data["amendment_history_verified"])
@@ -3223,11 +3230,7 @@ def legal_review_coverage(u: dict = Depends(user)):
         "(SELECT COUNT(*) FROM legal_document_versions WHERE review_status='pending_lawyer_review') AS pending_lawyer_review, "
         "(SELECT COUNT(*) FROM legal_document_versions WHERE review_status='rejected') AS rejected_versions, "
         "(SELECT COUNT(*) FROM legal_document_versions WHERE review_status='verified') AS labelled_verified_versions, "
-        "(SELECT COUNT(*) FROM legal_document_versions v JOIN legal_documents d ON d.document_id=v.document_id JOIN legal_sources s ON s.source_id=d.source_id "
-        " WHERE v.review_status='verified' AND v.legal_status='in_force' AND v.authenticity_verified=1 AND v.status_verified=1 "
-        " AND v.amendment_history_verified=1 AND s.collection_permission='allowed' AND s.commercial_reuse_permission='allowed' "
-        " AND TRIM(COALESCE(s.permission_evidence,''))<>'' AND TRIM(COALESCE(v.permission_evidence,''))<>'' "
-        " AND v.effective_date IS NOT NULL AND v.effective_date<=? AND (v.repeal_date IS NULL OR v.repeal_date>?)) AS verified_operational_versions, "
+
         "(SELECT COUNT(*) FROM legal_document_versions WHERE authenticity_verified=0) AS missing_authenticity_review, "
         "(SELECT COUNT(*) FROM legal_document_versions WHERE status_verified=0) AS missing_status_review, "
         "(SELECT COUNT(*) FROM legal_document_versions WHERE amendment_history_verified=0) AS missing_amendment_history, "
@@ -3239,11 +3242,36 @@ def legal_review_coverage(u: dict = Depends(user)):
         "(SELECT COUNT(*) FROM legal_document_versions WHERE TRIM(COALESCE(text_sha256,''))='') AS versions_missing_text_hash, "
         "(SELECT COUNT(*) FROM legal_document_versions WHERE TRIM(COALESCE(gazette_issue,''))='' OR TRIM(COALESCE(gazette_pages,''))='' OR TRIM(COALESCE(publication_evidence_url,''))='') AS versions_missing_publication_metadata, "
         "(SELECT COUNT(*) FROM legal_document_versions WHERE TRIM(COALESCE(effective_date,''))='') AS versions_missing_effective_date, "
-        "(SELECT COUNT(*) FROM legal_document_versions WHERE TRIM(COALESCE(original_path,''))<>'' AND TRIM(COALESCE(original_sha256,''))='') AS versions_missing_original_hash, "
-        "(SELECT COUNT(*) FROM legal_document_versions v WHERE TRIM(COALESCE(v.permission_evidence,''))='' OR EXISTS (SELECT 1 FROM legal_documents d JOIN legal_sources s ON s.source_id=d.source_id WHERE d.document_id=v.document_id AND TRIM(COALESCE(s.permission_evidence,''))='')) AS versions_missing_permission_evidence, "
-        "(SELECT COUNT(*) FROM legal_document_versions v WHERE EXISTS (SELECT 1 FROM (SELECT 'source_authenticity' AS review_type UNION ALL SELECT 'extraction_quality' UNION ALL SELECT 'legal_status' UNION ALL SELECT 'amendment_history' UNION ALL SELECT 'licensing' UNION ALL SELECT 'lawyer_approval') required WHERE NOT EXISTS (SELECT 1 FROM legal_review_events e WHERE e.version_id=v.version_id AND e.review_type=required.review_type AND e.outcome='pass' AND TRIM(COALESCE(e.evidence_url,''))<>''))) AS versions_missing_review_event_evidence",
-        (today, today)
+        "(SELECT COUNT(*) FROM legal_document_versions WHERE TRIM(COALESCE(original_sha256,''))='') AS versions_missing_original_hash, "
+        "(SELECT COUNT(*) FROM legal_document_versions v WHERE TRIM(COALESCE(v.permission_evidence,''))='' OR EXISTS (SELECT 1 FROM legal_documents d JOIN legal_sources s ON s.source_id=d.source_id WHERE d.document_id=v.document_id AND TRIM(COALESCE(s.permission_evidence,''))='')) AS versions_missing_permission_evidence"
     ).fetchone()
+
+    # Use the same full provenance/review/rights predicate as the Research Inspector.
+    # A pair of registry flags and permission strings alone must never inflate this
+    # dashboard's operative-text count.
+    version_rows = c.execute(
+        "SELECT version_id FROM legal_document_versions ORDER BY version_id"
+    ).fetchall()
+    permission_evidence_cache = {}
+    verified_version_ids = set()
+    versions_missing_review_event_evidence = 0
+    for version_row in version_rows:
+        provenance = citation_provenance(
+            c, int(version_row["version_id"]), permission_evidence_cache
+        )
+        if not _has_current_review_evidence(provenance):
+            versions_missing_review_event_evidence += 1
+        candidate = {
+            "scope": "verified_corpus",
+            "text": "registry coverage evaluation",
+            "provenance": provenance,
+        }
+        if source_status(candidate, today) == STATUS_VERIFIED:
+            verified_version_ids.add(int(version_row["version_id"]))
+    metrics = dict(metrics)
+    metrics["verified_operational_versions"] = len(verified_version_ids)
+    metrics["versions_missing_review_event_evidence"] = versions_missing_review_event_evidence
+
     sources_by_permission = [dict(r) for r in c.execute(
         "SELECT COALESCE(NULLIF(TRIM(collection_permission),''),'unknown') AS collection_permission,"
         "COALESCE(NULLIF(TRIM(commercial_reuse_permission),''),'unknown') AS commercial_reuse_permission,"
@@ -3276,21 +3304,22 @@ def legal_review_coverage(u: dict = Depends(user)):
     catalogue = _candidate_catalogue_practice_area_counts()
     registered_counts = {}
     verified_counts = {}
+    registered_document_areas = {}
+    verified_document_ids = set()
     for row in c.execute(
-        "SELECT d.document_id,d.practice_area,CASE WHEN EXISTS ("
-        " SELECT 1 FROM legal_document_versions v JOIN legal_sources s ON s.source_id=d.source_id "
-        " WHERE v.document_id=d.document_id AND v.review_status='verified' AND v.legal_status='in_force' "
-        " AND v.authenticity_verified=1 AND v.status_verified=1 AND v.amendment_history_verified=1 "
-        " AND s.collection_permission='allowed' AND s.commercial_reuse_permission='allowed' "
-        " AND TRIM(COALESCE(s.permission_evidence,''))<>'' AND TRIM(COALESCE(v.permission_evidence,''))<>'' "
-        " AND v.effective_date IS NOT NULL AND v.effective_date<=? AND (v.repeal_date IS NULL OR v.repeal_date>?)) "
-        " THEN 1 ELSE 0 END AS has_verified_operational_text FROM legal_documents d",
-        (today, today)
+        "SELECT d.document_id,d.practice_area,v.version_id "
+        "FROM legal_documents d LEFT JOIN legal_document_versions v ON v.document_id=d.document_id"
     ).fetchall():
+        document_id = row["document_id"]
         area = _normalize_legal_practice_area(row["practice_area"])
+        registered_document_areas[document_id] = area
+        if row["version_id"] is not None and int(row["version_id"]) in verified_version_ids:
+            verified_document_ids.add(document_id)
+    for document_id, area in registered_document_areas.items():
         registered_counts[area] = registered_counts.get(area, 0) + 1
-        if row["has_verified_operational_text"]:
-            verified_counts[area] = verified_counts.get(area, 0) + 1
+    for document_id in verified_document_ids:
+        area = registered_document_areas[document_id]
+        verified_counts[area] = verified_counts.get(area, 0) + 1
     areas = set(catalogue["practice_area_counts"]) | set(registered_counts) | {"unknown"}
     coverage_by_practice_area = []
     for area in sorted(areas, key=lambda name: (-catalogue["practice_area_counts"].get(name, 0), name)):
@@ -3304,7 +3333,7 @@ def legal_review_coverage(u: dict = Depends(user)):
             "candidate_catalogue_available": catalogue["available"],
         })
     return {
-        "as_of": today, "metrics": dict(metrics),
+        "as_of": today, "metrics": metrics,
         "sources_by_permission": sources_by_permission,
         "sources_by_authority": sources_by_authority,
         "sources_by_class": sources_by_class,
