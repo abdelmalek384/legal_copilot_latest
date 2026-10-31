@@ -345,5 +345,13 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         self.assertTrue(any("MOM20251227_0415.pdf" in item["url"] for item in record["source_urls"]))
         self.assertEqual(validate_inventory(self.inventory), [])
 
+
+    def test_decision_288_meles_item_is_metadata_only_and_restricted(self):
+        record = next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-DECISION-288-2025")
+        self.assertEqual(record["legal_status"], "unknown")
+        self.assertEqual(record["review_status"], "discovery_only")
+        self.assertTrue(any("ca54d3fa-04be-4e59-b9f0-6b3752711a6f" in item["url"] for item in record["source_urls"]))
+        self.assertEqual(validate_inventory(self.inventory), [])
+
 if __name__ == "__main__":
     unittest.main()
