@@ -255,3 +255,6 @@ The ETA-hosted Official Gazette PDF for Law 14/2025 was re-opened and its extrac
 - Decision 291/2025 maps to Law Articles 121 and 188 (exceptional overtime controls and the Social Consultation Council).
 - Decision 292/2025 maps to Law Articles 121 and 123 (ministerial maximums for excluded work categories and overtime pay).
 - Decision 294/2025 maps to Law Article 129 (paid holidays and alternative compensation).
+
+
+**Issue 295 item-specific license listing update (2026-10-31):** the DSpace full item page for issue 295 also lists a 1.71 KB `license.txt` described as an item-specific license agreed upon submission. Clicking that file opens a request-a-copy page that states all files in the item are in restricted access. The license bytes were not obtained or read. This does not change the rights state: do not infer a permissive licence from the filename; collection remains restricted pending explicit permission and commercial reuse remains unapproved.
