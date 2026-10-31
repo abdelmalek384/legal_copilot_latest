@@ -65,12 +65,14 @@
         "EG-LABOUR-DECISION-259-2025",
         "EG-LABOUR-DECISION-260-2025",
         "EG-LABOUR-DECISION-264-2025",
-        "EG-LABOUR-DECISION-271-2025"
+        "EG-LABOUR-DECISION-271-2025",
+        "EG-LABOUR-DECISION-292-2025",
+        "EG-LABOUR-DECISION-294-2025"
       ],
       "source_state": "metadata_discovered_pdf_listed_not_downloaded",
       "access_terms_state": "not_reviewed",
       "collection_permission": "permission_pending",
-      "notes": "Metadata identifies Ministry of Labour decisions 259/2025, 260/2025, 264/2025 and 271/2025. Capture each as a separate instrument record after reviewing the issue PDF and exact titles, dates, articles, and any later amendments."
+      "notes": "Metadata identifies Ministry of Labour decisions 259/2025, 260/2025, 264/2025 and 271/2025. Capture each as a separate instrument record after reviewing the issue PDF and exact titles, dates, articles, and any later amendments. The full issue abstract also lists Decision 292/2025 (maximum actual/overtime hours for preparatory/complementary/guarding/cleaning work) and Decision 294/2025 (paid holidays); both are now separately crosswalked as discovery-only candidates. The issue's PDF and item-specific license file are request-a-copy restricted; no bytes were obtained."
     },
     {
       "source_id": "EG-AMIRI-PRESS-CRIMPROC-160-2026",
