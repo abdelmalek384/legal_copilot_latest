@@ -367,7 +367,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertNotIn(sentinel, self.page.locator(".research-thread").inner_text())
 
         scope.select_option("verified_corpus")
-        composer.fill("CORPUS_ONLY_VERIFIED_SENTINEL_2C77")
+        composer.fill("synthetic verified fixture deadline example")
         self.page.locator(".research-composer button").click()
         self.page.get_by_text("CORPUS_ONLY_VERIFIED_SENTINEL_2C77").wait_for(timeout=12000)
         verified_body = self.page.locator(".research-thread").inner_text()
