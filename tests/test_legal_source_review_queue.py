@@ -272,6 +272,38 @@ class LegalSourceReviewQueueTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,"legal_corpus profile"):
                 MODULE.review_queue(unbound)
 
+    def test_future_dated_latest_review_event_is_flagged(self):
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "legal.db"
+            make_db(path)
+            db = sqlite3.connect(path)
+            db.execute("ALTER TABLE legal_review_events ADD COLUMN notes TEXT")
+            review_types = (
+                "source_authenticity", "extraction_quality", "legal_status",
+                "amendment_history", "licensing", "lawyer_approval",
+            )
+            for index, review_type in enumerate(review_types, start=1):
+                notes = "review recorded"
+                if review_type == "lawyer_approval":
+                    notes = "[qualified_egyptian_counsel_attested:user_id=42] review recorded"
+                reviewed_at = (
+                    "2099-01-01T00:00:00Z"
+                    if review_type == "source_authenticity"
+                    else "2026-10-25T10:00:00Z"
+                )
+                db.execute(
+                    "INSERT INTO legal_review_events(version_id,review_type,outcome,evidence_url,reviewer,reviewed_at,notes) "
+                    "VALUES(?,?,?,?,?,?,?)",
+                    (1, review_type, "pass", f"https://example.gov/evidence/{index}",
+                     "Reviewer", reviewed_at, notes),
+                )
+            db.commit()
+            db.close()
+
+            report = MODULE.review_queue(path)
+            reasons = report["records"][0]["review_reasons"]
+            self.assertIn("review_event_history_invalid_or_future", reasons)
+
     def test_cli_refuses_implicit_and_compatibility_database_paths(self):
         with patch.dict(os.environ, {}, clear=True), patch(
             "sys.argv", ["legal_source_review_queue.py"]
