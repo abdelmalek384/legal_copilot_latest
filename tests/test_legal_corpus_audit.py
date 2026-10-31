@@ -253,15 +253,16 @@ class CorpusAuditTests(unittest.TestCase):
               review_status TEXT, authenticity_verified INT, status_verified INT, amendment_history_verified INT
             );
             CREATE TABLE legal_review_events(
-              review_event_id INTEGER PRIMARY KEY, version_id INT, review_type TEXT, outcome TEXT, evidence_url TEXT
+              review_event_id INTEGER PRIMARY KEY, version_id INT, reviewer TEXT, review_type TEXT,
+              outcome TEXT, evidence_url TEXT, reviewed_at TEXT, notes TEXT
             );
             INSERT INTO legal_document_versions VALUES
               (1,'https://example.gov/a',NULL,NULL,'2020-01-01','2020-01-01',NULL,'in_force','verified',1,1,0),
               (2,'https://example.gov/b',NULL,NULL,'2021-01-01','2021-01-01',NULL,'in_force','verified',1,1,0);
             INSERT INTO legal_review_events VALUES
-              (1,2,'source_authenticity','pass','https://example.gov/evidence/authenticity'),
-              (2,2,'legal_status','pass','https://example.gov/evidence/status'),
-              (3,2,'lawyer_approval','pass','https://example.gov/evidence/lawyer-review');
+              (1,2,'Reviewer','source_authenticity','pass','https://example.gov/evidence/authenticity','2026-10-24T10:00:00Z','Reviewed'),
+              (2,2,'Reviewer','legal_status','pass','https://example.gov/evidence/status','2026-10-24T10:00:00Z','Reviewed'),
+              (3,2,'Counsel','lawyer_approval','pass','https://example.gov/evidence/lawyer-review','2026-10-24T10:00:00Z','[qualified_egyptian_counsel_attested:user_id=42] reviewed');
             """)
             db.commit()
             db.close()
@@ -448,7 +449,8 @@ class CorpusAuditTests(unittest.TestCase):
               relation_id INTEGER PRIMARY KEY, from_version_id INT, to_version_id INT, relation_type TEXT
             );
             CREATE TABLE legal_review_events(
-              review_event_id INTEGER PRIMARY KEY, version_id INT, review_type TEXT, outcome TEXT, evidence_url TEXT
+              review_event_id INTEGER PRIMARY KEY, version_id INT, reviewer TEXT, review_type TEXT,
+              outcome TEXT, evidence_url TEXT, reviewed_at TEXT, notes TEXT
             );
             INSERT INTO legal_document_versions VALUES
               (1,'https://example.gov/a',NULL,NULL,'2020-01-01','2020-01-01',NULL,'in_force','verified',1,1,0),
@@ -457,8 +459,8 @@ class CorpusAuditTests(unittest.TestCase):
             INSERT INTO legal_document_versions VALUES
               (3,'https://example.gov/c',NULL,NULL,'2022-01-01','2022-01-01',NULL,'in_force','verified',1,1,1);
             INSERT INTO legal_review_events VALUES
-              (1,2,'amendment_history','pass','not-a-url'),
-              (2,3,'amendment_history','pass','https://example.gov/evidence/review.pdf');
+              (1,2,'Reviewer','amendment_history','pass','not-a-url','2026-10-24T10:00:00Z','Reviewed'),
+              (2,3,'Reviewer','amendment_history','pass','https://example.gov/evidence/review.pdf','2026-10-24T10:00:00Z','Reviewed');
             """)
             db.commit()
             db.close()
