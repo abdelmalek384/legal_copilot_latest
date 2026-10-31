@@ -2351,6 +2351,206 @@
           "status": "secondary_text_not_primary"
         }
       ]
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-248-2026",
+      "official_title_ar": "قرار وزير العمل رقم 248 لسنة 2026 بشأن نماذج وإحصائيات الأمراض العادية والمزمنة والمهنية والحوادث الجسيمة والإصابات",
+      "practice_areas": [
+        "labour",
+        "occupational_safety"
+      ],
+      "document_type": "ministerial_decision",
+      "instrument_number": 248,
+      "instrument_year": 2026,
+      "source_id": "EG-AMIRI-PRESS",
+      "source_status": "official_index_discovered_primary_text_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "publication_date": "2026-10-12",
+      "official_gazette_issue": "الوقائع المصرية - ملحق العدد 225 تابع (أ)",
+      "effective_date": null,
+      "source_urls": [
+        {
+          "url": "https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full",
+          "source_role": "Official Gazette catalogue metadata for Supplement 225(A), issue date 2026-10-12; catalogue entry lists this decision by number and title",
+          "status": "official_catalogue_metadata_discovered_primary_PDF_request_copy_restricted"
+        },
+        {
+          "url": "https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D9%8A%D8%B5%D8%AF%D8%B1-5-%D9%82%D8%B1%D8%A7%D8%B1%D8%A7%D8%AA-%D8%AA%D9%86%D9%81%D9%8A%D8%B0%D9%8A%D8%A9-%D9%84%D8%AA%D8%B9%D8%B2%D9%8A%D8%B2-%D9%85%D9%86%D8%B8%D9%88%D9%85%D8%A9-%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9-%D9%88%D8%A7%D9%84%D8%B5%D8%AD%D8%A9-%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9-%D9%88%D8%AA%D8%A3%D9%85%D9%8A%D9%86-%D8%A8%D9%8A%D8%A6%D8%A9-%D8%A7%D9%84%D8%B9%D9%85%D9%84/",
+          "source_role": "Official Ministry of Labour announcement dated 2026-10-20 confirming Decisions 248–252/2026 as implementing measures under Labour Law 14/2025",
+          "status": "official_announcement_discovery_only"
+        }
+      ],
+      "required_related_records": [
+        "Original Gazette PDF bytes obtained through an authorized route, exact file SHA-256, and page-level inspection of the full decision and annexes",
+        "Exact publication and commencement clauses, with any effective date verified against the original Gazette text",
+        "Full article/annex comparison against secondary transcriptions and any relevant Labour Law 14/2025 provisions",
+        "Later amendments, replacement, repeal, circulars and implementation guidance",
+        "Source-specific collection, storage, indexing, excerpt display and commercial reuse rights",
+        "Qualified Egyptian occupational-safety/labour-lawyer review"
+      ],
+      "notes": "Discovery-only. Official Gazette catalogue metadata for Supplement 225(A), issued 2026-10-12 by المطابع الأميرية, lists this decision by number and title. The original bundle is named العدد 225 تابع أ - مؤمن.pdf (6.13 MB); the download action is request-copy restricted. The Ministry of Labour announced on 2026-10-20 that Decisions 248–252/2026 were issued as implementing measures under Labour Law 14/2025. Neither catalogue metadata nor the Ministry announcement authenticates the full decision text or establishes commencement, currentness, amendment history, or reuse rights. No PDF was obtained, hashed, or visually inspected; no request was submitted and no access restriction was bypassed. Keep all legal and permission states unknown and exclude from authoritative retrieval."
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-249-2026",
+      "official_title_ar": "قرار وزير العمل رقم 249 لسنة 2026 بتحديد المنشآت وفروعها التي تلتزم بإنشاء أجهزة وظيفية للسلامة والصحة المهنية وتأمين بيئة العمل واللجان المختصة",
+      "practice_areas": [
+        "labour",
+        "occupational_safety"
+      ],
+      "document_type": "ministerial_decision",
+      "instrument_number": 249,
+      "instrument_year": 2026,
+      "source_id": "EG-AMIRI-PRESS",
+      "source_status": "official_index_discovered_primary_text_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "publication_date": "2026-10-12",
+      "official_gazette_issue": "الوقائع المصرية - ملحق العدد 225 تابع (أ)",
+      "effective_date": null,
+      "source_urls": [
+        {
+          "url": "https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full",
+          "source_role": "Official Gazette catalogue metadata for Supplement 225(A), issue date 2026-10-12; catalogue entry lists this decision by number and title",
+          "status": "official_catalogue_metadata_discovered_primary_PDF_request_copy_restricted"
+        },
+        {
+          "url": "https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D9%8A%D8%B5%D8%AF%D8%B1-5-%D9%82%D8%B1%D8%A7%D8%B1%D8%A7%D8%AA-%D8%AA%D9%86%D9%81%D9%8A%D8%B0%D9%8A%D8%A9-%D9%84%D8%AA%D8%B9%D8%B2%D9%8A%D8%B2-%D9%85%D9%86%D8%B8%D9%88%D9%85%D8%A9-%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9-%D9%88%D8%A7%D9%84%D8%B5%D8%AD%D8%A9-%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9-%D9%88%D8%AA%D8%A3%D9%85%D9%8A%D9%86-%D8%A8%D9%8A%D8%A6%D8%A9-%D8%A7%D9%84%D8%B9%D9%85%D9%84/",
+          "source_role": "Official Ministry of Labour announcement dated 2026-10-20 confirming Decisions 248–252/2026 as implementing measures under Labour Law 14/2025",
+          "status": "official_announcement_discovery_only"
+        }
+      ],
+      "required_related_records": [
+        "Original Gazette PDF bytes obtained through an authorized route, exact file SHA-256, and page-level inspection of the full decision and annexes",
+        "Exact publication and commencement clauses, with any effective date verified against the original Gazette text",
+        "Full article/annex comparison against secondary transcriptions and any relevant Labour Law 14/2025 provisions",
+        "Later amendments, replacement, repeal, circulars and implementation guidance",
+        "Source-specific collection, storage, indexing, excerpt display and commercial reuse rights",
+        "Qualified Egyptian occupational-safety/labour-lawyer review"
+      ],
+      "notes": "Discovery-only. Official Gazette catalogue metadata for Supplement 225(A), issued 2026-10-12 by المطابع الأميرية, lists this decision by number and title. The original bundle is named العدد 225 تابع أ - مؤمن.pdf (6.13 MB); the download action is request-copy restricted. The Ministry of Labour announced on 2026-10-20 that Decisions 248–252/2026 were issued as implementing measures under Labour Law 14/2025. Neither catalogue metadata nor the Ministry announcement authenticates the full decision text or establishes commencement, currentness, amendment history, or reuse rights. No PDF was obtained, hashed, or visually inspected; no request was submitted and no access restriction was bypassed. Keep all legal and permission states unknown and exclude from authoritative retrieval."
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-250-2026",
+      "official_title_ar": "قرار وزير العمل رقم 250 لسنة 2026 بشأن قواعد ومعايير وبيان حدود الأمان في أماكن العمل والاشتراطات والاحتياطات اللازمة لدرء المخاطر",
+      "practice_areas": [
+        "labour",
+        "occupational_safety"
+      ],
+      "document_type": "ministerial_decision",
+      "instrument_number": 250,
+      "instrument_year": 2026,
+      "source_id": "EG-AMIRI-PRESS",
+      "source_status": "official_index_discovered_primary_text_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "publication_date": "2026-10-12",
+      "official_gazette_issue": "الوقائع المصرية - ملحق العدد 225 تابع (أ)",
+      "effective_date": null,
+      "source_urls": [
+        {
+          "url": "https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full",
+          "source_role": "Official Gazette catalogue metadata for Supplement 225(A), issue date 2026-10-12; catalogue entry lists this decision by number and title",
+          "status": "official_catalogue_metadata_discovered_primary_PDF_request_copy_restricted"
+        },
+        {
+          "url": "https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D9%8A%D8%B5%D8%AF%D8%B1-5-%D9%82%D8%B1%D8%A7%D8%B1%D8%A7%D8%AA-%D8%AA%D9%86%D9%81%D9%8A%D8%B0%D9%8A%D8%A9-%D9%84%D8%AA%D8%B9%D8%B2%D9%8A%D8%B2-%D9%85%D9%86%D8%B8%D9%88%D9%85%D8%A9-%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9-%D9%88%D8%A7%D9%84%D8%B5%D8%AD%D8%A9-%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9-%D9%88%D8%AA%D8%A3%D9%85%D9%8A%D9%86-%D8%A8%D9%8A%D8%A6%D8%A9-%D8%A7%D9%84%D8%B9%D9%85%D9%84/",
+          "source_role": "Official Ministry of Labour announcement dated 2026-10-20 confirming Decisions 248–252/2026 as implementing measures under Labour Law 14/2025",
+          "status": "official_announcement_discovery_only"
+        }
+      ],
+      "required_related_records": [
+        "Original Gazette PDF bytes obtained through an authorized route, exact file SHA-256, and page-level inspection of the full decision and annexes",
+        "Exact publication and commencement clauses, with any effective date verified against the original Gazette text",
+        "Full article/annex comparison against secondary transcriptions and any relevant Labour Law 14/2025 provisions",
+        "Later amendments, replacement, repeal, circulars and implementation guidance",
+        "Source-specific collection, storage, indexing, excerpt display and commercial reuse rights",
+        "Qualified Egyptian occupational-safety/labour-lawyer review"
+      ],
+      "notes": "Discovery-only. Official Gazette catalogue metadata for Supplement 225(A), issued 2026-10-12 by المطابع الأميرية, lists this decision by number and title. The original bundle is named العدد 225 تابع أ - مؤمن.pdf (6.13 MB); the download action is request-copy restricted. The Ministry of Labour announced on 2026-10-20 that Decisions 248–252/2026 were issued as implementing measures under Labour Law 14/2025. Neither catalogue metadata nor the Ministry announcement authenticates the full decision text or establishes commencement, currentness, amendment history, or reuse rights. No PDF was obtained, hashed, or visually inspected; no request was submitted and no access restriction was bypassed. Keep all legal and permission states unknown and exclude from authoritative retrieval."
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-251-2026",
+      "official_title_ar": "قرار وزير العمل رقم 251 لسنة 2026 بتحديد شروط وقواعد وإجراءات منح ترخيص مزاولة أعمال الخبرة والاستشارات في مجال السلامة والصحة المهنية وتأمين بيئة العمل",
+      "practice_areas": [
+        "labour",
+        "occupational_safety"
+      ],
+      "document_type": "ministerial_decision",
+      "instrument_number": 251,
+      "instrument_year": 2026,
+      "source_id": "EG-AMIRI-PRESS",
+      "source_status": "official_index_discovered_primary_text_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "publication_date": "2026-10-12",
+      "official_gazette_issue": "الوقائع المصرية - ملحق العدد 225 تابع (أ)",
+      "effective_date": null,
+      "source_urls": [
+        {
+          "url": "https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full",
+          "source_role": "Official Gazette catalogue metadata for Supplement 225(A), issue date 2026-10-12; catalogue entry lists this decision by number and title",
+          "status": "official_catalogue_metadata_discovered_primary_PDF_request_copy_restricted"
+        },
+        {
+          "url": "https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D9%8A%D8%B5%D8%AF%D8%B1-5-%D9%82%D8%B1%D8%A7%D8%B1%D8%A7%D8%AA-%D8%AA%D9%86%D9%81%D9%8A%D8%B0%D9%8A%D8%A9-%D9%84%D8%AA%D8%B9%D8%B2%D9%8A%D8%B2-%D9%85%D9%86%D8%B8%D9%88%D9%85%D8%A9-%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9-%D9%88%D8%A7%D9%84%D8%B5%D8%AD%D8%A9-%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9-%D9%88%D8%AA%D8%A3%D9%85%D9%8A%D9%86-%D8%A8%D9%8A%D8%A6%D8%A9-%D8%A7%D9%84%D8%B9%D9%85%D9%84/",
+          "source_role": "Official Ministry of Labour announcement dated 2026-10-20 confirming Decisions 248–252/2026 as implementing measures under Labour Law 14/2025",
+          "status": "official_announcement_discovery_only"
+        }
+      ],
+      "required_related_records": [
+        "Original Gazette PDF bytes obtained through an authorized route, exact file SHA-256, and page-level inspection of the full decision and annexes",
+        "Exact publication and commencement clauses, with any effective date verified against the original Gazette text",
+        "Full article/annex comparison against secondary transcriptions and any relevant Labour Law 14/2025 provisions",
+        "Later amendments, replacement, repeal, circulars and implementation guidance",
+        "Source-specific collection, storage, indexing, excerpt display and commercial reuse rights",
+        "Qualified Egyptian occupational-safety/labour-lawyer review"
+      ],
+      "notes": "Discovery-only. Official Gazette catalogue metadata for Supplement 225(A), issued 2026-10-12 by المطابع الأميرية, lists this decision by number and title. The original bundle is named العدد 225 تابع أ - مؤمن.pdf (6.13 MB); the download action is request-copy restricted. The Ministry of Labour announced on 2026-10-20 that Decisions 248–252/2026 were issued as implementing measures under Labour Law 14/2025. Neither catalogue metadata nor the Ministry announcement authenticates the full decision text or establishes commencement, currentness, amendment history, or reuse rights. No PDF was obtained, hashed, or visually inspected; no request was submitted and no access restriction was bypassed. Keep all legal and permission states unknown and exclude from authoritative retrieval."
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-252-2026",
+      "official_title_ar": "قرار وزير العمل رقم 252 لسنة 2026 بشأن قواعد منح تراخيص ونظم التدريب في مجال السلامة والصحة المهنية وتأمين بيئة العمل",
+      "practice_areas": [
+        "labour",
+        "occupational_safety"
+      ],
+      "document_type": "ministerial_decision",
+      "instrument_number": 252,
+      "instrument_year": 2026,
+      "source_id": "EG-AMIRI-PRESS",
+      "source_status": "official_index_discovered_primary_text_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "publication_date": "2026-10-12",
+      "official_gazette_issue": "الوقائع المصرية - ملحق العدد 225 تابع (أ)",
+      "effective_date": null,
+      "source_urls": [
+        {
+          "url": "https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full",
+          "source_role": "Official Gazette catalogue metadata for Supplement 225(A), issue date 2026-10-12; catalogue entry lists this decision by number and title",
+          "status": "official_catalogue_metadata_discovered_primary_PDF_request_copy_restricted"
+        },
+        {
+          "url": "https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D9%8A%D8%B5%D8%AF%D8%B1-5-%D9%82%D8%B1%D8%A7%D8%B1%D8%A7%D8%AA-%D8%AA%D9%86%D9%81%D9%8A%D8%B0%D9%8A%D8%A9-%D9%84%D8%AA%D8%B9%D8%B2%D9%8A%D8%B2-%D9%85%D9%86%D8%B8%D9%88%D9%85%D8%A9-%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9-%D9%88%D8%A7%D9%84%D8%B5%D8%AD%D8%A9-%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9-%D9%88%D8%AA%D8%A3%D9%85%D9%8A%D9%86-%D8%A8%D9%8A%D8%A6%D8%A9-%D8%A7%D9%84%D8%B9%D9%85%D9%84/",
+          "source_role": "Official Ministry of Labour announcement dated 2026-10-20 confirming Decisions 248–252/2026 as implementing measures under Labour Law 14/2025",
+          "status": "official_announcement_discovery_only"
+        }
+      ],
+      "required_related_records": [
+        "Original Gazette PDF bytes obtained through an authorized route, exact file SHA-256, and page-level inspection of the full decision and annexes",
+        "Exact publication and commencement clauses, with any effective date verified against the original Gazette text",
+        "Full article/annex comparison against secondary transcriptions and any relevant Labour Law 14/2025 provisions",
+        "Later amendments, replacement, repeal, circulars and implementation guidance",
+        "Source-specific collection, storage, indexing, excerpt display and commercial reuse rights",
+        "Qualified Egyptian occupational-safety/labour-lawyer review"
+      ],
+      "notes": "Discovery-only. Official Gazette catalogue metadata for Supplement 225(A), issued 2026-10-12 by المطابع الأميرية, lists this decision by number and title. The original bundle is named العدد 225 تابع أ - مؤمن.pdf (6.13 MB); the download action is request-copy restricted. The Ministry of Labour announced on 2026-10-20 that Decisions 248–252/2026 were issued as implementing measures under Labour Law 14/2025. Neither catalogue metadata nor the Ministry announcement authenticates the full decision text or establishes commencement, currentness, amendment history, or reuse rights. No PDF was obtained, hashed, or visually inspected; no request was submitted and no access restriction was bypassed. Keep all legal and permission states unknown and exclude from authoritative retrieval."
     }
   ],
   "next_actions": [
@@ -2424,6 +2624,12 @@
       "action": "Authenticate and review Ministerial Decision 50/2026 on child employment and training: establish Official Gazette issue/pages, obtain or verify complete Arabic text and annexed prohibited-work schedules through an authorized route, hash original bytes, confirm publication/commencement and later amendments, assess reuse rights, and obtain qualified Egyptian-lawyer review; keep search eligibility disabled until all gates pass.",
       "owner": "legal corpus lead",
       "status": "not_started"
+    },
+    {
+      "id": "ACT-LABOUR-OSH-DECISIONS-248-252-VERIFY",
+      "action": "Obtain the original Gazette Supplement 225(A) for Decisions 248–252/2026 through an authorized public route; hash the exact bytes; inspect each decision and all annexes; reconcile secondary transcriptions and commencement clauses; check amendments/currentness and source-use rights; obtain qualified Egyptian OSH/labour-lawyer review. The catalogue download is request-copy restricted; do not bypass it or infer permission.",
+      "owner": "Legal corpus research",
+      "status": "blocked"
     }
   ],
   "research_log": {
