@@ -8,6 +8,7 @@ until a direct document URL and collection permission evidence are established.
 from __future__ import annotations
 import argparse, json, os, sys
 from pathlib import Path
+from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "docs" / "legal_document_candidates.json"
@@ -71,6 +72,43 @@ def load_catalog(path=CATALOG):
         raise ValueError("; ".join(errors))
     return data
 
+def validate_permission_parity(data, register_path=ROOT / "docs" / "source_permission_register.json"):
+    """Fail closed if candidate seed metadata diverges from the canonical rights register."""
+    register = json.loads(Path(register_path).read_text(encoding="utf-8"))
+    if not isinstance(register, dict) or not isinstance(register.get("sources"), list):
+        raise ValueError("permission register must contain a sources array")
+    by_id = {}
+    for item in register["sources"]:
+        if not isinstance(item, dict) or not isinstance(item.get("source_id"), str):
+            raise ValueError("permission register contains an invalid source record")
+        source_id = item["source_id"]
+        if source_id in by_id:
+            raise ValueError(f"permission register has duplicate source_id {source_id}")
+        by_id[source_id] = item
+
+    errors = []
+    for candidate in data["sources"]:
+        source_id = candidate["source_id"]
+        registered = by_id.get(source_id)
+        if registered is None:
+            errors.append(f"{source_id}: missing canonical permission-register record")
+            continue
+        for field in ("collection_permission", "commercial_reuse_permission"):
+            candidate_state = candidate.get(field, "unknown")
+            registered_state = registered.get(field, "unknown")
+            if candidate_state != registered_state:
+                errors.append(
+                    f"{source_id}: {field} differs from canonical permission register "
+                    f"({candidate_state!r} != {registered_state!r})"
+                )
+        candidate_host = urlparse(candidate["source_page"]).hostname
+        register_host = urlparse(registered.get("source_page", "")).hostname
+        if not candidate_host or not register_host or candidate_host.lower() != register_host.lower():
+            errors.append(f"{source_id}: source_page host differs from canonical permission register")
+    if errors:
+        raise ValueError("; ".join(errors))
+    return True
+
 def seed(data, db):
     source_count=document_count=0
     for s in data["sources"]:
@@ -98,9 +136,11 @@ def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument("--apply",action="store_true",help="write candidates to the configured SQLite registry")
     p.add_argument("--catalog",type=Path,default=CATALOG)
+    p.add_argument("--permission-register",type=Path,default=ROOT / "docs" / "source_permission_register.json")
     args=p.parse_args()
     data=load_catalog(args.catalog)
-    print(f"Validated {len(data['sources'])} sources and {len(data['documents'])} document candidates.")
+    validate_permission_parity(data, args.permission_register)
+    print(f"Validated {len(data['sources'])} sources and {len(data['documents'])} document candidates against the canonical permission register.")
     if not args.apply:
         print("Dry run only; no database was opened or changed. Add --apply to seed metadata.")
         return

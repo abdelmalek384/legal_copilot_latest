@@ -20,6 +20,62 @@ class CandidateCatalogTests(unittest.TestCase):
         candidate_ids = {item["source_id"] for item in catalog["sources"]}
         self.assertEqual(candidate_ids - registered_ids, set())
 
+    def test_candidate_permission_states_match_canonical_register(self):
+        data = MODULE.load_catalog()
+        self.assertTrue(MODULE.validate_permission_parity(data))
+
+    def test_candidate_permission_mismatch_fails_closed_before_seeding(self):
+        import json
+        import tempfile
+        data = {
+            "sources": [{
+                "source_id": "SRC-1",
+                "source_page": "https://example.gov/candidate",
+                "collection_permission": "allowed",
+                "commercial_reuse_permission": "unknown",
+            }],
+            "documents": [],
+        }
+        register = {
+            "sources": [{
+                "source_id": "SRC-1",
+                "source_page": "https://example.gov/register",
+                "collection_permission": "unknown",
+                "commercial_reuse_permission": "unknown",
+            }]
+        }
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "permission-register.json"
+            path.write_text(json.dumps(register), encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "collection_permission differs"):
+                MODULE.validate_permission_parity(data, path)
+
+    def test_candidate_permission_register_host_mismatch_fails_closed(self):
+        import json
+        import tempfile
+        data = {
+            "sources": [{
+                "source_id": "SRC-1",
+                "source_page": "https://candidate.example.gov",
+                "collection_permission": "unknown",
+                "commercial_reuse_permission": "unknown",
+            }],
+            "documents": [],
+        }
+        register = {
+            "sources": [{
+                "source_id": "SRC-1",
+                "source_page": "https://other.example.gov",
+                "collection_permission": "unknown",
+                "commercial_reuse_permission": "unknown",
+            }]
+        }
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "permission-register.json"
+            path.write_text(json.dumps(register), encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "source_page host differs"):
+                MODULE.validate_permission_parity(data, path)
+
     def test_catalog_validates_and_every_document_has_known_source(self):
         data=MODULE.load_catalog()
         known={s["source_id"] for s in data["sources"]}

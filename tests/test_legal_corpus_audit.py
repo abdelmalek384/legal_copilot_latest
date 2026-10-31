@@ -253,15 +253,16 @@ class CorpusAuditTests(unittest.TestCase):
               review_status TEXT, authenticity_verified INT, status_verified INT, amendment_history_verified INT
             );
             CREATE TABLE legal_review_events(
-              review_event_id INTEGER PRIMARY KEY, version_id INT, review_type TEXT, outcome TEXT, evidence_url TEXT
+              review_event_id INTEGER PRIMARY KEY, version_id INT, reviewer TEXT, review_type TEXT,
+              outcome TEXT, evidence_url TEXT, reviewed_at TEXT, notes TEXT
             );
             INSERT INTO legal_document_versions VALUES
               (1,'https://example.gov/a',NULL,NULL,'2020-01-01','2020-01-01',NULL,'in_force','verified',1,1,0),
               (2,'https://example.gov/b',NULL,NULL,'2021-01-01','2021-01-01',NULL,'in_force','verified',1,1,0);
             INSERT INTO legal_review_events VALUES
-              (1,2,'source_authenticity','pass','https://example.gov/evidence/authenticity'),
-              (2,2,'legal_status','pass','https://example.gov/evidence/status'),
-              (3,2,'lawyer_approval','pass','https://example.gov/evidence/lawyer-review');
+              (1,2,'Reviewer','source_authenticity','pass','https://example.gov/evidence/authenticity','2026-10-24T10:00:00Z','Reviewed'),
+              (2,2,'Reviewer','legal_status','pass','https://example.gov/evidence/status','2026-10-24T10:00:00Z','Reviewed'),
+              (3,2,'Counsel','lawyer_approval','pass','https://example.gov/evidence/lawyer-review','2026-10-24T10:00:00Z','[qualified_egyptian_counsel_attested:user_id=42] reviewed');
             """)
             db.commit()
             db.close()
@@ -274,6 +275,70 @@ class CorpusAuditTests(unittest.TestCase):
             self.assertEqual(report["version_quality"]["authenticity_flag_without_evidence"], 1)
             self.assertEqual(report["version_quality"]["status_flag_without_evidence"], 1)
             self.assertEqual(report["version_quality"]["verified_status_without_lawyer_approval_event"], 1)
+
+    def test_verification_flags_require_latest_review_event_not_historical_pass(self):
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "latest-review.db"
+            db = sqlite3.connect(path)
+            bind_profile(db)
+            db.executescript("""
+                CREATE TABLE legal_document_versions(
+                    version_id INTEGER PRIMARY KEY, source_url TEXT, original_path TEXT, original_sha256 TEXT,
+                    publication_date TEXT, effective_date TEXT, repeal_date TEXT, legal_status TEXT,
+                    review_status TEXT, authenticity_verified INT, status_verified INT, amendment_history_verified INT
+                );
+                CREATE TABLE legal_review_events(
+                    review_event_id INTEGER PRIMARY KEY, version_id INT, reviewer TEXT, review_type TEXT,
+                    outcome TEXT, evidence_url TEXT, reviewed_at TEXT, notes TEXT
+                );
+                INSERT INTO legal_document_versions VALUES
+                    (1,'https://example.gov/law',NULL,NULL,'2020-01-01','2020-01-01',NULL,'in_force','verified',1,1,0);
+                INSERT INTO legal_review_events VALUES
+                    (1,1,'Counsel','source_authenticity','pass','https://example.gov/old-auth','2026-10-24T10:00:00Z','Reviewed'),
+                    (2,1,'Reviewer','source_authenticity','fail','https://example.gov/new-auth','2026-10-25T10:00:00Z','Rejected'),
+                    (3,1,'Counsel','legal_status','pass','https://example.gov/old-status','2026-10-24T10:00:00Z','Reviewed'),
+                    (4,1,'Reviewer','legal_status','needs_correction','https://example.gov/new-status','2026-10-25T10:00:00Z','Needs correction'),
+                    (5,1,'Counsel','lawyer_approval','pass','https://example.gov/old-lawyer','2026-10-24T10:00:00Z','[qualified_egyptian_counsel_attested:user_id=42] reviewed'),
+                    (6,1,'Reviewer','lawyer_approval','fail','https://example.gov/new-lawyer','2026-10-25T10:00:00Z','Withdrawn');
+            """)
+            db.commit()
+            db.close()
+
+            report = MODULE.audit(path)
+            quality = report["version_quality"]
+            self.assertEqual(quality["authenticity_flag_without_evidence"], 1)
+            self.assertEqual(quality["status_flag_without_evidence"], 1)
+            self.assertEqual(quality["verified_status_without_lawyer_approval_event"], 1)
+
+    def test_latest_attested_counsel_approval_satisfies_verified_flag(self):
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "current-counsel-approval.db"
+            db = sqlite3.connect(path)
+            bind_profile(db)
+            db.executescript("""
+                CREATE TABLE legal_document_versions(
+                    version_id INTEGER PRIMARY KEY, source_url TEXT, original_path TEXT, original_sha256 TEXT,
+                    publication_date TEXT, effective_date TEXT, repeal_date TEXT, legal_status TEXT,
+                    review_status TEXT, authenticity_verified INT, status_verified INT, amendment_history_verified INT
+                );
+                CREATE TABLE legal_review_events(
+                    review_event_id INTEGER PRIMARY KEY, version_id INT, reviewer TEXT, review_type TEXT,
+                    outcome TEXT, evidence_url TEXT, reviewed_at TEXT, notes TEXT
+                );
+                INSERT INTO legal_document_versions VALUES
+                    (1,'https://example.gov/law',NULL,NULL,'2020-01-01','2020-01-01',NULL,'in_force','verified',0,0,0);
+                INSERT INTO legal_review_events VALUES
+                    (1,1,'Counsel','lawyer_approval','pass','https://example.gov/review',
+                     '2026-10-25T10:00:00Z','[qualified_egyptian_counsel_attested:user_id=42] approved');
+            """)
+            db.commit()
+            db.close()
+
+            report = MODULE.audit(path)
+            self.assertEqual(
+                report["version_quality"]["verified_status_without_lawyer_approval_event"],
+                0,
+            )
 
     def test_review_event_integrity_checks_dates_reviewers_evidence_and_version_links(self):
         with tempfile.TemporaryDirectory() as td:
@@ -384,7 +449,8 @@ class CorpusAuditTests(unittest.TestCase):
               relation_id INTEGER PRIMARY KEY, from_version_id INT, to_version_id INT, relation_type TEXT
             );
             CREATE TABLE legal_review_events(
-              review_event_id INTEGER PRIMARY KEY, version_id INT, review_type TEXT, outcome TEXT, evidence_url TEXT
+              review_event_id INTEGER PRIMARY KEY, version_id INT, reviewer TEXT, review_type TEXT,
+              outcome TEXT, evidence_url TEXT, reviewed_at TEXT, notes TEXT
             );
             INSERT INTO legal_document_versions VALUES
               (1,'https://example.gov/a',NULL,NULL,'2020-01-01','2020-01-01',NULL,'in_force','verified',1,1,0),
@@ -393,8 +459,8 @@ class CorpusAuditTests(unittest.TestCase):
             INSERT INTO legal_document_versions VALUES
               (3,'https://example.gov/c',NULL,NULL,'2022-01-01','2022-01-01',NULL,'in_force','verified',1,1,1);
             INSERT INTO legal_review_events VALUES
-              (1,2,'amendment_history','pass','not-a-url'),
-              (2,3,'amendment_history','pass','https://example.gov/evidence/review.pdf');
+              (1,2,'Reviewer','amendment_history','pass','not-a-url','2026-10-24T10:00:00Z','Reviewed'),
+              (2,3,'Reviewer','amendment_history','pass','https://example.gov/evidence/review.pdf','2026-10-24T10:00:00Z','Reviewed');
             """)
             db.commit()
             db.close()

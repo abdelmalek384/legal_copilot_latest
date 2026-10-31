@@ -59,6 +59,42 @@ def parse_reviewed_at(value):
     except ValueError:
         return None
 
+def latest_review_has_passing_evidence(db, event_columns, version_id, review_type):
+    """Evaluate only the latest event against the runtime review-evidence contract."""
+    required = {
+        "review_event_id", "version_id", "reviewer", "review_type",
+        "outcome", "evidence_url", "reviewed_at", "notes",
+    }
+    if required - event_columns:
+        return False
+    event = db.execute(
+        "SELECT review_event_id, reviewer, outcome, evidence_url, reviewed_at, notes "
+        "FROM legal_review_events WHERE version_id=? AND review_type=? "
+        "ORDER BY reviewed_at DESC, review_event_id DESC LIMIT 1",
+        (version_id, review_type),
+    ).fetchone()
+    if event is None:
+        return False
+    reviewed_at = parse_reviewed_at(event["reviewed_at"])
+    if (
+        event["outcome"] != "pass"
+        or not valid_evidence_url(event["evidence_url"])
+        or not isinstance(event["reviewer"], str)
+        or not event["reviewer"].strip()
+        or not isinstance(event["notes"], str)
+        or not event["notes"].strip()
+        or reviewed_at is None
+        or reviewed_at > datetime.now(timezone.utc)
+    ):
+        return False
+    if review_type == "lawyer_approval" and not re.search(
+        r"\[qualified_egyptian_counsel_attested:user_id=[1-9][0-9]*\]",
+        event["notes"],
+    ):
+        return False
+    return True
+
+
 def sha256_file(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as stream:
@@ -319,15 +355,13 @@ def audit(db_path: Path, *, check_fts_index: bool = False):
                         flagged_versions = db.execute(
                             "SELECT version_id FROM legal_document_versions WHERE amendment_history_verified=1"
                         ).fetchall()
-                        missing_evidence_count = 0
-                        for flagged in flagged_versions:
-                            events = db.execute(
-                                "SELECT evidence_url FROM legal_review_events "
-                                "WHERE version_id=? AND review_type='amendment_history' AND outcome='pass'",
-                                (flagged["version_id"],),
-                            ).fetchall()
-                            if not any(valid_evidence_url(event["evidence_url"]) for event in events):
-                                missing_evidence_count += 1
+                        event_cols = columns(db, "legal_review_events")
+                        missing_evidence_count = sum(
+                            not latest_review_has_passing_evidence(
+                                db, event_cols, flagged["version_id"], "amendment_history"
+                            )
+                            for flagged in flagged_versions
+                        )
                         q["amendment_history_flag_without_evidence"] = missing_evidence_count
                         if q["amendment_history_flag_without_evidence"]:
                             result["issues"].append({
@@ -352,11 +386,9 @@ def audit(db_path: Path, *, check_fts_index: bool = False):
                     required_event_cols = {"version_id", "review_type", "outcome", "evidence_url"}
                     if required_event_cols.issubset(event_cols):
                         def has_passing_evidence(version_id, review_type):
-                            events = db.execute(
-                                "SELECT evidence_url FROM legal_review_events WHERE version_id=? AND review_type=? AND outcome='pass'",
-                                (version_id, review_type),
-                            ).fetchall()
-                            return any(valid_evidence_url(event[0]) for event in events)
+                            return latest_review_has_passing_evidence(
+                                db, event_cols, version_id, review_type
+                            )
                         q["authenticity_flag_without_evidence"] = sum(
                             not has_passing_evidence(row["version_id"], "source_authenticity") for row in needs_auth
                         )

@@ -202,6 +202,13 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
             "Exactly one central permission-register source must match both the candidate source_id and source host; duplicate matching records are ambiguous.")
     else:
         for registered in register_matches:
+            for permission_field in ("collection_permission", "commercial_reuse_permission"):
+                if source.get(permission_field) != registered.get(permission_field):
+                    add(
+                        blockers,
+                        "candidate_register_permission_state_mismatch",
+                        f"Candidate {permission_field} does not exactly match the canonical source-permission register.",
+                    )
             if registered.get("collection_permission") not in ALLOWED:
                 add(blockers, "central_collection_permission_not_allowed",
                     f"Central source {registered.get('source_id', '(unnamed)')} does not explicitly allow collection.")

@@ -1587,14 +1587,14 @@ def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None, sc
     retrieval_query = ((conversation_context.strip() + "\n") if conversation_context else "") + q
     hits = search(c, retrieval_query, case_id, firm_id=firm_id, as_of=as_of, scope=scope)
     if not hits or (hits[0]["cos"] < MIN_SCORE and hits[0]["score"] < 1):
-        return {"found": False, "answer": None, "abstained": True, "sources": [], "scope": scope, "message": "لم أجد مصدرا ذا صلة، ولن أخمن.", "requested_as_of": as_of or date.today().isoformat()}
+        return {"found": False, "answer": None, "abstained": True, "sources": [], "scope": scope, "case_id": case_id, "message": "لم أجد مصدرا ذا صلة، ولن أخمن.", "requested_as_of": as_of or date.today().isoformat()}
     # Matter-file passages may contain confidential or privileged information. The general
     # model-processing approval is not sufficient: require a separate explicit approval
     # before any such passage can be included in a model prompt.
     if (case_id is not None or conversation_context or any(hit.get("case_id") is not None for hit in hits)) and os.environ.get("LLM_FIRM_DATA_PROCESSING_APPROVED", "").strip() != "1":
         return {"found": True, "answer": None,
                 "message": "تم ربط البحث بملف قضية أو استرجاع مستندات قضية، لكن إرسال بيانات مرتبطة بالقضية إلى النموذج غير معتمد في إعدادات النشر؛ تُعرض المصادر فقط.",
-                "sources": hits, "scope": scope, "abstained": True,
+                "sources": hits, "scope": scope, "case_id": case_id, "abstained": True,
                 "not_in_force": [h["ref"] for h in hits if h["verified"] and not h.get("applies_as_of", h["in_force"])],
                 "unverified_sources": [h["ref"] for h in hits if not h["verified"]],
                 "requested_as_of": as_of or date.today().isoformat()}
@@ -1609,7 +1609,7 @@ def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None, sc
         return {
             "found": True, "answer": None, "abstained": True,
             "message": "تم استرجاع نصوص قانونية لا تستوفي بوابات المصدر والإذن القابلة للفحص؛ تُعرض المصادر فقط.",
-            "sources": hits, "scope": scope,
+            "sources": hits, "scope": scope, "case_id": case_id,
             "not_in_force": [h.get("ref") for h in hits if h.get("verified") and not h.get("applies_as_of", h.get("in_force"))],
             "unverified_sources": [
                 h.get("ref") for h in hits
@@ -1645,7 +1645,7 @@ def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None, sc
             ans, msg = None, "توجد عبارة قانونية بلا استشهاد مباشر، تُعرض المصادر فقط."
         elif _answer_has_unanchored_citations(ans, hits):
             ans, msg = None, "لم يظهر ارتباط لفظي كافٍ بين إحدى العبارات ومصادرها المستشهد بها؛ تُعرض المصادر فقط."
-    return {"found": True, "answer": ans, "abstained": not bool(ans), "message": msg, "sources": hits, "scope": scope, "not_in_force": [h["ref"] for h in hits if h["verified"] and not h.get("applies_as_of", h["in_force"])], "unverified_sources": [h["ref"] for h in hits if not h["verified"]], "requested_as_of": as_of or date.today().isoformat()}
+    return {"found": True, "answer": ans, "abstained": not bool(ans), "message": msg, "sources": hits, "scope": scope, "case_id": case_id, "not_in_force": [h["ref"] for h in hits if h["verified"] and not h.get("applies_as_of", h["in_force"])], "unverified_sources": [h["ref"] for h in hits if not h["verified"]], "requested_as_of": as_of or date.today().isoformat()}
 
 
 # ---------------- API ----------------
@@ -5765,6 +5765,43 @@ def delete_research_conversation(conversation_id: int, u: dict = Depends(user)):
     return {"ok": True}
 
 
+def _research_context_for_scope(prior_messages, scope, case_id):
+    """Keep retrieval context only from completed turns in the same scope and matter.
+
+    Older assistant rows without scope metadata are treated as a boundary, not
+    trusted as context. A user message without a completed assistant response is
+    discarded so an interrupted request cannot leak into a later search.
+    """
+    context_messages = []
+    pending_user_messages = []
+    for record in prior_messages:
+        role = record["role"]
+        if role == "user":
+            content = record["content"]
+            if isinstance(content, str) and content.strip():
+                pending_user_messages.append(content.strip())
+            continue
+        if role != "assistant":
+            continue
+        try:
+            metadata = json.loads(record["message_json"] or "{}")
+        except (TypeError, ValueError):
+            metadata = {}
+        same_context = (
+            isinstance(metadata, dict)
+            and metadata.get("scope") == scope
+            and metadata.get("case_id") == case_id
+        )
+        if same_context:
+            context_messages.extend(pending_user_messages)
+        else:
+            context_messages = []
+        pending_user_messages = []
+    if not context_messages:
+        return None
+    return "\n".join(message[:350] for message in context_messages[-4:])[:1400] or None
+
+
 class ResearchMessageIn(BaseModel):
     message: str = Field(min_length=1, max_length=2000)
     as_of: str | None = Field(default=None, pattern=r"^\d{4}-\d{2}-\d{2}$")
@@ -5785,11 +5822,13 @@ def send_research_message(conversation_id: int, b: ResearchMessageIn, u: dict = 
         try: date.fromisoformat(b.as_of)
         except ValueError: raise HTTPException(422, "invalid as_of date")
     prior = c.execute(
-        "SELECT role,content FROM research_messages WHERE conversation_id=? ORDER BY id DESC LIMIT 8",
+        "SELECT role,content,message_json FROM research_messages "
+        "WHERE conversation_id=? ORDER BY id DESC LIMIT 16",
         (conversation_id,)).fetchall()
-    # Only earlier user questions help expand retrieval; assistant answers are not treated as legal evidence.
-    history = list(reversed([dict(r) for r in prior if r["role"] == "user"]))
-    context = "\n".join(x["content"][:350] for x in history[-4:])[:1400] if history else None
+    # Context is scoped to the most recent completed turns in this exact search scope and matter.
+    context = _research_context_for_scope(
+        list(reversed([dict(r) for r in prior])), b.scope, b.case_id
+    )
     c.execute("INSERT INTO research_messages(conversation_id,role,content) VALUES(?,?,?)",
               (conversation_id, "user", question))
     try:
@@ -5799,9 +5838,14 @@ def send_research_message(conversation_id: int, b: ResearchMessageIn, u: dict = 
         raise HTTPException(422, str(e))
     answer = result.get("answer") or result.get("message") or "لم أجد مصدرا كافيا للإجابة."
     sources = result.get("sources", [])
+    # Persist the request's scope/matter boundary explicitly. Do not rely on
+    # every answer/abstention branch in ask() to repeat these routing fields.
+    message_metadata = dict(result)
+    message_metadata["scope"] = b.scope
+    message_metadata["case_id"] = b.case_id
     c.execute("INSERT INTO research_messages(conversation_id,role,content,sources_json,message_json) VALUES(?,?,?,?,?)",
               (conversation_id, "assistant", answer, json.dumps(sources, ensure_ascii=False),
-               json.dumps(result, ensure_ascii=False)))
+               json.dumps(message_metadata, ensure_ascii=False)))
     title = conversation["title"]
     if title == "محادثة جديدة":
         title = question[:72] + ("…" if len(question) > 72 else "")
