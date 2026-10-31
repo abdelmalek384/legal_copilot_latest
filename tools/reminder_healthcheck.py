@@ -147,7 +147,24 @@ def _write_report(path: Path, report: dict, runtime: DatabaseRuntime) -> None:
     if destination.exists() and not destination.is_file():
         raise RuntimeError("report output must be a regular file")
     destination.parent.mkdir(parents=True, exist_ok=True)
-    destination.write_text(json.dumps(report, ensure_ascii=False, sort_keys=True, indent=2) + "\n", encoding="utf-8")
+
+    # Health reports disclose firm identifiers and operational state. Create
+    # them private from the outset and never follow/replace an existing path.
+    # O_EXCL prevents races with an existing file; O_NOFOLLOW adds defense in
+    # depth on platforms that provide it. The mode is still subject to the
+    # platform's file-permission semantics (Windows does not use POSIX modes).
+    flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL
+    flags |= getattr(os, "O_NOFOLLOW", 0)
+    descriptor = os.open(destination, flags, 0o600)
+    try:
+        with os.fdopen(descriptor, "w", encoding="utf-8") as handle:
+            handle.write(json.dumps(report, ensure_ascii=False, sort_keys=True, indent=2) + "\\n")
+    except Exception:
+        try:
+            destination.unlink()
+        except OSError:
+            pass
+        raise
 
 
 def main(argv: list[str] | None = None) -> int:
