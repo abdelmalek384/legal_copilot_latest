@@ -364,6 +364,19 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         self.assertIn("No local PDF bytes/hash", source["access_status"])
         self.assertEqual(MODULE.validate(data), [])
 
+    def test_decision_290_meles_metadata_does_not_clear_reuse_rights(self):
+        import json
+        data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        source = next(item for item in data["sources"] if item["source_id"] == "EG-MELES-DSpace-DECISION-290-2025")
+        self.assertEqual(source["collection_permission"], "not_allowed_without_explicit_exception_or_license")
+        self.assertEqual(source["commercial_reuse_permission"], "prior_written_permission_required_per_published_terms")
+        self.assertIn("English PDF (103.23 KB)", source["access_status"])
+        self.assertIn("Arabic PDF (105.2 KB)", source["access_status"])
+        self.assertIn("not the Official Gazette", source["permission_evidence"])
+        self.assertIn("item page and file links were not opened", source["permission_evidence"])
+        self.assertEqual(source["terms_checked_on"], "2026-10-31")
+        self.assertEqual(MODULE.validate(data), [])
+
 if __name__ == "__main__":
     unittest.main()
 

@@ -28,6 +28,12 @@ class TestLabourDecisionPublicTextCrosswalk(unittest.TestCase):
             self.assertIn("unknown", record["reuse_rights"])
             self.assertTrue(record["currentness"].startswith("not fully verified"))
             self.assertFalse(record.get("search_eligible", False))
+        repository = d290["third_party_repository_metadata"]
+        self.assertEqual(repository["url"], "https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829/full")
+        self.assertIn("not an official Gazette copy", repository["status"])
+        self.assertIn("103.23 KB", " ".join(repository["listed_files"]))
+        self.assertIn("105.2 KB", " ".join(repository["listed_files"]))
+        self.assertIn("no hash", repository["status"])
         self.assertIn("intermittent work", d290["secondary_text"]["summary"])
         self.assertIn("35%", d291["secondary_text"]["summary"])
         self.assertIn("70%", d291["secondary_text"]["summary"])
@@ -41,6 +47,20 @@ class TestLabourDecisionPublicTextCrosswalk(unittest.TestCase):
             self.assertTrue(any(source["url"] == url and "secondary" in source["status"] for source in record["source_urls"]))
 
 
+
+    def test_decision_290_meles_metadata_is_recorded_without_claiming_primary_text(self):
+        register = json.loads((ROOT / "docs" / "phase_2_source_evidence_register.json").read_text(encoding="utf-8"))
+        source = next(item for item in register["sources"] if item["source_id"] == "EG-MELES-DSpace-DECISION-290-2025")
+        self.assertEqual(source["publication_date"], "2025-12-11")
+        self.assertEqual(source["document_ids"], ["EG-LABOUR-DECISION-290-2025"])
+        self.assertEqual(source["collection_permission"], "not_allowed_without_explicit_exception_or_license")
+        self.assertIn("103.23 KB", source["notes"])
+        self.assertIn("105.2 KB", source["notes"])
+        self.assertIn("no PDF or license bytes", source["notes"])
+        currentness = (ROOT / "data" / "candidates" / "labour_law_14_2025" / "related_instruments" / "currentness_register_2026-10-28.md").read_text(encoding="utf-8")
+        self.assertIn("Decision 290/2025 — exact identity and secondary-text corroboration", currentness)
+        self.assertIn("G3 secondary corroboration plus third-party metadata; not G4", currentness)
+        self.assertIn("search_eligible=false", currentness)
 
     def test_decisions_292_and_294_have_issue_metadata_and_secondary_text(self):
         data = json.loads(DATA.read_text(encoding="utf-8"))

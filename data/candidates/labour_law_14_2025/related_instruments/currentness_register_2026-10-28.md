@@ -17,6 +17,25 @@
 | Ministerial Decree 346/2025 — religious holidays for Christian workers | Secondary instrument index only: https://www.careerians.com/egyptian-labor-law/اللائحة-التنفيذية-قانون-العمل-14-2025/ | Article 129 holiday entitlement; related card set | A secondary index identifies this decree and subject. | Official primary text, scope, publication/effective date and interaction with Decree 294/2025 are not verified. |
 | Decree 187/2025 — resignation approval procedures | Secondary instrument index only: https://www.careerians.com/egyptian-labor-law/اللائحة-التنفيذية-قانون-العمل-14-2025/ | Future termination/resignation card set; not a direct leave-card amendment identified | A secondary index identifies this decree and subject. | Official primary text and Gazette metadata not verified in this task. |
 
+
+## Decision 290/2025 — exact identity and secondary-text corroboration (2026-10-31)
+
+The previously uncertain “intermittent-work” subject is now identified by two public secondary full-text transcriptions:
+
+- Law Hub: https://lawhub.info/eg/?p=17303
+- EastLaws: https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/30-12-2025/no-290?id=5008505&type=1
+
+Both identify the title as Decision 290/2025 on intermittent work by nature where a worker may be present for more than ten hours but no more than twelve hours per day. EastLaws states that the decision was issued on 2025-12-11, published in Egyptian Proceedings issue 295 Supplement D on 2025-12-30, and effective 2025-12-31. Those dates remain secondary-derived until checked against the promulgated Gazette text.
+
+The secondary texts expose Articles 1–4. In summary only: Article 1 sets a ten-hour daily span between start and finish, counts rest as presence time when the worker remains at the workplace, and creates an exception for the Article 2 intermittent-work categories up to twelve hours' presence. Article 2 defines intermittent work by intervening stoppage/waiting periods and lists seven categories: passenger/goods transport; crop warehouses; specified vessel mooring, lighting and ship-repair work; emergency healthcare; transport/logistics with waiting between trips; on-demand online technical support; and data-centre/cloud monitoring. Article 3 permits a special schedule up to twelve hours' presence, requires additional pay for actual work beyond the establishment's normal hours under Law 14/2025 Article 121, and requires records of normal/overtime hours, breaks and presence. Article 4 provides next-day commencement. This is an issue-spotting summary, not a Gazette-verified transcription.
+
+A third-party MELES DSpace record (https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829/full) attributes the item to the Ministry of Labour, identifies MELES as publisher, gives an issue date of 2025-12-11, and lists separate English (103.23 KB) and Arabic (105.2 KB) PDFs. Neither file nor item-specific licence was opened or obtained; no local bytes/hash exist. The repository's published End User Agreement requires prior written permission for commercial exploitation and systematic database compilation. This metadata is a third-party discovery lead, not an official Gazette copy and not permission to collect or reuse.
+
+The official issue 295 DSpace PDF remains request-a-copy restricted. A separate SIS search-indexed Ministry record dated 2025-12-26 is titled “Decision (290) of 2025” and labels the item public text/image, but the item page and file were not accessed; this does not establish that the complete decision text is publicly available there.
+
+**Verification classification:** G3 secondary corroboration plus third-party metadata; not G4. The original Gazette PDF, page-image/text comparison, SHA-256, exact operative wording, source-specific reuse permission, later amendment/repeal search and qualified Egyptian-lawyer review remain outstanding. Keep all dependent cards `search_eligible=false`.
+
+
 ## B. Legal transition / currentness rule
 
 Article 11 of the issuing provisions of Law 14/2025 states, in the official-text transcription located during this research, that implementing decisions should be issued within 90 days and that existing decisions continue until replacement insofar as they do not conflict with the new Law. Source lead: https://drhisham.org/tax-law/قوانين-أخرى-ذات-صلة/قانون-14-لسنة-2025/مواد-الإصدار-المادة-الحادية-عشر/ . The official Gazette PDF remains the controlling reference; the complete prior-decision inventory and conflict analysis have not been completed.

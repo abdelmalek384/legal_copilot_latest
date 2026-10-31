@@ -671,6 +671,21 @@
       "access_terms_state": "not_reviewed",
       "collection_permission": "unknown",
       "notes": "PDF opened through SIS. It identifies the Ministry of Labour and contains Decision 294/2025 Articles 1–4. Article 1 lists twelve paid holiday categories and allows substitution of another day for national uniformity; Article 2 grants full-pay leave, prohibits deduction from annual leave, and provides double pay or a substitute day on written request if work is required; Article 3 adds religious holidays for non-Muslim workers under the relevant Prime Minister decision; Article 4 provides next-day commencement after Gazette publication. This is a Ministry-hosted text copy, not the Official Gazette PDF; no local binary/hash or reuse terms were obtained."
+    },
+    {
+      "source_id": "EG-MELES-DSpace-DECISION-290-2025",
+      "publisher": "The Middle East Library For Economic Services (repository item author: Ministry Of Labor)",
+      "source_type": "Third-party DSpace metadata for Decision 290/2025 with English and Arabic PDF listings",
+      "url": "https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829/full",
+      "observed_title": "Decree No. 290 of the Year 2025 Determining the Intermittent Work By Its Nature In Which The Worker May Be Present For Over Ten Hours But Not More Than Twelve Hours Per Day",
+      "publication_date": "2025-12-11",
+      "document_ids": [
+        "EG-LABOUR-DECISION-290-2025"
+      ],
+      "source_state": "third_party_repository_metadata_pdf_listed_not_downloaded",
+      "access_terms_state": "repository_end_user_agreement_reviewed; item_file_access_not_checked",
+      "collection_permission": "not_allowed_without_explicit_exception_or_license",
+      "notes": "Search-indexed item metadata identifies Ministry Of Labor as author, The Middle East Library For Economic Services as publisher and 2025-12-11 as the issue date. It lists an English PDF (103.23 KB) and an Arabic PDF (105.2 KB). This is third-party repository metadata, not an official Gazette copy. The repository End User Agreement limits use to personal/non-commercial purposes, requires prior written permission for commercial exploitation and written permission for systematic database compilation. The item page and file links were not opened in this pass; no PDF or license bytes were obtained, no hash is claimed, and no item-specific license or download status is inferred."
     }
   ],
   "document_records_to_create_from_batch": [

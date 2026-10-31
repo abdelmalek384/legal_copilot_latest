@@ -768,6 +768,23 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
       "required_next_action": "Use as a manually reviewed government-hosted text copy for Decision 294/2025 only. Check applicable SIS reuse terms and compare against the Official Gazette issue PDF when lawfully accessible. Do not treat this PDF as the Official Gazette itself or infer bulk/commercial reuse permission."
+    },
+    {
+      "source_id": "EG-MELES-DSpace-DECISION-290-2025",
+      "authority": "Middle East Library for Economic Services DSpace repository; item metadata attributes the decision to Ministry of Labour",
+      "source_page": "https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829/full",
+      "material_types": [
+        "Third-party repository metadata for Decision 290/2025",
+        "English and Arabic PDF listings"
+      ],
+      "access_status": "Search-indexed full item metadata lists an English PDF (103.23 KB) and an Arabic PDF (105.2 KB). The item page and file links were not opened in this pass; no file or license bytes were obtained and no SHA-256 is claimed.",
+      "collection_permission": "not_allowed_without_explicit_exception_or_license",
+      "commercial_reuse_permission": "prior_written_permission_required_per_published_terms",
+      "terms_url": "https://dspace.id.com.eg/info/end-user-agreement",
+      "permission_evidence": "Checked 2026-10-31. The indexed item metadata identifies Ministry Of Labor as author, The Middle East Library For Economic Services as publisher, and 2025-12-11 as the issue date; it lists separate English (103.23 KB) and Arabic (105.2 KB) PDF files. This is third-party repository metadata, not the Official Gazette or a Ministry-hosted source. The repository End User Agreement (last updated 2023-05-04), reviewed for the same repository in the Decision 288 source assessment, limits content to personal/non-commercial use, requires express prior written permission for commercial exploitation, and written permission for systematic retrieval to compile a collection/database. The Decision 290 item page and file links were not opened; no item-specific license or file access status is inferred. No files or license bytes were obtained.",
+      "terms_checked_on": "2026-10-31",
+      "bulk_download_or_api": "not authorized; systematic retrieval to compile a collection/database requires written permission under the published End User Agreement",
+      "required_next_action": "Use the metadata only as a discovery lead. Do not download, extract, index, reproduce or commercially use the listed PDFs without the required written permission and item-specific access review. Do not treat the third-party files as an official Gazette copy or infer reuse permission from public metadata."
     }
   ]
 }

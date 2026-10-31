@@ -27,7 +27,7 @@
       "gazette_date": "2025-12-30 (official Amiri Press issue metadata; secondary EastLaws record independently states the same Gazette publication date)",
       "effective_date": "2025-12-31 (stated by EastLaws and derived from Article 4 in both secondary transcriptions; not primary-PDF verified)",
       "article_2_schedule_status": "Seven categories appear in secondary transcriptions; exact wording and Gazette fidelity remain unverified",
-      "reuse_rights": "unknown; official issue PDF is request-a-copy restricted and secondary-source reuse is not cleared",
+      "reuse_rights": "unknown for item-specific license; the repository End User Agreement requires prior written permission for commercial exploitation and systematic database compilation. Official Gazette PDF remains request-a-copy restricted; secondary-source reuse is not cleared.",
       "currentness": "not fully verified; no later amendment/repeal review or primary Gazette comparison completed",
       "card_action": "cross-reference lead only; do not treat the seven secondary categories as an authoritative classification until exact Gazette wording, worker duties and currentness are reviewed",
       "additional_official_access_lead": {
@@ -52,6 +52,17 @@
           }
         ],
         "caution": "This anchors the parent Labour Law provisions only. It does not authenticate or compare the separate ministerial decision text."
+      },
+      "third_party_repository_metadata": {
+        "url": "https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829/full",
+        "publisher_metadata": "The Middle East Library For Economic Services",
+        "author_metadata": "Ministry Of Labor",
+        "issue_date_metadata": "2025-12-11",
+        "listed_files": [
+          "D.No. 290-2025 - Labour - Intermittent Work.pdf (103.23 KB)",
+          "D. No. 290-2025 - Labour - الأعمال المتقطعة.pdf (105.2 KB)"
+        ],
+        "status": "Search-indexed item metadata only; neither PDF nor item-specific license opened or downloaded; no hash; repository terms restrict commercial exploitation and systematic database compilation; not an official Gazette copy"
       }
     },
     {
