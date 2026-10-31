@@ -197,6 +197,9 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
         else:
             add(blockers, "central_source_record_missing",
                 "No central permission-register source matches both the candidate source_id and source host.")
+    elif len(register_matches) != 1:
+        add(blockers, "central_source_record_ambiguous",
+            "Exactly one central permission-register source must match both the candidate source_id and source host; duplicate matching records are ambiguous.")
     else:
         for registered in register_matches:
             if registered.get("collection_permission") not in ALLOWED:
