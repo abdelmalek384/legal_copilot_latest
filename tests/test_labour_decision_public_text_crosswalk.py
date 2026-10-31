@@ -86,5 +86,17 @@ class TestLabourDecisionPublicTextCrosswalk(unittest.TestCase):
             self.assertIn("does not authenticate", anchor["caution"])
             self.assertTrue(all(item["printed_gazette_page"] > 0 for item in anchor["articles"]))
 
+
+    def test_decision_291_page_image_reproduction_is_not_original_or_reuse_clearance(self):
+        data = json.loads(DATA.read_text(encoding="utf-8"))
+        item = next(x for x in data["decisions"] if x["document_id"] == "EG-LABOUR-DECISION-291-2025")
+        check = item["gazette_page_image_reproduction"]
+        self.assertEqual(check["pages"][0]["printed_page"], 21)
+        self.assertEqual(check["pages"][1]["printed_page"], 22)
+        self.assertIn("not the original DSpace PDF", check["caveat"])
+        self.assertIn("35% daytime", " ".join(check["pages"][0]["observations"]))
+        self.assertIn("three months", " ".join(check["pages"][1]["observations"]))
+        self.assertIn("reuse rights", check["caveat"])
+
 if __name__ == "__main__":
     unittest.main()
