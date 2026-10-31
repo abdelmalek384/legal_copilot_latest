@@ -262,6 +262,66 @@ def compute_from_rule(rule: dict, trigger: dt.date, **kwargs) -> dict:
                                       verified_rule=verified, **kwargs)
 
 
+def rule_catalog(path: Path = DEFAULT_RULES) -> dict:
+    """Return safe display metadata for the deadline-rule selector."""
+    try:
+        raw = json.loads(Path(path).read_text(encoding="utf-8"))
+    except (OSError, ValueError) as exc:
+        raise DeadlineError("could not read valid rules JSON") from exc
+    rules = load_rules(path)
+    return {
+        "status": raw.get("status", "unknown") if isinstance(raw, dict) else "unknown",
+        "warning": raw.get("warning", "") if isinstance(raw, dict) else "",
+        "rules": [
+            {
+                "id": rule["id"],
+                "label_ar": rule["label_ar"],
+                "amount": rule["amount"],
+                "unit": rule["unit"],
+                "verified": _is_verified(rule),
+            }
+            for rule in rules.values()
+        ],
+    }
+
+
+def estimate_rule_deadline(rule_id: str, trigger: dt.date, *, distance_days: int = 0,
+                           today: dt.date | None = None,
+                           rules_path: Path = DEFAULT_RULES,
+                           holidays_path: Path = DEFAULT_HOLIDAYS) -> dict:
+    """Build a non-authoritative preview from a selected rule and draft holiday calendar.
+
+    The UI may explicitly preview unverified rules, but the returned warning and
+    verified_rule flag must remain visible. This helper never creates a case deadline.
+    """
+    if not isinstance(rule_id, str) or not rule_id.strip():
+        raise DeadlineError("a rule ID is required")
+    rules = load_rules(rules_path)
+    rule = rules.get(rule_id)
+    if rule is None:
+        raise DeadlineError("unknown deadline rule")
+    if isinstance(trigger, dt.datetime) or not isinstance(trigger, dt.date):
+        raise DeadlineError("trigger must be a calendar date")
+    holidays, complete = load_holidays(
+        holidays_path, range(trigger.year, min(2201, trigger.year + 13))
+    )
+    result = compute_from_rule(
+        rule, trigger, allow_unverified=True, holidays=holidays,
+        complete_holiday_years=complete, distance_days=distance_days, today=today,
+    )
+    result["rule_label_ar"] = rule["label_ar"]
+    result["rule_catalog_status"] = rule_catalog(rules_path)["status"]
+    try:
+        holiday_data = json.loads(Path(holidays_path).read_text(encoding="utf-8"))
+    except (OSError, ValueError) as exc:
+        raise DeadlineError("could not read valid holiday data") from exc
+    holiday_status = holiday_data.get("status", "unknown") if isinstance(holiday_data, dict) else "unknown"
+    result["holiday_calendar_status"] = holiday_status
+    if holiday_status != "verified":
+        result["warnings"].append("تقويم العطلات غير مكتمل أو غير معتمد؛ قد لا تشمل النتيجة جميع العطلات.")
+    return result
+
+
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--rule")

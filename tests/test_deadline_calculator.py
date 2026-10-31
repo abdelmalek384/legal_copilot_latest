@@ -81,6 +81,32 @@ class DeadlineCalculatorTests(unittest.TestCase):
         with self.assertRaises(dc.DeadlineError):
             dc.load_rules(Path("missing-rules-file.json"))
 
+    def test_rule_catalog_marks_all_current_rules_unverified(self):
+        catalog = dc.rule_catalog()
+        self.assertEqual(catalog["status"], "draft_unverified")
+        self.assertTrue(catalog["rules"])
+        self.assertTrue(all(not rule["verified"] for rule in catalog["rules"]))
+
+    def test_estimate_rule_deadline_is_preview_only_and_warns_about_draft_sources(self):
+        result = dc.estimate_rule_deadline(
+            "civil_cassation_60d", D(2026, 10, 26), today=D(2026, 10, 1)
+        )
+        self.assertEqual(result["rule_id"], "civil_cassation_60d")
+        self.assertEqual(result["trigger_date"], "2026-10-26")
+        self.assertEqual(result["final_due"], "2026-12-27")
+        self.assertFalse(result["verified_rule"])
+        self.assertEqual(result["rule_catalog_status"], "draft_unverified")
+        self.assertEqual(result["holiday_calendar_status"], "partial_draft_unverified")
+        self.assertTrue(any("مسودة غير معتمدة" in warning for warning in result["warnings"]))
+        self.assertTrue(any("تقويم العطلات غير مكتمل" in warning for warning in result["warnings"]))
+        self.assertIn("disclaimer", result)
+
+    def test_estimate_rejects_unknown_rule_and_invalid_trigger(self):
+        with self.assertRaises(dc.DeadlineError):
+            dc.estimate_rule_deadline("not-a-rule", D(2026, 10, 26))
+        with self.assertRaises(dc.DeadlineError):
+            dc.estimate_rule_deadline("civil_cassation_60d", "2026-10-26")
+
     def test_cli_refuses_unverified_draft_and_warns_when_overridden(self):
         import contextlib
         import io

@@ -1,0 +1,126 @@
+"""Authenticated case-scoped deadline estimate route tests.
+
+All firms, users, cases, and dates are synthetic. The route must enforce the
+same case-membership boundary as the existing case workspace.
+"""
+import os
+import tempfile
+import unittest
+from pathlib import Path
+
+from fastapi.testclient import TestClient
+
+import app
+from database_runtime import DatabaseRuntime
+
+
+class CaseDeadlineEstimateRouteTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix="legal-copilot-deadline-route-")
+        self.root = Path(self.temp.name)
+        self.env_names = (
+            "COPILOT_DB", "COPILOT_CONTROL_DB", "COPILOT_TENANT_DB_ROOT",
+            "COPILOT_CORPUS_DB", "COPILOT_OBJECT_STORAGE_ROOT",
+            "COPILOT_OBJECT_STORAGE_BACKEND", "COPILOT_ENV", "ADMIN_TOKEN",
+        )
+        self.old_env = {name: os.environ.get(name) for name in self.env_names}
+        os.environ.pop("COPILOT_DB", None)
+        os.environ.update(
+            COPILOT_CONTROL_DB=str(self.root / "control.sqlite3"),
+            COPILOT_TENANT_DB_ROOT=str(self.root / "tenants"),
+            COPILOT_CORPUS_DB=str(self.root / "corpus.sqlite3"),
+            COPILOT_OBJECT_STORAGE_ROOT=str(self.root / "objects"),
+            COPILOT_OBJECT_STORAGE_BACKEND="local",
+            COPILOT_ENV="development",
+            ADMIN_TOKEN="deadline-route-test-admin-token-long-enough",
+        )
+        app._database_runtime = None
+        self.runtime = DatabaseRuntime.from_env()
+        self.runtime.initialize()
+        self.firm_a, _ = self.runtime.provision_firm("Deadline Test Firm A")
+        self.firm_b, _ = self.runtime.provision_firm("Deadline Test Firm B")
+        self.password_a = "Deadline-test-password-A-2026!"
+        self.password_b = "Deadline-test-password-B-2026!"
+        self.runtime.create_initial_firm_owner(
+            self.firm_a, "Deadline Owner A", "deadline-a@example.test",
+            app.hash_pw(self.password_a),
+        )
+        self.runtime.create_initial_firm_owner(
+            self.firm_b, "Deadline Owner B", "deadline-b@example.test",
+            app.hash_pw(self.password_b),
+        )
+        self.client = TestClient(app.app)
+        login = self.client.post(
+            "/login", json={"email": "deadline-a@example.test", "password": self.password_a}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate(
+            "post", "/cases", json={"title": "Synthetic deadline matter", "client": "Synthetic client"}
+        )
+        self.assertEqual(created.status_code, 200, created.text)
+        self.case_id = created.json()["id"]
+
+    def tearDown(self):
+        self.client.close()
+        try:
+            self.runtime.close_current_thread()
+        except Exception:
+            pass
+        app._database_runtime = None
+        for name, value in self.old_env.items():
+            if value is None:
+                os.environ.pop(name, None)
+            else:
+                os.environ[name] = value
+        self.temp.cleanup()
+
+    def _mutate(self, method, url, **kwargs):
+        headers = dict(kwargs.pop("headers", {}) or {})
+        headers["X-CSRF-Token"] = self.client.cookies.get("lc_csrf", "")
+        return getattr(self.client, method)(url, headers=headers, **kwargs)
+
+    def test_authenticated_user_can_list_draft_rules_and_preview_case_deadline(self):
+        catalog = self.client.get("/deadline-rules")
+        self.assertEqual(catalog.status_code, 200, catalog.text)
+        self.assertEqual(catalog.json()["status"], "draft_unverified")
+        self.assertTrue(catalog.json()["rules"])
+        self.assertTrue(all(not rule["verified"] for rule in catalog.json()["rules"]))
+
+        response = self._mutate(
+            "post", f"/cases/{self.case_id}/deadline-estimate",
+            json={"rule_id": "civil_cassation_60d", "trigger": "2026-10-26"},
+        )
+        self.assertEqual(response.status_code, 200, response.text)
+        result = response.json()
+        self.assertEqual(result["final_due"], "2026-12-27")
+        self.assertFalse(result["verified_rule"])
+        self.assertTrue(result["warnings"])
+        self.assertIn("disclaimer", result)
+
+    def test_unknown_rule_and_impossible_trigger_are_rejected(self):
+        unknown = self._mutate(
+            "post", f"/cases/{self.case_id}/deadline-estimate",
+            json={"rule_id": "unknown-rule", "trigger": "2026-10-26"},
+        )
+        self.assertEqual(unknown.status_code, 404, unknown.text)
+        invalid_date = self._mutate(
+            "post", f"/cases/{self.case_id}/deadline-estimate",
+            json={"rule_id": "civil_cassation_60d", "trigger": "2026-02-30"},
+        )
+        self.assertEqual(invalid_date.status_code, 422, invalid_date.text)
+
+    def test_other_firm_cannot_estimate_a_case_deadline(self):
+        self.client.cookies.clear()
+        login = self.client.post(
+            "/login", json={"email": "deadline-b@example.test", "password": self.password_b}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        denied = self._mutate(
+            "post", f"/cases/{self.case_id}/deadline-estimate",
+            json={"rule_id": "civil_cassation_60d", "trigger": "2026-10-26"},
+        )
+        self.assertEqual(denied.status_code, 404, denied.text)
+
+
+if __name__ == "__main__":
+    unittest.main()
