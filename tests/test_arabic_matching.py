@@ -67,6 +67,43 @@ class ArabicMatchingTests(unittest.TestCase):
                         f"{question!r} did not expand to {phrase!r}",
                     )
 
+    def test_extended_egyptian_colloquial_phrases_expand_across_practice_areas(self):
+        cases = (
+            ("المرتب مش نازل", ("عدم صرف الأجر", "الأجر المتأخر")),
+            ("خصموا من مرتبي", ("خصم الأجر", "الاستقطاع من الأجر")),
+            ("شغال من غير عقد", ("إثبات علاقة العمل", "عقد العمل")),
+            ("فصلوني تعسفي", ("الفصل التعسفي", "التعويض عن الفصل")),
+            ("اشتغلت إضافي ومخدتش فلوس", ("ساعات العمل الإضافية", "مقابل العمل الإضافي")),
+            ("مأمنوش عليا", ("التأمين الاجتماعي", "التأمينات الاجتماعية")),
+            ("صاحب البيت عايز يطردني", ("إخلاء المستأجر", "دعوى الإخلاء")),
+            ("الإيجار زاد عليا", ("زيادة الأجرة", "القيمة الإيجارية")),
+            ("مش بيرجعلي التأمين", ("رد التأمين", "المطالبة المالية")),
+            ("مديونلي ومش بيدفع", ("الوفاء بالدين", "المطالبة بالدين")),
+            ("باعلي حاجة مضروبة", ("العيب الخفي", "ضمان العيوب")),
+            ("عملت توكيل وعايز ألغيه", ("إلغاء التوكيل", "عزل الوكيل")),
+            ("الحكم غيابي", ("الحكم الغيابي", "المعارضة في الحكم")),
+            ("وصلني إنذار", ("الإنذار الرسمي", "إجراءات الإعلان")),
+            ("مش بيدفع نفقة", ("الامتناع عن سداد النفقة", "تنفيذ حكم النفقة")),
+            ("عايزة أخلع", ("دعوى الخلع", "إجراءات الخلع")),
+            ("ورث ومش راضي يوزع", ("قسمة التركة", "حقوق الورثة")),
+            ("حد نصب عليا أونلاين", ("الاحتيال الإلكتروني", "جرائم تقنية المعلومات")),
+            ("العربية اتخبطت", ("حادث سيارة", "التعويض عن حوادث السيارات")),
+        )
+        for question, expected_phrases in cases:
+            with self.subTest(question=question):
+                expanded = set(expanded_tokens(question))
+                for phrase in expected_phrases:
+                    self.assertTrue(
+                        set(tokens(phrase)).issubset(expanded),
+                        f"{question!r} did not expand to {phrase!r}",
+                    )
+
+    def test_extended_colloquial_expansion_keeps_negation_and_original_query_terms(self):
+        for question in ("مش بيدفعلي مرتبي", "مش راضي يطلع من الشقة", "مش بيدفع نفقة"):
+            expanded = expanded_tokens(question)
+            self.assertTrue(set(tokens(question)).issubset(set(expanded)))
+            self.assertTrue(any(token in expanded for token in tokens("مش")))
+
     def test_phrase_expansion_preserves_original_terms_and_negation(self):
         question = "صاحب الشغل مش بيدفع المرتب"
         expanded = expanded_tokens(question)
