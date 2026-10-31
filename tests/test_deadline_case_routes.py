@@ -155,6 +155,20 @@ class CaseDeadlineEstimateRouteTests(unittest.TestCase):
         self.assertTrue(response.json()["abstained"])
         llm.assert_not_called()
 
+    def test_case_brief_still_requires_general_llm_approval(self):
+        settings = {
+            "LLM_URL": "https://llm.example.test/v1/chat/completions",
+            "LLM_KEY": "synthetic-test-key",
+            "LLM_DATA_PROCESSING_APPROVED": "",
+            "LLM_FIRM_DATA_PROCESSING_APPROVED": "1",
+        }
+        with patch.dict("os.environ", settings), patch.object(app, "_llm_open") as open_llm:
+            response = self._mutate("post", f"/cases/{self.case_id}/brief", json={})
+        self.assertEqual(response.status_code, 200, response.text)
+        self.assertFalse(response.json()["generated"])
+        self.assertTrue(response.json()["abstained"])
+        open_llm.assert_not_called()
+
     def test_case_brief_rejects_uncited_or_unanchored_model_output(self):
         with patch.dict("os.environ", {"LLM_FIRM_DATA_PROCESSING_APPROVED": "1"}), patch.object(
             app, "LLM", return_value="The case will definitely succeed."
