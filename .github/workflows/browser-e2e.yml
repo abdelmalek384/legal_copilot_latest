@@ -2,7 +2,7 @@ name: Browser acceptance
 
 on:
   push:
-    branches: [main, "feat/playwright-acceptance-harness"]
+    branches: [main]
   pull_request:
     branches: [main]
 
