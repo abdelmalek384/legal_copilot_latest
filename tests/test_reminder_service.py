@@ -82,8 +82,8 @@ class ReminderServiceTests(unittest.TestCase):
         from contextlib import redirect_stdout
         import io
 
-        with patch("tools.reminder_service.DatabaseRuntime.from_env", return_value=self.runtime), \\
-             patch.object(DatabaseRuntime, "initialize", side_effect=AssertionError("initialize must not run")), \\
+        with patch("tools.reminder_service.DatabaseRuntime.from_env", return_value=self.runtime), \
+             patch.object(DatabaseRuntime, "initialize", side_effect=AssertionError("initialize must not run")), \
              redirect_stdout(io.StringIO()):
             self.assertEqual(main([]), 0)
 
@@ -91,8 +91,8 @@ class ReminderServiceTests(unittest.TestCase):
         from contextlib import redirect_stdout
         import io
 
-        with patch("tools.reminder_service.DatabaseRuntime.from_env", return_value=self.runtime), \\
-             patch.object(DatabaseRuntime, "initialize", side_effect=AssertionError("initialize must not run")), \\
+        with patch("tools.reminder_service.DatabaseRuntime.from_env", return_value=self.runtime), \
+             patch.object(DatabaseRuntime, "initialize", side_effect=AssertionError("initialize must not run")), \
              redirect_stdout(io.StringIO()):
             self.assertEqual(main(["--status"]), 0)
 
