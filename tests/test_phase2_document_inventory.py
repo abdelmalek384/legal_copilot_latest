@@ -119,6 +119,8 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
             "EG-LABOUR-DECISION-294-2025",
             "EG-LABOUR-DECISION-214-2025",
             "EG-LABOUR-DECISION-187-2025",
+            "EG-LABOUR-DECISION-288-2025",
+            "EG-LABOUR-DECISION-289-2025",
             "EG-LABOUR-DECISION-290-2025",
             "EG-LABOUR-DECISION-291-2025",
             "EG-LABOUR-DECISION-292-2025",
@@ -128,7 +130,7 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         for document_id in expected:
             record = records[document_id]
             self.assertNotEqual(record["source_status"], "verified")
-            if document_id in {"EG-LABOUR-DECISION-290-2025", "EG-LABOUR-DECISION-291-2025"}:
+            if document_id in {"EG-LABOUR-DECISION-288-2025", "EG-LABOUR-DECISION-289-2025", "EG-LABOUR-DECISION-290-2025", "EG-LABOUR-DECISION-291-2025"}:
                 self.assertEqual(record["collection_permission"], "not_allowed_without_explicit_exception_or_license")
                 self.assertEqual(record["source_id"], "EG-IDSC-GAZETTE-2025-295-SUPPLEMENT-D")
             elif document_id in {"EG-LABOUR-DECISION-292-2025", "EG-LABOUR-DECISION-294-2025"}:
