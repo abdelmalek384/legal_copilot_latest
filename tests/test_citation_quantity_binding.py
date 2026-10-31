@@ -65,6 +65,35 @@ class CitationQuantityBindingTests(unittest.TestCase):
             "The tax rate is 14٪ [2].", self.hits, {2}
         ))
 
+    def test_ask_accepts_supported_arabic_compound_quantity(self):
+        from unittest.mock import patch
+        hit = {
+            "cos": 1.0, "score": 1, "ref": "LAW-25", "text": "The statutory deadline is 25 days.",
+            "verified": True, "in_force": True, "applies_as_of": True, "case_id": None,
+            "provenance": {},
+        }
+        with patch.object(app, "search", return_value=[hit]), patch.object(
+            app, "LLM", return_value="المدة خمسة وعشرون يوما [1]."
+        ):
+            result = app.ask(None, "ما المدة القانونية؟", scope="verified_corpus")
+        self.assertEqual(result["answer"], "المدة خمسة وعشرون يوما [1].")
+        self.assertFalse(result["abstained"])
+
+    def test_ask_abstains_on_unsupported_arabic_compound_quantity(self):
+        from unittest.mock import patch
+        hit = {
+            "cos": 1.0, "score": 1, "ref": "LAW-30", "text": "The statutory deadline is 30 days.",
+            "verified": True, "in_force": True, "applies_as_of": True, "case_id": None,
+            "provenance": {},
+        }
+        with patch.object(app, "search", return_value=[hit]), patch.object(
+            app, "LLM", return_value="المدة خمسة وعشرون يوما [1]."
+        ):
+            result = app.ask(None, "ما المدة القانونية؟", scope="verified_corpus")
+        self.assertIsNone(result["answer"])
+        self.assertTrue(result["abstained"])
+        self.assertIn("الأرقام", result["message"])
+
     def test_non_numeric_claim_does_not_need_quantity_support(self):
         answer = "The source discusses the legal procedure [2]."
         self.assertFalse(app._answer_has_unsupported_quantities(answer, self.hits, {2}))
