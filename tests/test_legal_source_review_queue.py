@@ -45,6 +45,34 @@ class LegalSourceReviewQueueTests(unittest.TestCase):
             self.assertEqual(db.execute("SELECT COUNT(*) FROM legal_review_events").fetchone()[0],0)
             db.close()
 
+    def test_passing_lawyer_approval_requires_counsel_attestation(self):
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "legal.db"
+            make_db(path)
+            db = sqlite3.connect(path)
+            db.execute("ALTER TABLE legal_review_events ADD COLUMN notes TEXT")
+            db.execute(
+                "INSERT INTO legal_review_events(version_id,review_type,outcome,evidence_url,reviewer,reviewed_at,notes) "
+                "VALUES(1,'lawyer_approval','pass','https://example.gov/review','Reviewer','2026-10-24T12:00:00Z','Ordinary reviewer')"
+            )
+            db.commit()
+            db.close()
+            report = MODULE.review_queue(path)
+            reasons = report["records"][0]["review_reasons"]
+            self.assertIn("lawyer_approval_counsel_attestation_missing", reasons)
+            db = sqlite3.connect(path)
+            db.execute(
+                "UPDATE legal_review_events SET notes=? WHERE review_type='lawyer_approval'",
+                ("[qualified_egyptian_counsel_attested:user_id=42] reviewed",),
+            )
+            db.commit()
+            db.close()
+            report = MODULE.review_queue(path)
+            self.assertNotIn(
+                "lawyer_approval_counsel_attestation_missing",
+                report["records"][0]["review_reasons"],
+            )
+
     def test_commercial_reuse_restrictions_are_never_treated_as_approved(self):
         cases = (
             ("prohibited", "source_commercial_reuse_permission_not_allowed"),
