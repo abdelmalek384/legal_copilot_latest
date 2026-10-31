@@ -30,6 +30,8 @@
 - [ ] A failed or interrupted purge cannot be reported as completed.
 
 ## 2. Bucket, object, and concurrency controls
+**Architecture decision required before live acceptance:** the current read-only S3 validator requires `GetBucketVersioning=Enabled` for recovery, while the current physical-purge code requires a confirmed never-versioned bucket. These conditions are mutually exclusive for one bucket. Record the approved architecture (separate versioned recovery bucket plus never-versioned purge bucket, or a reviewed version-aware purge implementation) and prove it with separate target fingerprints and drills. Until then, mark both live storage acceptance and physical deletion BLOCKED. Do not change versioning on a live bucket to make a test pass.
+
 
 - [ ] Live `GetBucketVersioning` confirms the target bucket has never had versioning enabled; `Enabled`, `Suspended`, unknown, or unexpected response states block deletion.
 - [ ] The bucket policy and account controls prevent enabling versioning or changing relevant bucket controls during the purge window.
