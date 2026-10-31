@@ -4119,13 +4119,26 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             ("RUNTIME-COVERAGE-DOC", "RUNTIME-COVERAGE-SOURCE",
              "Coverage test instrument", "law", "labour"),
         )
-        corpus.execute(
+        version_cursor = corpus.execute(
             "INSERT INTO legal_document_versions(document_id,version_label,source_url,publication_date,"
             "effective_date,legal_status,review_status,authenticity_verified,status_verified,"
-            "amendment_history_verified,permission_evidence) VALUES(?,?,?,?,?,?,?,?,?,?,?)",
+            "amendment_history_verified,permission_evidence,original_sha256) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",
             ("RUNTIME-COVERAGE-DOC", "verified-version", "https://example.test/coverage-v1",
              "2020-01-01", "2020-01-01", "in_force", "verified", 1, 1, 1,
-             "synthetic version permission evidence"),
+             "synthetic version permission evidence", "a" * 64),
+        )
+        version_id = version_cursor.lastrowid
+        for review_type in ("source_authenticity", "extraction_quality", "legal_status", "amendment_history", "licensing", "lawyer_approval"):
+            corpus.execute(
+                "INSERT INTO legal_review_events(version_id,reviewer,review_type,outcome,notes,evidence_url) VALUES(?,?,?,?,?,?)",
+                (version_id, "Synthetic reviewer", review_type, "pass", "Synthetic review completed.", "https://example.test/review"),
+            )
+        corpus.execute(
+            "INSERT INTO chunks(ref,article,page,text,norm,document_version_id,in_force,as_of,source,verified) "
+            "VALUES(?,?,?,?,?,?,?,?,?,?)",
+            ("Coverage test instrument - article 1", "1", None, "Coverage legal text",
+             self.app.norm("Coverage legal text"), version_id, 1, "2020-01-01",
+             "https://example.test/coverage-source", 1),
         )
         corpus.execute(
             "INSERT INTO legal_document_versions(document_id,version_label,source_url,publication_date,"
@@ -4148,13 +4161,38 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
         corpus.commit()
 
-        response = self.client.get("/legal-review/coverage")
+        rights_evidence = {
+            "source_permission_register_match": True,
+            "source_permission_register_collection_permission": "allowed",
+            "source_permission_register_commercial_reuse_permission": "allowed",
+            "permission_evidence_url": "https://example.test/rights/collection",
+            "commercial_reuse_evidence_url": "https://example.test/rights/commercial",
+            "terms_checked_on": date.today().isoformat(),
+            "commercial_terms_checked_on": date.today().isoformat(),
+        }
+        def permission_record(source_id, source_page):
+            if source_id == "RUNTIME-COVERAGE-SOURCE":
+                return dict(rights_evidence)
+            return {
+                "source_permission_register_match": False,
+                "source_permission_register_collection_permission": "unknown",
+                "source_permission_register_commercial_reuse_permission": "unknown",
+                "permission_evidence_url": None,
+                "commercial_reuse_evidence_url": None,
+                "terms_checked_on": None,
+                "commercial_terms_checked_on": None,
+            }
+        with patch.object(self.app, "_central_source_permission_evidence", side_effect=permission_record):
+            response = self.client.get("/legal-review/coverage")
         self.assertEqual(response.status_code, 200, response.text)
         metrics = response.json()["metrics"]
         self.assertGreaterEqual(metrics["source_count"], 2)
         self.assertGreaterEqual(metrics["metadata_only_documents"], 1)
         self.assertEqual(metrics["verified_operational_versions"], verified_before + 1)
         self.assertGreaterEqual(metrics["permission_or_evidence_blocked_versions"], 1)
+        self.assertEqual(metrics["central_permission_register_blocked_versions"], 0)
+        self.assertGreaterEqual(metrics["central_permission_register_blocked_sources"], 1)
+        self.assertGreaterEqual(metrics["versions_not_eligible_for_verified_answers"], 1)
         self.assertTrue(any(
             row["practice_area"] == "labour"
             and row["documents_with_verified_operational_text"] == 1
@@ -4186,11 +4224,16 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
              "under_review", "pending_source_review", "synthetic review evidence"),
         )
         corpus.commit()
-        after_unknown = self.client.get("/legal-review/coverage")
+        with patch.object(self.app, "_central_source_permission_evidence", side_effect=permission_record):
+            after_unknown = self.client.get("/legal-review/coverage")
         self.assertEqual(after_unknown.status_code, 200, after_unknown.text)
         self.assertEqual(
             after_unknown.json()["metrics"]["permission_or_evidence_blocked_versions"],
             blocked_before_unknown + 1,
+        )
+        self.assertEqual(
+            after_unknown.json()["metrics"]["central_permission_register_blocked_versions"],
+            1,
         )
 
 
