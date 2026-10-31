@@ -55,25 +55,29 @@ class BrowserAcceptanceTests(unittest.TestCase):
             cwd=ROOT,
             env=env,
             stdout=subprocess.PIPE,
-            stderr=subprocess.DEVNULL,
+            stderr=subprocess.STDOUT,
             text=True,
             bufsize=1,
         )
         cls.state_ready = threading.Event()
+        cls.server_output: list[str] = []
 
         def read_fixture_state() -> None:
-            line = cls.server.stdout.readline()
             prefix = "BROWSER_FIXTURE_STATE="
-            if line.startswith(prefix):
-                cls.state = json.loads(line[len(prefix):])
-                cls.state_ready.set()
+            for line in cls.server.stdout:
+                if line.startswith(prefix):
+                    cls.state = json.loads(line[len(prefix):])
+                    cls.state_ready.set()
+                    cls.server_output.append("Fixture state published.")
+                else:
+                    cls.server_output.append(line.rstrip()[:1000])
 
         cls.state_reader = threading.Thread(target=read_fixture_state, daemon=True)
         cls.state_reader.start()
         deadline = time.monotonic() + 45
         while time.monotonic() < deadline and not cls.state_ready.wait(0.1):
             if cls.server.poll() is not None:
-                raise RuntimeError("Synthetic fixture server exited before publishing fixture state.")
+                raise RuntimeError("Synthetic fixture server exited before publishing fixture state: " + " | ".join(cls.server_output[-20:]))
         if not cls.state_ready.is_set():
             raise RuntimeError("Synthetic fixture server did not publish fixture state.")
 
