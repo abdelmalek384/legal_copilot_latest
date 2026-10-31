@@ -3,6 +3,7 @@ import os
 import sqlite3
 import tempfile
 import unittest
+from unittest.mock import patch
 import sys
 from pathlib import Path
 
@@ -114,6 +115,22 @@ class LegalVersionedRegistryTests(unittest.TestCase):
         chunk_id = chunk.lastrowid
         self.db.commit()
         return chunk_id, cur.lastrowid
+
+    def test_corpus_hit_without_permission_register_match_cannot_generate_answer(self):
+        _chunk_id, _version_id = self._make_linked_chunk(
+            "register-crosscheck", "2020-01-01", text="registercrosscheck legal text"
+        )
+        hits = self.app.search(self.db, "registercrosscheck", as_of="2026-10-23")
+        self.assertEqual(len(hits), 1)
+        self.assertEqual(hits[0]["source_status"], "outdated_or_under_review")
+        with patch.object(self.app, "LLM") as llm:
+            result = self.app.ask(
+                self.db, "What does this instrument say?",
+                as_of="2026-10-23", scope="verified_corpus",
+            )
+        self.assertTrue(result["abstained"])
+        self.assertIsNone(result["answer"])
+        llm.assert_not_called()
 
     def test_linked_version_requires_review_and_status_verification(self):
         chunk_id, version_id = self._make_linked_chunk("pending", "2020-01-01", review_status="pending_lawyer_review", authenticity_verified=0, status_verified=0)
