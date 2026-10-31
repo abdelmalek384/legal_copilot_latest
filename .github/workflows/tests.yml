@@ -286,5 +286,13 @@ jobs:
         run: PYTHONPATH=. python tests/test_labour_law_primary_evidence_seed.py
       - name: Test legal answer review evaluation
         run: PYTHONPATH=. python tests/test_legal_answer_review_evaluation.py
+      - name: Test acquisition readiness audit
+        run: PYTHONPATH=. python tests/test_acquisition_readiness_audit.py
+      - name: Test Decision 162 candidate quarantine
+        run: PYTHONPATH=. python tests/test_decision162_candidate_quarantine.py
+      - name: Test Decision 249 candidate quarantine
+        run: PYTHONPATH=. python tests/test_decision249_candidate_quarantine.py
+      - name: Test trusted-host middleware
+        run: PYTHONPATH=. python tests/test_trusted_host_middleware.py
       - name: Guard that every test file runs in CI or is explicitly tracked
         run: PYTHONPATH=. python tests/test_ci_runs_all_tests.py

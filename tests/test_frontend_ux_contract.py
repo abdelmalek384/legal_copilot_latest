@@ -203,6 +203,16 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("unknown:'No source records were returned; the search scope was not recorded.'", memo)
         self.assertNotIn("No relevant verified passage was found in this search scope.", memo)
 
+    def test_research_inspector_displays_only_latest_review_events(self):
+        self.assertIn("const latestReviewByType=Object.create(null)", HTML)
+        self.assertIn("eventTime===previousTime&&eventId>previousId", HTML)
+        self.assertIn(":eventId>previousId", HTML)
+        self.assertIn("const lawyerApproval=latestReviewByType.lawyer_approval", HTML)
+        self.assertIn("Latest recorded lawyer review: ", HTML)
+        self.assertIn("const ev=latestReviews.filter(e=>e.evidence_url)", HTML)
+        self.assertNotIn("(p.review_evidence||[]).find(e=>e.review_type==='lawyer_approval'&&e.outcome==='pass'", HTML)
+        self.assertNotIn("(p.review_evidence||[]).filter(e=>e.outcome==='pass'&&e.evidence_url)", HTML)
+
     def test_source_inspector_exposes_status_pin_cites_copy_and_memo_actions(self):
         self.assertIn("source_status", HTML)
         self.assertIn("s.article", HTML)
