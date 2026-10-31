@@ -210,6 +210,19 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         self.assertIn("Do not bulk-copy", source["required_next_action"])
         self.assertEqual(MODULE.validate(data), [])
 
+    def test_law_hub_decision_250_preview_respects_published_reuse_restriction(self):
+        import json
+        data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        source = next(item for item in data["sources"] if item["source_id"] == "EG-LAW-HUB-DECISION-250-2026")
+        self.assertEqual(source["collection_permission"], "unknown")
+        self.assertEqual(source["commercial_reuse_permission"], "not_allowed_without_explicit_exception_or_license")
+        self.assertEqual(source["terms_url"], "https://lawhub.info/eg/?page_id=778")
+        self.assertEqual(source["terms_checked_on"], "2026-10-31")
+        self.assertIn("attribution", source["permission_evidence"])
+        self.assertIn("profit", source["permission_evidence"])
+        self.assertIn("not readable", source["access_status"])
+        self.assertEqual(MODULE.validate(data), [])
+
 if __name__ == "__main__":
     unittest.main()
 
