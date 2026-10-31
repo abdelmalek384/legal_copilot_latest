@@ -165,19 +165,15 @@ def run_s3_roundtrip(store: S3PrivateObjectStore, firm_id: int, payload: bytes |
 
 
 def roundtrip_preflight_blockers(preflight: dict[str, Any]) -> list[str]:
-    """Return configuration failures that block non-destructive upload/readback.
+    """Return every configuration failure for the approved original-object bucket.
 
-    Physical-purge compatibility is a separate destructive-operation gate. A
-    versioned bucket can pass the synthetic upload/readback exercise while purge
-    remains blocked; delete markers may hide the probe key while retaining versions.
+    The two-bucket design puts version history in the separate recovery archive;
+    the original-object bucket itself must be confirmed never-versioned.
     """
     failed = preflight.get("failed_checks", [])
     if not isinstance(failed, list):
         return ["invalid_preflight_result"]
-    return sorted({
-        item for item in failed
-        if isinstance(item, str) and item != "physical_purge_versioning_compatibility"
-    })
+    return sorted({item for item in failed if isinstance(item, str)})
 
 
 def build_acceptance_report() -> dict[str, Any]:
