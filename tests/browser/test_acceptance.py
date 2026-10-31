@@ -30,6 +30,15 @@ class BrowserAcceptanceTests(unittest.TestCase):
         cls.temp_path = Path(cls.temp.name)
         cls.port = _free_port()
         cls.base_url = f"http://127.0.0.1:{cls.port}"
+        cls.original_env = os.environ.copy()
+        sensitive_prefixes = (
+            "COPILOT_", "LLM_", "MFA_", "SMTP_", "EMAIL_",
+            "OPENAI_", "ANTHROPIC_", "GEMINI_", "OLLAMA_", "MISTRAL_",
+        )
+        sensitive_names = {"ADMIN_TOKEN", "BACKUP_KEY", "MFA_ENCRYPTION_KEY", "DATABASE_URL"}
+        for key in tuple(os.environ):
+            if key.startswith(sensitive_prefixes) or key in sensitive_names:
+                os.environ.pop(key, None)
         os.environ.update(
             {
                 "COPILOT_ENV": "development",
@@ -41,8 +50,6 @@ class BrowserAcceptanceTests(unittest.TestCase):
                 "ADMIN_TOKEN": secrets.token_urlsafe(32),
             }
         )
-        os.environ.pop("COPILOT_DB", None)
-        os.environ.pop("LLM_FIRM_DATA_PROCESSING_APPROVED", None)
 
         import app as app_module
         import uvicorn
@@ -240,6 +247,9 @@ class BrowserAcceptanceTests(unittest.TestCase):
             cls.runtime.close_current_thread()
         if hasattr(cls, "temp"):
             cls.temp.cleanup()
+        if hasattr(cls, "original_env"):
+            os.environ.clear()
+            os.environ.update(cls.original_env)
 
     def setUp(self) -> None:
         self.context: BrowserContext = self.browser.new_context(
