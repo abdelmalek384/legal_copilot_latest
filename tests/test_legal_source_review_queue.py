@@ -210,15 +210,20 @@ class LegalSourceReviewQueueTests(unittest.TestCase):
             path = Path(td)/"legal.db"
             make_db(path)
             db = sqlite3.connect(path)
+            db.execute("ALTER TABLE legal_review_events ADD COLUMN notes TEXT")
             review_types = (
                 "source_authenticity", "extraction_quality", "legal_status",
                 "amendment_history", "licensing", "lawyer_approval",
             )
             for index, review_type in enumerate(review_types, start=1):
                 url = "not-a-url" if review_type == "source_authenticity" else f"https://example.gov/evidence/{index}"
+                notes = "review recorded"
+                if review_type == "lawyer_approval":
+                    notes = "[qualified_egyptian_counsel_attested:user_id=42] review recorded"
                 db.execute(
-                    "INSERT INTO legal_review_events VALUES(?,?,?,?,?,?,?)",
-                    (index, 1, review_type, "pass", url, "Reviewer", "2026-10-25T10:00:00Z"),
+                    "INSERT INTO legal_review_events(version_id,review_type,outcome,evidence_url,reviewer,reviewed_at,notes) "
+                    "VALUES(?,?,?,?,?,?,?)",
+                    (1, review_type, "pass", url, "Reviewer", "2026-10-25T10:00:00Z", notes),
                 )
             db.commit()
             db.close()
