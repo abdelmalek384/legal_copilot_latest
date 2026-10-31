@@ -2037,6 +2037,26 @@
           "url": "https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%84%D8%AA%D8%AD%D9%82%D9%82-%D8%A7%D9%84%D8%AA%D9%88%D8%A7%D8%B2%D9%86-%D8%A8%D9%8A%D9%86-%D9%85%D8%AA%D8%B7%D9%84%D8%A8%D8%A7%D8%AA-%D8%A7%D9%84%D8%A5%D9%86%D8%AA%D8%A7%D8%AC-%D9%88%D8%B5%D9%88%D9%86-%D8%AD%D9%82%D9%88%D9%82-%D8%A7%D9%84%D9%82%D9%88%D9%89-%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D9%84%D8%A9-%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D9%8A%D8%B5%D8%AF%D8%B1-%D9%82%D8%B1%D8%A7%D8%B1-%D8%A7-%D9%88%D8%B2%D8%A7%D8%B1%D9%8A-%D8%A7-%D8%A8%D8%AA%D8%AD%D8%AF%D9%8A%D8%AF-%D8%A7%D9%84%D8%A3%D8%B9%D9%85%D8%A7%D9%84-%D8%A7%D9%84%D8%AE%D8%B7%D8%B1%D8%A9-%D9%88%D8%A7%D9%84%D9%85%D9%86%D8%A7%D8%B7%D9%82-%D8%A7%D9%84%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D8%A7%D9%84%D8%AA%D9%8A-%D8%AA-%D8%B2%D8%A7%D8%AF-%D9%81%D9%8A%D9%87%D8%A7-%D8%A7%D9%84%D8%A5%D8%AC%D8%A7%D8%B2%D8%A7%D8%AA-%D8%A7%D9%84%D8%B3%D9%86%D9%88%D9%8A%D8%A9-7-%D8%A3%D9%8A%D8%A7%D9%85-%D9%84%D9%84%D8%B9%D8%A7%D9%85%D9%84%D9%8A%D9%86/",
           "source_role": "official Ministry of Labour announcement; discovery evidence only",
           "status": "discovered_not_downloaded"
+        },
+        {
+          "url": "https://dspace.id.com.eg/items/f32b4a07-6598-4ed8-a170-60d631a57221",
+          "source_role": "Official Gazette repository metadata for Supplement issue 64 (تابع)",
+          "status": "metadata_discovered_primary_pdf_not_independently_reviewed"
+        },
+        {
+          "url": "https://www.labour.gov.eg/ar/الأخبار/لتحقق-التوازن-بين-متطلبات-الإنتاج-وصون-حقوق-القوى-العاملة-وزير-العمل-يصدر-قرار-ا-وزاري-ا-بتحديد-الأعمال-الخطرة-والمناطق-النائية-التي-ت-زاد-فيها-الإجازات-السنوية-7-أيام-للعاملين/",
+          "source_role": "official Ministry of Labour announcement",
+          "status": "official_announcement_discovery_only"
+        },
+        {
+          "url": "https://ahmedazimelgamel.blogspot.com/2026/03/49-2026-7.html",
+          "source_role": "public secondary full-text transcription; cross-check only",
+          "status": "discovered_not_primary"
+        },
+        {
+          "url": "https://www.cairo24.com/Upload/libfiles/180/1/188.pdf",
+          "source_role": "third-party-hosted 28-page scan candidate of Egyptian Proceedings issue 64 supplement; Article 3 geographic wording and Article 5 commencement pinpoint",
+          "status": "third_party_scan_candidate_not_authenticated_or_hashed"
         }
       ]
     },
@@ -2069,6 +2089,26 @@
           "url": "https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A7%D9%84%D8%A3%D8%B1%D8%A8%D8%B9%D8%A7%D8%A1-%D8%A7%D9%84%D9%85%D9%82%D8%A8%D9%84-%D8%A5%D8%AC%D8%A7%D8%B2%D8%A9-%D9%85%D8%AF%D9%81%D9%88%D8%B9%D8%A9-%D8%A7%D9%84%D8%A3%D8%AC%D8%B1-%D9%84%D9%84%D8%B9%D8%A7%D9%85%D9%84%D9%8A%D9%86-%D8%A8%D8%A7%D9%84%D9%82%D8%B7%D8%A7%D8%B9-%D8%A7%D9%84%D8%AE%D8%A7%D8%B5-%D8%A8%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%A9-%D8%B9%D9%8A%D8%AF-%D8%A7%D9%84%D9%85%D9%8A%D9%84%D8%A7%D8%AF-%D8%A7%D9%84%D9%85%D8%AC%D9%8A%D8%AF-%D8%AC%D8%A8%D8%B1%D8%A7%D9%86-%D9%88%D8%AD%D8%AF%D8%A9-%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D9%8A%D9%86-%D9%88%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A7%D9%84%D9%85%D8%B4%D8%AA%D8%B1%D9%83-%D8%A3%D8%B3%D8%A7%D8%B3-%D9%82%D9%88%D8%A9-%D8%A7%D9%84%D9%88%D8%B7%D9%86/",
           "source_role": "official Ministry announcement citing Decision 294/2025; discovery evidence only",
           "status": "discovered_not_downloaded"
+        },
+        {
+          "url": "https://dspace.id.com.eg/items/f66386dd-dcb6-4ba9-b231-23f3f5a0c68f/full",
+          "source_role": "Official Gazette repository metadata and file listing",
+          "status": "metadata_and_PDF_listing_found"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=17019",
+          "source_role": "public secondary full-text transcription",
+          "status": "secondary_text_not_primary"
+        },
+        {
+          "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/25-12-2025/no-294?id=5008509&type=1",
+          "source_role": "secondary legal text/index",
+          "status": "indexed_text_and_effective_date_lead_not_primary"
+        },
+        {
+          "url": "https://mediadr.sis.gov.eg/handle/123456789/117216?locale-attribute=ar",
+          "source_role": "State Information Service public Ministry announcement about Decision 294/2025",
+          "status": "official_announcement_summary"
         }
       ]
     },
