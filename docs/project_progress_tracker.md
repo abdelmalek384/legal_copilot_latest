@@ -5,12 +5,12 @@
 
 ## Overall status
 
-See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **49% technical completion** (48.50/100, rounded) as of 2026-10-31. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
+See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **48.85/100 technical completion** (up 0.35 points; rounds to 49%) as of 2026-10-31. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
 
 
 ## Latest whole-product checkpoint — 2026-10-31
 
-The current source of truth is [the weighted whole-project completion scorecard](project_completion_scorecard.md): **49% technical completion** (48.50/100, rounded). Qualified Egyptian-counsel acceptance remains **0% / not started** and is still a mandatory post-build release gate.
+The current source of truth is [the weighted whole-project completion scorecard](project_completion_scorecard.md): **48.85/100 technical completion** (up 0.35 points; rounds to 49%). Qualified Egyptian-counsel acceptance remains **0% / not started** and is still a mandatory post-build release gate.
 
 ### Merged since the 30 October checkpoint and 31 October follow-up
 
@@ -35,16 +35,55 @@ The current source of truth is [the weighted whole-project completion scorecard]
 - **#1052:** integrated the existing deadline calculator into the case Legal Deadlines screen as an authenticated, read-only preview; rules and holiday data remain unverified, so no legal reliance is permitted.
 - **#1053:** expanded Egyptian colloquial retrieval hints across major practice areas; this is retrieval-only and has no lawyer-labelled accuracy benchmark yet.
 - **#1054:** added a fail-closed lexical citation-relevance guard; this checks textual anchors, not semantic entailment or legal correctness.
+- **#1066:** merged the qualified-counsel approval gate. Passing lawyer-approval events require an authenticated account ID from the operator-managed allowlist; the marker gates normal/exact retrieval and is checked by provenance, corpus audit and reviewer queue. Full Tests, CodeQL, dependency audit, non-database safety regression, and amd64/arm64 container builds passed. This is operator attestation, not independent credential verification; no primary-source legal material was promoted.
+
+
+### 31 October live follow-up — additional merged work and active gates
+
+The 49% whole-product score above is unchanged pending a formal scorecard recalculation; the PRs below are deliverable progress, not an automatic percentage increase.
+
+**Merged after the preceding checkpoint:**
+
+- **#1037:** bounded model-response reads in the application and evaluation CLI. Tests, CodeQL, dependency audit and non-database safety regression passed.
+- **#1058:** integrated deadline-calculation assumptions and explanatory source-basis details, and expanded Egyptian Arabic retrieval hints. All four required checks passed. This remains a calculation/retrieval aid, not verified legal deadline advice.
+- **#1060:** added production-path synthetic retrieval regression tests using fictional fixtures. These validate isolation/citation plumbing, not real-world legal accuracy.
+- **#1061:** added the Ministry-hosted Decision 294/2025 text copy and source-rights safeguards. Decision 294 remains discovery-only; Gazette comparison and reuse rights remain open.
+- **#1056:** added an AI case brief with bounded matter context, citation validation, common-identifier redaction, a separate deployment gate, explicit firm/client authorization attestations, and an activity-log record committed before model transmission. All four required checks passed. The attestations are user assertions, not independent proof of consent; no provider/live data-processing acceptance is claimed.
+- **#1062:** updated Decision 290/2025's intermittent-work crosswalk using secondary full-text corroboration and third-party repository metadata. The MELES PDFs were not obtained; the Gazette PDF remains request-a-copy restricted. Decision 290 remains G3/discovery-only, not G4.
+- **#1064:** recorded the Ministry's 2026-10-27 clarification lead for Decision 249/2026. The indexed result is not the full decision or a Gazette amendment; direct page retrieval failed, rights remain unknown, and the instrument stays discovery-only.
+
+**Open PRs — not complete until merged and all required checks pass:**
+
+- **#1057:** real-browser acceptance harness. Normal Tests, CodeQL and dependency audit passed on the current head; the Chromium acceptance suite is still running. Manual lawyer, device, screen-reader and accessibility acceptance remain separate.
+
+**Superseded PR:**
+
+- **#1063:** closed as superseded by rebased PR #1064 after Decision 290's merge changed shared evidence-register files.
+
+**Operational issue updates:**
+
+- **#473 MFA:** implementation primitives and recovery CLI are present; actual secret-manager provisioning, authenticator/lost-device rehearsal, two-admin recovery rehearsal and independent security review remain open.
+- **#474 reminders:** planner, durable outbox, dry-run scheduler and monitoring/runbook are present; real SMTP acceptance, host scheduling, provider timeout/rotation rehearsal and operator reconciliation remain open.
+- **Invoices:** PR #1048 remains an implementation contract only. No invoice schema/API/UI work is authorized without explicit database-owner approval.
+- **AWS/storage:** live bucket, KMS, IAM, conditional-delete, writer-quiescence and witnessed restore/deletion acceptance still require the actual staging account and named operator evidence.
+- **Legal authority:** none of the six 2025 Labour working-time/holiday decisions is promoted to authoritative status by these changes. All dependent cards remain search_eligible=false pending original-source comparison, source-specific rights, currentness and qualified Egyptian-lawyer review.
+
+
+### Current open PRs and acceptance
+
+- **#1057:** browser acceptance harness remains open/draft. Tests, CodeQL and dependency audit passed; the real Chromium acceptance suite has not returned a final result. Do not count browser acceptance complete.
+- **#840:** remains draft/open; Decisions 248–252 and Table 24 source comparison remain discovery-only pending lawful original Gazette access and rights review.
+- **#1065:** this tracker/scorecard refresh remains open pending its current-head checks and merge.
 
 ### Current non-database priorities
 
 1. Keep #840 in draft. Continue lawful primary-source comparison for Decisions 248–252; original Gazette matches remain 0/5 and Table 24 matches remain 0/781. Do not merge its row-level secondary transcription while original bytes, item-specific licence text and reuse rights are unresolved.
 2. Complete exact Gazette-text and OCR discrepancy comparison for the 120 checklist articles against the canonical candidate data when the approved source artifact is available; do not infer matches from page locators. Obtain original PDF bytes/hash through authorized access and resolve collection/reuse rights, later-instrument currentness and qualified Egyptian-lawyer review.
 3. Obtain database-owner approval for the invoice logical model and tenant boundary before implementing invoice schema, API or UI. Existing `fees` rows remain recorded-fee summaries, not invoices.
-2. Continue primary-source discovery and provenance checks for Egyptian legislation and Court of Cassation / Constitutional Court decisions. Keep secondary sources out of authoritative retrieval and preserve source-specific reuse restrictions.
-3. Complete real lawyer-labelled retrieval/citation evaluation against exact reviewed source versions and pinpoint citations; no qualified-counsel benchmark run has been completed.
-4. Complete manual Arabic RTL/LTR, accessibility, mobile/browser and lawyer-workflow QA.
-5. Complete staging operations, monitoring, operator reconciliation and witnessed backup/restore after the separate DB/storage workstream is ready.
+4. Continue primary-source discovery and provenance checks for Egyptian legislation and Court of Cassation / Constitutional Court decisions. Keep secondary sources out of authoritative retrieval and preserve source-specific reuse restrictions.
+5. Complete real lawyer-labelled retrieval/citation evaluation against exact reviewed source versions and pinpoint citations; no qualified-counsel benchmark run has been completed.
+6. Complete manual Arabic RTL/LTR, accessibility, mobile/browser and lawyer-workflow QA.
+7. Complete staging operations, monitoring, operator reconciliation and witnessed backup/restore after the separate DB/storage workstream is ready.
 
 Database/tenant schema, migration, identity and destructive storage changes remain assigned to the separate DB workstream and are not duplicated here.
 
