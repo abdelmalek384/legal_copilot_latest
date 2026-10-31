@@ -116,6 +116,37 @@ class CaseDeadlineEstimateRouteTests(unittest.TestCase):
         self.assertIn("hearing_session", captured["prompt"])
         self.assertNotIn("deadline-b@example.test", captured["prompt"])
 
+    def test_case_brief_minimizes_case_identifiers_and_redacts_common_pii(self):
+        sensitive_note = (
+            "بيانات اختبار: رقم قومي 29001011234567، هاتف 01012345678، "
+            "هاتف دولي +201012345678، بريد private.client@example.test"
+        )
+        self._mutate("post", f"/cases/{self.case_id}/notes", json={"text": sensitive_note})
+        captured = {}
+        def fake_llm(prompt):
+            captured["prompt"] = prompt
+            return "تحتوي القضية على ملاحظة مسجلة [2]."
+        with patch.dict("os.environ", {"LLM_FIRM_DATA_PROCESSING_APPROVED": "1"}), patch.object(
+            app, "LLM", side_effect=fake_llm
+        ):
+            response = self._mutate("post", f"/cases/{self.case_id}/brief", json={})
+        self.assertEqual(response.status_code, 200, response.text)
+        self.assertTrue(response.json()["generated"])
+        prompt = captured["prompt"]
+        for raw_identifier in (
+            "Synthetic deadline matter",
+            "Synthetic client",
+            "29001011234567",
+            "01012345678",
+            "+201012345678",
+            "private.client@example.test",
+        ):
+            self.assertNotIn(raw_identifier, prompt)
+        self.assertIn("رقم قومي محجوب", prompt)
+        self.assertIn("رقم هاتف محجوب", prompt)
+        self.assertIn("بريد إلكتروني محجوب", prompt)
+        self.assertIn("not complete anonymization", prompt)
+
     def test_case_brief_does_not_call_model_without_firm_data_approval(self):
         with patch.dict("os.environ", {"LLM_FIRM_DATA_PROCESSING_APPROVED": ""}), patch.object(app, "LLM") as llm:
             response = self._mutate("post", f"/cases/{self.case_id}/brief", json={})
