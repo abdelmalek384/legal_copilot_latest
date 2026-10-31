@@ -92,6 +92,11 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         for value in invalid_urls:
             with self.subTest(value=value):
                 self.assertIsNone(MODULE.https_host(value))
+        # URL schemes are case-insensitive; uppercase HTTPS remains valid.
+        self.assertEqual(
+            MODULE.https_host("HTTPS://LAWS.EXAMPLE.GOV/path"),
+            "laws.example.gov",
+        )
         candidate = json.loads(json.dumps(self.candidate))
         candidate["sources"][0]["source_page"] = "https://laws.example.gov:"
         result = MODULE.audit_candidate(candidate, self.register, self.root)
