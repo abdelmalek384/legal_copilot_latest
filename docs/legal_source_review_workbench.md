@@ -8,6 +8,7 @@ The interface supports searching the loaded list, opening a registered source UR
 
 - Only administrators can access the queue and event endpoints.
 - This interface records workflow evidence supplied by a reviewer; it does not independently validate linked pages.
+- Current eligibility uses the latest event for each required review type. A later fail, pending, or needs-correction event supersedes an older pass; the latest lawyer-approval pass must contain the exact positive account-ID counsel-attestation marker. Each current event also requires a non-empty reviewer, non-empty notes, a valid HTTPS evidence URL, and a non-future timestamp.
 - Recording a review event does not change `review_status`, `legal_status`, authenticity/status/amendment verification flags, or legal-research eligibility.
 - Source URL availability is not proof of authority. Reviewers should confirm the original official Gazette or other applicable official publication and document the scope of the review.
 - The queue is limited to the first 500 versions and is not a substitute for the read-only CLI audit or a complete legal audit.
