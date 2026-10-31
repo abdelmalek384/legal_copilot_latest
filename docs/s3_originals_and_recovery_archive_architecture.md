@@ -49,18 +49,18 @@ Purpose: encrypted multi-database backup bundles, including original-file bytes,
 
 ## Required implementation before this decision can be marked accepted
 
-- Add explicit, non-overlapping configuration for original-object and recovery-archive bucket, region, and KMS key identifiers.
-- Include both targets in non-secret configuration fingerprints; evidence for one target must not be reused for the other.
-- Change the original-object preflight to require never-versioned state only; add a separate recovery-archive preflight requiring versioning enabled.
-- Add an encrypted backup-archive upload operation and exact-version restore retrieval. Keep local encrypted bundle creation available for development and controlled offline workflows.
+- [x] Add explicit, non-overlapping configuration for original-object and recovery-archive bucket, region, and KMS key identifiers (PR #1024).
+- [x] Include both targets in non-secret configuration fingerprints; evidence for one target must not be reused for the other (PR #1024).
+- [x] Change the original-object preflight to require never-versioned state only; add a separate recovery-archive preflight requiring versioning enabled (PR #1024).
+- [x] Add encrypted backup-archive upload and exact-version retrieval while retaining local encrypted bundle creation (PR #1026); verify the complete real-bundle archive/restore path in CI (PR #1029).
 
-**Transport implementation (PR in progress):** `database_backup_archive.py` uploads the already-Fernet-encrypted bundle to the recovery bucket with SSE-KMS, requires bucket versioning Enabled and an enabled customer-managed symmetric KMS key, and returns a locator containing the exact S3 `VersionId`, SHA-256, size, and canonical KMS key ARN. Downloads issue both `HeadObject` and `GetObject` with that exact `VersionId`, validate SSE-KMS/key identity and immutable metadata, stream to a new exclusive local file, and recompute size/SHA-256. Multipart upload is used above the single-PUT size limit and aborts incomplete multipart uploads. The CLI commands are `archive-upload-tenancy` and `archive-download-tenancy`; the latter only downloads the encrypted bundle. Operators must still run `verify-backup-tenancy` and `restore-tenancy` to a new isolated destination. No command activates restored databases or overwrites configured live paths.
+**Merged transport implementation (PR #1026):** `database_backup_archive.py` uploads the already-Fernet-encrypted bundle to the recovery bucket with SSE-KMS, requires bucket versioning Enabled and an enabled customer-managed symmetric KMS key, and returns a locator containing the exact S3 `VersionId`, SHA-256, size, and canonical KMS key ARN. Downloads issue both `HeadObject` and `GetObject` with that exact `VersionId`, validate SSE-KMS/key identity and immutable metadata, stream to a new exclusive local file, and recompute size/SHA-256. Multipart upload is used above the single-PUT size limit and aborts incomplete multipart uploads. The CLI commands are `archive-upload-tenancy` and `archive-download-tenancy`; the latter only downloads the encrypted bundle. Operators must still run `verify-backup-tenancy` and `restore-tenancy` to a new isolated destination. No command activates restored databases or overwrites configured live paths.
 
 The locator is recovery evidence and must be stored separately in a restricted evidence system. Do not rely on the object key, S3 latest-version behavior, ETag, or bucket versioning alone. The transport requires the recovery archive KMS key; the application `BACKUP_KEY` remains a separate encryption layer and must be escrowed independently. The transport code does not create IAM policies or approve retention/lifecycle semantics.
-- Enforce separate IAM roles and bucket policies; verify effective policies and organization-level controls, not only role policy names.
-- Add tests for same-bucket misconfiguration, missing/ambiguous versioning state, wrong KMS key, cross-role access denial, archive object-version selection, tamper detection, and restore integrity.
-- Update deployment configuration examples, recovery runbook, purge checklist, and operational acceptance manifest.
-- Complete live staging acceptance with synthetic tenant data, independent witness, measured RPO/RTO, and independent security review.
+- [ ] Enforce separate IAM roles and bucket policies in the actual AWS account; verify effective policies and organization-level controls, not only role policy names. A deployment template exists in `docs/aws_s3_recovery_archive_policy_baseline.md`.
+- [x] Add tests for same-bucket preflight, missing/ambiguous versioning state, wrong KMS key, archive object-version selection, tamper detection, and restore integrity. Cross-role access denial still requires live account acceptance.
+- [x] Update deployment configuration examples and recovery runbook; purge checklist and operational acceptance evidence remain deployment tasks.
+- [ ] Complete live staging acceptance with synthetic tenant data, independent witness, measured RPO/RTO, and independent security review.
 
 ## Explicitly not approved by this proposal
 
