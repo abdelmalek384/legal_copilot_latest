@@ -188,3 +188,56 @@ def collect_live_evidence(s3_client, kms_client, sts_client, iam_client, *, buck
             "obtain approved retention/export/deletion/legal-hold policy and independent security sign-off",
         ],
     }
+
+
+def main(argv=None) -> int:
+    """CLI for a read-only live AWS evidence snapshot; exit 0 means collected, not approved."""
+    import argparse
+    import os
+    import sys
+
+    parser = argparse.ArgumentParser(
+        description="Collect sanitized, read-only S3/KMS/IAM evidence; never authorizes production purge."
+    )
+    parser.add_argument("--json", action="store_true", help="Emit machine-readable sanitized JSON.")
+    args = parser.parse_args(argv)
+
+    bucket = os.environ.get("COPILOT_S3_BUCKET", "").strip()
+    region = os.environ.get("COPILOT_S3_REGION", "").strip()
+    key_id = os.environ.get("COPILOT_S3_KMS_KEY_ID", "").strip()
+    endpoint = os.environ.get("COPILOT_S3_ENDPOINT_URL", "").strip() or None
+    if not bucket or not region or not key_id:
+        parser.error("COPILOT_S3_BUCKET, COPILOT_S3_REGION, and COPILOT_S3_KMS_KEY_ID are required")
+
+    try:
+        import boto3
+    except ImportError:
+        print("AWS evidence collection unavailable: AWS SDK is not installed", file=sys.stderr)
+        return 2
+
+    try:
+        s3 = boto3.client("s3", region_name=region, endpoint_url=endpoint)
+        kms = boto3.client("kms", region_name=region)
+        sts = boto3.client("sts", region_name=region)
+        iam = boto3.client("iam")
+        report = collect_live_evidence(s3, kms, sts, iam, bucket=bucket, key_id=key_id)
+    except Exception:
+        # Provider exceptions can contain request metadata; never echo them to stdout/stderr.
+        print("AWS evidence collection could not safely complete; inspect permissions and provider connectivity.", file=sys.stderr)
+        return 2
+
+    if args.json:
+        print(json.dumps(report, sort_keys=True))
+    else:
+        print(f"Read-only AWS acceptance evidence for bucket {bucket}")
+        for item in report["checks"]:
+            print(f"- {'PASS' if item['passed'] else 'FAIL'} {item['name']}: {item['detail']}")
+        print("Production ready: NO")
+        print("This report is evidence for independent review, not authorization to purge.")
+        for item in report["manual_review_required"]:
+            print(f"- Manual review: {item}")
+    return 0 if not report["failed_checks"] else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
