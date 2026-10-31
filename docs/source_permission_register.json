@@ -452,21 +452,30 @@
     },
     {
       "source_id": "EG-IDSC-DSPACE-GAZETTE",
-      "authority": "Information and Decision Support Center (IDSC) digital repository; item metadata identifies Amiri Press as publisher",
+      "authority": "Ibrachy & Dermarkar Repository (I&D Digital Repository for E-Resources; homepage branding; item metadata lists Amiri Press as publisher)",
       "source_page": "https://dspace.id.com.eg/",
       "material_types": [
         "Official Gazette issue metadata",
         "Egyptian Proceedings issue metadata",
         "PDF listings"
       ],
-      "access_status": "public catalogue metadata; the 6.13 MB original PDF and 55-byte license.txt are both request-copy restricted; neither file is publicly readable",
+      "access_status": "Public catalogue metadata only. The repository homepage identifies itself as Ibrachy & Dermarkar Repository and says account creation is by request. The item page lists a 6.13 MB Original bundle PDF and a 55-byte item-specific license.txt; prior click-through inspection recorded both downloads resolving to request-a-copy forms. No file bytes or license text obtained.",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
-      "permission_evidence": "The public item page exposes issue metadata and lists a 6.13 MB original PDF plus a 55-byte license.txt. Clicking the license.txt download resolves to a request-a-copy form, so the item-specific licence text itself is not publicly readable; the original PDF download is likewise request-copy restricted. No original bytes, license text or SHA-256 were obtained. The item page does not establish collection or commercial reuse permission.",
+      "permission_evidence": "Checked 2026-10-31. The public homepage (https://dspace.id.com.eg/) titles the service 'Ibrachy & Dermarkar Repository', describes it as an I&D Digital Repository for E-Resources for the Knowledge Management Department, and says account creation is by request. The item page (https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full) identifies the metadata publisher as المطابع الاميرية and lists an Original bundle (6.13 MB PDF) plus an item-specific license bundle (license.txt, 55 B; 'Item-specific license agreed to upon submission'). The public host is not the Amiri Press official domain; publisher metadata does not establish repository operation by Amiri Press or grant collection/commercial reuse rights. Prior click-through inspection recorded both file links resolving to request-a-copy forms; no bytes or license text were obtained and no request was submitted. Collection and commercial reuse remain unknown.",
       "terms_checked_on": null,
       "bulk_download_or_api": "not established; item-level access controls and licenses must be checked",
-      "required_next_action": "Use catalogue metadata only. Do not bypass either request-copy restriction. No copy request has been submitted. Obtain the original PDF and license.txt only through an ordinary authorized route; inspect the licence scope before any collection, extraction, indexing, display or commercial use, and record the exact original-file hash only after lawful receipt."
+      "required_next_action": "Use public catalogue metadata only. Classify this as a third-party Ibrachy & Dermarkar repository record, not an official Amiri Press-hosted source. Retain the legacy source_id only for referential compatibility; it does not assert IDSC operation. Do not bypass either request-copy restriction. No copy request has been submitted. Only if separately authorized through an ordinary route, obtain the original PDF and item-specific license, inspect the license scope before any collection, extraction, indexing, excerpt display or commercial use, and compute the original-file SHA-256 after lawful receipt.",
+      "repository_brand": "Ibrachy & Dermarkar Repository",
+      "repository_homepage_url": "https://dspace.id.com.eg/",
+      "repository_account_access": "Homepage says account creation is requested from the Knowledge Management Department; no account request submitted.",
+      "repository_operator_legal_entity": "not independently established from the public homepage",
+      "item_page_url": "https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full",
+      "publisher_metadata": "المطابع الاميرية",
+      "original_file_access_status": "request-copy restricted in prior click-through inspection; no bytes downloaded",
+      "license_file_access_status": "request-copy restricted in prior click-through inspection; 55-byte license text not obtained",
+      "source_checked_on": "2026-10-31"
     },
     {
       "source_id": "EG-MANSHURAT-LEGAL-ARCHIVE",
