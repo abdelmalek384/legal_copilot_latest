@@ -70,7 +70,7 @@ class CitationQuantityBindingTests(unittest.TestCase):
         hit = {
             "cos": 1.0, "score": 1, "ref": "LAW-25", "text": "The statutory deadline is 25 days.",
             "verified": True, "in_force": True, "applies_as_of": True, "case_id": None,
-            "provenance": {},
+            "source_status": "verified_operative_text", "provenance": {},
         }
         with patch.object(app, "search", return_value=[hit]), patch.object(
             app, "LLM", return_value="المدة خمسة وعشرون يوما [1]."
@@ -84,7 +84,7 @@ class CitationQuantityBindingTests(unittest.TestCase):
         hit = {
             "cos": 1.0, "score": 1, "ref": "LAW-30", "text": "The statutory deadline is 30 days.",
             "verified": True, "in_force": True, "applies_as_of": True, "case_id": None,
-            "provenance": {},
+            "source_status": "verified_operative_text", "provenance": {},
         }
         with patch.object(app, "search", return_value=[hit]), patch.object(
             app, "LLM", return_value="المدة خمسة وعشرون يوما [1]."
