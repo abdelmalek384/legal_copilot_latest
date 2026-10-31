@@ -9,7 +9,7 @@ MAIN = ROOT / "data" / "candidates" / "labour_law_14_2025" / "provision_evidence
 
 def _article_number(value):
     import re
-    match = re.search(r"\\d+", value)
+    match = re.search(r"\d+", value)
     if match:
         # Use the first number so a range such as "المواد 118–120"
         # is not accidentally parsed as the integer 118120.
