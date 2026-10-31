@@ -5838,9 +5838,14 @@ def send_research_message(conversation_id: int, b: ResearchMessageIn, u: dict = 
         raise HTTPException(422, str(e))
     answer = result.get("answer") or result.get("message") or "لم أجد مصدرا كافيا للإجابة."
     sources = result.get("sources", [])
+    # Persist the request's scope/matter boundary explicitly. Do not rely on
+    # every answer/abstention branch in ask() to repeat these routing fields.
+    message_metadata = dict(result)
+    message_metadata["scope"] = b.scope
+    message_metadata["case_id"] = b.case_id
     c.execute("INSERT INTO research_messages(conversation_id,role,content,sources_json,message_json) VALUES(?,?,?,?,?)",
               (conversation_id, "assistant", answer, json.dumps(sources, ensure_ascii=False),
-               json.dumps(result, ensure_ascii=False)))
+               json.dumps(message_metadata, ensure_ascii=False)))
     title = conversation["title"]
     if title == "محادثة جديدة":
         title = question[:72] + ("…" if len(question) > 72 else "")
