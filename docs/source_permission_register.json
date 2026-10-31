@@ -785,6 +785,23 @@
       "terms_checked_on": "2026-10-31",
       "bulk_download_or_api": "not authorized; systematic retrieval to compile a collection/database requires written permission under the published End User Agreement",
       "required_next_action": "Use the metadata only as a discovery lead. Do not download, extract, index, reproduce or commercially use the listed PDFs without the required written permission and item-specific access review. Do not treat the third-party files as an official Gazette copy or infer reuse permission from public metadata."
+    },
+    {
+      "source_id": "EG-MOL-DECISION-249-2026-CLARIFICATION",
+      "authority": "Ministry of Labour, Arab Republic of Egypt",
+      "source_page": "https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D8%A8%D9%8A%D8%A7%D9%86-%D8%AA%D9%88%D8%B6%D9%8A%D8%AD%D9%8A-%D9%87%D8%A7%D9%85-%D8%A8%D8%B4%D8%A3%D9%86-%D8%A7%D9%84%D9%82%D8%B1%D8%A7%D8%B1-%D8%A7%D9%84%D9%88%D8%B2%D8%A7%D8%B1%D9%8A-%D8%B1%D9%82%D9%85-249-%D9%84%D8%B3%D9%86%D8%A9-2026-%D8%A7%D9%84%D8%AE%D8%A7%D8%B5-%D8%A8%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9-%D9%88%D8%A7%D9%84%D8%B5%D8%AD%D8%A9-%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9-%D9%88%D8%B2%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D9%84%D9%86-%D9%8A%D9%8F%D8%B6%D8%A7%D8%B1-%D8%A3%D9%8A-%D8%B9%D8%A7%D9%85%D9%84-%D9%8A%D8%B9%D9%85%D9%84-%D8%A8%D9%85%D9%87%D9%86%D8%A9-%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9-%D9%88%D8%A7%D9%84%D8%B5%D8%AD%D8%A9-%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9-%D9%88%D9%84%D8%A7-%D9%85%D8%B3%D8%A7%D8%B3-%D8%A8%D8%A7%D9%84%D9%85%D8%B1%D8%A7%D9%83%D8%B2-%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%D9%8A%D8%A9-%D8%A7%D9%84%D9%85%D9%83%D8%ت%D8%B3%D8%A8%D8%A9-%D9%88%D8%A3%D9%87%D9%85%D9%8A%D8%A9-%D8%A7%D9%84%D9%85%D9%87%D9%86%D8%A9-%D8%AA%D8%B3%D8%AA%D9%88%D8%AC%D8%A8-%D9%85%D9%86%D9%87%D8%AA%D9%89-%D8%A7%D9%84%D8%AF%D9%82%D8%A9-%D9%81%D9%8A-%D8%A7%D8%AE%D8%AA%D9%8A%D8%A7%D8%B1-%D8%B4%D8%A7%D8%BA%D9%84%D9%8A%D9%87/",
+      "material_types": [
+        "Official Ministry clarification announcement concerning Decision 249/2026",
+        "Public statement; not the complete ministerial decision"
+      ],
+      "access_status": "Search-indexed Ministry page dated 2026-10-27. Direct page opening returned HTTP 502 in this session; no attached document, PDF or local bytes were obtained.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "The search-indexed result identifies the publisher as the Egyptian Ministry of Labour and the date as 2026-10-27. The announcement responds to questions after Decision 249/2026 and states that implementation will not harm current workers or remove acquired legal positions; it discusses recognition of prior qualifications/experience and directs the competent administration to issue circulars for consistent application. Direct page retrieval failed with HTTP 502, no reuse terms were reviewed, and no file was acquired. This is an official Ministry clarification lead, not the complete decision or a Gazette amendment.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Use as a manual discovery/currentness link only. Re-open through ordinary authorized browser access, review terms, and compare the complete Decision 249/2026 against the original Gazette. Do not treat the clarification as operative decision text, a formal amendment, or reuse permission."
     }
   ]
 }
