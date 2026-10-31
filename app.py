@@ -371,7 +371,7 @@ _LEGAL_SYNONYMS_RAW = {
     "تقادم": ("مرور الزمن", "limitation period", "prescription"),
     "عقد": ("اتفاق", "agreement", "contract"),
     "دعوى": ("مطالبة قضائية", "claim", "lawsuit"),
-    "فصل": ("إنهاء الخدمة", "dismissal", "termination", "اترفد", "فصلوني", "اتطردت"),
+    "فصل": ("إنهاء الخدمة", "dismissal", "termination", "اترفد", "اترفدت", "فصلوني", "اتطردت"),
     "إيجار": ("كراء", "rent", "lease", "إخلاء", "مستأجر"),
     "إيصال": ("وصل أمانة", "إيصال أمانة", "trust receipt"),
     "نفقة": ("مصاريف الأولاد", "مصاريف العيال", "child support", "alimony"),
