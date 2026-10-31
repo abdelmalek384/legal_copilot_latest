@@ -632,6 +632,126 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "No API or bulk-export permission established; individual article page only",
       "required_next_action": "Use only for manual discovery and link-out. Do not bulk-copy or redistribute the article; preserve publisher rights. Verify the complete instrument against the original Official Gazette through an authorized route and keep legal status, reuse and retrieval eligibility unresolved."
+    },
+    {
+      "source_id": "EG-IDSC-GAZETTE-2025-295-SUPPLEMENT-D",
+      "authority": "Ibrachy & Dermarkar Repository; item metadata lists General Authority for Amiri Press as publisher and Ministry of Labour as author",
+      "source_page": "https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1",
+      "material_types": [
+        "Egyptian Proceedings Gazette supplement issue metadata",
+        "Ministerial decision metadata",
+        "Official Gazette PDF listing",
+        "item-specific license file listing"
+      ],
+      "access_status": "Public item metadata only. The 2025-12-30 Gazette Supplement issue 295 (تابع د) record lists a 550.3 KB PDF and a 1.71 KB item-specific license.txt file. Clicking the license file opens a request-a-copy form stating all files are in restricted access. No PDF bytes or license bytes were obtained.",
+      "collection_permission": "not_allowed_without_explicit_exception_or_license",
+      "commercial_reuse_permission": "prior_written_permission_required_per_published_terms",
+      "terms_url": "https://dspace.id.com.eg/info/end-user-agreement",
+      "permission_evidence": "Checked 2026-10-31. The full DSpace item page identifies issue 295 (تابع د), date 2025-12-30, Ministry of Labour author and Amiri Press publisher; it lists a 550.3 KB PDF and a 1.71 KB item-specific license.txt file. Clicking the license file opens a request-a-copy page explicitly stating all files are in restricted access. The repository End User Agreement (last updated 2023-05-04) says content is for personal, non-commercial use; copying, reproducing, aggregating, republishing, distributing, selling, licensing or other commercial exploitation requires express prior written permission; systematic retrieval to create or compile a collection/database/directory requires written permission; and circumventing access/copy restrictions is prohibited. No PDF or license bytes were obtained and no permission is inferred from the license filename.",
+      "terms_checked_on": "2026-10-31",
+      "bulk_download_or_api": "not authorized; systematic retrieval to compile a collection/database requires written permission under the published End User Agreement",
+      "required_next_action": "Use public catalogue metadata only. Do not request or bypass the restricted PDF or license file under the current acquisition constraint. Keep collection blocked absent explicit written permission and commercial reuse blocked absent prior written permission. Do not claim that the listed license.txt grants rights until its bytes are lawfully obtained and reviewed."
+    },
+    {
+      "source_id": "EG-SIS-GAZETTE-2025-295-SUPPLEMENT-D",
+      "authority": "Egyptian State Information Service (SIS) digital repository; item metadata identifies Amiri Press as issuing authority",
+      "source_page": "https://mediadr.sis.gov.eg/xmlui/handle/123456789/117733?locale-attribute=ar",
+      "material_types": [
+        "Egyptian Proceedings Gazette issue metadata",
+        "Official Gazette PDF listing"
+      ],
+      "access_status": "Search-indexed SIS item metadata states public viewing (الإطلاع: عام) and lists a 550.3 KB PDF named WQ295_20251230_1100.pdf. The item page and PDF could not be opened in this session because the host returned access/robots/timeout errors; no file bytes were obtained.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Search-indexed SIS repository metadata for issue 295 supplement D states issue date 2025-12-30, issuing authority Amiri Press, public viewing, and a 550.3 KB PDF listing. Direct opening of the item page failed in this session due host access restrictions/robots/timeout; the PDF link was not followed and no bytes or terms were obtained. Public-viewing metadata does not establish bulk collection, commercial reuse, or redistribution rights.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established; no API or bulk-export permission reviewed",
+      "required_next_action": "Treat as a promising public-viewing primary-source access lead only. Do not bypass host restrictions. If the page is accessible through ordinary authorized browser access, review current terms and the PDF before treating it as acquired; record byte size and SHA-256 only after lawful download."
+    },
+    {
+      "source_id": "EG-EASTLAWS-LABOUR-DECISIONS-290-291-2025",
+      "authority": "EastLaws legal database",
+      "source_page": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/30-12-2025/no-290?id=5008505&type=1",
+      "material_types": [
+        "secondary transcription of Ministerial Decision 290/2025",
+        "secondary transcription of Ministerial Decision 291/2025"
+      ],
+      "access_status": "Search-indexed article text and metadata were visible; direct page opening returned HTTP 403 in this session. No original Gazette PDF bytes, source export, or licence were obtained.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "permission_evidence": "Checked 2026-10-31. EastLaws search results expose secondary legal transcriptions for Decisions 290/2025 and 291/2025, but direct page access returned 403 and no EastLaws terms or item-specific reuse licence were reviewed. Secondary legal text is not treated as official Gazette text, and public search visibility does not establish collection, indexing, embedding, display, redistribution, or commercial reuse rights.",
+      "terms_checked_on": "2026-10-31",
+      "bulk_download_or_api": "not reviewed; no bulk/API permission established",
+      "required_next_action": "Use only as a secondary research cross-check. Review EastLaws terms and obtain applicable permissions before any collection or reuse; compare the decision text with an authorized Official Gazette copy before legal activation."
+    },
+    {
+      "source_id": "EG-IDSC-GAZETTE-2025-291-SUPPLEMENT-LABOUR",
+      "authority": "Ibrachy & Dermarkar Repository; item metadata identifies Amiri Press as publisher and Ministry of Labour as author",
+      "source_page": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc",
+      "material_types": [
+        "Egyptian Proceedings Gazette Supplement issue metadata",
+        "Ministerial decision metadata",
+        "Official Gazette PDF listing",
+        "item-specific license file listing"
+      ],
+      "access_status": "Public metadata identifies issue 291 (تابع), dated 2025-12-25, Ministry of Labour author, Amiri Press publisher, and an 834.25 KB PDF. The full item page lists a 1.71 KB item-specific license.txt file, but clicking it opens a request-a-copy page stating all files are in restricted access. No PDF or license bytes were obtained.",
+      "collection_permission": "not_allowed_without_explicit_exception_or_license",
+      "commercial_reuse_permission": "prior_written_permission_required_per_published_terms",
+      "terms_url": "https://dspace.id.com.eg/info/end-user-agreement",
+      "permission_evidence": "Checked 2026-10-31. The DSpace full item page identifies the Official Gazette supplement, issue date 2025-12-25, publisher Amiri Press, Ministry of Labour as author, one 834.25 KB PDF, and one 1.71 KB item-specific license.txt. The license.txt download opens a request-a-copy form that explicitly states all files are in restricted access. The repository End User Agreement limits content to personal, non-commercial use, requires express prior written permission for commercial exploitation, and prohibits systematic retrieval to create or compile a collection/database/directory without written permission. Neither PDF nor license bytes were obtained; no item-specific licence is inferred from its filename.",
+      "terms_checked_on": "2026-10-31",
+      "bulk_download_or_api": "not authorized; systematic retrieval to compile a collection/database requires written permission under the published End User Agreement",
+      "required_next_action": "Use public catalogue metadata only. Do not request or bypass the restricted file under the current acquisition constraint. Keep collection blocked absent explicit written permission and commercial reuse blocked absent prior written permission. Do not claim that the listed license.txt grants rights until its bytes are lawfully obtained and reviewed."
+    },
+    {
+      "source_id": "EG-LAWHUB-GAZETTE-295-DECISION-291-PDF",
+      "authority": "Law Hub (third-party host) reproducing Egyptian Proceedings Gazette Supplement issue 295 pages 21–22",
+      "source_page": "https://lawhub.info/eg/wp-content/uploads/2026/01/lawhub.info-eg-dec-291-2025.pdf",
+      "material_types": [
+        "third-party hosted page-image reproduction of Official Gazette pages 21–22 for Ministerial Decision 291/2025"
+      ],
+      "access_status": "Publicly accessible two-page PDF opened and visually inspected in the browser. It displays the Gazette masthead, issue 295 supplement D, date 2025-12-30, and pages 21–22. No local PDF bytes/hash or item-specific license was obtained.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Checked 2026-10-31. The publicly accessible Law Hub PDF visibly reproduces two Gazette pages for Decision 291/2025 (issue 295, dated 2025-12-30), including Articles 1–5 and printed page numbers 21–22. It is hosted by a third party, not the Amiri Press or DSpace item. No licence, reuse terms, source acquisition chain, or item-specific permission was established. Visual inspection of a reproduction does not establish rights to download, collect, embed, redistribute or commercially reuse it.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established; no collection/API permission reviewed",
+      "required_next_action": "Use only as a manual research cross-check. Do not ingest or redistribute the PDF or extracted text until source provenance and applicable collection/commercial reuse rights are reviewed. Original DSpace issue PDF remains request-a-copy restricted."
+    },
+    {
+      "source_id": "EG-MOL-SIS-DECISION-289-2025-PDF",
+      "authority": "Egyptian Ministry of Labour; PDF hosted on Egyptian State Information Service digital repository",
+      "source_page": "https://mediadr.sis.gov.eg/xmlui/handle/123456789/117208",
+      "material_types": [
+        "Ministry-hosted PDF containing Ministry announcement and text of Ministerial Decision 289/2025"
+      ],
+      "access_status": "Publicly accessible PDF opened in browser. The document is dated 2025-12-27 and contains the text of Decision 289/2025, Articles 1–2. The SIS repository identifies the related Ministry announcement as public viewing. No local PDF bytes/hash or applicable reuse terms were obtained.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Checked 2026-10-31. The PDF is hosted by the Egyptian State Information Service and identifies the Ministry of Labour. Its first page contains the Ministry announcement and then the text of Decision 289/2025, including Articles 1–2. Public accessibility and government hosting do not by themselves establish permission for bulk collection, copying, redistribution or commercial reuse. No SIS terms were reviewed and no local binary/hash was obtained.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Use as a manually reviewed government-hosted text copy for Decision 289/2025 only. Check applicable SIS reuse terms and compare against the Official Gazette issue PDF when lawfully accessible. Do not treat this PDF as the Official Gazette itself or infer bulk/commercial reuse permission."
+    },
+    {
+      "source_id": "EG-MELES-DSpace-DECISION-288-2025",
+      "authority": "Middle East Library for Economic Services DSpace repository; item metadata attributes the decision to Ministry of Labour",
+      "source_page": "https://dspace.id.com.eg/items/ca54d3fa-04be-4e59-b9f0-6b3752711a6f/full",
+      "material_types": [
+        "Third-party repository metadata for Decision 288/2025",
+        "Restricted PDF and item-specific license file listings"
+      ],
+      "access_status": "The DSpace item page lists two PDF files (75.85 KB English-title file and 125.39 KB Arabic-title file) and a 55-byte item-specific license.txt. Both PDF download and license.txt links open request-a-copy forms stating all files in the item are in restricted access. No file or license bytes were obtained.",
+      "collection_permission": "not_allowed_without_explicit_exception_or_license",
+      "commercial_reuse_permission": "prior_written_permission_required_per_published_terms",
+      "terms_url": "https://dspace.id.com.eg/info/end-user-agreement",
+      "permission_evidence": "Checked 2026-10-31. The item page identifies the author as Ministry Of Labor and the publisher as The Middle East Library For Economic Services, with issue date metadata 2025-12-11. The 75.85 KB and 125.39 KB PDFs and 55-byte license.txt are all behind request-a-copy forms stating all files are in restricted access. The repository End User Agreement (last updated 2023-05-04) limits content to personal, non-commercial use; copying, reproducing, aggregating, republishing, distributing, selling, licensing or other commercial exploitation requires express prior written permission; systematic retrieval to compile a collection/database requires written permission; circumventing access/copy restrictions is prohibited. No PDF or license bytes were obtained.",
+      "terms_checked_on": "2026-10-31",
+      "bulk_download_or_api": "not allowed without written permission under published terms",
+      "required_next_action": "Use public catalogue metadata only. Do not request or bypass the restricted PDF or license file under the current acquisition constraint. Collection remains blocked absent explicit permission; commercial reuse requires prior written permission. Do not infer rights from the 55-byte license filename."
     }
   ]
 }

@@ -270,6 +270,89 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         self.assertIn("Do not bypass", source["required_next_action"])
         self.assertEqual(MODULE.validate(data), [])
 
+
+    def test_labour_issue_295_metadata_is_restricted_and_not_a_reuse_license(self):
+        import json
+        data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        source = next(item for item in data["sources"] if item["source_id"] == "EG-IDSC-GAZETTE-2025-295-SUPPLEMENT-D")
+        self.assertEqual(source["collection_permission"], "not_allowed_without_explicit_exception_or_license")
+        self.assertEqual(source["commercial_reuse_permission"], "prior_written_permission_required_per_published_terms")
+        self.assertEqual(source["terms_url"], "https://dspace.id.com.eg/info/end-user-agreement")
+        self.assertEqual(source["terms_checked_on"], "2026-10-31")
+        self.assertIn("request-a-copy", source["access_status"])
+        self.assertIn("license.txt", source["permission_evidence"])
+        self.assertIn("license filename", source["permission_evidence"])
+        self.assertIn("systematic retrieval", source["permission_evidence"])
+        self.assertIn("personal, non-commercial use", source["permission_evidence"])
+        self.assertEqual(MODULE.validate(data), [])
+
+
+    def test_sis_gazette_public_viewing_metadata_does_not_clear_rights(self):
+        import json
+        data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        source = next(item for item in data["sources"] if item["source_id"] == "EG-SIS-GAZETTE-2025-295-SUPPLEMENT-D")
+        self.assertEqual(source["collection_permission"], "unknown")
+        self.assertEqual(source["commercial_reuse_permission"], "unknown")
+        self.assertIn("public viewing", source["access_status"])
+        self.assertIn("Direct opening of the item page failed", source["permission_evidence"])
+        self.assertEqual(MODULE.validate(data), [])
+
+
+    def test_eastlaws_secondary_transcriptions_do_not_clear_reuse_rights(self):
+        import json
+        data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        source = next(item for item in data["sources"] if item["source_id"] == "EG-EASTLAWS-LABOUR-DECISIONS-290-291-2025")
+        self.assertEqual(source["collection_permission"], "unknown")
+        self.assertEqual(source["commercial_reuse_permission"], "unknown")
+        self.assertIn("HTTP 403", source["access_status"])
+        self.assertIn("no EastLaws terms", source["permission_evidence"])
+        self.assertEqual(MODULE.validate(data), [])
+
+
+    def test_gazette_issue_291_license_file_is_itself_restricted(self):
+        import json
+        data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        source = next(item for item in data["sources"] if item["source_id"] == "EG-IDSC-GAZETTE-2025-291-SUPPLEMENT-LABOUR")
+        self.assertEqual(source["collection_permission"], "not_allowed_without_explicit_exception_or_license")
+        self.assertEqual(source["commercial_reuse_permission"], "prior_written_permission_required_per_published_terms")
+        self.assertIn("834.25 KB PDF", source["access_status"])
+        self.assertIn("1.71 KB item-specific license.txt", source["access_status"])
+        self.assertIn("all files are in restricted access", source["permission_evidence"])
+        self.assertEqual(MODULE.validate(data), [])
+
+
+    def test_lawhub_gazette_page_image_reproduction_does_not_clear_reuse_rights(self):
+        import json
+        data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        source = next(item for item in data["sources"] if item["source_id"] == "EG-LAWHUB-GAZETTE-295-DECISION-291-PDF")
+        self.assertEqual(source["collection_permission"], "unknown")
+        self.assertEqual(source["commercial_reuse_permission"], "unknown")
+        self.assertIn("pages 21–22", source["access_status"])
+        self.assertIn("No licence", source["permission_evidence"])
+        self.assertEqual(MODULE.validate(data), [])
+
+
+    def test_ministry_hosted_decision_289_pdf_does_not_clear_reuse_rights(self):
+        import json
+        data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        source = next(item for item in data["sources"] if item["source_id"] == "EG-MOL-SIS-DECISION-289-2025-PDF")
+        self.assertEqual(source["collection_permission"], "unknown")
+        self.assertEqual(source["commercial_reuse_permission"], "unknown")
+        self.assertIn("not treat this PDF as the Official Gazette itself", source["required_next_action"])
+        self.assertIn("No local PDF bytes/hash", source["access_status"])
+        self.assertEqual(MODULE.validate(data), [])
+
+
+    def test_decision_288_meles_item_and_license_are_request_copy_restricted(self):
+        import json
+        data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        source = next(item for item in data["sources"] if item["source_id"] == "EG-MELES-DSpace-DECISION-288-2025")
+        self.assertEqual(source["collection_permission"], "not_allowed_without_explicit_exception_or_license")
+        self.assertEqual(source["commercial_reuse_permission"], "prior_written_permission_required_per_published_terms")
+        self.assertIn("55-byte item-specific license.txt", source["access_status"])
+        self.assertIn("all files are in restricted access", source["permission_evidence"])
+        self.assertEqual(MODULE.validate(data), [])
+
 if __name__ == "__main__":
     unittest.main()
 

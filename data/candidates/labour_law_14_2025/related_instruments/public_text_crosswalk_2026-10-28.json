@@ -10,26 +10,49 @@
       "number": 290,
       "year": 2025,
       "related_law_articles": [
-        117,
-        118,
-        119
+        119,
+        121
       ],
       "title_ar": "قرار وزير العمل رقم 290 لسنة 2025 بشأن الأعمال المتقطعة بطبيعتها التي يجوز تواجد العامل فيها أكثر من عشر ساعات ولا تتجاوز اثنتي عشرة ساعة في اليوم الواحد",
       "primary_lead": {
-        "url": "https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829",
-        "status": "Official Gazette repository metadata and abstract; original Arabic PDF listed"
+        "url": "https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1",
+        "status": "Official Gazette Supplement issue 295 metadata (2025-12-30); 550.3 KB PDF is request-a-copy restricted; no primary bytes obtained"
       },
       "secondary_text": {
-        "url": "https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829",
-        "status": "Public abstract provides Article 1 in Arabic and English; lists Arabic and English PDF files",
-        "verified_excerpt_ar": "الأصل ألا تجاوز الفترة بين بداية ساعات العمل ونهايتها عشر ساعات يومياً، وتحسب الراحة ضمن ساعات التواجد إذا بقي العامل في مكان العمل؛ ويستثنى العمل المتقطع المحدد بالمادة الثانية على ألا تزيد مدة التواجد في المنشأة على 12 ساعة يومياً."
+        "url": "https://lawhub.info/eg/?p=17303",
+        "corroborating_url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/30-12-2025/no-290?id=5008505&type=1",
+        "status": "Two public secondary full-text transcriptions; neither compared with official Gazette PDF",
+        "summary": "Secondary transcriptions expose Articles 1–4. Article 1 sets a ten-hour daily span between start and end, counting rest time if the worker remains at the workplace, with a limited intermittent-work exception capped at twelve hours' presence. Article 2 defines intermittent work by intervening waiting/stoppage periods and lists, among others, passenger/goods transport, crop warehouses, specified port/ship tasks, emergency healthcare, transport/logistics waiting, on-demand digital support, and data-centre/cloud monitoring. Article 3 requires a special schedule, extra pay for actual hours beyond normal hours, and records of normal/actual hours, breaks and presence. Article 4 states next-day commencement."
       },
-      "gazette_date": "2025-12-11 (repository item date; verify exact publication/effective date against Gazette)",
-      "effective_date": "unknown",
-      "article_2_schedule_status": "not yet transcribed or verified",
-      "reuse_rights": "unknown",
-      "currentness": "not verified",
-      "card_action": "cross-reference lead only; do not classify a job as intermittent without Article 2 list and actual duties"
+      "gazette_date": "2025-12-30 (official Amiri Press issue metadata; secondary EastLaws record independently states the same Gazette publication date)",
+      "effective_date": "2025-12-31 (stated by EastLaws and derived from Article 4 in both secondary transcriptions; not primary-PDF verified)",
+      "article_2_schedule_status": "Seven categories appear in secondary transcriptions; exact wording and Gazette fidelity remain unverified",
+      "reuse_rights": "unknown; official issue PDF is request-a-copy restricted and secondary-source reuse is not cleared",
+      "currentness": "not fully verified; no later amendment/repeal review or primary Gazette comparison completed",
+      "card_action": "cross-reference lead only; do not treat the seven secondary categories as an authoritative classification until exact Gazette wording, worker duties and currentness are reviewed",
+      "additional_official_access_lead": {
+        "url": "https://mediadr.sis.gov.eg/xmlui/handle/123456789/117733?locale-attribute=ar",
+        "status": "SIS search-indexed record states public viewing (الإطلاع: عام) and lists a 550.3 KB PDF; direct page/PDF access failed in this session, no bytes or terms reviewed"
+      },
+      "law_article_primary_anchor": {
+        "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+        "status": "Official Gazette issue 18 (supplement), extracted primary text; page locators below are text-extraction locators, not proof that the implementing decision was compared",
+        "articles": [
+          {
+            "law_article": 119,
+            "printed_gazette_page": 52,
+            "pdf_page_index": 50,
+            "observation": "Official Law 14/2025 text sets a ten-hour daily span and allows a ministerially specified intermittent/special-work exception up to twelve hours' presence."
+          },
+          {
+            "law_article": 121,
+            "printed_gazette_page": 53,
+            "pdf_page_index": 51,
+            "observation": "Official Law 14/2025 text requires additional pay for actual overtime and provides the emergency overtime framework; Decision 290's secondary Article 3 cross-refers to this article."
+          }
+        ],
+        "caution": "This anchors the parent Labour Law provisions only. It does not authenticate or compare the separate ministerial decision text."
+      }
     },
     {
       "document_id": "EG-LABOUR-DECISION-291-2025",
@@ -39,23 +62,84 @@
         117,
         118,
         119,
-        121
+        121,
+        188
       ],
       "title_ar": "قرار وزير العمل رقم 291 لسنة 2025 بشأن ضوابط التشغيل الإضافي ومبرراته",
       "primary_lead": {
         "url": "https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1",
-        "status": "Official Gazette supplement metadata lead; full text not reviewed"
+        "status": "Official Gazette Supplement issue 295 metadata (2025-12-30); 550.3 KB PDF is request-a-copy restricted; no primary bytes obtained"
       },
       "secondary_text": {
-        "url": "https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1",
-        "status": "No usable full text identified in the current research"
+        "url": "https://lawhub.info/eg/?p=17302",
+        "corroborating_url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/30-12-2025/no-291?id=5064176&type=1",
+        "status": "Secondary full-text transcriptions cross-checked against third-party hosted Gazette page images; original DSpace PDF not compared",
+        "summary": "Secondary transcriptions expose Articles 1–5. Article 1 permits overtime for unusual work necessities or exceptional circumstances subject to notifying the competent Labour Directorate within seven days, specifying the required period, premiums of at least 35% for daytime and 70% for nighttime hours, compensatory rest when work occurs on the weekly rest day, and a twelve-hour maximum presence at the establishment. Article 2 requires a paper/electronic register of normal and overtime hours, reasons, day/night timing, pay due and proof of payment. Article 3 requires rotation and minimum use without harming health or weekly rest. Article 4 directs the Supreme Council for Social Consultation to set an annual overtime maximum within three months, by economic activity/sector. Article 5 states next-day commencement. A third-party hosted two-page Gazette image reproduction visually confirms the same 35%/70% premiums, Article 4 three-month annual-cap task and Article 5 next-day commencement; it is not the original DSpace PDF and its source chain/reuse rights remain unresolved."
       },
-      "gazette_date": "2025-12-30 (Supplement issue 295 تابع د; metadata lead)",
-      "effective_date": "unknown",
-      "article_2_schedule_status": "full operative provisions not yet transcribed",
-      "reuse_rights": "unknown",
-      "currentness": "not verified",
-      "card_action": "metadata only; do not infer permissible overtime reasons, caps or process from title"
+      "gazette_date": "2025-12-30 (official Amiri Press issue metadata; secondary EastLaws record independently states the same Gazette publication date)",
+      "effective_date": "2025-12-31 (stated by EastLaws and derived from Article 5 in both secondary transcriptions; not primary-PDF verified)",
+      "article_2_schedule_status": "Articles 1–5 are available in two secondary transcriptions; annual-cap follow-up and later amendments remain unverified",
+      "reuse_rights": "unknown; official issue PDF is request-a-copy restricted and secondary-source reuse is not cleared",
+      "currentness": "not fully verified; annual overtime maximum was due on a candidate 2026-03-31 date under the three-month Article 4 task; no later instrument was located in targeted searches through 2026-10-31, but absence is not established. Check Council/Ministry register and later amendments/repeal.",
+      "card_action": "cross-reference lead only; do not advise on overtime eligibility, premium calculation or annual caps until primary text, later Council action and currentness are checked",
+      "additional_official_access_lead": {
+        "url": "https://mediadr.sis.gov.eg/xmlui/handle/123456789/117733?locale-attribute=ar",
+        "status": "SIS search-indexed record states public viewing (الإطلاع: عام) and lists a 550.3 KB PDF; direct page/PDF access failed in this session, no bytes or terms reviewed"
+      },
+      "law_article_primary_anchor": {
+        "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+        "status": "Official Gazette issue 18 (supplement), extracted primary text; page locators below are text-extraction locators, not proof that the implementing decision was compared",
+        "articles": [
+          {
+            "law_article": 121,
+            "printed_gazette_page": 53,
+            "pdf_page_index": 51,
+            "observation": "Official Law 14/2025 text sets seven-day notification, minimum 35% daytime/70% nighttime overtime premiums, rest-day compensation and twelve-hour presence ceiling."
+          },
+          {
+            "law_article": 188,
+            "printed_gazette_page": 76,
+            "pdf_page_index": 74,
+            "observation": "Official Law 14/2025 establishes the Supreme Council for Social Consultation; Decision 291's secondary Article 4 directs that Council to set an annual overtime maximum."
+          }
+        ],
+        "caution": "This anchors the parent Labour Law provisions only. It does not authenticate or compare the separate ministerial decision text."
+      },
+      "gazette_page_image_reproduction": {
+        "url": "https://lawhub.info/eg/wp-content/uploads/2026/01/lawhub.info-eg-dec-291-2025.pdf",
+        "status": "third-party hosted two-page reproduction visually inspected; not the original DSpace PDF",
+        "pages": [
+          {
+            "printed_page": 21,
+            "pdf_page_index": 0,
+            "observations": [
+              "Gazette masthead: issue 295 supplement D, 30 December 2025",
+              "Decision 291/2025 title and signature date 11/12/2025",
+              "Article 1: exceptional overtime conditions, seven-day notification, minimum 35% daytime and 70% nighttime premiums, rest-day compensation and 12-hour presence ceiling"
+            ]
+          },
+          {
+            "printed_page": 22,
+            "pdf_page_index": 1,
+            "observations": [
+              "Articles 2–3: overtime records and worker rotation/health/weekly-rest safeguards",
+              "Article 4: Supreme Council for Social Consultation to set an annual overtime maximum within three months, by activity/sector",
+              "Article 5: publication in Egyptian Proceedings and commencement the following day"
+            ]
+          }
+        ],
+        "caveat": "Visual comparison was made against the third-party page-image reproduction and cross-checked against secondary transcriptions. The original DSpace PDF remains request-a-copy restricted; the reproduction's source chain and reuse permissions are not established. This does not authorize authoritative ingestion."
+      },
+      "primary_comparison_status": "Decision 291 Articles 1–5 visually checked against third-party hosted Gazette page-image reproduction (printed pp.21–22); original official repository PDF not acquired; provenance/reuse rights unresolved; legal/counsel review pending",
+      "annual_overtime_maximum_followup": {
+        "statutory_task": "Decision 291 Article 4 directs the Supreme Council for Social Consultation to set an annual overtime-hours maximum by economic activity/sector, in consultation with worker and employer organizations.",
+        "deadline_candidate": "2026-03-31",
+        "deadline_basis": "Decision effective date 2025-12-31 plus three calendar months under Article 4; candidate computation, not an independently published deadline determination.",
+        "evidence_at_publication": "The reproduced Gazette page 21 preamble records a memorandum from the Council and a period to study the annual maximum; page 22 Article 4 sets the three-month task.",
+        "search_as_of": "2026-10-31",
+        "followup_status": "No subsequent Council/Ministerial instrument setting the annual maximum was located in targeted public-web searches through 2026-10-31. This is a search result only, not proof that no instrument exists or that the task was not completed.",
+        "next_action": "Request the Council/Ministry official register or Gazette issue references for any post-2025 annual overtime maximum; do not state a current annual cap until the instrument is found and checked."
+      }
     },
     {
       "document_id": "EG-LABOUR-DECISION-292-2025",
@@ -65,23 +149,45 @@
         117,
         118,
         119,
-        121
+        121,
+        123
       ],
       "title_ar": "قرار وزير العمل رقم 292 لسنة 2025 بشأن تحديد الحد الأقصى لساعات العمل الفعلية والإضافية في الأعمال التجهيزية والتكميلية وأعمال الحراسة والنظافة",
       "primary_lead": {
         "url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc/full",
-        "status": "Official Gazette Supplement issue 291 (تابع), dated 2025-12-25, metadata and PDF bundle listed"
+        "status": "Official Gazette Supplement issue 291 metadata (2025-12-25), Ministry of Labour/Amiri Press; 834.25 KB PDF and 1.71 KB item-specific license listed, both request-a-copy restricted"
       },
       "secondary_text": {
-        "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/25-12-2025/no-292?id=5042304&type=1",
-        "status": "Search-indexed secondary legal text shows decision date 2025-12-04, Gazette publication 2025-12-25, effective 2025-12-26, and article headings/partial text for preparatory, complementary, guarding and cleaning work; full detailed limits require full-text comparison"
+        "url": "https://lawhub.info/eg/?p=17022",
+        "corroborating_url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/25-12-2025/no-292?id=5042304&type=1",
+        "status": "Two public secondary full-text/index sources; neither compared with official Gazette PDF",
+        "summary": "Law Hub transcription exposes Articles 1–7. Articles 1–4 define preparatory, complementary, guarding and cleaning work with examples. Article 5 caps actual work at 48 hours weekly. Article 6 caps overtime for these categories at 12 hours weekly and two hours daily, subject to Law 14/2025 Article 121. Article 7 states next-day commencement. EastLaws metadata states Gazette publication 2025-12-25 and effective date 2025-12-26. Exact text and applicability to individual roles remain unverified against the Gazette."
       },
-      "gazette_date": "2025-12-25",
-      "effective_date": "2025-12-26 (secondary source; verify against Gazette)",
-      "article_2_schedule_status": "partial secondary article text surfaced; full detailed limits and all provisions not verified",
-      "reuse_rights": "unknown",
-      "currentness": "not verified",
-      "card_action": "cross-reference only; no hour calculations until full exact provisions are checked"
+      "gazette_date": "2025-12-25 (official Amiri Press issue metadata; secondary EastLaws record states same)",
+      "effective_date": "2025-12-26 (stated by EastLaws and derived from Article 7 in Law Hub; not primary-PDF verified)",
+      "article_2_schedule_status": "Articles 1–7 available in Law Hub secondary transcription; exact classifications, caps and all wording not compared with Gazette",
+      "reuse_rights": "unknown; DSpace PDF and item-specific license file are request-a-copy restricted; secondary-source reuse not cleared",
+      "currentness": "not fully verified; later amendments, repeal and current application to each role not checked",
+      "card_action": "cross-reference lead only; do not calculate or advise on working-hour/overtime limits until primary text, employee role classification and currentness are reviewed",
+      "law_article_primary_anchor": {
+        "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+        "status": "Official Gazette issue 18 (supplement), extracted primary text; page locators below are text-extraction locators, not proof that the implementing decision was compared",
+        "articles": [
+          {
+            "law_article": 123,
+            "printed_gazette_page": 54,
+            "pdf_page_index": 52,
+            "observation": "Official Law 14/2025 excludes preparatory/complementary work and guarding/cleaning workers from specified ordinary working-time provisions, and directs the Minister to set maximum actual/overtime hours for categories in items 2 and 3, with overtime pay under Article 121."
+          },
+          {
+            "law_article": 121,
+            "printed_gazette_page": 53,
+            "pdf_page_index": 51,
+            "observation": "Official Law 14/2025 provides the overtime compensation framework referenced by Article 123."
+          }
+        ],
+        "caution": "This anchors the parent Labour Law provisions only. It does not authenticate or compare the separate ministerial decision text."
+      }
     },
     {
       "document_id": "EG-LABOUR-DECISION-294-2025",
@@ -92,19 +198,44 @@
       ],
       "title_ar": "قرار وزير العمل رقم 294 لسنة 2025 بشأن تحديد العطلات والأعياد والمناسبات التي تعتبر إجازة بأجر كامل للعمال",
       "primary_lead": {
-        "url": "https://dspace.id.com.eg/items/f66386dd-dcb6-4ba9-b231-23f3f5a0c68f/full",
-        "status": "Official Gazette repository metadata identifies Decision 294/2025; PDF files listed"
+        "url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc/full",
+        "status": "Official Gazette Supplement issue 291 metadata (2025-12-25), Ministry of Labour/Amiri Press; 834.25 KB PDF and 1.71 KB item-specific license listed, both request-a-copy restricted"
       },
       "secondary_text": {
         "url": "https://lawhub.info/eg/?p=17019",
-        "status": "Public secondary full-text transcription found; lists official holidays under Article 1. A separate repository abstract lists 12 days including Hijri New Year, Mawlid, Eid al-Fitr first two days, Eid al-Adha Arafah and first two days, Coptic Christmas, 25 January, Sham El-Nessim, Sinai Liberation Day, Labour Day, 30 June, 23 July and Armed Forces Day."
+        "corroborating_url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/25-12-2025/no-294?id=5008509&type=1",
+        "status": "Two public secondary full-text/index sources; neither compared with official Gazette PDF",
+        "summary": "Law Hub transcription exposes Articles 1–4. Article 1 lists 12 paid holidays/occasions: Hijri New Year, Mawlid, first two Eid al-Fitr days, Arafah and first two Eid al-Adha days, Coptic Christmas, 25 January/Police Day, Sham El-Nessim, Sinai Liberation Day, Labour Day, 30 June, 23 July and Armed Forces Day. The Minister may substitute another day for national uniformity. Article 2 provides paid leave not deducted from annual leave; if work is required, the worker receives double pay for the day or an alternative day on written request. Article 3 adds non-Muslim religious holidays under the relevant Prime Minister decision. Article 4 states next-day commencement. EastLaws states publication 2025-12-25 and effective date 2025-12-26. Ministry circulars in 2026 show event-specific date substitutions; these are not treated as permanent amendments.",
+        "currentness_leads": [
+          {
+            "url": "https://www.labour.gov.eg/ar/الأخبار/لتوحيد-مواعيد-الإجازات-الرسمية-في-قطاعات-الدولة-المختلفة-وزير-العمل-الخميس-المقبل-إجازة-مدفوعة-الأجر-للعاملين-بالقطاع-الخاص-بمناسبة-ذكرى-نصر-أكتوبر-المجيد/",
+            "description": "Official Ministry notice for October 2026: cites Circular 22/2026 and Prime Minister Decision 2898/2026; event-specific date substitution, not permanent amendment"
+          },
+          {
+            "url": "https://sis.gov.eg/ar/المركز-الإعلامي/الأخبار/وزير-العمل-الخميس-المقبل-إجازة-رسمية-بمناسبة-عيد-ثورة-٢٣-يوليو/",
+            "description": "Official SIS-hosted Ministry notice for July 2026: cites Prime Minister Decision 2181/2026; event-specific date notice, not permanent amendment"
+          }
+        ]
       },
-      "gazette_date": "2025-12-25 (Supplement issue 291 تابع; metadata)",
-      "effective_date": "2025-12-26 (secondary legal database; verify official Gazette)",
-      "article_2_schedule_status": "Article 1 list found in secondary transcription; full text and all operative clauses still need primary comparison",
-      "reuse_rights": "unknown",
-      "currentness": "not verified; event-specific Ministry circulars can affect a particular holiday date but do not themselves prove permanent amendment",
-      "card_action": "cross-reference only; check full current text and any current-year holiday guidance before answering a specific date"
+      "gazette_date": "2025-12-25 (official Amiri Press issue metadata; secondary EastLaws record states same)",
+      "effective_date": "2025-12-26 (stated by EastLaws and derived from Article 4 in Law Hub; not primary-PDF verified)",
+      "article_2_schedule_status": "12-occasion list and Articles 2–4 available in Law Hub secondary transcription; no primary Gazette comparison",
+      "reuse_rights": "unknown; DSpace PDF and item-specific license file are request-a-copy restricted; secondary-source reuse not cleared",
+      "currentness": "not fully verified; 2026 official notices show event-specific date substitutions (October 2026 Circular 22/2026/PM Decision 2898/2026; July 2026 PM Decision 2181/2026), but a full amendment/repeal review remains outstanding",
+      "card_action": "cross-reference lead only; for a specific date, check the current Ministry circular and any Prime Minister substitution; do not assume the fixed statutory date is always the actual leave date",
+      "law_article_primary_anchor": {
+        "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+        "status": "Official Gazette issue 18 (supplement), extracted primary text; page locators below are text-extraction locators, not proof that the implementing decision was compared",
+        "articles": [
+          {
+            "law_article": 129,
+            "printed_gazette_page": 56,
+            "pdf_page_index": 54,
+            "observation": "Official Law 14/2025 grants paid leave on holidays/occasions set by ministerial decision and provides double pay or an alternative day on written request when work is required."
+          }
+        ],
+        "caution": "This anchors the parent Labour Law provisions only. It does not authenticate or compare the separate ministerial decision text."
+      }
     },
     {
       "document_id": "EG-LABOUR-DECISION-49-2026",
@@ -244,6 +375,132 @@
       "reuse_rights": "unknown",
       "currentness": "not verified",
       "card_action": "cross-reference contract-writing requirements; compare full operative text and any later decisions before authoritative use"
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-288-2025",
+      "number": 288,
+      "year": 2025,
+      "related_law_articles": [
+        118,
+        119
+      ],
+      "title_ar": "قرار وزير العمل رقم 288 لسنة 2025 بشأن تحديد الحالات أو الأعمال التي يتحتم استمرار العمل فيها دون فترة راحة نمطية والأعمال المرهقة التي يمنح العاملون فيها فترات راحة تحسب من ساعات العمل الفعلية",
+      "primary_lead": {
+        "url": "https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1",
+        "status": "Official Gazette Supplement issue 295 metadata (2025-12-30); 550.3 KB PDF request-a-copy restricted; no primary bytes obtained"
+      },
+      "secondary_text": {
+        "url": "https://lawhub.info/eg/?p=17305",
+        "corroborating_url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/30-12-2025/no-288?id=5064169&type=1",
+        "status": "Two public secondary full-text/index sources; neither compared with official Gazette PDF",
+        "summary": "Law Hub exposes the two-chapter structure: (1) work that must continue without standard rest breaks for technical/operational reasons and (2) arduous work with rest periods counted as actual work. Secondary text describes a baseline one-hour total rest and no more than five consecutive hours, exceptions with compensatory rest/food-drink/safety safeguards, and designated arduous-work categories. EastLaws states Gazette publication 2025-12-30 and commencement 2025-12-31. Exact full category lists and wording remain unverified."
+      },
+      "gazette_date": "2025-12-30 (official Amiri Press issue metadata; secondary EastLaws record independently states same)",
+      "effective_date": "2025-12-31 (stated by EastLaws and derived from secondary publication clause; not primary-PDF verified)",
+      "article_2_schedule_status": "Two-chapter structure and selected operative provisions visible in secondary text; full categories not primary-verified",
+      "reuse_rights": "unknown; DSpace issue PDF request-a-copy restricted and secondary-source reuse not cleared",
+      "currentness": "not fully verified; later amendment/repeal and currentness review outstanding",
+      "card_action": "cross-reference only; do not decide an individual worker's rest entitlement until exact Gazette categories and currentness are checked",
+      "law_article_primary_anchor": {
+        "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+        "status": "Official Gazette issue 18 (supplement), extracted primary text; page locators below are text-extraction locators, not proof that the implementing decision was compared",
+        "articles": [
+          {
+            "law_article": 118,
+            "printed_gazette_page": 52,
+            "pdf_page_index": 50,
+            "observation": "Official Law 14/2025 text sets a total rest period of at least one hour and ordinarily no more than five consecutive hours; it authorizes the Minister to specify technical/operational cases where work continues without a standard rest break and arduous work where rest counts as actual hours."
+          },
+          {
+            "law_article": 119,
+            "printed_gazette_page": 52,
+            "pdf_page_index": 50,
+            "observation": "Official Law 14/2025 text sets a ten-hour daily span and allows a ministerially specified intermittent/special-work exception up to twelve hours' presence."
+          }
+        ],
+        "caution": "This anchors the parent Labour Law provisions only. It does not authenticate or compare the separate ministerial decision text."
+      },
+      "additional_repository_lead": {
+        "url": "https://dspace.id.com.eg/items/ca54d3fa-04be-4e59-b9f0-6b3752711a6f/full",
+        "status": "third-party repository metadata only; both PDF files and item-specific license.txt request-copy restricted",
+        "item_date": "2025-12-11",
+        "files": [
+          "D. No. 288-2025 - Labour - Continuous Work Without Rest.pdf (75.85 KB)",
+          "D. No. 288-2025 - Labour - استمرار العمل بدون راحة.pdf (125.39 KB)",
+          "license.txt (55 B)"
+        ],
+        "rights": "Repository End User Agreement reviewed 2026-10-31: personal/non-commercial use only; prior written permission required for commercial exploitation and systematic database compilation; no bypassing access/copy restrictions.",
+        "caveat": "The repository identifies MELES as publisher, not Amiri Press. This is not the Official Gazette issue scan. No PDF or license bytes were obtained; do not infer rights from the license filename."
+      }
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-289-2025",
+      "number": 289,
+      "year": 2025,
+      "related_law_articles": [
+        117,
+        121
+      ],
+      "title_ar": "قرار وزير العمل رقم 289 لسنة 2025 بشأن تحديد ساعات العمل في المنشآت الصناعية",
+      "primary_lead": {
+        "url": "https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1",
+        "status": "Official Gazette Supplement issue 295 metadata (2025-12-30); 550.3 KB PDF request-a-copy restricted; no primary bytes obtained"
+      },
+      "secondary_text": {
+        "url": "https://lawhub.info/eg/?p=17304",
+        "corroborating_url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/30-12-2025/no-289?id=5008502&type=1",
+        "status": "Secondary transcriptions cross-checked against Ministry-hosted text copy for Articles 1–2; Gazette issue PDF not compared",
+        "summary": "Law Hub Article 1 states actual work in industrial establishments must not exceed eight hours per day or 48 hours per week, excluding meal/rest periods; unusual/exceptional work is subject to Law 14/2025 Article 121. Article 2 provides next-day commencement. EastLaws confirms publication 2025-12-30; commencement 2025-12-31 is derived from the secondary Article 2 clause. Interaction with Industrial Establishments Law 133/1961 and better contractual/collective terms requires review. The Ministry-hosted SIS PDF independently contains Articles 1–2: eight actual work hours/day or 48/week in industrial establishments excluding meal/rest periods, preservation of better contractual/regulatory benefits, exceptional work under Law Article 121, and next-day commencement after Gazette publication."
+      },
+      "gazette_date": "2025-12-30 (official Amiri Press issue metadata; secondary EastLaws record independently states same)",
+      "effective_date": "2025-12-31 (derived from secondary Article 2 publication clause and EastLaws publication date; not primary-PDF verified)",
+      "article_2_schedule_status": "Articles 1–2 available in secondary text; no primary Gazette comparison",
+      "reuse_rights": "unknown; DSpace issue PDF request-a-copy restricted and secondary-source reuse not cleared",
+      "currentness": "not fully verified; later amendments/repeal and Industrial Establishments Law interaction review outstanding",
+      "card_action": "cross-reference only; do not advise on industrial shift scheduling until primary text, applicable establishment scope and currentness are checked",
+      "law_article_primary_anchor": {
+        "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+        "status": "Official Gazette issue 18 (supplement), extracted primary text; page locators below are text-extraction locators, not proof that the implementing decision was compared",
+        "articles": [
+          {
+            "law_article": 117,
+            "printed_gazette_page": 52,
+            "pdf_page_index": 50,
+            "observation": "Official Law 14/2025 text sets actual work at no more than eight hours per day or 48 hours per week in industrial establishments, without counting meal/rest periods, subject to Law 133/1961."
+          },
+          {
+            "law_article": 121,
+            "printed_gazette_page": 53,
+            "pdf_page_index": 51,
+            "observation": "Official Law 14/2025 text permits departure from Articles 117–120 for unusual/exceptional necessities subject to seven-day notice, stated reasons/period, overtime premiums of at least 35% daytime and 70% nighttime, compensatory rest for rest-day work and a twelve-hour presence ceiling."
+          }
+        ],
+        "caution": "This anchors the parent Labour Law provisions only. It does not authenticate or compare the separate ministerial decision text."
+      },
+      "ministry_hosted_text_copy": {
+        "url": "https://mediadr.sis.gov.eg/xmlui/bitstream/handle/123456789/117208/MOM20251227_0415.pdf?isAllowed=y&sequence=4",
+        "status": "Egyptian Ministry of Labour text copy hosted on SIS; PDF opened and text layer reviewed; not the Official Gazette scan",
+        "publication_date": "2025-12-27",
+        "articles": [
+          {
+            "article": 1,
+            "observations": [
+              "No more than eight hours of actual work per day or 48 hours per week in industrial establishments, excluding meal/rest periods",
+              "Preserves better benefits in individual/collective employment contracts or workplace regulations",
+              "Allows work for unusual/exceptional conditions under Law 14/2025 Article 121"
+            ]
+          },
+          {
+            "article": 2,
+            "observations": [
+              "Publication in Egyptian Proceedings",
+              "Commencement on the day following Gazette publication"
+            ]
+          }
+        ],
+        "caveat": "Government-hosted text copy, not the Gazette issue PDF or a Gazette page-image comparison. SIS reuse terms were not reviewed; no local bytes/hash obtained. Collection and commercial reuse permissions remain unknown."
+      },
+      "primary_comparison_status": "Decision 289 Articles 1–2 reviewed in Ministry-hosted SIS PDF text copy; Official Gazette issue PDF/page comparison pending; reuse rights unknown; counsel review pending"
     }
   ]
 }

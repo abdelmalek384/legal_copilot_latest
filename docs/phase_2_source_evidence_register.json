@@ -65,12 +65,14 @@
         "EG-LABOUR-DECISION-259-2025",
         "EG-LABOUR-DECISION-260-2025",
         "EG-LABOUR-DECISION-264-2025",
-        "EG-LABOUR-DECISION-271-2025"
+        "EG-LABOUR-DECISION-271-2025",
+        "EG-LABOUR-DECISION-292-2025",
+        "EG-LABOUR-DECISION-294-2025"
       ],
       "source_state": "metadata_discovered_pdf_listed_not_downloaded",
       "access_terms_state": "not_reviewed",
       "collection_permission": "permission_pending",
-      "notes": "Metadata identifies Ministry of Labour decisions 259/2025, 260/2025, 264/2025 and 271/2025. Capture each as a separate instrument record after reviewing the issue PDF and exact titles, dates, articles, and any later amendments."
+      "notes": "Metadata identifies Ministry of Labour decisions 259/2025, 260/2025, 264/2025 and 271/2025. Capture each as a separate instrument record after reviewing the issue PDF and exact titles, dates, articles, and any later amendments. The full issue abstract also lists Decision 292/2025 (maximum actual/overtime hours for preparatory/complementary/guarding/cleaning work) and Decision 294/2025 (paid holidays); both are now separately crosswalked as discovery-only candidates. The issue's PDF and item-specific license file are request-a-copy restricted; no bytes were obtained."
     },
     {
       "source_id": "EG-AMIRI-PRESS-CRIMPROC-160-2026",
@@ -541,6 +543,119 @@
         }
       ],
       "notes": "Targeted PDF text extraction was reviewed for the listed pages. The original file was not downloaded, hashed, or visually inspected. This does not establish a complete article-by-article match, amendment history, current status, or permission for systematic retrieval/commercial use. Additional targeted pages reviewed: printed page 52 (Articles 117 and 121), and printed pages 54-55 (Article 124). Additional targeted pages reviewed: printed pages 68-70 (Article 165) and 73-74 (Article 177). Additional targeted pages reviewed: printed pages 61-62 (Article 141) and 63-64 (Article 148). Additional targeted review covers Article 120 on printed pages 52-53. Additional targeted review covers Articles 118-119 and 122 on printed pages 52-54. Printed page 55 also contains Article 129 on paid holidays; the relevant ministerial/cabinet designation decisions remain to be verified. Additional targeted pages reviewed: printed page 71 (Article 173) and page 72 (Article 171). Additional targeted review covers Article 164 on printed page 69 and Article 166 on printed page 70."
+    },
+    {
+      "source_id": "EG-IDSC-GAZETTE-2025-295-SUPPLEMENT-D",
+      "publisher": "المطابع الأميرية; metadata hosted by Ibrachy & Dermarkar Repository",
+      "source_type": "Egyptian Proceedings supplement issue metadata, restricted PDF listing and restricted item-specific license listing",
+      "url": "https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1",
+      "observed_title": "الوقائع المصرية ملحق الجريدة الرسمية العدد 295 تابع (د)",
+      "publication_date": "2025-12-30",
+      "document_ids": [
+        "EG-LABOUR-DECISION-290-2025",
+        "EG-LABOUR-DECISION-291-2025",
+        "EG-LABOUR-DECISION-288-2025",
+        "EG-LABOUR-DECISION-289-2025"
+      ],
+      "source_state": "metadata_discovered_pdf_listed_not_downloaded",
+      "access_terms_state": "reviewed_restricted",
+      "collection_permission": "not_allowed_without_explicit_exception_or_license",
+      "terms_url": "https://dspace.id.com.eg/info/end-user-agreement",
+      "terms_checked_on": "2026-10-31",
+      "notes": "Public metadata identifies Gazette Supplement issue 295 (تابع د), dated 2025-12-30, with Ministry of Labour as author and Amiri Press as publisher. The full item page lists a 550.3 KB PDF and a 1.71 KB item-specific license.txt. Clicking the license file opens a request-a-copy page stating all files are in restricted access. The repository End User Agreement limits use to personal/non-commercial purposes, requires prior written permission for commercial exploitation, and prohibits systematic retrieval to compile a collection/database without written permission. No PDF or license bytes were obtained; no item-specific license is inferred."
+    },
+    {
+      "source_id": "EG-SIS-GAZETTE-2025-295-SUPPLEMENT-D",
+      "publisher": "مطابع الأميرية; SIS repository metadata",
+      "source_type": "Government-hosted Gazette issue metadata and public-viewing PDF listing",
+      "url": "https://mediadr.sis.gov.eg/xmlui/handle/123456789/117733?locale-attribute=ar",
+      "observed_title": "الوقائع المصرية العدد 295 تابع د",
+      "publication_date": "2025-12-30",
+      "document_ids": [
+        "EG-LABOUR-DECISION-290-2025",
+        "EG-LABOUR-DECISION-291-2025"
+      ],
+      "source_state": "public_catalogue_metadata_found_pdf_link_not_opened",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Search-indexed SIS digital-repository metadata identifies Gazette issue 295 supplement D, date 2025-12-30, issuing authority Amiri Press, public viewing (الإطلاع: عام), and a 550.3 KB PDF named WQ295_20251230_1100.pdf. Direct item-page opening failed in this session due host access restrictions/robots/timeout; the PDF was not opened or downloaded and no terms were reviewed. This is a promising public-viewing primary-source lead, not acquired text or permission for bulk/commercial use."
+    },
+    {
+      "source_id": "EG-EASTLAWS-LABOUR-DECISIONS-290-291-2025",
+      "publisher": "EastLaws",
+      "source_type": "Secondary legal database full-text transcriptions for Ministerial Decisions 290/2025 and 291/2025",
+      "url": "https://www.eastlaws.com/",
+      "observed_title": "Ministerial Decisions 290/2025 and 291/2025",
+      "publication_date": "2025-12-30 (Gazette date stated by EastLaws)",
+      "document_ids": [
+        "EG-LABOUR-DECISION-290-2025",
+        "EG-LABOUR-DECISION-291-2025"
+      ],
+      "source_state": "secondary_full_text_indexed; primary_Gazette_not_compared",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "unknown",
+      "notes": "EastLaws search-indexed pages expose article headings and operative summaries/full text for both decisions, and state publication in Egyptian Proceedings Gazette Supplement issue 295 (تابع د) on 2025-12-30 with commencement on 2025-12-31. EastLaws is treated as secondary text only. No official PDF bytes, EastLaws reuse terms, or item-specific reuse permission were obtained. Do not ingest/redistribute or treat as primary source."
+    },
+    {
+      "source_id": "EG-IDSC-GAZETTE-2025-291-SUPPLEMENT-LABOUR",
+      "publisher": "المطابع الأميرية; metadata hosted by Ibrachy & Dermarkar Repository",
+      "source_type": "Egyptian Proceedings Gazette supplement issue metadata, PDF and item-specific license listing",
+      "url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc",
+      "observed_title": "الوقائع المصرية ملحق الجريدة الرسمية العدد 291 (تابع)",
+      "publication_date": "2025-12-25",
+      "document_ids": [
+        "EG-LABOUR-DECISION-292-2025",
+        "EG-LABOUR-DECISION-294-2025"
+      ],
+      "source_state": "metadata_and_PDF_and_license_listed_request_copy_restricted",
+      "access_terms_state": "reviewed_restricted",
+      "collection_permission": "not_allowed_without_explicit_exception_or_license",
+      "notes": "The full item page identifies issue 291 (تابع), date 2025-12-25, Ministry of Labour as author and Amiri Press as publisher; it lists an 834.25 KB PDF and a 1.71 KB item-specific license.txt. Clicking the license file opens a request-a-copy form stating all files are in restricted access. The repository End User Agreement restricts use to personal/non-commercial purposes and requires prior written permission for commercial exploitation and systematic database compilation. No PDF or license bytes were obtained; no item-specific license is inferred."
+    },
+    {
+      "source_id": "EG-LAWHUB-GAZETTE-295-DECISION-291-PDF",
+      "publisher": "Law Hub (third-party host)",
+      "source_type": "Two-page page-image reproduction of Gazette issue 295 pages 21–22 for Decision 291/2025",
+      "url": "https://lawhub.info/eg/wp-content/uploads/2026/01/lawhub.info-eg-dec-291-2025.pdf",
+      "observed_title": "الوقائع المصرية العدد 295 تابع (د) — قرار وزير العمل رقم 291 لسنة 2025",
+      "publication_date": "2025-12-30",
+      "document_ids": [
+        "EG-LABOUR-DECISION-291-2025"
+      ],
+      "source_state": "third_party_page_image_reproduction_visually_inspected",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "unknown",
+      "notes": "Browser visual inspection of both pages shows Gazette masthead, issue 295 supplement D, date 2025-12-30, page numbers 21–22, Decision 291/2025 and Articles 1–5. Article 1 visibly states 35% daytime and 70% nighttime premiums; Article 4 directs the Supreme Council for Social Consultation to set an annual maximum within three months; Article 5 provides next-day commencement. This is a third-party hosted reproduction, not the original DSpace PDF. No local bytes/hash, source chain, licence or reuse terms were obtained; no ingestion or reuse rights inferred."
+    },
+    {
+      "source_id": "EG-MOL-SIS-DECISION-289-2025-PDF",
+      "publisher": "Egyptian Ministry of Labour; hosted by Egyptian State Information Service",
+      "source_type": "Ministry-hosted PDF containing the text of Ministerial Decision 289/2025",
+      "url": "https://mediadr.sis.gov.eg/xmlui/bitstream/handle/123456789/117208/MOM20251227_0415.pdf?isAllowed=y&sequence=4",
+      "observed_title": "وزير العمل يصدر قراراً وزارياً رقم ٢٨٩ لسنة ٢٠٢٥ بشأن تحديد ساعات العمل في المنشآت الصناعية",
+      "publication_date": "2025-12-27",
+      "document_ids": [
+        "EG-LABOUR-DECISION-289-2025"
+      ],
+      "source_state": "government_hosted_decision_text_opened_and_text_layer_reviewed",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "unknown",
+      "notes": "PDF opened through SIS. It identifies the Ministry of Labour and contains the full text of Decision 289/2025 Articles 1–2 after a Ministry announcement. Article 1 states no more than eight hours actual work/day or 48/week excluding meal/rest periods, preserves better benefits in individual/collective contracts or workplace regulations, and permits exceptional work subject to Law 14/2025 Article 121. Article 2 states publication in Egyptian Proceedings and commencement the following day. This is a Ministry-hosted text copy, not the Official Gazette PDF; no local binary/hash or reuse terms were obtained."
+    },
+    {
+      "source_id": "EG-MELES-DSpace-DECISION-288-2025",
+      "publisher": "The Middle East Library For Economic Services (repository item author: Ministry Of Labor)",
+      "source_type": "Third-party DSpace metadata for Decision 288/2025 with restricted PDF/license listings",
+      "url": "https://dspace.id.com.eg/items/ca54d3fa-04be-4e59-b9f0-6b3752711a6f/full",
+      "observed_title": "Decree No. 288 of the Year 2025 Regarding the Determination of Cases or Works That Needs Continuous Work Without Standard Rest Periods and Arduous Works in Which Workers Are Granted Rest Periods Counted as Part of Actual Working Hours",
+      "publication_date": "2025-12-11",
+      "document_ids": [
+        "EG-LABOUR-DECISION-288-2025"
+      ],
+      "source_state": "third_party_repository_metadata_restricted_files",
+      "access_terms_state": "repository_end_user_agreement_reviewed",
+      "collection_permission": "not_allowed_without_explicit_exception_or_license",
+      "notes": "The item page identifies Ministry Of Labor as author, MELES as publisher and 2025-12-11 issue date metadata. It lists two PDF files (75.85 KB and 125.39 KB) and a 55-byte item-specific license.txt; both PDF and license links open request-a-copy forms stating all files are in restricted access. The repository agreement permits personal/non-commercial use only, requires express prior written permission for commercial exploitation and written permission for systematic database compilation. No files or license bytes were obtained."
     }
   ],
   "document_records_to_create_from_batch": [

@@ -33,7 +33,7 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
 
     def test_current_inventory_is_metadata_only_and_structurally_valid(self):
         self.assertEqual(validate_inventory(self.inventory), [])
-        self.assertEqual(len(self.inventory["documents"]), 83)
+        self.assertEqual(len(self.inventory["documents"]), 85)
         self.assertTrue(all(d["review_status"] != "verified" for d in self.inventory["documents"]))
         self.assertTrue(all(d["legal_status"] in {"unknown", "not_applicable"} for d in self.inventory["documents"]))
         register = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
@@ -44,7 +44,6 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         for document_id in (
             "EG-LABOUR-WORK-REGULATION-RULES-2026",
             "EG-LABOUR-DECISION-49-2026",
-            "EG-LABOUR-DECISION-294-2025",
         ):
             record = next(d for d in self.inventory["documents"] if d["document_id"] == document_id)
             self.assertEqual(record["source_id"], "EG-MINISTRY-LABOUR-LAWS")
@@ -88,7 +87,7 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         self.assertEqual(record["collection_permission"], "unknown")
         self.assertEqual(record["legal_status"], "unknown")
         self.assertEqual(record["review_status"], "discovery_only")
-        self.assertTrue(any("dspace.id.com.eg" in item["url"] for item in record["source_urls"]))
+        self.assertTrue(any("labour.gov.eg" in item["url"] for item in record["source_urls"]))
         self.assertEqual(validate_inventory(self.inventory), [])
 
     def test_2025_labour_decision_294_remains_discovery_only(self):
@@ -98,10 +97,11 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         )
         self.assertEqual(record["instrument_number"], 294)
         self.assertEqual(record["instrument_year"], 2025)
-        self.assertEqual(record["collection_permission"], "unknown")
+        self.assertEqual(record["source_id"], "EG-IDSC-GAZETTE-2025-291-SUPPLEMENT-LABOUR")
+        self.assertEqual(record["collection_permission"], "not_allowed_without_explicit_exception_or_license")
         self.assertEqual(record["legal_status"], "unknown")
         self.assertEqual(record["review_status"], "discovery_only")
-        self.assertTrue(any("dspace.id.com.eg" in item["url"] for item in record["source_urls"]))
+        self.assertTrue(any("dspace.id.com.eg/items/37add437" in item["url"] for item in record["source_urls"]))
         self.assertTrue(any(a["id"] == "ACT-LABOUR-DECISION-294-2025-VERIFY" for a in self.inventory["next_actions"]))
         self.assertEqual(validate_inventory(self.inventory), [])
 
@@ -120,6 +120,8 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
             "EG-LABOUR-DECISION-294-2025",
             "EG-LABOUR-DECISION-214-2025",
             "EG-LABOUR-DECISION-187-2025",
+            "EG-LABOUR-DECISION-288-2025",
+            "EG-LABOUR-DECISION-289-2025",
             "EG-LABOUR-DECISION-290-2025",
             "EG-LABOUR-DECISION-291-2025",
             "EG-LABOUR-DECISION-292-2025",
@@ -129,7 +131,14 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         for document_id in expected:
             record = records[document_id]
             self.assertNotEqual(record["source_status"], "verified")
-            self.assertEqual(record["collection_permission"], "unknown")
+            if document_id in {"EG-LABOUR-DECISION-288-2025", "EG-LABOUR-DECISION-289-2025", "EG-LABOUR-DECISION-290-2025", "EG-LABOUR-DECISION-291-2025"}:
+                self.assertEqual(record["collection_permission"], "not_allowed_without_explicit_exception_or_license")
+                self.assertEqual(record["source_id"], "EG-IDSC-GAZETTE-2025-295-SUPPLEMENT-D")
+            elif document_id in {"EG-LABOUR-DECISION-292-2025", "EG-LABOUR-DECISION-294-2025"}:
+                self.assertEqual(record["collection_permission"], "not_allowed_without_explicit_exception_or_license")
+                self.assertEqual(record["source_id"], "EG-IDSC-GAZETTE-2025-291-SUPPLEMENT-LABOUR")
+            else:
+                self.assertEqual(record["collection_permission"], "unknown")
             self.assertEqual(record["legal_status"], "unknown")
             self.assertEqual(record["review_status"], "discovery_only")
         self.assertEqual(validate_inventory(self.inventory), [])
@@ -264,6 +273,85 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         self.assertEqual(source["terms_checked_on"], "2026-10-31")
         self.assertIn("request-a-copy", source["notes"])
         self.assertIn("commercial reuse remains unapproved", source["notes"])
+
+
+    def test_working_time_decisions_use_restricted_issue_295_metadata(self):
+        records = {item["document_id"]: item for item in self.inventory["documents"]}
+        source_id = "EG-IDSC-GAZETTE-2025-295-SUPPLEMENT-D"
+        for document_id in ("EG-LABOUR-DECISION-290-2025", "EG-LABOUR-DECISION-291-2025"):
+            record = records[document_id]
+            self.assertEqual(record["source_id"], source_id)
+            self.assertEqual(record["collection_permission"], "not_allowed_without_explicit_exception_or_license")
+            self.assertEqual(record["legal_status"], "unknown")
+            self.assertEqual(record["review_status"], "discovery_only")
+            self.assertTrue(any("32fa3458-c4a5-4a6a-950c-23c6c74d41c1" in item["url"] for item in record["source_urls"]))
+            self.assertTrue(any("lawhub.info" in item["url"] for item in record["source_urls"]))
+        self.assertIn(source_id, self.inventory["source_ids"])
+        register = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        source = next(item for item in register["sources"] if item["source_id"] == source_id)
+        self.assertEqual(source["collection_permission"], "not_allowed_without_explicit_exception_or_license")
+        self.assertEqual(source["commercial_reuse_permission"], "prior_written_permission_required_per_published_terms")
+        sis_id = "EG-SIS-GAZETTE-2025-295-SUPPLEMENT-D"
+        self.assertIn(sis_id, self.inventory["source_ids"])
+        for document_id in ("EG-LABOUR-DECISION-290-2025", "EG-LABOUR-DECISION-291-2025"):
+            self.assertTrue(any("mediadr.sis.gov.eg" in item["url"] for item in records[document_id]["source_urls"]))
+        sis_source = next(item for item in register["sources"] if item["source_id"] == sis_id)
+        self.assertEqual(sis_source["collection_permission"], "unknown")
+        self.assertEqual(sis_source["commercial_reuse_permission"], "unknown")
+        self.assertIn("public viewing", sis_source["access_status"])
+        self.assertEqual(validate_inventory(self.inventory), [])
+
+
+    def test_decisions_292_and_294_use_restricted_issue_291_metadata(self):
+        records = {item["document_id"]: item for item in self.inventory["documents"]}
+        source_id = "EG-IDSC-GAZETTE-2025-291-SUPPLEMENT-LABOUR"
+        for document_id in ("EG-LABOUR-DECISION-292-2025", "EG-LABOUR-DECISION-294-2025"):
+            record = records[document_id]
+            self.assertEqual(record["source_id"], source_id)
+            self.assertEqual(record["collection_permission"], "not_allowed_without_explicit_exception_or_license")
+            self.assertEqual(record["legal_status"], "unknown")
+            self.assertEqual(record["review_status"], "discovery_only")
+            self.assertTrue(any("dspace.id.com.eg/items/37add437" in item["url"] for item in record["source_urls"]))
+            self.assertTrue(any("lawhub.info" in item["url"] for item in record["source_urls"]))
+        self.assertIn(source_id, self.inventory["source_ids"])
+        register = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        source = next(item for item in register["sources"] if item["source_id"] == source_id)
+        self.assertEqual(source["collection_permission"], "not_allowed_without_explicit_exception_or_license")
+        self.assertEqual(source["commercial_reuse_permission"], "prior_written_permission_required_per_published_terms")
+        self.assertEqual(validate_inventory(self.inventory), [])
+
+
+
+    def test_decisions_288_and_289_use_restricted_issue_295_metadata(self):
+        records = {item["document_id"]: item for item in self.inventory["documents"]}
+        for document_id in ("EG-LABOUR-DECISION-288-2025", "EG-LABOUR-DECISION-289-2025"):
+            record = records[document_id]
+            self.assertEqual(record["source_id"], "EG-IDSC-GAZETTE-2025-295-SUPPLEMENT-D")
+            self.assertEqual(record["collection_permission"], "not_allowed_without_explicit_exception_or_license")
+            self.assertEqual(record["legal_status"], "unknown")
+            self.assertEqual(record["review_status"], "discovery_only")
+            self.assertTrue(any("dspace.id.com.eg/items/32fa3458" in item["url"] for item in record["source_urls"]))
+            self.assertTrue(any("lawhub.info" in item["url"] for item in record["source_urls"]))
+        self.assertEqual(validate_inventory(self.inventory), [])
+
+
+
+    def test_decision_289_ministry_text_copy_is_discovery_only(self):
+        record = next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-DECISION-289-2025")
+        self.assertEqual(record["source_status"], "official_Gazette_metadata_and_secondary_full_text_found; primary_comparison_pending")
+        self.assertEqual(record["legal_status"], "unknown")
+        self.assertEqual(record["review_status"], "discovery_only")
+        self.assertEqual(record["collection_permission"], "not_allowed_without_explicit_exception_or_license")
+        self.assertTrue(any("MOM20251227_0415.pdf" in item["url"] for item in record["source_urls"]))
+        self.assertEqual(validate_inventory(self.inventory), [])
+
+
+    def test_decision_288_meles_item_is_metadata_only_and_restricted(self):
+        record = next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-DECISION-288-2025")
+        self.assertEqual(record["legal_status"], "unknown")
+        self.assertEqual(record["review_status"], "discovery_only")
+        self.assertTrue(any("ca54d3fa-04be-4e59-b9f0-6b3752711a6f" in item["url"] for item in record["source_urls"]))
+        self.assertEqual(validate_inventory(self.inventory), [])
 
 if __name__ == "__main__":
     unittest.main()
