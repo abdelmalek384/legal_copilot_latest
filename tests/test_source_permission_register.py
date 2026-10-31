@@ -364,6 +364,18 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         self.assertIn("No local PDF bytes/hash", source["access_status"])
         self.assertEqual(MODULE.validate(data), [])
 
+    def test_decision_249_ministry_clarification_does_not_clear_reuse_rights(self):
+        import json
+        data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        source = next(item for item in data["sources"] if item["source_id"] == "EG-MOL-DECISION-249-2026-CLARIFICATION")
+        self.assertEqual(source["collection_permission"], "unknown")
+        self.assertEqual(source["commercial_reuse_permission"], "unknown")
+        self.assertIsNone(source["terms_checked_on"])
+        self.assertIn("not the complete decision", source["material_types"][1])
+        self.assertIn("HTTP 502", source["access_status"])
+        self.assertIn("not a formal amendment", source["permission_evidence"])
+        self.assertEqual(MODULE.validate(data), [])
+
 if __name__ == "__main__":
     unittest.main()
 
