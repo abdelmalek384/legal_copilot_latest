@@ -32,6 +32,15 @@ def evidence_record(device_class, locale, suffix):
     }
 
 
+def write_manifest(path, records):
+    for record in records:
+        for relative in record.get("evidence_paths", []):
+            evidence = path.parent / relative
+            evidence.parent.mkdir(parents=True, exist_ok=True)
+            evidence.write_bytes(b"synthetic evidence fixture")
+    write_manifest(path, records)
+
+
 def complete_matrix():
     return [
         evidence_record("desktop", "ar-EG", "130"),
@@ -50,7 +59,7 @@ class DeviceAcceptanceReleaseIntegrationTests(unittest.TestCase):
     def test_missing_or_invalid_release_commit_blocks(self):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "evidence.json"
-            path.write_text(json.dumps(complete_matrix()), encoding="utf-8")
+            write_manifest(path, complete_matrix())
             result = _evaluate_device_acceptance(path, "short-sha")
         self.assertFalse(result["ready"])
         self.assertIn("full 40-character", result["error"])
