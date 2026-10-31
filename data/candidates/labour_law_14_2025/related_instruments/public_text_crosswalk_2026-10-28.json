@@ -80,7 +80,7 @@
       "effective_date": "2025-12-31 (stated by EastLaws and derived from Article 5 in both secondary transcriptions; not primary-PDF verified)",
       "article_2_schedule_status": "Articles 1–5 are available in two secondary transcriptions; annual-cap follow-up and later amendments remain unverified",
       "reuse_rights": "unknown; official issue PDF is request-a-copy restricted and secondary-source reuse is not cleared",
-      "currentness": "not fully verified; search-indexed review did not establish whether the Council later issued the annual maximum or whether amendments/repeal followed",
+      "currentness": "not fully verified; annual overtime maximum was due on a candidate 2026-03-31 date under the three-month Article 4 task; no later instrument was located in targeted searches through 2026-10-31, but absence is not established. Check Council/Ministry register and later amendments/repeal.",
       "card_action": "cross-reference lead only; do not advise on overtime eligibility, premium calculation or annual caps until primary text, later Council action and currentness are checked",
       "additional_official_access_lead": {
         "url": "https://mediadr.sis.gov.eg/xmlui/handle/123456789/117733?locale-attribute=ar",
@@ -130,7 +130,16 @@
         ],
         "caveat": "Visual comparison was made against the third-party page-image reproduction and cross-checked against secondary transcriptions. The original DSpace PDF remains request-a-copy restricted; the reproduction's source chain and reuse permissions are not established. This does not authorize authoritative ingestion."
       },
-      "primary_comparison_status": "Decision 291 Articles 1–5 visually checked against third-party hosted Gazette page-image reproduction (printed pp.21–22); original official repository PDF not acquired; provenance/reuse rights unresolved; legal/counsel review pending"
+      "primary_comparison_status": "Decision 291 Articles 1–5 visually checked against third-party hosted Gazette page-image reproduction (printed pp.21–22); original official repository PDF not acquired; provenance/reuse rights unresolved; legal/counsel review pending",
+      "annual_overtime_maximum_followup": {
+        "statutory_task": "Decision 291 Article 4 directs the Supreme Council for Social Consultation to set an annual overtime-hours maximum by economic activity/sector, in consultation with worker and employer organizations.",
+        "deadline_candidate": "2026-03-31",
+        "deadline_basis": "Decision effective date 2025-12-31 plus three calendar months under Article 4; candidate computation, not an independently published deadline determination.",
+        "evidence_at_publication": "The reproduced Gazette page 21 preamble records a memorandum from the Council and a period to study the annual maximum; page 22 Article 4 sets the three-month task.",
+        "search_as_of": "2026-10-31",
+        "followup_status": "No subsequent Council/Ministerial instrument setting the annual maximum was located in targeted public-web searches through 2026-10-31. This is a search result only, not proof that no instrument exists or that the task was not completed.",
+        "next_action": "Request the Council/Ministry official register or Gazette issue references for any post-2025 annual overtime maximum; do not state a current annual cap until the instrument is found and checked."
+      }
     },
     {
       "document_id": "EG-LABOUR-DECISION-292-2025",
