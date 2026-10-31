@@ -75,6 +75,7 @@ The product cannot be called production-ready or legally approved until all appl
 - **PR #961 merged:** added the Decision 162/2026 66-article subject crosswalk and exact Official Gazette catalogue provenance. Original PDF access remains request-copy restricted; the candidate commencement date is not verified.
 - **PR #964 merged:** added a quarantined Decision 249/2026 Gazette-image crosswalk and Table 3 candidate; no original-file authentication or retrieval eligibility is claimed.
 - **PR #969 merged:** recorded Decision 250/2026 official Gazette catalogue metadata and Ministry announcement. The 2026-10-13 commencement date is only a secondary-derived candidate; the original Gazette PDF remains restricted.
+- **Promulgation Articles 2–11 page pinpoints:** visually checked against the government-hosted Official Gazette PDF; printed pages 2–5 and zero-based PDF page indices 0–3 are recorded, with Article 6 continuing on page 4. The PDF bytes were not obtained and no SHA-256 was recorded; the ten cards remain search_eligible=false.
 - **No completion-percentage increase is claimed:** these changes improve source provenance, CI reliability and candidate isolation; they do not add lawyer-approved or fully rights-cleared legal text. Verified Egyptian legal knowledge remains 6%.
 
 ## Current open implementation items
