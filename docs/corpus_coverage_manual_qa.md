@@ -29,7 +29,7 @@
 |---|---|---|
 | Signed-out request to coverage and catalog endpoints | Denied; no registry data returned. | |
 | Ordinary firm user or firm administrator | Denied unless explicitly authorized as a platform legal reviewer. | |
-| Platform administrator not on the reviewer allowlist | Denied. | |
+| Firm administrator or email present only in a former reviewer allowlist | Denied unless the identity has an explicit `platform_reviewer` or `platform_admin` role. | |
 | Authorized platform legal reviewer | Can open coverage metrics and registry drill-downs. | |
 | Source and instrument listings | Show shared legal-registry metadata only; never show matter-document passages or uploaded firm content. | |
 | Catalog endpoint input | Unknown kinds are rejected; search is parameterized and bounded; excessive limits are capped. | |
