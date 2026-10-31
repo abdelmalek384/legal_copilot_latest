@@ -103,7 +103,7 @@ class TestLabourDecisionPublicTextCrosswalk(unittest.TestCase):
         self.assertEqual(item["annual_overtime_maximum_followup"]["deadline_candidate"], "2026-03-31")
         self.assertIn("No subsequent", item["annual_overtime_maximum_followup"]["followup_status"])
         self.assertIn("not proof", item["annual_overtime_maximum_followup"]["followup_status"])
-        self.assertIn("reuse rights", check["caveat"])
+        self.assertIn("reuse permissions are not established", check["caveat"])
 
 if __name__ == "__main__":
     unittest.main()
