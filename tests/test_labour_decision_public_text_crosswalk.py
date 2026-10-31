@@ -136,7 +136,7 @@ class TestLabourDecisionPublicTextCrosswalk(unittest.TestCase):
         data = json.loads(DATA.read_text(encoding="utf-8"))
         item = next(x for x in data["decisions"] if x["document_id"] == "EG-LABOUR-DECISION-294-2025")
         copy = item["ministry_hosted_text_copy"]
-        self.assertIn("not the Official Gazette scan", copy["caveat"])
+        self.assertIn("not the Gazette issue PDF", copy["caveat"])
         self.assertIn("Twelve paid holiday categories", " ".join(copy["articles"][0]["observations"]))
         self.assertIn("double pay", " ".join(copy["articles"][1]["observations"]))
         self.assertIn("non-Muslim", " ".join(copy["articles"][2]["observations"]))
