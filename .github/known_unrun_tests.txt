@@ -1,3 +1,2 @@
 # Test files not run by CI yet. Each entry must explain the current blocker.
 # Remove an entry as soon as the test is fixed and added to a workflow.
-test_s3_live_acceptance_evidence.py: collector module tools/collect_s3_live_acceptance_evidence.py is absent; retain as blocked until the live-evidence collector implementation is added and reviewed
