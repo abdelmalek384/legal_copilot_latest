@@ -342,6 +342,17 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         self.assertIn("No local PDF bytes/hash", source["access_status"])
         self.assertEqual(MODULE.validate(data), [])
 
+
+    def test_decision_288_meles_item_and_license_are_request_copy_restricted(self):
+        import json
+        data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        source = next(item for item in data["sources"] if item["source_id"] == "EG-MELES-DSpace-DECISION-288-2025")
+        self.assertEqual(source["collection_permission"], "not_allowed_without_explicit_exception_or_license")
+        self.assertEqual(source["commercial_reuse_permission"], "prior_written_permission_required_per_published_terms")
+        self.assertIn("55-byte item-specific license.txt", source["access_status"])
+        self.assertIn("all files in the item are in restricted access", source["permission_evidence"])
+        self.assertEqual(MODULE.validate(data), [])
+
 if __name__ == "__main__":
     unittest.main()
 
