@@ -34,6 +34,7 @@ SOURCE_STATES = {
     "official_metadata_or_text_lead_found_primary_comparison_pending",
     "official_Gazette_repository_metadata_and_public_secondary_Article_1_abstract_found; Article_2_schedule_pending",
     "official_Gazette_metadata_plus_secondary_indexed_text_found; primary_comparison_pending",
+    "third_party_repository_metadata_plus_secondary_indexed_text_found; primary_comparison_pending",
 }
 FORBIDDEN_CONTENT_KEYS = {
     "full_text", "article_text", "passage_text", "downloaded_text",

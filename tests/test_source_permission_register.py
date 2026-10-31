@@ -255,15 +255,18 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         self.assertIn("copyright is reserved", records["EG-EGYIN-SECONDARY-LEGAL-NEWS"]["permission_evidence"])
         self.assertEqual(MODULE.validate(data), [])
 
-    def test_idsc_gazette_original_and_license_bundle_are_request_copy_restricted(self):
+    def test_third_party_dspace_gazette_original_and_license_bundle_are_request_copy_restricted(self):
         import json
         data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
         source = next(item for item in data["sources"] if item["source_id"] == "EG-IDSC-DSPACE-GAZETTE")
+        self.assertEqual(source["repository_brand"], "Ibrachy & Dermarkar Repository")
+        self.assertIn("Ibrachy & Dermarkar", source["authority"])
+        self.assertEqual(source["publisher_metadata"], "المطابع الاميرية")
         self.assertEqual(source["collection_permission"], "unknown")
         self.assertEqual(source["commercial_reuse_permission"], "unknown")
         self.assertIn("license.txt", source["permission_evidence"])
         self.assertIn("request-a-copy", source["permission_evidence"])
-        self.assertIn("neither file is publicly readable", source["access_status"])
+        self.assertIn("no bytes or license text", source["permission_evidence"])
         self.assertIn("Do not bypass", source["required_next_action"])
         self.assertEqual(MODULE.validate(data), [])
 

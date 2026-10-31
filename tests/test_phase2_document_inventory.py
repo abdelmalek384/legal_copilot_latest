@@ -215,6 +215,8 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
             self.assertEqual(record["instrument_year"], 2026)
             self.assertIn(f"قرار رقم {number} لسنة 2026", record["official_title_ar"])
             self.assertEqual(record["source_id"], "EG-IDSC-DSPACE-GAZETTE")
+            self.assertEqual(record["repository_brand"], "Ibrachy & Dermarkar Repository")
+            self.assertEqual(record["source_status"], "third_party_repository_metadata_plus_secondary_indexed_text_found; primary_comparison_pending")
             self.assertEqual(record["publication_date"], "2026-10-12")
             self.assertEqual(record["official_gazette_issue"], "225 تابع (أ)")
             self.assertEqual(record["collection_permission"], "unknown")
@@ -230,6 +232,10 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         self.assertTrue(any(action["id"] == "ACT-LABOUR-DECISIONS-248-252-2026-ORIGINAL-GAZETTE-VERIFY" and action["status"] == "blocked" for action in self.inventory["next_actions"]))
         register = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
         register_ids = {source["source_id"] for source in register["sources"]}
+        dspace_source = next(source for source in register["sources"] if source["source_id"] == "EG-IDSC-DSPACE-GAZETTE")
+        self.assertEqual(dspace_source["repository_brand"], "Ibrachy & Dermarkar Repository")
+        self.assertEqual(dspace_source["collection_permission"], "unknown")
+        self.assertEqual(dspace_source["commercial_reuse_permission"], "unknown")
         for source_id in (
             "EG-IDSC-DSPACE-GAZETTE",
             "EG-ALMASDAR-SECONDARY-LEGAL-NEWS",

@@ -105,11 +105,13 @@
       "next_action": "Use the canonical central permission-register source ID; pin exact document URLs, review current terms, and establish intended-use permission before acquisition."
     },
     "EG-IDSC-DSPACE-GAZETTE": {
-      "authority": "Information and Decision Support Center (IDSC) digital repository; item metadata identifies Amiri Press as publisher",
+      "authority": "Ibrachy & Dermarkar Repository (I&D Digital Repository for E-Resources; homepage branding; item metadata lists Amiri Press as publisher)",
       "source_url": "https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full",
-      "source_class": "official_gazette_catalogue_metadata",
+      "source_class": "third_party_gazette_repository_metadata",
       "permission": "unknown",
-      "next_action": "Use catalogue metadata only. Both the 6.13 MB original PDF and the 55-byte license.txt resolve to request-a-copy forms; do not bypass either restriction. Obtain both only through an ordinary authorized route, inspect the item-specific licence, and record the original-file SHA-256 only after lawful receipt."
+      "next_action": "Use public catalogue metadata only. Classify this as a third-party Ibrachy & Dermarkar repository record, not an official Amiri Press-hosted source. Retain the legacy source_id only for referential compatibility; it does not assert IDSC operation. Do not bypass either request-copy restriction. No copy request has been submitted. Only if separately authorized through an ordinary route, obtain the original PDF and item-specific license, inspect the license scope before any collection, extraction, indexing, excerpt display or commercial use, and compute the original-file SHA-256 after lawful receipt.",
+      "repository_brand": "Ibrachy & Dermarkar Repository",
+      "publisher_metadata": "المطابع الاميرية"
     },
     "EG-ALMASDAR-SECONDARY-LEGAL-NEWS": {
       "authority": "Almasdar news publisher and secondary legal-text reproductions",
@@ -2398,7 +2400,7 @@
       "instrument_number": 248,
       "instrument_year": 2026,
       "source_id": "EG-IDSC-DSPACE-GAZETTE",
-      "source_status": "official_Gazette_metadata_plus_secondary_indexed_text_found; primary_comparison_pending",
+      "source_status": "third_party_repository_metadata_plus_secondary_indexed_text_found; primary_comparison_pending",
       "collection_permission": "unknown",
       "legal_status": "unknown",
       "review_status": "discovery_only",
@@ -2411,14 +2413,14 @@
         "crosswalk to Labour Law 14/2025 and related implementing instruments",
         "qualified Egyptian labour/occupational-safety counsel review"
       ],
-      "notes": "The IDSC repository catalogue identifies Official Gazette Proceedings issue 225 supplement (A), dated 2026-10-12, publisher Amiri Press, Ministry of Labour, and lists Decisions 248–252 in a 6.13 MB original PDF bundle. The PDF and 55-byte license.txt downloads are both request-copy restricted; no original bytes or SHA-256 were obtained. A public Egyin secondary article summarizes Decision 248, including scope, serious-accident criteria, notification windows and semi-annual statistics. It is a secondary summary, not the complete official decision. Collection/reuse rights, legal status, full text, currentness and counsel approval remain unresolved.",
+      "notes": "The Ibrachy & Dermarkar Repository catalogue identifies Official Gazette Proceedings issue 225 supplement (A), dated 2026-10-12, publisher metadata as Amiri Press, Ministry of Labour, and lists Decisions 248–252 in a 6.13 MB original PDF bundle. The repository homepage identifies the host as Ibrachy & Dermarkar (not the Amiri Press official domain); the PDF and 55-byte license.txt downloads are request-copy restricted; no original bytes or SHA-256 were obtained. A public Egyin secondary article summarizes Decision 248, including scope, serious-accident criteria, notification windows and semi-annual statistics. It is a secondary summary, not the complete official decision. Collection/reuse rights, legal status, full text, currentness and counsel approval remain unresolved.",
       "publication_date": "2026-10-12",
       "official_gazette_issue": "225 تابع (أ)",
       "source_urls": [
         {
           "url": "https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full",
-          "source_role": "official Gazette catalogue metadata; original bundle request-copy restricted",
-          "status": "catalogue_metadata_located_original_pdf_and_license_txt_request_copy_restricted"
+          "source_role": "third-party Ibrachy & Dermarkar repository metadata; item metadata lists Amiri Press as publisher; original bundle request-copy restricted",
+          "status": "third_party_catalogue_metadata_only_original_pdf_and_item_license_request_copy_restricted"
         },
         {
           "url": "https://www.labour.gov.eg/ar/القوانين-والتشريعات/",
@@ -2430,7 +2432,8 @@
           "source_role": "Egyin secondary summary",
           "status": "secondary_summary_only_not_authoritative"
         }
-      ]
+      ],
+      "repository_brand": "Ibrachy & Dermarkar Repository"
     },
     {
       "document_id": "EG-LABOUR-DECISION-249-2026",
@@ -2443,7 +2446,7 @@
       "instrument_number": 249,
       "instrument_year": 2026,
       "source_id": "EG-IDSC-DSPACE-GAZETTE",
-      "source_status": "official_Gazette_metadata_verified_primary_text_restricted_secondary_full_text_crosscheck_found",
+      "source_status": "third_party_repository_metadata_plus_secondary_indexed_text_found; primary_comparison_pending",
       "collection_permission": "unknown",
       "legal_status": "unknown",
       "review_status": "discovery_only",
@@ -2462,8 +2465,8 @@
       "source_urls": [
         {
           "url": "https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full",
-          "source_role": "official Gazette catalogue metadata; original bundle request-copy restricted",
-          "status": "catalogue_metadata_located_original_pdf_and_license_txt_request_copy_restricted"
+          "source_role": "third-party Ibrachy & Dermarkar repository metadata; item metadata lists Amiri Press as publisher; original bundle request-copy restricted",
+          "status": "third_party_catalogue_metadata_only_original_pdf_and_item_license_request_copy_restricted"
         },
         {
           "url": "https://www.almasdar.com/175150",
@@ -2475,7 +2478,8 @@
           "source_role": "official Ministry of Labour discovery index",
           "status": "index_only_no_item_level_reuse_permission"
         }
-      ]
+      ],
+      "repository_brand": "Ibrachy & Dermarkar Repository"
     },
     {
       "document_id": "EG-LABOUR-DECISION-250-2026",
@@ -2488,7 +2492,7 @@
       "instrument_number": 250,
       "instrument_year": 2026,
       "source_id": "EG-IDSC-DSPACE-GAZETTE",
-      "source_status": "official_Gazette_metadata_verified_primary_text_restricted_secondary_full_text_crosscheck_found",
+      "source_status": "third_party_repository_metadata_plus_secondary_indexed_text_found; primary_comparison_pending",
       "collection_permission": "unknown",
       "legal_status": "unknown",
       "review_status": "discovery_only",
@@ -2508,8 +2512,8 @@
       "source_urls": [
         {
           "url": "https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full",
-          "source_role": "official Gazette catalogue metadata; original bundle request-copy restricted",
-          "status": "catalogue_metadata_located_original_pdf_and_license_txt_request_copy_restricted"
+          "source_role": "third-party Ibrachy & Dermarkar repository metadata; item metadata lists Amiri Press as publisher; original bundle request-copy restricted",
+          "status": "third_party_catalogue_metadata_only_original_pdf_and_item_license_request_copy_restricted"
         },
         {
           "url": "https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html",
@@ -2526,7 +2530,8 @@
           "source_role": "Almasdar secondary legal-news page",
           "status": "secondary_news_and_watermarked_image_leads"
         }
-      ]
+      ],
+      "repository_brand": "Ibrachy & Dermarkar Repository"
     },
     {
       "document_id": "EG-LABOUR-DECISION-251-2026",
@@ -2539,7 +2544,7 @@
       "instrument_number": 251,
       "instrument_year": 2026,
       "source_id": "EG-IDSC-DSPACE-GAZETTE",
-      "source_status": "official_Gazette_metadata_plus_secondary_indexed_text_found; primary_comparison_pending",
+      "source_status": "third_party_repository_metadata_plus_secondary_indexed_text_found; primary_comparison_pending",
       "collection_permission": "unknown",
       "legal_status": "unknown",
       "review_status": "discovery_only",
@@ -2558,15 +2563,16 @@
       "source_urls": [
         {
           "url": "https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full",
-          "source_role": "official Gazette catalogue metadata; original bundle request-copy restricted",
-          "status": "catalogue_metadata_located_original_pdf_and_license_txt_request_copy_restricted"
+          "source_role": "third-party Ibrachy & Dermarkar repository metadata; item metadata lists Amiri Press as publisher; original bundle request-copy restricted",
+          "status": "third_party_catalogue_metadata_only_original_pdf_and_item_license_request_copy_restricted"
         },
         {
           "url": "https://www.almasdar.com/175152",
           "source_role": "Almasdar secondary text and watermarked image gallery",
           "status": "secondary_partial_text_and_reproduced_image_lead"
         }
-      ]
+      ],
+      "repository_brand": "Ibrachy & Dermarkar Repository"
     },
     {
       "document_id": "EG-LABOUR-DECISION-252-2026",
@@ -2579,7 +2585,7 @@
       "instrument_number": 252,
       "instrument_year": 2026,
       "source_id": "EG-IDSC-DSPACE-GAZETTE",
-      "source_status": "official_Gazette_metadata_plus_secondary_indexed_text_found; primary_comparison_pending",
+      "source_status": "third_party_repository_metadata_plus_secondary_indexed_text_found; primary_comparison_pending",
       "collection_permission": "unknown",
       "legal_status": "unknown",
       "review_status": "discovery_only",
@@ -2598,15 +2604,16 @@
       "source_urls": [
         {
           "url": "https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full",
-          "source_role": "official Gazette catalogue metadata; original bundle request-copy restricted",
-          "status": "catalogue_metadata_located_original_pdf_and_license_txt_request_copy_restricted"
+          "source_role": "third-party Ibrachy & Dermarkar repository metadata; item metadata lists Amiri Press as publisher; original bundle request-copy restricted",
+          "status": "third_party_catalogue_metadata_only_original_pdf_and_item_license_request_copy_restricted"
         },
         {
           "url": "https://www.almasdar.com/175156",
           "source_role": "Almasdar secondary text excerpt",
           "status": "secondary_partial_text_not_authoritative"
         }
-      ]
+      ],
+      "repository_brand": "Ibrachy & Dermarkar Repository"
     }
   ],
   "next_actions": [
