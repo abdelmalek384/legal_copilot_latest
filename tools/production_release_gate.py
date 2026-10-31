@@ -26,6 +26,12 @@ from tools.validate_legal_release_readiness import (
     DEFAULT_REGISTER,
     build_report as build_legal_report,
 )
+from tools.validate_device_browser_acceptance import (
+    EvidenceError as DeviceAcceptanceError,
+    load_records as load_device_acceptance_records,
+    validate_record as validate_device_acceptance_record,
+    validate_release_matrix as validate_device_release_matrix,
+)
 
 DEFAULT_BENCHMARK = ROOT / "tests" / "legal_eval" / "multi_area_questions.draft.jsonl"
 MIN_APPROVED_QUESTIONS = 94
@@ -118,6 +124,43 @@ def _active_source_versions(source_id, as_of_date, source_index):
     return active
 
 
+def _evaluate_device_acceptance(evidence_path, release_commit):
+    """Require complete, passing manual device evidence for the exact release commit."""
+    report = {
+        "configured": bool(evidence_path),
+        "ready": False,
+        "records_validated": 0,
+        "required_matrix": ["desktop/ar-EG", "desktop/en-US", "phone/ar-EG", "phone/en-US"],
+        "error": None,
+    }
+    if not isinstance(release_commit, str) or not re.fullmatch(r"[0-9a-fA-F]{40}", release_commit):
+        report["error"] = "COPILOT_RELEASE_COMMIT or --release-commit must be a full 40-character commit SHA"
+        return report
+    if not evidence_path:
+        report["error"] = "device acceptance evidence file is not configured"
+        return report
+    try:
+        records = load_device_acceptance_records(evidence_path)
+        if not records:
+            raise DeviceAcceptanceError("no device acceptance records found")
+        summaries = [
+            validate_device_acceptance_record(item, expected_commit=release_commit, require_pass=True)
+            for item in records
+        ]
+        validate_device_release_matrix(records, summaries)
+    except (OSError, DeviceAcceptanceError) as exc:
+        report["error"] = str(exc)
+        return report
+    report.update({
+        "ready": True,
+        "records_validated": len(summaries),
+        "application_commit": release_commit.lower(),
+        "environment": summaries[0]["environment"],
+        "error": None,
+    })
+    return report
+
+
 def evaluate_release(
     *,
     env=None,
@@ -128,6 +171,8 @@ def evaluate_release(
     benchmark_path: Path = DEFAULT_BENCHMARK,
     reviewer_registry=None,
     database_acceptance_path: Path | None = None,
+    device_acceptance_path: Path | None = None,
+    release_commit: str | None = None,
     root: Path = ROOT,
 ) -> dict:
     """Read-only release decision. Any warning, missing gate, or malformed evidence blocks release."""
@@ -141,6 +186,18 @@ def evaluate_release(
                          "details": warnings})
 
     acceptance_environment = os.environ if env is None else env
+    if device_acceptance_path is None:
+        device_acceptance_path = acceptance_environment.get("COPILOT_DEVICE_ACCEPTANCE_FILE")
+    if release_commit is None:
+        release_commit = acceptance_environment.get("COPILOT_RELEASE_COMMIT")
+    device_acceptance = _evaluate_device_acceptance(device_acceptance_path, release_commit)
+    if not device_acceptance["ready"]:
+        blockers.append({
+            "gate": "device_browser_acceptance",
+            "code": "device_browser_acceptance_incomplete",
+            "details": device_acceptance["error"],
+            "required_matrix": device_acceptance["required_matrix"],
+        })
     if database_acceptance_path is None:
         database_acceptance_path = acceptance_environment.get("COPILOT_DATABASE_ACCEPTANCE_FILE")
     database_acceptance = load_acceptance_manifest(
@@ -328,6 +385,7 @@ def evaluate_release(
         "decision": "ready" if not blockers else "blocked",
         "environment": {"passed_checks": len(passed), "warnings": warnings, "errors": errors},
         "database_operational_acceptance": database_acceptance,
+        "device_browser_acceptance": device_acceptance,
         "tenant_schema_migrations": tenant_migration_report,
         "legal_corpus": {
             "candidate_count": len(paths),
@@ -359,6 +417,8 @@ def main(argv=None) -> int:
     parser.add_argument("--benchmark", type=Path, default=DEFAULT_BENCHMARK)
     parser.add_argument("--reviewer-registry", type=Path, help="Private JSON registry of approved reviewer qualification checks.")
     parser.add_argument("--database-acceptance", type=Path, help="Controlled operational evidence manifest; missing/incomplete evidence blocks release.")
+    parser.add_argument("--device-acceptance", type=Path, help="Manual device/browser evidence JSON or JSONL; required for release.")
+    parser.add_argument("--release-commit", help="Exact 40-character application commit SHA being released.")
     parser.add_argument("--root", type=Path, default=ROOT)
     parser.add_argument("--out", type=Path, help="Optional JSON report path.")
     args = parser.parse_args(argv)
@@ -377,6 +437,8 @@ def main(argv=None) -> int:
         benchmark_path=args.benchmark,
         reviewer_registry=reviewer_registry,
         database_acceptance_path=args.database_acceptance,
+        device_acceptance_path=args.device_acceptance,
+        release_commit=args.release_commit,
         root=args.root,
     )
     rendered = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
@@ -389,6 +451,9 @@ def main(argv=None) -> int:
         acceptance_input = args.database_acceptance or os.environ.get("COPILOT_DATABASE_ACCEPTANCE_FILE")
         if acceptance_input:
             protected_files.add(Path(acceptance_input).resolve())
+        device_input = args.device_acceptance or os.environ.get("COPILOT_DEVICE_ACCEPTANCE_FILE")
+        if device_input:
+            protected_files.add(Path(device_input).resolve())
         protected_files.update(Path(path).resolve() for path in (args.candidate or []))
         protected_directories = {
             Path(args.candidates_dir).resolve(),
