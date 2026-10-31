@@ -97,6 +97,8 @@ class SourcePermissionRegisterTests(unittest.TestCase):
             " https://example.gov/law",
             "https://example.gov/law file",
             "https://example.gov:99999/law",
+            "https://example.gov:/law",
+            "https://example.gov/\\x00law",
         ):
             data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
             data["sources"][0]["source_page"] = url
