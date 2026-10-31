@@ -50,7 +50,7 @@ class TestLabourDecisionPublicTextCrosswalk(unittest.TestCase):
             self.assertTrue(item["currentness"].startswith("not fully verified"))
             self.assertIn("unknown", item["reuse_rights"])
         self.assertIn("48 hours", records["EG-LABOUR-DECISION-292-2025"]["secondary_text"]["summary"])
-        self.assertIn("12 occasions", records["EG-LABOUR-DECISION-294-2025"]["secondary_text"]["summary"])
+        self.assertIn("12 public holidays", records["EG-LABOUR-DECISION-294-2025"]["secondary_text"]["summary"])
 
 if __name__ == "__main__":
     unittest.main()
