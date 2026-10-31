@@ -128,6 +128,19 @@ class DatabaseReleaseAcceptanceTests(unittest.TestCase):
             {(item["gate"], item["code"]) for item in unavailable["blockers"]},
         )
 
+
+    def test_purge_writer_quiescence_evidence_is_bound_to_storage_target(self):
+        manifest = json.loads(json.dumps(self.manifest))
+        manifest["gates"]["purge_writer_quiescence"]["storage_config_sha256"] = "b" * 64
+        report = validate_acceptance_manifest(
+            manifest, now=self.now, expected_storage_config_sha256="a" * 64
+        )
+        self.assertFalse(report["ready"])
+        self.assertIn(
+            ("purge_writer_quiescence", "storage_configuration_mismatch"),
+            {(item["gate"], item["code"]) for item in report["blockers"]},
+        )
+
     def test_staging_purge_requires_storage_and_retention_evidence_bound_to_target(self):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "acceptance.json"
