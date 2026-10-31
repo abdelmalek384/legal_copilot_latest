@@ -301,7 +301,7 @@
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
-      "permission_evidence": "Checked 2026-10-31 using the public PDF viewer at the source URL. The viewer identifies Official Gazette issue 18 (تابع), dated 2025-05-03, and exposes 1,768 extracted text lines. Article 13 states that the law takes effect from the first day of the month following the expiry of 90 days from publication; the corresponding date is recorded as a derived candidate of 2025-09-01, with specialized labour courts from 2025-10-01. The official PDF screenshots for printed pages 110 (PDF index 108) and 111 (PDF index 109) were visually inspected to correct Articles 294-298 pinpoints. The local PDF download attempt failed; no local bytes or SHA-256 are claimed. A government-hosted PDF and public viewer do not by themselves establish bulk-collection, redistribution or commercial-reuse permission. Collection and commercial reuse remain unknown; portal terms were not verified.",
+      "permission_evidence": "Checked 2026-10-31 using the public PDF viewer at the source URL. The viewer identifies Official Gazette issue 18 (تابع), dated 2025-05-03, and exposes 1,768 extracted text lines. Article 13 states that the law takes effect from the first day of the month following the expiry of 90 days from publication; the corresponding date is recorded as a derived candidate of 2025-09-01, with specialized labour courts from 2025-10-01. The official PDF screenshots for printed pages 105–111 (PDF indices 103–109) were visually inspected to correct 46 card pinpoints for Articles 275–298. The local PDF download attempt failed; no local bytes or SHA-256 are claimed. A government-hosted PDF and public viewer do not by themselves establish bulk-collection, redistribution or commercial-reuse permission. Collection and commercial reuse remain unknown; portal terms were not verified.",
       "terms_checked_on": null,
       "bulk_download_or_api": "one PDF URL located; no bulk-download/API permission established",
       "required_next_action": "Keep this official government-hosted copy as a primary-text reference. Obtain local bytes through a supported public download route and compute SHA-256 when available; review applicable portal terms before bulk extraction, indexing, redistribution or commercial display; complete page-by-page article comparison, amendment/currentness review and qualified Egyptian-lawyer approval.",
@@ -317,16 +317,46 @@
       "local_pdf_sha256": null,
       "visual_page_checks": [
         {
+          "printed_page": 105,
+          "pdf_page_index_zero_based": 103,
+          "checked_on": "2026-10-31",
+          "result": "Article 275 visually located"
+        },
+        {
+          "printed_page": 106,
+          "pdf_page_index_zero_based": 104,
+          "checked_on": "2026-10-31",
+          "result": "Articles 276–280 visually located"
+        },
+        {
+          "printed_page": 107,
+          "pdf_page_index_zero_based": 105,
+          "checked_on": "2026-10-31",
+          "result": "Articles 281–285 visually located"
+        },
+        {
+          "printed_page": 108,
+          "pdf_page_index_zero_based": 106,
+          "checked_on": "2026-10-31",
+          "result": "Articles 286–288 visually located"
+        },
+        {
+          "printed_page": 109,
+          "pdf_page_index_zero_based": 107,
+          "checked_on": "2026-10-31",
+          "result": "Articles 289–291 visually located"
+        },
+        {
           "printed_page": 110,
           "pdf_page_index_zero_based": 108,
           "checked_on": "2026-10-31",
-          "result": "Articles 294 and 295 visually located"
+          "result": "Articles 292–295 visually located"
         },
         {
           "printed_page": 111,
           "pdf_page_index_zero_based": 109,
           "checked_on": "2026-10-31",
-          "result": "Articles 296, 297 and 298 visually located"
+          "result": "Articles 296–298 visually located"
         }
       ],
       "publication_date_discrepancy": "The official Gazette PDF header and DSpace catalogue record identify 2025-05-03. A State Information Service announcement dated 2025-05-05 says the law was published that day. Retain 2025-05-03 as the Gazette issue date and preserve the 2025-05-05 announcement as a separate date discrepancy; both sources report the law's commencement as 2025-09-01."
