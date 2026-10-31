@@ -104,7 +104,7 @@ class ProductionReleaseGateTests(unittest.TestCase):
 
                 "purge_writer_quiescence": {
                     "status": "passed", "evidence_ref": "synthetic-test-evidence",
-                    "verified_at": stamp, "verified_by": "test-operator",
+                    "verified_at": verified_at, "verified_by": "test-operator",
                     "witnessed_by": "independent-test-witness",
                     "storage_config_sha256": original_storage_config_fingerprint(self.clean_env),
                     "verified_scenarios": [
