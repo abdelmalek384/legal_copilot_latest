@@ -361,5 +361,17 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         self.assertTrue(any("MOM20251226_0805.pdf" in item["url"] for item in record["source_urls"]))
         self.assertEqual(validate_inventory(self.inventory), [])
 
+    def test_decision_249_ministry_clarification_is_not_decision_text(self):
+        record = next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-DECISION-249-2026")
+        self.assertEqual(record["legal_status"], "unknown")
+        self.assertEqual(record["review_status"], "discovery_only")
+        source = next(item for item in record["source_urls"] if "بيان-%D8%AA%D9%88%D8%B6%D9%8A%D8%AD%D9%8A" in item["url"])
+        self.assertIn("not full decision text", source["source_role"])
+        self.assertIn("page_fetch_failed", source["status"])
+        currentness = (ROOT / "data" / "candidates" / "labour_law_14_2025" / "related_instruments" / "currentness_register_2026-10-28.md").read_text(encoding="utf-8")
+        self.assertIn("Decision 249/2026 — official Ministry clarification lead", currentness)
+        self.assertIn("HTTP 502", currentness)
+        self.assertEqual(validate_inventory(self.inventory), [])
+
 if __name__ == "__main__":
     unittest.main()
