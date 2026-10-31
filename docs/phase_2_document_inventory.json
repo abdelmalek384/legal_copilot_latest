@@ -2364,7 +2364,7 @@
       "instrument_number": 291,
       "instrument_year": 2025,
       "source_id": "EG-IDSC-GAZETTE-2025-295-SUPPLEMENT-D",
-      "source_status": "official_Gazette_metadata_and_secondary_full_text_found; primary_comparison_pending",
+      "source_status": "official_Gazette_issue_metadata_plus_third_party_Gazette_page_images_visually_checked; original_DSpace_PDF_restricted",
       "collection_permission": "not_allowed_without_explicit_exception_or_license",
       "legal_status": "unknown",
       "review_status": "discovery_only",
@@ -2377,7 +2377,7 @@
         "source-specific reuse review",
         "qualified Egyptian-lawyer review"
       ],
-      "notes": "Official Gazette publisher metadata, hosted by the third-party Ibrachy & Dermarkar Repository, identifies Supplement issue 295 (تابع د), dated 2025-12-30, and lists Decision 291/2025. The 550.3 KB issue PDF is request-a-copy restricted. A public Law Hub secondary transcription exposes Articles 1–5, including exceptional overtime conditions, notification/recordkeeping, rotation, minimum premium rates and a requirement for the Social Consultation Council to set an annual maximum; none has been compared with the official Gazette PDF. The secondary text states next-day commencement, which would derive to 2025-12-31, but this is not primary-verified. Whether the annual maximum was subsequently issued, later changes, legal status, reuse and lawyer review remain unresolved. Do not advise on overtime from the secondary text alone.",
+      "notes": "Official Gazette publisher metadata, hosted by the third-party Ibrachy & Dermarkar Repository, identifies Supplement issue 295 (تابع د), dated 2025-12-30, and lists Decision 291/2025. The 550.3 KB issue PDF is request-a-copy restricted. A public Law Hub secondary transcription exposes Articles 1–5, including exceptional overtime conditions, notification/recordkeeping, rotation, minimum premium rates and a requirement for the Social Consultation Council to set an annual maximum; none has been compared with the official Gazette PDF. The secondary text states next-day commencement, which would derive to 2025-12-31, but this is not primary-verified. Whether the annual maximum was subsequently issued, later changes, legal status, reuse and lawyer review remain unresolved. Do not advise on overtime from the secondary text alone. A two-page third-party hosted PDF reproduction at https://lawhub.info/eg/wp-content/uploads/2026/01/lawhub.info-eg-dec-291-2025.pdf was visually inspected. Its masthead identifies issue 295 supplement D, dated 2025-12-30, pages 21–22, and it displays Decision 291 Articles 1–5. The reproduced page images visually confirm 35% daytime/70% nighttime premiums, the Article 4 three-month Council task and Article 5 next-day commencement. This is not the original DSpace PDF; no source chain, file hash, licence or reuse permission was obtained. Keep discovery-only and do not ingest or redistribute.",
       "source_urls": [
         {
           "url": "https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1",
@@ -2403,6 +2403,11 @@
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_role": "Primary Official Gazette text of parent Law 14/2025; related article locator only, not implementing-decision text",
           "status": "primary_parent_law_text_extracted_decision_comparison_pending"
+        },
+        {
+          "url": "https://lawhub.info/eg/wp-content/uploads/2026/01/lawhub.info-eg-dec-291-2025.pdf",
+          "source_role": "Third-party hosted page-image reproduction of Gazette issue 295 pages 21–22; visually inspected, not original DSpace file",
+          "status": "gazette_page_images_visually_checked_provenance_and_reuse_rights_unresolved"
         }
       ]
     },
