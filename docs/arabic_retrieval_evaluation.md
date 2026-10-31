@@ -8,8 +8,15 @@ Provide a reproducible measurement harness for Arabic legal retrieval and citati
 
 - `tests/legal_eval/practice_questions.seed.jsonl` contains discovery/evaluation-question seeds, not approved ground truth.
 - Seed questions are marked `needs_lawyer_review`, have no expected answer, and have no expected source IDs. The evaluator excludes them from scoring.
+- Retrieval uses Arabic normalization, conservative light stemming, curated Arabic/English legal synonym groups, and selected Egyptian colloquial phrase hints. These hints affect retrieval only and do not rewrite source passages or establish legal equivalence.
+- Current phrase coverage includes labour, wages, dismissal, rent/eviction, family support, cheques, police reports, arrest/pretrial detention, administrative grievances, inheritance, insurance and repayment wording. New phrase mappings have regression tests in `tests/test_arabic_matching.py`.
+- Answer generation remains fail-closed on missing/invalid inline citations, unsupported numeric claims, weak lexical citation anchors, and unverified corpus sources. These automated checks are safety heuristics, not semantic entailment or proof of legal correctness.
 - `tests/legal_eval/runs.example.jsonl` is intentionally empty apart from an explanatory comment. No real run results or lawyer-approved labels are claimed.
 - Add reviewed labels only after a qualified Egyptian-law reviewer records their name/date and identifies exact expected source IDs. Pin-cite labels are optional but should be exact and evidence-backed.
+
+## Current measurement limitation
+
+No lawyer-reviewed Egyptian colloquial question set or measured model-run output is currently available. Phrase-expansion unit tests prove that selected colloquial expressions map to retrieval hints; they do not prove that the correct article is retrieved or that an answer is legally correct. Do not report retrieval recall, citation precision, or answer accuracy until a qualified Egyptian reviewer approves exact expected source IDs and pin-cites and a real run is scored.
 
 ## Reviewed question record
 
