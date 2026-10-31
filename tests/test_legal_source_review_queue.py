@@ -141,6 +141,26 @@ class LegalSourceReviewQueueTests(unittest.TestCase):
             self.assertNotIn("review_evidence_missing:lawyer_approval", reasons)
             self.assertNotIn("lawyer_approval_counsel_attestation_missing", reasons)
 
+    def test_latest_pass_requires_reviewer_and_notes_like_runtime_gate(self):
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "legal.db"
+            make_db(path)
+            db = sqlite3.connect(path)
+            db.execute("ALTER TABLE legal_review_events ADD COLUMN notes TEXT")
+            db.execute(
+                "INSERT INTO legal_review_events(version_id,review_type,outcome,evidence_url,reviewer,reviewed_at,notes) "
+                "VALUES(1,'source_authenticity','pass','https://example.gov/review','',"
+                "'2026-10-25T12:00:00Z','')"
+            )
+            db.commit()
+            db.close()
+
+            report = MODULE.review_queue(path)
+            self.assertIn(
+                "review_evidence_missing:source_authenticity",
+                report["records"][0]["review_reasons"],
+            )
+
     def test_commercial_reuse_restrictions_are_never_treated_as_approved(self):
         cases = (
             ("prohibited", "source_commercial_reuse_permission_not_allowed"),
