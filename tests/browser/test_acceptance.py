@@ -293,6 +293,35 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertIn(response.status, (403, 404))
         self.assertNotIn("CROSS_FIRM_PRIVATE_SENTINEL_7D3A", response.text())
 
+    def test_expired_session_returns_to_login(self) -> None:
+        self.login(self.state["owner_a_email"])
+        self.context.clear_cookies()
+        self.page.reload(wait_until="domcontentloaded")
+        self.page.locator('input[type="email"]').wait_for(state="visible", timeout=15000)
+
+    def test_corpus_coverage_exposes_loading_and_error_states(self) -> None:
+        self.login(self.state["reviewer_email"])
+        self.page.evaluate(
+            """() => {
+                const originalFetch = window.fetch.bind(window);
+                window.fetch = (input, init) => {
+                    if (String(input) === '/legal-review/coverage') {
+                        return new Promise(resolve => {
+                            window.__resolveCoverage = () => resolve(new Response(
+                                JSON.stringify({detail: 'synthetic fixture failure'}),
+                                {status: 503, headers: {'content-type': 'application/json'}}
+                            ));
+                        });
+                    }
+                    return originalFetch(input, init);
+                };
+            }"""
+        )
+        self.page.get_by_role("button", name="تغطية المجموعة القانونية").click()
+        self.page.get_by_text("جارٍ تحميل المؤشرات…").wait_for(timeout=10000)
+        self.page.evaluate("() => window.__resolveCoverage()")
+        self.page.get_by_text("تعذر تحميل المؤشرات. أعد المحاولة.").wait_for(timeout=10000)
+
     def test_arabic_rtl_and_english_ltr_have_no_mobile_horizontal_overflow(self) -> None:
         self.login(self.state["reviewer_email"])
         self.page.get_by_role("button", name="تغطية المجموعة القانونية").click()
