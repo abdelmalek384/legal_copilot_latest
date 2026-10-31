@@ -12,16 +12,26 @@ This is a government-hosted copy of the Official Gazette. The PDF text extractio
 
 | Articles | Printed Gazette page | PDF zero-based page index | Visual observation |
 |---|---:|---:|---|
-| 294–295 | 110 | 108 | Screenshot shows the headings and text of Articles 294 and 295 |
-| 296–298 | 111 | 109 | Screenshot shows the headings and text of Articles 296, 297 and 298 |
+| 275 | 105 | 103 | Article 275 heading and text |
+| 276–280 | 106 | 104 | Articles 276–280 headings and text |
+| 281–285 | 107 | 105 | Articles 281–285 headings and text |
+| 286–288 | 108 | 106 | Articles 286–288 headings and text |
+| 289–291 | 109 | 107 | Articles 289–291 headings and text |
+| 292–295 | 110 | 108 | Articles 292–295 headings and text |
+| 296–298 | 111 | 109 | Articles 296–298 headings and text |
 
 Viewer page references:
+- Printed p.105 / PDF index 103: https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf#page=104
+- Printed p.106 / PDF index 104: https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf#page=105
+- Printed p.107 / PDF index 105: https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf#page=106
+- Printed p.108 / PDF index 106: https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf#page=107
+- Printed p.109 / PDF index 107: https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf#page=108
 - Printed p.110 / PDF index 108: https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf#page=109
 - Printed p.111 / PDF index 109: https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf#page=110
 
 ## Correction made
 
-Ten evidence cards for Articles 294–298 previously carried inferred page pinpoints on printed pages 92 or 94. Those page locators were wrong. They have been corrected to the page mapping above and tagged `visually_verified_on_official_eta_pdf`, with the visual-verification source URL and date stored in each card.
+Forty-six evidence cards for Articles 275–298 previously carried inferred page pinpoints on printed pages 91–94. Those locators were incorrect. They have been corrected to the page mapping above and tagged `visually_verified_on_official_eta_pdf`, with the visual-verification source URL and date stored in each card.
 
 ## Limits
 
