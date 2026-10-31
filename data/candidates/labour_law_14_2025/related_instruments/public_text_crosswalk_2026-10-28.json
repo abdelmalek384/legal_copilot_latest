@@ -73,8 +73,8 @@
       "secondary_text": {
         "url": "https://lawhub.info/eg/?p=17302",
         "corroborating_url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/30-12-2025/no-291?id=5064176&type=1",
-        "status": "Two public secondary full-text transcriptions; neither compared with official Gazette PDF",
-        "summary": "Secondary transcriptions expose Articles 1–5. Article 1 permits overtime for unusual work necessities or exceptional circumstances subject to notifying the competent Labour Directorate within seven days, specifying the required period, premiums of at least 35% for daytime and 70% for nighttime hours, compensatory rest when work occurs on the weekly rest day, and a twelve-hour maximum presence at the establishment. Article 2 requires a paper/electronic register of normal and overtime hours, reasons, day/night timing, pay due and proof of payment. Article 3 requires rotation and minimum use without harming health or weekly rest. Article 4 directs the Supreme Council for Social Consultation to set an annual overtime maximum within three months, by economic activity/sector. Article 5 states next-day commencement."
+        "status": "Secondary full-text transcriptions cross-checked against third-party hosted Gazette page images; original DSpace PDF not compared",
+        "summary": "Secondary transcriptions expose Articles 1–5. Article 1 permits overtime for unusual work necessities or exceptional circumstances subject to notifying the competent Labour Directorate within seven days, specifying the required period, premiums of at least 35% for daytime and 70% for nighttime hours, compensatory rest when work occurs on the weekly rest day, and a twelve-hour maximum presence at the establishment. Article 2 requires a paper/electronic register of normal and overtime hours, reasons, day/night timing, pay due and proof of payment. Article 3 requires rotation and minimum use without harming health or weekly rest. Article 4 directs the Supreme Council for Social Consultation to set an annual overtime maximum within three months, by economic activity/sector. Article 5 states next-day commencement. A third-party hosted two-page Gazette image reproduction visually confirms the same 35%/70% premiums, Article 4 three-month annual-cap task and Article 5 next-day commencement; it is not the original DSpace PDF and its source chain/reuse rights remain unresolved."
       },
       "gazette_date": "2025-12-30 (official Amiri Press issue metadata; secondary EastLaws record independently states the same Gazette publication date)",
       "effective_date": "2025-12-31 (stated by EastLaws and derived from Article 5 in both secondary transcriptions; not primary-PDF verified)",
@@ -104,7 +104,33 @@
           }
         ],
         "caution": "This anchors the parent Labour Law provisions only. It does not authenticate or compare the separate ministerial decision text."
-      }
+      },
+      "gazette_page_image_reproduction": {
+        "url": "https://lawhub.info/eg/wp-content/uploads/2026/01/lawhub.info-eg-dec-291-2025.pdf",
+        "status": "third-party hosted two-page reproduction visually inspected; not the original DSpace PDF",
+        "pages": [
+          {
+            "printed_page": 21,
+            "pdf_page_index": 0,
+            "observations": [
+              "Gazette masthead: issue 295 supplement D, 30 December 2025",
+              "Decision 291/2025 title and signature date 11/12/2025",
+              "Article 1: exceptional overtime conditions, seven-day notification, minimum 35% daytime and 70% nighttime premiums, rest-day compensation and 12-hour presence ceiling"
+            ]
+          },
+          {
+            "printed_page": 22,
+            "pdf_page_index": 1,
+            "observations": [
+              "Articles 2–3: overtime records and worker rotation/health/weekly-rest safeguards",
+              "Article 4: Supreme Council for Social Consultation to set an annual overtime maximum within three months, by activity/sector",
+              "Article 5: publication in Egyptian Proceedings and commencement the following day"
+            ]
+          }
+        ],
+        "caveat": "Visual comparison was made against the third-party page-image reproduction and cross-checked against secondary transcriptions. The original DSpace PDF remains request-a-copy restricted; the reproduction's source chain and reuse permissions are not established. This does not authorize authoritative ingestion."
+      },
+      "primary_comparison_status": "Decision 291 Articles 1–5 visually checked against third-party hosted Gazette page-image reproduction (printed pp.21–22); original official repository PDF not acquired; provenance/reuse rights unresolved; legal/counsel review pending"
     },
     {
       "document_id": "EG-LABOUR-DECISION-292-2025",
