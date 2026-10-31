@@ -1494,20 +1494,18 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             with self.subTest(table=table):
                 self.assertEqual(db_b.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0], 0)
 
-    def test_legacy_review_capability_respects_email_allowlist(self):
+    def test_email_allowlist_cannot_grant_platform_review_capability(self):
         previous = os.environ.get("LEGAL_REVIEWER_EMAILS")
         os.environ["LEGAL_REVIEWER_EMAILS"] = "reviewer@example.test"
         try:
-            with patch.object(app, "_separate_runtime_enabled", return_value=False):
-                self.assertTrue(app._user_can_review_legal({
-                    "id": 10, "role": "admin", "email": "REVIEWER@example.test"
-                }))
-                self.assertFalse(app._user_can_review_legal({
-                    "id": 11, "role": "admin", "email": "other@example.test"
-                }))
-                self.assertFalse(app._user_can_review_legal({
-                    "id": 12, "role": "member", "email": "reviewer@example.test"
-                }))
+            roles = self.runtime.control_connection().execute(
+                "SELECT COUNT(*) FROM user_platform_roles WHERE user_id=?",
+                (self.user_id,),
+            ).fetchone()[0]
+            self.assertEqual(roles, 0)
+            self.assertFalse(app._user_can_review_legal({
+                "id": self.user_id, "role": "admin", "email": "REVIEWER@example.test"
+            }))
         finally:
             if previous is None:
                 os.environ.pop("LEGAL_REVIEWER_EMAILS", None)
