@@ -111,7 +111,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("openCatalog('sources','',{collection_permission:r.collection_permission||'unknown'", HTML)
         self.assertIn("central_permission_register_blocked_versions", HTML)
         self.assertIn("versions_not_eligible_for_verified_answers", HTML)
-        self.assertIn("same verified-corpus source-status gate", HTML)
+        self.assertIn("same source-eligibility gate", HTML)
 
     def test_corpus_registry_drilldowns_can_search_beyond_the_first_page(self):
         self.assertIn("const openCatalog=async(kind,query='',filters={})=>", HTML)
