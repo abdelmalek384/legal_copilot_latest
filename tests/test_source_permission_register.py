@@ -104,6 +104,11 @@ class SourcePermissionRegisterTests(unittest.TestCase):
             with self.subTest(url=url):
                 self.assertTrue(any("source_page must be an HTTPS URL without credentials" in error for error in errors))
 
+    def test_one_day_local_date_ahead_of_utc_is_accepted(self):
+        import datetime as dt
+        tomorrow = (dt.date.today() + dt.timedelta(days=1)).isoformat()
+        self.assertTrue(MODULE._valid_review_date(tomorrow))
+
     def test_invalid_or_future_permission_review_dates_are_rejected(self):
         import json
         data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
@@ -130,6 +135,12 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         self.assertIn("does not authorize automated/bulk extraction", source["permission_evidence"])
         self.assertEqual(source["source_page"], "https://cc.gov.eg/judgments_search/")
         self.assertIn("advanced search", source["permission_evidence"])
+        self.assertIn("last updated May 2026", source["permission_evidence"])
+        self.assertIn("personal account", source["permission_evidence"])
+        self.assertIn("even from a subscribed account", source["permission_evidence"])
+        self.assertIn("manual lookup/link-out source only", source["permission_evidence"])
+        self.assertEqual(source["terms_checked_on"], "2026-10-31")
+        self.assertIn("do not ingest", source["required_next_action"])
 
     def test_cassation_heritage_library_remains_browse_only_without_reuse_permission(self):
         import json
